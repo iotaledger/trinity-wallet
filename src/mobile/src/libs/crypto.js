@@ -1,3 +1,4 @@
+import values from 'lodash/values';
 import { parse } from 'shared-modules/libs/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { TextDecoder } from 'text-encoding';
@@ -28,7 +29,7 @@ export const getRandomBytes = async (quantity) => {
 
 export const generatePasswordHash = async (password, salt) => {
     const salt64 = await encodeBase64(salt);
-    return getHashFn()(password, salt64, DEFAULT_ARGON2_PARAMS).then(
+    return getHashFn()(values(password), salt64, DEFAULT_ARGON2_PARAMS).then(
         (result) => new Uint8Array(result.split(',').map((num) => parseInt(num))),
         (error) => console.log(error), // eslint-disable-line no-console
     );
@@ -55,11 +56,11 @@ export const openSecretBox = async (box, nonce, key) => {
 };
 
 export const UInt8ToString = (uInt8) => {
-    return new TextDecoder('utf-8').decode(uInt8);
+    return new TextDecoder().decode(uInt8);
 };
 
 export const stringToUInt8 = (string) => {
-    return new TextEncoder('utf-8').encode(string);
+    return new TextEncoder().encode(string);
 };
 
 export const decodeBase64 = async (input) => {

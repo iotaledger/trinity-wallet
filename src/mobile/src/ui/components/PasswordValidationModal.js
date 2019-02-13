@@ -70,7 +70,7 @@ export class PasswordValidationModal extends PureComponent {
                         <Icon name="vault" size={width / 6} color={theme.body.color} style={styles.icon} />
                         <CustomTextInput
                             label={t('global:password')}
-                            onChangeText={(password) => this.setState({ password })}
+                            onValidTextChange={(password) => this.setState({ password })}
                             containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}

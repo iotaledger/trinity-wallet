@@ -156,7 +156,7 @@ export class EditAccountName extends Component {
                         <View style={styles.textFieldContainer}>
                             <CustomTextInput
                                 label={t('accountName')}
-                                onChangeText={(accountName) => this.setState({ accountName })}
+                                onValidTextChange={(accountName) => this.setState({ accountName })}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically

@@ -132,7 +132,7 @@ class EnterPassword extends Component {
                     <View style={styles.midContainer}>
                         <CustomTextInput
                             label={t('global:password')}
-                            onChangeText={(text) => this.setState({ password: text })}
+                            onValidTextChange={(text) => this.setState({ password: text })}
                             containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}

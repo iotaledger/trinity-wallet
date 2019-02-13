@@ -241,7 +241,7 @@ class SeedReentry extends Component {
                                     >
                                         <CustomTextInput
                                             label={t('global:seed')}
-                                            onChangeText={(text) => {
+                                            onValidTextChange={(text) => {
                                                 if (text.match(VALID_SEED_REGEX) || text.length === 0) {
                                                     this.setState({ reenteredSeed: text.toUpperCase() });
                                                 }

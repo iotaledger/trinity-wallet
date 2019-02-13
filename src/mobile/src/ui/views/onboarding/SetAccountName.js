@@ -104,7 +104,6 @@ export class SetAccountName extends Component {
         if (shouldPreventAction) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
-
         if (isEmpty(accountName)) {
             return this.props.generateAlert(
                 'error',
@@ -219,7 +218,7 @@ export class SetAccountName extends Component {
                             >
                                 <CustomTextInput
                                     label={t('addAdditionalSeed:accountName')}
-                                    onChangeText={(text) => this.setState({ accountName: text })}
+                                    onValidTextChange={(text) => this.setState({ accountName: text })}
                                     autoCapitalize="words"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically

@@ -145,7 +145,7 @@ class Disable2FA extends Component {
                             >
                                 <CustomTextInput
                                     label="Token"
-                                    onChangeText={(token) => this.setState({ token })}
+                                    onValidTextChange={(token) => this.setState({ token })}
                                     autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically

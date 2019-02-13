@@ -81,8 +81,8 @@ class SetPassword extends Component {
     constructor() {
         super();
         this.state = {
-            password: '',
-            reentry: '',
+            password: null,
+            reentry: null,
         };
     }
 
@@ -103,7 +103,6 @@ class SetPassword extends Component {
      */
     async onAcceptPassword() {
         const { t, accountName } = this.props;
-
         const salt = await getSalt();
         global.passwordHash = await generatePasswordHash(this.state.password, salt);
         delete this.state.password;
@@ -118,7 +117,6 @@ class SetPassword extends Component {
                 t('addAdditionalSeed:seedInUseExplanation'),
             );
         }
-
         await seedStore.addAccount(accountName, global.onboardingSeed);
         delete global.onboardingSeed;
         // gc

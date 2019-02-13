@@ -1,13 +1,14 @@
+import size from 'lodash/size';
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { MAX_SEED_LENGTH, VALID_SEED_REGEX, getChecksum } from 'shared-modules/libs/iota/utils';
+import { MAX_SEED_TRITS, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils'; // getChecksum
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
-import { stringToUInt8 } from 'libs/crypto';
-import { trytesToTrits } from 'shared-modules/libs/iota/converter';
+import { stringToUInt8, UInt8ToString } from 'libs/crypto';
+import { trytesToTrits, tritsToChars } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     fieldContainer: {
@@ -104,9 +105,6 @@ const styles = StyleSheet.create({
 
 class CustomTextInput extends Component {
     static propTypes = {
-        /** Text Change event callback function */
-        /** @param {string} text - Updated text in the text field */
-        onChangeText: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Label for text field */
@@ -153,6 +151,8 @@ class CustomTextInput extends Component {
         isPasswordInput: PropTypes.bool,
         /** Text input value */
         value: PropTypes.any,
+        /** Text Change event callback function */
+        onValidTextChange: PropTypes.func,
     };
 
     static defaultProps = {
@@ -205,14 +205,35 @@ class CustomTextInput extends Component {
         this.setState({ isFocused: false });
     }
 
-    onChangeText(text) {
-        const { isPasswordInput, isSeedInput } = this.props;
-        if (isPasswordInput) {
-            return stringToUInt8(text);
-        } else if (isSeedInput) {
-            return trytesToTrits(text);
+    /**
+     * Triggered on text change - converts seed and password to appropriate format
+     * @return {function}
+     */
+    onChangeText(value) {
+        const { isPasswordInput, isSeedInput, onValidTextChange } = this.props;
+        if (isSeedInput) {
+            if (value && !value.match(VALID_SEED_REGEX)) {
+                return;
+            }
+            return onValidTextChange(trytesToTrits(value));
+        } else if (isPasswordInput) {
+            return onValidTextChange(stringToUInt8(value));
         }
-        return text;
+        onValidTextChange(value);
+    }
+
+    /**
+     * Returns text input value - converts seed and password to string
+     * @return {string}
+     */
+    getValue(value) {
+        const { isSeedInput, isPasswordInput } = this.props;
+        if (isSeedInput && value) {
+            return tritsToChars(value);
+        } else if (isPasswordInput && value) {
+            return UInt8ToString(value);
+        }
+        return value;
     }
 
     /**
@@ -232,21 +253,19 @@ class CustomTextInput extends Component {
         let checksumValue = '...';
         if (value === null) {
             return checksumValue;
-        } else if (value.length !== 0 && !value.match(VALID_SEED_REGEX)) {
-            checksumValue = '!';
-        } else if (value.length !== 0 && value.length < MAX_SEED_LENGTH) {
+        } else if (size(value) !== 0 && size(value) < MAX_SEED_TRITS) {
             checksumValue = '< 81';
-        } else if (value.length > MAX_SEED_LENGTH) {
+        } else if (size(value) > MAX_SEED_TRITS) {
             checksumValue = '> 81';
-        } else if (value.length === 81 && value.match(VALID_SEED_REGEX)) {
-            checksumValue = getChecksum(value);
+        } else if (size(value) === MAX_SEED_TRITS) {
+            return 'OOO'; //Temp - Fix checksum function - checksumValue = getChecksum(value);
         }
         return checksumValue;
     }
 
     getChecksumStyle() {
         const { theme, value } = this.props;
-        if (value && value.length === 81 && value.match(VALID_SEED_REGEX)) {
+        if (value && size(value) === MAX_SEED_TRITS) {
             return { color: theme.primary.color };
         }
         return { color: theme.body.color };
@@ -344,7 +363,6 @@ class CustomTextInput extends Component {
         const {
             label,
             theme,
-            onChangeText,
             containerStyle,
             widget,
             onRef,
@@ -357,6 +375,7 @@ class CustomTextInput extends Component {
             isPasswordValid,
             passwordStrength,
             isSeedInput,
+            value,
             ...restProps
         } = this.props;
         const { isFocused } = this.state;
@@ -429,6 +448,7 @@ class CustomTextInput extends Component {
                         onChangeText={(text) => this.onChangeText(text)}
                         selectionColor={theme.input.alt}
                         underlineColorAndroid="transparent"
+                        value={this.getValue(value)}
                     />
                     {(widget === 'qr' && this.renderQR({ borderLeftColor: theme.input.alt })) ||
                         (widget === 'denomination' && this.renderDenomination({ borderLeftColor: theme.input.alt })) ||

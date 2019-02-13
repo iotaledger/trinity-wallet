@@ -149,7 +149,7 @@ class ChangePassword extends Component {
                             }}
                             value={currentPassword}
                             label={t('currentPassword')}
-                            onChangeText={(password) => this.setState({ currentPassword: password })}
+                            onValidTextChange={(password) => this.setState({ currentPassword: password })}
                             returnKeyType="next"
                             theme={theme}
                             widget="empty"

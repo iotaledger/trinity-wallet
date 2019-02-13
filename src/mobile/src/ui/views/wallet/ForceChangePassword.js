@@ -195,7 +195,7 @@ class ForceChangePassword extends Component {
         ref,
         value,
         label,
-        onChangeText,
+        onValidTextChange,
         returnKeyType,
         onSubmitEditing,
         widget = 'empty',
@@ -207,7 +207,7 @@ class ForceChangePassword extends Component {
         const props = {
             onRef: ref,
             label,
-            onChangeText,
+            onValidTextChange,
             containerStyle: { width: Styling.contentWidth },
             autoCapitalize: 'none',
             autoCorrect: false,

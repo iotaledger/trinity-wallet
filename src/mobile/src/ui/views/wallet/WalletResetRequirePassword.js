@@ -199,7 +199,7 @@ class WalletResetRequirePassword extends Component {
                             >
                                 <CustomTextInput
                                     label={t('global:password')}
-                                    onChangeText={(password) => this.setState({ password })}
+                                    onValidTextChange={(password) => this.setState({ password })}
                                     value={this.state.password}
                                     containerStyle={{ width: Styling.contentWidth }}
                                     autoCapitalize="none"

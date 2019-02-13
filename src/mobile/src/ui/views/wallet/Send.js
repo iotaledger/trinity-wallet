@@ -699,7 +699,7 @@ export class Send extends Component {
                             }}
                             maxLength={90}
                             label={t('recipientAddress')}
-                            onChangeText={(text) => {
+                            onValidTextChange={(text) => {
                                 if (text.match(VALID_SEED_REGEX) || text.length === 0) {
                                     this.props.setSendAddressField(text);
                                 }
@@ -783,7 +783,7 @@ export class Send extends Component {
                             }}
                             keyboardType="default"
                             label={t('message')}
-                            onChangeText={(text) => this.props.setSendMessageField(text)}
+                            onValidTextChange={(text) => this.props.setSendMessageField(text)}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"

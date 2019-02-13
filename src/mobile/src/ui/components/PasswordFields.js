@@ -1,3 +1,5 @@
+import size from 'lodash/size';
+import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { withNamespaces } from 'react-i18next';
@@ -10,6 +12,7 @@ import { getThemeFromState } from 'shared-modules/selectors/global';
 import i18next from 'shared-modules/libs/i18next.js';
 import { height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
+import { UInt8ToString } from 'libs/crypto';
 import CustomTextInput from './CustomTextInput';
 
 const MIN_PASSWORD_LENGTH = 11;
@@ -40,9 +43,9 @@ class PasswordFields extends Component {
         /** @ignore */
         setReentry: PropTypes.func.isRequired,
         /** @ignore */
-        password: PropTypes.string,
+        password: PropTypes.object,
         /** @ignore */
-        reentry: PropTypes.string,
+        reentry: PropTypes.object,
         /** First text input label */
         passwordLabel: PropTypes.any,
         /** Second text input label */
@@ -53,6 +56,13 @@ class PasswordFields extends Component {
         passwordLabel: i18next.t('global:password'),
         reentryLabel: i18next.t('setPassword:retypePassword'),
     };
+
+    constructor() {
+        super();
+        this.state = {
+            score: 0,
+        };
+    }
 
     componentDidMount() {
         this.props.onRef(this);
@@ -69,14 +79,14 @@ class PasswordFields extends Component {
      */
     checkPassword() {
         const { t, password, reentry } = this.props;
-        const score = zxcvbn(password);
+        const { score } = this.state;
         if (password.length === 0) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
-        } else if (password.length >= MIN_PASSWORD_LENGTH && password === reentry && score.score === 4) {
+        } else if (size(password) >= MIN_PASSWORD_LENGTH && isEqual(password, reentry) && score.score === 4) {
             return this.props.onAcceptPassword();
-        } else if (!(password === reentry)) {
+        } else if (!isEqual(password, reentry)) {
             return this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
-        } else if (password.length < MIN_PASSWORD_LENGTH || reentry.length < MIN_PASSWORD_LENGTH) {
+        } else if (size(password) < MIN_PASSWORD_LENGTH || size(reentry) < MIN_PASSWORD_LENGTH) {
             return this.props.generateAlert(
                 'error',
                 t('passwordTooShort'),
@@ -95,14 +105,17 @@ class PasswordFields extends Component {
 
     render() {
         const { theme, password, reentry, passwordLabel, reentryLabel } = this.props;
-        const score = zxcvbn(password ? password : '');
+        const { score } = this.state;
         const isValid = score.score === 4;
 
         return (
             <View style={[styles.container]}>
                 <CustomTextInput
                     label={passwordLabel}
-                    onChangeText={(password) => this.props.setPassword(password)}
+                    onValidTextChange={(password) => {
+                        this.props.setPassword(password);
+                        this.setState({ score: zxcvbn(password ? UInt8ToString(password) : '') });
+                    }}
                     containerStyle={{ width: Styling.contentWidth }}
                     autoCapitalize="none"
                     widget="password"
@@ -127,10 +140,10 @@ class PasswordFields extends Component {
                         this.reentry = c;
                     }}
                     label={reentryLabel}
-                    onChangeText={(reentry) => this.props.setReentry(reentry)}
+                    onValidTextChange={(reentry) => this.props.setReentry(reentry)}
                     containerStyle={{ width: Styling.contentWidth, marginTop: height / 60 }}
                     widget="passwordReentry"
-                    isPasswordValid={isValid && password === reentry}
+                    isPasswordValid={isValid && isEqual(password, reentry)}
                     autoCapitalize="none"
                     autoCorrect={false}
                     enablesReturnKeyAutomatically

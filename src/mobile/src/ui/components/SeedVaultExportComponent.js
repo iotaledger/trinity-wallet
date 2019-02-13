@@ -320,7 +320,7 @@ class SeedVaultExportComponent extends Component {
                     </Text>
                     <CustomTextInput
                         label={t('password')}
-                        onChangeText={(password) => this.setState({ password })}
+                        onValidTextChange={(password) => this.setState({ password })}
                         containerStyle={{ width: Styling.contentWidth }}
                         autoCapitalize="none"
                         autoCorrect={false}

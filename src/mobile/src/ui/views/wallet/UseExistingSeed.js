@@ -1,3 +1,4 @@
+import size from 'lodash/size';
 import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -5,7 +6,7 @@ import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
+import { MAX_SEED_TRITS, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -99,7 +100,7 @@ class UseExistingSeed extends Component {
         super(props);
 
         this.state = {
-            seed: null,
+            seed: '',
             accountName: '',
         };
     }
@@ -193,19 +194,13 @@ class UseExistingSeed extends Component {
      */
     async addExistingSeed(seed, accountName) {
         const { t, accountNames, shouldPreventAction } = this.props;
-        if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
-            this.props.generateAlert(
-                'error',
-                t('addAdditionalSeed:seedInvalidChars'),
-                t('addAdditionalSeed:seedInvalidCharsExplanation'),
-            );
-        } else if (seed.length < MAX_SEED_LENGTH) {
+        if (seed.length < MAX_SEED_TRITS) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:seedTooShort'),
                 t('addAdditionalSeed:seedTooShortExplanation', {
                     maxLength: MAX_SEED_LENGTH,
-                    currentLength: seed.length,
+                    currentLength: size(seed) / 3,
                 }),
             );
         } else if (!(accountName.length > 0)) {
@@ -225,7 +220,6 @@ class UseExistingSeed extends Component {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
             const seedStore = await new SeedStore.keychain(global.passwordHash);
-
             const isUniqueSeed = await seedStore.isUniqueSeed(seed);
 
             if (!isUniqueSeed) {
@@ -283,7 +277,7 @@ class UseExistingSeed extends Component {
                                 this.accountNameField = c;
                             }}
                             label={t('addAdditionalSeed:accountName')}
-                            onChangeText={(value) => this.setState({ accountName: value })}
+                            onValidTextChange={(value) => this.setState({ accountName: value })}
                             containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="words"
                             maxLength={MAX_SEED_LENGTH}
@@ -296,11 +290,7 @@ class UseExistingSeed extends Component {
                         <View style={{ flex: 0.25 }} />
                         <CustomTextInput
                             label={t('global:seed')}
-                            onChangeText={(text) => {
-                                if (text.match(VALID_SEED_REGEX) || text.length === 0) {
-                                    this.setState({ seed: text.toUpperCase() });
-                                }
-                            }}
+                            onValidTextChange={(text) => this.setState({ seed: text })}
                             containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="characters"
                             maxLength={MAX_SEED_LENGTH}

@@ -88,7 +88,7 @@ describe('Testing SetAccountName component', () => {
                     });
                 });
 
-                it('should call update accountName prop in state with text when onChangeText prop method on CustomTextInput is triggered', () => {
+                it('should call update accountName prop in state with text when onValidTextChange prop method on CustomTextInput is triggered', () => {
                     const props = getProps();
 
                     const wrapper = shallow(<SetAccountName {...props} />);
@@ -96,7 +96,7 @@ describe('Testing SetAccountName component', () => {
                     wrapper
                         .find('CustomTextInput')
                         .props()
-                        .onChangeText('foo');
+                        .onValidTextChange('foo');
 
                     expect(wrapper.state('accountName')).toEqual('foo');
                 });

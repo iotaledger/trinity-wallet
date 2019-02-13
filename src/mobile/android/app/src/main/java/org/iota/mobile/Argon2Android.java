@@ -8,11 +8,14 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableArray;
 
 import de.wuthoehle.argon2jni.Argon2;
 import de.wuthoehle.argon2jni.Argon2Result;
 import de.wuthoehle.argon2jni.Argon2Exception;
 import de.wuthoehle.argon2jni.SecurityParameters;
+
+import static org.iota.mobile.Converter.readableArrayToByteArray;
 
 public class Argon2Android extends ReactContextBaseJavaModule {
     public Argon2Android(ReactApplicationContext reactContext) {
@@ -59,10 +62,11 @@ public class Argon2Android extends ReactContextBaseJavaModule {
      * @param promise
      */
     @ReactMethod
-    public void hash(String password, String salt, ReadableMap options, Promise promise) {
+    public void hash(ReadableArray password, String salt, ReadableMap options, Promise promise) {
         try {
+            byte[] pwordByteArray = readableArrayToByteArray(password);
             Argon2 instance = Argon2Android.init(options.toHashMap());
-            Argon2Result result = instance.argon2_hash_raw(password.getBytes(), salt.getBytes());
+            Argon2Result result = instance.argon2_hash_raw(pwordByteArray, salt.getBytes());
 
             byte[] input = result.getResult();
 

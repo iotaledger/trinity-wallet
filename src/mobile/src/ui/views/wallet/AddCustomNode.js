@@ -164,7 +164,7 @@ export class AddCustomNode extends Component {
                         <View style={{ flex: 1.2 }} />
                         <CustomTextInput
                             label={t('customNode')}
-                            onChangeText={(customNode) => this.setState({ customNode })}
+                            onValidTextChange={(customNode) => this.setState({ customNode })}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
