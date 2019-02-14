@@ -81,7 +81,7 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void doPoW(final String trytes, final int mwm, final Promise promise) {
+    public void trytesPow(final String trytes, final int mwm, final Promise promise) {
         new GuardedResultAsyncTask<String>(mContext) {
             @Override
             protected String doInBackgroundGuarded() {
@@ -93,7 +93,41 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
             protected void onPostExecuteGuarded(String result) {
                 promise.resolve(result);
             }
+        }.execute();
+    }
 
+    @ReactMethod
+    public void bundlePow(
+        final ReadableArray trytes,
+        final String trunk,
+        final String branch,
+        final int mwm,
+        final Promise promise
+    ) {
+        new GuardedResultAsyncTask<String[]>(mContext) {
+            @Override
+            protected String[] doInBackgroundGuarded() {
+                String[] trytesBeforePow = new String[trytes.size()];
+
+                for (int i = 0; i < trytes.size(); i++) {
+                    trytesBeforePow[i] = trytes.getString(i);
+                }
+
+                String[] attachedTrytes = Interface.iota_pow_bundle(trytesBeforePow, trunk, branch, mwm);
+                                
+                return attachedTrytes;
+            }
+
+            @Override
+            protected void onPostExecuteGuarded(String[] result) {
+                WritableNativeArray attachedTrytes = new WritableNativeArray();
+
+                for (int i = 0; i < result.length; i++) {
+                    attachedTrytes.pushString(result[i]);
+                }
+
+                promise.resolve(attachedTrytes);
+            }
         }.execute();
     }
 }
