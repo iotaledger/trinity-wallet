@@ -183,6 +183,7 @@ class TwoFactorSetupEnterToken extends Component {
                                 onSubmitEditing={this.check2FA}
                                 theme={theme}
                                 keyboardType="numeric"
+                                value={this.state.code}
                             />
                         </AnimatedComponent>
                     </View>

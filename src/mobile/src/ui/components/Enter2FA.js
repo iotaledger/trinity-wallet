@@ -42,7 +42,7 @@ export class Enter2FA extends Component {
     };
 
     state = {
-        token2FA: '',
+        token: '',
     };
 
     componentDidMount() {
@@ -50,17 +50,17 @@ export class Enter2FA extends Component {
     }
 
     componentWillUpdate(newProps, newState) {
-        const { token2FA } = this.state;
-        if (token2FA.length === 5 && newState.token2FA.length === 6) {
-            this.props.verify(newState.token2FA);
+        const { token } = this.state;
+        if (token.length === 5 && newState.token.length === 6) {
+            this.props.verify(newState.token);
         }
     }
 
-    handleChange2FAToken = (token2FA) => this.setState({ token2FA });
+    handleChange2FAToken = (token) => this.setState({ token });
 
     handleDonePress = () => {
-        const { token2FA } = this.state;
-        this.props.verify(token2FA);
+        const { token } = this.state;
+        this.props.verify(token);
     };
 
     handleBackPress = () => {
@@ -68,7 +68,7 @@ export class Enter2FA extends Component {
     };
 
     render() {
-        const { codefor2FA } = this.state;
+        const { token } = this.state;
         const { t, theme } = this.props;
 
         return (
@@ -89,7 +89,7 @@ export class Enter2FA extends Component {
                             returnKeyType="done"
                             onSubmitEditing={this.handleDonePress}
                             theme={theme}
-                            value={codefor2FA}
+                            value={token}
                         />
                     </View>
                     <View style={styles.bottomContainer}>

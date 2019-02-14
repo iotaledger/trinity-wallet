@@ -160,7 +160,6 @@ class Login extends Component {
             const verified = authenticator.verifyToken(key, token);
             if (verified) {
                 this.navigateTo(completedMigration ? 'loading' : 'migration');
-                this.props.setLoginRoute('login');
                 key = null;
                 // gc
             } else {

@@ -18,6 +18,8 @@ import { width, height } from 'libs/dimensions';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import { removeNonAlphaNumeric } from 'shared-modules/libs/utils';
+import { tritsToChars } from 'shared-modules/libs/iota/converter';
+import { UInt8ToString } from 'libs/crypto';
 import InfoBox from './InfoBox';
 import Button from './Button';
 import CustomTextInput from './CustomTextInput';
@@ -65,7 +67,7 @@ class SeedVaultExportComponent extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        seed: PropTypes.string.isRequired,
+        seed: PropTypes.string,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** Name for selected account */
@@ -88,11 +90,16 @@ class SeedVaultExportComponent extends Component {
         setAuthenticated: PropTypes.func,
     };
 
+    static defaultProps = {
+        seed: '',
+    };
+
     constructor(props) {
         super(props);
         this.state = {
-            password: '',
-            reentry: '',
+            currentPassword: null,
+            password: null,
+            reentry: null,
             path: '',
             saveToDownloadFolder: false,
             seed: props.seed,
@@ -119,6 +126,7 @@ class SeedVaultExportComponent extends Component {
         if (this.state.path !== '' && !this.state.saveToDownloadFolder) {
             RNFetchBlob.fs.unlink(this.state.path);
         }
+        delete this.state.currentPassword;
         delete this.state.password;
         delete this.state.reentry;
         delete this.state.seed;
@@ -226,7 +234,10 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
-        return nodejs.channel.send('export:' + this.state.seed + ':' + this.state.password);
+        // FIXME: Password should be UInt8, not string
+        return nodejs.channel.send(
+            'export:' + tritsToChars(values(this.state.seed)) + ':' + UInt8ToString(this.state.password),
+        );
     }
 
     /**
@@ -266,19 +277,17 @@ class SeedVaultExportComponent extends Component {
      */
     async validateWalletPassword() {
         const { t, selectedAccountName, selectedAccountMeta } = this.props;
-        const { password } = this.state;
-        if (!password) {
+        const { currentPassword } = this.state;
+        if (!currentPassword) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else {
-            const enteredPasswordHash = await hash(password);
+            const enteredPasswordHash = await hash(currentPassword);
             if (isEqual(enteredPasswordHash, global.passwordHash)) {
                 const seedStore = await new SeedStore[selectedAccountMeta.type](
                     enteredPasswordHash,
                     selectedAccountName,
                 );
                 this.setState({ seed: await seedStore.getSeed() });
-                delete this.state.seed;
-                // gc
                 this.props.setAuthenticated(true);
                 return this.navigateToStep('isViewingGeneralInfo');
             }
@@ -309,7 +318,7 @@ class SeedVaultExportComponent extends Component {
 
     render() {
         const { t, theme, isAuthenticated } = this.props;
-        const { password, reentry } = this.state;
+        const { currentPassword, password, reentry } = this.state;
         const textColor = { color: theme.body.color };
 
         return (
@@ -320,7 +329,7 @@ class SeedVaultExportComponent extends Component {
                     </Text>
                     <CustomTextInput
                         label={t('password')}
-                        onValidTextChange={(password) => this.setState({ password })}
+                        onValidTextChange={(currentPassword) => this.setState({ currentPassword })}
                         containerStyle={{ width: Styling.contentWidth }}
                         autoCapitalize="none"
                         autoCorrect={false}
@@ -329,7 +338,8 @@ class SeedVaultExportComponent extends Component {
                         secureTextEntry
                         onSubmitEditing={() => this.onNextPress()}
                         theme={theme}
-                        value={password}
+                        value={currentPassword}
+                        isPasswordInput
                     />
                 </View>
                 <View style={styles.viewContainer}>

@@ -125,7 +125,7 @@ class ChangePassword extends Component {
         const { t, generateAlert } = this.props;
         if (!isEqual(global.passwordHash, await hash(this.state.currentPassword))) {
             return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
-        } else if (this.state.newPassword === this.state.currentPassword) {
+        } else if (isEqual(this.state.newPassword, this.state.currentPassword)) {
             return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));
         }
         this.passwordFields.checkPassword();

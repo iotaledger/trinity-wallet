@@ -173,6 +173,7 @@ export class AddCustomNode extends Component {
                             onSubmitEditing={() => this.addNode()}
                             theme={theme}
                             editable={!loading}
+                            value={this.state.customNode}
                         />
                     </View>
                     {loading ? (
