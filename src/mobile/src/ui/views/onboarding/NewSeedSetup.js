@@ -313,7 +313,6 @@ class NewSeedSetup extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.wallet.seed,
     theme: getThemeFromState(state),
     onboardingComplete: state.accounts.onboardingComplete,
     minimised: state.ui.minimised,

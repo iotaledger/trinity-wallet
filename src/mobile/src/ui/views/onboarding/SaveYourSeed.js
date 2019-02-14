@@ -504,7 +504,6 @@ class SaveYourSeed extends Component {
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     onboardingComplete: state.accounts.onboardingComplete,
-    seed: state.wallet.seed,
 });
 
 const mapDispatchToProps = {
