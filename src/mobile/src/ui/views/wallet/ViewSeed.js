@@ -1,4 +1,5 @@
 import isEqual from 'lodash/isEqual';
+import values from 'lodash/values';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -21,6 +22,7 @@ import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { tritsToChars } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     container: {
@@ -209,11 +211,9 @@ class ViewSeed extends Component {
      * @method hideSeed
      */
     hideSeed() {
-        this.setState({
-            seed: '',
-            showSeed: false,
-            password: '',
-        });
+        delete this.state.seed;
+        delete this.state.password;
+        this.setState({ showSeed: false });
     }
 
     render() {
@@ -238,7 +238,7 @@ class ViewSeed extends Component {
                             !isConfirming && (
                                 <View style={styles.seedBoxContainer}>
                                     <Seedbox
-                                        seed={this.state.seed}
+                                        seed={tritsToChars(values(this.state.seed))}
                                         bodyColor={theme.body.color}
                                         borderColor={borderColor}
                                         textColor={textColor}
@@ -259,6 +259,7 @@ class ViewSeed extends Component {
                                         secureTextEntry
                                         value={this.state.password}
                                         theme={theme}
+                                        isPasswordInput
                                     />
                                 </View>
                             )}
