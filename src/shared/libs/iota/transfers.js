@@ -502,12 +502,15 @@ export const getTransactionsDiff = (existingHashes, newHashes) => {
  *   Performs proof of work and updates trytes and transaction objects with nonce.
  *
  *   @method performPow
+ *
  *   @param {function} powFn
  *   @param {function} digestFn
  *   @param {array} trytes
  *   @param {string} trunkTransaction
  *   @param {string} branchTransaction
  *   @param {number} [minWeightMagnitude = 14]
+ *   @param {boolean} [batchedPow]
+ *
  *   @returns {Promise}
  **/
 export const performPow = (
@@ -517,11 +520,41 @@ export const performPow = (
     trunkTransaction,
     branchTransaction,
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
+    batchedPow,
 ) => {
     if (!isFunction(powFn)) {
         return Promise.reject(Errors.POW_FUNCTION_UNDEFINED);
     }
 
+    return batchedPow
+        ? powFn(trytes, trunkTransaction, branchTransaction, minWeightMagnitude)
+        : performSequentialPow(powFn, digestFn, trytes, branchTransaction, trunkTransaction, minWeightMagnitude);
+};
+
+/**
+ *
+ * Performs sequential proof of work (Can be run in parallel with getTransactionsToApprove).
+ * See: https://github.com/iotaledger/trinity-wallet/issues/205
+ *
+ * @method performSequentialPow
+ *
+ * @param {function} powFn
+ * @param {function} digestFn
+ * @param {array} trytes
+ * @param {string} trunkTransaction
+ * @param {string} branchTransaction
+ * @param {number} minWeightMagnitude
+ *
+ * @returns {Promise}
+ */
+export const performSequentialPow = (
+    powFn,
+    digestFn,
+    trytes,
+    trunkTransaction,
+    branchTransaction,
+    minWeightMagnitude,
+) => {
     const transactionObjects = map(trytes, (transactionTrytes) =>
         assign({}, iota.utils.transactionObject(transactionTrytes), {
             attachmentTimestamp: Date.now(),
@@ -552,24 +585,16 @@ export const performPow = (
 
                 const transactionTryteString = iota.utils.transactionTrytes(withParentTransactions);
 
-                return powFn(transactionTryteString, minWeightMagnitude)
-                    .then((nonce) => {
-                        const trytesWithNonce = transactionTryteString.substr(0, 2673 - nonce.length).concat(nonce);
+                return powFn(transactionTryteString, minWeightMagnitude).then((nonce) => {
+                    const trytesWithNonce = transactionTryteString.substr(0, 2673 - nonce.length).concat(nonce);
 
-                        result.trytes.unshift(trytesWithNonce);
+                    result.unshift(trytesWithNonce);
 
-                        return digestFn(trytesWithNonce).then((digest) =>
-                            iota.utils.transactionObject(trytesWithNonce, digest),
-                        );
-                    })
-                    .then((transactionObject) => {
-                        result.transactionObjects.unshift(transactionObject);
-
-                        return result;
-                    });
+                    return result;
+                });
             });
         },
-        Promise.resolve({ trytes: [], transactionObjects: [] }),
+        Promise.resolve([]),
     );
 };
 
@@ -949,5 +974,33 @@ export const mapNormalisedTransactions = (transactions, addressData) => {
             }
         },
         {},
+    );
+};
+
+/**
+ * Computes and assign transaction hash to transactions from attached trytes (Forms a bundle).
+ *
+ * @method constructTransactionsFromAttachedTrytes
+ *
+ * @param {array} attachedTrytes
+ * @param {object} seedStore
+ *
+ * @returns {Promise<array>}
+ */
+export const constructBundleFromAttachedTrytes = (attachedTrytes, seedStore) => {
+    return reduce(
+        attachedTrytes,
+        (promise, tryteString) => {
+            return promise.then((result) => {
+                return seedStore.getDigest(tryteString).then((digest) => {
+                    const transactionObject = iota.utils.transactionObject(tryteString, digest);
+
+                    result.push(transactionObject);
+
+                    return result;
+                });
+            });
+        },
+        Promise.resolve([]),
     );
 };

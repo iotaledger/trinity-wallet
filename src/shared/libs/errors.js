@@ -17,6 +17,8 @@ export default {
     UNSUPPORTED_NODE: 'Node version not supported',
     INVALID_BUNDLE: 'Invalid bundle',
     INVALID_BUNDLE_CONSTRUCTED_DURING_REATTACHMENT: 'Invalid bundle constructed during reattachment.',
+    INVALID_BUNDLE_CONSTRUCTED: (remotePow) =>
+        `Invalid bundle constructed with ${remotePow ? 'remote' : 'local'} proof-of-work.`,
     INVALID_PARAMETERS: 'Invalid parameters',
     ALREADY_SPENT_FROM_ADDRESSES: 'Already spent from addresses',
     TRANSACTION_IS_INCONSISTENT: 'Transaction is inconsistent.',
