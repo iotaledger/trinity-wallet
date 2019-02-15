@@ -44,7 +44,8 @@ class Keychain extends SeedStoreCore {
     addAccount = async (accountId, seed) => {
         this.accountId = await sha256(accountId);
         const existingInfo = await keychain.get(ALIAS_SEEDS);
-        const info = { [this.accountId]: seed };
+        // Sha256 of account name against basic trit array
+        const info = { [this.accountId]: values(seed) };
 
         // If this is the first seed, store the seed with account name
         if (isEmpty(existingInfo)) {
@@ -122,7 +123,7 @@ class Keychain extends SeedStoreCore {
      */
     getSeed = async () => {
         const seeds = await this.getSeeds();
-        return new Int8Array(values(seeds[this.accountId]));
+        return new Int8Array(seeds[this.accountId]);
     };
 
     /**
