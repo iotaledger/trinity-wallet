@@ -12,7 +12,6 @@ import Header from 'ui/components/Header';
 import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { isAndroid } from 'libs/device';
-import { tritsToChars } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     container: {
@@ -114,7 +113,7 @@ class SeedVaultBackup extends Component {
                                     this.SeedVaultExportComponent = ref;
                                 }}
                                 isAuthenticated
-                                seed={tritsToChars(global.onboardingSeed)}
+                                seed={global.onboardingSeed}
                             />
                         </AnimatedComponent>
                     </View>

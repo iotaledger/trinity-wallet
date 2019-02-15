@@ -236,7 +236,7 @@ class SeedVaultExportComponent extends Component {
     onExportPress() {
         // FIXME: Password should be UInt8, not string
         return nodejs.channel.send(
-            'export:' + tritsToChars(values(this.state.seed)) + ':' + UInt8ToString(this.state.password),
+            'export:' + tritsToChars(this.state.seed) + ':' + UInt8ToString(this.state.password),
         );
     }
 

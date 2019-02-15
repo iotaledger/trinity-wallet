@@ -1,9 +1,11 @@
+import isEqual from 'lodash/isEqual';
+import size from 'lodash/size';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX, MAX_SEED_TRITS } from 'shared-modules/libs/iota/utils';
 import { navigator } from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
@@ -109,7 +111,7 @@ class SeedReentry extends Component {
     onDonePress() {
         const { t, theme: { body } } = this.props;
         const { reenteredSeed } = this.state;
-        if (reenteredSeed === global.onboardingSeed) {
+        if (isEqual(reenteredSeed, global.onboardingSeed)) {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
@@ -132,7 +134,7 @@ class SeedReentry extends Component {
             });
             delete this.state.reenteredSeed;
             // gc
-        } else if (reenteredSeed.length === MAX_SEED_LENGTH && reenteredSeed.match(VALID_SEED_REGEX)) {
+        } else if (size(reenteredSeed) === MAX_SEED_TRITS) {
             this.props.generateAlert('error', t('incorrectSeed'), t('incorrectSeedExplanation'));
         } else {
             this.props.generateAlert(

@@ -122,8 +122,7 @@ class Keychain extends SeedStoreCore {
      */
     getSeed = async () => {
         const seeds = await this.getSeeds();
-        // temp: seed to be stored as Int8Array
-        return seeds[this.accountId];
+        return new Int8Array(values(seeds[this.accountId]));
     };
 
     /**

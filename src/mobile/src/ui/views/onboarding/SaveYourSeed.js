@@ -23,6 +23,7 @@ import { width, height } from 'libs/dimensions';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { isAndroid } from 'libs/device';
+import { tritsToChars } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     container: {
@@ -88,8 +89,6 @@ class SaveYourSeed extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** @ignore */
-        seed: PropTypes.string.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
     };
@@ -244,7 +243,7 @@ class SaveYourSeed extends Component {
      * @method getHTMLContent
      */
     getHTMLContent() {
-        const { seed } = this.props;
+        const seed = tritsToChars(global.onboardingSeed);
         const checksumString = `<text x="372.7" y="735">${getChecksum(seed)}</text>`;
         const qrString = this.getQrHTMLString(seed);
         const seedString = this.getSeedHTMLString(seed);

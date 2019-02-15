@@ -1,5 +1,4 @@
 import isEqual from 'lodash/isEqual';
-import values from 'lodash/values';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -133,7 +132,7 @@ class ViewSeed extends Component {
         super();
 
         this.state = {
-            password: '',
+            password: null,
             showSeed: false,
             seed: '',
             appState: AppState.currentState, // eslint-disable-line react/no-unused-state
@@ -174,8 +173,10 @@ class ViewSeed extends Component {
      */
     async viewSeed() {
         const { selectedAccountName, selectedAccountMeta, t } = this.props;
+        if (!this.state.password) {
+            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
+        }
         const pwdHash = await hash(this.state.password);
-
         if (isEqual(global.passwordHash, pwdHash)) {
             const seedStore = await new SeedStore[selectedAccountMeta.type](pwdHash, selectedAccountName);
             if (isAndroid) {
@@ -211,41 +212,41 @@ class ViewSeed extends Component {
      * @method hideSeed
      */
     hideSeed() {
-        delete this.state.seed;
-        delete this.state.password;
         this.setState({ showSeed: false });
+        delete this.state.password;
+        delete this.state.seed;
     }
 
     render() {
         const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
         const borderColor = { borderColor: theme.body.color };
-        const { isConfirming } = this.state;
+        const { isConfirming, password, showSeed } = this.state;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 1 }} />
-                        {!this.state.showSeed &&
+                        {!showSeed &&
                             !isConfirming && (
                                 <View style={styles.passwordTextContainer}>
                                     <Text style={[styles.generalText, textColor]}>{t('viewSeed:enterPassword')}</Text>
                                 </View>
                             )}
                         <View style={{ flex: 0.8 }} />
-                        {this.state.showSeed &&
+                        {showSeed &&
                             !isConfirming && (
                                 <View style={styles.seedBoxContainer}>
                                     <Seedbox
-                                        seed={tritsToChars(values(this.state.seed))}
+                                        seed={tritsToChars(this.state.seed)}
                                         bodyColor={theme.body.color}
                                         borderColor={borderColor}
                                         textColor={textColor}
                                     />
                                 </View>
                             )}
-                        {!this.state.showSeed &&
+                        {!showSeed &&
                             !isConfirming && (
                                 <View style={styles.textFieldContainer}>
                                     <CustomTextInput
@@ -257,16 +258,15 @@ class ViewSeed extends Component {
                                         enablesReturnKeyAutomatically
                                         returnKeyType="done"
                                         secureTextEntry
-                                        value={this.state.password}
+                                        value={password}
                                         theme={theme}
                                         isPasswordInput
                                     />
                                 </View>
                             )}
                         <View style={{ flex: 1.2 }} />
-                        {this.state.password.length > 0 &&
-                            !isConfirming &&
-                            !this.state.showSeed && (
+                        {!isConfirming &&
+                            !showSeed && (
                                 <View style={styles.viewButtonContainer}>
                                     <CtaButton
                                         ctaColor={theme.primary.color}
@@ -278,8 +278,8 @@ class ViewSeed extends Component {
                                     />
                                 </View>
                             )}
-                        {this.state.isConfirming &&
-                            !this.state.showSeed && (
+                        {isConfirming &&
+                            !showSeed && (
                                 <View>
                                     <InfoBox>
                                         <Text style={[styles.infoText, textColor]}>
@@ -305,7 +305,7 @@ class ViewSeed extends Component {
                                     <View style={{ flex: 0.1 }} />
                                 </View>
                             )}
-                        {this.state.showSeed &&
+                        {showSeed &&
                             !isConfirming && (
                                 <View style={styles.hideButtonContainer}>
                                     <CtaButton
@@ -318,7 +318,7 @@ class ViewSeed extends Component {
                                     />
                                 </View>
                             )}
-                        {!this.state.password.length > 0 && <View style={styles.viewButtonContainer} />}
+                        {!showSeed && isConfirming && <View style={styles.viewButtonContainer} />}
                         <View style={{ flex: 1 }} />
                     </View>
                     <View style={styles.bottomContainer}>
