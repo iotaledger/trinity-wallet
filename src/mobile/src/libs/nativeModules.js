@@ -62,11 +62,3 @@ export const getHashFn = () => {
         return NativeModules.Argon2IOS.hash;
     }
 };
-
-/**
- * Forces garbage collection
- * @return {function} Garbage collector function
- */
-export const forceGC = () => {
-    return isAndroid ? NativeModules.GarbageCollectorAndroid.forceGC : NativeModules.GarbageCollectorIOS.forceGC;
-};
