@@ -112,7 +112,6 @@ class ForceChangePassword extends Component {
         delete this.state.currentPassword;
         delete this.state.newPassword;
         delete this.state.newPasswordReentry;
-        // gc
     }
 
     async onSavePress() {
@@ -121,8 +120,8 @@ class ForceChangePassword extends Component {
 
         let oldPwdHash = await getOldPasswordHash(currentPassword);
         oldPwdHash = hexToUint8(oldPwdHash);
-        let salt = await getSalt();
-        let newPwdHash = await generatePasswordHash(newPassword, salt);
+        const salt = await getSalt();
+        const newPwdHash = await generatePasswordHash(newPassword, salt);
 
         if (this.isNewPasswordValid()) {
             const throwError = (err) => {
@@ -139,10 +138,6 @@ class ForceChangePassword extends Component {
                 .then(() => {
                     changePassword(oldPwdHash, newPwdHash, salt).then(() => {
                         global.passwordHash = newPwdHash;
-                        salt = null;
-                        oldPwdHash = null;
-                        newPwdHash = null;
-                        // gc
                         this.props.setCompletedForcedPasswordUpdate();
                         this.navigateToLogin();
                         timer.setTimeout(

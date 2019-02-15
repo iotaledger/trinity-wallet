@@ -93,7 +93,6 @@ class SetPassword extends Component {
     componentWillUnmount() {
         delete this.state.password;
         delete this.state.reentry;
-        // gc
     }
 
     /**
@@ -119,7 +118,6 @@ class SetPassword extends Component {
         }
         await seedStore.addAccount(accountName, global.onboardingSeed);
         delete global.onboardingSeed;
-        // gc
         this.props.clearWalletData();
         this.props.setOnboardingComplete(true);
         this.navigateToOnboardingComplete();

@@ -101,7 +101,6 @@ class Login extends Component {
         timer.clearTimeout('delayRouteChange' + this.props.loginRoute);
         timer.clearTimeout('delayNavigation');
         delete this.state.password;
-        // gc
     }
 
     /**
@@ -135,7 +134,6 @@ class Login extends Component {
                 await authorize(pwdHash);
                 global.passwordHash = pwdHash;
                 delete this.state.password;
-                // gc
                 if (!is2FAEnabled) {
                     this.navigateTo(completedMigration && completedSeedMigration ? 'loading' : 'migration');
                 } else {
@@ -173,7 +171,6 @@ class Login extends Component {
             if (verified) {
                 this.navigateTo(completedMigration ? 'loading' : 'migration');
                 key = null;
-                // gc
             } else {
                 this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
             }

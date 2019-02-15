@@ -113,7 +113,6 @@ class UseExistingSeed extends Component {
     componentWillUnmount() {
         timer.clearTimeout('invalidSeedAlert');
         delete this.state.seed;
-        // gc
     }
 
     /**
@@ -314,7 +313,6 @@ class UseExistingSeed extends Component {
                         <SeedVaultImport
                             openPasswordValidationModal={() => this.showModal('passwordValidation')}
                             onSeedImport={(seed) => {
-                                // gc?
                                 this.setState({ seed });
                                 this.hideModal();
                             }}

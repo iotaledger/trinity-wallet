@@ -162,7 +162,6 @@ class ViewSeed extends Component {
         }
         delete this.state.seed;
         delete this.state.password;
-        // gc
     }
 
     /**

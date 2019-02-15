@@ -134,7 +134,6 @@ class NewSeedSetup extends Component {
         }
         timer.clearTimeout('newSeedSetup');
         delete this.state.seed;
-        // gc
     }
 
     async onGeneratePress() {
@@ -187,7 +186,6 @@ class NewSeedSetup extends Component {
     onBackPress() {
         delete this.state.seed;
         delete global.onboardingSeed;
-        // gc
         navigator.pop(this.props.componentId);
     }
 

@@ -93,7 +93,6 @@ export class TwoFactorSetupAddKey extends Component {
 
     componentWillUnmount() {
         delete this.state.authKey;
-        // gc
     }
 
     /**

@@ -102,14 +102,11 @@ class ChangePassword extends Component {
     async onAcceptPassword() {
         const { generateAlert, t } = this.props;
         const { newPassword } = this.state;
-        let salt = await getSalt();
-        let newPwdHash = await generatePasswordHash(newPassword, salt);
+        const salt = await getSalt();
+        const newPwdHash = await generatePasswordHash(newPassword, salt);
         changePassword(global.passwordHash, newPwdHash, salt)
             .then(() => {
                 global.passwordHash = newPwdHash;
-                newPwdHash = null;
-                salt = null;
-                // gc
                 generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
                 this.props.setSetting('securitySettings');
             })

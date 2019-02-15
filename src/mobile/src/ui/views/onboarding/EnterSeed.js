@@ -105,7 +105,6 @@ class EnterSeed extends React.Component {
             FlagSecure.deactivate();
         }
         delete this.state.seed;
-        // gc
     }
 
     /**
@@ -154,7 +153,6 @@ class EnterSeed extends React.Component {
     onBackPress() {
         navigator.pop(this.props.componentId);
         delete this.state.seed;
-        // gc
     }
 
     /**
@@ -272,7 +270,6 @@ class EnterSeed extends React.Component {
                                     <SeedVaultImport
                                         openPasswordValidationModal={() => this.showModal('passwordValidation')}
                                         onSeedImport={(seed) => {
-                                            // gc?
                                             this.setState({ seed });
                                             this.hideModal();
                                         }}

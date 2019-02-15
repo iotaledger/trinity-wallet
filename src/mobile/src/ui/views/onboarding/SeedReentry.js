@@ -101,7 +101,6 @@ class SeedReentry extends Component {
             FlagSecure.deactivate();
         }
         delete this.state.reenteredSeed;
-        // gc
     }
 
     /**
@@ -133,7 +132,6 @@ class SeedReentry extends Component {
                 },
             });
             delete this.state.reenteredSeed;
-            // gc
         } else if (size(reenteredSeed) === MAX_SEED_TRITS) {
             this.props.generateAlert('error', t('incorrectSeed'), t('incorrectSeedExplanation'));
         } else {
@@ -152,7 +150,6 @@ class SeedReentry extends Component {
     onBackPress() {
         navigator.pop(this.props.componentId);
         delete this.state.reenteredSeed;
-        // gc
     }
 
     /**
@@ -272,7 +269,6 @@ class SeedReentry extends Component {
                                         <SeedVaultImport
                                             openPasswordValidationModal={() => this.showModal('passwordValidation')}
                                             onSeedImport={(seed) => {
-                                                // gc?
                                                 this.setState({ reenteredSeed: seed });
                                                 this.props.toggleModalActivity();
                                             }}

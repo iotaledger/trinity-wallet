@@ -128,7 +128,6 @@ class DeleteAccount extends Component {
 
     componentWillUnmount() {
         delete this.state.password;
-        // gc
     }
 
     /**

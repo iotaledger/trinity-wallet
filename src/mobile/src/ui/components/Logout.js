@@ -65,7 +65,6 @@ export default () => (C) => {
                         },
                     });
                     delete global.passwordHash;
-                    // gc
                     this.props.clearWalletData();
                 },
                 500,

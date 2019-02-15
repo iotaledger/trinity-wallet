@@ -87,7 +87,6 @@ class WalletResetRequirePassword extends Component {
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress');
         delete this.state.password;
-        // gc
     }
 
     /**

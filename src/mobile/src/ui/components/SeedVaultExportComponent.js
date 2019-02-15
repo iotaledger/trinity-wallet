@@ -130,7 +130,6 @@ class SeedVaultExportComponent extends Component {
         delete this.state.password;
         delete this.state.reentry;
         delete this.state.seed;
-        // gc
     }
 
     /**
