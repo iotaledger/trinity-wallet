@@ -530,18 +530,27 @@ const attachToTangleAsync = (provider, seedStore) => (
 
     return seedStore
         .performPow(trytes, trunkTransaction, branchTransaction, minWeightMagnitude)
-        .then((attachedTrytes) =>
-            constructBundleFromAttachedTrytes(attachedTrytes, seedStore).then((transactionObjects) => {
-                if (iota.utils.isBundle(transactionObjects)) {
-                    return {
-                        transactionObjects,
-                        trytes: attachedTrytes,
-                    };
-                }
+        .then((result) => {
+            if (get(result, 'trytes') && get(result, 'transactionObjects')) {
+                return Promise.resolve(result);
+            }
 
-                throw new Error(Errors.INVALID_BUNDLE_CONSTRUCTED(shouldOffloadPow));
-            }),
-        );
+            // Batched proof-of-work only returns the attached trytes
+            return constructBundleFromAttachedTrytes(result, seedStore).then((transactionObjects) => ({
+                transactionObjects,
+                trytes: result,
+            }));
+        })
+        .then(({ transactionObjects, trytes }) => {
+            if (iota.utils.isBundle(transactionObjects)) {
+                return {
+                    transactionObjects,
+                    trytes,
+                };
+            }
+
+            throw new Error(Errors.INVALID_BUNDLE_CONSTRUCTED(shouldOffloadPow));
+        });
 };
 
 /**

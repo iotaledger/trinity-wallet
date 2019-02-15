@@ -7,6 +7,7 @@ export default {
     FUNDS_AT_SPENT_ADDRESSES: 'WARNING FUNDS AT SPENT ADDRESSES.',
     CANNOT_SEND_TO_OWN_ADDRESS: 'Cannot send to an own address.',
     POW_FUNCTION_UNDEFINED: 'Proof of work function is undefined.',
+    DIGEST_FUNCTION_UNDEFINED: 'Digest function is undefined.',
     BUNDLE_NO_LONGER_VALID: 'Bundle no longer valid',
     PERSISTOR_UNDEFINED: 'Persistor is undefined.',
     ATTACH_TO_TANGLE_UNAVAILABLE: 'attachToTangle is not available',
@@ -16,7 +17,6 @@ export default {
     NODE_NOT_SYNCED: 'Node not synced',
     UNSUPPORTED_NODE: 'Node version not supported',
     INVALID_BUNDLE: 'Invalid bundle',
-    INVALID_BUNDLE_CONSTRUCTED_DURING_REATTACHMENT: 'Invalid bundle constructed during reattachment.',
     INVALID_BUNDLE_CONSTRUCTED: (remotePow) =>
         `Invalid bundle constructed with ${remotePow ? 'remote' : 'local'} proof-of-work.`,
     INVALID_PARAMETERS: 'Invalid parameters',

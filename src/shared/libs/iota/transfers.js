@@ -520,10 +520,14 @@ export const performPow = (
     trunkTransaction,
     branchTransaction,
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
-    batchedPow,
+    batchedPow = true,
 ) => {
     if (!isFunction(powFn)) {
-        return Promise.reject(Errors.POW_FUNCTION_UNDEFINED);
+        return Promise.reject(new Error(Errors.POW_FUNCTION_UNDEFINED));
+    }
+
+    if (!isFunction(digestFn)) {
+        return Promise.reject(new Error(Errors.DIGEST_FUNCTION_UNDEFINED));
     }
 
     return batchedPow
@@ -585,16 +589,24 @@ export const performSequentialPow = (
 
                 const transactionTryteString = iota.utils.transactionTrytes(withParentTransactions);
 
-                return powFn(transactionTryteString, minWeightMagnitude).then((nonce) => {
-                    const trytesWithNonce = transactionTryteString.substr(0, 2673 - nonce.length).concat(nonce);
+                return powFn(transactionTryteString, minWeightMagnitude)
+                    .then((nonce) => {
+                        const trytesWithNonce = transactionTryteString.substr(0, 2673 - nonce.length).concat(nonce);
 
-                    result.unshift(trytesWithNonce);
+                        result.trytes.unshift(trytesWithNonce);
 
-                    return result;
-                });
+                        return digestFn(trytesWithNonce).then((digest) =>
+                            iota.utils.transactionObject(trytesWithNonce, digest),
+                        );
+                    })
+                    .then((transactionObject) => {
+                        result.transactionObjects.unshift(transactionObject);
+
+                        return result;
+                    });
             });
         },
-        Promise.resolve([]),
+        Promise.resolve({ trytes: [], transactionObjects: [] }),
     );
 };
 
