@@ -1,7 +1,6 @@
 package org.iota.mobile;
 
 import java.util.HashMap;
-import java.util.Arrays;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -9,12 +8,14 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.WritableArray;
 
 import de.wuthoehle.argon2jni.Argon2;
 import de.wuthoehle.argon2jni.Argon2Result;
 import de.wuthoehle.argon2jni.Argon2Exception;
 import de.wuthoehle.argon2jni.SecurityParameters;
 
+import static org.iota.mobile.Converter.byteArrayToWritableArray;
 import static org.iota.mobile.Converter.readableArrayToByteArray;
 
 public class Argon2Android extends ReactContextBaseJavaModule {
@@ -67,19 +68,13 @@ public class Argon2Android extends ReactContextBaseJavaModule {
             byte[] pwordByteArray = readableArrayToByteArray(password);
             Argon2 instance = Argon2Android.init(options.toHashMap());
             Argon2Result result = instance.argon2_hash_raw(pwordByteArray, salt.getBytes());
-
             byte[] input = result.getResult();
-
-            // Convert to int array to match the logic on iOS side
-            // https://github.com/cvarley100/CatCrypto/blob/master/Sources/Cryptos/Argon.swift#L146
-            int[] intArray = new int[input.length];
-            for (int i = 0; i < input.length; i++) {
-                intArray[i] = input[i] & 0xff; // Range 0 to 255, not -128 to 127
-            }
-
-            promise.resolve(Arrays.toString(intArray).replaceAll("\\[|\\]",""));
+            WritableArray pwdHashWritableArray = byteArrayToWritableArray(input);
+            promise.resolve(pwdHashWritableArray);
         } catch(Argon2Exception error) {
             promise.reject(error);
         }
     }
+
+
 }

@@ -15,10 +15,12 @@ import { setSetting, setDeepLink } from 'shared-modules/actions/wallet';
 import { setUserActivity, setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import NodeOptionsOnLogin from 'ui/views/wallet/NodeOptionsOnLogin';
 import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import Enter2FAComponent from 'ui/components/Enter2FA';
+import SeedStore from 'libs/SeedStore';
 import { authorize, getTwoFactorAuthKeyFromKeychain, hash } from 'libs/keychain';
 import { isAndroid } from 'libs/device';
 
@@ -109,7 +111,15 @@ class Login extends Component {
      * @returns {Promise<void>}
      */
     async onLoginPress() {
-        const { t, is2FAEnabled, hasConnection, forceUpdate, completedMigration } = this.props;
+        const {
+            t,
+            is2FAEnabled,
+            hasConnection,
+            forceUpdate,
+            completedMigration,
+            selectedAccountMeta,
+            selectedAccountName,
+        } = this.props;
         if (!hasConnection || forceUpdate) {
             return;
         }
@@ -117,15 +127,17 @@ class Login extends Component {
         if (size(this.state.password) === 0) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
-            let pwdHash = await hash(this.state.password);
+            const pwdHash = await hash(this.state.password);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](pwdHash, selectedAccountName);
+            // FIXME: To be deprecated
+            const completedSeedMigration = typeof await seedStore.getSeed() !== 'string';
             try {
                 await authorize(pwdHash);
                 global.passwordHash = pwdHash;
-                pwdHash = null;
                 delete this.state.password;
                 // gc
                 if (!is2FAEnabled) {
-                    this.navigateTo(completedMigration ? 'loading' : 'migration');
+                    this.navigateTo(completedMigration && completedSeedMigration ? 'loading' : 'migration');
                 } else {
                     this.props.setLoginRoute('complete2FA');
                 }
@@ -287,6 +299,8 @@ const mapStateToProps = (state) => ({
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     completedMigration: state.settings.completedMigration,
     forceUpdate: state.wallet.forceUpdate,
+    selectedAccountName: getSelectedAccountName(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
 });
 
 const mapDispatchToProps = {

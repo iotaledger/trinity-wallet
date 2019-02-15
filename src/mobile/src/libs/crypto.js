@@ -12,10 +12,6 @@ const NONCE_LENGTH = 24;
 
 const cryptoImport = require('crypto'); // eslint-disable-line no-unused-vars
 
-export const getOldPasswordHash = (password) => {
-    return sha256(password);
-};
-
 export const sha256 = (input) => {
     return cryptoImport
         .createHash('sha256')
@@ -30,7 +26,7 @@ export const getRandomBytes = async (quantity) => {
 export const generatePasswordHash = async (password, salt) => {
     const salt64 = await encodeBase64(salt);
     return getHashFn()(values(password), salt64, DEFAULT_ARGON2_PARAMS).then(
-        (result) => new Uint8Array(result.split(',').map((num) => parseInt(num))),
+        (result) => Uint8Array.from(result),
         (error) => console.log(error), // eslint-disable-line no-console
     );
 };
