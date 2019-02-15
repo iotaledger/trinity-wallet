@@ -12,10 +12,8 @@ import store from 'store';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';
 import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { mapStorageToState } from 'libs/storageToStateMappers';
-import persistElectronStorage from 'libs/storage';
 import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode } from 'libs/iota';
-import { parse } from 'libs/utils';
 import { initialise as initialiseStorage, realm } from 'storage';
 import createPlugin from 'bugsnag-react';
 
@@ -44,31 +42,14 @@ if (Electron.mode === 'tray') {
 } else {
     initialiseStorage(getEncryptionKey)
         .then(() => {
-            return new Promise((resolve, reject) => {
-                persistElectronStorage.getAllKeys((err, keys) => (err ? reject(err) : resolve(keys)));
-            });
-        })
-        .then((keys) => {
-            const getItemAsync = (key) =>
-                new Promise((resolve, reject) => {
-                    persistElectronStorage.getItem(key, (err, item) => (err ? reject(err) : resolve(item)));
-                });
-
-            return keys.reduce(
-                (promise, key) =>
-                    promise.then((result) =>
-                        getItemAsync(key).then((item) => {
-                            result[key.split(':')[1]] = parse(item);
-
-                            return result;
-                        }),
-                    ),
-                Promise.resolve({}),
-            );
-        })
-        .then((oldPersistedData) => {
-            // TODO: Also check version & completedMigration state prop
+            const oldPersistedData = Electron.getAllStorage();
             const hasDataToMigrate = !isEmpty(oldPersistedData);
+
+            if (hasDataToMigrate) {
+                Object.assign(oldPersistedData.settings, {
+                    completedMigration: false,
+                });
+            }
 
             // Get persisted data from Realm storage
             const persistedDataFromRealm = mapStorageToState();
@@ -96,7 +77,9 @@ if (Electron.mode === 'tray') {
 
             // Show Wallet window after inital store update
             Electron.focus();
-        });
+        })
+        // eslint-disable-next-line no-console
+        .catch((err) => console.log(err));
 }
 
 render(
