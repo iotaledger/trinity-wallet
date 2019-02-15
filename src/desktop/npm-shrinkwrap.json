@@ -11444,12 +11444,11 @@
       "dev": true
     },
     "react-i18next": {
-      "version": "9.0.10",
-      "resolved": "https://registry.npmjs.org/react-i18next/-/react-i18next-9.0.10.tgz",
-      "integrity": "sha512-xpeCWNut7ylQLs3Qqyo7dT13kgZbML1CdftbdnswLCv0RbRT16bRP16ma59iLe1KHIbn92VJo0Q8LSKYoXVNvg==",
+      "version": "10.1.1",
+      "resolved": "https://registry.npmjs.org/react-i18next/-/react-i18next-10.1.1.tgz",
+      "integrity": "sha512-GNwbdbrOef2Xj5pJ7ELDQ14AMBo5xKpxFT2wA21dAC6SSqr1EjNET6uNzeDQS3nBJrnbCVcHdRg9nTnwt7pPgQ==",
       "requires": {
         "@babel/runtime": "^7.3.1",
-        "hoist-non-react-statics": "3.2.1",
         "html-parse-stringify2": "2.0.1"
       }
     },
