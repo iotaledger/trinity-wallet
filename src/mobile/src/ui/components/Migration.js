@@ -117,6 +117,10 @@ class Migration extends Component {
         }
     }
 
+    componentWillUnmount() {
+        timer.clearTimeout('delayNavigation');
+    }
+
     /**
      * Retries migration in case of failure
      *
@@ -138,7 +142,7 @@ class Migration extends Component {
     executeSeedMigration() {
         const { t } = this.props;
         migrateSeedStorage(global.passwordHash)
-            .then(() => timer.setTimeout('navigationDelay', () => this.navigateToLoadingScreen(), 5000))
+            .then(() => timer.setTimeout('delayNavigation', () => this.navigateToLoadingScreen(), 5000))
             .catch(() => this.props.generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain')));
     }
 

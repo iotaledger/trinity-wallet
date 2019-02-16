@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
 import { resetWallet, setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
+import timer from 'react-native-timer';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
@@ -133,25 +134,32 @@ class WalletResetRequirePassword extends Component {
      */
     async resetWallet() {
         const { t } = this.props;
-        if (await this.isAuthenticated()) {
+        if (this.state.password === null || this.state.password.length === 0) {
+            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
+        } else if (await this.isAuthenticated()) {
             this.redirectToInitialScreen();
-
-            reinitialiseStorage(getEncryptionKey)
-                .then(() => clearKeychain())
-                .then(() => {
-                    // resetWallet action creator resets the whole state object to default values
-                    // https://github.com/iotaledger/trinity-wallet/blob/develop/src/shared/store.js#L37
-                    this.props.resetWallet();
-                    // FIXME: Temporarily needed for password migration
-                    this.props.setCompletedForcedPasswordUpdate();
-                })
-                .catch(() => {
-                    this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongExplanation'),
-                    );
-                });
+            timer.setTimeout(
+                'delayReset',
+                () => {
+                    reinitialiseStorage(getEncryptionKey)
+                        .then(() => clearKeychain())
+                        .then(() => {
+                            // resetWallet action creator resets the whole state object to default values
+                            // https://github.com/iotaledger/trinity-wallet/blob/develop/src/shared/store.js#L37
+                            this.props.resetWallet();
+                            // FIXME: Temporarily needed for password migration
+                            this.props.setCompletedForcedPasswordUpdate();
+                        })
+                        .catch(() => {
+                            this.props.generateAlert(
+                                'error',
+                                t('global:somethingWentWrong'),
+                                t('global:somethingWentWrongExplanation'),
+                            );
+                        });
+                },
+                1000,
+            );
         } else {
             this.props.generateAlert(
                 'error',
