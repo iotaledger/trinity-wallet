@@ -6,10 +6,6 @@ export const __MOBILE__ = typeof navigator !== 'undefined' && navigator.product 
 export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.iota.fm:443';
 
 export const nodesWithPowEnabled = [
-    'https://pow1.iota.community:443',
-    'https://pow2.iota.community:443',
-    'https://pow3.iota.community:443',
-    'https://pow5.iota.community:443',
     'https://iotanode.us:443',
 ];
 
