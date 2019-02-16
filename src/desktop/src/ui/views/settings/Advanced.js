@@ -13,9 +13,12 @@ import {
     setTray,
     setNotifications,
     setProxy,
+    resetWallet,
 } from 'actions/settings';
 
 import { generateAlert } from 'actions/alerts';
+
+import { reinitialise as reinitialiseStorage } from 'storage';
 
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
@@ -52,6 +55,8 @@ class Advanced extends PureComponent {
         lockScreenTimeout: PropTypes.number.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
+        /** @ignore */
+        resetWallet: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -91,13 +96,18 @@ class Advanced extends PureComponent {
      * Hard reset wallet
      * @returns {undefined}
      */
-    resetWallet = () => {
-        const { t, generateAlert } = this.props;
+    resetWallet = async () => {
+        const { t, generateAlert, resetWallet } = this.props;
 
         try {
+            await reinitialiseStorage();
+            resetWallet();
+
             clearVault();
+
             localStorage.clear();
             Electron.clearStorage();
+
             location.reload();
         } catch (err) {
             generateAlert(
@@ -320,6 +330,7 @@ const mapDispatchToProps = {
     setTray,
     setNotifications,
     setProxy,
+    resetWallet,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Advanced));

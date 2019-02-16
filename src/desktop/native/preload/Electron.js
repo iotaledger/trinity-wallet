@@ -110,6 +110,14 @@ const Electron = {
     },
 
     /**
+     * Returns per-user application data directory
+     * @returns {string} - Full app data path
+     */
+    getUserDataPath: () => {
+        return remote.app.getPath('userData');
+    },
+
+    /**
      * Gets machine UUID
      * @return {string}
      */
@@ -308,6 +316,15 @@ const Electron = {
      */
     showMenu: () => {
         ipc.send('menu.popup');
+    },
+
+    /**
+     * Proxy store updates to Tray application
+     * @param {string} payload - Store state
+     * @returns {undefined}
+     */
+    storeUpdate: (payload) => {
+        ipc.send('store.update', payload);
     },
 
     /**

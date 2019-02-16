@@ -24,10 +24,7 @@ class Addresses extends PureComponent {
         const { account, t } = this.props;
         const isSpent = ({ spent: { local, remote } }) => local || remote;
 
-        const addressData = account
-            .addressData()
-            .slice()
-            .sort((a, b) => b.index - a.index);
+        const addressData = account.addressData.slice().sort((a, b) => b.index - a.index);
 
         return (
             <div className={settingsCSS.scroll}>
