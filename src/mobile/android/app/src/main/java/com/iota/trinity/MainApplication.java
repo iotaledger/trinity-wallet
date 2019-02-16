@@ -28,6 +28,7 @@ import fr.greweb.reactnativeviewshot.RNViewShotPackage;
 import com.kristiansorens.flagsecure.FlagSecurePackage;
 import com.mkuczera.RNReactNativeHapticFeedbackPackage;
 import io.realm.react.RealmReactPackage;
+import me.listenzz.modal.TranslucentModalReactPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.janeasystems.rn_nodejs_mobile.RNNodeJsMobilePackage;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
