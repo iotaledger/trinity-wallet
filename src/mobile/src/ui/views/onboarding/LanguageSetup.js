@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Image } from 'react-native';
 import PropTypes from 'prop-types';
+import timer from 'react-native-timer';
 import { withNamespaces } from 'react-i18next';
 import { navigator } from 'libs/navigation';
 import SplashScreen from 'react-native-splash-screen';
@@ -80,6 +81,9 @@ class LanguageSetup extends Component {
         }
     }
 
+    componentWillUnmount() {
+        timer.clearTimeout('delayReset');
+    }
     onNextPress() {
         const { theme: { body, bar }, acceptedTerms, acceptedPrivacy, forceUpdate } = this.props;
         if (forceUpdate) {
