@@ -154,7 +154,9 @@ class DeleteAccount extends Component {
         if (!this.state.pressedContinue) {
             return this.setState({ pressedContinue: true });
         }
-        if (isEqual(global.passwordHash, await hash(this.state.password))) {
+        if (this.state.password === null || this.state.password.length === 0) {
+            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
+        } else if (isEqual(global.passwordHash, await hash(this.state.password))) {
             if (isAutoPromoting || this.props.shouldPreventAction) {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }

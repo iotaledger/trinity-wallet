@@ -114,7 +114,13 @@ export class EditAccountName extends Component {
      */
     async save(accountName) {
         const { accountNames, selectedAccountName, selectedAccountMeta, t } = this.props;
-
+        if (accountName.length === 0) {
+            return this.props.generateAlert(
+                'error',
+                t('addAdditionalSeed:noNickname'),
+                t('addAdditionalSeed:noNicknameExplanation'),
+            );
+        }
         if (accountNames.includes(accountName)) {
             this.props.generateAlert(
                 'error',
