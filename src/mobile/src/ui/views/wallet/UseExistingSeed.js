@@ -221,7 +221,6 @@ class UseExistingSeed extends Component {
             }
             const seedStore = await new SeedStore.keychain(global.passwordHash);
             const isUniqueSeed = await seedStore.isUniqueSeed(seed);
-
             if (!isUniqueSeed) {
                 return this.props.generateAlert(
                     'error',
@@ -229,7 +228,6 @@ class UseExistingSeed extends Component {
                     t('addAdditionalSeed:seedInUseExplanation'),
                 );
             }
-
             return this.fetchAccountInfo(seed, accountName);
         }
     }
@@ -306,7 +304,6 @@ class UseExistingSeed extends Component {
                             theme={theme}
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
-                            seed={seed}
                             isSeedInput
                         />
                         <View style={{ flex: 0.5 }} />

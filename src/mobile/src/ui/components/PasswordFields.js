@@ -80,7 +80,7 @@ class PasswordFields extends Component {
     checkPassword() {
         const { t, password, reentry } = this.props;
         const { score } = this.state;
-        if (password.length === 0) {
+        if (password === null || password.length === 0) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         } else if (size(password) >= MIN_PASSWORD_LENGTH && isEqual(password, reentry) && score.score === 4) {
             return this.props.onAcceptPassword();

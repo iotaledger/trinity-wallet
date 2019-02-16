@@ -1,3 +1,4 @@
+import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import values from 'lodash/values';
@@ -145,7 +146,12 @@ class Keychain extends SeedStoreCore {
      */
     isUniqueSeed = async (seed) => {
         const seeds = await this.getSeeds();
-        return values(seeds).indexOf(seed) === -1;
+        for (let i = 0; i < values(seeds).length; i++) {
+            if (isEqual(values(seeds)[i], values(seed))) {
+                return false;
+            }
+        }
+        return true;
     };
 }
 
