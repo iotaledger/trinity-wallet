@@ -143,7 +143,3 @@ CTestTestfile.cmake
 
 # Android NDK
 .externalNativeBuild
-
-# Android JavaScriptCore
-libjsc.so
-libc++_shared.so
