@@ -31,15 +31,20 @@ export const getMultiAddressGenFn = () => {
 
 /**
  * Gets Proof of Work function
+ *
+ * @param {boolean} batchedPow
  * @return {function | null} PoW function
  */
-export const getPowFn = () => {
+export const getPowFn = (batchedPow) => {
     let powFn = null;
+    const fnName = batchedPow ? 'bundlePow' : 'trytesPow';
+
     if (isAndroid) {
-        powFn = NativeModules.EntangledAndroid.doPoW;
+        powFn = NativeModules.EntangledAndroid[fnName];
     } else if (isIOS) {
-        powFn = NativeModules.EntangledIOS.doPoW;
+        powFn = NativeModules.EntangledIOS[fnName];
     }
+
     return powFn;
 };
 

@@ -3,7 +3,6 @@ import head from 'lodash/head';
 import has from 'lodash/has';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
-import reduce from 'lodash/reduce';
 import IOTA from 'iota.lib.js';
 import { iota, quorum } from './index';
 import Errors from '../errors';
@@ -19,7 +18,7 @@ import {
     ATTACH_TO_TANGLE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
 } from '../../config';
-import { sortTransactionTrytesArray } from './transfers';
+import { sortTransactionTrytesArray, constructBundleFromAttachedTrytes } from './transfers';
 import { EMPTY_HASH_TRYTES } from './utils';
 
 /**
@@ -511,24 +510,7 @@ const attachToTangleAsync = (provider, seedStore) => (
                     if (err) {
                         reject(err);
                     } else {
-                        const convertToTransactionObjects = () =>
-                            reduce(
-                                attachedTrytes,
-                                (promise, tryteString) => {
-                                    return promise.then((result) => {
-                                        return seedStore.getDigest(tryteString).then((digest) => {
-                                            const transactionObject = iota.utils.transactionObject(tryteString, digest);
-
-                                            result.push(transactionObject);
-
-                                            return result;
-                                        });
-                                    });
-                                },
-                                Promise.resolve([]),
-                            );
-
-                        convertToTransactionObjects()
+                        constructBundleFromAttachedTrytes(attachedTrytes, seedStore)
                             .then((transactionObjects) => {
                                 if (iota.utils.isBundle(transactionObjects)) {
                                     resolve({
@@ -536,7 +518,7 @@ const attachToTangleAsync = (provider, seedStore) => (
                                         trytes: attachedTrytes,
                                     });
                                 } else {
-                                    reject(new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_DURING_REATTACHMENT));
+                                    reject(new Error(Errors.INVALID_BUNDLE_CONSTRUCTED(shouldOffloadPow)));
                                 }
                             })
                             .catch(reject);
@@ -546,13 +528,29 @@ const attachToTangleAsync = (provider, seedStore) => (
         });
     }
 
-    return seedStore.performPow(trytes, trunkTransaction, branchTransaction, minWeightMagnitude).then((result) => {
-        if (!iota.utils.isBundle(result.transactionObjects)) {
-            throw new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_DURING_REATTACHMENT);
-        }
+    return seedStore
+        .performPow(trytes, trunkTransaction, branchTransaction, minWeightMagnitude)
+        .then((result) => {
+            if (get(result, 'trytes') && get(result, 'transactionObjects')) {
+                return Promise.resolve(result);
+            }
 
-        return result;
-    });
+            // Batched proof-of-work only returns the attached trytes
+            return constructBundleFromAttachedTrytes(result, seedStore).then((transactionObjects) => ({
+                transactionObjects,
+                trytes: result,
+            }));
+        })
+        .then(({ transactionObjects, trytes }) => {
+            if (iota.utils.isBundle(transactionObjects)) {
+                return {
+                    transactionObjects,
+                    trytes,
+                };
+            }
+
+            throw new Error(Errors.INVALID_BUNDLE_CONSTRUCTED(shouldOffloadPow));
+        });
 };
 
 /**
