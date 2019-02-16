@@ -7184,6 +7184,11 @@ react-native-markdown-renderer@^3.2.1:
     prop-types "^15.5.10"
     react-native-fit-image "^1.5.2"
 
+react-native-modal-translucent@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal-translucent/-/react-native-modal-translucent-2.0.0.tgz#a0b9e4a2fa1ed8e47be1d4bb8c2bf0deee0721c4"
+  integrity sha512-YocZY2c8CSDuvVGYLZphpFisgdG0pXHbB05roh5Ox4URlGF1xV51RBEzIgSGtWcQ0OcU8mq8rT375xsYq8OgaA==
+
 react-native-modal@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-7.0.1.tgz#120df1966f5da96e9d89bf384f22b79ab6ca97b1"
