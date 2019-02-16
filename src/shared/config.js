@@ -5,10 +5,6 @@ export const __TEST__ = process.env.NODE_ENV === 'test';
 export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.iota.fm:443';
 
 export const nodesWithPoWEnabled = [
-    'https://pow1.iota.community:443',
-    'https://pow2.iota.community:443',
-    'https://pow3.iota.community:443',
-    'https://pow5.iota.community:443',
     'https://iotanode.us:443',
 ];
 
