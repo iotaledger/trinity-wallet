@@ -744,6 +744,7 @@ export const config = {
 const purge = () =>
     new Promise((resolve, reject) => {
         try {
+            realm.removeAllListeners();
             realm.write(() => realm.deleteAll());
             resolve();
         } catch (error) {
