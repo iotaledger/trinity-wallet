@@ -13,6 +13,7 @@ import {
     normaliseBundle,
     categoriseBundleByInputsOutputs,
     performPow,
+    performSequentialPow,
     constructBundlesFromTransactions,
     retryFailedTransaction,
     sortTransactionTrytesArray,
@@ -706,6 +707,45 @@ describe('libs: iota/transfers', () => {
     });
 
     describe('#performPow', () => {
+        describe('when first argument (powFn) is not a function', () => {
+            it('should throw an error with message "Proof of work function is undefined."', () => {
+                return performPow(undefined, () => Promise.resolve(), [], '9'.repeat(81), '9'.repeat(81))
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((error) => expect(error.message).to.equal('Proof of work function is undefined.'));
+            });
+        });
+
+        describe('when second argument (digestFn) is not a function', () => {
+            it('should throw an error with message "Digest function is undefined."', () => {
+                return performPow(() => Promise.resolve(), undefined, [], '9'.repeat(81), '9'.repeat(81))
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((error) => expect(error.message).to.equal('Digest function is undefined.'));
+            });
+        });
+
+        describe('when first (powFn) & second (digestFn) arguments are functions', () => {
+            describe('when batchedPow is true', () => {
+                it('should call proof-of-work function with trytes, trunk, branch and minWeightMagnitude', () => {
+                    const powFn = sinon.stub();
+
+                    powFn.resolves([]);
+
+                    return performPow(powFn, () => Promise.resolve(), ['foo'], '9'.repeat(81), 'U'.repeat(81)).then(
+                        () =>
+                            expect(powFn.calledOnceWithExactly(['foo'], '9'.repeat(81), 'U'.repeat(81), 14)).to.equal(
+                                true,
+                            ),
+                    );
+                });
+            });
+        });
+    });
+
+    describe('#performSequentialPow', () => {
         let powFn;
         let digestFn;
         let trunkTransaction;
@@ -732,7 +772,7 @@ describe('libs: iota/transfers', () => {
         });
 
         it('should sort transaction objects in ascending order by currentIndex', () => {
-            const fn = performPow(
+            const fn = performSequentialPow(
                 powFn(),
                 digestFn,
                 newValueTransactionTrytes.slice().reverse(),
@@ -747,7 +787,7 @@ describe('libs: iota/transfers', () => {
         });
 
         it('should assign generated nonce', () => {
-            const fn = performPow(
+            const fn = performSequentialPow(
                 powFn(),
                 digestFn,
                 newValueTransactionTrytes.slice().reverse(),
@@ -761,7 +801,7 @@ describe('libs: iota/transfers', () => {
         });
 
         it('should set correct bundle sequence', () => {
-            const fn = performPow(
+            const fn = performSequentialPow(
                 powFn(),
                 digestFn,
                 newValueTransactionTrytes.slice().reverse(),
