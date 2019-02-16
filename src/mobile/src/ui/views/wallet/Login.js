@@ -127,11 +127,11 @@ class Login extends Component {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
             const pwdHash = await hash(this.state.password);
-            const seedStore = await new SeedStore[selectedAccountMeta.type](pwdHash, selectedAccountName);
-            // FIXME: To be deprecated
-            const completedSeedMigration = typeof await seedStore.getSeed() !== 'string';
             try {
                 await authorize(pwdHash);
+                const seedStore = await new SeedStore[selectedAccountMeta.type](pwdHash, selectedAccountName);
+                // FIXME: To be deprecated
+                const completedSeedMigration = typeof await seedStore.getSeed() !== 'string';
                 global.passwordHash = pwdHash;
                 delete this.state.password;
                 if (!is2FAEnabled) {
