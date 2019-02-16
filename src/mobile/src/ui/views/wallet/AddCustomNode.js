@@ -81,7 +81,7 @@ export class AddCustomNode extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Navigate to previous screen */
-        backPress: PropTypes.func.isRequired,
+        backPress: PropTypes.func,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
