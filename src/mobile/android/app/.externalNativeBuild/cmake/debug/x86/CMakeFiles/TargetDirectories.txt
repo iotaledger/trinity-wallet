@@ -1,0 +1,3 @@
+/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/.externalNativeBuild/cmake/debug/x86/CMakeFiles/edit_cache.dir
+/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/.externalNativeBuild/cmake/debug/x86/CMakeFiles/rebuild_cache.dir
+/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/.externalNativeBuild/cmake/debug/x86/CMakeFiles/jsc-garbage-collector.dir

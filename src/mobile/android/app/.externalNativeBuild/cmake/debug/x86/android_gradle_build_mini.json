@@ -1,0 +1,26 @@
+{
+  "buildFiles": [
+    "/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/Users/charlie/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/.externalNativeBuild/cmake/debug/x86 --target clean"
+  ],
+  "libraries": {
+    "jsc-garbage-collector-Debug-x86": {
+      "artifactName": "jsc-garbage-collector",
+      "buildCommand": "/Users/charlie/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/.externalNativeBuild/cmake/debug/x86 --target jsc-garbage-collector",
+      "abi": "x86",
+      "output": "/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/build/intermediates/cmake/debug/obj/x86/libjsc-garbage-collector.so"
+    },
+    "libjsc-Debug-x86": {
+      "artifactName": "libjsc",
+      "abi": "x86",
+      "output": "/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/src/main/cpp/../jniLibs/x86/libjsc.so"
+    },
+    "libjsiexecutor-Debug-x86": {
+      "artifactName": "libjsiexecutor",
+      "abi": "x86",
+      "output": "/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/src/main/cpp/../../../intermediates/exploded-aar/org.webkit/android-jsc/r174650/jni/x86/libjsc.so"
+    }
+  }
+}

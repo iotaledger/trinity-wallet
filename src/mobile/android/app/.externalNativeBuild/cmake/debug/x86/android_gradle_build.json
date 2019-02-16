@@ -1,0 +1,57 @@
+
+{
+	"buildFiles" : 
+	[
+		"/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/src/main/cpp/CMakeLists.txt"
+	],
+	"cleanCommands" : 
+	[
+		"/Users/charlie/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/.externalNativeBuild/cmake/debug/x86 --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"jsc-garbage-collector-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "jsc-garbage-collector",
+			"buildCommand" : "/Users/charlie/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/.externalNativeBuild/cmake/debug/x86 --target jsc-garbage-collector",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/Users/charlie/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64  -Djsc_garbage_collector_EXPORTS -I/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/src/main/cpp/../../../../../node_modules/jsc-android/dist/include -I/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/src/main/cpp/../../../../../node_modules/react-native/ReactCommon  --sysroot /Users/charlie/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/src/main/cpp/JSCGarbageCollector.cpp",
+					"workingDirectory" : "/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/.externalNativeBuild/cmake/debug/x86"
+				}
+			],
+			"output" : "/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/build/intermediates/cmake/debug/obj/x86/libjsc-garbage-collector.so",
+			"toolchain" : "8811721810590615219"
+		},
+		"libjsc-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "libjsc",
+			"buildType" : "debug",
+			"output" : "/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/src/main/cpp/../jniLibs/x86/libjsc.so",
+			"toolchain" : "8811721810590615219"
+		},
+		"libjsiexecutor-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "libjsiexecutor",
+			"buildType" : "debug",
+			"output" : "/Users/charlie/Desktop/trinity-wallet/src/mobile/android/app/src/main/cpp/../../../intermediates/exploded-aar/org.webkit/android-jsc/r174650/jni/x86/libjsc.so",
+			"toolchain" : "8811721810590615219"
+		}
+	},
+	"toolchains" : 
+	{
+		"8811721810590615219" : 
+		{
+			"cCompilerExecutable" : "/Users/charlie/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/Users/charlie/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+		}
+	}
+}

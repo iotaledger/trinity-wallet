@@ -992,7 +992,7 @@ export const mapNormalisedTransactions = (transactions, addressData) => {
 /**
  * Computes and assign transaction hash to transactions from attached trytes (Forms a bundle).
  *
- * @method constructTransactionsFromAttachedTrytes
+ * @method constructBundleFromAttachedTrytes
  *
  * @param {array} attachedTrytes
  * @param {object} seedStore
