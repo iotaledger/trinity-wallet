@@ -241,11 +241,7 @@ class SeedReentry extends Component {
                                     >
                                         <CustomTextInput
                                             label={t('global:seed')}
-                                            onValidTextChange={(text) => {
-                                                if (text.match(VALID_SEED_REGEX) || text.length === 0) {
-                                                    this.setState({ reenteredSeed: text.toUpperCase() });
-                                                }
-                                            }}
+                                            onValidTextChange={(text) => this.setState({ reenteredSeed: text })}
                                             maxLength={MAX_SEED_LENGTH}
                                             autoCapitalize="characters"
                                             autoCorrect={false}
