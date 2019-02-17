@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     notificationButton: {
@@ -131,7 +131,7 @@ class Migration extends Component {
         if (this.state.hasCompletedRealmMigration) {
             return t('seedMigrationExplanation');
         }
-        return t('dataMigrationExplanation');
+        return t('dataMigrationExplanation') + ' ' + t('loading:thisMayTake');
     }
 
     /**
@@ -258,14 +258,14 @@ class Migration extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     {hasFailedRealmMigration &&
-                        !hasCompletedRealmMigration(
+                        !hasCompletedRealmMigration && (
                             <DualFooterButtons
                                 onLeftButtonPress={this.changeNode}
                                 onRightButtonPress={this.retryMigration}
                                 leftButtonText={t('login:changeNode')}
                                 rightButtonText={t('retry')}
                                 isLeftButtonLoading={isChangingNode}
-                            />,
+                            />
                         )}
                 </View>
                 {hasFailedRealmMigration && (
