@@ -13,6 +13,8 @@ import {
     generateAddressesAndGetBalance,
 } from 'actions/wallet';
 
+import { getSelectedAccountName, getSelectedAccountMeta, getAddressesForSelectedAccount } from 'selectors/accounts';
+
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import SeedStore from 'libs/SeedStore';
@@ -35,8 +37,6 @@ class Tools extends PureComponent {
         /** @ignore */
         ui: PropTypes.object.isRequired,
         /** @ignore */
-        account: PropTypes.object.isRequired,
-        /** @ignore */
         completeSnapshotTransition: PropTypes.func.isRequired,
         /** @ignore */
         setBalanceCheckFlag: PropTypes.func.isRequired,
@@ -52,6 +52,12 @@ class Tools extends PureComponent {
         activeSteps: PropTypes.array.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** Addresses for selected account */
+        addresses: PropTypes.array.isRequired,
+        /** Currently selected account name */
+        selectedAccountName: PropTypes.string.isRequired,
+        /** Currently selected account meta */
+        selectedAccountMeta: PropTypes.object.isRequired,
     };
 
     static renderProgressChildren(activeStepIndex, sizeOfActiveSteps, t) {
@@ -90,12 +96,15 @@ class Tools extends PureComponent {
      * @returns {Promise}
      */
     syncAccount = async () => {
-        const { wallet } = this.props;
-        const { accountName, meta } = this.props.account;
+        const { wallet, selectedAccountMeta, selectedAccountName } = this.props;
 
-        const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
+        const seedStore = await new SeedStore[selectedAccountMeta.type](
+            wallet.password,
+            selectedAccountName,
+            selectedAccountMeta,
+        );
 
-        this.props.manuallySyncAccount(seedStore, accountName);
+        this.props.manuallySyncAccount(seedStore, selectedAccountName);
     };
 
     /**
@@ -103,10 +112,13 @@ class Tools extends PureComponent {
      * @returns {Promise}
      */
     startSnapshotTransition = async () => {
-        const { wallet } = this.props;
-        const { accountName, meta, addresses } = this.props.account;
+        const { wallet, addresses, selectedAccountMeta, selectedAccountName } = this.props;
 
-        const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
+        const seedStore = await new SeedStore[selectedAccountMeta.type](
+            wallet.password,
+            selectedAccountName,
+            selectedAccountMeta,
+        );
 
         this.props.transitionForSnapshot(seedStore, addresses);
     };
@@ -117,11 +129,15 @@ class Tools extends PureComponent {
      */
     transitionBalanceOk = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, accountName, meta } = this.props;
+        const { wallet, selectedAccountName, selectedAccountMeta } = this.props;
 
-        const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
+        const seedStore = await new SeedStore[selectedAccountMeta.type](
+            wallet.password,
+            selectedAccountName,
+            selectedAccountMeta,
+        );
 
-        this.props.completeSnapshotTransition(seedStore, accountName, wallet.transitionAddresses);
+        this.props.completeSnapshotTransition(seedStore, selectedAccountName, wallet.transitionAddresses);
     };
 
     /**
@@ -130,10 +146,13 @@ class Tools extends PureComponent {
      */
     transitionBalanceWrong = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet } = this.props;
-        const { accountName, meta } = this.props.account;
+        const { wallet, selectedAccountName, selectedAccountMeta } = this.props;
 
-        const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
+        const seedStore = await new SeedStore[selectedAccountMeta.type](
+            wallet.password,
+            selectedAccountName,
+            selectedAccountMeta,
+        );
 
         const currentIndex = wallet.transitionAddresses.length;
 
@@ -236,6 +255,9 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
+    addresses: getAddressesForSelectedAccount(state),
+    selectedAccountName: getSelectedAccountName(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
 });
 
 const mapDispatchToProps = {
