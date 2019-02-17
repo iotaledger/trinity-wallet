@@ -18,7 +18,7 @@ class Argon2IOS: NSObject {
   ///   - password: Password to hash
   ///   - resolve: A JS Promise resolve block
   ///   - reject: A JS Promise reject block
-  @objc func hash(_ password: NSArray, salt: String, params: [String: Any], resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+  @objc func hash(_ password: [Int8], salt: String, params: [String: Any], resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
     // Validate parameters
 
     if params["t_cost"] is Int && params["m_cost"] is Int && params["parallelism"] is Int && params["hashLength"] is Int {
@@ -26,7 +26,7 @@ class Argon2IOS: NSObject {
       let passwordLength = password.count as Int
       var passwordInt8 = [Int8](repeating: 0, count: passwordLength)
       for i in 0...passwordLength - 1 {
-        passwordInt8[i] = password[i] as! Int8
+        passwordInt8[i] = password[i]
       }
       let passwordPointer = UnsafeMutablePointer<[CChar]>.allocate(capacity: passwordLength)
       passwordPointer.initialize(to: passwordInt8)
