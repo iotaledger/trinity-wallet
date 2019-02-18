@@ -7,6 +7,7 @@ import isEmpty from 'lodash/isEmpty';
 import isUndefined from 'lodash/isUndefined';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
+import omit from 'lodash/omit';
 import values from 'lodash/values';
 import size from 'lodash/size';
 import {
@@ -26,12 +27,12 @@ import {
 import { __MOBILE__, __TEST__, __DEV__ } from '../config';
 import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
 
-const SCHEMA_VERSION = 0;
+const SCHEMA_VERSION = 1;
 
-const STORAGE_PATH =
+const getStoragePath = (schemaVersion = SCHEMA_VERSION) =>
     __MOBILE__ || __TEST__
-        ? `trinity-${SCHEMA_VERSION}.realm`
-        : `${Electron.getUserDataPath()}/trinity${__DEV__ ? '-dev' : ''}-${SCHEMA_VERSION}.realm`;
+        ? `trinity-${schemaVersion}.realm`
+        : `${Electron.getUserDataPath()}/trinity${__DEV__ ? '-dev' : ''}-${schemaVersion}.realm`;
 
 // Initialise realm instance
 let realm = {}; // eslint-disable-line import/no-mutable-exports
@@ -108,6 +109,18 @@ class Account {
      */
     static create(data) {
         realm.write(() => realm.create('Account', data));
+    }
+
+    /**
+     * Creates multiple accounts.
+     * @method createMultiple
+     *
+     * @param {object} data
+     */
+    static createMultiple(accountsData) {
+        realm.write(() => {
+            each(accountsData, (data) => realm.create('Account', data));
+        });
     }
 
     /**
@@ -716,7 +729,7 @@ class ErrorLog {
  * Realm storage default configuration.
  */
 export const config = {
-    path: STORAGE_PATH,
+    path: getStoragePath(),
     schema: [
         AccountSchema,
         AddressSchema,
@@ -763,17 +776,79 @@ const purge = () =>
 const initialise = (getEncryptionKeyPromise) =>
     getEncryptionKeyPromise().then((encryptionKey) => {
         realm = new Realm(assign({}, config, { encryptionKey }));
-        initialiseSync();
+        initialiseSync(encryptionKey);
     });
 
 /**
  * Initialises storage.
  *
  * @method initialiseSync
+ *
+ * @param {array} encryptionKey
+ *
  * @returns {Promise}
  */
-const initialiseSync = () => {
+const initialiseSync = (encryptionKey) => {
     Wallet.createIfNotExists();
+
+    // FIXME (laumair) - Realm migration setup needs improvement.
+    // This is just a quick way to migrate realm data from schema version 0 to 1
+    // Schema version 1 adds (missing) "completed" property to AccountInfoDuringSetup schema
+    // If onboarding is interrupted on loading (without "completed" property), the wallet throws continuous exceptions
+    // See #isSettingUpNewAccount in shared/selectors/accounts
+    if (realm.schemaVersion >= 1) {
+        const schema = map(config.schema, (object) => {
+            // Omit "completed" property from AccountInfoDuringSetup schema because it wasn't defined in schema version 0
+            if (object.name === 'AccountInfoDuringSetup') {
+                return omit(object, ['properties.completed']);
+            }
+
+            return object;
+        });
+
+        const versionZeroConfig = assign({}, config, {
+            encryptionKey,
+            schemaVersion: 0,
+            path: getStoragePath(0),
+            schema,
+        });
+
+        const oldRealm = new Realm(versionZeroConfig);
+
+        const accountsData = oldRealm.objects('Account');
+        const versionZeroWalletData = oldRealm.objectForPrimaryKey('Wallet', 0);
+        const nodesData = oldRealm.objects('Node');
+
+        if (!isEmpty(accountsData)) {
+            Account.createMultiple(accountsData);
+        }
+
+        if (!isEmpty(versionZeroWalletData)) {
+            Wallet.updateLatest(
+                assign(
+                    {},
+                    versionZeroWalletData,
+                    // Use latest schema version
+                    { version: Wallet.version },
+                ),
+            );
+
+            // Check if accountInfoDuringSetup.name was set in scheme version 0
+            // If it was set, then that means there exists an account that hasn't been loaded properly in the wallet
+            // It also means that "completed" property isn't set to true
+            if (!isEmpty(versionZeroWalletData.accountInfoDuringSetup.name)) {
+                Wallet.updateAccountInfoDuringSetup({ completed: true });
+            }
+        }
+
+        if (!isEmpty(nodesData)) {
+            Node.addNodes(nodesData);
+        }
+
+        oldRealm.write(() => oldRealm.deleteAll());
+
+        Realm.deleteFile(versionZeroConfig);
+    }
 };
 
 /**
