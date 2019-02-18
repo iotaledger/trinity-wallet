@@ -534,8 +534,6 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                         }
 
-                        //const maxInputs = await seedStore.getMaxInputs();
-
                         // Check if input count does not exceed maximum supported by the SeedStore type
                         if (maxInputs && inputs.inputs.length > maxInputs) {
                             throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, maxInputs));
