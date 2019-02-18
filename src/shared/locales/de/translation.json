@@ -412,7 +412,7 @@
         "securitySettings": "Sicherheitseinstellungen",
         "fingerprint": "Biometrische Authentifizierung",
         "couldNotFetchRates": "Kurse konnten nicht abgerufen werden",
-        "couldNotFetchRatesExplanation": "Beim Abrufen der Umrechnungskurse für {{currency}} ist etwas schief gelaufen.",
+        "couldNotFetchRatesExplanation": "Beim Abrufen der Umrechnungskurse für {{currency}} ist ein Fehler aufgetreten.",
         "fetchedConversionRates": "Umrechnungskurse wurden abgerufen",
         "fetchedConversionRatesExplanation": "Umrechnungskurse für {{currency}} erfolgreich abgerufen.",
         "undo": "Rückgängig",
@@ -424,7 +424,7 @@
         "nodeChangeSuccessNoRemotePow": "Der Node wurde auf {{node}} geändert. Dieser Node Unterstützt keinen Proof of Work.",
         "nodeChangeSuccessExplanation": "Der Node wurde auf {{node}} geändert.",
         "nodeChangeError": "Fehler beim Ändern des Nodes",
-        "nodeChangeErrorExplanation": "Es gab einen Fehler beim Wechseln des Nodes. Bitte versuche es nochmal."
+        "nodeChangeErrorExplanation": "Beim Wechseln des Nodes ist ein Fehler aufgetreten. Bitte versuche es erneut."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
