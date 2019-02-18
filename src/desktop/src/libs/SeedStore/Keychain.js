@@ -49,9 +49,9 @@ class Keychain extends SeedStoreCore {
      * Return max supported input count
      * @returns {number} - 0 for no limit
      */
-    get maxInputs() {
+    getMaxInputs = () => {
         return 0;
-    }
+    };
 
     /**
      * Create new account
