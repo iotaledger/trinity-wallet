@@ -537,7 +537,7 @@ const attachToTangleAsync = (provider, seedStore) => (
 
             // Batched proof-of-work only returns the attached trytes
             return constructBundleFromAttachedTrytes(result, seedStore).then((transactionObjects) => ({
-                transactionObjects,
+                transactionObjects: transactionObjects.slice().reverse(),
                 trytes: result,
             }));
         })
