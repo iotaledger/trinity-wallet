@@ -2,6 +2,7 @@
 import { ACC_MAIN, sha256, encrypt, decrypt } from 'libs/crypto';
 import { byteToTrit } from 'libs/iota/converter';
 import { prepareTransfersAsync } from 'libs/iota/extendedApi';
+import { tritsToChars } from 'libs/iota/converter';
 
 import SeedStoreCore from './SeedStoreCore';
 
@@ -159,7 +160,9 @@ class Keychain extends SeedStoreCore {
 
         Electron.garbageCollect();
 
-        return addresses;
+        return !options.total || options.total === 1
+            ? tritsToChars(addresses)
+            : addresses.map((trits) => tritsToChars(trits));
     };
 
     /**
