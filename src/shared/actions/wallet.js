@@ -372,7 +372,6 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
  * @returns {function} - dispatch
  */
 export const transitionForSnapshot = (seedStore, addresses) => {
-    console.log(addresses);
     return (dispatch) => {
         dispatch(snapshotTransitionRequest());
         if (addresses.length > 0) {
@@ -424,7 +423,6 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses) =>
                 const lastIndexWithBalance = findLastIndex(allBalances, (balance) => balance > 0);
                 const relevantBalances = allBalances.slice(0, lastIndexWithBalance + 1);
                 const relevantAddresses = addresses.slice(0, lastIndexWithBalance + 1);
-                console.log(relevantAddresses);
 
                 dispatch(startTrackingProgress(relevantAddresses));
 
@@ -452,7 +450,6 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses) =>
                                 existingAccountState,
                             )
                                 .then(({ attachedAddressObject, attachedTransactions }) => {
-                                    console.log(attachedTransactions);
                                     const newState = syncAccountDuringSnapshotTransition(
                                         attachedTransactions,
                                         attachedAddressObject,
