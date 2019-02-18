@@ -210,7 +210,7 @@ const promoteTransactionAsync = (provider, seedStore) => (
     return (
         isPromotable(provider)(hash, { rejectWithReason: true })
             // rejectWithReason only resolves if provided hashes are consistent
-            .then(() => seedStore.prepareTransfers(provider)(transfer.address, [transfer]))
+            .then(() => prepareTransfersAsync(provider)(transfer.address, [transfer]))
             .then((trytes) => {
                 cached.trytes = trytes;
 
