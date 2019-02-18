@@ -6,7 +6,9 @@ import { connect } from 'react-redux';
 
 import { startTrackingProgress } from 'actions/progress';
 import { migrate } from 'actions/migrations';
+import { setFullNode } from 'actions/settings';
 
+import Button from 'ui/components/Button';
 import Modal from 'ui/components/modal/Modal';
 import Progress from 'ui/components/Progress';
 
@@ -47,12 +49,31 @@ class Migration extends React.Component {
         /** @ignore */
         migrate: PropTypes.func.isRequired,
         /** @ignore */
+        setFullNode: PropTypes.func.isRequired,
+        /** @ignore */
         startTrackingProgress: PropTypes.func.isRequired,
+        /** @ignore */
+        notificationLog: PropTypes.array.isRequired,
+        /** @ignore */
+        node: PropTypes.string.isRequired,
+        /** @ignore */
+        nodes: PropTypes.array.isRequired,
+        /** @ignore */
+        isChangingNode: PropTypes.bool.isRequired,
+    };
+
+    state = {
+        hasFailedMigration: false,
     };
 
     componentDidMount() {
-        this.props.startTrackingProgress(this.progressSteps());
-        this.props.migrate(electronStorage);
+        this.initMigration();
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (this.props.notificationLog.length !== newProps.notificationLog.length) {
+            this.setState({ hasFailedMigration: true });
+        }
     }
 
     progressSteps() {
@@ -67,20 +88,51 @@ class Migration extends React.Component {
         ];
     }
 
+    changeNode = () => {
+        const { node, nodes } = this.props;
+
+        let randomNode = node;
+
+        while (randomNode === node) {
+            randomNode = nodes[(Math.random() * nodes.length) | 0];
+        }
+
+        this.props.setFullNode(randomNode);
+    };
+
+    initMigration = () => {
+        this.setState({ hasFailedMigration: false });
+        this.props.startTrackingProgress(this.progressSteps());
+        this.props.migrate(electronStorage);
+    };
+
     render() {
-        const { t, activeSteps, activeStepIndex } = this.props;
+        const { t, activeSteps, activeStepIndex, isChangingNode } = this.props;
+        const { hasFailedMigration } = this.state;
 
         return (
             <Modal variant="global" isOpen isForced onClose={() => {}}>
                 <form>
                     <h1>{t('migration:dataMigration')}</h1>
-                    <article>
-                        <Progress
-                            type="large"
-                            progress={Math.round((activeStepIndex + 1) / activeSteps.length * 100)}
-                            subtitle={activeSteps[activeStepIndex]}
-                        />
-                    </article>
+                    {activeSteps.length > 0 && (
+                        <article>
+                            <Progress
+                                type="large"
+                                progress={Math.round((activeStepIndex + 1) / activeSteps.length * 100)}
+                                subtitle={activeSteps[activeStepIndex]}
+                            />
+                        </article>
+                    )}
+                    {hasFailedMigration && (
+                        <footer>
+                            <Button loading={isChangingNode} variant="dark" onClick={this.changeNode}>
+                                {t('changeNode')}
+                            </Button>
+                            <Button type="submit" variant="primary" onClick={this.initMigration}>
+                                {t('retry')}
+                            </Button>
+                        </footer>
+                    )}
                 </form>
             </Modal>
         );
@@ -90,11 +142,16 @@ class Migration extends React.Component {
 const mapStateToProps = (state) => ({
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
+    notificationLog: state.alerts.notificationLog,
+    nodes: state.settings.nodes,
+    node: state.settings.node,
+    isChangingNode: state.ui.isChangingNode,
 });
 
 const mapDispatchToProps = {
     migrate,
     startTrackingProgress,
+    setFullNode,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Migration));
