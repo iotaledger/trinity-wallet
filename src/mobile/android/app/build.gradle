@@ -151,6 +151,7 @@ android {
     }
 }
 dependencies {
+    implementation project(':react-native-modal-translucent')
     implementation project(':react-native-qr-scanner')
     implementation 'com.github.laumair:argon2jni:jitpack-SNAPSHOT'
     implementation project(':react-native-document-picker')

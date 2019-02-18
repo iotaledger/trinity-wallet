@@ -63,6 +63,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(
                 // eg. new VectorIconsPackage()
+                new TranslucentModalReactPackage(),
                 new SvgPackage(),
                 new MainReactPackage(),
                 new RNCameraPackage(),
