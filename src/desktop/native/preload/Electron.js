@@ -78,12 +78,11 @@ const Electron = {
 
     /**
      * Do Proof of Work
-     * @param {string} trytes - Input trytes
-     * @param {number} mwm - Min Weight Magnitude
-     * @returns {string} Proof of Work
+     * @param {boolean} batchedPow - Should return batched PoW function
+     * @returns {function} Proof of Work
      */
-    powFn: async (trytes, mwm) => {
-        return await Entangled.powFn(trytes, mwm);
+    getPowFn: (batchedPow) => {
+        return batchedPow ? Entangled.batchedPowFn : Entangled.powFn;
     },
 
     /**
