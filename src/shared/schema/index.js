@@ -345,6 +345,13 @@ export const AccountInfoDuringSetupSchema = {
             default: false,
         },
         meta: 'AccountMeta',
+        /**
+         * Determines if the account info is complete and account ready to be created and synced
+         */
+        completed: {
+            type: 'bool',
+            default: false,
+        },
     },
 };
 
