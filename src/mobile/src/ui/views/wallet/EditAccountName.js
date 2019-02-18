@@ -12,7 +12,7 @@ import {
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeAccountName } from 'shared-modules/actions/accounts';
-import { getThemeFromState } from 'shared-modules/selectors/global';
+import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import SeedStore from 'libs/SeedStore';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { width, height } from 'libs/dimensions';
@@ -86,6 +86,10 @@ export class EditAccountName extends Component {
         changeAccountName: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        isAutoPromoting: PropTypes.bool.isRequired,
+        /** Determines whether to allow account change */
+        shouldPreventAction: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -113,7 +117,14 @@ export class EditAccountName extends Component {
      * @method save
      */
     async save(accountName) {
-        const { accountNames, selectedAccountName, selectedAccountMeta, t } = this.props;
+      const {
+          accountNames,
+          selectedAccountName,
+          selectedAccountMeta,
+          t,
+          isAutoPromoting,
+          shouldPreventAction,
+      } = this.props;
         if (accountName.length === 0) {
             return this.props.generateAlert(
                 'error',
@@ -127,6 +138,8 @@ export class EditAccountName extends Component {
                 t('addAdditionalSeed:nameInUse'),
                 t('addAdditionalSeed:nameInUseExplanation'),
             );
+        } else if (isAutoPromoting || shouldPreventAction) {
+            this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         } else {
             const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
 
@@ -205,6 +218,8 @@ const mapStateToProps = (state) => ({
     selectedAccountMeta: getSelectedAccountMeta(state),
     accountNames: getAccountNamesFromState(state),
     theme: getThemeFromState(state),
+    shouldPreventAction: shouldPreventAction(state),
+    isAutoPromoting: state.polling.isAutoPromoting,
 });
 
 const mapDispatchToProps = {
