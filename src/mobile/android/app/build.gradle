@@ -185,6 +185,7 @@ dependencies {
     implementation project(':react-native-haptic-feedback')
     implementation project(':realm')
     implementation project(':rn-fetch-blob')
+    implementation project(':@iota/signing')
 }
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use

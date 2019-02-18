@@ -4,6 +4,7 @@ import has from 'lodash/has';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
 import IOTA from 'iota.lib.js';
+import { createPrepareTransfers } from '@iota/core';
 import { iota, quorum } from './index';
 import Errors from '../errors';
 import { isWithinMinutes } from '../date';
@@ -209,7 +210,7 @@ const promoteTransactionAsync = (provider, seedStore) => (
     return (
         isPromotable(provider)(hash, { rejectWithReason: true })
             // rejectWithReason only resolves if provided hashes are consistent
-            .then(() => prepareTransfersAsync(provider)(transfer.address, [transfer]))
+            .then(() => seedStore.prepareTransfers(provider)(transfer.address, [transfer]))
             .then((trytes) => {
                 cached.trytes = trytes;
 
@@ -405,15 +406,7 @@ export const prepareTransfersAsync = (provider) => (seed, transfers, options = n
         args = [...args, options];
     }
 
-    return new Promise((resolve, reject) => {
-        getIotaInstance(provider).api.prepareTransfers(...args, (err, trytes) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(trytes);
-            }
-        });
-    });
+    return createPrepareTransfers(provider)(...args);
 };
 
 /**
