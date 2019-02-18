@@ -147,7 +147,7 @@
     "electron-updater": "4.0.6",
     "entangled-node": "rihardsgravis/entangled-node#v0.2.0",
     "hw-app-iota": "^0.6.1",
-    "i18next": "^15.0.2",
+    "i18next": "^15.0.4",
     "iota.lib.js": "^0.5.1",
     "kdbxweb": "^1.2.6",
     "keytar": "^4.4.0",
