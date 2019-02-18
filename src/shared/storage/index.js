@@ -796,7 +796,7 @@ const initialiseSync = (encryptionKey) => {
     // Schema version 1 adds (missing) "completed" property to AccountInfoDuringSetup schema
     // If onboarding is interrupted on loading (without "completed" property), the wallet throws continuous exceptions
     // See #isSettingUpNewAccount in shared/selectors/accounts
-    if (realm.schemaVersion >= 1) {
+    if (realm.schemaVersion >= 1 && Realm.schemaVersion(getStoragePath(realm.schemaVersion - 1)) > 0) {
         const schema = map(config.schema, (object) => {
             // Omit "completed" property from AccountInfoDuringSetup schema because it wasn't defined in schema version 0
             if (object.name === 'AccountInfoDuringSetup') {
