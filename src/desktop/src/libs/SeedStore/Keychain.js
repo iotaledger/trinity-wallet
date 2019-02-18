@@ -222,7 +222,9 @@ class Keychain extends SeedStoreCore {
             throw new Error('Local storage not available');
         }
         try {
-            const accounts = vault.filter((acc) => acc.account !== ACC_MAIN && acc.account !== `${ACC_MAIN}-salt`);
+            const accounts = vault.filter(
+                (acc) => acc.account !== ACC_MAIN && acc.account !== `${ACC_MAIN}-salt` && acc.account !== ALIAS_REALM,
+            );
 
             for (let i = 0; i < accounts.length; i++) {
                 const account = accounts[i];
