@@ -117,7 +117,8 @@ class Tools extends PureComponent {
      */
     transitionBalanceOk = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, accountName, meta } = this.props;
+        const { wallet } = this.props;
+        const { accountName, meta } = this.props.account;
 
         const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
