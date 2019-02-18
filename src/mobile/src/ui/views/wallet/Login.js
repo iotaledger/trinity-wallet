@@ -131,7 +131,7 @@ class Login extends Component {
                 await authorize(pwdHash);
                 const seedStore = await new SeedStore[selectedAccountMeta.type](pwdHash, selectedAccountName);
                 // FIXME: To be deprecated
-                const completedSeedMigration = typeof await seedStore.getSeed() !== 'string';
+                const completedSeedMigration = typeof (await seedStore.getSeeds())[selectedAccountName] !== 'string';
                 global.passwordHash = pwdHash;
                 delete this.state.password;
                 if (!is2FAEnabled) {
