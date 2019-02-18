@@ -94,11 +94,11 @@
         "promotingTransaction": "Transaktion wird promotet",
         "rebroadcastError": "Transaktion konnte nicht erneut übertragen werden",
         "promoted": "Transaktion erfolgreich promoted",
-        "promotedExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
+        "promotedExplanation": "Promoten der Transaktion {{hash}} erfolgreich",
         "autopromotionError": "Die Transaktion konnte nicht promotet werden",
         "autopromotionErrorExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Bitte ändere den Node und reaktiviere Auto-Promotion.",
         "promotionError": "Die Transaktion konnte nicht promotet werden",
-        "promotionErrorExplanation": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
+        "promotionErrorExplanation": "Beim Senden der Transaktion ist ein Fehler aufgetreten. Bitte versuche es erneut.",
         "noLongerValid": "Das Bundle, das du promoten möchtest, ist nicht mehr gültig",
         "transactionAlreadyConfirmed": "Transaktion bereits bestätigt",
         "transactionAlreadyConfirmedExplanation": "Die Transaktion, die Du versuchst zu promoten ist bereits bestätigt.",
@@ -253,7 +253,7 @@
         "whyBiometricDisabledExplanationPart2": "Trinity wird dich bei Inaktivität automatisch abmelden. Du kannst dich anschließend mit biometrischer Authentifizierung erneut anmelden."
     },
     "loading": {
-        "loadingFirstTime": "Dein Seed wird das erste Mal geladen.",
+        "loadingFirstTime": "Dein Seed wird initialisiert.",
         "thisMayTake": "Das kann eine Weile dauern.",
         "doNotMinimise": "Die App nicht minimieren oder schließen.",
         "takingAWhile": "Das scheint eine Weile zu dauern"
