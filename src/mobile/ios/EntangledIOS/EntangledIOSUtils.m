@@ -19,17 +19,9 @@
  @return int8_t representation of trits
  */
 + (int8_t*)NSMutableArrayTritsToInt8:(NSMutableArray<NSNumber *> *)trits {
-  int8_t trits_int8[trits.count];
   int8_t* trits_int8_ptr = (int8_t*)calloc(trits.count, sizeof(int8_t));
-  for (int i = 0; i < 5; i++) {
-    //printf("%i", [trits[i] intValue]);
-  }
   for (int i = 0; i < (int)trits.count; i++) {
     trits_int8_ptr[i] = (int8_t)trits[i].charValue;
-  }
-  printf("\n");
-  for (int i = 0; i < 5; i++) {
-    printf("%hhd", trits_int8_ptr[i]);
   }
   return trits_int8_ptr;
 }

@@ -64,26 +64,15 @@ RCT_EXPORT_METHOD(generateAddresses:(NSArray<NSNumber*>*)seed index:(int)index s
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSMutableArray<NSMutableArray*>* addresses = [NSMutableArray array];
     int i = 0;
-    int addressIndex = 0;
+    int addressIndex = index;
     
     int8_t* seedTrits_ptr = NULL;
     int8_t* address = NULL;
     
-    for (int i = 0; i < 5; i++) {
-      printf("%i", [seed[i] intValue]);
-    }
-    
     seedTrits_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:seed]];
     
-    for (int i = 0; i < 5; i++) {
-      printf("%hhd", seedTrits_ptr[i]);
-    }
     do {
       address = [EntangledIOSBindings iota_ios_sign_address_gen_trits:seedTrits_ptr index:addressIndex security:security];
-      printf("\n %s", "Address:");
-      for (int i = 0; i < 5; i++) {
-        printf("%hhd", address[i]);
-      }
       NSMutableArray<NSNumber*>* addressTrits = [EntangledIOSUtils Int8TritsToNSMutableArray:address count:243];
       [addresses addObject:addressTrits];
       i++;
