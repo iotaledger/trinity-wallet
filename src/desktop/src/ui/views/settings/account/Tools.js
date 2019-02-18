@@ -104,11 +104,11 @@ class Tools extends PureComponent {
      */
     startSnapshotTransition = async () => {
         const { wallet } = this.props;
-        const { accountName, meta, addresses } = this.props.account;
+        const { accountName, meta, addressData } = this.props.account;
 
         const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
-        this.props.transitionForSnapshot(seedStore, addresses);
+        this.props.transitionForSnapshot(seedStore, addressData);
     };
 
     /**
