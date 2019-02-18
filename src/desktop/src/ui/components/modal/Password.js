@@ -193,7 +193,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(
-    null,
-    mapDispatchToProps,
-)(withI18n()(ModalPassword));
+export default connect(null, mapDispatchToProps)(withI18n()(ModalPassword));

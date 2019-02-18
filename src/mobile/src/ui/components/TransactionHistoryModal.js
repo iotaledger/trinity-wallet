@@ -177,10 +177,8 @@ export default class TransactionHistoryModal extends PureComponent {
         /** Determines whether the current bundle is being promoted */
         bundleIsBeingPromoted: PropTypes.bool.isRequired,
         /* eslint-disable react/no-unused-prop-types */
-        /** Checks if the bundle hash belongs to a failed transaction
-         * @param {string} bundleHash
-         */
-        isFailedTransaction: PropTypes.func.isRequired,
+        /** Checks if it's a failed transaction */
+        isFailedTransaction: PropTypes.bool.isRequired,
         /** @ignore */
         retryFailedTransaction: PropTypes.func.isRequired,
         /** @ignore */
@@ -316,13 +314,12 @@ export default class TransactionHistoryModal extends PureComponent {
             bundleIsBeingPromoted,
         } = this.props;
         const { addressesScrollable, messagesScrollable } = this.state;
-        const isFailed = isFailedTransaction(bundle);
 
         return (
             <ModalView
                 modalButtons={
                     (!persistence &&
-                        !isFailed &&
+                        !isFailedTransaction &&
                         this.renderButton({
                             onRightButtonPress: () => {
                                 if (!disableWhen) {
@@ -337,7 +334,7 @@ export default class TransactionHistoryModal extends PureComponent {
                                 }
                             },
                         })) ||
-                    (isFailed &&
+                    (isFailedTransaction &&
                         this.renderButton({
                             onRightButtonPress: () => {
                                 if (!disableWhen) {

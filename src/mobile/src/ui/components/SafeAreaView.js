@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import hoistNonReactStatics from 'hoist-non-react-statics';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getBackgroundColor } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 
@@ -49,7 +50,7 @@ export default function withSafeAreaView(WrappedComponent) {
     }
 
     const mapStateToProps = (state) => ({
-        theme: state.settings.theme,
+        theme: getThemeFromState(state),
         inactive: state.ui.inactive,
         isModalActive: state.ui.isModalActive,
     });

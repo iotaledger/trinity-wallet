@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { AdvancedSettings } from 'ui/views/wallet/AdvancedSettings';
+import theme from '../../../../__mocks__/theme';
 
 jest.mock('bugsnag-react-native', () => ({
     Configuration: jest.fn(),
@@ -25,7 +26,7 @@ const getProps = (overrides) =>
             t: () => '',
             generateAlert: noop,
             node: 'https://foo.baz',
-            theme: { body: {} },
+            theme,
             isSendingTransfer: false,
             autoPromotion: false,
             remotePoW: false,

@@ -1,5 +1,6 @@
 /* global Electron */
 import { ACC_MAIN, sha256, encrypt, decrypt } from 'libs/crypto';
+import { ALIAS_REALM } from 'libs/realm';
 import { byteToTrit } from 'libs/iota/converter';
 import { prepareTransfersAsync } from 'libs/iota/extendedApi';
 import { tritsToChars } from 'libs/iota/converter';
@@ -23,6 +24,7 @@ class Keychain extends SeedStoreCore {
             if (accountId) {
                 this.accountId = await sha256(`${ACC_PREFIX}-${accountId}`);
             }
+
             return this;
         })();
     }
@@ -129,7 +131,7 @@ class Keychain extends SeedStoreCore {
         for (let i = 0; i < accounts.length; i++) {
             const account = vault[i];
 
-            if (account.account === `${ACC_MAIN}-salt`) {
+            if (account.account === `${ACC_MAIN}-salt` || account.account === ALIAS_REALM) {
                 continue;
             }
 
@@ -223,7 +225,9 @@ class Keychain extends SeedStoreCore {
             throw new Error('Local storage not available');
         }
         try {
-            const accounts = vault.filter((acc) => acc.account !== ACC_MAIN && acc.account !== `${ACC_MAIN}-salt`);
+            const accounts = vault.filter(
+                (acc) => acc.account !== ACC_MAIN && acc.account !== `${ACC_MAIN}-salt` && acc.account !== ALIAS_REALM,
+            );
 
             for (let i = 0; i < accounts.length; i++) {
                 const account = accounts[i];

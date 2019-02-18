@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { QRScanner as QrScannerComponent } from 'ui/components/QrScanner';
+import theme from '../../../__mocks__/theme';
 
 jest.mock('react-native-camera', () => ({}));
 jest.mock('react-native-qr-scanner', () => ({}));
@@ -19,7 +20,7 @@ const getProps = (overrides) =>
             t: () => '',
             onQRRead: noop,
             hideModal: noop,
-            theme: { body: {}, primary: {} },
+            theme,
         },
         overrides,
     );

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { setFullNode } from 'shared-modules/actions/settings';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { withNamespaces } from 'react-i18next';
 import DropdownComponent from 'ui/components/Dropdown';
 import { width, height } from 'libs/dimensions';
@@ -193,7 +194,7 @@ class NodeSelection extends Component {
 const mapStateToProps = (state) => ({
     node: state.settings.node,
     nodes: state.settings.nodes,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isChangingNode: state.ui.isChangingNode,
 });
 

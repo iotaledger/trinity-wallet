@@ -1,14 +1,13 @@
 export const __DEV__ = process.env.NODE_ENV === 'development';
 export const __TEST__ = process.env.NODE_ENV === 'test';
+export const __MOBILE__ = typeof navigator !== 'undefined' && navigator.product === 'ReactNative';
 
 /** Default IRI node */
 export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.iota.fm:443';
 
-export const nodesWithPoWEnabled = [
-    'https://iotanode.us:443',
-];
+export const nodesWithPowEnabled = ['https://iotanode.us:443', 'https://pool.trytes.eu'];
 
-const nodesWithPoWDisabled = [
+export const nodesWithPowDisabled = [
     'https://peanut.iotasalad.org:14265',
     'https://potato.iotasalad.org:14265',
     'https://tuna.iotasalad.org:14265',
@@ -16,7 +15,7 @@ const nodesWithPoWDisabled = [
     'https://nodes.thetangle.org:443',
 ];
 
-export const nodes = [...nodesWithPoWEnabled, ...nodesWithPoWDisabled];
+export const nodes = [...nodesWithPowEnabled, ...nodesWithPowDisabled];
 
 export const NODELIST_URL = 'https://nodes.iota.works/api/ssl/live';
 

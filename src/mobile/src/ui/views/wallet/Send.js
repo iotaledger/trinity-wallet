@@ -34,6 +34,7 @@ import {
 } from 'shared-modules/selectors/accounts';
 import { startTrackingProgress } from 'shared-modules/actions/progress';
 import { generateAlert, generateTransferErrorAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import KeepAwake from 'react-native-keep-awake';
 import Toggle from 'ui/components/Toggle';
@@ -170,7 +171,9 @@ export class Send extends Component {
 
     constructor(props) {
         super(props);
-        const { t, theme: { body } } = this.props;
+        const { t, theme } = this.props;
+        const { body } = theme;
+
         this.state = {
             modalContent: '', // eslint-disable-line react/no-unused-state
             maxPressed: false,
@@ -416,10 +419,10 @@ export class Send extends Component {
      *   @method setMaxPressed
      **/
     setMaxPressed() {
-        const { theme: { primary }, t } = this.props;
+        const { theme, t } = this.props;
         this.setState({
             maxPressed: true,
-            maxColor: primary.color,
+            maxColor: theme.primary.color,
             maxText: t('send:maximumSelected'),
         });
     }
@@ -433,10 +436,10 @@ export class Send extends Component {
      *   @method resetMaxPressed
      **/
     resetMaxPressed() {
-        const { theme: { body }, t } = this.props;
+        const { theme, t } = this.props;
         this.setState({
             maxPressed: false,
-            maxColor: body.color,
+            maxColor: theme.body.color,
             maxText: t('send:sendMax'),
         });
     }
@@ -467,15 +470,8 @@ export class Send extends Component {
      * @param  {String} modalContent
      */
     showModal(modalContent) {
-        const {
-            theme,
-            theme: { bar, body },
-            address,
-            amount,
-            selectedAccountName,
-            isFingerprintEnabled,
-            message,
-        } = this.props;
+        const { theme, address, amount, selectedAccountName, isFingerprintEnabled, message } = this.props;
+
         switch (modalContent) {
             case 'qrScanner':
                 return this.props.toggleModalActivity(modalContent, {
@@ -498,6 +494,9 @@ export class Send extends Component {
                         this.hideModal();
                     },
                     hideModal: (callback) => this.hideModal(callback),
+                    body: theme.body,
+                    borderColor: { borderColor: theme.body.color },
+                    textColor: { color: theme.body.color },
                     setSendingTransferFlag: () => this.setSendingTransferFlag(),
                     selectedAccountName,
                     activateFingerprintScanner: () => this.activateFingerprintScanner(),
@@ -508,21 +507,26 @@ export class Send extends Component {
             case 'unitInfo':
                 return this.props.toggleModalActivity(modalContent, {
                     hideModal: () => this.hideModal(),
-                    textColor: { color: bar.color },
-                    lineColor: { borderBottomColor: bar.color },
-                    borderColor: { borderColor: bar.color },
                     theme,
+                    textColor: { color: theme.bar.color },
+                    lineColor: { borderLeftColor: theme.bar.color },
+                    borderColor: { borderColor: theme.bar.color },
+                    bar: theme.bar.color,
                 });
             case 'usedAddress':
                 return this.props.toggleModalActivity(modalContent, {
                     hideModal: (callback) => this.hideModal(callback),
-                    body,
-                    bar,
-                    borderColor: { borderColor: body.color },
-                    textColor: { color: body.color },
+                    body: theme.body,
+                    bar: theme.bar,
+                    borderColor: { borderColor: theme.body.color },
+                    textColor: { color: theme.body.color },
                 });
             case 'fingerprint':
                 return this.props.toggleModalActivity(modalContent, {
+                    hideModal: this.hideModal,
+                    borderColor: { borderColor: theme.body.color },
+                    textColor: { color: theme.body.color },
+                    backgroundColor: { backgroundColor: theme.body.bg },
                     onBackButtonPress: () => {
                         this.interuptSendAnimation();
                         this.hideModal();
@@ -679,18 +683,8 @@ export class Send extends Component {
 
     render() {
         const { maxPressed, maxColor, maxText, sending } = this.state;
-        const {
-            t,
-            isSendingTransfer,
-            address,
-            amount,
-            message,
-            denomination,
-            theme,
-            theme: { body, primary, input, dark, secondary },
-            isKeyboardActive,
-        } = this.props;
-        const textColor = { color: body.color };
+        const { t, isSendingTransfer, address, amount, message, denomination, theme, isKeyboardActive } = this.props;
+        const textColor = { color: theme.body.color };
         const opacity = this.getSendMaxOpacity();
         const isSending = sending || isSendingTransfer;
 
@@ -776,8 +770,8 @@ export class Send extends Component {
                                     <Toggle
                                         opacity={opacity}
                                         active={maxPressed}
-                                        bodyColor={body.color}
-                                        primaryColor={primary.color}
+                                        bodyColor={theme.body.color}
+                                        primaryColor={theme.primary.color}
                                     />
                                 </View>
                             </TouchableOpacity>
@@ -815,11 +809,11 @@ export class Send extends Component {
                             <SendProgressBar
                                 activeStepIndex={this.props.activeStepIndex}
                                 totalSteps={size(this.props.activeSteps)}
-                                filledColor={input.bg}
-                                unfilledColor={dark.color}
-                                textColor={body.color}
-                                preSwipeColor={secondary.color}
-                                postSwipeColor={primary.color}
+                                filledColor={theme.input.bg}
+                                unfilledColor={theme.dark.color}
+                                textColor={theme.body.color}
+                                preSwipeColor={theme.secondary.color}
+                                postSwipeColor={theme.primary.color}
                                 interupt={this.state.shouldInteruptSendAnimation}
                                 progressText={this.getProgressBarText()}
                                 staticText={t('swipeToSend')}
@@ -842,7 +836,7 @@ export class Send extends Component {
                                     <Icon
                                         name="info"
                                         size={width / 22}
-                                        color={body.color}
+                                        color={theme.body.color}
                                         style={{ marginRight: width / 60 }}
                                     />
                                     <Text style={[styles.infoText, textColor]}>{t('iotaUnits')}</Text>
@@ -869,7 +863,7 @@ const mapStateToProps = (state) => ({
     conversionRate: state.settings.conversionRate,
     usdPrice: state.marketData.usdPrice,
     isGettingSensitiveInfoToMakeTransaction: state.keychain.isGettingSensitiveInfo.send.makeTransaction,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isTransitioning: state.ui.isTransitioning,
     address: state.ui.sendAddressFieldText,
     amount: state.ui.sendAmountFieldText,

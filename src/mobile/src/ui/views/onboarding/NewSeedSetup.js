@@ -11,6 +11,7 @@ import { setOnboardingSeed, toggleModalActivity } from 'shared-modules/actions/u
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateNewSeed, randomiseSeedCharacter } from 'shared-modules/libs/crypto';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import FlagSecure from 'react-native-flag-secure-android';
@@ -316,7 +317,7 @@ class NewSeedSetup extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     onboardingComplete: state.accounts.onboardingComplete,
     minimised: state.ui.minimised,
 });

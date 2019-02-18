@@ -11,6 +11,7 @@ import KeepAwake from 'react-native-keep-awake';
 import LottieView from 'lottie-react-native';
 import { getAccountInfo, getFullAccountInfo } from 'shared-modules/actions/accounts';
 import { setLoginRoute } from 'shared-modules/actions/ui';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/marketData';
 import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -382,8 +383,8 @@ const mapStateToProps = (state) => ({
     additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
     ready: state.wallet.ready,
     password: state.wallet.password,
-    theme: state.settings.theme,
-    isThemeDark: state.settings.theme.isDark,
+    theme: getThemeFromState(state),
+    isThemeDark: getThemeFromState(state).isDark,
     currency: state.settings.currency,
     deepLinkActive: state.wallet.deepLinkActive,
 });

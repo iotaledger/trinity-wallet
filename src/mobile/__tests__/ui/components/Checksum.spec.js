@@ -4,13 +4,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { Checksum } from 'ui/components/Checksum';
+import theme from '../../../__mocks__/theme';
 
 const getProps = (overrides) =>
     assign(
         {},
         {
             seed: '9'.repeat(81),
-            theme: { input: {}, body: {}, primary: {} },
+            theme,
             t: () => '',
             showModal: noop,
         },
