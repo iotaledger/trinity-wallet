@@ -99,7 +99,6 @@ class Migration extends Component {
     }
 
     componentDidMount() {
-        this.props.startTrackingProgress(ProgressSteps.migration);
         if (!this.props.completedMigration) {
             this.executeRealmMigration();
         } else {
@@ -111,7 +110,7 @@ class Migration extends Component {
         if (size(this.props.notificationLog) !== size(newProps.notificationLog)) {
             this.setState({ hasFailedRealmMigration: true });
         }
-        if (!this.props.completedMigration && this.props.completedMigration) {
+        if (!this.props.completedMigration && newProps.completedMigration) {
             this.setState({ hasCompletedRealmMigration: true });
             this.executeSeedMigration();
         }
@@ -152,6 +151,7 @@ class Migration extends Component {
      * @method executeRealmMigration
      */
     executeRealmMigration() {
+        this.props.startTrackingProgress(ProgressSteps.migration);
         this.props.migrate(reduxPersistStorageAdapter);
     }
 
