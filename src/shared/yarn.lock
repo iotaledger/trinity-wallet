@@ -775,7 +775,7 @@
     "@iota/converter" "^1.0.0-beta.8"
     "@iota/kerl" "^1.0.0-beta.8"
 
-"@iota/converter@^1.0.0-beta.8":
+"@iota/converter@^1.0.0-alpha.912642aa", "@iota/converter@^1.0.0-beta.8":
   version "1.0.0-beta.8"
   resolved "https://registry.yarnpkg.com/@iota/converter/-/converter-1.0.0-beta.8.tgz#498d8978db307de6a428547a4b5151727106b88f"
   integrity sha512-XRkHSpo2ryVLKhYKszQ99UdoBieH4P/4i8oryCTDcWh7YGYXlobFe24XvZcTm8l80e3QtzfMk6AWZQ8rTC2ejg==
@@ -813,7 +813,7 @@
     bluebird "^3.5.1"
     cross-fetch "^3.0.0"
 
-"@iota/kerl@^1.0.0-beta.8":
+"@iota/kerl@^1.0.0-alpha.912642aa", "@iota/kerl@^1.0.0-beta.8":
   version "1.0.0-beta.8"
   resolved "https://registry.yarnpkg.com/@iota/kerl/-/kerl-1.0.0-beta.8.tgz#698f5ed25005481823a8f68424616357bcdda74d"
   integrity sha512-GAau2oQmqC4erx5m3r6etbveOXfu/HFZ/m0lIyAihZwBdXaZ4+nRsO/ItTFqGBB2fv6uRh79MYtYOr+42UuG3Q==
@@ -821,10 +821,19 @@
     "@types/crypto-js" "^3.1.38"
     crypto-js "^3.1.9-1"
 
-"@iota/pad@^1.0.0-beta.8":
+"@iota/pad@^1.0.0-alpha.912642aa", "@iota/pad@^1.0.0-beta.8":
   version "1.0.0-beta.8"
   resolved "https://registry.yarnpkg.com/@iota/pad/-/pad-1.0.0-beta.8.tgz#a8e3483ecb918ea973df233c38b8c132d0af99ae"
   integrity sha512-INXGNATAmnNEruLbbCe13D73dhLZAu8kfckEKOCo+WjVNNdjPwGtIVxXPx7hhXhXHnFeSy6Tww96XSakILM3lw==
+
+"@iota/signing@1.0.0-alpha.912642aa":
+  version "1.0.0-alpha.912642aa"
+  resolved "https://registry.yarnpkg.com/@iota/signing/-/signing-1.0.0-alpha.912642aa.tgz#3f8e9c0e692a342f3d46e584ed3edff6d1bca9fd"
+  integrity sha512-aToCSWwpqGThmx73s8DpigS1ANpFkYuSiwe7wuZfALD+rCJZEXDEk6ziYIwDRBYF2eeNsd4luiKT7iwuwihzIA==
+  dependencies:
+    "@iota/converter" "^1.0.0-alpha.912642aa"
+    "@iota/kerl" "^1.0.0-alpha.912642aa"
+    "@iota/pad" "^1.0.0-alpha.912642aa"
 
 "@iota/signing@^1.0.0-alpha.912642aa", "@iota/signing@^1.0.0-beta.8":
   version "1.0.0-beta.8"

@@ -22,7 +22,7 @@
         "@iota/bundle": "^1.0.0-alpha.912642aa",
         "@iota/bundle-validator": "^1.0.0-alpha.912642aa",
         "@iota/core": "^1.0.0-alpha.912642aa",
-        "@iota/signing": "^1.0.0-alpha.912642aa",
+        "@iota/signing": "1.0.0-alpha.912642aa",
         "bignumber.js": "^8.0.1",
         "i18next": "^12.0.0",
         "iota.lib.js": "git+https://git@github.com/iotaledger/iota.js#develop",
@@ -69,6 +69,7 @@
         "timekeeper": "^2.0.0"
     },
     "resolutions": {
-        "mem": ">=4.0.0"
+        "mem": ">=4.0.0",
+        "@iota/signing": "^1.0.0-alpha.912642aa"
     }
 }
