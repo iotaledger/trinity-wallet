@@ -75,10 +75,13 @@ RCT_EXPORT_METHOD(generateAddresses:(NSArray<NSNumber*>*)seed index:(int)index s
       address = [EntangledIOSBindings iota_ios_sign_address_gen_trits:seedTrits_ptr index:addressIndex security:security];
       NSMutableArray<NSNumber*>* addressTrits = [EntangledIOSUtils Int8TritsToNSMutableArray:address count:243];
       [addresses addObject:addressTrits];
+      free(address);
+      address = NULL;
       i++;
       addressIndex++;
     } while (i < total);
     memset_s(seedTrits_ptr, 243, 0, 243);
+    free(seedTrits_ptr);
     resolve(addresses);
   });
 }
