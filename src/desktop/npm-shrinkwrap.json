@@ -6718,9 +6718,9 @@
       "resolved": "https://registry.npmjs.org/kdbxweb/-/kdbxweb-1.2.6.tgz",
       "integrity": "sha512-9KJlanItY6D2CmR/TN27HINwugSPNATD9yWq4V56JAxVUTY8WHveC5H0llLiyxgPHfr7eejPk8hmj98l/lq7Cw==",
       "requires": {
-        "pako": "pako@github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc",
-        "text-encoding": "text-encoding@github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb",
-        "xmldom": "xmldom@github:keeweb/xmldom#ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6"
+        "pako": "github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc",
+        "text-encoding": "github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb",
+        "xmldom": "github:keeweb/xmldom#ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6"
       },
       "dependencies": {
         "abbrev": {
