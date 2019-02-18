@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "EntangledIOS.h"
+#import "EntangledIOSUtils.h"
 
 @implementation EntangledIOS
 
@@ -38,7 +39,6 @@ RCT_EXPORT_METHOD(bundlePow:(NSArray *)trytes trunk:(NSString*)trunk branch:(NSS
   });
 }
 
-
 // Single address generation
 RCT_EXPORT_METHOD(generateAddress:(NSArray<NSNumber*>*)seed index:(int)index security:(int)security resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
@@ -51,7 +51,7 @@ RCT_EXPORT_METHOD(generateAddress:(NSArray<NSNumber*>*)seed index:(int)index sec
   seedTrits_ptr = seedTrits;
   int8_t * address = NULL;
   address = [EntangledIOSBindings iota_ios_sign_address_gen_trits:seedTrits_ptr index:index security:security];
-  memset_s(seedTrits, strlen(seedTrits), 0, strlen(seedTrits));
+  memset_s(seedTrits_ptr, 243, 0, 243);
   for (int i = 0; i < 243; i++) {
     printf("%hhd", address[i]);
   }
@@ -64,30 +64,32 @@ RCT_EXPORT_METHOD(generateAddresses:(NSArray<NSNumber*>*)seed index:(int)index s
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSMutableArray<NSMutableArray*>* addresses = [NSMutableArray array];
     int i = 0;
-    int addressIndex = index;
+    int addressIndex = 0;
     
-    
-    int8_t seedTrits[243];
     int8_t* seedTrits_ptr = NULL;
     int8_t* address = NULL;
     
-    for (int i = 0; i < (int)seed.count; i++)
-    {
-      seedTrits[i] = (int8_t)seed[i].charValue;
+    for (int i = 0; i < 5; i++) {
+      printf("%i", [seed[i] intValue]);
     }
-    seedTrits_ptr = seedTrits;
     
+    seedTrits_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:seed]];
+    
+    for (int i = 0; i < 5; i++) {
+      printf("%hhd", seedTrits_ptr[i]);
+    }
     do {
       address = [EntangledIOSBindings iota_ios_sign_address_gen_trits:seedTrits_ptr index:addressIndex security:security];
-      NSMutableArray<NSNumber*>* addressTrits = [NSMutableArray array];
-      for (int i = 0; i < 243; i++) {
-        [addressTrits addObject:[NSNumber numberWithChar:address[i]]];
+      printf("\n %s", "Address:");
+      for (int i = 0; i < 5; i++) {
+        printf("%hhd", address[i]);
       }
+      NSMutableArray<NSNumber*>* addressTrits = [EntangledIOSUtils Int8TritsToNSMutableArray:address count:243];
       [addresses addObject:addressTrits];
       i++;
       addressIndex++;
     } while (i < total);
-    memset_s(seedTrits, strlen(seedTrits), 0, strlen(seedTrits));
+    memset_s(seedTrits_ptr, 243, 0, 243);
     resolve(addresses);
   });
 }
