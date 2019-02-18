@@ -137,6 +137,8 @@ class App extends React.Component {
                 return this.props.history.push('/onboarding/login');
             }
 
+            Electron.setOnboardingSeed(null);
+
             if (!this.props.onboardingComplete) {
                 this.props.setOnboardingComplete(true);
             }

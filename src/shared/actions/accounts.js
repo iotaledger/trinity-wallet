@@ -20,6 +20,7 @@ import {
     generateNodeOutOfSyncErrorAlert,
     generateUnsupportedNodeErrorAlert,
     generateAccountSyncRetryAlert,
+    generateLedgerCancelledAlert,
 } from '../actions/alerts';
 import { changeNode } from '../actions/settings';
 import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
@@ -459,7 +460,9 @@ export const manuallySyncAccount = (seedStore, accountName) => {
                 dispatch(manualSyncSuccess(result));
             })
             .catch((err) => {
-                if (err.message === Errors.NODE_NOT_SYNCED) {
+                if (err.message === Errors.LEDGER_CANCELLED) {
+                    dispatch(generateLedgerCancelledAlert());
+                } else if (err.message === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert());
                 } else if (err.message === Errors.UNSUPPORTED_NODE) {
                     dispatch(generateUnsupportedNodeErrorAlert());
@@ -503,8 +506,12 @@ export const getAccountInfo = (seedStore, accountName, notificationFn) => {
                 dispatch(accountInfoFetchSuccess(result));
             })
             .catch((err) => {
+                if (err.message === Errors.LEDGER_CANCELLED) {
+                    dispatch(generateLedgerCancelledAlert());
+                } else {
+                    setTimeout(() => dispatch(generateAccountInfoErrorAlert(err)), 500);
+                }
                 dispatch(accountInfoFetchError());
-                setTimeout(() => dispatch(generateAccountInfoErrorAlert(err)), 500);
             });
     };
 };
