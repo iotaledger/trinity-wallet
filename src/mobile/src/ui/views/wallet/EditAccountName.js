@@ -117,29 +117,29 @@ export class EditAccountName extends Component {
      * @method save
      */
     async save(accountName) {
-      const {
-          accountNames,
-          selectedAccountName,
-          selectedAccountMeta,
-          t,
-          isAutoPromoting,
-          shouldPreventAction,
-      } = this.props;
+        const {
+            accountNames,
+            selectedAccountName,
+            selectedAccountMeta,
+            t,
+            isAutoPromoting,
+            shouldPreventAction,
+        } = this.props;
+        if (isAutoPromoting || shouldPreventAction) {
+            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+        }
         if (accountName.length === 0) {
             return this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:noNickname'),
                 t('addAdditionalSeed:noNicknameExplanation'),
             );
-        }
-        if (accountNames.includes(accountName)) {
+        } else if (accountNames.includes(accountName)) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
                 t('addAdditionalSeed:nameInUseExplanation'),
             );
-        } else if (isAutoPromoting || shouldPreventAction) {
-            this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         } else {
             const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
 
