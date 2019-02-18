@@ -118,22 +118,11 @@ class History extends Component {
         password: PropTypes.object.isRequired,
     };
 
-    constructor() {
-        super();
-        this.state = {
-            transactionData: [],
-        };
-    }
-
-    async componentWillMount() {
-        this.setState({ transactionData: await this.prepTransactions() });
-    }
-
     componentDidMount() {
         leaveNavigationBreadcrumb('History');
     }
 
-    async componentWillReceiveProps(newProps) {
+    componentWillReceiveProps(newProps) {
         const {
             isRetryingFailedTransaction,
             isAutoPromoting,
@@ -144,9 +133,6 @@ class History extends Component {
             theme: { primary, secondary },
         } = this.props;
 
-        if (this.props.selectedAccountName !== newProps.selectedAccountName) {
-            this.setState({ transactionData: await this.prepTransactions() });
-        }
         // FIXME: Overly-complex ugly code. Think of a new updateModalProps approach.
         if (isModalActive && modalContent === 'transactionHistory') {
             const newBundleProps = newProps.transactions[modalProps.bundle];
@@ -194,19 +180,30 @@ class History extends Component {
         return true;
     }
 
+    async promoteTransaction(bundle) {
+        const { accountMeta, password, selectedAccountName } = this.props;
+        const seedStore = await new SeedStore[accountMeta.type](password);
+
+        this.props.promoteTransaction(selectedAccountName, bundle, seedStore);
+    }
+
+    async retryFailedTransaction(bundle) {
+        const { accountMeta, password, selectedAccountName } = this.props;
+        const seedStore = await new SeedStore[accountMeta.type](password);
+
+        this.props.retryFailedTransaction(selectedAccountName, bundle, seedStore);
+    }
+
     /**
      * Formats transaction data
      * @return {Array} Formatted transaction data
      */
-    async prepTransactions() {
+    prepTransactions() {
         const {
             transactions,
             theme: { primary, secondary, body, bar, dark },
             mode,
             t,
-            selectedAccountName,
-            selectedAccountMeta,
-            password,
             currentlyPromotingBundleHash,
             isRefreshing,
             addresses,
@@ -221,8 +218,6 @@ class History extends Component {
             value: round(formatValue(item.value), 1),
             unit: formatUnit(item.value),
         });
-
-        const seedStore = await new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
 
         const formattedTransfers = map(relevantTransfers, (transfer) => {
             const {
@@ -264,9 +259,8 @@ class History extends Component {
                             disableWhen: isAutoPromoting || isPromotingTransaction || isRetryingFailedTransaction,
                             isRetryingFailedTransaction,
                             currentlyPromotingBundleHash,
-                            retryFailedTransaction: (bundle) =>
-                                this.props.retryFailedTransaction(selectedAccountName, bundle, seedStore),
-                            promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName, seedStore),
+                            retryFailedTransaction: (bundle) => this.retryFailedTransaction(bundle),
+                            promote: (bundle) => this.promoteTransaction(bundle),
                             hideModal: () => this.props.toggleModalActivity(),
                             generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
                             bundle,
@@ -299,8 +293,9 @@ class History extends Component {
         return orderBy(formattedTransfers, 'time', ['desc']);
     }
 
-    renderTransactions(data) {
+    renderTransactions() {
         const { theme: { primary }, t, isRefreshing } = this.props;
+        const data = this.prepTransactions();
         const noTransactions = data.length === 0;
 
         return (
@@ -352,7 +347,7 @@ class History extends Component {
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
                     <View style={{ flex: 0.2 }} />
-                    <View style={styles.listView}>{this.renderTransactions(this.state.transactionData)}</View>
+                    <View style={styles.listView}>{this.renderTransactions()}</View>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -378,6 +373,7 @@ const mapStateToProps = (state) => ({
     isModalActive: state.ui.isModalActive,
     modalContent: state.ui.modalContent,
     password: state.wallet.password,
+    accounts: state.accounts.accountinfo,
 });
 
 const mapDispatchToProps = {
