@@ -181,16 +181,14 @@ class History extends Component {
     }
 
     async promoteTransaction(bundle) {
-        const { accountMeta, password, selectedAccountName } = this.props;
-        const seedStore = await new SeedStore[accountMeta.type](password);
-
-        this.props.promoteTransaction(selectedAccountName, bundle, seedStore);
+        const { selectedAccountMeta, selectedAccountName } = this.props;
+        const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash);
+        this.props.promoteTransaction(bundle, selectedAccountName, seedStore);
     }
 
     async retryFailedTransaction(bundle) {
-        const { accountMeta, password, selectedAccountName } = this.props;
-        const seedStore = await new SeedStore[accountMeta.type](password);
-
+        const { selectedAccountMeta, selectedAccountName } = this.props;
+        const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash);
         this.props.retryFailedTransaction(selectedAccountName, bundle, seedStore);
     }
 
@@ -373,7 +371,6 @@ const mapStateToProps = (state) => ({
     isModalActive: state.ui.isModalActive,
     modalContent: state.ui.modalContent,
     password: state.wallet.password,
-    accounts: state.accounts.accountinfo,
 });
 
 const mapDispatchToProps = {
