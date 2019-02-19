@@ -689,11 +689,11 @@
         "gettingTransactionsToApprove": "Uzyskiwanie transakcji do potwierdzenia",
         "proofOfWork": "Finalizacja Proof of Work",
         "broadcasting": "Broadcasting",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Przygotowywanie danych",
+        "migratingSettings": "Przenoszenie ustawień",
+        "migratingAccounts": "Przenoszenie kont",
+        "cleaningUpOldData": "Czyszczenie starych danych",
+        "migrationComplete": "Migracja zakończona",
         "transferComplete": "Transfer zakończony"
     },
     "snapshotTransition": {
@@ -773,7 +773,7 @@
         "sweepConfirmationTitle": "Potwierdzenie przenoszenia"
     },
     "migration": {
-        "dataMigration": "Data migration",
+        "dataMigration": "Przenoszenie danych",
         "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
         "problemMigratingYourData": "There was a problem migrating your data. Please try again"
     },
