@@ -689,11 +689,11 @@
         "gettingTransactionsToApprove": "Warte auf Bestätigung der Transaktion",
         "proofOfWork": "Vervollständige Proof of Work",
         "broadcasting": "Übertrage",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Daten werden vorbereitet",
+        "migratingSettings": "Einstellungen werden migriert",
+        "migratingAccounts": "Konten werden migriert",
+        "cleaningUpOldData": "Alte Daten werden bereinigt",
+        "migrationComplete": "Migration abgeschlossen",
         "transferComplete": "Überweisung abgeschlossen"
     },
     "snapshotTransition": {
@@ -773,9 +773,9 @@
         "sweepConfirmationTitle": "Transaktion korrigieren"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+        "dataMigration": "Datenmigration",
+        "dataMigrationExplanation": "Aufgrund von Performance- und Speicherbeschränkungen verwendet Trinity eine neue Datenbank zur Speicherung von Einstellungen und Kontodaten. Bitte warte, während Trinity deine bestehenden Daten automatisch migriert.",
+        "problemMigratingYourData": "Bei der Migration der Daten ist ein Fehler aufgetreten. Bitte versuche es erneut"
     },
     "ledger": {
         "ready": "Ledger verbunden und bereit",
@@ -785,8 +785,8 @@
         "proceedWithLedger": "Mit der Einrichtung von Ledger fortfahren",
         "accountIndex": "Konto Index",
         "accountPage": "Konto Seite",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Ledger-Gerätezugriff abgebrochen",
+        "actionCancelledExplanation": "Ohne den Zugriff auf deinen Ledger kann der Vorgang nicht ausgeführt werden.",
         "chooseAccountIndex": "Wähle deinen Ledger Konto Index",
         "accountIndexExplanation": "Dein Ledger kann mehrere Seeds speichern. Jeder Seed wird durch einen eindeutigen Index identifiziert. Ein ungenutzter Index wurde bereits ausgewählt aber wenn du möchtest kannst du Diesen ändern. Stelle sicher, dass du deinen Index notierst.",
         "accountPageExplanation": "Einige Drittanbieter Wallets benötigen Seiten.",
