@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "承認する取引を取得中",
         "proofOfWork": "プルーフ・オブ・ワークを完了中",
         "broadcasting": "ブロードキャスト中",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "送金完了"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "アドレス{{address}}（アカウント名：{{accountName}}、アドレスインデックス：{{index}}）に資金{{amount}} を移動させようとしています。",
         "sweepConfirmationTitle": "移動を承認"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger端末の接続が完了し、準備完了です",
         "notReady": "Ledger端末を使いたい場合、今、接続しロックを解除してください",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Ledgerのセットアップを続行する",
         "accountIndex": "アカウントインデックス",
         "accountPage": "アカウントページ",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Ledgerのアカウントインデックスを選択してください",
         "accountIndexExplanation": "Ledgerは複数のシードを保存できます。各シードは一意のインデックス番号で識別されます。未使用のインデックスが事前に選択されますが、自分で選択することもできます。自分で選択したインデックス番号は書き留めておいてください。",
         "accountPageExplanation": "一部のサードパーティ製のウォレットではページが必要です。",

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { zxcvbn } from 'shared-modules/libs/exports';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { passwordReasons } from 'shared-modules/libs/password';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import i18next from 'shared-modules/libs/i18next.js';
 import { height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -140,7 +141,7 @@ class PasswordFields extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

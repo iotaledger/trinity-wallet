@@ -3,93 +3,194 @@ import cloneDeep from 'lodash/cloneDeep';
 import get from 'lodash/get';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
+import orderBy from 'lodash/orderBy';
 import transform from 'lodash/transform';
 import isNumber from 'lodash/isNumber';
+import isObject from 'lodash/isObject';
+import isBoolean from 'lodash/isBoolean';
 import includes from 'lodash/includes';
-import keys from 'lodash/keys';
 import map from 'lodash/map';
 import maxBy from 'lodash/maxBy';
 import reduce from 'lodash/reduce';
-import findKey from 'lodash/findKey';
 import some from 'lodash/some';
 import size from 'lodash/size';
-import omitBy from 'lodash/omitBy';
-import flatMap from 'lodash/flatMap';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync, findTransactionsAsync, sendTransferAsync } from './extendedApi';
 import { prepareTransferArray } from './transfers';
 import Errors from '../errors';
 import { DEFAULT_SECURITY } from '../../config';
+import { ADDRESS_LENGTH_WITHOUT_CHECKSUM, CHECKSUM_LENGTH, VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX } from './utils';
+
+/**
+ * Validates address object - { address, index, checksum, balance, spent: { local, remote } }
+ * @method isValidAddressObject
+ *
+ * @param {object} addressObject
+ * @returns {boolean}
+ */
+export const isValidAddressObject = (addressObject) => {
+    return (
+        isObject(addressObject) &&
+        VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX.test(addressObject.address) &&
+        size(addressObject.address) === ADDRESS_LENGTH_WITHOUT_CHECKSUM &&
+        VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX.test(addressObject.checksum) &&
+        size(addressObject.checksum) === CHECKSUM_LENGTH &&
+        isNumber(addressObject.balance) &&
+        isObject(addressObject.spent) &&
+        isBoolean(addressObject.spent.local) &&
+        isBoolean(addressObject.spent.remote) &&
+        isNumber(addressObject.index) &&
+        addressObject.index >= 0
+    );
+};
+
+/**
+ * Stop overriding local spend status for a known address
+ *
+ * @method preserveAddressLocalSpendStatus
+ * @param existingAddressData
+ * @param newAddressData
+ *
+ * @returns {object}
+ */
+export const preserveAddressLocalSpendStatus = (existingAddressData, newAddressData) =>
+    map(newAddressData, (addressObject) => {
+        const seenAddress = find(existingAddressData, { address: addressObject.address });
+        const existingLocalSpendStatus = get(seenAddress, 'spent.local');
+
+        if (seenAddress && isBoolean(existingLocalSpendStatus)) {
+            const newLocalSpendStatus = addressObject.spent.local;
+
+            return {
+                ...addressObject,
+                spent: { ...addressObject.spent, local: existingLocalSpendStatus || newLocalSpendStatus },
+            };
+        }
+
+        return addressObject;
+    });
+
+/**
+ * Merge latest address data into old
+ *
+ * @method mergeAddressData
+ *
+ * @param {array} existingAddressData
+ * @param {array} newAddressData
+ */
+export const mergeAddressData = (existingAddressData, newAddressData) => {
+    if (isEmpty(existingAddressData)) {
+        return newAddressData;
+    }
+
+    // Filter address data with addresses that are not part of new address data.
+    // Normally, when account information is synced new address data will contain previous addresses
+    // But say a manual sync was performed after a snapshot
+    // It's possible that some of the previous addresses are not generated and hence wouldn't be part of the new address data
+    // That is why it is important that once an address is known to wallet, it should be kept unless removed deliberately (e.g., reset wallet)
+    const missingAddressData = filter(existingAddressData, (addressObject) => {
+        const { address } = addressObject;
+
+        return some(newAddressData, { address }) === false;
+    });
+
+    const mergedAddressData = orderBy(
+        [
+            // Address data already known to wallet and is missing from new address data
+            ...missingAddressData,
+            // New address data
+            ...newAddressData,
+        ],
+        ['index'],
+    );
+
+    // Lastly, make sure that (local) spend status is preserved for existing address data
+    return preserveAddressLocalSpendStatus(existingAddressData, mergedAddressData);
+};
 
 /**
  * Checks if an address is used (Uses locally stored address data and transactions)
  *
  * @method isAddressUsedSync
- * @param {string} address
- * @param {object} addressData
- * @param {array} normalisedTransactions
+ * @param {object} addressObject
+ * @param {array} transactions
  *
  * @returns {boolean}
  */
-export const isAddressUsedSync = (address, addressData, normalisedTransactions) => {
-    const transactionAddresses = [
-        ...map(flatMap(normalisedTransactions, (tx) => tx.inputs), (tx) => tx.address),
-        ...map(flatMap(normalisedTransactions, (tx) => tx.outputs), (tx) => tx.address),
-    ];
+export const isAddressUsedSync = (addressObject, transactions) => {
+    if (!isValidAddressObject(addressObject)) {
+        throw new Error(Errors.INVALID_ADDRESS_DATA);
+    }
 
-    return get(addressData, `${address}.spent.local`) === true || includes(transactionAddresses, address);
+    const transactionAddresses = map(transactions, (tx) => tx.address);
+    const { address, spent: { local }, balance } = addressObject;
+
+    return local === true || balance > 0 || includes(transactionAddresses, address);
 };
 
 /**
  * Checks if an address is used i.e. has spent or has associated hashes
  *
- *   @method isAddressUsed
+ *   @method isAddressUsedAsync
  *   @param {string} provider
  *
  *   @returns {function(string, object, array): Promise<boolean>}
  **/
-export const isAddressUsed = (provider) => (address, addressData, normalisedTransactions) => {
-    if (isAddressUsedSync(address, addressData, normalisedTransactions)) {
-        return Promise.resolve(true);
+export const isAddressUsedAsync = (provider) => (addressObject) => {
+    if (!isValidAddressObject(addressObject)) {
+        return Promise.reject(new Error(Errors.INVALID_ADDRESS_DATA));
     }
+
+    const { address } = addressObject;
 
     return wereAddressesSpentFromAsync(provider)([address]).then((spent) => {
         const isSpent = head(spent) === true;
 
-        return isSpent || findTransactionsAsync(provider)({ addresses: [address] }).then((hashes) => size(hashes) > 0);
+        return (
+            isSpent ||
+            findTransactionsAsync(provider)({ addresses: [address] }).then((hashes) => {
+                const hasAssociatedHashes = size(hashes) > 0;
+
+                return (
+                    hasAssociatedHashes ||
+                    getBalancesAsync(provider)([address]).then((balances) => {
+                        return accumulateBalance(map(balances.balances, Number)) > 0;
+                    })
+                );
+            })
+        );
     });
 };
 
 /**
  * Sequentially generate addresses till latest unused address
  *
- *   @method getAddressesDataUptoLatestUnusedAddress
+ *   @method getAddressDataUptoLatestUnusedAddress
  *   @param {string} provider
  *
- *   @returns {function(object, array, object): Promise<object>}
+ *   @returns {function(object, array, object): Promise<array>}
  **/
-export const getAddressesDataUptoLatestUnusedAddress = (provider) => (seedStore, normalisedTransactions, options) => {
-    const { index, security } = options;
-
+export const getAddressDataUptoLatestUnusedAddress = (provider) => (seedStore, transactions, options) => {
     const generateAddressData = (currentKeyIndex, generatedAddressData) => {
         return seedStore
             .generateAddress({ index: currentKeyIndex, security })
-            .then((address) => {
-                return findAddressesData(provider)([address], normalisedTransactions);
-            })
+            .then((address) => findAddressesData(provider)([address], transactions))
             .then(({ hashes, balances, wereSpent, addresses }) => {
-                const updatedAddressData = {
+                const updatedAddressData = [
                     ...generatedAddressData,
-                    ...formatAddressData(addresses, balances, wereSpent, [currentKeyIndex]),
-                };
+                    ...createAddressData(addresses, balances, wereSpent, [currentKeyIndex]),
+                ];
 
-                // Check if the newly generated address is unused (no transactions, zero balance and unspent).
                 if (
+                    // No transactions
                     size(hashes) === 0 &&
-                    some(balances, (balance) => balance === 0) &&
-                    some(wereSpent, (status) => status.local === false && status.remote === false)
+                    // Both local spend status (from transactions) & remote spend status (from wereAddressesSpentFrom) are false
+                    some(wereSpent, (status) => status.local === false && status.remote === false) &&
+                    // Balance should be zero
+                    some(balances, (balance) => balance === 0)
                 ) {
                     return updatedAddressData;
                 }
@@ -101,7 +202,9 @@ export const getAddressesDataUptoLatestUnusedAddress = (provider) => (seedStore,
             });
     };
 
-    return generateAddressData(index, {});
+    const { index, security } = options;
+
+    return generateAddressData(index, []);
 };
 
 /**
@@ -110,27 +213,22 @@ export const getAddressesDataUptoLatestUnusedAddress = (provider) => (seedStore,
  *   Finds latest spent statuses on addresses.
  *   Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0, checksum: address-checksum }}]
  *
- *   @method getAddressDataAndFormatBalance
+ *   @method mapLatestAddressData
  *   @param {string} provider
  *
- *   @returns {function(array, array, array): Promise<object>}
+ *   @returns {function(array, array): Promise<object>}
  **/
-export const getAddressDataAndFormatBalance = (provider) => (addresses, normalisedTransactions, keyIndexes = []) => {
-    const sizeOfAddresses = size(addresses);
-    const sizeOfKeyIndexes = size(keyIndexes);
-
-    if (!sizeOfAddresses) {
-        return Promise.resolve({ addresses: {}, balance: 0 });
-    }
-
-    if (sizeOfAddresses && sizeOfKeyIndexes && sizeOfAddresses !== sizeOfKeyIndexes) {
-        throw new Error(Errors.ADDRESS_METADATA_LENGTH_MISMATCH);
-    }
-
+export const mapLatestAddressData = (provider) => (addressData, transactions) => {
     const cached = {
         balances: [],
         wereSpent: [],
     };
+
+    const addresses = map(addressData, (addressObject) => addressObject.address);
+
+    if (isEmpty(addresses)) {
+        return Promise.resolve([]);
+    }
 
     return getBalancesAsync(provider)(addresses)
         .then((balances) => {
@@ -139,18 +237,24 @@ export const getAddressDataAndFormatBalance = (provider) => (addresses, normalis
             return wereAddressesSpentFromAsync(provider)(addresses);
         })
         .then((wereSpent) => {
-            // Get spend statuses of addresses from normalised transactions
-            const spendStatuses = findSpendStatusesFromNormalisedTransactions(addresses, normalisedTransactions);
+            // Get spend statuses of addresses from transactions
+            const spendStatuses = findSpendStatusesFromTransactions(addresses, transactions);
 
-            cached.wereSpent = map(wereSpent, (status, idx) => ({
-                remote: status,
-                local: spendStatuses[idx],
+            cached.wereSpent = map(wereSpent, (status, idx) => {
+                const existingLocalSpendStatus = get(find(addressData, { address: addresses[idx] }), 'spent.local');
+
+                return {
+                    remote: status,
+                    // Preserve local spend status
+                    local: existingLocalSpendStatus || spendStatuses[idx],
+                };
+            });
+
+            return map(addressData, (addressObject, idx) => ({
+                ...addressObject,
+                balance: cached.balances[idx],
+                spent: cached.wereSpent[idx],
             }));
-
-            return {
-                addresses: formatAddressData(addresses, cached.balances, cached.wereSpent, keyIndexes),
-                balance: accumulateBalance(cached.balances),
-            };
         });
 };
 
@@ -160,18 +264,17 @@ export const getAddressDataAndFormatBalance = (provider) => (addresses, normalis
  *  @method getFullAddressHistory
  *  @param {string} provider
  *
- *  @returns {function(object): Promise<object>}
+ *  @returns {function(object, object): Promise<object>}
  */
-export const getFullAddressHistory = (provider) => (seedStore) => {
+export const getFullAddressHistory = (provider) => (seedStore, existingAccountState = {}) => {
     let generatedAddresses = [];
     const addressData = { hashes: [], balances: [], wereSpent: [] };
+    const { transactions } = existingAccountState;
 
     const generateAndStoreAddressesInBatch = (currentOptions) => {
         return seedStore
             .generateAddress(currentOptions)
-            .then((addresses) => {
-                return findAddressesData(provider)(addresses);
-            })
+            .then((addresses) => findAddressesData(provider)(addresses, transactions || []))
             .then(({ hashes, balances, wereSpent, addresses }) => {
                 const shouldGenerateNextBatch =
                     size(hashes) ||
@@ -201,6 +304,7 @@ export const getFullAddressHistory = (provider) => (seedStore) => {
                     lastAddressIndex,
                     latestAddress,
                     generatedAddresses.slice(),
+                    existingAccountState,
                 ).then((addresses) => {
                     const sizeOfAddressesTillOneUnused = size(addresses);
 
@@ -230,24 +334,16 @@ export const getFullAddressHistory = (provider) => (seedStore) => {
  *  @method findAddressesData
  *  @param {string} provider
  *
- *  @returns {function(array): Promise<{
- *      addresses: {array},
- *      hashes: {array},
- *      balances: {array},
- *      wereSpent: {array}
- *      }}
+ *  @returns {function(array, [array]): Promise<{object}>
  */
-const findAddressesData = (provider) => (addresses, normalisedTransactions = []) => {
+const findAddressesData = (provider) => (addresses, transactions = []) => {
     return Promise.all([
         findTransactionsAsync(provider)({ addresses }),
         getBalancesAsync(provider)(addresses),
         wereAddressesSpentFromAsync(provider)(addresses),
     ]).then((data) => {
         const [hashes, balances, wereSpent] = data;
-        const spendStatusesFromTransactions = findSpendStatusesFromNormalisedTransactions(
-            addresses,
-            normalisedTransactions,
-        );
+        const spendStatusesFromTransactions = findSpendStatusesFromTransactions(addresses, transactions);
 
         return {
             addresses,
@@ -267,24 +363,38 @@ const findAddressesData = (provider) => (addresses, normalisedTransactions = [])
  *  @method removeUnusedAddresses
  *  @param {string} provider
  *
- *  @returns {function(number, string, array): Promise<array>}
+ *  @returns {function(number, string, array, object): Promise<array>}
  */
-export const removeUnusedAddresses = (provider) => (index, latestUnusedAddress, finalAddresses) => {
+export const removeUnusedAddresses = (provider) => (
+    index,
+    latestUnusedAddress,
+    finalAddresses,
+    existingAccountState = {},
+) => {
     if (!finalAddresses[index]) {
         return Promise.resolve([...finalAddresses, latestUnusedAddress]);
     }
 
-    return findAddressesData(provider)([finalAddresses[index]]).then(({ hashes, balances, wereSpent }) => {
-        if (
-            size(hashes) === 0 &&
-            some(balances, (balance) => balance === 0) &&
-            some(wereSpent, (status) => status.remote === false && status.local === false)
-        ) {
-            return removeUnusedAddresses(provider)(index - 1, finalAddresses[index], finalAddresses.slice(0, index));
-        }
+    const { transactions } = existingAccountState;
 
-        return [...finalAddresses, latestUnusedAddress];
-    });
+    return findAddressesData(provider)([finalAddresses[index]], transactions || []).then(
+        ({ hashes, balances, wereSpent }) => {
+            if (
+                size(hashes) === 0 &&
+                some(balances, (balance) => balance === 0) &&
+                some(wereSpent, (status) => status.remote === false && status.local === false)
+            ) {
+                return removeUnusedAddresses(provider)(
+                    index - 1,
+                    finalAddresses[index],
+                    finalAddresses.slice(0, index),
+                    existingAccountState,
+                );
+            }
+
+            return [...finalAddresses, latestUnusedAddress];
+        },
+    );
 };
 
 /**
@@ -292,16 +402,16 @@ export const removeUnusedAddresses = (provider) => (index, latestUnusedAddress, 
  * Note: If addresses does not start with key index 0, key indexes must be provided
  * Otherwise it can cause a key index mismatch
  *
- * @method formatAddressData
+ * @method createAddressData
  *
  * @param {array} addresses
  * @param {array} balances
  * @param {array} addressesSpendStatuses
  * @param {array} keyIndexes
  *
- * @returns {object}
+ * @returns {array}
  */
-export const formatAddressData = (addresses, balances, addressesSpendStatuses, keyIndexes = []) => {
+export const createAddressData = (addresses, balances, addressesSpendStatuses, keyIndexes = []) => {
     const sizeOfAddresses = size(addresses);
     const sizeOfBalances = size(balances);
     const sizeOfSpendStatuses = size(addressesSpendStatuses);
@@ -321,16 +431,17 @@ export const formatAddressData = (addresses, balances, addressesSpendStatuses, k
             const spendStatusOfThisAddress = addressesSpendStatuses[index];
             const { local, remote } = spendStatusOfThisAddress;
 
-            acc[address] = {
+            acc.push({
+                address,
                 index: sizeOfKeyIndexes ? keyIndexes[index] : index,
                 spent: { local, remote },
                 balance: balances[index],
                 checksum: iota.utils.addChecksum(address).slice(address.length),
-            };
+            });
 
             return acc;
         },
-        {},
+        [],
     );
 };
 
@@ -338,28 +449,29 @@ export const formatAddressData = (addresses, balances, addressesSpendStatuses, k
  *   Locally mark addresses as spent
  *
  *   @method markAddressesAsSpentSync
- *   @param {array} transfers
- *   @param {object} addressData
- *   @returns {object}
+ *   @param {array} bundles
+ *   @param {array} addressData
+ *   @returns {array}
  **/
-export const markAddressesAsSpentSync = (transfers, addressData) => {
+export const markAddressesAsSpentSync = (bundles, addressData) => {
     const addressDataClone = cloneDeep(addressData);
-    const addresses = keys(addressDataClone);
+    const addresses = map(addressData, (addressObject) => addressObject.address);
 
     // Iterate over all bundles and sort them between incoming
     // and outgoing transfers
-    transfers.forEach((bundle) => {
+    bundles.forEach((bundle) => {
         // Iterate over every bundle entry
-        bundle.forEach((bundleEntry) => {
+        bundle.forEach((transaction) => {
             // If bundle address in the list of addresses associated with the seed
             // mark the address as sent
-            if (addresses.indexOf(bundleEntry.address) > -1) {
+            if (addresses.indexOf(transaction.address) > -1) {
                 // Check if it's a remainder address
-                const isRemainder = bundleEntry.currentIndex === bundleEntry.lastIndex && bundleEntry.lastIndex !== 0;
+                const isRemainder = transaction.currentIndex === transaction.lastIndex && transaction.lastIndex !== 0;
                 // check if sent transaction
-                if (bundleEntry.value < 0 && !isRemainder) {
+                if (transaction.value < 0 && !isRemainder) {
                     // Mark address as spent
-                    addressDataClone[bundleEntry.address].spent.local = true;
+                    const addressObject = find(addressDataClone, { address: transaction.address });
+                    addressObject.spent.local = true;
                 }
             }
         });
@@ -369,39 +481,35 @@ export const markAddressesAsSpentSync = (transfers, addressData) => {
 };
 
 /**
- * Filters spent addresses from locally stored address data
- *
- * @method filterSpentAddressesSync
- * @param {array} addresses
- * @param {object} addressData
- *
- * @returns {array}
- */
-export const filterSpentAddressesSync = (addresses, addressData) =>
-    filter(addresses, (address) => !get(addressData, `${address}.spent.local`));
-
-/**
  *   Communicates with ledger and checks if the addresses are spent from.
  *
- *   @method filterSpentAddresses
- *   @param {string} provider
+ *   @method filterSpentAddressData
+ *   @param {string} [provider]
  *
- *   @returns {function(array, object, array): Promise<array>}
+ *   @returns {function(array, array): Promise<object>}
  **/
-export const filterSpentAddresses = (provider) => (inputs, addressData, normalisedTransactions) => {
-    const addresses = filterSpentAddressesSync(map(inputs, (input) => input.address), addressData);
-    const filteredInputs = filter(inputs, (input) => includes(addresses, input.address));
+export const filterSpentAddressData = (provider) => (addressData, transactions) => {
+    const unspentAddresses = map(
+        filter(addressData, (addressObject) => addressObject.spent.local === false),
+        (addressObject) => addressObject.address,
+    );
 
     // If all inputs are spent, avoid making the network call
-    if (isEmpty(addresses)) {
+    if (isEmpty(unspentAddresses)) {
         return Promise.resolve([]);
     }
 
-    const spendStatuses = findSpendStatusesFromNormalisedTransactions(addresses, normalisedTransactions);
+    // Get latest spend statuses against unspent addresses from locally stored transactions
+    const spendStatuses = findSpendStatusesFromTransactions(unspentAddresses, transactions);
 
-    return wereAddressesSpentFromAsync(provider)(addresses).then((wereSpent) =>
-        filter(filteredInputs, (input, idx) => !wereSpent[idx] && !spendStatuses[idx]),
-    );
+    return wereAddressesSpentFromAsync(provider)(unspentAddresses).then((wereSpent) => {
+        const filteredAddresses = filter(
+            unspentAddresses,
+            (_, idx) => wereSpent[idx] === false && spendStatuses[idx] === false,
+        );
+
+        return filter(addressData, (addressObject) => includes(filteredAddresses, addressObject.address));
+    });
 };
 
 /**
@@ -466,62 +574,63 @@ export const getBalancesSync = (addresses, addressData) => {
  *   Takes address data and returns the latest address
  *
  *   @method getLatestAddress
- *   @param {object} addressData
+ *   @param {array} addressData
  *   `
  *   @returns {string} - latest address
  **/
-export const getLatestAddress = (addressData) => {
-    const addressObjectWithHighestIndex = getLatestAddressData(addressData);
+export const getLatestAddress = (addressData, withChecksum = false) => {
+    const addressObjectWithHighestIndex = getLatestAddressObject(addressData);
 
-    return findKey(addressData, (data) => data.index === addressObjectWithHighestIndex.index);
+    const address = get(addressObjectWithHighestIndex, 'address');
+
+    return withChecksum ? `${address}${get(addressObjectWithHighestIndex, 'checksum')}` : address;
 };
 
 /**
  *   Takes address data and returns the address data object with highest index
  *
- *   @method getLatestAddressData
- *   @param {object} addressData
+ *   @method getLatestAddressObject
+ *   @param {array} addressData
  *   `
  *   @returns {string} - latest address
  **/
-export const getLatestAddressData = (addressData) => maxBy(map(addressData, (data) => data), 'index');
+export const getLatestAddressObject = (addressData) => maxBy(addressData, 'index');
 
 /**
  *   Generate addresses till remainder (unused and also not blacklisted for being a remainder address)
  *
- *   @method getAddressesUptoRemainder
+ *   @method getAddressDataUptoRemainder
  *   @param {string} [provider]
  *
- *   @returns {function(object, array, string, function, array): Promise<object>}
+ *   @returns {function(array, array, object, array): Promise<object>}
  **/
-export const getAddressesUptoRemainder = (provider) => (
+export const getAddressDataUptoRemainder = (provider) => (
     addressData,
-    normalisedTransactions,
+    transactions,
     seedStore,
     blacklistedRemainderAddresses = [],
 ) => {
     const latestAddress = getLatestAddress(addressData);
-    const latestAddressData = getLatestAddressData(addressData);
+    const latestAddressData = getLatestAddressObject(addressData);
 
     const isBlacklisted = (address) => includes(blacklistedRemainderAddresses, address);
 
     if (isBlacklisted(latestAddress)) {
-        const latestAddressData = getLatestAddressData(addressData);
         const startIndex = latestAddressData.index + 1;
 
-        return getAddressesDataUptoLatestUnusedAddress(provider)(seedStore, normalisedTransactions, {
+        return getAddressDataUptoLatestUnusedAddress(provider)(seedStore, transactions, {
             index: startIndex,
             security: DEFAULT_SECURITY,
         }).then((newAddressData) => {
             const remainderAddress = getLatestAddress(newAddressData);
-            const remainderAddressData = getLatestAddressData(newAddressData);
+            const remainderAddressData = getLatestAddressObject(newAddressData);
 
-            const addressDataUptoRemainder = { ...addressData, ...newAddressData };
+            const addressDataUptoRemainder = [...addressData, ...newAddressData];
 
             if (isBlacklisted(remainderAddress)) {
-                return getAddressesUptoRemainder(provider)(
+                return getAddressDataUptoRemainder(provider)(
                     addressDataUptoRemainder,
-                    normalisedTransactions,
+                    transactions,
                     seedStore,
                     blacklistedRemainderAddresses,
                 );
@@ -548,40 +657,30 @@ export const getAddressesUptoRemainder = (provider) => (
  *   @method syncAddresses
  *   @param {string} [provider]
  *
- *   @returns {function(string, object, array, function): Promise<object>}
+ *   @returns {function(string, array, array): Promise<object>}
  **/
-export const syncAddresses = (provider) => (seedStore, existingAddressData, normalisedTransactions) => {
-    const addressData = cloneDeep(existingAddressData);
+export const syncAddresses = (provider) => (seedStore, addressData, transactions) => {
     // Find the address object with highest index from existing address data
-    const latestAddressData = getLatestAddressData(addressData);
-    const latestAddress = getLatestAddress(addressData);
+    const latestAddressObject = getLatestAddressObject(addressData);
 
-    const mergeLatestAddresses = () => {
+    const addLatestAddresses = () => {
         // Start index should be (highest index in existing address data + 1)
-        const startIndex = latestAddressData.index + 1;
+        const startIndex = latestAddressObject.index + 1;
 
-        return getAddressesDataUptoLatestUnusedAddress(provider)(seedStore, normalisedTransactions, {
+        return getAddressDataUptoLatestUnusedAddress(provider)(seedStore, transactions, {
             index: startIndex,
             security: DEFAULT_SECURITY,
-        }).then((newAddressData) => {
-            const mergeInExistingAddressData = (data, newAddress) => {
-                addressData[newAddress] = data;
-            };
-
-            each(newAddressData, mergeInExistingAddressData);
-
-            return addressData;
-        });
+        }).then((newAddressObjects) => [...addressData, ...newAddressObjects]);
     };
 
-    // First check if there are any transactions associated with the latest address or if the address is spent
-    return isAddressUsed(provider)(latestAddress, latestAddressData, normalisedTransactions).then((isUsed) => {
-        if (!isUsed) {
+    // Check if there are any transactions associated with the latest address or if the address is spent
+    return isAddressUsedAsync(provider)(latestAddressObject).then((isUsed) => {
+        if (!isUsed && !isAddressUsedSync(latestAddressObject, transactions)) {
             return addressData;
         }
 
-        // Otherwise generate addresses till latest unused and merge them in existing address data
-        return mergeLatestAddresses();
+        // Otherwise generate addresses till latest unused and add them in existing address objects
+        return addLatestAddresses();
     });
 };
 
@@ -589,42 +688,29 @@ export const syncAddresses = (provider) => (seedStore, existingAddressData, norm
  *   Filters inputs with addresses that have pending incoming transfers or
  *   are change addresses.
  *
- *   @method filterAddressesWithIncomingTransfers
- *   @param {array} inputs
- *   @param {array} pendingValueTransfers
- *   @returns {array}
+ *   @method filterAddressDataWithPendingIncomingTransactions
+ *   @param {object} addressData
+ *   @param {array} pendingValueTransactions
+ *
+ *   @returns {object}
  **/
-export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfers) => {
-    if (isEmpty(pendingValueTransfers) || isEmpty(inputs)) {
-        return inputs;
+export const filterAddressDataWithPendingIncomingTransactions = (addressData, transactions) => {
+    if (isEmpty(transactions) || isEmpty(addressData)) {
+        return addressData;
     }
 
-    const inputsByAddress = transform(
-        inputs,
-        (acc, input) => {
-            acc[input.address] = input;
-        },
-        {},
+    const addresses = map(addressData, (addressObject) => addressObject.address);
+
+    const addressesWithIncomingTransactions = map(
+        filter(
+            transactions,
+            (transaction) =>
+                includes(addresses, transaction.address) && transaction.persistence === false && transaction.value > 0,
+        ),
+        (transaction) => transaction.address,
     );
 
-    const addressesWithIncomingTransfers = new Set();
-
-    // Check outputs of incoming transfers i.e. If there is an incoming value transfer
-    // Checks outputs of sent transfers to check if there is an incoming transfer (change address)
-
-    // Note: Inputs for outgoing transfers should not be checked since filterSpentAddresses already removes spent inputs
-    const outputsToCheck = flatMap(pendingValueTransfers, (transfer) => transfer.outputs);
-
-    each(outputsToCheck, (output) => {
-        if (output.address in inputsByAddress && output.value > 0) {
-            addressesWithIncomingTransfers.add(output.address);
-        }
-    });
-
-    return map(
-        omitBy(inputsByAddress, (input, address) => addressesWithIncomingTransfers.has(address)),
-        (input) => input,
-    );
+    return filter(addressData, (addressObject) => !includes(addressesWithIncomingTransactions, addressObject.address));
 };
 
 /**
@@ -633,19 +719,10 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
  *   @method attachAndFormatAddress
  *   @param {string} [provider]
  *
- *   @returns {function(string, number, number, string, array, object): Promise<object>}
+ *   @returns {function(string, number, number, object, object): Promise<object>}
  **/
-export const attachAndFormatAddress = (provider) => (
-    address,
-    index,
-    balance,
-    seedStore,
-    normalisedTransactions,
-    addressData,
-) => {
-    const transfers = prepareTransferArray(address, 0, '', addressData);
-
-    let transfer = [];
+export const attachAndFormatAddress = (provider) => (address, index, balance, seedStore, accountState) => {
+    let attachedTransactions = [];
 
     return findTransactionsAsync(provider)({ addresses: [address] })
         .then((hashes) => {
@@ -653,25 +730,34 @@ export const attachAndFormatAddress = (provider) => (
                 throw new Error(Errors.ADDRESS_ALREADY_ATTACHED);
             }
 
-            return sendTransferAsync(provider)(seedStore, transfers);
+            return sendTransferAsync(provider)(
+                seedStore,
+                prepareTransferArray(address, 0, '', accountState.addressData),
+            );
         })
         .then((transactionObjects) => {
-            transfer = transactionObjects;
+            attachedTransactions = transactionObjects;
 
             return wereAddressesSpentFromAsync(provider)([address]);
         })
         .then((wereSpent) => {
-            const spendStatuses = findSpendStatusesFromNormalisedTransactions([address], normalisedTransactions);
-            const addressData = formatAddressData(
-                [address],
-                [balance],
-                map(wereSpent, (status, idx) => ({ remote: status, local: spendStatuses[idx] })),
-                [index],
+            const spendStatuses = findSpendStatusesFromTransactions([address], accountState.transactions);
+            const attachedAddressObject = head(
+                createAddressData(
+                    [address],
+                    [balance],
+                    map(wereSpent, (status, idx) => ({
+                        remote: status,
+                        // Do not override local spend status
+                        local: get(find(accountState.addressData, { address }), 'spent.local') || spendStatuses[idx],
+                    })),
+                    [index],
+                ),
             );
 
             return {
-                addressData,
-                transfer,
+                attachedAddressObject,
+                attachedTransactions,
             };
         });
 };
@@ -701,29 +787,52 @@ export const categoriseAddressesBySpentStatus = (provider) => (addresses) => {
 /**
  * Mimic wereAddressesSpentFrom IRI api call response, by checking spent status of addresses from transaction objects
  *
- * @method findSpendStatusesFromTransactionObjects
+ * @method findSpendStatusesFromTransactions
  * @param {array} addresses
  * @param {array} transactions
  *
  * @returns {array<boolean>}
  */
-export const findSpendStatusesFromTransactionObjects = (addresses, transactions) => {
+export const findSpendStatusesFromTransactions = (addresses, transactions) => {
     const inputAddresses = map(filter(transactions, (tx) => tx.value < 0), (tx) => tx.address);
 
     return map(addresses, (address) => includes(inputAddresses, address));
 };
 
 /**
- * Mimic wereAddressesSpentFrom IRI api call response, by checking spent status of addresses from transaction objects
+ * Transforms address data object to inputs list
  *
- * @method findSpendStatusesFromNormalisedTransactions
- * @param {array} addresses
- * @param {array} normalisedTransactions
+ * @method transformAddressDataToInputs
+ * @param {array} addressData
+ * @param {number} security
  *
- * @returns {array<boolean>}
+ * @returns {array}
  */
-export const findSpendStatusesFromNormalisedTransactions = (addresses, normalisedTransactions) => {
-    const inputAddresses = map(flatMap(normalisedTransactions, (tx) => tx.inputs), (tx) => tx.address);
+export const transformAddressDataToInputs = (addressData, security = DEFAULT_SECURITY) =>
+    map(addressData, (addressObject) => ({
+        address: addressObject.address,
+        security,
+        balance: addressObject.balance,
+        keyIndex: addressObject.index,
+    }));
 
-    return map(addresses, (address) => includes(inputAddresses, address));
+/**
+ * Filters address data with pending outgoing transactions
+ *
+ * @method filterAddressDataWithPendingOutgoingTransactions
+ * @param {array} addressData
+ * @param {array} transactions
+ *
+ * @returns {object}
+ */
+export const filterAddressDataWithPendingOutgoingTransactions = (addressData, transactions) => {
+    const pendingTransactions = filter(transactions, (tx) => tx.persistence === false);
+
+    // Get all input addresses from transactions
+    const inputAddressesFromTransactions = map(
+        filter(pendingTransactions, (transaction) => transaction.value < 0),
+        (transaction) => transaction.address,
+    );
+
+    return filter(addressData, (addressObject) => !includes(inputAddressesFromTransactions, addressObject.address));
 };

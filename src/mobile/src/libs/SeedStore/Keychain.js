@@ -21,6 +21,14 @@ class Keychain extends SeedStoreCore {
     }
 
     /**
+     * Return max supported input count
+     * @returns {number} - 0 for no limit
+     */
+    get maxInputs() {
+        return 0;
+    }
+
+    /**
      * Create new account
      * @param {string} accountId - Account identifier
      * @param {string} seed - Account seed
@@ -40,6 +48,14 @@ class Keychain extends SeedStoreCore {
         const existingSeedInfo = await this.getSeeds();
         const updatedSeedInfo = Object.assign({}, existingSeedInfo, info);
         return await createAndStoreBoxInKeychain(this.key, updatedSeedInfo, ALIAS_SEEDS);
+    };
+
+    /**
+     * Return max supported input count
+     * @returns {number} - 0 for no limit
+     */
+    getMaxInputs = () => {
+        return 0;
     };
 
     /**

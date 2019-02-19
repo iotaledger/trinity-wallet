@@ -3,11 +3,16 @@ import filter from 'lodash/filter';
 import React from 'react';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
+import random from 'lodash/random';
 import size from 'lodash/size';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeBundleFromUnconfirmedBundleTails } from 'actions/accounts';
-import { getSelectedAccountName, getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
+import {
+    getAccountNamesFromState,
+    isSettingUpNewAccount,
+    getPromotableBundlesFromState,
+    getSelectedAccountName,
+} from 'selectors/accounts';
 import {
     fetchMarketData,
     fetchChartData,
@@ -126,10 +131,12 @@ class Polling extends React.PureComponent {
             } else {
                 this.setState({ autoPromoteSkips: 2 });
 
-                const bundles = keys(unconfirmedBundleTails);
-                const top = bundles[0];
+                const bundleHashes = keys(unconfirmedBundleTails);
+                const bundleHashToPromote = bundleHashes[random(size(bundleHashes) - 1)];
 
-                return this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
+                const { accountName } = unconfirmedBundleTails[bundleHashToPromote];
+
+                return this.props.promoteTransfer(bundleHashToPromote, accountName);
             }
         }
 
@@ -157,8 +164,8 @@ const mapStateToProps = (state) => ({
     isFetchingAccountInfo: state.ui.isFetchingAccountInfo,
     autoPromotion: state.settings.autoPromotion,
     accountNames: getAccountNamesFromState(state),
+    unconfirmedBundleTails: getPromotableBundlesFromState(state),
     selectedAccountName: getSelectedAccountName(state),
-    unconfirmedBundleTails: state.accounts.unconfirmedBundleTails,
     isTransitioning: state.ui.isTransitioning,
 });
 
@@ -170,7 +177,6 @@ const mapDispatchToProps = {
     setPollFor,
     promoteTransfer,
     getAccountInfoForAllAccounts,
-    removeBundleFromUnconfirmedBundleTails,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Polling);

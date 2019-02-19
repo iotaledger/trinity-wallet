@@ -5,6 +5,7 @@ import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { changeAutoPromotionSettings } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import Fonts from 'ui/theme/fonts';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -157,7 +158,7 @@ class AutoPromotion extends Component {
 
 const mapStateToProps = (state) => ({
     autoPromotion: state.settings.autoPromotion,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

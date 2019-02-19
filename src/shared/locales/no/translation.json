@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Mottar transaksjoner til godkjenning",
         "proofOfWork": "Fullfører PoW (Proof of Work)",
         "broadcasting": "Kringkasting",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transaksjon fullført"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Du er ferd med å samle {{amount}} til adresse {{address}}. Konto: {{accountName}}, adresse indeks: {{index}}",
         "sweepConfirmationTitle": "Samlebekreftelse"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger tilkoblet og klar",
         "notReady": "Ønsker du å benytte Ledger, koble til og lås den opp nå",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Fortsett med Ledger installasjonen",
         "accountIndex": "Kontoindex",
         "accountPage": "Kontoside",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Velg din Ledger kontoindeks",
         "accountIndexExplanation": "Du kan lagre fler hovednøkkler. Hver hovednøkkel er identifisert med et unikt indeks-nummer. Et ubenyttet index-nummer er valgt for deg, men endre dette om du ønsker. Husk å skriv ned ditt valgte index-nummer.",
         "accountPageExplanation": "Noen tredjeparts lommebøker krever pages.",

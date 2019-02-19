@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Clipboard } from 'react-native';
 import { shallow } from 'enzyme';
 import { ViewAddresses } from 'ui/views/wallet/ViewAddresses';
+import theme from '../../../../__mocks__/theme';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
@@ -21,20 +22,21 @@ const getProps = (overrides) =>
         {},
         {
             selectedAccount: {
-                addresses: {
-                    ['U'.repeat(81)]: {
+                addressData: [
+                    {
+                        address: 'U'.repeat(81),
                         balance: 0,
                         index: 0,
                         spent: false,
                         checksum: 'NXELTUENX',
                     },
-                },
-                transfers: {},
+                ],
+                transactions: [],
                 balance: 0,
             },
             setSetting: noop,
             generateAlert: noop,
-            theme: { body: {} },
+            theme,
             t: noop,
         },
         overrides,
@@ -148,11 +150,20 @@ describe('Testing ViewAddresses component', () => {
                 it('should return an ordered array in descending by index prop', () => {
                     const props = getProps({
                         selectedAccount: {
-                            addresses: {
-                                ['U'.repeat(81)]: { index: 0 },
-                                ['A'.repeat(81)]: { index: 3 },
-                                ['B'.repeat(81)]: { index: 32 },
-                            },
+                            addressData: [
+                                {
+                                    index: 0,
+                                    address: 'U'.repeat(81),
+                                },
+                                {
+                                    index: 3,
+                                    address: 'A'.repeat(81),
+                                },
+                                {
+                                    index: 32,
+                                    address: 'B'.repeat(81),
+                                },
+                            ],
                         },
                     });
 

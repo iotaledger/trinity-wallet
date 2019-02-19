@@ -4,6 +4,7 @@ import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
@@ -102,7 +103,7 @@ class AdvancedSettings extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

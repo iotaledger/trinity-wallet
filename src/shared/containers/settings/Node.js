@@ -8,6 +8,8 @@ import { setFullNode, removeCustomNode, updateAutoNodeSwitching } from '../../ac
 import { generateAlert } from '../../actions/alerts';
 import { isValidUrl, isValidHttpsUrl } from '../../libs/utils';
 
+import { getThemeFromState } from '../../selectors/global';
+
 /**
  * Node settings container
  * @ignore
@@ -118,7 +120,7 @@ export default function withNodeData(NodeComponent) {
         node: state.settings.node,
         nodes: state.settings.nodes,
         customNodes: state.settings.customNodes,
-        theme: state.settings.theme,
+        theme: getThemeFromState(state),
         autoNodeSwitching: state.settings.autoNodeSwitching,
         isChangingNode: state.ui.isChangingNode,
         isCheckingCustomNode: state.ui.isCheckingCustomNode,

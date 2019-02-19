@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { navigator } from 'libs/navigation';
 import Fonts from 'ui/theme/fonts';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
@@ -190,7 +191,7 @@ class WalletResetConfirmation extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default withNamespaces(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation));

@@ -4,13 +4,14 @@ import { StyleSheet, View, Keyboard, TouchableWithoutFeedback } from 'react-nati
 import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { height } from 'libs/dimensions';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import Header from 'ui/components/Header';
 import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { isAndroid } from 'libs/device';
-import { height } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -142,7 +143,7 @@ class SeedVaultBackup extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default withNamespaces(['seedVault', 'global'])(connect(mapStateToProps, null)(SeedVaultBackup));

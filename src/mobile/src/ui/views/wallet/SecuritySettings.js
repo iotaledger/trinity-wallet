@@ -5,6 +5,7 @@ import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import { navigator } from 'libs/navigation';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
@@ -111,7 +112,7 @@ class SecuritySettings extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     is2FAEnabled: state.settings.is2FAEnabled,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });

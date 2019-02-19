@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Obteniendo transacciones para aprobar",
         "proofOfWork": "Completando PoW",
         "broadcasting": "Transmitiendo",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transferencia completa"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Estás a punto de barrer {{amount}} para la dirección {{address}}. Cuenta: {{accountName}}, dirección índice: {{index}}",
         "sweepConfirmationTitle": "Confirmación de barrido"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Dispositivo de ledger conectado y listo",
         "notReady": "Si desea usar un dispositivo de ledger, conecte y desbloquelo ahora",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Proceder con la configuración del ledger",
         "accountIndex": "Índice de cuenta",
         "accountPage": "Perfil de cuenta",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Elija el índice de cuenta del ledger",
         "accountIndexExplanation": "Su ledger puede almacenar múltiples semillas. Cada semilla es identificada por un número de índice único. Se ha preseleccionado uno, pero no dude en elegir uno propio. Asegúrese de anotar el número de índice elegido.",
         "accountPageExplanation": "Algunas billeteras de terceros requieren páginas.",

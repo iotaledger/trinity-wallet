@@ -92,7 +92,7 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
-        versionCode 40
+        versionCode 42
         versionName "0.6.1"
         minSdkVersion 21
         targetSdkVersion 26
@@ -151,6 +151,7 @@ android {
     }
 }
 dependencies {
+    implementation project(':react-native-modal-translucent')
     implementation project(':react-native-qr-scanner')
     implementation 'com.github.laumair:argon2jni:jitpack-SNAPSHOT'
     implementation project(':react-native-document-picker')
@@ -183,6 +184,7 @@ dependencies {
     implementation project(':react-native-view-shot')
     implementation project(':react-native-flag-secure-android')
     implementation project(':react-native-haptic-feedback')
+    implementation project(':realm')
     implementation project(':rn-fetch-blob')
 }
 // Run this once to be able to run the application with BUCK

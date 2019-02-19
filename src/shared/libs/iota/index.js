@@ -1,13 +1,13 @@
 import IOTA from 'iota.lib.js';
 import 'proxy-polyfill';
 import Quorum from './quorum';
-import { defaultNode, nodes, NODE_REQUEST_TIMEOUT } from '../../config';
+import { defaultNode, nodes, DEFAULT_NODE_REQUEST_TIMEOUT } from '../../config';
 
 const iotaAPI = new IOTA({ provider: defaultNode });
 export const quorum = new Quorum(nodes);
 
 // Set node request timeout
-iotaAPI.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
+iotaAPI.api.setApiTimeout(DEFAULT_NODE_REQUEST_TIMEOUT);
 
 // Later used by the checkNodePatched function
 let unproxiedNodeInfo = iotaAPI.api.getNodeInfo.bind(iotaAPI.api);

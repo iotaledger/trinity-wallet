@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { Styling } from 'ui/theme/general';
-import { width } from 'libs/dimensions';
+import { height, width } from 'libs/dimensions';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import DualFooterButtons from './DualFooterButtons';
 import SingleFooterButton from './SingleFooterButton';
 
@@ -62,6 +64,19 @@ export class ModalViewComponent extends PureComponent {
         disableRightButton: false,
     };
 
+    /**
+     * Returns styling for when topbar is displayed, dependent on device type
+     *
+     * @method getStylingWhenDisplayingTopbar
+     * @returns {any}
+     */
+    getStylingWhenDisplayingTopbar() {
+        if (isAndroid) {
+            return { flex: 1 - Styling.topbarHeightRatio };
+        }
+        return { height: isIPhoneX ? height - Styling.topbarHeight + 20 : height - Styling.topbarHeight };
+    }
+
     render() {
         const {
             theme: { body },
@@ -85,12 +100,12 @@ export class ModalViewComponent extends PureComponent {
                 extraHeight={0}
                 contentContainerStyle={styles.container}
             >
-                {displayTopBar && <View style={{ flex: Styling.topbarHeightRatio }} />}
+                {displayTopBar && isAndroid && <View style={{ flex: Styling.topbarHeightRatio }} />}
                 <View
                     style={[
                         styles.modalContent,
                         { backgroundColor: body.bg },
-                        { flex: displayTopBar ? 1 - Styling.topbarHeightRatio : 1 },
+                        displayTopBar ? this.getStylingWhenDisplayingTopbar() : { height },
                     ]}
                 >
                     {children}
@@ -113,7 +128,7 @@ export class ModalViewComponent extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default connect(mapStateToProps)(ModalViewComponent);

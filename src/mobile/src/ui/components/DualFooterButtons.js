@@ -5,6 +5,7 @@ import timer from 'react-native-timer';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { isIPhoneX } from 'libs/device';
@@ -163,7 +164,7 @@ class DualFooterButtons extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     currentScreen: last(state.wallet.navStack),
 });
 

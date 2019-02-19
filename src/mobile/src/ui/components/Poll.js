@@ -2,6 +2,7 @@ import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import size from 'lodash/size';
+import random from 'lodash/random';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -9,10 +10,10 @@ import timer from 'react-native-timer';
 import { AppState } from 'react-native';
 import {
     getSelectedAccountName,
+    getPromotableBundlesFromState,
     getAccountNamesFromState,
     isSettingUpNewAccount,
 } from 'shared-modules/selectors/accounts';
-import { removeBundleFromUnconfirmedBundleTails } from 'shared-modules/actions/accounts';
 import {
     fetchMarketData,
     fetchChartData,
@@ -151,14 +152,16 @@ export class Poll extends Component {
                     autoPromoteSkips: autoPromoteSkips - 1,
                 });
             } else {
-                const bundles = keys(unconfirmedBundleTails);
-                const bundleHash = bundles[0];
+                // TODO (laumair): Promote transactions in order of oldest to latest
+                const bundleHashes = keys(unconfirmedBundleTails);
+                const bundleHashToPromote = bundleHashes[random(size(bundleHashes) - 1)];
 
                 this.setState({
                     autoPromoteSkips: 2,
                 });
 
-                return this.props.promoteTransfer(bundleHash, unconfirmedBundleTails[bundleHash]);
+                const { accountName } = unconfirmedBundleTails[bundleHashToPromote];
+                return this.props.promoteTransfer(bundleHashToPromote, accountName);
             }
         }
 
@@ -192,8 +195,8 @@ const mapStateToProps = (state) => ({
     isFetchingAccountInfo: state.ui.isFetchingAccountInfo,
     seedIndex: state.wallet.seedIndex,
     selectedAccountName: getSelectedAccountName(state),
+    unconfirmedBundleTails: getPromotableBundlesFromState(state),
     accountNames: getAccountNamesFromState(state),
-    unconfirmedBundleTails: state.accounts.unconfirmedBundleTails,
     isTransitioning: state.ui.isTransitioning,
 });
 
@@ -205,7 +208,6 @@ const mapDispatchToProps = {
     setPollFor,
     getAccountInfoForAllAccounts,
     promoteTransfer,
-    removeBundleFromUnconfirmedBundleTails,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Poll);

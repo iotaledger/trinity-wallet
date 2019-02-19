@@ -9,6 +9,8 @@ import { round } from '../../libs/utils';
 import { setCurrency, setTimeframe } from '../../actions/marketData';
 import { getCurrencySymbol } from '../../libs/currency';
 
+import { getThemeFromState } from '../../selectors/global';
+
 /**
  * Chart component container
  * @ignore
@@ -126,7 +128,7 @@ export default function withChartData(ChartComponent) {
     const mapStateToProps = (state) => ({
         marketData: state.marketData,
         settings: state.settings,
-        theme: state.settings.theme,
+        theme: getThemeFromState(state),
     });
 
     const mapDispatchToProps = {
