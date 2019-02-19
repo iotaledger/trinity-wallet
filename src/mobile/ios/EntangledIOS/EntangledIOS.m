@@ -42,20 +42,21 @@ RCT_EXPORT_METHOD(bundlePow:(NSArray *)trytes trunk:(NSString*)trunk branch:(NSS
 // Single address generation
 RCT_EXPORT_METHOD(generateAddress:(NSArray<NSNumber*>*)seed index:(int)index security:(int)security resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  int8_t seedTrits[243];
   int8_t* seedTrits_ptr = NULL;
-  for (int i = 0; i < (int)seed.count; i++)
-  {
-    seedTrits[i] = (int8_t)seed[i].charValue;
-  }
-  seedTrits_ptr = seedTrits;
   int8_t * address = NULL;
+  
+  seedTrits_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:seed]];
+  
   address = [EntangledIOSBindings iota_ios_sign_address_gen_trits:seedTrits_ptr index:index security:security];
+  
   memset_s(seedTrits_ptr, 243, 0, 243);
-  for (int i = 0; i < 243; i++) {
-    printf("%hhd", address[i]);
-  }
-  resolve([NSString stringWithFormat:@"%s", address]);
+  free(seedTrits_ptr);
+  
+  NSMutableArray<NSNumber*>* addressTrits = [EntangledIOSUtils Int8TritsToNSMutableArray:address count:243];
+  
+  free(address);
+  
+  resolve(addressTrits);
 }
 
 // Multi address generation
