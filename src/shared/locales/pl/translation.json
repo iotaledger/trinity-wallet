@@ -774,8 +774,8 @@
     },
     "migration": {
         "dataMigration": "Przenoszenie danych",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+        "dataMigrationExplanation": "Ze względu na wydajność i pewne ograniczenia pamięci, Trinity używa od teraz nowej bazy danych do przechowywania ustawień i danych konta. Zaczekaj, podczas gdy Trinity automatycznie wykona migrację Twoich danych.",
+        "problemMigratingYourData": "Wystąpił problem podczas migracji Twoich danych. Spróbuj ponownie"
     },
     "ledger": {
         "ready": "Urządzenie Ledger podłączone i gotowe do pracy",
@@ -785,8 +785,8 @@
         "proceedWithLedger": "Kontynuuj konfigurację portfela Ledger",
         "accountIndex": "Indeks konta",
         "accountPage": "Strona konta",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Dostęp do urządzenia Ledger odwołany",
+        "actionCancelledExplanation": "Nie można wykonać akcji bez dostępu do urządzenia Ledger.",
         "chooseAccountIndex": "Wybierz indeks Twojego konta Ledger",
         "accountIndexExplanation": "Twoje urządzenie Ledger może przechowywać wiele kluczy seed. Każdy z kluczy, jest identyfikowany przez unikatowy numer indeksu. Nieużywany indeks został wstępnie wybrany, jednak możesz wybrać swój własny. Upewnij się, że zanotowałeś swój wybrany numer indeksu.",
         "accountPageExplanation": "Niektóre portfele firm trzecich, wymagają użycia \"stron\".",
