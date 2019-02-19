@@ -35,7 +35,7 @@
     "release": "./node_modules/.bin/cross-env CSC_IDENTITY_AUTO_DISCOVERY=false build -mwl"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
     "@babel/preset-env": "^7.3.1",
@@ -47,7 +47,7 @@
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
     "dart-sass": "^1.17.0",
-    "electron": "^3.1.3",
+    "electron": "^3.1.4",
     "electron-builder": "^20.38",
     "electron-devtools-installer": "^2.2.4",
     "electron-screenshot": "^1.0.5",
@@ -61,7 +61,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
     "url-loader": "^1.1.1",
-    "webpack": "^4.29.3",
+    "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
     "webpack-dev-middleware": "^3.5.2",
     "webpack-hot-middleware": "^2.24.2"
@@ -170,7 +170,7 @@
     "react-router-dom": "^4.3.1",
     "react-transition-group": "^2.5.3",
     "realm": "^2.21.0",
-    "recharts": "^1.4.3",
+    "recharts": "^1.5.0",
     "redux": "^4.0.0"
   }
 }
