@@ -9236,7 +9236,7 @@
         },
         "pako": {
           "version": "github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc",
-          "from": "pako@github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc"
+          "from": "github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc"
         },
         "parse-glob": {
           "version": "3.0.4",
@@ -9613,7 +9613,7 @@
         },
         "text-encoding": {
           "version": "github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb",
-          "from": "text-encoding@github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb"
+          "from": "github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb"
         },
         "timers-browserify": {
           "version": "2.0.2",
@@ -9855,7 +9855,7 @@
         },
         "xmldom": {
           "version": "github:keeweb/xmldom#ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6",
-          "from": "xmldom@github:keeweb/xmldom#ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6"
+          "from": "github:keeweb/xmldom#ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6"
         },
         "xtend": {
           "version": "4.0.1",
@@ -12233,12 +12233,11 @@
       "dev": true
     },
     "react-i18next": {
-      "version": "9.0.10",
-      "resolved": "https://registry.npmjs.org/react-i18next/-/react-i18next-9.0.10.tgz",
-      "integrity": "sha512-xpeCWNut7ylQLs3Qqyo7dT13kgZbML1CdftbdnswLCv0RbRT16bRP16ma59iLe1KHIbn92VJo0Q8LSKYoXVNvg==",
+      "version": "10.1.2",
+      "resolved": "https://registry.npmjs.org/react-i18next/-/react-i18next-10.1.2.tgz",
+      "integrity": "sha512-0YGaZE7E9i+ZKsFXV8T1dSlUj3xim8Jn4dfn0fcpJxrkTlhLNZCPqc+zouroUku+CUKasupoek4rosUUq5VdeQ==",
       "requires": {
         "@babel/runtime": "^7.3.1",
-        "hoist-non-react-statics": "3.2.1",
         "html-parse-stringify2": "2.0.1"
       }
     },
