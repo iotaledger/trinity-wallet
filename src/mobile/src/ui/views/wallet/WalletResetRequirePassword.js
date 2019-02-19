@@ -6,11 +6,12 @@ import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
 import { resetWallet, setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
+import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
+import { getEncryptionKey } from 'libs/realm';
 import { Text, StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import { persistConfig } from 'libs/store';
-import { purgeStoredState } from 'shared-modules/store';
 import { clearKeychain, hash } from 'libs/keychain';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
@@ -138,7 +139,7 @@ class WalletResetRequirePassword extends Component {
     async resetWallet() {
         const { t } = this.props;
         if (await this.isAuthenticated()) {
-            purgeStoredState(persistConfig)
+            reinitialiseStorage(getEncryptionKey)
                 .then(() => clearKeychain())
                 .then(() => {
                     this.redirectToInitialScreen();
@@ -232,7 +233,7 @@ class WalletResetRequirePassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     password: state.wallet.password,
 });
 

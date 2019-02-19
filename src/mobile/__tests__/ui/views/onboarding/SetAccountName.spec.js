@@ -4,6 +4,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import PropTypes from 'prop-types';
 import { SetAccountName } from 'ui/views/onboarding/SetAccountName';
+import theme from '../../../../__mocks__/theme';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
@@ -27,12 +28,11 @@ const getProps = (overrides) =>
             componentId: 'foo',
             accountNames: [],
             generateAlert: noop,
-            setAdditionalAccountInfo: noop,
+            setAccountInfoDuringSetup: noop,
             t: () => '',
-            accountCount: 0,
             seed: 'SEED',
             onboardingComplete: false,
-            theme: { body: { bg: '#ffffff', color: '#000000' }, primary: {} },
+            theme,
             password: {},
             shouldPreventAction: false,
         },

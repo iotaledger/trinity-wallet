@@ -28,7 +28,7 @@ const storage = {
     },
     getAllKeys: (callback) => {
         try {
-            const keys = Electron.getAllStorage();
+            const keys = Electron.getAllStorageKeys();
             callback(null, keys);
         } catch (err) {
             callback(err, []);

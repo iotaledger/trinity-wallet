@@ -18,6 +18,8 @@ import {
 import { VALID_SEED_REGEX, ADDRESS_LENGTH, isValidMessage } from '../../libs/iota/utils';
 import { iota } from '../../libs/iota';
 
+import { getThemeFromState } from '../../selectors/global';
+
 /**
  * Send transaction component container
  * @ignore
@@ -243,7 +245,7 @@ export default function withSendData(SendComponent) {
         settings: state.settings,
         marketData: state.marketData,
         accounts: state.accounts,
-        theme: state.settings.theme,
+        theme: getThemeFromState(state),
         progress: state.progress,
         ui: state.ui,
         deepLinkActive: state.wallet.deepLinkActive,

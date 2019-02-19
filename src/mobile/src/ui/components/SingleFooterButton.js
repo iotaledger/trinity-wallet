@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { isIPhoneX } from 'libs/device';
@@ -78,7 +79,7 @@ class SingleFooterButton extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default connect(mapStateToProps)(SingleFooterButton);

@@ -7,7 +7,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
-import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import { deleteAccount } from 'shared-modules/actions/accounts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import Fonts from 'ui/theme/fonts';
@@ -273,7 +273,7 @@ class DeleteAccount extends Component {
 
 const mapStateToProps = (state) => ({
     password: state.wallet.password,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isAutoPromoting: state.polling.isAutoPromoting,
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),

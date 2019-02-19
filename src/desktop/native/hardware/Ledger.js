@@ -2,10 +2,9 @@ import 'babel-polyfill';
 import Transport from '@ledgerhq/hw-transport-node-hid';
 import Iota from 'hw-app-iota';
 import { ipcRenderer as ipc, remote } from 'electron';
+import Errors from 'libs/errors';
 
 const Wallet = remote.getCurrentWindow().webContents;
-
-const connectionError = { message: 'Ledger connection error' };
 
 class Ledger {
     constructor() {
@@ -66,7 +65,7 @@ class Ledger {
                 if (message && message.abort) {
                     this.removeListener(callbackSuccess);
                     ipc.removeListener('ledger', callbackAbort);
-                    reject(connectionError);
+                    reject(Errors.LEDGER_CANCELLED);
                 }
             };
             ipc.on('ledger', callbackAbort);
@@ -129,7 +128,7 @@ class Ledger {
                     if (timeout) {
                         clearTimeout(timeout);
                     }
-                    reject(connectionError);
+                    reject(Errors.LEDGER_CANCELLED);
                 }
             };
 

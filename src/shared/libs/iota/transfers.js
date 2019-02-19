@@ -2,18 +2,15 @@ import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 import clone from 'lodash/clone';
 import get from 'lodash/get';
-import keys from 'lodash/keys';
 import each from 'lodash/each';
 import find from 'lodash/find';
-import findKey from 'lodash/findKey';
 import findIndex from 'lodash/findIndex';
+import flatMap from 'lodash/flatMap';
 import head from 'lodash/head';
 import has from 'lodash/has';
 import isObject from 'lodash/isObject';
 import isNumber from 'lodash/isNumber';
 import map from 'lodash/map';
-import mapValues from 'lodash/mapValues';
-import omitBy from 'lodash/omitBy';
 import pick from 'lodash/pick';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
@@ -24,18 +21,11 @@ import some from 'lodash/some';
 import size from 'lodash/size';
 import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
-import difference from 'lodash/difference';
-import unionBy from 'lodash/unionBy';
 import orderBy from 'lodash/orderBy';
-import pickBy from 'lodash/pickBy';
-import {
-    DEFAULT_TAG,
-    DEFAULT_BALANCES_THRESHOLD,
-    DEFAULT_MIN_WEIGHT_MAGNITUDE,
-    BUNDLE_OUTPUTS_THRESHOLD,
-} from '../../config';
+import xor from 'lodash/xor';
+import { DEFAULT_TAG, DEFAULT_MIN_WEIGHT_MAGNITUDE, BUNDLE_OUTPUTS_THRESHOLD } from '../../config';
 import { iota } from './index';
-import { getBalancesSync, accumulateBalance } from './addresses';
+import { accumulateBalance } from './addresses';
 import {
     getBalancesAsync,
     getTransactionsObjectsAsync,
@@ -171,7 +161,7 @@ export const isAboveMaxDepth = (attachmentTimestamp) => {
  *   @returns {array} Transfer object
  **/
 export const prepareTransferArray = (address, value, message, addressData, tag = DEFAULT_TAG) => {
-    const firstAddress = findKey(addressData, { index: 0 });
+    const firstAddress = get(find(addressData, { index: 0 }), 'address');
 
     if (!firstAddress) {
         throw new Error(Errors.EMPTY_ADDRESS_DATA);
@@ -188,83 +178,12 @@ export const prepareTransferArray = (address, value, message, addressData, tag =
     const isZeroValueTransaction = value === 0;
 
     if (isZeroValueTransaction) {
-        return iota.utils.noChecksum(address) in addressData
+        return includes(map(addressData, (addressObject) => addressObject.address), iota.utils.noChecksum(address))
             ? [transfer]
             : [transfer, assign({}, transfer, { address: firstAddress })];
     }
 
     return [transfer];
-};
-
-/**
- *   Categorises transactions as confirmed/unconfirmed
- *
- *   @method categoriseTransactionsByPersistence
- *   @param {array} transactions - Array of transfer objects
- *   @param {array} states
- *   @returns {object} Categorised transactions by confirmed/unconfirmed.
- **/
-export const categoriseTransactionsByPersistence = (transactions, states) => {
-    if (!isArray(states) || !isArray(transactions)) {
-        return {
-            confirmed: [],
-            unconfirmed: [],
-        };
-    }
-
-    return reduce(
-        transactions,
-        (acc, tx, idx) => {
-            if (states[idx]) {
-                acc.confirmed.push(tx);
-            } else {
-                acc.unconfirmed.push(tx);
-            }
-
-            return acc;
-        },
-        {
-            confirmed: [],
-            unconfirmed: [],
-        },
-    );
-};
-
-/**
- *   Categorises transactions as incoming/outgoing
- *
- *   @method categoriseTransactions
- *   @param {array} transactions - Array of transfer objects
- *   @returns {object} Categorised transactions by incoming/outgoing.
- **/
-export const categoriseTransactions = (transactions) => {
-    return transform(transactions, (acc, tx) => (tx.incoming ? acc.incoming.push(tx) : acc.outgoing.push(tx)), {
-        incoming: [],
-        outgoing: [],
-    });
-};
-
-/**
- *   Transforms transaction objects to a dictionary with keys as bundle hashes.
- *
- *   @method transformTransactionsByBundleHash
- *   @param {array} transactions - Array of transfer objects
- *   @returns {object}
- **/
-export const transformTransactionsByBundleHash = (transactions) => {
-    return transform(
-        transactions,
-        (acc, tx) => {
-            // In case this is a reattachment
-            // Keep the latest one
-            if (tx.bundle in acc && acc[tx.bundle].attachmentTimestamp < tx.attachmentTimestamp) {
-                acc[tx.bundle] = tx;
-            } else {
-                acc[tx.bundle] = tx;
-            }
-        },
-        {},
-    );
 };
 
 /**
@@ -360,191 +279,6 @@ export const isSentTransfer = (bundle, addresses) => {
 export const isReceivedTransfer = (bundle, addresses) => !isSentTransfer(bundle, addresses);
 
 /**
- *   Checks if transaction's input addresses still have enough balance.
- *
- *   IMPORTANT: Since, inputs balances would be checked against locally stored addresses data,
- *   this function should only be used after account is synced.
- *
- *   @method isValidTransactionSync
- *   @param {object} transaction
- *   @param {object} addressData
- *   @returns {boolean}
- **/
-export const isValidTransactionSync = (transaction, addressData) => {
-    const knownTransactionBalanceOnInputs = reduce(transaction.inputs, (acc, input) => acc + Math.abs(input.value), 0);
-
-    const balances = getBalancesSync(map(transaction.inputs, (input) => input.address), addressData);
-    const latestBalanceOnInputs = accumulateBalance(balances);
-
-    return knownTransactionBalanceOnInputs <= latestBalanceOnInputs;
-};
-
-/**
- *   Communicates with the tangle and checks if transaction's input addresses still have enough balance.
- *
- *   @method isValidTransactionAsync
- *   @param {string} provider
- *
- *   @returns {function(object): Promise<boolean>}
- **/
-export const isValidTransactionAsync = (provider) => (transaction) => {
-    const knownTransactionBalanceOnInputs = reduce(transaction.inputs, (acc, input) => acc + Math.abs(input.value), 0);
-
-    return getBalancesAsync(provider)(
-        map(transaction.inputs, (input) => input.address),
-        DEFAULT_BALANCES_THRESHOLD,
-    ).then((balances) => {
-        const latestBalanceOnInputs = accumulateBalance(map(balances.balances, Number));
-
-        return knownTransactionBalanceOnInputs <= latestBalanceOnInputs;
-    });
-};
-
-/**
- *   Filters out invalid transactions (Transactions that no longer have enough balance on their input addresses)
- *
- *   IMPORTANT: Since, inputs balances would be checked against locally stored addresses data,
- *   this function should only be used after account is synced.
- *
- *   @method filterInvalidTransactionsSync
- *   @param {array} transactions
- *   @param {object} addressData
- *   @returns {array}
- **/
-export const filterInvalidTransactionsSync = (transactions, addressData) => {
-    const validTransactions = [];
-
-    each(transactions, (transaction) => {
-        const isValidTransaction = isValidTransactionSync(transaction, addressData);
-
-        if (isValidTransaction) {
-            validTransactions.push(transaction);
-        }
-    });
-
-    return validTransactions;
-};
-
-/**
- *   Communicates with the tangle and filters out invalid transactions,
- *   (Transactions that no longer have enough balance on their input addresses)
- *
- *   @method filterInvalidTransactionsAsync
- *   @param {string} provider
- *
- *   @returns {function(array): Promise<array>}
- **/
-export const filterInvalidTransactionsAsync = (provider) => (transactions) => {
-    return reduce(
-        transactions,
-        (promise, transaction) => {
-            return promise.then((result) => {
-                return isValidTransactionAsync(provider)(transaction).then((isValid) => {
-                    if (isValid) {
-                        result.push(transaction);
-                    }
-
-                    return result;
-                });
-            });
-        },
-        Promise.resolve([]),
-    );
-};
-
-/**
- *  Filters out transactions that are:
- *     - Pending
- *     - Zero value
- *     - No longer valid (Input addresses don't have enough balance)
- *
- *  Transforms filtered transactions by bundle hashes so that they can be picked up for promotion
- *
- *   @method prepareForAutoPromotion
- *   @param {string} provider
- *
- *   @returns {function(array, object, string): Promise<object>}
- **/
-export const prepareForAutoPromotion = (provider) => (transfers, addressData, account) => {
-    const pendingTransactions = filter(transfers, (tx) => !tx.persistence);
-
-    if (isEmpty(pendingTransactions)) {
-        return Promise.resolve({});
-    }
-
-    const byBundleHash = (acc, transaction) => {
-        const isValueTransfer = transaction.value !== 0;
-
-        if (isValueTransfer) {
-            const bundleHash = transaction.bundle;
-
-            acc[bundleHash] = map(transaction.tailTransactions, (meta) => ({ ...meta, account }));
-        }
-    };
-
-    const { incoming, outgoing } = categoriseTransactions(pendingTransactions);
-
-    // Remove all invalid transactions from outgoing transfers
-    const validOutgoingTransactions = filterInvalidTransactionsSync(outgoing, addressData);
-
-    // Transform all valid outgoing transactions by bundles
-    const validOutgoingTailTransactions = transform(validOutgoingTransactions, byBundleHash, {});
-
-    // categoriseTransactions categorises zero value transactions to incoming.
-    const incomingValueTransactions = filter(incoming, (transaction) => transaction.transferValue !== 0);
-
-    // Remove all invalid incoming transfers
-    return filterInvalidTransactionsAsync(provider)(incomingValueTransactions).then((validIncomingTransactions) => {
-        // Transform all valid received transactions by bundles
-        const validIncomingTailTransactions = transform(validIncomingTransactions, byBundleHash, {});
-
-        return { ...validOutgoingTailTransactions, ...validIncomingTailTransactions };
-    });
-};
-
-/**
- *  Get all tail transactions hashes for pending transactions.
- *
- *   @method getPendingTxTailsHashes
- *   @param {object} normalisedTransactions
- *
- *   @returns {array}
- **/
-export const getPendingTxTailsHashes = (normalisedTransactions) => {
-    const grabHashes = (acc, transaction) => {
-        if (!transaction.persistence) {
-            acc.push(...map(transaction.tailTransactions, (tx) => tx.hash));
-        }
-
-        return acc;
-    };
-
-    return reduce(normalisedTransactions, grabHashes, []);
-};
-
-/**
- *  Marks pending transfers as confirmed.
- *
- *   @method markTransfersConfirmed
- *   @param {object} normalisedTransfers
- *   @param {array} confirmedTransactionsHashes - Array of transaction hashes
- *
- *   @returns {object}
- **/
-export const markTransfersConfirmed = (normalisedTransfers, confirmedTransactionsHashes) => {
-    if (isEmpty(confirmedTransactionsHashes)) {
-        return normalisedTransfers;
-    }
-
-    return mapValues(normalisedTransfers, (transfer) => ({
-        ...transfer,
-        persistence: transfer.persistence
-            ? transfer.persistence
-            : some(transfer.tailTransactions, (tx) => includes(confirmedTransactionsHashes, tx.hash)),
-    }));
-};
-
-/**
  *   Accepts tail transaction object and all transaction objects from bundle hashes
  *   Then construct a bundle by following trunk transaction from tail transaction object.
  *
@@ -600,84 +334,76 @@ export const constructBundle = (tailTransaction, allTransactionObjects) => {
 };
 
 /**
- *   Get latest inclusion states with hashes.
- *   Filter confirmed hashes.
- *
- *   @method getConfirmedTransactionHashes
- *   @param {string} provider
- *
- *   @returns {function(array): Promise<array>}
- **/
-export const getConfirmedTransactionHashes = (provider) => (transactionsHashes) => {
-    if (isEmpty(transactionsHashes)) {
-        return Promise.resolve([]);
-    }
-
-    return getLatestInclusionAsync(provider)(transactionsHashes).then((states) =>
-        filter(transactionsHashes, (hash, idx) => states[idx]),
-    );
-};
-
-/**
  *   Construct bundles, validates, assign confirmation states and Normalises them.
  *
- *   @method constructNormalisedBundles
- *   @param {array} tailTransactions
- *   @param {array} transactionObjects
- *   @param {array} inclusionStates
- *   @param {array} addresses
+ *   @method constructBundlesFromTransactions
+ *   @param {array} transactions
  *
  *   @returns {array}
  **/
-export const constructNormalisedBundles = (tailTransactions, transactionObjects, inclusionStates, addresses) => {
-    const { unconfirmed, confirmed } = categoriseTransactionsByPersistence(tailTransactions, inclusionStates);
+export const constructBundlesFromTransactions = (transactions) => {
+    if (!isArray(transactions)) {
+        throw new Error(Errors.INVALID_TRANSACTIONS_PROVIDED);
+    }
 
-    const normalisedUnconfirmedTransfers = transformTransactionsByBundleHash(unconfirmed);
-    const normalisedConfirmedTransfers = transformTransactionsByBundleHash(confirmed);
+    if (isEmpty(transactions)) {
+        return [];
+    }
 
-    // Make sure we keep a single bundle for confirmed transfers i.e. get rid of reattachments.
-    const updatedUnconfirmedTailTransactions = omitBy(
-        normalisedUnconfirmedTransfers,
-        (tx, bundle) => bundle in normalisedConfirmedTransfers,
+    const { broadcastedTailTransactions, failedTailTransactions } = transform(
+        transactions,
+        (acc, transaction) => {
+            if (transaction.currentIndex === 0) {
+                if (transaction.broadcasted === true) {
+                    acc.broadcastedTailTransactions.push(transaction);
+                } else {
+                    acc.failedTailTransactions.push(transaction);
+                }
+            }
+        },
+        { broadcastedTailTransactions: [], failedTailTransactions: [] },
     );
 
-    // Map persistence to tail transactions so that they can later be mapped to other transaction objects in the bundle
-    const finalTailTransactions = [
-        ...map(normalisedConfirmedTransfers, (tx) => ({ ...tx, persistence: true })),
-        ...map(updatedUnconfirmedTailTransactions, (tx) => ({ ...tx, persistence: false })),
+    return [
+        ...map(broadcastedTailTransactions, (tailTransaction) => constructBundle(tailTransaction, transactions)),
+        // Bundles for failed transactions cannot be properly constructed because trunk/branch hashes aren't properly set.
+        // Manually construct bundles for failed transactions based on bundleHash.
+        // Note: Failed bundles only have a single (local) instance.
+        ...map(failedTailTransactions, (failedTailTransaction) =>
+            filter(transactions, (transaction) => transaction.bundle === failedTailTransaction.bundle),
+        ),
     ];
-
-    const transfers = {};
-
-    each(finalTailTransactions, (tx) => {
-        const bundle = constructBundle(tx, transactionObjects);
-
-        if (iota.utils.isBundle(bundle)) {
-            transfers[tx.bundle] = normaliseBundle(bundle, addresses, tailTransactions, tx.persistence);
-        }
-    });
-
-    return transfers;
 };
+
+/**
+ * Filter invalid bundles
+ *
+ * @method filterInvalidBundles
+ * @param {array} bundles
+ *
+ * @returns {array}
+ */
+export const filterInvalidBundles = (bundles) => filter(bundles, iota.utils.isBundle);
 
 /**
  *   Normalises bundle.
  *
  *   @method normaliseBundle
  *   @param {array} bundle
- *   @param {array} addresses
+ *   @param {array} addressData
  *   @param {array} tailTransactions
  *   @param {boolean} persistence
  *
  *   @returns {object} - Normalised bundle
  **/
-export const normaliseBundle = (bundle, addresses, tailTransactions, persistence) => {
+export const normaliseBundle = (bundle, addressData, tailTransactions, persistence) => {
+    const addresses = map(addressData, (addressObject) => addressObject.address);
     const transaction = get(bundle, '[0]');
     const bundleHash = transaction.bundle;
     const { inputs, outputs } = categoriseBundleByInputsOutputs(bundle, addresses);
 
     return {
-        ...pick(transaction, ['bundle', 'timestamp', 'attachmentTimestamp']),
+        ...pick(transaction, ['bundle', 'timestamp', 'attachmentTimestamp', 'broadcasted']),
         inputs,
         outputs,
         persistence,
@@ -695,159 +421,81 @@ export const normaliseBundle = (bundle, addresses, tailTransactions, persistence
  *   Get transaction objects associated with hashes, assign persistence by calling inclusion states
  *   Resolves transfers.
  *
- *   @method syncTransfers
+ *   @method syncTransactions
  *   @param {string} provider
  *
- *   @returns {function(array, object): Promise<object>}
+ *   @returns {function(array, array): Promise<object>}
  **/
-export const syncTransfers = (provider) => (diff, accountState) => {
-    const bundleHashes = new Set();
-    const outOfSyncTransactionHashes = [];
+export const syncTransactions = (provider) => (diff, existingTransactions) => {
+    const pullNewTransactions = (diff) => {
+        const bundleHashes = new Set();
 
-    const cached = {
-        tailTransactions: [],
-        transactionObjects: [],
-    };
+        return getTransactionsObjectsAsync(provider)(diff)
+            .then((transactionObjects) => {
+                each(transactionObjects, (transactionObject) => {
+                    if (transactionObject.bundle !== EMPTY_HASH_TRYTES) {
+                        bundleHashes.add(transactionObject.bundle);
+                    }
+                });
 
-    return getTransactionsObjectsAsync(provider)(diff)
-        .then((transactionObjects) => {
-            each(transactionObjects, (transactionObject, idx) => {
-                if (transactionObject.bundle !== EMPTY_HASH_TRYTES) {
-                    bundleHashes.add(transactionObject.bundle);
-                } else {
-                    outOfSyncTransactionHashes.push(diff[idx]);
-                }
+                // Find all transaction objects for bundle hashes
+                return findTransactionObjectsAsync(provider)({ bundles: Array.from(bundleHashes) });
+            })
+            .then((transactionObjects) => {
+                return flatMap(
+                    filterInvalidBundles(
+                        constructBundlesFromTransactions(
+                            map(transactionObjects, (transaction) => ({
+                                ...transaction,
+                                // Assign broadcasted as true as all these transactions were pulled in from the ledger
+                                broadcasted: true,
+                                // Temporarily assign persistence false
+                                // In the next step, communicate with the ledger to get correct inclusion state (persistence) and assign those
+                                persistence: false,
+                            })),
+                        ),
+                    ),
+                );
             });
-
-            // Find all transaction objects for bundle hashes
-            return findTransactionObjectsAsync(provider)({ bundles: Array.from(bundleHashes) });
-        })
-        .then((transactionObjects) => {
-            cached.transactionObjects = transactionObjects;
-            cached.tailTransactions = pickNewTailTransactions(cached.transactionObjects, accountState.transfers);
-
-            return getLatestInclusionAsync(provider)(map(cached.tailTransactions, (tx) => tx.hash));
-        })
-        .then((states) => {
-            const newNormalisedTransfers = constructNormalisedBundles(
-                cached.tailTransactions,
-                cached.transactionObjects,
-                states,
-                keys(accountState.addresses),
-            );
-
-            const transfers = mergeNewTransfers(newNormalisedTransfers, accountState.transfers);
-
-            return {
-                transfers,
-                newNormalisedTransfers,
-                outOfSyncTransactionHashes,
-            };
-        });
-};
-
-/**
- *  Merge latest normalised transactions into existing ones
- *
- *   @method mergeNewTransfers
- *   @param {object} newNormalisedTransfers
- *   @param {object} existingNormalisedTransfers
- *
- *   @returns {object} - Updated normalised transfers
- **/
-export const mergeNewTransfers = (newNormalisedTransfers, existingNormalisedTransfers) => {
-    const transfers = cloneDeep(existingNormalisedTransfers);
-
-    // Check if new transfer found is a reattachment i.e. there is already a bundle instance stored locally.
-    // If its a reattachment, just add its tail transaction hash and attachmentTimestamp
-    // Otherwise, add it as a new transfer
-    each(newNormalisedTransfers, (transfer) => {
-        const bundle = transfer.bundle;
-        if (bundle in existingNormalisedTransfers) {
-            transfers[bundle].tailTransactions = unionBy(
-                existingNormalisedTransfers[bundle].tailTransactions,
-                transfer.tailTransactions,
-                'hash',
-            );
-        } else {
-            transfers[bundle] = transfer;
-        }
-    });
-
-    return transfers;
-};
-
-/**
- *   Accepts tail transaction object categorised by bundles and a list of tail transaction hashes
- *   Returns all relevant bundle hashes for tail transaction hashes
- *
- *   @method getBundleHashesForNewlyConfirmedTransactions
- *   @param {object} unconfirmedBundleTails - { bundleHash: [{}, {}]}
- *   @param {array} confirmedTransactionsHashes - List of tail transaction hashes
- *
- *   @returns {array} bundleHashes - List of bundle hashes
- **/
-export const getBundleHashesForNewlyConfirmedTransactions = (unconfirmedBundleTails, confirmedTransactionsHashes) => {
-    const grabBundleHashes = (acc, tailTransactions, bundleHash) => {
-        if (some(tailTransactions, (tailTransaction) => includes(confirmedTransactionsHashes, tailTransaction.hash))) {
-            acc.push(bundleHash);
-        }
     };
 
-    return transform(unconfirmedBundleTails, grabBundleHashes, []);
+    return (size(diff) ? pullNewTransactions(diff) : Promise.resolve([])).then((newTransactions) => {
+        const transactions = [...existingTransactions, ...newTransactions];
+
+        const { confirmed, unconfirmed } = transform(
+            constructBundlesFromTransactions(transactions),
+            (acc, bundle) => {
+                if (some(bundle, (transaction) => transaction.persistence === true)) {
+                    acc.confirmed.push(bundle);
+                } else {
+                    acc.unconfirmed.push(bundle);
+                }
+            },
+            { confirmed: [], unconfirmed: [] },
+        );
+
+        if (isEmpty(unconfirmed)) {
+            return [...flatMap(confirmed), ...flatMap(unconfirmed)];
+        }
+
+        return assignInclusionStatesToBundles(provider)(unconfirmed).then((bundles) => [
+            ...flatMap(confirmed),
+            ...flatMap(bundles),
+        ]);
+    });
 };
 
 /**
- *   Accepts bundle hash, transfers and addressData and determines if the bundle associated
- *   with bundle hash is valid or not.
+ *  Finds difference between seed transaction hashes with new transaction hashes.
  *
- *   @method isStillAValidTransaction
- *   @param {string} [provider]
+ *  @method getTransactionsDiff
+ *  @param {array} existingHashes
+ *  @param {array} newHashes
  *
- *   @returns {function(object, object): Promise<object>}
- **/
-export const isStillAValidTransaction = (provider) => (transaction, addressData) => {
-    return transaction.incoming
-        ? isValidTransactionAsync(provider)(transaction)
-        : Promise.resolve(isValidTransactionSync(transaction, addressData));
-};
-
-/**
- *
- *   with bundle hash is valid or not.
- *
- *   @method getTransactionsDiff
- *   @param {array} existingHashes
- *   @param {array} newHashes
-= *
- *   @returns {array}
+ *  @returns {array}
  **/
 export const getTransactionsDiff = (existingHashes, newHashes) => {
-    return difference(newHashes, existingHashes);
-};
-
-/**
- *   Filters all invalid transactions from all pending transactions.
- *
- *   @method filterInvalidPendingTransactions
- *   @param {string} [provider]
- *
- *   @returns {function(array, object): Promise<object>}
- **/
-export const filterInvalidPendingTransactions = (provider) => (transactions, addressData) => {
-    const pendingTransactions = filter(transactions, (tx) => !tx.persistence);
-
-    if (isEmpty(pendingTransactions)) {
-        return Promise.resolve([]);
-    }
-
-    const { incoming, outgoing } = categoriseTransactions(pendingTransactions);
-
-    const validOutgoingTransfers = filterInvalidTransactionsSync(outgoing, addressData);
-
-    return filterInvalidTransactionsAsync(provider)(incoming).then((validIncomingTransfers) => {
-        return [...validOutgoingTransfers, ...validIncomingTransfers];
-    });
+    return xor(existingHashes, newHashes);
 };
 
 /**
@@ -923,94 +571,6 @@ export const performPow = (
         },
         Promise.resolve({ trytes: [], transactionObjects: [] }),
     );
-};
-
-/**
- * Grab transaction hashes for own addresses from a transaction.
- *
- * @param {object} normalisedTransaction
- * @param {object} addressData
- * @returns {array}
- */
-export const getOwnTransactionHashes = (normalisedTransaction, addressData) => {
-    return [
-        ...map(filter(normalisedTransaction.inputs, (input) => input.address in addressData), (input) => input.hash),
-        ...map(
-            filter(normalisedTransaction.outputs, (output) => output.address in addressData),
-            (output) => output.hash,
-        ),
-    ];
-};
-
-/**
- * Takes addresses and transactions and returns outgoing transfers for those addresses.
- *
- * @param {array} addresses
- * @param {object} transactions
- * @returns {array}
- */
-export const getOutgoingTransfersForAddresses = (addresses, transactions) => {
-    const selectedTransactions = new Set();
-    each(transactions, (tx) => {
-        each(tx.inputs, (input) => {
-            if (addresses.indexOf(input.address) > -1) {
-                selectedTransactions.add(tx);
-            }
-        });
-    });
-
-    return Array.from(selectedTransactions);
-};
-
-/**
- * Takes addresses and transactions and returns pending outgoing transfers for those addresses.
- *
- * @param {array} addresses
- * @param {object} transfers
- * @returns {array}
- */
-export const getPendingOutgoingTransfersForAddresses = (addresses, transfers) => {
-    const addressesWithBalance = pickBy(addresses, (address) => address.balance > 0);
-    const relevantTransfers = filter(transfers, (tx) => !tx.persistence);
-
-    return getOutgoingTransfersForAddresses(keys(addressesWithBalance), relevantTransfers);
-};
-
-/**
- *   Picks newly found tail transactions from transaction objects
- *
- *   @method pickNewTailTransactions
- *   @param {array} transactionObjects
- *   @param {object} existingNormalisedTransfers
- *
- *   @returns {array}
- **/
-export const pickNewTailTransactions = (transactionObjects, existingNormalisedTransfers) => {
-    const tailTransactions = [];
-
-    const storeUnseenTailTransactions = (tx) => {
-        if (tx.currentIndex === 0) {
-            const isSeenBundle = has(existingNormalisedTransfers, tx.bundle);
-            const seenTailTransactionsHashes = isSeenBundle
-                ? map(existingNormalisedTransfers[tx.bundle].tailTransactions, (transaction) => transaction.hash)
-                : [];
-
-            // If this tail transaction is from a seen bundle
-            // Check if its a new tail transaction
-            // In case its not a new tail transaction, ignore it.
-            if (isSeenBundle) {
-                if (!includes(seenTailTransactionsHashes, tx.hash)) {
-                    tailTransactions.push(tx);
-                }
-            } else {
-                tailTransactions.push(tx);
-            }
-        }
-    };
-
-    each(transactionObjects, storeUnseenTailTransactions);
-
-    return tailTransactions;
 };
 
 /**
@@ -1183,18 +743,64 @@ export const isFundedBundle = (provider) => (bundle) => {
 };
 
 /**
+ * Filters zero value bundles
+ *
+ * @method filterZeroValueBundles
+ * @param {array} bundles
+ */
+export const filterZeroValueBundles = (bundles) => {
+    return filter(bundles, (bundle) => some(bundle, (transaction) => transaction.value < 0));
+};
+
+/**
+ *   Filters non-funded bundles
+ *   Note: Does not validate signatures or other bundle attributes
+ *
+ *   @method filterNonFundedBundles
+ *   @param {string} [provider]
+ *
+ *   @returns {function(array): Promise<boolean>}
+ **/
+export const filterNonFundedBundles = (provider) => (bundles) => {
+    if (isEmpty(bundles)) {
+        return Promise.reject(new Error(Errors.EMPTY_BUNDLES_PROVIDED));
+    }
+
+    return reduce(
+        // Only check funds for value transactions
+        filterZeroValueBundles(bundles),
+        (promise, bundle) => {
+            return promise.then((result) => {
+                return isFundedBundle(provider)(bundle).then((isFunded) => {
+                    if (isFunded) {
+                        return [...result, bundle];
+                    }
+
+                    return result;
+                });
+            });
+        },
+        Promise.resolve([]),
+    );
+};
+
+/**
  * Categorises inclusion states by bundle hash of tail transactions
  * Note: Make sure the order of tail transactions -> inclusion states is preserved before using this function
  *
  * @method categoriseInclusionStatesByBundleHash
- * @param {array} transactions
+ * @param {array} tailTransactions
  * @param {array} inclusionStates
  *
  * @returns {object}
  */
-export const categoriseInclusionStatesByBundleHash = (transactions, inclusionStates) =>
-    transform(
-        transactions,
+export const categoriseInclusionStatesByBundleHash = (tailTransactions, inclusionStates) => {
+    if (size(tailTransactions) !== size(inclusionStates)) {
+        throw new Error(Errors.INCLUSION_STATES_SIZE_MISMATCH);
+    }
+
+    return transform(
+        tailTransactions,
         (acc, tailTransaction, idx) => {
             if (tailTransaction.bundle in acc) {
                 acc[tailTransaction.bundle] = acc[tailTransaction.bundle] || inclusionStates[idx];
@@ -1204,6 +810,7 @@ export const categoriseInclusionStatesByBundleHash = (transactions, inclusionSta
         },
         {},
     );
+};
 
 /**
  * Promotes a transaction till it gets confirmed.
@@ -1278,4 +885,69 @@ export const promoteTransactionTilConfirmed = (provider, seedStore) => (
 
         return _reattachAndPromote();
     });
+};
+
+/**
+ * Assigns latest inclusion states to bundles.
+ *
+ * @method assignInclusionStatesToBundles
+ *
+ * @param {string} [provider]
+ * @returns {array}
+ */
+export const assignInclusionStatesToBundles = (provider) => (bundles) => {
+    if (!isArray(bundles)) {
+        return Promise.reject(new Error(Errors.INVALID_BUNDLES_PROVIDED));
+    }
+
+    if (isEmpty(bundles)) {
+        return Promise.resolve([]);
+    }
+
+    const tailTransactions = map(bundles, (bundle) => find(bundle, { currentIndex: 0 }));
+    const tailTransactionsHashes = map(tailTransactions, (transaction) => transaction.hash);
+
+    return getLatestInclusionAsync(provider)(tailTransactionsHashes).then((states) => {
+        return map(tailTransactions, (tailTransaction, idx) => {
+            const bundleForThisTailTransaction = find(bundles, (bundle) =>
+                some(bundle, (transaction) => transaction.hash === tailTransaction.hash),
+            );
+
+            return map(bundleForThisTailTransaction, (transaction) =>
+                assign({}, transaction, { persistence: states[idx] }),
+            );
+        });
+    });
+};
+
+/**
+ * Normalises transactions (array of transaction objects).
+ * @method mapNormalisedTransactions
+ *
+ * @param {array} transactions
+ * @param {array} addressData
+ * @returns {object}
+ */
+export const mapNormalisedTransactions = (transactions, addressData) => {
+    const tailTransactions = filter(transactions, (tx) => tx.currentIndex === 0);
+
+    const bundles = constructBundlesFromTransactions(transactions);
+
+    return transform(
+        bundles,
+        (acc, bundle) => {
+            const bundleHead = head(bundle);
+            const bundleHash = bundleHead.bundle;
+
+            // If we have already normalised bundle, then this is a reattached bundle
+            // The only thing we are interested in is persistence of the bundle
+            // Either the original transaction or a reattachment can be confirmed.
+            if (bundleHash in acc) {
+                acc[bundleHash].persistence = acc[bundleHash].persistence || bundleHead.persistence;
+            } else {
+                acc[bundleHash] = normaliseBundle(bundle, addressData, tailTransactions, bundleHead.persistence);
+            }
+        },
+        {},
+    );
 };

@@ -168,7 +168,11 @@ class Seed extends PureComponent {
                     isOpen={seed && action === 'export'}
                     onClose={() => this.setState({ action: null })}
                 >
-                    <SeedExport seed={this.seed || []} title={accountName} onClose={() => this.setState({ action: null })} />
+                    <SeedExport
+                        seed={this.seed || []}
+                        title={accountName}
+                        onClose={() => this.setState({ action: null })}
+                    />
                 </Modal>
             </React.Fragment>
         );

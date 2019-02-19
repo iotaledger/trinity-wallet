@@ -1,5 +1,5 @@
+import assign from 'lodash/assign';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { autoRehydrate, persistStore, getStoredState, purgeStoredState, createPersistor } from 'redux-persist';
 import thunk from 'redux-thunk';
 import marketData from './reducers/marketData';
 import wallet from './reducers/wallet';
@@ -12,6 +12,7 @@ import polling from './reducers/polling';
 import progress from './reducers/progress';
 import ui from './reducers/ui';
 import { ActionTypes } from './actions/settings';
+import { ActionTypes as WalletActionTypes } from './actions/wallet';
 import networkMiddleware from './middlewares/network';
 import versionMiddleware from './middlewares/version';
 import alertsMiddleware from './middlewares/alerts';
@@ -40,7 +41,10 @@ const rootReducer = (state, action) => {
         state = undefined;
     }
 
-    /* eslint-enable no-param-reassign */
+    if (action.type === WalletActionTypes.MAP_STORAGE_TO_STATE) {
+        return reducers(assign({}, state, action.payload), action);
+    }
+
     return reducers(state, action);
 };
 
@@ -50,11 +54,8 @@ const store = createStore(
     rootReducer,
     compose(
         applyMiddleware(...middleware),
-        autoRehydrate(),
         typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : (f) => f,
     ),
 );
-
-export { persistStore, getStoredState, purgeStoredState, createPersistor };
 
 export default store;
