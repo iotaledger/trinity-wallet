@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Pavedimai ruošiami patvirtinimui",
         "proofOfWork": "Atliekami skaičiavimai",
         "broadcasting": "Transliuojama",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Pavedimas atliktas"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Jūs ketinate perkelti {{amount}} į adresą {{address}}. Paskyra: {{accountName}}, adreso indeksas: {{index}}",
         "sweepConfirmationTitle": "Perkėlimo patvirtinimas"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger įrenginys prijungtas",
         "notReady": "Jei norite pasinaudoti Ledger įrenginiu, prijunkite ir atrakinkite jį",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Tęskite su Ledger vedliu",
         "accountIndex": "Paskyros indeksas",
         "accountPage": "Paskyros puslapis",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Pasirinkite Ledger paskyros indeksą",
         "accountIndexExplanation": "Jūsų Ledger gali talpinti daugybę užraktų. Kiekvienam užraktui priskiriamas unikalus indekso numeris. Jums priskirtas naujas indeksas, bet galite jį pakeisti į kitą. Nepamirškite išsisaugoti pasirinkto indekso numerio.",
         "accountPageExplanation": "Kai kurioms trečiosios šalies piniginėms reikalingi puslapiai.",
