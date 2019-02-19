@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Warte auf Bestätigung der Transaktion",
         "proofOfWork": "Vervollständige Proof of Work",
         "broadcasting": "Übertrage",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Überweisung abgeschlossen"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Du verschiebst {{amount}} zu Adresse {{address}}, Konto: {{accountName}}, Adressindex: {{index}}",
         "sweepConfirmationTitle": "Transaktion korrigieren"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger verbunden und bereit",
         "notReady": "Wenn du einen Ledger verwenden möchtest verbinde und entsperre das Gerät jetzt",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Mit der Einrichtung von Ledger fortfahren",
         "accountIndex": "Konto Index",
         "accountPage": "Konto Seite",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Wähle deinen Ledger Konto Index",
         "accountIndexExplanation": "Dein Ledger kann mehrere Seeds speichern. Jeder Seed wird durch einen eindeutigen Index identifiziert. Ein ungenutzter Index wurde bereits ausgewählt aber wenn du möchtest kannst du Diesen ändern. Stelle sicher, dass du deinen Index notierst.",
         "accountPageExplanation": "Einige Drittanbieter Wallets benötigen Seiten.",
