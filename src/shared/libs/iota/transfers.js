@@ -342,12 +342,11 @@ export const constructBundle = (tailTransaction, allTransactionObjects) => {
  *   @returns {array}
  **/
 export const constructBundlesFromTransactions = (transactions) => {
-    if (!isArray(transactions)) {
-        throw new Error(Errors.INVALID_TRANSACTIONS_PROVIDED);
-    }
-
     if (isEmpty(transactions)) {
         return [];
+    }
+    if (!isArray(transactions)) {
+        throw new Error(Errors.INVALID_TRANSACTIONS_PROVIDED);
     }
 
     const { broadcastedTailTransactions, failedTailTransactions } = transform(

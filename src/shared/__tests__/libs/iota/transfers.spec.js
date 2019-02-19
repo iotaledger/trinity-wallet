@@ -826,7 +826,7 @@ describe('libs: iota/transfers', () => {
     describe('#constructBundlesFromTransactions', () => {
         describe('when provided argument is not an array', () => {
             it('should throw an error with message "Invalid transactions provided"', () => {
-                expect(constructBundlesFromTransactions.bind(null, {})).to.throw('Invalid transactions provided.');
+                expect(constructBundlesFromTransactions.bind(null, 'foo')).to.throw('Invalid transactions provided.');
             });
         });
 
