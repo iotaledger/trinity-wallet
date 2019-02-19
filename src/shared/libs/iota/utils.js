@@ -332,6 +332,10 @@ export const withRetriesOnDifferentNodes = (nodes, failureCallbacks) => {
             return promiseFunc(nodes[attempt])(...args)
                 .then((result) => ({ node: nodes[attempt], result }))
                 .catch((err) => {
+                    // Abort retries on user cancalled Ledger action
+                    if (err === Errors.LEDGER_CANCELLED) {
+                        throw new Error(Errors.LEDGER_CANCELLED);
+                    }
                     // If a function is passed as failure callback
                     // Just trigger it once.
                     if (isFunction(failureCallbacks)) {

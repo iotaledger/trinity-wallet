@@ -276,6 +276,20 @@ export const generateTransactionSuccessAlert = (isZeroValue = false) => (dispatc
 };
 
 /**
+ * Generates an error for user cancelled Ledger request
+ *
+ * @method generateLedgerCancelledAlert
+ * @param {object} err
+ *
+ * @returns {function} dispatch
+ */
+export const generateLedgerCancelledAlert = () => (dispatch) => {
+    dispatch(
+        generateAlert('error', i18next.t('ledger:actionCancelled'), i18next.t('ledger:actionCancelledExplanation')),
+    );
+};
+
+/**
  * Hides an active alert
  *
  * @method dismissAlert
