@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Získávání transakcí ke schválení",
         "proofOfWork": "Dokončení proof of work",
         "broadcasting": "Odesílání transakcí do sítě",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Přenos byl dokončen"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Chystáte se přenést {{amount}} na {{address}}. Účet: {{accountName}}, index adresy: {{index}}",
         "sweepConfirmationTitle": "Potvrzení převodu"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Zařízení Ledger je připojené a připravené k práci",
         "notReady": "Pokud si přejete použít zařízení Ledger, připojte je nyní a odemkněte",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Pokračovat v nastavení zařízení Ledger",
         "accountIndex": "Index účtu",
         "accountPage": "Stránka účtu",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Vyberte Index účtu ve Vašem Ledgeru",
         "accountIndexExplanation": "Vaše zařízení Ledger může ukládat více Seedů. Každý Seed je označen jedinečným indexovým číslem. Nepoužitý index byl předem vybrán, ale můžete si zvolit vlastní. Ujistěte se, že jste si poznamenali zvolené číslo indexu.",
         "accountPageExplanation": "Některé peněženky třetích stran vyžadují použití \"stron\".",

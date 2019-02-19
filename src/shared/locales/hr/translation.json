@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Dohvat transakcija za odobriti",
         "proofOfWork": "Završetak PoW-a",
         "broadcasting": "Emitiranje",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transakcija dovršena"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Premjestit ćete {{amount}} na adresu {{address}}. Račun: {{accountName}}, indeks adrese: {{index}}",
         "sweepConfirmationTitle": "Potvrda otključavanja"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger uređaj povezan i spreman",
         "notReady": "Ukoliko želite koristiti Ledger uređaj, povežite ga i otključajte sada",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Nastavite s postavljanjem Ledger uređaja",
         "accountIndex": "Indeks računa (Ledger Nano S)",
         "accountPage": "Stranica računa (Deviota Romeo)",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Odaberite indeks računa vašeg Ledger uređaja",
         "accountIndexExplanation": "Vaš Ledger može pohraniti više seed-ova. Svaki seed je povezan s jedinstvenim brojem indeksa. Neiskorišteni broj indeksa je trenutno odabran, no slobodno može biti odabran i neki drugi. Obavezno zapišite odabrani broj indeksa.",
         "accountPageExplanation": "Neki novčanici trećih strana zahtijevaju stranice (npr. Deviota Romeo).",

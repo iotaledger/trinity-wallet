@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "取得交易確認",
         "proofOfWork": "完成工作量證明",
         "broadcasting": "廣播中",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "您將要轉移 {{amount}} 至地址 {{address}}。帳戶：{{accountName}}，地址索引：{{index}}",
         "sweepConfirmationTitle": "轉移確認"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger 裝置已連接並準備就緒",
         "notReady": "如果您想使用 Ledger 裝置，請立即連接並解鎖它",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "進行 Ledger 設置",
         "accountIndex": "帳戶索引",
         "accountPage": "帳戶頁面",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "選擇您的帳戶索引",
         "accountIndexExplanation": "您的 Ledger 可以儲存數個種子碼，每個種子碼會有相對應的索引號碼。系統已先預先選擇未使用的索引，但您可以隨意選擇自己想要的。請務必記住您所選的索引號碼。",
         "accountPageExplanation": "有些第三方錢包會用到頁面號碼。",
