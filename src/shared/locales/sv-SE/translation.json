@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Godkänner transaktioner",
         "proofOfWork": "Utför bevis på arbete",
         "broadcasting": "Sändning pågår",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Överföring slutförd"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Du är på väg att svepa {{amount}} till adressen {{address}}. Konto: {{accountName}}, adressindex: {{index}}",
         "sweepConfirmationTitle": "Svepningsbekräftelse"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger-enheten ansluten och redo",
         "notReady": "Om du vill använda en Ledger-enhet, anslut och lås upp den nu",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Fortsätt med Ledger-installationen",
         "accountIndex": "Konto-index",
         "accountPage": "Konto-sida",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Välj ditt Ledger konto-index",
         "accountIndexExplanation": "Din Ledger kan hantera flera seeds. Varje seed identifieras av ett unikt indexnummer. Ett oanvänt index har blivit förvalt, men välj ett eget om du vill. Se till att anteckna ditt valda indexnummer.",
         "accountPageExplanation": "Vissa tredjepartsplånböcker kräver sidor.",
