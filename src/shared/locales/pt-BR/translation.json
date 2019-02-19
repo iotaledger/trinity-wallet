@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Obtendo as transações para aprovação",
         "proofOfWork": "Completando a aprovação",
         "broadcasting": "Transmitindo",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transferência concluída"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Você está prestes a varrer {{amount}} para o endereço {{address}}. Conta: {{accountName}}, índice do endereco: {{index}}",
         "sweepConfirmationTitle": "Confirmação de varredura"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Dispositivo Ledger conectado e pronto",
         "notReady": "Se você deseja usar um dispositivo de Ledger, conecte e desbloqueie agora",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Continuar com a configuração de Ledger",
         "accountIndex": "Índice de conta",
         "accountPage": "Página da conta",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Escolha o seu índice da conta Ledger",
         "accountIndexExplanation": "Seu Ledger pode armazenar varias Seeds. Cada Seed é identificada por um número de índice único. Um índice ainda não usado foi pre-selecionado, mas sinta-se a vontade de escolher o seu próprio. Certifique-se de anotar o número do índice escolhido.",
         "accountPageExplanation": "Algumas carteiras de terceiros exigem páginas.",
