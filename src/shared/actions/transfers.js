@@ -659,7 +659,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
             })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;
-                cached.transactionObjects = transactionObjects;
+                cached.transactionObjects = transactionObjects.slice().reverse();
 
                 // Progressbar step => (Broadcasting)
                 dispatch(setNextStepAsActive());
