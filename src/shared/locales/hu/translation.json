@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Ellenőrizendő tranzakciók lekérése",
         "proofOfWork": "Kiszabott munka elvégzése",
         "broadcasting": "Tranzakció elküldése",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Utalás végrehajtva"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "{{amount}} összeget készül az Ön számlájához tartozó {{address}} címre átutalni. Számlanév: {{accountName}}, címének indexe: {{index}}",
         "sweepConfirmationTitle": "Zárolás feloldás jóváhagyása"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Hardveres tárca csatlakoztatva és készen áll",
         "notReady": "Ha hardveres tárcát szeretne használni, most csatlakoztassa majd nyissa ki",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Hardveres tárca beállítása",
         "accountIndex": "Számlasorszám",
         "accountPage": "Számla oldal",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Válassza ki a hardveres tárca számlasorszámát",
         "accountIndexExplanation": "A hardveres tárca több mester jelszót is képes tárolni. Minden mester jelszót egy egyedi számlasorszám azonosít. Egy még használaton kÍvüli számlasorszámot kiválasztottunk, de ha kívánja, nyugodtan megadhat egy szabadon választott számlasorszámot. Kérjük, jegyezze fel a választott számlasorszámot.",
         "accountPageExplanation": "Néhány gyártó tárcája ún. számla oldal megadását igényli.",

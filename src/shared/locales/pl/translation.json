@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Uzyskiwanie transakcji do potwierdzenia",
         "proofOfWork": "Finalizacja Proof of Work",
         "broadcasting": "Broadcasting",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transfer zakończony"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Masz zamiar przenieść {{amount}} na adres {{address}}. Konto: {{accountName}}, indeks adresu: {{index}}",
         "sweepConfirmationTitle": "Potwierdzenie przenoszenia"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Urządzenie Ledger podłączone i gotowe do pracy",
         "notReady": "Jeśli chcesz użyć portfela sprzętowego Ledger, podłącz go teraz, a następnie odblokuj",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Kontynuuj konfigurację portfela Ledger",
         "accountIndex": "Indeks konta",
         "accountPage": "Strona konta",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Wybierz indeks Twojego konta Ledger",
         "accountIndexExplanation": "Twoje urządzenie Ledger może przechowywać wiele kluczy seed. Każdy z kluczy, jest identyfikowany przez unikatowy numer indeksu. Nieużywany indeks został wstępnie wybrany, jednak możesz wybrać swój własny. Upewnij się, że zanotowałeś swój wybrany numer indeksu.",
         "accountPageExplanation": "Niektóre portfele firm trzecich, wymagają użycia \"stron\".",

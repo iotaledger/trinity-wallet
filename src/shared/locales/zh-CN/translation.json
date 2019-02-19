@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "获取交易批准",
         "proofOfWork": "完成工作量证明",
         "broadcasting": "广播中",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "转账完毕"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger设备已连接并准备完毕",
         "notReady": "如果您希望使用Ledger设备，请连上并解锁。",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "进行Ledger设置",
         "accountIndex": "账户索引",
         "accountPage": "账户页面",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "选择您的Ledger账户索引",
         "accountIndexExplanation": "您的Ledger可以存储多个种子。每个种子都由一个唯一的索引号码。系统已经预先选择未使用的索引，但您也可以随意选择自己的索引。请务必记下您选择的索引号码。",
         "accountPageExplanation": "Some third party wallets require pages.",

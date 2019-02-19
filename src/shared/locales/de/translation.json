@@ -94,11 +94,11 @@
         "promotingTransaction": "Transaktion wird promotet",
         "rebroadcastError": "Transaktion konnte nicht erneut übertragen werden",
         "promoted": "Transaktion erfolgreich promoted",
-        "promotedExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
+        "promotedExplanation": "Promoten der Transaktion {{hash}} erfolgreich",
         "autopromotionError": "Die Transaktion konnte nicht promotet werden",
         "autopromotionErrorExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Bitte ändere den Node und reaktiviere Auto-Promotion.",
         "promotionError": "Die Transaktion konnte nicht promotet werden",
-        "promotionErrorExplanation": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
+        "promotionErrorExplanation": "Beim Senden der Transaktion ist ein Fehler aufgetreten. Bitte versuche es erneut.",
         "noLongerValid": "Das Bundle, das du promoten möchtest, ist nicht mehr gültig",
         "transactionAlreadyConfirmed": "Transaktion bereits bestätigt",
         "transactionAlreadyConfirmedExplanation": "Die Transaktion, die Du versuchst zu promoten ist bereits bestätigt.",
@@ -253,7 +253,7 @@
         "whyBiometricDisabledExplanationPart2": "Trinity wird dich bei Inaktivität automatisch abmelden. Du kannst dich anschließend mit biometrischer Authentifizierung erneut anmelden."
     },
     "loading": {
-        "loadingFirstTime": "Dein Seed wird das erste Mal geladen.",
+        "loadingFirstTime": "Dein Seed wird initialisiert.",
         "thisMayTake": "Das kann eine Weile dauern.",
         "doNotMinimise": "Die App nicht minimieren oder schließen.",
         "takingAWhile": "Das scheint eine Weile zu dauern"
@@ -412,7 +412,7 @@
         "securitySettings": "Sicherheitseinstellungen",
         "fingerprint": "Biometrische Authentifizierung",
         "couldNotFetchRates": "Kurse konnten nicht abgerufen werden",
-        "couldNotFetchRatesExplanation": "Beim Abrufen der Umrechnungskurse für {{currency}} ist etwas schief gelaufen.",
+        "couldNotFetchRatesExplanation": "Beim Abrufen der Umrechnungskurse für {{currency}} ist ein Fehler aufgetreten.",
         "fetchedConversionRates": "Umrechnungskurse wurden abgerufen",
         "fetchedConversionRatesExplanation": "Umrechnungskurse für {{currency}} erfolgreich abgerufen.",
         "undo": "Rückgängig",
@@ -424,7 +424,7 @@
         "nodeChangeSuccessNoRemotePow": "Der Node wurde auf {{node}} geändert. Dieser Node Unterstützt keinen Proof of Work.",
         "nodeChangeSuccessExplanation": "Der Node wurde auf {{node}} geändert.",
         "nodeChangeError": "Fehler beim Ändern des Nodes",
-        "nodeChangeErrorExplanation": "Es gab einen Fehler beim Wechseln des Nodes. Bitte versuche es nochmal."
+        "nodeChangeErrorExplanation": "Beim Wechseln des Nodes ist ein Fehler aufgetreten. Bitte versuche es erneut."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Warte auf Bestätigung der Transaktion",
         "proofOfWork": "Vervollständige Proof of Work",
         "broadcasting": "Übertrage",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Überweisung abgeschlossen"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Du verschiebst {{amount}} zu Adresse {{address}}, Konto: {{accountName}}, Adressindex: {{index}}",
         "sweepConfirmationTitle": "Transaktion korrigieren"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger verbunden und bereit",
         "notReady": "Wenn du einen Ledger verwenden möchtest verbinde und entsperre das Gerät jetzt",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Mit der Einrichtung von Ledger fortfahren",
         "accountIndex": "Konto Index",
         "accountPage": "Konto Seite",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Wähle deinen Ledger Konto Index",
         "accountIndexExplanation": "Dein Ledger kann mehrere Seeds speichern. Jeder Seed wird durch einen eindeutigen Index identifiziert. Ein ungenutzter Index wurde bereits ausgewählt aber wenn du möchtest kannst du Diesen ändern. Stelle sicher, dass du deinen Index notierst.",
         "accountPageExplanation": "Einige Drittanbieter Wallets benötigen Seiten.",

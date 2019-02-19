@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Ottengo le transazioni da approvare",
         "proofOfWork": "Completo la prova di lavoro",
         "broadcasting": "Trasmissione",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Trasferimento completato"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Stai per trasferire {{amount}} verso l'indirizzo {{address}}. Conto: {{accountName}}, indice dell'indirizzo: {{index}}",
         "sweepConfirmationTitle": "Conferma di trasferimento"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Dispositivo Ledger collegato e pronto",
         "notReady": "Se desideri utilizzare un dispositivo Ledger, collegalo e sbloccalo adesso",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Procedi con la configurazione di Ledger",
         "accountIndex": "Indice di conto",
         "accountPage": "Pagina del conto",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Scegli il tuo indice di conto su Ledger",
         "accountIndexExplanation": "Il tuo Ledger può memorizzare più semi. Ogni seme è identificato da un numero di indice univoco. È stato pre-selezionato un indice inutilizzato, ma puoi sceglierne un altro. Assicurati di aver annotato il numero di indice scelto.",
         "accountPageExplanation": "Alcuni portafogli di terze parti richiedono pagine.",

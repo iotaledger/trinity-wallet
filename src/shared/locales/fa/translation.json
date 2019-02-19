@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "گرفتن معاملات برای تایید",
         "proofOfWork": "تکمیل اثبات کار",
         "broadcasting": "در حال پخش",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "انتقال کامل شد"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "شما در حال جارو (sweep) کردن {{amount}} به آدرس {{address}} هستید. حساب: {{accountName}}، اندیس آدرس: {{index}}",
         "sweepConfirmationTitle": "تایید جارو کردن (sweep)"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "دستگاه لدجر متصل و آماده است",
         "notReady": "اگر می‌خواهید از یک دستگاه لدجر استفاده کنید، هم‌اکنون آن را متصل و قفل‌گشایی کنید",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "ادامه با برپایی لدجر",
         "accountIndex": "اندیس حساب",
         "accountPage": "صفحه حساب",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "اندیس حساب لدجر خود را انتخاب کنید",
         "accountIndexExplanation": "لدجر شما می‌تواند چندین سید مختلف را نگه‌داری کند. هر سید با یک شماره اندیس منحصر به فرد معین می‌گردد. یک اندیس استفاده نشده برایتان انتخاب شده ولی در صورت تمایل می‌توانید از اندیس دلخواهتان استفاده کنید. از یادداشت کردن اندیسی که انتخاب کرده‌اید اطمینان حاصل کنید.",
         "accountPageExplanation": "برخی از کیف پول‌های شخص ثالث نیاز به صفحات دارند.",
