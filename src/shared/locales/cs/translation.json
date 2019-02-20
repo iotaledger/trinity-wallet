@@ -602,7 +602,7 @@
         "systemCancelledAuth": "Authentication was cancelled by your device",
         "userCancelledAuth": "Authentication request cancelled",
         "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "noPassword": "V zařízení není nastaveno heslo"
     },
     "transferConfirmation": {
         "youAreAbout": "Chystáte se odeslat {{contents}} na adresu",
