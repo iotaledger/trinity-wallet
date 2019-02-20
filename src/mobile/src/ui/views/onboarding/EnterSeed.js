@@ -152,7 +152,6 @@ class EnterSeed extends React.Component {
      */
     onBackPress() {
         navigator.pop(this.props.componentId);
-        delete this.state.seed;
     }
 
     /**

@@ -94,6 +94,12 @@ class ChangePassword extends Component {
         leaveNavigationBreadcrumb('ChangePassword');
     }
 
+    componentWillUnmount() {
+        delete this.state.currentPassword;
+        delete this.state.newPassword;
+        delete this.state.newPasswordReentry;
+    }
+
     /**
      * Updates password in keychain and notifies user of successful password change
      *
