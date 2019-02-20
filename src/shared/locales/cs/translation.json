@@ -682,7 +682,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Kontrola stavu nodu",
         "validatingReceiveAddress": "Ověřování přijímací adresy",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "Ověřování transakčních adres",
         "syncingAccount": "Synchronizace účtu",
         "preparingInputs": "Příprava vstupních dat",
         "preparingTransfers": "Příprava transakce",
@@ -773,7 +773,7 @@
         "sweepConfirmationTitle": "Potvrzení převodu"
     },
     "migration": {
-        "dataMigration": "Data migration",
+        "dataMigration": "Migrace dat",
         "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
         "problemMigratingYourData": "There was a problem migrating your data. Please try again"
     },
