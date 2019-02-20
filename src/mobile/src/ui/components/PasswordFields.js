@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import size from 'lodash/size';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
@@ -80,7 +81,7 @@ class PasswordFields extends Component {
     checkPassword() {
         const { t, password, reentry } = this.props;
         const { score } = this.state;
-        if (password === null || password.length === 0) {
+        if (isEmpty(password)) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         } else if (size(password) >= MIN_PASSWORD_LENGTH && isEqual(password, reentry) && score.score === 4) {
             return this.props.onAcceptPassword();

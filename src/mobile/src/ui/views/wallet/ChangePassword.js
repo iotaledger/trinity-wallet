@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -126,7 +127,7 @@ class ChangePassword extends Component {
      */
     async isPasswordChangeValid() {
         const { t, generateAlert } = this.props;
-        if (this.state.password === null || this.state.password.length === 0) {
+        if (isEmpty(this.state.password)) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         } else if (!isEqual(global.passwordHash, await hash(this.state.currentPassword))) {
             return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
