@@ -790,13 +790,18 @@ const initialise = (getEncryptionKeyPromise) =>
  */
 const initialiseSync = (encryptionKey) => {
     Wallet.createIfNotExists();
+    let hasVersionZeroRealm = false;
+
+    try {
+        hasVersionZeroRealm = Realm.schemaVersion(getStoragePath(0), encryptionKey) !== -1;
+    } catch (error) {}
 
     // FIXME (laumair) - Realm migration setup needs improvement.
     // This is just a quick way to migrate realm data from schema version 0 to 1
     // Schema version 1 adds (missing) "completed" property to AccountInfoDuringSetup schema
     // If onboarding is interrupted on loading (without "completed" property), the wallet throws continuous exceptions
     // See #isSettingUpNewAccount in shared/selectors/accounts
-    if (realm.schemaVersion >= 1 && Realm.schemaVersion(getStoragePath(realm.schemaVersion - 1)) > 0) {
+    if (realm.schemaVersion >= 1 && hasVersionZeroRealm) {
         const schema = map(config.schema, (object) => {
             // Omit "completed" property from AccountInfoDuringSetup schema because it wasn't defined in schema version 0
             if (object.name === 'AccountInfoDuringSetup') {
