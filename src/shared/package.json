@@ -19,9 +19,9 @@
     },
     "license": "Apache-2.0 OR EPL-2.0",
     "dependencies": {
-        "@iota/bundle": "1.0.0-alpha.e5bd9497",
-        "@iota/core": "1.0.0-alpha.66ccc99f",
-        "@iota/signing": "1.0.0-alpha.e5bd9497",
+        "@iota/bundle": "1.0.0-alpha.a09e7908",
+        "@iota/core": "1.0.0-alpha.a09e7908",
+        "@iota/signing": "1.0.0-alpha.a09e7908",
         "bignumber.js": "^8.0.1",
         "i18next": "^12.0.0",
         "iota.lib.js": "git+https://git@github.com/iotaledger/iota.js#develop",
@@ -69,7 +69,7 @@
     },
     "resolutions": {
         "mem": ">=4.0.0",
-        "@iota/core/@iota/signing": "1.0.0-alpha.e5bd9497",
-        "@iota/core/@iota/bundle": "1.0.0-alpha.e5bd9497"
+        "@iota/core/@iota/signing": "1.0.0-alpha.a09e7908",
+        "@iota/core/@iota/bundle": "1.0.0-alpha.a09e7908"
     }
 }
