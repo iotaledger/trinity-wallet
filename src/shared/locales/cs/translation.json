@@ -689,11 +689,11 @@
         "gettingTransactionsToApprove": "Získávání transakcí ke schválení",
         "proofOfWork": "Dokončení proof of work",
         "broadcasting": "Odesílání transakcí do sítě",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Příprava dat",
+        "migratingSettings": "Migrace nastavení",
+        "migratingAccounts": "Migrační účty",
+        "cleaningUpOldData": "Vyčištění starých údajů",
+        "migrationComplete": "Migrace je kompletní",
         "transferComplete": "Přenos byl dokončen"
     },
     "snapshotTransition": {
