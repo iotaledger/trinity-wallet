@@ -452,6 +452,13 @@
 			remoteGlobalIDString = 78510E1974839EACED295CFC857494F6;
 			remoteInfo = RNIsDeviceRooted;
 		};
+		CB2FA6DB221D0CAF00EADBC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB2FA6D7221D0CAE00EADBC9 /* EntangledSigning.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = EntangledSigning;
+		};
 		CB305F0221185EEC00657575 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CB305EFE21185EEC00657575 /* RNFetchBlob.xcodeproj */;
@@ -784,6 +791,7 @@
 		C76D226F8C33DAB67AA9C4D76FCA89C2 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		C883F8A0B4031CE53D5E48217339975E /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C989B5B2E21BB76597A51E0EFEA9B547 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CB2FA6D7221D0CAE00EADBC9 /* EntangledSigning.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EntangledSigning.xcodeproj; path = "../../shared/node_modules/@iota/signing/ios/EntangledSigning.xcodeproj"; sourceTree = "<group>"; };
 		CB305EFE21185EEC00657575 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/rn-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		CB5577D0219F221E00B698BF /* LottieReactNative.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LottieReactNative.xcodeproj; path = "../node_modules/lottie-react-native/src/ios/LottieReactNative.xcodeproj"; sourceTree = "<group>"; };
 		CB61A46520B89E3A004088AA /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-SemiBold.ttf"; path = "../../shared/custom-fonts/SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -945,6 +953,7 @@
 		0FE432859717DE312B0951A32FFC9F0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CB2FA6D7221D0CAE00EADBC9 /* EntangledSigning.xcodeproj */,
 				601BFCF120C3679D0097D329 /* MessageUI.framework */,
 				601BFCEF20C3677E0097D329 /* Social.framework */,
 				1A114AFE31653EBA7706861B9B5706C0 /* ios_bindings-fl.a */,
@@ -1301,6 +1310,14 @@
 				0CF5B6434CE94452810783E0 /* libSigning.a */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		CB2FA6D8221D0CAE00EADBC9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB2FA6DC221D0CAF00EADBC9 /* libEntangledSigning.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		CB305EFF21185EEC00657575 /* Products */ = {
@@ -2167,6 +2184,13 @@
 			fileType = archive.ar;
 			path = libRNDeviceInfo.a;
 			remoteRef = 53DB1F47FFBD018460D6B3F399D77096 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB2FA6DC221D0CAF00EADBC9 /* libEntangledSigning.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEntangledSigning.a;
+			remoteRef = CB2FA6DB221D0CAF00EADBC9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CB305F0321185EEC00657575 /* libRNFetchBlob.a */ = {
