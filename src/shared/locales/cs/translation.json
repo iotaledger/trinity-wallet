@@ -534,7 +534,7 @@
         "million": "Milion",
         "thousand": "Tisíc",
         "one": "Jedna",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTA se obvykle nakupuje v násobcích jednoho milionu (MIOTA), ale může být také posílána jako jedna IOTA.\n"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Proč nemohu použít celý zůstatek mého účtu?",
@@ -570,7 +570,7 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Zazálohovali jste si Váš Seed?",
-        "iHaveBackedUp": "I have safely backed up my seed",
+        "iHaveBackedUp": "Můj Seed mám bezpečně uložený",
         "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "Pokud jste si nezálohovali Váš Seed a Vaše zařízení bude poškozeno, ztratíte všechny Vaše IOTY.",
         "pleaseConfirm": "Prosím potvrďte, že máte bezpečně uložen Váš Seed."
