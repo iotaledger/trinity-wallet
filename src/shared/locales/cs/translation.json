@@ -631,7 +631,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportovat SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault je způsob, jak bezpečně ukládat Váš Seed. Seed je uložen v zašifrovaném souboru a nemůže být zobrazen bez příslušného hesla.",
         "seedVaultWarning": "Ujistěte se, že si zálohujete soubor na více místech (například pevný disk, cloud, USB). Pokud ztratíte tento soubor a nebudete mít uložený Váš Seed jiným způsobem, ztratíte Vaše IOTA.",
         "exportFail": "Export SeedVault se nezdařil",
         "exportFailExplanation": "Během exportování Vašeho SeedVault nastal problém. Zkontrolujte zda máte oprávnění na zápis souboru a dostatek volného místa.",
