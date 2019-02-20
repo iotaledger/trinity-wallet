@@ -161,7 +161,7 @@
         "forceUpdateExplanation": "Byla vydána kritická aktualizace. Aktualizujte aplikaci nyní.",
         "missingPermission": "Požadovaný přístup k souborovému systému",
         "missingPermissionExplanation": "K provedení této funkce potřebujete přístup k souborovému systému.",
-        "swipeToConfirm": "Swipe to confirm"
+        "swipeToConfirm": "Posunutím potvrďte"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -215,7 +215,7 @@
         "passwordTooShortExplanation": "Heslo musí obsahovat minimálně {{minLength}} znaků. Nyní je {{currentLength}} znaků dlouhé. Prosím zkuste to znovu.",
         "passwordMismatch": "Hesla se neshodují",
         "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím zkuste znovu.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Toto je Vaše hlavní heslo peněženky. Budete jej používat pro přihlášení.",
         "retypePassword": "Znovu zadejte heslo"
     },
     "copyToClipboard": {
@@ -249,8 +249,8 @@
         "login": "Přihlásit se",
         "setNode": "Nastavit Node",
         "whyBiometricDisabled": "Proč je biometrické ověřování vypnuté?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "Biometrické ověření je z bezpečnostních důvodů zakázáno při prvním spuštění.",
+        "whyBiometricDisabledExplanationPart2": "Trinity Vás automaticky odhlásí, pokud nebudete aktivní. Potom se můžete znovu přihlásit pomocí biometrického ověření."
     },
     "loading": {
         "loadingFirstTime": "První načítání Seedu.",
