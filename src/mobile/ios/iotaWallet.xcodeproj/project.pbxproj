@@ -355,21 +355,12 @@
 			remoteGlobalIDString = 05DCE99E5CDB80B53B40FFB5818D5E46;
 			remoteInfo = RNPrintTests;
 		};
-<<<<<<< HEAD
-		80896F7A2178B69F0037ABD0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E680B9504C0F4C3AB50FE203 /* RealmReact.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F60690131CA2766F0003FB26;
-			remoteInfo = RealmReact;
-=======
 		80B47905221B5AE000D8BBE0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3642AD7F4F9145FE803D1120 /* Signing.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = Signing;
->>>>>>> feat/native-signing
 		};
 		896DF047E1C2AB724B776DE78051C2CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -889,11 +880,8 @@
 				653C5DB7CF56434CA39B6922 /* libRNNodeJsMobile.a in Frameworks */,
 				F19CAE1462E2409387028CD1 /* NodeMobile.framework in Frameworks */,
 				1AB1A343ADD541F89F9211E6 /* libRealmReact.a in Frameworks */,
-<<<<<<< HEAD
 				5FB6FD850C0F4804AB3811CD /* libc++.tbd in Frameworks */,
-=======
 				C52F74DB4B4E4021AE606C44 /* libSigning.a in Frameworks */,
->>>>>>> feat/native-signing
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1199,17 +1187,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-		80896F772178B69F0037ABD0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				80896F7B2178B69F0037ABD0 /* libRealmReact.a */,
-=======
 		80B47902221B5ADF00D8BBE0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				80B47906221B5AE000D8BBE0 /* libSigning.a */,
->>>>>>> feat/native-signing
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2080,19 +2061,11 @@
 			remoteRef = EFC046C4FF8A48212FB2D5FCA41020D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-<<<<<<< HEAD
-		80896F7B2178B69F0037ABD0 /* libRealmReact.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRealmReact.a;
-			remoteRef = 80896F7A2178B69F0037ABD0 /* PBXContainerItemProxy */;
-=======
 		80B47906221B5AE000D8BBE0 /* libSigning.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libSigning.a;
 			remoteRef = 80B47905221B5AE000D8BBE0 /* PBXContainerItemProxy */;
->>>>>>> feat/native-signing
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8194F08C899A4B07E4F0D7C10D8A04CE /* Pods_iotaWalletTests.framework */ = {
