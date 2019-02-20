@@ -175,7 +175,7 @@ class MultiTextInput extends Component {
                                 style={[styles.messageInput, { color: theme.input.color }]}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
-                                onValidTextChange={(text) => this.onMessageType(text)}
+                                onChangeText={(text) => this.onMessageType(text)}
                                 selectionColor={theme.primary.color}
                                 underlineColorAndroid="transparent"
                                 multiline
