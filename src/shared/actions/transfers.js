@@ -439,6 +439,8 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
     // Keep track if the created bundle is valid after inputs are signed
     let isValidBundle = false;
 
+    let maxInputs = 0;
+
     // Initialize account state
     // Reassign with latest state when account is synced
     let accountState = selectedAccountStateFactory(accountName)(getState());
@@ -453,6 +455,10 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 if (!lastTritIsZero) {
                     throw new Error(Errors.INVALID_LAST_TRIT);
                 }
+                return typeof seedStore.getMaxInputs === 'function' ? seedStore.getMaxInputs() : Promise.resolve(0);
+            })
+            .then((maxInputResponse) => {
+                maxInputs = maxInputResponse;
 
                 // Make sure that the address a user is about to send to is not already used.
                 return isAnyAddressSpent()([address]).then((isSpent) => {
@@ -474,7 +480,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // Progressbar step => (Preparing inputs)
                 dispatch(setNextStepAsActive());
 
-                return getInputs()(accountState.addressData, accountState.transactions, value, seedStore.maxInputs);
+                return getInputs()(accountState.addressData, accountState.transactions, value, maxInputs);
             })
             .then(({ inputs }) => {
                 // Do not allow receiving address to be one of the user's own input addresses.

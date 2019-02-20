@@ -59,6 +59,14 @@ class Keychain extends SeedStoreCore {
     };
 
     /**
+     * Return max supported input count
+     * @returns {number} - 0 for no limit
+     */
+    getMaxInputs = () => {
+        return 0;
+    };
+
+    /**
      * Rename account
      * @param {string} accountId - New account name
      * @returns {boolean} Seed renamed success state

@@ -3,17 +3,20 @@ export const __TEST__ = process.env.NODE_ENV === 'test';
 export const __MOBILE__ = typeof navigator !== 'undefined' && navigator.product === 'ReactNative';
 
 /** Default IRI node */
-export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.thetangle.org:443';
+export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.iota.fm:443';
 
-export const nodesWithPowEnabled = ['https://iotanode.us:443'];
+export const nodesWithPowDisabled = ['https://trinity.iota-tangle.io:14265', 'https://node.iota-tangle.io:14265'];
 
-export const nodesWithPowDisabled = [
+export const nodesWithPowEnabled = [
+    'https://iotanode.us:443',
+    'https://nodes.thetangle.org:443',
+    'https://pool.trytes.eu',
     'https://peanut.iotasalad.org:14265',
     'https://potato.iotasalad.org:14265',
     'https://tuna.iotasalad.org:14265',
     'https://durian.iotasalad.org:14265',
-    'https://nodes.thetangle.org:443',
-    'https://pool.trytes.eu'
+    'https://turnip.iotasalad.org:14265',
+    'https://pow.iota.community:443',
 ];
 
 export const nodes = [...nodesWithPowEnabled, ...nodesWithPowDisabled];

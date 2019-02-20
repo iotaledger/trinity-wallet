@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Rad na odobrenju transakcije",
         "proofOfWork": "Završetak PoW-a",
         "broadcasting": "Emitovanje",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Premestićete {{amount}} na adresu {{address}}. Račun: {{accountName}}, indeks adrese: {{index}}",
         "sweepConfirmationTitle": "Potvrda prenosa"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger novčanik je povezan i spreman",
         "notReady": "Ako želite da koristite Ledge, povežite ga i otklljučajte",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Nastavite sa postavkom Ledger novčanika",
         "accountIndex": "Indeks računa",
         "accountPage": "Strana računa",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Izaberite indeks Ledger računa",
         "accountIndexExplanation": "Vaš Ledger može sačuvati višestruke seed-ove. Svaki seed se identifikuje jedinstvenim brojem indeksa. Nekorišćeni indeks je unapred odabran, ali slobodni ste da izaberete drugi. Obavezno zapišite odabrani broj indeksa.",
         "accountPageExplanation": "Neki novčanici trećih strana zahtevaju strane.",

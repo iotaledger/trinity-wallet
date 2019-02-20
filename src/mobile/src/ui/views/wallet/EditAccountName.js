@@ -140,6 +140,8 @@ export class EditAccountName extends Component {
                 t('addAdditionalSeed:nameInUse'),
                 t('addAdditionalSeed:nameInUseExplanation'),
             );
+        } else if (isAutoPromoting || shouldPreventAction) {
+            this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         } else {
             const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
 

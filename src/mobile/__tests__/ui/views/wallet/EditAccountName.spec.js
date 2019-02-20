@@ -55,6 +55,10 @@ describe('Testing EditAccountName component', () => {
             expect(EditAccountName.propTypes.accountNames).toEqual(PropTypes.array.isRequired);
         });
 
+        it('should require an accountNames array as a prop', () => {
+            expect(EditAccountName.propTypes.accountNames).toEqual(PropTypes.array.isRequired);
+        });
+
         it('should require a generateAlert function as a prop', () => {
             expect(EditAccountName.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
         });

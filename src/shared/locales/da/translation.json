@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Modtager transaktion til godkendelse",
         "proofOfWork": "Fuldfører PoW",
         "broadcasting": "Sender transaktion til netværk",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Overførsel gennemført"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Du er ved at flytte {{amount}} til adressen {{address}}. Konto: {{accountName}}, adresseindeks: {{index}}",
         "sweepConfirmationTitle": "Sweep-bekræftelse"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Bogføringsenhed tilsluttet og klar",
         "notReady": "Ønsker du at benytte en Bogføringsenheden, så tilslut og oplås den nu",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Fortsæt med Bogføringsopsætning",
         "accountIndex": "Kontoindeks",
         "accountPage": "Kontoside",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Vælg din Bogføringskontoindeks",
         "accountIndexExplanation": "Din Hovedkonto kan gemme flere hovednøgler. Hver hovednøgle er identificeret af et entydigt indeksnummer. Et ubrugt indeks er blevet forudvalgt, men du er velkommen til at vælge din eget. Sørg for at du registrerer dit valgte indeksnummer.",
         "accountPageExplanation": "Visse tredjepartstegnebøger kræver sider.",
