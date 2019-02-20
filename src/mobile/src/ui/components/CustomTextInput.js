@@ -1,7 +1,7 @@
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { MAX_SEED_TRITS, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils'; // getChecksum
+import { MAX_SEED_TRITS, VALID_SEED_REGEX, getChecksum } from 'shared-modules/libs/iota/utils';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -258,7 +258,7 @@ class CustomTextInput extends Component {
         } else if (size(value) > MAX_SEED_TRITS) {
             checksumValue = '> 81';
         } else if (size(value) === MAX_SEED_TRITS) {
-            return 'OOO'; //Temp - Fix checksum function - checksumValue = getChecksum(value);
+            checksumValue = getChecksum(tritsToChars(value)); // FIXME: Replace with trit checksum calculation
         }
         return checksumValue;
     }
