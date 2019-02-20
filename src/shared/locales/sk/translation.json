@@ -336,7 +336,7 @@
         "invalidAddressExplanation1": "Adresa by mala byť dlhá {{maxLength}} znakov a mala by mať kontrolný súčet.",
         "invalidAddressExplanation2": "Adresa obsahuje neplatné znaky.",
         "invalidAddressExplanation3": "Adresa má nesprávny kontrolný súčet.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "Skontrolujte, či ste adresu zadali správne.",
         "invalidAddressExplanationGeneric": "Platné adresy by mali mať 90 znakov a môžu obsahovať len znaky A-Z alebo 9.",
         "notEnoughFunds": "Nedostatok prostriedkov",
         "notEnoughFundsExplanation": "Nemáte dostatok IOTA na dokončenie tejto transakcie.",
@@ -462,7 +462,7 @@
         "retrying": "Pokúša sa znova",
         "yesterday": "Včera",
         "promotingAnotherBundle": "Podpora ďalšieho balíčku",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Prosím počkajte, Trinity podporuje ďalší balíček."
     },
     "accountManagement": {
         "viewSeed": "Zobraziť Seed",
@@ -645,8 +645,8 @@
         "importSuccessExplanation": "Váš Seed bol úspešne importovaný.",
         "saveToDownloadFolder": "Uložiť do priečinku stiahnuté",
         "importSeedVault": "Importovať SeedVault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
+        "dropInstructions": "Sem pretiahnite SeedVault alebo text so Seedom <1></1> alebo kliknite pre prechádzanie",
+        "dropActive": "Sem pretiahnite SeedVault alebo text so Seedom",
         "enterKeyExplanation": "Zadajte Vaše heslo k otvoreniu súboru SeedVault",
         "noSeedFound": "SeedVault neobsahuje platný seed",
         "noSeedFoundExplanation": "SeedVault je buď prázdny, alebo obsahuje seed v neplatnom formáte.",
@@ -690,8 +690,8 @@
         "proofOfWork": "Dokončenie proof of work",
         "broadcasting": "Odosielanie transakcií do siete",
         "preparingData": "Príprava dát",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
+        "migratingSettings": "Migrácia nastavení",
+        "migratingAccounts": "Migrácia účtov",
         "cleaningUpOldData": "Vyčistenie starých údajov",
         "migrationComplete": "Migrácia je kompletná",
         "transferComplete": "Prenos bol dokončený"
@@ -709,7 +709,7 @@
         "transitioning": "Aktualizácia údajov po Snapshote.",
         "generatingAndDetecting": "Generujem adresy a zisťujem zostatok.",
         "attaching": "Pripájam adresy do siete Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Pripojenie adresy {{currentAddress}} z {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatické vyplnenie úspešné",
@@ -720,7 +720,7 @@
         "noUpdatesAvailable": "Nie sú dostupné žiadne aktualizácie",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "K dispozícií je nová verzia",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "K dispozícií je nová verzia Trinity. Chcete teraz aktualizovať?",
         "installUpdate": "Nainštalujte aktualizáciu a reštartujte",
         "installUpdateExplanation": "Stahovanie bolo dokončené, Trinity reštartuje a nainštaluje aktualizáciu.",
         "downloadingUpdate": "Sťahuje sa aktualizácia...",
@@ -774,7 +774,7 @@
     },
     "migration": {
         "dataMigration": "Migrácia dát",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "dataMigrationExplanation": "V záujme lepšieho výkonu a niektorých obmedzení, Trinity momentálne používa novú databázu pre ukladanie nastavení účtu a dát. Počkajte, kým Trinity automaticky prenesie Vaše dáta.",
         "problemMigratingYourData": "Objavil sa problém s migráciu Vaších dát, skúste to prosím znova"
     },
     "ledger": {
