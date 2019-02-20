@@ -250,7 +250,7 @@
         "setNode": "Nastaviť Node",
         "whyBiometricDisabled": "Prečo je biometrické overovanie vypnuté?",
         "whyBiometricDisabledExplanationPart1": "Biometrické overenie je z bezpečnostných dôvodov zakázané pri prvom spustení.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart2": "Trinity Vás automaticky odhlási, pokiaľ nebudete aktívny. Potom se môžete znova prihlásiť pomocou biometrického overenia."
     },
     "loading": {
         "loadingFirstTime": "Prvotné načítanie Seedu.",
@@ -282,7 +282,7 @@
         "print": "Tlačiť",
         "paperConvenience": "Vytlačenie papierovej kópie vášho Seedu je vhodný spôsob, ako ho uchovať.",
         "publicInsecure": "Ale tlačenie cez verejnú wifi alebo na verejnej tlačiarni nie je bezpečné.",
-        "pleaseCheck": "Please check and confirm before you print",
+        "pleaseCheck": "Pred vytlačením skontrolujte a potvrďte",
         "wifiConfirmation": "Nie som pripojený k verejnej WiFi sieti",
         "printerConfirmation": "Netlačím na verejnej tlačiarni"
     },
@@ -300,7 +300,7 @@
         "generateAnAddress": "Generovať adresu",
         "generateAnAddressTitle": "Generovať adresu",
         "generateAnAddressExplanation": "Prosím vygenerujte adresu pred použitím tejto funkcie.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "Vygenerujte zakaždým novú adresu, keď chcete prijať IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte váš Seed",
@@ -314,7 +314,7 @@
         "letsWriteDownYourSeed": "Zapíšte si niekde Váš Seed",
         "youCanHighlightCharacters": "Môžete zvýrazniť 9 znakov súčasne",
         "printBlankWallet": "Tlač prázdnej šablóny",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Čo je kontrolný súčet?",
         "everySeedHasAChecksum": "Každý Seed má zodpovedajúci 3-znakový kontrolný súčet.",
         "iHavesavedMySeed": "Svoj Seed mám uložený",
         "checksumExplanation": "Vždy, keď pridáte Seed do vašej peňaženky, mali by ste sa uistiť, že kontrolný súčet vygenerovaný peňaženkou zodpovedá tomu, ktorý ste si zapísali.",
@@ -322,13 +322,13 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Prosím, potvrďte váš Seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity Vás nikdy nebude vyzývať ku znovuvloženiu tohto Seedu. Výnimkou je reset Vašej peňaženky, prípadne nová inštalácia aplikácie.",
         "enterYourSeed": "Vložte váš Seed",
         "incorrectSeed": "Neplatný Seed",
         "incorrectSeedExplanation": "Seed, ktorý ste zadali, je neplatný. Prosím, skúste to znova.",
         "ifYouHaveNotSaved": "Ak nemáte svoj Seed zálohovaný, vráťte sa, prosím, späť a urobte tak.",
         "enterSeedBelow": "Zadajte nižšie váš novovytvorený Seed pre potvrdenie, že ste si ho správne zazálohovali",
-        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarning": "UPOZORNENIE: Nedá sa vložiť Seed",
         "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
@@ -358,7 +358,7 @@
         "addressPasteDetected": "Zistené kopírovanie adresy",
         "addressPasteExplanation": "Vyzerá to, že ste skopírovali adresu zo schránky. Uistite sa, že vložená adresa je naozaj tá, na ktorú chcete odoslať prostriedky.",
         "invalid": "NEPLATNÝ",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Potiahnutím pošli"
     },
     "setSeedName": {
         "letsAddName": "Zadajte názov",
@@ -388,7 +388,7 @@
         "changePassword": "Zmeniť heslo",
         "general": "Všeobecné nastavenia",
         "advanced": "Pokročilé nastavenia",
-        "account": "Account settings",
+        "account": "Nastavenie účtu",
         "logout": "Odhlásiť",
         "reset": "Obnoviť peňaženku",
         "syncingComplete": "Synchronizácia dokončená",
@@ -528,13 +528,13 @@
         "scan": "Naskenujte QR kód"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Jednotkový systém",
         "trillion": "Bilión",
         "billion": "Miliarda",
         "million": "Milión",
         "thousand": "Tisíc",
         "one": "Jedna",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTA sa obvykle nakupuje v násobkoch jedného miliónu (MIOTA), ale môže byť tiež posielaná ako jedna IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Prečo nemôžem použiť celý zostatok môjho účtu?",
@@ -592,25 +592,25 @@
         "fingerprintUnavailable": "Biometrické overenie nie je k dispozícii",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Vaše zariadenie nepodporuje biometrické overenie alebo nebolo povolené v nastaveniach vášho zariadenia.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "notSupported": "Zariadenie nepodporuje biometrické overovanie",
+        "notConfigured": "Biometrické overenie nebolo v nastaveniach zariadenia nakonfigurované",
+        "buttonInstructionsDisable": "Stisknutím tlačidla nižšie vypnete overovanie otiskov prstov.",
         "buttonInstructionsEnable": "Tlačidlom nižšie zapnete overovanie odtlačkom prsta.",
         "buttonInstructionsDisableIPhoneX": "Stlačením tlačidla nižšie vypnete overenie pomocou rozpoznávania tváre",
         "buttonInstructionsEnableIPhoneX": "Stlačením tlačidla nižšie zapnete overenie pomocou rozpoznávania tváre",
         "instructionsLogin": "Pre prihlásenie priložte prst na čítačku",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
+        "systemCancelledAuth": "Overovanie bolo prerušené Vašim zariadením",
+        "userCancelledAuth": "Žiadosť o overenie bola zrušená",
         "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "noPassword": "V zariadení nie je nastavené heslo"
     },
     "transferConfirmation": {
         "youAreAbout": "Chystáte se odoslať {{contents}} na adresu",
         "aMessage": "správa",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "Od {{selectedAccountName}}",
+        "toAddress": "Na adresu",
+        "sendingAMessage": "Odosielanie správy",
+        "sendingAnEmptyMessage": "Odosielanie prázdnej správy"
     },
     "twoFA": {
         "wrongCode": "Neplatný kód",
@@ -692,9 +692,9 @@
         "preparingData": "Preparing data",
         "migratingSettings": "Migrating settings",
         "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "cleaningUpOldData": "Vyčistenie starých údajov",
+        "migrationComplete": "Migrácia je kompletná",
+        "transferComplete": "Prenos bol dokončený"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Nie je možné dokončiť aktualizáciu údajov po Snapshote",
@@ -773,7 +773,7 @@
         "sweepConfirmationTitle": "Potvrdenie prevodu"
     },
     "migration": {
-        "dataMigration": "Data migration",
+        "dataMigration": "Migrácia dát",
         "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
         "problemMigratingYourData": "There was a problem migrating your data. Please try again"
     },
@@ -785,8 +785,8 @@
         "proceedWithLedger": "Pokračovať v nastavovaní Ledgeru",
         "accountIndex": "Index účtu",
         "accountPage": "Stránka účtu",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Prístup k zariadeniu Ledger bol zrušený",
+        "actionCancelledExplanation": "Akcia sa nedá vykonať bez prístupu k zariadeniu Ledger.",
         "chooseAccountIndex": "Vyberte index účtu vo Vašom Ledgeri",
         "accountIndexExplanation": "Vaše zariadenie Ledger môže ukladať viacero Seedov. Každý Seed je označený jedinečným indexovým číslom. Nepoužitý index bol dopredu vybraný, ale môžete si zvoliť vlastný. Presvedčte sa, že ste si zaznamenali zvolené číslo indexu.",
         "accountPageExplanation": "Niektoré peňaženky tretích strán vyžadujú použitie \"stron\".",
