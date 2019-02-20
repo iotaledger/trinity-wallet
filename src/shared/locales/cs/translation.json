@@ -121,7 +121,7 @@
         "nodeDuplicatedExplanation": "Tento vlastní Node je již v seznamu.",
         "nodeAutoChanged": "Automatické přepnutí Nodu",
         "nodeAutoChangedExplanation": "Přepnuto na nový Node {{- nodeAddress}} jelikož dříve vybraný je offline.",
-        "touchSensor": "Touch the fingerprint sensor",
+        "touchSensor": "Dotkněte se snímače otisků prstů",
         "fingerprintOnSend": "Pro ověření přenosu přiložte prst na čtečku",
         "masterKey": "Váš IOTA seed je hlavním klíčem k vašim IOTA financím.",
         "seedThief": "Kdo získá Váš Seed, ten by mohl ukrást vaše IOTA finance.",
@@ -160,7 +160,7 @@
         "forceUpdate": "Chcete-li pokračovat, aktualizujte aplikaci",
         "forceUpdateExplanation": "Byla vydána kritická aktualizace. Aktualizujte aplikaci nyní.",
         "missingPermission": "Požadovaný přístup k souborovému systému",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "missingPermissionExplanation": "K provedení této funkce potřebujete přístup k souborovému systému.",
         "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
@@ -774,8 +774,8 @@
     },
     "migration": {
         "dataMigration": "Migrace dat",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+        "dataMigrationExplanation": "V zájmu lepšího výkonu a některých omezení, Trinity nyní používá novou databázi pro ukládání nastavení účtu a dat. Počkejte, až Trinity automaticky přenese Vaše data.",
+        "problemMigratingYourData": "Objevil se problém s migrací Vašich dat, zkuste to prosím znovu"
     },
     "ledger": {
         "ready": "Zařízení Ledger je připojené a připravené k práci",
