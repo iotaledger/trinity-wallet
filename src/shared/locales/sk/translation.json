@@ -23,7 +23,7 @@
         "nodeOutOfSync": "Váš Node nie je synchronizovaný",
         "nodeOutOfSyncExplanation": "Vami zvolený Node nie je synchronizovaný. Prosím, zmeňte Node alebo to skúste znova.",
         "experimentalNode": "Nepodporovaná verzia Nodu",
-        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
+        "experimentalNodeExplanation": "Vami zvolený Node nie je synchronizovaný. Prosím zmeňte Node alebo akciu opakujte.",
         "thisNodeOutOfSync": "Vami zvolený Node nie je synchronizovaný. Prosím, zmeňte Node alebo to skúste znova.",
         "seed": "Seed",
         "checksum": "Kontrolný súčet",
@@ -76,8 +76,8 @@
         "wallet": "Peňaženka",
         "all": "Všetko",
         "sent": "Odoslané",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "Obdržali ste",
+        "youSent": "Poslali ste",
         "received": "Prijaté",
         "sending": "Odosielanie",
         "receiving": "Prijímanie",
@@ -121,7 +121,7 @@
         "nodeDuplicatedExplanation": "Tento vlastný Node je už v zozname.",
         "nodeAutoChanged": "Automatické prepnutie Nodu",
         "nodeAutoChangedExplanation": "Prepnuté na nový Node {{- nodeAddress}} keďže predtým vybraný je offline.",
-        "touchSensor": "Touch the fingerprint sensor",
+        "touchSensor": "Dotknite sa snímača otisku prstov",
         "fingerprintOnSend": "Pre overenie prenosu priložte prst na čítačku",
         "masterKey": "Váš IOTA Seed je hlavným prístupovým kľúčom k vašim prostriedkom.",
         "seedThief": "Ak získa niekto iný váš Seed, môže ukradnúť vaše IOTA.",
@@ -133,7 +133,7 @@
         "spentAddressExplanation": "UPOZORNENIE: Prostriedky na adresách z ktorých bolo už odoslané",
         "discordInformation": "Odosielanie z rovnakej adresy viackrát je nebezpečné. Prosím, navštívte #help kanál v aplikácii Discord, aby ste zistili, čo môžete urobiť.",
         "androidInsecureClipboardWarning": "Schránka v systéme Android nie je bezpečná.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "Nikdy nekopírujte / nevkladajte Seed na zariadení s Androidom.",
         "willNotCopyPasteSeed": "Nebudem kopírovať/vkladať svoj Seed",
         "mustBeStoredAppropriately": "Musí byť uložený zodpovedajúcim spôsobom.",
         "deviceMayBecomeUnresponsive": "Vaše zariadenie môže na chvíľu prestať reagovať.",
@@ -153,15 +153,15 @@
         "errorAccessingKeychain": "Chyba kľúčenky",
         "errorAccessingKeychainExplanation": "Nie je možné získať prístup k úložišti kľúčov.",
         "mainWallet": "HLAVNÝ ÚČET",
-        "confirm": "Confirm",
+        "confirm": "Potvrdiť",
         "delete": "Odstrániť",
         "shouldUpdate": "Je k dispozicii nová aktualizácia",
         "shouldUpdateExplanation": "Bola vydaná nová aktualizácia. Doporučujeme aktualizovať na najnovšiu verziu.",
         "forceUpdate": "Ak chcete pokračovať, aktualizujte aplikáciu",
         "forceUpdateExplanation": "Bola vydaná kritická aktualizácia. Ihneď aktualizujte aplikáciu.",
         "missingPermission": "Je požadované povolenie súborového systému",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
-        "swipeToConfirm": "Swipe to confirm"
+        "missingPermissionExplanation": "K potvrdeniu tejto funkcie potrebujete prístup k súborovému systému.",
+        "swipeToConfirm": "Posunutím potvrďte"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -215,7 +215,7 @@
         "passwordTooShortExplanation": "Heslo musí obsahovať minimálne {{minLength}} znakov. Vaše heslo má momentálne {{currentLength}} znakov. Prosím, skúste to znova.",
         "passwordMismatch": "Heslá sa nezhodujú",
         "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím, skúste to znova.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Toto je Vaše hlavné heslo peňaženky. Budete ho používať pri prihláseni.",
         "retypePassword": "Zadajte heslo znova"
     },
     "copyToClipboard": {
@@ -249,7 +249,7 @@
         "login": "Prihlásiť sa",
         "setNode": "Nastaviť Node",
         "whyBiometricDisabled": "Prečo je biometrické overovanie vypnuté?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart1": "Biometrické overenie je z bezpečnostných dôvodov zakázané pri prvom spustení.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
@@ -283,8 +283,8 @@
         "paperConvenience": "Vytlačenie papierovej kópie vášho Seedu je vhodný spôsob, ako ho uchovať.",
         "publicInsecure": "Ale tlačenie cez verejnú wifi alebo na verejnej tlačiarni nie je bezpečné.",
         "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "wifiConfirmation": "Nie som pripojený k verejnej WiFi sieti",
+        "printerConfirmation": "Netlačím na verejnej tlačiarni"
     },
     "receive": {
         "yourAddress": "Vaša adresa",
