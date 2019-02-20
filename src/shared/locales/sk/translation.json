@@ -329,7 +329,7 @@
         "ifYouHaveNotSaved": "Ak nemáte svoj Seed zálohovaný, vráťte sa, prosím, späť a urobte tak.",
         "enterSeedBelow": "Zadajte nižšie váš novovytvorený Seed pre potvrdenie, že ste si ho správne zazálohovali",
         "clipboardWarning": "UPOZORNENIE: Nedá sa vložiť Seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarningExplanation": "Možnosť vloženia je vypnutá pre Vašu bezpečnosť. Namiesto toho môžete preťiahnúť myšou Seed z textového súboru."
     },
     "send": {
         "invalidAddress": "Neplatná adresa",
@@ -631,7 +631,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportovať SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault je spôsob, ako bezpečne uložiť Váš Seed. Seed je uložený v zašifrovanom súbore a nemôže byť zobrazený bez príslušného hesla.",
         "seedVaultWarning": "Uistite sa, že si zálohujete súbor na viacerých miestach (napríklad pevný disk, cloud, USB). Ak stratíte tento súbor a nebudete mať uložený Váš seed iným spôsobom, stratíte Vaše IOTA.",
         "exportFail": "Export SeedVault zlyhal",
         "exportFailExplanation": "Počas exportovania Vášho SeedVault nastal problém. Prosím, uistite sa, že máte povolenie na zápis súborov a dostatok miesta.",
@@ -652,7 +652,7 @@
         "noSeedFoundExplanation": "SeedVault je buď prázdny, alebo obsahuje seed v neplatnom formáte.",
         "seedFileError": "Otvorenie SeedVault zlyhalo",
         "seedFileErrorExplanation": "Počas otvárania SeedVault nastal problém. Ak Ste zvolili naozaj správny súbor, je možné, že je poškodený.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "Najprv potrebujeme zabezpečiť Váš SeedVault. Vyberte si prosím heslo k zašifrovaniu súboru. Toto heslo použijete, pokiaľ budete potrebovať obnoviť Váš Seed zo zálohy SeedVault.",
         "retypeKey": "Zadajte heslo znova"
     },
     "chart": {
