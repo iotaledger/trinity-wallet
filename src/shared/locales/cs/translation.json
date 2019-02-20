@@ -599,9 +599,9 @@
         "buttonInstructionsDisableIPhoneX": "Stisknutím tlačítka níže vypnete ověření pomocí rozpoznávání obličeje",
         "buttonInstructionsEnableIPhoneX": "Stisknutím tlačítka níže zapnete ověření pomocí rozpoznávání obličeje",
         "instructionsLogin": "Pro přihlášení přiložte prst na čtečku",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
+        "systemCancelledAuth": "Ověřování bylo přerušeno zařízením",
+        "userCancelledAuth": "Žádost o ověření byla zrušena",
+        "passwordFallback": "Návrat zpět k ověřování heslem",
         "noPassword": "V zařízení není nastaveno heslo"
     },
     "transferConfirmation": {
@@ -614,7 +614,7 @@
     },
     "twoFA": {
         "wrongCode": "Nesprávný kód",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "Zadaný kód je nesprávný. Pokud tato chyba přetrvává, zkontrolujte, zda máte v přístroji nastaven správný čas.",
         "emptyCode": "Prázdný kód",
         "emptyCodeExplanation": "Prosím opakujte zadání kódu.",
         "keyCopied": "Klíč zkopírován do schránky",
@@ -785,8 +785,8 @@
         "proceedWithLedger": "Pokračovat v nastavení zařízení Ledger",
         "accountIndex": "Index účtu",
         "accountPage": "Stránka účtu",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Přístup k zařízení Ledger byl zrušen",
+        "actionCancelledExplanation": "Akci nelze provést bez přístupu k zařízení Ledger.",
         "chooseAccountIndex": "Vyberte Index účtu ve Vašem Ledgeru",
         "accountIndexExplanation": "Vaše zařízení Ledger může ukládat více Seedů. Každý Seed je označen jedinečným indexovým číslem. Nepoužitý index byl předem vybrán, ale můžete si zvolit vlastní. Ujistěte se, že jste si poznamenali zvolené číslo indexu.",
         "accountPageExplanation": "Některé peněženky třetích stran vyžadují použití \"stron\".",
