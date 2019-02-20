@@ -521,7 +521,7 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Určite sa chcete odhlásiť?",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "Rozhodli ste sa odhlásiť",
         "areYouSure": "Ste si istý?"
     },
     "qrScanner": {
@@ -556,7 +556,7 @@
         "syncingYourAccount": "Váš účet sa synchronizuje."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Zadajte názov účtu a Seed",
         "incorrectFormat": "Nesprávny formát Seedu",
         "validSeedExplanation": "Platný Seed má 81 znakov a obsahuje iba znaky A-Z alebo 9."
     },
@@ -570,8 +570,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Zazálohovali ste si váš Seed?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Môj Seed mám bezpečne uložený",
+        "reenterSeed": "V nasledujúcom kroku budete požiadaní o znovu vloženie Vašeho Seedu.",
         "reenterSeedWarning": "Ak ste si nezazálohovali váš Seed a vaše zariadenie bude poškodené, stratíte všetky vaše IOTY.",
         "pleaseConfirm": "Potvrďte, prosím, že máte váš Seed bezpečne uložený."
     },
@@ -590,7 +590,7 @@
         "fingerprintAuthFailedExplanation": "Overenie odtlačkom prsta zlyhalo. Prosím, skúste to znova.",
         "status": "Stav",
         "fingerprintUnavailable": "Biometrické overenie nie je k dispozícii",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "Autentizácia je zakázaná po dobu 30 sekúnd",
         "fingerprintUnavailableExplanation": "Vaše zariadenie nepodporuje biometrické overenie alebo nebolo povolené v nastaveniach vášho zariadenia.",
         "notSupported": "Zariadenie nepodporuje biometrické overovanie",
         "notConfigured": "Biometrické overenie nebolo v nastaveniach zariadenia nakonfigurované",
@@ -601,7 +601,7 @@
         "instructionsLogin": "Pre prihlásenie priložte prst na čítačku",
         "systemCancelledAuth": "Overovanie bolo prerušené Vašim zariadením",
         "userCancelledAuth": "Žiadosť o overenie bola zrušená",
-        "passwordFallback": "Fall back to password authentication",
+        "passwordFallback": "Návrat späť k overovaniu heslom",
         "noPassword": "V zariadení nie je nastavené heslo"
     },
     "transferConfirmation": {
@@ -614,7 +614,7 @@
     },
     "twoFA": {
         "wrongCode": "Neplatný kód",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "Zadaný kód je nesprávny. Pokiaľ táto chyba pretrváva, skontrolujte, či máte v zariadení nastavený správny čas.",
         "emptyCode": "Prázdny kód",
         "emptyCodeExplanation": "Prosím, zadajte kód a skúste to znova.",
         "keyCopied": "Kľúč skopírovaný do schránky",
@@ -653,7 +653,7 @@
         "seedFileError": "Otvorenie SeedVault zlyhalo",
         "seedFileErrorExplanation": "Počas otvárania SeedVault nastal problém. Ak Ste zvolili naozaj správny súbor, je možné, že je poškodený.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Zadajte heslo znova"
     },
     "chart": {
         "mcap": "MCAP",
@@ -682,14 +682,14 @@
     "progressSteps": {
         "checkingNodeHealth": "Kontrola stavu Nodu",
         "validatingReceiveAddress": "Overovanie prijímacie adresy",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "Overovanie transakčných adries",
         "syncingAccount": "Synchronizácia účtu",
         "preparingInputs": "Príprava vstupných dát",
         "preparingTransfers": "Príprava transakcie",
         "gettingTransactionsToApprove": "Získanie transakcií na schválenie",
         "proofOfWork": "Dokončenie proof of work",
         "broadcasting": "Odosielanie transakcií do siete",
-        "preparingData": "Preparing data",
+        "preparingData": "Príprava dát",
         "migratingSettings": "Migrating settings",
         "migratingAccounts": "Migrating accounts",
         "cleaningUpOldData": "Vyčistenie starých údajov",
@@ -775,7 +775,7 @@
     "migration": {
         "dataMigration": "Migrácia dát",
         "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+        "problemMigratingYourData": "Objavil sa problém s migráciu Vaších dát, skúste to prosím znova"
     },
     "ledger": {
         "ready": "Zariadenie Ledger je pripojené a pripravené k práci",
