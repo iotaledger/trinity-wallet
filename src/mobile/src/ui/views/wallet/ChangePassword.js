@@ -127,7 +127,7 @@ class ChangePassword extends Component {
      */
     async isPasswordChangeValid() {
         const { t, generateAlert } = this.props;
-        if (isEmpty(this.state.password)) {
+        if (isEmpty(this.state.currentPassword)) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         } else if (!isEqual(global.passwordHash, await hash(this.state.currentPassword))) {
             return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
