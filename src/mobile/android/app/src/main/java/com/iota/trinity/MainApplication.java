@@ -39,6 +39,7 @@ import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
 import com.facebook.react.ReactNativeHost;
 import org.iota.ReactNativeSigning.SigningPackage;
+import com.zapper.QRCodePackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -67,6 +68,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
                 new TranslucentModalReactPackage(),
                 new SvgPackage(),
                 new MainReactPackage(),
+                new QRCodePackage(),
                 new RNCameraPackage(),
                 new QRScanReaderPackage(),
                 new ReactNativeDocumentPicker(),
