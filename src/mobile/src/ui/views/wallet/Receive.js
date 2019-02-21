@@ -615,7 +615,7 @@ class Receive extends Component {
                                 >
                                     {!isGeneratingReceiveAddress &&
                                         hasSuccessfullyGeneratedAddress && (
-                                            <CustomQrCodeComponent value={qrContent} size={width / 2} />
+                                            <CustomQrCodeComponent value={qrContent} size={isAndroid ? width / 2 : width / 3} />
                                         )}
                                     {/* FIXME: Overflow: 'visible' is not supported on Android*/}
                                     {isAndroid && (
@@ -744,7 +744,7 @@ class Receive extends Component {
                                             this.qr = c;
                                         }}
                                     >
-                                        <CustomQrCodeComponent value={qrContent} size={width / 2} />
+                                        <CustomQrCodeComponent value={qrContent} size={isAndroid ? width / 2 : width / 3} />
                                     </View>
                                 </View>
                                 <View
