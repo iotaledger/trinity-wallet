@@ -76,9 +76,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    qrFrame: {
-        padding: width / 20,
-    },
     addressContainer: {
         flex: 2.75,
         justifyContent: 'center',
@@ -618,12 +615,7 @@ class Receive extends Component {
                                 >
                                     {!isGeneratingReceiveAddress &&
                                         hasSuccessfullyGeneratedAddress && (
-                                            <CustomQrCodeComponent
-                                                value={qrContent}
-                                                size={width / 3}
-                                                color="black"
-                                                backgroundColor="transparent"
-                                            />
+                                            <CustomQrCodeComponent value={qrContent} size={width / 2} />
                                         )}
                                     {/* FIXME: Overflow: 'visible' is not supported on Android*/}
                                     {isAndroid && (
@@ -747,17 +739,12 @@ class Receive extends Component {
                                 </View>
                                 <View style={[styles.qrContainerBack, { backgroundColor: '#F2F2F2' }]}>
                                     <View
-                                        style={[styles.qrFrame, { backgroundColor: '#F2F2F2' }]}
+                                        style={{ backgroundColor: '#F2F2F2' }}
                                         ref={(c) => {
                                             this.qr = c;
                                         }}
                                     >
-                                        <CustomQrCodeComponent
-                                            value={qrContent}
-                                            size={width / 3}
-                                            color="black"
-                                            backgroundColor="transparent"
-                                        />
+                                        <CustomQrCodeComponent value={qrContent} size={width / 2} />
                                     </View>
                                 </View>
                                 <View
