@@ -28,7 +28,7 @@ export const generatePasswordHash = async (password, salt) => {
     const salt64 = await encodeBase64(salt);
     if (isAndroid) {
         return getHashFn()(values(password), salt64, DEFAULT_ARGON2_PARAMS).then(
-            (result) => Uint8Array.from(result),
+            (result) => new Uint8Array(result),
             (error) => console.log(error), // eslint-disable-line no-console
         );
     }

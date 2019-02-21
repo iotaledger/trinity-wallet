@@ -110,7 +110,7 @@ class SeedReentry extends Component {
     onDonePress() {
         const { t, theme: { body } } = this.props;
         const { reenteredSeed } = this.state;
-        if (isEqual(reenteredSeed, global.onboardingSeed)) {
+        if (global.onboardingSeed && isEqual(reenteredSeed, global.onboardingSeed)) {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }

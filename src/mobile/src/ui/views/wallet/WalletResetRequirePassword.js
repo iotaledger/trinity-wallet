@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
@@ -141,7 +142,7 @@ class WalletResetRequirePassword extends Component {
         if (isAutoPromoting || shouldPreventAction) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
-        if (this.state.password === null || this.state.password.length === 0) {
+        if (isEmpty(this.state.password)) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         } else if (await this.isAuthenticated()) {
             reinitialiseStorage(getEncryptionKey)

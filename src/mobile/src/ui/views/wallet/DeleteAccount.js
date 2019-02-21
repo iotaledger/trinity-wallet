@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
@@ -154,7 +155,7 @@ class DeleteAccount extends Component {
         if (!this.state.pressedContinue) {
             return this.setState({ pressedContinue: true });
         }
-        if (this.state.password === null || this.state.password.length === 0) {
+        if (isEmpty(this.state.password)) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         } else if (isEqual(global.passwordHash, await hash(this.state.password))) {
             if (isAutoPromoting || this.props.shouldPreventAction) {

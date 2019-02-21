@@ -1,6 +1,6 @@
 {
   "name": "trinity-mobile",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -119,12 +119,12 @@
     "rn-nodeify": "^10.0.1"
   },
   "resolutions": {
-    "@iota/bundle": "1.0.0-alpha.66ccc99f",
-    "@iota/core": "1.0.0-alpha.66ccc99f",
-    "@iota/signing": "1.0.0-alpha.66ccc99f",
-    "@iota/bundle-validator": "1.0.0-alpha.66ccc99f",
-    "@iota/core/@iota/signing": "1.0.0-alpha.66ccc99f",
-    "@iota/core/@iota/bundle": "1.0.0-alpha.66ccc99f"
+    "@iota/bundle": "1.0.0-alpha.a09e7908",
+    "@iota/core": "1.0.0-alpha.a09e7908",
+    "@iota/signing": "1.0.0-alpha.a09e7908",
+    "@iota/bundle-validator": "1.0.0-alpha.a09e7908",
+    "@iota/core/@iota/signing": "1.0.0-alpha.a09e7908",
+    "@iota/core/@iota/bundle": "1.0.0-alpha.a09e7908"
   },
   "jest": {
     "preset": "react-native",

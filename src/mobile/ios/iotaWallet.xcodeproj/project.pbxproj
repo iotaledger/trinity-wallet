@@ -452,7 +452,7 @@
 			remoteGlobalIDString = 78510E1974839EACED295CFC857494F6;
 			remoteInfo = RNIsDeviceRooted;
 		};
-		CB2FA6DB221D0CAF00EADBC9 /* PBXContainerItemProxy */ = {
+		CB2FA70D221D8CC300EADBC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CB2FA6D7221D0CAE00EADBC9 /* EntangledSigning.xcodeproj */;
 			proxyType = 2;
@@ -1312,10 +1312,10 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		CB2FA6D8221D0CAE00EADBC9 /* Products */ = {
+		CB2FA707221D8CC200EADBC9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CB2FA6DC221D0CAF00EADBC9 /* libEntangledSigning.a */,
+				CB2FA70E221D8CC300EADBC9 /* libEntangledSigning.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1702,6 +1702,10 @@
 				{
 					ProductGroup = 59F1A29AC9936E37D7CCA793B573FE14 /* Products */;
 					ProjectRef = 5BC0CFE5E7DFF31220E78B818DA00C4B /* BugsnagReactNative.xcodeproj */;
+				},
+				{
+					ProductGroup = CB2FA707221D8CC200EADBC9 /* Products */;
+					ProjectRef = CB2FA6D7221D0CAE00EADBC9 /* EntangledSigning.xcodeproj */;
 				},
 				{
 					ProductGroup = 6016736E221D15350011CC20 /* Products */;
@@ -2186,11 +2190,11 @@
 			remoteRef = 53DB1F47FFBD018460D6B3F399D77096 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CB2FA6DC221D0CAF00EADBC9 /* libEntangledSigning.a */ = {
+		CB2FA70E221D8CC300EADBC9 /* libEntangledSigning.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libEntangledSigning.a;
-			remoteRef = CB2FA6DB221D0CAF00EADBC9 /* PBXContainerItemProxy */;
+			remoteRef = CB2FA70D221D8CC300EADBC9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CB305F0321185EEC00657575 /* libRNFetchBlob.a */ = {
@@ -2911,7 +2915,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 47;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
@@ -3317,7 +3321,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 47;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
