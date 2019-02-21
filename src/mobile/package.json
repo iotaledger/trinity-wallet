@@ -118,14 +118,6 @@
     "react-test-renderer": "16.6.1",
     "rn-nodeify": "^10.0.1"
   },
-  "resolutions": {
-    "@iota/bundle": "1.0.0-alpha.a09e7908",
-    "@iota/core": "1.0.0-alpha.a09e7908",
-    "@iota/signing": "1.0.0-alpha.a09e7908",
-    "@iota/bundle-validator": "1.0.0-alpha.a09e7908",
-    "@iota/core/@iota/signing": "1.0.0-alpha.a09e7908",
-    "@iota/core/@iota/bundle": "1.0.0-alpha.a09e7908"
-  },
   "jest": {
     "preset": "react-native",
     "roots": [
