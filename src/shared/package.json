@@ -70,6 +70,7 @@
     "resolutions": {
         "mem": ">=4.0.0",
         "@iota/core/@iota/signing": "1.0.0-alpha.a09e7908",
-        "@iota/core/@iota/bundle": "1.0.0-alpha.a09e7908"
+        "@iota/core/@iota/bundle": "1.0.0-alpha.a09e7908",
+        "@iota/signing": "1.0.0-alpha.a09e7908"
     }
 }
