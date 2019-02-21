@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
-import QRCode from 'react-native-qrcode-svg';
+import QRCode from 'react-native-qr-generator';
 import { navigator } from 'libs/navigation';
 import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { withNamespaces } from 'react-i18next';
@@ -186,8 +186,7 @@ export class TwoFactorSetupAddKey extends Component {
                             <QRCode
                                 value={authenticator.generateTotpUri(this.state.authKey, 'Trinity Wallet Mobile')}
                                 size={height / 5}
-                                bgColor="#000"
-                                fgColor="#FFF"
+                                backgroundColor="#00000000"
                             />
                         </View>
                     </AnimatedComponent>
