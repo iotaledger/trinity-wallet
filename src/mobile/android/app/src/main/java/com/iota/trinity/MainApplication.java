@@ -95,7 +95,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
                 new RNSharePackage(),
                 new RNViewShotPackage(),
                 new RealmReactPackage(),
-                new RNFetchBlobPackage(),
+                new RNFetchBlobPackage()
         );
     }
 
