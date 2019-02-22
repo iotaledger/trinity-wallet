@@ -123,7 +123,7 @@ class Keychain extends SeedStoreCore {
      */
     prepareTransfers = async (transfers, options = null) => {
         const seed = await this.getSeed();
-        return prepareTransfersAsync()(seed, transfers, options, getSignatureFn);
+        return prepareTransfersAsync()(seed, transfers, options, getSignatureFn());
     };
 
     /**
