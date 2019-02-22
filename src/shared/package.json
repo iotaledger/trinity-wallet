@@ -19,7 +19,7 @@
     },
     "license": "Apache-2.0 OR EPL-2.0",
     "dependencies": {
-        "@iota/core": "^1.0.0-beta.10",
+        "@iota/core": "^1.0.0-beta.11",
         "bignumber.js": "^8.0.1",
         "i18next": "^12.0.0",
         "iota.lib.js": "git+https://git@github.com/iotaledger/iota.js#develop",
