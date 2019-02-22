@@ -511,7 +511,7 @@ const attachToTangleAsync = (provider, seedStore) => (
                                         trytes: attachedTrytes,
                                     });
                                 } else {
-                                    reject(new Error(Errors.INVALID_BUNDLE_CONSTRUCTED(shouldOffloadPow)));
+                                    reject(new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_WITH_REMOTE_POW));
                                 }
                             })
                             .catch(reject);
@@ -541,8 +541,7 @@ const attachToTangleAsync = (provider, seedStore) => (
                     trytes,
                 };
             }
-
-            throw new Error(Errors.INVALID_BUNDLE_CONSTRUCTED(shouldOffloadPow));
+            throw new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_WITH_LOCAL_POW);
         });
 };
 
