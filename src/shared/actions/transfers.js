@@ -716,6 +716,10 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
             .catch((error) => {
                 dispatch(sendTransferError());
                 dispatch(resetProgress());
+                // If local PoW produces an invalid bundle we do not need to store it or mark the address as spent because the signature has not been broadcast.
+                if (message === Errors.INVALID_BUNDLE_CONSTRUCTED_WITH_LOCAL_POW) {
+                    isValidBundle = false;
+                }
                 // Only keep the failed trytes locally if the bundle was valid
                 // In case the bundle is invalid, discard the signing as it was never broadcast
                 if (hasSignedInputs && isValidBundle) {
