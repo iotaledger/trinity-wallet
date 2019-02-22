@@ -66,5 +66,3 @@ include ':react-native-haptic-feedback'
 project(':react-native-haptic-feedback').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-haptic-feedback/android')
 include ':realm'
 project(':realm').projectDir = new File(rootProject.projectDir, '../node_modules/realm/android')
-include ':@iota/signing'
-project(':@iota/signing').projectDir = new File(rootProject.projectDir, '../node_modules/shared-modules/node_modules/@iota/signing/android')

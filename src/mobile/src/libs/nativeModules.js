@@ -67,3 +67,11 @@ export const getHashFn = () => {
         return NativeModules.Argon2IOS.hash;
     }
 };
+
+/**
+ * Gets signature function
+ * @return {function} signature function
+ */
+export const getSignatureFn = () => {
+    return isAndroid ? NativeModules.EntangledAndroid.generateSignature : NativeModules.EntangledIOS.generateSignature;
+};

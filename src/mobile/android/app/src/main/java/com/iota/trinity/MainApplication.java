@@ -38,7 +38,6 @@ import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
 import com.facebook.react.ReactNativeHost;
-import org.iota.ReactNativeSigning.SigningPackage;
 import com.zapper.QRCodePackage;
 
 import java.util.Arrays;
@@ -96,8 +95,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
                 new RNSharePackage(),
                 new RNViewShotPackage(),
                 new RealmReactPackage(),
-                new RNFetchBlobPackage(),
-                new SigningPackage()
+                new RNFetchBlobPackage()
         );
     }
 

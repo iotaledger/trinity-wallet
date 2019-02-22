@@ -8,7 +8,7 @@ import { createAndStoreBoxInKeychain, getSecretBoxFromKeychainAndOpenIt, keychai
 import { sha256 } from 'libs/crypto';
 import { prepareTransfersAsync } from 'shared-modules/libs/iota/extendedApi';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
-import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
+import { getAddressGenFn, getMultiAddressGenFn, getSignatureFn } from 'libs/nativeModules';
 import SeedStoreCore from './SeedStoreCore';
 
 class Keychain extends SeedStoreCore {
@@ -123,7 +123,7 @@ class Keychain extends SeedStoreCore {
      */
     prepareTransfers = async (transfers, options = null) => {
         const seed = await this.getSeed();
-        return prepareTransfersAsync()(seed, transfers, options);
+        return prepareTransfersAsync()(seed, transfers, options, getSignatureFn());
     };
 
     /**
