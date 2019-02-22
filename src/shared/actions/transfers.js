@@ -717,6 +717,8 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 dispatch(sendTransferError());
                 dispatch(resetProgress());
                 // If local PoW produces an invalid bundle we do not need to store it or mark the address as spent because the signature has not been broadcast.
+                const message = error.message;
+
                 if (message === Errors.INVALID_BUNDLE_CONSTRUCTED_WITH_LOCAL_POW) {
                     isValidBundle = false;
                 }
@@ -745,8 +747,6 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                         ),
                     );
                 }
-
-                const message = error.message;
 
                 if (message === Errors.NODE_NOT_SYNCED) {
                     return dispatch(generateNodeOutOfSyncErrorAlert());
