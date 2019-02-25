@@ -398,7 +398,7 @@ const getTransactionsToApproveAsync = (provider) => (reference = {}, depth = DEF
  *
  * @returns {function(string, array, *): Promise<any>}
  */
-export const prepareTransfersAsync = (provider) => (seed, transfers, options = null, signatureFn) => {
+export const prepareTransfersAsync = (provider) => (seed, transfers, options = null, signatureFn = null) => {
     // https://github.com/iotaledger/iota.lib.js/blob/e60c728c836cb37f3d6fb8b0eff522d08b745caa/lib/api/api.js#L1058
     let args = [seed, transfers];
 
