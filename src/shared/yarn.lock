@@ -1417,7 +1417,7 @@ invert-kv@^1.0.0:
 
 "iota.lib.js@git+https://git@github.com/iotaledger/iota.js#develop":
   version "0.5.1"
-  resolved "git+https://git@github.com/iotaledger/iota.js#f623581736ae15ba3267ee9a39bc900d1549d375"
+  resolved "git+https://git@github.com/iotaledger/iota.js#eb27c183284e24fb28a2a67f6da7a6cee5c61ae4"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"
