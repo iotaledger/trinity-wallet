@@ -345,3 +345,24 @@ export const isSettingUpNewAccount = createSelector(
         !isEmpty(accountInfoDuringSetup.name) &&
         !isEmpty(accountInfoDuringSetup.meta),
 );
+
+/**
+ *   Gets bundle hashes for failed transactions and categorises them by account name
+ *
+ *   @method getFailedBundleHashes
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getFailedBundleHashes = createSelector(getAccountInfoFromState, (accountInfo) =>
+    transform(
+        accountInfo,
+        (acc, info, accountName) => {
+            const failedTransactions = filter(info.transactions, (transaction) => transaction.broadcasted === false);
+
+            each(failedTransactions, (transaction) => {
+                acc[transaction.bundle] = accountName;
+            });
+        },
+        {},
+    ),
+);

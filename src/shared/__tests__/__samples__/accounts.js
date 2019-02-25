@@ -1,7 +1,7 @@
 import { addressData } from './addresses';
 import transactions from './transactions';
 
-const NAME = 'TEST';
+export const NAME = 'TEST';
 
 export default {
     onboardingComplete: true,
