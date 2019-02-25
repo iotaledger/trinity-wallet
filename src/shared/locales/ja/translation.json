@@ -786,7 +786,7 @@
         "accountIndex": "アカウントインデックス",
         "accountPage": "アカウントページ",
         "actionCancelled": "Ledger端末へのアクセスはキャンセルされました。",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelledExplanation": "Ledger端末にアクセスしないと操作を実行できません。",
         "chooseAccountIndex": "Ledgerのアカウントインデックスを選択してください",
         "accountIndexExplanation": "Ledgerは複数のシードを保存できます。各シードは一意のインデックス番号で識別されます。未使用のインデックスが事前に選択されますが、自分で選択することもできます。自分で選択したインデックス番号は書き留めておいてください。",
         "accountPageExplanation": "一部のサードパーティ製のウォレットではページが必要です。",
