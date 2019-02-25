@@ -108,9 +108,12 @@ export const migrateAccounts = (accounts) => {
     const { accountInfo, failedBundleHashes, setupInfo, tasks } = accounts;
     const accountNames = keys(accountInfo);
 
+    const manuallyAssignAccountIndex = (accountIndex, fallbackIndex) =>
+        !isUndefined(accountIndex) ? accountIndex : fallbackIndex;
+
     return reduce(
         accountNames,
-        (promise, accountName) => {
+        (promise, accountName, idx) => {
             return promise.then(() => {
                 const thisAccountInfo = accountInfo[accountName];
                 const { addresses } = thisAccountInfo;
@@ -132,7 +135,9 @@ export const migrateAccounts = (accounts) => {
                         accountName,
                         assign({}, accountData, {
                             meta: get(thisAccountInfo, 'meta'),
-                            index: !isUndefined(index) ? index : get(thisAccountInfo, 'accountIndex'),
+                            index: !isUndefined(index)
+                                ? index
+                                : manuallyAssignAccountIndex(get(thisAccountInfo, 'accountIndex'), idx),
                             usedExistingSeed: get(setupInfo, `${accountName}.usedExistingSeed`) || false,
                             displayedSnapshotTransitionGuide:
                                 get(tasks, `${accountName}.hasDisplayedTransitionGuide`) || false,
