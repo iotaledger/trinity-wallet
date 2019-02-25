@@ -689,11 +689,11 @@
         "gettingTransactionsToApprove": "承認する取引を取得中",
         "proofOfWork": "プルーフ・オブ・ワークを完了中",
         "broadcasting": "ブロードキャスト中",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "データを準備中",
+        "migratingSettings": "設定を移行中",
+        "migratingAccounts": "アカウントを移行中",
+        "cleaningUpOldData": "古いデータを削除中",
+        "migrationComplete": "移行完了",
         "transferComplete": "送金完了"
     },
     "snapshotTransition": {
@@ -773,7 +773,7 @@
         "sweepConfirmationTitle": "移動を承認"
     },
     "migration": {
-        "dataMigration": "Data migration",
+        "dataMigration": "データ移行",
         "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
         "problemMigratingYourData": "There was a problem migrating your data. Please try again"
     },
