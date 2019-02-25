@@ -40,6 +40,12 @@ local.properties
 *.iml
 index.android.bundle
 
+# Eclipse project files
+.classpath
+.project
+.metadata
+.settings
+
 # node.js
 #
 node_modules/
