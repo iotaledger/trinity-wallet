@@ -774,8 +774,8 @@
     },
     "migration": {
         "dataMigration": "データ移行",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+        "dataMigrationExplanation": "パフォーマンスとストレージの制限により、Trinityは設定とアカウントデータの保存に新しいデータベースを使用しています。 Trinityが今までのデータを自動的に移行するまで少々お待ちください。",
+        "problemMigratingYourData": "データの移行中に問題が発生しました。もう一度やり直してください。"
     },
     "ledger": {
         "ready": "Ledger端末の接続が完了し、準備完了です",
@@ -785,7 +785,7 @@
         "proceedWithLedger": "Ledgerのセットアップを続行する",
         "accountIndex": "アカウントインデックス",
         "accountPage": "アカウントページ",
-        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelled": "Ledger端末へのアクセスはキャンセルされました。",
         "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Ledgerのアカウントインデックスを選択してください",
         "accountIndexExplanation": "Ledgerは複数のシードを保存できます。各シードは一意のインデックス番号で識別されます。未使用のインデックスが事前に選択されますが、自分で選択することもできます。自分で選択したインデックス番号は書き留めておいてください。",
