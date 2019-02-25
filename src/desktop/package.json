@@ -145,7 +145,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/register": "^7.0.0",
-    "@jest-runner/electron": "^1.0.3",
+    "@jest-runner/electron": "^1.1.0",
     "@ledgerhq/hw-transport-node-hid": "^4.35.0",
     "argon2": "rihardsgravis/node-argon2#prebuild-release",
     "authenticator": "^1.1.5",
