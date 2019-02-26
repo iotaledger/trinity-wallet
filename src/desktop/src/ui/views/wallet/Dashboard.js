@@ -127,7 +127,7 @@ const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
     accountMeta: getSelectedAccountMeta(state),
     password: state.wallet.password,
-    isDeepLinkActive: state.wallet.deepLinkActive,
+    isDeepLinkActive: state.wallet.deepLinkRequestActive,
 });
 
 const mapDispatchToProps = {

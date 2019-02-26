@@ -3,7 +3,7 @@ import { Linking } from 'react-native';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setDeepLink } from 'shared-modules/actions/wallet';
+import { initiateDeepLinkRequest } from 'shared-modules/actions/wallet';
 import { parseAddress } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
@@ -22,7 +22,7 @@ export default () => (C) => {
             const { t, generateAlert } = this.props;
             const parsedData = parseAddress(data.url);
             if (parsedData) {
-                this.props.setDeepLink(
+                this.props.initiateDeepLinkRequest(
                     parsedData.amount.toString() || '0',
                     parsedData.address,
                     parsedData.message || null,
@@ -44,13 +44,13 @@ export default () => (C) => {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
-        setDeepLink: PropTypes.func.isRequired,
+        initiateDeepLinkRequest: PropTypes.func.isRequired,
         /** @ignore */
         changeHomeScreenRoute: PropTypes.func.isRequired,
     };
 
     const mapDispatchToProps = {
-        setDeepLink,
+        initiateDeepLinkRequest,
         generateAlert,
         changeHomeScreenRoute,
     };
