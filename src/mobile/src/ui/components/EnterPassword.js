@@ -4,6 +4,7 @@ import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { connect } from 'react-redux';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -68,12 +69,6 @@ class EnterPassword extends Component {
         }
     }
 
-    componentWillUnmount() {
-        if (isAndroid) {
-            FingerprintScanner.release();
-        }
-    }
-
     /**
      * Wrapper method for onLoginPress prop method
      *
@@ -93,13 +88,10 @@ class EnterPassword extends Component {
     activateFingerprintScanner() {
         const { t } = this.props;
         if (isAndroid) {
-            this.showModal();
+            return this.showModal();
         }
         FingerprintScanner.authenticate({ description: t('fingerprintSetup:instructionsLogin') })
             .then(() => {
-                if (isAndroid) {
-                    this.hideModal();
-                }
                 this.props.setUserActive();
             })
             .catch(() => {
@@ -118,9 +110,13 @@ class EnterPassword extends Component {
     showModal() {
         const { theme } = this.props;
         this.props.toggleModalActivity('fingerprint', {
-            hideModal: () => this.props.toggleModalActivity(),
+            onBackButtonPress: () => this.props.toggleModalActivity(),
             theme,
             instance: 'login',
+            onSuccess: () => {
+                this.hideModal();
+                this.props.setUserActive();
+            },
         });
     }
 
@@ -160,7 +156,7 @@ class EnterPassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 

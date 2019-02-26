@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Kohandatud sõlm on juba leotletud.",
         "nodeAutoChanged": "Sõlm muutus automaatselt",
         "nodeAutoChangedExplanation": "Muudetud uuele sõlmele {{- nodeAddress}} kuna valitud sõlm on ühenduseta.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Ülekande lubamiseks puudutage sõrmejäljelugejat",
         "masterKey": "Teie IOTA seeme on võti teie vahenditele.",
         "seedThief": "Kui kellelgi on teie seeme siis saab ta varastada teie IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "Failisüsteemi luba on nõutud",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seeme sisaldab sobimatuid tähemärke",
@@ -297,7 +299,8 @@
         "tag": "Silt",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Varunda oma seeme",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Aadress peaks koosnema {{maxLength}} tähemärgist ja tal peaks olema kontrollsumma.",
         "invalidAddressExplanation2": "Aadress sisaldab sobimatuid tähemärke.",
         "invalidAddressExplanation3": "Aadress sisaldab vigast kontrollsummat.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Kehtivad aadressid peaksid koosnema 90 tähemärgist ja sisaldama ainult A-Z või 9.",
         "notEnoughFunds": "Ebapiisavad vahendid",
         "notEnoughFundsExplanation": "Teil ei ole selle ülekande tegemiseks piisavalt IOTAsid.",
@@ -586,12 +590,19 @@
         "fingerprintAuthFailedExplanation": "Sõrmejäljega autentimine ebaõnnestus. Palun proovige uuesti.",
         "status": "Olek",
         "fingerprintUnavailable": "Biomeetriline autentimine pole saadaval",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Teie seade ei toeta biomeetrilist autentimist või pole see seadme seadetes konfigureeritud.",
-        "buttonInstructionsDisable": "Sõrmejäljega autentimise keelamiseks vajutage allpool olevat nuppu",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Sõrmejäljega autentimise lubamiseks vajutage allolevat nuppu.",
         "buttonInstructionsDisableIPhoneX": "Face ID keelamiseks vajutage allolevat nuppu",
         "buttonInstructionsEnableIPhoneX": "Face ID lubamiseks vajutage allolevat nuppu",
-        "instructionsLogin": "Sisse logimiseks puudutage sõrmejäljelugejat"
+        "instructionsLogin": "Sisse logimiseks puudutage sõrmejäljelugejat",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Te olete saatmas {{contents}} aadressile",
@@ -671,12 +682,18 @@
     "progressSteps": {
         "checkingNodeHealth": "Sõlme tervise kontrollimine",
         "validatingReceiveAddress": "Saaja aadressi kontrollimine",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sünkroniseeri konto",
         "preparingInputs": "Sisendite ettevalmistamine",
         "preparingTransfers": "Ülekannete ettevalmistamine",
         "gettingTransactionsToApprove": "Otsin tehinguid, mida heaks kiita",
         "proofOfWork": "Valmistan töötõendit",
         "broadcasting": "Edastamine",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
@@ -755,6 +772,11 @@
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger device connected and ready",
         "notReady": "If you wish to use a Ledger device, connect and unlock it now",
@@ -763,6 +785,8 @@
         "proceedWithLedger": "Proceed with Ledger setup",
         "accountIndex": "Account index",
         "accountPage": "Account page",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Choose your Ledger account index",
         "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
         "accountPageExplanation": "Some third party wallets require pages.",

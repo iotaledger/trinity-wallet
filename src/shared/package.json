@@ -10,17 +10,19 @@
         "Charlie Varley"
     ],
     "scripts": {
-        "test": "NODE_ENV=test ./node_modules/.bin/mocha --timeout 5000 --require @babel/register \"__tests__/**/*.spec.js\"",
+        "test": "NODE_ENV=test ./node_modules/.bin/mocha --timeout 5000 --exit --require @babel/register \"__tests__/**/*.spec.js\"",
         "test:watch": "yarn test --watch",
+        "test:coverage": "nyc --check-coverage --lines 50 --statements 50 --functions 50 --branches 50 yarn test",
         "auditjs": "./../../node_modules/.bin/auditjs -nl error -w whitelist.json",
-        "themes:sync": "node themes/sync.js"
+        "themes:sync": "node themes/sync.js",
+        "postinstall": "node debian-rebuild-realm.js"
     },
     "license": "Apache-2.0 OR EPL-2.0",
     "dependencies": {
-        "bignumber.js": "^7.2.1",
+        "bignumber.js": "^8.0.1",
         "i18next": "^12.0.0",
-        "iota.lib.js": "^0.5.1",
-        "lodash": "^4.17.10",
+        "iota.lib.js": "git+https://git@github.com/iotaledger/iota.js#develop",
+        "lodash": "^4.17.11",
         "moment": "^2.22.2",
         "moment-timezone": "^0.5.21",
         "proxy-polyfill": "git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d7",
@@ -31,7 +33,6 @@
         "redux-persist": "^4.10.1",
         "redux-thunk": "^2.2.0",
         "reselect": "^4.0.0",
-        "tinycolor2": "^1.4.1",
         "url-parse": "^1.4.3",
         "valid-url": "^1.0.9",
         "zxcvbn": "^4.4.2"
@@ -55,10 +56,15 @@
         "figma-parser": "^0.0.2",
         "mocha": "^5.0.3",
         "nock": "^10.0.1",
+        "nyc": "^13.1.0",
+        "realm": "^2.21.0",
         "redux-mock-store": "^1.5.1",
         "sinon": "^7.1.1",
         "svg2ttf": "^4.1.0",
         "svgicons2svgfont": "^9.0.2",
         "timekeeper": "^2.0.0"
+    },
+    "resolutions": {
+        "mem": ">=4.0.0"
     }
 }

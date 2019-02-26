@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Den anpassade noden finns redan.",
         "nodeAutoChanged": "Bytte automatiskt nod",
         "nodeAutoChangedExplanation": "Bytte till ny nod {{- nodeAddress}} då din valda nod är offline.",
+        "touchSensor": "Håll fingret på fingeravtrycksläsaren",
         "fingerprintOnSend": "Tryck på fingeravtrycksläsaren för att skicka överföringen",
         "masterKey": "Din IOTA-seed är huvudnyckeln till dina pengar.",
         "seedThief": "Om någon annan har din seed kan de stjäla dina IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Uppdatera appen att fortsätta",
         "forceUpdateExplanation": "En viktig uppdatering har släppts. Vänligen uppdatera appen nu.",
         "missingPermission": "Åtkomst till filsystem krävs",
-        "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion."
+        "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion.",
+        "swipeToConfirm": "Dra för att bekräfta"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -297,7 +299,8 @@
         "tag": "Tagg",
         "generateAnAddress": "Generera ny adress",
         "generateAnAddressTitle": "Generera en adress",
-        "generateAnAddressExplanation": "Vänligen generera en adress innan du använder denna funktion."
+        "generateAnAddressExplanation": "Vänligen generera en adress innan du använder denna funktion.",
+        "generateAddressInformation": "Generera en ny mottagaradress varje gång du vill ta emot IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Spara din seed",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Din adress bör vara {{maxLength}} tecken långt och ska ha en kontrollsumma.",
         "invalidAddressExplanation2": "Adressen innehåller ogiltiga tecken.",
         "invalidAddressExplanation3": "Adress innehåller en felaktig kontrollsumma.",
+        "invalidAddressExplanation4": "Kontrollera att du har angett adressen korrekt.",
         "invalidAddressExplanationGeneric": "Giltiga adresser bör vara 90 tecken och innehålla endast A-Z eller 9.",
         "notEnoughFunds": "Otillräckliga tillgångar",
         "notEnoughFundsExplanation": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
@@ -586,12 +590,19 @@
         "fingerprintAuthFailedExplanation": "Fingeravtrycksautentisering misslyckades. Var god försök igen.",
         "status": "Status",
         "fingerprintUnavailable": "Biometrisk autentisering otillgänglig",
+        "deviceLocked": "Autentisering inaktiverad i 30 sekunder",
         "fingerprintUnavailableExplanation": "Din enhet stödjer ej biometrisk autentisering eller så har det ej konfigurerats i enhetens inställningar.",
-        "buttonInstructionsDisable": "Tryck på knappen nedan för att avaktivera fingeravtrycksautentisering",
+        "notSupported": "Enheten stöder inte biometrisk autentisering",
+        "notConfigured": "Biometrisk autentisering har inte konfigurerats i enhetsinställningarna",
+        "buttonInstructionsDisable": "Tryck på knappen nedan för att inaktivera fingeravtrycksautentisering.",
         "buttonInstructionsEnable": "Tryck på knappen nedan för att aktivera fingeravtrycksautentisering.",
         "buttonInstructionsDisableIPhoneX": "Tryck på knappen nedan för att avaktivera Face ID",
         "buttonInstructionsEnableIPhoneX": "Tryck på knappen nedan för att aktivera Face ID",
-        "instructionsLogin": "Lägg fingret på fingeravtrycksläsaren för att logga in"
+        "instructionsLogin": "Lägg fingret på fingeravtrycksläsaren för att logga in",
+        "systemCancelledAuth": "Autentisering avbröts av enheten",
+        "userCancelledAuth": "Autentiseringsförfrågan avbruten",
+        "passwordFallback": "Använd lösenordsautentisering istället",
+        "noPassword": "Lösenord är inte angett på enheten"
     },
     "transferConfirmation": {
         "youAreAbout": "Du kommer att skicka {{contents}} till adressen",
@@ -603,7 +614,7 @@
     },
     "twoFA": {
         "wrongCode": "Fel kod",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "Den kod du angett är felaktig. Om felet kvarstår, kontrollera att klockan på dina enheter är korrekt konfigurerade.",
         "emptyCode": "Tom kod",
         "emptyCodeExplanation": "Var vänlig och ange en kod och försök igen.",
         "keyCopied": "Nyckel kopierad till urklipp",
@@ -671,12 +682,18 @@
     "progressSteps": {
         "checkingNodeHealth": "Kontrollera nodens hälsa",
         "validatingReceiveAddress": "Bekräftar mottagaradress",
+        "validatingTransactionAddresses": "Verifierar transaktionsadresser",
         "syncingAccount": "Synkroniserar kontot",
         "preparingInputs": "Förbereder indata",
         "preparingTransfers": "Förbereder överföringar",
         "gettingTransactionsToApprove": "Godkänner transaktioner",
         "proofOfWork": "Utför bevis på arbete",
         "broadcasting": "Sändning pågår",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Överföring slutförd"
     },
     "snapshotTransition": {
@@ -755,6 +772,11 @@
         "sweepConfirmation": "Du är på väg att svepa {{amount}} till adressen {{address}}. Konto: {{accountName}}, adressindex: {{index}}",
         "sweepConfirmationTitle": "Svepningsbekräftelse"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger-enheten ansluten och redo",
         "notReady": "Om du vill använda en Ledger-enhet, anslut och lås upp den nu",
@@ -763,6 +785,8 @@
         "proceedWithLedger": "Fortsätt med Ledger-installationen",
         "accountIndex": "Konto-index",
         "accountPage": "Konto-sida",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Välj ditt Ledger konto-index",
         "accountIndexExplanation": "Din Ledger kan hantera flera seeds. Varje seed identifieras av ett unikt indexnummer. Ett oanvänt index har blivit förvalt, men välj ett eget om du vill. Se till att anteckna ditt valda indexnummer.",
         "accountPageExplanation": "Vissa tredjepartsplånböcker kräver sidor.",

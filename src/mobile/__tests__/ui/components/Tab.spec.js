@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import Tab from 'ui/components/Tab';
+import theme from '../../../__mocks__/theme';
 
 const getProps = (overrides) =>
     assign(
@@ -11,7 +12,7 @@ const getProps = (overrides) =>
         {
             icon: 'iota',
             text: 'foo',
-            theme: { primary: {}, bar: {} },
+            theme,
             isActive: false,
             onPress: noop,
             name: 'send',

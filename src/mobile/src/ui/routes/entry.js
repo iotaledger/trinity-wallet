@@ -1,26 +1,36 @@
 /* global __DEV__ */
 import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import merge from 'lodash/merge';
 import { Navigation } from 'react-native-navigation';
+import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { withNamespaces } from 'react-i18next';
+import Realm from 'realm';
 import { Text, TextInput, NetInfo, YellowBox } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
-import sharedStore from 'shared-modules/store';
-import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modules/libs/iota/nativeBindings';
+import reduxStore from 'shared-modules/store';
 import { assignAccountIndexIfNecessary } from 'shared-modules/actions/accounts';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
-import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
-import { ActionTypes } from 'shared-modules/actions/wallet';
+import { setCompletedForcedPasswordUpdate, setAppVersions } from 'shared-modules/actions/settings';
+import Themes from 'shared-modules/themes/themes';
+import { ActionTypes, mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
+import { setRealmMigrationStatus } from 'shared-modules/actions/migrations';
 import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
-import { getDigestFn } from 'libs/nativeModules';
-import { persistStoreAsync, migrate, versionCheck, resetIfKeychainIsEmpty } from 'libs/store';
+import { resetIfKeychainIsEmpty, reduxPersistStorageAdapter, versionCheck } from 'libs/store';
 import { bugsnag } from 'libs/bugsnag';
+import { getEncryptionKey } from 'libs/realm';
 import registerScreens from 'ui/routes/navigation';
+import { initialise as initialiseStorage } from 'shared-modules/storage';
+import { mapStorageToState } from 'shared-modules/libs/storageToStateMappers';
 
-const launch = (store) => {
+// Assign Realm to global RN variable
+global.Realm = Realm;
+
+const launch = () => {
     // Disable auto node switching.
     SwitchingConfig.autoSwitch = false;
 
@@ -32,22 +42,23 @@ const launch = (store) => {
     // Ignore specific warnings
     YellowBox.ignoreWarnings(['Setting a timer', 'Breadcrumb', 'main queue setup', 'Share was not exported']);
 
-    const state = store.getState();
+    const state = reduxStore.getState();
 
     // Clear keychain if onboarding is not complete
     if (!state.accounts.onboardingComplete) {
         clearKeychain();
-        store.dispatch(setCompletedForcedPasswordUpdate());
+        reduxStore.dispatch(setCompletedForcedPasswordUpdate());
     }
 
     // Assign accountIndex to every account in accountInfo if it is not assigned already
-    store.dispatch(assignAccountIndexIfNecessary(get(state, 'accounts.accountInfo')));
+    reduxStore.dispatch(assignAccountIndexIfNecessary(get(state, 'accounts.accountInfo')));
 
     // Set default language
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
 
     // FIXME: Temporarily needed for password migration
-    const updatedState = store.getState();
+    const updatedState = reduxStore.getState();
+
     const navigateToForceChangePassword =
         updatedState.settings.versions.version === '0.5.0' && !updatedState.settings.completedForcedPasswordUpdate;
 
@@ -55,18 +66,21 @@ const launch = (store) => {
     const initialScreen = state.accounts.onboardingComplete
         ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
         : 'languageSetup';
-    renderInitialScreen(initialScreen, state, store);
+
+    renderInitialScreen(initialScreen, state);
 };
 
 const onAppStart = () => {
-    registerScreens(sharedStore, Provider);
+    registerScreens(reduxStore, Provider);
     return new Promise((resolve) => Navigation.events().registerAppLaunchedListener(resolve));
 };
 
-const renderInitialScreen = (initialScreen, state, store) => {
+const renderInitialScreen = (initialScreen, state) => {
+    const theme = Themes[state.settings.themeName] || Themes.Default;
+
     const options = {
         layout: {
-            backgroundColor: state.settings.theme.body.bg,
+            backgroundColor: theme.body.bg,
             orientation: ['portrait'],
         },
         topBar: {
@@ -78,11 +92,14 @@ const renderInitialScreen = (initialScreen, state, store) => {
             },
         },
         statusBar: {
-            drawBehind: false,
-            backgroundColor: state.settings.theme.body.bg,
+            drawBehind: true,
+            backgroundColor: theme.body.bg,
         },
+        popGesture: false,
     };
+
     Navigation.setDefaultOptions(options);
+
     Navigation.setRoot({
         root: {
             stack: {
@@ -98,7 +115,8 @@ const renderInitialScreen = (initialScreen, state, store) => {
             },
         },
     });
-    store.dispatch({ type: ActionTypes.RESET_ROUTE, payload: initialScreen });
+
+    reduxStore.dispatch({ type: ActionTypes.RESET_ROUTE, payload: initialScreen });
 };
 
 /**
@@ -166,27 +184,76 @@ const hasConnection = (
     );
 };
 
+// Initialise application.
 onAppStart()
-    .then(() => persistStoreAsync())
-    .then(({ store, restoredState }) => migrate(store, restoredState))
-    .then((store) => resetIfKeychainIsEmpty(store))
-    .then((store) => versionCheck(store))
-    .then((store) => {
-        overrideAsyncTransactionObject(iotaNativeBindings, getDigestFn());
+    //  Initialise persistent storage
+    .then(() => initialiseStorage(getEncryptionKey))
+    // Restore persistent storage (Map to redux store)
+    .then(() => {
+        const latestVersions = {
+            version: getVersion(),
+            buildNumber: Number(getBuildNumber()),
+        };
 
+        // Set application version and build number in redux store.
+        reduxStore.dispatch(setAppVersions(latestVersions));
+
+        // Get persisted data in AsyncStorage
+        return reduxPersistStorageAdapter.get().then((storedData) => {
+            const reduxState = reduxStore.getState();
+            const { settings: { versions, completedMigration } } = reduxState;
+
+            if (
+                versions.buildNumber < 43 &&
+                completedMigration === false &&
+                // Also check if there is persisted data in AsyncStorage that needs to be migrated
+                // If this check is omitted, the condition will be satisfied on a fresh install.
+                !isEmpty(storedData)
+            ) {
+                // If a user has stored data in AsyncStorage then map that data to redux store.
+                return reduxStore.dispatch(
+                    mapStorageToStateAction(
+                        merge({}, storedData, {
+                            settings: {
+                                versions: latestVersions,
+                                // completedMigration prop was added to keep track of AsyncStorage -> Realm migration
+                                // That is why it won't be present in storedData (Data directly fetched from AsyncStorage)
+                                completedMigration,
+                            },
+                        }),
+                    ),
+                );
+            }
+
+            // Mark migration as complete since we'll no longer need to migrate data after login
+            reduxStore.dispatch(setRealmMigrationStatus(true));
+
+            // Then just map the persisted data from Realm storage to redux store.
+            return reduxStore.dispatch(mapStorageToStateAction(mapStorageToState()));
+        });
+    })
+    // Reset persisted state if keychain has no entries
+    .then(() => resetIfKeychainIsEmpty(reduxStore))
+    .then(() => versionCheck(reduxStore))
+    // Launch application
+    .then(() => {
         const initialize = (isConnected) => {
-            store.dispatch({
+            reduxStore.dispatch({
                 type: ActionTypes.CONNECTION_CHANGED,
                 payload: { isConnected },
             });
 
-            fetchNodeList(store);
-            startListeningToConnectivityChanges(store);
+            // Fetch remote nodes list
+            fetchNodeList(reduxStore);
+            // Listener callback for connection change event
+            startListeningToConnectivityChanges(reduxStore);
 
-            registerScreens(store, Provider);
+            // Register components
+            registerScreens(reduxStore, Provider);
             withNamespaces.setI18n(i18next);
 
-            launch(store);
+            // Render initial screen
+            launch();
         };
 
         hasConnection('https://iota.org').then((isConnected) => initialize(isConnected));

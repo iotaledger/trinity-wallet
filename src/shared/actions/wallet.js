@@ -1,8 +1,9 @@
+import extend from 'lodash/extend';
 import map from 'lodash/map';
 import noop from 'lodash/noop';
 import findLastIndex from 'lodash/findLastIndex';
 import reduce from 'lodash/reduce';
-import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
+import { updateAddressData, updateAccountAfterTransition } from '../actions/accounts';
 import {
     generateAlert,
     generateTransitionErrorAlert,
@@ -16,20 +17,18 @@ import { accumulateBalance, attachAndFormatAddress, syncAddresses } from '../lib
 import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
-import { withRetriesOnDifferentNodes, getRandomNodes, throwIfNodeNotHealthy } from '../libs/iota/utils';
+import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import Errors from '../libs/errors';
-import {
-    selectedAccountStateFactory,
-    getRemotePoWFromState,
-    getSelectedNodeFromState,
-    getNodesFromState,
-} from '../selectors/accounts';
+import { selectedAccountStateFactory } from '../selectors/accounts';
+import { getSelectedNodeFromState, getNodesFromState, getRemotePoWFromState } from '../selectors/global';
+import { Account } from '../storage';
 import { DEFAULT_SECURITY, DEFAULT_RETRIES } from '../config';
 
 export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
     GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS',
     GENERATE_NEW_ADDRESS_ERROR: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_ERROR',
+    SET_ACCOUNT_NAME: 'IOTA/WALLET/SET_ACCOUNT_NAME',
     SET_RECEIVE_ADDRESS: 'IOTA/WALLET/SET_RECEIVE_ADDRESS',
     SET_PASSWORD: 'IOTA/WALLET/SET_PASSWORD',
     CLEAR_WALLET_DATA: 'IOTA/WALLET/CLEAR_WALLET_DATA',
@@ -51,6 +50,7 @@ export const ActionTypes = {
     FORCE_UPDATE: 'IOTA/APP/WALLET/FORCE_UPDATE',
     SET_DEEP_LINK: 'IOTA/APP/WALLET/SET_DEEP_LINK',
     SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
+    MAP_STORAGE_TO_STATE: 'IOTA/SETTINGS/MAP_STORAGE_TO_STATE',
     ADDRESS_VALIDATION_REQUEST: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_REQUEST',
     ADDRESS_VALIDATION_SUCCESS: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_SUCCESS',
     PUSH_ROUTE: 'IOTA/APP/WALLET/PUSH_ROUTE',
@@ -303,6 +303,19 @@ export const setDeepLinkInactive = () => {
 };
 
 /**
+ * Dispatch to map storage (persisted) data to redux state
+ *
+ * @method mapStorageToState
+ * @param {object} payload
+
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const mapStorageToState = (payload) => ({
+    type: ActionTypes.MAP_STORAGE_TO_STATE,
+    payload,
+});
+
+/**
  * Generate new receive address for wallet
  *
  * @method generateNewAddress
@@ -310,7 +323,6 @@ export const setDeepLinkInactive = () => {
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {object} existingAccountData
- * @param {function} genFn
  *
  * @returns {function(*): Promise<any>}
  */
@@ -318,25 +330,29 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
     return (dispatch, getState) => {
         dispatch(generateNewAddressRequest());
 
-        const syncAddressesWithSyncedNode = (provider) => {
-            return (...args) => throwIfNodeNotHealthy(provider).then(() => syncAddresses(provider)(...args));
-        };
-
         const selectedNode = getSelectedNodeFromState(getState());
         return withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAddressesSyncRetryAlert()),
-        )(syncAddressesWithSyncedNode)(
-            seedStore,
-            existingAccountData.addresses,
-            map(existingAccountData.transfers, (tx) => tx),
-        )
+        )(syncAddresses)(seedStore, existingAccountData.addressData, existingAccountData.transactions)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
-                dispatch(updateAddresses(accountName, result));
+
+                // Update address data in storage (realm)
+                Account.update(accountName, { addressData: result });
+
+                dispatch(updateAddressData(accountName, result));
                 dispatch(generateNewAddressSuccess());
             })
             .catch(() => {
+                dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('global:somethingWentWrong'),
+                        i18next.t('global:somethingWentWrongTryAgain'),
+                        10000,
+                    ),
+                );
                 dispatch(generateNewAddressError());
             });
     };
@@ -377,11 +393,10 @@ export const transitionForSnapshot = (seedStore, addresses) => {
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {array} addresses
- * @param {function} powFn
  *
  * @returns {function}
  */
-export const completeSnapshotTransition = (seedStore, accountName, addresses, powFn) => {
+export const completeSnapshotTransition = (seedStore, accountName, addresses) => {
     return (dispatch, getState) => {
         dispatch(
             generateAlert(
@@ -393,9 +408,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
 
         dispatch(snapshotAttachToTangleRequest());
 
-        // Check node's health
-        throwIfNodeNotHealthy()
-            .then(() => getBalancesAsync()(addresses))
+        getBalancesAsync()(addresses)
             // Find balance on all addresses
             .then((balances) => {
                 const allBalances = map(balances.balances, Number);
@@ -425,18 +438,27 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
                                 address,
                                 index,
                                 relevantBalances[index],
-                                seedStore,
-                                map(existingAccountState.transfers, (tx) => tx),
-                                existingAccountState.addresses,
-                                // Pass proof of work function as null, if configuration is set to remote
-                                getRemotePoWFromState(getState()) ? null : powFn,
+                                getRemotePoWFromState(getState())
+                                    ? extend(
+                                          {
+                                              __proto__: seedStore.__proto__,
+                                          },
+                                          seedStore,
+                                          { offloadPow: true },
+                                      )
+                                    : seedStore,
+                                existingAccountState,
                             )
-                                .then(({ addressData, transfer }) => {
-                                    const { newState } = syncAccountDuringSnapshotTransition(
-                                        transfer,
-                                        addressData,
+                                .then(({ attachedAddressObject, attachedTransactions }) => {
+                                    const newState = syncAccountDuringSnapshotTransition(
+                                        attachedTransactions,
+                                        attachedAddressObject,
                                         existingAccountState,
                                     );
+
+                                    // Update storage (realm)
+                                    Account.update(accountName, newState);
+                                    // Update redux store
                                     dispatch(updateAccountAfterTransition(newState));
 
                                     return result;
@@ -522,6 +544,7 @@ export const getBalanceForCheck = (addresses) => {
         getBalancesAsync()(addresses)
             .then((balances) => {
                 const balanceOnAddresses = accumulateBalance(map(balances.balances, Number));
+
                 dispatch(updateTransitionBalance(balanceOnAddresses));
                 dispatch(setBalanceCheckFlag(true));
             })

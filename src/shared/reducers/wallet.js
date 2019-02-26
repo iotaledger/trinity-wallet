@@ -121,11 +121,6 @@ export default (state = initialState, action) => {
                 ready: true,
                 seed: Array(82).join(' '),
             };
-        case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
-            return {
-                ...state,
-                ready: true,
-            };
         case AccountsActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
             return {
                 ...state,

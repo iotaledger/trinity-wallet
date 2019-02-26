@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Node سفارشی قبلا در لیست موجود میباشد.",
         "nodeAutoChanged": "تعویض اتوماتیک Node",
         "nodeAutoChangedExplanation": "اتصال به Node جدید {{- nodeAddress}} به عنوان Node انتخاب شده.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "اثر انگشت خود را برای تایید انتقال به دستگاه لمس کنید",
         "masterKey": "سید آیوتا شما کلید اصلی برای وجوه شما است.",
         "seedThief": "اگر فرد دیگری سید شما را داشته باشد، می توانید آیوتای شما را به سرقت ببرد.",
@@ -159,7 +160,8 @@
         "forceUpdate": "برای ادامه برنامه را به‌روز‌رسانی کنید",
         "forceUpdateExplanation": "یک به‌روزرسانی بحرانی منتشر شده است. لطفا هم‌اکنون برنامه را به‌روزرسانی کنید.",
         "missingPermission": "نیاز به مجوز سیستم فایل است",
-        "missingPermissionExplanation": "به منظور انجام این عمل دسترسی به فایل‌های سیستمی مورد نیاز است."
+        "missingPermissionExplanation": "به منظور انجام این عمل دسترسی به فایل‌های سیستمی مورد نیاز است.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "سید ورودی دارای کاراکترهای نامعتبر است",
@@ -297,7 +299,8 @@
         "tag": "برچسب",
         "generateAnAddress": "تولید آدرس",
         "generateAnAddressTitle": "تولید یک آدرس",
-        "generateAnAddressExplanation": "لطفا پیش از استفاده از این عمل یک آدرس تولید کنید."
+        "generateAnAddressExplanation": "لطفا پیش از استفاده از این عمل یک آدرس تولید کنید.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "از سید خود پشتیبان بگیرید",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "آدرس باید از {{maxLength}} طولانی تر باشد و باید یک کد اعتبارسنجی به همراه داشته باشد.",
         "invalidAddressExplanation2": "آدرس شامل کاراکتر های نامعتبر است.",
         "invalidAddressExplanation3": "آدرس شامل یک کد اعتبارسنجی نامعتبر است.",
+        "invalidAddressExplanation4": "لطفا بررسی کنید که آدرس را به درستی وارد کرده‌اید.",
         "invalidAddressExplanationGeneric": "آدرس های معتبر باید 90 کاراکتر باشد و فقط شامل A-Z یا عدد تا 9 باشد.",
         "notEnoughFunds": "موجودی ناکافی است",
         "notEnoughFundsExplanation": "شما آیوتا کافی برای تکمیل این انتقال ندارید.",
@@ -586,12 +590,19 @@
         "fingerprintAuthFailedExplanation": "احراز هویت اثر انگشت با شکست مواجه شد. لطفا دوباره تلاش کنید.",
         "status": "وضعیت",
         "fingerprintUnavailable": "احراز هویت بیومتریک در دسترس نیست",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "دستگاه شما از تاییدیه بیومتریک پشتیبانی نمیکند یا در تنظیمات دستگاه پیکربندی نشده است.",
-        "buttonInstructionsDisable": "برای غیرفعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "برای فعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید.",
         "buttonInstructionsDisableIPhoneX": "برای غیرفعال کردن Face ID، دکمه زیر را فشار دهید",
         "buttonInstructionsEnableIPhoneX": "برای فعال کردن Face ID، دکمه زیر را فشار دهید",
-        "instructionsLogin": "اثر انگشت برای ورود به سیستم را لمس کنید"
+        "instructionsLogin": "اثر انگشت برای ورود به سیستم را لمس کنید",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "شما در حال ارسال به آدرس {{contents}} هستید",
@@ -671,12 +682,18 @@
     "progressSteps": {
         "checkingNodeHealth": "بررسی سلامت Node",
         "validatingReceiveAddress": "تایید آدرس دریافتی",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "همگام سازی حساب",
         "preparingInputs": "آماده سازی ورودی",
         "preparingTransfers": "آماده سازی انتقال",
         "gettingTransactionsToApprove": "گرفتن معاملات برای تایید",
         "proofOfWork": "تکمیل اثبات کار",
         "broadcasting": "در حال پخش",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "انتقال کامل شد"
     },
     "snapshotTransition": {
@@ -755,6 +772,11 @@
         "sweepConfirmation": "شما در حال جارو (sweep) کردن {{amount}} به آدرس {{address}} هستید. حساب: {{accountName}}، اندیس آدرس: {{index}}",
         "sweepConfirmationTitle": "تایید جارو کردن (sweep)"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "دستگاه لدجر متصل و آماده است",
         "notReady": "اگر می‌خواهید از یک دستگاه لدجر استفاده کنید، هم‌اکنون آن را متصل و قفل‌گشایی کنید",
@@ -763,6 +785,8 @@
         "proceedWithLedger": "ادامه با برپایی لدجر",
         "accountIndex": "اندیس حساب",
         "accountPage": "صفحه حساب",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "اندیس حساب لدجر خود را انتخاب کنید",
         "accountIndexExplanation": "لدجر شما می‌تواند چندین سید مختلف را نگه‌داری کند. هر سید با یک شماره اندیس منحصر به فرد معین می‌گردد. یک اندیس استفاده نشده برایتان انتخاب شده ولی در صورت تمایل می‌توانید از اندیس دلخواهتان استفاده کنید. از یادداشت کردن اندیسی که انتخاب کرده‌اید اطمینان حاصل کنید.",
         "accountPageExplanation": "برخی از کیف پول‌های شخص ثالث نیاز به صفحات دارند.",

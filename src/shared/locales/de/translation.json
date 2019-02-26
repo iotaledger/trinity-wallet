@@ -94,11 +94,11 @@
         "promotingTransaction": "Transaktion wird promotet",
         "rebroadcastError": "Transaktion konnte nicht erneut übertragen werden",
         "promoted": "Transaktion erfolgreich promoted",
-        "promotedExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
+        "promotedExplanation": "Promoten der Transaktion {{hash}} erfolgreich",
         "autopromotionError": "Die Transaktion konnte nicht promotet werden",
         "autopromotionErrorExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Bitte ändere den Node und reaktiviere Auto-Promotion.",
         "promotionError": "Die Transaktion konnte nicht promotet werden",
-        "promotionErrorExplanation": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
+        "promotionErrorExplanation": "Beim Senden der Transaktion ist ein Fehler aufgetreten. Bitte versuche es erneut.",
         "noLongerValid": "Das Bundle, das du promoten möchtest, ist nicht mehr gültig",
         "transactionAlreadyConfirmed": "Transaktion bereits bestätigt",
         "transactionAlreadyConfirmedExplanation": "Die Transaktion, die Du versuchst zu promoten ist bereits bestätigt.",
@@ -108,7 +108,7 @@
         "pleaseWaitEllipses": "Bitte warten...",
         "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
         "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Transaktionen verwendet. Bitte warte, bis diese Transaktionen bestätigt sind und versuche es erneut.",
-        "pleaseWaitIncomingTransferExplanation": "Du hast eingehende Transaktionen. Bitte warte auf die Bestätigung vor einem erneuten Versuch.",
+        "pleaseWaitIncomingTransferExplanation": "Du hast eingehende Transaktionen. Bitte warte bis diese Transaktionen bestätigt wurden und versuche es dann erneut.",
         "snapshotTransitionInProgress": "Snapshot-Wiederherstellung wird ausgeführt.",
         "snapshotTransitionInProgressExplanation": "Bitte warte, bis die Wiederherstellung abgeschlossen ist.",
         "checkForUpdates": "Suche nach Updates",
@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Dieser Node ist bereits vorhanden.",
         "nodeAutoChanged": "Node automatisch gewechselt",
         "nodeAutoChangedExplanation": "Auf Node {{- nodeAddress}} gewechselt, da der ausgewählte Node offline ist.",
+        "touchSensor": "Berühre den Fingerabdrucksensor",
         "fingerprintOnSend": "Berühre den Fingerabdrucksensor um den Transfer zu bestätigen.",
         "masterKey": "Dein IOTA Seed ist der Hauptschlüssel zu deinem Guthaben.",
         "seedThief": "Wenn eine andere Person deinen Seed hat, kann diese deine IOTA stehlen.",
@@ -146,7 +147,7 @@
         "problemSendingYourTransaction": "Während dem Senden der Transaktion ist ein Fehler aufgetreten.",
         "problemPerformingProofOfWork": "Während dem Proof of Work-Vorgang ist ein Fehler aufgetreten.",
         "tryingAgainWithLocalPoW": "Versuche es erneut mit lokalem Proof of Work.",
-        "tryingAgainWithDifferentNode": "Versuche es erneut mit einem anderen Node.",
+        "tryingAgainWithDifferentNode": "Es wird mit einem anderen Node erneut versucht.",
         "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen.",
         "errorSyncingAddresses": "Deine Adressinformationen konnten nicht synchronisiert werden. Es wird mit einem anderen Node erneut versucht.",
         "errorAccessingKeychain": "Schlüsselbund-Fehler",
@@ -159,7 +160,8 @@
         "forceUpdate": "Aktualisiere Trinity um fortzufahren",
         "forceUpdateExplanation": "Ein kritisches Update wurde veröffentlicht. Bitte aktualisiere Trinity jetzt.",
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
-        "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen."
+        "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen.",
+        "swipeToConfirm": "Wischen um zu bestätigen"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -251,7 +253,7 @@
         "whyBiometricDisabledExplanationPart2": "Trinity wird dich bei Inaktivität automatisch abmelden. Du kannst dich anschließend mit biometrischer Authentifizierung erneut anmelden."
     },
     "loading": {
-        "loadingFirstTime": "Dein Seed wird das erste Mal geladen.",
+        "loadingFirstTime": "Dein Seed wird initialisiert.",
         "thisMayTake": "Das kann eine Weile dauern.",
         "doNotMinimise": "Die App nicht minimieren oder schließen.",
         "takingAWhile": "Das scheint eine Weile zu dauern"
@@ -295,9 +297,10 @@
         "noAddresses": "KEINE ADRESSEN",
         "spent": "Ausgegeben",
         "tag": "Tag",
-        "generateAnAddress": "Neue Adresse generieren",
-        "generateAnAddressTitle": "Eine neue Adresse generieren",
-        "generateAnAddressExplanation": "Bitte generiere eine neue Adresse bevor du diese Funktion verwendest."
+        "generateAnAddress": "Adresse erstellen",
+        "generateAnAddressTitle": "Eine neue Adresse erstellen",
+        "generateAnAddressExplanation": "Bitte erstelle eine neue Adresse bevor du diese Funktion verwendest.",
+        "generateAddressInformation": "Erstelle für jede Einzahlung eine neue Adresse"
     },
     "saveYourSeed": {
         "saveYourSeed": "Seed sichern",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Die Adresse sollte {{maxLength}} Zeichen lang sein und eine Prüfsumme haben.",
         "invalidAddressExplanation2": "Die Adresse enthält ungültige Zeichen.",
         "invalidAddressExplanation3": "Die Adresse enthält eine ungültige Prüfsumme.",
+        "invalidAddressExplanation4": "Bitte stelle sicher, dass du die Adresse korrekt eingegeben hast.",
         "invalidAddressExplanationGeneric": "Zulässige Adressen sollten aus 90 Zeichen bestehen und nur die Zeichen A-Z oder 9 enthalten.",
         "notEnoughFunds": "Nicht genügend Guthaben",
         "notEnoughFundsExplanation": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
@@ -408,7 +412,7 @@
         "securitySettings": "Sicherheitseinstellungen",
         "fingerprint": "Biometrische Authentifizierung",
         "couldNotFetchRates": "Kurse konnten nicht abgerufen werden",
-        "couldNotFetchRatesExplanation": "Beim Abrufen der Umrechnungskurse für {{currency}} ist etwas schief gelaufen.",
+        "couldNotFetchRatesExplanation": "Beim Abrufen der Umrechnungskurse für {{currency}} ist ein Fehler aufgetreten.",
         "fetchedConversionRates": "Umrechnungskurse wurden abgerufen",
         "fetchedConversionRatesExplanation": "Umrechnungskurse für {{currency}} erfolgreich abgerufen.",
         "undo": "Rückgängig",
@@ -539,7 +543,7 @@
     },
     "deleteAccount": {
         "areYouSure": "Willst du dieses Konto wirklich löschen?",
-        "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
+        "yourSeedWillBeRemoved": "Dein Seed und der dazugehörige Transaktionsverlauf werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden",
         "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
     },
@@ -586,12 +590,19 @@
         "fingerprintAuthFailedExplanation": "Fingerabdruck-Authentifizierung fehlgeschlagen. Bitte erneut versuchen.",
         "status": "Status",
         "fingerprintUnavailable": "Biometrische Authentifizierung ist nicht verfügbar",
+        "deviceLocked": "Authentifizierung für 30 Sekunden deaktiviert",
         "fingerprintUnavailableExplanation": "Dein Gerät unterstützt keine biometrische Authentifizierung oder die Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
-        "buttonInstructionsDisable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu deaktivieren",
+        "notSupported": "Die biometrische Authentifizierung wird von deinem Gerät nicht unterstützt",
+        "notConfigured": "Die biometrische Authentifizierung wurde noch nicht in deinen Geräteeinstellungen konfiguriert",
+        "buttonInstructionsDisable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
         "buttonInstructionsEnable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
         "buttonInstructionsDisableIPhoneX": "Drücke den Button unten um Face ID zu deaktivieren",
         "buttonInstructionsEnableIPhoneX": "Drücke den Button unten um Face ID zu aktivieren",
-        "instructionsLogin": "Zur Anmeldung den Fingerabdrucksensor berühren"
+        "instructionsLogin": "Zur Anmeldung den Fingerabdrucksensor berühren",
+        "systemCancelledAuth": "Authentifizierung wurde vom Gerät abgebrochen",
+        "userCancelledAuth": "Authentifizierung abgebrochen",
+        "passwordFallback": "Stattdessen Passwort-Authentifizierung verwenden",
+        "noPassword": "Auf diesem Gerät wurde kein Passwort eingerichtet"
     },
     "transferConfirmation": {
         "youAreAbout": "Du sendest jetzt {{contents}} an die Adresse",
@@ -603,7 +614,7 @@
     },
     "twoFA": {
         "wrongCode": "Falscher Code",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "Der eingegebene Code ist nicht korrekt. Stelle sicher, dass die Uhrzeit auf deinem Gerät stimmt, falls der Fehler erneut auftritt.",
         "emptyCode": "Fehlender 2FA-Code",
         "emptyCodeExplanation": "Bitte gib einen Code ein und versuche es erneut.",
         "keyCopied": "Schlüssel in die Zwischenablage kopiert",
@@ -645,9 +656,9 @@
         "retypeKey": "Schlüssel erneut eingeben"
     },
     "chart": {
-        "mcap": "MCAP",
+        "mcap": "Börsenwert",
         "change": "Änderung (24 Std.)",
-        "volume": "Volumen (24h)",
+        "volume": "Volumen (24 Std.)",
         "error": "Fehler beim Abrufen der Diagrammdaten"
     },
     "rootDetection": {
@@ -671,12 +682,18 @@
     "progressSteps": {
         "checkingNodeHealth": "Überprüfe Zustand des Node",
         "validatingReceiveAddress": "Überprüfe Empfangsadresse",
+        "validatingTransactionAddresses": "Adressen der Transaktionen werden überprüft",
         "syncingAccount": "Konto synchronisieren",
         "preparingInputs": "Vorbereitung der Daten",
         "preparingTransfers": "Vorbereitung der Transaktion",
         "gettingTransactionsToApprove": "Warte auf Bestätigung der Transaktion",
         "proofOfWork": "Vervollständige Proof of Work",
         "broadcasting": "Übertrage",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Überweisung abgeschlossen"
     },
     "snapshotTransition": {
@@ -747,13 +764,18 @@
         "sweepSucceeded": "Guthaben erfolgreich entsperrt",
         "sweepSucceededExplanation": "Dein Guthaben wurde erfolgreich entsperrt und auf eine neue Adresse verschoben. Promote die Transaktion um sie bei der Bestätigung zu unterstützen.",
         "sweepError": "Fehler beim Entsperren des Guthabens",
-        "sweepErrorExplanation": "Etwas ist beim Entsperren deines Guthabens schief gelaufen. Versuche es erneut.",
+        "sweepErrorExplanation": "Beim Entsperren deines Guthabens ist ein Fehler aufgetreten. Es wird erneut versucht.",
         "warningTitle": "Warnung: Gesperrtes Guthaben erkannt",
         "explanation": "Trinity Desktop Version 0.3.4 enthielt einen Fehler, der Guthaben vorübergehend sperrte. Dies wirkt sich auf eine kleine Anzahl von Benutzern aus, welche Transaktionen mit 0.3.4 durchgeführt haben.",
         "explanationAccounts": "Gesperrtes Guthaben wurde auf deinen Konten gefunden: {{accounts}}. Trinity wird jetzt automatisch dein Guthaben wiederherstellen, indem es dieses auf eine neue Adresse verschiebt.",
         "proceed": "Weiter zur Wiederherstellung",
         "sweepConfirmation": "Du verschiebst {{amount}} zu Adresse {{address}}, Konto: {{accountName}}, Adressindex: {{index}}",
         "sweepConfirmationTitle": "Transaktion korrigieren"
+    },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
     },
     "ledger": {
         "ready": "Ledger verbunden und bereit",
@@ -763,6 +785,8 @@
         "proceedWithLedger": "Mit der Einrichtung von Ledger fortfahren",
         "accountIndex": "Konto Index",
         "accountPage": "Konto Seite",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Wähle deinen Ledger Konto Index",
         "accountIndexExplanation": "Dein Ledger kann mehrere Seeds speichern. Jeder Seed wird durch einen eindeutigen Index identifiziert. Ein ungenutzter Index wurde bereits ausgewählt aber wenn du möchtest kannst du Diesen ändern. Stelle sicher, dass du deinen Index notierst.",
         "accountPageExplanation": "Einige Drittanbieter Wallets benötigen Seiten.",

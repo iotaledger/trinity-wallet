@@ -16,13 +16,15 @@ import {
 import { connect } from 'react-redux';
 import { round, roundDown } from 'shared-modules/libs/utils';
 import { computeStatusText, formatRelevantRecentTransactions } from 'shared-modules/libs/iota/transfers';
+import { setAnimateChartOnMount } from 'shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import {
-    getTransfersForSelectedAccount,
+    getTransactionsForSelectedAccount,
     getBalanceForSelectedAccount,
     getAddressesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import WithManualRefresh from 'ui/components/ManualRefresh';
 import SimpleTransactionRow from 'ui/components/SimpleTransactionRow';
 import Chart from 'ui/components/Chart';
@@ -99,7 +101,7 @@ export class Balance extends Component {
         /** Balance for currently selected account */
         balance: PropTypes.number.isRequired,
         /** Transactions for currently selected account */
-        transfers: PropTypes.object.isRequired,
+        transactions: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** Close active top bar */
@@ -113,17 +115,17 @@ export class Balance extends Component {
         /** @ignore */
         conversionRate: PropTypes.number.isRequired,
         /** @ignore */
-        primary: PropTypes.object.isRequired,
-        /** @ignore */
-        secondary: PropTypes.object.isRequired,
-        /** @ignore */
-        body: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         /** @ignore */
         isRefreshing: PropTypes.bool.isRequired,
         /** Fetches latest account info on swipe down */
         onRefresh: PropTypes.func.isRequired,
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
+        /** @ignore */
+        setAnimateChartOnMount: PropTypes.func.isRequired,
+        /** @ignore */
+        animateChartOnMount: PropTypes.bool.isRequired,
     };
 
     /**
@@ -152,6 +154,7 @@ export class Balance extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('Balance');
+        this.props.setAnimateChartOnMount(false);
     }
 
     componentWillReceiveProps(newProps) {
@@ -177,8 +180,9 @@ export class Balance extends Component {
      */
 
     prepTransactions() {
-        const { transfers, primary, secondary, body, addresses } = this.props;
-        const orderedTransfers = orderBy(transfers, (tx) => tx.timestamp, ['desc']);
+        const { transactions, theme, addresses } = this.props;
+        const { primary, secondary, body } = theme;
+        const orderedTransfers = orderBy(transactions, (tx) => tx.timestamp, ['desc']);
         const recentTransactions = orderedTransfers.slice(0, 4);
         const relevantTransactions = formatRelevantRecentTransactions(recentTransactions, addresses);
 
@@ -212,7 +216,8 @@ export class Balance extends Component {
     }
 
     renderTransactions() {
-        const { body, t } = this.props;
+        const { theme, t } = this.props;
+        const { body } = theme;
         const data = this.prepTransactions();
 
         return (
@@ -231,7 +236,8 @@ export class Balance extends Component {
     }
 
     render() {
-        const { balance, conversionRate, currency, usdPrice, body, primary, isRefreshing } = this.props;
+        const { balance, conversionRate, currency, usdPrice, theme, isRefreshing, animateChartOnMount } = this.props;
+        const { body, primary } = theme;
 
         const shortenedBalance =
             roundDown(formatValue(balance), 1) +
@@ -279,7 +285,7 @@ export class Balance extends Component {
                             </TouchableOpacity>
                         </View>
                         <View style={styles.chartContainer}>
-                            <Chart />
+                            <Chart animateChartOnMount={animateChartOnMount} />
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
@@ -292,13 +298,16 @@ const mapStateToProps = (state) => ({
     usdPrice: state.marketData.usdPrice,
     seedIndex: state.wallet.seedIndex,
     balance: getBalanceForSelectedAccount(state),
-    transfers: getTransfersForSelectedAccount(state),
+    transactions: getTransactionsForSelectedAccount(state),
     addresses: getAddressesForSelectedAccount(state),
     currency: state.settings.currency,
     conversionRate: state.settings.conversionRate,
-    primary: state.settings.theme.primary,
-    secondary: state.settings.theme.secondary,
-    body: state.settings.theme.body,
+    theme: getThemeFromState(state),
+    animateChartOnMount: state.ui.animateChartOnMount,
 });
 
-export default WithManualRefresh()(withNamespaces(['global'])(connect(mapStateToProps)(Balance)));
+const mapDispatchToProps = {
+    setAnimateChartOnMount,
+};
+
+export default WithManualRefresh()(withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(Balance)));

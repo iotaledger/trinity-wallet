@@ -6,6 +6,7 @@ import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { Balance } from 'ui/views/wallet/Balance';
+import theme from '../../../../__mocks__/theme';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
@@ -25,10 +26,8 @@ const getProps = (overrides) =>
             seedIndex: 0,
             balance: 0,
             addresses: [],
-            transfers: {},
-            primary: { color: 'red' },
-            secondary: { color: 'green' },
-            body: { color: 'blue' },
+            transactions: {},
+            theme,
             t: (arg) => {
                 const translations = {
                     received: 'Received',
@@ -45,6 +44,8 @@ const getProps = (overrides) =>
             conversionRate: 1,
             isRefreshing: false,
             onRefresh: noop,
+            animateChartOnMount: true,
+            setAnimateChartOnMount: noop,
         },
         overrides,
     );
@@ -59,20 +60,8 @@ describe('Testing Balance component', () => {
             expect(Balance.propTypes.balance).toEqual(PropTypes.number.isRequired);
         });
 
-        it('should require a transfers object as a prop', () => {
-            expect(Balance.propTypes.transfers).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a primary object as a prop', () => {
-            expect(Balance.propTypes.primary).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a body object as a prop', () => {
-            expect(Balance.propTypes.body).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a secondary object as a prop', () => {
-            expect(Balance.propTypes.secondary).toEqual(PropTypes.object.isRequired);
+        it('should require a transactions object as a prop', () => {
+            expect(Balance.propTypes.transactions).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a t function as a prop', () => {
@@ -93,6 +82,14 @@ describe('Testing Balance component', () => {
 
         it('should require an onRefresh function as a prop', () => {
             expect(Balance.propTypes.onRefresh).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require an setAnimateChartOnMount function as a prop', () => {
+            expect(Balance.propTypes.setAnimateChartOnMount).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require an animateChartOnMount bool as a prop', () => {
+            expect(Balance.propTypes.animateChartOnMount).toEqual(PropTypes.bool.isRequired);
         });
     });
 
@@ -146,10 +143,10 @@ describe('Testing Balance component', () => {
             });
 
             describe('#prepTransactions', () => {
-                let transfers;
+                let transactions;
 
                 beforeEach(() => {
-                    transfers = {
+                    transactions = {
                         bundleHashOne: {
                             value: -100,
                             persistence: true,
@@ -179,7 +176,7 @@ describe('Testing Balance component', () => {
                 });
 
                 it('should have "time", "icon", "confirmationStatus", "value", "unit", "sign", and "style" props in each item in array', () => {
-                    const props = getProps({ transfers });
+                    const props = getProps({ transactions });
 
                     const instance = shallow(<Balance {...props} />).instance();
                     const returnValueHead = instance.prepTransactions()[0];
@@ -192,7 +189,7 @@ describe('Testing Balance component', () => {
                 });
 
                 it('should have confirmationStatus prop equals "Received" if the transfer is incoming and persistence is true', () => {
-                    const props = getProps({ transfers });
+                    const props = getProps({ transactions });
 
                     const instance = shallow(<Balance {...props} />).instance();
                     const incomingTransaction = find(instance.prepTransactions(), { incoming: true });
@@ -202,7 +199,7 @@ describe('Testing Balance component', () => {
 
                 it('should have confirmationStatus prop equals "Receiving" if the transfer is incoming and persistence is false', () => {
                     const props = getProps({
-                        transfers: assign({}, transfers, {
+                        transactions: assign({}, transactions, {
                             bundleHashTwo: {
                                 value: 0,
                                 persistence: false,
@@ -221,7 +218,7 @@ describe('Testing Balance component', () => {
                 });
 
                 it('should have confirmationStatus prop equals "Sent" if the transfer is not incoming and persistence is true', () => {
-                    const props = getProps({ transfers });
+                    const props = getProps({ transactions });
 
                     const instance = shallow(<Balance {...props} />).instance();
                     const outgoingTransaction = find(instance.prepTransactions(), { incoming: false });
@@ -231,7 +228,7 @@ describe('Testing Balance component', () => {
 
                 it('should have confirmationStatus prop equals "Sending" if the transfer is not incoming and persistence is false', () => {
                     const props = getProps({
-                        transfers: assign({}, transfers, {
+                        transactions: assign({}, transactions, {
                             bundleHashOne: {
                                 value: -10,
                                 persistence: false,

@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Den egendefinerte noden er allerede lagt til.",
         "nodeAutoChanged": "Noden har blitt automatisk endret",
         "nodeAutoChangedExplanation": "Byttet til ny node {{- nodeAddress}} da den valgte noden er frakoblet.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Berør fingeravtrykkleseren for å autorisere transaksjonen",
         "masterKey": "Hovednøkkelen er det som gir deg tilgang til dine midler.",
         "seedThief": "Hvis noen får tilgang til hovednøkkelen kan de stjele dine IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Oppdater applikasjonen for å fortsette",
         "forceUpdateExplanation": "En kritisk oppdatering er lansert. Oppdater applikasjonen nå.",
         "missingPermission": "Trenger tillatelse til filsystemet",
-        "missingPermissionExplanation": "Tilgang til filsystemet kreves for å utføre denne funksjonen."
+        "missingPermissionExplanation": "Tilgang til filsystemet kreves for å utføre denne funksjonen.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -297,7 +299,8 @@
         "tag": "Etikett",
         "generateAnAddress": "Generer adresse",
         "generateAnAddressTitle": "Generere en adresse",
-        "generateAnAddressExplanation": "Vennligst generer en adresse før du bruker denne funksjonen."
+        "generateAnAddressExplanation": "Vennligst generer en adresse før du bruker denne funksjonen.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Ta vare på hovednøkkelen",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Adressen bør være {{maxLength}} tegn og ha kontrolltegn.",
         "invalidAddressExplanation2": "Adressen inneholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressens kontrolltegn stemmer ikke.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Gyldige adresser må være 90 tegn og kun inneholde bokstavene A til Z og tallet 9.",
         "notEnoughFunds": "Saldoen er for lav",
         "notEnoughFundsExplanation": "Du har ikke nok IOTA til å fullføre denne transaksjonen.",
@@ -586,12 +590,19 @@
         "fingerprintAuthFailedExplanation": "Biometrisk autentisering feilet. Vennligst prøv igjen.",
         "status": "Status",
         "fingerprintUnavailable": "Biometrisk autentisering er ikke tilgjengelig",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Enheten din støtter ikke biometrisk autentisering eller så har ikke dette blitt konfigurert i enhetens innstillinger.",
-        "buttonInstructionsDisable": "Trykk på knappen nedenfor for å deaktivere biometrisk autentisering",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Trykk på knappen nedenfor for å aktivere biometrisk autentisering.",
         "buttonInstructionsDisableIPhoneX": "Trykk på knappen nedenfor for å deaktivere Face ID",
         "buttonInstructionsEnableIPhoneX": "Trykk på knappen nedenfor for å aktivere Face ID",
-        "instructionsLogin": "Berør fingeravtrykkleseren for å logge inn"
+        "instructionsLogin": "Berør fingeravtrykkleseren for å logge inn",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Du er nå klar til å sende {{contents}} til adressen",
@@ -671,12 +682,18 @@
     "progressSteps": {
         "checkingNodeHealth": "Undersøker nodens helse",
         "validatingReceiveAddress": "Validerer mottaksadressen",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Synkroniser konto",
         "preparingInputs": "Forbereder inndata",
         "preparingTransfers": "Forbereder transaksjoner",
         "gettingTransactionsToApprove": "Mottar transaksjoner til godkjenning",
         "proofOfWork": "Fullfører PoW (Proof of Work)",
         "broadcasting": "Kringkasting",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transaksjon fullført"
     },
     "snapshotTransition": {
@@ -755,6 +772,11 @@
         "sweepConfirmation": "Du er ferd med å samle {{amount}} til adresse {{address}}. Konto: {{accountName}}, adresse indeks: {{index}}",
         "sweepConfirmationTitle": "Samlebekreftelse"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger tilkoblet og klar",
         "notReady": "Ønsker du å benytte Ledger, koble til og lås den opp nå",
@@ -763,6 +785,8 @@
         "proceedWithLedger": "Fortsett med Ledger installasjonen",
         "accountIndex": "Kontoindex",
         "accountPage": "Kontoside",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Velg din Ledger kontoindeks",
         "accountIndexExplanation": "Du kan lagre fler hovednøkkler. Hver hovednøkkel er identifisert med et unikt indeks-nummer. Et ubenyttet index-nummer er valgt for deg, men endre dette om du ønsker. Husk å skriv ned ditt valgte index-nummer.",
         "accountPageExplanation": "Noen tredjeparts lommebøker krever pages.",

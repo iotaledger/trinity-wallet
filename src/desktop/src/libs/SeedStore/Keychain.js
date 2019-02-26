@@ -1,23 +1,29 @@
 /* global Electron */
 import { ACC_MAIN, sha256, encrypt, decrypt } from 'libs/crypto';
-import { byteToTrit } from 'libs/iota/converter';
+import { ALIAS_REALM } from 'libs/realm';
+import { tritsToChars, byteToTrit } from 'libs/iota/converter';
 import { prepareTransfersAsync } from 'libs/iota/extendedApi';
+
+import SeedStoreCore from './SeedStoreCore';
 
 // Prefix for seed account titles stored in Keychain
 const ACC_PREFIX = 'account';
 
-class Keychain {
+class Keychain extends SeedStoreCore {
     /**
      * Init the vault
      * @param {array} key - Account decryption key
      * @param {string} accountId - Account identifier
      */
     constructor(key, accountId) {
+        super();
+
         return (async () => {
             this.key = key.slice(0);
             if (accountId) {
                 this.accountId = await sha256(`${ACC_PREFIX}-${accountId}`);
             }
+
             return this;
         })();
     }
@@ -42,9 +48,9 @@ class Keychain {
      * Return max supported input count
      * @returns {number} - 0 for no limit
      */
-    get maxInputs() {
+    getMaxInputs = () => {
         return 0;
-    }
+    };
 
     /**
      * Create new account
@@ -124,7 +130,7 @@ class Keychain {
         for (let i = 0; i < accounts.length; i++) {
             const account = vault[i];
 
-            if (account.account === `${ACC_MAIN}-salt`) {
+            if (account.account === `${ACC_MAIN}-salt` || account.account === ALIAS_REALM) {
                 continue;
             }
 
@@ -153,7 +159,11 @@ class Keychain {
             seed[i % seed.length] = 0;
         }
 
-        return addresses;
+        Electron.garbageCollect();
+
+        return !options.total || options.total === 1
+            ? tritsToChars(addresses)
+            : addresses.map((trits) => tritsToChars(trits));
     };
 
     /**
@@ -169,7 +179,15 @@ class Keychain {
      */
     prepareTransfers = async (transfers, options = null) => {
         const seed = await this.getSeed(true);
-        return prepareTransfersAsync()(seed, transfers, options);
+        const transfer = await prepareTransfersAsync()(seed, transfers, options);
+
+        for (let i = 0; i < seed.length * 3; i++) {
+            seed[i % seed.length] = 0;
+        }
+
+        Electron.garbageCollect();
+
+        return transfer;
     };
 
     /**
@@ -206,7 +224,9 @@ class Keychain {
             throw new Error('Local storage not available');
         }
         try {
-            const accounts = vault.filter((acc) => acc.account !== ACC_MAIN && acc.account !== `${ACC_MAIN}-salt`);
+            const accounts = vault.filter(
+                (acc) => acc.account !== ACC_MAIN && acc.account !== `${ACC_MAIN}-salt` && acc.account !== ALIAS_REALM,
+            );
 
             for (let i = 0; i < accounts.length; i++) {
                 const account = accounts[i];

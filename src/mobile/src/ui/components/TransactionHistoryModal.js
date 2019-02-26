@@ -1,13 +1,13 @@
 import assign from 'lodash/assign';
 import React, { PureComponent } from 'react';
-import SafeAreaView from 'react-native-safe-area-view';
 import PropTypes from 'prop-types';
-import { Clipboard, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView, StatusBar } from 'react-native';
+import { Clipboard, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { formatModalTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import { isAndroid, locale, timezone } from 'libs/device';
+import { locale, timezone } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import ModalView from './ModalView';
 import DualFooterButtons from './DualFooterButtons';
 import SingleFooterButton from './SingleFooterButton';
 
@@ -177,10 +177,8 @@ export default class TransactionHistoryModal extends PureComponent {
         /** Determines whether the current bundle is being promoted */
         bundleIsBeingPromoted: PropTypes.bool.isRequired,
         /* eslint-disable react/no-unused-prop-types */
-        /** Checks if the bundle hash belongs to a failed transaction
-         * @param {string} bundleHash
-         */
-        isFailedTransaction: PropTypes.func.isRequired,
+        /** Checks if it's a failed transaction */
+        isFailedTransaction: PropTypes.bool.isRequired,
         /** @ignore */
         retryFailedTransaction: PropTypes.func.isRequired,
         /** @ignore */
@@ -281,15 +279,15 @@ export default class TransactionHistoryModal extends PureComponent {
 
     renderButton(buttonProps) {
         const { disableWhen, t, hideModal, bundleIsBeingPromoted, isRetryingFailedTransaction } = this.props;
-        const opacity = { opacity: disableWhen ? (isAndroid ? 0.3 : 0.2) : 1 };
+        const opacity = { opacity: disableWhen ? 0.6 : 1 };
         const defaultProps = {
-            onRightButtonPress: () => {
+            onLeftButtonPress: () => {
                 hideModal();
             },
-            leftButtonStyle: { children: opacity },
-            leftButtonText: t('global:retry'),
-            rightButtonText: t('global:done'),
-            isLeftButtonLoading: bundleIsBeingPromoted || isRetryingFailedTransaction,
+            rightButtonStyle: { children: opacity },
+            leftButtonText: t('global:close'),
+            rightButtonText: t('global:retry'),
+            isRightButtonLoading: bundleIsBeingPromoted || isRetryingFailedTransaction,
         };
         const props = assign({}, defaultProps, buttonProps);
         return <DualFooterButtons {...props} />;
@@ -316,91 +314,14 @@ export default class TransactionHistoryModal extends PureComponent {
             bundleIsBeingPromoted,
         } = this.props;
         const { addressesScrollable, messagesScrollable } = this.state;
-        const isFailed = isFailedTransaction(bundle);
 
         return (
-            <View style={styles.container}>
-                <SafeAreaView
-                    style={[
-                        styles.modalContainer,
-                        {
-                            height: isAndroid
-                                ? height - Styling.topbarHeight - StatusBar.currentHeight
-                                : height - Styling.topbarHeight,
-                            backgroundColor: style.backgroundColor,
-                        },
-                    ]}
-                >
-                    <View style={{ flex: 1 }} />
-                    <View style={styles.historyContent}>
-                        <View style={styles.confirmationWrapper}>
-                            <View style={styles.statusContainer}>
-                                <Text style={[styles.statusText, { color: style.titleColor }]}>
-                                    {this.computeStatusText(outputs, persistence, incoming)}
-                                </Text>
-                                <Text style={[styles.statusText, { color: style.titleColor }]}>
-                                    {' ' + fullValue + ' '}
-                                </Text>
-                                <Text style={[styles.unitText, { color: style.titleColor }]}>{unit}</Text>
-                            </View>
-                            <Text style={[styles.timestamp, style.defaultTextColor]}>
-                                {formatModalTime(locale, timezone, convertUnixTimeToJSDate(time))}
-                            </Text>
-                        </View>
-                        <Text style={[styles.heading, style.defaultTextColor]}>{t('bundleHash')}:</Text>
-                        <View style={styles.bundleWrapper}>
-                            <TouchableOpacity
-                                onPress={() => this.copy(bundle, 'bundle')}
-                                style={styles.bundleInnerWrapper}
-                            >
-                                <Text
-                                    style={[styles.bundleHash, style.defaultTextColor]}
-                                    numberOfLines={2}
-                                    ellipsizeMode="middle"
-                                >
-                                    {bundle}
-                                </Text>
-                                <View style={styles.bundleSeparator} />
-                            </TouchableOpacity>
-                        </View>
-                        {mode === 'Advanced' && (
-                            <View style={{ width: contentWidth }}>
-                                <Text style={[styles.heading, style.defaultTextColor]}>{t('addresses')}:</Text>
-                                <ScrollView
-                                    scrollEnabled={addressesScrollable}
-                                    showsVerticalScrollIndicator={addressesScrollable}
-                                    style={{
-                                        maxHeight: height / 5 + height / 75,
-                                        width: contentWidth,
-                                    }}
-                                    onContentSizeChange={(x, y) => this.setAddressesScrollable(y)}
-                                >
-                                    {this.renderAddresses()}
-                                </ScrollView>
-                            </View>
-                        )}
-                        <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>
-                        <ScrollView
-                            scrollEnabled={messagesScrollable}
-                            showsVerticalScrollIndicator={messagesScrollable}
-                            style={{
-                                maxHeight: height / 9.5,
-                                width: contentWidth,
-                            }}
-                            onContentSizeChange={(x, y) => this.setMessagesScrollable(y)}
-                        >
-                            <View style={{ width: contentWidth }}>
-                                <TouchableOpacity onPress={() => this.copy(message, 'message')}>
-                                    <Text style={[styles.messageText, style.defaultTextColor]}>{message}</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </ScrollView>
-                    </View>
-                    <View style={{ flex: 3 }} />
-                    {(!persistence &&
-                        !isFailed &&
+            <ModalView
+                modalButtons={
+                    (!persistence &&
+                        !isFailedTransaction &&
                         this.renderButton({
-                            onLeftButtonPress: () => {
+                            onRightButtonPress: () => {
                                 if (!disableWhen) {
                                     return promote(bundle);
                                 }
@@ -413,21 +334,86 @@ export default class TransactionHistoryModal extends PureComponent {
                                 }
                             },
                         })) ||
-                        (isFailed &&
-                            this.renderButton({
-                                onLeftButtonPress: () => {
-                                    if (!disableWhen) {
-                                        return retryFailedTransaction(bundle);
-                                    }
-                                    this.props.generateAlert(
-                                        'error',
-                                        t('history:promotingAnotherBundle'),
-                                        t('history:pleaseWait'),
-                                    );
-                                },
-                            })) || <SingleFooterButton onButtonPress={hideModal} buttonText={t('done')} />}
-                </SafeAreaView>
-            </View>
+                    (isFailedTransaction &&
+                        this.renderButton({
+                            onRightButtonPress: () => {
+                                if (!disableWhen) {
+                                    return retryFailedTransaction(bundle);
+                                }
+                                this.props.generateAlert(
+                                    'error',
+                                    t('history:promotingAnotherBundle'),
+                                    t('history:pleaseWait'),
+                                );
+                            },
+                        })) || <SingleFooterButton onButtonPress={hideModal} buttonText={t('done')} />
+                }
+                displayTopBar
+            >
+                <View style={{ flex: 1 }} />
+                <View style={styles.historyContent}>
+                    <View style={styles.confirmationWrapper}>
+                        <View style={styles.statusContainer}>
+                            <Text style={[styles.statusText, { color: style.titleColor }]}>
+                                {this.computeStatusText(outputs, persistence, incoming)}
+                            </Text>
+                            <Text style={[styles.statusText, { color: style.titleColor }]}>
+                                {' ' + fullValue + ' '}
+                            </Text>
+                            <Text style={[styles.unitText, { color: style.titleColor }]}>{unit}</Text>
+                        </View>
+                        <Text style={[styles.timestamp, style.defaultTextColor]}>
+                            {formatModalTime(locale, timezone, convertUnixTimeToJSDate(time))}
+                        </Text>
+                    </View>
+                    <Text style={[styles.heading, style.defaultTextColor]}>{t('bundleHash')}:</Text>
+                    <View style={styles.bundleWrapper}>
+                        <TouchableOpacity onPress={() => this.copy(bundle, 'bundle')} style={styles.bundleInnerWrapper}>
+                            <Text
+                                style={[styles.bundleHash, style.defaultTextColor]}
+                                numberOfLines={2}
+                                ellipsizeMode="middle"
+                            >
+                                {bundle}
+                            </Text>
+                            <View style={styles.bundleSeparator} />
+                        </TouchableOpacity>
+                    </View>
+                    {mode === 'Advanced' && (
+                        <View style={{ width: contentWidth }}>
+                            <Text style={[styles.heading, style.defaultTextColor]}>{t('addresses')}:</Text>
+                            <ScrollView
+                                scrollEnabled={addressesScrollable}
+                                showsVerticalScrollIndicator={addressesScrollable}
+                                style={{
+                                    maxHeight: height / 5 + height / 75,
+                                    width: contentWidth,
+                                }}
+                                onContentSizeChange={(x, y) => this.setAddressesScrollable(y)}
+                            >
+                                {this.renderAddresses()}
+                            </ScrollView>
+                        </View>
+                    )}
+                    <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>
+                    <ScrollView
+                        scrollEnabled={messagesScrollable}
+                        showsVerticalScrollIndicator={messagesScrollable}
+                        style={{
+                            maxHeight: height / 9.5,
+                            width: contentWidth,
+                        }}
+                        onContentSizeChange={(x, y) => this.setMessagesScrollable(y)}
+                    >
+                        <View style={{ width: contentWidth }}>
+                            <TouchableOpacity onPress={() => this.copy(message, 'message')}>
+                                <Text style={[styles.messageText, style.defaultTextColor]}>{message}</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </ScrollView>
+                </View>
+                <View style={{ flex: 3 }} />
+            </ModalView>
         );
     }
 }

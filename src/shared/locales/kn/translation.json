@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "ಈ ಕಸ್ಟಮ್ ನೋಡ್ ಈಗಾಗಲೇ ಪಟ್ಟಿಮಾಡಲಾಗಿದೆ.",
         "nodeAutoChanged": "ನೋಡ್ ಸ್ವಯಂ ಬದಲಾವಣೆಗೊಂಡಿದೆ",
         "nodeAutoChangedExplanation": "ಆಯ್ದ ನೋಡ್ ಆಫ್ಲೈನ್ ಇರುವುದರಿಂದ ಹೊಸ ನೋಡ್ ಗೆ {{- nodeAddress}} ಗೆ ಬದಲಾಯಿಸಲಾಗಿದೆ.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "ವರ್ಗಾವಣೆ ದೃಢೀಕರಿಸಲು ಬೆರಳಚ್ಚು ಓದುಗ ಸ್ಪರ್ಶಿಸಿ",
         "masterKey": "ನಿಮ್ಮ IOTA ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ನಿಮ್ಮ ನಿಧಿಯ ಪ್ರಮುಖ ಕೀಲಿಯಾಗಿರುತ್ತದೆ.",
         "seedThief": "ಬೇರೊಬ್ಬರು ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಹೊಂದಿದ್ದರೆ ಅವರು ನಿಮ್ಮ IOTA ವನ್ನು ಕದಿಯಬಹುದು.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "ಫೈಲ್ ವ್ಯವಸ್ಥೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿದೆ",
@@ -297,7 +299,8 @@
         "tag": "೨೭ ಅಕ್ಷರಗಳ ಕಿರು ಸಂದೇಶ",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿಕೊಳ್ಳಿ",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "ವಿಳಾಸವು {{maxLength}} ಅಕ್ಷರಗಳ ಉದ್ದವಾಗಿರಬೇಕು ಮತ್ತು ಖಾತೆ ಪರಿಶೀಲನೆ ಸಂಕೇತ ಇರಬೇಕು.",
         "invalidAddressExplanation2": "ವಿಳಾಸವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿದೆ.",
         "invalidAddressExplanation3": "ವಿಳಾಸವು ಅಮಾನ್ಯ ಖಾತೆ ಪರಿಶೀಲನೆ ಸಂಕೇತಗಳನ್ನು ಹೊಂದಿದೆ.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "ಮಾನ್ಯವಾದ ವಿಳಾಸಗಳು 90 ಅಕ್ಷರಗಳಾಗಿರಬೇಕು ಮತ್ತು A-Z ಅಥವಾ 9 ಅನ್ನು ಮಾತ್ರ ಹೊಂದಿರಬೇಕು.",
         "notEnoughFunds": "ಸಾಕಷ್ಟಿಲ್ಲದ ಹಣ",
         "notEnoughFundsExplanation": "ಈ ವರ್ಗಾವಣೆಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ನಿಮ್ಮ ಖಾತೆಯಲ್ಲಿ ಸಾಕಷ್ಟು IOTA ಇಲ್ಲ.",
@@ -586,12 +590,19 @@
         "fingerprintAuthFailedExplanation": "ಬೆರಳಿನ ಗುರುತು ದೃಢೀಕರಣ ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
         "status": "ಸ್ಥಿತಿ",
         "fingerprintUnavailable": "ಬಯೊಮೀಟ್ರಿಕ್ ದೃಢೀಕರಣ ಲಭ್ಯವಿಲ್ಲ",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "ನಿಮ್ಮ ಸಾಧನವು ಬಯೋಮೆಟ್ರಿಕ್ ದೃಢೀಕರಣವನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಅಥವಾ ಸಾಧನ ಸೆಟ್ಟಿಂಗ್ಗಳಲ್ಲಿ ಇದನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಲಾಗಿಲ್ಲ.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "ಬೆರಳುಗುರುತು ದೃಢೀಕರಣ ಸಕ್ರಿಯಗೊಳಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿರಿ.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
-        "instructionsLogin": "ಲಾಗ್ ಇನ್ ಮಾಡಲು ಬೆರಳಿನ ಗುರುತು ರೀಡರ್ ಸ್ಪರ್ಶಿಸಿ"
+        "instructionsLogin": "ಲಾಗ್ ಇನ್ ಮಾಡಲು ಬೆರಳಿನ ಗುರುತು ರೀಡರ್ ಸ್ಪರ್ಶಿಸಿ",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "ನೀವು {{contents}} ಅನ್ನು ವಿಳಾಸಕ್ಕೆ ಕಳುಹಿಸಲಿದ್ದೀರಿ",
@@ -671,12 +682,18 @@
     "progressSteps": {
         "checkingNodeHealth": "ನೋಡ್ ಆರೋಗ್ಯವನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ",
         "validatingReceiveAddress": "ಸ್ವೀಕರಿಸುವ ವಿಳಾಸವನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "ಖಾತೆ ಒಡವಾಗುನಂಟು ಮಾಡಲಾಗುತ್ತಿದೆ",
         "preparingInputs": "ಒಳಹರಿವು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ",
         "preparingTransfers": "ವರ್ಗಾವಣೆಯನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ",
         "gettingTransactionsToApprove": "ವ್ಯವಹಾರಗಳನ್ನು ಅಂಗೀಕರಿಸಲಾಗುತ್ತದೆ",
         "proofOfWork": "ಕೆಲಸದ ಪುರಾವೆ ಪೂರ್ಣಗಳಿಸಲಾಗುತ್ತಿದೆ",
         "broadcasting": "ಪ್ರಕಟಿಸಲಾಗುತ್ತಿದೆ",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
@@ -755,6 +772,11 @@
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Ledger device connected and ready",
         "notReady": "If you wish to use a Ledger device, connect and unlock it now",
@@ -763,6 +785,8 @@
         "proceedWithLedger": "Proceed with Ledger setup",
         "accountIndex": "Account index",
         "accountPage": "Account page",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Choose your Ledger account index",
         "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
         "accountPageExplanation": "Some third party wallets require pages.",

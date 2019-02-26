@@ -62,8 +62,6 @@ if (!devMode) {
     app.setAsDefaultProtocolClient('iota');
 }
 
-let settings = {};
-
 let windowState = {
     width: 1280,
     height: 720,
@@ -73,22 +71,22 @@ let windowState = {
 };
 
 try {
-    const data = electronSettings.get('reduxPersist:settings');
     const windowStateData = electronSettings.get('window-state');
     if (windowStateData) {
         windowState = windowStateData;
     }
-    settings = JSON.parse(data) || {};
 } catch (error) {}
 
 /**
  * Temporarily disable proxy if not overridden by settings
  */
-
-if (settings.ignoreProxy) {
-    app.commandLine.appendSwitch('auto-detect', 'false');
-    app.commandLine.appendSwitch('no-proxy-server');
-}
+try {
+    const ignoreProxy = electronSettings.get('ignore-proxy');
+    if (ignoreProxy) {
+        app.commandLine.appendSwitch('auto-detect', 'false');
+        app.commandLine.appendSwitch('no-proxy-server');
+    }
+} catch (error) {}
 
 function createWindow() {
     /**
@@ -105,12 +103,6 @@ function createWindow() {
         });
     } catch (error) {}
 
-    let bgColor = (settings.theme && settings.theme.body.bg) || 'rgb(3, 41, 62)';
-
-    if (bgColor.indexOf('rgb') === 0) {
-        bgColor = bgColor.match(/[0-9]+/g).reduce((a, b) => a + (b | 256).toString(16).slice(1), '#');
-    }
-
     /**
      * Initialize the main wallet window
      */
@@ -121,12 +113,12 @@ function createWindow() {
         y: windowState.y,
         minWidth: 500,
         minHeight: 720,
+        show: false,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
         icon: `${paths.assets}icon.${
             process.platform === 'win32' ? 'ico' : process.platform === 'darwin' ? 'icns' : 'png'
         }`,
-        backgroundColor: bgColor,
         webPreferences: {
             nodeIntegration: false,
             preload: path.resolve(paths.preload, devMode ? 'preloadDev.js' : 'preloadProd.js'),
@@ -143,7 +135,6 @@ function createWindow() {
             fullscreenable: false,
             resizable: false,
             transparent: true,
-            backgroundColor: bgColor,
             show: false,
             webPreferences: {
                 nodeIntegration: false,
@@ -234,18 +225,17 @@ function createWindow() {
             } catch (error) {}
         }
     });
-
-    if (process.platform === 'darwin') {
-        const enabled = settings ? settings.isTrayEnabled : true;
-        setupTray(enabled);
-    }
 }
 
 /**
  * Setup Tray icon
  * @param {boolean} enabled - determine if tray is enabled
  */
-const setupTray = (enabled) => {
+ipc.on('tray.enable', (e, enabled) => {
+    if (process.platform !== 'darwin') {
+        return;
+    }
+
     if (enabled === false) {
         if (tray && !tray.isDestroyed()) {
             tray.destroy();
@@ -262,7 +252,7 @@ const setupTray = (enabled) => {
     tray.on('click', () => {
         toggleTray();
     });
-};
+});
 
 const toggleTray = () => {
     if (windows.tray.isVisible()) {
@@ -377,24 +367,13 @@ ipc.on('request.deepLink', () => {
 });
 
 /**
- * Proxy storage update event to tray window
+ * Proxy store update event to tray window
  */
-ipc.on('storage.update', (e, payload) => {
-    if (process.platform !== 'darwin') {
-        return;
-    }
 
-    if (windows.tray && !windows.tray.isDestroyed()) {
-        windows.tray.webContents.send('storage.update', payload);
+ipc.on('store.update', (_e, payload) => {
+    if (process.platform === 'darwin' && windows.tray && !windows.tray.isDestroyed()) {
+        windows.tray.webContents.send('store.update', payload);
     }
-    try {
-        const data = JSON.parse(payload);
-        const items = JSON.parse(data.item);
-
-        if (data.key === 'reduxPersist:settings') {
-            setupTray(items.isTrayEnabled);
-        }
-    } catch (e) {}
 });
 
 /**
@@ -407,13 +386,15 @@ ipc.on('menu.update', (e, payload) => {
 });
 
 /**
- * Proxy focus event from tray to main window
+ * Proxy main window focus
  */
 ipc.on('window.focus', (e, payload) => {
     if (windows.main) {
         windows.main.show();
         windows.main.focus();
-        windows.main.webContents.send('menu', payload);
+        if (payload) {
+            windows.main.webContents.send('menu', payload);
+        }
     }
 });
 

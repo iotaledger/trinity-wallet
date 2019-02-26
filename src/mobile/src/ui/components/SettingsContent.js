@@ -24,7 +24,7 @@ import LanguageSelection from 'ui/views/wallet/LanguageSelection';
 import ChangePassword from 'ui/views/wallet/ChangePassword';
 import ManualSyncComponent from 'ui/views/wallet/ManualSync';
 import ThemeCustomisation from 'ui/views/wallet/ThemeCustomisation';
-import SnapshotTransition from 'ui/views/wallet/SnapshotTransition';
+import SnapshotTransitionComponent from 'ui/views/wallet/SnapshotTransition';
 import SecuritySettings from 'ui/views/wallet/SecuritySettings';
 import SeedVaultSettings from 'ui/views/wallet/SeedVaultSettings';
 import About from 'ui/views/wallet/About';
@@ -49,7 +49,7 @@ const SETTINGS_COMPONENTS = {
     changePassword: ChangePassword,
     manualSync: ManualSyncComponent,
     themeCustomisation: ThemeCustomisation,
-    snapshotTransition: SnapshotTransition,
+    snapshotTransition: SnapshotTransitionComponent,
     securitySettings: SecuritySettings,
     modeSelection: ModeSelection,
     pow: ProofOfWork,
@@ -100,6 +100,9 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
+        marginLeft: 5,
+        flex: 1,
+        textAlign: 'right',
     },
     backText: {
         fontFamily: 'SourceSansPro-Regular',
