@@ -113,6 +113,22 @@ export class Poll extends Component {
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
 
+    /**
+     * Sets next polling service (in queue) as the active polling service
+     *
+     * @method moveToNextPollService
+     *
+     * @returns {undefined}
+     */
+    moveToNextPollService() {
+        const { allPollingServices, pollFor } = this.props;
+
+        const index = allPollingServices.indexOf(pollFor);
+        const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
+
+        this.props.setPollFor(allPollingServices[next]);
+    }
+
     fetch(service) {
         if (this.shouldSkipCycle()) {
             return;
@@ -149,7 +165,7 @@ export class Poll extends Component {
      * @returns {undefined}
      */
     retryFailedTransaction() {
-        const { allPollingServices, pollFor, failedBundleHashes, password } = this.props;
+        const { failedBundleHashes, password } = this.props;
 
         if (!isEmpty(failedBundleHashes)) {
             const bundleHashes = keys(failedBundleHashes);
@@ -158,11 +174,7 @@ export class Poll extends Component {
 
             this.props.retryFailedTransaction(name, bundleForRetry, new SeedStore[type](password, name));
         } else {
-            const index = allPollingServices.indexOf(pollFor);
-            const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
-
-            // If there are no failed bundle hashes, move to the next polling service.
-            this.props.setPollFor(allPollingServices[next]);
+            this.moveToNextPollService();
         }
     }
 
@@ -183,7 +195,7 @@ export class Poll extends Component {
     }
 
     promote() {
-        const { isAutoPromotionEnabled, unconfirmedBundleTails, allPollingServices, pollFor } = this.props;
+        const { isAutoPromotionEnabled, unconfirmedBundleTails } = this.props;
 
         const { autoPromoteSkips } = this.state;
 
@@ -206,11 +218,7 @@ export class Poll extends Component {
             }
         }
 
-        const index = allPollingServices.indexOf(pollFor);
-        const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
-
-        // In case there are no unconfirmed bundle tails or auto-promotion is disabled, move to the next service item
-        return this.props.setPollFor(allPollingServices[next]);
+        return this.moveToNextPollService();
     }
 
     render() {

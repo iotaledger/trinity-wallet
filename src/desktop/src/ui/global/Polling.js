@@ -163,10 +163,7 @@ class Polling extends React.PureComponent {
     };
 
     promote = () => {
-        const { unconfirmedBundleTails, allPollingServices, pollFor, autoPromotion } = this.props;
-
-        const index = allPollingServices.indexOf(pollFor);
-        const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
+        const { unconfirmedBundleTails, autoPromotion } = this.props;
 
         const { autoPromoteSkips } = this.state;
 
@@ -185,8 +182,7 @@ class Polling extends React.PureComponent {
             }
         }
 
-        // In case there are no unconfirmed bundle tails or auto-promotion is off, move to the next service item
-        return this.props.setPollFor(allPollingServices[next]);
+        return this.moveToNextPollService();
     };
 
     render() {
