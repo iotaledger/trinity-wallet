@@ -187,7 +187,7 @@ describe('selectors: accounts', () => {
             expect(selectedAccountStateFactory('TEST')(state)).to.have.keys([
                 'transactions',
                 'addressData',
-                'type',
+                'meta',
                 'accountName',
             ]);
         });
