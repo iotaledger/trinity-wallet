@@ -101,7 +101,6 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.setDeepUrl = this.setDeepUrl.bind(this);
         this.viewFlex = new Animated.Value(0.7);
         this.topBarHeight = new Animated.Value(Styling.topbarHeight);
     }
