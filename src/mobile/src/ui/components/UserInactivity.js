@@ -5,8 +5,10 @@ import timer from 'react-native-timer';
 
 export default class UserInactivity extends Component {
     static propTypes = {
-        /** Inactivity time threshold for application */
+        /** Inactivity time threshold for inactivity logout */
         timeForInactivity: PropTypes.number,
+        /** Inactivity time threshold for full logout */
+        timeForLogout: PropTypes.number,
         /** Interval after application inactivity should be checked */
         checkInterval: PropTypes.number,
         /** Children content */
@@ -17,10 +19,15 @@ export default class UserInactivity extends Component {
          * @param {number} timeWentInactive
          */
         onInactivity: PropTypes.func.isRequired,
+        /** Trigger full logout */
+        logout: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
+        // 5 minutes
         timeForInactivity: 300000,
+        // 30 minutes
+        timeForLogout: 1800000,
         checkInterval: 2000,
         style: {
             flex: 1,
@@ -46,6 +53,7 @@ export default class UserInactivity extends Component {
 
     componentWillUnmount() {
         timer.clearInterval('inactivityTimer');
+        timer.clearTimeout('logoutTimer');
         this.panResponder = null;
         this.inactivityTimer = null;
     }
@@ -71,6 +79,7 @@ export default class UserInactivity extends Component {
             this.setState({ timeWentInactive: null });
         }
         this.maybeStartWatchingForInactivity();
+        timer.clearTimeout('logoutTimer');
     };
 
     setIsInactive = () => {
@@ -91,13 +100,14 @@ export default class UserInactivity extends Component {
         if (this.inactivityTimer) {
             return;
         }
-        const { timeForInactivity, checkInterval } = this.props;
+        const { timeForInactivity, timeForLogout, checkInterval } = this.props;
 
         this.inactivityTimer = timer.setInterval(
             'inactivityTimer',
             () => {
                 if (new Date() - this.lastInteraction >= timeForInactivity) {
                     this.setIsInactive();
+                    timer.setTimeout('logoutTimer', () => this.props.logout(), timeForLogout - timeForInactivity);
                 }
             },
             checkInterval,

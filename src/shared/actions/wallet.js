@@ -34,7 +34,6 @@ export const ActionTypes = {
     CLEAR_WALLET_DATA: 'IOTA/WALLET/CLEAR_WALLET_DATA',
     SET_SEED_INDEX: 'IOTA/WALLET/SET_SEED_INDEX',
     SET_READY: 'IOTA/WALLET/SET_READY',
-    CLEAR_SEED: 'IOTA/WALLET/CLEAR_SEED',
     SET_SETTING: 'IOTA/WALLET/SET_SETTING',
     SNAPSHOT_TRANSITION_REQUEST: 'IOTA/WALLET/SNAPSHOT_TRANSITION_REQUEST',
     SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/WALLET/SNAPSHOT_TRANSITION_SUCCESS',
@@ -107,7 +106,7 @@ export const setPassword = (payload) => ({
 /**
  * Dispatch to clear "wallet" reducer state
  *
- * @method setPassword
+ * @method clearWalletData
  *
  * @returns {{type: {string} }}
  */
@@ -138,18 +137,6 @@ export const setSeedIndex = (payload) => ({
 export const setReady = () => ({
     type: ActionTypes.SET_READY,
     payload: true,
-});
-
-/**
- * Dispatch to clear temporarily stored seed from state
- *
- * @method clearSeed
- *
- * @returns {{type: {string} }}
- */
-export const clearSeed = () => ({
-    type: ActionTypes.CLEAR_SEED,
-    payload: Array(82).join(' '),
 });
 
 /**

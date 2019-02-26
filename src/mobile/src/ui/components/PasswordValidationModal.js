@@ -45,7 +45,7 @@ export class PasswordValidationModal extends PureComponent {
     constructor() {
         super();
         this.state = {
-            password: '',
+            password: null,
         };
     }
 
@@ -70,7 +70,7 @@ export class PasswordValidationModal extends PureComponent {
                         <Icon name="vault" size={width / 6} color={theme.body.color} style={styles.icon} />
                         <CustomTextInput
                             label={t('global:password')}
-                            onChangeText={(password) => this.setState({ password })}
+                            onValidTextChange={(password) => this.setState({ password })}
                             containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -80,6 +80,7 @@ export class PasswordValidationModal extends PureComponent {
                             onSubmitEditing={() => this.props.validatePassword(password)}
                             theme={theme}
                             value={this.state.password}
+                            isPasswordInput
                         />
                     </ModalView>
                 </View>

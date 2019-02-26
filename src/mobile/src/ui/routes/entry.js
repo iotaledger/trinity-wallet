@@ -1,4 +1,5 @@
 /* global __DEV__ */
+import 'shared-modules/libs/global';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import merge from 'lodash/merge';

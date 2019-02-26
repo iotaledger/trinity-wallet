@@ -77,8 +77,6 @@ export class EditAccountName extends Component {
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
@@ -118,18 +116,25 @@ export class EditAccountName extends Component {
      *
      * @method save
      */
-    save(accountName) {
+    async save(accountName) {
         const {
             accountNames,
-            password,
             selectedAccountName,
             selectedAccountMeta,
             t,
             isAutoPromoting,
             shouldPreventAction,
         } = this.props;
-
-        if (accountNames.includes(accountName)) {
+        if (isAutoPromoting || shouldPreventAction) {
+            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+        }
+        if (accountName.length === 0) {
+            return this.props.generateAlert(
+                'error',
+                t('addAdditionalSeed:noNickname'),
+                t('addAdditionalSeed:noNicknameExplanation'),
+            );
+        } else if (accountNames.includes(accountName)) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
@@ -138,7 +143,7 @@ export class EditAccountName extends Component {
         } else if (isAutoPromoting || shouldPreventAction) {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         } else {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
 
             seedStore
                 .accountRename(accountName)
@@ -172,7 +177,7 @@ export class EditAccountName extends Component {
                         <View style={styles.textFieldContainer}>
                             <CustomTextInput
                                 label={t('accountName')}
-                                onChangeText={(accountName) => this.setState({ accountName })}
+                                onValidTextChange={(accountName) => this.setState({ accountName })}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -214,7 +219,6 @@ const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),
     accountNames: getAccountNamesFromState(state),
-    password: state.wallet.password,
     theme: getThemeFromState(state),
     shouldPreventAction: shouldPreventAction(state),
     isAutoPromoting: state.polling.isAutoPromoting,

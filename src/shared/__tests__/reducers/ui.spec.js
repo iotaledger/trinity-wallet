@@ -21,12 +21,7 @@ describe('Reducer: ui', () => {
                 sendAddressFieldText: '',
                 sendAmountFieldText: '',
                 sendMessageFieldText: '',
-                loginPasswordFieldText: '',
                 sendDenomination: 'i',
-                onboarding: {
-                    seed: null,
-                    isGenerated: false,
-                },
                 doNotMinimise: false,
                 isModalActive: false,
                 isCheckingCustomNode: false,
@@ -139,26 +134,6 @@ describe('Reducer: ui', () => {
             };
 
             expect(newState.hasErrorFetchingCurrencyData).to.eql(expectedState.hasErrorFetchingCurrencyData);
-        });
-    });
-
-    describe('IOTA/UI/SET_LOGIN_PASSWORD_FIELD', () => {
-        it('should set "loginPasswordFieldText" state prop to "payload"', () => {
-            const initialState = {
-                loginPasswordFieldText: '',
-            };
-
-            const action = {
-                type: 'IOTA/UI/SET_LOGIN_PASSWORD_FIELD',
-                payload: 'baz',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                loginPasswordFieldText: 'baz',
-            };
-
-            expect(newState).to.eql(expectedState);
         });
     });
 
@@ -896,34 +871,6 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isAttachingToTangle: false,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/UI/SET_ONBOARDING_SEED', () => {
-        it('should assign payload to "onboarding" state prop', () => {
-            const initialState = {
-                onboarding: {
-                    name: '',
-                    seed: null,
-                    isGenerated: false,
-                },
-            };
-
-            const action = {
-                type: 'IOTA/UI/SET_ONBOARDING_SEED',
-                payload: { isGenerated: true },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                onboarding: {
-                    name: '',
-                    seed: null,
-                    isGenerated: true,
-                },
             };
 
             expect(newState).to.eql(expectedState);

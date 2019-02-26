@@ -45,15 +45,12 @@ class SeedVaultBackup extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** @ignore */
-        seed: PropTypes.string.isRequired,
     };
 
     constructor(props) {
         super(props);
         this.state = {
             step: 'isViewingGeneralInfo',
-            seed: props.seed,
         };
     }
 
@@ -87,7 +84,7 @@ class SeedVaultBackup extends Component {
 
     render() {
         const { t, theme: { body } } = this.props;
-        const { step, seed } = this.state;
+        const { step } = this.state;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -116,8 +113,7 @@ class SeedVaultBackup extends Component {
                                     this.SeedVaultExportComponent = ref;
                                 }}
                                 isAuthenticated
-                                seed={seed}
-                                setSeed={(seed) => this.setState({ seed })}
+                                seed={global.onboardingSeed}
                             />
                         </AnimatedComponent>
                     </View>
@@ -142,7 +138,6 @@ class SeedVaultBackup extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.wallet.seed,
     theme: getThemeFromState(state),
 });
 

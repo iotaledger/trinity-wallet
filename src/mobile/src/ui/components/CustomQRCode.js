@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Animated, View } from 'react-native';
 import PropTypes from 'prop-types';
-import QRCode from 'react-native-qrcode-svg';
+import QRCode from 'react-native-qr-generator';
 import { isAndroid } from 'libs/device';
 
 class CustomQRCode extends PureComponent {
@@ -10,8 +10,8 @@ class CustomQRCode extends PureComponent {
         waitFor: PropTypes.number,
         /** Size of QR code */
         size: PropTypes.number.isRequired,
-        /** Background color of QR code */
-        backgroundColor: PropTypes.string.isRequired,
+        /** Value of QR code */
+        value: PropTypes.string.isRequired,
     };
 
     static defaultProps = {
@@ -55,7 +55,7 @@ class CustomQRCode extends PureComponent {
 
     render() {
         const { renderQR } = this.state;
-        const { size, backgroundColor, ...rest } = this.props;
+        const { size, value } = this.props;
         const { animatedOpacity } = this.state;
 
         if (renderQR) {
@@ -72,7 +72,7 @@ class CustomQRCode extends PureComponent {
                             : null
                     }
                 >
-                    <QRCode size={size} backgroundColor={backgroundColor} {...rest} />
+                    <QRCode backgroundColor="#00000000" size={parseInt(size)} value={value} />
                 </Animated.View>
             );
         }

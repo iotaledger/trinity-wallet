@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'reac
 import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import { setOnboardingComplete } from 'shared-modules/actions/accounts';
-import { clearWalletData, clearSeed, setPassword } from 'shared-modules/actions/wallet';
+import { clearWalletData } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import SeedStore from 'libs/SeedStore';
@@ -71,13 +71,7 @@ class SetPassword extends Component {
         /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
-        clearSeed: PropTypes.func.isRequired,
-        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** @ignore */
-        setPassword: PropTypes.func.isRequired,
-        /** @ignore */
-        seed: PropTypes.string.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -87,13 +81,18 @@ class SetPassword extends Component {
     constructor() {
         super();
         this.state = {
-            password: '',
-            reentry: '',
+            password: null,
+            reentry: null,
         };
     }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('SetPassword');
+    }
+
+    componentWillUnmount() {
+        delete this.state.password;
+        delete this.state.reentry;
     }
 
     /**
@@ -102,17 +101,14 @@ class SetPassword extends Component {
      * @returns {Promise<void>}
      */
     async onAcceptPassword() {
-        const { t, seed, accountName } = this.props;
-
+        const { t, accountName } = this.props;
         const salt = await getSalt();
-        const pwdHash = await generatePasswordHash(this.state.password, salt);
-
+        global.passwordHash = await generatePasswordHash(this.state.password, salt);
+        delete this.state.password;
         await storeSaltInKeychain(salt);
-        this.props.setPassword(pwdHash);
 
-        const seedStore = new SeedStore.keychain(pwdHash);
-
-        const isUniqueSeed = await seedStore.isUniqueSeed(seed);
+        const seedStore = await new SeedStore.keychain(global.passwordHash);
+        const isUniqueSeed = await seedStore.isUniqueSeed(global.onboardingSeed);
         if (!isUniqueSeed) {
             return this.props.generateAlert(
                 'error',
@@ -120,11 +116,9 @@ class SetPassword extends Component {
                 t('addAdditionalSeed:seedInUseExplanation'),
             );
         }
-
-        await seedStore.addAccount(accountName, seed);
-
+        await seedStore.addAccount(accountName, global.onboardingSeed);
+        delete global.onboardingSeed;
         this.props.clearWalletData();
-        this.props.clearSeed();
         this.props.setOnboardingComplete(true);
         this.navigateToOnboardingComplete();
     }
@@ -168,7 +162,6 @@ class SetPassword extends Component {
 
     render() {
         const { t, theme: { body } } = this.props;
-        const { password, reentry } = this.state;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -206,10 +199,14 @@ class SetPassword extends Component {
                                     this.passwordFields = ref;
                                 }}
                                 onAcceptPassword={() => this.onAcceptPassword()}
-                                password={password}
-                                reentry={reentry}
-                                setPassword={(password) => this.setState({ password })}
-                                setReentry={(reentry) => this.setState({ reentry })}
+                                password={this.state.password}
+                                reentry={this.state.reentry}
+                                setPassword={(password) => {
+                                    this.setState({ password });
+                                }}
+                                setReentry={(reentry) => {
+                                    this.setState({ reentry });
+                                }}
                             />
                         </AnimatedComponent>
                         <View style={{ flex: 0.35 }} />
@@ -231,7 +228,6 @@ class SetPassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.wallet.seed,
     accountName: state.accounts.accountInfoDuringSetup.name,
     theme: getThemeFromState(state),
 });
@@ -239,8 +235,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setOnboardingComplete,
     clearWalletData,
-    clearSeed,
-    setPassword,
     generateAlert,
 };
 

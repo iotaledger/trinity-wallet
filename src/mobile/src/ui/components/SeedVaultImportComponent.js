@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid } from 'react-native';
 import PropTypes from 'prop-types';
@@ -13,6 +14,8 @@ import { height, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
+import { trytesToTrits } from 'shared-modules/libs/iota/converter';
+import { UInt8ToString } from 'libs/crypto';
 
 const styles = StyleSheet.create({
     infoText: {
@@ -70,7 +73,7 @@ export class SeedVaultImportComponent extends Component {
                         t('seedVault:unrecognisedKeyExplanation'),
                     );
                 }
-                this.props.onSeedImport(msg);
+                this.props.onSeedImport(trytesToTrits(msg));
                 return timer.setTimeout(
                     'timeout',
                     () =>
@@ -89,6 +92,7 @@ export class SeedVaultImportComponent extends Component {
     componentWillUnmount() {
         this.props.onRef(undefined);
         nodejs.channel.removeAllListeners();
+        delete this.state.seedVault;
     }
 
     /**
@@ -97,11 +101,12 @@ export class SeedVaultImportComponent extends Component {
      */
     validatePassword(password) {
         const { t } = this.props;
-        if (password === '') {
+        if (isEmpty(password)) {
             return this.props.generateAlert('error', t('seedVault:emptyKey'), t('seedVault:emptyKeyExplanation'));
         }
         const seedVaultString = this.state.seedVault.toString();
-        return nodejs.channel.send('import:' + seedVaultString + ':' + password);
+        // FIXME: Password should be UInt8, not string
+        return nodejs.channel.send('import:' + seedVaultString + ':' + UInt8ToString(password));
     }
 
     /**

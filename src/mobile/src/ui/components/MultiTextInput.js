@@ -201,7 +201,7 @@ class MultiTextInput extends Component {
                         <CustomTextInput
                             keyboardType="default"
                             label={null}
-                            onChangeText={(text) => this.onTagType(text)}
+                            onValidTextChange={(text) => this.onTagType(text)}
                             containerStyle={{ width: width / 1.25 }}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically

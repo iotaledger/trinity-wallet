@@ -1,3 +1,4 @@
+import size from 'lodash/size';
 import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -5,7 +6,7 @@ import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
+import { MAX_SEED_TRITS, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -20,6 +21,7 @@ import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { trytesToTrits } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     container: {
@@ -77,8 +79,6 @@ class UseExistingSeed extends Component {
     static propTypes = {
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
         /** Determines whether addition of new seed is allowed */
         shouldPreventAction: PropTypes.bool.isRequired,
         /** @ignore */
@@ -112,6 +112,7 @@ class UseExistingSeed extends Component {
 
     componentWillUnmount() {
         timer.clearTimeout('invalidSeedAlert');
+        delete this.state.seed;
     }
 
     /**
@@ -131,11 +132,10 @@ class UseExistingSeed extends Component {
      */
     onQRRead(data) {
         const { t } = this.props;
-        const dataString = data.toString();
         this.hideModal();
-        if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
+        if (data.toString().length === 81 && data.toString().match(VALID_SEED_REGEX)) {
             this.setState({
-                seed: data,
+                seed: trytesToTrits(data),
             });
         } else {
             timer.setTimeout(
@@ -157,15 +157,14 @@ class UseExistingSeed extends Component {
      * @method fetchAccountInfo
      */
     async fetchAccountInfo(seed, accountName) {
-        const { password, theme: { body } } = this.props;
+        const { theme: { body } } = this.props;
 
-        const seedStore = new SeedStore.keychain(password);
+        const seedStore = await new SeedStore.keychain(global.passwordHash);
         await seedStore.addAccount(accountName, seed);
 
         this.props.setAccountInfoDuringSetup({
             name: accountName,
             meta: { type: 'keychain' },
-            seed,
             completed: true,
             usedExistingSeed: true,
         });
@@ -194,20 +193,14 @@ class UseExistingSeed extends Component {
      * @param {string} accountName
      */
     async addExistingSeed(seed, accountName) {
-        const { t, accountNames, password, shouldPreventAction } = this.props;
-        if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
-            this.props.generateAlert(
-                'error',
-                t('addAdditionalSeed:seedInvalidChars'),
-                t('addAdditionalSeed:seedInvalidCharsExplanation'),
-            );
-        } else if (seed.length < MAX_SEED_LENGTH) {
+        const { t, accountNames, shouldPreventAction } = this.props;
+        if (seed.length < MAX_SEED_TRITS) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:seedTooShort'),
                 t('addAdditionalSeed:seedTooShortExplanation', {
                     maxLength: MAX_SEED_LENGTH,
-                    currentLength: seed.length,
+                    currentLength: size(seed) / 3,
                 }),
             );
         } else if (!(accountName.length > 0)) {
@@ -226,10 +219,8 @@ class UseExistingSeed extends Component {
             if (shouldPreventAction) {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
-
-            const seedStore = new SeedStore.keychain(password);
+            const seedStore = await new SeedStore.keychain(global.passwordHash);
             const isUniqueSeed = await seedStore.isUniqueSeed(seed);
-
             if (!isUniqueSeed) {
                 return this.props.generateAlert(
                     'error',
@@ -237,7 +228,6 @@ class UseExistingSeed extends Component {
                     t('addAdditionalSeed:seedInUseExplanation'),
                 );
             }
-
             return this.fetchAccountInfo(seed, accountName);
         }
     }
@@ -285,7 +275,7 @@ class UseExistingSeed extends Component {
                                 this.accountNameField = c;
                             }}
                             label={t('addAdditionalSeed:accountName')}
-                            onChangeText={(value) => this.setState({ accountName: value })}
+                            onValidTextChange={(value) => this.setState({ accountName: value })}
                             containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="words"
                             maxLength={MAX_SEED_LENGTH}
@@ -298,11 +288,7 @@ class UseExistingSeed extends Component {
                         <View style={{ flex: 0.25 }} />
                         <CustomTextInput
                             label={t('global:seed')}
-                            onChangeText={(text) => {
-                                if (text.match(VALID_SEED_REGEX) || text.length === 0) {
-                                    this.setState({ seed: text.toUpperCase() });
-                                }
-                            }}
+                            onValidTextChange={(text) => this.setState({ seed: text })}
                             containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="characters"
                             maxLength={MAX_SEED_LENGTH}
@@ -318,7 +304,7 @@ class UseExistingSeed extends Component {
                             theme={theme}
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
-                            seed={seed}
+                            isSeedInput
                         />
                         <View style={{ flex: 0.5 }} />
                         <SeedVaultImport
@@ -363,7 +349,6 @@ class UseExistingSeed extends Component {
 
 const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
-    password: state.wallet.password,
     theme: getThemeFromState(state),
     shouldPreventAction: shouldPreventAction(state),
 });
