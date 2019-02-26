@@ -9,13 +9,13 @@ import SplashScreen from 'react-native-splash-screen';
 import { navigator } from 'libs/navigation';
 import { Linking, StyleSheet } from 'react-native';
 import timer from 'react-native-timer';
-import { parseAddress } from 'shared-modules/libs/iota/utils';
 import { setFullNode } from 'shared-modules/actions/settings';
-import { setSetting, setDeepLink } from 'shared-modules/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import { setUserActivity, setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
+import WithDeepLinking from 'ui/components/DeepLinking';
 import NodeOptionsOnLogin from 'ui/views/wallet/NodeOptionsOnLogin';
 import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
@@ -46,8 +46,6 @@ class Login extends Component {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        setDeepLink: PropTypes.func.isRequired,
-        /** @ignore */
         loginRoute: PropTypes.string.isRequired,
         /** @ignore */
         setLoginRoute: PropTypes.func.isRequired,
@@ -67,11 +65,6 @@ class Login extends Component {
         };
         this.onComplete2FA = this.onComplete2FA.bind(this);
         this.onLoginPress = this.onLoginPress.bind(this);
-        this.setDeepUrl = this.setDeepUrl.bind(this);
-    }
-
-    componentWillMount() {
-        Linking.addEventListener('url', this.setDeepUrl);
     }
 
     componentDidMount() {
@@ -203,21 +196,6 @@ class Login extends Component {
     }
 
     /**
-     * Parses deep link data and sets send fields
-     * FIXME: Temporarily disabled to improve security
-     * @method setDeepUrl
-     */
-    setDeepUrl(data) {
-        const { generateAlert, t } = this.props;
-        const parsedData = parseAddress(data.url);
-        if (parsedData) {
-            this.props.setDeepLink(parsedData.amount.toString() || '0', parsedData.address, parsedData.message || null);
-        } else {
-            generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
-        }
-    }
-
-    /**
      * Navigates to provided screen
      * @method navigateTo
      *
@@ -305,8 +283,9 @@ const mapDispatchToProps = {
     setFullNode,
     setSetting,
     setUserActivity,
-    setDeepLink,
     setLoginRoute,
 };
 
-export default withNamespaces(['login', 'global', 'twoFA'])(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default WithDeepLinking()(
+    withNamespaces(['login', 'global', 'twoFA'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
+);

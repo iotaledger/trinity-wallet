@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { Linking, StyleSheet, View, KeyboardAvoidingView, Animated } from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView, Animated } from 'react-native';
 import {
     shouldTransitionForSnapshot,
     hasDisplayedSnapshotTransitionGuide,
@@ -10,16 +10,16 @@ import {
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from 'shared-modules/actions/home';
 import { markTaskAsDone } from 'shared-modules/actions/accounts';
-import { setSetting, setDeepLink } from 'shared-modules/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import { setUserActivity, toggleModalActivity } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { parseAddress } from 'shared-modules/libs/iota/utils';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import timer from 'react-native-timer';
 import UserInactivity from 'ui/components/UserInactivity';
-import TopBar from 'ui/components/TopBar';
 import WithUserActivity from 'ui/components/UserActivity';
 import WithLogout from 'ui/components/Logout';
+import WithDeepLinking from 'ui/components/DeepLinking';
+import TopBar from 'ui/components/TopBar';
 import PollComponent from 'ui/components/Poll';
 import Tabs from 'ui/components/Tabs';
 import Tab from 'ui/components/Tab';
@@ -78,8 +78,6 @@ class Home extends Component {
         /** @ignore */
         toggleTopBarDisplay: PropTypes.func.isRequired,
         /** @ignore */
-        setDeepLink: PropTypes.func.isRequired,
-        /** @ignore */
         isModalActive: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
@@ -106,10 +104,6 @@ class Home extends Component {
         this.setDeepUrl = this.setDeepUrl.bind(this);
         this.viewFlex = new Animated.Value(0.7);
         this.topBarHeight = new Animated.Value(Styling.topbarHeight);
-    }
-
-    componentWillMount() {
-        this.deepLinkSub = Linking.addEventListener('url', this.setDeepUrl);
     }
 
     componentDidMount() {
@@ -174,7 +168,6 @@ class Home extends Component {
 
     componentWillUnmount() {
         const { isModalActive } = this.props;
-        Linking.removeEventListener('url');
         if (isModalActive) {
             this.props.toggleModalActivity();
         }
@@ -202,17 +195,6 @@ class Home extends Component {
 
         if (!isSyncing && !isCheckingCustomNode) {
             this.resetSettings();
-        }
-    }
-
-    setDeepUrl(data) {
-        const { generateAlert, t } = this.props;
-        const parsedData = parseAddress(data.url);
-        if (parsedData) {
-            this.props.setDeepLink(parsedData.amount.toString() || '0', parsedData.address, parsedData.message || null);
-            this.props.changeHomeScreenRoute('send');
-        } else {
-            generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
         }
     }
 
@@ -388,11 +370,12 @@ const mapDispatchToProps = {
     setUserActivity,
     setSetting,
     toggleTopBarDisplay,
-    setDeepLink,
     toggleModalActivity,
     markTaskAsDone,
 };
 
 export default WithUserActivity()(
-    WithLogout()(withNamespaces(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
+    WithDeepLinking()(
+        WithLogout()(withNamespaces(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
+    ),
 );
