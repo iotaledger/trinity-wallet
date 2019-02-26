@@ -10,7 +10,7 @@ export default {
         [NAME]: {
             addressData,
             transactions,
-            type: TYPE,
+            meta: { type: TYPE },
         },
     },
     setupInfo: {
