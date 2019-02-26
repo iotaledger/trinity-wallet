@@ -1,0 +1,16 @@
+diff --git a/node_modules/electron-osx-sign/sign.js b/node_modules/electron-osx-sign/sign.js
+index 242d9c8..d14044b 100644
+--- a/node_modules/electron-osx-sign/sign.js
++++ b/node_modules/electron-osx-sign/sign.js
+@@ -156,9 +156,10 @@ function signApplicationAsync (opts) {
+       if (opts.timestamp) {
+         args.push('--timestamp=' + opts.timestamp)
+       }
+-      if (opts.hardenedRuntime || opts['hardened-runtime']) {
++      if (opts.hardenedRuntime || opts['hardened-runtime'] || process.env.ENABLE_HARDENED_RUNTIME) {
+         // 17.7.0 === 10.13.6
+         if (compareVersion(osRelease, '17.7.0') >= 0) {
++          console.log("Enabling hardened runtime");
+           args.push('--options', 'runtime')
+         } else {
+           debuglog('Not enabling hardened runtime, current macOS version too low, requires 10.13.6 and higher')

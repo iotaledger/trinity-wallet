@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "concurrently --kill-others \"npm run devserver\" \"cross-env NODE_ENV=development electron -r @babel/register main.js\"",
-    "postinstall": "electron-builder install-app-deps",
+    "postinstall": "electron-builder install-app-deps && patch-package",
     "devserver": "node server.js",
     "style:shots": "node scripts/puppeteer.js",
     "build": "rimraf dist && concurrently \"npm run build-main\" \"npm run build-app\"",
@@ -160,6 +160,7 @@
     "kdbxweb": "^1.2.6",
     "keytar": "^4.4.0",
     "machine-uuid-sync": "https://github.com/rajivshah3/machine-uuid-sync",
+    "patch-package": "^6.0.4",
     "perfect-scrollbar": "^1.4.0",
     "qr.js": "^0.0.0",
     "react": "^16.8.2",
