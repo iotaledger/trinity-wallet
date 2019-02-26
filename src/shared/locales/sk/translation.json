@@ -775,7 +775,8 @@
     "migration": {
         "dataMigration": "Migrácia dát",
         "dataMigrationExplanation": "V záujme lepšieho výkonu a niektorých obmedzení, Trinity momentálne používa novú databázu pre ukladanie nastavení účtu a dát. Počkajte, kým Trinity automaticky prenesie Vaše dáta.",
-        "problemMigratingYourData": "Objavil sa problém s migráciu Vaších dát, skúste to prosím znova"
+        "problemMigratingYourData": "Objavil sa problém s migráciu Vaších dát, skúste to prosím znova",
+        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
         "ready": "Zariadenie Ledger je pripojené a pripravené k práci",
