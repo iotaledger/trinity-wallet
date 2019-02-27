@@ -69,7 +69,7 @@ class OnboardingComplete extends Component {
         const { theme: { body } } = this.props;
         navigator.setStackRoot('loading', {
             animations: {
-                setStackRoot: {
+                push: {
                     enable: false,
                 },
             },

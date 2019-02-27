@@ -171,7 +171,7 @@ class UseExistingSeed extends Component {
 
         navigator.setStackRoot('loading', {
             animations: {
-                setStackRoot: {
+                push: {
                     enable: false,
                 },
             },

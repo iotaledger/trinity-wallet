@@ -230,7 +230,7 @@ class Login extends Component {
             () => {
                 navigator.setStackRoot(name, {
                     animations: {
-                        setStackRoot: {
+                        push: {
                             enable: false,
                         },
                     },

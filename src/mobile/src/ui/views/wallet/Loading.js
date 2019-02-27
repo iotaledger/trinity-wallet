@@ -268,7 +268,7 @@ class Loading extends Component {
         const { theme: { body } } = this.props;
         navigator.setStackRoot('login', {
             animations: {
-                setStackRoot: {
+                push: {
                     enable: false,
                 },
             },
@@ -291,7 +291,7 @@ class Loading extends Component {
         const { theme: { body, bar } } = this.props;
         navigator.setStackRoot('home', {
             animations: {
-                setStackRoot: {
+                push: {
                     enable: false,
                 },
             },

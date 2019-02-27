@@ -101,7 +101,7 @@ class TwoFactorSetupEnterToken extends Component {
         const { theme: { body, bar } } = this.props;
         navigator.setStackRoot('home', {
             animations: {
-                setStackRoot: {
+                push: {
                     enable: false,
                 },
             },
