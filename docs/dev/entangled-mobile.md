@@ -30,16 +30,11 @@ unzip bazel-bin/mobile/ios/ios_bindings.zip -d ios_bindings
 
 ## Android
 
-1. Clone `iotaledger/entangled` and navigate to it
+1. Navigate to `src/mobile/scripts`
 ```
-git clone https://github.com/iotaledger/entangled && cd entangled
+cd src/mobile/scripts
 ```
-2. Build the `mobile/android:dummy` target for all CPU architectures
+2. Run `build-entangled-android.sh`
 ```
-bazel build --fat_apk_cpu='armeabi-v7a,arm64-v8a,x86,x86_64' --copt=-Ofast  //mobile/android:dummy
+./build-entangled-android.sh
 ```
-3. Unzip the generated APK
-```
-unzip bazel-bin/mobile/android/dummy.apk -d dummy
-```
-4. Copy the `libdummy.so` from each architecture's folder in `dummy` (e.g. `arm64-v8a` will be in `entangled/dummy/lib/arm64-v8a`) into its respective folder in the Trinity Android project (e.g. `arm64-v8a` will be in `trinity-wallet/src/mobile/android/app/src/main/jniLibs/arm64-v8a`)
