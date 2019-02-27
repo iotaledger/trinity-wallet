@@ -25,6 +25,7 @@ import {
 import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
 import { getFromKeychainRequest, getFromKeychainSuccess, getFromKeychainError } from 'shared-modules/actions/keychain';
 import { isValidAmount } from 'shared-modules/libs/iota/utils';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import timer from 'react-native-timer';
 import SeedStore from 'libs/SeedStore';
 import { Styling } from 'ui/theme/general';
@@ -74,9 +75,6 @@ const styles = StyleSheet.create({
         flex: 3.9,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    qrFrame: {
-        padding: width / 20,
     },
     addressContainer: {
         flex: 2.75,
@@ -182,8 +180,6 @@ class Receive extends Component {
         selectedAccountName: PropTypes.string.isRequired,
         /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
         /** @ignore */
         receiveAddress: PropTypes.string.isRequired,
         /** @ignore */
@@ -421,7 +417,7 @@ class Receive extends Component {
      *   @method generateAddress
      **/
     async generateAddress() {
-        const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning, password } = this.props;
+        const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning } = this.props;
         if (isSyncing || isTransitioning) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
@@ -438,7 +434,10 @@ class Receive extends Component {
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
 
         try {
-            const seedStore = new SeedStore[selectedAccountData.type || 'keychain'](password, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountData.type || 'keychain'](
+                global.passwordHash,
+                selectedAccountName,
+            );
             this.props.getFromKeychainSuccess('receive', 'addressGeneration');
             this.props.generateNewAddress(seedStore, selectedAccountName, selectedAccountData);
         } catch (err) {
@@ -616,12 +615,7 @@ class Receive extends Component {
                                 >
                                     {!isGeneratingReceiveAddress &&
                                         hasSuccessfullyGeneratedAddress && (
-                                            <CustomQrCodeComponent
-                                                value={qrContent}
-                                                size={width / 3}
-                                                color="black"
-                                                backgroundColor="transparent"
-                                            />
+                                            <CustomQrCodeComponent value={qrContent} size={isAndroid ? width / 2 : width / 3} />
                                         )}
                                     {/* FIXME: Overflow: 'visible' is not supported on Android*/}
                                     {isAndroid && (
@@ -745,17 +739,12 @@ class Receive extends Component {
                                 </View>
                                 <View style={[styles.qrContainerBack, { backgroundColor: '#F2F2F2' }]}>
                                     <View
-                                        style={[styles.qrFrame, { backgroundColor: '#F2F2F2' }]}
+                                        style={{ backgroundColor: '#F2F2F2' }}
                                         ref={(c) => {
                                             this.qr = c;
                                         }}
                                     >
-                                        <CustomQrCodeComponent
-                                            value={qrContent}
-                                            size={width / 3}
-                                            color="black"
-                                            backgroundColor="transparent"
-                                        />
+                                        <CustomQrCodeComponent value={qrContent} size={isAndroid ? width / 2 : width / 3} />
                                     </View>
                                 </View>
                                 <View
@@ -790,12 +779,11 @@ const mapStateToProps = (state) => ({
     selectedAccountData: selectAccountInfo(state),
     selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.ui.isSyncing,
-    receiveAddress: selectLatestAddressFromAccountFactory(state),
+    receiveAddress: selectLatestAddressFromAccountFactory()(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isTransitioning: state.ui.isTransitioning,
-    password: state.wallet.password,
     qrMessage: state.ui.qrMessage,
     qrAmount: state.ui.qrAmount,
     qrTag: state.ui.qrTag,

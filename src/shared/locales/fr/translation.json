@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Réception des transactions à valider",
         "proofOfWork": "Finalisation de la preuve de travail",
         "broadcasting": "Diffusion en cours",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transfert terminé"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Vous êtes sur le point de balayer {{amount}} à l’adresse {{address}}. Compte : {{accountName}}, indice de l’adresse : {{index}}",
         "sweepConfirmationTitle": "Confirmation de balayage"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+    },
     "ledger": {
         "ready": "Le Ledger est connecté et prêt",
         "notReady": "Si vous souhaitez utiliser une clé Ledger, connectez la et déverrouillez la maintenant",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Paramétrer le Ledger",
         "accountIndex": "Index du compte",
         "accountPage": "Page du compte",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Choisissez l'index du compte Ledger",
         "accountIndexExplanation": "Votre Ledger peut stocker plusieurs seeds. Chaque seed est identifiée par un numéro d’index unique. Un index inutilisé a été présélectionné, mais n’hésitez pas à choisir par vous même. Assurez-vous de noter le numéro d’index que vous avez choisi.",
         "accountPageExplanation": "Certains portefeuilles tiers nécessitent l'utilisation de pages.",

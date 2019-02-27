@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { TwoFactorSetupAddKey } from 'ui/views/wallet/TwoFactorSetupAddKey';
 import * as keychainUtils from 'libs/keychain';
+import theme from '../../../../__mocks__/theme';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
@@ -38,11 +39,10 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            theme: { body: { bg: '#ffffff' } },
+            theme,
             generateAlert: noop,
             componentId: 'foo',
             t: () => '',
-            password: {},
         },
         overrides,
     );
@@ -59,10 +59,6 @@ describe('Testing TwoFactorSetupAddKey component', () => {
 
         it('should require a t function as a prop', () => {
             expect(TwoFactorSetupAddKey.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
-        });
-
-        it('should require a password object as a prop', () => {
-            expect(TwoFactorSetupAddKey.propTypes.password).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a componentId string as a prop', () => {

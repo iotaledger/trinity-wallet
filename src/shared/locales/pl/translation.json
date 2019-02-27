@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "Uzyskiwanie transakcji do potwierdzenia",
         "proofOfWork": "Finalizacja Proof of Work",
         "broadcasting": "Broadcasting",
+        "preparingData": "Przygotowywanie danych",
+        "migratingSettings": "Przenoszenie ustawień",
+        "migratingAccounts": "Przenoszenie kont",
+        "cleaningUpOldData": "Czyszczenie starych danych",
+        "migrationComplete": "Migracja zakończona",
         "transferComplete": "Transfer zakończony"
     },
     "snapshotTransition": {
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Masz zamiar przenieść {{amount}} na adres {{address}}. Konto: {{accountName}}, indeks adresu: {{index}}",
         "sweepConfirmationTitle": "Potwierdzenie przenoszenia"
     },
+    "migration": {
+        "dataMigration": "Przenoszenie danych",
+        "dataMigrationExplanation": "Ze względu na wydajność i pewne ograniczenia pamięci, Trinity używa od teraz nowej bazy danych do przechowywania ustawień i danych konta. Zaczekaj, podczas gdy Trinity automatycznie wykona migrację Twoich danych.",
+        "problemMigratingYourData": "Wystąpił problem podczas migracji Twoich danych. Spróbuj ponownie"
+    },
     "ledger": {
         "ready": "Urządzenie Ledger podłączone i gotowe do pracy",
         "notReady": "Jeśli chcesz użyć portfela sprzętowego Ledger, podłącz go teraz, a następnie odblokuj",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Kontynuuj konfigurację portfela Ledger",
         "accountIndex": "Indeks konta",
         "accountPage": "Strona konta",
+        "actionCancelled": "Dostęp do urządzenia Ledger odwołany",
+        "actionCancelledExplanation": "Nie można wykonać akcji bez dostępu do urządzenia Ledger.",
         "chooseAccountIndex": "Wybierz indeks Twojego konta Ledger",
         "accountIndexExplanation": "Twoje urządzenie Ledger może przechowywać wiele kluczy seed. Każdy z kluczy, jest identyfikowany przez unikatowy numer indeksu. Nieużywany indeks został wstępnie wybrany, jednak możesz wybrać swój własny. Upewnij się, że zanotowałeś swój wybrany numer indeksu.",
         "accountPageExplanation": "Niektóre portfele firm trzecich, wymagają użycia \"stron\".",

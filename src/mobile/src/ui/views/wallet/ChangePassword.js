@@ -1,11 +1,13 @@
+import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setPassword, setSetting } from 'shared-modules/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { changePassword, hash } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
 import { width, height } from 'libs/dimensions';
@@ -71,10 +73,6 @@ const styles = StyleSheet.create({
 class ChangePassword extends Component {
     static propTypes = {
         /** @ignore */
-        currentPwdHash: PropTypes.object.isRequired,
-        /** @ignore */
-        setPassword: PropTypes.func.isRequired,
-        /** @ignore */
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
@@ -87,14 +85,20 @@ class ChangePassword extends Component {
     constructor() {
         super();
         this.state = {
-            currentPassword: '',
-            newPassword: '',
-            newPasswordReentry: '',
+            currentPassword: null,
+            newPassword: null,
+            newPasswordReentry: null,
         };
     }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('ChangePassword');
+    }
+
+    componentWillUnmount() {
+        delete this.state.currentPassword;
+        delete this.state.newPassword;
+        delete this.state.newPasswordReentry;
     }
 
     /**
@@ -103,13 +107,13 @@ class ChangePassword extends Component {
      * @method onAcceptPassword
      */
     async onAcceptPassword() {
-        const { currentPwdHash, setPassword, generateAlert, t } = this.props;
+        const { generateAlert, t } = this.props;
         const { newPassword } = this.state;
         const salt = await getSalt();
         const newPwdHash = await generatePasswordHash(newPassword, salt);
-        changePassword(currentPwdHash, newPwdHash, salt)
+        changePassword(global.passwordHash, newPwdHash, salt)
             .then(() => {
-                setPassword(newPwdHash);
+                global.passwordHash = newPwdHash;
                 generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
                 this.props.setSetting('securitySettings');
             })
@@ -122,11 +126,12 @@ class ChangePassword extends Component {
      * @method isPasswordChangeValid
      */
     async isPasswordChangeValid() {
-        const { t, currentPwdHash, generateAlert } = this.props;
-        const currentPasswordHash = await hash(this.state.currentPassword);
-        if (!isEqual(currentPwdHash, currentPasswordHash)) {
+        const { t, generateAlert } = this.props;
+        if (isEmpty(this.state.currentPassword)) {
+            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
+        } else if (!isEqual(global.passwordHash, await hash(this.state.currentPassword))) {
             return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
-        } else if (this.state.newPassword === this.state.currentPassword) {
+        } else if (isEqual(this.state.newPassword, this.state.currentPassword)) {
             return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));
         }
         this.passwordFields.checkPassword();
@@ -150,7 +155,7 @@ class ChangePassword extends Component {
                             }}
                             value={currentPassword}
                             label={t('currentPassword')}
-                            onChangeText={(password) => this.setState({ currentPassword: password })}
+                            onValidTextChange={(password) => this.setState({ currentPassword: password })}
                             returnKeyType="next"
                             theme={theme}
                             widget="empty"
@@ -158,6 +163,7 @@ class ChangePassword extends Component {
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             secureTextEntry
+                            isPasswordInput
                         />
                         <PasswordFields
                             onRef={(ref) => {
@@ -207,12 +213,10 @@ class ChangePassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    currentPwdHash: state.wallet.password,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {
-    setPassword,
     setSetting,
     generateAlert,
 };

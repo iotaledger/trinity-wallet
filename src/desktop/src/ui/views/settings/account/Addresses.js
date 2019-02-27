@@ -24,35 +24,36 @@ class Addresses extends PureComponent {
         const { account, t } = this.props;
         const isSpent = ({ spent: { local, remote } }) => local || remote;
 
-        const addresses = Object.keys(account.addresses)
-            .map((address) => Object.assign({ address }, account.addresses[address]))
-            .sort((a, b) => b.index - a.index);
+        const addressData = account.addressData.slice().sort((a, b) => b.index - a.index);
 
         return (
             <div className={settingsCSS.scroll}>
                 <Scrollbar>
                     <ul className={css.addresses}>
-                        {addresses.map((item) => {
-                            const address = item.address + item.checksum;
-                            return (
-                                <li key={address}>
-                                    <p className={isSpent(item) ? css.spent : null}>
-                                        <Clipboard
-                                            text={address}
-                                            title={t('receive:addressCopied')}
-                                            success={t('receive:addressCopiedExplanation')}
-                                        >
-                                            {item.address.match(/.{1,3}/g).join(' ')}{' '}
-                                            <mark>{item.checksum.match(/.{1,3}/g).join(' ')}</mark>
-                                        </Clipboard>
-                                    </p>
-                                    <strong>
-                                        {formatValue(item.balance)}
-                                        {formatUnit(item.balance)}
-                                    </strong>
-                                </li>
-                            );
-                        })}
+                        <Scrollbar>
+                            {addressData.map((addressObject) => {
+                                const address = addressObject.address + addressObject.checksum;
+
+                                return (
+                                    <li key={address}>
+                                        <p className={isSpent(addressObject) ? css.spent : null}>
+                                            <Clipboard
+                                                text={address}
+                                                title={t('receive:addressCopied')}
+                                                success={t('receive:addressCopiedExplanation')}
+                                            >
+                                                {addressObject.address.match(/.{1,3}/g).join(' ')}{' '}
+                                                <mark>{addressObject.checksum.match(/.{1,3}/g).join(' ')}</mark>
+                                            </Clipboard>
+                                        </p>
+                                        <strong>
+                                            {formatValue(addressObject.balance)}
+                                            {formatUnit(addressObject.balance)}
+                                        </strong>
+                                    </li>
+                                );
+                            })}
+                        </Scrollbar>
                     </ul>
                 </Scrollbar>
             </div>

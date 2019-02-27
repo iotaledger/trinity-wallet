@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { isValidAmount } from 'shared-modules/libs/iota/utils';
 import { getNextDenomination, getCurrencySymbol } from 'shared-modules/libs/currency';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import CustomTextInput from './CustomTextInput';
 
 class MultiTextInput extends Component {
@@ -136,7 +137,7 @@ class MultiTextInput extends Component {
                 label={label}
                 containerStyle={containerStyle}
                 onRef={onRef}
-                onChangeText={(text) => this.onAmountType(text)}
+                onValidTextChange={(text) => this.onAmountType(text)}
                 autoCorrect={false}
                 enablesReturnKeyAutomatically
                 widget="denomination"
@@ -159,7 +160,7 @@ class MultiTextInput extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     currency: state.settings.currency,
     usdPrice: state.marketData.usdPrice,
     conversionRate: state.settings.conversionRate,

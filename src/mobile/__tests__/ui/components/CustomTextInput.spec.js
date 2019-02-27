@@ -4,22 +4,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import CustomTextInput from 'ui/components/CustomTextInput';
+import theme from '../../../__mocks__/theme';
 
 const getProps = (overrides) =>
     assign(
         {},
         {
-            onChangeText: noop,
+            onValidTextChange: noop,
             label: 'foo',
-            theme: { body: {}, input: {}, primary: {}, label: {} },
+            theme,
         },
         overrides,
     );
 
 describe('Testing CustomTextInput component', () => {
     describe('propTypes', () => {
-        it('should require an onChangeText function as a prop', () => {
-            expect(CustomTextInput.propTypes.onChangeText).toEqual(PropTypes.func.isRequired);
+        it('should require an onValidTextChange function as a prop', () => {
+            expect(CustomTextInput.propTypes.onValidTextChange).toEqual(PropTypes.func);
         });
 
         it('should require a theme object as a prop', () => {

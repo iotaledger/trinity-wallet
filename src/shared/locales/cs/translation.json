@@ -6,7 +6,7 @@
         "noTransactions": "ŽÁDNÁ NEDÁVNÁ HISTORIE",
         "refresh": "Obnovit",
         "balanceError": "Nedostatečný zůstatek",
-        "balanceErrorMessage": "Nemáte dostatek peněz na vytvoření této bedny.",
+        "balanceErrorMessage": "Nemáte dostatek IOTA k dokončení této transakce.",
         "totalBalance": "Celkový zůstatek",
         "transferError": "Chyba transakce",
         "transferErrorMessage": "Došlo k chybě při odesílání transakce. Prosím zkuste to znovu.",
@@ -76,8 +76,8 @@
         "wallet": "Peněženka",
         "all": "Vše ",
         "sent": "Odesláno",
-        "youReceived": "Jste obdrželi",
-        "youSent": "Jste odeslali",
+        "youReceived": "Přijali jste",
+        "youSent": "Odeslali jste",
         "received": "Přijato",
         "sending": "Odesílání",
         "receiving": "Příjem",
@@ -121,7 +121,7 @@
         "nodeDuplicatedExplanation": "Tento vlastní Node je již v seznamu.",
         "nodeAutoChanged": "Automatické přepnutí Nodu",
         "nodeAutoChangedExplanation": "Přepnuto na nový Node {{- nodeAddress}} jelikož dříve vybraný je offline.",
-        "touchSensor": "Touch the fingerprint sensor",
+        "touchSensor": "Dotkněte se snímače otisků prstů",
         "fingerprintOnSend": "Pro ověření přenosu přiložte prst na čtečku",
         "masterKey": "Váš IOTA seed je hlavním klíčem k vašim IOTA financím.",
         "seedThief": "Kdo získá Váš Seed, ten by mohl ukrást vaše IOTA finance.",
@@ -160,8 +160,8 @@
         "forceUpdate": "Chcete-li pokračovat, aktualizujte aplikaci",
         "forceUpdateExplanation": "Byla vydána kritická aktualizace. Aktualizujte aplikaci nyní.",
         "missingPermission": "Požadovaný přístup k souborovému systému",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
-        "swipeToConfirm": "Swipe to confirm"
+        "missingPermissionExplanation": "K provedení této funkce potřebujete přístup k souborovému systému.",
+        "swipeToConfirm": "Posunutím potvrďte"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -215,7 +215,7 @@
         "passwordTooShortExplanation": "Heslo musí obsahovat minimálně {{minLength}} znaků. Nyní je {{currentLength}} znaků dlouhé. Prosím zkuste to znovu.",
         "passwordMismatch": "Hesla se neshodují",
         "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím zkuste znovu.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Toto je Vaše hlavní heslo peněženky. Budete jej používat pro přihlášení.",
         "retypePassword": "Znovu zadejte heslo"
     },
     "copyToClipboard": {
@@ -249,8 +249,8 @@
         "login": "Přihlásit se",
         "setNode": "Nastavit Node",
         "whyBiometricDisabled": "Proč je biometrické ověřování vypnuté?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "Biometrické ověření je z bezpečnostních důvodů zakázáno při prvním spuštění.",
+        "whyBiometricDisabledExplanationPart2": "Trinity Vás automaticky odhlásí, pokud nebudete aktivní. Potom se můžete znovu přihlásit pomocí biometrického ověření."
     },
     "loading": {
         "loadingFirstTime": "První načítání Seedu.",
@@ -300,7 +300,7 @@
         "generateAnAddress": "Vygenerovat adresu",
         "generateAnAddressTitle": "Vygenerovat adresu",
         "generateAnAddressExplanation": "Prosím vygenerujte adresu před použitím této funkce.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "Vygenerujte pokaždé novou adresu, když chcete přijmout IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte Váš Seed",
@@ -322,7 +322,7 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Prosím, potvrďte Váš Seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity Vás nikdy nebude vyzývat ke znovu vložení tohoto Seedu. Výjimkou je reset vaší peněženky, popřípadě nová instalace aplikace.",
         "enterYourSeed": "Zadejte Váš Seed",
         "incorrectSeed": "Neplatný Seed",
         "incorrectSeedExplanation": "Zadán neplatný Seed. Zkuste to prosím znovu.",
@@ -336,7 +336,7 @@
         "invalidAddressExplanation1": "Adresa by měla být dlouhá {{maxLength}} znaků a měla by mít kontrolní součet.",
         "invalidAddressExplanation2": "Adresa obsahuje neplatné znaky.",
         "invalidAddressExplanation3": "Adresa má chybnou délku.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "Zkontrolujte, zda jste adresu zadali správně.",
         "invalidAddressExplanationGeneric": "Platné adresy mají 90 znaků a obsahují pouze A-Z nebo 9.",
         "notEnoughFunds": "Nedostatek prostředků",
         "notEnoughFundsExplanation": "Nemáte dostatek IOTA k dokončení této transakce.",
@@ -462,7 +462,7 @@
         "retrying": "Opakování",
         "yesterday": "Včera",
         "promotingAnotherBundle": "Podpora dalšího balíčku",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Prosím počkejte, Trinity podporuje další balíček."
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
@@ -534,7 +534,7 @@
         "million": "Milion",
         "thousand": "Tisíc",
         "one": "Jedna",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTA se obvykle nakupuje v násobcích jednoho milionu (MIOTA), ale může být také posílána jako jedna IOTA.\n"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Proč nemohu použít celý zůstatek mého účtu?",
@@ -570,8 +570,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Zazálohovali jste si Váš Seed?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Můj Seed mám bezpečně uložený",
+        "reenterSeed": "V dalším kroku budete požádáni o znovu vložení Vašeho Seedu.",
         "reenterSeedWarning": "Pokud jste si nezálohovali Váš Seed a Vaše zařízení bude poškozeno, ztratíte všechny Vaše IOTY.",
         "pleaseConfirm": "Prosím potvrďte, že máte bezpečně uložen Váš Seed."
     },
@@ -590,19 +590,19 @@
         "fingerprintAuthFailedExplanation": "Ověření pomocí otisku prstu selhalo. Prosím zkuste znovu.",
         "status": "Stav",
         "fingerprintUnavailable": "Biometrická autentizace není k dispozici",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "Autentizace je zakázána po dobu 30 sekund",
         "fingerprintUnavailableExplanation": "Vaše zařízení nepodporuje biometrickou autentizaci, nebo v nastavení zařízení nebylo povoleno její používání.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "notSupported": "Zařízení nepodporuje biometrické ověřování",
+        "notConfigured": "Biometrické ověření nebylo v nastavení zařízení nakonfigurováno",
+        "buttonInstructionsDisable": "Stisknutím tlačítka níže vypnete ověřování otisků prstů.",
         "buttonInstructionsEnable": "Stisknutím tlačítka níže aktivujete ověření otisků prstů.",
         "buttonInstructionsDisableIPhoneX": "Stisknutím tlačítka níže vypnete ověření pomocí rozpoznávání obličeje",
         "buttonInstructionsEnableIPhoneX": "Stisknutím tlačítka níže zapnete ověření pomocí rozpoznávání obličeje",
         "instructionsLogin": "Pro přihlášení přiložte prst na čtečku",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "Ověřování bylo přerušeno zařízením",
+        "userCancelledAuth": "Žádost o ověření byla zrušena",
+        "passwordFallback": "Návrat zpět k ověřování heslem",
+        "noPassword": "V zařízení není nastaveno heslo"
     },
     "transferConfirmation": {
         "youAreAbout": "Chystáte se odeslat {{contents}} na adresu",
@@ -614,7 +614,7 @@
     },
     "twoFA": {
         "wrongCode": "Nesprávný kód",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "Zadaný kód je nesprávný. Pokud tato chyba přetrvává, zkontrolujte, zda máte v přístroji nastaven správný čas.",
         "emptyCode": "Prázdný kód",
         "emptyCodeExplanation": "Prosím opakujte zadání kódu.",
         "keyCopied": "Klíč zkopírován do schránky",
@@ -631,8 +631,8 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportovat SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
-        "seedVaultWarning": "Ujistěte se, že si zálohujete soubor na více místech (například pevný disk, cloud, USB). Pokud ztratíte tento soubor a nebudete mít uložený Váš Seed jiným způsobem, ztratíte Vaše IOTA.",
+        "seedVaultExplanation": "SeedVault je způsob, jak bezpečně ukládat Váš Seed. Seed je uložen v zašifrovaném souboru a nemůže být zobrazen bez příslušného hesla.",
+        "seedVaultWarning": "Ujistěte se, že si zálohujete soubor na více místech (například pevný disk, cloud, USB). Pokud ztratíte tento soubor a nebudete mít uložený Váš Seed jiným způsobem ztratíte Vaše IOTA.",
         "exportFail": "Export SeedVault se nezdařil",
         "exportFailExplanation": "Během exportování Vašeho SeedVault nastal problém. Zkontrolujte zda máte oprávnění na zápis souboru a dostatek volného místa.",
         "exportSuccess": "SeedVault export dokončen",
@@ -645,14 +645,14 @@
         "importSuccessExplanation": "Váš Seed byl úspěšně importován.",
         "saveToDownloadFolder": "Uložit do složky pro stahování",
         "importSeedVault": "Importovat SeedVault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
+        "dropInstructions": "Sem přetáhněte SeedVault nebo text se Seedem <1></1> nebo klikněte pro procházení",
+        "dropActive": "Sem přetáhněte SeedVault nebo text se Seedem",
         "enterKeyExplanation": "Zadejte Vaše heslo k otevření souboru SeedVault",
         "noSeedFound": "SeedVault neobsahuje platný Seed",
         "noSeedFoundExplanation": "SeedVault je buď prázdný, nebo obsahuje Seed v neplatném formátu.",
         "seedFileError": "Otevření SeedVault se nezdařilo",
         "seedFileErrorExplanation": "Během otevírání SeedVault nastal problém. Jestliže jste zvolili správný soubor, je možné, že je poškozený.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "Nejprve potřebujeme zabezpečit Váš SeedVault. Vyberte si prosím heslo k zašifrování souboru. Toto heslo použijete, pokud budete potřebovat obnovit Váš Seed ze zálohy SeedVault.",
         "retypeKey": "Zadejte znovu heslo"
     },
     "chart": {
@@ -682,13 +682,18 @@
     "progressSteps": {
         "checkingNodeHealth": "Kontrola stavu nodu",
         "validatingReceiveAddress": "Ověřování přijímací adresy",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "Ověřování transakčních adres",
         "syncingAccount": "Synchronizace účtu",
         "preparingInputs": "Příprava vstupních dat",
         "preparingTransfers": "Příprava transakce",
         "gettingTransactionsToApprove": "Získávání transakcí ke schválení",
         "proofOfWork": "Dokončení proof of work",
         "broadcasting": "Odesílání transakcí do sítě",
+        "preparingData": "Příprava dat",
+        "migratingSettings": "Migrace nastavení",
+        "migratingAccounts": "Migrační účty",
+        "cleaningUpOldData": "Vyčištění starých údajů",
+        "migrationComplete": "Migrace je kompletní",
         "transferComplete": "Přenos byl dokončen"
     },
     "snapshotTransition": {
@@ -704,7 +709,7 @@
         "transitioning": "Aktualizace údajů po Snapshotu.",
         "generatingAndDetecting": "Generuji adresy a zjišťuji zůstatek.",
         "attaching": "Připojuji adresy do sítě Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Připojení adresy {{currentAddress}} z {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatické vyplňování úspěšné",
@@ -767,6 +772,11 @@
         "sweepConfirmation": "Chystáte se přenést {{amount}} na {{address}}. Účet: {{accountName}}, index adresy: {{index}}",
         "sweepConfirmationTitle": "Potvrzení převodu"
     },
+    "migration": {
+        "dataMigration": "Migrace dat",
+        "dataMigrationExplanation": "V zájmu lepšího výkonu a některých omezení, Trinity nyní používá novou databázi pro ukládání nastavení účtu a dat. Počkejte, až Trinity automaticky přenese Vaše data.",
+        "problemMigratingYourData": "Objevil se problém s migrací Vašich dat, zkuste to prosím znovu"
+    },
     "ledger": {
         "ready": "Zařízení Ledger je připojené a připravené k práci",
         "notReady": "Pokud si přejete použít zařízení Ledger, připojte je nyní a odemkněte",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "Pokračovat v nastavení zařízení Ledger",
         "accountIndex": "Index účtu",
         "accountPage": "Stránka účtu",
+        "actionCancelled": "Přístup k zařízení Ledger byl zrušen",
+        "actionCancelledExplanation": "Akci nelze provést bez přístupu k zařízení Ledger.",
         "chooseAccountIndex": "Vyberte Index účtu ve Vašem Ledgeru",
         "accountIndexExplanation": "Vaše zařízení Ledger může ukládat více Seedů. Každý Seed je označen jedinečným indexovým číslem. Nepoužitý index byl předem vybrán, ale můžete si zvolit vlastní. Ujistěte se, že jste si poznamenali zvolené číslo indexu.",
         "accountPageExplanation": "Některé peněženky třetích stran vyžadují použití \"stron\".",

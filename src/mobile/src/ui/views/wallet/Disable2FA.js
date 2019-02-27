@@ -7,6 +7,7 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'reac
 import { navigator } from 'libs/navigation';
 import { resetWallet, set2FAStatus } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
 import Fonts from 'ui/theme/fonts';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -59,8 +60,6 @@ class Disable2FA extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         set2FAStatus: PropTypes.func.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -80,7 +79,7 @@ class Disable2FA extends Component {
      * Attempts to disable 2FA, fails if the token is not correct
      */
     disable2FA() {
-        return getTwoFactorAuthKeyFromKeychain(this.props.password)
+        return getTwoFactorAuthKeyFromKeychain(global.passwordHash)
             .then((key) => {
                 const verified = authenticator.verifyToken(key, this.state.token);
                 if (verified) {
@@ -146,7 +145,7 @@ class Disable2FA extends Component {
                             >
                                 <CustomTextInput
                                     label="Token"
-                                    onChangeText={(token) => this.setState({ token })}
+                                    onValidTextChange={(token) => this.setState({ token })}
                                     autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
@@ -175,8 +174,7 @@ class Disable2FA extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
-    password: state.wallet.password,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

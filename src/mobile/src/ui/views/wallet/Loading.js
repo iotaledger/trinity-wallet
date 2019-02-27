@@ -11,6 +11,7 @@ import KeepAwake from 'react-native-keep-awake';
 import LottieView from 'lottie-react-native';
 import { getAccountInfo, getFullAccountInfo } from 'shared-modules/actions/accounts';
 import { setLoginRoute } from 'shared-modules/actions/ui';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/marketData';
 import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -109,8 +110,6 @@ class Loading extends Component {
         /** @ignore */
         additionalAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
         currency: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -141,14 +140,13 @@ class Loading extends Component {
         this.onChangeNodePress = this.onChangeNodePress.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const {
             addingAdditionalAccount,
             additionalAccountName,
             additionalAccountMeta,
             selectedAccountName,
             selectedAccountMeta,
-            password,
             deepLinkActive,
         } = this.props;
         leaveNavigationBreadcrumb('Loading');
@@ -173,10 +171,13 @@ class Loading extends Component {
             this.props.changeHomeScreenRoute('balance');
         }
         if (addingAdditionalAccount) {
-            const seedStore = new SeedStore[additionalAccountMeta.type](password, additionalAccountName);
+            const seedStore = await new SeedStore[additionalAccountMeta.type](
+                global.passwordHash,
+                additionalAccountName,
+            );
             this.props.getFullAccountInfo(seedStore, additionalAccountName);
         } else {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.getAccountInfo(seedStore, selectedAccountName);
         }
     }
@@ -381,9 +382,8 @@ const mapStateToProps = (state) => ({
     additionalAccountName: state.accounts.accountInfoDuringSetup.name,
     additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
     ready: state.wallet.ready,
-    password: state.wallet.password,
-    theme: state.settings.theme,
-    isThemeDark: state.settings.theme.isDark,
+    theme: getThemeFromState(state),
+    isThemeDark: getThemeFromState(state).isDark,
     currency: state.settings.currency,
     deepLinkActive: state.wallet.deepLinkActive,
 });

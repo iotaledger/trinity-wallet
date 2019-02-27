@@ -4,6 +4,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import PropTypes from 'prop-types';
 import { SetAccountName } from 'ui/views/onboarding/SetAccountName';
+import theme from '../../../../__mocks__/theme';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
@@ -27,13 +28,10 @@ const getProps = (overrides) =>
             componentId: 'foo',
             accountNames: [],
             generateAlert: noop,
-            setAdditionalAccountInfo: noop,
+            setAccountInfoDuringSetup: noop,
             t: () => '',
-            accountCount: 0,
-            seed: 'SEED',
             onboardingComplete: false,
-            theme: { body: { bg: '#ffffff', color: '#000000' }, primary: {} },
-            password: {},
+            theme,
             shouldPreventAction: false,
         },
         overrides,
@@ -57,20 +55,12 @@ describe('Testing SetAccountName component', () => {
             expect(SetAccountName.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a seed string as a prop', () => {
-            expect(SetAccountName.propTypes.seed).toEqual(PropTypes.string.isRequired);
-        });
-
         it('should require a onboardingComplete bool as a prop', () => {
             expect(SetAccountName.propTypes.onboardingComplete).toEqual(PropTypes.bool.isRequired);
         });
 
         it('should require a theme object as a prop', () => {
             expect(SetAccountName.propTypes.theme).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a password object as a prop', () => {
-            expect(SetAccountName.propTypes.password).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a shouldPreventAction boolean as a prop', () => {
@@ -98,7 +88,7 @@ describe('Testing SetAccountName component', () => {
                     });
                 });
 
-                it('should call update accountName prop in state with text when onChangeText prop method on CustomTextInput is triggered', () => {
+                it('should call update accountName prop in state with text when onValidTextChange prop method on CustomTextInput is triggered', () => {
                     const props = getProps();
 
                     const wrapper = shallow(<SetAccountName {...props} />);
@@ -106,7 +96,7 @@ describe('Testing SetAccountName component', () => {
                     wrapper
                         .find('CustomTextInput')
                         .props()
-                        .onChangeText('foo');
+                        .onValidTextChange('foo');
 
                     expect(wrapper.state('accountName')).toEqual('foo');
                 });

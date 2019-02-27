@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { navigator } from 'libs/navigation';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
@@ -160,7 +161,7 @@ export class AdvancedSettings extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     node: state.settings.node,
     autoPromotion: state.settings.autoPromotion,
     remotePoW: state.settings.remotePoW,

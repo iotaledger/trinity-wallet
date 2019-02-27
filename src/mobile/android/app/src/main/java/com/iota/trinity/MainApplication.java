@@ -27,6 +27,8 @@ import cl.json.RNSharePackage;
 import fr.greweb.reactnativeviewshot.RNViewShotPackage;
 import com.kristiansorens.flagsecure.FlagSecurePackage;
 import com.mkuczera.RNReactNativeHapticFeedbackPackage;
+import io.realm.react.RealmReactPackage;
+import me.listenzz.modal.TranslucentModalReactPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.janeasystems.rn_nodejs_mobile.RNNodeJsMobilePackage;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
@@ -36,6 +38,7 @@ import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
 import com.facebook.react.ReactNativeHost;
+import com.zapper.QRCodePackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -61,8 +64,10 @@ public class MainApplication extends NavigationApplication implements ShareAppli
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(
                 // eg. new VectorIconsPackage()
+                new TranslucentModalReactPackage(),
                 new SvgPackage(),
                 new MainReactPackage(),
+                new QRCodePackage(),
                 new RNCameraPackage(),
                 new QRScanReaderPackage(),
                 new ReactNativeDocumentPicker(),
@@ -89,6 +94,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
                 new RNReactNativeHapticFeedbackPackage(),
                 new RNSharePackage(),
                 new RNViewShotPackage(),
+                new RealmReactPackage(),
                 new RNFetchBlobPackage()
         );
     }

@@ -3,6 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Send } from 'ui/views/wallet/Send';
+import theme from '../../../../__mocks__/theme';
 
 jest.mock('react-native-camera', () => {});
 jest.mock('react-native-is-device-rooted', () => ({
@@ -24,6 +25,7 @@ const getProps = (overrides) =>
             isSyncing: false,
             seedIndex: 0,
             selectedAccountName: 'foo',
+            selectedAccountMeta: { type: 'keychain' },
             conversionRate: 5,
             usdPrice: 10,
             isGettingSensitiveInfoToMakeTransaction: false,
@@ -36,14 +38,7 @@ const getProps = (overrides) =>
             isSendingTransfer: false,
             isTransitioning: false,
             address: '9'.repeat(81),
-            theme: {
-                body: { color: '#FFFFFF' },
-                primary: { color: '#FFFFFF' },
-                bar: {},
-                input: {},
-                dark: {},
-                secondary: {},
-            },
+            theme,
             amount: '10',
             message: 'baz',
             setSendAddressField: noop,
@@ -57,7 +52,6 @@ const getProps = (overrides) =>
             activeSteps: [],
             timeTakenByEachProgressStep: [],
             remotePoW: false,
-            password: {},
             makeTransaction: noop,
             generateTransferErrorAlert: noop,
             availableBalance: 100,

@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { EnterPasswordOnLogin } from 'ui/components/EnterPasswordOnLogin';
+import theme from '../../../__mocks__/theme';
 
 jest.mock('bugsnag-react-native', () => ({
     Configuration: jest.fn(),
@@ -15,7 +16,7 @@ const getProps = (overrides) =>
         {},
         {
             password: '',
-            theme: { body: {}, primary: {} },
+            theme,
             onLoginPress: noop,
             navigateToNodeOptions: noop,
             setLoginPasswordField: noop,
@@ -32,8 +33,8 @@ describe('Testing EnterPasswordOnLogin component', () => {
             expect(EnterPasswordOnLogin.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
 
-        it('should require a password string as a prop', () => {
-            expect(EnterPasswordOnLogin.propTypes.password).toEqual(PropTypes.string.isRequired);
+        it('should require a password object as a prop', () => {
+            expect(EnterPasswordOnLogin.propTypes.password).toEqual(PropTypes.object);
         });
 
         it('should require a onLoginPress function as a prop', () => {

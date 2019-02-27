@@ -4,13 +4,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { NotificationLogModal as NotificationLog } from 'ui/components/NotificationLogModal';
+import theme from '../../../__mocks__/theme';
 
 const getProps = (overrides) =>
     assign(
         {},
         {
             backgroundColor: '#ffffff',
-            theme: { body: {} },
+            theme,
             hideModal: noop,
             notificationLog: [],
             clearLog: noop,

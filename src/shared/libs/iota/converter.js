@@ -92,21 +92,40 @@ const bytesToTrits = (bytes) => {
 };
 
 /**
+ * Converts tryte string to trits
+ *
+ * @method trytesToTrits
+ * @param {String} input - Tryte string to be converted.
+ *
+ * @return {Int8Array} trits
+ */
+const trytesToTrits = (input) => {
+    const result = new Int8Array(input.length * 3);
+    for (let i = 0; i < input.length; i++) {
+        const index = '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(input.charAt(i));
+        result[i * 3] = trytesTrits[index][0];
+        result[i * 3 + 1] = trytesTrits[index][1];
+        result[i * 3 + 2] = trytesTrits[index][2];
+    }
+    return result;
+};
+
+/**
  * Convert trit array to string
  * @param {array} trits - Input trit array
  * @returns {string} Output string
  */
 const tritsToChars = (trits) => {
-    let seed = '';
+    let chars = '';
     for (let i = 0; i < trits.length; i += 3) {
         const trit = trits.slice(i, i + 3).toString();
         for (let x = 0; x < tritStrings.length; x++) {
             if (tritStrings[x] === trit) {
-                seed += '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(x);
+                chars += '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(x);
             }
         }
     }
-    return seed;
+    return chars;
 };
 
-module.exports = { capitalize, shorten, byteToChar, byteToTrit, bytesToTrits, tritsToChars, charToByte };
+module.exports = { capitalize, shorten, byteToChar, byteToTrit, bytesToTrits, tritsToChars, charToByte, trytesToTrits };

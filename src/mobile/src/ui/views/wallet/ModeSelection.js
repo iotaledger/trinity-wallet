@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { setMode } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import Fonts from 'ui/theme/fonts';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -157,7 +158,7 @@ class ModeSelection extends Component {
 
 const mapStateToProps = (state) => ({
     mode: state.settings.mode,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

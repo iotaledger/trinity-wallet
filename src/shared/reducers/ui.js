@@ -72,20 +72,9 @@ const initialState = {
      */
     sendMessageFieldText: '',
     /**
-     * Password text field data on login
-     */
-    loginPasswordFieldText: '',
-    /**
      * Active denomination on send screen
      */
     sendDenomination: 'i',
-    /**
-     * Desktop onboarding meta data
-     */
-    onboarding: {
-        seed: null,
-        isGenerated: false,
-    },
     /**
      * Keeps track if wallet is allowed to be minimised
      */
@@ -181,11 +170,6 @@ export default (state = initialState, action) => {
                 ...state,
                 isFetchingCurrencyData: false,
                 hasErrorFetchingCurrencyData: true,
-            };
-        case UiActionTypes.SET_LOGIN_PASSWORD_FIELD:
-            return {
-                ...state,
-                loginPasswordFieldText: action.payload,
             };
         case UiActionTypes.SET_SEND_ADDRESS_FIELD:
             return {
@@ -293,13 +277,7 @@ export default (state = initialState, action) => {
                 sendAddressFieldText: '',
                 sendAmountFieldText: '',
                 sendMessageFieldText: '',
-                loginPasswordFieldText: '',
                 sendDenomination: 'i',
-                onboarding: {
-                    name: '',
-                    seed: null,
-                    isGenerated: false,
-                },
                 doNotMinimise: false,
                 isModalActive: false,
                 qrMessage: '',
@@ -378,11 +356,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isAttachingToTangle: false,
-            };
-        case UiActionTypes.SET_ONBOARDING_SEED:
-            return {
-                ...state,
-                onboarding: Object.assign({}, state.onboarding, action.payload),
             };
         case UiActionTypes.SET_DO_NOT_MINIMISE:
             return {

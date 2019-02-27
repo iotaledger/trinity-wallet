@@ -3,8 +3,8 @@ import head from 'lodash/head';
 import has from 'lodash/has';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
-import reduce from 'lodash/reduce';
 import IOTA from 'iota.lib.js';
+import { createPrepareTransfers } from '@iota/core';
 import { iota, quorum } from './index';
 import Errors from '../errors';
 import { isWithinMinutes } from '../date';
@@ -19,7 +19,7 @@ import {
     ATTACH_TO_TANGLE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
 } from '../../config';
-import { sortTransactionTrytesArray } from './transfers';
+import { sortTransactionTrytesArray, constructBundleFromAttachedTrytes } from './transfers';
 import { EMPTY_HASH_TRYTES } from './utils';
 
 /**
@@ -398,23 +398,15 @@ const getTransactionsToApproveAsync = (provider) => (reference = {}, depth = DEF
  *
  * @returns {function(string, array, *): Promise<any>}
  */
-export const prepareTransfersAsync = (provider) => (seed, transfers, options = null) => {
+export const prepareTransfersAsync = (provider) => (seed, transfers, options = null, signatureFn = null) => {
     // https://github.com/iotaledger/iota.lib.js/blob/e60c728c836cb37f3d6fb8b0eff522d08b745caa/lib/api/api.js#L1058
     let args = [seed, transfers];
 
     if (options) {
-        args = [...args, options];
+        args = [...args, { ...options, nativeGenerateSignatureFunction: signatureFn }];
     }
 
-    return new Promise((resolve, reject) => {
-        getIotaInstance(provider).api.prepareTransfers(...args, (err, trytes) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(trytes);
-            }
-        });
-    });
+    return createPrepareTransfers(provider)(...args);
 };
 
 /**
@@ -511,24 +503,7 @@ const attachToTangleAsync = (provider, seedStore) => (
                     if (err) {
                         reject(err);
                     } else {
-                        const convertToTransactionObjects = () =>
-                            reduce(
-                                attachedTrytes,
-                                (promise, tryteString) => {
-                                    return promise.then((result) => {
-                                        return seedStore.getDigest(tryteString).then((digest) => {
-                                            const transactionObject = iota.utils.transactionObject(tryteString, digest);
-
-                                            result.push(transactionObject);
-
-                                            return result;
-                                        });
-                                    });
-                                },
-                                Promise.resolve([]),
-                            );
-
-                        convertToTransactionObjects()
+                        constructBundleFromAttachedTrytes(attachedTrytes, seedStore)
                             .then((transactionObjects) => {
                                 if (iota.utils.isBundle(transactionObjects)) {
                                     resolve({
@@ -536,7 +511,7 @@ const attachToTangleAsync = (provider, seedStore) => (
                                         trytes: attachedTrytes,
                                     });
                                 } else {
-                                    reject(new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_DURING_REATTACHMENT));
+                                    reject(new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_WITH_REMOTE_POW));
                                 }
                             })
                             .catch(reject);
@@ -546,13 +521,28 @@ const attachToTangleAsync = (provider, seedStore) => (
         });
     }
 
-    return seedStore.performPow(trytes, trunkTransaction, branchTransaction, minWeightMagnitude).then((result) => {
-        if (!iota.utils.isBundle(result.transactionObjects)) {
-            throw new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_DURING_REATTACHMENT);
-        }
+    return seedStore
+        .performPow(trytes, trunkTransaction, branchTransaction, minWeightMagnitude)
+        .then((result) => {
+            if (get(result, 'trytes') && get(result, 'transactionObjects')) {
+                return Promise.resolve(result);
+            }
 
-        return result;
-    });
+            // Batched proof-of-work only returns the attached trytes
+            return constructBundleFromAttachedTrytes(result, seedStore).then((transactionObjects) => ({
+                transactionObjects: transactionObjects.slice().reverse(),
+                trytes: result,
+            }));
+        })
+        .then(({ transactionObjects, trytes }) => {
+            if (iota.utils.isBundle(transactionObjects)) {
+                return {
+                    transactionObjects,
+                    trytes,
+                };
+            }
+            throw new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_WITH_LOCAL_POW);
+        });
 };
 
 /**

@@ -4,13 +4,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { Enter2FA } from 'ui/components/Enter2FA';
+import theme from '../../../__mocks__/theme';
 
 const getProps = (overrides) =>
     assign(
         {},
         {
             verify: noop,
-            theme: { body: {} },
+            theme,
             cancel: noop,
             t: () => '',
         },
@@ -63,22 +64,22 @@ describe('Testing Enter2FA component', () => {
     describe('instance methods', () => {
         describe('when called', () => {
             describe('handleChange2FAToken', () => {
-                it('should set param value to "token2FA" state prop', () => {
+                it('should set param value to "token" state prop', () => {
                     const props = getProps();
 
                     const wrapper = shallow(<Enter2FA {...props} />);
                     const instance = wrapper.instance();
 
-                    expect(wrapper.state().token2FA).toEqual('');
+                    expect(wrapper.state().token).toEqual('');
 
                     instance.handleChange2FAToken('foo');
 
-                    expect(wrapper.state().token2FA).toEqual('foo');
+                    expect(wrapper.state().token).toEqual('foo');
                 });
             });
 
             describe('handleDonePress', () => {
-                it('should call prop method "verify" with state prop "token2fa"', () => {
+                it('should call prop method "verify" with state prop "token"', () => {
                     const props = getProps({
                         verify: jest.fn(),
                     });
@@ -86,7 +87,7 @@ describe('Testing Enter2FA component', () => {
                     const wrapper = shallow(<Enter2FA {...props} />);
                     const instance = wrapper.instance();
 
-                    wrapper.setState({ token2FA: 'foo' });
+                    wrapper.setState({ token: 'foo' });
 
                     instance.handleDonePress();
 

@@ -12,6 +12,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { paperWalletFilled } from 'shared-modules/images/PaperWallets.js';
 import { setSeedShareTutorialVisitationStatus } from 'shared-modules/actions/settings';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import timer from 'react-native-timer';
 import QRCode from 'qr.js/lib/QRCode';
 import Button from 'ui/components/Button';
@@ -22,6 +23,7 @@ import { width, height } from 'libs/dimensions';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { isAndroid } from 'libs/device';
+import { tritsToChars } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     container: {
@@ -87,8 +89,6 @@ class SaveYourSeed extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** @ignore */
-        seed: PropTypes.string.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
     };
@@ -243,7 +243,7 @@ class SaveYourSeed extends Component {
      * @method getHTMLContent
      */
     getHTMLContent() {
-        const { seed } = this.props;
+        const seed = tritsToChars(global.onboardingSeed);
         const checksumString = `<text x="372.7" y="735">${getChecksum(seed)}</text>`;
         const qrString = this.getQrHTMLString(seed);
         const seedString = this.getSeedHTMLString(seed);
@@ -501,9 +501,8 @@ class SaveYourSeed extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     onboardingComplete: state.accounts.onboardingComplete,
-    seed: state.wallet.seed,
 });
 
 const mapDispatchToProps = {

@@ -570,8 +570,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "您备份过种子了吗？",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "我已经安全地备份了我的种子",
+        "reenterSeed": "下一步您需要重新输入您的种子。",
         "reenterSeedWarning": "如果您没有备份种子，当设备损坏无法使用时，您就会失去您的IOTA。",
         "pleaseConfirm": "请确认您已安全地储存了您的种子。"
     },
@@ -590,19 +590,19 @@
         "fingerprintAuthFailedExplanation": "指纹验证失败，请重试。",
         "status": "状态",
         "fingerprintUnavailable": "生物识别认证不可用",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "禁用身份验证30秒",
         "fingerprintUnavailableExplanation": "您的设备不支持生物识别认证或者尚未在设备设置中对此功能进行配置。",
-        "notSupported": "Device does not support biometric authentication",
+        "notSupported": "设备不支持生物识别身份验证",
         "notConfigured": "Biometric authentication has not been configured in device settings",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "按下方按钮启用指纹认证。",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "点击下面的按钮禁用Face ID",
+        "buttonInstructionsEnableIPhoneX": "点击下面的按钮启用Face ID",
         "instructionsLogin": "触摸指纹读取器登录",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "设备取消了身份验证",
+        "userCancelledAuth": "认证请求已取消",
+        "passwordFallback": "返回密码验证",
+        "noPassword": "设备上未设置密码"
     },
     "transferConfirmation": {
         "youAreAbout": "您将发送 {{内容}} 到地址",
@@ -689,6 +689,11 @@
         "gettingTransactionsToApprove": "获取交易批准",
         "proofOfWork": "完成工作量证明",
         "broadcasting": "广播中",
+        "preparingData": "正在准备数据",
+        "migratingSettings": "迁移设置",
+        "migratingAccounts": "迁移帐户",
+        "cleaningUpOldData": "清理旧数据",
+        "migrationComplete": "迁移完成",
         "transferComplete": "转账完毕"
     },
     "snapshotTransition": {
@@ -704,7 +709,7 @@
         "transitioning": "正在转换快照。",
         "generatingAndDetecting": "正在生成地址和检测余额。",
         "attaching": "将地址添加到Tanlge。",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "正在连接{{currentAddress}} 个地址，共{{totalAddresses}} 个。"
     },
     "deepLink": {
         "autofill": "自动填充成功",
@@ -760,12 +765,17 @@
         "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
         "sweepError": "Error unlocking funds",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
+        "warningTitle": "警告：检测到锁定的资金",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
         "proceed": "进行恢复",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
+    },
+    "migration": {
+        "dataMigration": "数据迁移",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
     },
     "ledger": {
         "ready": "Ledger设备已连接并准备完毕",
@@ -775,6 +785,8 @@
         "proceedWithLedger": "进行Ledger设置",
         "accountIndex": "账户索引",
         "accountPage": "账户页面",
+        "actionCancelled": "Ledger设备访问已取消",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "选择您的Ledger账户索引",
         "accountIndexExplanation": "您的Ledger可以存储多个种子。每个种子都由一个唯一的索引号码。系统已经预先选择未使用的索引，但您也可以随意选择自己的索引。请务必记下您选择的索引号码。",
         "accountPageExplanation": "Some third party wallets require pages.",
@@ -796,7 +808,7 @@
         "ledgerIncorrectIndexExplanation": "连接的Ledger设备与链接到此帐户的Ledger设备不匹配，或者恢复短语已更改。",
         "checkAddress": "检查接收地址",
         "checkAddressExplanation": "检查地址是否与Ledger设备上显示的地址匹配。",
-        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialised": "未经确认的警告",
         "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。"
     }
 }

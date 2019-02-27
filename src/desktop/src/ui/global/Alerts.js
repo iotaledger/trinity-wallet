@@ -35,7 +35,7 @@ class Alerts extends React.PureComponent {
         if (this.timeout) {
             clearTimeout(this.timeout);
         }
-        if (nextProps.alerts.category.length && nextProps.alerts.closeInterval > 0) {
+        if (nextProps.alerts.category && nextProps.alerts.category.length && nextProps.alerts.closeInterval > 0) {
             this.timeout = setTimeout(() => {
                 this.props.dismissAlert();
             }, nextProps.alerts.closeInterval);
@@ -80,7 +80,10 @@ class Alerts extends React.PureComponent {
                 ) : (
                     <div
                         onClick={() => dismissAlert()}
-                        className={classNames(alerts.category.length ? css.visible : null, css[`${alerts.category}`])}
+                        className={classNames(
+                            alerts.category && alerts.category.length ? css.visible : null,
+                            css[`${alerts.category}`],
+                        )}
                     >
                         <span>
                             <Icon icon="cross" size={14} />
