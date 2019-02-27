@@ -132,6 +132,7 @@ class History extends Component {
             modalContent,
             theme: { primary, secondary },
         } = this.props;
+
         // FIXME: Overly-complex ugly code. Think of a new updateModalProps approach.
         if (isModalActive && modalContent === 'transactionHistory') {
             const newBundleProps = newProps.transactions[modalProps.bundle];
@@ -179,6 +180,18 @@ class History extends Component {
         return true;
     }
 
+    async promoteTransaction(bundle) {
+        const { selectedAccountMeta, selectedAccountName } = this.props;
+        const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash);
+        this.props.promoteTransaction(bundle, selectedAccountName, seedStore);
+    }
+
+    async retryFailedTransaction(bundle) {
+        const { selectedAccountMeta, selectedAccountName } = this.props;
+        const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash);
+        this.props.retryFailedTransaction(selectedAccountName, bundle, seedStore);
+    }
+
     /**
      * Formats transaction data
      * @return {Array} Formatted transaction data
@@ -189,9 +202,6 @@ class History extends Component {
             theme: { primary, secondary, body, bar, dark },
             mode,
             t,
-            selectedAccountName,
-            selectedAccountMeta,
-            password,
             currentlyPromotingBundleHash,
             isRefreshing,
             addresses,
@@ -206,8 +216,6 @@ class History extends Component {
             value: round(formatValue(item.value), 1),
             unit: formatUnit(item.value),
         });
-
-        const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
 
         const formattedTransfers = map(relevantTransfers, (transfer) => {
             const {
@@ -249,9 +257,8 @@ class History extends Component {
                             disableWhen: isAutoPromoting || isPromotingTransaction || isRetryingFailedTransaction,
                             isRetryingFailedTransaction,
                             currentlyPromotingBundleHash,
-                            retryFailedTransaction: (bundle) =>
-                                this.props.retryFailedTransaction(selectedAccountName, bundle, seedStore),
-                            promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName, seedStore),
+                            retryFailedTransaction: (bundle) => this.retryFailedTransaction(bundle),
+                            promote: (bundle) => this.promoteTransaction(bundle),
                             hideModal: () => this.props.toggleModalActivity(),
                             generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
                             bundle,
@@ -334,13 +341,11 @@ class History extends Component {
     }
 
     render() {
-        const transactions = this.renderTransactions();
-
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
                     <View style={{ flex: 0.2 }} />
-                    <View style={styles.listView}>{transactions}</View>
+                    <View style={styles.listView}>{this.renderTransactions()}</View>
                 </View>
             </TouchableWithoutFeedback>
         );

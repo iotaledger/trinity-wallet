@@ -1,9 +1,10 @@
 import size from 'lodash/size';
 import sample from 'lodash/sampleSize';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
+import timer from 'react-native-timer';
 import { withNamespaces } from 'react-i18next';
 import { startTrackingProgress } from 'shared-modules/actions/progress';
 import { connect } from 'react-redux';
@@ -11,6 +12,8 @@ import { Styling } from 'ui/theme/general';
 import { migrate } from 'shared-modules/actions/migrations';
 import { setFullNode } from 'shared-modules/actions/settings';
 import { reduxPersistStorageAdapter } from 'libs/store';
+import { migrateSeedStorage } from 'libs/keychain';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import ProgressSteps from 'libs/progressSteps';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import Header from 'ui/components/Header';
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     notificationButton: {
@@ -81,29 +84,75 @@ class Migration extends Component {
         setFullNode: PropTypes.func.isRequired,
         /** @ignore */
         isChangingNode: PropTypes.bool.isRequired,
+        /** @ignore */
+        generateAlert: PropTypes.func.isRequired,
     };
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            hasFailedMigration: false,
+            hasFailedRealmMigration: false,
+            hasCompletedRealmMigration: props.completedMigration,
         };
         this.changeNode = this.changeNode.bind(this);
         this.retryMigration = this.retryMigration.bind(this);
     }
 
     componentDidMount() {
-        this.props.startTrackingProgress(ProgressSteps.migration);
-        this.props.migrate(reduxPersistStorageAdapter);
+        if (!this.props.completedMigration) {
+            this.executeRealmMigration();
+        } else {
+            this.executeSeedMigration();
+        }
     }
 
     componentWillReceiveProps(newProps) {
-        if (!this.props.completedMigration && newProps.completedMigration) {
-            this.navigateToLoadingScreen();
-        }
         if (size(this.props.notificationLog) !== size(newProps.notificationLog)) {
-            this.setState({ hasFailedMigration: true });
+            this.setState({ hasFailedRealmMigration: true });
         }
+        if (!this.props.completedMigration && newProps.completedMigration) {
+            this.setState({ hasCompletedRealmMigration: true });
+            this.executeSeedMigration();
+        }
+    }
+
+    componentWillUnmount() {
+        timer.clearTimeout('delayNavigation');
+    }
+
+    /**
+     * Retries migration in case of failure
+     *
+     * @method retryMigration
+     */
+    getMigrationText() {
+        const { t } = this.props;
+        if (this.state.hasCompletedRealmMigration) {
+            return t('seedMigrationExplanation');
+        }
+        return t('dataMigrationExplanation') + ' ' + t('loading:thisMayTake');
+    }
+
+    /**
+     * Triggers seed storage migration
+     *
+     * @method executeSeedMigration
+     */
+    executeSeedMigration() {
+        const { t } = this.props;
+        migrateSeedStorage(global.passwordHash)
+            .then(() => timer.setTimeout('delayNavigation', () => this.navigateToLoadingScreen(), 7500))
+            .catch(() => this.props.generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain')));
+    }
+
+    /**
+     * Triggers AsyncStorage to Realm migration
+     *
+     * @method executeRealmMigration
+     */
+    executeRealmMigration() {
+        this.props.startTrackingProgress(ProgressSteps.migration);
+        this.props.migrate(reduxPersistStorageAdapter);
     }
 
     /**
@@ -155,7 +204,7 @@ class Migration extends Component {
      * @method retryMigration
      */
     retryMigration() {
-        this.setState({ hasFailedMigration: false });
+        this.setState({ hasFailedRealmMigration: false });
         this.props.migrate(reduxPersistStorageAdapter);
     }
 
@@ -166,13 +215,13 @@ class Migration extends Component {
      */
     renderProgressBarChildren() {
         const { activeStepIndex, activeSteps } = this.props;
-
         return activeSteps[activeStepIndex] ? activeSteps[activeStepIndex] : null;
     }
 
     render() {
         const { t, theme: { body, primary }, activeSteps, activeStepIndex, isChangingNode } = this.props;
         const textColor = { color: body.color };
+        const { hasFailedRealmMigration, hasCompletedRealmMigration } = this.state;
         const sizeOfActiveSteps = size(activeSteps) - 1;
 
         return (
@@ -183,36 +232,43 @@ class Migration extends Component {
                 <View style={styles.midContainer}>
                     <InfoBox>
                         <View>
-                            <Text style={[styles.infoText, textColor]}>{t('dataMigrationExplanation')}</Text>
+                            <Text style={[styles.infoText, textColor]}>{this.getMigrationText()}</Text>
                         </View>
                     </InfoBox>
                     <View style={{ flex: 0.4 }} />
-                    {activeStepIndex > -1 && (
-                        <ProgressBar
-                            style={{
-                                textWrapper: { flex: 0.3 },
-                            }}
-                            indeterminate={activeStepIndex === -1}
-                            progress={activeStepIndex / sizeOfActiveSteps}
-                            color={primary.color}
-                            textColor={body.color}
-                        >
-                            {t(this.renderProgressBarChildren())}
-                        </ProgressBar>
-                    )}
+                    <View style={{ flex: 1 }}>
+                        {!hasCompletedRealmMigration &&
+                            activeStepIndex > -1 && (
+                                <ProgressBar
+                                    style={{
+                                        textWrapper: { flex: 0.3 },
+                                    }}
+                                    indeterminate={activeStepIndex === -1}
+                                    progress={activeStepIndex / sizeOfActiveSteps}
+                                    color={primary.color}
+                                    textColor={body.color}
+                                >
+                                    {t(this.renderProgressBarChildren())}
+                                </ProgressBar>
+                            )}
+                        {hasCompletedRealmMigration && (
+                            <ActivityIndicator animating size="large" color={primary.color} />
+                        )}
+                    </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    {this.state.hasFailedMigration && (
-                        <DualFooterButtons
-                            onLeftButtonPress={this.changeNode}
-                            onRightButtonPress={this.retryMigration}
-                            leftButtonText={t('login:changeNode')}
-                            rightButtonText={t('retry')}
-                            isLeftButtonLoading={isChangingNode}
-                        />
-                    )}
+                    {hasFailedRealmMigration &&
+                        !hasCompletedRealmMigration && (
+                            <DualFooterButtons
+                                onLeftButtonPress={this.changeNode}
+                                onRightButtonPress={this.retryMigration}
+                                leftButtonText={t('login:changeNode')}
+                                rightButtonText={t('retry')}
+                                isLeftButtonLoading={isChangingNode}
+                            />
+                        )}
                 </View>
-                {this.state.hasFailedMigration && (
+                {hasFailedRealmMigration && (
                     <View style={styles.notificationButton}>
                         <NotificationButtonComponent displayTopBar={false} />
                     </View>
@@ -236,6 +292,7 @@ const mapDispatchToProps = {
     migrate,
     startTrackingProgress,
     setFullNode,
+    generateAlert,
 };
 
 export default withNamespaces(['migration'])(connect(mapStateToProps, mapDispatchToProps)(Migration));

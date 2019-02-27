@@ -31,15 +31,20 @@ export const getMultiAddressGenFn = () => {
 
 /**
  * Gets Proof of Work function
+ *
+ * @param {boolean} batchedPow
  * @return {function | null} PoW function
  */
-export const getPowFn = () => {
+export const getPowFn = (batchedPow) => {
     let powFn = null;
+    const fnName = batchedPow ? 'bundlePow' : 'trytesPow';
+
     if (isAndroid) {
-        powFn = NativeModules.EntangledAndroid.doPoW;
+        powFn = NativeModules.EntangledAndroid[fnName];
     } else if (isIOS) {
-        powFn = NativeModules.EntangledIOS.doPoW;
+        powFn = NativeModules.EntangledIOS[fnName];
     }
+
     return powFn;
 };
 
@@ -51,10 +56,22 @@ export const getDigestFn = () => {
     return isAndroid ? NativeModules.EntangledAndroid.getDigest : NativeModules.EntangledIOS.getDigest;
 };
 
+/**
+ * Gets Argon2 hash function
+ * @return {function} Hash function
+ */
 export const getHashFn = () => {
     if (isAndroid) {
         return NativeModules.Argon2Android.hash;
     } else if (isIOS) {
         return NativeModules.Argon2IOS.hash;
     }
+};
+
+/**
+ * Gets signature function
+ * @return {function} signature function
+ */
+export const getSignatureFn = () => {
+    return isAndroid ? NativeModules.EntangledAndroid.generateSignature : NativeModules.EntangledIOS.generateSignature;
 };

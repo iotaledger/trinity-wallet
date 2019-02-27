@@ -10,7 +10,7 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            onChangeText: noop,
+            onValidTextChange: noop,
             label: 'foo',
             theme,
         },
@@ -19,8 +19,8 @@ const getProps = (overrides) =>
 
 describe('Testing CustomTextInput component', () => {
     describe('propTypes', () => {
-        it('should require an onChangeText function as a prop', () => {
-            expect(CustomTextInput.propTypes.onChangeText).toEqual(PropTypes.func.isRequired);
+        it('should require an onValidTextChange function as a prop', () => {
+            expect(CustomTextInput.propTypes.onValidTextChange).toEqual(PropTypes.func);
         });
 
         it('should require a theme object as a prop', () => {

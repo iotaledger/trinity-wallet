@@ -81,8 +81,6 @@ export class ManualSync extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Hash for wallet's password */
-        password: PropTypes.object.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
         /** Account meta for selected account */
@@ -97,11 +95,11 @@ export class ManualSync extends Component {
         leaveNavigationBreadcrumb('ManualSync');
     }
 
-    sync() {
-        const { password, selectedAccountName, selectedAccountMeta, t, shouldPreventAction } = this.props;
+    async sync() {
+        const { selectedAccountName, selectedAccountMeta, t, shouldPreventAction } = this.props;
 
         if (!shouldPreventAction) {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.manuallySyncAccount(seedStore, selectedAccountName);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
@@ -176,7 +174,6 @@ export class ManualSync extends Component {
 
 const mapStateToProps = (state) => ({
     isSyncing: state.ui.isSyncing,
-    password: state.wallet.password,
     theme: getThemeFromState(state),
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),

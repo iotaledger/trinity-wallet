@@ -1,0 +1,26 @@
+diff --git a/node_modules/react-native/Libraries/Modal/Modal.js b/node_modules/react-native/Libraries/Modal/Modal.js
+index 1af6fec..f8e81fc 100644
+--- a/node_modules/react-native/Libraries/Modal/Modal.js
++++ b/node_modules/react-native/Libraries/Modal/Modal.js
+@@ -23,7 +23,7 @@ const View = require('View');
+ const deprecatedPropType = require('deprecatedPropType');
+ const requireNativeComponent = require('requireNativeComponent');
+ 
+-const RCTModalHostView = requireNativeComponent('RCTModalHostView');
++const RCTModalHostView = Platform.OS === 'ios' ? requireNativeComponent('RCTModalHostView') : requireNativeComponent('TranslucentModalHostView');
+ 
+ const ModalEventEmitter =
+   Platform.OS === 'ios' && NativeModules.ModalManager
+diff --git a/node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/network/NetworkingModule.java b/node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/network/NetworkingModule.java
+index 5534eb6..dba31c9 100644
+--- a/node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/network/NetworkingModule.java
++++ b/node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/network/NetworkingModule.java
+@@ -323,7 +323,7 @@ public final class NetworkingModule extends ReactContextBaseJavaModule {
+     // shared under the hood.
+     // See https://github.com/square/okhttp/wiki/Recipes#per-call-configuration for more information
+     if (timeout != mClient.connectTimeoutMillis()) {
+-      clientBuilder.readTimeout(timeout, TimeUnit.MILLISECONDS);
++      clientBuilder.connectTimeout(timeout, TimeUnit.MILLISECONDS);
+     }
+     OkHttpClient client = clientBuilder.build();
+ 

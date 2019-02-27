@@ -13,5 +13,8 @@ module.exports = {
     watchFolders: alternateRoots,
     resolver: {
         blacklistRE: blacklist,
+        extraNodeModules: {
+            'react-native': path.resolve(__dirname, 'node_modules/react-native'),
+        },
     },
 };

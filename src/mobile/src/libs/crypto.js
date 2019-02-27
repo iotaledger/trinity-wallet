@@ -1,9 +1,11 @@
+import values from 'lodash/values';
 import { parse } from 'shared-modules/libs/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { TextDecoder } from 'text-encoding';
 import nacl from 'tweetnacl';
 import naclUtil from 'tweetnacl-util';
 import { getHashFn } from 'libs/nativeModules';
+import { isAndroid } from 'libs/device';
 
 const DEFAULT_ARGON2_PARAMS = { t_cost: 1, m_cost: 4096, parallelism: 4, hashLength: 32 };
 const SALT_LENGTH = 32;
@@ -11,10 +13,10 @@ const NONCE_LENGTH = 24;
 
 const cryptoImport = require('crypto'); // eslint-disable-line no-unused-vars
 
-export const getOldPasswordHash = (password) => {
+export const sha256 = (input) => {
     return cryptoImport
         .createHash('sha256')
-        .update(password)
+        .update(input)
         .digest('hex');
 };
 
@@ -24,7 +26,14 @@ export const getRandomBytes = async (quantity) => {
 
 export const generatePasswordHash = async (password, salt) => {
     const salt64 = await encodeBase64(salt);
-    return getHashFn()(password, salt64, DEFAULT_ARGON2_PARAMS).then(
+    if (isAndroid) {
+        return getHashFn()(values(password), salt64, DEFAULT_ARGON2_PARAMS).then(
+            (result) => new Uint8Array(result),
+            (error) => console.log(error), // eslint-disable-line no-console
+        );
+    }
+    // FIXME: iOS should hash Uint8Array, not string
+    return getHashFn()(UInt8ToString(password), salt64, DEFAULT_ARGON2_PARAMS).then(
         (result) => new Uint8Array(result.split(',').map((num) => parseInt(num))),
         (error) => console.log(error), // eslint-disable-line no-console
     );
@@ -51,11 +60,11 @@ export const openSecretBox = async (box, nonce, key) => {
 };
 
 export const UInt8ToString = (uInt8) => {
-    return new TextDecoder('utf-8').decode(uInt8);
+    return new TextDecoder().decode(uInt8);
 };
 
 export const stringToUInt8 = (string) => {
-    return new TextEncoder('utf-8').encode(string);
+    return new TextEncoder().encode(string);
 };
 
 export const decodeBase64 = async (input) => {

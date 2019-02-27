@@ -56,7 +56,7 @@ class EnterPassword extends Component {
     constructor() {
         super();
         this.state = {
-            password: '',
+            password: null,
         };
         this.activateFingerprintScanner = this.activateFingerprintScanner.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -132,7 +132,7 @@ class EnterPassword extends Component {
                     <View style={styles.midContainer}>
                         <CustomTextInput
                             label={t('global:password')}
-                            onChangeText={(text) => this.setState({ password: text })}
+                            onValidTextChange={(text) => this.setState({ password: text })}
                             containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -144,6 +144,8 @@ class EnterPassword extends Component {
                             widget="fingerprint"
                             fingerprintAuthentication={isFingerprintEnabled}
                             onFingerprintPress={this.activateFingerprintScanner}
+                            value={this.state.password}
+                            isPasswordInput
                         />
                     </View>
                     <View style={styles.bottomContainer}>

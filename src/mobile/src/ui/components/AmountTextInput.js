@@ -137,7 +137,7 @@ class MultiTextInput extends Component {
                 label={label}
                 containerStyle={containerStyle}
                 onRef={onRef}
-                onChangeText={(text) => this.onAmountType(text)}
+                onValidTextChange={(text) => this.onAmountType(text)}
                 autoCorrect={false}
                 enablesReturnKeyAutomatically
                 widget="denomination"

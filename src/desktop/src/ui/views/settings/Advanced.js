@@ -103,7 +103,7 @@ class Advanced extends PureComponent {
 
         try {
             history.push('/');
-            
+
             await clearVault(ALIAS_REALM);
             localStorage.clear();
             Electron.clearStorage();

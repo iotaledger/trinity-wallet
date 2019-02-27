@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
-import QRCode from 'react-native-qrcode-svg';
+import QRCode from 'react-native-qr-generator';
 import { navigator } from 'libs/navigation';
 import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { withNamespaces } from 'react-i18next';
@@ -76,16 +76,12 @@ export class TwoFactorSetupAddKey extends Component {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
     };
 
     constructor() {
         super();
-
         this.goBack = this.goBack.bind(this);
         this.navigateToEnterToken = this.navigateToEnterToken.bind(this);
-
         this.state = {
             authKey: authenticator.generateKey(),
         };
@@ -93,6 +89,10 @@ export class TwoFactorSetupAddKey extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('TwoFactorSetupAddKey');
+    }
+
+    componentWillUnmount() {
+        delete this.state.authKey;
     }
 
     /**
@@ -123,8 +123,8 @@ export class TwoFactorSetupAddKey extends Component {
      */
     navigateToEnterToken() {
         Clipboard.setString(' ');
-        const { t, theme: { body }, password } = this.props;
-        return storeTwoFactorAuthKeyInKeychain(password, this.state.authKey)
+        const { t, theme: { body } } = this.props;
+        return storeTwoFactorAuthKeyInKeychain(global.passwordHash, this.state.authKey)
             .then(() => {
                 navigator.push('twoFactorSetupEnterToken', {
                     animations: {
@@ -186,8 +186,7 @@ export class TwoFactorSetupAddKey extends Component {
                             <QRCode
                                 value={authenticator.generateTotpUri(this.state.authKey, 'Trinity Wallet Mobile')}
                                 size={height / 5}
-                                bgColor="#000"
-                                fgColor="#FFF"
+                                backgroundColor="#00000000"
                             />
                         </View>
                     </AnimatedComponent>
@@ -225,7 +224,6 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
-    password: state.wallet.password,
 });
 
 export default withNamespaces(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey));

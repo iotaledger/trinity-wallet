@@ -1,10 +1,11 @@
+import size from 'lodash/size';
 import React from 'react';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { navigator } from 'libs/navigation';
-import { setOnboardingSeed, toggleModalActivity } from 'shared-modules/actions/ui';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
-import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
+import { VALID_SEED_REGEX, MAX_SEED_TRITS, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -21,6 +22,7 @@ import { isAndroid } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { trytesToTrits } from 'shared-modules/libs/iota/converter';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 
@@ -75,8 +77,6 @@ class EnterSeed extends React.Component {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        setOnboardingSeed: PropTypes.func.isRequired,
-        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Determines if the application is minimised */
         minimised: PropTypes.bool.isRequired,
@@ -88,7 +88,6 @@ class EnterSeed extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             seed: '',
         };
@@ -105,6 +104,7 @@ class EnterSeed extends React.Component {
         if (isAndroid) {
             FlagSecure.deactivate();
         }
+        delete this.state.seed;
     }
 
     /**
@@ -113,19 +113,17 @@ class EnterSeed extends React.Component {
     onDonePress() {
         const { t, theme: { body } } = this.props;
         const { seed } = this.state;
-        if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
-            this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
-        } else if (seed.length !== MAX_SEED_LENGTH) {
+        if (seed === null || seed.length !== MAX_SEED_TRITS) {
             this.props.generateAlert(
                 'error',
-                seed.length > MAX_SEED_LENGTH ? t('seedTooLong') : t('seedTooShort'),
-                t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
+                seed && size(seed) > MAX_SEED_TRITS ? t('seedTooLong') : t('seedTooShort'),
+                t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed ? size(seed) / 3 : 0 }),
             );
         } else {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
-            this.props.setOnboardingSeed(seed, true);
+            global.onboardingSeed = seed;
             // Since this seed was not generated in Trinity, mark "usedExistingSeed" as true.
             this.props.setAccountInfoDuringSetup({ usedExistingSeed: true });
             navigator.push('setAccountName', {
@@ -172,9 +170,7 @@ class EnterSeed extends React.Component {
         const dataString = data.toString();
         const { t } = this.props;
         if (dataString.length === MAX_SEED_LENGTH && dataString.match(VALID_SEED_REGEX)) {
-            this.setState({
-                seed: data,
-            });
+            this.setState({ seed: trytesToTrits(data) });
         } else if (dataString.length !== MAX_SEED_LENGTH) {
             this.props.generateAlert(
                 'error',
@@ -208,7 +204,6 @@ class EnterSeed extends React.Component {
     };
 
     render() {
-        const { seed } = this.state;
         const { t, theme, minimised } = this.props;
 
         return (
@@ -249,11 +244,7 @@ class EnterSeed extends React.Component {
                                 >
                                     <CustomTextInput
                                         label={t('global:seed')}
-                                        onChangeText={(text) => {
-                                            if (text.match(VALID_SEED_REGEX) || text.length === 0) {
-                                                this.setState({ seed: text.toUpperCase() });
-                                            }
-                                        }}
+                                        onValidTextChange={(seed) => this.setState({ seed })}
                                         theme={theme}
                                         autoCapitalize="characters"
                                         autoCorrect={false}
@@ -261,11 +252,10 @@ class EnterSeed extends React.Component {
                                         returnKeyType="done"
                                         onSubmitEditing={() => this.onDonePress()}
                                         maxLength={MAX_SEED_LENGTH}
-                                        value={seed}
+                                        value={this.state.seed}
                                         widget="qr"
                                         onQRPress={() => this.onQRPress()}
                                         testID="enterSeed-seedbox"
-                                        seed={seed}
                                         isSeedInput
                                     />
                                 </AnimatedComponent>
@@ -319,7 +309,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    setOnboardingSeed,
     generateAlert,
     toggleModalActivity,
     setAccountInfoDuringSetup,

@@ -92,8 +92,8 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
-        versionCode 42
-        versionName "0.6.1"
+        versionCode 49
+        versionName "0.6.2"
         minSdkVersion 21
         targetSdkVersion 26
         multiDexEnabled true
@@ -151,6 +151,7 @@ android {
     }
 }
 dependencies {
+    compile project(':react-native-qr-generator')
     implementation project(':react-native-modal-translucent')
     implementation project(':react-native-qr-scanner')
     implementation 'com.github.laumair:argon2jni:jitpack-SNAPSHOT'
@@ -196,6 +197,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
 project.ext.react = [
         nodeExecutableAndArgs : ["/usr/local/bin/node"]
 ]
-
 
 apply plugin: 'com.bugsnag.android.gradle'

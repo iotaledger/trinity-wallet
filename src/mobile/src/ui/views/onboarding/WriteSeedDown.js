@@ -20,6 +20,7 @@ import { isAndroid } from 'libs/device';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import ChecksumComponent from 'ui/components/Checksum';
+import { tritsToChars } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     container: {
@@ -76,8 +77,6 @@ class WriteSeedDown extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** @ignore */
-        seed: PropTypes.string.isRequired,
         /** @ignore */
         minimised: PropTypes.bool.isRequired,
         /** @ignore */
@@ -188,7 +187,7 @@ class WriteSeedDown extends Component {
     }
 
     render() {
-        const { t, theme, seed, minimised } = this.props;
+        const { t, theme, minimised } = this.props;
         const textColor = { color: theme.body.color };
 
         return (
@@ -229,7 +228,7 @@ class WriteSeedDown extends Component {
                                 delay={200}
                                 style={{ flex: 1 }}
                             >
-                                <SeedPicker seed={seed} theme={theme} />
+                                <SeedPicker seed={tritsToChars(global.onboardingSeed)} theme={theme} />
                             </AnimatedComponent>
                             <View style={{ flex: 0.5 }} />
                             <AnimatedComponent
@@ -237,7 +236,11 @@ class WriteSeedDown extends Component {
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={100}
                             >
-                                <ChecksumComponent seed={seed} theme={theme} showModal={this.openModal} />
+                                <ChecksumComponent
+                                    seed={tritsToChars(global.onboardingSeed)}
+                                    theme={theme}
+                                    showModal={this.openModal}
+                                />
                             </AnimatedComponent>
                             <View style={{ flex: 0.25 }} />
                         </View>
@@ -259,7 +262,6 @@ class WriteSeedDown extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.wallet.seed,
     theme: getThemeFromState(state),
     minimised: state.ui.minimised,
 });

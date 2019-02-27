@@ -2,11 +2,9 @@ export const ActionTypes = {
     SET_SEND_ADDRESS_FIELD: 'IOTA/UI/SET_SEND_ADDRESS_FIELD',
     SET_SEND_AMOUNT_FIELD: 'IOTA/UI/SET_SEND_AMOUNT_FIELD',
     SET_SEND_MESSAGE_FIELD: 'IOTA/UI/SET_SEND_MESSAGE_FIELD',
-    SET_LOGIN_PASSWORD_FIELD: 'IOTA/UI/SET_LOGIN_PASSWORD_FIELD',
     CLEAR_SEND_FIELDS: 'IOTA/UI/CLEAR_SEND_FIELDS',
     SET_SEND_DENOMINATION: 'IOTA/UI/SET_SEND_DENOMINATION',
     SET_USER_ACTIVITY: 'IOTA/UI/SET_USER_ACTIVITY',
-    SET_ONBOARDING_SEED: 'IOTA/UI/SET_ONBOARDING_SEED',
     SET_DO_NOT_MINIMISE: 'IOTA/UI/SET_DO_NOT_MINIMISE',
     TOGGLE_MODAL_ACTIVITY: 'IOTA/UI/TOGGLE_MODAL_ACTIVITY',
     UPDATE_MODAL_PROPS: 'IOTA/UI/UPDATE_MODAL_PROPS',
@@ -125,19 +123,6 @@ export const setSendMessageField = (payload) => ({
 });
 
 /**
- * Dispatch to set password field text on login page (mobile)
- *
- * @method setLoginPasswordField
- * @param {string} payload
- *
- * @returns {{type: {string}, payload: {string} }}
- */
-export const setLoginPasswordField = (payload) => ({
-    type: ActionTypes.SET_LOGIN_PASSWORD_FIELD,
-    payload,
-});
-
-/**
  * Dispatch to clear text fields on send page (mobile)
  *
  * @method clearSendFields
@@ -174,23 +159,6 @@ export const setUserActivity = (payload) => ({
     type: ActionTypes.SET_USER_ACTIVITY,
     payload,
 });
-
-/**
- * Dispatch to temporarily set generated seed in state during mobile onboarding
- *
- * @method setOnboardingSeed
- *
- * @param {string} seed
- * @param {boolean} isGenerated
- *
- * @returns {{type: {string}, payload: {object} }}
- */
-export const setOnboardingSeed = (seed, isGenerated) => {
-    return {
-        type: ActionTypes.SET_ONBOARDING_SEED,
-        payload: { seed, isGenerated },
-    };
-};
 
 /**
  * Dispatch to disable wallet's active features (when app is minimised)

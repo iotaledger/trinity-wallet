@@ -15,6 +15,8 @@ import Errors from '../errors';
 
 export const MAX_SEED_LENGTH = 81;
 
+export const MAX_SEED_TRITS = MAX_SEED_LENGTH * 3;
+
 export const ADDRESS_LENGTH_WITHOUT_CHECKSUM = MAX_SEED_LENGTH;
 
 export const ADDRESS_LENGTH = 90;

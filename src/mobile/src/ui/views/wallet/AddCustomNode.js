@@ -81,7 +81,7 @@ export class AddCustomNode extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Navigate to previous screen */
-        backPress: PropTypes.func.isRequired,
+        backPress: PropTypes.func,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -164,7 +164,7 @@ export class AddCustomNode extends Component {
                         <View style={{ flex: 1.2 }} />
                         <CustomTextInput
                             label={t('customNode')}
-                            onChangeText={(customNode) => this.setState({ customNode })}
+                            onValidTextChange={(customNode) => this.setState({ customNode })}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -173,6 +173,7 @@ export class AddCustomNode extends Component {
                             onSubmitEditing={() => this.addNode()}
                             theme={theme}
                             editable={!loading}
+                            value={this.state.customNode}
                         />
                     </View>
                     {loading ? (
