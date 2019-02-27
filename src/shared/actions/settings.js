@@ -48,6 +48,7 @@ export const ActionTypes = {
     SET_NOTIFICATIONS: 'IOTA/SETTINGS/SET_NOTIFICATIONS',
     SET_PROXY: 'SET_PROXY',
     RESET_NODES_LIST: 'IOTA/SETTINGS/RESET_NODES_LIST',
+    SET_DEEP_LINKING: 'IOTA/SETTINGS/SET_DEEP_LINKING',
 };
 
 /**
@@ -778,6 +779,21 @@ export const setProxy = (payload) => ({
     type: ActionTypes.SET_PROXY,
     payload,
 });
+
+/**
+ * Dispatch to update deep linking settings
+ *
+ * @method setDeepLinking
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const setDeepLinking = () => {
+    Wallet.updateDeepLinkingSetting();
+    return {
+        type: ActionTypes.SET_DEEP_LINKING,
+    };
+};
 
 /**
  * Dispatch to reset nodes list
