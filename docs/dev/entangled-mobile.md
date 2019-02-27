@@ -18,7 +18,7 @@ git fetch origin pull/26/head:ios
 ```
 3. Build the `mobile/ios:ios_bindings` target for all CPU architectures
 ```
-bazel build --ios_multi_cpus=i386,x86_64,armv7,arm64 --copt=-fembed-bitcode --copt=-Ofast //mobile/ios:ios_bindings
+bazel build --ios_multi_cpus=i386,x86_64,armv7,arm64 --copt=-fembed-bitcode --copt=-O3 //mobile/ios:ios_bindings
 ```
 4. Unzip the generated framework
 ```
@@ -43,5 +43,3 @@ bazel build --fat_apk_cpu='armeabi-v7a,arm64-v8a,x86,x86_64' --copt=-Ofast  //mo
 unzip bazel-bin/mobile/android/dummy.apk -d dummy
 ```
 4. Copy the `libdummy.so` from each architecture's folder in `dummy` (e.g. `arm64-v8a` will be in `entangled/dummy/lib/arm64-v8a`) into its respective folder in the Trinity Android project (e.g. `arm64-v8a` will be in `trinity-wallet/src/mobile/android/app/src/main/jniLibs/arm64-v8a`)
-
-
