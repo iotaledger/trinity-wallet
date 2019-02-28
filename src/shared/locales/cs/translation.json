@@ -773,9 +773,10 @@
         "sweepConfirmationTitle": "Potvrzení převodu"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+        "dataMigration": "Migrace dat",
+        "dataMigrationExplanation": "V zájmu lepšího výkonu a některých omezení, Trinity nyní používá novou databázi pro ukládání nastavení účtu a dat. Počkejte, až Trinity automaticky přenese Vaše data.",
+        "problemMigratingYourData": "Objevil se problém s migrací Vašich dat, zkuste to prosím znovu",
+        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
         "ready": "Zařízení Ledger je připojené a připravené k práci",
