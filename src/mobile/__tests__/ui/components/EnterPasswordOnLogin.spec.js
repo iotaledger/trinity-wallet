@@ -15,7 +15,7 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            password: '',
+            password: {},
             theme,
             onLoginPress: noop,
             navigateToNodeOptions: noop,
