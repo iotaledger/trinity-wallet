@@ -89,7 +89,7 @@
     "redux": "^3.7.2",
     "rn-fetch-blob": "https://github.com/rajivshah3/rn-fetch-blob#10.13-226",
     "shared-modules": "../shared/",
-    "snyk": "^1.96.0",
+    "snyk": "^1.124.1",
     "stream": "0.0.2",
     "stream-browserify": "^1.0.0",
     "text-encoding": "^0.6.4",
