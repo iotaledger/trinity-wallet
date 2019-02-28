@@ -276,9 +276,6 @@ class Loading extends Component {
                 backgroundColor: body.bg,
                 orientation: ['portrait'],
             },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
         });
     }
 
@@ -288,7 +285,7 @@ class Loading extends Component {
      * @method redirectToHome
      */
     redirectToHome() {
-        const { theme: { body, bar } } = this.props;
+        const { theme: { body } } = this.props;
         navigator.setStackRoot('home', {
             animations: {
                 push: {
@@ -298,9 +295,6 @@ class Loading extends Component {
             layout: {
                 backgroundColor: body.bg,
                 orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: bar.bg,
             },
         });
     }

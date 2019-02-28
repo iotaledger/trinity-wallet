@@ -180,10 +180,6 @@ class Migration extends Component {
                         drawBehind: true,
                         elevation: 0,
                     },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
                 },
             },
         });

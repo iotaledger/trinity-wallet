@@ -93,7 +93,7 @@ class TermsAndConditions extends Component {
      * @method onNextPress
      */
     onNextPress() {
-        const { theme: { body, bar } } = this.props;
+        const { theme: { body } } = this.props;
         this.props.acceptTerms();
         navigator.push('privacyPolicy', {
             animations: {
@@ -107,9 +107,6 @@ class TermsAndConditions extends Component {
             layout: {
                 backgroundColor: body.bg,
                 orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: bar.bg,
             },
         });
     }

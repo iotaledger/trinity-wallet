@@ -112,9 +112,6 @@ export class AdvancedSettings extends PureComponent {
                 backgroundColor: body.bg,
                 orientation: ['portrait'],
             },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
         });
     }
 

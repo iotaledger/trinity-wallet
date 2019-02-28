@@ -61,9 +61,6 @@ class AddNewAccount extends Component {
                 backgroundColor: body.bg,
                 orientation: ['portrait'],
             },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
         });
         timer.clearInterval('inactivityTimer');
         BackHandler.removeEventListener('homeBackPress');

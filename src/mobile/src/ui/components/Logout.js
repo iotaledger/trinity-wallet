@@ -60,9 +60,6 @@ export default () => (C) => {
                             backgroundColor: body.bg,
                             orientation: ['portrait'],
                         },
-                        statusBar: {
-                            backgroundColor: body.bg,
-                        },
                     });
                     delete global.passwordHash;
                     this.props.clearWalletData();

@@ -139,9 +139,6 @@ class EnterSeed extends React.Component {
                     backgroundColor: body.bg,
                     orientation: ['portrait'],
                 },
-                statusBar: {
-                    backgroundColor: body.bg,
-                },
             });
         }
     }

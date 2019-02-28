@@ -85,7 +85,7 @@ class LanguageSetup extends Component {
         timer.clearTimeout('delayReset');
     }
     onNextPress() {
-        const { theme: { body, bar }, acceptedTerms, acceptedPrivacy, forceUpdate } = this.props;
+        const { theme: { body }, forceUpdate } = this.props;
         if (forceUpdate) {
             return;
         }
@@ -101,9 +101,6 @@ class LanguageSetup extends Component {
             layout: {
                 backgroundColor: body.bg,
                 orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: !acceptedTerms || !acceptedPrivacy ? bar.bg : body.bg,
             },
         });
     }

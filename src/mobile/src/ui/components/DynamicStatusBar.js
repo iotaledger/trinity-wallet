@@ -17,22 +17,8 @@ class DynamicStatusBar extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        isModalActive: PropTypes.bool.isRequired,
-        /** @ignore */
         navStack: PropTypes.array,
     };
-
-    componentWillReceiveProps(newProps) {
-        const { isModalActive, navStack } = this.props;
-        // Reset StatusBar on modal open/close. Prevents residual status bar colour change when an alert is open during modal activity toggle
-        if (isModalActive !== newProps.isModalActive) {
-            this.resetStatusBar(last(navStack));
-            timer.setTimeout('resetStatusBarOnModalActivity', () => this.resetStatusBar(last(navStack)), 400);
-        }
-        if (last(navStack) !== last(newProps.navStack)) {
-            timer.setTimeout('resetStatusBarOnRouteChange', () => this.resetStatusBar(last(newProps.navStack)), 400);
-        }
-    }
 
     componentWillUnmount() {
         timer.clearTimeout('resetStatusBarOnRouteChange');
@@ -86,21 +72,13 @@ class DynamicStatusBar extends Component {
     render() {
         const { navStack } = this.props;
         const statusBarStyle = this.getStatusBarStyle(this.getStatusBarColor(last(navStack)));
-        return (
-            <StatusBar
-                barStyle={statusBarStyle}
-                backgroundColor={this.getStatusBarColor(last(navStack))}
-                animated={false}
-                translucent
-            />
-        );
+        return <StatusBar barStyle={statusBarStyle} backgroundColor="transparent" animated={false} translucent />;
     }
 }
 
 const mapStateToProps = (state) => ({
     inactive: state.ui.inactive,
     theme: getThemeFromState(state),
-    isModalActive: state.ui.isModalActive,
     navStack: state.wallet.navStack,
 });
 

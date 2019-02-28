@@ -9,7 +9,7 @@ describe('libs: iota/quorum', () => {
         describe('when method is wereAddressesSpentFrom', () => {
             describe('when frequency is greater than 67 percent', () => {
                 it('should return most frequently occurring status', () => {
-                    const args = [true, true, true, true, false, true, true];
+                    const args = [true, false, true, true];
 
                     const result = determineQuorumResult(args)('wereAddressesSpentFrom', 67);
                     expect(result).to.equal(true);
@@ -18,7 +18,7 @@ describe('libs: iota/quorum', () => {
 
             describe('when frequency is less than 67 percent', () => {
                 it('should return true as a fallback status', () => {
-                    const args = [true, true, false, false, false, false, true];
+                    const args = [false, false, false, true];
 
                     const result = determineQuorumResult(args)('wereAddressesSpentFrom', 67);
                     expect(result).to.equal(true);
@@ -29,7 +29,7 @@ describe('libs: iota/quorum', () => {
         describe('when method is getInclusionStates', () => {
             describe('when frequency is greater than 67 percent', () => {
                 it('should return most frequently occurring status', () => {
-                    const args = [true, true, true, true, false, true, true];
+                    const args = [true, false, true, true];
 
                     const result = determineQuorumResult(args)('getInclusionStates', 67);
                     expect(result).to.equal(true);
@@ -38,7 +38,7 @@ describe('libs: iota/quorum', () => {
 
             describe('when frequency is less than 67 percent', () => {
                 it('should return false as a fallback status', () => {
-                    const args = [true, true, false, false, false, false, true];
+                    const args = [false, false, false, true];
 
                     const result = determineQuorumResult(args)('getInclusionStates', 67);
                     expect(result).to.equal(false);
@@ -49,7 +49,7 @@ describe('libs: iota/quorum', () => {
         describe('when method is getBalances:balances', () => {
             describe('when frequency is greater than 67 percent', () => {
                 it('should return most frequently occurring balance', () => {
-                    const args = ['10', '10', '10', '10', '0', '10', '10'];
+                    const args = ['10', '0', '10', '10'];
 
                     const result = determineQuorumResult(args)('getBalances:balances', 67);
                     expect(result).to.equal('10');
@@ -58,7 +58,7 @@ describe('libs: iota/quorum', () => {
 
             describe('when frequency is less than 67 percent', () => {
                 it('should return "0" as a fallback balance', () => {
-                    const args = ['10', '10', '0', '0', '0', '0', '10'];
+                    const args = ['0', '0', '0', '10'];
 
                     const result = determineQuorumResult(args)('getBalances:balances', 67);
                     expect(result).to.equal('0');
@@ -170,7 +170,7 @@ describe('libs: iota/quorum', () => {
                     const blacklistedNodes = nodes.slice(0, nodes.length - 1);
                     const syncedNodes = nodes.slice(nodes.length - 1);
 
-                    return findSyncedNodes(nodes, 7, syncedNodes, blacklistedNodes)
+                    return findSyncedNodes(nodes, 4, syncedNodes, blacklistedNodes)
                         .then(() => {
                             throw new Error();
                         })
@@ -180,12 +180,12 @@ describe('libs: iota/quorum', () => {
 
             describe('when size of synced nodes is not less than quorum size', () => {
                 it('should not throw with an error "Not enough synced nodes for quorum."', () => {
-                    const syncedNodes = nodes.slice(0, 7);
-                    const blacklistedNodes = nodes.slice(7);
+                    const syncedNodes = nodes.slice(0, 4);
+                    const blacklistedNodes = nodes.slice(4);
 
                     const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(true);
 
-                    return findSyncedNodes(nodes, 7, syncedNodes, blacklistedNodes).then((nodes) => {
+                    return findSyncedNodes(nodes, 4, syncedNodes, blacklistedNodes).then((nodes) => {
                         expect(nodes).to.eql(syncedNodes);
 
                         stub.restore();
@@ -197,12 +197,12 @@ describe('libs: iota/quorum', () => {
         describe('when has whitelisted nodes', () => {
             describe('when size of synced nodes equals quorum size', () => {
                 it('should recheck sync status of existing synced nodes', () => {
-                    const syncedNodes = nodes.slice(0, 7);
-                    const blacklistedNodes = nodes.slice(8);
+                    const syncedNodes = nodes.slice(0, 4);
+                    const blacklistedNodes = nodes.slice(5);
 
                     const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(true);
 
-                    return findSyncedNodes(nodes, 7, syncedNodes, blacklistedNodes).then((newSyncedNodes) => {
+                    return findSyncedNodes(nodes, 4, syncedNodes, blacklistedNodes).then((newSyncedNodes) => {
                         expect(newSyncedNodes).to.eql(syncedNodes);
 
                         newSyncedNodes.forEach((node) => expect(stub.calledWith(node)).to.equal(true));
@@ -217,13 +217,13 @@ describe('libs: iota/quorum', () => {
 
             describe('when size of synced nodes is less than quorum size', () => {
                 it('should check sync status of (size(syncedNodes) - quorumSize) whitelisted nodes', () => {
-                    const syncedNodes = nodes.slice(0, 6);
-                    const blacklistedNodes = nodes.slice(7);
-                    const whitelistedNodes = nodes.slice(6, 7);
+                    const syncedNodes = nodes.slice(0, 3);
+                    const blacklistedNodes = nodes.slice(4);
+                    const whitelistedNodes = nodes.slice(3, 4);
 
                     const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(true);
 
-                    return findSyncedNodes(nodes, 7, syncedNodes, blacklistedNodes).then((newSyncedNodes) => {
+                    return findSyncedNodes(nodes, 4, syncedNodes, blacklistedNodes).then((newSyncedNodes) => {
                         expect(newSyncedNodes).to.eql([...syncedNodes, ...whitelistedNodes]);
 
                         // Check that existing synced nodes were never rechecked for sync status
