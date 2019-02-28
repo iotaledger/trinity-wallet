@@ -111,7 +111,7 @@ class EnterSeed extends React.Component {
      * Validate seed
      */
     onDonePress() {
-        const { t, theme: { body } } = this.props;
+        const { t } = this.props;
         const { seed } = this.state;
         if (seed === null || seed.length !== MAX_SEED_TRITS) {
             this.props.generateAlert(
@@ -126,20 +126,7 @@ class EnterSeed extends React.Component {
             global.onboardingSeed = seed;
             // Since this seed was not generated in Trinity, mark "usedExistingSeed" as true.
             this.props.setAccountInfoDuringSetup({ usedExistingSeed: true });
-            navigator.push('setAccountName', {
-                animations: {
-                    push: {
-                        enable: false,
-                    },
-                    pop: {
-                        enable: false,
-                    },
-                },
-                layout: {
-                    backgroundColor: body.bg,
-                    orientation: ['portrait'],
-                },
-            });
+            navigator.push('setAccountName');
         }
     }
 

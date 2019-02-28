@@ -224,21 +224,10 @@ class Login extends Component {
      * @param {string} name
      */
     navigateTo(name) {
-        const { theme: { body } } = this.props;
         timer.setTimeout(
             'delayNavigation',
             () => {
-                navigator.setStackRoot(name, {
-                    animations: {
-                        push: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                });
+                navigator.setStackRoot(name);
             },
             150,
         );

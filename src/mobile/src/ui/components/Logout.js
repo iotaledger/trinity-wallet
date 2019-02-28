@@ -46,21 +46,10 @@ export default () => (C) => {
          * @method logout
          */
         logout() {
-            const { theme: { body } } = this.props;
             timer.setTimeout(
                 'delayLogout',
                 () => {
-                    navigator.setStackRoot('login', {
-                        animations: {
-                            setStackRoot: {
-                                enable: false,
-                            },
-                        },
-                        layout: {
-                            backgroundColor: body.bg,
-                            orientation: ['portrait'],
-                        },
-                    });
+                    navigator.setStackRoot('login');
                     delete global.passwordHash;
                     this.props.clearWalletData();
                 },

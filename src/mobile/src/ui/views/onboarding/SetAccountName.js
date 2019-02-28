@@ -161,21 +161,7 @@ export class SetAccountName extends Component {
      * @param {string} screen
      */
     navigateTo(screen) {
-        const { theme: { body } } = this.props;
-        navigator.push(screen, {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.push(screen);
     }
 
     render() {

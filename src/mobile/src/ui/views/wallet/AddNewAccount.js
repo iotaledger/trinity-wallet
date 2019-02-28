@@ -47,21 +47,7 @@ class AddNewAccount extends Component {
      * @method addNewSeed
      */
     addNewSeed() {
-        const { theme: { body } } = this.props;
-        navigator.push('newSeedSetup', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.push('newSeedSetup');
         timer.clearInterval('inactivityTimer');
         BackHandler.removeEventListener('homeBackPress');
     }

@@ -88,22 +88,8 @@ class PrivacyPolicy extends Component {
     }
 
     onNextPress() {
-        const { theme: { body } } = this.props;
         this.props.acceptPrivacy();
-        navigator.push('walletSetup', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.push('walletSetup');
     }
 
     render() {

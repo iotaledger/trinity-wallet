@@ -161,20 +161,10 @@ class Migration extends Component {
      * @method navigateToLoadingScreen
      */
     navigateToLoadingScreen() {
-        const { theme: { body } } = this.props;
         Navigation.setStackRoot('appStack', {
             component: {
                 name: 'loading',
                 options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
                     topBar: {
                         visible: false,
                         drawBehind: true,

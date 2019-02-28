@@ -123,23 +123,10 @@ export class TwoFactorSetupAddKey extends Component {
      */
     navigateToEnterToken() {
         Clipboard.setString(' ');
-        const { t, theme: { body } } = this.props;
+        const { t } = this.props;
         return storeTwoFactorAuthKeyInKeychain(global.passwordHash, this.state.authKey)
             .then(() => {
-                navigator.push('twoFactorSetupEnterToken', {
-                    animations: {
-                        push: {
-                            enable: false,
-                        },
-                        pop: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                });
+                navigator.push('twoFactorSetupEnterToken');
             })
             .catch(() =>
                 this.props.generateAlert(

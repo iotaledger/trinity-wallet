@@ -85,24 +85,11 @@ class LanguageSetup extends Component {
         timer.clearTimeout('delayReset');
     }
     onNextPress() {
-        const { theme: { body }, forceUpdate } = this.props;
+        const { forceUpdate } = this.props;
         if (forceUpdate) {
             return;
         }
-        navigator.push(this.getNextRoute(), {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.push(this.getNextRoute());
     }
 
     getNextRoute() {

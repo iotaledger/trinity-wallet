@@ -115,18 +115,7 @@ class WalletResetRequirePassword extends Component {
      * @method redirectToInitialScreen
      */
     redirectToInitialScreen() {
-        const { theme: { body } } = this.props;
-        navigator.setStackRoot('languageSetup', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.setStackRoot('languageSetup');
     }
 
     /**

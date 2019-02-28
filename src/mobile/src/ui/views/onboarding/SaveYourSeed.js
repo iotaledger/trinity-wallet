@@ -110,21 +110,7 @@ class SaveYourSeed extends Component {
      * @method onDonePress
      */
     onDonePress() {
-        const { theme: { body } } = this.props;
-        navigator.push('saveSeedConfirmation', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.push('saveSeedConfirmation');
     }
 
     /**
@@ -140,21 +126,7 @@ class SaveYourSeed extends Component {
      * @method onWriteSeedDownPress
      */
     onWriteSeedDownPress() {
-        const { theme: { body } } = this.props;
-        navigator.push('writeSeedDown', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.push('writeSeedDown');
     }
 
     /**
@@ -166,21 +138,7 @@ class SaveYourSeed extends Component {
     }
 
     onExportSeedVaultPress() {
-        const { theme: { body } } = this.props;
-        navigator.push('seedVaultBackup', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.push('seedVaultBackup');
     }
 
     /**

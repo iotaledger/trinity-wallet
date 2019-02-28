@@ -39,21 +39,8 @@ class SecuritySettings extends Component {
      * @method on2FASetupPress
      */
     on2FASetupPress() {
-        const { is2FAEnabled, theme: { body } } = this.props;
-        navigator.push(is2FAEnabled ? 'disable2FA' : 'twoFactorSetupAddKey', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        const { is2FAEnabled } = this.props;
+        navigator.push(is2FAEnabled ? 'disable2FA' : 'twoFactorSetupAddKey');
     }
 
     /**
@@ -61,21 +48,7 @@ class SecuritySettings extends Component {
      * @method onBiometricAuthenticationPress
      */
     onBiometricAuthenticationPress() {
-        const { theme: { body } } = this.props;
-        navigator.push('biometricAuthentication', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.push('biometricAuthentication');
     }
 
     renderSettingsContent() {

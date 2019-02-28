@@ -98,21 +98,7 @@ export class AdvancedSettings extends PureComponent {
      * @method reset
      */
     reset() {
-        const { theme: { body } } = this.props;
-        navigator.push('walletResetConfirm', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.push('walletResetConfirm');
     }
 
     /**

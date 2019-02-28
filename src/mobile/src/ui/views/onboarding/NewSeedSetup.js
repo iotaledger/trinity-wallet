@@ -157,18 +157,6 @@ class NewSeedSetup extends Component {
         if (this.state.hasGeneratedSeed) {
             global.onboardingSeed = trytesToTrits(this.state.seed);
             navigator.push('saveYourSeed', {
-                animations: {
-                    push: {
-                        enable: false,
-                    },
-                    pop: {
-                        enable: false,
-                    },
-                },
-                layout: {
-                    backgroundColor: body.bg,
-                    orientation: ['portrait'],
-                },
                 topBar: {
                     title: {
                         color: body.color,

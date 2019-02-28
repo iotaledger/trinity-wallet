@@ -92,21 +92,7 @@ class WalletResetConfirmation extends Component {
      * @param {string} url
      */
     navigateToPasswordConfirmation() {
-        const { theme: { body } } = this.props;
-        navigator.push('walletResetRequirePassword', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.push('walletResetRequirePassword');
     }
 
     /**

@@ -157,8 +157,6 @@ class UseExistingSeed extends Component {
      * @method fetchAccountInfo
      */
     async fetchAccountInfo(seed, accountName) {
-        const { theme: { body } } = this.props;
-
         const seedStore = await new SeedStore.keychain(global.passwordHash);
         await seedStore.addAccount(accountName, seed);
 
@@ -169,17 +167,7 @@ class UseExistingSeed extends Component {
             usedExistingSeed: true,
         });
 
-        navigator.setStackRoot('loading', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.setStackRoot('loading');
     }
 
     /**

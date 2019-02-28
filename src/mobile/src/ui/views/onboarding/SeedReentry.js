@@ -108,26 +108,13 @@ class SeedReentry extends Component {
      * @method onDonePress
      */
     onDonePress() {
-        const { t, theme: { body } } = this.props;
+        const { t } = this.props;
         const { reenteredSeed } = this.state;
         if (global.onboardingSeed && isEqual(reenteredSeed, global.onboardingSeed)) {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
-            navigator.push('setAccountName', {
-                animations: {
-                    push: {
-                        enable: false,
-                    },
-                    pop: {
-                        enable: false,
-                    },
-                },
-                layout: {
-                    backgroundColor: body.bg,
-                    orientation: ['portrait'],
-                },
-            });
+            navigator.push('setAccountName');
             delete this.state.reenteredSeed;
         } else if (size(reenteredSeed) === MAX_SEED_TRITS) {
             this.props.generateAlert('error', t('incorrectSeed'), t('incorrectSeedExplanation'));

@@ -91,21 +91,7 @@ class SaveSeedConfirmation extends Component {
     }
 
     onNextPress() {
-        const { theme: { body } } = this.props;
-        navigator.push('seedReentry', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.push('seedReentry');
     }
 
     onSwipeSuccess() {

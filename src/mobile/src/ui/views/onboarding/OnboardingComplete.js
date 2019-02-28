@@ -66,18 +66,7 @@ class OnboardingComplete extends Component {
     }
 
     onNextPress() {
-        const { theme: { body } } = this.props;
-        navigator.setStackRoot('loading', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.setStackRoot('loading');
     }
 
     render() {

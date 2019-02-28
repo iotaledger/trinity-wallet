@@ -140,21 +140,7 @@ class SetPassword extends Component {
     }
 
     navigateToOnboardingComplete() {
-        const { theme: { body } } = this.props;
-        navigator.push('onboardingComplete', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-        });
+        navigator.push('onboardingComplete');
     }
 
     render() {
