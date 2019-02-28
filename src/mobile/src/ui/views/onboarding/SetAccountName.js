@@ -10,7 +10,7 @@ import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { connect } from 'react-redux';
 import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
-import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
+import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
@@ -83,7 +83,7 @@ export class SetAccountName extends Component {
         leaveNavigationBreadcrumb('SetAccountName');
         const { t } = this.props;
         const clipboardContent = await Clipboard.getString();
-        if (clipboardContent.match(VALID_SEED_REGEX)) {
+        if (clipboardContent.match(VALID_SEED_REGEX) && clipboardContent.length === MAX_SEED_LENGTH) {
             Clipboard.setString(' ');
             this.props.generateAlert(
                 'info',
