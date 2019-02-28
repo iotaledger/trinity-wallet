@@ -3,7 +3,7 @@ import React from 'react';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { navigator } from 'libs/navigation';
-import { toggleModalActivity } from 'shared-modules/actions/ui';
+import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
 import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { VALID_SEED_REGEX, MAX_SEED_TRITS, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -84,6 +84,8 @@ class EnterSeed extends React.Component {
         toggleModalActivity: PropTypes.func.isRequired,
         /** @ignore */
         setAccountInfoDuringSetup: PropTypes.func.isRequired,
+        /** @ignore */
+        setDoNotMinimise: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -177,6 +179,8 @@ class EnterSeed extends React.Component {
                     theme,
                     onQRRead: (data) => this.onQRRead(data),
                     hideModal: () => this.props.toggleModalActivity(),
+                    onMount: () => this.props.setDoNotMinimise(true),
+                    onUnmount: () => this.props.setDoNotMinimise(false),
                 });
             case 'passwordValidation':
                 return this.props.toggleModalActivity(modalContent, {
@@ -296,6 +300,7 @@ const mapDispatchToProps = {
     generateAlert,
     toggleModalActivity,
     setAccountInfoDuringSetup,
+    setDoNotMinimise
 };
 
 export default WithUserActivity()(
