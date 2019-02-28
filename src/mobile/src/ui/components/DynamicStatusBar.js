@@ -6,7 +6,6 @@ import tinycolor from 'tinycolor2';
 import { isAndroid } from 'libs/device';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { rgbToHex } from 'shared-modules/libs/utils';
-import timer from 'react-native-timer';
 import { connect } from 'react-redux';
 import { getBackgroundColor } from 'ui/theme/general';
 
@@ -19,11 +18,6 @@ class DynamicStatusBar extends Component {
         /** @ignore */
         navStack: PropTypes.array,
     };
-
-    componentWillUnmount() {
-        timer.clearTimeout('resetStatusBarOnRouteChange');
-        timer.clearTimeout('resetStatusBarOnModalActivity');
-    }
 
     /**
      * Returns status bar colour dependent on current route
