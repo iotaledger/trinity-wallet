@@ -689,11 +689,11 @@
         "gettingTransactionsToApprove": "承認する取引を取得中",
         "proofOfWork": "プルーフ・オブ・ワークを完了中",
         "broadcasting": "ブロードキャスト中",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "データを準備中",
+        "migratingSettings": "設定を移行中",
+        "migratingAccounts": "アカウントを移行中",
+        "cleaningUpOldData": "古いデータを削除中",
+        "migrationComplete": "移行完了",
         "transferComplete": "送金完了"
     },
     "snapshotTransition": {
@@ -773,9 +773,10 @@
         "sweepConfirmationTitle": "移動を承認"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+        "dataMigration": "データ移行",
+        "dataMigrationExplanation": "パフォーマンスとストレージの制限により、Trinityは設定とアカウントデータの保存に新しいデータベースを使用しています。 Trinityが今までのデータを自動的に移行するまで少々お待ちください。",
+        "problemMigratingYourData": "データの移行中に問題が発生しました。もう一度やり直してください。",
+        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
         "ready": "Ledger端末の接続が完了し、準備完了です",
@@ -785,8 +786,8 @@
         "proceedWithLedger": "Ledgerのセットアップを続行する",
         "accountIndex": "アカウントインデックス",
         "accountPage": "アカウントページ",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Ledger端末へのアクセスはキャンセルされました。",
+        "actionCancelledExplanation": "Ledger端末にアクセスしないと操作を実行できません。",
         "chooseAccountIndex": "Ledgerのアカウントインデックスを選択してください",
         "accountIndexExplanation": "Ledgerは複数のシードを保存できます。各シードは一意のインデックス番号で識別されます。未使用のインデックスが事前に選択されますが、自分で選択することもできます。自分で選択したインデックス番号は書き留めておいてください。",
         "accountPageExplanation": "一部のサードパーティ製のウォレットではページが必要です。",

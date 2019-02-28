@@ -689,11 +689,11 @@
         "gettingTransactionsToApprove": "Uzyskiwanie transakcji do potwierdzenia",
         "proofOfWork": "Finalizacja Proof of Work",
         "broadcasting": "Broadcasting",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Przygotowywanie danych",
+        "migratingSettings": "Przenoszenie ustawień",
+        "migratingAccounts": "Przenoszenie kont",
+        "cleaningUpOldData": "Czyszczenie starych danych",
+        "migrationComplete": "Migracja zakończona",
         "transferComplete": "Transfer zakończony"
     },
     "snapshotTransition": {
@@ -773,9 +773,10 @@
         "sweepConfirmationTitle": "Potwierdzenie przenoszenia"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+        "dataMigration": "Przenoszenie danych",
+        "dataMigrationExplanation": "Ze względu na wydajność i pewne ograniczenia pamięci, Trinity używa od teraz nowej bazy danych do przechowywania ustawień i danych konta. Zaczekaj, podczas gdy Trinity automatycznie wykona migrację Twoich danych.",
+        "problemMigratingYourData": "Wystąpił problem podczas migracji Twoich danych. Spróbuj ponownie",
+        "seedMigrationExplanation": "W ramach nieustannych wysiłków na rzecz poprawy bezpieczeństwa portfela Trinity, Twój klucz seed zostanie przeniesiony do ulepszonego magazynu kluczy. Proszę czekać, Trinity automatycznie przeprowadzi proces migracji."
     },
     "ledger": {
         "ready": "Urządzenie Ledger podłączone i gotowe do pracy",
@@ -785,8 +786,8 @@
         "proceedWithLedger": "Kontynuuj konfigurację portfela Ledger",
         "accountIndex": "Indeks konta",
         "accountPage": "Strona konta",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Dostęp do urządzenia Ledger odwołany",
+        "actionCancelledExplanation": "Nie można wykonać akcji bez dostępu do urządzenia Ledger.",
         "chooseAccountIndex": "Wybierz indeks Twojego konta Ledger",
         "accountIndexExplanation": "Twoje urządzenie Ledger może przechowywać wiele kluczy seed. Każdy z kluczy, jest identyfikowany przez unikatowy numer indeksu. Nieużywany indeks został wstępnie wybrany, jednak możesz wybrać swój własny. Upewnij się, że zanotowałeś swój wybrany numer indeksu.",
         "accountPageExplanation": "Niektóre portfele firm trzecich, wymagają użycia \"stron\".",

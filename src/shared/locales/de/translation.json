@@ -773,9 +773,10 @@
         "sweepConfirmationTitle": "Transaktion korrigieren"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+        "dataMigration": "Datenmigration",
+        "dataMigrationExplanation": "Aufgrund von Performance- und Speicherbeschränkungen verwendet Trinity eine neue Datenbank zur Speicherung von Einstellungen und Kontodaten. Bitte warte, während Trinity deine bestehenden Daten automatisch migriert.",
+        "problemMigratingYourData": "Bei der Migration der Daten ist ein Fehler aufgetreten. Bitte versuche es erneut",
+        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
         "ready": "Ledger verbunden und bereit",
