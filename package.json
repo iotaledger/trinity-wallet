@@ -53,5 +53,8 @@
   "dependencies": {
     "snyk": "^1.116.2"
   },
+  "resolutions": {
+    "request": ">=2.88.0"
+  },
   "snyk": true
 }
