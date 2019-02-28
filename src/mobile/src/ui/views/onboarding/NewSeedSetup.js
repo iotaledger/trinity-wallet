@@ -150,19 +150,13 @@ class NewSeedSetup extends Component {
     }
 
     onNextPress() {
-        const { t, theme: { body } } = this.props;
+        const { t } = this.props;
         if (isAndroid) {
             FlagSecure.deactivate();
         }
         if (this.state.hasGeneratedSeed) {
             global.onboardingSeed = trytesToTrits(this.state.seed);
-            navigator.push('saveYourSeed', {
-                topBar: {
-                    title: {
-                        color: body.color,
-                    },
-                },
-            });
+            navigator.push('saveYourSeed');
         } else {
             this.props.generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
         }

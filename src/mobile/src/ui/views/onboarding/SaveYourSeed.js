@@ -214,7 +214,6 @@ class SaveYourSeed extends Component {
         Navigation.mergeOptions('appStack', {
             topBar: {
                 visible: false,
-                color: 'white',
             },
         });
     }
@@ -224,6 +223,7 @@ class SaveYourSeed extends Component {
      *  @method print
      */
     async print() {
+        const { theme: { body } } = this.props;
         this.props.toggleModalActivity();
         const paperWalletHTML = `
         <!DOCTYPE html>
@@ -267,9 +267,24 @@ class SaveYourSeed extends Component {
                 'delayPrint',
                 () => {
                     Navigation.mergeOptions('appStack', {
-                        topBar: {
-                            visible: true,
-                        },
+                      topBar: {
+                          barStyle: 'default',
+                          visible: true,
+                          animate: false,
+                          buttonColor: '#ffffff',
+                          drawBehind: true,
+                          noBorder: true,
+                          title: {
+                              color: '#ffffff',
+                          },
+                          backButton: {
+                              visible: true,
+                          },
+                          background: {
+                              color: body.bg,
+                              translucent: true,
+                          }
+                      },
                     });
                     RNPrint.print({ html: paperWalletHTML });
                 },
