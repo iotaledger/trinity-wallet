@@ -754,21 +754,24 @@ export const isValidTransfer = (transfer) => {
 };
 
 /**
- *   Checks if a bundle is funded
- *   Note: Does not validate signatures or other bundle attributes
+ * Checks if a bundle is funded
+ * Note: Does not validate signatures or other bundle attributes
  *
- *   @method isFundedBundle
- *   @param {string} [provider]
+ * @method isFundedBundle
  *
- *   @returns {function(array): Promise<boolean>}
+ * @param {string} provider
+ * @param {boolean} withQuorum
+ *
+ *
+ * @returns {function(array): Promise<boolean>}
  **/
 
-export const isFundedBundle = (provider) => (bundle) => {
+export const isFundedBundle = (provider, withQuorum) => (bundle) => {
     if (isEmpty(bundle)) {
         return Promise.reject(new Error(Errors.EMPTY_BUNDLE_PROVIDED));
     }
 
-    return getBalancesAsync(provider)(
+    return getBalancesAsync(provider, withQuorum)(
         reduce(bundle, (acc, tx) => (tx.value < 0 ? [...acc, tx.address] : acc), []),
     ).then((balances) => {
         return (
@@ -789,15 +792,17 @@ export const filterZeroValueBundles = (bundles) => {
 };
 
 /**
- *   Filters non-funded bundles
- *   Note: Does not validate signatures or other bundle attributes
+ * Filters non-funded bundles
+ * Note: Does not validate signatures or other bundle attributes
  *
- *   @method filterNonFundedBundles
- *   @param {string} [provider]
+ * @method filterNonFundedBundles
  *
- *   @returns {function(array): Promise<boolean>}
+ * @param {string} provider
+ * @param {boolean} withQuorum
+ *
+ * @returns {function(array): Promise<boolean>}
  **/
-export const filterNonFundedBundles = (provider) => (bundles) => {
+export const filterNonFundedBundles = (provider, withQuorum) => (bundles) => {
     if (isEmpty(bundles)) {
         return Promise.reject(new Error(Errors.EMPTY_BUNDLES_PROVIDED));
     }
@@ -807,7 +812,7 @@ export const filterNonFundedBundles = (provider) => (bundles) => {
         filterZeroValueBundles(bundles),
         (promise, bundle) => {
             return promise.then((result) => {
-                return isFundedBundle(provider)(bundle).then((isFunded) => {
+                return isFundedBundle(provider, withQuorum)(bundle).then((isFunded) => {
                     if (isFunded) {
                         return [...result, bundle];
                     }
