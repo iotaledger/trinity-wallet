@@ -775,7 +775,7 @@
     "migration": {
         "dataMigration": "Duomenų perkėlimas",
         "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "problemMigratingYourData": "Įvyko klaida perkeliant jūsų duomenis. Bandykite dar kartą",
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
