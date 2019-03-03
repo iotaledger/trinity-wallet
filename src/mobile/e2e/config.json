@@ -1,8 +1,8 @@
 {
-    "setupTestFrameworkScriptFile": "./init.js",
+    "setupFilesAfterEnv": ["./init.js"],
     "testEnvironment": "node",
     "transform": {
-      "^.+\\.js$": "../node_modules/react-native/jest/preprocessor.js"
+        "^.+\\.js$": "../node_modules/react-native/jest/preprocessor.js"
     },
     "setupFiles": ["../node_modules/regenerator-runtime/runtime"]
 }

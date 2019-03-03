@@ -146,6 +146,7 @@ class TermsAndConditions extends Component {
                         }}
                         scrollEventThrottle={400}
                         style={styles.scrollView}
+                        testID="termsAndConditions-scrollView"
                     >
                         <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>
                             {TermsAndConditions.getTermsAndConditions()}

@@ -4,14 +4,11 @@ import { navigateToTermsAndConditions } from '../../../internal/navigation';
 describe('TermsAndConditions', () => {
     it('should show the terms and conditions', async () => {
         await navigateToTermsAndConditions();
-        await expect(element(by.type('RCTScrollView'))).toBeVisible();
+        await expect(element(by.id('termsAndConditions-scrollView'))).toBeVisible();
     });
 
     it('should allow scrolling', async () => {
-        await element(by.type('RCTScrollView')).swipe('up', 'fast', 0.99);
-        await element(by.type('RCTScrollView')).swipe('up', 'fast', 0.99);
-        await element(by.type('RCTScrollView')).swipe('up', 'fast', 0.99);
-        await element(by.type('RCTScrollView')).swipe('up', 'fast', 0.99);
+        await element(by.id('termsAndConditions-scrollView')).scrollTo('bottom');
     });
 
     it('should show a button once the terms and conditions have been read', async () => {

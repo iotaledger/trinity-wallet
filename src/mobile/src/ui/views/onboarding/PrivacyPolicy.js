@@ -141,6 +141,7 @@ class PrivacyPolicy extends Component {
                         }}
                         scrollEventThrottle={400}
                         style={styles.scrollView}
+                        testID="privacyPolicy-scrollView"
                     >
                         <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>
                             {PrivacyPolicy.getPrivacyPolicy()}

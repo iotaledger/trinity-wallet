@@ -187,8 +187,8 @@ class LanguageSetup extends Component {
                             >
                                 <SingleFooterButton
                                     onButtonPress={() => this.onNextPress()}
-                                    testID="languageSetup-next"
                                     buttonText={t('letsGetStarted')}
+                                    buttonTestID="languageSetup-next"
                                 />
                             </AnimatedComponent>
                         </View>
