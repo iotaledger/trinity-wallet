@@ -1,19 +1,13 @@
 import get from 'lodash/get';
-import omitBy from 'lodash/omitBy';
-import each from 'lodash/each';
 import size from 'lodash/size';
 import isArray from 'lodash/isArray';
 import isObject from 'lodash/isObject';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
-import includes from 'lodash/includes';
 import isString from 'lodash/isString';
 import keys from 'lodash/keys';
-import merge from 'lodash/merge';
 import filter from 'lodash/filter';
-import cloneDeep from 'lodash/cloneDeep';
-import unset from 'lodash/unset';
-import set from 'lodash/set';
+import transform from 'lodash/transform';
 import validUrl from 'valid-url';
 import { VERSIONS_URL } from '../config';
 
@@ -157,40 +151,6 @@ export const rearrangeObjectKeys = (obj, prop) => {
     return obj;
 };
 
-export const updatePersistedState = (incomingState, restoredState, propsToReset) => {
-    const blacklistedStateProps = ['app', 'keychain', 'polling', 'ui', 'progress', 'deepLinks', 'wallet'];
-
-    const incomingStateWithWhitelistedProps = omitBy(incomingState, (value, key) =>
-        includes(blacklistedStateProps, key),
-    );
-
-    const { settings: { theme, versions } } = incomingStateWithWhitelistedProps;
-    const restoredCopy = cloneDeep(restoredState);
-
-    if (propsToReset.length !== 0) {
-        propsToReset.forEach((prop) => {
-            set(restoredCopy, prop, get(incomingState, prop));
-        });
-    }
-
-    if ('settings' in restoredCopy) {
-        restoredCopy.settings.theme = theme;
-        restoredCopy.settings.versions = versions;
-    }
-
-    if ('accounts' in restoredCopy) {
-        const accountNames = keys(restoredCopy.accounts.accountInfo);
-
-        each(accountNames, (accountName) => {
-            restoredCopy.accounts.accountInfo[accountName].hashes = [];
-        });
-
-        unset(restoredCopy.accounts, ['txHashesForUnspentAddresses', 'pendingTxHashesForSpentAddresses']);
-    }
-
-    return merge({}, incomingStateWithWhitelistedProps, restoredCopy);
-};
-
 /**
  * Used for setting correct CryptoCompare URL when fetching chart data
  *
@@ -295,7 +255,27 @@ export const isValidHttpsUrl = (url) => {
 };
 
 /**
- * Gets random nodes.
+ *   Find most frequently occurring element in a list.
+ *   NOTE: Only supports booleans, strings
+ *
+ *   @method findMostFrequent
+ *   @param {array} list
+ *   @returns {object} - Frequency and most frequent element
+ **/
+export const findMostFrequent = (list) =>
+    transform(
+        list,
+        (acc, value) => {
+            acc.frequency[value] = (acc.frequency[value] || 0) + 1;
+
+            if (!acc.frequency[acc.mostFrequent] || acc.frequency[value] > acc.frequency[acc.mostFrequent]) {
+                acc.mostFrequent = value;
+            }
+        },
+        { frequency: {}, mostFrequent: '' },
+    );
+
+/* Converts RGB to Hex.
  *
  * @method rgbToHex
  * @param {string} Rgb as string

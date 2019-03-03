@@ -7,6 +7,7 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'reac
 import { navigator } from 'libs/navigation';
 import { resetWallet, set2FAStatus } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
 import Fonts from 'ui/theme/fonts';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -59,8 +60,6 @@ class Disable2FA extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         set2FAStatus: PropTypes.func.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -80,7 +79,7 @@ class Disable2FA extends Component {
      * Attempts to disable 2FA, fails if the token is not correct
      */
     disable2FA() {
-        return getTwoFactorAuthKeyFromKeychain(this.props.password)
+        return getTwoFactorAuthKeyFromKeychain(global.passwordHash)
             .then((key) => {
                 const verified = authenticator.verifyToken(key, this.state.token);
                 if (verified) {
@@ -89,12 +88,16 @@ class Disable2FA extends Component {
                     this.timeout = setTimeout(() => {
                         this.props.generateAlert(
                             'success',
-                            '2FA is now disabled',
-                            'You have successfully disabled Two Factor Authentication.',
+                            this.props.t('twoFA:twoFADisabled'),
+                            this.props.t('twoFA:twoFADisabledExplanation'),
                         );
                     }, 300);
                 } else {
-                    this.props.generateAlert('error', 'Wrong code', 'The code you entered is not correct.');
+                    this.props.generateAlert(
+                        'error',
+                        this.props.t('twoFA:wrongCode'),
+                        this.props.t('twoFA:wrongCodeExplanation'),
+                    );
                 }
             })
             .catch((err) => console.error(err)); // eslint-disable-line no-console
@@ -133,7 +136,7 @@ class Disable2FA extends Component {
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={266}
                             >
-                                <Text style={[styles.generalText, textColor]}>Enter your token to disable 2FA</Text>
+                                <Text style={[styles.generalText, textColor]}>{t('twoFA:enterCode')}</Text>
                             </AnimatedComponent>
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
@@ -142,7 +145,7 @@ class Disable2FA extends Component {
                             >
                                 <CustomTextInput
                                     label="Token"
-                                    onChangeText={(token) => this.setState({ token })}
+                                    onValidTextChange={(token) => this.setState({ token })}
                                     autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
@@ -171,8 +174,7 @@ class Disable2FA extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
-    password: state.wallet.password,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

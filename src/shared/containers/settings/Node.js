@@ -1,3 +1,4 @@
+import endsWith from 'lodash/endsWith';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -6,6 +7,8 @@ import { withI18n } from 'react-i18next';
 import { setFullNode, removeCustomNode, updateAutoNodeSwitching } from '../../actions/settings';
 import { generateAlert } from '../../actions/alerts';
 import { isValidUrl, isValidHttpsUrl } from '../../libs/utils';
+
+import { getThemeFromState } from '../../selectors/global';
 
 /**
  * Node settings container
@@ -33,6 +36,7 @@ export default function withNodeData(NodeComponent) {
             const { nodes, node, setFullNode, generateAlert, t } = this.props;
 
             if (!nodeSelected) {
+                generateAlert('error', t('addCustomNode:nodeFieldEmpty'), t('addCustomNode:nodeFieldEmptyExplanation'));
                 return;
             }
 
@@ -51,8 +55,18 @@ export default function withNodeData(NodeComponent) {
                 return;
             }
 
+            const hasDefaultHttpsPort = endsWith(nodeSelected, ':443');
+
+            if (hasDefaultHttpsPort) {
+                nodeSelected = nodeSelected.slice(0, -4);
+            }
+
             // Check whether the node was already added to the list
-            if (customNode && nodes.includes(nodeSelected)) {
+            if (
+                customNode &&
+                (nodes.includes(nodeSelected) ||
+                    nodes.map((node) => (endsWith(node, ':443') ? node.slice(0, -4) : node)).includes(nodeSelected))
+            ) {
                 generateAlert('error', t('nodeDuplicated'), t('nodeDuplicatedExplanation'));
                 return;
             }
@@ -106,7 +120,7 @@ export default function withNodeData(NodeComponent) {
         node: state.settings.node,
         nodes: state.settings.nodes,
         customNodes: state.settings.customNodes,
-        theme: state.settings.theme,
+        theme: getThemeFromState(state),
         autoNodeSwitching: state.settings.autoNodeSwitching,
         isChangingNode: state.ui.isChangingNode,
         isCheckingCustomNode: state.ui.isCheckingCustomNode,

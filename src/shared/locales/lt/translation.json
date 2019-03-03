@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Toks vartotojo serveris jau yra įvestas.",
         "nodeAutoChanged": "Automatiškai pakeistas serveris",
         "nodeAutoChangedExplanation": "Pakeista į naują serverį {{- nodeAddress}}, nes pasirinktas serveris nepasiekiamas.",
+        "touchSensor": "Palieskite piršto antspaudo jutiklį",
         "fingerprintOnSend": "Palieskite piršto antspaudo skaitytuvą, norėdami patvirtinti pavedimą",
         "masterKey": "Jūsų IOTA užraktas yra pagrindinis raktas į jūsų lėšas.",
         "seedThief": "Jeigu kas nors sužinos jūsų užraktą, jie galės pavogti jūsų IOTA.",
@@ -155,11 +156,12 @@
         "confirm": "Patvirtinti",
         "delete": "Ištrinti",
         "shouldUpdate": "Yra naujų atnaujinimų",
-        "shouldUpdateExplanation": "Išleistas naujas atnaujinimas. Rekomenduojama atsinaujinti iki naujausios versijos.",
+        "shouldUpdateExplanation": "Išleistas naujas atnaujinimas. Rekomenduojama atsisiųsti naujausius atnaujinimus.",
         "forceUpdate": "Atnaujinkite programėlę norėdami tęsti",
         "forceUpdateExplanation": "Išleistas svarbus atnaujinimas. Prašome nedelsiant atsinaujinti programėlę.",
         "missingPermission": "Reikalingas failų sistemos leidimas",
-        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norėdami atlikti šią funkciją."
+        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norėdami atlikti šią funkciją.",
+        "swipeToConfirm": "Paslinkite norėdami patvirtinti"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -297,7 +299,8 @@
         "tag": "Etiketė",
         "generateAnAddress": "Sukurti adresą",
         "generateAnAddressTitle": "Sukurti adresą",
-        "generateAnAddressExplanation": "Prašome sukurti adresą, norėdami panaudoti šią funkciją."
+        "generateAnAddressExplanation": "Prašome sukurti adresą, norėdami panaudoti šią funkciją.",
+        "generateAddressInformation": "Kiekvieną kartą sukurkite naują adresą gaudami IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Išsisaugokite savo užraktą",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Adresas turi būti sudarytas iš {{maxLength}} simbolių ir turi turėti kontrolinę sumą.",
         "invalidAddressExplanation2": "Adrese yra neleistinų simbolių.",
         "invalidAddressExplanation3": "Adresas turi neteisingą kontrolinė sumą.",
+        "invalidAddressExplanation4": "Patikrinkite ar teisingai įvedėte adresą.",
         "invalidAddressExplanationGeneric": "Adresai turi būti sudaryti iš 90 simbolių, galimos raidės A-Z arba skaičius 9.",
         "notEnoughFunds": "Nepakanka lėšų",
         "notEnoughFundsExplanation": "Pavedimo atlikti negalima, nes nepakankamas jūsų IOTA likutis.",
@@ -586,12 +590,19 @@
         "fingerprintAuthFailedExplanation": "Piršto antspaudo autentifikavimas nesuveikė. Bandykite dar kartą.",
         "status": "Būsena",
         "fingerprintUnavailable": "Biometrinis autentifikavimas nepasiekiamas",
+        "deviceLocked": "Autentifikavimas atjungtas 30-čiai sekundžių",
         "fingerprintUnavailableExplanation": "Jūsų įrenginys nepalaiko biometrinio autentifikavimo arba ši funkcija yra nesukonfigūruota jūsų įrenginyje.",
-        "buttonInstructionsDisable": "Spauskite žemiau esantį mygtuką, norėdami atjungti piršto antspaudo autentifikavimą",
+        "notSupported": "Įrenginys nepalaiko biometrinio autentifikavimo",
+        "notConfigured": "Biometrinis autentifikavimas yra nesukonfigūruotas jūsų įrenginyje",
+        "buttonInstructionsDisable": "Spustelėkite žemiau esantį mygtuką, norėdami atjungti piršto antspaudo autentifikavimą.",
         "buttonInstructionsEnable": "Spauskite žemiau esantį mygtuką, norėdami įjungti piršto antspaudo autentifikavimą.",
         "buttonInstructionsDisableIPhoneX": "Spauskite žemiau esantį mygtuką, norėdami išjungti Face ID",
         "buttonInstructionsEnableIPhoneX": "Spauskite žemiau esantį mygtuką, norėdami įjungti Face ID",
-        "instructionsLogin": "Palieskite piršto antspaudo skaitytuvą, norėdami prisijungti"
+        "instructionsLogin": "Palieskite piršto antspaudo skaitytuvą, norėdami prisijungti",
+        "systemCancelledAuth": "Jūsų įrenginys atmetė autentifikavimą",
+        "userCancelledAuth": "Autentifikavimo užklausa atmesta",
+        "passwordFallback": "Grįžti prie slaptažodžio autentifikavimo",
+        "noPassword": "Slaptažodis įrenginyje nėra sukurtas"
     },
     "transferConfirmation": {
         "youAreAbout": "Jūs ruošiatės išsiųsti {{contents}} į adresą",
@@ -603,7 +614,7 @@
     },
     "twoFA": {
         "wrongCode": "Neteisingas kodas",
-        "wrongCodeExplanation": "Kodas, kurį įvedėte yra neteisingas.",
+        "wrongCodeExplanation": "Kodas, kurį įvedėte yra neteisingas. Jeigu ši klaida kartosis, patikrinkite ar jūsų įrenginio laikai teisingi.",
         "emptyCode": "Neįvestas kodas",
         "emptyCodeExplanation": "Įveskite kodą ir bandykite dar kartą.",
         "keyCopied": "Kodas nukopijuotas į iškarpinę",
@@ -671,12 +682,18 @@
     "progressSteps": {
         "checkingNodeHealth": "Tikrinama serverio būklė",
         "validatingReceiveAddress": "Tikrinamas pavedimų priėmimo adresas",
+        "validatingTransactionAddresses": "Tikrinami pavedimų adresai",
         "syncingAccount": "Paskyra sinchronizuojama",
         "preparingInputs": "Įvesties duomenų paruošimas",
         "preparingTransfers": "Ruošiami pavedimai",
         "gettingTransactionsToApprove": "Pavedimai ruošiami patvirtinimui",
         "proofOfWork": "Atliekami skaičiavimai",
         "broadcasting": "Transliuojama",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Pavedimas atliktas"
     },
     "snapshotTransition": {
@@ -703,8 +720,8 @@
         "noUpdatesAvailable": "Atnaujinimų nėra",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Galima nauja versija",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Įdiegti atnaujinimus ir paleisti iš naujo",
+        "newVersionAvailableExplanation": "Galima nauja Trinity versija. Ar norite atlikti atnaujinimus?",
+        "installUpdate": "Atnaujinimų įdiegimas ir paleidimas iš naujo",
         "installUpdateExplanation": "Atsisiuntimas baigtas, Trinity persikraus ir įdiegs atnaujinimus.",
         "downloadingUpdate": "Siunčiami atnaujinimai",
         "downloadProgress": "{{transferred}} iš {{total}} atsiųsta"
@@ -730,7 +747,7 @@
     },
     "proxy": {
         "proxy": "Naudotis sistemos tarpiniu serveriu",
-        "proxyExplanation": "Aptikti ir naudotis sistemos tinklo tarpinio tinklo nustatymais. Uždaryti ir įjungti iš naujo piniginę atlikus šiuos pakeitimus."
+        "proxyExplanation": "Aptikti ir naudotis sistemos tarpinio tinklo nustatymais. Uždaryti ir įjungti iš naujo piniginę atlikus šiuos pakeitimus."
     },
     "notifications": {
         "notifications": "Pranešimai",
@@ -755,6 +772,12 @@
         "sweepConfirmation": "Jūs ketinate perkelti {{amount}} į adresą {{address}}. Paskyra: {{accountName}}, adreso indeksas: {{index}}",
         "sweepConfirmationTitle": "Perkėlimo patvirtinimas"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+    },
     "ledger": {
         "ready": "Ledger įrenginys prijungtas",
         "notReady": "Jei norite pasinaudoti Ledger įrenginiu, prijunkite ir atrakinkite jį",
@@ -763,6 +786,8 @@
         "proceedWithLedger": "Tęskite su Ledger vedliu",
         "accountIndex": "Paskyros indeksas",
         "accountPage": "Paskyros puslapis",
+        "actionCancelled": "Ledger įrenginio prieiga atšaukta",
+        "actionCancelledExplanation": "Šio veiksmo negalima atlikti be Ledger prieigos.",
         "chooseAccountIndex": "Pasirinkite Ledger paskyros indeksą",
         "accountIndexExplanation": "Jūsų Ledger gali talpinti daugybę užraktų. Kiekvienam užraktui priskiriamas unikalus indekso numeris. Jums priskirtas naujas indeksas, bet galite jį pakeisti į kitą. Nepamirškite išsisaugoti pasirinkto indekso numerio.",
         "accountPageExplanation": "Kai kurioms trečiosios šalies piniginėms reikalingi puslapiai.",

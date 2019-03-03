@@ -1,20 +1,39 @@
+import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
 import values from 'lodash/values';
 import omit from 'lodash/omit';
 import cloneDeep from 'lodash/cloneDeep';
 import { createAndStoreBoxInKeychain, getSecretBoxFromKeychainAndOpenIt, keychain, ALIAS_SEEDS } from 'libs/keychain';
+import { sha256 } from 'libs/crypto';
 import { prepareTransfersAsync } from 'shared-modules/libs/iota/extendedApi';
-import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
+import { tritsToChars } from 'shared-modules/libs/iota/converter';
+import { getAddressGenFn, getMultiAddressGenFn, getSignatureFn } from 'libs/nativeModules';
+import SeedStoreCore from './SeedStoreCore';
 
-class Keychain {
+class Keychain extends SeedStoreCore {
     /**
      * Init the vault
      * @param {array} key - Account decryption key
      * @param {string} accountId - Account identifier
      */
     constructor(key, accountId) {
-        this.key = cloneDeep(key);
-        this.accountId = accountId;
+        super();
+        return (async () => {
+            this.key = cloneDeep(key);
+            if (accountId) {
+                this.accountId = await sha256(accountId);
+            }
+            return this;
+        })();
+    }
+
+    /**
+     * Return max supported input count
+     * @returns {number} - 0 for no limit
+     */
+    get maxInputs() {
+        return 0;
     }
 
     /**
@@ -24,10 +43,10 @@ class Keychain {
      * @returns {promise} - Resolves to a success boolean
      */
     addAccount = async (accountId, seed) => {
-        this.accountId = accountId;
-
+        this.accountId = await sha256(accountId);
         const existingInfo = await keychain.get(ALIAS_SEEDS);
-        const info = { [this.accountId]: seed };
+        // Sha256 of account name against basic trit array
+        const info = { [this.accountId]: values(seed) };
 
         // If this is the first seed, store the seed with account name
         if (isEmpty(existingInfo)) {
@@ -40,21 +59,29 @@ class Keychain {
     };
 
     /**
+     * Return max supported input count
+     * @returns {number} - 0 for no limit
+     */
+    getMaxInputs = () => {
+        return 0;
+    };
+
+    /**
      * Rename account
      * @param {string} accountId - New account name
      * @returns {boolean} Seed renamed success state
      */
     accountRename = async (accountId) => {
         const seedInfo = await this.getSeeds();
-
+        const newAccountId = await sha256(accountId);
         let newSeedInfo = {};
 
-        if (this.accountId !== accountId) {
-            newSeedInfo = Object.assign({}, seedInfo, { [accountId]: seedInfo[this.accountId] });
+        if (this.accountId !== newAccountId) {
+            newSeedInfo = Object.assign({}, seedInfo, { [newAccountId]: seedInfo[this.accountId] });
             delete newSeedInfo[this.accountId];
         }
 
-        this.accountId = accountId;
+        this.accountId = newAccountId;
 
         return await createAndStoreBoxInKeychain(this.key, newSeedInfo, ALIAS_SEEDS);
     };
@@ -80,15 +107,15 @@ class Keychain {
      * @returns {promise}
      */
     generateAddress = async (options) => {
-        const seed = await this.getSeed();
-
+        const seed = values(await this.getSeed());
         if (options.total && options.total > 1) {
             const genFn = getMultiAddressGenFn();
-            return await genFn(seed, options.index, options.security, options.total);
+            const addressesTrits = await genFn(seed, options.index, options.security, options.total);
+            return map(addressesTrits, (addressTrits) => tritsToChars(addressTrits));
         }
-
         const genFn = getAddressGenFn();
-        return await genFn(seed, options.index, options.security);
+        const addressTrits = await genFn(seed, options.index, options.security);
+        return tritsToChars(addressTrits);
     };
 
     /**
@@ -96,7 +123,7 @@ class Keychain {
      */
     prepareTransfers = async (transfers, options = null) => {
         const seed = await this.getSeed();
-        return prepareTransfersAsync()(seed, transfers, options);
+        return prepareTransfersAsync()(seed, transfers, options, getSignatureFn());
     };
 
     /**
@@ -105,7 +132,7 @@ class Keychain {
      */
     getSeed = async () => {
         const seeds = await this.getSeeds();
-        return seeds[this.accountId];
+        return new Int8Array(seeds[this.accountId]);
     };
 
     /**
@@ -127,7 +154,12 @@ class Keychain {
      */
     isUniqueSeed = async (seed) => {
         const seeds = await this.getSeeds();
-        return values(seeds).indexOf(seed) === -1;
+        for (let i = 0; i < values(seeds).length; i++) {
+            if (isEqual(values(seeds)[i], values(seed))) {
+                return false;
+            }
+        }
+        return true;
     };
 }
 

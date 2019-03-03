@@ -18,6 +18,8 @@ import {
 import { VALID_SEED_REGEX, ADDRESS_LENGTH, isValidMessage } from '../../libs/iota/utils';
 import { iota } from '../../libs/iota';
 
+import { getThemeFromState } from '../../selectors/global';
+
 /**
  * Send transaction component container
  * @ignore
@@ -82,6 +84,7 @@ export default function withSendData(SendComponent) {
                       t('progressSteps:preparingTransfers'),
                       t('progressSteps:gettingTransactionsToApprove'),
                       t('progressSteps:proofOfWork'),
+                      t('progressSteps:validatingTransactionAddresses'),
                       t('progressSteps:broadcasting'),
                   ];
 
@@ -151,7 +154,7 @@ export default function withSendData(SendComponent) {
             return true;
         };
 
-        sendTransfer = (seedStore, address, value, message, powFn) => {
+        sendTransfer = (seedStore, address, value, message) => {
             const { ui, accountName, generateAlert, t } = this.props;
 
             if (ui.isSyncing) {
@@ -166,7 +169,7 @@ export default function withSendData(SendComponent) {
 
             this.setProgressSteps(value === 0);
 
-            this.props.makeTransaction(seedStore, address, value, message, accountName, powFn);
+            this.props.makeTransaction(seedStore, address, value, message, accountName);
         };
 
         render() {
@@ -242,7 +245,7 @@ export default function withSendData(SendComponent) {
         settings: state.settings,
         marketData: state.marketData,
         accounts: state.accounts,
-        theme: state.settings.theme,
+        theme: getThemeFromState(state),
         progress: state.progress,
         ui: state.ui,
         deepLinkActive: state.wallet.deepLinkActive,

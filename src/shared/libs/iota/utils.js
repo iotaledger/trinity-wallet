@@ -15,7 +15,13 @@ import Errors from '../errors';
 
 export const MAX_SEED_LENGTH = 81;
 
+export const MAX_SEED_TRITS = MAX_SEED_LENGTH * 3;
+
+export const ADDRESS_LENGTH_WITHOUT_CHECKSUM = MAX_SEED_LENGTH;
+
 export const ADDRESS_LENGTH = 90;
+
+export const CHECKSUM_LENGTH = ADDRESS_LENGTH - ADDRESS_LENGTH_WITHOUT_CHECKSUM;
 
 export const VALID_SEED_REGEX = /^[A-Z9]+$/;
 
@@ -192,6 +198,16 @@ export const isValidAddress = (address) => {
 };
 
 /**
+ * Checks if the last trit is 0
+ *
+ * @method isLastTritZero
+ * @param {string} address
+ *
+ * @returns {boolean}
+ */
+export const isLastTritZero = (address) => !/[E-V]/.test(address.slice(80, 81));
+
+/**
  * Checks if provided IOTA message is valid
  *
  * @method isValidMessage
@@ -318,6 +334,10 @@ export const withRetriesOnDifferentNodes = (nodes, failureCallbacks) => {
             return promiseFunc(nodes[attempt])(...args)
                 .then((result) => ({ node: nodes[attempt], result }))
                 .catch((err) => {
+                    // Abort retries on user cancalled Ledger action
+                    if (err === Errors.LEDGER_CANCELLED) {
+                        throw new Error(Errors.LEDGER_CANCELLED);
+                    }
                     // If a function is passed as failure callback
                     // Just trigger it once.
                     if (isFunction(failureCallbacks)) {

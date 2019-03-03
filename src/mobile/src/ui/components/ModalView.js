@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet, StatusBar } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { Styling } from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
-import { isAndroid } from 'libs/device';
+import { height, width } from 'libs/dimensions';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import DualFooterButtons from './DualFooterButtons';
 import SingleFooterButton from './SingleFooterButton';
 
@@ -15,16 +15,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width,
         justifyContent: 'flex-end',
-        height,
         flex: 1,
-    },
-    modalContainer: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width,
     },
     modalContent: {
-        flex: 1,
+        width,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -54,6 +48,8 @@ export class ModalViewComponent extends PureComponent {
         onButtonPress: PropTypes.func,
         /** Determines whether right footer button should be disabled */
         disableRightButton: PropTypes.bool,
+        /** Passes custom modal buttons */
+        modalButtons: PropTypes.object,
     };
 
     static defaultProps = {
@@ -69,19 +65,16 @@ export class ModalViewComponent extends PureComponent {
     };
 
     /**
-     * Returns modal height depending on whether to display the topbar
-     * @method getModalHeight
+     * Returns styling for when topbar is displayed, dependent on device type
      *
-     * @returns {number}
+     * @method getStylingWhenDisplayingTopbar
+     * @returns {any}
      */
-    getModalHeight() {
-        if (this.props.displayTopBar) {
-            if (isAndroid) {
-                return height - Styling.topbarHeight - StatusBar.currentHeight;
-            }
-            return height - Styling.topbarHeight;
+    getStylingWhenDisplayingTopbar() {
+        if (isAndroid) {
+            return { flex: 1 - Styling.topbarHeightRatio };
         }
-        return height;
+        return { height: isIPhoneX ? height - Styling.topbarHeight + 20 : height - Styling.topbarHeight };
     }
 
     render() {
@@ -96,6 +89,8 @@ export class ModalViewComponent extends PureComponent {
             buttonText,
             onButtonPress,
             disableRightButton,
+            displayTopBar,
+            modalButtons,
         } = this.props;
 
         return (
@@ -105,27 +100,35 @@ export class ModalViewComponent extends PureComponent {
                 extraHeight={0}
                 contentContainerStyle={styles.container}
             >
-                <SafeAreaView
-                    style={[styles.modalContainer, { backgroundColor: body.bg }, { height: this.getModalHeight() }]}
+                {displayTopBar && isAndroid && <View style={{ flex: Styling.topbarHeightRatio }} />}
+                <View
+                    style={[
+                        styles.modalContent,
+                        { backgroundColor: body.bg },
+                        displayTopBar ? this.getStylingWhenDisplayingTopbar() : { height },
+                    ]}
                 >
-                    <View style={styles.modalContent}>{children}</View>
-                    {(dualButtons && (
-                        <DualFooterButtons
-                            onLeftButtonPress={() => onLeftButtonPress()}
-                            onRightButtonPress={() => onRightButtonPress()}
-                            leftButtonText={leftButtonText}
-                            rightButtonText={rightButtonText}
-                            disableRightButton={disableRightButton}
-                        />
-                    )) || <SingleFooterButton onButtonPress={() => onButtonPress()} buttonText={buttonText} />}
-                </SafeAreaView>
+                    {children}
+                </View>
+                <View style={{ position: 'absolute', bottom: 0 }}>
+                    {modalButtons ||
+                        ((dualButtons && (
+                            <DualFooterButtons
+                                onLeftButtonPress={() => onLeftButtonPress()}
+                                onRightButtonPress={() => onRightButtonPress()}
+                                leftButtonText={leftButtonText}
+                                rightButtonText={rightButtonText}
+                                disableRightButton={disableRightButton}
+                            />
+                        )) || <SingleFooterButton onButtonPress={() => onButtonPress()} buttonText={buttonText} />)}
+                </View>
             </KeyboardAwareScrollView>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default connect(mapStateToProps)(ModalViewComponent);

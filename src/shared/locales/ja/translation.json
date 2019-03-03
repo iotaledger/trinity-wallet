@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "このカスタムノードは既にリストにあります。",
         "nodeAutoChanged": "ノードの自動切り替え",
         "nodeAutoChangedExplanation": "選択したノードがオフラインであるため、新しいノード {{- nodeAddress}} に切り替えました。",
+        "touchSensor": "指紋センサーに触れてください",
         "fingerprintOnSend": "指紋認証リーダーをタッチして送金を許可してください。",
         "masterKey": "IOTAのシードはあなたの資金のマスターキーです。",
         "seedThief": "もし他の人があなたのシードを持つと、あなたのIOTAは盗まれてしまいます。",
@@ -159,7 +160,8 @@
         "forceUpdate": "続けるにはアプリをアップデートしてください",
         "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。",
         "missingPermission": "ファイルシステム権限が必要です",
-        "missingPermissionExplanation": "この機能を実行するには、ファイルシステムへのアクセス権限が必要です。"
+        "missingPermissionExplanation": "この機能を実行するには、ファイルシステムへのアクセス権限が必要です。",
+        "swipeToConfirm": "スワイプして確認する"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -254,7 +256,7 @@
         "loadingFirstTime": "初めてのシードを読み込んでいます。",
         "thisMayTake": "これには時間がかかることがあります。",
         "doNotMinimise": "アプリを最小化したり終了したりしないでください。",
-        "takingAWhile": "これにはしばらく時間がかかりそうです。"
+        "takingAWhile": "少々お待ちください"
     },
     "newSeedSetup": {
         "generatedSeed": "生成されたシード",
@@ -297,7 +299,8 @@
         "tag": "タグ",
         "generateAnAddress": "アドレスを生成",
         "generateAnAddressTitle": "アドレスを生成",
-        "generateAnAddressExplanation": "この機能を使用する前にアドレスを生成してください。"
+        "generateAnAddressExplanation": "この機能を使用する前にアドレスを生成してください。",
+        "generateAddressInformation": "IOTAを受取るたびに新しい受取用アドレスを生成してください"
     },
     "saveYourSeed": {
         "saveYourSeed": "シードをバックアップしてください。",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "アドレスは{{maxLength}}文字、また、チェックサムを含む必要があります。",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
+        "invalidAddressExplanation4": "アドレスが正しく入力されていることを確認してください。",
         "invalidAddressExplanationGeneric": "有効なアドレスは90文字で、A〜Zまたは9のみを含む必要があります。",
         "notEnoughFunds": "残高不足",
         "notEnoughFundsExplanation": "送金を完了するための十分なIOTAが有りません。",
@@ -586,12 +590,19 @@
         "fingerprintAuthFailedExplanation": "指紋認証に失敗しました。もう一度やり直してください。",
         "status": "ステータス",
         "fingerprintUnavailable": "生体認証が利用できません。",
+        "deviceLocked": "認証が30秒間無効になりました",
         "fingerprintUnavailableExplanation": "お使いのデバイスは生体認証をサポートしていないか、デバイス設定で設定されていません。",
-        "buttonInstructionsDisable": "指紋認証を無効にするには、下のボタンを押してください",
+        "notSupported": "お使いの端末は生体認証をサポートしていません",
+        "notConfigured": "生体認証が端末の環境設定で設定されていません",
+        "buttonInstructionsDisable": "指紋認証を無効にするには、下のボタンを押してください。",
         "buttonInstructionsEnable": "指紋認証を有効にするには、下のボタンを押してください。",
         "buttonInstructionsDisableIPhoneX": "顔認証を無効にするには、下のボタンを押してください",
         "buttonInstructionsEnableIPhoneX": "顔認証を有効にするには、下のボタンを押してください",
-        "instructionsLogin": "指紋リーダに触れてログインしてください。"
+        "instructionsLogin": "指紋リーダに触れてログインしてください。",
+        "systemCancelledAuth": "認証が端末によってキャンセルされました",
+        "userCancelledAuth": "認証要求はキャンセルされました",
+        "passwordFallback": "パスワード認証に戻る",
+        "noPassword": "パスワードが設定されていません"
     },
     "transferConfirmation": {
         "youAreAbout": "アドレスに {{contents}} を送信しようとしています。",
@@ -603,7 +614,7 @@
     },
     "twoFA": {
         "wrongCode": "コードが間違っています。",
-        "wrongCodeExplanation": "入力したコードが正しくありません。",
+        "wrongCodeExplanation": "入力したコードが正しくありません。このエラーが解決しない場合は、デバイスの時刻が正しいかどうか確認してください。",
         "emptyCode": "コードが入力されていません。",
         "emptyCodeExplanation": "コードを入力して、もう一度やり直してください。",
         "keyCopied": "キーをクリップボードにコピーしました。",
@@ -671,12 +682,18 @@
     "progressSteps": {
         "checkingNodeHealth": "ノードの健全さをチェック中",
         "validatingReceiveAddress": "受取用アドレスを検証中",
+        "validatingTransactionAddresses": "取引アドレスを検証中",
         "syncingAccount": "アカウントを同期中",
         "preparingInputs": "入力部を準備中",
         "preparingTransfers": "送金を準備中",
         "gettingTransactionsToApprove": "承認する取引を取得中",
         "proofOfWork": "プルーフ・オブ・ワークを完了中",
         "broadcasting": "ブロードキャスト中",
+        "preparingData": "データを準備中",
+        "migratingSettings": "設定を移行中",
+        "migratingAccounts": "アカウントを移行中",
+        "cleaningUpOldData": "古いデータを削除中",
+        "migrationComplete": "移行完了",
         "transferComplete": "送金完了"
     },
     "snapshotTransition": {
@@ -755,6 +772,12 @@
         "sweepConfirmation": "アドレス{{address}}（アカウント名：{{accountName}}、アドレスインデックス：{{index}}）に資金{{amount}} を移動させようとしています。",
         "sweepConfirmationTitle": "移動を承認"
     },
+    "migration": {
+        "dataMigration": "データ移行",
+        "dataMigrationExplanation": "パフォーマンスとストレージの制限により、Trinityは設定とアカウントデータの保存に新しいデータベースを使用しています。 Trinityが今までのデータを自動的に移行するまで少々お待ちください。",
+        "problemMigratingYourData": "データの移行中に問題が発生しました。もう一度やり直してください。",
+        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+    },
     "ledger": {
         "ready": "Ledger端末の接続が完了し、準備完了です",
         "notReady": "Ledger端末を使いたい場合、今、接続しロックを解除してください",
@@ -763,6 +786,8 @@
         "proceedWithLedger": "Ledgerのセットアップを続行する",
         "accountIndex": "アカウントインデックス",
         "accountPage": "アカウントページ",
+        "actionCancelled": "Ledger端末へのアクセスはキャンセルされました。",
+        "actionCancelledExplanation": "Ledger端末にアクセスしないと操作を実行できません。",
         "chooseAccountIndex": "Ledgerのアカウントインデックスを選択してください",
         "accountIndexExplanation": "Ledgerは複数のシードを保存できます。各シードは一意のインデックス番号で識別されます。未使用のインデックスが事前に選択されますが、自分で選択することもできます。自分で選択したインデックス番号は書き留めておいてください。",
         "accountPageExplanation": "一部のサードパーティ製のウォレットではページが必要です。",

@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Prilagođeni node je već na listi.",
         "nodeAutoChanged": "Automatski promenjen node",
         "nodeAutoChangedExplanation": "Prebacivanje na novi node {{- nodeAddress}} jer je izabrani node van mreže.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Dodirnite čitač otisaka prstiju da biste odobrili prenos",
         "masterKey": "Vaš IOTA seed je master ključ za vaša sredstva.",
         "seedThief": "Ako neko drugi zna vaš seed, on može ukrasti vaše IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "Potrebna dozvola za pristup sistemu datoteka",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedozvoljene znakove",
@@ -297,7 +299,8 @@
         "tag": "Oznaka",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Napravite rezervnu kopiju svog seed-a",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Adresa treba da sadrži {{maxLength}} znakova i kontrolni zbir.",
         "invalidAddressExplanation2": "Adresa sadrži nedozvoljene znakove.",
         "invalidAddressExplanation3": "Adresa sadrži neispravan kontrolni zbir.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Ispravne adrese treba da sadrže 90 karaktera i to samo znakove A-Z ili 9.",
         "notEnoughFunds": "Nedovoljno sredstava",
         "notEnoughFundsExplanation": "Nemate dovoljno IOTA za završetak prenosa.",
@@ -586,12 +590,19 @@
         "fingerprintAuthFailedExplanation": "Došlo je do greške prilikom biometrijske autorizacije. Pokušajte ponovo.",
         "status": "Status",
         "fingerprintUnavailable": "Biometrijska autorizacija nedostupna",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Vaš uređaj ne podržava biometrijsku autentikaciji ili nije konfigurisan u postavkama uređaja.",
-        "buttonInstructionsDisable": "Pritisnite dugme u nastavku da biste onemogućili autorizaciju pomoću otiska prsta",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Pritisnite dugme u nastavku da biste omogućii autentikaciji pomoću otiska prsta.",
         "buttonInstructionsDisableIPhoneX": "Pritisnite dugme u nastavku da biste onemogućili Face ID",
         "buttonInstructionsEnableIPhoneX": "Pritisnite dugme u nastavku da biste omogućili Face ID",
-        "instructionsLogin": "Dodirnite čitač otisaka prstiju za prijavu"
+        "instructionsLogin": "Dodirnite čitač otisaka prstiju za prijavu",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Poslaćete {{contents}} na adresu",
@@ -603,7 +614,7 @@
     },
     "twoFA": {
         "wrongCode": "Pogrešan kod",
-        "wrongCodeExplanation": "Kod koji ste uneli je neispravan.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Prazan kod",
         "emptyCodeExplanation": "Unesite kod ponovo.",
         "keyCopied": "Ključ kopiran u klipbord",
@@ -671,12 +682,18 @@
     "progressSteps": {
         "checkingNodeHealth": "Provjera zdravlja node-a",
         "validatingReceiveAddress": "Provera ispravnosti adrese primaoca",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sinhronizovanje računa",
         "preparingInputs": "Priprema inputa",
         "preparingTransfers": "Priprema transakcija",
         "gettingTransactionsToApprove": "Rad na odobrenju transakcije",
         "proofOfWork": "Završetak PoW-a",
         "broadcasting": "Emitovanje",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
@@ -755,6 +772,12 @@
         "sweepConfirmation": "Premestićete {{amount}} na adresu {{address}}. Račun: {{accountName}}, indeks adrese: {{index}}",
         "sweepConfirmationTitle": "Potvrda prenosa"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+    },
     "ledger": {
         "ready": "Ledger novčanik je povezan i spreman",
         "notReady": "Ako želite da koristite Ledge, povežite ga i otklljučajte",
@@ -763,6 +786,8 @@
         "proceedWithLedger": "Nastavite sa postavkom Ledger novčanika",
         "accountIndex": "Indeks računa",
         "accountPage": "Strana računa",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Izaberite indeks Ledger računa",
         "accountIndexExplanation": "Vaš Ledger može sačuvati višestruke seed-ove. Svaki seed se identifikuje jedinstvenim brojem indeksa. Nekorišćeni indeks je unapred odabran, ali slobodni ste da izaberete drugi. Obavezno zapišite odabrani broj indeksa.",
         "accountPageExplanation": "Neki novčanici trećih strana zahtevaju strane.",

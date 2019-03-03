@@ -13,11 +13,12 @@ import {
     dePrivacyPolicyIOS,
 } from 'shared-modules/markdown';
 import i18next from 'shared-modules/libs/i18next';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import { isAndroid } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -37,6 +38,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingTop: isIPhoneX ? 0 : 10,
     },
     scrollView: {
         backgroundColor: '#ffffff',
@@ -167,7 +169,7 @@ class PrivacyPolicy extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

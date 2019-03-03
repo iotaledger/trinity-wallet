@@ -6,6 +6,7 @@ import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { Icon } from 'ui/theme/icons';
+import WithLogout from 'ui/components/Logout';
 import ModalView from './ModalView';
 
 const styles = StyleSheet.create({
@@ -34,7 +35,7 @@ export class LogoutConfirmationModal extends PureComponent {
         t: PropTypes.func.isRequired,
         /** Hide active modal */
         hideModal: PropTypes.func.isRequired,
-        /** Log out from wallet */
+        /** Clears temporary wallet data and navigates to login screen */
         logout: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
@@ -51,8 +52,8 @@ export class LogoutConfirmationModal extends PureComponent {
             <ModalView
                 displayTopBar
                 dualButtons
-                onLeftButtonPress={() => this.props.hideModal()}
-                onRightButtonPress={() => this.props.logout()}
+                onLeftButtonPress={this.props.hideModal}
+                onRightButtonPress={this.props.logout}
                 leftButtonText={t('no')}
                 rightButtonText={t('yes')}
             >
@@ -64,4 +65,4 @@ export class LogoutConfirmationModal extends PureComponent {
     }
 }
 
-export default withNamespaces(['logoutConfirmationModal', 'global'])(LogoutConfirmationModal);
+export default WithLogout()(withNamespaces(['logoutConfirmationModal', 'global'])(LogoutConfirmationModal));

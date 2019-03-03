@@ -1,20 +1,26 @@
+import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import size from 'lodash/size';
+import random from 'lodash/random';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
 import { AppState } from 'react-native';
-import { getSelectedAccountName, isSettingUpNewAccount } from 'shared-modules/selectors/accounts';
-import { removeBundleFromUnconfirmedBundleTails } from 'shared-modules/actions/accounts';
+import {
+    getSelectedAccountName,
+    getPromotableBundlesFromState,
+    getAccountNamesFromState,
+    isSettingUpNewAccount,
+} from 'shared-modules/selectors/accounts';
 import {
     fetchMarketData,
     fetchChartData,
     fetchPrice,
     fetchNodeList,
     setPollFor,
-    getAccountInfo,
+    getAccountInfoForAllAccounts,
     promoteTransfer,
 } from 'shared-modules/actions/polling';
 
@@ -26,6 +32,8 @@ export class Poll extends Component {
         allPollingServices: PropTypes.array.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Names of wallet accounts */
+        accountNames: PropTypes.array.isRequired,
         /** @ignore */
         unconfirmedBundleTails: PropTypes.object.isRequired,
         /** @ignore */
@@ -41,7 +49,7 @@ export class Poll extends Component {
         /** @ignore */
         fetchChartData: PropTypes.func.isRequired,
         /** @ignore */
-        getAccountInfo: PropTypes.func.isRequired,
+        getAccountInfoForAllAccounts: PropTypes.func.isRequired,
         /** @ignore */
         promoteTransfer: PropTypes.func.isRequired,
     };
@@ -109,9 +117,12 @@ export class Poll extends Component {
     }
 
     fetchLatestAccountInfo() {
-        const { selectedAccountName } = this.props;
+        const { selectedAccountName, accountNames } = this.props;
 
-        this.props.getAccountInfo(selectedAccountName);
+        this.props.getAccountInfoForAllAccounts([
+            selectedAccountName,
+            ...filter(accountNames, (name) => name !== selectedAccountName),
+        ]);
     }
 
     startBackgroundProcesses() {
@@ -141,14 +152,16 @@ export class Poll extends Component {
                     autoPromoteSkips: autoPromoteSkips - 1,
                 });
             } else {
-                const bundles = keys(unconfirmedBundleTails);
-                const bundleHash = bundles[0];
+                // TODO (laumair): Promote transactions in order of oldest to latest
+                const bundleHashes = keys(unconfirmedBundleTails);
+                const bundleHashToPromote = bundleHashes[random(size(bundleHashes) - 1)];
 
                 this.setState({
                     autoPromoteSkips: 2,
                 });
 
-                return this.props.promoteTransfer(bundleHash, unconfirmedBundleTails[bundleHash]);
+                const { accountName } = unconfirmedBundleTails[bundleHashToPromote];
+                return this.props.promoteTransfer(bundleHashToPromote, accountName);
             }
         }
 
@@ -182,7 +195,8 @@ const mapStateToProps = (state) => ({
     isFetchingAccountInfo: state.ui.isFetchingAccountInfo,
     seedIndex: state.wallet.seedIndex,
     selectedAccountName: getSelectedAccountName(state),
-    unconfirmedBundleTails: state.accounts.unconfirmedBundleTails,
+    unconfirmedBundleTails: getPromotableBundlesFromState(state),
+    accountNames: getAccountNamesFromState(state),
     isTransitioning: state.ui.isTransitioning,
 });
 
@@ -192,9 +206,8 @@ const mapDispatchToProps = {
     fetchPrice,
     fetchNodeList,
     setPollFor,
-    getAccountInfo,
+    getAccountInfoForAllAccounts,
     promoteTransfer,
-    removeBundleFromUnconfirmedBundleTails,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Poll);

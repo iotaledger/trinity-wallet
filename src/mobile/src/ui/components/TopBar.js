@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { toggleTopBarDisplay } from 'shared-modules/actions/home';
 import { setSeedIndex } from 'shared-modules/actions/wallet';
-import { clearLog } from 'shared-modules/actions/alerts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import {
     getBalanceForSelectedAccount,
@@ -27,11 +26,14 @@ import {
 } from 'react-native';
 import tinycolor from 'tinycolor2';
 import { setPollFor } from 'shared-modules/actions/polling';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { roundDown } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
+import { accumulateBalance } from 'shared-modules/libs/iota/addresses';
 import { Icon } from 'ui/theme/icons';
 import { isIPhoneX } from 'libs/device';
 import { Styling } from 'ui/theme/general';
+import NotificationButtonComponent from 'ui/components/NotificationButton';
 
 const { height, width } = Dimensions.get('window');
 
@@ -39,7 +41,7 @@ const styles = StyleSheet.create({
     container: {
         width,
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         flex: 1,
     },
@@ -75,6 +77,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        height: Styling.topbarHeight - Styling.statusBarHeight,
     },
     balanceWrapper: {
         justifyContent: 'center',
@@ -85,11 +88,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: width / 9,
+        flex: 1,
     },
     disabled: {
-        color: '#a9a9a9',
-    },
-    disabledImage: {
         color: '#a9a9a9',
     },
     scrollViewContainer: {
@@ -129,10 +130,6 @@ class TopBar extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         setPollFor: PropTypes.func.isRequired,
-        /** @ignore */
-        notificationLog: PropTypes.array.isRequired,
-        /** @ignore */
-        clearLog: PropTypes.func.isRequired,
         /** Top bar height */
         topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
         /** @ignore */
@@ -221,7 +218,7 @@ class TopBar extends Component {
      */
     onChange(newSeedIdx) {
         const { isGeneratingReceiveAddress } = this.props;
-        const hasAddresses = Object.keys(this.props.selectedAccount.addresses).length > 0;
+        const hasAddresses = Object.keys(this.props.selectedAccount.addressData).length > 0;
 
         // TODO: Not sure why we are checking for address generation on change
         if (!isGeneratingReceiveAddress) {
@@ -233,8 +230,27 @@ class TopBar extends Component {
         }
     }
 
+    /**
+     * Returns styling dependent on device type
+     *
+     * @method getTopbarStyling
+     * @returns {any}
+     */
+    getTopbarStyling() {
+        const { topBarHeight } = this.props;
+        if (isIPhoneX) {
+            return { height: topBarHeight - 20 };
+        }
+        return { height: topBarHeight - Styling.statusBarHeight, marginTop: Styling.statusBarHeight };
+    }
+
     setScrollable(y) {
-        if (y >= height - height / 8.8) {
+        if (
+            y >=
+            (isIPhoneX
+                ? height - Styling.topbarHeight - Styling.iPhoneXBottomInsetHeight
+                : height - Styling.topbarHeight)
+        ) {
             return this.setState({ scrollable: true });
         }
         this.setState({ scrollable: false });
@@ -247,34 +263,14 @@ class TopBar extends Component {
      * @returns {boolean}
      */
     shouldDisable() {
-        const {
-            isGeneratingReceiveAddress,
-            isSendingTransfer,
-            isSyncing,
-            isTransitioning,
-            isFetchingLatestAccountInfo,
-            isModalActive,
-        } = this.props;
         return (
-            isGeneratingReceiveAddress ||
-            isSendingTransfer ||
-            isSyncing ||
-            isTransitioning ||
-            isFetchingLatestAccountInfo ||
-            isModalActive
+            this.props.isGeneratingReceiveAddress ||
+            this.props.isSendingTransfer ||
+            this.props.isSyncing ||
+            this.props.isTransitioning ||
+            this.props.isFetchingLatestAccountInfo ||
+            this.props.isModalActive
         );
-    }
-
-    showModal() {
-        const { isTransitioning, theme, notificationLog } = this.props;
-        if (!isTransitioning) {
-            this.props.toggleModalActivity('notificationLog', {
-                hideModal: () => this.hideModal(),
-                theme,
-                notificationLog,
-                clearLog: this.props.clearLog,
-            });
-        }
     }
 
     hideModal() {
@@ -289,13 +285,13 @@ class TopBar extends Component {
             accountInfo,
             seedIndex,
             theme: { bar, primary },
-            topBarHeight,
             isKeyboardActive,
-            notificationLog,
             mode,
             minimised,
             currentRoute,
+            isModalActive,
         } = this.props;
+
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
         const subtitleColor = tinycolor(bar.color).isDark() ? '#262626' : '#d3d3d3';
@@ -305,17 +301,19 @@ class TopBar extends Component {
 
         const getBalance = (currentIdx) => {
             const account = accountInfo[accountNames[currentIdx]];
-            return TopBar.humanizeBalance(account.balance);
+
+            return TopBar.humanizeBalance(
+                accumulateBalance(map(account.addressData, (addressObject) => addressObject.balance)),
+            );
         };
 
         const withSubtitles = (title, index) => ({ title, subtitle: getBalance(index), index });
         const titles = map(accountNames, withSubtitles);
         const hasMultipleSeeds = size(TopBar.filterSeedTitles(accountNames, seedIndex));
-        const hasNotifications = size(notificationLog) && notificationLog.length > 0;
         const shouldDisable = this.shouldDisable();
 
         const baseContent = (
-            <Animated.View style={[styles.titleWrapper, { height: topBarHeight }]}>
+            <Animated.View style={[styles.titleWrapper, this.getTopbarStyling()]}>
                 <TouchableWithoutFeedback
                     onPress={() => {
                         if (!shouldDisable) {
@@ -328,21 +326,12 @@ class TopBar extends Component {
                     {(!isKeyboardActive &&
                         !minimised && (
                             <View style={styles.barWrapper}>
-                                <View style={styles.iconWrapper}>
-                                    <Animated.View style={[styles.iconWrapper, { height: topBarHeight }]}>
-                                        {(hasNotifications &&
-                                            !isKeyboardActive &&
-                                            mode === 'Advanced' && (
-                                                <TouchableOpacity
-                                                    onPress={() => this.showModal()}
-                                                    style={[styles.iconWrapper, { flex: 1, alignItems: 'flex-end' }]}
-                                                >
-                                                    <Icon name="notification" size={width / 18} color={bar.color} />
-                                                </TouchableOpacity>
-                                            )) || <View />}
-                                    </Animated.View>
-                                </View>
-                                <Animated.View style={[styles.balanceWrapper, { height: topBarHeight }]}>
+                                <Animated.View style={[styles.iconWrapper, { paddingLeft: width / 18 }]}>
+                                    {(!isKeyboardActive && mode === 'Advanced' && <NotificationButtonComponent />) || (
+                                        <View />
+                                    )}
+                                </Animated.View>
+                                <Animated.View style={styles.balanceWrapper}>
                                     <Text
                                         numberOfLines={1}
                                         style={[
@@ -353,40 +342,38 @@ class TopBar extends Component {
                                                       { color: bar.color },
                                                   ])
                                                 : [styles.mainTitle, { color: bar.color }],
+                                            isModalActive && { opacity: 0.5 },
                                         ]}
                                     >
                                         {selectedTitle}
                                     </Text>
                                     <View style={{ opacity: balanceOpacity }}>
                                         <Text
-                                            style={
+                                            style={[
                                                 shouldDisable
                                                     ? StyleSheet.flatten([
                                                           styles.subtitle,
                                                           styles.disabled,
                                                           { color: subtitleColor },
                                                       ])
-                                                    : [styles.subtitle, { color: subtitleColor }]
-                                            }
+                                                    : [styles.subtitle, { color: subtitleColor }],
+                                                isModalActive && { opacity: 0.5 },
+                                            ]}
                                         >
                                             {selectedSubtitle}
                                         </Text>
                                     </View>
                                 </Animated.View>
-                                <View style={styles.iconWrapper}>
-                                    <Animated.View
-                                        style={[styles.iconWrapper, { height: topBarHeight, alignItems: 'flex-start' }]}
-                                    >
-                                        {(hasMultipleSeeds && (
-                                            <Icon
-                                                name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
-                                                size={width / 22}
-                                                color={bar.color}
-                                                style={[shouldDisable ? styles.disabledImage : null]}
-                                            />
-                                        )) || <View />}
-                                    </Animated.View>
-                                </View>
+                                <Animated.View style={[styles.iconWrapper, { paddingRight: width / 18 }]}>
+                                    {(hasMultipleSeeds && (
+                                        <Icon
+                                            name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
+                                            size={width / 22}
+                                            color={bar.color}
+                                            style={[shouldDisable && styles.disabled && { opacity: 0.5 }]}
+                                        />
+                                    )) || <View />}
+                                </Animated.View>
                             </View>
                         )) || <View />}
                 </TouchableWithoutFeedback>
@@ -416,7 +403,7 @@ class TopBar extends Component {
                         style={[
                             styles.childView,
                             { backgroundColor: isSelected ? bar.hover : bar.bg },
-                            isSelected ? activeHighlight : null,
+                            isSelected && activeHighlight,
                         ]}
                     >
                         <Text
@@ -465,7 +452,11 @@ class TopBar extends Component {
                     }}
                     onContentSizeChange={(x, y) => this.setScrollable(y)}
                     contentContainerView={{ height: height }}
-                    style={{ maxHeight: isIPhoneX ? height - height / 8.8 - 34 : height - height / 8.8 }}
+                    style={{
+                        maxHeight: isIPhoneX
+                            ? height - Styling.topbarHeight - Styling.iPhoneXBottomInsetHeight
+                            : height - Styling.topbarHeight,
+                    }}
                 >
                     {restContent}
                 </ScrollView>
@@ -523,8 +514,7 @@ const mapStateToProps = (state) => ({
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
     selectedAccount: selectAccountInfo(state),
-    theme: state.settings.theme,
-    notificationLog: state.alerts.notificationLog,
+    theme: getThemeFromState(state),
     isFetchingLatestAccountInfo: state.ui.isFetchingAccountInfo,
     currentRoute: state.home.childRoute,
     isKeyboardActive: state.ui.isKeyboardActive,
@@ -536,7 +526,6 @@ const mapDispatchToProps = {
     toggleModalActivity,
     setSeedIndex,
     setPollFor,
-    clearLog,
 };
 
 export default withNamespaces('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));

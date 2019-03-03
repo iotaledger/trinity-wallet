@@ -29,16 +29,28 @@ class Seed extends PureComponent {
 
     state = {
         action: null,
-        seed: null,
+        seed: false,
     };
+
+    componentDidMount() {
+        this.seed = [];
+    }
 
     /**
      * Trigger seed print after component is updated
      */
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(_prevProps, prevState) {
         if (this.state.action === 'print' && !prevState.seed && this.state.seed) {
             window.print();
         }
+    }
+
+    componentWillUnmount() {
+        for (let i = 0; i < this.seed.length * 3; i++) {
+            this.seed[i % this.seed.length] = 0;
+        }
+
+        Electron.garbageCollect();
     }
 
     /**
@@ -48,10 +60,10 @@ class Seed extends PureComponent {
         const { accountName, meta } = this.props.account;
 
         const seedStore = await new SeedStore[meta.type](password, accountName, meta);
-        const seed = await seedStore.getSeed();
+        this.seed = await seedStore.getSeed();
 
         this.setState({
-            seed,
+            seed: true,
         });
     };
 
@@ -94,15 +106,13 @@ class Seed extends PureComponent {
                         confirm:
                             action === 'view'
                                 ? t('accountManagement:viewSeed')
-                                : action === 'export'
-                                    ? t('seedVault:exportSeedVault')
-                                    : t('paperWallet'),
+                                : action === 'export' ? t('seedVault:exportSeedVault') : t('paperWallet'),
                     }}
                 />
             );
         }
 
-        const checksum = seed ? Electron.getChecksum(seed) : '';
+        const checksum = seed ? Electron.getChecksum(this.seed) : '';
 
         return (
             <React.Fragment>
@@ -111,7 +121,7 @@ class Seed extends PureComponent {
                         <p className={css.seed}>
                             <span>
                                 {seed && action === 'view'
-                                    ? seed.map((byte, index) => {
+                                    ? this.seed.map((byte, index) => {
                                           if (index % 3 !== 0) {
                                               return null;
                                           }
@@ -119,8 +129,8 @@ class Seed extends PureComponent {
                                           return (
                                               <React.Fragment key={`${index}${letter}`}>
                                                   {letter}
-                                                  {byteToChar(seed[index + 1])}
-                                                  {byteToChar(seed[index + 2])}{' '}
+                                                  {byteToChar(this.seed[index + 1])}
+                                                  {byteToChar(this.seed[index + 2])}{' '}
                                               </React.Fragment>
                                           );
                                       })
@@ -151,14 +161,18 @@ class Seed extends PureComponent {
                             {t('seedVault:exportSeedVault')}
                         </Button>
                     </fieldset>
-                    <SeedPrint seed={seed} checksum={checksum} filled />
+                    <SeedPrint seed={this.seed} checksum={checksum} filled />
                 </form>
                 <Modal
                     variant="fullscreen"
                     isOpen={seed && action === 'export'}
                     onClose={() => this.setState({ action: null })}
                 >
-                    <SeedExport seed={seed || []} title={accountName} onClose={() => this.setState({ action: null })} />
+                    <SeedExport
+                        seed={this.seed || []}
+                        title={accountName}
+                        onClose={() => this.setState({ action: null })}
+                    />
                 </Modal>
             </React.Fragment>
         );

@@ -1,15 +1,18 @@
+import assign from 'lodash/assign';
+import extend from 'lodash/extend';
 import has from 'lodash/has';
 import head from 'lodash/head';
 import find from 'lodash/find';
-import get from 'lodash/get';
 import map from 'lodash/map';
 import join from 'lodash/join';
 import orderBy from 'lodash/orderBy';
 import filter from 'lodash/filter';
+import isEmpty from 'lodash/isEmpty';
 import some from 'lodash/some';
 import size from 'lodash/size';
 import every from 'lodash/every';
 import includes from 'lodash/includes';
+import uniq from 'lodash/uniq';
 import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
@@ -18,28 +21,17 @@ import {
     attachToTangleAsync,
     storeAndBroadcastAsync,
 } from '../libs/iota/extendedApi';
-import {
-    selectedAccountStateFactory,
-    getRemotePoWFromState,
-    getFailedBundleHashesForSelectedAccount,
-    getNodesFromState,
-    getSelectedNodeFromState,
-} from '../selectors/accounts';
-import {
-    withRetriesOnDifferentNodes,
-    fetchRemoteNodes,
-    getRandomNodes,
-    throwIfNodeNotHealthy,
-} from '../libs/iota/utils';
+import { getSelectedNodeFromState, getNodesFromState, getRemotePoWFromState } from '../selectors/global';
+import { selectedAccountStateFactory } from '../selectors/accounts';
+import { withRetriesOnDifferentNodes, fetchRemoteNodes, getRandomNodes, isLastTritZero } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
-    isStillAValidTransaction,
     findPromotableTail,
     prepareTransferArray,
-    filterInvalidPendingTransactions,
-    getPendingOutgoingTransfersForAddresses,
     retryFailedTransaction as retry,
+    constructBundlesFromTransactions,
+    isFundedBundle,
 } from '../libs/iota/transfers';
 import {
     syncAccountAfterReattachment,
@@ -52,15 +44,13 @@ import {
     updateAccountAfterReattachment,
     updateAccountInfoAfterSpending,
     syncAccountBeforeManualPromotion,
-    markBundleBroadcastStatusComplete,
-    markBundleBroadcastStatusPending,
 } from './accounts';
 import {
-    shouldAllowSendingToAddress,
-    getAddressesUptoRemainder,
+    isAnyAddressSpent,
+    getAddressDataUptoRemainder,
     categoriseAddressesBySpentStatus,
 } from '../libs/iota/addresses';
-import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
+import { getInputs } from '../libs/iota/inputs';
 import {
     generateAlert,
     generateTransferErrorAlert,
@@ -72,6 +62,7 @@ import {
 import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 import { DEFAULT_RETRIES } from '../config';
+import { Account } from '../storage';
 
 export const ActionTypes = {
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
@@ -208,11 +199,11 @@ export const completeTransfer = () => {
  *   @method promoteTransaction
  *   @param {string} bundleHash
  *   @param {string} accountName
- *   @param {function} powFn
+ *   @param {object} seedStore
  *
  *   @returns {function} dispatch
  **/
-export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch, getState) => {
+export const promoteTransaction = (bundleHash, accountName, seedStore) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
     const remotePoW = getRemotePoWFromState(getState());
@@ -227,40 +218,64 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
         );
     }
 
-    let accountState = {};
+    let accountState = selectedAccountStateFactory(accountName)(getState());
+    const getTailTransactionsForThisBundleHash = (transactions) =>
+        filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
 
-    return syncAccount()(selectedAccountStateFactory(accountName)(getState()))
+    return syncAccount()(accountState)
         .then((newAccountState) => {
             accountState = newAccountState;
 
+            Account.update(accountName, accountState);
+
             dispatch(syncAccountBeforeManualPromotion(accountState));
 
-            const transaction = accountState.transfers[bundleHash];
+            const transactionsForThisBundleHash = filter(
+                accountState.transactions,
+                (transaction) => transaction.bundle === bundleHash,
+            );
 
-            if (transaction.persistence) {
+            if (some(transactionsForThisBundleHash, (transaction) => transaction.persistence === true)) {
                 throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
             }
 
-            return isStillAValidTransaction()(transaction, accountState.addresses);
+            const bundles = constructBundlesFromTransactions(
+                filter(accountState.transactions, (transaction) => transaction.bundle === bundleHash),
+            );
+
+            if (isEmpty(filter(bundles, iota.utils.isBundle))) {
+                throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
+            }
+
+            return isFundedBundle()(head(bundles));
         })
-        .then((isValid) => {
-            if (!isValid) {
+        .then((isFunded) => {
+            if (!isFunded) {
                 throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
 
-            const tailTransactions = accountState.transfers[bundleHash].tailTransactions;
-
-            return findPromotableTail()(tailTransactions, 0);
+            return findPromotableTail()(getTailTransactionsForThisBundleHash(accountState.transactions), 0);
         })
         .then((consistentTail) => {
             return dispatch(
                 forceTransactionPromotion(
                     accountName,
                     consistentTail,
-                    accountState.transfers[bundleHash].tailTransactions,
+                    getTailTransactionsForThisBundleHash(accountState.transactions),
                     true,
-                    // If proof of work configuration is set to remote, pass proof of work function as null
-                    remotePoW ? null : powFn,
+                    // If proof of work configuration is set to remote,
+                    // Extend seedStore object with offloadPow
+                    // This property will lead to perform remote proof-of-work
+                    // See: extendedApi#attachToTangle
+                    remotePoW
+                        ? extend(
+                              {
+                                  __proto__: seedStore.__proto__,
+                              },
+                              seedStore,
+                              { offloadPow: true },
+                          )
+                        : seedStore,
                 ),
             );
         })
@@ -311,7 +326,7 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
  *   @param {boolean | object} consistentTail
  *   @param {array} tailTransactionHashes
  *   @param {boolean} shouldGenerateAlert
- *   @param {function} powFn
+ *   @param {object} seedStore
  *   @param {number} maxReplays - Maximum number of reattachments if promotion fails because of transaction inconsistency
  *   @param {number} maxPromotionAttempts - Maximum number of promotion retry attempts
  *
@@ -322,7 +337,7 @@ export const forceTransactionPromotion = (
     consistentTail,
     tailTransactionHashes,
     shouldGenerateAlert,
-    powFn = null,
+    seedStore,
     maxReplays = 1,
     maxPromotionAttempts = 2,
 ) => (dispatch, getState) => {
@@ -334,7 +349,7 @@ export const forceTransactionPromotion = (
 
         promotionAttempt += 1;
 
-        return promoteTransactionAsync(null, powFn)(hash).catch((error) => {
+        return promoteTransactionAsync(null, seedStore)(hash).catch((error) => {
             const isTransactionInconsistent = includes(error.message, Errors.TRANSACTION_IS_INCONSISTENT);
 
             if (
@@ -369,7 +384,7 @@ export const forceTransactionPromotion = (
         const tailTransaction = head(tailTransactionHashes);
         const hash = tailTransaction.hash;
 
-        return replayBundleAsync(null, powFn)(hash).then((reattachment) => {
+        return replayBundleAsync(null, seedStore)(hash).then((reattachment) => {
             if (shouldGenerateAlert) {
                 dispatch(
                     generateAlert(
@@ -382,9 +397,12 @@ export const forceTransactionPromotion = (
             }
 
             const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-            const { newState } = syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
+            const newState = syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
 
-            // Update local store
+            // Update storage (realm)
+            Account.update(accountName, newState);
+
+            // Update redux store
             dispatch(updateAccountAfterReattachment(newState));
             const tailTransaction = find(reattachment, { currentIndex: 0 });
 
@@ -407,14 +425,10 @@ export const forceTransactionPromotion = (
  * @param  {number} value
  * @param  {string} message
  * @param  {string} accountName
- * @param  {function} powFn
  *
  * @returns {function} dispatch
  */
-export const makeTransaction = (seedStore, receiveAddress, value, message, accountName, powFn) => (
-    dispatch,
-    getState,
-) => {
+export const makeTransaction = (seedStore, receiveAddress, value, message, accountName) => (dispatch, getState) => {
     dispatch(sendTransferRequest());
 
     const address = size(receiveAddress) === 90 ? receiveAddress : iota.utils.addChecksum(receiveAddress);
@@ -425,89 +439,53 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
     // Keep track if the created bundle is valid after inputs are signed
     let isValidBundle = false;
 
+    let maxInputs = 0;
+
     // Initialize account state
     // Reassign with latest state when account is synced
     let accountState = selectedAccountStateFactory(accountName)(getState());
-    let transferInputs = [];
 
     const withPreTransactionSecurityChecks = () => {
         // Progressbar step => (Validating receive address)
         dispatch(setNextStepAsActive());
 
-        // Make sure that the address a user is about to send to is not already used.
-        return shouldAllowSendingToAddress()([address])
-            .then((shouldAllowSending) => {
-                if (shouldAllowSending) {
+        // Check the last trit for validity
+        return Promise.resolve(isLastTritZero(address))
+            .then((lastTritIsZero) => {
+                if (!lastTritIsZero) {
+                    throw new Error(Errors.INVALID_LAST_TRIT);
+                }
+                return typeof seedStore.getMaxInputs === 'function' ? seedStore.getMaxInputs() : Promise.resolve(0);
+            })
+            .then((maxInputResponse) => {
+                maxInputs = maxInputResponse;
+
+                // Make sure that the address a user is about to send to is not already used.
+                return isAnyAddressSpent()([address]).then((isSpent) => {
+                    if (isSpent) {
+                        throw new Error(Errors.KEY_REUSE);
+                    }
+
                     // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
                     return syncAccount()(accountState, seedStore);
-                }
-
-                throw new Error(Errors.KEY_REUSE);
+                });
             })
             .then((newState) => {
                 // Assign latest account but do not update the local store yet.
                 // Only update the local store with updated account information after this transaction is successfully completed.
                 accountState = newState;
 
-                const valueTransfers = filter(map(accountState.transfers, (tx) => tx), (tx) => tx.transferValue !== 0);
-
-                return filterInvalidPendingTransactions()(valueTransfers, accountState.addresses);
-            })
-            .then((filteredTransfers) => {
-                const { addresses, transfers } = accountState;
-                const startIndex = getStartingSearchIndexToPrepareInputs(addresses);
-
                 // Progressbar step => (Preparing inputs)
                 dispatch(setNextStepAsActive());
 
-                // Prepare inputs.
-                return getUnspentInputs()(
-                    // Latest address data
-                    addresses,
-                    // Normalised transactions list
-                    map(transfers, (tx) => tx),
-                    // Pending value transactions
-                    filteredTransfers,
-                    // Start index for address (for input selection)
-                    startIndex,
-                    // Transfer value
-                    value,
-                    // Inputs
-                    null,
-                );
+                return getInputs()(accountState.addressData, accountState.transactions, value, maxInputs);
             })
-            .then((inputs) => {
-                // Input selection prepares inputs sequentially starting from the first address with balance
-                // If total balance is less than transfer value, do not allow transaction.
-                if (get(inputs, 'totalBalance') < value) {
-                    throw new Error(Errors.NOT_ENOUGH_BALANCE);
-
-                    // availableBalance: balance after filtering out addresses that are spent and also addresses with incoming transfers..
-                    // Contains only spendable balance
-                    // Note: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
-                } else if (get(inputs, 'availableBalance') < value) {
-                    const addresses = accountState.addresses;
-                    const transfers = accountState.transfers;
-                    const pendingOutgoingTransfers = getPendingOutgoingTransfersForAddresses(addresses, transfers);
-
-                    if (size(pendingOutgoingTransfers)) {
-                        throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
-                    } else {
-                        if (size(get(inputs, 'spentAddresses'))) {
-                            throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
-                        } else if (size(get(inputs, 'addressesWithIncomingTransfers'))) {
-                            throw new Error(Errors.INCOMING_TRANSFERS);
-                        }
-
-                        throw new Error(Errors.SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION);
-                    }
-                }
-
+            .then(({ inputs }) => {
                 // Do not allow receiving address to be one of the user's own input addresses.
                 const isSendingToAnyInputAddress = some(
-                    get(inputs, 'inputs'),
+                    inputs,
                     (input) => input.address === iota.utils.noChecksum(address),
                 );
 
@@ -515,37 +493,28 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
-                // Check if input count does not exceed maximum supported by the SeedStore type
-                if (seedStore.maxInputs && inputs.inputs.length > seedStore.maxInputs) {
-                    throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, seedStore.maxInputs));
+                if (isSendingToAnyInputAddress) {
+                    throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
-                transferInputs = get(inputs, 'inputs');
+                return getAddressDataUptoRemainder()(accountState.addressData, accountState.transactions, seedStore, [
+                    // Make sure inputs are blacklisted
+                    ...map(inputs, (input) => input.address),
+                    // Make sure receive address is blacklisted
+                    iota.utils.noChecksum(receiveAddress),
+                ]).then(({ remainderAddress, remainderIndex, addressDataUptoRemainder }) => {
+                    // getAddressesUptoRemainder returns the latest unused address as the remainder address
+                    // Also returns updated address data including new address data for the intermediate addresses.
+                    // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
+                    // at index 53 it would include address data for 51, 52 and 53.
+                    accountState.addressData = addressDataUptoRemainder;
 
-                return getAddressesUptoRemainder()(
-                    accountState.addresses,
-                    map(accountState.transfers, (tx) => tx),
-                    seedStore,
-                    [
-                        // Make sure inputs are blacklisted
-                        ...map(transferInputs, (input) => input.address),
-                        // Make sure receive address is blacklisted
-                        iota.utils.noChecksum(receiveAddress),
-                    ],
-                );
-            })
-            .then(({ remainderAddress, remainderIndex, addressDataUptoRemainder }) => {
-                // getAddressesUptoRemainder returns the latest unused address as the remainder address
-                // Also returns updated address data including new address data for the intermediate addresses.
-                // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
-                // at index 53 it would include address data for 51, 52 and 53.
-                accountState.addresses = addressDataUptoRemainder;
-
-                return {
-                    inputs: transferInputs,
-                    address: remainderAddress,
-                    keyIndex: remainderIndex,
-                };
+                    return {
+                        inputs,
+                        address: remainderAddress,
+                        keyIndex: remainderIndex,
+                    };
+                });
             });
     };
 
@@ -564,7 +533,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
             // Otherwise, it would be a dictionary with inputs and remainder address
             // Forward options to prepareTransfersAsync as is, because it contains a null check
             .then((options) => {
-                const transfer = prepareTransferArray(address, value, message, accountState.addresses);
+                const transfer = prepareTransferArray(address, value, message, accountState.addressData);
 
                 // Progressbar step => (Preparing transfers)
                 dispatch(setNextStepAsActive());
@@ -583,7 +552,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 if (iota.utils.isBundle(cached.transactionObjects.slice().reverse())) {
                     isValidBundle = true;
-                    // Progressbar step =>  (Getting transactions to approve)
+                    // Progressbar step => (Getting transactions to approve)
                     dispatch(setNextStepAsActive());
 
                     return getTransactionsToApproveAsync()();
@@ -598,7 +567,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 dispatch(setNextStepAsActive());
 
                 const performLocalPow = () =>
-                    attachToTangleAsync(null, powFn)(trunkTransaction, branchTransaction, cached.trytes);
+                    attachToTangleAsync(null, seedStore)(trunkTransaction, branchTransaction, cached.trytes);
 
                 if (!shouldOffloadPow) {
                     return performLocalPow();
@@ -610,7 +579,17 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // 1) Find nodes with PoW enabled
                 // 2) Auto retry offloading PoW
                 // 3) If auto retry fails, perform proof of work locally
-                return attachToTangleAsync()(trunkTransaction, branchTransaction, cached.trytes).catch(() => {
+                return attachToTangleAsync(
+                    null,
+                    // See: extendedApi#attachToTangle
+                    extend(
+                        {
+                            __proto__: seedStore.__proto__,
+                        },
+                        seedStore,
+                        { offloadPow: true },
+                    ),
+                )(trunkTransaction, branchTransaction, cached.trytes).catch(() => {
                     dispatch(
                         generateAlert(
                             'info',
@@ -634,7 +613,18 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                                 getRandomNodes(nodesWithPowEnabled, DEFAULT_RETRIES, [
                                     getSelectedNodeFromState(getState()),
                                 ]),
-                            )(attachToTangleAsync)(trunkTransaction, branchTransaction, cached.trytes);
+                            )((provider) =>
+                                attachToTangleAsync(
+                                    provider,
+                                    extend(
+                                        {
+                                            __proto__: seedStore.__proto__,
+                                        },
+                                        seedStore,
+                                        { offloadPow: true },
+                                    ),
+                                ),
+                            )(trunkTransaction, branchTransaction, cached.trytes);
                         })
                         .then(({ result }) => result)
                         .catch(() => {
@@ -653,9 +643,29 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                         });
                 });
             })
+            // Re-check spend statuses of all addresses in bundle
+            .then(({ trytes, transactionObjects }) => {
+                // Skip this check if it's a zero value transaction
+                if (isZeroValue) {
+                    return Promise.resolve({ trytes, transactionObjects });
+                }
+
+                // Progressbar step => (Validating transaction addresses)
+                dispatch(setNextStepAsActive());
+
+                const addresses = uniq(map(transactionObjects, (transaction) => transaction.address));
+
+                return isAnyAddressSpent()(addresses).then((isSpent) => {
+                    if (isSpent) {
+                        throw new Error(Errors.KEY_REUSE);
+                    }
+
+                    return { trytes, transactionObjects };
+                });
+            })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;
-                cached.transactionObjects = transactionObjects;
+                cached.transactionObjects = transactionObjects.slice().reverse();
 
                 // Progressbar step => (Broadcasting)
                 dispatch(setNextStepAsActive());
@@ -686,16 +696,13 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 )(storeAndBroadcastAsync)(cached.trytes);
             })
             .then(() => {
-                return syncAccountAfterSpending()(
-                    seedStore,
-                    accountName,
-                    cached.transactionObjects,
-                    accountState,
-                    !isZeroValue,
-                );
+                return syncAccountAfterSpending()(seedStore, cached.transactionObjects, accountState);
             })
-            .then(({ newState }) => {
-                dispatch(updateAccountInfoAfterSpending(newState));
+            .then((newState) => {
+                // Update account in (Realm) storage
+                Account.update(accountName, newState);
+
+                dispatch(updateAccountInfoAfterSpending(assign({}, newState, { accountName })));
 
                 // Progressbar => (Progress complete)
                 dispatch(setNextStepAsActive());
@@ -709,24 +716,23 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
             .catch((error) => {
                 dispatch(sendTransferError());
                 dispatch(resetProgress());
+                // If local PoW produces an invalid bundle we do not need to store it or mark the address as spent because the signature has not been broadcast.
+                const message = error.message;
+
+                if (message === Errors.INVALID_BUNDLE_CONSTRUCTED_WITH_LOCAL_POW) {
+                    isValidBundle = false;
+                }
                 // Only keep the failed trytes locally if the bundle was valid
                 // In case the bundle is invalid, discard the signing as it was never broadcast
                 if (hasSignedInputs && isValidBundle) {
-                    const { newState } = syncAccountOnValueTransactionFailure(
+                    const newState = syncAccountOnValueTransactionFailure(
                         // Sort in ascending order
                         orderBy(cached.transactionObjects, ['currentIndex']),
                         accountState,
                     );
 
-                    // Temporarily mark this transaction as failed.
-                    // As the inputs were signed and already exposed to the network
-                    dispatch(
-                        markBundleBroadcastStatusPending({
-                            accountName,
-                            bundleHash: head(cached.transactionObjects).bundle,
-                            transactionObjects: cached.transactionObjects,
-                        }),
-                    );
+                    // Update account in (Realm) storage
+                    Account.update(accountName, newState);
 
                     dispatch(updateAccountInfoAfterSpending(newState));
                     // Clear send screen text fields
@@ -742,17 +748,23 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     );
                 }
 
-                const message = error.message;
-
                 if (message === Errors.NODE_NOT_SYNCED) {
                     return dispatch(generateNodeOutOfSyncErrorAlert());
                 } else if (message === Errors.UNSUPPORTED_NODE) {
                     return dispatch(generateUnsupportedNodeErrorAlert());
+                } else if (message === Errors.INVALID_LAST_TRIT) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('send:invalidAddress'),
+                            i18next.t('send:invalidAddressExplanation4'),
+                        ),
+                    );
                 } else if (message === Errors.KEY_REUSE) {
                     return dispatch(
                         generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
                     );
-                } else if (message === Errors.NOT_ENOUGH_BALANCE) {
+                } else if (message === Errors.INSUFFICIENT_BALANCE) {
                     return dispatch(
                         generateAlert(
                             'error',
@@ -846,25 +858,23 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
  *
  * @param  {string} accountName
  * @param  {string} bundleHash
- * @param  {function} powFn
+ * @param  {object} seedStore
  *
  * @returns {function} dispatch
  */
-export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispatch, getState) => {
+export const retryFailedTransaction = (accountName, bundleHash, seedStore) => (dispatch, getState) => {
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-    const existingFailedTransactionsForThisAccount = getFailedBundleHashesForSelectedAccount(getState());
     const shouldOffloadPow = getRemotePoWFromState(getState());
+    const failedTransactionsForThisBundleHash = filter(
+        existingAccountState.transactions,
+        (tx) => tx.bundle === bundleHash,
+    );
 
     dispatch(retryFailedTransactionRequest());
 
     return (
-        throwIfNodeNotHealthy()
-            // First check spent statuses against transaction addresses
-            .then(() =>
-                categoriseAddressesBySpentStatus()(
-                    map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address),
-                ),
-            )
+        // First check spent statuses against transaction addresses
+        categoriseAddressesBySpentStatus()(map(failedTransactionsForThisBundleHash, (tx) => tx.address))
             // If any address (input, remainder, receive) is spent, error out
             .then(({ spent }) => {
                 if (size(spent)) {
@@ -873,19 +883,28 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
 
                 // If all addresses are still unspent, retry
                 return retry()(
-                    existingFailedTransactionsForThisAccount[bundleHash],
-                    // If proof of work is set to remote, pass in null as the proof of work function
-                    shouldOffloadPow ? null : powFn,
+                    failedTransactionsForThisBundleHash,
+                    // If proof of work configuration is set to remote,
+                    // Extend seedStore object with offloadPow
+                    // This property will lead to perform remote proof-of-work
+                    // See: extendedApi#attachToTangle
+                    shouldOffloadPow
+                        ? extend(
+                              {
+                                  __proto__: seedStore.__proto__,
+                              },
+                              seedStore,
+                              { offloadPow: true },
+                          )
+                        : seedStore,
                 );
             })
             .then(({ transactionObjects }) => {
-                dispatch(markBundleBroadcastStatusComplete({ accountName, bundleHash }));
+                // Update state
+                const newState = syncAccountOnSuccessfulRetryAttempt(transactionObjects, existingAccountState);
 
-                const { newState } = syncAccountOnSuccessfulRetryAttempt(
-                    accountName,
-                    transactionObjects,
-                    existingAccountState,
-                );
+                // Persist updated state
+                Account.update(accountName, newState);
 
                 // Since this transaction was never sent to the tangle
                 // Generate the same alert we display when a transaction is successfully sent to the tangle

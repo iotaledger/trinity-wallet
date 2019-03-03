@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
@@ -6,11 +7,12 @@ import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
 import { resetWallet, setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
+import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
+import { getEncryptionKey } from 'libs/realm';
 import { Text, StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import { persistConfig } from 'libs/store';
-import { purgeStoredState } from 'shared-modules/store';
 import { clearKeychain, hash } from 'libs/keychain';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
@@ -55,8 +57,6 @@ class WalletResetRequirePassword extends Component {
         /** Component ID */
         componentId: PropTypes.string.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
         resetWallet: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
@@ -66,15 +66,17 @@ class WalletResetRequirePassword extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         setCompletedForcedPasswordUpdate: PropTypes.func.isRequired,
+        /** @ignore */
+        isAutoPromoting: PropTypes.bool.isRequired,
+        /** Determines whether to allow account change */
+        shouldPreventAction: PropTypes.bool.isRequired,
     };
 
     constructor() {
         super();
-
         this.state = {
-            password: '',
+            password: null,
         };
-
         this.goBack = this.goBack.bind(this);
         this.resetWallet = this.resetWallet.bind(this);
     }
@@ -89,6 +91,7 @@ class WalletResetRequirePassword extends Component {
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress');
+        delete this.state.password;
     }
 
     /**
@@ -104,9 +107,7 @@ class WalletResetRequirePassword extends Component {
      * @method isAuthenticated
      */
     async isAuthenticated() {
-        const { password } = this.props;
-        const pwdHash = await hash(this.state.password);
-        return isEqual(password, pwdHash);
+        return isEqual(global.passwordHash, await hash(this.state.password));
     }
 
     /**
@@ -137,11 +138,17 @@ class WalletResetRequirePassword extends Component {
      */
     async resetWallet() {
         const { t } = this.props;
-        if (await this.isAuthenticated()) {
-            this.redirectToInitialScreen();
-            purgeStoredState(persistConfig)
+        const { isAutoPromoting, shouldPreventAction } = this.props;
+        if (isAutoPromoting || shouldPreventAction) {
+            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+        }
+        if (isEmpty(this.state.password)) {
+            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
+        } else if (await this.isAuthenticated()) {
+            reinitialiseStorage(getEncryptionKey)
                 .then(() => clearKeychain())
                 .then(() => {
+                    this.redirectToInitialScreen();
                     // resetWallet action creator resets the whole state object to default values
                     // https://github.com/iotaledger/trinity-wallet/blob/develop/src/shared/store.js#L37
                     this.props.resetWallet();
@@ -201,7 +208,7 @@ class WalletResetRequirePassword extends Component {
                             >
                                 <CustomTextInput
                                     label={t('global:password')}
-                                    onChangeText={(password) => this.setState({ password })}
+                                    onValidTextChange={(password) => this.setState({ password })}
                                     value={this.state.password}
                                     containerStyle={{ width: Styling.contentWidth }}
                                     autoCapitalize="none"
@@ -210,6 +217,7 @@ class WalletResetRequirePassword extends Component {
                                     returnKeyType="done"
                                     theme={theme}
                                     secureTextEntry
+                                    isPasswordInput
                                 />
                             </AnimatedComponent>
                             <View style={{ flex: 0.1 }} />
@@ -232,8 +240,9 @@ class WalletResetRequirePassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
-    password: state.wallet.password,
+    theme: getThemeFromState(state),
+    shouldPreventAction: shouldPreventAction(state),
+    isAutoPromoting: state.polling.isAutoPromoting,
 });
 
 const mapDispatchToProps = {

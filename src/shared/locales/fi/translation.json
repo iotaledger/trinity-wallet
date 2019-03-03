@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Omavalintainen palvelin on jo lisätty.",
         "nodeAutoChanged": "Palvelinta vaihdettu automaattisesti",
         "nodeAutoChangedExplanation": "Yhteys siirretty palvelimeen {{- nodeAddress}} koska alkuperäinen palvelin ei vastaa.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Jos hyväksyt siirron kosketa sormenjälkilukijaa",
         "masterKey": "Seed-luku on varojesi pääavain ja näinollen erityisin tärkeä.",
         "seedThief": "Jos seed-lukusi päätyy muiden haltuun, IOTA: si voidaan varastaa.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -297,7 +299,8 @@
         "tag": "Tunniste",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Tallenna seed-luku",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Osoitteen on oltava {{maxLength}} merkkiä pitkä ja sen pitäisi sisältää tarkistussumma.",
         "invalidAddressExplanation2": "Osoite sisältää virheellisiä merkkejä.",
         "invalidAddressExplanation3": "Osoite sisältää virheellisen tarkistussumman.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Osoitteen on oltava 90 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9.",
         "notEnoughFunds": "Varoja ei riittävästi",
         "notEnoughFundsExplanation": "Sinulla ei ole tarpeeksi saldoa siirron loppuun suorittamiseksi.",
@@ -586,12 +590,19 @@
         "fingerprintAuthFailedExplanation": "Sormenjälkitunnistus epäonnistui. Yritä uudelleen.",
         "status": "Tila",
         "fingerprintUnavailable": "Biometrinen tunnistus ei ole käytettävissä",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Laitteesi ei tue biometristä tunnistusta tai se on otettu pois käytöstä asetuksista.",
-        "buttonInstructionsDisable": "Paina alla olevaa painiketta poistaaksesi sormenjälkitunnistuksen käytöstä",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Paina alla olevaa painiketta ottaaksesi sormenjälkitunnistuksen käyttöön.",
         "buttonInstructionsDisableIPhoneX": "Paina alla olevaa painiketta poistaaksesi kasvotunnistuksen",
         "buttonInstructionsEnableIPhoneX": "Paina alla olevaa painiketta ottaaksesi kasvontunnistuksen käyttöön",
-        "instructionsLogin": "Kosketa sormenjälkilukijaa kirjautuaksesi sisään"
+        "instructionsLogin": "Kosketa sormenjälkilukijaa kirjautuaksesi sisään",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Olet lähettämässä {{contents}} osoitteeseen",
@@ -603,7 +614,7 @@
     },
     "twoFA": {
         "wrongCode": "Väärä koodi",
-        "wrongCodeExplanation": "Kirjoittamasi tunnusluku on virheellinen.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Tyhjennä tunnusluku",
         "emptyCodeExplanation": "Syötä tunnusluku ja yritä uudelleen.",
         "keyCopied": "Avain kopioitu leikepöydälle",
@@ -671,12 +682,18 @@
     "progressSteps": {
         "checkingNodeHealth": "Varmistetaan palvelin tila",
         "validatingReceiveAddress": "Varmistetaan vastaanottajan osoite",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Synkronoidaan tiliä",
         "preparingInputs": "Alustetaan sisältöä",
         "preparingTransfers": "Alustetaan siirtoja",
         "gettingTransactionsToApprove": "Odotetaan siirtoja hyväksyttäväksi",
         "proofOfWork": "Viimeistellään laskentatyö (Proof of Work)",
         "broadcasting": "Lähetetään",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
@@ -755,6 +772,12 @@
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+    },
     "ledger": {
         "ready": "Ledger device connected and ready",
         "notReady": "If you wish to use a Ledger device, connect and unlock it now",
@@ -763,6 +786,8 @@
         "proceedWithLedger": "Proceed with Ledger setup",
         "accountIndex": "Account index",
         "accountPage": "Account page",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Choose your Ledger account index",
         "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
         "accountPageExplanation": "Some third party wallets require pages.",

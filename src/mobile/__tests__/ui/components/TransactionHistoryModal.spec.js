@@ -58,7 +58,7 @@ const getProps = (overrides) =>
                 primaryBody: '#000000',
             },
             bundleIsBeingPromoted: false,
-            isFailedTransaction: noop,
+            isFailedTransaction: false,
             retryFailedTransaction: noop,
             isRetryingFailedTransaction: false,
         },
@@ -114,7 +114,7 @@ describe('Testing TransactionHistoryModal component', () => {
             const props = getProps();
 
             const wrapper = shallow(<TransactionHistoryModal {...props} />);
-            expect(wrapper.name()).toEqual('View');
+            expect(wrapper.name()).toEqual('Connect(ModalViewComponent)');
         });
 
         it('should return a ScrollView component', () => {

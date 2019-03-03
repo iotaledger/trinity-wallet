@@ -1,4 +1,6 @@
 rootProject.name = 'iotaWallet'
+include ':react-native-qr-generator'
+project(':react-native-qr-generator').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-qr-generator/android')
 include ':react-native-camera'
 project(':react-native-camera').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-camera/android')
 include ':react-native-qr-scanner'
@@ -9,8 +11,6 @@ include ':react-native-document-picker'
 project(':react-native-document-picker').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-document-picker/android')
 include ':nodejs-mobile-react-native'
 project(':nodejs-mobile-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/nodejs-mobile-react-native/android')
-include ':react-native-fast-crypto'
-project(':react-native-fast-crypto').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fast-crypto/android')
 include ':react-native-detect-navbar-android'
 project(':react-native-detect-navbar-android').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-detect-navbar-android/android')
 include ':react-native-fingerprint-scanner'
@@ -21,10 +21,6 @@ include ':react-native-os'
 project(':react-native-os').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-os/android')
 include ':react-native-print'
 project(':react-native-print').projectDir = new File(rootProject.projectDir,'../node_modules/react-native-print/android')
-include ':react-native-udp'
-project(':react-native-udp').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-udp/android')
-include ':react-native-tcp'
-project(':react-native-tcp').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-tcp/android')
 include ':react-native-svg'
 project(':react-native-svg').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-svg/android')
 include ':react-native-navigation'
@@ -68,3 +64,5 @@ include ':react-native-flag-secure-android'
 project(':react-native-flag-secure-android').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-flag-secure-android/android')
 include ':react-native-haptic-feedback'
 project(':react-native-haptic-feedback').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-haptic-feedback/android')
+include ':realm'
+project(':realm').projectDir = new File(rootProject.projectDir, '../node_modules/realm/android')

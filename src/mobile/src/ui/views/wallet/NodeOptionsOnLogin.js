@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { withNamespaces } from 'react-i18next';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { width, height } from 'libs/dimensions';
 import CtaButton from 'ui/components/CtaButton';
 import NodeSelection from 'ui/views/wallet/NodeSelection';
-import AddCustomNode from 'ui/views/wallet/AddCustomNode';
+import AddCustomNodeComponent from 'ui/views/wallet/AddCustomNode';
 import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -111,7 +112,7 @@ class NodeOptionsOnLogin extends Component {
                     <NodeSelection backPress={() => this.props.setLoginRoute('nodeOptions')} />
                 )}
                 {loginRoute === 'customNode' && (
-                    <AddCustomNode backPress={() => this.props.setLoginRoute('nodeOptions')} />
+                    <AddCustomNodeComponent backPress={() => this.props.setLoginRoute('nodeOptions')} />
                 )}
                 <View style={{ flex: 0.05 }} />
             </View>
@@ -120,7 +121,7 @@ class NodeOptionsOnLogin extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

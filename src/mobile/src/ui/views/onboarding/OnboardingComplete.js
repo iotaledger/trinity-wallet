@@ -6,6 +6,7 @@ import { navigator } from 'libs/navigation';
 import balloonsAnimation from 'shared-modules/animations/balloons-white.json';
 import LottieView from 'lottie-react-native';
 import { connect } from 'react-redux';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -135,7 +136,7 @@ class OnboardingComplete extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default withNamespaces(['onboardingComplete', 'global'])(connect(mapStateToProps)(OnboardingComplete));

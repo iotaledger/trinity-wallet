@@ -4,6 +4,7 @@ import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
 import { isAndroid } from 'libs/device';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { rgbToHex } from 'shared-modules/libs/utils';
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
@@ -90,6 +91,7 @@ class DynamicStatusBar extends Component {
                 barStyle={statusBarStyle}
                 backgroundColor={this.getStatusBarColor(last(navStack))}
                 animated={false}
+                translucent
             />
         );
     }
@@ -97,7 +99,7 @@ class DynamicStatusBar extends Component {
 
 const mapStateToProps = (state) => ({
     inactive: state.ui.inactive,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isModalActive: state.ui.isModalActive,
     navStack: state.wallet.navStack,
 });

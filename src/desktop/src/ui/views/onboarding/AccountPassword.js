@@ -45,6 +45,10 @@ class AccountPassword extends React.PureComponent {
         loading: false,
     };
 
+    componentWillUnmount() {
+        setTimeout(() => Electron.garbageCollect(), 1000);
+    }
+
     /**
      * Check for valid password, create new account, reset onboarding state
      * @returns {undefined}
@@ -95,7 +99,7 @@ class AccountPassword extends React.PureComponent {
         setPassword(passwordHash);
 
         this.props.setAccountInfoDuringSetup({
-            completed: true
+            completed: true,
         });
 
         const seedStore = await new SeedStore[additionalAccountMeta.type](passwordHash);

@@ -9,6 +9,8 @@ import { round } from '../../libs/utils';
 import { setCurrency, setTimeframe } from '../../actions/marketData';
 import { getCurrencySymbol } from '../../libs/currency';
 
+import { getThemeFromState } from '../../selectors/global';
+
 /**
  * Chart component container
  * @ignore
@@ -25,7 +27,7 @@ export default function withChartData(ChartComponent) {
         };
 
         currencies = ['USD', 'EUR', 'BTC', 'ETH']; // eslint-disable-line react/sort-comp
-        timeframes = ['1h', '24h', '7d', '1m', '1h'];
+        timeframes = ['24h', '7d', '1m', '1h'];
 
         changeCurrency = () => {
             const { marketData, setCurrency } = this.props;
@@ -126,7 +128,7 @@ export default function withChartData(ChartComponent) {
     const mapStateToProps = (state) => ({
         marketData: state.marketData,
         settings: state.settings,
-        theme: state.settings.theme,
+        theme: getThemeFromState(state),
     });
 
     const mapDispatchToProps = {

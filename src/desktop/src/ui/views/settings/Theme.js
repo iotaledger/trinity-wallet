@@ -41,7 +41,7 @@ class Theme extends React.PureComponent {
                     e.preventDefault();
                     if (themeName) {
                         document.body.style.background = themes[themeName].body.bg;
-                        updateTheme(themes[themeName], themeName);
+                        updateTheme(themeName);
                     }
                 }}
             >
@@ -126,7 +126,4 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withI18n()(Theme));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Theme));

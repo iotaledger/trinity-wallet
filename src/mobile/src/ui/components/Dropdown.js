@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, ListView, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
 import Triangle from 'react-native-triangle';
 import { connect } from 'react-redux';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { isIPhoneX, isAndroid } from 'libs/device';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -339,7 +340,7 @@ export class Dropdown extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default connect(mapStateToProps)(Dropdown);

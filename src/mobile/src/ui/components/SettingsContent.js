@@ -17,14 +17,14 @@ import DeleteAccount from 'ui/views/wallet/DeleteAccount';
 import AddNewAccount from 'ui/views/wallet/AddNewAccount';
 import UseExistingSeed from 'ui/views/wallet/UseExistingSeed';
 import NodeSelection from 'ui/views/wallet/NodeSelection';
-import AddCustomNode from 'ui/views/wallet/AddCustomNode';
+import AddCustomNodeComponent from 'ui/views/wallet/AddCustomNode';
 import CurrencySelectionComponent from 'ui/views/wallet/CurrencySelection';
 import ModeSelection from 'ui/views/wallet/ModeSelection';
 import LanguageSelection from 'ui/views/wallet/LanguageSelection';
 import ChangePassword from 'ui/views/wallet/ChangePassword';
 import ManualSyncComponent from 'ui/views/wallet/ManualSync';
 import ThemeCustomisation from 'ui/views/wallet/ThemeCustomisation';
-import SnapshotTransition from 'ui/views/wallet/SnapshotTransition';
+import SnapshotTransitionComponent from 'ui/views/wallet/SnapshotTransition';
 import SecuritySettings from 'ui/views/wallet/SecuritySettings';
 import SeedVaultSettings from 'ui/views/wallet/SeedVaultSettings';
 import About from 'ui/views/wallet/About';
@@ -43,13 +43,13 @@ const SETTINGS_COMPONENTS = {
     addNewAccount: AddNewAccount,
     addExistingSeed: UseExistingSeed,
     nodeSelection: NodeSelection,
-    addCustomNode: AddCustomNode,
+    addCustomNode: AddCustomNodeComponent,
     currencySelection: CurrencySelectionComponent,
     languageSelection: LanguageSelection,
     changePassword: ChangePassword,
     manualSync: ManualSyncComponent,
     themeCustomisation: ThemeCustomisation,
-    snapshotTransition: SnapshotTransition,
+    snapshotTransition: SnapshotTransitionComponent,
     securitySettings: SecuritySettings,
     modeSelection: ModeSelection,
     pow: ProofOfWork,
@@ -100,6 +100,9 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
+        marginLeft: 5,
+        flex: 1,
+        textAlign: 'right',
     },
     backText: {
         fontFamily: 'SourceSansPro-Regular',

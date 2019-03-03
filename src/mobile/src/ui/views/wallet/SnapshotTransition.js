@@ -20,7 +20,7 @@ import {
     getAddressesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
 import KeepAwake from 'react-native-keep-awake';
-import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import ModalButtons from 'ui/components/ModalButtons';
 import { Styling } from 'ui/theme/general';
@@ -30,7 +30,6 @@ import { Icon } from 'ui/theme/icons';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
 import OldProgressBar from 'ui/components/OldProgressBar';
-import { getPowFn } from 'libs/nativeModules';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -52,7 +51,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     innerContainer: {
-        flex: 4,
+        flex: 3,
         justifyContent: 'center',
     },
     item: {
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
-    transitionButtonContainer: {
+    innerBottomContainer: {
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'center',
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class SnapshotTransition extends Component {
+export class SnapshotTransition extends Component {
     static propTypes = {
         /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
@@ -141,7 +140,6 @@ class SnapshotTransition extends Component {
         /** @ignore */
         isAttachingToTangle: PropTypes.bool.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
         activeStepIndex: PropTypes.number.isRequired,
         /** @ignore */
         activeSteps: PropTypes.array.isRequired,
@@ -166,6 +164,11 @@ class SnapshotTransition extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('SnapshotTransition');
+
+        // Cancelling snapshot transition (i.e., navigating back to any other screen) while address generation is in progress
+        // will add transition addresses to redux store. Say a user swaps accounts and revist this screen, then it will mix transition addresses in redux store
+        // Hence, just reset transition addresses every time this screen is mounted
+        this.props.cancelSnapshotTransition();
     }
 
     componentWillReceiveProps(newProps) {
@@ -182,10 +185,10 @@ class SnapshotTransition extends Component {
      * @method onBalanceCompletePress
      */
     onBalanceCompletePress() {
-        const { transitionAddresses, selectedAccountName, selectedAccountMeta, password } = this.props;
-        setTimeout(() => {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
-            this.props.completeSnapshotTransition(seedStore, selectedAccountName, transitionAddresses, getPowFn());
+        const { transitionAddresses, selectedAccountName, selectedAccountMeta } = this.props;
+        setTimeout(async () => {
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+            this.props.completeSnapshotTransition(seedStore, selectedAccountName, transitionAddresses);
         }, 300);
     }
 
@@ -194,11 +197,11 @@ class SnapshotTransition extends Component {
      * @method onBalanceIncompletePress
      */
     onBalanceIncompletePress() {
-        const { transitionAddresses, password, selectedAccountName, selectedAccountMeta } = this.props;
+        const { transitionAddresses, selectedAccountName, selectedAccountMeta } = this.props;
         const currentIndex = transitionAddresses.length;
         this.props.setBalanceCheckFlag(false);
-        setTimeout(() => {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+        setTimeout(async () => {
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.generateAddressesAndGetBalance(seedStore, currentIndex);
         }, 300);
     }
@@ -208,10 +211,10 @@ class SnapshotTransition extends Component {
      * Finds balance for those addresses and displays a modal asking the user to confirm the balance
      * @method onSnapshotTransitionPress
      */
-    onSnapshotTransitionPress() {
-        const { addresses, shouldPreventAction, password, selectedAccountName, selectedAccountMeta, t } = this.props;
+    async onSnapshotTransitionPress() {
+        const { addresses, shouldPreventAction, selectedAccountName, selectedAccountMeta, t } = this.props;
         if (!shouldPreventAction) {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.transitionForSnapshot(seedStore, addresses);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
@@ -229,17 +232,16 @@ class SnapshotTransition extends Component {
 
     render() {
         const {
-            isTransitioning,
             theme,
             t,
+            balanceCheckFlag,
+            activeSteps,
+            isTransitioning,
             isAttachingToTangle,
             activeStepIndex,
-            activeSteps,
-            balanceCheckFlag,
             transitionBalance,
         } = this.props;
         const textColor = { color: theme.body.color };
-
         const sizeOfActiveSteps = size(activeSteps);
 
         return (
@@ -254,7 +256,7 @@ class SnapshotTransition extends Component {
                                     {t('hasSnapshotTakenPlace')}
                                 </Text>
                             </InfoBox>
-                            <View style={styles.transitionButtonContainer}>
+                            <View style={styles.innerBottomContainer}>
                                 <CtaButton
                                     ctaColor={theme.primary.color}
                                     secondaryCtaColor={theme.primary.body}
@@ -316,17 +318,8 @@ class SnapshotTransition extends Component {
                                         {t('global:pleaseWaitEllipses')}
                                     </Text>
                                 </InfoBox>
-                                <View
-                                    style={{
-                                        flex: 1,
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                    }}
-                                >
+                                <View style={styles.innerBottomContainer}>
                                     <OldProgressBar
-                                        style={{
-                                            textWrapper: { flex: 0.4 },
-                                        }}
                                         indeterminate={activeStepIndex === -1}
                                         progress={activeStepIndex / sizeOfActiveSteps}
                                         color={theme.primary.color}
@@ -365,11 +358,10 @@ class SnapshotTransition extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     transitionBalance: state.wallet.transitionBalance,
     balanceCheckFlag: state.wallet.balanceCheckFlag,
     transitionAddresses: state.wallet.transitionAddresses,
-    password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),
     shouldPreventAction: shouldPreventAction(state),

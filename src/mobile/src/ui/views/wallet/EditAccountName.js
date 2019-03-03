@@ -12,6 +12,7 @@ import {
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeAccountName } from 'shared-modules/actions/accounts';
+import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import SeedStore from 'libs/SeedStore';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { width, height } from 'libs/dimensions';
@@ -76,8 +77,6 @@ export class EditAccountName extends Component {
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
@@ -87,6 +86,10 @@ export class EditAccountName extends Component {
         changeAccountName: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        isAutoPromoting: PropTypes.bool.isRequired,
+        /** Determines whether to allow account change */
+        shouldPreventAction: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -113,17 +116,34 @@ export class EditAccountName extends Component {
      *
      * @method save
      */
-    save(accountName) {
-        const { accountNames, password, selectedAccountName, selectedAccountMeta, t } = this.props;
-
-        if (accountNames.includes(accountName)) {
+    async save(accountName) {
+        const {
+            accountNames,
+            selectedAccountName,
+            selectedAccountMeta,
+            t,
+            isAutoPromoting,
+            shouldPreventAction,
+        } = this.props;
+        if (isAutoPromoting || shouldPreventAction) {
+            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+        }
+        if (accountName.length === 0) {
+            return this.props.generateAlert(
+                'error',
+                t('addAdditionalSeed:noNickname'),
+                t('addAdditionalSeed:noNicknameExplanation'),
+            );
+        } else if (accountNames.includes(accountName)) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
                 t('addAdditionalSeed:nameInUseExplanation'),
             );
+        } else if (isAutoPromoting || shouldPreventAction) {
+            this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         } else {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
 
             seedStore
                 .accountRename(accountName)
@@ -157,7 +177,7 @@ export class EditAccountName extends Component {
                         <View style={styles.textFieldContainer}>
                             <CustomTextInput
                                 label={t('accountName')}
-                                onChangeText={(accountName) => this.setState({ accountName })}
+                                onValidTextChange={(accountName) => this.setState({ accountName })}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -199,8 +219,9 @@ const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),
     accountNames: getAccountNamesFromState(state),
-    password: state.wallet.password,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
+    shouldPreventAction: shouldPreventAction(state),
+    isAutoPromoting: state.polling.isAutoPromoting,
 });
 
 const mapDispatchToProps = {

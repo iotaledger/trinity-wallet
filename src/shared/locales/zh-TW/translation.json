@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "自訂節點已在列表中。",
         "nodeAutoChanged": "自動切換節點",
         "nodeAutoChangedExplanation": "當選擇的節點斷線時切換到新的節點 {{- nodeAddress}}。",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "觸摸指紋辨識器來驗證交易",
         "masterKey": "IOTA 種子碼就是您的資金的主要金鑰。",
         "seedThief": "如果有人取得您的種子碼，代表他們就可以偷走您的 IOTA。",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "需要檔案系統權限",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -297,7 +299,8 @@
         "tag": "標籤",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "備份您的種子碼",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "地址應該為 {{maxLength}} 個字元且應有一個檢查碼。",
         "invalidAddressExplanation2": "地址包含無效的字元。",
         "invalidAddressExplanation3": "地址包含一個無效檢查碼。",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "有效地址應為 90 個字元而且僅包含 A-Z 或 9。",
         "notEnoughFunds": "餘額不足",
         "notEnoughFundsExplanation": "您沒有足夠的 IOTA 完成本次交易。",
@@ -586,12 +590,19 @@
         "fingerprintAuthFailedExplanation": "指紋驗證失敗，請再試一次。",
         "status": "狀態",
         "fingerprintUnavailable": "生物識別驗證無法使用",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "您的裝置不支援生物識別驗證，或者裝置設定中並沒有啟用此權限。",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "按下方按鈕啟用指紋驗證。",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
-        "instructionsLogin": "觸摸指紋辨識器來登入"
+        "instructionsLogin": "觸摸指紋辨識器來登入",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "您將轉帳{{contents}} 到地址",
@@ -603,7 +614,7 @@
     },
     "twoFA": {
         "wrongCode": "驗證碼錯誤",
-        "wrongCodeExplanation": "您輸入的驗證碼不正確。",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "驗證碼為空",
         "emptyCodeExplanation": "請輸入驗證碼並重試。",
         "keyCopied": "密鑰已複製到剪貼簿",
@@ -671,12 +682,18 @@
     "progressSteps": {
         "checkingNodeHealth": "檢查節點運行狀況",
         "validatingReceiveAddress": "驗證收款地址",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "同步帳戶中",
         "preparingInputs": "準備交易輸入",
         "preparingTransfers": "準備交易資訊",
         "gettingTransactionsToApprove": "取得交易確認",
         "proofOfWork": "完成工作量證明",
         "broadcasting": "廣播中",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
@@ -755,6 +772,12 @@
         "sweepConfirmation": "您將要轉移 {{amount}} 至地址 {{address}}。帳戶：{{accountName}}，地址索引：{{index}}",
         "sweepConfirmationTitle": "轉移確認"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+    },
     "ledger": {
         "ready": "Ledger 裝置已連接並準備就緒",
         "notReady": "如果您想使用 Ledger 裝置，請立即連接並解鎖它",
@@ -763,6 +786,8 @@
         "proceedWithLedger": "進行 Ledger 設置",
         "accountIndex": "帳戶索引",
         "accountPage": "帳戶頁面",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "選擇您的帳戶索引",
         "accountIndexExplanation": "您的 Ledger 可以儲存數個種子碼，每個種子碼會有相對應的索引號碼。系統已先預先選擇未使用的索引，但您可以隨意選擇自己想要的。請務必記住您所選的索引號碼。",
         "accountPageExplanation": "有些第三方錢包會用到頁面號碼。",

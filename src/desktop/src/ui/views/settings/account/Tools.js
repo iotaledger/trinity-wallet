@@ -31,8 +31,6 @@ import css from '../index.scss';
 class Tools extends PureComponent {
     static propTypes = {
         /** @ignore */
-        settings: PropTypes.object.isRequired,
-        /** @ignore */
         wallet: PropTypes.object.isRequired,
         /** @ignore */
         ui: PropTypes.object.isRequired,
@@ -106,11 +104,11 @@ class Tools extends PureComponent {
      */
     startSnapshotTransition = async () => {
         const { wallet } = this.props;
-        const { accountName, meta, addresses } = this.props.account;
+        const { accountName, meta, addressData } = this.props.account;
 
         const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
-        this.props.transitionForSnapshot(seedStore, addresses);
+        this.props.transitionForSnapshot(seedStore, addressData);
     };
 
     /**
@@ -119,14 +117,12 @@ class Tools extends PureComponent {
      */
     transitionBalanceOk = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, settings } = this.props;
+        const { wallet } = this.props;
         const { accountName, meta } = this.props.account;
 
         const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
-        const powFn = !settings.remotePoW ? Electron.powFn : null;
-
-        this.props.completeSnapshotTransition(seedStore, accountName, wallet.transitionAddresses, powFn);
+        this.props.completeSnapshotTransition(seedStore, accountName, wallet.transitionAddresses);
     };
 
     /**
@@ -251,7 +247,4 @@ const mapDispatchToProps = {
     setBalanceCheckFlag,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withI18n()(Tools));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Tools));

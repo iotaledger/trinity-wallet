@@ -81,7 +81,7 @@ class AccountName extends React.PureComponent {
 
         this.props.setAccountInfoDuringSetup({
             name: this.state.name,
-            completed: !Electron.getOnboardingGenerated() && accountNames.length > 0
+            completed: !Electron.getOnboardingGenerated() && accountNames.length > 0,
         });
 
         if (Electron.getOnboardingGenerated()) {
@@ -90,8 +90,6 @@ class AccountName extends React.PureComponent {
             if (accountNames.length > 0) {
                 const seedStore = await new SeedStore.keychain(wallet.password);
                 await seedStore.addAccount(this.state.name, Electron.getOnboardingSeed());
-
-                Electron.setOnboardingSeed(null);
 
                 history.push('/onboarding/login');
             } else {

@@ -39,12 +39,6 @@ class SeedVerify extends React.PureComponent {
         isGenerated: Electron.getOnboardingGenerated(),
     };
 
-    componentDidMount() {
-        if (Electron.getOnboardingSeed()) {
-            Electron.garbageCollect();
-        }
-    }
-
     onChange = (value) => {
         this.setState(() => ({
             seed: value,
@@ -160,7 +154,4 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withI18n()(SeedVerify));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(SeedVerify));

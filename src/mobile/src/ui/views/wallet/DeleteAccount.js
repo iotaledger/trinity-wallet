@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
@@ -7,7 +8,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
-import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import { deleteAccount } from 'shared-modules/actions/accounts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import Fonts from 'ui/theme/fonts';
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         flex: 2.5,
+        alignItems: 'center',
         justifyContent: 'space-around',
     },
     itemLeft: {
@@ -94,8 +96,6 @@ class DeleteAccount extends Component {
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
         deleteAccount: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -117,15 +117,18 @@ class DeleteAccount extends Component {
 
     constructor() {
         super();
-
         this.state = {
             pressedContinue: false,
-            password: '',
+            password: null,
         };
     }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('DeleteAccount');
+    }
+
+    componentWillUnmount() {
+        delete this.state.password;
     }
 
     /**
@@ -148,12 +151,13 @@ class DeleteAccount extends Component {
      * @method onContinuePress
      */
     async onContinuePress() {
-        const { password, t, isAutoPromoting } = this.props;
+        const { t, isAutoPromoting } = this.props;
         if (!this.state.pressedContinue) {
             return this.setState({ pressedContinue: true });
         }
-        const pwdHash = await hash(this.state.password);
-        if (isEqual(password, pwdHash)) {
+        if (isEmpty(this.state.password)) {
+            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
+        } else if (isEqual(global.passwordHash, await hash(this.state.password))) {
             if (isAutoPromoting || this.props.shouldPreventAction) {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
@@ -172,8 +176,8 @@ class DeleteAccount extends Component {
      * @method delete
      */
     async delete() {
-        const { password, selectedAccountName, selectedAccountMeta } = this.props;
-        const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+        const { selectedAccountName, selectedAccountMeta } = this.props;
+        const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
         await seedStore.removeAccount();
         this.props.deleteAccount(selectedAccountName);
     }
@@ -228,7 +232,7 @@ class DeleteAccount extends Component {
                                 <Text style={[styles.infoText, textColor]}>{t('enterPassword')}</Text>
                                 <CustomTextInput
                                     label={t('global:password')}
-                                    onChangeText={(password) => this.setState({ password })}
+                                    onValidTextChange={(password) => this.setState({ password })}
                                     autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
@@ -237,6 +241,7 @@ class DeleteAccount extends Component {
                                     theme={theme}
                                     secureTextEntry
                                     value={this.state.password}
+                                    isPasswordInput
                                 />
                             </View>
                         )}
@@ -271,8 +276,7 @@ class DeleteAccount extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    password: state.wallet.password,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isAutoPromoting: state.polling.isAutoPromoting,
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),

@@ -5,6 +5,7 @@ import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import { navigator } from 'libs/navigation';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
@@ -59,12 +60,12 @@ class SecuritySettings extends Component {
     }
 
     /**
-     * Navigates to fingerprint setup screen
-     * @method onFingerprintSetupPress
+     * Navigates to BiometricAuthentication screen
+     * @method onBiometricAuthenticationPress
      */
-    onFingerprintSetupPress() {
+    onBiometricAuthenticationPress() {
         const { theme: { body } } = this.props;
-        navigator.push('fingerprintSetup', {
+        navigator.push('biometricAuthentication', {
             animations: {
                 push: {
                     enable: false,
@@ -97,7 +98,7 @@ class SecuritySettings extends Component {
             {
                 name: t('fingerprint'),
                 icon: 'biometric',
-                function: () => this.onFingerprintSetupPress(),
+                function: () => this.onBiometricAuthenticationPress(),
                 currentSetting: isFingerprintEnabled ? t('enabled') : t('disabled'),
             },
             { name: 'back', function: () => this.props.setSetting('mainSettings') },
@@ -111,7 +112,7 @@ class SecuritySettings extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     is2FAEnabled: state.settings.is2FAEnabled,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });

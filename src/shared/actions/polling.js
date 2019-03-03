@@ -1,21 +1,32 @@
-import get from 'lodash/get';
 import each from 'lodash/each';
+import filter from 'lodash/filter';
+import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+import some from 'lodash/some';
+import reduce from 'lodash/reduce';
 import union from 'lodash/union';
+import unionBy from 'lodash/unionBy';
 import { setPrice, setChartData, setMarketData } from './marketData';
+import { quorum, getRandomNode, changeIotaNode } from '../libs/iota';
 import { setNodeList, setRandomlySelectedNode, setAutoPromotion, changeNode } from './settings';
-import { getRandomNode, changeIotaNode } from '../libs/iota';
 import { fetchRemoteNodes, withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
-import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
+import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
-import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
-import { findPromotableTail, isStillAValidTransaction } from '../libs/iota/transfers';
-import { selectedAccountStateFactory, getSelectedNodeFromState, getNodesFromState } from '../selectors/accounts';
+import { constructBundlesFromTransactions, findPromotableTail, isFundedBundle } from '../libs/iota/transfers';
+import { selectedAccountStateFactory } from '../selectors/accounts';
+import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState } from '../selectors/global';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import { nodes, nodesWithPoWEnabled, DEFAULT_RETRIES } from '../config';
+import {
+    nodes as defaultNodes,
+    nodesWithPowEnabled as defaultNodesWithPowEnabled,
+    nodesWithPowDisabled as defaultNodesWithPowDisabled,
+    DEFAULT_RETRIES,
+} from '../config';
 import Errors from '../libs/errors';
 import i18next from '../libs/i18next';
+import { Account } from '../storage';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
@@ -31,13 +42,14 @@ export const ActionTypes = {
     FETCH_MARKET_DATA_REQUEST: 'IOTA/POLLING/FETCH_MARKET_DATA_REQUEST',
     FETCH_MARKET_DATA_SUCCESS: 'IOTA/POLLING/FETCH_MARKET_DATA_SUCCESS',
     FETCH_MARKET_DATA_ERROR: 'IOTA/POLLING/FETCH_MARKET_DATA_ERROR',
-    ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_REQUEST',
-    ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_SUCCESS',
-    ACCOUNT_INFO_FETCH_ERROR: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_ERROR',
+    ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST: 'IOTA/POLLING/ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST',
+    ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS: 'IOTA/POLLING/ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS',
+    ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR: 'IOTA/POLLING/ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR',
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/POLLING/PROMOTE_TRANSACTION_REQUEST',
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/POLLING/PROMOTE_TRANSACTION_SUCCESS',
     PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR',
     SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION: 'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION',
+    SYNC_ACCOUNT_WHILE_POLLING: 'IOTA/POLLING/SYNC_ACCOUNT_WHILE_POLLING',
 };
 
 /**
@@ -173,38 +185,37 @@ const fetchMarketDataError = () => ({
 });
 
 /**
- * Dispatch when account information is about to be fetched during polling
+ * Dispatch when accounts information is about to be fetched during polling
  *
- * @method accountInfoFetchRequest
+ * @method accountInfoForAllAccountsFetchRequest
  *
  * @returns {{type: {string} }}
  */
-const accountInfoFetchRequest = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
+const accountInfoForAllAccountsFetchRequest = () => ({
+    type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST,
 });
 
 /**
- * Dispatch when account information is successfully fetched during polling
+ * Dispatch when accounts information is successfully fetched during polling
  *
- * @method accountInfoFetchSuccess
+ * @method accountInfoForAllAccountsFetchSuccess
  * @param {object} payload
  *
  * @returns {{type: {string}, payload: {object} }}
  */
-const accountInfoFetchSuccess = (payload) => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
-    payload,
+const accountInfoForAllAccountsFetchSuccess = () => ({
+    type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS,
 });
 
 /**
- * Dispatch when an error occurs during account sync
+ * Dispatch when an error occurs during accounts sync
  *
- * @method accountInfoFetchError
+ * @method accountInfoForAllAccountsFetchError
  *
  * @returns {{type: {string} }}
  */
-const accountInfoFetchError = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
+const accountInfoForAllAccountsFetchError = () => ({
+    type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR,
 });
 
 /**
@@ -269,6 +280,19 @@ export const syncAccountBeforeAutoPromotion = (payload) => ({
 });
 
 /**
+ * Dispatch to update account state during accounts info polling operation
+ *
+ * @method syncAccountWhilePolling
+ *
+ * @param {object} payload
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const syncAccountWhilePolling = (payload) => ({
+    type: ActionTypes.SYNC_ACCOUNT_WHILE_POLLING,
+    payload,
+});
+
+/**
  *  Fetch IOTA market information
  *
  *   @method fetchMarketData
@@ -320,36 +344,49 @@ export const fetchPrice = () => {
  * @returns {function}
  */
 export const fetchNodeList = (chooseRandomNode = false) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(fetchNodeListRequest());
 
         const setRandomNode = (nodesList) => {
             if (chooseRandomNode) {
                 const node = getRandomNode(nodesList);
-                changeIotaNode(node);
                 dispatch(setRandomlySelectedNode(node));
+                changeIotaNode(node);
             }
         };
 
         fetchRemoteNodes()
             .then((remoteNodes) => {
                 if (remoteNodes.length) {
-                    const remoteNodesWithPoWEnabled = remoteNodes
+                    const remoteNodesWithPowEnabled = remoteNodes
                         .filter((node) => node.pow)
                         .map((nodeWithPoWEnabled) => nodeWithPoWEnabled.node);
 
-                    const unionNodes = union(nodes, remoteNodes.map((node) => node.node));
-
                     // A temporary addition
                     // Only choose a random node with PoW enabled.
-                    setRandomNode(union(nodesWithPoWEnabled, remoteNodesWithPoWEnabled));
+                    setRandomNode(union(defaultNodesWithPowEnabled, remoteNodesWithPowEnabled));
+
+                    const nodes = [
+                        ...map(defaultNodesWithPowEnabled, (url) => ({ url, pow: true })),
+                        ...map(defaultNodesWithPowDisabled, (url) => ({ url, pow: false })),
+                    ];
+
+                    const unionNodes = unionBy(
+                        nodes,
+                        map(remoteNodes, (node) => ({ url: node.node, pow: node.pow })),
+                        'url',
+                    );
+
+                    // Set quorum nodes
+                    quorum.setNodes(union(map(unionNodes, (node) => node.url), getCustomNodesFromState(getState())));
+
                     dispatch(setNodeList(unionNodes));
                 }
 
                 dispatch(fetchNodeListSuccess());
             })
             .catch(() => {
-                setRandomNode(nodes);
+                setRandomNode(defaultNodes);
                 dispatch(fetchNodeListError());
             });
     };
@@ -418,30 +455,46 @@ export const fetchChartData = () => {
 };
 
 /**
- *   Accepts account name and syncs local account state with ledger's.
+ *   Accepts account names and syncs local account state with ledger's.
  *
- *   @method getAccountInfo
- *   @param {string} accountName
+ *   @method getAccountInfoForAllAccounts
+ *   @param {array} accountNames
  *   @param {function} notificationFn - New transaction callback function
  *   @returns {function} dispatch
  **/
-export const getAccountInfo = (accountName, notificationFn) => {
+export const getAccountInfoForAllAccounts = (accountNames, notificationFn) => {
     return (dispatch, getState) => {
-        dispatch(accountInfoFetchRequest());
+        dispatch(accountInfoForAllAccountsFetchRequest());
 
-        const existingAccountState = selectedAccountStateFactory(accountName)(getState());
         const selectedNode = getSelectedNodeFromState(getState());
+        const randomNodes = getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode]);
 
-        withRetriesOnDifferentNodes([
-            selectedNode,
-            ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode]),
-        ])(syncAccount)(existingAccountState, undefined, notificationFn)
-            .then(({ node, result }) => {
-                dispatch(changeNode(node));
-                dispatch(accountInfoFetchSuccess(result));
+        const settings = getState().settings;
+
+        return reduce(
+            accountNames,
+            (promise, accountName) => {
+                return promise.then(() => {
+                    const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+
+                    return withRetriesOnDifferentNodes([selectedNode, ...randomNodes])(syncAccount)(
+                        existingAccountState,
+                        undefined,
+                        notificationFn,
+                        settings,
+                    ).then(({ node, result }) => {
+                        dispatch(changeNode(node));
+                        dispatch(syncAccountWhilePolling(result));
+                    });
+                });
+            },
+            Promise.resolve(),
+        )
+            .then(() => {
+                dispatch(accountInfoForAllAccountsFetchSuccess());
             })
             .catch((err) => {
-                dispatch(accountInfoFetchError());
+                dispatch(accountInfoForAllAccountsFetchError());
                 dispatch(generateAccountInfoErrorAlert(err));
             });
     };
@@ -455,59 +508,65 @@ export const getAccountInfo = (accountName, notificationFn) => {
  *
  *   @method promoteTransfer
  *   @param {string} bundleHash
- *   @param {array} seenTailTransactions
+ *   @param {string} accountName
  *   @returns {function} - dispatch
  **/
-export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, getState) => {
+export const promoteTransfer = (bundleHash, accountName) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
-    const accountName = get(seenTailTransactions, '[0].account');
     let accountState = selectedAccountStateFactory(accountName)(getState());
+
+    const getTailTransactionsForThisBundleHash = (transactions) =>
+        filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
 
     return syncAccount()(accountState)
         .then((newState) => {
             accountState = newState;
+
+            // Update persistent storage
+            Account.update(accountName, accountState);
+
+            // Update redux storage
             dispatch(syncAccountBeforeAutoPromotion(accountState));
 
-            const transaction = accountState.transfers[bundleHash];
+            const transactionsForThisBundleHash = filter(
+                accountState.transactions,
+                (transaction) => transaction.bundle === bundleHash,
+            );
 
-            if (transaction.persistence) {
-                dispatch(removeBundleFromUnconfirmedBundleTails(bundleHash));
+            if (some(transactionsForThisBundleHash, (transaction) => transaction.persistence === true)) {
                 throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
             }
 
-            return isStillAValidTransaction()(accountState.transfers[bundleHash], accountState.addresses);
-        })
-        .then((isValid) => {
-            if (!isValid) {
-                dispatch(removeBundleFromUnconfirmedBundleTails(bundleHash));
+            const bundles = constructBundlesFromTransactions(accountState.transactions);
 
-                throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
+            if (isEmpty(bundles)) {
+                throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
             }
 
-            return findPromotableTail()(accountState.unconfirmedBundleTails[bundleHash], 0);
+            return isFundedBundle()(head(bundles));
+        })
+        .then((isFunded) => {
+            if (!isFunded) {
+                throw new Error(Errors.BUNDLE_NO_LONGER_FUNDED);
+            }
+
+            return findPromotableTail()(getTailTransactionsForThisBundleHash(accountState.transactions), 0);
         })
         .then((consistentTail) =>
             dispatch(
                 forceTransactionPromotion(
                     accountName,
                     consistentTail,
-                    accountState.unconfirmedBundleTails[bundleHash],
+                    getTailTransactionsForThisBundleHash(accountState.transactions),
                     false,
                     // Auto promote does not support local proof of work
-                    // Pass in null in replacement of proof of work function
+                    // Pass in null in replacement of seedStore object
                     null,
                 ),
             ),
         )
-        .then(() => {
-            // Rearrange bundles so that the next cycle picks up a new bundle for promotion
-            dispatch(
-                setNewUnconfirmedBundleTails(rearrangeObjectKeys(accountState.unconfirmedBundleTails, bundleHash)),
-            );
-
-            return dispatch(promoteTransactionSuccess());
-        })
+        .then(() => dispatch(promoteTransactionSuccess()))
         .catch((err) => {
             if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
                 // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion

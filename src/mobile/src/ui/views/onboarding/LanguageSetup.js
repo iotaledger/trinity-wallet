@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Image } from 'react-native';
 import PropTypes from 'prop-types';
+import timer from 'react-native-timer';
 import { withNamespaces } from 'react-i18next';
 import { navigator } from 'libs/navigation';
 import SplashScreen from 'react-native-splash-screen';
@@ -10,6 +11,7 @@ import { setLanguage, setLocale } from 'shared-modules/actions/settings';
 import helloBackImagePath from 'shared-modules/images/hello-back.png';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import i18next from 'shared-modules/libs/i18next';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
@@ -79,6 +81,9 @@ class LanguageSetup extends Component {
         }
     }
 
+    componentWillUnmount() {
+        timer.clearTimeout('delayReset');
+    }
     onNextPress() {
         const { theme: { body, bar }, acceptedTerms, acceptedPrivacy, forceUpdate } = this.props;
         if (forceUpdate) {
@@ -195,7 +200,7 @@ class LanguageSetup extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     acceptedPrivacy: state.settings.acceptedPrivacy,
     acceptedTerms: state.settings.acceptedTerms,
     forceUpdate: state.wallet.forceUpdate,

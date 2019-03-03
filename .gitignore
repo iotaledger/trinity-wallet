@@ -38,6 +38,13 @@ build/
 .gradle/
 local.properties
 *.iml
+index.android.bundle
+
+# Eclipse project files
+.classpath
+.project
+.metadata
+.settings
 
 # node.js
 #
@@ -113,6 +120,12 @@ src/mobile/nodejs-assets/nodejs-project/sample-main.js
 src/mobile/nodejs-assets/build-native-modules*
 src/mobile/android/build/nodejs-native-assets-temp-build*
 src/mobile/android/build/nodejs-assets*
+
+# realm
+*.realm
+*.realm.lock
+*.management/
+realm-object-server/
 
 # NPM lockfiles
 package-lock.json

@@ -1,46 +1,86 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { withNamespaces } from 'react-i18next';
-import { Styling } from 'ui/theme/general';
-import Fonts from 'ui/theme/fonts';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-
-import { width, height } from 'libs/dimensions';
+import { connect } from 'react-redux';
+import FingerprintScanner from 'react-native-fingerprint-scanner';
+import { Icon } from 'ui/theme/icons';
+import { height, width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
-    modalContent: {
+    container: {
+        flex: 1,
         alignItems: 'center',
-        borderRadius: Styling.borderRadius,
-        borderWidth: 2,
-        paddingVertical: height / 18,
-        paddingHorizontal: width / 10,
+        justifyContent: 'flex-end',
+        height,
+        width,
     },
-    modalText: {
-        fontFamily: Fonts.secondary,
-        fontSize: Styling.fontSize4,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
+    modalContent: {
+        width,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        backgroundColor: '#ffffff',
+        paddingHorizontal: 24,
+    },
+    heading: {
+        color: '#212122',
+        fontSize: 20,
+        marginTop: 24,
+    },
+    footer: {
+        color: '#2e8277',
+        fontSize: 19,
+    },
+    info: {
+        fontSize: 17,
+        marginTop: 16,
     },
 });
 
-export class FingerprintModal extends PureComponent {
+class FingerprintModal extends Component {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** Hide active modal */
-        hideModal: PropTypes.func.isRequired,
+        onBackButtonPress: PropTypes.func.isRequired,
         /** Determines in which instance the modal is being used*/
         instance: PropTypes.string.isRequired,
         /** @ignore */
-        isFingerprintEnabled: PropTypes.bool.isRequired,
+        isFingerprintEnabled: PropTypes.bool,
+        /** Triggered on fingerprint success */
+        onSuccess: PropTypes.func.isRequired,
         /** @ignore */
-        theme: PropTypes.object.isRequired,
+        minimised: PropTypes.bool.isRequired,
     };
 
-    componentDidMount() {
+    constructor(props) {
+        super(props);
         leaveNavigationBreadcrumb('FingerprintModal');
-        this.props.hideModal = this.props.hideModal.bind(this);
+        this.props.onBackButtonPress = this.props.onBackButtonPress.bind(this);
+        this.state = { error: undefined };
+    }
+
+    componentDidMount() {
+        FingerprintScanner.authenticate({ onAttempt: this.handleAuthenticationAttempted })
+            .then(() => {
+                this.props.onSuccess();
+                FingerprintScanner.release();
+            })
+            .catch((error) => {
+                this.setState({ error: error.name });
+            });
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (this.props.minimised && !newProps.minimised) {
+            this.props.onBackButtonPress();
+            FingerprintScanner.release();
+        }
+    }
+
+    componentWillUnmount() {
+        FingerprintScanner.release();
     }
 
     getText() {
@@ -64,20 +104,52 @@ export class FingerprintModal extends PureComponent {
         return modalText;
     }
 
-    render() {
-        const { theme: { body } } = this.props;
+    handleAuthenticationAttempted = (error) => {
+        this.setState({ error: error.name });
+    };
 
+    render() {
+        const { error } = this.state;
+        const { t, onBackButtonPress } = this.props;
+        const errors = {
+            AuthenticationNotMatch: t('fingerprintSetup:fingerprintAuthFailedExplanation'),
+            AuthenticationFailed: t('fingerprintSetup:fingerprintAuthFailed'),
+            FingerprintScannerNotAvailable: t('fingerprintSetup:fingerprintUnavailable'),
+            FingerprintScannerNotEnrolled: t('fingerprintSetup:notConfigured'),
+            FingerprintScannerNotSupported: t('fingerprintSetup:notSupported'),
+            DeviceLocked: t('fingerprintSetup:deviceLocked'),
+            UserCancel: t('fingerprintSetup:userCancelledAuth'),
+            UserFallback: t('fingerprintSetup:passwordFallback'),
+            SystemCancel: t('fingerprintSetup:systemCancelledAuth'),
+            PasscodeNotSet: t('fingerprintSetup:noPassword'),
+        };
         return (
-            <TouchableOpacity
-                style={[{ width: Styling.contentWidth, alignItems: 'center' }, { backgroundColor: body.bg }]}
-                onPress={this.props.hideModal}
-            >
-                <View style={[styles.modalContent, { borderColor: body.color }]}>
-                    <Text style={[styles.modalText, { color: body.color }]}>{this.getText()}</Text>
+            <View style={styles.container}>
+                <View style={styles.modalContent}>
+                    <Text style={styles.heading}>{this.getText()}</Text>
+                    <View style={{ width: width - 48, alignItems: 'center', marginTop: 48, marginBottom: 24 }}>
+                        <Icon
+                            name={(error && 'info') || 'fingerprint'}
+                            size={64}
+                            color={(error && '#F4511E') || '#2e8277'}
+                        />
+                        <Text style={[styles.info, { color: (error && '#F4511E') || '#2e8277' }]}>
+                            {errors[error] || t('touchSensor')}
+                        </Text>
+                    </View>
+                    <TouchableWithoutFeedback onPress={onBackButtonPress}>
+                        <View style={{ width: width - 48, height: 72, justifyContent: 'center' }}>
+                            <Text style={styles.footer}>{t('cancel').toUpperCase()}</Text>
+                        </View>
+                    </TouchableWithoutFeedback>
                 </View>
-            </TouchableOpacity>
+            </View>
         );
     }
 }
 
-export default withNamespaces(['global'])(FingerprintModal);
+const mapStateToProps = (state) => ({
+    minimised: state.ui.minimised,
+});
+
+export default withNamespaces(['global'])(connect(mapStateToProps)(FingerprintModal));
