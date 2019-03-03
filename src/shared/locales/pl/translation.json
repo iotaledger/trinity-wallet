@@ -775,7 +775,8 @@
     "migration": {
         "dataMigration": "Przenoszenie danych",
         "dataMigrationExplanation": "Ze względu na wydajność i pewne ograniczenia pamięci, Trinity używa od teraz nowej bazy danych do przechowywania ustawień i danych konta. Zaczekaj, podczas gdy Trinity automatycznie wykona migrację Twoich danych.",
-        "problemMigratingYourData": "Wystąpił problem podczas migracji Twoich danych. Spróbuj ponownie"
+        "problemMigratingYourData": "Wystąpił problem podczas migracji Twoich danych. Spróbuj ponownie",
+        "seedMigrationExplanation": "W ramach nieustannych wysiłków na rzecz poprawy bezpieczeństwa portfela Trinity, Twój klucz seed zostanie przeniesiony do ulepszonego magazynu kluczy. Proszę czekać, Trinity automatycznie przeprowadzi proces migracji."
     },
     "ledger": {
         "ready": "Urządzenie Ledger podłączone i gotowe do pracy",
