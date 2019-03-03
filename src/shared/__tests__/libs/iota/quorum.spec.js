@@ -11,7 +11,7 @@ describe('libs: iota/quorum', () => {
                 it('should return most frequently occurring status', () => {
                     const args = [true, true, true, true, false, true, true];
 
-                    const result = determineQuorumResult(args)('wereAddressesSpentFrom', 67);
+                    const result = determineQuorumResult(args, args.length)('wereAddressesSpentFrom', 67);
                     expect(result).to.equal(true);
                 });
             });
@@ -20,7 +20,7 @@ describe('libs: iota/quorum', () => {
                 it('should return true as a fallback status', () => {
                     const args = [true, true, false, false, false, false, true];
 
-                    const result = determineQuorumResult(args)('wereAddressesSpentFrom', 67);
+                    const result = determineQuorumResult(args, args.length)('wereAddressesSpentFrom', 67);
                     expect(result).to.equal(true);
                 });
             });
@@ -31,7 +31,7 @@ describe('libs: iota/quorum', () => {
                 it('should return most frequently occurring status', () => {
                     const args = [true, true, true, true, false, true, true];
 
-                    const result = determineQuorumResult(args)('getInclusionStates', 67);
+                    const result = determineQuorumResult(args, args.length)('getInclusionStates', 67);
                     expect(result).to.equal(true);
                 });
             });
@@ -40,7 +40,7 @@ describe('libs: iota/quorum', () => {
                 it('should return false as a fallback status', () => {
                     const args = [true, true, false, false, false, false, true];
 
-                    const result = determineQuorumResult(args)('getInclusionStates', 67);
+                    const result = determineQuorumResult(args, args.length)('getInclusionStates', 67);
                     expect(result).to.equal(false);
                 });
             });
@@ -51,7 +51,7 @@ describe('libs: iota/quorum', () => {
                 it('should return most frequently occurring balance', () => {
                     const args = ['10', '10', '10', '10', '0', '10', '10'];
 
-                    const result = determineQuorumResult(args)('getBalances:balances', 67);
+                    const result = determineQuorumResult(args, args.length)('getBalances:balances', 67);
                     expect(result).to.equal('10');
                 });
             });
@@ -60,7 +60,7 @@ describe('libs: iota/quorum', () => {
                 it('should return "0" as a fallback balance', () => {
                     const args = ['10', '10', '0', '0', '0', '0', '10'];
 
-                    const result = determineQuorumResult(args)('getBalances:balances', 67);
+                    const result = determineQuorumResult(args, args.length)('getBalances:balances', 67);
                     expect(result).to.equal('0');
                 });
             });
@@ -82,7 +82,10 @@ describe('libs: iota/quorum', () => {
                         correctHash,
                     ];
 
-                    const result = determineQuorumResult(args)('getNodeInfo:latestSolidSubtangleMilestone', 67);
+                    const result = determineQuorumResult(args, args.length)(
+                        'getNodeInfo:latestSolidSubtangleMilestone',
+                        67,
+                    );
                     expect(result).to.equal(correctHash);
                 });
             });
@@ -102,7 +105,10 @@ describe('libs: iota/quorum', () => {
                         correctHash,
                     ];
 
-                    const result = determineQuorumResult(args)('getNodeInfo:latestSolidSubtangleMilestone', 67);
+                    const result = determineQuorumResult(args, args.length)(
+                        'getNodeInfo:latestSolidSubtangleMilestone',
+                        67,
+                    );
                     expect(result).to.equal(EMPTY_HASH_TRYTES);
                 });
             });
