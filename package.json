@@ -54,7 +54,8 @@
     "snyk": "^1.116.2"
   },
   "resolutions": {
-    "request": ">=2.88.0"
+    "request": ">=2.88.0",
+    "node.extend": ">=1.1.7"
   },
   "snyk": true
 }
