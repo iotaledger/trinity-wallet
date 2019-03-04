@@ -10,7 +10,6 @@ import { zxcvbn } from 'shared-modules/libs/exports';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { passwordReasons } from 'shared-modules/libs/password';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import i18next from 'shared-modules/libs/i18next.js';
 import { height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { UInt8ToString } from 'libs/crypto';
@@ -100,14 +99,14 @@ class PasswordFields extends Component {
     }
 
     render() {
-        const { theme, password, reentry, passwordLabel, reentryLabel } = this.props;
+        const { t, theme, password, reentry, passwordLabel, reentryLabel } = this.props;
         const { score } = this.state;
         const isValid = score.score === 4;
 
         return (
             <View style={[styles.container]}>
                 <CustomTextInput
-                    label={passwordLabel || i18next.t('global:password')}
+                    label={passwordLabel || t('global:password')}
                     onValidTextChange={(password) => {
                         this.props.setPassword(password);
                         this.setState({ score: zxcvbn(password ? UInt8ToString(password) : '') });
@@ -135,7 +134,7 @@ class PasswordFields extends Component {
                     onRef={(c) => {
                         this.reentry = c;
                     }}
-                    label={reentryLabel || i18next.t('setPassword:retypePassword')}
+                    label={reentryLabel || t('setPassword:retypePassword')}
                     onValidTextChange={(reentry) => this.props.setReentry(reentry)}
                     containerStyle={{ width: Styling.contentWidth, marginTop: height / 60 }}
                     widget="passwordReentry"
