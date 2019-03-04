@@ -130,7 +130,7 @@ class Migration extends Component {
         if (this.state.hasCompletedRealmMigration) {
             return t('seedMigrationExplanation');
         }
-        return t('dataMigrationExplanation') + ' ' + t('loading:thisMayTake');
+        return `${t('dataMigrationExplanation')} {t('loading:thisMayTake')} {t('doNotMinimise')}`;
     }
 
     /**
