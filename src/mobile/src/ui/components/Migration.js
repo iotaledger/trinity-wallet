@@ -10,6 +10,7 @@ import { startTrackingProgress } from 'shared-modules/actions/progress';
 import { connect } from 'react-redux';
 import { Styling } from 'ui/theme/general';
 import { migrate } from 'shared-modules/actions/migrations';
+import KeepAwake from 'react-native-keep-awake';
 import { setFullNode } from 'shared-modules/actions/settings';
 import { reduxPersistStorageAdapter } from 'libs/store';
 import { migrateSeedStorage } from 'libs/keychain';
@@ -99,6 +100,7 @@ class Migration extends Component {
     }
 
     componentDidMount() {
+        KeepAwake.activate();
         if (!this.props.completedMigration) {
             this.executeRealmMigration();
         } else {
@@ -161,6 +163,7 @@ class Migration extends Component {
      * @method navigateToLoadingScreen
      */
     navigateToLoadingScreen() {
+        KeepAwake.deactivate();
         Navigation.setStackRoot('appStack', {
             component: {
                 name: 'loading',
