@@ -94,6 +94,8 @@ export const getAccountData = (provider, withQuorum) => (seedStore, accountName,
  *   @returns {function(object, object, function, object): Promise<object>}
  **/
 export const syncAccount = (provider, withQuorum) => (existingAccountState, seedStore, notificationFn, settings) => {
+    console.log('Sync account called. withQuorum value:', withQuorum);
+
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = typeof seedStore === 'object';
 
