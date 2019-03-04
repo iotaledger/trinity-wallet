@@ -58,11 +58,11 @@
         }
 
         &.info {
-            background: var(--positive);
-            color: var(--positive-body);
-            border-color: var(--positive-hover);
+            background: var(--secondary);
+            color: var(--secondary-body);
+            border-color: var(--secondary-hover);
             span:hover {
-                color: var(--positive-hover);
+                color: var(--secondary-hover);
             }
         }
 
