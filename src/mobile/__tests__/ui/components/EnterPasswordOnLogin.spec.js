@@ -15,7 +15,7 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            password: '',
+            password: {},
             theme,
             onLoginPress: noop,
             navigateToNodeOptions: noop,
@@ -91,7 +91,7 @@ describe('Testing EnterPasswordOnLogin component', () => {
             describe('#handleLogin', () => {
                 it('should call prop method "onLoginPress" with prop "password"', () => {
                     const props = getProps({
-                        password: 'foo',
+                        password: {},
                         onLoginPress: jest.fn(),
                     });
 
@@ -100,7 +100,7 @@ describe('Testing EnterPasswordOnLogin component', () => {
 
                     instance.handleLogin();
 
-                    expect(props.onLoginPress).toHaveBeenCalledWith('foo');
+                    expect(props.onLoginPress).toHaveBeenCalledWith({});
                 });
             });
 

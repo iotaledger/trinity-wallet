@@ -46,7 +46,7 @@
     "concurrently": "^4.1.0",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
-    "dart-sass": "^1.17.0",
+    "dart-sass": "^1.17.2",
     "electron": "^3.1.4",
     "electron-builder": "^20.38",
     "electron-devtools-installer": "^2.2.4",
@@ -63,7 +63,7 @@
     "url-loader": "^1.1.1",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-middleware": "^3.5.2",
+    "webpack-dev-middleware": "^3.6.0",
     "webpack-hot-middleware": "^2.24.2"
   },
   "build": {
@@ -160,7 +160,7 @@
     "machine-uuid-sync": "https://github.com/rajivshah3/machine-uuid-sync",
     "perfect-scrollbar": "^1.4.0",
     "qr.js": "^0.0.0",
-    "react": "^16.8.2",
+    "react": "^16.8.3",
     "react-dom": "^16.8.2",
     "react-i18next": "^9.0.10",
     "react-lottie": "^1.2.3",

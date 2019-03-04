@@ -3363,9 +3363,9 @@
       }
     },
     "dart-sass": {
-      "version": "1.17.0",
-      "resolved": "https://registry.npmjs.org/dart-sass/-/dart-sass-1.17.0.tgz",
-      "integrity": "sha512-RXXLdHUooowd0pWoXcc3nfLA/ZH6S5TtuNQsjgumeUovIE4SUPXD5XKXyZCZ9DfvYsznloktbg0N3QYU2IOJfg==",
+      "version": "1.17.2",
+      "resolved": "https://registry.npmjs.org/dart-sass/-/dart-sass-1.17.2.tgz",
+      "integrity": "sha512-I7C9deQQT2t1eNCqOjVZ1xbmelBHdhof4D3MIMpw4/XH3iB0DaOwTBCG2+/xCKWQzuLKxcxBknUCt7Kg/6NTZg==",
       "dev": true,
       "requires": {
         "chokidar": "^2.0.0"
@@ -4904,12 +4904,6 @@
           "requires": {
             "ms": "2.0.0"
           }
-        },
-        "deep-extend": {
-          "version": "0.6.0",
-          "bundled": true,
-          "dev": true,
-          "optional": true
         },
         "delegates": {
           "version": "1.0.0",
@@ -7655,12 +7649,6 @@
                 "ms": "0.7.1"
               }
             },
-            "deep-extend": {
-              "version": "0.4.1",
-              "resolved": "https://registry.npmjs.org/deep-extend/-/deep-extend-0.4.1.tgz",
-              "integrity": "sha1-7+QRPQgIX05vlod1mBD4B0aeIlM=",
-              "optional": true
-            },
             "delayed-stream": {
               "version": "1.0.0",
               "resolved": "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz",
@@ -8143,7 +8131,6 @@
               "integrity": "sha1-Q2UbdrauU7XIAvEVH6P8OwWZack=",
               "optional": true,
               "requires": {
-                "deep-extend": "~0.4.0",
                 "ini": "~1.3.0",
                 "minimist": "^1.2.0",
                 "strip-json-comments": "~1.0.4"
@@ -9236,7 +9223,7 @@
         },
         "pako": {
           "version": "github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc",
-          "from": "pako@github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc"
+          "from": "github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc"
         },
         "parse-glob": {
           "version": "3.0.4",
@@ -9613,7 +9600,7 @@
         },
         "text-encoding": {
           "version": "github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb",
-          "from": "text-encoding@github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb"
+          "from": "github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb"
         },
         "timers-browserify": {
           "version": "2.0.2",
@@ -9855,7 +9842,7 @@
         },
         "xmldom": {
           "version": "github:keeweb/xmldom#ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6",
-          "from": "xmldom@github:keeweb/xmldom#ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6"
+          "from": "github:keeweb/xmldom#ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6"
         },
         "xtend": {
           "version": "4.0.1",
@@ -12113,14 +12100,25 @@
       }
     },
     "react": {
-      "version": "16.8.2",
-      "resolved": "https://registry.npmjs.org/react/-/react-16.8.2.tgz",
-      "integrity": "sha512-aB2ctx9uQ9vo09HVknqv3DGRpI7OIGJhCx3Bt0QqoRluEjHSaObJl+nG12GDdYH6sTgE7YiPJ6ZUyMx9kICdXw==",
+      "version": "16.8.3",
+      "resolved": "https://registry.npmjs.org/react/-/react-16.8.3.tgz",
+      "integrity": "sha512-3UoSIsEq8yTJuSu0luO1QQWYbgGEILm+eJl2QN/VLDi7hL+EN18M3q3oVZwmVzzBJ3DkM7RMdRwBmZZ+b4IzSA==",
       "requires": {
         "loose-envify": "^1.1.0",
         "object-assign": "^4.1.1",
         "prop-types": "^15.6.2",
-        "scheduler": "^0.13.2"
+        "scheduler": "^0.13.3"
+      },
+      "dependencies": {
+        "scheduler": {
+          "version": "0.13.3",
+          "resolved": "https://registry.npmjs.org/scheduler/-/scheduler-0.13.3.tgz",
+          "integrity": "sha512-UxN5QRYWtpR1egNWzJcVLk8jlegxAugswQc984lD3kU7NuobsO37/sRfbpTdBjtnD5TBNFA2Q2oLV5+UmPSmEQ==",
+          "requires": {
+            "loose-envify": "^1.1.0",
+            "object-assign": "^4.1.1"
+          }
+        }
       }
     },
     "react-dev-utils": {
@@ -14843,12 +14841,12 @@
       }
     },
     "webpack-dev-middleware": {
-      "version": "3.5.2",
-      "resolved": "https://registry.npmjs.org/webpack-dev-middleware/-/webpack-dev-middleware-3.5.2.tgz",
-      "integrity": "sha512-nPmshdt1ckcwWjI0Ubrdp8KroeuprW6xFKYqk0u3MflNMBXvHPnMATsC7/L/enwav2zvLCfj/Usr47qnF3KQyA==",
+      "version": "3.6.0",
+      "resolved": "https://registry.npmjs.org/webpack-dev-middleware/-/webpack-dev-middleware-3.6.0.tgz",
+      "integrity": "sha512-oeXA3m+5gbYbDBGo4SvKpAHJJEGMoekUbHgo1RK7CP1sz7/WOSeu/dWJtSTk+rzDCLkPwQhGocgIq6lQqOyOwg==",
       "dev": true,
       "requires": {
-        "memory-fs": "~0.4.1",
+        "memory-fs": "^0.4.1",
         "mime": "^2.3.1",
         "range-parser": "^1.0.3",
         "webpack-log": "^2.0.0"
