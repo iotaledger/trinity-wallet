@@ -53,11 +53,6 @@ class PasswordFields extends Component {
         reentryLabel: PropTypes.string,
     };
 
-    static defaultProps = {
-        passwordLabel: i18next.t('global:password'),
-        reentryLabel: i18next.t('setPassword:retypePassword'),
-    };
-
     constructor() {
         super();
         this.state = {
@@ -112,7 +107,7 @@ class PasswordFields extends Component {
         return (
             <View style={[styles.container]}>
                 <CustomTextInput
-                    label={passwordLabel}
+                    label={passwordLabel || i18next.t('global:password')}
                     onValidTextChange={(password) => {
                         this.props.setPassword(password);
                         this.setState({ score: zxcvbn(password ? UInt8ToString(password) : '') });
@@ -140,7 +135,7 @@ class PasswordFields extends Component {
                     onRef={(c) => {
                         this.reentry = c;
                     }}
-                    label={reentryLabel}
+                    label={reentryLabel || i18next.t('setPassword:retypePassword')}
                     onValidTextChange={(reentry) => this.props.setReentry(reentry)}
                     containerStyle={{ width: Styling.contentWidth, marginTop: height / 60 }}
                     widget="passwordReentry"

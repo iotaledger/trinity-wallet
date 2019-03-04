@@ -563,7 +563,7 @@ class Receive extends Component {
                                     ctaColor={primary.color}
                                     ctaBorderColor={primary.color}
                                     secondaryCtaColor={primary.body}
-                                    text="Generate address"
+                                    text={t('generateAnAddress')}
                                     onPress={() => {
                                         this.generateAddress();
                                     }}

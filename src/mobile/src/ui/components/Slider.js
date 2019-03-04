@@ -68,8 +68,6 @@ class Slider extends Component {
         channelHeight: deviceHeight / 12,
         renderSwipeComplete: false,
         blockSwipe: false,
-        preSwipeText: i18next.t('swipeToConfirm'),
-        postSwipeText: i18next.t('confirmed'),
         sliderReset: false,
         numberOfSliders: 1,
     };
@@ -183,12 +181,12 @@ class Slider extends Component {
     getText() {
         const { preSwipeText, postSwipeText, numberOfSliders } = this.props;
         if (this.state.swipeComplete) {
-            return postSwipeText;
+            return postSwipeText || i18next.t('confirmed');
         }
         if (numberOfSliders > 1) {
-            return preSwipeText + ' (' + this.state.sliderNumber + '/' + numberOfSliders + ')';
+            return (preSwipeText || i18next.t('swipeToConfirm')) + ' (' + this.state.sliderNumber + '/' + numberOfSliders + ')';
         }
-        return preSwipeText;
+        return preSwipeText || i18next.t('swipeToConfirm');
     }
 
     resetSlider() {
