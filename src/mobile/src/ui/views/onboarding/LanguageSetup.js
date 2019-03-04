@@ -156,7 +156,7 @@ class LanguageSetup extends Component {
                                         this.dropdown = c;
                                     }}
                                     title={t('language')}
-                                    defaultOption={defaultLanguageLabel}
+                                    value={defaultLanguageLabel}
                                     options={I18N_LOCALE_LABELS}
                                     saveSelection={(language) => this.clickDropdownItem(language)}
                                 />

@@ -146,7 +146,7 @@ class NodeSelection extends Component {
                             }}
                             title={t('global:node')}
                             dropdownWidth={{ width: width / 1.5 }}
-                            defaultOption={node}
+                            value={node}
                             saveSelection={(node) => this.setState({ node })}
                             options={nodes}
                             background
