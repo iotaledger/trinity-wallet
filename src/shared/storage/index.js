@@ -7,32 +7,11 @@ import isEmpty from 'lodash/isEmpty';
 import isUndefined from 'lodash/isUndefined';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
-import omit from 'lodash/omit';
 import values from 'lodash/values';
 import size from 'lodash/size';
-import {
-    TransactionSchema,
-    AddressSchema,
-    AccountSchema,
-    AccountInfoDuringSetupSchema,
-    AccountMetaSchema,
-    AddressSpendStatusSchema,
-    WalletSchema,
-    NodeSchema,
-    NotificationsSettingsSchema,
-    WalletSettingsSchema,
-    WalletVersionsSchema,
-    ErrorLogSchema,
-} from '../schema';
-import { __MOBILE__, __TEST__, __DEV__ } from '../config';
+import schemas from '../schemas';
+import { __MOBILE__, __TEST__ } from '../config';
 import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
-
-const SCHEMA_VERSION = 1;
-
-const getStoragePath = (schemaVersion = SCHEMA_VERSION) =>
-    __MOBILE__ || __TEST__
-        ? `trinity-${schemaVersion}.realm`
-        : `${Electron.getUserDataPath()}/trinity${__DEV__ ? '-dev' : ''}-${schemaVersion}.realm`;
 
 // Initialise realm instance
 let realm = {}; // eslint-disable-line import/no-mutable-exports
@@ -61,8 +40,6 @@ const Realm = getRealm();
  * Model for Account.
  */
 class Account {
-    static schema = AccountSchema;
-
     /**
      * Gets object for provided id (account name)
      *
@@ -191,25 +168,9 @@ class Account {
 }
 
 /**
- * Model for Address.
- */
-class Address {
-    static schema = AddressSchema;
-}
-
-/**
- * Model for Address spent status.
- */
-class AddressSpendStatus {
-    static schema = AddressSpendStatusSchema;
-}
-
-/**
  * Model for node.
  */
 class Node {
-    static schema = NodeSchema;
-
     /**
      * Gets object for provided id (url)
      *
@@ -294,18 +255,10 @@ class Node {
 }
 
 /**
- * Model for transaction.
- */
-class Transaction {
-    static schema = TransactionSchema;
-}
-
-/**
  * Model for wallet data and settings.
  */
 class Wallet {
-    static schema = WalletSchema;
-    static version = Number(SCHEMA_VERSION);
+    static version = Number(schemas[size(schemas) - 1].schemaVersion);
 
     /**
      * Gets object for provided id (version)
@@ -687,6 +640,7 @@ class Wallet {
     static createIfNotExists() {
         const shouldCreate = isEmpty(Wallet.getObjectForId());
 
+        console.log('Should create', shouldCreate);
         if (shouldCreate) {
             realm.write(() =>
                 realm.create('Wallet', {
@@ -719,35 +673,6 @@ class Wallet {
 }
 
 /**
- * Model for error logs.
- */
-class ErrorLog {
-    static schema = ErrorLogSchema;
-}
-
-/**
- * Realm storage default configuration.
- */
-export const config = {
-    path: getStoragePath(),
-    schema: [
-        AccountSchema,
-        AddressSchema,
-        AddressSpendStatusSchema,
-        AccountInfoDuringSetupSchema,
-        AccountMetaSchema,
-        ErrorLogSchema,
-        NodeSchema,
-        NotificationsSettingsSchema,
-        TransactionSchema,
-        WalletSettingsSchema,
-        WalletVersionsSchema,
-        WalletSchema,
-    ],
-    schemaVersion: SCHEMA_VERSION,
-};
-
-/**
  * Deletes all objects in storage and deletes storage file for provided config
  *
  * @method purge
@@ -775,8 +700,17 @@ const purge = () =>
  */
 const initialise = (getEncryptionKeyPromise) =>
     getEncryptionKeyPromise().then((encryptionKey) => {
-        realm = new Realm(assign({}, config, { encryptionKey }));
-        initialiseSync(encryptionKey);
+        const schemasSize = size(schemas);
+        let nextSchemaIndex = 0;
+
+        while (nextSchemaIndex < schemasSize) {
+            const migratedRealm = new Realm(assign({}, schemas[nextSchemaIndex++], { encryptionKey }));
+            migratedRealm.close();
+        }
+
+        realm = new Realm(assign({}, schemas[schemasSize - 1], { encryptionKey }));
+
+        initialiseSync();
     });
 
 /**
@@ -784,76 +718,10 @@ const initialise = (getEncryptionKeyPromise) =>
  *
  * @method initialiseSync
  *
- * @param {array} encryptionKey
- *
  * @returns {Promise}
  */
-const initialiseSync = (encryptionKey) => {
+const initialiseSync = () => {
     Wallet.createIfNotExists();
-    let hasVersionZeroRealm = false;
-
-    try {
-        hasVersionZeroRealm = Realm.schemaVersion(getStoragePath(0), encryptionKey) !== -1;
-    } catch (error) {}
-
-    // FIXME (laumair) - Realm migration setup needs improvement.
-    // This is just a quick way to migrate realm data from schema version 0 to 1
-    // Schema version 1 adds (missing) "completed" property to AccountInfoDuringSetup schema
-    // If onboarding is interrupted on loading (without "completed" property), the wallet throws continuous exceptions
-    // See #isSettingUpNewAccount in shared/selectors/accounts
-    if (realm.schemaVersion >= 1 && hasVersionZeroRealm) {
-        const schema = map(config.schema, (object) => {
-            // Omit "completed" property from AccountInfoDuringSetup schema because it wasn't defined in schema version 0
-            if (object.name === 'AccountInfoDuringSetup') {
-                return omit(object, ['properties.completed']);
-            }
-
-            return object;
-        });
-
-        const versionZeroConfig = assign({}, config, {
-            encryptionKey,
-            schemaVersion: 0,
-            path: getStoragePath(0),
-            schema,
-        });
-
-        const oldRealm = new Realm(versionZeroConfig);
-
-        const accountsData = oldRealm.objects('Account');
-        const versionZeroWalletData = oldRealm.objectForPrimaryKey('Wallet', 0);
-        const nodesData = oldRealm.objects('Node');
-
-        if (!isEmpty(accountsData)) {
-            Account.createMultiple(accountsData);
-        }
-
-        if (!isEmpty(versionZeroWalletData)) {
-            Wallet.updateLatest(
-                assign(
-                    {},
-                    versionZeroWalletData,
-                    // Use latest schema version
-                    { version: Wallet.version },
-                ),
-            );
-
-            // Check if accountInfoDuringSetup.name was set in scheme version 0
-            // If it was set, then that means there exists an account that hasn't been loaded properly in the wallet
-            // It also means that "completed" property isn't set to true
-            if (!isEmpty(versionZeroWalletData.accountInfoDuringSetup.name)) {
-                Wallet.updateAccountInfoDuringSetup({ completed: true });
-            }
-        }
-
-        if (!isEmpty(nodesData)) {
-            Node.addNodes(nodesData);
-        }
-
-        oldRealm.write(() => oldRealm.deleteAll());
-
-        Realm.deleteFile(versionZeroConfig);
-    }
 };
 
 /**
@@ -866,17 +734,4 @@ const initialiseSync = (encryptionKey) => {
  */
 const reinitialise = (getEncryptionKeyPromise) => purge().then(() => initialise(getEncryptionKeyPromise));
 
-export {
-    realm,
-    initialise,
-    initialiseSync,
-    reinitialise,
-    purge,
-    Account,
-    ErrorLog,
-    Transaction,
-    Address,
-    AddressSpendStatus,
-    Node,
-    Wallet,
-};
+export { realm, initialise, initialiseSync, reinitialise, purge, Account, Node, Wallet };
