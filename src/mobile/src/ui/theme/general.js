@@ -16,9 +16,9 @@ export const Styling = {
     fontSize5: width / 19,
     fontSize6: width / 14,
     fontSize7: width / 8,
-    topbarHeightRatio: isIPhoneX ? 1 / 6 : 1 / 8,
-    get topbarHeight() {
-        return height * this.topbarHeightRatio;
+    topBarHeightRatio: isIPhoneX ? 1 / 6 : 1 / 8,
+    get topBarHeight() {
+        return height * this.topBarHeightRatio;
     },
     iPhoneXBottomInsetHeight: 34,
     statusBarHeight: isAndroid ? ExtraDimensions.get('STATUS_BAR_HEIGHT') : isIPhoneX ? 44 : 20,
