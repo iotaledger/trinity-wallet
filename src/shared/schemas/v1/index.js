@@ -1,8 +1,9 @@
+import noop from 'lodash/noop';
 import merge from 'lodash/merge';
 import map from 'lodash/map';
 import defaultSchemas from '../default';
 
-export const migration = () => {};
+const migration = noop;
 
 export default map(defaultSchemas, (schema) => {
     if (schema.name === 'AccountInfoDuringSetup') {
@@ -21,3 +22,5 @@ export default map(defaultSchemas, (schema) => {
 
     return schema;
 });
+
+export { migration };

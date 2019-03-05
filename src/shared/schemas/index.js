@@ -6,6 +6,20 @@ import { __MOBILE__, __TEST__, __DEV__ } from '../config';
 const STORAGE_PATH =
     __MOBILE__ || __TEST__ ? 'trinity.realm' : `${Electron.getUserDataPath()}/trinity${__DEV__ ? '-dev' : ''}.realm`;
 
+/**
+ * Gets deprecated realm storage path
+ *
+ * @method getDeprecatedStoragePath
+ *
+ * @param {number} schemaVersion
+ *
+ * @returns {string}
+ */
+const getDeprecatedStoragePath = (schemaVersion) =>
+    __MOBILE__ || __TEST__
+        ? `trinity-${schemaVersion}.realm`
+        : `${Electron.getUserDataPath()}/trinity${__DEV__ ? '-dev' : ''}-${schemaVersion}.realm`;
+
 export default [
     {
         schema: v0Schema,
@@ -20,3 +34,5 @@ export default [
         path: STORAGE_PATH,
     },
 ];
+
+export { v0Schema, v1Schema, STORAGE_PATH, getDeprecatedStoragePath };

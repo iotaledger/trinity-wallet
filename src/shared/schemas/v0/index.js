@@ -1,5 +1,7 @@
 import defaultSchemas from '../default';
 
-export const migration = () => {};
+const migration = () => {};
 
 export default defaultSchemas;
+
+export { migration };

@@ -9,7 +9,7 @@ import map from 'lodash/map';
 import merge from 'lodash/merge';
 import values from 'lodash/values';
 import size from 'lodash/size';
-import schemas from '../schemas';
+import schemas, { getDeprecatedStoragePath, STORAGE_PATH as latestStoragePath, v0Schema, v1Schema } from '../schemas';
 import { __MOBILE__, __TEST__ } from '../config';
 import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
 
@@ -640,7 +640,6 @@ class Wallet {
     static createIfNotExists() {
         const shouldCreate = isEmpty(Wallet.getObjectForId());
 
-        console.log('Should create', shouldCreate);
         if (shouldCreate) {
             realm.write(() =>
                 realm.create('Wallet', {
@@ -691,6 +690,43 @@ const purge = () =>
     });
 
 /**
+ * Migrates realm from deprecated to latest storage path
+ *
+ * @method migrateToNewStoragePath
+ *
+ * @param {object} config - {{ encryptionKey: {array}, schemaVersion: {number}, path: {string}, schema: {array} }}
+ *
+ * @returns {undefined}
+ */
+const migrateToNewStoragePath = (config) => {
+    const oldRealm = new Realm(config);
+
+    const accountsData = oldRealm.objects('Account');
+    const walletData = oldRealm.objectForPrimaryKey('Wallet', config.schemaVersion);
+    const nodesData = oldRealm.objects('Node');
+
+    const newRealm = new Realm(assign({}, config, { path: latestStoragePath }));
+
+    newRealm.write(() => {
+        if (!isEmpty(accountsData)) {
+            each(accountsData, (data) => newRealm.create('Account', data));
+        }
+
+        if (!isEmpty(walletData)) {
+            newRealm.create('Wallet', walletData);
+        }
+
+        if (!isEmpty(nodesData)) {
+            each(nodesData, (node) => newRealm.create('Node', node));
+        }
+    });
+
+    oldRealm.write(() => oldRealm.deleteAll());
+
+    Realm.deleteFile(config);
+};
+
+/**
  * Initialises storage.
  *
  * @method initialise
@@ -700,8 +736,44 @@ const purge = () =>
  */
 const initialise = (getEncryptionKeyPromise) =>
     getEncryptionKeyPromise().then((encryptionKey) => {
+        let hasVersionZeroRealmAtDeprecatedPath = false;
+        let hasVersionOneRealmAtDeprecatedPath = false;
+
+        try {
+            hasVersionZeroRealmAtDeprecatedPath =
+                Realm.schemaVersion(getDeprecatedStoragePath(0), encryptionKey) !== -1;
+        } catch (error) {}
+
+        try {
+            hasVersionOneRealmAtDeprecatedPath = Realm.schemaVersion(getDeprecatedStoragePath(1), encryptionKey) !== -1;
+        } catch (error) {}
+
+        if (hasVersionZeroRealmAtDeprecatedPath) {
+            const config = {
+                encryptionKey,
+                schemaVersion: 0,
+                path: getDeprecatedStoragePath(0),
+                schema: v0Schema,
+            };
+
+            migrateToNewStoragePath(config);
+        } else if (hasVersionOneRealmAtDeprecatedPath) {
+            const config = {
+                encryptionKey,
+                schemaVersion: 1,
+                path: getDeprecatedStoragePath(1),
+                schema: v1Schema,
+            };
+
+            migrateToNewStoragePath(config);
+        }
+
         const schemasSize = size(schemas);
         let nextSchemaIndex = 0;
+
+        try {
+            nextSchemaIndex = Realm.schemaVersion(latestStoragePath, encryptionKey);
+        } catch (error) {}
 
         while (nextSchemaIndex < schemasSize) {
             const migratedRealm = new Realm(assign({}, schemas[nextSchemaIndex++], { encryptionKey }));
