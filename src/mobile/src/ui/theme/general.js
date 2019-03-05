@@ -24,10 +24,41 @@ export const Styling = {
     statusBarHeight: isAndroid ? ExtraDimensions.get('STATUS_BAR_HEIGHT') : isIPhoneX ? 44 : 20,
 };
 
-export function getBackgroundColor(screen, theme, inactive = false) {
+export function getBorderColor(screen, theme, inactive = false) {
     const { bar, body } = theme;
     const screenMap = {
         home: inactive ? body.bg : bar.bg,
+        loading: body.bg,
+        newSeedSetup: body.bg,
+        walletSetup: body.bg,
+        enterSeed: body.bg,
+        saveYourSeed: body.bg,
+        setPassword: body.bg,
+        login: body.bg,
+        writeSeedDown: body.bg,
+        languageSetup: body.bg,
+        walletResetConfirm: body.bg,
+        walletResetRequirePassword: body.bg,
+        onboardingComplete: body.bg,
+        setAccountName: body.bg,
+        seedReentry: body.bg,
+        saveSeedConfirmation: body.bg,
+        twoFactorSetupAddKey: body.bg,
+        twoFactorSetupEnterToken: body.bg,
+        disable2FA: body.bg,
+        fingerprintSetup: body.bg,
+        termsAndConditions: bar.bg,
+        privacyPolicy: bar.bg,
+        forceChangePassword: body.bg,
+        seedVaultBackup: body.bg,
+    };
+    return screenMap[screen];
+}
+
+export function getBackgroundColor(screen, theme) {
+    const { bar, body } = theme;
+    const screenMap = {
+        home: body.bg,
         loading: body.bg,
         newSeedSetup: body.bg,
         walletSetup: body.bg,

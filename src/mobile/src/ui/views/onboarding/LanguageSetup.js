@@ -94,15 +94,12 @@ class LanguageSetup extends Component {
 
     getNextRoute() {
         const { acceptedTerms, acceptedPrivacy } = this.props;
-
         let nextRoute = 'walletSetup';
-
         if (!acceptedTerms && !acceptedPrivacy) {
             nextRoute = 'termsAndConditions';
         } else if (acceptedTerms && !acceptedPrivacy) {
             nextRoute = 'privacyPolicy';
         }
-
         return nextRoute;
     }
 

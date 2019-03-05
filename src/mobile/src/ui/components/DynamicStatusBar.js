@@ -7,7 +7,7 @@ import { isAndroid } from 'libs/device';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { rgbToHex } from 'shared-modules/libs/utils';
 import { connect } from 'react-redux';
-import { getBackgroundColor } from 'ui/theme/general';
+import { getBorderColor } from 'ui/theme/general';
 
 class DynamicStatusBar extends Component {
     static propTypes = {
@@ -29,9 +29,9 @@ class DynamicStatusBar extends Component {
      */
     getStatusBarColor(currentRoute) {
         const { theme, inactive } = this.props;
-        const backgroundColor = getBackgroundColor(currentRoute, theme, inactive);
-        if (backgroundColor) {
-            return rgbToHex(backgroundColor);
+        const borderColor = getBorderColor(currentRoute, theme, inactive);
+        if (borderColor) {
+            return rgbToHex(borderColor);
         }
     }
 
