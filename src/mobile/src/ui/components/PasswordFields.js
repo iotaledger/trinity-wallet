@@ -106,6 +106,9 @@ class PasswordFields extends Component {
         return (
             <View style={[styles.container]}>
                 <CustomTextInput
+                    onRef={(c) => {
+                        this.password = c;
+                    }}
                     label={passwordLabel || t('global:password')}
                     onValidTextChange={(password) => {
                         this.props.setPassword(password);
@@ -121,12 +124,13 @@ class PasswordFields extends Component {
                     returnKeyType="next"
                     onSubmitEditing={() => {
                         if (password) {
+                            this.password.blur();
                             this.reentry.focus();
                         }
                     }}
                     testID="setPassword-passwordbox"
                     theme={theme}
-                    value={this.props.password}
+                    value={password}
                     secureTextEntry
                     isPasswordInput
                 />
@@ -145,9 +149,16 @@ class PasswordFields extends Component {
                     returnKeyType="done"
                     testID="setPassword-reentrybox"
                     theme={theme}
-                    value={this.props.reentry}
+                    value={reentry}
                     secureTextEntry
                     isPasswordInput
+                    onSubmitEditing={() => {
+                        if (reentry) {
+                            this.reentry.blur();
+                            this.password.focus();
+                            this.password.blur();
+                        }
+                    }}
                 />
             </View>
         );
