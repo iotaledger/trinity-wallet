@@ -93,11 +93,11 @@ class PrivacyPolicy extends Component {
     }
 
     render() {
-        const { t, theme: { primary, body, bar } } = this.props;
+        const { t, theme: { primary, bar } } = this.props;
         const textColor = { color: bar.color };
 
         return (
-            <View style={[styles.container, { backgroundColor: body.bg }]}>
+            <View style={[styles.container, { backgroundColor: bar.bg }]}>
                 <AnimatedComponent
                     animationInType={['slideInRight', 'fadeIn']}
                     animationOutType={['slideOutLeft', 'fadeOut']}
