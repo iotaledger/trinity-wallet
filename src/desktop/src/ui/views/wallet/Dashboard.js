@@ -2,7 +2,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -134,4 +134,4 @@ const mapDispatchToProps = {
     getAccountInfo,
 };
 
-export default withI18n()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));

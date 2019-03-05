@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { shorten } from 'libs/iota/converter';
@@ -204,4 +204,4 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
 });
 
-export default connect(mapStateToProps)(withI18n()(Settings));
+export default connect(mapStateToProps)(withTranslation()(Settings));

@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -107,4 +107,4 @@ const mapStateToProps = (state) => ({
     onboardingName: state.accounts.accountInfoDuringSetup.name,
 });
 
-export default connect(mapStateToProps)(withI18n()(SeedSave));
+export default connect(mapStateToProps)(withTranslation()(SeedSave));

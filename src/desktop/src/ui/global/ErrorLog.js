@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { formatTimeAs, detectedTimezone } from 'libs/date';
 
 import { clearLog } from 'actions/alerts';
@@ -102,4 +102,4 @@ const mapDispatchToProps = {
     clearLog,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(ErrorLog));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(ErrorLog));

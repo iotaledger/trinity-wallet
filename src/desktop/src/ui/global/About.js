@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -337,4 +337,4 @@ class About extends React.PureComponent {
     }
 }
 
-export default withI18n()(About);
+export default withTranslation()(About);

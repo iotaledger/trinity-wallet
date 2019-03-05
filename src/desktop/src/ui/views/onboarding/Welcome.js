@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 
 import { acceptTerms, acceptPrivacy } from 'actions/settings';
@@ -134,4 +134,4 @@ const mapDispatchToProps = {
     acceptPrivacy,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Welcome));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Welcome));

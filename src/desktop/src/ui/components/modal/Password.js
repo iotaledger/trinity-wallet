@@ -1,7 +1,7 @@
 /* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import authenticator from 'authenticator';
 
@@ -193,4 +193,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(null, mapDispatchToProps)(withI18n()(ModalPassword));
+export default connect(null, mapDispatchToProps)(withTranslation()(ModalPassword));
