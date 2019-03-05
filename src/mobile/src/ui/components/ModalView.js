@@ -98,7 +98,10 @@ export class ModalViewComponent extends PureComponent {
                 resetScrollToCoords={{ x: 0, y: 0 }}
                 scrollEnabled={false}
                 extraHeight={0}
-                contentContainerStyle={styles.container}
+                contentContainerStyle={[
+                    styles.container,
+                    isIPhoneX && { marginBottom: Styling.iPhoneXBottomInsetHeight },
+                ]}
             >
                 {displayTopBar && isAndroid && <View style={{ flex: Styling.topBarHeightRatio }} />}
                 <View
