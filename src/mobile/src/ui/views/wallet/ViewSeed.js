@@ -1,19 +1,29 @@
 import isEqual from 'lodash/isEqual';
+import authenticator from 'authenticator';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
-import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback, AppState } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    Keyboard,
+    TouchableWithoutFeedback,
+    AppState,
+    Animated,
+    Easing,
+} from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import FlagSecure from 'react-native-flag-secure-android';
 import Fonts from 'ui/theme/fonts';
-import Seedbox from 'ui/components/SeedBox';
+import SeedPicker from 'ui/components/SeedPicker';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import SeedStore from 'libs/SeedStore';
-import { hash } from 'libs/keychain';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
@@ -22,10 +32,17 @@ import InfoBox from 'ui/components/InfoBox';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
+import { hash, getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 11,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    viewContainer: {
+        width,
         alignItems: 'center',
         justifyContent: 'space-between',
     },
@@ -34,36 +51,7 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
-    },
-    topContainer: {
-        flex: 11,
-        justifyContent: 'space-around',
-    },
-    passwordTextContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    textFieldContainer: {
-        flex: 2,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        paddingTop: height / 20,
-    },
-    viewButtonContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    seedBoxContainer: {
-        flex: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    hideButtonContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        paddingBottom: height / 30,
     },
     bottomContainer: {
         flex: 1,
@@ -94,19 +82,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    viewSeedButton: {
-        borderWidth: 1.2,
-        borderRadius: Styling.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    viewSeedText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-    },
 });
 
 /** View Seed screen component */
@@ -126,22 +101,26 @@ class ViewSeed extends Component {
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
+        /** @ignore */
+        is2FAEnabled: PropTypes.bool.isRequired,
     };
 
-    constructor() {
-        super();
-
+    constructor(props) {
+        super(props);
         this.state = {
             password: null,
-            showSeed: false,
             seed: '',
-            appState: AppState.currentState, // eslint-disable-line react/no-unused-state
-            isConfirming: true,
+            step: 'isViewingGeneralInfo',
+            token: '',
+            steps: props.is2FAEnabled
+                ? ['isViewingGeneralInfo', 'isEnteringPassword', 'isEntering2FA', 'isViewingSeed']
+                : ['isViewingGeneralInfo', 'isEnteringPassword', 'isViewingSeed'],
         };
-
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
-        this.hideSeed = this.hideSeed.bind(this);
-        this.viewSeed = this.viewSeed.bind(this);
+        this.onNextPress = this.onNextPress.bind(this);
+        this.onBackPress = this.onBackPress.bind(this);
+        this.resetComponent = this.resetComponent.bind(this);
+        this.animatedValue = new Animated.Value(0);
     }
 
     componentDidMount() {
@@ -151,7 +130,13 @@ class ViewSeed extends Component {
 
     componentWillReceiveProps(newProps) {
         if (this.props.seedIndex !== newProps.seedIndex) {
-            this.hideSeed();
+            this.resetComponent();
+        }
+    }
+
+    componentWillUpdate(newProps, newState) {
+        if (this.state.token.length !== 6 && newState.token.length === 6) {
+            this.onComplete2FA(newState.token);
         }
     }
 
@@ -165,13 +150,86 @@ class ViewSeed extends Component {
     }
 
     /**
+     * Determines next step transition
+     *
+     * @method onNextPress
+     */
+    async onNextPress() {
+        const { step } = this.state;
+        if (step === 'isViewingGeneralInfo') {
+            return this.navigateToStep('isEnteringPassword');
+        } else if (step === 'isEnteringPassword') {
+            return this.verifyPassword();
+        } else if (step === 'isEntering2FA') {
+            return await this.verifyPassword();
+        }
+    }
+
+    /**
+     * Determines previous step transition
+     *
+     * @method onBackPress
+     */
+    onBackPress() {
+        const { step } = this.state;
+        if (step === 'isViewingGeneralInfo') {
+            return this.props.setSetting('accountManagement');
+        }
+        this.resetComponent();
+    }
+
+    /**
+     * Validates 2FA token and logs in user if accepted
+     * @method onComplete2FA
+     */
+    async onComplete2FA(token) {
+        const { t } = this.props;
+        if (token) {
+            const key = await getTwoFactorAuthKeyFromKeychain(global.passwordHash);
+            if (key === null) {
+                this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongTryAgain'),
+                );
+            }
+            const verified = authenticator.verifyToken(key, token);
+            if (verified) {
+                this.navigateToStep('isViewingSeed');
+            } else {
+                this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
+            }
+        } else {
+            this.props.generateAlert('error', t('twoFA:emptyCode'), t('twoFA:emptyCodeExplanation'));
+        }
+    }
+
+    /**
+     * Animates to specified progress step
+     *
+     * @method navigateToStep
+     * @param {string} nextStep
+     */
+    navigateToStep(nextStep) {
+        Keyboard.dismiss();
+        const stepIndex = this.state.steps.indexOf(nextStep);
+        const animatedValue = [0, -1, -2, -3];
+        Animated.timing(this.animatedValue, {
+            toValue: animatedValue[stepIndex] * width,
+            duration: 500,
+            easing: Easing.bezier(0.25, 1, 0.25, 1),
+        }).start();
+        this.setState({ step: nextStep });
+    }
+
+    /**
      * Gets seed from keychain if correct password is provided
      *
-     * @method viewSeed
+     * @method verifyPassword
      * @returns {Promise<void>}
      */
-    async viewSeed() {
-        const { selectedAccountName, selectedAccountMeta, t } = this.props;
+    async verifyPassword() {
+        const { t, selectedAccountName, selectedAccountMeta, is2FAEnabled } = this.props;
         if (!this.state.password) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         }
@@ -182,7 +240,7 @@ class ViewSeed extends Component {
                 FlagSecure.activate();
             }
             this.setState({ seed: await seedStore.getSeed() });
-            this.setState({ showSeed: true });
+            this.navigateToStep(is2FAEnabled ? 'isEntering2FA' : 'isViewingSeed');
         } else {
             this.props.generateAlert(
                 'error',
@@ -200,134 +258,114 @@ class ViewSeed extends Component {
      */
     handleAppStateChange(nextAppState) {
         if (nextAppState.match(/inactive|background/)) {
-            this.hideSeed();
+            this.resetComponent();
         }
-
-        this.setState({ appState: nextAppState }); // eslint-disable-line react/no-unused-state
     }
 
     /**
      * Resets internal state of the component
-     * @method hideSeed
+     * @method resetComponent
      */
-    hideSeed() {
-        this.setState({ showSeed: false });
-        delete this.state.password;
-        delete this.state.seed;
+    resetComponent() {
+        this.navigateToStep('isViewingGeneralInfo');
+        this.setState({ password: null, seed: '', token: '' });
     }
 
     render() {
-        const { t, theme } = this.props;
+        const { t, theme, is2FAEnabled } = this.props;
         const textColor = { color: theme.body.color };
-        const borderColor = { borderColor: theme.body.color };
-        const { isConfirming, password, showSeed } = this.state;
+        const { password, token, steps, step } = this.state;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={styles.container}>
-                    <View style={styles.topContainer}>
-                        <View style={{ flex: 1 }} />
-                        {!showSeed &&
-                            !isConfirming && (
-                                <View style={styles.passwordTextContainer}>
-                                    <Text style={[styles.generalText, textColor]}>{t('viewSeed:enterPassword')}</Text>
-                                </View>
-                            )}
-                        <View style={{ flex: 0.8 }} />
-                        {showSeed &&
-                            !isConfirming && (
-                                <View style={styles.seedBoxContainer}>
-                                    <Seedbox
-                                        seed={tritsToChars(this.state.seed)}
-                                        bodyColor={theme.body.color}
-                                        borderColor={borderColor}
-                                        textColor={textColor}
-                                    />
-                                </View>
-                            )}
-                        {!showSeed &&
-                            !isConfirming && (
-                                <View style={styles.textFieldContainer}>
-                                    <CustomTextInput
-                                        label={t('global:password')}
-                                        onValidTextChange={(password) => this.setState({ password })}
-                                        containerStyle={{ width: Styling.contentWidth }}
-                                        autoCapitalize="none"
-                                        autoCorrect={false}
-                                        enablesReturnKeyAutomatically
-                                        returnKeyType="done"
-                                        secureTextEntry
-                                        value={password}
-                                        theme={theme}
-                                        isPasswordInput
-                                    />
-                                </View>
-                            )}
-                        <View style={{ flex: 1.2 }} />
-                        {!isConfirming &&
-                            !showSeed && (
-                                <View style={styles.viewButtonContainer}>
-                                    <CtaButton
-                                        ctaColor={theme.primary.color}
-                                        secondaryCtaColor={theme.primary.body}
-                                        text={t('viewSeed:viewSeed')}
-                                        onPress={this.viewSeed}
-                                        ctaWidth={width / 2}
-                                        ctaHeight={height / 16}
-                                    />
-                                </View>
-                            )}
-                        {isConfirming &&
-                            !showSeed && (
-                                <View>
-                                    <InfoBox>
-                                        <Text style={[styles.infoText, textColor]}>
-                                            <Text style={styles.infoText}>{t('global:masterKey')} </Text>
-                                            <Text style={styles.infoText}>{t('walletSetup:seedThief')} </Text>
-                                            <Text style={styles.infoTextBold}>{t('walletSetup:keepSafe')} </Text>
-                                        </Text>
-                                        <View style={{ paddingTop: height / 20, alignItems: 'center' }}>
-                                            <TouchableOpacity onPress={() => this.setState({ isConfirming: false })}>
-                                                <View
-                                                    style={[
-                                                        styles.viewSeedButton,
-                                                        { borderColor: theme.primary.color },
-                                                    ]}
-                                                >
-                                                    <Text style={[styles.viewSeedText, { color: theme.primary.color }]}>
-                                                        {t('viewSeed:viewSeed').toUpperCase()}
-                                                    </Text>
-                                                </View>
-                                            </TouchableOpacity>
-                                        </View>
-                                    </InfoBox>
-                                    <View style={{ flex: 0.1 }} />
-                                </View>
-                            )}
-                        {showSeed &&
-                            !isConfirming && (
-                                <View style={styles.hideButtonContainer}>
-                                    <CtaButton
-                                        ctaColor={theme.primary.color}
-                                        secondaryCtaColor={theme.primary.body}
-                                        text={t('viewSeed:hideSeed')}
-                                        onPress={this.hideSeed}
-                                        ctaWidth={width / 2}
-                                        ctaHeight={height / 16}
-                                    />
-                                </View>
-                            )}
-                        {!showSeed && isConfirming && <View style={styles.viewButtonContainer} />}
-                        <View style={{ flex: 1 }} />
-                    </View>
+                <View>
+                    <Animated.View
+                        style={[
+                            styles.container,
+                            { transform: [{ translateX: this.animatedValue }], width: width * steps.length },
+                        ]}
+                    >
+                        <View style={styles.viewContainer}>
+                            <InfoBox>
+                                <Text style={[styles.infoText, textColor]}>
+                                    <Text style={styles.infoText}>{t('global:masterKey')} </Text>
+                                    <Text style={styles.infoText}>{t('walletSetup:seedThief')} </Text>
+                                    <Text style={styles.infoTextBold}>{t('walletSetup:keepSafe')} </Text>
+                                </Text>
+                                <CtaButton
+                                    ctaColor={theme.primary.color}
+                                    secondaryCtaColor={theme.primary.body}
+                                    text={t('okay')}
+                                    onPress={this.onNextPress}
+                                    ctaWidth={width / 2}
+                                    ctaHeight={height / 16}
+                                    containerStyle={{ marginTop: height / 20 }}
+                                />
+                            </InfoBox>
+                        </View>
+                        <View style={styles.viewContainer}>
+                            <Text style={[styles.generalText, textColor]}>{t('viewSeed:enterPassword')}</Text>
+                            <CustomTextInput
+                                label={t('global:password')}
+                                onValidTextChange={(password) => this.setState({ password })}
+                                containerStyle={{ width: Styling.contentWidth, paddingVertical: height / 20 }}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="done"
+                                secureTextEntry
+                                value={password}
+                                theme={theme}
+                                isPasswordInput
+                            />
+                            <CtaButton
+                                ctaColor={theme.primary.color}
+                                secondaryCtaColor={theme.primary.body}
+                                text={t('viewSeed:viewSeed')}
+                                onPress={this.onNextPress}
+                                ctaWidth={width / 2}
+                                ctaHeight={height / 16}
+                                containerStyle={{ marginTop: height / 20 }}
+                            />
+                        </View>
+                        {is2FAEnabled && (
+                            <View style={styles.viewContainer}>
+                                <Text style={[styles.generalText, textColor]}>{t('twoFA:enterCode')}</Text>
+                                <CustomTextInput
+                                    label={t('twoFA:twoFaToken')}
+                                    onValidTextChange={(token) => this.setState({ token })}
+                                    containerStyle={{
+                                        width: Styling.contentWidth,
+                                        paddingTop: height / 20,
+                                        paddingBottom: height / 16 + height / 20,
+                                    }}
+                                    autoCapitalize="none"
+                                    keyboardType="numeric"
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically
+                                    returnKeyType="done"
+                                    onSubmitEditing={() => this.onComplete2FA(token)}
+                                    theme={theme}
+                                    value={token}
+                                />
+                            </View>
+                        )}
+                        <View style={styles.viewContainer}>
+                            <View style={{ flex: 1 }}>
+                                {step === 'isViewingSeed' && (
+                                    <SeedPicker seed={tritsToChars(this.state.seed)} theme={theme} />
+                                )}
+                            </View>
+                        </View>
+                    </Animated.View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.setSetting('accountManagement')}
+                            onPress={this.onBackPress}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
                                 <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                                <Text style={[styles.titleText, textColor]}>{t('global:back')}</Text>
+                                <Text style={[styles.titleText, { color: theme.body.color }]}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -342,6 +380,7 @@ const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),
     theme: getThemeFromState(state),
+    is2FAEnabled: state.settings.is2FAEnabled,
 });
 
 const mapDispatchToProps = {
