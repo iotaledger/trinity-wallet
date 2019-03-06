@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { changeDeepLinkingSettings } from 'shared-modules/actions/settings';
-import { setSetting } from 'shared-modules/actions/wallet';
+import { setSetting, completeDeepLinkRequest } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import Fonts from 'ui/theme/fonts';
 import { width, height } from 'libs/dimensions';
@@ -84,6 +84,10 @@ class DeepLinking extends Component {
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        deepLinkRequestActive: PropTypes.bool.isRequired,
+        /** @ignore */
+        completeDeepLinkRequest: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -94,6 +98,14 @@ class DeepLinking extends Component {
     componentDidMount() {
         leaveNavigationBreadcrumb('Pow');
     }
+
+    componentWillReceiveProps(newProps) {
+        // If a deep link was in progress but deep linking was not enabled at the time, clear previous deep link request
+        if (this.props.deepLinkRequestActive && !this.props.deepLinking && newProps.deepLinking) {
+            this.props.completeDeepLinkRequest();
+        }
+    }
+
 
     onChange() {
         this.props.changeDeepLinkingSettings();
@@ -171,12 +183,14 @@ class DeepLinking extends Component {
 
 const mapStateToProps = (state) => ({
     deepLinking: state.settings.deepLinking,
+    deepLinkRequestActive: state.wallet.deepLinkRequestActive,
     theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {
     changeDeepLinkingSettings,
     setSetting,
+    completeDeepLinkRequest
 };
 
 export default withNamespaces(['deepLink', 'global'])(connect(mapStateToProps, mapDispatchToProps)(DeepLinking));
