@@ -7,6 +7,7 @@ const Realm = getRealm();
 describe('storage: Node', () => {
     before(() => {
         Realm.deleteFile(schemas[schemas.length - 1]);
+
         initialise(() => Promise.resolve(new Int8Array(64)));
     });
 

@@ -1,9 +1,22 @@
-import noop from 'lodash/noop';
+import isEmpty from 'lodash/isEmpty';
 import merge from 'lodash/merge';
 import map from 'lodash/map';
 import defaultSchemas from '../default';
 
-const migration = noop;
+const migration = (oldRealm, newRealm) => {
+    const oldWalletData = oldRealm.objectForPrimaryKey('Wallet', 0);
+    const newWalletData = newRealm.objectForPrimaryKey('Wallet', 0);
+
+    // Bump wallet version.
+    newWalletData.version = 1;
+
+    // Check if accountInfoDuringSetup.name was set in scheme version 0
+    // If it was set, then that means there exists an account that hasn't been loaded properly in the wallet
+    // It also means that "completed" property isn't set to true
+    if (!isEmpty(oldWalletData.accountInfoDuringSetup.name)) {
+        newWalletData.accountInfoDuringSetup.completed = true;
+    }
+};
 
 export default map(defaultSchemas, (schema) => {
     if (schema.name === 'AccountInfoDuringSetup') {

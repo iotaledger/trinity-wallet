@@ -1,5 +1,5 @@
 /* global Electron */
-import v0Schema, { migration as v0Migration } from './v0';
+import v0Schema from './v0';
 import v1Schema, { migration as v1Migration } from './v1';
 import { __MOBILE__, __TEST__, __DEV__ } from '../config';
 
@@ -24,7 +24,6 @@ export default [
     {
         schema: v0Schema,
         schemaVersion: 0,
-        migration: v0Migration,
         path: STORAGE_PATH,
     },
     {

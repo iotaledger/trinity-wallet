@@ -683,6 +683,7 @@ const purge = () =>
         try {
             realm.removeAllListeners();
             realm.write(() => realm.deleteAll());
+
             resolve();
         } catch (error) {
             reject(error);
@@ -772,11 +773,13 @@ const initialise = (getEncryptionKeyPromise) =>
         let nextSchemaIndex = 0;
 
         try {
-            nextSchemaIndex = Realm.schemaVersion(latestStoragePath, encryptionKey);
+            const schemaVersion = Realm.schemaVersion(latestStoragePath, encryptionKey);
+            nextSchemaIndex = schemaVersion === -1 ? schemas[schemasSize - 1].schemaVersion : schemaVersion;
         } catch (error) {}
 
         while (nextSchemaIndex < schemasSize) {
             const migratedRealm = new Realm(assign({}, schemas[nextSchemaIndex++], { encryptionKey }));
+
             migratedRealm.close();
         }
 
