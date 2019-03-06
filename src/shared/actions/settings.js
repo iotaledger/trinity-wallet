@@ -781,6 +781,27 @@ export const setProxy = (payload) => ({
 });
 
 /**
+ * Changes deep linking setting and generates alert
+ *
+ * @method changeDeepLinkingSettings
+ */
+export const changeDeepLinkingSettings = () => {
+    return (dispatch, getState) => {
+        const settings = getState().settings;
+        dispatch(setDeepLinking());
+        dispatch(
+            generateAlert(
+                'success',
+                i18next.t('deepLink:deepLinkingUpdated'),
+                settings.deepLinking
+                    ? i18next.t('deepLink:deepLinkingDisabled')
+                    : i18next.t('deepLink:deepLinkingEnabled'),
+            ),
+        );
+    };
+};
+
+/**
  * Dispatch to update deep linking settings
  *
  * @method setDeepLinking

@@ -44,9 +44,9 @@ class Toggle extends PureComponent {
                         {
                             alignItems: active ? 'flex-end' : 'flex-start',
                             borderColor: bodyColor,
-                            width: size / 13,
+                            width: size / 12,
                             height: size / 22,
-                            borderRadius: size / 40,
+                            borderRadius: size / 24,
                             paddingHorizontal: size / 300,
                             opacity: isAndroid ? opacity * 2 : 1,
                         },

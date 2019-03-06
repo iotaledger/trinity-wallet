@@ -134,6 +134,7 @@ class Settings extends Component {
             snapshotTransition: 3,
             manualSync: 3,
             about: 3,
+            deepLinking: 3,
         };
 
         if (animationIn) {
