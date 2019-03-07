@@ -37,7 +37,7 @@ export const navigator = {
                 Navigation.push('appStack', {
                     component: {
                         name: nextScreen,
-                        options: merge({}, options, getDefaultOptions(nextScreen)),
+                        options: merge({}, getDefaultOptions(nextScreen), options),
                     },
                 }),
             delay,

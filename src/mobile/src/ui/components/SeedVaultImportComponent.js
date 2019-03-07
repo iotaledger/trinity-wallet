@@ -129,10 +129,10 @@ export class SeedVaultImportComponent extends Component {
 
     /**
      * Opens document picker, reads chosen file and opens password validation modal
-     * @method importSeedVault
+     * @method showDocumentPicker
      */
     showDocumentPicker() {
-        const { t, generateAlert } = this.props;
+        const { t } = this.props;
         DocumentPicker.show(
             {
                 filetype: isAndroid
@@ -141,7 +141,7 @@ export class SeedVaultImportComponent extends Component {
             },
             (error, res) => {
                 if (error) {
-                    return generateAlert(
+                    return this.props.generateAlert(
                         'error',
                         t('global:somethingWentWrong'),
                         t('global:somethingWentWrongTryAgain'),
@@ -158,7 +158,7 @@ export class SeedVaultImportComponent extends Component {
                         this.props.openPasswordValidationModal();
                     })
                     .catch(() =>
-                        generateAlert('error', t('seedVault:seedFileError'), t('seedVault:seedFileErrorExplanation')),
+                        this.props.generateAlert('error', t('seedVault:seedFileError'), t('seedVault:seedFileErrorExplanation')),
                     );
             },
         );
@@ -169,7 +169,7 @@ export class SeedVaultImportComponent extends Component {
      * @method importSeedVault
      */
     importSeedVault() {
-        const { t, generateAlert } = this.props;
+        const { t } = this.props;
         Keyboard.dismiss();
         (isAndroid ? this.grantPermissions() : Promise.resolve())
             .then(() => {
@@ -178,7 +178,7 @@ export class SeedVaultImportComponent extends Component {
             })
             .catch((err) => {
                 if (err.message === 'Read permissions not granted.') {
-                    return generateAlert(
+                    return this.props.generateAlert(
                         'error',
                         t('receive:missingPermission'),
                         t('receive:missingPermissionExplanation'),
