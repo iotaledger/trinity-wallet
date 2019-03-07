@@ -173,16 +173,18 @@ export const subsetSumWithLimit = (limit = 2, MAX_CALL_TIMES = 100000) => {
 };
 
 /**
- *   Prepares inputs from addresses related info and filters out addresses that are already spent.
- *   Returns an object with all inputs with addresses that are unspent, total computed balance and
- *   balance associated with all addresses.
+ * Prepares inputs from addresses related info and filters out addresses that are already spent.
+ * Returns an object with all inputs with addresses that are unspent, total computed balance and
+ * balance associated with all addresses.
  *
- *   @method getInputs
- *   @param {string} [provider]
+ * @method getInputs
  *
- *   @returns {function(array, array, number, *): Promise<object>}
+ * @param {string} provider
+ * @param {boolean} withQuorum
+ *
+ * @returns {function(array, array, number, *): Promise<object>}
  **/
-export const getInputs = (provider) => (addressData, transactions, threshold, maxInputs = 0) => {
+export const getInputs = (provider, withQuorum) => (addressData, transactions, threshold, maxInputs = 0) => {
     // TODO: Validate address data & transactions
     // Check if there is sufficient balance
     if (reduce(addressData, (acc, addressObject) => acc + addressObject.balance, 0) < threshold) {
@@ -198,7 +200,7 @@ export const getInputs = (provider) => (addressData, transactions, threshold, ma
     // Filter pending transactions with non-funded inputs
     return (isEmpty(pendingTransactions)
         ? Promise.resolve([])
-        : filterNonFundedBundles(provider)(constructBundlesFromTransactions(pendingTransactions))
+        : filterNonFundedBundles(provider, withQuorum)(constructBundlesFromTransactions(pendingTransactions))
     )
         .then((fundedBundles) => {
             // Remove addresses from addressData with (still funded) pending incoming transactions
@@ -220,7 +222,7 @@ export const getInputs = (provider) => (addressData, transactions, threshold, ma
             }
 
             // Filter all spent addresses
-            return filterSpentAddressData(provider)(addressDataForInputs, transactions);
+            return filterSpentAddressData(provider, withQuorum)(addressDataForInputs, transactions);
         })
         .then((unspentAddressData) => {
             if (reduce(unspentAddressData, (acc, addressObject) => acc + addressObject.balance, 0) < threshold) {

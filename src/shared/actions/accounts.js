@@ -371,12 +371,13 @@ export const assignAccountIndex = () => ({
  * Gets full account information for the first seed added to the wallet.
  *
  * @method getFullAccountInfo
- * @param  {object} seedStore - SeedStore class object
- * @param  {string} accountName
+ * @param {object} seedStore - SeedStore class object
+ * @param {string} accountName
+ * @param {boolean} [withQuorum]
  *
  * @returns {function} dispatch
  */
-export const getFullAccountInfo = (seedStore, accountName) => {
+export const getFullAccountInfo = (seedStore, accountName, withQuorum = true) => {
     return (dispatch, getState) => {
         dispatch(fullAccountInfoFetchRequest());
 
@@ -387,7 +388,7 @@ export const getFullAccountInfo = (seedStore, accountName) => {
         withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(getAccountData)(seedStore, accountName)
+        )((...args) => getAccountData(...[...args, withQuorum]))(seedStore, accountName)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 
@@ -437,10 +438,11 @@ export const getFullAccountInfo = (seedStore, accountName) => {
  * @method manuallySyncAccount
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
+ * @param {boolean} [withQuorum]
  *
  * @returns {function} dispatch
  */
-export const manuallySyncAccount = (seedStore, accountName) => {
+export const manuallySyncAccount = (seedStore, accountName, withQuorum = true) => {
     return (dispatch, getState) => {
         dispatch(manualSyncRequest());
 
@@ -450,7 +452,7 @@ export const manuallySyncAccount = (seedStore, accountName) => {
         withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(getAccountData)(seedStore, accountName, existingAccountState)
+        )((...args) => getAccountData(...[...args, withQuorum]))(seedStore, accountName, existingAccountState)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
                 dispatch(generateSyncingCompleteAlert());
@@ -479,13 +481,14 @@ export const manuallySyncAccount = (seedStore, accountName) => {
  * Gets latest account information: including transfers, balance and spend status information.
  *
  * @method getAccountInfo
- * @param  {object} seedStore - SeedStore class object
- * @param  {string} accountName
- * @param  {function} notificationFn - New transaction callback function
+ * @param {object} seedStore - SeedStore class object
+ * @param {string} accountName
+ * @param {function} notificationFn - New transaction callback function
+ * @param {boolean} [withQuorum]
  *
  * @returns {function} dispatch
  */
-export const getAccountInfo = (seedStore, accountName, notificationFn) => {
+export const getAccountInfo = (seedStore, accountName, notificationFn, withQuorum = false) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
         const selectedNode = getSelectedNodeFromState(getState());
@@ -496,7 +499,7 @@ export const getAccountInfo = (seedStore, accountName, notificationFn) => {
         return withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(syncAccount)(existingAccountState, seedStore, notificationFn, settings)
+        )((...args) => syncAccount(...[...args, withQuorum]))(existingAccountState, seedStore, notificationFn, settings)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 
@@ -533,18 +536,20 @@ export const deleteAccount = (accountName) => (dispatch) => {
  * Gets latest account information for provided account and override existing account state
  *
  * @method cleanUpAccountState
+ *
  * @param {object} seedStore
  * @param {string} accountName
+ * @param {boolean} withQuorum
  *
  * @returns {function(*, *): Promise<object>}
  */
-export const cleanUpAccountState = (seedStore, accountName) => (dispatch, getState) => {
+export const cleanUpAccountState = (seedStore, accountName, withQuorum = true) => (dispatch, getState) => {
     const selectedNode = getSelectedNodeFromState(getState());
 
     return withRetriesOnDifferentNodes(
         [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
         () => dispatch(generateAccountSyncRetryAlert()),
-    )(getAccountData)(
+    )((...args) => getAccountData(...[...args, withQuorum]))(
         seedStore,
         accountName,
         // Do not pass existing account state
