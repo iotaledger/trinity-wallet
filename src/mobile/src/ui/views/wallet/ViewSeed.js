@@ -32,6 +32,7 @@ import InfoBox from 'ui/components/InfoBox';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
+import { TWOFA_TOKEN_LENGTH } from 'shared-modules/libs/utils';
 import { hash, getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
 
 const styles = StyleSheet.create({
@@ -135,7 +136,7 @@ class ViewSeed extends Component {
     }
 
     componentWillUpdate(newProps, newState) {
-        if (this.state.token.length !== 6 && newState.token.length === 6) {
+        if (this.state.token.length !== TWOFA_TOKEN_LENGTH && newState.token.length === TWOFA_TOKEN_LENGTH) {
             this.onComplete2FA(newState.token);
         }
     }
