@@ -34,13 +34,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     infoText: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: Styling.fontSize3,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    infoTextLight: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
-        fontFamily: 'SourceSansPro-Bold',
+        fontFamily: 'SourceSansPro-SemiBold',
         fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -130,12 +136,12 @@ class DeepLinking extends Component {
                             >
                                 <Icon name="attention" size={width / 10} color={body.color} style={styles.icon} />
                             </View>
-                            <Text style={[styles.infoTextBold, textColor]}>{t('deepLinkingOverview')}</Text>
+                            <Text style={[styles.infoText, textColor]}>{t('deepLinkingOverview')}</Text>
                             <Text style={{ paddingTop: height / 30 }}>
                                 <Text style={[styles.infoTextBold, textColor]}>
                                     {`${t('rootDetection:warning')}: `}
                                 </Text>
-                                <Text style={[styles.infoText, textColor]}>{t('deepLinkingWarning')}</Text>
+                                <Text style={[styles.infoTextLight, textColor]}>{t('deepLinkingWarning')}</Text>
                             </Text>
                         </InfoBox>
                         <View style={{ flex: 1.1 }} />
