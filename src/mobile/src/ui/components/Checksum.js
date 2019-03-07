@@ -1,7 +1,9 @@
+import size from 'lodash/size';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { VALID_SEED_REGEX, getChecksum } from 'shared-modules/libs/iota/utils';
+import { MAX_SEED_TRITS, getChecksum } from 'shared-modules/libs/iota/utils';
+import { tritsToChars } from 'shared-modules/libs/iota/converter';
 import { withNamespaces } from 'react-i18next';
 import { width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
 export class Checksum extends Component {
     static propTypes = {
         /** @ignore */
-        seed: PropTypes.string.isRequired,
+        seed: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -40,37 +42,49 @@ export class Checksum extends Component {
 
     /**
      * Gets the checksum of a seed
+     *
+     * @method getValue
+     *
+     * @param {array} input
+     *
      * @return {string} Checksum or symbol to be shown
      */
-    getChecksumValue() {
-        const { seed } = this.props;
-        let checksumValue = '...';
+    static getValue(input) {
+        const sizeOfInput = size(input);
 
-        if (seed.length !== 0 && !seed.match(VALID_SEED_REGEX)) {
-            checksumValue = '!';
-        } else if (seed.length !== 0 && seed.length < 81) {
-            checksumValue = '< 81';
-        } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
-            checksumValue = getChecksum(seed);
+        if (sizeOfInput !== 0 && sizeOfInput < MAX_SEED_TRITS) {
+            return '< 81';
         }
 
-        return checksumValue;
+        if (sizeOfInput > MAX_SEED_TRITS) {
+            return '> 81';
+        } else if (sizeOfInput === MAX_SEED_TRITS) {
+            return tritsToChars(getChecksum(input));
+        }
+
+        return '...';
     }
 
     /**
      * Gets the color of the checksum
-     * @return {Object}
+     *
+     * @method getStyle
+     *
+     * @param {object} theme
+     * @param {array} seed
+     *
+     * @return {object}
      */
-    getChecksumStyle() {
-        const { theme, seed } = this.props;
-        if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
+    static getStyle(theme, seed) {
+        if (size(seed) === MAX_SEED_TRITS) {
             return { color: theme.primary.color };
         }
+
         return { color: theme.body.color };
     }
 
     render() {
-        const { t, theme } = this.props;
+        const { t, theme, seed } = this.props;
 
         return (
             <TouchableOpacity
@@ -80,7 +94,7 @@ export class Checksum extends Component {
                 <View style={styles.checksumContainer}>
                     <Icon name="info" size={width / 22} color={theme.body.color} />
                     <Text style={[styles.checksumText, { color: theme.body.color }]}>{t('checksum')}:</Text>
-                    <Text style={[styles.checksum, this.getChecksumStyle()]}>{this.getChecksumValue()}</Text>
+                    <Text style={[styles.checksum, Checksum.getStyle(theme, seed)]}>{Checksum.getValue(seed)}</Text>
                 </View>
             </TouchableOpacity>
         );
