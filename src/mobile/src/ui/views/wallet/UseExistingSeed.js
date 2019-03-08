@@ -302,7 +302,7 @@ class UseExistingSeed extends Component {
                                 }
                             }}
                             theme={theme}
-                            widget="qr"
+                            widgets={['qr', 'mask']}
                             onQRPress={() => this.onQRPress()}
                             isSeedInput
                         />

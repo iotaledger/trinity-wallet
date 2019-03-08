@@ -250,10 +250,11 @@ class EnterSeed extends React.Component {
                                         autoCorrect={false}
                                         enablesReturnKeyAutomatically
                                         returnKeyType="done"
+                                        secureTextEntry
                                         onSubmitEditing={() => this.onDonePress()}
                                         maxLength={MAX_SEED_LENGTH}
                                         value={this.state.seed}
-                                        widget="qr"
+                                        widgets={['qr', 'mask']}
                                         onQRPress={() => this.onQRPress()}
                                         testID="enterSeed-seedbox"
                                         isSeedInput
