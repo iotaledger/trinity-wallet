@@ -776,7 +776,7 @@
         "dataMigration": "データ移行",
         "dataMigrationExplanation": "パフォーマンスとストレージの制限により、Trinityは設定とアカウントデータの保存に新しいデータベースを使用しています。 Trinityが今までのデータを自動的に移行するまで少々お待ちください。",
         "problemMigratingYourData": "データの移行中に問題が発生しました。もう一度やり直してください。",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "seedMigrationExplanation": "ウォレットのセキュリティを向上させるためのTrinityの継続的な取り組みの一環として、シードは強化されたストレージに移行されます。Trinityが自動的にシードストレージを移行するまで少々お待ちください。"
     },
     "ledger": {
         "ready": "Ledger端末の接続が完了し、準備完了です",
