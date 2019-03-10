@@ -2,15 +2,21 @@ PODS:
   - CatCrypto (0.3.0)
 
 DEPENDENCIES:
-  - CatCrypto (~> 0.3.0)
+  - CatCrypto (from `https://github.com/rajivshah3/CatCrypto.git`, branch `fix/commoncrypto`)
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - CatCrypto
+EXTERNAL SOURCES:
+  CatCrypto:
+    :branch: fix/commoncrypto
+    :git: https://github.com/rajivshah3/CatCrypto.git
+
+CHECKOUT OPTIONS:
+  CatCrypto:
+    :commit: 138400e0275a3bf11260ebbd94dcec26871ef3f9
+    :git: https://github.com/rajivshah3/CatCrypto.git
 
 SPEC CHECKSUMS:
   CatCrypto: 7e3a6e0a03b699845b38cdc09d34a8127466c5e0
 
-PODFILE CHECKSUM: 8ef9fa30ed5d36626a73a5903390db40838be461
+PODFILE CHECKSUM: 9a82a4f06e15dedde425f22b022cb956bf31c794
 
 COCOAPODS: 1.5.3
