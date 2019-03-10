@@ -775,7 +775,13 @@ const purge = () =>
  */
 const initialise = (getEncryptionKeyPromise) =>
     getEncryptionKeyPromise().then((encryptionKey) => {
-        realm = new Realm(assign({}, config, { encryptionKey }));
+        // For some reason `getRealm` doesn't get called before this function when running in the Chrome debugger
+        if (__MOBILE__ && /Chrome/.test(navigator.userAgent)) {
+            const Realm = getRealm();
+            realm = new Realm(assign({}, config, { encryptionKey }));
+        } else {
+            realm = new Realm(assign({}, config, { encryptionKey }));
+        }
         initialiseSync(encryptionKey);
     });
 
