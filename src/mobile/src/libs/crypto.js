@@ -5,7 +5,6 @@ import { TextDecoder } from 'text-encoding';
 import nacl from 'tweetnacl';
 import naclUtil from 'tweetnacl-util';
 import { getHashFn } from 'libs/nativeModules';
-import { isAndroid } from 'libs/device';
 
 const DEFAULT_ARGON2_PARAMS = { t_cost: 1, m_cost: 4096, parallelism: 4, hashLength: 32 };
 const SALT_LENGTH = 32;
@@ -26,14 +25,7 @@ export const getRandomBytes = async (quantity) => {
 
 export const generatePasswordHash = async (password, salt) => {
     const salt64 = await encodeBase64(salt);
-    if (isAndroid) {
-        return getHashFn()(values(password), salt64, DEFAULT_ARGON2_PARAMS).then(
-            (result) => new Uint8Array(result),
-            (error) => console.log(error), // eslint-disable-line no-console
-        );
-    }
-    // FIXME: iOS should hash Uint8Array, not string
-    return getHashFn()(UInt8ToString(password), salt64, DEFAULT_ARGON2_PARAMS).then(
+    return getHashFn()(values(password), salt64, DEFAULT_ARGON2_PARAMS).then(
         (result) => new Uint8Array(result),
         (error) => console.log(error), // eslint-disable-line no-console
     );
