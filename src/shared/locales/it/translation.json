@@ -689,11 +689,11 @@
         "gettingTransactionsToApprove": "Ottengo le transazioni da approvare",
         "proofOfWork": "Completo la prova di lavoro",
         "broadcasting": "Trasmissione",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Preparazione dati",
+        "migratingSettings": "Migrazione impostazioni",
+        "migratingAccounts": "Migrazione conti",
+        "cleaningUpOldData": "Pulizia dati vecchi",
+        "migrationComplete": "Migrazione completata",
         "transferComplete": "Trasferimento completato"
     },
     "snapshotTransition": {
@@ -773,9 +773,9 @@
         "sweepConfirmationTitle": "Conferma di trasferimento"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "dataMigration": "Migrazione dati",
+        "dataMigrationExplanation": "Per far fronte a limiti di prestazioni e di archiviazione, Trinity passa a utilizzare un nuovo database per memorizzare le impostazioni e i dati dei conti. Si prega di attendere mentre Trinity migra automaticamente i dati esistenti.",
+        "problemMigratingYourData": "Si è verificato un problema durante la migrazione dei dati. Ti preghiamo di riprovare",
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
