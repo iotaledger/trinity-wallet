@@ -34,7 +34,7 @@ export const generatePasswordHash = async (password, salt) => {
     }
     // FIXME: iOS should hash Uint8Array, not string
     return getHashFn()(UInt8ToString(password), salt64, DEFAULT_ARGON2_PARAMS).then(
-        (result) => new Uint8Array(result.split(',').map((num) => parseInt(num))),
+        (result) => new Uint8Array(result),
         (error) => console.log(error), // eslint-disable-line no-console
     );
 };
