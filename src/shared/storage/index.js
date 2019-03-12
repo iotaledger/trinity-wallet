@@ -37,6 +37,9 @@ const getStoragePath = (schemaVersion = SCHEMA_VERSION) =>
 // Initialise realm instance
 let realm = {}; // eslint-disable-line import/no-mutable-exports
 
+// Initialise Realm constructor as null and reinitialise after importing the correct (platform) Realm dependency
+let Realm = null;
+
 /**
  * Imports Realm dependency
  *
@@ -54,8 +57,6 @@ export const getRealm = () => {
 
     return Electron.getRealm();
 };
-
-const Realm = getRealm();
 
 /**
  * Model for Account.
@@ -773,17 +774,15 @@ const purge = () =>
  *
  * @returns {Promise}
  */
-const initialise = (getEncryptionKeyPromise) =>
-    getEncryptionKeyPromise().then((encryptionKey) => {
-        // For some reason `getRealm` doesn't get called before this function when running in the Chrome debugger
-        if (__MOBILE__ && /Chrome/.test(navigator.userAgent)) {
-            const Realm = getRealm();
-            realm = new Realm(assign({}, config, { encryptionKey }));
-        } else {
-            realm = new Realm(assign({}, config, { encryptionKey }));
-        }
+const initialise = (getEncryptionKeyPromise) => {
+    Realm = getRealm();
+
+    return getEncryptionKeyPromise().then((encryptionKey) => {
+        realm = new Realm(assign({}, config, { encryptionKey }));
+
         initialiseSync(encryptionKey);
     });
+};
 
 /**
  * Initialises storage.
