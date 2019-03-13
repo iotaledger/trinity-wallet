@@ -28,11 +28,24 @@ export const getPollingFromState = (state) => state.polling || {};
  *   @returns {string}
  **/
 export const shouldPreventAction = createSelector(getUiFromState, getPollingFromState, (uiState, pollingState) => {
-    const { isTransitioning, isSendingTransfer, isGeneratingReceiveAddress, isSyncing } = uiState;
+    const {
+        isTransitioning,
+        isSendingTransfer,
+        isGeneratingReceiveAddress,
+        isSyncing,
+        isRetryingFailedTransaction,
+    } = uiState;
 
     const { isFetchingAccountInfo } = pollingState;
 
-    return isSyncing || isSendingTransfer || isGeneratingReceiveAddress || isTransitioning || isFetchingAccountInfo;
+    return (
+        isSyncing ||
+        isSendingTransfer ||
+        isGeneratingReceiveAddress ||
+        isTransitioning ||
+        isFetchingAccountInfo ||
+        isRetryingFailedTransaction
+    );
 });
 
 /**

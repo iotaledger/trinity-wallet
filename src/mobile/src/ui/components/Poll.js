@@ -1,4 +1,5 @@
 import filter from 'lodash/filter';
+import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import size from 'lodash/size';
@@ -8,11 +9,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
 import { AppState } from 'react-native';
+import SeedStore from 'libs/SeedStore';
 import {
     getSelectedAccountName,
     getPromotableBundlesFromState,
     getAccountNamesFromState,
     isSettingUpNewAccount,
+    getFailedBundleHashes,
 } from 'shared-modules/selectors/accounts';
 import {
     fetchMarketData,
@@ -23,6 +26,7 @@ import {
     getAccountInfoForAllAccounts,
     promoteTransfer,
 } from 'shared-modules/actions/polling';
+import { retryFailedTransaction } from 'shared-modules/actions/transfers';
 
 export class Poll extends Component {
     static propTypes = {
@@ -52,6 +56,15 @@ export class Poll extends Component {
         getAccountInfoForAllAccounts: PropTypes.func.isRequired,
         /** @ignore */
         promoteTransfer: PropTypes.func.isRequired,
+        /** Bundle hashes for failed transactions categorised by account name & type */
+        failedBundleHashes: PropTypes.shape({
+            name: PropTypes.string,
+            type: PropTypes.string,
+        }).isRequired,
+        /** @ignore */
+        retryFailedTransaction: PropTypes.func.isRequired,
+        /** @ignore */
+        password: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -59,6 +72,7 @@ export class Poll extends Component {
 
         this.fetchLatestAccountInfo = this.fetchLatestAccountInfo.bind(this);
         this.promote = this.promote.bind(this);
+        this.retryFailedTransaction = this.retryFailedTransaction.bind(this);
 
         this.state = {
             autoPromoteSkips: 0,
@@ -85,7 +99,8 @@ export class Poll extends Component {
             props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
             props.addingAdditionalAccount ||
             props.isTransitioning ||
-            props.isPromotingTransaction;
+            props.isPromotingTransaction ||
+            props.isRetryingFailedTransaction;
 
         const isAlreadyPollingSomething =
             props.isPollingPrice ||
@@ -96,6 +111,22 @@ export class Poll extends Component {
             props.isAutoPromoting;
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
+    }
+
+    /**
+     * Sets next polling service (in queue) as the active polling service
+     *
+     * @method moveToNextPollService
+     *
+     * @returns {undefined}
+     */
+    moveToNextPollService() {
+        const { allPollingServices, pollFor } = this.props;
+
+        const index = allPollingServices.indexOf(pollFor);
+        const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
+
+        this.props.setPollFor(allPollingServices[next]);
     }
 
     fetch(service) {
@@ -110,6 +141,7 @@ export class Poll extends Component {
             chartData: this.props.fetchChartData,
             nodeList: this.props.fetchNodeList,
             accountInfo: this.fetchLatestAccountInfo,
+            broadcast: this.retryFailedTransaction,
         };
 
         // In case something messed up, reinitialize
@@ -123,6 +155,27 @@ export class Poll extends Component {
             selectedAccountName,
             ...filter(accountNames, (name) => name !== selectedAccountName),
         ]);
+    }
+
+    /**
+     * Retries (performs proof-of-work & broadcasts) a failed transaction
+     *
+     * @method retryFailedTransaction
+     *
+     * @returns {undefined}
+     */
+    retryFailedTransaction() {
+        const { failedBundleHashes, password } = this.props;
+
+        if (!isEmpty(failedBundleHashes)) {
+            const bundleHashes = keys(failedBundleHashes);
+            const bundleForRetry = head(bundleHashes);
+            const { name, type } = failedBundleHashes[bundleForRetry];
+
+            this.props.retryFailedTransaction(name, bundleForRetry, new SeedStore[type](password, name));
+        } else {
+            this.moveToNextPollService();
+        }
     }
 
     startBackgroundProcesses() {
@@ -142,7 +195,7 @@ export class Poll extends Component {
     }
 
     promote() {
-        const { isAutoPromotionEnabled, unconfirmedBundleTails, allPollingServices, pollFor } = this.props;
+        const { isAutoPromotionEnabled, unconfirmedBundleTails } = this.props;
 
         const { autoPromoteSkips } = this.state;
 
@@ -165,11 +218,7 @@ export class Poll extends Component {
             }
         }
 
-        const index = allPollingServices.indexOf(pollFor);
-        const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
-
-        // In case there are no unconfirmed bundle tails or auto-promotion is disabled, move to the next service item
-        return this.props.setPollFor(allPollingServices[next]);
+        return this.moveToNextPollService();
     }
 
     render() {
@@ -188,6 +237,7 @@ const mapStateToProps = (state) => ({
     isAutoPromoting: state.polling.isAutoPromoting,
     isAutoPromotionEnabled: state.settings.autoPromotion,
     isPromotingTransaction: state.ui.isPromotingTransaction,
+    isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
     isSyncing: state.ui.isSyncing,
     addingAdditionalAccount: isSettingUpNewAccount(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
@@ -198,6 +248,8 @@ const mapStateToProps = (state) => ({
     unconfirmedBundleTails: getPromotableBundlesFromState(state),
     accountNames: getAccountNamesFromState(state),
     isTransitioning: state.ui.isTransitioning,
+    failedBundleHashes: getFailedBundleHashes(state),
+    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {
@@ -208,6 +260,7 @@ const mapDispatchToProps = {
     setPollFor,
     getAccountInfoForAllAccounts,
     promoteTransfer,
+    retryFailedTransaction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Poll);

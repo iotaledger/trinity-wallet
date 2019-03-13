@@ -1,4 +1,5 @@
 /* global Electron */
+import head from 'lodash/head';
 import filter from 'lodash/filter';
 import React from 'react';
 import isEmpty from 'lodash/isEmpty';
@@ -7,11 +8,13 @@ import random from 'lodash/random';
 import size from 'lodash/size';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import SeedStore from 'libs/SeedStore';
 import {
     getAccountNamesFromState,
     isSettingUpNewAccount,
     getPromotableBundlesFromState,
     getSelectedAccountName,
+    getFailedBundleHashes,
 } from 'selectors/accounts';
 import {
     fetchMarketData,
@@ -22,6 +25,7 @@ import {
     promoteTransfer,
     getAccountInfoForAllAccounts,
 } from 'actions/polling';
+import { retryFailedTransaction } from 'actions/transfers';
 
 /**
  * Background polling component
@@ -54,6 +58,13 @@ class Polling extends React.PureComponent {
         fetchChartData: PropTypes.func.isRequired,
         /** @ignore */
         promoteTransfer: PropTypes.func.isRequired,
+        /** Bundle hashes for failed transactions categorised by account name & type */
+        failedBundleHashes: PropTypes.shape({
+            name: PropTypes.string,
+            type: PropTypes.string,
+        }).isRequired,
+        /** @ignore */
+        retryFailedTransaction: PropTypes.func.isRequired,
     };
 
     state = {
@@ -78,7 +89,8 @@ class Polling extends React.PureComponent {
             props.isGeneratingReceiveAddress ||
             props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
             props.addingAdditionalAccount ||
-            props.isTransitioning;
+            props.isTransitioning ||
+            props.isRetryingFailedTransaction;
 
         const isAlreadyPollingSomething =
             props.isPollingPrice ||
@@ -89,6 +101,15 @@ class Polling extends React.PureComponent {
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
+
+    moveToNextPollService = () => {
+        const { allPollingServices, pollFor } = this.props;
+
+        const index = allPollingServices.indexOf(pollFor);
+        const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
+
+        this.props.setPollFor(allPollingServices[next]);
+    };
 
     fetch = () => {
         if (this.shouldSkipCycle()) {
@@ -104,6 +125,7 @@ class Polling extends React.PureComponent {
             chartData: this.props.fetchChartData,
             nodeList: this.props.fetchNodeList,
             accountInfo: this.fetchLatestAccountInfo,
+            broadcast: this.retryFailedTransaction,
         };
 
         dict[service] ? dict[service]() : this.props.setPollFor(this.props.allPollingServices[0]);
@@ -117,11 +139,31 @@ class Polling extends React.PureComponent {
         );
     };
 
-    promote = () => {
-        const { unconfirmedBundleTails, allPollingServices, pollFor, autoPromotion } = this.props;
+    /**
+     * Retries (performs proof-of-work & broadcasts) a failed transaction
+     *
+     * @method retryFailedTransaction
+     *
+     * @returns {undefined}
+     */
+    retryFailedTransaction = async () => {
+        const { failedBundleHashes, password } = this.props;
 
-        const index = allPollingServices.indexOf(pollFor);
-        const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
+        if (!isEmpty(failedBundleHashes)) {
+            const bundleHashes = keys(failedBundleHashes);
+            const bundleForRetry = head(bundleHashes);
+            const { name, type } = failedBundleHashes[bundleForRetry];
+
+            const seedStore = await new SeedStore[type](password, name);
+
+            this.props.retryFailedTransaction(name, bundleForRetry, seedStore);
+        } else {
+            this.moveToNextPollService();
+        }
+    };
+
+    promote = () => {
+        const { unconfirmedBundleTails, autoPromotion } = this.props;
 
         const { autoPromoteSkips } = this.state;
 
@@ -140,8 +182,7 @@ class Polling extends React.PureComponent {
             }
         }
 
-        // In case there are no unconfirmed bundle tails or auto-promotion is off, move to the next service item
-        return this.props.setPollFor(allPollingServices[next]);
+        return this.moveToNextPollService();
     };
 
     render() {
@@ -167,6 +208,8 @@ const mapStateToProps = (state) => ({
     unconfirmedBundleTails: getPromotableBundlesFromState(state),
     selectedAccountName: getSelectedAccountName(state),
     isTransitioning: state.ui.isTransitioning,
+    isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
+    failedBundleHashes: getFailedBundleHashes(state),
 });
 
 const mapDispatchToProps = {
@@ -177,6 +220,7 @@ const mapDispatchToProps = {
     setPollFor,
     promoteTransfer,
     getAccountInfoForAllAccounts,
+    retryFailedTransaction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Polling);
