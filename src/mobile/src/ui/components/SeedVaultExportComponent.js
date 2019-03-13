@@ -107,7 +107,7 @@ class SeedVaultExportComponent extends Component {
     static getPath(prefix) {
         return `${
             isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir
-        }/${prefix}${moment().format('YYYYMMDD-HHmm')}.kdbx`;
+        }/${prefix}-${moment().format('YYYYMMDD-HHmm')}.kdbx`;
     }
 
     constructor(props) {
