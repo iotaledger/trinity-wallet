@@ -94,6 +94,30 @@ class SeedVaultExportComponent extends Component {
         seed: '',
     };
 
+    /**
+     * Gets seed vault file path
+     *
+     * @method getPath
+     *
+     * @param {string} prefix
+     *
+     * @returns {string}
+     */
+    static getPath(prefix) {
+        const now = new Date();
+
+        return `${isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir}/${prefix}${
+            // Use local time
+            new Date(
+                now.getTime() - now.getTimezoneOffset() * 60000, // convert minutes to ms because getTime unit is ms
+            )
+                .toISOString()
+                .slice(0, 16)
+                .replace(/[-:]/g, '')
+                .replace('T', '-')
+        }.kdbx`;
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -143,16 +167,11 @@ class SeedVaultExportComponent extends Component {
             await getAndroidFileSystemPermissions();
         }
         const { t, selectedAccountName } = this.props;
-        const now = new Date();
-        const prefix = removeNonAlphaNumeric(selectedAccountName, 'SeedVault').trim();
-        const path =
-            (isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir) +
-            `/${prefix}${now
-                .toISOString()
-                .slice(0, 16)
-                .replace(/[-:]/g, '')
-                .replace('T', '-')}.kdbx`;
+
+        const path = SeedVaultExportComponent.getPath(removeNonAlphaNumeric(selectedAccountName, 'SeedVault').trim());
+
         this.setState({ path });
+
         RNFetchBlob.fs.exists(path).then((fileExists) => {
             if (fileExists) {
                 RNFetchBlob.fs.unlink(path);

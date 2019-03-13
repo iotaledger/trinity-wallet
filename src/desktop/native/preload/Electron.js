@@ -439,11 +439,16 @@ const Electron = {
             }
             const path = await remote.dialog.showSaveDialog(remote.getCurrentWindow(), {
                 title: 'Export keyfile',
-                defaultPath: `${prefix}-${now
-                    .toISOString()
-                    .slice(0, 16)
-                    .replace(/[-:]/g, '')
-                    .replace('T', '-')}.kdbx`,
+                defaultPath: `${prefix}-${
+                    // Use local time
+                    new Date(
+                        now.getTime() - now.getTimezoneOffset() * 60000, // convert minutes to ms because getTime unit is ms
+                    )
+                        .toISOString()
+                        .slice(0, 16)
+                        .replace(/[-:]/g, '')
+                        .replace('T', '-')
+                }.kdbx`,
                 buttonLabel: 'Export',
                 filters: [{ name: 'SeedVault File', extensions: ['kdbx'] }],
             });
