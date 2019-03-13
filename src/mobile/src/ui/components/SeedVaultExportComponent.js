@@ -19,6 +19,7 @@ import { getThemeFromState } from 'shared-modules/selectors/global';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import { removeNonAlphaNumeric } from 'shared-modules/libs/utils';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
+import { moment } from 'shared-modules/libs/exports';
 import { UInt8ToString } from 'libs/crypto';
 import InfoBox from './InfoBox';
 import Button from './Button';
@@ -104,18 +105,9 @@ class SeedVaultExportComponent extends Component {
      * @returns {string}
      */
     static getPath(prefix) {
-        const now = new Date();
-
-        return `${isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir}/${prefix}${
-            // Use local time
-            new Date(
-                now.getTime() - now.getTimezoneOffset() * 60000, // convert minutes to ms because getTime unit is ms
-            )
-                .toISOString()
-                .slice(0, 16)
-                .replace(/[-:]/g, '')
-                .replace('T', '-')
-        }.kdbx`;
+        return `${
+            isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir
+        }/${prefix}${moment().format('YYYYMMDD-HHmm')}.kdbx`;
     }
 
     constructor(props) {

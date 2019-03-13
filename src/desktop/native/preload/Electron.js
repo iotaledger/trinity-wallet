@@ -9,6 +9,7 @@ import argon2 from 'argon2';
 import machineUuid from 'machine-uuid-sync';
 import { byteToTrit, byteToChar } from 'libs/iota/converter';
 import { removeNonAlphaNumeric } from 'libs/utils';
+import { moment } from 'libs/exports';
 
 import kdbx from '../kdbx';
 import Entangled from '../Entangled';
@@ -432,23 +433,13 @@ const Electron = {
     exportSeeds: async (seeds, password) => {
         try {
             const content = await kdbx.exportVault(seeds, password);
-            const now = new Date();
             let prefix = 'SeedVault';
             if (seeds.length === 1) {
                 prefix = removeNonAlphaNumeric(seeds[0].title, 'SeedVault').trim();
             }
             const path = await remote.dialog.showSaveDialog(remote.getCurrentWindow(), {
                 title: 'Export keyfile',
-                defaultPath: `${prefix}-${
-                    // Use local time
-                    new Date(
-                        now.getTime() - now.getTimezoneOffset() * 60000, // convert minutes to ms because getTime unit is ms
-                    )
-                        .toISOString()
-                        .slice(0, 16)
-                        .replace(/[-:]/g, '')
-                        .replace('T', '-')
-                }.kdbx`,
+                defaultPath: `${prefix}-${moment().format('YYYYMMDD-HHmm')}.kdbx`,
                 buttonLabel: 'Export',
                 filters: [{ name: 'SeedVault File', extensions: ['kdbx'] }],
             });
