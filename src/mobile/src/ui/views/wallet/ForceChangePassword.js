@@ -169,21 +169,7 @@ class ForceChangePassword extends Component {
     }
 
     navigateToLogin() {
-        const { theme: { body } } = this.props;
-        navigator.setStackRoot('login', {
-            animations: {
-                setStackRoot: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        navigator.setStackRoot('login');
     }
 
     renderTextField(

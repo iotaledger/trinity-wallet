@@ -860,6 +860,11 @@ const promotableBundleHashes = map(
     (transaction) => transaction.bundle,
 );
 
+const failedBundleHashes = map(
+    [...failedTransactionsWithCorrectTransactionHashes, ...failedTransactionsWithIncorrectTransactionHashes],
+    (transaction) => transaction.bundle,
+);
+
 const newZeroValueTransaction = [
     {
         hash: 'Q9DFNSOWDZ9BOCOGDLRKKEZQVMZQAVXKAI9JZLKYNAMFLWURAGBLKQPKVKOJOCAOIIREYVYNBBFIYPHFP',
@@ -1074,4 +1079,5 @@ export {
     LATEST_MILESTONE_INDEX,
     LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
     latestMilestoneTransactionObject,
+    failedBundleHashes,
 };

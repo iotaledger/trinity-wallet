@@ -44,7 +44,7 @@ const polling = (
         /**
          * Polling service names
          */
-        allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'nodeList', 'accountInfo'],
+        allPollingServices: ['promotion', 'broadcast', 'marketData', 'price', 'chartData', 'nodeList', 'accountInfo'],
         /**
          * Determines the service currently being run during the poll cycle
          */

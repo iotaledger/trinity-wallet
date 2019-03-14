@@ -171,7 +171,7 @@ export class CurrencySelection extends Component {
                             }}
                             title={t('currency')}
                             options={availableCurrencies}
-                            defaultOption={currency}
+                            value={currency}
                             dropdownWidth={{ width: width / 2 }}
                             disableWhen={isFetchingCurrencyData}
                             background

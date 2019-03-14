@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { PanResponder, Easing, Animated, StyleSheet, View } from 'react-native';
 import LottieView from 'lottie-react-native';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
+import { withNamespaces } from 'react-i18next';
 import timer from 'react-native-timer';
 import sliderSuccessAnimation from 'shared-modules/animations/slider-success.json';
-import i18next from 'shared-modules/libs/i18next';
 import { height as deviceHeight, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
@@ -61,6 +61,8 @@ class Slider extends Component {
         sliderReset: PropTypes.bool,
         /** Number of slider instances */
         numberOfSliders: PropTypes.number,
+        /** @ignore */
+        t: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
@@ -68,8 +70,6 @@ class Slider extends Component {
         channelHeight: deviceHeight / 12,
         renderSwipeComplete: false,
         blockSwipe: false,
-        preSwipeText: i18next.t('swipeToConfirm'),
-        postSwipeText: i18next.t('confirmed'),
         sliderReset: false,
         numberOfSliders: 1,
     };
@@ -181,14 +181,14 @@ class Slider extends Component {
     }
 
     getText() {
-        const { preSwipeText, postSwipeText, numberOfSliders } = this.props;
+        const { t, preSwipeText, postSwipeText, numberOfSliders } = this.props;
         if (this.state.swipeComplete) {
-            return postSwipeText;
+            return postSwipeText || t('confirmed');
         }
         if (numberOfSliders > 1) {
-            return preSwipeText + ' (' + this.state.sliderNumber + '/' + numberOfSliders + ')';
+            return (preSwipeText || t('swipeToConfirm')) + ' (' + this.state.sliderNumber + '/' + numberOfSliders + ')';
         }
-        return preSwipeText;
+        return preSwipeText || t('swipeToConfirm');
     }
 
     resetSlider() {
@@ -279,4 +279,4 @@ class Slider extends Component {
     }
 }
 
-export default Slider;
+export default withNamespaces('global')(Slider);
