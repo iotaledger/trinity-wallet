@@ -123,6 +123,7 @@ class WriteSeedDown extends Component {
      *  @method print
      */
     async print() {
+        const { theme: { body } } = this.props;
         const blankWalletHTML = `
             <!DOCTYPE html>
             <html>
@@ -152,7 +153,22 @@ class WriteSeedDown extends Component {
         try {
             Navigation.mergeOptions('appStack', {
                 topBar: {
+                    barStyle: 'default',
                     visible: true,
+                    animate: false,
+                    buttonColor: '#ffffff',
+                    drawBehind: true,
+                    noBorder: true,
+                    title: {
+                        color: '#ffffff',
+                    },
+                    backButton: {
+                        visible: true,
+                    },
+                    background: {
+                        color: body.bg,
+                        translucent: true,
+                    },
                 },
             });
             await RNPrint.print({ html: blankWalletHTML });

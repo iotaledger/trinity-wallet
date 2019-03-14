@@ -107,7 +107,7 @@ export class Dropdown extends Component {
         /** Determines whether to render a shadow */
         shadow: PropTypes.bool,
         /** Default selected option for dropdown */
-        defaultOption: PropTypes.string,
+        value: PropTypes.string,
         /** Saves dropdown selection
          * @param {string} option
          */
@@ -130,7 +130,7 @@ export class Dropdown extends Component {
         shadow: false,
         disableWhen: false,
         onRef: () => {},
-        defaultOption: '',
+        value: '',
         background: false,
         saveSelection: () => {},
         title: '',
@@ -143,7 +143,7 @@ export class Dropdown extends Component {
 
         this.state = {
             isDropdownOpen: false,
-            selectedOption: this.props.defaultOption,
+            selectedOption: this.props.value,
         };
     }
 

@@ -196,14 +196,16 @@ export const completeTransfer = () => {
 /**
  *  Promote transaction
  *
- *   @method promoteTransaction
- *   @param {string} bundleHash
- *   @param {string} accountName
- *   @param {object} seedStore
+ * @method promoteTransaction
  *
- *   @returns {function} dispatch
+ * @param {string} bundleHash
+ * @param {string} accountName
+ * @param {object} seedStore
+ * @param {boolean} [withQuorum]
+ *
+ * @returns {function} dispatch
  **/
-export const promoteTransaction = (bundleHash, accountName, seedStore) => (dispatch, getState) => {
+export const promoteTransaction = (bundleHash, accountName, seedStore, withQuorum = true) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
     const remotePoW = getRemotePoWFromState(getState());
@@ -222,7 +224,7 @@ export const promoteTransaction = (bundleHash, accountName, seedStore) => (dispa
     const getTailTransactionsForThisBundleHash = (transactions) =>
         filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
 
-    return syncAccount()(accountState)
+    return syncAccount(undefined, withQuorum)(accountState)
         .then((newAccountState) => {
             accountState = newAccountState;
 
@@ -247,7 +249,7 @@ export const promoteTransaction = (bundleHash, accountName, seedStore) => (dispa
                 throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
             }
 
-            return isFundedBundle()(head(bundles));
+            return isFundedBundle(undefined, withQuorum)(head(bundles));
         })
         .then((isFunded) => {
             if (!isFunded) {
@@ -420,15 +422,19 @@ export const forceTransactionPromotion = (
 /**
  * Sends a transaction
  *
- * @param  {object} seedStore - SeedStore class object
- * @param  {string} receiveAddress
- * @param  {number} value
- * @param  {string} message
- * @param  {string} accountName
+ * @param {object} seedStore - SeedStore class object
+ * @param {string} receiveAddress
+ * @param {number} value
+ * @param {string} message
+ * @param {string} accountName
+ * @param {boolean} [withQuorum]
  *
  * @returns {function} dispatch
  */
-export const makeTransaction = (seedStore, receiveAddress, value, message, accountName) => (dispatch, getState) => {
+export const makeTransaction = (seedStore, receiveAddress, value, message, accountName, withQuorum = true) => (
+    dispatch,
+    getState,
+) => {
     dispatch(sendTransferRequest());
 
     const address = size(receiveAddress) === 90 ? receiveAddress : iota.utils.addChecksum(receiveAddress);
@@ -455,13 +461,14 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 if (!lastTritIsZero) {
                     throw new Error(Errors.INVALID_LAST_TRIT);
                 }
+
                 return typeof seedStore.getMaxInputs === 'function' ? seedStore.getMaxInputs() : Promise.resolve(0);
             })
             .then((maxInputResponse) => {
                 maxInputs = maxInputResponse;
 
                 // Make sure that the address a user is about to send to is not already used.
-                return isAnyAddressSpent()([address]).then((isSpent) => {
+                return isAnyAddressSpent(undefined, withQuorum)([address]).then((isSpent) => {
                     if (isSpent) {
                         throw new Error(Errors.KEY_REUSE);
                     }
@@ -469,7 +476,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
-                    return syncAccount()(accountState, seedStore);
+                    return syncAccount(undefined, withQuorum)(accountState, seedStore);
                 });
             })
             .then((newState) => {
@@ -480,7 +487,12 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // Progressbar step => (Preparing inputs)
                 dispatch(setNextStepAsActive());
 
-                return getInputs()(accountState.addressData, accountState.transactions, value, maxInputs);
+                return getInputs(undefined, withQuorum)(
+                    accountState.addressData,
+                    accountState.transactions,
+                    value,
+                    maxInputs,
+                );
             })
             .then(({ inputs }) => {
                 // Do not allow receiving address to be one of the user's own input addresses.
@@ -497,12 +509,17 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
-                return getAddressDataUptoRemainder()(accountState.addressData, accountState.transactions, seedStore, [
-                    // Make sure inputs are blacklisted
-                    ...map(inputs, (input) => input.address),
-                    // Make sure receive address is blacklisted
-                    iota.utils.noChecksum(receiveAddress),
-                ]).then(({ remainderAddress, remainderIndex, addressDataUptoRemainder }) => {
+                return getAddressDataUptoRemainder(undefined, withQuorum)(
+                    accountState.addressData,
+                    accountState.transactions,
+                    seedStore,
+                    [
+                        // Make sure inputs are blacklisted
+                        ...map(inputs, (input) => input.address),
+                        // Make sure receive address is blacklisted
+                        iota.utils.noChecksum(receiveAddress),
+                    ],
+                ).then(({ remainderAddress, remainderIndex, addressDataUptoRemainder }) => {
                     // getAddressesUptoRemainder returns the latest unused address as the remainder address
                     // Also returns updated address data including new address data for the intermediate addresses.
                     // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
@@ -655,7 +672,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 const addresses = uniq(map(transactionObjects, (transaction) => transaction.address));
 
-                return isAnyAddressSpent()(addresses).then((isSpent) => {
+                return isAnyAddressSpent(undefined, withQuorum)(addresses).then((isSpent) => {
                     if (isSpent) {
                         throw new Error(Errors.KEY_REUSE);
                     }
@@ -696,7 +713,11 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 )(storeAndBroadcastAsync)(cached.trytes);
             })
             .then(() => {
-                return syncAccountAfterSpending()(seedStore, cached.transactionObjects, accountState);
+                return syncAccountAfterSpending(undefined, withQuorum)(
+                    seedStore,
+                    cached.transactionObjects,
+                    accountState,
+                );
             })
             .then((newState) => {
                 // Update account in (Realm) storage
@@ -856,13 +877,19 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 /**
  * Retries a transaction that previously failed to send.
  *
- * @param  {string} accountName
- * @param  {string} bundleHash
- * @param  {object} seedStore
+ * @method retryFailedTransaction
+ *
+ * @param {string} accountName
+ * @param {string} bundleHash
+ * @param {object} seedStore
+ * @param {boolean} [withQuorum]
  *
  * @returns {function} dispatch
  */
-export const retryFailedTransaction = (accountName, bundleHash, seedStore) => (dispatch, getState) => {
+export const retryFailedTransaction = (accountName, bundleHash, seedStore, withQuorum = true) => (
+    dispatch,
+    getState,
+) => {
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
     const shouldOffloadPow = getRemotePoWFromState(getState());
     const failedTransactionsForThisBundleHash = filter(
@@ -874,7 +901,9 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore) => (d
 
     return (
         // First check spent statuses against transaction addresses
-        categoriseAddressesBySpentStatus()(map(failedTransactionsForThisBundleHash, (tx) => tx.address))
+        categoriseAddressesBySpentStatus(undefined, withQuorum)(
+            map(failedTransactionsForThisBundleHash, (tx) => tx.address),
+        )
             // If any address (input, remainder, receive) is spent, error out
             .then(({ spent }) => {
                 if (size(spent)) {

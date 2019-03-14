@@ -88,33 +88,16 @@ class PrivacyPolicy extends Component {
     }
 
     onNextPress() {
-        const { theme: { body } } = this.props;
         this.props.acceptPrivacy();
-        navigator.push('walletSetup', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        navigator.push('walletSetup');
     }
 
     render() {
-        const { t, theme: { primary, body, bar } } = this.props;
+        const { t, theme: { primary, bar } } = this.props;
         const textColor = { color: bar.color };
 
         return (
-            <View style={[styles.container, { backgroundColor: body.bg }]}>
+            <View style={[styles.container, { backgroundColor: bar.bg }]}>
                 <AnimatedComponent
                     animationInType={['slideInRight', 'fadeIn']}
                     animationOutType={['slideOutLeft', 'fadeOut']}

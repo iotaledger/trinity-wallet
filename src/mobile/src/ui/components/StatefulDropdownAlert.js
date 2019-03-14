@@ -1,17 +1,13 @@
 import last from 'lodash/last';
 import { withNamespaces } from 'react-i18next';
 import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { dismissAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
-import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from 'libs/dimensions';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { Styling, getBackgroundColor } from 'ui/theme/general';
-import { rgbToHex } from 'shared-modules/libs/utils';
-import { isAndroid } from 'libs/device';
+import { Styling } from 'ui/theme/general';
 
 const errorIcon = require('shared-modules/images/error.png');
 const successIcon = require('shared-modules/images/successIcon.png');
@@ -42,8 +38,6 @@ class StatefulDropdownAlert extends Component {
         forceUpdate: PropTypes.bool.isRequired,
         /** @ignore */
         shouldUpdate: PropTypes.bool.isRequired,
-        /** @ignore */
-        isModalActive: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -88,34 +82,6 @@ class StatefulDropdownAlert extends Component {
     }
 
     /**
-     * Returns status bar colour dependent on current route
-     *
-     * @method getStatusBarColor
-     * @param {string} currentRoute
-     *
-     * @returns {string}
-     */
-    getStatusBarColor(currentRoute) {
-        const statusBarColor = getBackgroundColor(currentRoute, this.props.theme);
-        if (statusBarColor) {
-            return rgbToHex(statusBarColor);
-        }
-    }
-
-    /**
-     * Returns status bar style (light or dark) dependent on theme
-     *
-     * @method getStatusBarStyle
-     *
-     * @returns {string}
-     */
-    getStatusBarStyle() {
-        return tinycolor(getBackgroundColor(last(this.props.navStack), this.props.theme)).isDark()
-            ? 'light-content'
-            : 'dark-content';
-    }
-
-    /**
      * Checks for alerts on mount
      *
      * @method generateAlertWhenNoConnection
@@ -151,9 +117,8 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
-        const { onRef, theme: { positive, negative }, navStack, dismissAlert, forceUpdate, isModalActive } = this.props;
+        const { onRef, theme: { positive, negative }, dismissAlert, forceUpdate } = this.props;
         const closeAfter = closeInterval;
-        const statusBarStyle = this.getStatusBarStyle();
         return (
             <DropdownAlert
                 ref={onRef || this.refFunc}
@@ -192,9 +157,8 @@ class StatefulDropdownAlert extends Component {
                     height: width / 15,
                     alignSelf: 'center',
                 }}
-                defaultContainer={isAndroid && isModalActive ? { paddingTop: StatusBar.currentHeight } : null}
-                inactiveStatusBarStyle={statusBarStyle}
-                inactiveStatusBarBackgroundColor={this.getStatusBarColor(last(navStack))}
+                defaultContainer={{ paddingTop: Styling.statusBarHeight }}
+                updateStatusBar={false}
                 onCancel={dismissAlert}
                 onClose={dismissAlert}
                 closeInterval={closeAfter}
@@ -212,7 +176,6 @@ const mapStateToProps = (state) => ({
     shouldUpdate: state.wallet.shouldUpdate,
     forceUpdate: state.wallet.forceUpdate,
     navStack: state.wallet.navStack,
-    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = { dismissAlert };

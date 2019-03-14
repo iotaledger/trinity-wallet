@@ -26,9 +26,11 @@ import { ADDRESS_LENGTH_WITHOUT_CHECKSUM, CHECKSUM_LENGTH, VALID_ADDRESS_WITHOUT
 
 /**
  * Validates address object - { address, index, checksum, balance, spent: { local, remote } }
+ *
  * @method isValidAddressObject
  *
  * @param {object} addressObject
+ *
  * @returns {boolean}
  */
 export const isValidAddressObject = (addressObject) => {
@@ -48,13 +50,14 @@ export const isValidAddressObject = (addressObject) => {
 };
 
 /**
- * Stop overriding local spend status for a known address
+ * Stops overriding local spend status for a known address
  *
  * @method preserveAddressLocalSpendStatus
+ *
  * @param existingAddressData
  * @param newAddressData
  *
- * @returns {object}
+ * @returns {array}
  */
 export const preserveAddressLocalSpendStatus = (existingAddressData, newAddressData) =>
     map(newAddressData, (addressObject) => {
@@ -74,12 +77,14 @@ export const preserveAddressLocalSpendStatus = (existingAddressData, newAddressD
     });
 
 /**
- * Merge latest address data into old
+ * Merges latest address data into old
  *
  * @method mergeAddressData
  *
  * @param {array} existingAddressData
  * @param {array} newAddressData
+ *
+ * @returns {array}
  */
 export const mergeAddressData = (existingAddressData, newAddressData) => {
     if (isEmpty(existingAddressData)) {
@@ -134,19 +139,21 @@ export const isAddressUsedSync = (addressObject, transactions) => {
 /**
  * Checks if an address is used i.e. has spent or has associated hashes
  *
- *   @method isAddressUsedAsync
- *   @param {string} provider
+ * @method isAddressUsedAsync
  *
- *   @returns {function(string, object, array): Promise<boolean>}
+ * @param {string} provider
+ * @param {boolean} withQuorum
+ *
+ * @returns {function(string, object, array): Promise<boolean>}
  **/
-export const isAddressUsedAsync = (provider) => (addressObject) => {
+export const isAddressUsedAsync = (provider, withQuorum) => (addressObject) => {
     if (!isValidAddressObject(addressObject)) {
         return Promise.reject(new Error(Errors.INVALID_ADDRESS_DATA));
     }
 
     const { address } = addressObject;
 
-    return wereAddressesSpentFromAsync(provider)([address]).then((spent) => {
+    return wereAddressesSpentFromAsync(provider, withQuorum)([address]).then((spent) => {
         const isSpent = head(spent) === true;
 
         return (
@@ -156,7 +163,7 @@ export const isAddressUsedAsync = (provider) => (addressObject) => {
 
                 return (
                     hasAssociatedHashes ||
-                    getBalancesAsync(provider)([address]).then((balances) => {
+                    getBalancesAsync(provider, withQuorum)([address]).then((balances) => {
                         return accumulateBalance(map(balances.balances, Number)) > 0;
                     })
                 );
@@ -166,18 +173,20 @@ export const isAddressUsedAsync = (provider) => (addressObject) => {
 };
 
 /**
- * Sequentially generate addresses till latest unused address
+ * Sequentially generates addresses till latest unused address
  *
- *   @method getAddressDataUptoLatestUnusedAddress
- *   @param {string} provider
+ * @method getAddressDataUptoLatestUnusedAddress
  *
- *   @returns {function(object, array, object): Promise<array>}
+ * @param {string} provider
+ * @param {boolean} withQuorum
+ *
+ * @returns {function(object, array, object): Promise<array>}
  **/
-export const getAddressDataUptoLatestUnusedAddress = (provider) => (seedStore, transactions, options) => {
+export const getAddressDataUptoLatestUnusedAddress = (provider, withQuorum) => (seedStore, transactions, options) => {
     const generateAddressData = (currentKeyIndex, generatedAddressData) => {
         return seedStore
             .generateAddress({ index: currentKeyIndex, security })
-            .then((address) => findAddressesData(provider)([address], transactions))
+            .then((address) => findAddressesData(provider, withQuorum)([address], transactions))
             .then(({ hashes, balances, wereSpent, addresses }) => {
                 const updatedAddressData = [
                     ...generatedAddressData,
@@ -208,17 +217,19 @@ export const getAddressDataUptoLatestUnusedAddress = (provider) => (seedStore, t
 };
 
 /**
- *   Accepts addresses with indexes [{ address, index }] as an array.
- *   Finds latest balances on those addresses.
- *   Finds latest spent statuses on addresses.
- *   Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0, checksum: address-checksum }}]
+ * Accepts addresses with indexes [{ address, index }] as an array.
+ * Finds latest balances on those addresses.
+ * Finds latest spent statuses on addresses.
+ * Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0, checksum: address-checksum }}]
  *
- *   @method mapLatestAddressData
- *   @param {string} provider
+ * @method mapLatestAddressData
  *
- *   @returns {function(array, array): Promise<object>}
+ * @param {string} provider
+ * @param {boolean} withQuorum
+ *
+ * @returns {function(array, array): Promise<object>}
  **/
-export const mapLatestAddressData = (provider) => (addressData, transactions) => {
+export const mapLatestAddressData = (provider, withQuorum) => (addressData, transactions) => {
     const cached = {
         balances: [],
         wereSpent: [],
@@ -230,11 +241,11 @@ export const mapLatestAddressData = (provider) => (addressData, transactions) =>
         return Promise.resolve([]);
     }
 
-    return getBalancesAsync(provider)(addresses)
+    return getBalancesAsync(provider, withQuorum)(addresses)
         .then((balances) => {
             cached.balances = map(balances.balances, Number);
 
-            return wereAddressesSpentFromAsync(provider)(addresses);
+            return wereAddressesSpentFromAsync(provider, withQuorum)(addresses);
         })
         .then((wereSpent) => {
             // Get spend statuses of addresses from transactions
@@ -263,10 +274,11 @@ export const mapLatestAddressData = (provider) => (addressData, transactions) =>
  *
  *  @method getFullAddressHistory
  *  @param {string} provider
+ *  @param {boolean} withQuorum
  *
  *  @returns {function(object, object): Promise<object>}
  */
-export const getFullAddressHistory = (provider) => (seedStore, existingAccountState = {}) => {
+export const getFullAddressHistory = (provider, withQuorum) => (seedStore, existingAccountState = {}) => {
     let generatedAddresses = [];
     const addressData = { hashes: [], balances: [], wereSpent: [] };
     const { transactions } = existingAccountState;
@@ -274,7 +286,7 @@ export const getFullAddressHistory = (provider) => (seedStore, existingAccountSt
     const generateAndStoreAddressesInBatch = (currentOptions) => {
         return seedStore
             .generateAddress(currentOptions)
-            .then((addresses) => findAddressesData(provider)(addresses, transactions || []))
+            .then((addresses) => findAddressesData(provider, withQuorum)(addresses, transactions || []))
             .then(({ hashes, balances, wereSpent, addresses }) => {
                 const shouldGenerateNextBatch =
                     size(hashes) ||
@@ -300,7 +312,7 @@ export const getFullAddressHistory = (provider) => (seedStore, existingAccountSt
                 // Set the first address from the newly fetched addresses as the latest address.
                 const latestAddress = head(addresses);
 
-                return removeUnusedAddresses(provider)(
+                return removeUnusedAddresses(provider, withQuorum)(
                     lastAddressIndex,
                     latestAddress,
                     generatedAddresses.slice(),
@@ -333,14 +345,15 @@ export const getFullAddressHistory = (provider) => (seedStore, existingAccountSt
  *
  *  @method findAddressesData
  *  @param {string} provider
+ *  @param {boolean} withQuorum
  *
  *  @returns {function(array, [array]): Promise<{object}>
  */
-const findAddressesData = (provider) => (addresses, transactions = []) => {
+const findAddressesData = (provider, withQuorum) => (addresses, transactions = []) => {
     return Promise.all([
         findTransactionsAsync(provider)({ addresses }),
-        getBalancesAsync(provider)(addresses),
-        wereAddressesSpentFromAsync(provider)(addresses),
+        getBalancesAsync(provider, withQuorum)(addresses),
+        wereAddressesSpentFromAsync(provider, withQuorum)(addresses),
     ]).then((data) => {
         const [hashes, balances, wereSpent] = data;
         const spendStatusesFromTransactions = findSpendStatusesFromTransactions(addresses, transactions);
@@ -362,10 +375,11 @@ const findAddressesData = (provider) => (addresses, transactions = []) => {
  *
  *  @method removeUnusedAddresses
  *  @param {string} provider
+ *  @param {boolean} withQuorum
  *
  *  @returns {function(number, string, array, object): Promise<array>}
  */
-export const removeUnusedAddresses = (provider) => (
+export const removeUnusedAddresses = (provider, withQuorum) => (
     index,
     latestUnusedAddress,
     finalAddresses,
@@ -377,14 +391,14 @@ export const removeUnusedAddresses = (provider) => (
 
     const { transactions } = existingAccountState;
 
-    return findAddressesData(provider)([finalAddresses[index]], transactions || []).then(
+    return findAddressesData(provider, withQuorum)([finalAddresses[index]], transactions || []).then(
         ({ hashes, balances, wereSpent }) => {
             if (
                 size(hashes) === 0 &&
                 some(balances, (balance) => balance === 0) &&
                 some(wereSpent, (status) => status.remote === false && status.local === false)
             ) {
-                return removeUnusedAddresses(provider)(
+                return removeUnusedAddresses(provider, withQuorum)(
                     index - 1,
                     finalAddresses[index],
                     finalAddresses.slice(0, index),
@@ -481,14 +495,16 @@ export const markAddressesAsSpentSync = (bundles, addressData) => {
 };
 
 /**
- *   Communicates with ledger and checks if the addresses are spent from.
+ * Communicates with ledger and checks if the addresses are spent from.
  *
- *   @method filterSpentAddressData
- *   @param {string} [provider]
+ * @method filterSpentAddressData
  *
- *   @returns {function(array, array): Promise<object>}
+ * @param {string} provider
+ * @param {boolean} withQuorum
+ *
+ * @returns {function(array, array): Promise<object>}
  **/
-export const filterSpentAddressData = (provider) => (addressData, transactions) => {
+export const filterSpentAddressData = (provider, withQuorum) => (addressData, transactions) => {
     const unspentAddresses = map(
         filter(addressData, (addressObject) => addressObject.spent.local === false),
         (addressObject) => addressObject.address,
@@ -502,7 +518,7 @@ export const filterSpentAddressData = (provider) => (addressData, transactions) 
     // Get latest spend statuses against unspent addresses from locally stored transactions
     const spendStatuses = findSpendStatusesFromTransactions(unspentAddresses, transactions);
 
-    return wereAddressesSpentFromAsync(provider)(unspentAddresses).then((wereSpent) => {
+    return wereAddressesSpentFromAsync(provider, withQuorum)(unspentAddresses).then((wereSpent) => {
         const filteredAddresses = filter(
             unspentAddresses,
             (_, idx) => wereSpent[idx] === false && spendStatuses[idx] === false,
@@ -513,15 +529,17 @@ export const filterSpentAddressData = (provider) => (addressData, transactions) 
 };
 
 /**
- *   Communicates with ledger and checks if the any address is spent.
+ * Communicates with ledger and checks if the any address is spent.
  *
- *   @method isAnyAddressSpent
- *   @param {string} [provider]
+ * @method isAnyAddressSpent
  *
- *   @returns {function(array): Promise<boolean>}
+ * @param {string} provider
+ * @param {boolean} withQuorum
+ *
+ * @returns {function(array): Promise<boolean>}
  **/
-export const isAnyAddressSpent = (provider) => (addresses) => {
-    return wereAddressesSpentFromAsync(provider)(addresses).then((spendStatuses) =>
+export const isAnyAddressSpent = (provider, withQuorum) => (addresses) => {
+    return wereAddressesSpentFromAsync(provider, withQuorum)(addresses).then((spendStatuses) =>
         some(spendStatuses, (spendStatus) => spendStatus === true),
     );
 };
@@ -597,14 +615,16 @@ export const getLatestAddress = (addressData, withChecksum = false) => {
 export const getLatestAddressObject = (addressData) => maxBy(addressData, 'index');
 
 /**
- *   Generate addresses till remainder (unused and also not blacklisted for being a remainder address)
+ * Generate addresses till remainder (unused and also not blacklisted for being a remainder address)
  *
- *   @method getAddressDataUptoRemainder
- *   @param {string} [provider]
+ * @method getAddressDataUptoRemainder
  *
- *   @returns {function(array, array, object, array): Promise<object>}
+ * @param {string} provider
+ * @param {boolean} withQuorum
+ *
+ * @returns {function(array, array, object, array): Promise<object>}
  **/
-export const getAddressDataUptoRemainder = (provider) => (
+export const getAddressDataUptoRemainder = (provider, withQuorum) => (
     addressData,
     transactions,
     seedStore,
@@ -618,7 +638,7 @@ export const getAddressDataUptoRemainder = (provider) => (
     if (isBlacklisted(latestAddress)) {
         const startIndex = latestAddressData.index + 1;
 
-        return getAddressDataUptoLatestUnusedAddress(provider)(seedStore, transactions, {
+        return getAddressDataUptoLatestUnusedAddress(provider, withQuorum)(seedStore, transactions, {
             index: startIndex,
             security: DEFAULT_SECURITY,
         }).then((newAddressData) => {
@@ -628,7 +648,7 @@ export const getAddressDataUptoRemainder = (provider) => (
             const addressDataUptoRemainder = [...addressData, ...newAddressData];
 
             if (isBlacklisted(remainderAddress)) {
-                return getAddressDataUptoRemainder(provider)(
+                return getAddressDataUptoRemainder(provider, withQuorum)(
                     addressDataUptoRemainder,
                     transactions,
                     seedStore,
@@ -652,14 +672,16 @@ export const getAddressDataUptoRemainder = (provider) => (
 };
 
 /**
- *   Takes current address data as input and adds latest unused addresses
+ * Takes current address data as input and adds latest unused addresses
  *
- *   @method syncAddresses
- *   @param {string} [provider]
+ * @method syncAddresses
  *
- *   @returns {function(string, array, array): Promise<object>}
+ * @param {string} provider
+ * @param {boolean} withQuorum
+ *
+ * @returns {function(string, array, array): Promise<object>}
  **/
-export const syncAddresses = (provider) => (seedStore, addressData, transactions) => {
+export const syncAddresses = (provider, withQuorum) => (seedStore, addressData, transactions) => {
     // Find the address object with highest index from existing address data
     const latestAddressObject = getLatestAddressObject(addressData);
 
@@ -667,14 +689,14 @@ export const syncAddresses = (provider) => (seedStore, addressData, transactions
         // Start index should be (highest index in existing address data + 1)
         const startIndex = latestAddressObject.index + 1;
 
-        return getAddressDataUptoLatestUnusedAddress(provider)(seedStore, transactions, {
+        return getAddressDataUptoLatestUnusedAddress(provider, withQuorum)(seedStore, transactions, {
             index: startIndex,
             security: DEFAULT_SECURITY,
         }).then((newAddressObjects) => [...addressData, ...newAddressObjects]);
     };
 
     // Check if there are any transactions associated with the latest address or if the address is spent
-    return isAddressUsedAsync(provider)(latestAddressObject).then((isUsed) => {
+    return isAddressUsedAsync(provider, withQuorum)(latestAddressObject).then((isUsed) => {
         if (!isUsed && !isAddressUsedSync(latestAddressObject, transactions)) {
             return addressData;
         }
@@ -714,14 +736,16 @@ export const filterAddressDataWithPendingIncomingTransactions = (addressData, tr
 };
 
 /**
- *   Attach address to tangle if its not already attached
+ * Attach address to tangle if its not already attached
  *
- *   @method attachAndFormatAddress
- *   @param {string} [provider]
+ * @method attachAndFormatAddress
  *
- *   @returns {function(string, number, number, object, object): Promise<object>}
+ * @param {string} provider
+ * @param {boolean} withQuorum
+ *
+ * @returns {function(string, number, number, object, object): Promise<object>}
  **/
-export const attachAndFormatAddress = (provider) => (address, index, balance, seedStore, accountState) => {
+export const attachAndFormatAddress = (provider, withQuorum) => (address, index, balance, seedStore, accountState) => {
     let attachedTransactions = [];
 
     return findTransactionsAsync(provider)({ addresses: [address] })
@@ -738,7 +762,7 @@ export const attachAndFormatAddress = (provider) => (address, index, balance, se
         .then((transactionObjects) => {
             attachedTransactions = transactionObjects;
 
-            return wereAddressesSpentFromAsync(provider)([address]);
+            return wereAddressesSpentFromAsync(provider, withQuorum)([address]);
         })
         .then((wereSpent) => {
             const spendStatuses = findSpendStatusesFromTransactions([address], accountState.transactions);
@@ -766,12 +790,14 @@ export const attachAndFormatAddress = (provider) => (address, index, balance, se
  * Categorise addresses as spent/unspent
  *
  * @method categoriseAddressesBySpentStatus
- * @param {string} [provider]
+ *
+ * @param {string} provider
+ * @param {boolean} withQuorum
  *
  * @returns {function(array): object}
  */
-export const categoriseAddressesBySpentStatus = (provider) => (addresses) => {
-    return wereAddressesSpentFromAsync(provider)(addresses).then((spentStatuses) => {
+export const categoriseAddressesBySpentStatus = (provider, withQuorum) => (addresses) => {
+    return wereAddressesSpentFromAsync(provider, withQuorum)(addresses).then((spentStatuses) => {
         const categorise = (acc, address, idx) => {
             if (spentStatuses[idx]) {
                 acc.spent.push(address);

@@ -31,7 +31,7 @@ import { roundDown } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { accumulateBalance } from 'shared-modules/libs/iota/addresses';
 import { Icon } from 'ui/theme/icons';
-import { isIPhoneX } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 import NotificationButtonComponent from 'ui/components/NotificationButton';
 
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        height: Styling.topbarHeight - Styling.statusBarHeight,
+        height: Styling.topBarHeight - Styling.statusBarHeight,
     },
     balanceWrapper: {
         justifyContent: 'center',
@@ -130,8 +130,6 @@ class TopBar extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         setPollFor: PropTypes.func.isRequired,
-        /** Top bar height */
-        topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
         /** @ignore */
         isKeyboardActive: PropTypes.bool.isRequired,
         /** @ignore */
@@ -184,6 +182,7 @@ class TopBar extends Component {
         this.state = {
             scrollable: false,
         };
+        this.topBarHeight = new Animated.Value(Styling.topBarHeight - Styling.statusBarHeight);
     }
 
     componentDidMount() {
@@ -200,13 +199,26 @@ class TopBar extends Component {
                 this.props.toggleTopBarDisplay();
             }
         }
-
         if (this.props.currentSetting !== newProps.currentSetting) {
             // Detects if navigating across screens
             if (this.props.isTopBarActive) {
                 // In case the dropdown is active
                 this.props.toggleTopBarDisplay();
             }
+        }
+        // Minimises topBar if keyboard is open
+        if (!this.props.isKeyboardActive && newProps.isKeyboardActive && !this.props.isModalActive) {
+            Animated.timing(this.topBarHeight, {
+                duration: isAndroid ? 50 : 250,
+                toValue: isIPhoneX ? 0 : 20,
+            }).start();
+        }
+        // Maximises topBar if keyboard is closed
+        if (this.props.isKeyboardActive && !newProps.isKeyboardActive) {
+            Animated.timing(this.topBarHeight, {
+                duration: isAndroid ? 50 : 250,
+                toValue: Styling.topBarHeight - Styling.statusBarHeight,
+            }).start();
         }
     }
 
@@ -231,25 +243,17 @@ class TopBar extends Component {
     }
 
     /**
-     * Returns styling dependent on device type
+     * Makes dropdown scrollable when it exceeds max length
      *
-     * @method getTopbarStyling
+     * @method setScrollable
      * @returns {any}
      */
-    getTopbarStyling() {
-        const { topBarHeight } = this.props;
-        if (isIPhoneX) {
-            return { height: topBarHeight - 20 };
-        }
-        return { height: topBarHeight - Styling.statusBarHeight, marginTop: Styling.statusBarHeight };
-    }
-
     setScrollable(y) {
         if (
             y >=
             (isIPhoneX
-                ? height - Styling.topbarHeight - Styling.iPhoneXBottomInsetHeight
-                : height - Styling.topbarHeight)
+                ? height - Styling.topBarHeight - Styling.iPhoneXBottomInsetHeight
+                : height - Styling.topBarHeight)
         ) {
             return this.setState({ scrollable: true });
         }
@@ -257,7 +261,7 @@ class TopBar extends Component {
     }
 
     /**
-     * Determines when to disable topbar press events
+     * Determines when to disable topBar press events
      *
      * @method shouldDisable
      * @returns {boolean}
@@ -313,11 +317,17 @@ class TopBar extends Component {
         const shouldDisable = this.shouldDisable();
 
         const baseContent = (
-            <Animated.View style={[styles.titleWrapper, this.getTopbarStyling()]}>
+            <Animated.View
+                style={[
+                    styles.titleWrapper,
+                    !isIPhoneX && { marginTop: Styling.statusBarHeight },
+                    { height: this.topBarHeight },
+                ]}
+            >
                 <TouchableWithoutFeedback
                     onPress={() => {
                         if (!shouldDisable) {
-                            if (accountNames.length > 1) {
+                            if (accountNames.length > 1 && !isKeyboardActive) {
                                 this.props.toggleTopBarDisplay();
                             }
                         }
@@ -454,8 +464,8 @@ class TopBar extends Component {
                     contentContainerView={{ height: height }}
                     style={{
                         maxHeight: isIPhoneX
-                            ? height - Styling.topbarHeight - Styling.iPhoneXBottomInsetHeight
-                            : height - Styling.topbarHeight,
+                            ? height - Styling.topBarHeight - Styling.iPhoneXBottomInsetHeight
+                            : height - Styling.topBarHeight,
                     }}
                 >
                     {restContent}

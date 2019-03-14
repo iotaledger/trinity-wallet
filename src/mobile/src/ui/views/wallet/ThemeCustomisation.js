@@ -205,7 +205,7 @@ class ThemeCustomisation extends Component {
                                 dropdownWidth={{ width: width / 1.45 }}
                                 background
                                 shadow
-                                defaultOption={this.getLocalizedThemeName(themeName)}
+                                value={this.getLocalizedThemeName(themeName)}
                                 options={this.getLocalizedThemes().map(({ theme }) => theme)}
                                 saveSelection={(localizedSelection) => {
                                     const selection = this.getThemeName(localizedSelection);

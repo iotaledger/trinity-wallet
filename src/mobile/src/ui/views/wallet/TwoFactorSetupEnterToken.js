@@ -98,21 +98,7 @@ class TwoFactorSetupEnterToken extends Component {
      * @method navigateToHome
      */
     navigateToHome() {
-        const { theme: { body, bar } } = this.props;
-        navigator.setStackRoot('home', {
-            animations: {
-                setStackRoot: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: bar.bg,
-            },
-        });
+        navigator.setStackRoot('home');
     }
 
     /**

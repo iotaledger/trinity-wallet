@@ -16,6 +16,9 @@ import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
 // Initialise realm instance
 let realm = {}; // eslint-disable-line import/no-mutable-exports
 
+// Initialise Realm constructor as null and reinitialise after importing the correct (platform) Realm dependency
+let Realm = null;
+
 /**
  * Imports Realm dependency
  *
@@ -33,8 +36,6 @@ export const getRealm = () => {
 
     return Electron.getRealm();
 };
-
-const Realm = getRealm();
 
 /**
  * Model for Account.
@@ -737,8 +738,10 @@ const migrateToNewStoragePath = (config) => {
  *
  * @returns {Promise}
  */
-const initialise = (getEncryptionKeyPromise) =>
-    getEncryptionKeyPromise().then((encryptionKey) => {
+const initialise = (getEncryptionKeyPromise) => {
+    Realm = getRealm();
+
+    return getEncryptionKeyPromise().then((encryptionKey) => {
         let hasVersionZeroRealmAtDeprecatedPath = false;
         let hasVersionOneRealmAtDeprecatedPath = false;
 
@@ -789,6 +792,7 @@ const initialise = (getEncryptionKeyPromise) =>
 
         initialiseSync();
     });
+};
 
 /**
  * Initialises storage.
