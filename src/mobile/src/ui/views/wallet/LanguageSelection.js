@@ -6,7 +6,7 @@ import { withNamespaces } from 'react-i18next';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { setLanguage, setLocale } from 'shared-modules/actions/settings';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { I18N_LOCALE_LABELS, getLabelFromLocale, getLocaleFromLabel } from 'shared-modules/libs/i18n';
+import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import i18next from 'shared-modules/libs/i18next';
 import DropdownComponent from 'ui/components/Dropdown';
 import { Icon } from 'ui/theme/icons';
@@ -57,9 +57,6 @@ const styles = StyleSheet.create({
     },
 });
 
-const currentLocale = i18next.language;
-const currentLanguageLabel = getLabelFromLocale(currentLocale);
-
 /** Language Selection component */
 class LanguageSelection extends Component {
     static propTypes = {
@@ -77,10 +74,11 @@ class LanguageSelection extends Component {
         language: PropTypes.string.isRequired,
     };
 
-    constructor() {
-        super();
-
-        this.languageSelected = currentLanguageLabel;
+    constructor(props) {
+        super(props);
+        this.state = {
+            languageSelected: props.language,
+        };
     }
 
     componentDidMount() {
@@ -91,7 +89,7 @@ class LanguageSelection extends Component {
      * Saves user-selected language
      */
     saveLanguageSelection() {
-        const nextLanguage = this.languageSelected;
+        const nextLanguage = this.state.languageSelected;
 
         this.props.setLanguage(nextLanguage);
         this.props.setLocale(getLocaleFromLabel(nextLanguage));
@@ -102,8 +100,7 @@ class LanguageSelection extends Component {
     }
 
     render() {
-        const { t, language, theme } = this.props;
-
+        const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
         const bodyColor = theme.body.color;
 
@@ -124,10 +121,10 @@ class LanguageSelection extends Component {
                             }}
                             title={t('language')}
                             dropdownWidth={{ width: width / 1.5 }}
-                            defaultOption={language}
+                            value={this.state.languageSelected}
                             options={I18N_LOCALE_LABELS}
                             saveSelection={(lang) => {
-                                this.languageSelected = lang;
+                                this.setState({ languageSelected: lang });
                             }}
                             background
                         />

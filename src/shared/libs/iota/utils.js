@@ -331,6 +331,7 @@ export const parseAddress = (input) => {
  * Retry IOTA api calls on different nodes
  *
  * @method withRetriesOnDifferentNodes
+ *
  * @param {array} nodes
  * @param {array|function} [failureCallbacks]
  *

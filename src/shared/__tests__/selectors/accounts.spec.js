@@ -1,4 +1,5 @@
 import keys from 'lodash/keys';
+import transform from 'lodash/transform';
 import { expect } from 'chai';
 import {
     getAccountsFromState,
@@ -21,10 +22,11 @@ import {
     getPromotableBundlesFromState,
     getAccountInfoDuringSetup,
     isSettingUpNewAccount,
+    getFailedBundleHashes,
 } from '../../selectors/accounts';
-import accounts from '../__samples__/accounts';
+import accounts, { NAME as MOCK_ACCOUNT_NAME, TYPE as MOCK_ACCOUNT_TYPE } from '../__samples__/accounts';
 import addresses, { latestAddressWithoutChecksum, latestAddressWithChecksum, balance } from '../__samples__/addresses';
-import { normalisedTransactions, promotableBundleHashes } from '../__samples__/transactions';
+import { normalisedTransactions, promotableBundleHashes, failedBundleHashes } from '../__samples__/transactions';
 
 describe('selectors: accounts', () => {
     describe('#getAccountsFromState', () => {
@@ -185,7 +187,7 @@ describe('selectors: accounts', () => {
             expect(selectedAccountStateFactory('TEST')(state)).to.have.keys([
                 'transactions',
                 'addressData',
-                'type',
+                'meta',
                 'accountName',
             ]);
         });
@@ -484,6 +486,24 @@ describe('selectors: accounts', () => {
                     });
                 });
             });
+        });
+    });
+
+    describe('#getFailedBundleHashes', () => {
+        it('should return failed bundle hashes categorised by account name & type', () => {
+            const actualResult = getFailedBundleHashes({ accounts });
+            const expectedResult = transform(
+                failedBundleHashes,
+                (acc, bundleHash) => {
+                    acc[bundleHash] = {
+                        name: MOCK_ACCOUNT_NAME,
+                        type: MOCK_ACCOUNT_TYPE,
+                    };
+                },
+                {},
+            );
+
+            expect(expectedResult).to.eql(actualResult);
         });
     });
 });

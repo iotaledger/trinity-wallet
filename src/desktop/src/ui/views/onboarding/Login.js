@@ -12,6 +12,7 @@ import { getAccountInfo, getFullAccountInfo } from 'actions/accounts';
 import { clearWalletData, setPassword } from 'actions/wallet';
 
 import { getSelectedAccountName, getSelectedAccountMeta, isSettingUpNewAccount } from 'selectors/accounts';
+import { TWOFA_TOKEN_LENGTH } from 'libs/utils';
 
 import { capitalize } from 'libs/iota/converter';
 import { hash, authorize } from 'libs/crypto';
@@ -109,7 +110,7 @@ class Login extends React.Component {
      * @param {string} value - Code value
      */
     setCode = (value) => {
-        this.setState({ code: value }, () => value.length === 6 && this.handleSubmit());
+        this.setState({ code: value }, () => value.length === TWOFA_TOKEN_LENGTH && this.handleSubmit());
     };
 
     /**

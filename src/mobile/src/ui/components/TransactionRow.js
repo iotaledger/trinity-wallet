@@ -126,6 +126,13 @@ export default class TransactionRow extends PureComponent {
         message: 'Empty',
     };
 
+    constructor() {
+        super();
+        this.state = {
+            statusTextWidth: 0,
+        };
+    }
+
     render() {
         const { icon, status, value, unit, time, message, t, style, onPress, bundleIsBeingPromoted } = this.props;
 
@@ -134,7 +141,13 @@ export default class TransactionRow extends PureComponent {
                 <View style={styles.container}>
                     <View style={[styles.row, style.containerBackgroundColor, style.rowBorderColor]}>
                         {bundleIsBeingPromoted && (
-                            <View style={{ position: 'absolute', left: width / 3.4, top: height / 70 }}>
+                            <View
+                                style={{
+                                    position: 'absolute',
+                                    left: this.state.statusTextWidth + width / 8,
+                                    top: height / 85,
+                                }}
+                            >
                                 <LottieView
                                     source={spinner}
                                     style={styles.animation}
@@ -159,7 +172,12 @@ export default class TransactionRow extends PureComponent {
                             </View>
                             <View style={styles.textWrapper}>
                                 <View style={styles.topWrapper}>
-                                    <Text style={[styles.statusText, { color: style.titleColor }]}>
+                                    <Text
+                                        style={[styles.statusText, { color: style.titleColor }]}
+                                        onLayout={(event) =>
+                                            this.setState({ statusTextWidth: event.nativeEvent.layout.width })
+                                        }
+                                    >
                                         {bundleIsBeingPromoted ? t('history:retrying') : status}
                                     </Text>
                                     <Text style={[styles.confirmationStatus, { color: style.titleColor }]}>

@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX, MAX_SEED_TRITS } from 'shared-modules/libs/iota/utils';
 import { navigator } from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { toggleModalActivity } from 'shared-modules/actions/ui';
+import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
 import FlagSecure from 'react-native-flag-secure-android';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import WithUserActivity from 'ui/components/UserActivity';
@@ -80,6 +80,8 @@ class SeedReentry extends Component {
         minimised: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** @ignore */
+        setDoNotMinimise: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -108,29 +110,13 @@ class SeedReentry extends Component {
      * @method onDonePress
      */
     onDonePress() {
-        const { t, theme: { body } } = this.props;
+        const { t } = this.props;
         const { reenteredSeed } = this.state;
         if (global.onboardingSeed && isEqual(reenteredSeed, global.onboardingSeed)) {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
-            navigator.push('setAccountName', {
-                animations: {
-                    push: {
-                        enable: false,
-                    },
-                    pop: {
-                        enable: false,
-                    },
-                },
-                layout: {
-                    backgroundColor: body.bg,
-                    orientation: ['portrait'],
-                },
-                statusBar: {
-                    backgroundColor: body.bg,
-                },
-            });
+            navigator.push('setAccountName');
             delete this.state.reenteredSeed;
         } else if (size(reenteredSeed) === MAX_SEED_TRITS) {
             this.props.generateAlert('error', t('incorrectSeed'), t('incorrectSeedExplanation'));
@@ -188,6 +174,8 @@ class SeedReentry extends Component {
                     theme,
                     hideModal: () => this.props.toggleModalActivity(),
                     onQRRead: (data) => this.onQRRead(data),
+                    onMount: () => this.props.setDoNotMinimise(true),
+                    onUnmount: () => this.props.setDoNotMinimise(false),
                 });
             case 'passwordValidation':
                 return this.props.toggleModalActivity(modalContent, {
@@ -305,6 +293,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     toggleModalActivity,
+    setDoNotMinimise
 };
 
 export default WithUserActivity()(
