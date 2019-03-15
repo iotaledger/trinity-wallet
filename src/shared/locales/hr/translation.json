@@ -600,9 +600,9 @@
         "buttonInstructionsEnableIPhoneX": "Pritisnite donji gumb kako bi omogućili Face ID",
         "instructionsLogin": "Dodirnite čitač otiska prstiju za prijavu",
         "systemCancelledAuth": "Autorizacija je poništena od strane vašeg uređaja",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "userCancelledAuth": "Autorizacija je poništena od strane korisnika",
+        "passwordFallback": "Povratak na autorizaciju putem lozinke",
+        "noPassword": "Lozinka nije postavljena na uređaju"
     },
     "transferConfirmation": {
         "youAreAbout": "Poslat ćete {{contents}} na adresu",
@@ -689,11 +689,11 @@
         "gettingTransactionsToApprove": "Dohvat transakcija za odobriti",
         "proofOfWork": "Završetak PoW-a",
         "broadcasting": "Emitiranje",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Priprema podataka",
+        "migratingSettings": "Migracija postavki",
+        "migratingAccounts": "Migracija računa",
+        "cleaningUpOldData": "Čišćenje starih podataka",
+        "migrationComplete": "Migracija završena",
         "transferComplete": "Transakcija dovršena"
     },
     "snapshotTransition": {
@@ -773,8 +773,8 @@
         "sweepConfirmationTitle": "Potvrda otključavanja"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "dataMigration": "Migracija podataka",
+        "dataMigrationExplanation": "S ciljem poboljšanja performansi, Trinity je unaprijeđen, te koristi novu bazu podataka za spremanje vaših postavka i računa. Molimo pričekajte dok Trinity automatski migrira vaše postojeće podatke.",
         "problemMigratingYourData": "There was a problem migrating your data. Please try again",
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
