@@ -264,7 +264,7 @@
         "seedNotGeneratedExplanation": "Wygeneruj nowy klucz seed.",
         "pressForNewSeed": "Generuj nowy klucz seed",
         "generateSuccess": "Klucz seed wygenerowany",
-        "individualLetters": "Naciśnij na dane pola, aby wylosować je ponownie.",
+        "individualLetters": "Naciśnij na dane litery, aby je wylosować.",
         "individualLetterCount": "Naciśnij jeszcze <1><0>{{count}}</0></1> literę, w celu jej wylosowania.",
         "individualLetterCount_plural": "Naciśnij jeszcze <1><0>{{count}}</0></1> liter, w celu ich wylosowania.",
         "randomiseCharsToContinue": "Wylosuj <1>{{count}}</1> znak, aby kontynuować.",
