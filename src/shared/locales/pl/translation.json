@@ -265,8 +265,8 @@
         "pressForNewSeed": "Generuj nowy klucz seed",
         "generateSuccess": "Klucz seed wygenerowany",
         "individualLetters": "Naciśnij na dane litery, aby je wylosować.",
-        "individualLetterCount": "Należy wylosować następującą liczbę znaków: <1><0>{{count}}</0></1>",
-        "individualLetterCount_plural": "Naciśnij jeszcze <1><0>{{count}}</0></1> liter, w celu ich wylosowania.",
+        "individualLetterCount": "Należy wylosować (nacisnąć) następującą liczbę znaków: <1><0>{{count}}</0></1>",
+        "individualLetterCount_plural": "Należy wylosować (nacisnąć) następującą liczbę znaków: <1><0>{{count}}</0></1>",
         "randomiseCharsToContinue": "Znaków do wylosowania: <1>{{count}}</1>",
         "randomiseCharsToContinue_plural": "Znaków do wylosowania: <1>{{count}}</1>",
         "whatIsASeed": "Czym jest seed?"
