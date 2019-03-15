@@ -775,8 +775,8 @@
     "migration": {
         "dataMigration": "Migracija podataka",
         "dataMigrationExplanation": "S ciljem poboljšanja performansi, Trinity je unaprijeđen, te koristi novu bazu podataka za spremanje vaših postavka i računa. Molimo pričekajte dok Trinity automatski migrira vaše postojeće podatke.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "problemMigratingYourData": "Došlo je do greške prilikom migracije vaših podataka. Molimo pokušajte ponovno",
+        "seedMigrationExplanation": "Kao dio kontinuiranog nastojanja s ciljem poboljšanja sigurnosti Trinity novčanika, vaš seed će biti migriran kako bi koristio poboljšanu i sigurniju metodu pohrane. Molimo pričekajte dok Trinity automatski migrira vaš seed."
     },
     "ledger": {
         "ready": "Ledger uređaj povezan i spreman",
@@ -786,7 +786,7 @@
         "proceedWithLedger": "Nastavite s postavljanjem Ledger uređaja",
         "accountIndex": "Indeks računa (Ledger Nano S)",
         "accountPage": "Stranica računa (Deviota Romeo)",
-        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelled": "Pristup Ledger uređaju otkazan",
         "actionCancelledExplanation": "Nije moguće izvršiti radnju bez pristupa Ledger uređaju.",
         "chooseAccountIndex": "Odaberite indeks računa vašeg Ledger uređaja",
         "accountIndexExplanation": "Vaš Ledger može pohraniti više seed-ova. Svaki seed je povezan s jedinstvenim brojem indeksa. Neiskorišteni broj indeksa je trenutno odabran, no slobodno može biti odabran i neki drugi. Obavezno zapišite odabrani broj indeksa.",
