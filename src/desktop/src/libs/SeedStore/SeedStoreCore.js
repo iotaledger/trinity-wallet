@@ -16,9 +16,17 @@ export default class SeedStoreCore {
      *
      * @returns {Promise<object>}
      */
-    performPow(trytes, trunkTransaction, branchTransaction, minWeightMagnitude, batchedPow) {
+    performPow(trytes, trunkTransaction, branchTransaction, minWeightMagnitude, batchedPow = true) {
         const powFn = Electron.getPowFn(batchedPow);
-        return performPow(powFn, this.getDigest, trytes, trunkTransaction, branchTransaction, minWeightMagnitude);
+        return performPow(
+            powFn,
+            this.getDigest,
+            trytes,
+            trunkTransaction,
+            branchTransaction,
+            minWeightMagnitude,
+            batchedPow,
+        );
     }
 
     /**

@@ -20,6 +20,7 @@ import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import { removeNonAlphaNumeric, serialise } from 'shared-modules/libs/utils';
 import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/constants';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
+import { moment } from 'shared-modules/libs/exports';
 import { UInt8ToString } from 'libs/crypto';
 import InfoBox from './InfoBox';
 import Button from './Button';
@@ -95,6 +96,21 @@ class SeedVaultExportComponent extends Component {
         seed: '',
     };
 
+    /**
+     * Gets seed vault file path
+     *
+     * @method getPath
+     *
+     * @param {string} prefix
+     *
+     * @returns {string}
+     */
+    static getPath(prefix) {
+        return `${
+            isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir
+        }/${prefix}-${moment().format('YYYYMMDD-HHmm')}.kdbx`;
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -152,16 +168,11 @@ class SeedVaultExportComponent extends Component {
             await getAndroidFileSystemPermissions();
         }
         const { t, selectedAccountName } = this.props;
-        const now = new Date();
-        const prefix = removeNonAlphaNumeric(selectedAccountName, SEED_VAULT_DEFAULT_TITLE).trim();
-        const path =
-            (isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir) +
-            `/${prefix}${now
-                .toISOString()
-                .slice(0, 16)
-                .replace(/[-:]/g, '')
-                .replace('T', '-')}.kdbx`;
+
+        const path = SeedVaultExportComponent.getPath(removeNonAlphaNumeric(selectedAccountName, 'SeedVault').trim());
+
         this.setState({ path });
+
         RNFetchBlob.fs.exists(path).then((fileExists) => {
             if (fileExists) {
                 RNFetchBlob.fs.unlink(path);
