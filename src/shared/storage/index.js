@@ -8,7 +8,6 @@ import isUndefined from 'lodash/isUndefined';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
-import values from 'lodash/values';
 import size from 'lodash/size';
 import {
     TransactionSchema,
@@ -96,8 +95,9 @@ class Account {
 
         return map(accounts, (account) =>
             assign({}, account, {
-                addressData: values(account.addressData),
-                transactions: values(account.transactions),
+                addressData: map(account.addressData, (data) => assign({}, data)),
+                transactions: map(account.transactions, (transaction) => assign({}, transaction)),
+                meta: assign({}, account.meta),
             }),
         );
     }
@@ -154,7 +154,10 @@ class Account {
                 name,
                 addressData: isEmpty(data.addressData)
                     ? existingData.addressData
-                    : preserveAddressLocalSpendStatus(values(existingData.addressData), data.addressData),
+                    : preserveAddressLocalSpendStatus(
+                          map(existingData.addressData, (data) => assign({}, data)),
+                          data.addressData,
+                      ),
             });
 
             realm.create('Account', updatedData, true);

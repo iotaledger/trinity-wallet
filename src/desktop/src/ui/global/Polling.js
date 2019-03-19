@@ -65,6 +65,8 @@ class Polling extends React.PureComponent {
         }).isRequired,
         /** @ignore */
         retryFailedTransaction: PropTypes.func.isRequired,
+        /** @ignore */
+        password: PropTypes.object.isRequired,
     };
 
     state = {
@@ -210,6 +212,7 @@ const mapStateToProps = (state) => ({
     isTransitioning: state.ui.isTransitioning,
     isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
     failedBundleHashes: getFailedBundleHashes(state),
+    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {
