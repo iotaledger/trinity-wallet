@@ -24,6 +24,7 @@ import {
     categoriseInclusionStatesByBundleHash,
     assignInclusionStatesToBundles,
     filterZeroValueBundles,
+    isBundleTraversable,
 } from '../../../libs/iota/transfers';
 import { confirmedValueBundles, unconfirmedValueBundles, confirmedZeroValueBundles } from '../../__samples__/bundles';
 import { iota, SwitchingConfig } from '../../../libs/iota';
@@ -38,6 +39,7 @@ import {
     unconfirmedValueTransactions,
     failedTransactionsWithCorrectTransactionHashes,
     failedTransactionsWithIncorrectTransactionHashes,
+    newValueAttachedTransaction,
     LATEST_MILESTONE,
     LATEST_SOLID_SUBTANGLE_MILESTONE,
     LATEST_MILESTONE_INDEX,
@@ -1250,6 +1252,40 @@ describe('libs: iota/transfers', () => {
             const expectedResult = [...confirmedValueBundles, ...unconfirmedValueBundles];
 
             expect(result).to.eql(expectedResult);
+        });
+    });
+
+    describe('#isBundleTraversable', () => {
+        let trunkTransaction;
+        let branchTransaction;
+
+        before(() => {
+            // See trunk/branch transactions of newValueAttachedTransaction transaction object with currentIndex 2
+            trunkTransaction = 'LHPBIUXOUJFVXDXOH9RAFDHPZHKKQXOBWWWRAYBKSYFZGEFRYWJBTCETHFUMJUTWGTNXTIPVJTOM99999';
+            branchTransaction = 'VEZTEROA9IUNBSIKJMZRDFYAVNCZAGQJEERLZIFCSHISPKATHRPLOQGECZWLWFAMBX9DRLUUPNI999999';
+        });
+
+        it('should return true for bundle with correct trunk/branch assignment', () => {
+            expect(isBundleTraversable(newValueAttachedTransaction, trunkTransaction, branchTransaction)).to.equal(
+                true,
+            );
+        });
+
+        it('should return false for bundle with incorrect trunk/branch assignment', () => {
+            expect(
+                isBundleTraversable(
+                    map(
+                        newValueAttachedTransaction,
+                        (transaction, index) =>
+                            index % 2 === 0
+                                ? {
+                                      ...transaction,
+                                      trunkTransaction: '9'.repeat(81),
+                                  }
+                                : transaction,
+                    ),
+                ),
+            ).to.equal(false);
         });
     });
 });

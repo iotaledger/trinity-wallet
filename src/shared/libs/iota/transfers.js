@@ -1020,3 +1020,25 @@ export const constructBundleFromAttachedTrytes = (attachedTrytes, seedStore) => 
         Promise.resolve([]),
     );
 };
+
+/**
+ * Checks if bundle can be traversed
+ *
+ * @method isBundleTraversable
+ *
+ * @param {array} bundle
+ * @param {string} trunkTransaction
+ * @param {string} branchTransaction
+ *
+ * @returns {boolean}
+ */
+export const isBundleTraversable = (bundle, trunkTransaction, branchTransaction) =>
+    some(
+        orderBy(bundle, ['currentIndex'], ['desc']),
+        (transaction, index, transactions) =>
+            index
+                ? transaction.trunkTransaction === transactions[index - 1].hash &&
+                  transaction.branchTransaction === trunkTransaction
+                : transaction.trunkTransaction === trunkTransaction &&
+                  transaction.branchTransaction === branchTransaction,
+    );
