@@ -19,7 +19,7 @@ import {
     ATTACH_TO_TANGLE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
 } from '../../config';
-import { sortTransactionTrytesArray, constructBundleFromAttachedTrytes } from './transfers';
+import { sortTransactionTrytesArray, constructBundleFromAttachedTrytes, isBundle } from './transfers';
 import { EMPTY_HASH_TRYTES } from './utils';
 
 /**
@@ -505,7 +505,7 @@ const attachToTangleAsync = (provider, seedStore) => (
                     } else {
                         constructBundleFromAttachedTrytes(attachedTrytes, seedStore)
                             .then((transactionObjects) => {
-                                if (iota.utils.isBundle(transactionObjects)) {
+                                if (isBundle(transactionObjects)) {
                                     resolve({
                                         transactionObjects,
                                         trytes: attachedTrytes,
@@ -529,18 +529,21 @@ const attachToTangleAsync = (provider, seedStore) => (
             }
 
             // Batched proof-of-work only returns the attached trytes
-            return constructBundleFromAttachedTrytes(result, seedStore).then((transactionObjects) => ({
-                transactionObjects: transactionObjects.slice().reverse(),
-                trytes: result,
-            }));
+            return constructBundleFromAttachedTrytes(sortTransactionTrytesArray(result), seedStore).then(
+                (transactionObjects) => ({
+                    transactionObjects,
+                    trytes: result,
+                }),
+            );
         })
         .then(({ transactionObjects, trytes }) => {
-            if (iota.utils.isBundle(transactionObjects)) {
+            if (isBundle(transactionObjects)) {
                 return {
                     transactionObjects,
                     trytes,
                 };
             }
+
             throw new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_WITH_LOCAL_POW);
         });
 };

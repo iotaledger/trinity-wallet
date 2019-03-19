@@ -382,7 +382,7 @@ export const constructBundlesFromTransactions = (transactions) => {
  *
  * @returns {array}
  */
-export const filterInvalidBundles = (bundles) => filter(bundles, iota.utils.isBundle);
+export const filterInvalidBundles = (bundles) => filter(bundles, isBundle);
 
 /**
  *   Normalises bundle.
@@ -1011,7 +1011,7 @@ export const constructBundleFromAttachedTrytes = (attachedTrytes, seedStore) => 
                 return seedStore.getDigest(tryteString).then((digest) => {
                     const transactionObject = iota.utils.transactionObject(tryteString, digest);
 
-                    result.push(transactionObject);
+                    result.unshift(transactionObject);
 
                     return result;
                 });
@@ -1020,3 +1020,15 @@ export const constructBundleFromAttachedTrytes = (attachedTrytes, seedStore) => 
         Promise.resolve([]),
     );
 };
+
+/**
+ * Wraps iota.utils.isBundle (https://github.com/iotaledger/iota.js/blob/develop/lib/utils/utils.js#L421)
+ * Ensures transaction objects in bundle are in correct (ascending) order
+ *
+ * @method isBundle
+ *
+ * @param {array} bundle
+ *
+ * @returns {boolean}
+ */
+export const isBundle = (bundle) => iota.utils.isBundle(orderBy(bundle, ['currentIndex'], ['asc']));
