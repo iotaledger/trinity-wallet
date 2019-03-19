@@ -1,11 +1,11 @@
-import size from 'lodash/size';
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { MAX_SEED_TRITS, VALID_SEED_REGEX, getChecksum } from 'shared-modules/libs/iota/utils';
+import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
+import { Checksum } from 'ui/components/Checksum';
 import { isAndroid } from 'libs/device';
 import { stringToUInt8, UInt8ToString } from 'libs/crypto';
 import { trytesToTrits, tritsToChars } from 'shared-modules/libs/iota/converter';
@@ -248,29 +248,6 @@ class CustomTextInput extends Component {
         return this.state.isFocused ? focusedFieldLabel : unfocusedFieldLabel;
     }
 
-    getChecksumValue() {
-        const { value } = this.props;
-        let checksumValue = '...';
-        if (value === null) {
-            return checksumValue;
-        } else if (size(value) !== 0 && size(value) < MAX_SEED_TRITS) {
-            checksumValue = '< 81';
-        } else if (size(value) > MAX_SEED_TRITS) {
-            checksumValue = '> 81';
-        } else if (size(value) === MAX_SEED_TRITS) {
-            checksumValue = getChecksum(tritsToChars(value)); // FIXME: Replace with trit checksum calculation
-        }
-        return checksumValue;
-    }
-
-    getChecksumStyle() {
-        const { theme, value } = this.props;
-        if (value && size(value) === MAX_SEED_TRITS) {
-            return { color: theme.primary.color };
-        }
-        return { color: theme.body.color };
-    }
-
     renderQR(widgetBorderColor) {
         const { theme, onQRPress, containerStyle } = this.props;
         return (
@@ -468,8 +445,8 @@ class CustomTextInput extends Component {
                                 },
                             ]}
                         >
-                            <Text style={[this.getChecksumStyle(), styles.checksumText]}>
-                                {this.getChecksumValue()}
+                            <Text style={[Checksum.getStyle(theme, value), styles.checksumText]}>
+                                {Checksum.getValue(value)}
                             </Text>
                         </View>
                     </View>
