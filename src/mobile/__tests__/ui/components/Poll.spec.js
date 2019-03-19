@@ -39,6 +39,9 @@ const getProps = (overrides) =>
             promoteTransfer: noop,
             removeBundleFromUnconfirmedBundleTails: noop,
             fetchNodeList: noop,
+            failedBundleHashes: {},
+            retryFailedTransaction: noop,
+            password: new Uint8Array(),
         },
         overrides,
     );
