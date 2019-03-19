@@ -27,6 +27,7 @@ import {
     categoriseInclusionStatesByBundleHash,
     promoteTransactionTilConfirmed,
     isFundedBundle,
+    isBundle,
 } from './transfers';
 import { accumulateBalance } from './addresses';
 
@@ -99,7 +100,7 @@ export const sweep = (provider, withQuorum) => (seedStore, seed, input, transfer
                     map(filter(transactionsFromBundles, (tx) => tx.currentIndex === 0), (tailTransaction) =>
                         constructBundle(tailTransaction, transactionsFromBundles),
                     ),
-                    iota.utils.isBundle,
+                    isBundle,
                 );
 
                 if (isEmpty(validBundles)) {
@@ -190,7 +191,7 @@ export const sweep = (provider, withQuorum) => (seedStore, seed, input, transfer
             cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
 
             // Check if prepared bundle is valid, especially if its signed correctly.
-            if (iota.utils.isBundle(cached.transactionObjects.slice().reverse())) {
+            if (isBundle(cached.transactionObjects)) {
                 return getTransactionsToApproveAsync(provider)();
             }
 

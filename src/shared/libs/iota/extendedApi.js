@@ -19,7 +19,12 @@ import {
     ATTACH_TO_TANGLE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
 } from '../../config';
-import { sortTransactionTrytesArray, constructBundleFromAttachedTrytes, isBundleTraversable } from './transfers';
+import {
+    sortTransactionTrytesArray,
+    constructBundleFromAttachedTrytes,
+    isBundle,
+    isBundleTraversable,
+} from './transfers';
 import { EMPTY_HASH_TRYTES } from './utils';
 
 /**
@@ -506,7 +511,7 @@ const attachToTangleAsync = (provider, seedStore) => (
                         constructBundleFromAttachedTrytes(attachedTrytes, seedStore)
                             .then((transactionObjects) => {
                                 if (
-                                    iota.utils.isBundle(transactionObjects) &&
+                                    isBundle(transactionObjects) &&
                                     isBundleTraversable(transactionObjects, trunkTransaction, branchTransaction)
                                 ) {
                                     resolve({
@@ -532,14 +537,16 @@ const attachToTangleAsync = (provider, seedStore) => (
             }
 
             // Batched proof-of-work only returns the attached trytes
-            return constructBundleFromAttachedTrytes(result, seedStore).then((transactionObjects) => ({
-                transactionObjects: transactionObjects.slice().reverse(),
-                trytes: result,
-            }));
+            return constructBundleFromAttachedTrytes(sortTransactionTrytesArray(result), seedStore).then(
+                (transactionObjects) => ({
+                    transactionObjects,
+                    trytes: result,
+                }),
+            );
         })
         .then(({ transactionObjects, trytes }) => {
             if (
-                iota.utils.isBundle(transactionObjects) &&
+                isBundle(transactionObjects) &&
                 isBundleTraversable(transactionObjects, trunkTransaction, branchTransaction)
             ) {
                 return {
