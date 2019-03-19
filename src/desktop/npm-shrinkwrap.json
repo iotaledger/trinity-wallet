@@ -6241,9 +6241,8 @@
       "dev": true
     },
     "iota.lib.js": {
-      "version": "0.5.1",
-      "resolved": "https://registry.npmjs.org/iota.lib.js/-/iota.lib.js-0.5.1.tgz",
-      "integrity": "sha512-4DHieyh24o8TJGSj/j1aINrLtYO2Pj9NZa3kqY1lKT0kZcIOkFMJoOsPiLPqVFpAC0RRONoBxni+d48gRyH5SQ==",
+      "version": "git+https://github.com/iotaledger/iota.js.git#eb27c183284e24fb28a2a67f6da7a6cee5c61ae4",
+      "from": "git+https://github.com/iotaledger/iota.js.git#develop",
       "requires": {
         "async": "^2.5.0",
         "bignumber.js": "^4.1.0",

@@ -154,7 +154,7 @@
     "entangled-node": "rihardsgravis/entangled-node#v0.2.0",
     "hw-app-iota": "^0.6.1",
     "i18next": "^15.0.4",
-    "iota.lib.js": "^0.5.1",
+    "iota.lib.js": "https://github.com/iotaledger/iota.js#develop",
     "kdbxweb": "^1.2.6",
     "keytar": "^4.4.0",
     "machine-uuid-sync": "https://github.com/rajivshah3/machine-uuid-sync",

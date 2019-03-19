@@ -2,13 +2,11 @@ import { ipcRenderer as ipc, clipboard, remote } from 'electron';
 import keytar from 'keytar';
 import fs from 'fs';
 import electronSettings from 'electron-settings';
-import Kerl from 'iota.lib.js/lib/crypto/kerl/kerl';
-import Curl from 'iota.lib.js/lib/crypto/curl/curl';
-import Converter from 'iota.lib.js/lib/crypto/converter/converter';
 import argon2 from 'argon2';
 import machineUuid from 'machine-uuid-sync';
-import { byteToTrit, byteToChar } from 'libs/iota/converter';
+import { byteToTrit, byteToChar, tritsToChars } from 'libs/iota/converter';
 import { removeNonAlphaNumeric } from 'libs/utils';
+import { getChecksum as iotaGetChecksum } from 'libs/iota/utils';
 import { moment } from 'libs/exports';
 
 import kdbx from '../kdbx';
@@ -380,15 +378,7 @@ const Electron = {
             rawTrits = rawTrits.concat(byteToTrit(bytes[i]));
         }
 
-        const kerl = new Kerl();
-        const checksumTrits = [];
-        kerl.initialize();
-        kerl.absorb(rawTrits, 0, rawTrits.length);
-        kerl.squeeze(checksumTrits, 0, Curl.HASH_LENGTH);
-
-        const checksum = Converter.trytes(checksumTrits.slice(-9));
-
-        return checksum;
+        return tritsToChars(iotaGetChecksum(rawTrits));
     },
 
     /**
