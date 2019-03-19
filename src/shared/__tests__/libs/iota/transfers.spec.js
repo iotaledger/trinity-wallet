@@ -886,8 +886,8 @@ describe('libs: iota/transfers', () => {
 
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
                 const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
-                    trunkTransaction: 'R'.repeat(81),
-                    branchTransaction: 'A'.repeat(81),
+                    trunkTransaction: '9'.repeat(81),
+                    branchTransaction: '9'.repeat(81),
                 });
 
                 return retryFailedTransaction()(failedTransactionsWithIncorrectTransactionHashes, seedStore).then(
@@ -911,8 +911,8 @@ describe('libs: iota/transfers', () => {
 
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
                 const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
-                    trunkTransaction: 'R'.repeat(81),
-                    branchTransaction: 'A'.repeat(81),
+                    trunkTransaction: '9'.repeat(81),
+                    branchTransaction: '9'.repeat(81),
                 });
 
                 return retryFailedTransaction()(
