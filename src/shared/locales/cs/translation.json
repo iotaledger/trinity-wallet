@@ -358,7 +358,7 @@
         "addressPasteDetected": "Zjištěno kopírování adresy",
         "addressPasteExplanation": "Vaše adresa byla zkopírována ze schránky. Zkontrolujte, že vložená adresa je opravdu ta, kam chcete prostředky poslat.",
         "invalid": "NEPLATNÉ",
-        "swipeToSend": "Přejděte na položku Odeslat"
+        "swipeToSend": "Potažením odešlete"
     },
     "setSeedName": {
         "letsAddName": "Přidejte jméno",
