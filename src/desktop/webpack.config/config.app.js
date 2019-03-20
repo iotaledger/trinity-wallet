@@ -88,6 +88,32 @@ const config = {
             template: __dirname + '/index.html',
         }),
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'async',
+            filename: '[name].bundle.js',
+            cacheGroups: {
+                moment: {
+                    test: /[\\/]node_modules[\\/](moment|moment-with-locales|moment-timezone)[\\/]/,
+                    name: 'moment',
+                    chunks: 'all',
+                    enforce: true,
+                },
+                zxcvbn: {
+                    test: /[\\/]node_modules[\\/](zxcvbn)[\\/]/,
+                    name: 'zxcvbn',
+                    chunks: 'all',
+                    enforce: true,
+                },
+                locales: {
+                    test: /[\\/]shared[\\/]locales[\\/]/,
+                    name: 'locales',
+                    chunks: 'all',
+                    enforce: true,
+                },
+            },
+        },
+    },
 };
 
 if (devMode) {
