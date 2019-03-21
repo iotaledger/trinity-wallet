@@ -168,7 +168,7 @@ class WriteSeedDown extends Component {
                     background: {
                         color: body.bg,
                         translucent: true,
-                    }
+                    },
                 },
             });
             await RNPrint.print({ html: blankWalletHTML });
@@ -253,7 +253,7 @@ class WriteSeedDown extends Component {
                                 delay={100}
                             >
                                 <ChecksumComponent
-                                    seed={tritsToChars(global.onboardingSeed)}
+                                    seed={global.onboardingSeed}
                                     theme={theme}
                                     showModal={this.openModal}
                                 />
