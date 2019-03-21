@@ -70,6 +70,10 @@ class About extends React.PureComponent {
                                 <li>- Fix: Update dependencies</li>
                                 <li>- Fix: Reduce quorum size</li>
                                 <li>- Fix: Realm undefined at launch on some Linux versions</li>
+                                <li>- Fix: Bugs related to local PoW</li>
+                                <li>- Fix: Minor bugs in Realm and polling</li>
+                                <li>- Fix: Snapshot transition showing 0 balance</li>
+                                <li>- Fix: Colon in 2FA QR code scan</li>
                             </ul>
                             <h5>0.5.0-RC1</h5>
                             <ul>
