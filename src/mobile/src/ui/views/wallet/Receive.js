@@ -417,7 +417,10 @@ class Receive extends Component {
      *   @method generateAddress
      **/
     async generateAddress() {
-        const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning } = this.props;
+        const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning, isGeneratingReceiveAddress } = this.props;
+        if (isGeneratingReceiveAddress) {
+            return;
+        }
         if (isSyncing || isTransitioning) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
@@ -560,7 +563,7 @@ class Receive extends Component {
                                     ctaColor={primary.color}
                                     ctaBorderColor={primary.color}
                                     secondaryCtaColor={primary.body}
-                                    text="Generate address"
+                                    text={t('generateAnAddress')}
                                     onPress={() => {
                                         this.generateAddress();
                                     }}

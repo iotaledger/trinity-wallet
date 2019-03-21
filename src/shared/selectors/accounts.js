@@ -109,7 +109,10 @@ export const getSelectedAccountMeta = createSelector(
  *   @param {object} state
  *   @returns {string}
  **/
-export const getSelectedAccountType = createSelector(selectAccountInfo, (account) => account.type || 'keychain');
+export const getSelectedAccountType = createSelector(
+    selectAccountInfo,
+    (account) => get(account, 'meta.type') || 'keychain',
+);
 
 /**
  *   Selects transfers from accountInfo object.
@@ -344,4 +347,28 @@ export const isSettingUpNewAccount = createSelector(
         accountInfoDuringSetup.completed === true &&
         !isEmpty(accountInfoDuringSetup.name) &&
         !isEmpty(accountInfoDuringSetup.meta),
+);
+
+/**
+ *   Gets bundle hashes for failed transactions and categorises them by account name & type
+ *
+ *   @method getFailedBundleHashes
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getFailedBundleHashes = createSelector(getAccountInfoFromState, (accountInfo) =>
+    transform(
+        accountInfo,
+        (acc, info, accountName) => {
+            const failedTransactions = filter(info.transactions, (transaction) => transaction.broadcasted === false);
+
+            each(failedTransactions, (transaction) => {
+                acc[transaction.bundle] = {
+                    name: accountName,
+                    type: info.meta.type,
+                };
+            });
+        },
+        {},
+    ),
 );

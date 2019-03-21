@@ -97,24 +97,7 @@ class WalletSetup extends Component {
      * @method redirectToScreen
      */
     redirectToScreen(screen) {
-        const { theme: { body } } = this.props;
-        navigator.push(screen, {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        navigator.push(screen);
     }
 
     /**

@@ -123,26 +123,10 @@ export class TwoFactorSetupAddKey extends Component {
      */
     navigateToEnterToken() {
         Clipboard.setString(' ');
-        const { t, theme: { body } } = this.props;
+        const { t } = this.props;
         return storeTwoFactorAuthKeyInKeychain(global.passwordHash, this.state.authKey)
             .then(() => {
-                navigator.push('twoFactorSetupEnterToken', {
-                    animations: {
-                        push: {
-                            enable: false,
-                        },
-                        pop: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    statusBar: {
-                        backgroundColor: body.bg,
-                    },
-                });
+                navigator.push('twoFactorSetupEnterToken');
             })
             .catch(() =>
                 this.props.generateAlert(
@@ -157,6 +141,7 @@ export class TwoFactorSetupAddKey extends Component {
         const { theme: { body }, t } = this.props;
         const backgroundColor = { backgroundColor: body.bg };
         const textColor = { color: body.color };
+        const totpLink = `${'otpauth://totp/Trinity Wallet Mobile?secret='}${this.state.authKey.replace(/\W/g, '').toLowerCase()}`;
 
         return (
             <View style={[styles.container, backgroundColor]}>
@@ -184,7 +169,7 @@ export class TwoFactorSetupAddKey extends Component {
                     >
                         <View style={styles.qrContainer}>
                             <QRCode
-                                value={authenticator.generateTotpUri(this.state.authKey, 'Trinity Wallet Mobile')}
+                                value={totpLink}
                                 size={height / 5}
                                 backgroundColor="#00000000"
                             />

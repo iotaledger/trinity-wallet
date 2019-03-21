@@ -59,7 +59,12 @@ class Dashboard extends React.PureComponent {
 
         const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
 
-        this.props.getAccountInfo(seedStore, accountName, Electron.notify);
+        this.props.getAccountInfo(
+            seedStore,
+            accountName,
+            Electron.notify,
+            true, // Sync with quorum enabled
+        );
     };
 
     render() {

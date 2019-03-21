@@ -40,6 +40,8 @@ class CtaButton extends PureComponent {
         testID: PropTypes.string,
         /** Determines whether to display activity spinner */
         displayActivityIndicator: PropTypes.bool,
+        /** Button container's style */
+        containerStyle: PropTypes.object,
     };
 
     static defaultProps = {
@@ -60,10 +62,11 @@ class CtaButton extends PureComponent {
             testID,
             fontSize,
             displayActivityIndicator,
+            containerStyle,
         } = this.props;
 
         return (
-            <View style={styles.ctaButtonContainer}>
+            <View style={[styles.ctaButtonContainer, containerStyle]}>
                 <TouchableOpacity
                     onPress={() => {
                         this.props.onPress();

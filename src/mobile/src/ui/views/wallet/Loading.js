@@ -265,21 +265,7 @@ class Loading extends Component {
      * @method redirectToLogin
      */
     redirectToLogin() {
-        const { theme: { body } } = this.props;
-        navigator.setStackRoot('login', {
-            animations: {
-                setStackRoot: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        navigator.setStackRoot('login');
     }
 
     /**
@@ -288,21 +274,7 @@ class Loading extends Component {
      * @method redirectToHome
      */
     redirectToHome() {
-        const { theme: { body, bar } } = this.props;
-        navigator.setStackRoot('home', {
-            animations: {
-                setStackRoot: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: bar.bg,
-            },
-        });
+        navigator.setStackRoot('home');
     }
 
     render() {

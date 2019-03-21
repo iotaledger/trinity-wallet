@@ -10,7 +10,7 @@ import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { connect } from 'react-redux';
 import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
-import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
+import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
@@ -70,20 +70,15 @@ export class SetAccountName extends Component {
         theme: PropTypes.object.isRequired,
         /** Determines whether to prevent new account setup */
         shouldPreventAction: PropTypes.bool.isRequired,
+        /** Temporarily stored account name during account setup */
+        accountName: PropTypes.string.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            accountName: '',
-        };
-    }
 
     async componentDidMount() {
         leaveNavigationBreadcrumb('SetAccountName');
         const { t } = this.props;
         const clipboardContent = await Clipboard.getString();
-        if (clipboardContent.match(VALID_SEED_REGEX)) {
+        if (clipboardContent.match(VALID_SEED_REGEX) && clipboardContent.length === MAX_SEED_LENGTH) {
             Clipboard.setString(' ');
             this.props.generateAlert(
                 'info',
@@ -99,7 +94,7 @@ export class SetAccountName extends Component {
      */
     async onDonePress() {
         const { t, onboardingComplete, accountNames, shouldPreventAction } = this.props;
-        const accountName = trim(this.state.accountName);
+        const accountName = trim(this.props.accountName);
 
         if (shouldPreventAction) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
@@ -161,29 +156,11 @@ export class SetAccountName extends Component {
      * @param {string} screen
      */
     navigateTo(screen) {
-        const { theme: { body } } = this.props;
-        navigator.push(screen, {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        navigator.push(screen);
     }
 
     render() {
-        const { accountName } = this.state;
-        const { t, theme } = this.props;
+        const { t, theme, accountName } = this.props;
         const textColor = { color: theme.body.color };
 
         return (
@@ -218,7 +195,7 @@ export class SetAccountName extends Component {
                             >
                                 <CustomTextInput
                                     label={t('addAdditionalSeed:accountName')}
-                                    onValidTextChange={(text) => this.setState({ accountName: text })}
+                                    onValidTextChange={(text) => this.props.setAccountInfoDuringSetup({ name: text })}
                                     autoCapitalize="words"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
@@ -254,6 +231,7 @@ const mapStateToProps = (state) => ({
     onboardingComplete: state.accounts.onboardingComplete,
     theme: getThemeFromState(state),
     shouldPreventAction: shouldPreventAction(state),
+    accountName: state.accounts.accountInfoDuringSetup.name,
 });
 
 const mapDispatchToProps = {

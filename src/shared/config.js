@@ -45,5 +45,5 @@ export const DEFAULT_RETRIES = 4;
 export const IRI_API_VERSION = '1';
 
 export const QUORUM_THRESHOLD = 67;
-export const QUORUM_SIZE = 7;
+export const QUORUM_SIZE = 4;
 export const QUORUM_SYNC_CHECK_INTERVAL = 120;

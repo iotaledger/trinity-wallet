@@ -713,7 +713,7 @@ export class Send extends Component {
                                     this.amountField.focus();
                                 }
                             }}
-                            widget="qr"
+                            widgets={['qr']}
                             onQRPress={() => {
                                 if (!isSending) {
                                     this.showModal('qrScanner');

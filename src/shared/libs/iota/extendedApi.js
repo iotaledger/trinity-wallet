@@ -19,7 +19,7 @@ import {
     ATTACH_TO_TANGLE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
 } from '../../config';
-import { sortTransactionTrytesArray, constructBundleFromAttachedTrytes } from './transfers';
+import { sortTransactionTrytesArray, constructBundleFromAttachedTrytes, isBundleTraversable } from './transfers';
 import { EMPTY_HASH_TRYTES } from './utils';
 
 /**
@@ -505,7 +505,10 @@ const attachToTangleAsync = (provider, seedStore) => (
                     } else {
                         constructBundleFromAttachedTrytes(attachedTrytes, seedStore)
                             .then((transactionObjects) => {
-                                if (iota.utils.isBundle(transactionObjects)) {
+                                if (
+                                    iota.utils.isBundle(transactionObjects) &&
+                                    isBundleTraversable(transactionObjects, trunkTransaction, branchTransaction)
+                                ) {
                                     resolve({
                                         transactionObjects,
                                         trytes: attachedTrytes,
@@ -535,12 +538,16 @@ const attachToTangleAsync = (provider, seedStore) => (
             }));
         })
         .then(({ transactionObjects, trytes }) => {
-            if (iota.utils.isBundle(transactionObjects)) {
+            if (
+                iota.utils.isBundle(transactionObjects) &&
+                isBundleTraversable(transactionObjects, trunkTransaction, branchTransaction)
+            ) {
                 return {
                     transactionObjects,
                     trytes,
                 };
             }
+
             throw new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_WITH_LOCAL_POW);
         });
 };

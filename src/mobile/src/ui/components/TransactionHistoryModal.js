@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         width,
-        height: height - Styling.topbarHeight,
+        height: height - Styling.topBarHeight,
     },
     historyContent: {
         width: contentWidth,

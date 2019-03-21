@@ -21,6 +21,8 @@ import {
 } from '../../__samples__/addresses';
 import transactions, {
     newZeroValueAttachedTransaction,
+    newZeroValueAttachedTransactionBaseBranch,
+    newZeroValueAttachedTransactionBaseTrunk,
     confirmedZeroValueTransactions,
     unconfirmedValueTransactions,
     LATEST_MILESTONE,
@@ -2358,8 +2360,8 @@ describe('libs: iota/addresses', () => {
                             return { hashes: map(addresses, () => EMPTY_HASH_TRYTES) };
                         } else if (body.command === 'getTransactionsToApprove') {
                             return {
-                                trunkTransaction: EMPTY_HASH_TRYTES,
-                                branchTransaction: EMPTY_HASH_TRYTES,
+                                trunkTransaction: newZeroValueAttachedTransactionBaseTrunk,
+                                branchTransaction: newZeroValueAttachedTransactionBaseBranch,
                             };
                         } else if (body.command === 'attachToTangle') {
                             return { trytes: newZeroValueTransactionTrytes };
@@ -2429,8 +2431,8 @@ describe('libs: iota/addresses', () => {
                             return { hashes: [] };
                         } else if (body.command === 'getTransactionsToApprove') {
                             return {
-                                trunkTransaction: EMPTY_HASH_TRYTES,
-                                branchTransaction: EMPTY_HASH_TRYTES,
+                                trunkTransaction: newZeroValueAttachedTransactionBaseTrunk,
+                                branchTransaction: newZeroValueAttachedTransactionBaseBranch,
                             };
                         } else if (body.command === 'attachToTangle') {
                             return { trytes: newZeroValueTransactionTrytes };
