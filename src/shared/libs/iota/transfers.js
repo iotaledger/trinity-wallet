@@ -3,6 +3,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import clone from 'lodash/clone';
 import get from 'lodash/get';
 import each from 'lodash/each';
+import every from 'lodash/every';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 import flatMap from 'lodash/flatMap';
@@ -1033,7 +1034,8 @@ export const constructBundleFromAttachedTrytes = (attachedTrytes, seedStore) => 
  * @returns {boolean}
  */
 export const isBundleTraversable = (bundle, trunkTransaction, branchTransaction) =>
-    some(
+    !isEmpty(bundle) &&
+    every(
         orderBy(bundle, ['currentIndex'], ['desc']),
         (transaction, index, transactions) =>
             index

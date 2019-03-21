@@ -973,6 +973,11 @@ const newValueTransaction = [
     },
 ];
 
+const newValueAttachedTransactionBaseTrunk =
+    'LHPBIUXOUJFVXDXOH9RAFDHPZHKKQXOBWWWRAYBKSYFZGEFRYWJBTCETHFUMJUTWGTNXTIPVJTOM99999';
+const newValueAttachedTransactionBaseBranch =
+    'VEZTEROA9IUNBSIKJMZRDFYAVNCZAGQJEERLZIFCSHISPKATHRPLOQGECZWLWFAMBX9DRLUUPNI999999';
+
 const newValueAttachedTransaction = [
     {
         hash: 'MHZUAFTZZPZUSLO9QUVSQJEDKCVOQJYIKPNHICGYBJGHTLSPMZMKKWMMFGKOHLHQEMS9HMJFOUXUZ9999',
@@ -1079,6 +1084,8 @@ export {
     newZeroValueAttachedTransactionBaseTrunk,
     newZeroValueAttachedTransactionBaseBranch,
     newValueTransaction,
+    newValueAttachedTransactionBaseTrunk,
+    newValueAttachedTransactionBaseBranch,
     newValueAttachedTransaction,
     LATEST_MILESTONE,
     LATEST_SOLID_SUBTANGLE_MILESTONE,

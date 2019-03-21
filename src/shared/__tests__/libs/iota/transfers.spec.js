@@ -30,16 +30,18 @@ import { confirmedValueBundles, unconfirmedValueBundles, confirmedZeroValueBundl
 import { iota, SwitchingConfig } from '../../../libs/iota';
 import {
     newValueTransactionTrytes,
+    newValueAttachedTransactionTrytes,
     failedTrytesWithCorrectTransactionHashes,
-    failedTrytesWithIncorrectTransactionHashes,
     milestoneTrytes,
 } from '../../__samples__/trytes';
 import {
+    newValueAttachedTransactionBaseTrunk,
+    newValueAttachedTransactionBaseBranch,
+    newValueAttachedTransaction,
     confirmedValueTransactions,
     unconfirmedValueTransactions,
     failedTransactionsWithCorrectTransactionHashes,
     failedTransactionsWithIncorrectTransactionHashes,
-    newValueAttachedTransaction,
     LATEST_MILESTONE,
     LATEST_SOLID_SUBTANGLE_MILESTONE,
     LATEST_MILESTONE_INDEX,
@@ -880,14 +882,14 @@ describe('libs: iota/transfers', () => {
         describe('when any transaction object has an invalid hash', () => {
             it('should perform proof of work', () => {
                 sinon.stub(seedStore, 'performPow').resolves({
-                    trytes: failedTrytesWithIncorrectTransactionHashes,
-                    transactionObjects: failedTransactionsWithIncorrectTransactionHashes,
+                    trytes: newValueAttachedTransactionTrytes,
+                    transactionObjects: newValueAttachedTransaction,
                 });
 
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
                 const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
-                    trunkTransaction: '9'.repeat(81),
-                    branchTransaction: '9'.repeat(81),
+                    trunkTransaction: newValueAttachedTransactionBaseTrunk,
+                    branchTransaction: newValueAttachedTransactionBaseBranch,
                 });
 
                 return retryFailedTransaction()(failedTransactionsWithIncorrectTransactionHashes, seedStore).then(
@@ -905,14 +907,14 @@ describe('libs: iota/transfers', () => {
         describe('when any transaction object has an empty hash', () => {
             it('should perform proof of work', () => {
                 sinon.stub(seedStore, 'performPow').resolves({
-                    trytes: failedTrytesWithIncorrectTransactionHashes,
-                    transactionObjects: failedTransactionsWithIncorrectTransactionHashes,
+                    trytes: newValueAttachedTransactionTrytes,
+                    transactionObjects: newValueAttachedTransaction,
                 });
 
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
                 const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
-                    trunkTransaction: '9'.repeat(81),
-                    branchTransaction: '9'.repeat(81),
+                    trunkTransaction: newValueAttachedTransactionBaseTrunk,
+                    branchTransaction: newValueAttachedTransactionBaseBranch,
                 });
 
                 return retryFailedTransaction()(
