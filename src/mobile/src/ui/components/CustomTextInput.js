@@ -533,7 +533,7 @@ class CustomTextInput extends Component {
                         ]}
                         onFocus={() => this.onFocus()}
                         onBlur={() => this.onBlur()}
-                        secureTextEntry={secureTextEntry && isSecretMasked}
+                        secureTextEntry={secureTextEntry || isSecretMasked}
                         onChangeText={(text) => this.onChangeText(text)}
                         selectionColor={theme.input.alt}
                         underlineColorAndroid="transparent"
