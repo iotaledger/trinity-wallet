@@ -168,7 +168,7 @@ class WriteSeedDown extends Component {
                     background: {
                         color: body.bg,
                         translucent: true,
-                    }
+                    },
                 },
             });
             await RNPrint.print({ html: blankWalletHTML });

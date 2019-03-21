@@ -237,7 +237,7 @@ class SeedReentry extends Component {
                                             onSubmitEditing={() => this.onDonePress()}
                                             theme={theme}
                                             value={this.state.reenteredSeed}
-                                            widget="qr"
+                                            widgets={['qr', 'mask']}
                                             onQRPress={() => this.onQRPress()}
                                             isSeedInput
                                         />
