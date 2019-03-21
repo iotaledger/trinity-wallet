@@ -253,7 +253,7 @@ class WriteSeedDown extends Component {
                                 delay={100}
                             >
                                 <ChecksumComponent
-                                    seed={tritsToChars(global.onboardingSeed)}
+                                    seed={global.onboardingSeed}
                                     theme={theme}
                                     showModal={this.openModal}
                                 />

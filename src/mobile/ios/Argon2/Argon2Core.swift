@@ -39,14 +39,14 @@ struct Argon2Core {
   ///   - salt: Salt to be used
   ///   - params: Parameters to initialize Argon2 with
   /// - Returns: Hashed password
-  static func argon2Hash(password: String, salt: String, params: [String: Any]) -> String {
+  static func argon2Hash(password: String, salt: String, params: [String: Any]) -> [UInt8] {
     // Initialize Argon2
     let argon2Crypto = initialize(t_cost: params["t_cost"] as! Int, m_cost: params["m_cost"] as! Int, parallelism: params["parallelism"] as! Int, hashLength: params["hashLength"] as! Int)
     // Add salt to the context
     argon2Crypto.context.salt = salt
-    // Return the hash of the password
-    let hash = argon2Crypto.hash(password: password)
-    return hash.value!
+    // Get the hash of the password
+    let hash = argon2Crypto.hash(password: password, encoded: false).raw
+    return hash as! [UInt8]
   }
 
 }
