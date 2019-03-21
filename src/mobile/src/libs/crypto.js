@@ -12,18 +12,27 @@ const NONCE_LENGTH = 24;
 
 const cryptoImport = require('crypto'); // eslint-disable-line no-unused-vars
 
-export const sha256 = (input) => {
+const sha256 = (input) => {
     return cryptoImport
         .createHash('sha256')
         .update(input)
         .digest('hex');
 };
 
-export const getRandomBytes = async (quantity) => {
+/**
+ * Gets random bytes for provided quanity (length)
+ *
+ * @method getRandomBytes
+ *
+ * @param {number} quantity
+ *
+ * @returns {Promise<Uint8Array>}
+ */
+const getRandomBytes = async (quantity) => {
     return await generateSecureRandom(quantity);
 };
 
-export const generatePasswordHash = async (password, salt) => {
+const generatePasswordHash = async (password, salt) => {
     const salt64 = await encodeBase64(salt);
     return getHashFn()(values(password), salt64, DEFAULT_ARGON2_PARAMS).then(
         (result) => new Uint8Array(result),
@@ -31,43 +40,92 @@ export const generatePasswordHash = async (password, salt) => {
     );
 };
 
-export const getSalt = async () => {
-    return await getRandomBytes(SALT_LENGTH);
+/**
+ * Generates random salt
+ *
+ * @method getSalt
+ *
+ * @returns {Promise<Uint8Array>}
+ */
+const getSalt = async () => {
+    return await CryptoModule.getRandomBytes(SALT_LENGTH);
 };
 
-export const getNonce = async () => {
-    return await getRandomBytes(NONCE_LENGTH);
+/**
+ * Generates random nonce
+ *
+ * @method getNonce
+ *
+ * @returns {Promise<Uint8Array>}
+ */
+const getNonce = async () => {
+    return await CryptoModule.getRandomBytes(NONCE_LENGTH);
 };
 
-export const createSecretBox = async (msg, nonce, key) => {
+/**
+ * Wraps nacl.secretbox (https://github.com/dchest/tweetnacl-js#secret-key-authenticated-encryption-secretbox)
+ *
+ * @method createSecretBox
+ *
+ * @param {Uint8Array} msg
+ * @param {Uint8Array} nonce
+ * @param {Uint8Array} key
+ *
+ * @return {Promise<Uint8Array>}
+ */
+const createSecretBox = async (msg, nonce, key) => {
     return await nacl.secretbox(msg, nonce, key);
 };
 
-export const openSecretBox = async (box, nonce, key) => {
+/**
+ * Wraps nacl.secretbox.open (https://github.com/dchest/tweetnacl-js#naclsecretboxopenbox-nonce-key)
+ *
+ * @method openSecretBox
+ *
+ * @param {Uint8Array} msg
+ * @param {Uint8Array} nonce
+ * @param {Uint8Array} key
+ *
+ * @returns {Promise<Uint8Array}
+ */
+const openSecretBox = async (box, nonce, key) => {
     const openedBox = await nacl.secretbox.open(box, nonce, key);
     if (openedBox) {
-        return parse(UInt8ToString(openedBox));
+        return parse(CryptoModule.UInt8ToString(openedBox));
     }
+
     throw new Error('Incorrect password');
 };
 
-export const UInt8ToString = (uInt8) => {
+// FIXME: This method returns an empty string.
+// Tried with new Uint8Array([ 84,114, 105, 110, 105, 116, 121 ])
+const UInt8ToString = (uInt8) => {
     return new TextDecoder().decode(uInt8);
 };
 
-export const stringToUInt8 = (string) => {
+const stringToUInt8 = (string) => {
+    // FIXME: How does this work with TextEncoder undefined?
     return new TextEncoder().encode(string);
 };
 
-export const decodeBase64 = async (input) => {
+const decodeBase64 = async (input) => {
     return await naclUtil.decodeBase64(input);
 };
 
-export const encodeBase64 = async (input) => {
+const encodeBase64 = async (input) => {
     return await naclUtil.encodeBase64(input);
 };
 
-export const hexToUint8 = (str) => {
+/**
+ * Converts hexadecimal string to Uint8Array
+ *
+ * @method hexToUint8
+ *
+ * @param {string} str
+ *
+ * @returns {Uint8Array}
+ */
+const hexToUint8 = (str) => {
     if (!str) {
         return new Uint8Array();
     }
@@ -77,3 +135,20 @@ export const hexToUint8 = (str) => {
     }
     return new Uint8Array(a);
 };
+
+const CryptoModule = {
+    sha256,
+    getRandomBytes,
+    generatePasswordHash,
+    getSalt,
+    getNonce,
+    createSecretBox,
+    openSecretBox,
+    UInt8ToString,
+    stringToUInt8,
+    decodeBase64,
+    encodeBase64,
+    hexToUint8,
+};
+
+export default CryptoModule;
