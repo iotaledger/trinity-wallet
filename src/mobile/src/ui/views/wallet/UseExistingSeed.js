@@ -95,6 +95,8 @@ class UseExistingSeed extends Component {
         toggleModalActivity: PropTypes.func.isRequired,
         /** @ignore */
         setDoNotMinimise: PropTypes.func.isRequired,
+        /** Temporarily stored account name during account setup */
+        accountName: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -102,7 +104,6 @@ class UseExistingSeed extends Component {
 
         this.state = {
             seed: '',
-            accountName: '',
         };
     }
 
@@ -242,8 +243,8 @@ class UseExistingSeed extends Component {
     hideModal = () => this.props.toggleModalActivity();
 
     render() {
-        const { t, theme } = this.props;
-        const { seed, accountName } = this.state;
+        const { t, theme, accountName } = this.props;
+        const { seed } = this.state;
         const textColor = { color: theme.body.color };
 
         return (
@@ -260,7 +261,7 @@ class UseExistingSeed extends Component {
                                 this.accountNameField = c;
                             }}
                             label={t('addAdditionalSeed:accountName')}
-                            onValidTextChange={(value) => this.setState({ accountName: value })}
+                            onValidTextChange={(value) => this.props.setAccountInfoDuringSetup({ name: value })}
                             containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="words"
                             maxLength={MAX_SEED_LENGTH}
@@ -336,6 +337,7 @@ const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
     theme: getThemeFromState(state),
     shouldPreventAction: shouldPreventAction(state),
+    accountName: state.accounts.accountInfoDuringSetup.name,
 });
 
 const mapDispatchToProps = {
