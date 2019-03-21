@@ -12274,13 +12274,13 @@
       }
     },
     "react-qr-reader": {
-      "version": "2.1.2",
-      "resolved": "https://registry.npmjs.org/react-qr-reader/-/react-qr-reader-2.1.2.tgz",
-      "integrity": "sha512-SyRrRRRS7XcIyX8x6tb+mgcMqYZw6Admf4vlnUO/Z21nJklf6WILmP4jstd1W5tNlonvuC/S8R8/doIuZBgVjA==",
+      "version": "2.2.1",
+      "resolved": "https://registry.npmjs.org/react-qr-reader/-/react-qr-reader-2.2.1.tgz",
+      "integrity": "sha512-EL5JEj53u2yAOgtpAKAVBzD/SiKWn0Bl7AZy6ZrSf1lub7xHwtaXe6XSx36Wbhl1VMGmvmrwYMRwO1aSCT2fwA==",
       "requires": {
-        "jsqr": "^1.1.1",
-        "prop-types": "^15.5.8",
-        "webrtc-adapter": "^6.4.0"
+        "jsqr": "^1.2.0",
+        "prop-types": "^15.7.2",
+        "webrtc-adapter": "^7.2.1"
       }
     },
     "react-redux": {
@@ -14901,11 +14901,11 @@
       }
     },
     "webrtc-adapter": {
-      "version": "6.4.8",
-      "resolved": "https://registry.npmjs.org/webrtc-adapter/-/webrtc-adapter-6.4.8.tgz",
-      "integrity": "sha512-YM8yl545c/JhYcjGHgaCoA7jRK/KZuMwEDFeP2AcP0Auv5awEd+gZE0hXy9z7Ed3p9HvAXp8jdbe+4ESb1zxAw==",
+      "version": "7.2.1",
+      "resolved": "https://registry.npmjs.org/webrtc-adapter/-/webrtc-adapter-7.2.1.tgz",
+      "integrity": "sha512-Mrhy+tL1OHHBf/40rVFoEEvJ0VSxqmGVR65e5PSpFLky1A0bjO1oWbEWp09Udh7KPaoZ/GK+z38tuYmdrhQBxQ==",
       "requires": {
-        "rtcpeerconnection-shim": "^1.2.14",
+        "rtcpeerconnection-shim": "^1.2.15",
         "sdp": "^2.9.0"
       }
     },
