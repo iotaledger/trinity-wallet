@@ -324,10 +324,8 @@ describe('actions: transfers', () => {
                 .reply(200, (_, body) => {
                     if (body.command === 'getTransactionsToApprove') {
                         return {
-                            branchTransaction:
-                                'MFZXHOXKGVVBDGSVXIGEFBFDXICQDK9UQFVSQCAJMZICRXDGBRZMHHJUGTDPWTEHWSREZFDCRRYD99999',
-                            trunkTransaction:
-                                'OAAMETLECXOVQNTTAKCNWPZSQALUYEGTO9QGEQL9ST9RFJ9JPNBHTOABJQTCIHKMNUMHEKZJSFYT99999',
+                            branchTransaction: '9'.repeat(81),
+                            trunkTransaction: '9'.repeat(81),
                         };
                     }
 
