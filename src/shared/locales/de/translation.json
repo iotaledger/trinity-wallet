@@ -776,7 +776,7 @@
         "dataMigration": "Datenmigration",
         "dataMigrationExplanation": "Aufgrund von Performance- und Speicherbeschränkungen verwendet Trinity eine neue Datenbank zur Speicherung von Einstellungen und Kontodaten. Bitte warte, während Trinity deine bestehenden Daten automatisch migriert.",
         "problemMigratingYourData": "Bei der Migration der Daten ist ein Fehler aufgetreten. Bitte versuche es erneut",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "seedMigrationExplanation": "Um den ständig wachsenden Sicherheitsanforderungen deines Wallets gerecht zu werden, wird dein Seed auf eine neue Speichermethode migriert. Bitte warte, während Trinity die Migration durchführt."
     },
     "ledger": {
         "ready": "Ledger verbunden und bereit",

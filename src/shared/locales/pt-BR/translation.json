@@ -689,11 +689,11 @@
         "gettingTransactionsToApprove": "Obtendo as transações para aprovação",
         "proofOfWork": "Completando a aprovação",
         "broadcasting": "Transmitindo",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Preparando dados",
+        "migratingSettings": "Migrando configurações",
+        "migratingAccounts": "Migrando contas",
+        "cleaningUpOldData": "Limpando dados antigos",
+        "migrationComplete": "Migração completa",
         "transferComplete": "Transferência concluída"
     },
     "snapshotTransition": {
@@ -773,10 +773,10 @@
         "sweepConfirmationTitle": "Confirmação de varredura"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "dataMigration": "Migração de dados",
+        "dataMigrationExplanation": "Devido ao desempenho e limitações de armazenamento, a Trinity está usando um novo banco de dados para armazenar as configurações e dados da conta. Por favor aguarde enquanto a Trinity migra automaticamente seus dados existentes.",
+        "problemMigratingYourData": "Houve um problema de migração de dados. Por favor, tente novamente",
+        "seedMigrationExplanation": "Como parte do esforço para melhorar a segurança da carteira Trinity, sua Seed será migrada para uma metodologia de armazenamento aprimorada. Por favor aguarde enquanto a Trinity migra automaticamente o armazenamento das Seeds."
     },
     "ledger": {
         "ready": "Dispositivo Ledger conectado e pronto",
@@ -786,8 +786,8 @@
         "proceedWithLedger": "Continuar com a configuração de Ledger",
         "accountIndex": "Índice de conta",
         "accountPage": "Página da conta",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Acesso de dispositivo Ledger cancelado",
+        "actionCancelledExplanation": "Não é possível executar a ação sem acesso ao dispositivo Ledger.",
         "chooseAccountIndex": "Escolha o seu índice da conta Ledger",
         "accountIndexExplanation": "Seu Ledger pode armazenar varias Seeds. Cada Seed é identificada por um número de índice único. Um índice ainda não usado foi pre-selecionado, mas sinta-se a vontade de escolher o seu próprio. Certifique-se de anotar o número do índice escolhido.",
         "accountPageExplanation": "Algumas carteiras de terceiros exigem páginas.",
