@@ -689,11 +689,11 @@
         "gettingTransactionsToApprove": "Godkänner transaktioner",
         "proofOfWork": "Utför bevis på arbete",
         "broadcasting": "Sändning pågår",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Förbereder data",
+        "migratingSettings": "Migrerar inställningar",
+        "migratingAccounts": "Migrerar konton",
+        "cleaningUpOldData": "Rensar upp gammal data",
+        "migrationComplete": "Migration klar",
         "transferComplete": "Överföring slutförd"
     },
     "snapshotTransition": {
@@ -773,10 +773,10 @@
         "sweepConfirmationTitle": "Svepningsbekräftelse"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "dataMigration": "Data-migration",
+        "dataMigrationExplanation": "På grund av prestanda och förvaringsbegränsningar använder Trinity en ny databas för att lagra inställningar och kontodata. Vänta medan Trinity automatiskt migrerar din befintliga data.",
+        "problemMigratingYourData": "Det uppstod ett problem vid migrering av din data. Vänligen försök igen",
+        "seedMigrationExplanation": "Som en del av Trinity's fortsatta arbete att förbättra plånbokssäkerheten, kommer din seed att migreras till en förbättrad lagringsmetod. Vänligen vänta medan Trinity automatiskt migrerar seed-lagringen."
     },
     "ledger": {
         "ready": "Ledger-enheten ansluten och redo",
@@ -786,8 +786,8 @@
         "proceedWithLedger": "Fortsätt med Ledger-installationen",
         "accountIndex": "Konto-index",
         "accountPage": "Konto-sida",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Ledger-enhets åtkomst avbruten",
+        "actionCancelledExplanation": "Kan inte utföra åtgärden utan Ledger-enhetens åtkomst.",
         "chooseAccountIndex": "Välj ditt Ledger konto-index",
         "accountIndexExplanation": "Din Ledger kan hantera flera seeds. Varje seed identifieras av ett unikt indexnummer. Ett oanvänt index har blivit förvalt, men välj ett eget om du vill. Se till att anteckna ditt valda indexnummer.",
         "accountPageExplanation": "Vissa tredjepartsplånböcker kräver sidor.",
