@@ -7,7 +7,7 @@ const initialState = {
      */
     childRoute: 'balance', // left most tab
     /**
-     * Determines if the topbar on mobile dashboard is active or not
+     * Determines if the topBar on mobile dashboard is active or not
      */
     isTopBarActive: false,
 };

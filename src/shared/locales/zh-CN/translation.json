@@ -763,7 +763,7 @@
     "bytetrit": {
         "sweepSucceeded": "Funds successfully unlocked",
         "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
+        "sweepError": "解锁资金时出错",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
         "warningTitle": "警告：检测到锁定的资金",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
@@ -774,8 +774,8 @@
     },
     "migration": {
         "dataMigration": "数据迁移",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "dataMigrationExplanation": "由于性能和储存限制，Trinity 正在使用一个新的数据库存储设置和帐户数据。请稍候，Trinity 自动迁移您的现有数据。",
+        "problemMigratingYourData": "迁移您的数据时出现问题。请重试",
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
@@ -787,7 +787,7 @@
         "accountIndex": "账户索引",
         "accountPage": "账户页面",
         "actionCancelled": "Ledger设备访问已取消",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelledExplanation": "不能在无法访问Ledger设备的情况下执行操作。",
         "chooseAccountIndex": "选择您的Ledger账户索引",
         "accountIndexExplanation": "您的Ledger可以存储多个种子。每个种子都由一个唯一的索引号码。系统已经预先选择未使用的索引，但您也可以随意选择自己的索引。请务必记下您选择的索引号码。",
         "accountPageExplanation": "Some third party wallets require pages.",
@@ -795,7 +795,7 @@
         "connectionErrorExplanation": "检查您的Ledger是否已连接并解锁。",
         "connectionTitle": "连接您的Ledger",
         "connectionExplanation": "必须连接Ledger设备才能执行此功能。",
-        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionTitle": "在您的Ledger上往下滚动并确认交易",
         "transactionExplanation": "使用您的Ledger设备来确认转账交易。",
         "applicationTitle": "打开Ledger IOTA应用",
         "applicationExplanation": "在Ledger设备上打开IOTA应用，然后继续使用Trinity。",

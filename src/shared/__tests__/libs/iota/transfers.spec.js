@@ -24,16 +24,20 @@ import {
     categoriseInclusionStatesByBundleHash,
     assignInclusionStatesToBundles,
     filterZeroValueBundles,
+    isBundleTraversable,
 } from '../../../libs/iota/transfers';
 import { confirmedValueBundles, unconfirmedValueBundles, confirmedZeroValueBundles } from '../../__samples__/bundles';
 import { iota, SwitchingConfig } from '../../../libs/iota';
 import {
     newValueTransactionTrytes,
+    newValueAttachedTransactionTrytes,
     failedTrytesWithCorrectTransactionHashes,
-    failedTrytesWithIncorrectTransactionHashes,
     milestoneTrytes,
 } from '../../__samples__/trytes';
 import {
+    newValueAttachedTransactionBaseTrunk,
+    newValueAttachedTransactionBaseBranch,
+    newValueAttachedTransaction,
     confirmedValueTransactions,
     unconfirmedValueTransactions,
     failedTransactionsWithCorrectTransactionHashes,
@@ -878,14 +882,14 @@ describe('libs: iota/transfers', () => {
         describe('when any transaction object has an invalid hash', () => {
             it('should perform proof of work', () => {
                 sinon.stub(seedStore, 'performPow').resolves({
-                    trytes: failedTrytesWithIncorrectTransactionHashes,
-                    transactionObjects: failedTransactionsWithIncorrectTransactionHashes,
+                    trytes: newValueAttachedTransactionTrytes,
+                    transactionObjects: newValueAttachedTransaction,
                 });
 
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
                 const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
-                    trunkTransaction: 'R'.repeat(81),
-                    branchTransaction: 'A'.repeat(81),
+                    trunkTransaction: newValueAttachedTransactionBaseTrunk,
+                    branchTransaction: newValueAttachedTransactionBaseBranch,
                 });
 
                 return retryFailedTransaction()(failedTransactionsWithIncorrectTransactionHashes, seedStore).then(
@@ -903,14 +907,14 @@ describe('libs: iota/transfers', () => {
         describe('when any transaction object has an empty hash', () => {
             it('should perform proof of work', () => {
                 sinon.stub(seedStore, 'performPow').resolves({
-                    trytes: failedTrytesWithIncorrectTransactionHashes,
-                    transactionObjects: failedTransactionsWithIncorrectTransactionHashes,
+                    trytes: newValueAttachedTransactionTrytes,
+                    transactionObjects: newValueAttachedTransaction,
                 });
 
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
                 const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
-                    trunkTransaction: 'R'.repeat(81),
-                    branchTransaction: 'A'.repeat(81),
+                    trunkTransaction: newValueAttachedTransactionBaseTrunk,
+                    branchTransaction: newValueAttachedTransactionBaseBranch,
                 });
 
                 return retryFailedTransaction()(
@@ -1250,6 +1254,40 @@ describe('libs: iota/transfers', () => {
             const expectedResult = [...confirmedValueBundles, ...unconfirmedValueBundles];
 
             expect(result).to.eql(expectedResult);
+        });
+    });
+
+    describe('#isBundleTraversable', () => {
+        let trunkTransaction;
+        let branchTransaction;
+
+        before(() => {
+            // See trunk/branch transactions of newValueAttachedTransaction transaction object with currentIndex 2
+            trunkTransaction = 'LHPBIUXOUJFVXDXOH9RAFDHPZHKKQXOBWWWRAYBKSYFZGEFRYWJBTCETHFUMJUTWGTNXTIPVJTOM99999';
+            branchTransaction = 'VEZTEROA9IUNBSIKJMZRDFYAVNCZAGQJEERLZIFCSHISPKATHRPLOQGECZWLWFAMBX9DRLUUPNI999999';
+        });
+
+        it('should return true for bundle with correct trunk/branch assignment', () => {
+            expect(isBundleTraversable(newValueAttachedTransaction, trunkTransaction, branchTransaction)).to.equal(
+                true,
+            );
+        });
+
+        it('should return false for bundle with incorrect trunk/branch assignment', () => {
+            expect(
+                isBundleTraversable(
+                    map(
+                        newValueAttachedTransaction,
+                        (transaction, index) =>
+                            index % 2 === 0
+                                ? {
+                                      ...transaction,
+                                      trunkTransaction: '9'.repeat(81),
+                                  }
+                                : transaction,
+                    ),
+                ),
+            ).to.equal(false);
         });
     });
 });

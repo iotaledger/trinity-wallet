@@ -3,6 +3,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import clone from 'lodash/clone';
 import get from 'lodash/get';
 import each from 'lodash/each';
+import every from 'lodash/every';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 import flatMap from 'lodash/flatMap';
@@ -754,21 +755,24 @@ export const isValidTransfer = (transfer) => {
 };
 
 /**
- *   Checks if a bundle is funded
- *   Note: Does not validate signatures or other bundle attributes
+ * Checks if a bundle is funded
+ * Note: Does not validate signatures or other bundle attributes
  *
- *   @method isFundedBundle
- *   @param {string} [provider]
+ * @method isFundedBundle
  *
- *   @returns {function(array): Promise<boolean>}
+ * @param {string} provider
+ * @param {boolean} withQuorum
+ *
+ *
+ * @returns {function(array): Promise<boolean>}
  **/
 
-export const isFundedBundle = (provider) => (bundle) => {
+export const isFundedBundle = (provider, withQuorum) => (bundle) => {
     if (isEmpty(bundle)) {
         return Promise.reject(new Error(Errors.EMPTY_BUNDLE_PROVIDED));
     }
 
-    return getBalancesAsync(provider)(
+    return getBalancesAsync(provider, withQuorum)(
         reduce(bundle, (acc, tx) => (tx.value < 0 ? [...acc, tx.address] : acc), []),
     ).then((balances) => {
         return (
@@ -789,15 +793,17 @@ export const filterZeroValueBundles = (bundles) => {
 };
 
 /**
- *   Filters non-funded bundles
- *   Note: Does not validate signatures or other bundle attributes
+ * Filters non-funded bundles
+ * Note: Does not validate signatures or other bundle attributes
  *
- *   @method filterNonFundedBundles
- *   @param {string} [provider]
+ * @method filterNonFundedBundles
  *
- *   @returns {function(array): Promise<boolean>}
+ * @param {string} provider
+ * @param {boolean} withQuorum
+ *
+ * @returns {function(array): Promise<boolean>}
  **/
-export const filterNonFundedBundles = (provider) => (bundles) => {
+export const filterNonFundedBundles = (provider, withQuorum) => (bundles) => {
     if (isEmpty(bundles)) {
         return Promise.reject(new Error(Errors.EMPTY_BUNDLES_PROVIDED));
     }
@@ -807,7 +813,7 @@ export const filterNonFundedBundles = (provider) => (bundles) => {
         filterZeroValueBundles(bundles),
         (promise, bundle) => {
             return promise.then((result) => {
-                return isFundedBundle(provider)(bundle).then((isFunded) => {
+                return isFundedBundle(provider, withQuorum)(bundle).then((isFunded) => {
                     if (isFunded) {
                         return [...result, bundle];
                     }
@@ -1015,3 +1021,26 @@ export const constructBundleFromAttachedTrytes = (attachedTrytes, seedStore) => 
         Promise.resolve([]),
     );
 };
+
+/**
+ * Checks if bundle can be traversed
+ *
+ * @method isBundleTraversable
+ *
+ * @param {array} bundle
+ * @param {string} trunkTransaction
+ * @param {string} branchTransaction
+ *
+ * @returns {boolean}
+ */
+export const isBundleTraversable = (bundle, trunkTransaction, branchTransaction) =>
+    !isEmpty(bundle) &&
+    every(
+        orderBy(bundle, ['currentIndex'], ['desc']),
+        (transaction, index, transactions) =>
+            index
+                ? transaction.trunkTransaction === transactions[index - 1].hash &&
+                  transaction.branchTransaction === trunkTransaction
+                : transaction.trunkTransaction === trunkTransaction &&
+                  transaction.branchTransaction === branchTransaction,
+    );

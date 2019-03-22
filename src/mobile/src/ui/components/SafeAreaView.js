@@ -5,7 +5,7 @@ import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { getBackgroundColor } from 'ui/theme/general';
+import { getBorderColor } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 
 export default function withSafeAreaView(WrappedComponent) {
@@ -40,7 +40,7 @@ export default function withSafeAreaView(WrappedComponent) {
                     style={{
                         height,
                         width,
-                        backgroundColor: inactive ? theme.body.bg : getBackgroundColor(currentScreen, theme, inactive),
+                        backgroundColor: getBorderColor(currentScreen, theme, inactive),
                     }}
                 >
                     <WrappedComponent {...this.props} />

@@ -30,9 +30,11 @@ import {
  *   @method getAccountData
  *
  *   @param {string} provider
+ *   @param {boolean} withQuorum
+ *
  *   @returns {function(object, string, [object]): Promise<{{accountName: {string}, transactions: {array}, addressData: {array} }}>}
  **/
-export const getAccountData = (provider) => (seedStore, accountName, existingAccountState = {}) => {
+export const getAccountData = (provider, withQuorum) => (seedStore, accountName, existingAccountState = {}) => {
     let data = {
         addresses: [],
         balances: [],
@@ -48,7 +50,7 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
     );
 
     return throwIfNodeNotHealthy(provider)
-        .then(() => getFullAddressHistory(provider)(seedStore, existingAccountState))
+        .then(() => getFullAddressHistory(provider, withQuorum)(seedStore, existingAccountState))
         .then((history) => {
             data = { ...data, ...history };
 
@@ -86,11 +88,12 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
  *   - Syncs transactions.
  *
  *   @method syncAccount
- *   @param {string} [provider]
+ *   @param {object} provider
+ *   @param {boolean} withQuorum
  *
- *   @returns {function(object, object, function): Promise<object>}
+ *   @returns {function(object, object, function, object): Promise<object>}
  **/
-export const syncAccount = (provider) => (existingAccountState, seedStore, notificationFn, settings) => {
+export const syncAccount = (provider, withQuorum) => (existingAccountState, seedStore, notificationFn, settings) => {
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = typeof seedStore === 'object';
 
@@ -98,7 +101,11 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
         .then(
             () =>
                 rescanAddresses
-                    ? syncAddresses(provider)(seedStore, thisStateCopy.addressData, thisStateCopy.transactions)
+                    ? syncAddresses(provider, withQuorum)(
+                          seedStore,
+                          thisStateCopy.addressData,
+                          thisStateCopy.transactions,
+                      )
                     : Promise.resolve(thisStateCopy.addressData),
         )
         .then((addressData) => {
@@ -154,7 +161,7 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
 
             thisStateCopy.transactions = transactions;
 
-            return mapLatestAddressData(provider)(thisStateCopy.addressData, thisStateCopy.transactions);
+            return mapLatestAddressData(provider, withQuorum)(thisStateCopy.addressData, thisStateCopy.transactions);
         })
         .then((addressData) => {
             thisStateCopy.addressData = addressData;
@@ -173,10 +180,11 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
  *
  *   @method updateAccountAfterSpending
  *   @param {string} [provider]
+ *   @param {boolean} withQuorum
  *
  *   @returns {function(string, string, array, object, boolean, function): Promise<object>}
  **/
-export const syncAccountAfterSpending = (provider) => (seedStore, newTransactions, accountState) => {
+export const syncAccountAfterSpending = (provider, withQuorum) => (seedStore, newTransactions, accountState) => {
     // Update transactions
     const updatedTransactions = [
         ...accountState.transactions,
@@ -192,7 +200,7 @@ export const syncAccountAfterSpending = (provider) => (seedStore, newTransaction
     const updatedAddressData = markAddressesAsSpentSync([newTransactions], accountState.addressData);
 
     return (
-        syncAddresses(provider)(seedStore, updatedAddressData, updatedTransactions)
+        syncAddresses(provider, withQuorum)(seedStore, updatedAddressData, updatedTransactions)
             // Map latest address data (spend statuses & balances) to addresses
             .then((latestAddressData) => mapLatestAddressData(provider)(latestAddressData, updatedTransactions))
             .then((latestAddressData) => ({ addressData: latestAddressData, transactions: updatedTransactions }))

@@ -34,7 +34,7 @@ export class PasswordValidationModal extends PureComponent {
         theme: PropTypes.object.isRequired,
         /** Validate password provided by user */
         validatePassword: PropTypes.func.isRequired,
-        /** Determines if modal is triggered from the wallet dashboard, in case the topbar should be displayed */
+        /** Determines if modal is triggered from the wallet dashboard, in case the topBar should be displayed */
         isDashboard: PropTypes.bool,
     };
 

@@ -52,7 +52,7 @@ export class NotificationLogModal extends PureComponent {
         clearLog: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Deteremines whether to display the topbar */
+        /** Deteremines whether to display the topBar */
         displayTopBar: PropTypes.bool,
     };
 

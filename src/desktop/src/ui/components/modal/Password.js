@@ -8,6 +8,7 @@ import authenticator from 'authenticator';
 import { hash, authorize } from 'libs/crypto';
 
 import { generateAlert } from 'actions/alerts';
+import { TWOFA_TOKEN_LENGTH } from 'libs/utils';
 
 import Text from 'ui/components/input/Text';
 import Password from 'ui/components/input/Password';
@@ -79,7 +80,7 @@ class ModalPassword extends PureComponent {
      * @param {string} value - Code value
      */
     setCode = (value) => {
-        this.setState({ code: value }, () => value.length === 6 && this.handleSubmit());
+        this.setState({ code: value }, () => value.length === TWOFA_TOKEN_LENGTH && this.handleSubmit());
     };
 
     handleSubmit = async (e) => {

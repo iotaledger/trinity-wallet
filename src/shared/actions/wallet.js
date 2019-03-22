@@ -380,10 +380,11 @@ export const transitionForSnapshot = (seedStore, addresses) => {
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {array} addresses
+ * @param {boolean} withQuorum
  *
  * @returns {function}
  */
-export const completeSnapshotTransition = (seedStore, accountName, addresses) => {
+export const completeSnapshotTransition = (seedStore, accountName, addresses, withQuorum = true) => {
     return (dispatch, getState) => {
         dispatch(
             generateAlert(
@@ -395,7 +396,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses) =>
 
         dispatch(snapshotAttachToTangleRequest());
 
-        getBalancesAsync()(addresses)
+        getBalancesAsync(undefined, withQuorum)(addresses)
             // Find balance on all addresses
             .then((balances) => {
                 const allBalances = map(balances.balances, Number);
@@ -421,7 +422,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses) =>
 
                             const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-                            return attachAndFormatAddress()(
+                            return attachAndFormatAddress(undefined, withQuorum)(
                                 address,
                                 index,
                                 relevantBalances[index],
@@ -523,12 +524,13 @@ export const generateAddressesAndGetBalance = (seedStore, index) => {
  * @method getBalanceForCheck
  *
  * @param {array} addresses
+ * @param {boolean} withQuorum
  *
  * @returns {function}
  */
-export const getBalanceForCheck = (addresses) => {
+export const getBalanceForCheck = (addresses, withQuorum = true) => {
     return (dispatch) => {
-        getBalancesAsync()(addresses)
+        getBalancesAsync(undefined, withQuorum)(addresses)
             .then((balances) => {
                 const balanceOnAddresses = accumulateBalance(map(balances.balances, Number));
 

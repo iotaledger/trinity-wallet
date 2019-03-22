@@ -8,7 +8,10 @@ import {
     withRetriesOnDifferentNodes,
     throwIfNodeNotHealthy,
     isLastTritZero,
+    getChecksum,
 } from '../../../libs/iota/utils';
+import { latestAddressWithoutChecksum, latestAddressChecksum } from '../../__samples__/addresses';
+import { trytesToTrits, tritsToChars } from '../../../libs/iota/converter';
 
 describe('libs: iota/utils', () => {
     describe('#isLastTritZero', () => {
@@ -23,6 +26,7 @@ describe('libs: iota/utils', () => {
             });
         });
     });
+
     describe('#convertFromTrytes', () => {
         describe('when trytes passed as an argument contains all nines', () => {
             it('should return a string "Empty"', () => {
@@ -174,6 +178,44 @@ describe('libs: iota/utils', () => {
                         expect(error.message).to.equal('Node not synced');
                         stub.restore();
                     });
+            });
+        });
+    });
+
+    describe('#getSeedChecksum', () => {
+        describe('when seed is in trytes', () => {
+            describe('when length is provided', () => {
+                it('should return checksum in trytes with provided length', () => {
+                    const checksum = getChecksum(latestAddressWithoutChecksum, 9);
+
+                    expect(checksum).to.equal(latestAddressChecksum);
+                });
+            });
+
+            describe('when length is not provided', () => {
+                it('should return checksum in trytes with default length', () => {
+                    const checksum = getChecksum(latestAddressWithoutChecksum);
+
+                    expect(checksum).to.equal(latestAddressChecksum.slice(-3));
+                });
+            });
+        });
+
+        describe('when seed is in trits', () => {
+            describe('when length is provided', () => {
+                it('should return checksum in trits with provided length', () => {
+                    const checksum = getChecksum(trytesToTrits(latestAddressWithoutChecksum), 27);
+
+                    expect(tritsToChars(checksum)).to.eql(latestAddressChecksum);
+                });
+            });
+
+            describe('when length is not provided', () => {
+                it('should return checksum in trits with default length', () => {
+                    const checksum = getChecksum(trytesToTrits(latestAddressWithoutChecksum));
+
+                    expect(tritsToChars(checksum)).to.equal(latestAddressChecksum.slice(-3));
+                });
             });
         });
     });

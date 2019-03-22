@@ -13,10 +13,8 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-    isKeyboardActive: state.ui.isKeyboardActive,
     inactive: state.ui.inactive,
     minimised: state.ui.minimised,
-    isModalActive: state.ui.isModalActive,
 });
 
 /**
@@ -30,13 +28,9 @@ export default function withKeyboardMonitor(C) {
             /** @ignore */
             setKeyboardActivity: PropTypes.func.isRequired,
             /** @ignore */
-            isKeyboardActive: PropTypes.bool.isRequired,
-            /** @ignore */
             inactive: PropTypes.bool.isRequired,
             /** @ignore */
             minimised: PropTypes.bool.isRequired,
-            /** @ignore */
-            isModalActive: PropTypes.bool.isRequired,
         };
 
         componentWillMount() {
@@ -83,9 +77,9 @@ export default function withKeyboardMonitor(C) {
                 <KeyboardAwareScrollView
                     resetScrollToCoords={{ x: 0, y: 0 }}
                     scrollEnabled={false}
-                    enableAutomaticScroll={!this.props.isModalActive}
                     extraHeight={0}
                     contentContainerStyle={{ flex: 1 }}
+                    keyboardShouldPersistTaps="handled"
                 >
                     <C {...this.props} />
                 </KeyboardAwareScrollView>
