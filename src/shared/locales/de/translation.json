@@ -256,7 +256,7 @@
         "loadingFirstTime": "Dein Seed wird initialisiert.",
         "thisMayTake": "Das kann eine Weile dauern.",
         "doNotMinimise": "Die App nicht minimieren oder schließen.",
-        "takingAWhile": "Das scheint eine Weile zu dauern"
+        "takingAWhile": "Das kann eine Weile dauern"
     },
     "newSeedSetup": {
         "generatedSeed": "Seed generiert",
