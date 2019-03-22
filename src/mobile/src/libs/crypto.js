@@ -108,10 +108,28 @@ const stringToUInt8 = (string) => {
     return new TextEncoder().encode(string);
 };
 
+/**
+ * Wraps tweetnacl-util.decodeBase64 (https://github.com/dchest/tweetnacl-util-js#naclutildecodebase64string)
+ *
+ * @method decodeBase64
+ *
+ * @param {string} input
+ *
+ * @returns {Promise<Uint8Array>}
+ */
 const decodeBase64 = async (input) => {
     return await naclUtil.decodeBase64(input);
 };
 
+/**
+ * Wraps tweetnacl-util.encodeBase64 (https://github.com/dchest/tweetnacl-util-js#naclutilencodebase64array)
+ *
+ * @method encodeBase64
+ *
+ * @param {Uint8Array} input
+ *
+ * @returns {Promise<string>}
+ */
 const encodeBase64 = async (input) => {
     return await naclUtil.encodeBase64(input);
 };

@@ -1,6 +1,7 @@
 import random from 'lodash/random';
 import { generateSecureRandom } from 'react-native-securerandom';
 import tweetnacl from 'tweetnacl';
+import { decodeBase64, encodeBase64 } from 'tweetnacl-util';
 import CryptoModule from 'libs/crypto';
 
 jest.mock('react-native-securerandom', () => ({
@@ -16,6 +17,11 @@ jest.mock('tweetnacl', () => {
 
     return nacl;
 });
+
+jest.mock('tweetnacl-util', () => ({
+    decodeBase64: jest.fn(() => Promise.resolve(new Uint8Array())),
+    encodeBase64: jest.fn(() => Promise.resolve('foo')),
+}));
 
 describe('Testing libs/crypto', () => {
     describe('#getRandomBytes', () => {
@@ -112,6 +118,23 @@ describe('Testing libs/crypto', () => {
 
             Object.keys(keyMap).forEach((hexString) => {
                 expect(CryptoModule.hexToUint8(hexString)).toEqual(keyMap[hexString]);
+            });
+        });
+    });
+
+    describe('#decodeBase64', () => {
+        it('should call tweetnacl-util.decodeBase64 with provided param', () => {
+            return CryptoModule.decodeBase64('baz').then(() => {
+                expect(decodeBase64).toHaveBeenCalledWith('baz');
+            });
+        });
+    });
+
+    describe('#encodeBase64', () => {
+        it('should call tweetnacl-util.encodeBase64 with provided param', () => {
+            const param = new Uint8Array();
+            return CryptoModule.encodeBase64(param).then(() => {
+                expect(encodeBase64).toHaveBeenCalledWith(param);
             });
         });
     });
