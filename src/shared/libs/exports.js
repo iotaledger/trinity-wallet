@@ -1,3 +1,4 @@
 import passwordStrength from 'zxcvbn';
+import moment from 'moment';
 
-export { passwordStrength as zxcvbn };
+export { passwordStrength as zxcvbn, moment };

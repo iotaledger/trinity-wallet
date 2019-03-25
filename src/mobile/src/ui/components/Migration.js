@@ -10,6 +10,7 @@ import { startTrackingProgress } from 'shared-modules/actions/progress';
 import { connect } from 'react-redux';
 import { Styling } from 'ui/theme/general';
 import { migrate } from 'shared-modules/actions/migrations';
+import KeepAwake from 'react-native-keep-awake';
 import { setFullNode } from 'shared-modules/actions/settings';
 import { reduxPersistStorageAdapter } from 'libs/store';
 import { migrateSeedStorage } from 'libs/keychain';
@@ -99,6 +100,7 @@ class Migration extends Component {
     }
 
     componentDidMount() {
+        KeepAwake.activate();
         if (!this.props.completedMigration) {
             this.executeRealmMigration();
         } else {
@@ -130,7 +132,7 @@ class Migration extends Component {
         if (this.state.hasCompletedRealmMigration) {
             return t('seedMigrationExplanation');
         }
-        return t('dataMigrationExplanation') + ' ' + t('loading:thisMayTake');
+        return `${t('dataMigrationExplanation')} {t('loading:thisMayTake')} {t('doNotMinimise')}`;
     }
 
     /**
@@ -161,28 +163,15 @@ class Migration extends Component {
      * @method navigateToLoadingScreen
      */
     navigateToLoadingScreen() {
-        const { theme: { body } } = this.props;
+        KeepAwake.deactivate();
         Navigation.setStackRoot('appStack', {
             component: {
                 name: 'loading',
                 options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
                     topBar: {
                         visible: false,
                         drawBehind: true,
                         elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
                     },
                 },
             },
