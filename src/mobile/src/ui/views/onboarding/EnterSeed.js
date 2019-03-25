@@ -238,7 +238,6 @@ class EnterSeed extends React.Component {
                                         autoCorrect={false}
                                         enablesReturnKeyAutomatically
                                         returnKeyType="done"
-                                        secureTextEntry
                                         onSubmitEditing={() => this.onDonePress()}
                                         maxLength={MAX_SEED_LENGTH}
                                         value={this.state.seed}
@@ -301,7 +300,7 @@ const mapDispatchToProps = {
     generateAlert,
     toggleModalActivity,
     setAccountInfoDuringSetup,
-    setDoNotMinimise
+    setDoNotMinimise,
 };
 
 export default WithUserActivity()(

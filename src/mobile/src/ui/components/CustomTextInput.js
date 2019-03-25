@@ -181,11 +181,11 @@ class CustomTextInput extends Component {
         isPasswordInput: false,
     };
 
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             isFocused: false,
-            isSecretMasked: true,
+            isSecretMasked: props.widgets.indexOf('mask') > -1,
         };
     }
 
