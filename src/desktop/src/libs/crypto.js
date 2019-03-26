@@ -12,7 +12,7 @@ export const MAX_ACC_LENGTH = 250;
  * @param {number} Max - Random byte max range
  * @returns {array} Random number array
  */
-export const randomBytes = (size, max) => {
+export const randomBytes = (size, max = 256) => {
     if (size !== parseInt(size, 10) || size < 0) {
         return false;
     }
