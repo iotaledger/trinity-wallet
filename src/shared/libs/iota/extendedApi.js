@@ -3,6 +3,7 @@ import head from 'lodash/head';
 import has from 'lodash/has';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import IOTA from 'iota.lib.js';
 import { createPrepareTransfers } from '@iota/core';
 import { iota, quorum } from './index';
@@ -539,7 +540,7 @@ const attachToTangleAsync = (provider, seedStore) => (
             // Batched proof-of-work only returns the attached trytes
             return constructBundleFromAttachedTrytes(sortTransactionTrytesArray(result), seedStore).then(
                 (transactionObjects) => ({
-                    transactionObjects,
+                    transactionObjects: orderBy(transactionObjects, 'currentIndex', ['desc']),
                     trytes: result,
                 }),
             );
