@@ -54,6 +54,7 @@ export const ActionTypes = {
     ADDRESS_VALIDATION_SUCCESS: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_SUCCESS',
     PUSH_ROUTE: 'IOTA/APP/WALLET/PUSH_ROUTE',
     POP_ROUTE: 'IOTA/APP/WALLET/POP_ROUTE',
+    POP_TO_ROUTE: 'IOTA/APP/WALLET/POP_TO_ROUTE',
     RESET_ROUTE: 'IOTA/APP/WALLET/RESET_ROUTE',
 };
 
@@ -591,6 +592,21 @@ export const pushRoute = (payload) => {
 export const popRoute = () => {
     return {
         type: ActionTypes.POP_ROUTE,
+    };
+};
+
+/**
+ * Dispatch to pop to a particular route in the navigation stack
+ *
+ * @method popToRoute
+ * @param {string} payload
+ *
+ * @returns {{type: {string}}}
+ */
+export const popToRoute = (payload) => {
+    return {
+        type: ActionTypes.POP_TO_ROUTE,
+        payload,
     };
 };
 
