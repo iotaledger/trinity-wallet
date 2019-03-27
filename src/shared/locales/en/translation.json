@@ -57,6 +57,7 @@
         "yes": "Yes",
         "no": "No",
         "okay": "Okay",
+        "skip": "Skip",
         "password": "Password",
         "unrecognisedPassword": "Unrecognised password",
         "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
@@ -288,6 +289,12 @@
         "pleaseCheck": "Please check and confirm before you print",
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
+    },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
     },
     "receive": {
         "yourAddress": "Your address",
