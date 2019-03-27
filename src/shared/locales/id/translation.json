@@ -55,6 +55,7 @@
         "yes": "Iya",
         "no": "Tidak",
         "okay": "Ok",
+        "skip": "Skip",
         "password": "Kata Sandi",
         "unrecognisedPassword": "Kata sandi tidak dikenali",
         "unrecognisedPasswordExplanation": "Kata sandi tidak dikenali. Silahkan coba kembali.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Alamat Anda",
         "qrOptions": "Opsi QR",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Salin rangkaian hash",
-        "noTransactionsFound": "Transaksi tidak ditemukan",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Sembunyikan saldo nol",
         "bundleHashCopiedExplanation": "Rangkaian hash telah disalin ke papan klip.",
         "addressCopied": "Alamat telah disalin",

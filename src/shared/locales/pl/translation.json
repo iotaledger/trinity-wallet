@@ -55,6 +55,7 @@
         "yes": "Tak",
         "no": "Nie",
         "okay": "Okej",
+        "skip": "Skip",
         "password": "Hasło",
         "unrecognisedPassword": "Hasło nierozpoznane",
         "unrecognisedPasswordExplanation": "Hasło nieprawidłowe. Spróbuj ponownie.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Nie jestem połączony z publicznym WiFi",
         "printerConfirmation": "Nie drukuję na publicznej drukarce"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Twój adres",
         "qrOptions": "Opcje QR",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
-        "noTransactionsFound": "Nie znaleziono transakcji",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Ukryj zerowe",
         "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",

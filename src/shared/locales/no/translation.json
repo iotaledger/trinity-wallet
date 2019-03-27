@@ -55,6 +55,7 @@
         "yes": "Ja",
         "no": "Nei",
         "okay": "Ok",
+        "skip": "Skip",
         "password": "Passord",
         "unrecognisedPassword": "Ukjent passord",
         "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Jeg er ikke på på et offentlig wifi",
         "printerConfirmation": "Jeg skriver ikke ut på en offentlig skriver"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Din adresse",
         "qrOptions": "QR alternativer",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Pakke hash kopiert",
-        "noTransactionsFound": "Ingen transaksjon ble funnet",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Gjem nullbeløp",
         "bundleHashCopiedExplanation": "Pakke hash har blitt kopiert til utklippstavlen.",
         "addressCopied": "Addresse kopiert",
