@@ -542,7 +542,6 @@ class CustomTextInput extends Component {
                     />
                     {widgets.length > 0 && this.renderRightHandWidget()}
                     {currencyConversion && this.renderCurrencyConversion()}
-                    {fingerprintAuthentication && this.renderFingerprintAuthentication()}
                 </View>
                 {isSeedInput && this.renderChecksumComponent()}
             </View>
