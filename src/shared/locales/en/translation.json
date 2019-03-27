@@ -467,7 +467,8 @@
         "retrying": "Retrying",
         "yesterday": "Yesterday",
         "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "noTransactionsInformation": "Your transaction history is empty"
     },
     "accountManagement": {
         "viewSeed": "View seed",

@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -26,7 +26,9 @@ import TransactionRow from 'ui/components/TransactionRow';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import CtaButton from 'ui/components/CtaButton';
+import InfoBox from 'ui/components/InfoBox';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { Styling } from 'ui/theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -56,6 +58,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: height / 5,
+    },
+    infoText: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: Styling.fontSize3,
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+        paddingBottom: height / 25,
     },
 });
 
@@ -292,7 +301,7 @@ class History extends Component {
     }
 
     renderTransactions() {
-        const { theme: { primary }, t, isRefreshing } = this.props;
+        const { theme: { primary, body }, t, isRefreshing } = this.props;
         const data = this.prepTransactions();
         const noTransactions = data.length === 0;
 
@@ -313,27 +322,21 @@ class History extends Component {
                 }
                 ListEmptyComponent={
                     <View style={styles.noTransactionsContainer}>
-                        {!isRefreshing ? (
-                            <View style={styles.refreshButtonContainer}>
-                                <CtaButton
-                                    ctaColor={primary.color}
-                                    secondaryCtaColor={primary.body}
-                                    text={t('global:refresh')}
-                                    onPress={this.props.onRefresh}
-                                    ctaWidth={width / 2}
-                                    ctaHeight={height / 16}
-                                />
-                            </View>
-                        ) : (
-                            <View style={styles.refreshButtonContainer}>
-                                <ActivityIndicator
-                                    animating={isRefreshing}
-                                    style={styles.activityIndicator}
-                                    size="large"
-                                    color={primary.color}
-                                />
-                            </View>
-                        )}
+                        <InfoBox>
+                            <Text style={[styles.infoText, { color: body.color }]}>
+                                {t('noTransactionsInformation')}
+                            </Text>
+                            <CtaButton
+                                ctaColor={primary.color}
+                                ctaBorderColor={primary.color}
+                                secondaryCtaColor={primary.body}
+                                text={t('refresh')}
+                                onPress={() => this.props.onRefresh()}
+                                ctaWidth={width / 1.6}
+                                ctaHeight={height / 12}
+                                displayActivityIndicator={isRefreshing}
+                            />
+                        </InfoBox>
                     </View>
                 }
             />
