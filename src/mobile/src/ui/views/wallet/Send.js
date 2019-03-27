@@ -704,7 +704,6 @@ export class Send extends Component {
                                     this.props.setSendAddressField(text);
                                 }
                             }}
-                            autoCapitalize="characters"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="next"

@@ -234,7 +234,6 @@ class EnterSeed extends React.Component {
                                         label={t('global:seed')}
                                         onValidTextChange={(seed) => this.setState({ seed })}
                                         theme={theme}
-                                        autoCapitalize="characters"
                                         autoCorrect={false}
                                         enablesReturnKeyAutomatically
                                         returnKeyType="done"
