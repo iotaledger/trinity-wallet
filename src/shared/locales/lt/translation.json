@@ -55,6 +55,7 @@
         "yes": "Taip",
         "no": "Ne",
         "okay": "Gerai",
+        "skip": "Skip",
         "password": "Slaptažodis",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
         "unrecognisedPasswordExplanation": "Slaptažodis neatpažintas. Bandykite dar kartą.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Nesinaudoju viešu wifi",
         "printerConfirmation": "Nesinaudoju viešu spausdintuvu"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Jūsų adresas",
         "qrOptions": "QR nustatymai",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
-        "noTransactionsFound": "Pavedimų nėra",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Slėpti nulinius pavedimus",
         "bundleHashCopiedExplanation": "Paketo šifras nukopijuotas į iškarpinę.",
         "addressCopied": "Adresas nukopijuotas",

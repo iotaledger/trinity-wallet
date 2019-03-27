@@ -55,6 +55,7 @@
         "yes": "हाँ",
         "no": "नहीं",
         "okay": "ठीक है",
+        "skip": "Skip",
         "password": "पासवर्ड",
         "unrecognisedPassword": "पासवर्ड मेल नहीं खाया",
         "unrecognisedPasswordExplanation": "पासवर्ड की पहचान नहीं की गई । कृपया पुन: प्रयास करें ।",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Your address",
         "qrOptions": "QR options",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "बंडल हैश की प्रतिलिपि बनाई गई",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "बंडल हैश को क्लिपबोर्ड पर कॉपी किया गया है ।",
         "addressCopied": "पता प्रतिलिपि बनाई गई",

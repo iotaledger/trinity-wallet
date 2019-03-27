@@ -55,6 +55,7 @@
         "yes": "是",
         "no": "否",
         "okay": "好的",
+        "skip": "Skip",
         "password": "密码",
         "unrecognisedPassword": "密码不正确",
         "unrecognisedPasswordExplanation": "密码不正确，请重试。",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "我没有使用公共WIFI",
         "printerConfirmation": "我没有在公共打印机上打印"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "您的地址",
         "qrOptions": "二维码选项",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "交易包哈希值已复制",
-        "noTransactionsFound": "没有找到任何交易",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "隐藏零余额",
         "bundleHashCopiedExplanation": "交易包哈希值已复制到剪贴板。",
         "addressCopied": "已复制地址",
