@@ -887,6 +887,10 @@ const newZeroValueTransaction = [
     },
 ];
 
+const newZeroValueAttachedTransactionBaseTrunk =
+    'LHPBIUXOUJFVXDXOH9RAFDHPZHKKQXOBWWWRAYBKSYFZGEFRYWJBTCETHFUMJUTWGTNXTIPVJTOM99999';
+const newZeroValueAttachedTransactionBaseBranch =
+    'VEZTEROA9IUNBSIKJMZRDFYAVNCZAGQJEERLZIFCSHISPKATHRPLOQGECZWLWFAMBX9DRLUUPNI999999';
 const newZeroValueAttachedTransaction = [
     {
         hash: 'GQG9HINYS9PGQOVMGVNDBIETZ99JBHGIJTWYPFANQ9KOOCJJMEHWMZLVTWUIKMQGERYOXUYWDJFB99999',
@@ -899,8 +903,8 @@ const newZeroValueAttachedTransaction = [
         currentIndex: 0,
         lastIndex: 0,
         bundle: '9TRXZYWHZF9LKWWUXWZLER9SGDIUXDIXLNPNJKEZDWIHKFGBNCLYNJOYTALRWZSYUZCYFESFLCVQSGKZW',
-        trunkTransaction: 'LHPBIUXOUJFVXDXOH9RAFDHPZHKKQXOBWWWRAYBKSYFZGEFRYWJBTCETHFUMJUTWGTNXTIPVJTOM99999',
-        branchTransaction: 'VEZTEROA9IUNBSIKJMZRDFYAVNCZAGQJEERLZIFCSHISPKATHRPLOQGECZWLWFAMBX9DRLUUPNI999999',
+        trunkTransaction: newZeroValueAttachedTransactionBaseTrunk,
+        branchTransaction: newZeroValueAttachedTransactionBaseBranch,
         tag: 'TRINITY99999999999999999999',
         attachmentTimestamp: 1548684259457,
         attachmentTimestampLowerBound: 0,
@@ -968,6 +972,11 @@ const newValueTransaction = [
         nonce: '999999999999999999999999999',
     },
 ];
+
+const newValueAttachedTransactionBaseTrunk =
+    'LHPBIUXOUJFVXDXOH9RAFDHPZHKKQXOBWWWRAYBKSYFZGEFRYWJBTCETHFUMJUTWGTNXTIPVJTOM99999';
+const newValueAttachedTransactionBaseBranch =
+    'VEZTEROA9IUNBSIKJMZRDFYAVNCZAGQJEERLZIFCSHISPKATHRPLOQGECZWLWFAMBX9DRLUUPNI999999';
 
 const newValueAttachedTransaction = [
     {
@@ -1072,7 +1081,11 @@ export {
     promotableBundleHashes,
     newZeroValueTransaction,
     newZeroValueAttachedTransaction,
+    newZeroValueAttachedTransactionBaseTrunk,
+    newZeroValueAttachedTransactionBaseBranch,
     newValueTransaction,
+    newValueAttachedTransactionBaseTrunk,
+    newValueAttachedTransactionBaseBranch,
     newValueAttachedTransaction,
     LATEST_MILESTONE,
     LATEST_SOLID_SUBTANGLE_MILESTONE,

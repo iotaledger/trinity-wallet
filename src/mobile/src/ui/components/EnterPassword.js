@@ -141,7 +141,7 @@ class EnterPassword extends Component {
                             secureTextEntry
                             onSubmitEditing={this.handleLogin}
                             theme={theme}
-                            widget="fingerprint"
+                            widgets={['fingerprint']}
                             fingerprintAuthentication={isFingerprintEnabled}
                             onFingerprintPress={this.activateFingerprintScanner}
                             value={this.state.password}

@@ -318,6 +318,14 @@ describe('libs: iota/recovery', () => {
                                     )
                                 ) {
                                     return { trytes: milestoneTrytes };
+                                } else if (body.command === 'getTransactionsToApprove') {
+                                    return {
+                                        // Extracted from attachedTrytes
+                                        trunkTransaction:
+                                            'QGXGXHHDLBKBVX9BXRUSWRKIOWJQSDNTZCGAQOY9MAAIPFXIBCCBKJVHA9KOMPOBFZUIFRIFDLBFZ9999',
+                                        branchTransaction:
+                                            'HUBZQRKUTAPZNQZIFNYH9YZFJVWOJZXJKSKCLQIGSJNAATOLYZDMEZPLWKQG9XEEHQRSJWCOGNHR99999',
+                                    };
                                 }
 
                                 return resultMap[body.command] || {};
@@ -377,6 +385,13 @@ describe('libs: iota/recovery', () => {
                         },
                         getTrytes: {
                             trytes: invalidTrytes,
+                        },
+                        getTransactionsToApprove: {
+                            // Extracted from attachedTrytes
+                            trunkTransaction:
+                                'QGXGXHHDLBKBVX9BXRUSWRKIOWJQSDNTZCGAQOY9MAAIPFXIBCCBKJVHA9KOMPOBFZUIFRIFDLBFZ9999',
+                            branchTransaction:
+                                'HUBZQRKUTAPZNQZIFNYH9YZFJVWOJZXJKSKCLQIGSJNAATOLYZDMEZPLWKQG9XEEHQRSJWCOGNHR99999',
                         },
                     });
 
@@ -477,6 +492,13 @@ describe('libs: iota/recovery', () => {
                         // signedTrytes do not have the valid hash, so the bundle should be invalid
                         // and input addresses should not be blocked from spending
                         getTrytes: { trytes: validSignedTrytes },
+                        getTransactionsToApprove: {
+                            // Extracted from attachedTrytes
+                            trunkTransaction:
+                                'QGXGXHHDLBKBVX9BXRUSWRKIOWJQSDNTZCGAQOY9MAAIPFXIBCCBKJVHA9KOMPOBFZUIFRIFDLBFZ9999',
+                            branchTransaction:
+                                'HUBZQRKUTAPZNQZIFNYH9YZFJVWOJZXJKSKCLQIGSJNAATOLYZDMEZPLWKQG9XEEHQRSJWCOGNHR99999',
+                        },
                     });
 
                     nock('http://localhost:14265', {
@@ -574,7 +596,17 @@ describe('libs: iota/recovery', () => {
 
         describe('when signed bundle is valid', () => {
             beforeEach(() => {
-                setupNock();
+                setupNock(
+                    merge({}, defaultResultMap, {
+                        getTransactionsToApprove: {
+                            // Extracted from attachedTrytes
+                            trunkTransaction:
+                                'QGXGXHHDLBKBVX9BXRUSWRKIOWJQSDNTZCGAQOY9MAAIPFXIBCCBKJVHA9KOMPOBFZUIFRIFDLBFZ9999',
+                            branchTransaction:
+                                'HUBZQRKUTAPZNQZIFNYH9YZFJVWOJZXJKSKCLQIGSJNAATOLYZDMEZPLWKQG9XEEHQRSJWCOGNHR99999',
+                        },
+                    }),
+                );
             });
 
             afterEach(() => {

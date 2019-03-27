@@ -13,6 +13,7 @@ import LanguageSetup from 'ui/views/onboarding/LanguageSetup';
 import EnterSeed from 'ui/views/onboarding/EnterSeed';
 import SaveYourSeed from 'ui/views/onboarding/SaveYourSeed';
 import SetPassword from 'ui/views/onboarding/SetPassword';
+import PrintBlankTemplate from 'ui/views/onboarding/PrintBlankTemplate';
 import WriteSeedDown from 'ui/views/onboarding/WriteSeedDown';
 import SaveSeedConfirmation from 'ui/views/onboarding/SaveSeedConfirmation';
 import Login from 'ui/views/wallet/Login';
@@ -54,6 +55,7 @@ export default function registerScreens(store, Provider) {
     Navigation.registerComponentWithRedux('setPassword', () => applyHOCs(SetPassword), Provider, store);
     Navigation.registerComponentWithRedux('login', () => applyHOCs(Login), Provider, store);
     Navigation.registerComponentWithRedux('writeSeedDown', () => applyHOCs(WriteSeedDown), Provider, store);
+    Navigation.registerComponentWithRedux('printBlankTemplate', () => applyHOCs(PrintBlankTemplate), Provider, store);
     Navigation.registerComponentWithRedux('languageSetup', () => applyHOCs(LanguageSetup), Provider, store);
     Navigation.registerComponentWithRedux(
         'walletResetConfirm',

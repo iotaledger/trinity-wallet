@@ -234,14 +234,13 @@ class EnterSeed extends React.Component {
                                         label={t('global:seed')}
                                         onValidTextChange={(seed) => this.setState({ seed })}
                                         theme={theme}
-                                        autoCapitalize="characters"
                                         autoCorrect={false}
                                         enablesReturnKeyAutomatically
                                         returnKeyType="done"
                                         onSubmitEditing={() => this.onDonePress()}
                                         maxLength={MAX_SEED_LENGTH}
                                         value={this.state.seed}
-                                        widget="qr"
+                                        widgets={['qr', 'mask']}
                                         onQRPress={() => this.onQRPress()}
                                         testID="enterSeed-seedbox"
                                         isSeedInput
@@ -300,7 +299,7 @@ const mapDispatchToProps = {
     generateAlert,
     toggleModalActivity,
     setAccountInfoDuringSetup,
-    setDoNotMinimise
+    setDoNotMinimise,
 };
 
 export default WithUserActivity()(
