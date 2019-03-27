@@ -313,6 +313,7 @@ class History extends Component {
                 removeClippedSubviews
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => <TransactionRow {...item} />}
+                scrollEnabled={data.length > 0}
                 refreshControl={
                     <RefreshControl
                         refreshing={isRefreshing && !noTransactions}
