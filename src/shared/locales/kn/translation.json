@@ -55,6 +55,7 @@
         "yes": "ಹೌದು",
         "no": "ಇಲ್ಲ",
         "okay": "ಸರಿ",
+        "skip": "Skip",
         "password": "ಗುಪ್ತಪದ",
         "unrecognisedPassword": "ಗುರುತಿಗೆ ಸಿಕ್ಕದ ಗುಪ್ತಪದ",
         "unrecognisedPasswordExplanation": "ಗುಪ್ತಪದ ಗುರುತಿಸಲಾಗಿಲ್ಲ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "ನಿಮ್ಮ ವಿಳಾಸ",
         "qrOptions": "QR ಆಯ್ಕೆಗಳು",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "ವ್ಯವಹಾರ ಗುಂಪಿನ ಹ್ಯಾಶ್ ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ",
-        "noTransactionsFound": "ಯಾವುದೇ ವ್ಯವಹಾರಗಳು ಕಂಡುಬಂದಿಲ್ಲ",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "ಖಾತೆಯ ಶೂನ್ಯ ಮೊತ್ತವನ್ನು ಮರೆಮಾಡಿ",
         "bundleHashCopiedExplanation": "ವ್ಯವಹಾರ ಗುಂಪಿನ ಹ್ಯಾಶ್ ಅನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲಾಗಿದೆ.",
         "addressCopied": "ವಿಳಾಸ ನಕಲಿಸಲಾಗಿದೆ",

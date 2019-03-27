@@ -55,6 +55,7 @@
         "yes": "Ano",
         "no": "Ne",
         "okay": "OK",
+        "skip": "Skip",
         "password": "Heslo",
         "unrecognisedPassword": "Neznámé heslo",
         "unrecognisedPasswordExplanation": "Nesprávné heslo. Prosím zkuste to znovu.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Nejsem připojen k veřejné WiFi síti",
         "printerConfirmation": "Netisknu na veřejné tiskárně"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Vaše adresa",
         "qrOptions": "QR nastavení",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Balíček hash zkopírován",
-        "noTransactionsFound": "Nebyly nalezeny žádné transakce",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Skrýt nulový zůstatek",
         "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
         "addressCopied": "Adresa zkopírována",
