@@ -25,6 +25,7 @@ import {
     assignInclusionStatesToBundles,
     filterZeroValueBundles,
     isBundleTraversable,
+    isBundle,
 } from '../../../libs/iota/transfers';
 import { confirmedValueBundles, unconfirmedValueBundles, confirmedZeroValueBundles } from '../../__samples__/bundles';
 import { iota, SwitchingConfig } from '../../../libs/iota';
@@ -1286,6 +1287,40 @@ describe('libs: iota/transfers', () => {
                                   }
                                 : transaction,
                     ),
+                ),
+            ).to.equal(false);
+        });
+    });
+
+    describe('#isBundle', () => {
+        it('should return true for valid bundle with incorrect (descending) transactions order', () => {
+            expect(
+                isBundle(
+                    // Transactions are in ascending order by default so reverse them.
+                    newValueAttachedTransaction.slice().reverse(),
+                ),
+            ).to.equal(true);
+        });
+
+        it('should return true for valid bundle with correct (ascending) transactions order', () => {
+            expect(isBundle(newValueAttachedTransaction)).to.equal(true);
+        });
+
+        it('should return false for invalid bundle with incorrect (descending) transactions order', () => {
+            expect(
+                isBundle(
+                    // Transactions are in ascending order by default so reverse them.
+                    map(newValueAttachedTransaction, (transaction) => ({ ...transaction, bundle: '9'.repeat(81) }))
+                        .slice()
+                        .reverse(),
+                ),
+            ).to.equal(false);
+        });
+
+        it('should return false for invalid bundle with correct (ascending) transactions order', () => {
+            expect(
+                isBundle(
+                    map(newValueAttachedTransaction, (transaction) => ({ ...transaction, bundle: '9'.repeat(81) })),
                 ),
             ).to.equal(false);
         });
