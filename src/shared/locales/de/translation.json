@@ -55,7 +55,7 @@
         "yes": "Ja",
         "no": "Nein",
         "okay": "Okay",
-        "skip": "Skip",
+        "skip": "Überspringen",
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte versuche es erneut.",
@@ -288,7 +288,7 @@
         "printerConfirmation": "Ich drucke nicht auf einem öffentlich zugänglichen Drucker"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateQuestion": "Möchtest du eine leere Vorlage drucken?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
         "print": "Yes, print"
