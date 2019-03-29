@@ -77,8 +77,8 @@
         "wallet": "Wallet",
         "all": "Alle",
         "sent": "Gesendet",
-        "youReceived": "Du hast erhalten",
-        "youSent": "Du hast gesendet",
+        "youReceived": "Du hast erhalten:",
+        "youSent": "Du hast gesendet:",
         "received": "Empfangen",
         "sending": "Sende...",
         "receiving": "Empfange...",
@@ -125,7 +125,7 @@
         "touchSensor": "Berühre den Fingerabdrucksensor",
         "fingerprintOnSend": "Berühre den Fingerabdrucksensor um den Transfer zu bestätigen.",
         "masterKey": "Dein IOTA Seed ist der Hauptschlüssel zu deinem Guthaben.",
-        "seedThief": "Wenn eine andere Person deinen Seed hat, kann diese deine IOTA stehlen.",
+        "seedThief": "Wenn eine andere Person deinen Seed hat, kann sie deine IOTA stehlen.",
         "googlePlayServicesNotAvailable": "Google Play-Dienste nicht verfügbar",
         "couldNotVerifyDeviceIntegrity": "Gerät konnte nicht überprüft werden, da die Google-Play-Dienste nicht verfügbar sind.",
         "clear": "Löschen",
@@ -289,9 +289,9 @@
     },
     "printBlankTemplate": {
         "printTemplateQuestion": "Möchtest du eine leere Vorlage drucken?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateInfo": "Um das Notieren des Seed zu vereinfachen, kannst du eine leere Vorlage drucken.",
+        "printTemplateWarning": "Bewahre deinen Seed an einem sicheren Ort auf und zeige ihn niemandem.",
+        "print": "Ja, drucken"
     },
     "receive": {
         "yourAddress": "Deine Adresse",
@@ -456,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Dein Transaktionsverlauf ist leer",
         "hideZeroBalance": "Nullsaldo ausblenden",
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
@@ -601,8 +601,8 @@
         "fingerprintUnavailableExplanation": "Dein Gerät unterstützt keine biometrische Authentifizierung oder die Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
         "notSupported": "Die biometrische Authentifizierung wird von deinem Gerät nicht unterstützt",
         "notConfigured": "Die biometrische Authentifizierung wurde noch nicht in deinen Geräteeinstellungen konfiguriert",
-        "buttonInstructionsDisable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
-        "buttonInstructionsEnable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
+        "buttonInstructionsDisable": "Tippe auf die Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
+        "buttonInstructionsEnable": "Tippe auf die Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
         "buttonInstructionsDisableIPhoneX": "Drücke den Button unten um Face ID zu deaktivieren",
         "buttonInstructionsEnableIPhoneX": "Drücke den Button unten um Face ID zu aktivieren",
         "instructionsLogin": "Zur Anmeldung den Fingerabdrucksensor berühren",
