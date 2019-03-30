@@ -221,7 +221,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed gelöscht",
-        "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht."
+        "seedClearedExplanation": "Aus Sicherheitsgründen wurde dein Seed aus der Zwischenablage gelöscht."
     },
     "enterSeed": {
         "invalidCharacters": "Der Seed enthält ungültige Zeichen",
@@ -317,7 +317,7 @@
         "leastSecure": "Am unsichersten",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Notiere deinen Seed",
-        "seedClearedExplanation": "Dein Seed wurde aus Sicherheitsgründen aus der Zwischenablage entfernt.",
+        "seedClearedExplanation": "Aus Sicherheitsgründen wurde dein Seed aus der Zwischenablage entfernt.",
         "letsWriteDownYourSeed": "Notiere deinen Seed",
         "youCanHighlightCharacters": "Du kannst neun Buchstaben gleichzeitig auswählen",
         "printBlankWallet": "Leeres Paper-Wallet drucken",
