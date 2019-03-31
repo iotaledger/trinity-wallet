@@ -55,7 +55,7 @@
         "yes": "Da",
         "no": "Ne",
         "okay": "U redu",
-        "skip": "Skip",
+        "skip": "Preskoči",
         "password": "Lozinka",
         "unrecognisedPassword": "Neispravna Lozinka",
         "unrecognisedPasswordExplanation": "Vaša lozinka je neispravna. Molimo pokušajte ponovno.",
@@ -288,7 +288,7 @@
         "printerConfirmation": "Ne vršim ispis na javno dostupnom pisaču"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateQuestion": "Želite li ispisati prazan predložak?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
         "print": "Yes, print"
