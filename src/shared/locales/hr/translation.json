@@ -289,9 +289,9 @@
     },
     "printBlankTemplate": {
         "printTemplateQuestion": "Želite li ispisati prazan predložak?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateInfo": "Možete ispisati prazan predložak kao pomoć pri zapisu vašeg seed-a.",
+        "printTemplateWarning": "Pobrinite se da pohranite svoj seed na sigurno mjesto. Nemojte ga pokazati nikome.",
+        "print": "Da, ispiši"
     },
     "receive": {
         "yourAddress": "Vaša adresa",
@@ -456,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash paketa kopiran",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Povijest transakcija je prazna",
         "hideZeroBalance": "Sakrij transakcije s nula sredstava",
         "bundleHashCopiedExplanation": "Hash paketa je kopiran u međuspremnik.",
         "addressCopied": "Adresa kopirana",
