@@ -162,7 +162,7 @@
         "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz.",
         "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików.",
-        "swipeToConfirm": "Przesuń palcem, aby potwierdzić"
+        "swipeToConfirm": "Przesuń, aby potwierdzić"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -365,7 +365,7 @@
         "addressPasteDetected": "Wykryto wklejenie adresu",
         "addressPasteExplanation": "Wygląda na to, że wkleiłeś adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać.",
         "invalid": "BŁĄD",
-        "swipeToSend": "Przesuń palcem, aby wysłać"
+        "swipeToSend": "Przesuń, aby wysłać"
     },
     "setSeedName": {
         "letsAddName": "Nazwij swoje konto",
@@ -645,21 +645,21 @@
         "exportSuccess": "Wyeksportowano SeedVault",
         "exportSuccessExplanation": "Zaszyfrowany klucz seed został pomyślnie wyeksportowany.",
         "unrecognisedKey": "Nierozpoznany klucz pliku SeedVault",
-        "unrecognisedKeyExplanation": "Hasło nie zostało rozpoznane. Spróbuj ponownie.",
+        "unrecognisedKeyExplanation": "Klucz nie został rozpoznany. Spróbuj ponownie.",
         "emptyKey": "Nie wprowadzono klucza pliku SeedVault",
-        "emptyKeyExplanation": "Należy wprowadzić hasło. Spróbuj ponownie.",
+        "emptyKeyExplanation": "Należy wprowadzić klucz. Spróbuj ponownie.",
         "importSuccess": "Seed zaimportowany",
         "importSuccessExplanation": "Twój klucz seed został pomyślnie zaimportowany.",
         "saveToDownloadFolder": "Zapisz do folderu pobierania",
         "importSeedVault": "Importuj SeedVault",
         "dropInstructions": "Upuść tutaj plik SeedVault lub tekst <1></1>\n(kliknij, aby wyszukać plik ręcznie)",
         "dropActive": "Upuść tutaj plik SeedVault lub tekst",
-        "enterKeyExplanation": "Wprowadź swoje hasło pliku SeedVault, aby go otworzyć",
+        "enterKeyExplanation": "Wprowadź swój klucz do pliku SeedVault, aby go otworzyć",
         "noSeedFound": "SeedVault nie zawiera poprawnego klucza seed",
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
-        "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Wybierz hasło do zaszyfrowania pliku. Będziesz używać tego hasła, aby przywrócić swój seed z kopii zapasowej SeedVault.",
+        "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Ustal osobny klucz do zaszyfrowania tego pliku. Będziesz używać tego klucza, aby przywrócić swój seed z tej kopii zapasowej SeedVault.",
         "retypeKey": "Wpisz klucz ponownie"
     },
     "chart": {
