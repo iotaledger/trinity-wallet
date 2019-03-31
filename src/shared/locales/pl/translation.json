@@ -638,15 +638,15 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksportuj SeedVault",
-        "seedVaultExplanation": "SeedVault to zaszyfrowany plik do bezpiecznego przechowywania Twojego klucza. Seed zostaje zaszyfrowany hasłem i nie jest dostępny bez jego podania.",
+        "seedVaultExplanation": "SeedVault to zaszyfrowany plik, w którym bezpiecznie możesz przechowywać swój seed. Seed zostaje zaszyfrowany osobnym kluczem SeedVault i nie jest dostępny bez jego podania.",
         "seedVaultWarning": "Upewnij się, że utworzysz kopie zapasowe pliku SeedVault w wielu lokalizacjach (np. twardy dysk, chmura, pendrive). Jeśli utracisz ten plik, a nie zapisałeś swojego klucza seed w inny sposób, stracisz swoje środki IOTA.",
         "exportFail": "Błąd eksportu SeedVault",
         "exportFailExplanation": "Wystąpił problem podczas eksportowania pliku SeedVault. Upewnij się, że posiadasz odpowiednie uprawnienia i wystarczająco dużo wolnego miejsca na Twoim urządzeniu.",
         "exportSuccess": "Wyeksportowano SeedVault",
         "exportSuccessExplanation": "Zaszyfrowany klucz seed został pomyślnie wyeksportowany.",
-        "unrecognisedKey": "Nierozpoznane hasło pliku SeedVault",
+        "unrecognisedKey": "Nierozpoznany klucz pliku SeedVault",
         "unrecognisedKeyExplanation": "Hasło nie zostało rozpoznane. Spróbuj ponownie.",
-        "emptyKey": "Nie wprowadzono hasła pliku SeedVault",
+        "emptyKey": "Nie wprowadzono klucza pliku SeedVault",
         "emptyKeyExplanation": "Należy wprowadzić hasło. Spróbuj ponownie.",
         "importSuccess": "Seed zaimportowany",
         "importSuccessExplanation": "Twój klucz seed został pomyślnie zaimportowany.",
@@ -660,7 +660,7 @@
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
         "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Wybierz hasło do zaszyfrowania pliku. Będziesz używać tego hasła, aby przywrócić swój seed z kopii zapasowej SeedVault.",
-        "retypeKey": "Wpisz hasło ponownie"
+        "retypeKey": "Wpisz klucz ponownie"
     },
     "chart": {
         "mcap": "Market",
