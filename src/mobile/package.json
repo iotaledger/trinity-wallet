@@ -44,7 +44,7 @@
     "qr.js": "https://github.com/defunctzombie/qr.js",
     "react": "16.6.1",
     "react-i18next": "^8.0.7",
-    "react-native": "0.57.5",
+    "react-native": "0.59.0",
     "react-native-camera": "^1.5.1",
     "react-native-crypto": "^2.0.2",
     "react-native-detect-navbar-android": "^0.2.0",
