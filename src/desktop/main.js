@@ -216,7 +216,16 @@ function createWindow() {
         if (url.indexOf(targetURL) !== 0) {
             e.preventDefault();
 
-            const externalWhitelist = ['iota.org', 'docs.iota.works', 'trinity.iota.org', 'docs.bugsnag.com'];
+            const termsAndConditionsLinks = ['iota.org', 'trinity.iota.org', 'mailto:contact@iota.org'];
+            const privacyPolicyLinks = [
+                'corp.sogou.com',
+                'cryptocompare.com',
+                'docs.bugsnag.com',
+                'help.github.com',
+                'protect-eu.mimecast.com',
+            ];
+
+            const externalWhitelist = [...privacyPolicyLinks, ...termsAndConditionsLinks];
 
             try {
                 if (externalWhitelist.indexOf(URL.parse(targetURL).host.replace('www.', '')) > -1) {
