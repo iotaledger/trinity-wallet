@@ -37,7 +37,7 @@
   "devDependencies": {
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-class-properties": "^7.3.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
@@ -168,7 +168,7 @@
     "react-qr-reader": "^2.2.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
-    "react-transition-group": "^2.5.3",
+    "react-transition-group": "^2.7.1",
     "realm": "^2.21.0",
     "recharts": "^1.5.0",
     "redux": "^4.0.0"

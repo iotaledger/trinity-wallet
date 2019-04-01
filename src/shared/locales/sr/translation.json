@@ -55,6 +55,7 @@
         "yes": "Da",
         "no": "Ne",
         "okay": "U redu",
+        "skip": "Skip",
         "password": "Lozinka",
         "unrecognisedPassword": "Lozinka nije prepoznata",
         "unrecognisedPasswordExplanation": "Lozinka nije prepoznata. Pokušajte ponovo.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Vaša adresa",
         "qrOptions": "QR opcije",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Heš paketa kopiran",
-        "noTransactionsFound": "Nisu pronađene transakcije",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Sakrij transakcije bez sredstava",
         "bundleHashCopiedExplanation": "Heš paketa je kopiran na klipbord.",
         "addressCopied": "Adresa kopirana",
