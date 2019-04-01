@@ -12354,9 +12354,9 @@
       }
     },
     "react-transition-group": {
-      "version": "2.5.3",
-      "resolved": "https://registry.npmjs.org/react-transition-group/-/react-transition-group-2.5.3.tgz",
-      "integrity": "sha512-2DGFck6h99kLNr8pOFk+z4Soq3iISydwOFeeEVPjTN6+Y01CmvbWmnN02VuTWyFdnRtIDPe+wy2q6Ui8snBPZg==",
+      "version": "2.7.1",
+      "resolved": "https://registry.npmjs.org/react-transition-group/-/react-transition-group-2.7.1.tgz",
+      "integrity": "sha512-b0VJTzNRnXxRpCuxng6QJbAzmmrhBn1BZJfPPnHbH2PIo8msdkajqwtfdyGm/OypPXZNfAHKEqeN15wjMXrRJQ==",
       "requires": {
         "dom-helpers": "^3.3.1",
         "loose-envify": "^1.4.0",
