@@ -140,7 +140,7 @@ class MultiTextInput extends Component {
                 onValidTextChange={(text) => this.onAmountType(text)}
                 autoCorrect={false}
                 enablesReturnKeyAutomatically
-                widget="denomination"
+                widgets={['denomination']}
                 conversionText={this.getConversionText()}
                 currencyConversion
                 theme={theme}

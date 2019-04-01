@@ -704,7 +704,6 @@ export class Send extends Component {
                                     this.props.setSendAddressField(text);
                                 }
                             }}
-                            autoCapitalize="characters"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="next"
@@ -713,7 +712,7 @@ export class Send extends Component {
                                     this.amountField.focus();
                                 }
                             }}
-                            widget="qr"
+                            widgets={['qr']}
                             onQRPress={() => {
                                 if (!isSending) {
                                     this.showModal('qrScanner');

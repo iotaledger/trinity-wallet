@@ -126,7 +126,7 @@ class SaveYourSeed extends Component {
      * @method onWriteSeedDownPress
      */
     onWriteSeedDownPress() {
-        navigator.push('writeSeedDown');
+        navigator.push('printBlankTemplate');
     }
 
     /**

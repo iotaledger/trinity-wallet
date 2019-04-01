@@ -1,11 +1,11 @@
-import size from 'lodash/size';
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { MAX_SEED_TRITS, VALID_SEED_REGEX, getChecksum } from 'shared-modules/libs/iota/utils';
+import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
+import { Checksum } from 'ui/components/Checksum';
 import { isAndroid } from 'libs/device';
 import { stringToUInt8, UInt8ToString } from 'libs/crypto';
 import { trytesToTrits, tritsToChars } from 'shared-modules/libs/iota/converter';
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize4,
         fontFamily: 'SourceSansPro-Light',
         flex: 6,
-        marginHorizontal: width / 28,
+        marginRight: width / 28,
         paddingTop: 0,
         paddingBottom: 0,
         height: height / 14,
@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     widgetContainer: {
-        borderLeftWidth: 2,
         justifyContent: 'center',
         marginVertical: height / 70,
         flex: 1,
@@ -115,8 +114,8 @@ class CustomTextInput extends Component {
         onBlur: PropTypes.func,
         /** Text field container view styles */
         containerStyle: PropTypes.object,
-        /** String to render appropriate icon for text field */
-        widget: PropTypes.string,
+        /** Array to render appropriate widgets for text field */
+        widgets: PropTypes.array,
         /** Press event (denomination widget) callback function */
         onDenominationPress: PropTypes.func,
         /** Denomination widget text */
@@ -153,6 +152,8 @@ class CustomTextInput extends Component {
         value: PropTypes.any,
         /** Text Change event callback function */
         onValidTextChange: PropTypes.func,
+        /** Determines whether to mask text by default */
+        secureTextEntry: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -160,7 +161,7 @@ class CustomTextInput extends Component {
         onBlur: () => {},
         onFingerprintPress: () => {},
         containerStyle: { width: Styling.contentWidth },
-        widget: 'empty',
+        widgets: [],
         onDenominationPress: () => {},
         onQRPress: () => {},
         denominationText: 'i',
@@ -174,15 +175,18 @@ class CustomTextInput extends Component {
         testID: '',
         onRef: () => {},
         isPasswordValid: false,
-        passwordStrength: 0,
+        passwordStrength: null,
         value: '',
         isSeedInput: false,
         isPasswordInput: false,
     };
 
     constructor(props) {
-        super(props);
-        this.state = { isFocused: false };
+        super();
+        this.state = {
+            isFocused: false,
+            isSecretMasked: props.widgets.indexOf('mask') > -1,
+        };
     }
 
     componentDidMount() {
@@ -223,6 +227,36 @@ class CustomTextInput extends Component {
     }
 
     /**
+     * Masks or unmasks secret
+     */
+    onSecretMaskPress() {
+        const { isSecretMasked } = this.state;
+        this.setState({ isSecretMasked: !isSecretMasked });
+    }
+
+    /**
+     * Returns chosen widget render function
+     * Note: Maximum of 2 widgets can be rendered
+     * @return {function}
+     */
+    getWidgetRenderFunction(widget) {
+        switch (widget) {
+            case 'checkMark':
+                return this.renderPasswordCheck();
+            case 'denomination':
+                return this.renderDenomination();
+            case 'fingerprint':
+                return this.renderFingerprintAuthentication(true);
+            case 'fingerprintDisabled':
+                return this.renderFingerprintAuthentication(false);
+            case 'qr':
+                return this.renderQR();
+            case 'mask':
+                return this.renderSecretMask();
+        }
+    }
+
+    /**
      * Returns text input value - converts seed and password to string
      * @return {string}
      */
@@ -248,41 +282,37 @@ class CustomTextInput extends Component {
         return this.state.isFocused ? focusedFieldLabel : unfocusedFieldLabel;
     }
 
-    getChecksumValue() {
-        const { value } = this.props;
-        let checksumValue = '...';
-        if (value === null) {
-            return checksumValue;
-        } else if (size(value) !== 0 && size(value) < MAX_SEED_TRITS) {
-            checksumValue = '< 81';
-        } else if (size(value) > MAX_SEED_TRITS) {
-            checksumValue = '> 81';
-        } else if (size(value) === MAX_SEED_TRITS) {
-            checksumValue = getChecksum(tritsToChars(value)); // FIXME: Replace with trit checksum calculation
-        }
-        return checksumValue;
-    }
-
-    getChecksumStyle() {
-        const { theme, value } = this.props;
-        if (value && size(value) === MAX_SEED_TRITS) {
-            return { color: theme.primary.color };
-        }
-        return { color: theme.body.color };
-    }
-
-    renderQR(widgetBorderColor) {
+    renderQR() {
         const { theme, onQRPress, containerStyle } = this.props;
         return (
-            <View style={[styles.widgetContainer, widgetBorderColor]}>
-                <TouchableOpacity
-                    onPress={() => onQRPress()}
-                    style={styles.widgetButton}
-                    hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
-                >
-                    <Icon name="camera" size={containerStyle.width / 15} color={theme.input.alt} />
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+                onPress={() => onQRPress()}
+                style={styles.widgetButton}
+                hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
+            >
+                <Icon name="camera" size={containerStyle.width / 17} color={theme.input.alt} />
+            </TouchableOpacity>
+        );
+    }
+
+    /**
+     * Renders a secret mask button
+     * @return {View}
+     */
+    renderSecretMask() {
+        const { theme, containerStyle } = this.props;
+        return (
+            <TouchableOpacity
+                onPress={() => this.onSecretMaskPress()}
+                style={styles.widgetButton}
+                hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
+            >
+                <Icon
+                    name={this.state.isSecretMasked ? 'eyeSlash' : 'eye'}
+                    size={containerStyle.width / 17}
+                    color={theme.input.alt}
+                />
+            </TouchableOpacity>
         );
     }
 
@@ -293,68 +323,162 @@ class CustomTextInput extends Component {
     renderPasswordCheck() {
         const { theme, containerStyle, isPasswordValid } = this.props;
         return (
-            <View style={[styles.widgetContainer, { borderColor: 'transparent', opacity: isPasswordValid ? 1 : 0.3 }]}>
-                <View style={styles.widgetButton}>
-                    <Icon
-                        name="tickRound"
-                        size={containerStyle.width / 15}
-                        color={isPasswordValid ? theme.input.color : theme.input.alt}
-                    />
+            <View style={[styles.widgetButton, { opacity: isPasswordValid ? 1 : 0.3 }]}>
+                <Icon
+                    name="tickRound"
+                    size={containerStyle.width / 17}
+                    color={isPasswordValid ? theme.input.color : theme.input.alt}
+                />
+            </View>
+        );
+    }
+
+    /**
+     * Renders denomination text
+     */
+    renderDenomination() {
+        const { theme, onDenominationPress, denominationText } = this.props;
+        return (
+            <TouchableOpacity
+                onPress={() => onDenominationPress()}
+                style={styles.widgetButton}
+                hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
+            >
+                <Text style={[styles.denominationText, { color: theme.input.alt }]}>{denominationText}</Text>
+            </TouchableOpacity>
+        );
+    }
+
+    /**
+     * Renders a fingerprint icon
+     * @return {View}
+     */
+    renderFingerprintAuthentication(enabled = true) {
+        const { theme, onFingerprintPress, containerStyle } = this.props;
+        return (
+            <TouchableOpacity
+                onPress={() => onFingerprintPress()}
+                style={styles.widgetButton}
+                hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
+            >
+                <Icon
+                    name={enabled ? 'fingerprint' : 'fingerprintDisabled'}
+                    size={containerStyle.width / 17}
+                    color={theme.input.alt}
+                />
+            </TouchableOpacity>
+        );
+    }
+
+    /**
+     * Renders the currency conversion text
+     * @return {View}
+     */
+    renderCurrencyConversion() {
+        const { theme, height, conversionText } = this.props;
+        return (
+            <View style={[styles.conversionTextContainer, { height }]}>
+                <Text style={[styles.conversionText, { color: theme.input.alt }]}>{conversionText}</Text>
+            </View>
+        );
+    }
+
+    /**
+     * Renders checksum component
+     * @return {View}
+     */
+    renderChecksumComponent() {
+        const { theme, containerStyle, value } = this.props;
+        return (
+            <View style={{ width: containerStyle.width, alignItems: 'flex-end' }}>
+                <View
+                    style={[
+                        styles.checksumContainer,
+                        {
+                            backgroundColor: theme.input.bg,
+                            borderColor: this.state.isFocused ? theme.input.hover : theme.input.border,
+                        },
+                    ]}
+                >
+                    <Text style={[Checksum.getStyle(theme, value), styles.checksumText]}>
+                        {Checksum.getValue(value)}
+                    </Text>
                 </View>
             </View>
         );
     }
 
     /**
-     * Renders the denomination text
-     * @param  {Object} widgetBorderColor
+     * Renders password strength indicator
      * @return {View}
      */
-    renderDenomination(widgetBorderColor) {
-        const { theme, onDenominationPress, denominationText } = this.props;
+    renderPasswordStrengthIndicator() {
+        const { theme, isPasswordValid, passwordStrength } = this.props;
         return (
-            <View style={[styles.widgetContainer, widgetBorderColor]}>
-                <TouchableOpacity
-                    onPress={() => onDenominationPress()}
-                    style={styles.widgetButton}
-                    hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
-                >
-                    <Text style={[styles.denominationText, { color: theme.input.alt }]}>{denominationText}</Text>
-                </TouchableOpacity>
+            <View style={styles.passwordStrengthIndicatorContainer}>
+                <View
+                    style={[
+                        styles.passwordStrengthIndicator,
+                        {
+                            backgroundColor: isPasswordValid
+                                ? theme.positive.color
+                                : passwordStrength < 1 ? theme.body.alt : theme.negative.color,
+                        },
+                    ]}
+                />
+                <View
+                    style={[
+                        styles.passwordStrengthIndicator,
+                        {
+                            backgroundColor: isPasswordValid
+                                ? theme.positive.color
+                                : passwordStrength < 2 ? theme.body.alt : theme.negative.color,
+                        },
+                    ]}
+                />
+                <View
+                    style={[
+                        styles.passwordStrengthIndicator,
+                        {
+                            backgroundColor: isPasswordValid
+                                ? theme.positive.color
+                                : passwordStrength < 3 ? theme.body.alt : theme.negative.color,
+                        },
+                    ]}
+                />
+                <View
+                    style={[
+                        styles.passwordStrengthIndicator,
+                        {
+                            backgroundColor: isPasswordValid ? theme.positive.color : theme.body.alt,
+                        },
+                    ]}
+                />
             </View>
         );
     }
 
     /**
-     * Renders a fingerprint icon
-     * @param  {Object} widgetBorderColor
+     * Renders left hand widget, if two are specificed
      * @return {View}
      */
-    renderFingerprintAuthentication(widgetBorderColor) {
-        const { theme, onFingerprintPress, containerStyle, widget } = this.props;
+    renderLeftHandWidget() {
         return (
-            <View style={[styles.widgetContainer, widgetBorderColor]}>
-                <TouchableOpacity
-                    onPress={() => onFingerprintPress()}
-                    style={styles.widgetButton}
-                    hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
-                >
-                    <Icon name={widget} size={containerStyle.width / 15} color={theme.input.alt} />
-                </TouchableOpacity>
+            <View style={[styles.widgetContainer, { flex: 1.2 }]}>
+                {this.getWidgetRenderFunction(this.props.widgets[1])}
             </View>
         );
     }
 
     /**
-     * Renders the currency conversion text
-     * @param  {string} conversionText Value
+     * Renders right hand widget
      * @return {View}
      */
-    renderCurrencyConversion(conversionText) {
-        const { theme, height } = this.props;
+    renderRightHandWidget() {
+        const { theme } = this.props;
         return (
-            <View style={[styles.conversionTextContainer, { height }]}>
-                <Text style={[styles.conversionText, { color: theme.input.alt }]}>{conversionText}</Text>
+            <View style={[styles.widgetContainer, { borderLeftWidth: 0.5, borderLeftColor: theme.input.alt }]}>
+                {this.getWidgetRenderFunction(this.props.widgets[0])}
             </View>
         );
     }
@@ -364,7 +488,7 @@ class CustomTextInput extends Component {
             label,
             theme,
             containerStyle,
-            widget,
+            widgets,
             onRef,
             testID,
             height,
@@ -375,57 +499,18 @@ class CustomTextInput extends Component {
             isPasswordValid,
             passwordStrength,
             isSeedInput,
+            secureTextEntry,
             value,
             ...restProps
         } = this.props;
-        const { isFocused } = this.state;
+        const { isFocused, isSecretMasked } = this.state;
+
         return (
             <View style={[styles.fieldContainer, containerStyle, isSeedInput && styles.seedInput]}>
                 {label && (
                     <View style={styles.labelContainer}>
                         <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>
-                        {widget === 'password' && (
-                            <View style={styles.passwordStrengthIndicatorContainer}>
-                                <View
-                                    style={[
-                                        styles.passwordStrengthIndicator,
-                                        {
-                                            backgroundColor: isPasswordValid
-                                                ? theme.positive.color
-                                                : passwordStrength < 1 ? theme.body.alt : theme.negative.color,
-                                        },
-                                    ]}
-                                />
-                                <View
-                                    style={[
-                                        styles.passwordStrengthIndicator,
-                                        {
-                                            backgroundColor: isPasswordValid
-                                                ? theme.positive.color
-                                                : passwordStrength < 2 ? theme.body.alt : theme.negative.color,
-                                        },
-                                    ]}
-                                />
-                                <View
-                                    style={[
-                                        styles.passwordStrengthIndicator,
-                                        {
-                                            backgroundColor: isPasswordValid
-                                                ? theme.positive.color
-                                                : passwordStrength < 3 ? theme.body.alt : theme.negative.color,
-                                        },
-                                    ]}
-                                />
-                                <View
-                                    style={[
-                                        styles.passwordStrengthIndicator,
-                                        {
-                                            backgroundColor: isPasswordValid ? theme.positive.color : theme.body.alt,
-                                        },
-                                    ]}
-                                />
-                            </View>
-                        )}
+                        {typeof passwordStrength === 'number' && this.renderPasswordStrengthIndicator()}
                     </View>
                 )}
                 <View
@@ -439,41 +524,26 @@ class CustomTextInput extends Component {
                     ]}
                     testID={testID}
                 >
+                    {widgets.length === 2 && this.renderLeftHandWidget()}
                     <TextInput
-                        {...restProps}
                         ref={onRef}
-                        style={[styles.textInput, { color: theme.input.color }]}
+                        style={[
+                            styles.textInput,
+                            { color: theme.input.color, marginLeft: widgets.length === 2 ? 0 : width / 28 },
+                        ]}
                         onFocus={() => this.onFocus()}
                         onBlur={() => this.onBlur()}
+                        secureTextEntry={secureTextEntry || isSecretMasked}
                         onChangeText={(text) => this.onChangeText(text)}
                         selectionColor={theme.input.alt}
                         underlineColorAndroid="transparent"
                         value={this.getValue(value)}
+                        {...restProps}
                     />
-                    {(widget === 'qr' && this.renderQR({ borderLeftColor: theme.input.alt })) ||
-                        (widget === 'denomination' && this.renderDenomination({ borderLeftColor: theme.input.alt })) ||
-                        ((widget === 'password' || widget === 'passwordReentry') && this.renderPasswordCheck())}
-                    {currencyConversion && this.renderCurrencyConversion(conversionText)}
-                    {fingerprintAuthentication &&
-                        this.renderFingerprintAuthentication({ borderLeftColor: theme.input.alt })}
+                    {widgets.length > 0 && this.renderRightHandWidget()}
+                    {currencyConversion && this.renderCurrencyConversion()}
                 </View>
-                {isSeedInput && (
-                    <View style={{ width: containerStyle.width, alignItems: 'flex-end' }}>
-                        <View
-                            style={[
-                                styles.checksumContainer,
-                                {
-                                    backgroundColor: theme.input.bg,
-                                    borderColor: isFocused ? theme.input.hover : theme.input.border,
-                                },
-                            ]}
-                        >
-                            <Text style={[this.getChecksumStyle(), styles.checksumText]}>
-                                {this.getChecksumValue()}
-                            </Text>
-                        </View>
-                    </View>
-                )}
+                {isSeedInput && this.renderChecksumComponent()}
             </View>
         );
     }

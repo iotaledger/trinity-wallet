@@ -55,6 +55,7 @@
         "yes": "Sì",
         "no": "No",
         "okay": "Va bene",
+        "skip": "Skip",
         "password": "Password",
         "unrecognisedPassword": "Password non riconosciuta",
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Non sono su wifi pubblico",
         "printerConfirmation": "Non sto stampando su una stampante pubblica"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Il tuo indirizzo",
         "qrOptions": "Opzioni di QR",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash del pacchetto copiato",
-        "noTransactionsFound": "Nessuna transazione trovata",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Nascondi saldo zero",
         "bundleHashCopiedExplanation": "L'hash del pacchetto è stato copiato negli Appunti.",
         "addressCopied": "Indirizzo copiato",
@@ -689,11 +696,11 @@
         "gettingTransactionsToApprove": "Ottengo le transazioni da approvare",
         "proofOfWork": "Completo la prova di lavoro",
         "broadcasting": "Trasmissione",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Preparazione dati",
+        "migratingSettings": "Migrazione impostazioni",
+        "migratingAccounts": "Migrazione conti",
+        "cleaningUpOldData": "Pulizia dati vecchi",
+        "migrationComplete": "Migrazione completata",
         "transferComplete": "Trasferimento completato"
     },
     "snapshotTransition": {
@@ -773,10 +780,10 @@
         "sweepConfirmationTitle": "Conferma di trasferimento"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "dataMigration": "Migrazione dati",
+        "dataMigrationExplanation": "Per far fronte a limiti di prestazioni e di archiviazione, Trinity passa a utilizzare un nuovo database per memorizzare le impostazioni e i dati dei conti. Si prega di attendere mentre Trinity migra automaticamente i dati esistenti.",
+        "problemMigratingYourData": "Si è verificato un problema durante la migrazione dei dati. Ti preghiamo di riprovare",
+        "seedMigrationExplanation": "Come parte del continuo sforzo di Trinity per migliorare la sicurezza del portafoglio, il tuo seme sarà migrato a una metodologia di archiviazione rafforzata. Attendere mentre Trinity migra automaticamente l'archiviazione dei semi."
     },
     "ledger": {
         "ready": "Dispositivo Ledger collegato e pronto",
@@ -786,8 +793,8 @@
         "proceedWithLedger": "Procedi con la configurazione di Ledger",
         "accountIndex": "Indice di conto",
         "accountPage": "Pagina del conto",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Accesso al dispositivo Ledger annullato",
+        "actionCancelledExplanation": "Impossibile eseguire l'azione senza accesso al dispositivo Ledger.",
         "chooseAccountIndex": "Scegli il tuo indice di conto su Ledger",
         "accountIndexExplanation": "Il tuo Ledger può memorizzare più semi. Ogni seme è identificato da un numero di indice univoco. È stato pre-selezionato un indice inutilizzato, ma puoi sceglierne un altro. Assicurati di aver annotato il numero di indice scelto.",
         "accountPageExplanation": "Alcuni portafogli di terze parti richiedono pagine.",

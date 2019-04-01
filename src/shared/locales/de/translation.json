@@ -55,6 +55,7 @@
         "yes": "Ja",
         "no": "Nein",
         "okay": "Okay",
+        "skip": "Skip",
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte versuche es erneut.",
@@ -256,7 +257,7 @@
         "loadingFirstTime": "Dein Seed wird initialisiert.",
         "thisMayTake": "Das kann eine Weile dauern.",
         "doNotMinimise": "Die App nicht minimieren oder schließen.",
-        "takingAWhile": "Das scheint eine Weile zu dauern"
+        "takingAWhile": "Das kann eine Weile dauern"
     },
     "newSeedSetup": {
         "generatedSeed": "Seed generiert",
@@ -285,6 +286,12 @@
         "pleaseCheck": "Überprüfe und Bestätige bevor du druckst",
         "wifiConfirmation": "Ich befinde mich nicht in einem öffentlichen WLAN",
         "printerConfirmation": "Ich drucke nicht auf einem öffentlich zugänglichen Drucker"
+    },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
     },
     "receive": {
         "yourAddress": "Deine Adresse",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
-        "noTransactionsFound": "Keine Transaktionen gefunden",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Nullsaldo ausblenden",
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
@@ -776,7 +783,7 @@
         "dataMigration": "Datenmigration",
         "dataMigrationExplanation": "Aufgrund von Performance- und Speicherbeschränkungen verwendet Trinity eine neue Datenbank zur Speicherung von Einstellungen und Kontodaten. Bitte warte, während Trinity deine bestehenden Daten automatisch migriert.",
         "problemMigratingYourData": "Bei der Migration der Daten ist ein Fehler aufgetreten. Bitte versuche es erneut",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "seedMigrationExplanation": "Um den ständig wachsenden Sicherheitsanforderungen deines Wallets gerecht zu werden, wird dein Seed auf eine neue Speichermethode migriert. Bitte warte, während Trinity die Migration durchführt."
     },
     "ledger": {
         "ready": "Ledger verbunden und bereit",

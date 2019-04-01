@@ -24,36 +24,24 @@ export const ALIAS_REALM = 'realm_enc_key';
 
 export const keychain = {
     get: (alias) => {
-        return new Promise((resolve, reject) => {
-            Keychain.getInternetCredentials(alias)
-                .then((credentials) => {
-                    if (isEmpty(credentials)) {
-                        resolve(null);
-                    } else {
-                        const payload = {
-                            nonce: get(credentials, 'username'),
-                            item: get(credentials, 'password'),
-                        };
+        return Keychain.getInternetCredentials(alias).then((credentials) => {
+            if (isEmpty(credentials)) {
+                return null;
+            }
 
-                        resolve(payload);
-                    }
-                })
-                .catch((err) => reject(err));
+            const payload = {
+                nonce: get(credentials, 'username'),
+                item: get(credentials, 'password'),
+            };
+
+            return payload;
         });
     },
     clear: (alias) => {
-        return new Promise((resolve, reject) => {
-            Keychain.resetInternetCredentials(alias)
-                .then(() => resolve())
-                .catch((err) => reject(err));
-        });
+        return Keychain.resetInternetCredentials(alias);
     },
     set: (alias, nonce, item) => {
-        return new Promise((resolve, reject) => {
-            Keychain.setInternetCredentials(alias, nonce, item)
-                .then(() => resolve())
-                .catch((err) => reject(err));
-        });
+        return Keychain.setInternetCredentials(alias, nonce, item);
     },
 };
 

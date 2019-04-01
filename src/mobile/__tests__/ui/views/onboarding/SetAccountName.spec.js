@@ -25,6 +25,7 @@ const getProps = (overrides) =>
     assign(
         {},
         {
+            accountName: '',
             componentId: 'foo',
             accountNames: [],
             generateAlert: noop,
@@ -71,13 +72,13 @@ describe('Testing SetAccountName component', () => {
     describe('instance methods', () => {
         describe('when called', () => {
             describe('onDonePress', () => {
-                it('should call setAccountInfoDuringSetup prop method with trimmed accountName state prop', () => {
+                it('should call setAccountInfoDuringSetup prop method with trimmed accountName prop', () => {
                     const props = getProps({
                         setAccountInfoDuringSetup: jest.fn(),
+                        accountName: '    foo   ',
                     });
 
                     const wrapper = shallow(<SetAccountName {...props} />);
-                    wrapper.setState({ accountName: '    foo   ' });
                     const inst = wrapper.instance();
                     inst.onDonePress();
 
@@ -88,8 +89,10 @@ describe('Testing SetAccountName component', () => {
                     });
                 });
 
-                it('should call update accountName prop in state with text when onValidTextChange prop method on CustomTextInput is triggered', () => {
-                    const props = getProps();
+                it('should call setAccountInfoDuringSetup with text when onValidTextChange prop method on CustomTextInput is triggered', () => {
+                    const props = getProps({
+                        setAccountInfoDuringSetup: jest.fn(),
+                    });
 
                     const wrapper = shallow(<SetAccountName {...props} />);
 
@@ -98,7 +101,7 @@ describe('Testing SetAccountName component', () => {
                         .props()
                         .onValidTextChange('foo');
 
-                    expect(wrapper.state('accountName')).toEqual('foo');
+                    expect(props.setAccountInfoDuringSetup).toHaveBeenCalledWith({ name: 'foo' });
                 });
             });
         });

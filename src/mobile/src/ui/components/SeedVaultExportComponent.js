@@ -17,7 +17,8 @@ import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
-import { removeNonAlphaNumeric } from 'shared-modules/libs/utils';
+import { removeNonAlphaNumeric, serialise } from 'shared-modules/libs/utils';
+import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/constants';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
 import { moment } from 'shared-modules/libs/exports';
 import { UInt8ToString } from 'libs/crypto';
@@ -123,14 +124,22 @@ class SeedVaultExportComponent extends Component {
     }
 
     componentWillMount() {
-        const { isAuthenticated, onRef } = this.props;
+        const { isAuthenticated, onRef, t } = this.props;
         onRef(this);
         this.animatedValue = new Animated.Value(isAuthenticated ? width : width * 2);
         nodejs.start('main.js');
         nodejs.channel.addListener(
             'message',
-            (vault) => {
-                this.onGenerateVault(vault);
+            (message) => {
+                if (message === 'error') {
+                    return this.props.generateAlert(
+                        'error',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongTryAgain'),
+                    );
+                }
+
+                this.onGenerateVault(message);
             },
             this,
         );
@@ -244,9 +253,18 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
+        const { selectedAccountName } = this.props;
         // FIXME: Password should be UInt8, not string
         return nodejs.channel.send(
-            'export:' + tritsToChars(this.state.seed) + ':' + UInt8ToString(this.state.password),
+            'export~' +
+                // selectedAccountName would be undefined if seed is being exported during onboarding
+                // If it's undefined, use the fallback title
+                serialise({
+                    seed: tritsToChars(this.state.seed),
+                    title: removeNonAlphaNumeric(selectedAccountName, SEED_VAULT_DEFAULT_TITLE),
+                }) +
+                '~' +
+                UInt8ToString(this.state.password),
         );
     }
 

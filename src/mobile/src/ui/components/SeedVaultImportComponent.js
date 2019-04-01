@@ -10,11 +10,14 @@ import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import { withNamespaces } from 'react-i18next';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
+import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/constants';
 import { height, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import { trytesToTrits } from 'shared-modules/libs/iota/converter';
+import { parse } from 'shared-modules/libs/utils';
 import { UInt8ToString } from 'libs/crypto';
 
 const styles = StyleSheet.create({
@@ -50,6 +53,8 @@ export class SeedVaultImportComponent extends Component {
          * @param {object} instance - Component instance
          */
         onRef: PropTypes.func.isRequired,
+        /** @ignore */
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -73,7 +78,16 @@ export class SeedVaultImportComponent extends Component {
                         t('seedVault:unrecognisedKeyExplanation'),
                     );
                 }
-                this.props.onSeedImport(trytesToTrits(msg));
+
+                const data = parse(msg);
+
+                this.props.onSeedImport(trytesToTrits(data.seed));
+
+                // Set account name so that it can be auto-filled
+                this.props.setAccountInfoDuringSetup({
+                    name: data.title || SEED_VAULT_DEFAULT_TITLE,
+                });
+
                 return timer.setTimeout(
                     'importSuccessTimeout',
                     () =>
@@ -108,7 +122,7 @@ export class SeedVaultImportComponent extends Component {
         }
         const seedVaultString = this.state.seedVault.toString();
         // FIXME: Password should be UInt8, not string
-        return nodejs.channel.send('import:' + seedVaultString + ':' + UInt8ToString(password));
+        return nodejs.channel.send('import~' + seedVaultString + '~' + UInt8ToString(password));
     }
 
     /**
@@ -211,6 +225,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
+    setAccountInfoDuringSetup,
 };
 
 export default withNamespaces(['seedVault', 'global'])(
