@@ -222,6 +222,7 @@ function createWindow() {
                 'cryptocompare.com',
                 'docs.bugsnag.com',
                 'help.github.com',
+                'policies.google.com',
                 'protect-eu.mimecast.com',
             ];
 
