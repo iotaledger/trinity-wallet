@@ -303,7 +303,8 @@ class CustomTextInput extends Component {
         const { theme, containerStyle } = this.props;
         return (
             <TouchableOpacity
-                onPress={() => this.onSecretMaskPress()}
+                onPressIn={() => this.onSecretMaskPress()}
+                onPressOut={() => this.onSecretMaskPress()}
                 style={styles.widgetButton}
                 hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
             >
