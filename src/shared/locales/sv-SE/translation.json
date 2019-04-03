@@ -250,7 +250,7 @@
         "login": "Logga in",
         "setNode": "Ställ in nod",
         "whyBiometricDisabled": "Varför är biometrisk autentisering avaktiverad?",
-        "whyBiometricDisabledExplanationPart1": "Biometrisk autentisering är inaktiverad vid första app-start för din säkerhet.",
+        "whyBiometricDisabledExplanationPart1": "Biometrisk autentisering är avaktiverad vid första app-start för din säkerhet.",
         "whyBiometricDisabledExplanationPart2": "När du använder Trinity kommer du att loggas ut vid inaktivitet. Du kan sedan logga in igen med biometrisk autentisering."
     },
     "loading": {
@@ -336,7 +336,7 @@
         "ifYouHaveNotSaved": "Om du inte har sparat din seed, gå tillbaka till föregående skärm och gör så.",
         "enterSeedBelow": "Ange din nyskapade seed nedan för att bekräfta att du har sparat den korrekt",
         "clipboardWarning": "VARNING: Kan inte klistra in seed",
-        "clipboardWarningExplanation": "Klistra in-funktionen är inaktiverad för din säkerhet. Du kan dra och släppa din seed från en textfil istället."
+        "clipboardWarningExplanation": "Klistra in-funktionen är avaktiverad för din säkerhet. Du kan dra och släppa din seed från en textfil istället."
     },
     "send": {
         "invalidAddress": "Ogiltig adress",
@@ -601,7 +601,7 @@
         "fingerprintUnavailableExplanation": "Din enhet stödjer ej biometrisk autentisering eller så har det ej konfigurerats i enhetens inställningar.",
         "notSupported": "Enheten stöder inte biometrisk autentisering",
         "notConfigured": "Biometrisk autentisering har inte konfigurerats i enhetsinställningarna",
-        "buttonInstructionsDisable": "Tryck på knappen nedan för att inaktivera fingeravtrycksautentisering.",
+        "buttonInstructionsDisable": "Tryck på knappen nedan för att avaktivera fingeravtrycksautentisering.",
         "buttonInstructionsEnable": "Tryck på knappen nedan för att aktivera fingeravtrycksautentisering.",
         "buttonInstructionsDisableIPhoneX": "Tryck på knappen nedan för att avaktivera Face ID",
         "buttonInstructionsEnableIPhoneX": "Tryck på knappen nedan för att aktivera Face ID",
