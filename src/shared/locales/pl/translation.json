@@ -55,7 +55,7 @@
         "yes": "Tak",
         "no": "Nie",
         "okay": "Okej",
-        "skip": "Skip",
+        "skip": "Pomiń",
         "password": "Hasło",
         "unrecognisedPassword": "Hasło nierozpoznane",
         "unrecognisedPasswordExplanation": "Hasło nieprawidłowe. Spróbuj ponownie.",
@@ -162,7 +162,7 @@
         "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz.",
         "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików.",
-        "swipeToConfirm": "Przesuń palcem, aby potwierdzić"
+        "swipeToConfirm": "Przesuń, aby potwierdzić"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -288,10 +288,10 @@
         "printerConfirmation": "Nie drukuję na publicznej drukarce"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "Czy chcesz wydrukować pusty szablon?",
+        "printTemplateInfo": "Możesz wydrukować pusty szablon, który pomoże Ci w zanotowaniu Twojego klucza seed.",
+        "printTemplateWarning": "Upewnij się, że będziesz przechowywać swój klucz seed w bezpiecznym miejscu. Nie pokazuj go nikomu.",
+        "print": "Tak, drukuj"
     },
     "receive": {
         "yourAddress": "Twój adres",
@@ -365,7 +365,7 @@
         "addressPasteDetected": "Wykryto wklejenie adresu",
         "addressPasteExplanation": "Wygląda na to, że wkleiłeś adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać.",
         "invalid": "BŁĄD",
-        "swipeToSend": "Przesuń palcem, aby wysłać"
+        "swipeToSend": "Przesuń, aby wysłać"
     },
     "setSeedName": {
         "letsAddName": "Nazwij swoje konto",
@@ -456,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Historia transakcji jest pusta",
         "hideZeroBalance": "Ukryj zerowe",
         "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
@@ -638,29 +638,29 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksportuj SeedVault",
-        "seedVaultExplanation": "SeedVault to zaszyfrowany plik do bezpiecznego przechowywania Twojego klucza. Seed zostaje zaszyfrowany hasłem i nie jest dostępny bez jego podania.",
+        "seedVaultExplanation": "SeedVault to zaszyfrowany plik, w którym bezpiecznie możesz przechowywać swój seed. Seed zostaje zaszyfrowany osobnym kluczem SeedVault i nie jest dostępny bez jego podania.",
         "seedVaultWarning": "Upewnij się, że utworzysz kopie zapasowe pliku SeedVault w wielu lokalizacjach (np. twardy dysk, chmura, pendrive). Jeśli utracisz ten plik, a nie zapisałeś swojego klucza seed w inny sposób, stracisz swoje środki IOTA.",
         "exportFail": "Błąd eksportu SeedVault",
         "exportFailExplanation": "Wystąpił problem podczas eksportowania pliku SeedVault. Upewnij się, że posiadasz odpowiednie uprawnienia i wystarczająco dużo wolnego miejsca na Twoim urządzeniu.",
         "exportSuccess": "Wyeksportowano SeedVault",
         "exportSuccessExplanation": "Zaszyfrowany klucz seed został pomyślnie wyeksportowany.",
-        "unrecognisedKey": "Nierozpoznane hasło pliku SeedVault",
-        "unrecognisedKeyExplanation": "Hasło nie zostało rozpoznane. Spróbuj ponownie.",
-        "emptyKey": "Nie wprowadzono hasła pliku SeedVault",
-        "emptyKeyExplanation": "Należy wprowadzić hasło. Spróbuj ponownie.",
+        "unrecognisedKey": "Nierozpoznany klucz pliku SeedVault",
+        "unrecognisedKeyExplanation": "Klucz nie został rozpoznany. Spróbuj ponownie.",
+        "emptyKey": "Nie wprowadzono klucza pliku SeedVault",
+        "emptyKeyExplanation": "Należy wprowadzić klucz. Spróbuj ponownie.",
         "importSuccess": "Seed zaimportowany",
         "importSuccessExplanation": "Twój klucz seed został pomyślnie zaimportowany.",
         "saveToDownloadFolder": "Zapisz do folderu pobierania",
         "importSeedVault": "Importuj SeedVault",
         "dropInstructions": "Upuść tutaj plik SeedVault lub tekst <1></1>\n(kliknij, aby wyszukać plik ręcznie)",
         "dropActive": "Upuść tutaj plik SeedVault lub tekst",
-        "enterKeyExplanation": "Wprowadź swoje hasło pliku SeedVault, aby go otworzyć",
+        "enterKeyExplanation": "Wprowadź swój klucz do pliku SeedVault, aby go otworzyć",
         "noSeedFound": "SeedVault nie zawiera poprawnego klucza seed",
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
-        "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Wybierz hasło do zaszyfrowania pliku. Będziesz używać tego hasła, aby przywrócić swój seed z kopii zapasowej SeedVault.",
-        "retypeKey": "Wpisz hasło ponownie"
+        "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Ustal osobny klucz do zaszyfrowania tego pliku. Będziesz używać tego klucza, aby przywrócić swój seed z tej kopii zapasowej SeedVault.",
+        "retypeKey": "Wpisz klucz ponownie"
     },
     "chart": {
         "mcap": "Market",
