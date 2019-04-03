@@ -55,7 +55,7 @@
         "yes": "はい",
         "no": "いいえ",
         "okay": "OK",
-        "skip": "Skip",
+        "skip": "スキップする",
         "password": "パスワード",
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
@@ -288,10 +288,10 @@
         "printerConfirmation": "私は公共のプリンタで印刷していません"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "空白のテンプレートを印刷しますか？",
+        "printTemplateInfo": "シードを書き留めるのを助けるために空白のテンプレートを印刷することができます。",
+        "printTemplateWarning": "シードを安全な場所に保管してください。誰にも絶対に見せないでください。",
+        "print": "はい、印刷します。"
     },
     "receive": {
         "yourAddress": "あなたのアドレス",
@@ -456,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "取引履歴はありません",
         "hideZeroBalance": "残高0を非表示",
         "bundleHashCopiedExplanation": "バンドルのハッシュ値をクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
