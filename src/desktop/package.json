@@ -35,7 +35,7 @@
     "release": "./node_modules/.bin/cross-env CSC_IDENTITY_AUTO_DISCOVERY=false build -mwl"
   },
   "devDependencies": {
-    "@babel/core": "7.3.3",
+    "@babel/core": "7.4.3",
     "@babel/plugin-proposal-class-properties": "7.3.3",
     "@babel/plugin-proposal-object-rest-spread": "7.4.0",
     "@babel/preset-env": "7.3.1",
