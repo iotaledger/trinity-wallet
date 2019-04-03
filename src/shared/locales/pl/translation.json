@@ -55,7 +55,7 @@
         "yes": "Tak",
         "no": "Nie",
         "okay": "Okej",
-        "skip": "Skip",
+        "skip": "Pomiń",
         "password": "Hasło",
         "unrecognisedPassword": "Hasło nierozpoznane",
         "unrecognisedPasswordExplanation": "Hasło nieprawidłowe. Spróbuj ponownie.",
@@ -288,10 +288,10 @@
         "printerConfirmation": "Nie drukuję na publicznej drukarce"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "Czy chcesz wydrukować pusty szablon?",
+        "printTemplateInfo": "Możesz wydrukować pusty szablon, który pomoże Ci w zanotowaniu Twojego klucza seed.",
+        "printTemplateWarning": "Upewnij się, że będziesz przechowywać swój klucz seed w bezpiecznym miejscu. Nie pokazuj go nikomu.",
+        "print": "Tak, drukuj"
     },
     "receive": {
         "yourAddress": "Twój adres",
@@ -456,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Historia transakcji jest pusta",
         "hideZeroBalance": "Ukryj zerowe",
         "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
