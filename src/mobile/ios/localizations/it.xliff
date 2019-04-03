@@ -8,12 +8,12 @@
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
         <note>Bundle name</note>
-        <target xml:lang="it" state="needs-translation">$(PRODUCT_NAME)</target>
+        <target state="needs-translation">$(PRODUCT_NAME)</target>
       </trans-unit>
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source/>
         <note>Privacy - Location When In Use Usage Description</note>
-        <target xml:lang="it" state="translated"/>
+        <target state="translated"/>
       </trans-unit>
     </body>
   </file>
@@ -25,7 +25,7 @@
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
         <note>Bundle name</note>
-        <target xml:lang="it" state="needs-translation">$(PRODUCT_NAME)</target>
+        <target state="needs-translation">$(PRODUCT_NAME)</target>
       </trans-unit>
     </body>
   </file>
@@ -37,67 +37,67 @@
       <trans-unit id="CFBundleDisplayName">
         <source>Trinity</source>
         <note>Bundle display name</note>
-        <target xml:lang="it" state="needs-translation">Trinity</target>
+        <target state="needs-translation">Trinity</target>
       </trans-unit>
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
         <note>Bundle name</note>
-        <target xml:lang="it" state="needs-translation">$(PRODUCT_NAME)</target>
+        <target state="needs-translation">$(PRODUCT_NAME)</target>
       </trans-unit>
       <trans-unit id="NSAppleMusicUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Media Library Usage Description</note>
-        <target xml:lang="it" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSBluetoothPeripheralUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Bluetooth Peripheral Usage Description</note>
-        <target xml:lang="it" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSCalendarsUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Calendars Usage Description</note>
-        <target xml:lang="it" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSCameraUsageDescription">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <note>Privacy - Camera Usage Description</note>
-        <target xml:lang="it" state="translated">Trinity necessita l'accesso alla fotocamera per attivare la scansione dei codici QR.</target>
+        <target state="translated">Trinity necessita l'accesso alla fotocamera per attivare la scansione dei codici QR.</target>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <note>Privacy - Face ID Usage Description</note>
-        <target xml:lang="it" state="translated">Trinity necessita l'accesso a Face ID per attivare l'autenticazione biometrica.</target>
+        <target state="translated">Trinity necessita l'accesso a Face ID per attivare l'autenticazione biometrica.</target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>
         <note>Copyright (human-readable)</note>
-        <target xml:lang="it" state="translated">2018 IOTA Foundarion. Tutti i diritti riservati.</target>
+        <target state="translated">2018 IOTA Foundarion. Tutti i diritti riservati.</target>
       </trans-unit>
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Location When In Use Usage Description</note>
-        <target xml:lang="it" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSMotionUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Motion Usage Description</note>
-        <target xml:lang="it" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSPhotoLibraryAddUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Photo Library Additions Usage Description</note>
-        <target xml:lang="it" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSPhotoLibraryUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Photo Library Usage Description</note>
-        <target xml:lang="it" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSSpeechRecognitionUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Speech Recognition Usage Description</note>
-        <target xml:lang="it" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
     </body>
   </file>
@@ -109,7 +109,7 @@
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
         <note>Bundle name</note>
-        <target xml:lang="it" state="needs-translation">$(PRODUCT_NAME)</target>
+        <target state="needs-translation">$(PRODUCT_NAME)</target>
       </trans-unit>
     </body>
   </file>
@@ -121,7 +121,7 @@
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
         <note>Bundle name</note>
-        <target xml:lang="it" state="needs-translation">$(PRODUCT_NAME)</target>
+        <target state="needs-translation">$(PRODUCT_NAME)</target>
       </trans-unit>
     </body>
   </file>
