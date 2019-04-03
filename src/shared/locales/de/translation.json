@@ -55,7 +55,7 @@
         "yes": "Ja",
         "no": "Nein",
         "okay": "Okay",
-        "skip": "Skip",
+        "skip": "Überspringen",
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte versuche es erneut.",
@@ -77,8 +77,8 @@
         "wallet": "Wallet",
         "all": "Alle",
         "sent": "Gesendet",
-        "youReceived": "Du hast erhalten",
-        "youSent": "Du hast gesendet",
+        "youReceived": "Du hast erhalten:",
+        "youSent": "Du hast gesendet:",
         "received": "Empfangen",
         "sending": "Sende...",
         "receiving": "Empfange...",
@@ -125,7 +125,7 @@
         "touchSensor": "Berühre den Fingerabdrucksensor",
         "fingerprintOnSend": "Berühre den Fingerabdrucksensor um den Transfer zu bestätigen.",
         "masterKey": "Dein IOTA Seed ist der Hauptschlüssel zu deinem Guthaben.",
-        "seedThief": "Wenn eine andere Person deinen Seed hat, kann diese deine IOTA stehlen.",
+        "seedThief": "Wenn eine andere Person deinen Seed hat, kann sie deine IOTA stehlen.",
         "googlePlayServicesNotAvailable": "Google Play-Dienste nicht verfügbar",
         "couldNotVerifyDeviceIntegrity": "Gerät konnte nicht überprüft werden, da die Google-Play-Dienste nicht verfügbar sind.",
         "clear": "Löschen",
@@ -221,7 +221,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed gelöscht",
-        "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht."
+        "seedClearedExplanation": "Aus Sicherheitsgründen wurde dein Seed aus der Zwischenablage gelöscht."
     },
     "enterSeed": {
         "invalidCharacters": "Der Seed enthält ungültige Zeichen",
@@ -250,7 +250,7 @@
         "login": "Anmelden",
         "setNode": "Node wählen",
         "whyBiometricDisabled": "Warum ist die biometrische Authentifizierung deaktiviert?",
-        "whyBiometricDisabledExplanationPart1": "Biometrische Authentifizierung ist beim ersten App-Start aus Sicherheitsgründen deaktiviert.",
+        "whyBiometricDisabledExplanationPart1": "Aus Sicherheitsgründen ist die biometrische Authentifizierung beim ersten App-Start deaktiviert.",
         "whyBiometricDisabledExplanationPart2": "Trinity wird dich bei Inaktivität automatisch abmelden. Du kannst dich anschließend mit biometrischer Authentifizierung erneut anmelden."
     },
     "loading": {
@@ -288,10 +288,10 @@
         "printerConfirmation": "Ich drucke nicht auf einem öffentlich zugänglichen Drucker"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "Möchtest du eine leere Vorlage drucken?",
+        "printTemplateInfo": "Um das Notieren des Seed zu vereinfachen, kannst du eine leere Vorlage drucken.",
+        "printTemplateWarning": "Bewahre deinen Seed an einem sicheren Ort auf und zeige ihn niemandem.",
+        "print": "Ja, drucken"
     },
     "receive": {
         "yourAddress": "Deine Adresse",
@@ -456,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Dein Transaktionsverlauf ist leer",
         "hideZeroBalance": "Nullsaldo ausblenden",
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
@@ -590,9 +590,9 @@
         "instructionsEnable": "Berühre den Fingerabdrucksensor, um die Authentifizierung mittels Fingerabdruck einzurichten",
         "instructionsDisable": "Berühre den Fingerabdrucksensor, um die Authentifizierung mittels Fingerabdruck zu deaktivieren",
         "fingerprintAuthEnabled": "Biometrische Authentifizierung aktiviert",
-        "fingerprintAuthEnabledExplanation": "Du hast erfolgreich die biometrische Authentifizierung aktiviert.",
+        "fingerprintAuthEnabledExplanation": "Du hast die biometrische Authentifizierung erfolgreich aktiviert.",
         "fingerprintAuthDisabled": "Biometrische Authentifizierung deaktiviert",
-        "fingerprintAuthDisabledExplanation": "Du hast erfolgreich die biometrische Authentifizierung deaktiviert.",
+        "fingerprintAuthDisabledExplanation": "Du hast die biometrische Authentifizierung erfolgreich deaktiviert.",
         "fingerprintAuthFailed": "Biometrische Authentifizierung fehlgeschlagen",
         "fingerprintAuthFailedExplanation": "Fingerabdruck-Authentifizierung fehlgeschlagen. Bitte erneut versuchen.",
         "status": "Status",
@@ -629,9 +629,9 @@
         "addKey": "Füge diesen Schlüssel in deine 2FA App ein",
         "key": "Schlüssel",
         "twoFAEnabled": "2FA ist jetzt aktiviert",
-        "twoFAEnabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung aktiviert.",
+        "twoFAEnabledExplanation": "Du hast die Zwei-Faktor-Authentifizierung erfolgreich aktiviert.",
         "twoFADisabled": "2FA ist jetzt deaktiviert",
-        "twoFADisabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung deaktiviert.",
+        "twoFADisabledExplanation": "Du hast die Zwei-Faktor-Authentifizierung erfolgreich deaktiviert.",
         "enterCode": "Gib den Code aus deiner 2FA App ein",
         "code": "Code",
         "twoFaToken": "2FA Token"
