@@ -1,5 +1,5 @@
 import ReactNativeKeychain from 'react-native-keychain';
-import { keychain } from 'libs/keychain';
+import { keychain, hasEntryInKeychain } from 'libs/keychain';
 
 jest.mock('react-native-keychain', () => ({
     setInternetCredentials: jest.fn(() => Promise.resolve()),
@@ -59,6 +59,24 @@ describe('Testing keychain', () => {
         it('should call resetInternetCredentials method on keychain with provided params', () => {
             return keychain.clear('alias_one').then(() => {
                 expect(ReactNativeKeychain.resetInternetCredentials).toHaveBeenCalledWith('alias_one');
+            });
+        });
+    });
+
+    describe('#hasEntryInKeychain', () => {
+        describe('when provided prop has an entry in keychain', () => {
+            it('should return true', () => {
+                return hasEntryInKeychain('alias_one').then((result) => {
+                    expect(result).toEqual(true);
+                });
+            });
+        });
+
+        describe('when provided prop has no entry in keychain', () => {
+            it('should return false', () => {
+                return hasEntryInKeychain('unknown_alias').then((result) => {
+                    expect(result).toEqual(false);
+                });
             });
         });
     });
