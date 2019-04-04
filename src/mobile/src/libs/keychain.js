@@ -23,6 +23,15 @@ const ALIAS_SALT = 'salt';
 export const ALIAS_REALM = 'realm_enc_key';
 
 export const keychain = {
+    /**
+     * Gets keychain entry for provided alias
+     *
+     * @method get
+     *
+     * @param {string} alias
+     *
+     * @returns {Promise<object>}
+     */
     get: (alias) => {
         return Keychain.getInternetCredentials(alias).then((credentials) => {
             if (isEmpty(credentials)) {
@@ -37,24 +46,63 @@ export const keychain = {
             return payload;
         });
     },
+    /**
+     * Clears keychain entry for provided alias
+     *
+     * @method clear
+     *
+     * @param {string} alias
+     *
+     * @returns {Promise}
+     */
     clear: (alias) => {
         return Keychain.resetInternetCredentials(alias);
     },
+    /**
+     * Sets keychain entry for provided alias
+     *
+     * @method set
+     *
+     * @param {string} alias
+     *
+     * @returns {Promise}
+     */
     set: (alias, nonce, item) => {
         return Keychain.setInternetCredentials(alias, nonce, item);
     },
 };
 
+/**
+ * Decrypts data from keychain for provided alias
+ *
+ * @method getSecretBoxFromKeychainAndOpenIt
+ *
+ * @param {string} alias
+ * @param {Uint8Array} keyUInt8
+ *
+ * @returns {Promise}
+ */
 export const getSecretBoxFromKeychainAndOpenIt = async (alias, keyUInt8) => {
     const secretBox = await keychain.get(alias);
+
     if (secretBox) {
         const box = await decodeBase64(secretBox.item);
         const nonce = await decodeBase64(secretBox.nonce);
         return await openSecretBox(box, nonce, keyUInt8);
     }
+
     return null;
 };
 
+/**
+ * Hashes password
+ *
+ * @method hash
+ *
+ * @param {Uint8Array} password
+ *
+ * @returns {Promise}
+ */
 export const hash = async (password) => {
     const saltItem = await keychain.get(ALIAS_SALT);
     const salt = await decodeBase64(saltItem.item);
@@ -70,6 +118,15 @@ export const doesSaltExistInKeychain = () => {
     });
 };
 
+/**
+ * Stores salt in keychain
+ *
+ * @method storeSaltInKeychain
+ *
+ * @param {Uint8Array} salt
+ *
+ * @returns {Promise}
+ */
 export const storeSaltInKeychain = async (salt) => {
     const nonce64 = await encodeBase64(await getNonce());
     const salt64 = await encodeBase64(salt);
