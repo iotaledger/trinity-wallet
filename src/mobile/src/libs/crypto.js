@@ -1,7 +1,7 @@
 import values from 'lodash/values';
 import { parse } from 'shared-modules/libs/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
-import { TextDecoder } from 'text-encoding';
+import { TextDecoder, TextEncoder } from 'text-encoding';
 import nacl from 'tweetnacl';
 import naclUtil from 'tweetnacl-util';
 import { getHashFn } from 'libs/nativeModules';
@@ -12,6 +12,15 @@ const NONCE_LENGTH = 24;
 
 const cryptoImport = require('crypto'); // eslint-disable-line no-unused-vars
 
+/**
+ * Create a sha256 digest for the provided input
+ *
+ * @method sha256
+ *
+ * @param {string} input
+ *
+ * @returns {string}
+ */
 export const sha256 = (input) => {
     return cryptoImport
         .createHash('sha256')
@@ -32,6 +41,16 @@ export const getRandomBytes = async (quantity) => {
     return await generateSecureRandom(quantity);
 };
 
+/**
+ * Generates password hash using Argon2
+ *
+ * @method generatePasswordHash
+ *
+ * @param {Uint8Array} password
+ * @param {Uint8Array} salt
+ *
+ * @returns {Promise}
+ */
 export const generatePasswordHash = async (password, salt) => {
     const salt64 = await encodeBase64(salt);
     return getHashFn()(values(password), salt64, DEFAULT_ARGON2_PARAMS).then(
@@ -97,14 +116,29 @@ export const openSecretBox = async (box, nonce, key) => {
     throw new Error('Incorrect password');
 };
 
-// FIXME: This method returns an empty string.
-// Tried with new Uint8Array([ 84,114, 105, 110, 105, 116, 121 ])
+/**
+ * Converts Uint8Array to string
+ *
+ * @method UInt8ToString
+ *
+ * @param {Uint8Array} uInt8
+ *
+ * @returns {string}
+ */
 export const UInt8ToString = (uInt8) => {
     return new TextDecoder().decode(uInt8);
 };
 
+/**
+ * Converts string to Uint8Array
+ *
+ * @method stringToUInt8
+ *
+ * @param {string} string
+ *
+ * @returns {Uint8Array}
+ */
 export const stringToUInt8 = (string) => {
-    // FIXME: How does this work with TextEncoder undefined?
     return new TextEncoder().encode(string);
 };
 
