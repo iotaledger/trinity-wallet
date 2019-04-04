@@ -1419,9 +1419,9 @@
       }
     },
     "@types/node": {
-      "version": "8.10.40",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-8.10.40.tgz",
-      "integrity": "sha512-RRSjdwz63kS4u7edIwJUn8NqKLLQ6LyqF/X4+4jp38MBT3Vwetewi2N4dgJEshLbDwNgOJXNYoOwzVZUSSLhkQ==",
+      "version": "8.10.45",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-8.10.45.tgz",
+      "integrity": "sha512-tGVTbA+i3qfXsLbq9rEq/hezaHY55QxQLeXQL2ejNgFAxxrgu8eMmYIOsRcl7hN1uTLVsKOOYacV/rcJM3sfgQ==",
       "dev": true
     },
     "@webassemblyjs/ast": {
@@ -4339,9 +4339,9 @@
       "dev": true
     },
     "electron": {
-      "version": "3.1.4",
-      "resolved": "https://registry.npmjs.org/electron/-/electron-3.1.4.tgz",
-      "integrity": "sha512-YJEvfq45K7MmhLXY4mpGLG/cH5BU/1NUOcNMRzLxs3wVS/fKY2ZkJrOTncxhi1VOC1EJOQslcSdupitrW/FSig==",
+      "version": "3.1.6",
+      "resolved": "https://registry.npmjs.org/electron/-/electron-3.1.6.tgz",
+      "integrity": "sha512-elEKKlFMnR0bhR/Uttk0TI496ZadxYsecyKgj2tZgrWx/F/anzfxbEYNcv134vT+qMFC/BXvoaeaIIj2YYdVuA==",
       "dev": true,
       "requires": {
         "@types/node": "^8.0.24",
