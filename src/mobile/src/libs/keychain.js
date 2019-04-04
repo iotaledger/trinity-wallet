@@ -198,6 +198,9 @@ export const migrateSeedStorage = async (pwdHash) => {
     const updateSeedInfo = async (seedInfo) => {
         const updatedSeedInfo = {};
         for (const key in seedInfo) {
+            if (typeof seedInfo[key] !== 'string') {
+                return Promise.resolve();
+            }
             updatedSeedInfo[await sha256(key)] = values(trytesToTrits(seedInfo[key]));
         }
         return updatedSeedInfo;
