@@ -55,6 +55,7 @@
         "yes": "Taip",
         "no": "Ne",
         "okay": "Gerai",
+        "skip": "Praleisti",
         "password": "Slaptažodis",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
         "unrecognisedPasswordExplanation": "Slaptažodis neatpažintas. Bandykite dar kartą.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Nesinaudoju viešu wifi",
         "printerConfirmation": "Nesinaudoju viešu spausdintuvu"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Ar norėtumėte atsispausdinti neužpildytą šabloną?",
+        "printTemplateInfo": "Galite atsispausdinti neužpildytą šabloną ir įrašyti užraktą patys.",
+        "printTemplateWarning": "Įsitikinkite, kad užraktą laikote saugioje vietoje. Niekam jo nerodykite.",
+        "print": "Atspausdinti"
+    },
     "receive": {
         "yourAddress": "Jūsų adresas",
         "qrOptions": "QR nustatymai",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
-        "noTransactionsFound": "Pavedimų nėra",
+        "noTransactionsFound": "Jūsų pavedimų istorija tuščia",
         "hideZeroBalance": "Slėpti nulinius pavedimus",
         "bundleHashCopiedExplanation": "Paketo šifras nukopijuotas į iškarpinę.",
         "addressCopied": "Adresas nukopijuotas",

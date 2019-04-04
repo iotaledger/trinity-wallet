@@ -55,6 +55,7 @@
         "yes": "はい",
         "no": "いいえ",
         "okay": "OK",
+        "skip": "スキップする",
         "password": "パスワード",
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "私は公共のWi-Fiを使用していません",
         "printerConfirmation": "私は公共のプリンタで印刷していません"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "空白のテンプレートを印刷しますか？",
+        "printTemplateInfo": "シードを書き留めるのを助けるために空白のテンプレートを印刷することができます。",
+        "printTemplateWarning": "シードを安全な場所に保管してください。誰にも絶対に見せないでください。",
+        "print": "はい、印刷します。"
+    },
     "receive": {
         "yourAddress": "あなたのアドレス",
         "qrOptions": "QRコードオプション",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
-        "noTransactionsFound": "取引がありません",
+        "noTransactionsFound": "取引履歴はありません",
         "hideZeroBalance": "残高0を非表示",
         "bundleHashCopiedExplanation": "バンドルのハッシュ値をクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",

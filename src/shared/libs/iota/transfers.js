@@ -383,7 +383,7 @@ export const constructBundlesFromTransactions = (transactions) => {
  *
  * @returns {array}
  */
-export const filterInvalidBundles = (bundles) => filter(bundles, iota.utils.isBundle);
+export const filterInvalidBundles = (bundles) => filter(bundles, isBundle);
 
 /**
  *   Normalises bundle.
@@ -1012,7 +1012,7 @@ export const constructBundleFromAttachedTrytes = (attachedTrytes, seedStore) => 
                 return seedStore.getDigest(tryteString).then((digest) => {
                     const transactionObject = iota.utils.transactionObject(tryteString, digest);
 
-                    result.push(transactionObject);
+                    result.unshift(transactionObject);
 
                     return result;
                 });
@@ -1040,7 +1040,21 @@ export const isBundleTraversable = (bundle, trunkTransaction, branchTransaction)
         (transaction, index, transactions) =>
             index
                 ? transaction.trunkTransaction === transactions[index - 1].hash &&
-                  transaction.branchTransaction === trunkTransaction
+                  // In IRI, tx at lastIndex has branch and trunk swapped, while Entangled pow-bundle does not. See https://github.com/iotaledger/entangled/issues/1008#issuecomment-476608211
+                  (transaction.branchTransaction === trunkTransaction ||
+                      transaction.branchTransaction === branchTransaction)
                 : transaction.trunkTransaction === trunkTransaction &&
                   transaction.branchTransaction === branchTransaction,
     );
+
+/**
+ * Wraps iota.utils.isBundle (https://github.com/iotaledger/iota.js/blob/develop/lib/utils/utils.js#L421)
+ * Ensures transaction objects in bundle are in correct (ascending) order
+ *
+ * @method isBundle
+ *
+ * @param {array} bundle
+ *
+ * @returns {boolean}
+ */
+export const isBundle = (bundle) => iota.utils.isBundle(orderBy(bundle, ['currentIndex'], ['asc']));

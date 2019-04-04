@@ -55,6 +55,7 @@
         "yes": "Oui",
         "no": "Non",
         "okay": "Ok",
+        "skip": "Skip",
         "password": "Mot de passe",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Je ne suis pas sur un wifi public",
         "printerConfirmation": "Je n'imprimerai pas sur une imprimante publique"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Votre adresse",
         "qrOptions": "QR options",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash du paquet copié",
-        "noTransactionsFound": "Aucune transaction trouvée",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Masquer un solde nul",
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papier.",
         "addressCopied": "Adressée copiée",

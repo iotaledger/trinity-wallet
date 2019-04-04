@@ -55,6 +55,7 @@
         "yes": "Jah",
         "no": "Ei",
         "okay": "Okei",
+        "skip": "Skip",
         "password": "Parool",
         "unrecognisedPassword": "Tundmatu parool",
         "unrecognisedPasswordExplanation": "Parool ei ole tunnistatud. Palun proovige uuesti.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Sinu aadress",
         "qrOptions": "QR valikud",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Kimbu räsi kopeeritud",
-        "noTransactionsFound": "Tehinguid ei leitud",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Peida nullsaldo",
         "bundleHashCopiedExplanation": "Kimbu räsi on kopeeritud lõikelauale.",
         "addressCopied": "Aadress kopeeritud",

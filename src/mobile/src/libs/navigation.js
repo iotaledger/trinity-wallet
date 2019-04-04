@@ -29,7 +29,7 @@ const getDefaultOptions = (nextScreen) => {
 
 export const navigator = {
     push: (nextScreen, options = {}, delay = 300) => {
-        const currentScreen = last(store.getState().ui.navStack);
+        const currentScreen = last(store.getState().wallet.navStack);
         store.dispatch({ type: ActionTypes.PUSH_ROUTE, payload: nextScreen });
         return timer.setTimeout(
             currentScreen,
@@ -37,6 +37,7 @@ export const navigator = {
                 Navigation.push('appStack', {
                     component: {
                         name: nextScreen,
+                        id: nextScreen,
                         options: merge({}, getDefaultOptions(nextScreen), options),
                     },
                 }),
@@ -44,12 +45,17 @@ export const navigator = {
         );
     },
     pop: (componentId, delay = 300) => {
-        const currentScreen = last(store.getState().ui.navStack);
+        const currentScreen = last(store.getState().wallet.navStack);
         store.dispatch({ type: ActionTypes.POP_ROUTE });
         return timer.setTimeout(currentScreen, () => Navigation.pop(componentId), delay);
     },
+    popTo: (componentId, delay = 300) => {
+        const currentScreen = last(store.getState().wallet.navStack);
+        store.dispatch({ type: ActionTypes.POP_TO_ROUTE });
+        return timer.setTimeout(currentScreen, () => Navigation.popTo(componentId), delay);
+    },
     setStackRoot: (nextScreen, options = {}, delay = 300) => {
-        const currentScreen = last(store.getState().ui.navStack);
+        const currentScreen = last(store.getState().wallet.navStack);
         store.dispatch({ type: ActionTypes.RESET_ROUTE, payload: nextScreen });
         return timer.setTimeout(
             currentScreen,
@@ -57,6 +63,7 @@ export const navigator = {
                 Navigation.setStackRoot('appStack', {
                     component: {
                         name: nextScreen,
+                        id: nextScreen,
                         options: merge({}, options, getDefaultOptions(nextScreen)),
                     },
                 }),

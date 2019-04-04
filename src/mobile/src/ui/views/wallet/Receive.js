@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderTopRightRadius: 6,
         borderTopLeftRadius: 6,
+        zIndex: 1
     },
     qrContainerFront: {
         flex: 3.75,

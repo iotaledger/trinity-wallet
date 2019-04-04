@@ -189,6 +189,8 @@ const hasConnection = (
 onAppStart()
     //  Initialise persistent storage
     .then(() => initialiseStorage(getEncryptionKey))
+    // Reset persisted state if keychain has no entries
+    .then(() => resetIfKeychainIsEmpty(reduxStore))
     // Restore persistent storage (Map to redux store)
     .then(() => {
         const latestVersions = {
@@ -233,8 +235,6 @@ onAppStart()
             return reduxStore.dispatch(mapStorageToStateAction(mapStorageToState()));
         });
     })
-    // Reset persisted state if keychain has no entries
-    .then(() => resetIfKeychainIsEmpty(reduxStore))
     .then(() => versionCheck(reduxStore))
     // Launch application
     .then(() => {

@@ -276,7 +276,6 @@ class UseExistingSeed extends Component {
                             label={t('global:seed')}
                             onValidTextChange={(text) => this.setState({ seed: text })}
                             containerStyle={{ width: Styling.contentWidth }}
-                            autoCapitalize="characters"
                             maxLength={MAX_SEED_LENGTH}
                             value={seed}
                             autoCorrect={false}

@@ -55,6 +55,7 @@
         "yes": "Ja",
         "no": "Nein",
         "okay": "Okay",
+        "skip": "Überspringen",
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte versuche es erneut.",
@@ -76,8 +77,8 @@
         "wallet": "Wallet",
         "all": "Alle",
         "sent": "Gesendet",
-        "youReceived": "Du hast erhalten",
-        "youSent": "Du hast gesendet",
+        "youReceived": "Du hast erhalten:",
+        "youSent": "Du hast gesendet:",
         "received": "Empfangen",
         "sending": "Sende...",
         "receiving": "Empfange...",
@@ -124,7 +125,7 @@
         "touchSensor": "Berühre den Fingerabdrucksensor",
         "fingerprintOnSend": "Berühre den Fingerabdrucksensor um den Transfer zu bestätigen.",
         "masterKey": "Dein IOTA Seed ist der Hauptschlüssel zu deinem Guthaben.",
-        "seedThief": "Wenn eine andere Person deinen Seed hat, kann diese deine IOTA stehlen.",
+        "seedThief": "Wenn eine andere Person deinen Seed hat, kann sie deine IOTA stehlen.",
         "googlePlayServicesNotAvailable": "Google Play-Dienste nicht verfügbar",
         "couldNotVerifyDeviceIntegrity": "Gerät konnte nicht überprüft werden, da die Google-Play-Dienste nicht verfügbar sind.",
         "clear": "Löschen",
@@ -220,7 +221,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed gelöscht",
-        "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht."
+        "seedClearedExplanation": "Aus Sicherheitsgründen wurde dein Seed aus der Zwischenablage gelöscht."
     },
     "enterSeed": {
         "invalidCharacters": "Der Seed enthält ungültige Zeichen",
@@ -249,14 +250,14 @@
         "login": "Anmelden",
         "setNode": "Node wählen",
         "whyBiometricDisabled": "Warum ist die biometrische Authentifizierung deaktiviert?",
-        "whyBiometricDisabledExplanationPart1": "Biometrische Authentifizierung ist beim ersten App-Start aus Sicherheitsgründen deaktiviert.",
+        "whyBiometricDisabledExplanationPart1": "Aus Sicherheitsgründen ist die biometrische Authentifizierung beim ersten App-Start deaktiviert.",
         "whyBiometricDisabledExplanationPart2": "Trinity wird dich bei Inaktivität automatisch abmelden. Du kannst dich anschließend mit biometrischer Authentifizierung erneut anmelden."
     },
     "loading": {
         "loadingFirstTime": "Dein Seed wird initialisiert.",
         "thisMayTake": "Das kann eine Weile dauern.",
         "doNotMinimise": "Die App nicht minimieren oder schließen.",
-        "takingAWhile": "Das scheint eine Weile zu dauern"
+        "takingAWhile": "Das kann eine Weile dauern"
     },
     "newSeedSetup": {
         "generatedSeed": "Seed generiert",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Ich befinde mich nicht in einem öffentlichen WLAN",
         "printerConfirmation": "Ich drucke nicht auf einem öffentlich zugänglichen Drucker"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Möchtest du eine leere Vorlage drucken?",
+        "printTemplateInfo": "Um das Notieren des Seed zu vereinfachen, kannst du eine leere Vorlage drucken.",
+        "printTemplateWarning": "Bewahre deinen Seed an einem sicheren Ort auf und zeige ihn niemandem.",
+        "print": "Ja, drucken"
+    },
     "receive": {
         "yourAddress": "Deine Adresse",
         "qrOptions": "QR Optionen",
@@ -310,7 +317,7 @@
         "leastSecure": "Am unsichersten",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Notiere deinen Seed",
-        "seedClearedExplanation": "Dein Seed wurde aus Sicherheitsgründen aus der Zwischenablage entfernt.",
+        "seedClearedExplanation": "Aus Sicherheitsgründen wurde dein Seed aus der Zwischenablage entfernt.",
         "letsWriteDownYourSeed": "Notiere deinen Seed",
         "youCanHighlightCharacters": "Du kannst neun Buchstaben gleichzeitig auswählen",
         "printBlankWallet": "Leeres Paper-Wallet drucken",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
-        "noTransactionsFound": "Keine Transaktionen gefunden",
+        "noTransactionsFound": "Dein Transaktionsverlauf ist leer",
         "hideZeroBalance": "Nullsaldo ausblenden",
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
@@ -549,7 +556,7 @@
     },
     "manualSync": {
         "outOfSync": "Sieht der Verlauf deiner Transaktionen so aus, als ob er nicht synchronisiert wäre?",
-        "pressToSync": "Drücke die folgende Schaltfläche, um dein Konto zu synchronisieren.",
+        "pressToSync": "Verwende die folgende Schaltfläche, um dein Konto zu synchronisieren.",
         "thisMayTake": "Das kann eine Weile dauern. Dein Gerät könnte etwas langsamer werden.",
         "doNotClose": "Minimieren der App wird die Synchronisierung abbrechen.",
         "syncAccount": "Konto synchronisieren",
@@ -583,9 +590,9 @@
         "instructionsEnable": "Berühre den Fingerabdrucksensor, um die Authentifizierung mittels Fingerabdruck einzurichten",
         "instructionsDisable": "Berühre den Fingerabdrucksensor, um die Authentifizierung mittels Fingerabdruck zu deaktivieren",
         "fingerprintAuthEnabled": "Biometrische Authentifizierung aktiviert",
-        "fingerprintAuthEnabledExplanation": "Du hast erfolgreich die biometrische Authentifizierung aktiviert.",
+        "fingerprintAuthEnabledExplanation": "Du hast die biometrische Authentifizierung erfolgreich aktiviert.",
         "fingerprintAuthDisabled": "Biometrische Authentifizierung deaktiviert",
-        "fingerprintAuthDisabledExplanation": "Du hast erfolgreich die biometrische Authentifizierung deaktiviert.",
+        "fingerprintAuthDisabledExplanation": "Du hast die biometrische Authentifizierung erfolgreich deaktiviert.",
         "fingerprintAuthFailed": "Biometrische Authentifizierung fehlgeschlagen",
         "fingerprintAuthFailedExplanation": "Fingerabdruck-Authentifizierung fehlgeschlagen. Bitte erneut versuchen.",
         "status": "Status",
@@ -594,8 +601,8 @@
         "fingerprintUnavailableExplanation": "Dein Gerät unterstützt keine biometrische Authentifizierung oder die Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
         "notSupported": "Die biometrische Authentifizierung wird von deinem Gerät nicht unterstützt",
         "notConfigured": "Die biometrische Authentifizierung wurde noch nicht in deinen Geräteeinstellungen konfiguriert",
-        "buttonInstructionsDisable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
-        "buttonInstructionsEnable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
+        "buttonInstructionsDisable": "Tippe auf die Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
+        "buttonInstructionsEnable": "Tippe auf die Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
         "buttonInstructionsDisableIPhoneX": "Drücke den Button unten um Face ID zu deaktivieren",
         "buttonInstructionsEnableIPhoneX": "Drücke den Button unten um Face ID zu aktivieren",
         "instructionsLogin": "Zur Anmeldung den Fingerabdrucksensor berühren",
@@ -622,9 +629,9 @@
         "addKey": "Füge diesen Schlüssel in deine 2FA App ein",
         "key": "Schlüssel",
         "twoFAEnabled": "2FA ist jetzt aktiviert",
-        "twoFAEnabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung aktiviert.",
+        "twoFAEnabledExplanation": "Du hast die Zwei-Faktor-Authentifizierung erfolgreich aktiviert.",
         "twoFADisabled": "2FA ist jetzt deaktiviert",
-        "twoFADisabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung deaktiviert.",
+        "twoFADisabledExplanation": "Du hast die Zwei-Faktor-Authentifizierung erfolgreich deaktiviert.",
         "enterCode": "Gib den Code aus deiner 2FA App ein",
         "code": "Code",
         "twoFaToken": "2FA Token"
