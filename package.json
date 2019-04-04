@@ -18,7 +18,6 @@
     "lint:shared": "./node_modules/.bin/eslint src/shared/",
     "lint:desktop": "./node_modules/.bin/eslint src/desktop/",
     "format": "prettier --write \"**/*.{js,json,css}\"",
-    "precommit": "lint-staged && yarn lint && yarn test:all",
     "test:all": "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../",
     "deps:shared": "cd src/shared && yarn && cd ../..",
     "deps:mobile": "cd src/mobile && yarn && cd ../..",
@@ -46,7 +45,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-react-native": "^3.2.1",
-    "husky": "^1.2.0",
+    "husky": "^1.3.1",
     "lint-staged": "^4.2.3",
     "prettier": "^1.11.0"
   },
@@ -57,5 +56,10 @@
     "request": ">=2.88.0",
     "node.extend": ">=1.1.7"
   },
-  "snyk": true
+  "snyk": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && yarn lint && yarn test:all"
+    }
+  }
 }
