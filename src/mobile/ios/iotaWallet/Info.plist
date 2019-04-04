@@ -60,6 +60,8 @@
 	<string>Trinity requires access to Face ID in order to enable biometric authentication.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>2018 IOTA Foundation. All rights reserved.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSMotionUsageDescription</key>
