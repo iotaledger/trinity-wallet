@@ -12,7 +12,7 @@ const NONCE_LENGTH = 24;
 
 const cryptoImport = require('crypto'); // eslint-disable-line no-unused-vars
 
-const sha256 = (input) => {
+export const sha256 = (input) => {
     return cryptoImport
         .createHash('sha256')
         .update(input)
@@ -28,11 +28,11 @@ const sha256 = (input) => {
  *
  * @returns {Promise<Uint8Array>}
  */
-const getRandomBytes = async (quantity) => {
+export const getRandomBytes = async (quantity) => {
     return await generateSecureRandom(quantity);
 };
 
-const generatePasswordHash = async (password, salt) => {
+export const generatePasswordHash = async (password, salt) => {
     const salt64 = await encodeBase64(salt);
     return getHashFn()(values(password), salt64, DEFAULT_ARGON2_PARAMS).then(
         (result) => new Uint8Array(result),
@@ -47,7 +47,7 @@ const generatePasswordHash = async (password, salt) => {
  *
  * @returns {Promise<Uint8Array>}
  */
-const getSalt = async () => {
+export const getSalt = async () => {
     return await CryptoModule.getRandomBytes(SALT_LENGTH);
 };
 
@@ -58,7 +58,7 @@ const getSalt = async () => {
  *
  * @returns {Promise<Uint8Array>}
  */
-const getNonce = async () => {
+export const getNonce = async () => {
     return await CryptoModule.getRandomBytes(NONCE_LENGTH);
 };
 
@@ -73,7 +73,7 @@ const getNonce = async () => {
  *
  * @return {Promise<Uint8Array>}
  */
-const createSecretBox = async (msg, nonce, key) => {
+export const createSecretBox = async (msg, nonce, key) => {
     return await nacl.secretbox(msg, nonce, key);
 };
 
@@ -88,7 +88,7 @@ const createSecretBox = async (msg, nonce, key) => {
  *
  * @returns {Promise<Uint8Array}
  */
-const openSecretBox = async (box, nonce, key) => {
+export const openSecretBox = async (box, nonce, key) => {
     const openedBox = await nacl.secretbox.open(box, nonce, key);
     if (openedBox) {
         return parse(CryptoModule.UInt8ToString(openedBox));
@@ -99,11 +99,11 @@ const openSecretBox = async (box, nonce, key) => {
 
 // FIXME: This method returns an empty string.
 // Tried with new Uint8Array([ 84,114, 105, 110, 105, 116, 121 ])
-const UInt8ToString = (uInt8) => {
+export const UInt8ToString = (uInt8) => {
     return new TextDecoder().decode(uInt8);
 };
 
-const stringToUInt8 = (string) => {
+export const stringToUInt8 = (string) => {
     // FIXME: How does this work with TextEncoder undefined?
     return new TextEncoder().encode(string);
 };
@@ -117,7 +117,7 @@ const stringToUInt8 = (string) => {
  *
  * @returns {Promise<Uint8Array>}
  */
-const decodeBase64 = async (input) => {
+export const decodeBase64 = async (input) => {
     return await naclUtil.decodeBase64(input);
 };
 
@@ -130,7 +130,7 @@ const decodeBase64 = async (input) => {
  *
  * @returns {Promise<string>}
  */
-const encodeBase64 = async (input) => {
+export const encodeBase64 = async (input) => {
     return await naclUtil.encodeBase64(input);
 };
 
@@ -143,7 +143,7 @@ const encodeBase64 = async (input) => {
  *
  * @returns {Uint8Array}
  */
-const hexToUint8 = (str) => {
+export const hexToUint8 = (str) => {
     if (!str) {
         return new Uint8Array();
     }
