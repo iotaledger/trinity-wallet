@@ -1,5 +1,5 @@
 import ReactNativeKeychain from 'react-native-keychain';
-import { keychain, getSecretBoxFromKeychainAndOpenIt, hash } from 'libs/keychain';
+import { keychain, getSecretBoxFromKeychainAndOpenIt, hasEntryInKeychain, hash } from 'libs/keychain';
 import { decodeBase64 } from 'libs/crypto';
 
 jest.mock('react-native-keychain', () => ({
@@ -120,6 +120,24 @@ describe('Testing keychain', () => {
         it('should call decodeBase64 with keychain item', () => {
             return hash('alias_one', new Uint8Array()).then(() => {
                 expect(decodeBase64).toHaveBeenCalledWith('salt_item');
+            });
+        });
+    });
+
+    describe('#hasEntryInKeychain', () => {
+        describe('when provided prop has an entry in keychain', () => {
+            it('should return true', () => {
+                return hasEntryInKeychain('alias_one').then((result) => {
+                    expect(result).toEqual(true);
+                });
+            });
+        });
+
+        describe('when provided prop has no entry in keychain', () => {
+            it('should return false', () => {
+                return hasEntryInKeychain('unknown_alias').then((result) => {
+                    expect(result).toEqual(false);
+                });
             });
         });
     });

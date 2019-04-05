@@ -19,7 +19,7 @@ import {
 
 export const ALIAS_SEEDS = 'seeds';
 const ALIAS_AUTH = 'authKey';
-const ALIAS_SALT = 'salt';
+export const ALIAS_SALT = 'salt';
 export const ALIAS_REALM = 'realm_enc_key';
 
 export const keychain = {
@@ -109,13 +109,17 @@ export const hash = async (password) => {
     return await generatePasswordHash(password, salt);
 };
 
-export const doesSaltExistInKeychain = () => {
-    return keychain.get(ALIAS_SALT).then((salt) => {
-        if (!salt) {
-            return false;
-        }
-        return true;
-    });
+/**
+ * Checks if provided prop has any entry (data) in keychain
+ *
+ * @method hasEntryInKeychain
+ *
+ * @param {string} prop
+ *
+ * @returns {Promise<boolean>}
+ */
+export const hasEntryInKeychain = (prop) => {
+    return keychain.get(prop).then((entry) => !isEmpty(entry));
 };
 
 /**
