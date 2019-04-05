@@ -377,7 +377,7 @@ export const assignAccountIndex = () => ({
  *
  * @returns {function} dispatch
  */
-export const getFullAccountInfo = (seedStore, accountName, withQuorum = true) => {
+export const getFullAccountInfo = (seedStore, accountName, withQuorum = false) => {
     return (dispatch, getState) => {
         dispatch(fullAccountInfoFetchRequest());
 
@@ -442,7 +442,7 @@ export const getFullAccountInfo = (seedStore, accountName, withQuorum = true) =>
  *
  * @returns {function} dispatch
  */
-export const manuallySyncAccount = (seedStore, accountName, withQuorum = true) => {
+export const manuallySyncAccount = (seedStore, accountName, withQuorum = false) => {
     return (dispatch, getState) => {
         dispatch(manualSyncRequest());
 
