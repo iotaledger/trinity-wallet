@@ -14,8 +14,13 @@ export default () => (C) => {
             super();
             this.setDeepUrl = this.setDeepUrl.bind(this);
         }
-        componentWillMount() {
-            this.deepLinkSub = Linking.addEventListener('url', this.setDeepUrl);
+
+        componentDidMount() {
+            Linking.addEventListener('url', this.setDeepUrl);
+        }
+
+        componentWillUnmount() {
+            Linking.removeEventListener('url', this.setDeepUrl);
         }
 
         /**
