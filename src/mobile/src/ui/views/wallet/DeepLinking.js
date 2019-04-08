@@ -102,7 +102,7 @@ class DeepLinking extends Component {
     }
 
     componentDidMount() {
-        leaveNavigationBreadcrumb('Pow');
+        leaveNavigationBreadcrumb('DeepLinking');
     }
 
     componentWillReceiveProps(newProps) {
