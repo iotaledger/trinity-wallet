@@ -55,6 +55,7 @@
         "yes": "Áno",
         "no": "Nie",
         "okay": "Dobre",
+        "skip": "Skip",
         "password": "Heslo",
         "unrecognisedPassword": "Nesprávne heslo",
         "unrecognisedPasswordExplanation": "Nesprávne heslo. Prosím, skúste znova.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Nie som pripojený k verejnej WiFi sieti",
         "printerConfirmation": "Netlačím na verejnej tlačiarni"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Vaša adresa",
         "qrOptions": "QR možnosti",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Bundle hash skopírovaný",
-        "noTransactionsFound": "Nenašla sa žiadna transakcia",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Skryť nulový zostatok",
         "bundleHashCopiedExplanation": "Bundle hash bol skopírovaný do schránky.",
         "addressCopied": "Adresa skopírovaná",
@@ -775,7 +782,8 @@
     "migration": {
         "dataMigration": "Migrácia dát",
         "dataMigrationExplanation": "V záujme lepšieho výkonu a niektorých obmedzení, Trinity momentálne používa novú databázu pre ukladanie nastavení účtu a dát. Počkajte, kým Trinity automaticky prenesie Vaše dáta.",
-        "problemMigratingYourData": "Objavil sa problém s migráciu Vaších dát, skúste to prosím znova"
+        "problemMigratingYourData": "Objavil sa problém s migráciu Vaších dát, skúste to prosím znova",
+        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
         "ready": "Zariadenie Ledger je pripojené a pripravené k práci",

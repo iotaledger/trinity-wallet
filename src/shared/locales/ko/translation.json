@@ -55,6 +55,7 @@
         "yes": "네",
         "no": "아니오",
         "okay": "확인",
+        "skip": "Skip",
         "password": "비밀번호",
         "unrecognisedPassword": "잘못된 비밀번호",
         "unrecognisedPasswordExplanation": "비밀번호가 맞지 않습니다. 다시 시도해주세요.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "공용 와이파이를 사용 중이 아닙니다",
         "printerConfirmation": "공용 프린터를 사용 중이 아닙니다"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "주소",
         "qrOptions": "QR 옵션",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "번들 해시 복사함",
-        "noTransactionsFound": "트랜잭션 없음",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "0i 거래 숨기기",
         "bundleHashCopiedExplanation": "번들 해시를 클립보드에 복사하였습니다.",
         "addressCopied": "주소 복사함",
@@ -775,7 +782,8 @@
     "migration": {
         "dataMigration": "Data migration",
         "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
         "ready": "Ledger device connected and ready",

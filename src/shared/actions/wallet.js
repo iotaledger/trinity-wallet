@@ -54,6 +54,7 @@ export const ActionTypes = {
     ADDRESS_VALIDATION_SUCCESS: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_SUCCESS',
     PUSH_ROUTE: 'IOTA/APP/WALLET/PUSH_ROUTE',
     POP_ROUTE: 'IOTA/APP/WALLET/POP_ROUTE',
+    POP_TO_ROUTE: 'IOTA/APP/WALLET/POP_TO_ROUTE',
     RESET_ROUTE: 'IOTA/APP/WALLET/RESET_ROUTE',
 };
 
@@ -380,10 +381,11 @@ export const transitionForSnapshot = (seedStore, addresses) => {
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {array} addresses
+ * @param {boolean} withQuorum
  *
  * @returns {function}
  */
-export const completeSnapshotTransition = (seedStore, accountName, addresses) => {
+export const completeSnapshotTransition = (seedStore, accountName, addresses, withQuorum = true) => {
     return (dispatch, getState) => {
         dispatch(
             generateAlert(
@@ -395,7 +397,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses) =>
 
         dispatch(snapshotAttachToTangleRequest());
 
-        getBalancesAsync()(addresses)
+        getBalancesAsync(undefined, withQuorum)(addresses)
             // Find balance on all addresses
             .then((balances) => {
                 const allBalances = map(balances.balances, Number);
@@ -421,7 +423,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses) =>
 
                             const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-                            return attachAndFormatAddress()(
+                            return attachAndFormatAddress(undefined, withQuorum)(
                                 address,
                                 index,
                                 relevantBalances[index],
@@ -523,12 +525,13 @@ export const generateAddressesAndGetBalance = (seedStore, index) => {
  * @method getBalanceForCheck
  *
  * @param {array} addresses
+ * @param {boolean} withQuorum
  *
  * @returns {function}
  */
-export const getBalanceForCheck = (addresses) => {
+export const getBalanceForCheck = (addresses, withQuorum = true) => {
     return (dispatch) => {
-        getBalancesAsync()(addresses)
+        getBalancesAsync(undefined, withQuorum)(addresses)
             .then((balances) => {
                 const balanceOnAddresses = accumulateBalance(map(balances.balances, Number));
 
@@ -589,6 +592,21 @@ export const pushRoute = (payload) => {
 export const popRoute = () => {
     return {
         type: ActionTypes.POP_ROUTE,
+    };
+};
+
+/**
+ * Dispatch to pop to a particular route in the navigation stack
+ *
+ * @method popToRoute
+ * @param {string} payload
+ *
+ * @returns {{type: {string}}}
+ */
+export const popToRoute = (payload) => {
+    return {
+        type: ActionTypes.POP_TO_ROUTE,
+        payload,
     };
 };
 

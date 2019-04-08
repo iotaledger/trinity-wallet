@@ -74,7 +74,12 @@ export default () => (C) => {
             const { selectedAccountName, selectedAccountMeta } = this.props;
 
             const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
-            this.props.getAccountInfo(seedStore, selectedAccountName);
+            this.props.getAccountInfo(
+                seedStore,
+                selectedAccountName,
+                undefined,
+                true, // Sync account with quorum enabled
+            );
         }
 
         /**

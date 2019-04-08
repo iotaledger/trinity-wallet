@@ -43,6 +43,10 @@ describe('Testing CustomTextInput component', () => {
             expect(CustomTextInput.propTypes.containerStyle).toEqual(PropTypes.object);
         });
 
+        it('should accept a widgets array as a prop', () => {
+            expect(CustomTextInput.propTypes.widgets).toEqual(PropTypes.array);
+        });
+
         it('should accept a onDenominationPress function as a prop', () => {
             expect(CustomTextInput.propTypes.onDenominationPress).toEqual(PropTypes.func);
         });
@@ -113,6 +117,22 @@ describe('Testing CustomTextInput component', () => {
 
             const wrapper = shallow(<CustomTextInput {...props} />);
             expect(wrapper.find('TextInput').length).toEqual(1);
+        });
+
+        it('should mask input when "mask" is specified in the "widgets" prop', () => {
+            const props = getProps();
+            props.widgets = ['mask'];
+
+            const wrapper = shallow(<CustomTextInput {...props} />);
+            expect(wrapper.find('Icon').prop('name')).toEqual('eyeSlash');
+            expect(wrapper.find('TextInput').prop('secureTextEntry')).toEqual(true);
+        });
+
+        it('should not mask input when "mask" is not specified in the "widgets" prop', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<CustomTextInput {...props} />);
+            expect(wrapper.find('TextInput').prop('secureTextEntry')).toEqual(false);
         });
     });
 

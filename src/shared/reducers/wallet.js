@@ -179,6 +179,11 @@ export default (state = initialState, action) => {
                 ...state,
                 navStack: state.navStack.slice(0, state.navStack.length - 1),
             };
+        case ActionTypes.POP_TO_ROUTE:
+            return {
+                ...state,
+                navStack: state.navStack.slice(0, state.navStack.indexOf(action.payload) - 1),
+            };
         case ActionTypes.RESET_ROUTE:
             return {
                 ...state,

@@ -99,6 +99,7 @@ export default class SeedPicker extends Component {
 
     componentWillMount() {
         this.panResponder = PanResponder.create({
+            onStartShouldSetPanResponder: () => true,
             onMoveShouldSetPanResponder: () => true,
             onMoveShouldSetPanResponderCapture: () => true,
             onPanResponderRelease: this.handlePanResponderRelease.bind(this),

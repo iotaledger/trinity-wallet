@@ -6,6 +6,7 @@ import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { Styling } from 'ui/theme/general';
+import { TWOFA_TOKEN_LENGTH } from 'shared-modules/libs/utils';
 import CustomTextInput from './CustomTextInput';
 import DualFooterButtons from './DualFooterButtons';
 
@@ -51,7 +52,7 @@ export class Enter2FA extends Component {
 
     componentWillUpdate(newProps, newState) {
         const { token } = this.state;
-        if (token.length === 5 && newState.token.length === 6) {
+        if (token.length !== TWOFA_TOKEN_LENGTH && newState.token.length === TWOFA_TOKEN_LENGTH) {
             this.props.verify(newState.token);
         }
     }

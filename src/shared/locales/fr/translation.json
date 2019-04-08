@@ -55,6 +55,7 @@
         "yes": "Oui",
         "no": "Non",
         "okay": "Ok",
+        "skip": "Skip",
         "password": "Mot de passe",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Je ne suis pas sur un wifi public",
         "printerConfirmation": "Je n'imprimerai pas sur une imprimante publique"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Votre adresse",
         "qrOptions": "QR options",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash du paquet copié",
-        "noTransactionsFound": "Aucune transaction trouvée",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Masquer un solde nul",
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papier.",
         "addressCopied": "Adressée copiée",
@@ -689,11 +696,11 @@
         "gettingTransactionsToApprove": "Réception des transactions à valider",
         "proofOfWork": "Finalisation de la preuve de travail",
         "broadcasting": "Diffusion en cours",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Préparation des données",
+        "migratingSettings": "Migration des paramètres",
+        "migratingAccounts": "Migration des comptes",
+        "cleaningUpOldData": "Nettoyage des anciennes données",
+        "migrationComplete": "Migration terminée",
         "transferComplete": "Transfert terminé"
     },
     "snapshotTransition": {
@@ -773,9 +780,10 @@
         "sweepConfirmationTitle": "Confirmation de balayage"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+        "dataMigration": "Migration des données",
+        "dataMigrationExplanation": "En raison des limitations de performance et de stockage, Trinity utilise une nouvelle base de données pour stocker les paramètres et les données de votre compte. Veuillez patienter pendant que Trinity migre automatiquement vos données existantes.",
+        "problemMigratingYourData": "Un problème est survenu lors de la migration de vos données. Veuillez réessayer",
+        "seedMigrationExplanation": "Afin de poursuivre les efforts de Trinity pour améliorer la sécurité des portefeuilles, votre seed sera migrée vers un système de stockage amélioré. Veuillez patienter pendant que Trinity migre automatiquement le stockage de votre seed."
     },
     "ledger": {
         "ready": "Le Ledger est connecté et prêt",
@@ -785,8 +793,8 @@
         "proceedWithLedger": "Paramétrer le Ledger",
         "accountIndex": "Index du compte",
         "accountPage": "Page du compte",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Accès du Ledger annulé",
+        "actionCancelledExplanation": "Impossible d'effectuer cette action sans accès au Ledger.",
         "chooseAccountIndex": "Choisissez l'index du compte Ledger",
         "accountIndexExplanation": "Votre Ledger peut stocker plusieurs seeds. Chaque seed est identifiée par un numéro d’index unique. Un index inutilisé a été présélectionné, mais n’hésitez pas à choisir par vous même. Assurez-vous de noter le numéro d’index que vous avez choisi.",
         "accountPageExplanation": "Certains portefeuilles tiers nécessitent l'utilisation de pages.",

@@ -94,7 +94,7 @@ const renderInitialScreen = (initialScreen, state) => {
         },
         statusBar: {
             drawBehind: true,
-            backgroundColor: theme.body.bg,
+            backgroundColor: 'transparent',
         },
         popGesture: false,
     };
@@ -189,6 +189,8 @@ const hasConnection = (
 onAppStart()
     //  Initialise persistent storage
     .then(() => initialiseStorage(getEncryptionKey))
+    // Reset persisted state if keychain has no entries
+    .then(() => resetIfKeychainIsEmpty(reduxStore))
     // Restore persistent storage (Map to redux store)
     .then(() => {
         const latestVersions = {
@@ -196,17 +198,13 @@ onAppStart()
             buildNumber: Number(getBuildNumber()),
         };
 
-        // Set application version and build number in redux store.
-        reduxStore.dispatch(setAppVersions(latestVersions));
-
         // Get persisted data in AsyncStorage
         return reduxPersistStorageAdapter.get().then((storedData) => {
-            const reduxState = reduxStore.getState();
-            const { settings: { versions, completedMigration } } = reduxState;
-
+            const buildNumber = get(storedData, 'settings.versions.buildNumber');
+            const completedMigration = get(storedData, 'settings.completedMigration', false);
             if (
-                versions.buildNumber < 43 &&
-                completedMigration === false &&
+                buildNumber < 43 &&
+                !completedMigration &&
                 // Also check if there is persisted data in AsyncStorage that needs to be migrated
                 // If this check is omitted, the condition will be satisfied on a fresh install.
                 !isEmpty(storedData)
@@ -225,6 +223,8 @@ onAppStart()
                     ),
                 );
             }
+            // Set application version and build number in redux store.
+            reduxStore.dispatch(setAppVersions(latestVersions));
 
             // Mark migration as complete since we'll no longer need to migrate data after login
             reduxStore.dispatch(setRealmMigrationStatus(true));
@@ -233,8 +233,6 @@ onAppStart()
             return reduxStore.dispatch(mapStorageToStateAction(mapStorageToState()));
         });
     })
-    // Reset persisted state if keychain has no entries
-    .then(() => resetIfKeychainIsEmpty(reduxStore))
     .then(() => versionCheck(reduxStore))
     // Launch application
     .then(() => {

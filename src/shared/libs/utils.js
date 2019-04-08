@@ -11,6 +11,8 @@ import transform from 'lodash/transform';
 import validUrl from 'valid-url';
 import { VERSIONS_URL } from '../config';
 
+export const TWOFA_TOKEN_LENGTH = 6;
+
 /**
  * Computes number rounded to precision
  *

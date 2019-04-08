@@ -11,7 +11,7 @@
 
 @interface RCT_EXTERN_MODULE(Argon2IOS, NSObject)
 // Export hash method to RN
-RCT_EXTERN_METHOD(hash:(NSString *)password salt:(NSString *)salt params:(NSDictionary *)params resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject);
+RCT_EXTERN_METHOD(hash:(NSArray<NSNumber*>*)password salt:(NSString *)salt params:(NSDictionary *)params resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject);
 
 // Create a GCD queue for Argon2
 -(dispatch_queue_t)methodQueue

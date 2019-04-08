@@ -85,40 +85,21 @@ class LanguageSetup extends Component {
         timer.clearTimeout('delayReset');
     }
     onNextPress() {
-        const { theme: { body, bar }, acceptedTerms, acceptedPrivacy, forceUpdate } = this.props;
+        const { forceUpdate } = this.props;
         if (forceUpdate) {
             return;
         }
-        navigator.push(this.getNextRoute(), {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: !acceptedTerms || !acceptedPrivacy ? bar.bg : body.bg,
-            },
-        });
+        navigator.push(this.getNextRoute());
     }
 
     getNextRoute() {
         const { acceptedTerms, acceptedPrivacy } = this.props;
-
         let nextRoute = 'walletSetup';
-
         if (!acceptedTerms && !acceptedPrivacy) {
             nextRoute = 'termsAndConditions';
         } else if (acceptedTerms && !acceptedPrivacy) {
             nextRoute = 'privacyPolicy';
         }
-
         return nextRoute;
     }
 
@@ -172,7 +153,7 @@ class LanguageSetup extends Component {
                                         this.dropdown = c;
                                     }}
                                     title={t('language')}
-                                    defaultOption={defaultLanguageLabel}
+                                    value={defaultLanguageLabel}
                                     options={I18N_LOCALE_LABELS}
                                     saveSelection={(language) => this.clickDropdownItem(language)}
                                 />

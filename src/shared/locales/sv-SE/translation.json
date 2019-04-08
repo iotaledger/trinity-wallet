@@ -55,6 +55,7 @@
         "yes": "Ja",
         "no": "Nej",
         "okay": "Okej",
+        "skip": "Hoppa över",
         "password": "Lösenord",
         "unrecognisedPassword": "Fel lösenord",
         "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen.",
@@ -249,7 +250,7 @@
         "login": "Logga in",
         "setNode": "Ställ in nod",
         "whyBiometricDisabled": "Varför är biometrisk autentisering avaktiverad?",
-        "whyBiometricDisabledExplanationPart1": "Biometrisk autentisering är inaktiverad vid första app-start för din säkerhet.",
+        "whyBiometricDisabledExplanationPart1": "Biometrisk autentisering är avaktiverad vid första app-start för din säkerhet.",
         "whyBiometricDisabledExplanationPart2": "När du använder Trinity kommer du att loggas ut vid inaktivitet. Du kan sedan logga in igen med biometrisk autentisering."
     },
     "loading": {
@@ -285,6 +286,12 @@
         "pleaseCheck": "Kontrollera och bekräfta innan du skriver ut",
         "wifiConfirmation": "Jag är inte på offentligt wifi",
         "printerConfirmation": "Jag kommer inte att skriva ut på en offentlig skrivare"
+    },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Vill du skriva ut en tom mall?",
+        "printTemplateInfo": "Du kan skriva ut en tom mall för att underlätta när du skriver ned din seed.",
+        "printTemplateWarning": "Se till att du lagrar din seed på en säker plats. Visa den inte för någon.",
+        "print": "Ja, skriv ut"
     },
     "receive": {
         "yourAddress": "Din adress",
@@ -329,7 +336,7 @@
         "ifYouHaveNotSaved": "Om du inte har sparat din seed, gå tillbaka till föregående skärm och gör så.",
         "enterSeedBelow": "Ange din nyskapade seed nedan för att bekräfta att du har sparat den korrekt",
         "clipboardWarning": "VARNING: Kan inte klistra in seed",
-        "clipboardWarningExplanation": "Klistra in-funktionen är inaktiverad för din säkerhet. Du kan dra och släppa din seed från en textfil istället."
+        "clipboardWarningExplanation": "Klistra in-funktionen är avaktiverad för din säkerhet. Du kan dra och släppa din seed från en textfil istället."
     },
     "send": {
         "invalidAddress": "Ogiltig adress",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Hashbunt kopierad",
-        "noTransactionsFound": "Inga transaktioner hittade",
+        "noTransactionsFound": "Din transaktionshistorik är tom",
         "hideZeroBalance": "Dölj nollvärden",
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
@@ -594,7 +601,7 @@
         "fingerprintUnavailableExplanation": "Din enhet stödjer ej biometrisk autentisering eller så har det ej konfigurerats i enhetens inställningar.",
         "notSupported": "Enheten stöder inte biometrisk autentisering",
         "notConfigured": "Biometrisk autentisering har inte konfigurerats i enhetsinställningarna",
-        "buttonInstructionsDisable": "Tryck på knappen nedan för att inaktivera fingeravtrycksautentisering.",
+        "buttonInstructionsDisable": "Tryck på knappen nedan för att avaktivera fingeravtrycksautentisering.",
         "buttonInstructionsEnable": "Tryck på knappen nedan för att aktivera fingeravtrycksautentisering.",
         "buttonInstructionsDisableIPhoneX": "Tryck på knappen nedan för att avaktivera Face ID",
         "buttonInstructionsEnableIPhoneX": "Tryck på knappen nedan för att aktivera Face ID",
@@ -689,11 +696,11 @@
         "gettingTransactionsToApprove": "Godkänner transaktioner",
         "proofOfWork": "Utför bevis på arbete",
         "broadcasting": "Sändning pågår",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Förbereder data",
+        "migratingSettings": "Migrerar inställningar",
+        "migratingAccounts": "Migrerar konton",
+        "cleaningUpOldData": "Rensar upp gammal data",
+        "migrationComplete": "Migration klar",
         "transferComplete": "Överföring slutförd"
     },
     "snapshotTransition": {
@@ -773,9 +780,10 @@
         "sweepConfirmationTitle": "Svepningsbekräftelse"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+        "dataMigration": "Data-migration",
+        "dataMigrationExplanation": "På grund av prestanda och förvaringsbegränsningar använder Trinity en ny databas för att lagra inställningar och kontodata. Vänta medan Trinity automatiskt migrerar din befintliga data.",
+        "problemMigratingYourData": "Det uppstod ett problem vid migrering av din data. Vänligen försök igen",
+        "seedMigrationExplanation": "Som en del av Trinity's fortsatta arbete att förbättra plånbokssäkerheten, kommer din seed att migreras till en förbättrad lagringsmetod. Vänligen vänta medan Trinity automatiskt migrerar seed-lagringen."
     },
     "ledger": {
         "ready": "Ledger-enheten ansluten och redo",
@@ -785,8 +793,8 @@
         "proceedWithLedger": "Fortsätt med Ledger-installationen",
         "accountIndex": "Konto-index",
         "accountPage": "Konto-sida",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Ledger-enhets åtkomst avbruten",
+        "actionCancelledExplanation": "Kan inte utföra åtgärden utan Ledger-enhetens åtkomst.",
         "chooseAccountIndex": "Välj ditt Ledger konto-index",
         "accountIndexExplanation": "Din Ledger kan hantera flera seeds. Varje seed identifieras av ett unikt indexnummer. Ett oanvänt index har blivit förvalt, men välj ett eget om du vill. Se till att anteckna ditt valda indexnummer.",
         "accountPageExplanation": "Vissa tredjepartsplånböcker kräver sidor.",

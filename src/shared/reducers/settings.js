@@ -50,7 +50,6 @@ const initialState = {
     themeName: 'Default',
     /**
      * Determines if the wallet has randomised node on initial setup.
-     *
      */
     hasRandomizedNode: false,
     /**

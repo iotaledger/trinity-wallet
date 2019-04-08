@@ -55,6 +55,7 @@
         "yes": "Da",
         "no": "Ne",
         "okay": "U redu",
+        "skip": "Preskoči",
         "password": "Lozinka",
         "unrecognisedPassword": "Neispravna Lozinka",
         "unrecognisedPasswordExplanation": "Vaša lozinka je neispravna. Molimo pokušajte ponovno.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Moj uređaj nije spojen na javno dostupan wifi",
         "printerConfirmation": "Ne vršim ispis na javno dostupnom pisaču"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Želite li ispisati prazan predložak?",
+        "printTemplateInfo": "Možete ispisati prazan predložak kao pomoć pri zapisu vašeg seed-a.",
+        "printTemplateWarning": "Pobrinite se da pohranite svoj seed na sigurno mjesto. Nemojte ga pokazati nikome.",
+        "print": "Da, ispiši"
+    },
     "receive": {
         "yourAddress": "Vaša adresa",
         "qrOptions": "QR opcije",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash paketa kopiran",
-        "noTransactionsFound": "Nije pronađena niti jedna transakcija",
+        "noTransactionsFound": "Povijest transakcija je prazna",
         "hideZeroBalance": "Sakrij transakcije s nula sredstava",
         "bundleHashCopiedExplanation": "Hash paketa je kopiran u međuspremnik.",
         "addressCopied": "Adresa kopirana",
@@ -592,17 +599,17 @@
         "fingerprintUnavailable": "Biometrijska autorizacija nedostupna",
         "deviceLocked": "Autorizaciju onemogućena sljedećih 30 sekundi",
         "fingerprintUnavailableExplanation": "Vaš uređaj ne podržava biometrijsku autorizaciju ili ista nije konfigurirana u postavkama uređaja.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "notSupported": "Uređaj ne podržava biometrijsku autorizaciju",
+        "notConfigured": "Biometrijska autorizacija nije konfigurirana u postavkama uređaja",
+        "buttonInstructionsDisable": "Pritisnite donji gumb kako bi onemogućili autorizaciju putem otiska prsta.",
         "buttonInstructionsEnable": "Pritisnite donji gumb kako bi omogućili autorizaciju putem otiska prsta.",
         "buttonInstructionsDisableIPhoneX": "Pritisnite donji gumb kako bi onemogućili Face ID",
         "buttonInstructionsEnableIPhoneX": "Pritisnite donji gumb kako bi omogućili Face ID",
         "instructionsLogin": "Dodirnite čitač otiska prstiju za prijavu",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "Autorizacija je poništena od strane vašeg uređaja",
+        "userCancelledAuth": "Autorizacija je poništena od strane korisnika",
+        "passwordFallback": "Povratak na autorizaciju putem lozinke",
+        "noPassword": "Lozinka nije postavljena na uređaju"
     },
     "transferConfirmation": {
         "youAreAbout": "Poslat ćete {{contents}} na adresu",
@@ -689,11 +696,11 @@
         "gettingTransactionsToApprove": "Dohvat transakcija za odobriti",
         "proofOfWork": "Završetak PoW-a",
         "broadcasting": "Emitiranje",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Priprema podataka",
+        "migratingSettings": "Migracija postavki",
+        "migratingAccounts": "Migracija računa",
+        "cleaningUpOldData": "Čišćenje starih podataka",
+        "migrationComplete": "Migracija završena",
         "transferComplete": "Transakcija dovršena"
     },
     "snapshotTransition": {
@@ -773,9 +780,10 @@
         "sweepConfirmationTitle": "Potvrda otključavanja"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
+        "dataMigration": "Migracija podataka",
+        "dataMigrationExplanation": "S ciljem poboljšanja performansi, Trinity je unaprijeđen, te koristi novu bazu podataka za spremanje vaših postavka i računa. Molimo pričekajte dok Trinity automatski migrira vaše postojeće podatke.",
+        "problemMigratingYourData": "Došlo je do greške prilikom migracije vaših podataka. Molimo pokušajte ponovno",
+        "seedMigrationExplanation": "Kao dio kontinuiranog nastojanja s ciljem poboljšanja sigurnosti Trinity novčanika, vaš seed će biti migriran kako bi koristio poboljšanu i sigurniju metodu pohrane. Molimo pričekajte dok Trinity automatski migrira vaš seed."
     },
     "ledger": {
         "ready": "Ledger uređaj povezan i spreman",
@@ -785,8 +793,8 @@
         "proceedWithLedger": "Nastavite s postavljanjem Ledger uređaja",
         "accountIndex": "Indeks računa (Ledger Nano S)",
         "accountPage": "Stranica računa (Deviota Romeo)",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Pristup Ledger uređaju otkazan",
+        "actionCancelledExplanation": "Nije moguće izvršiti radnju bez pristupa Ledger uređaju.",
         "chooseAccountIndex": "Odaberite indeks računa vašeg Ledger uređaja",
         "accountIndexExplanation": "Vaš Ledger može pohraniti više seed-ova. Svaki seed je povezan s jedinstvenim brojem indeksa. Neiskorišteni broj indeksa je trenutno odabran, no slobodno može biti odabran i neki drugi. Obavezno zapišite odabrani broj indeksa.",
         "accountPageExplanation": "Neki novčanici trećih strana zahtijevaju stranice (npr. Deviota Romeo).",

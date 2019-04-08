@@ -10,7 +10,6 @@ import { zxcvbn } from 'shared-modules/libs/exports';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { passwordReasons } from 'shared-modules/libs/password';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import i18next from 'shared-modules/libs/i18next.js';
 import { height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { UInt8ToString } from 'libs/crypto';
@@ -53,11 +52,6 @@ class PasswordFields extends Component {
         reentryLabel: PropTypes.string,
     };
 
-    static defaultProps = {
-        passwordLabel: i18next.t('global:password'),
-        reentryLabel: i18next.t('setPassword:retypePassword'),
-    };
-
     constructor() {
         super();
         this.state = {
@@ -83,7 +77,7 @@ class PasswordFields extends Component {
         const { score } = this.state;
         if (isEmpty(password)) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
-        } else if (size(password) >= MIN_PASSWORD_LENGTH && isEqual(password, reentry) && score.score === 4) {
+        } else if (size(password) >= MIN_PASSWORD_LENGTH && isEqual(password, reentry) && score === 4) {
             return this.props.onAcceptPassword();
         } else if (!isEqual(password, reentry)) {
             return this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
@@ -96,7 +90,7 @@ class PasswordFields extends Component {
                     currentLength: password.length,
                 }),
             );
-        } else if (score.score < 4) {
+        } else if (score < 4) {
             const reason = score.feedback.warning
                 ? t(`changePassword:${passwordReasons[score.feedback.warning]}`)
                 : t('changePassword:passwordTooWeakReason');
@@ -105,34 +99,38 @@ class PasswordFields extends Component {
     }
 
     render() {
-        const { theme, password, reentry, passwordLabel, reentryLabel } = this.props;
+        const { t, theme, password, reentry, passwordLabel, reentryLabel } = this.props;
         const { score } = this.state;
-        const isValid = score.score === 4;
+        const isValid = score === 4;
 
         return (
             <View style={[styles.container]}>
                 <CustomTextInput
-                    label={passwordLabel}
+                    onRef={(c) => {
+                        this.password = c;
+                    }}
+                    label={passwordLabel || t('global:password')}
                     onValidTextChange={(password) => {
                         this.props.setPassword(password);
-                        this.setState({ score: zxcvbn(password ? UInt8ToString(password) : '') });
+                        this.setState({ score: zxcvbn(password ? UInt8ToString(password) : '').score });
                     }}
                     containerStyle={{ width: Styling.contentWidth }}
                     autoCapitalize="none"
-                    widget="password"
+                    widgets={['checkMark']}
                     isPasswordValid={isValid}
-                    passwordStrength={score.score}
+                    passwordStrength={score}
                     autoCorrect={false}
                     enablesReturnKeyAutomatically
                     returnKeyType="next"
                     onSubmitEditing={() => {
                         if (password) {
+                            this.password.blur();
                             this.reentry.focus();
                         }
                     }}
                     testID="setPassword-passwordbox"
                     theme={theme}
-                    value={this.props.password}
+                    value={password}
                     secureTextEntry
                     isPasswordInput
                 />
@@ -140,10 +138,10 @@ class PasswordFields extends Component {
                     onRef={(c) => {
                         this.reentry = c;
                     }}
-                    label={reentryLabel}
+                    label={reentryLabel || t('setPassword:retypePassword')}
                     onValidTextChange={(reentry) => this.props.setReentry(reentry)}
                     containerStyle={{ width: Styling.contentWidth, marginTop: height / 60 }}
-                    widget="passwordReentry"
+                    widgets={['checkMark']}
                     isPasswordValid={isValid && isEqual(password, reentry)}
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -151,9 +149,16 @@ class PasswordFields extends Component {
                     returnKeyType="done"
                     testID="setPassword-reentrybox"
                     theme={theme}
-                    value={this.props.reentry}
+                    value={reentry}
                     secureTextEntry
                     isPasswordInput
+                    onSubmitEditing={() => {
+                        if (reentry) {
+                            this.reentry.blur();
+                            this.password.focus();
+                            this.password.blur();
+                        }
+                    }}
                 />
             </View>
         );
