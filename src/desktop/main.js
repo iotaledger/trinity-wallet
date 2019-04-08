@@ -216,10 +216,27 @@ function createWindow() {
         if (url.indexOf(targetURL) !== 0) {
             e.preventDefault();
 
-            const externalWhitelist = ['iota.org', 'docs.iota.works', 'trinity.iota.org', 'docs.bugsnag.com'];
+            const termsAndConditionsLinks = ['iota.org', 'trinity.iota.org', 'contact@iota.org'];
+            const privacyPolicyLinks = [
+                'corp.sogou.com',
+                'cryptocompare.com',
+                'docs.bugsnag.com',
+                'help.github.com',
+                'policies.google.com',
+                'protect-eu.mimecast.com',
+                'privacy@iota.org',
+            ];
+
+            const externalWhitelist = [...privacyPolicyLinks, ...termsAndConditionsLinks];
 
             try {
-                if (externalWhitelist.indexOf(URL.parse(targetURL).host.replace('www.', '')) > -1) {
+                if (
+                    externalWhitelist.indexOf(
+                        URL.parse(targetURL)
+                            .host.replace('www.', '')
+                            .replace('mailto:', ''),
+                    ) > -1
+                ) {
                     shell.openExternal(targetURL);
                 }
             } catch (error) {}

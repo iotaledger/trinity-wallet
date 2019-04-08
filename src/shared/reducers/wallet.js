@@ -33,9 +33,9 @@ const initialState = {
      */
     balanceCheckFlag: false,
     /**
-     * Determines if deep linking is activated on the wallet
+     * Determines if a deep link request is in progress
      */
-    deepLinkActive: false,
+    deepLinkRequestActive: false,
     /**
      * Determines if wallet has an active internet connection
      */
@@ -87,7 +87,7 @@ export default (state = initialState, action) => {
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
                 currentSetting: 'mainSettings',
-                deepLinkActive: false,
+                deepLinkRequestActive: false,
             };
         case ActionTypes.SET_SETTING:
             return {
@@ -144,15 +144,15 @@ export default (state = initialState, action) => {
                 ...state,
                 transitionAddresses: union(state.transitionAddresses, action.payload),
             };
-        case ActionTypes.SET_DEEP_LINK:
+        case ActionTypes.INITIATE_DEEP_LINK_REQUEST:
             return {
                 ...state,
-                deepLinkActive: true,
+                deepLinkRequestActive: true,
             };
-        case ActionTypes.SET_DEEP_LINK_INACTIVE:
+        case ActionTypes.COMPLETE_DEEP_LINK_REQUEST:
             return {
                 ...state,
-                deepLinkActive: false,
+                deepLinkRequestActive: false,
             };
         case ActionTypes.CONNECTION_CHANGED:
             return {

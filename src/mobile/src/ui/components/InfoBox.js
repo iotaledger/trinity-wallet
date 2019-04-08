@@ -36,8 +36,8 @@ class InfoBox extends PureComponent {
         const { children, containerStyle, theme: { dark } } = this.props;
 
         return (
-            <View style={[styles.fieldContainer, containerStyle, { backgroundColor: dark.color }]}>
-                <View style={[styles.innerContainer]}>{children}</View>
+            <View style={[styles.fieldContainer, { backgroundColor: dark.color }, containerStyle]}>
+                <View style={styles.innerContainer}>{children}</View>
             </View>
         );
     }

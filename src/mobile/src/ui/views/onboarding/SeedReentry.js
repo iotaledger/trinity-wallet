@@ -87,7 +87,7 @@ class SeedReentry extends Component {
     constructor() {
         super();
         this.state = {
-            reenteredSeed: null,
+            reenteredSeed: '',
         };
     }
 

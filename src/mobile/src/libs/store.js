@@ -7,7 +7,7 @@ import split from 'lodash/split';
 import transform from 'lodash/transform';
 import { AsyncStorage } from 'react-native';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
-import { doesSaltExistInKeychain } from 'libs/keychain';
+import { hasEntryInKeychain, ALIAS_SALT, ALIAS_REALM } from 'libs/keychain';
 import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
 import { getEncryptionKey } from 'libs/realm';
 import { setAppVersions, resetWallet } from 'shared-modules/actions/settings';
@@ -117,27 +117,38 @@ export const versionCheck = (store) => {
 };
 
 /**
- * Resets the wallet if the keychain is empty
- * Fixes issues related to iCloud backup
+ * Resets the wallet if the keychain is empty. Fixes issues related to iCloud backup
+ *
+ * @method resetIfKeychainIsEmpty
+ *
  * @param {object} store
  *
- * @returns {Promise<object>}
- *
+ * @returns {Promise}
  */
 export const resetIfKeychainIsEmpty = (store) => {
-    return doesSaltExistInKeychain().then((exists) => {
-        if (!exists) {
-            // Purge and reinitialise persistent storage
-            return reinitialiseStorage(getEncryptionKey).then(() => {
-                store.dispatch(resetWallet());
-                // Set the new app version
-                store.dispatch(
-                    setAppVersions({
-                        version: getVersion(),
-                        buildNumber: Number(getBuildNumber()),
-                    }),
-                );
-            });
+    const resetReduxState = () => {
+        store.dispatch(resetWallet());
+        // Set the new app version
+        store.dispatch(
+            setAppVersions({
+                version: getVersion(),
+                buildNumber: Number(getBuildNumber()),
+            }),
+        );
+    };
+
+    return hasEntryInKeychain(ALIAS_SALT).then((hasSalt) => {
+        if (!hasSalt) {
+            // If there is no entry against "ALIAS_SALT", check if there exists an entry against "ALIAS_REALM"
+            return hasEntryInKeychain(ALIAS_REALM).then(
+                (hasEncryptionKey) =>
+                    hasEncryptionKey
+                        ? Promise.resolve()
+                        : // Purge and reinitialise persistent storage
+                          reinitialiseStorage(getEncryptionKey).then(resetReduxState),
+            );
         }
+
+        return Promise.resolve();
     });
 };
