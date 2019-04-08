@@ -1610,10 +1610,10 @@
             }
         },
         "@types/node": {
-            "version": "8.10.40",
-            "resolved": "https://registry.npmjs.org/@types/node/-/node-8.10.40.tgz",
+            "version": "8.10.45",
+            "resolved": "https://registry.npmjs.org/@types/node/-/node-8.10.45.tgz",
             "integrity":
-                "sha512-RRSjdwz63kS4u7edIwJUn8NqKLLQ6LyqF/X4+4jp38MBT3Vwetewi2N4dgJEshLbDwNgOJXNYoOwzVZUSSLhkQ==",
+                "sha512-tGVTbA+i3qfXsLbq9rEq/hezaHY55QxQLeXQL2ejNgFAxxrgu8eMmYIOsRcl7hN1uTLVsKOOYacV/rcJM3sfgQ==",
             "dev": true
         },
         "@webassemblyjs/ast": {
@@ -1944,10 +1944,10 @@
             }
         },
         "ansi-colors": {
-            "version": "3.2.3",
-            "resolved": "https://registry.npmjs.org/ansi-colors/-/ansi-colors-3.2.3.tgz",
+            "version": "3.2.4",
+            "resolved": "https://registry.npmjs.org/ansi-colors/-/ansi-colors-3.2.4.tgz",
             "integrity":
-                "sha512-LEHHyuhlPY3TmuUYMh2oz89lTShfvgbmzaBcxve9t/9Wuy7Dwf4yoAKcND7KFT1HAQfqZ12qtc+DUrBMeKF9nw==",
+                "sha512-hHUXGagefjN2iRrID63xckIvotOXOojhQKWIPUZ4mNUZ9nLZW+7FMNoE1lOkEhNWYsx/7ysGIuJYCiMAA9FnrA==",
             "dev": true
         },
         "ansi-escapes": {
@@ -4724,10 +4724,10 @@
             "dev": true
         },
         "electron": {
-            "version": "3.1.4",
-            "resolved": "https://registry.npmjs.org/electron/-/electron-3.1.4.tgz",
+            "version": "3.1.6",
+            "resolved": "https://registry.npmjs.org/electron/-/electron-3.1.6.tgz",
             "integrity":
-                "sha512-YJEvfq45K7MmhLXY4mpGLG/cH5BU/1NUOcNMRzLxs3wVS/fKY2ZkJrOTncxhi1VOC1EJOQslcSdupitrW/FSig==",
+                "sha512-elEKKlFMnR0bhR/Uttk0TI496ZadxYsecyKgj2tZgrWx/F/anzfxbEYNcv134vT+qMFC/BXvoaeaIIj2YYdVuA==",
             "dev": true,
             "requires": {
                 "@types/node": "^8.0.24",
@@ -16257,10 +16257,10 @@
             }
         },
         "webpack-dev-middleware": {
-            "version": "3.6.0",
-            "resolved": "https://registry.npmjs.org/webpack-dev-middleware/-/webpack-dev-middleware-3.6.0.tgz",
+            "version": "3.6.2",
+            "resolved": "https://registry.npmjs.org/webpack-dev-middleware/-/webpack-dev-middleware-3.6.2.tgz",
             "integrity":
-                "sha512-oeXA3m+5gbYbDBGo4SvKpAHJJEGMoekUbHgo1RK7CP1sz7/WOSeu/dWJtSTk+rzDCLkPwQhGocgIq6lQqOyOwg==",
+                "sha512-A47I5SX60IkHrMmZUlB0ZKSWi29TZTcPz7cha1Z75yYOsgWh/1AcPmQEbC8ZIbU3A1ytSv1PMU0PyPz2Lmz2jg==",
             "dev": true,
             "requires": {
                 "memory-fs": "^0.4.1",
