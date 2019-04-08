@@ -501,7 +501,8 @@
         "pow": "Proof of Work",
         "autoPromotion": "Auto-promotion",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "רקע",
@@ -720,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofillExplanation": "Transaction data autofilled from link.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
