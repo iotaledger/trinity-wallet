@@ -501,7 +501,8 @@
         "pow": "PoW",
         "autoPromotion": "Automatisk befordran",
         "autoPromotionExplanation": "Automatisk befordran hjälper till att bekräfta dina transaktioner på Tangle. Aktivera den här inställningen om du har svårt att få dina transaktioner bekräftade.",
-        "autoPromotionPoW": "Automatisk befordran är endast tillgänglig på noder som stöder fjärr PoW."
+        "autoPromotionPoW": "Automatisk befordran är endast tillgänglig på noder som stöder fjärr PoW.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrund",
@@ -720,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Autofyll lyckat",
-        "autofillExplanation": "Transaktionsdata ifylld automatiskt från länk."
+        "autofillExplanation": "Transaktionsdata ifylld automatiskt från länk.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fel vid hämtning av uppdateringsdata",

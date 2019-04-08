@@ -501,7 +501,8 @@
         "pow": "Proof of Work",
         "autoPromotion": "Promosi otomatis",
         "autoPromotionExplanation": "Promosi otomatis membantu konfirmasi transaksi di Tangle. Aktifkan aturan ini jika mengalami kesulitan dalam mengkonfirmasi.",
-        "autoPromotionPoW": "Promosi otomatis hanya memungkinkan di Node yang mendukung Proof of Work jarak jauh."
+        "autoPromotionPoW": "Promosi otomatis hanya memungkinkan di Node yang mendukung Proof of Work jarak jauh.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Latar belakang",
@@ -720,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Isi otomatis sukses",
-        "autofillExplanation": "Data transaksi isi otomatis dari link."
+        "autofillExplanation": "Data transaksi isi otomatis dari link.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Gagal dalam mengunduh data pembaruan",
