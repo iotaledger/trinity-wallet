@@ -116,6 +116,10 @@ const initialState = {
      * Desktop: Use system proxy settings
      */
     ignoreProxy: false,
+    /**
+     * Determines if deep linking is enabled
+     */
+    deepLinking: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -276,6 +280,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 nodes: [],
+            };
+        case ActionTypes.SET_DEEP_LINKING:
+            return {
+                ...state,
+                deepLinking: !state.deepLinking,
             };
     }
 
