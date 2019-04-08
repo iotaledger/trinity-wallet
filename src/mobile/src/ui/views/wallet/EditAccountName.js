@@ -173,7 +173,7 @@ export class EditAccountName extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.2 }} />
+                        <View style={{ flex: 0.3 }} />
                         <View style={styles.textFieldContainer}>
                             <CustomTextInput
                                 label={t('accountName')}
@@ -187,7 +187,7 @@ export class EditAccountName extends Component {
                                 theme={theme}
                             />
                         </View>
-                        <View style={{ flex: 0.2 }} />
+                        <View style={{ flex: 0.1 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
