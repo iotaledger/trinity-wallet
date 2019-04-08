@@ -501,7 +501,8 @@
         "pow": "Proof of Work",
         "autoPromotion": "ऑटो प्रमोशन",
         "autoPromotionExplanation": "ऑटो प्रमोशन आपके लेनदेन की पुष्टि करने में मदद करता है । इस सेटिंग को सक्षम करें यदि आपको पुष्टि करने के लिए अपने लेन-देन में कठिनाई हो रही है ।",
-        "autoPromotionPoW": "स्वत: पदोन्नति केवल उन नोड्स पर संभव है जो कार्य के दूरस्थ प्रमाण का समर्थन करते हैं।"
+        "autoPromotionPoW": "स्वत: पदोन्नति केवल उन नोड्स पर संभव है जो कार्य के दूरस्थ प्रमाण का समर्थन करते हैं।",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "बैकग्राउंड",
@@ -720,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "ऑटो फील सफल",
-        "autofillExplanation": "लिंक से लेनदेन डेटा का स्वत: भरण"
+        "autofillExplanation": "लिंक से लेनदेन डेटा का स्वत: भरण",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "अपडेट डेटा पुनर्प्राप्त करने में त्रुटि",
