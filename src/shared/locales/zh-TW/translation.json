@@ -501,7 +501,8 @@
         "pow": "工作量證明",
         "autoPromotion": "自動促進",
         "autoPromotionExplanation": "自動促進會協助確認您在 Tangle 上的交易。如果您在確認交易時遇到困難的話，請啟用此設定。",
-        "autoPromotionPoW": "自動促進僅能支援遠端工作量證明的節點上使用。"
+        "autoPromotionPoW": "自動促進僅能支援遠端工作量證明的節點上使用。",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -720,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "自動填入成功",
-        "autofillExplanation": "從連結自動填入交易資料。"
+        "autofillExplanation": "從連結自動填入交易資料。",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "取得更新資料時發生錯誤",

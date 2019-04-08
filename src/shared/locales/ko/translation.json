@@ -501,7 +501,8 @@
         "pow": "작업증명",
         "autoPromotion": "자동 프로모트",
         "autoPromotionExplanation": "자동 프로모트를 사용하면 트랜잭션이 승인되는데에 도움이 됩니다. 트랜잭션이 잘 승인되지 않는다면 이 기능을 사용해 보세요.",
-        "autoPromotionPoW": "자동 프로모트는 원격 작업증명을 지원하는 노드에서만 사용 가능합니다."
+        "autoPromotionPoW": "자동 프로모트는 원격 작업증명을 지원하는 노드에서만 사용 가능합니다.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "배경",
@@ -720,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "자동 완성 성공",
-        "autofillExplanation": "링크를 통해 트랜잭션 데이터가 자동 완성 되었습니다."
+        "autofillExplanation": "링크를 통해 트랜잭션 데이터가 자동 완성 되었습니다.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "업데이트를 받아오는 중 오류 발생",
