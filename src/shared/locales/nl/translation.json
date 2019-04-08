@@ -501,7 +501,8 @@
         "pow": "Bewijs van inspanning",
         "autoPromotion": "Auto-promotie",
         "autoPromotionExplanation": "Auto-promotie helpt uw transactie te bevestigen op de Tangle. Schakel deze instelling in wanneer u problemen ondervindt met bevestigen.",
-        "autoPromotionPoW": "Auto-promotie is alleen mogelijk op nodes die ondersteuning bieden voor extern Bewijs van Inspanning (PoW)."
+        "autoPromotionPoW": "Auto-promotie is alleen mogelijk op nodes die ondersteuning bieden voor extern Bewijs van Inspanning (PoW).",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Achtergrond",
@@ -720,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Automatisch vullen succesvol",
-        "autofillExplanation": "De transactie gegevens worden automatisch ingevuld vanuit de link."
+        "autofillExplanation": "De transactie gegevens worden automatisch ingevuld vanuit de link.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fout bij het ophalen van de update data",

@@ -501,7 +501,8 @@
         "pow": "PoW",
         "autoPromotion": "Automatska promocija",
         "autoPromotionExplanation": "Automatska promocija pomaže potvrditi vašu transakciju na Tangle-u. Omogućite ovu postavku ako imate problema s potvrđivanjem vaših transakcija.",
-        "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW."
+        "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadina",
@@ -720,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Uspješno automatsko popunjavanje",
-        "autofillExplanation": "Podaci transakcije uspješno automatski popunjeni iz linka."
+        "autofillExplanation": "Podaci transakcije uspješno automatski popunjeni iz linka.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",
