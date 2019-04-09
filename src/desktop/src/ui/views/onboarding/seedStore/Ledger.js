@@ -113,6 +113,8 @@ class Ledger extends React.PureComponent {
 
     showUdevModal = (udevError) => {
         if (udevError) {
+            const { t } = this.props;
+
             // Select text with a single click
             const linkStyle = {
                 WebkitUserSelect: 'all',
@@ -120,11 +122,8 @@ class Ledger extends React.PureComponent {
 
             return (
                 <Modal variant="fullscreen" isOpen isForced onClose={() => {}}>
-                    <h1>Could not communicate with Ledger device</h1>
-                    <p>
-                        Trinity could not communicate with your Ledger device. Please visit the URL below to resolve
-                        this issue.
-                    </p>
+                    <h1>{t('ledger:udevError')}</h1>
+                    <p>{t('ledger:udevErrorExplanation')}</p>
                     <pre style={linkStyle}>https://support.ledger.com/hc/articles/115005165269</pre>
                 </Modal>
             );
