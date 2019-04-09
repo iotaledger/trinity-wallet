@@ -107,7 +107,7 @@ export class EnterPasswordOnLogin extends Component {
                             onSubmitEditing={this.handleLogin}
                             theme={theme}
                             value={password}
-                            widget="fingerprintDisabled"
+                            widgets={['fingerprintDisabled']}
                             fingerprintAuthentication={isFingerprintEnabled}
                             onFingerprintPress={this.openModal}
                             isPasswordInput

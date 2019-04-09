@@ -55,6 +55,7 @@
         "yes": "Ano",
         "no": "Ne",
         "okay": "OK",
+        "skip": "Skip",
         "password": "Heslo",
         "unrecognisedPassword": "Neznámé heslo",
         "unrecognisedPasswordExplanation": "Nesprávné heslo. Prosím zkuste to znovu.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Nejsem připojen k veřejné WiFi síti",
         "printerConfirmation": "Netisknu na veřejné tiskárně"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Vaše adresa",
         "qrOptions": "QR nastavení",
@@ -358,7 +365,7 @@
         "addressPasteDetected": "Zjištěno kopírování adresy",
         "addressPasteExplanation": "Vaše adresa byla zkopírována ze schránky. Zkontrolujte, že vložená adresa je opravdu ta, kam chcete prostředky poslat.",
         "invalid": "NEPLATNÉ",
-        "swipeToSend": "Přejděte na položku Odeslat"
+        "swipeToSend": "Posunutím odešlete"
     },
     "setSeedName": {
         "letsAddName": "Přidejte jméno",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Balíček hash zkopírován",
-        "noTransactionsFound": "Nebyly nalezeny žádné transakce",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Skrýt nulový zůstatek",
         "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
         "addressCopied": "Adresa zkopírována",
@@ -494,7 +501,8 @@
         "pow": "Proof of Work",
         "autoPromotion": "Automatická podpora",
         "autoPromotionExplanation": "Automatická podpora Vám pomůže potvrdit Vaši transakci v síti Tangle. Povolte toto nastavení, pokud máte problémy s potvrzováním transakcí.",
-        "autoPromotionPoW": "Automatická podpora je možná pouze na Nodech, které podporují vzdálený Proof of Work."
+        "autoPromotionPoW": "Automatická podpora je možná pouze na Nodech, které podporují vzdálený Proof of Work.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadí",
@@ -713,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Automatické vyplňování úspěšné",
-        "autofillExplanation": "Údaje o transakci byly automaticky doplněny z odkazu."
+        "autofillExplanation": "Údaje o transakci byly automaticky doplněny z odkazu.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba při získávání aktualizačních dat",
@@ -776,7 +789,7 @@
         "dataMigration": "Migrace dat",
         "dataMigrationExplanation": "V zájmu lepšího výkonu a některých omezení, Trinity nyní používá novou databázi pro ukládání nastavení účtu a dat. Počkejte, až Trinity automaticky přenese Vaše data.",
         "problemMigratingYourData": "Objevil se problém s migrací Vašich dat, zkuste to prosím znovu",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "seedMigrationExplanation": "V rámci neustálého úsilí o zlepšení zabezpečení peněženky Trinity, Váš Seed bude přenesen na zdokonalený systém ukládání dat. Počkejte prosím, až Trinity automaticky dokončí proces migrace."
     },
     "ledger": {
         "ready": "Zařízení Ledger je připojené a připravené k práci",

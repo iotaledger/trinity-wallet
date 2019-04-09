@@ -3,6 +3,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import clone from 'lodash/clone';
 import get from 'lodash/get';
 import each from 'lodash/each';
+import every from 'lodash/every';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 import flatMap from 'lodash/flatMap';
@@ -382,7 +383,7 @@ export const constructBundlesFromTransactions = (transactions) => {
  *
  * @returns {array}
  */
-export const filterInvalidBundles = (bundles) => filter(bundles, iota.utils.isBundle);
+export const filterInvalidBundles = (bundles) => filter(bundles, isBundle);
 
 /**
  *   Normalises bundle.
@@ -1011,7 +1012,7 @@ export const constructBundleFromAttachedTrytes = (attachedTrytes, seedStore) => 
                 return seedStore.getDigest(tryteString).then((digest) => {
                     const transactionObject = iota.utils.transactionObject(tryteString, digest);
 
-                    result.push(transactionObject);
+                    result.unshift(transactionObject);
 
                     return result;
                 });
@@ -1020,3 +1021,40 @@ export const constructBundleFromAttachedTrytes = (attachedTrytes, seedStore) => 
         Promise.resolve([]),
     );
 };
+
+/**
+ * Checks if bundle can be traversed
+ *
+ * @method isBundleTraversable
+ *
+ * @param {array} bundle
+ * @param {string} trunkTransaction
+ * @param {string} branchTransaction
+ *
+ * @returns {boolean}
+ */
+export const isBundleTraversable = (bundle, trunkTransaction, branchTransaction) =>
+    !isEmpty(bundle) &&
+    every(
+        orderBy(bundle, ['currentIndex'], ['desc']),
+        (transaction, index, transactions) =>
+            index
+                ? transaction.trunkTransaction === transactions[index - 1].hash &&
+                  // In IRI, tx at lastIndex has branch and trunk swapped, while Entangled pow-bundle does not. See https://github.com/iotaledger/entangled/issues/1008#issuecomment-476608211
+                  (transaction.branchTransaction === trunkTransaction ||
+                      transaction.branchTransaction === branchTransaction)
+                : transaction.trunkTransaction === trunkTransaction &&
+                  transaction.branchTransaction === branchTransaction,
+    );
+
+/**
+ * Wraps iota.utils.isBundle (https://github.com/iotaledger/iota.js/blob/develop/lib/utils/utils.js#L421)
+ * Ensures transaction objects in bundle are in correct (ascending) order
+ *
+ * @method isBundle
+ *
+ * @param {array} bundle
+ *
+ * @returns {boolean}
+ */
+export const isBundle = (bundle) => iota.utils.isBundle(orderBy(bundle, ['currentIndex'], ['asc']));

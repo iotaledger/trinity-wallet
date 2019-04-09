@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { withNamespaces, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FlagSecure from 'react-native-flag-secure-android';
-import RNPrint from 'react-native-print';
-import { paperWallet } from 'shared-modules/images/PaperWallets.js';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import SeedPicker from 'ui/components/SeedPicker';
@@ -86,7 +83,6 @@ class WriteSeedDown extends Component {
     constructor(props) {
         super(props);
         this.openModal = this.openModal.bind(this);
-        Navigation.events().bindComponent(this);
     }
 
     componentDidMount() {
@@ -103,14 +99,6 @@ class WriteSeedDown extends Component {
     }
 
     /**
-     * Wrapper method for printing a blank paper wallet
-     * @method onPrintPress
-     */
-    onPrintPress() {
-        this.print();
-    }
-
-    /**
      * Navigates back to the previous active screen in navigation stack
      * @method onBackPress
      */
@@ -119,75 +107,11 @@ class WriteSeedDown extends Component {
     }
 
     /**
-     *  Triggers blank paper wallet print
-     *  @method print
+     * Navigates back to save your seed
+     * @method onBackPress
      */
-    async print() {
-        const { theme: { body } } = this.props;
-        const blankWalletHTML = `
-            <!DOCTYPE html>
-            <html>
-            <head>
-               <meta charset="utf-8">
-               <style>
-                  html,
-                  body,
-                  #wallet {
-                     padding: 0px;
-                     margin: 0px;
-                     text-align: center;
-                     overflow: hidden;
-                     height: ${isAndroid ? '100vh' : null};
-                     width: ${isAndroid ? '100vw' : null};
-                  }
-                  svg{
-                     height: ${isAndroid ? '100vh' : '110vh'};
-                     width: 100vw;
-                  }
-               </style>
-            </head>
-            <body>
-              ${paperWallet}
-            </body>
-            </html>`;
-        try {
-            Navigation.mergeOptions('appStack', {
-                topBar: {
-                    barStyle: 'default',
-                    visible: true,
-                    animate: false,
-                    buttonColor: '#ffffff',
-                    drawBehind: true,
-                    noBorder: true,
-                    title: {
-                        color: '#ffffff',
-                    },
-                    backButton: {
-                        visible: true,
-                    },
-                    background: {
-                        color: body.bg,
-                        translucent: true,
-                    }
-                },
-            });
-            await RNPrint.print({ html: blankWalletHTML });
-        } catch (err) {
-            console.error(err); // eslint-disable-line no-console
-        }
-    }
-
-    /**
-     * Hides navigation bar
-     *
-     * @method componentDidAppear
-     */
-    componentDidAppear() {
-        Navigation.mergeOptions('appStack', {
-            topBar: {
-                visible: false,
-            },
-        });
+    onDonePress() {
+        navigator.popTo('saveYourSeed');
     }
 
     openModal() {
@@ -253,7 +177,7 @@ class WriteSeedDown extends Component {
                                 delay={100}
                             >
                                 <ChecksumComponent
-                                    seed={tritsToChars(global.onboardingSeed)}
+                                    seed={global.onboardingSeed}
                                     theme={theme}
                                     showModal={this.openModal}
                                 />
@@ -263,10 +187,10 @@ class WriteSeedDown extends Component {
                         <View style={styles.bottomContainer}>
                             <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                                 <DualFooterButtons
-                                    onLeftButtonPress={() => this.onPrintPress()}
-                                    onRightButtonPress={() => this.onBackPress()}
+                                    onLeftButtonPress={() => this.onBackPress()}
+                                    onRightButtonPress={() => this.onDonePress()}
                                     leftButtonText={t('saveYourSeed:printBlankWallet')}
-                                    rightButtonText={t('global:back')}
+                                    rightButtonText={t('done')}
                                 />
                             </AnimatedComponent>
                         </View>

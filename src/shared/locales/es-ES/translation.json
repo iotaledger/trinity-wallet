@@ -55,6 +55,7 @@
         "yes": "Sí",
         "no": "No",
         "okay": "De acuerdo",
+        "skip": "Skip",
         "password": "Contraseña",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "No estoy usando wifi público",
         "printerConfirmation": "No estoy imprimiendo en una impresora publica"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Su dirección",
         "qrOptions": "Opciones QR",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
-        "noTransactionsFound": "No sé encontraron transacciones",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Esconder balance nulo",
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
@@ -494,7 +501,8 @@
         "pow": "Prueba de trabajo",
         "autoPromotion": "Auto-promoción",
         "autoPromotionExplanation": "La auto-promoción ayuda a confirmar sus transacciones en el Tangle. Habilite esta opción si está experimentando dificultades para conseguir que se confirmen sus transacciones.",
-        "autoPromotionPoW": "La auto-promoción solo es posible en los nodos que soportan PoW remota."
+        "autoPromotionPoW": "La auto-promoción solo es posible en los nodos que soportan PoW remota.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Fondo",
@@ -713,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Autocompletado exitoso",
-        "autofillExplanation": "Información de la transacción completada por el link."
+        "autofillExplanation": "Información de la transacción completada por el link.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Error al recuperar los datos de actualización",

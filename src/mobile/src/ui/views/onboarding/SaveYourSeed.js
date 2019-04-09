@@ -126,7 +126,7 @@ class SaveYourSeed extends Component {
      * @method onWriteSeedDownPress
      */
     onWriteSeedDownPress() {
-        navigator.push('writeSeedDown');
+        navigator.push('printBlankTemplate');
     }
 
     /**
@@ -267,24 +267,24 @@ class SaveYourSeed extends Component {
                 'delayPrint',
                 () => {
                     Navigation.mergeOptions('appStack', {
-                      topBar: {
-                          barStyle: 'default',
-                          visible: true,
-                          animate: false,
-                          buttonColor: '#ffffff',
-                          drawBehind: true,
-                          noBorder: true,
-                          title: {
-                              color: '#ffffff',
-                          },
-                          backButton: {
-                              visible: true,
-                          },
-                          background: {
-                              color: body.bg,
-                              translucent: true,
-                          }
-                      },
+                        topBar: {
+                            barStyle: 'default',
+                            visible: true,
+                            animate: false,
+                            buttonColor: '#ffffff',
+                            drawBehind: true,
+                            noBorder: true,
+                            title: {
+                                color: '#ffffff',
+                            },
+                            backButton: {
+                                visible: true,
+                            },
+                            background: {
+                                color: body.bg,
+                                translucent: true,
+                            },
+                        },
                     });
                     RNPrint.print({ html: paperWalletHTML });
                 },

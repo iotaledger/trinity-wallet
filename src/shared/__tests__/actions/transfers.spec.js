@@ -10,7 +10,8 @@ import * as transferUtils from '../../libs/iota/transfers';
 import * as accountsUtils from '../../libs/iota/accounts';
 import * as inputUtils from '../../libs/iota/inputs';
 import { iota, quorum, SwitchingConfig } from '../../libs/iota';
-import { realm, config as realmConfig, Account, Wallet, getRealm, initialise } from '../../storage';
+import { realm, Account, Wallet, getRealm, initialise } from '../../storage';
+import schemas from '../../schemas';
 import accounts from '../__samples__/accounts';
 import { addressData, latestAddressObject } from '../__samples__/addresses';
 import { newZeroValueTransactionTrytes, newValueTransactionTrytes } from '../__samples__/trytes';
@@ -35,7 +36,7 @@ describe('actions: transfers', () => {
         let seedStore;
 
         before(() => {
-            Realm.deleteFile(realmConfig);
+            Realm.deleteFile(schemas[schemas.length - 1]);
             initialise(() => Promise.resolve(new Int8Array(64)));
             seedStore = {
                 performPow: () =>
@@ -60,7 +61,7 @@ describe('actions: transfers', () => {
         });
 
         after(() => {
-            Realm.deleteFile(realmConfig);
+            Realm.deleteFile(schemas[schemas.length - 1]);
         });
 
         describe('when called', () => {
@@ -294,7 +295,7 @@ describe('actions: transfers', () => {
         let seedStore;
 
         before(() => {
-            Realm.deleteFile(realmConfig);
+            Realm.deleteFile(schemas[schemas.length - 1]);
             initialise(() => Promise.resolve(new Int8Array(64)));
             seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
@@ -324,10 +325,8 @@ describe('actions: transfers', () => {
                 .reply(200, (_, body) => {
                     if (body.command === 'getTransactionsToApprove') {
                         return {
-                            branchTransaction:
-                                'MFZXHOXKGVVBDGSVXIGEFBFDXICQDK9UQFVSQCAJMZICRXDGBRZMHHJUGTDPWTEHWSREZFDCRRYD99999',
-                            trunkTransaction:
-                                'OAAMETLECXOVQNTTAKCNWPZSQALUYEGTO9QGEQL9ST9RFJ9JPNBHTOABJQTCIHKMNUMHEKZJSFYT99999',
+                            branchTransaction: '9'.repeat(81),
+                            trunkTransaction: '9'.repeat(81),
                         };
                     }
 
@@ -345,7 +344,7 @@ describe('actions: transfers', () => {
         });
 
         after(() => {
-            Realm.deleteFile(realmConfig);
+            Realm.deleteFile(schemas[schemas.length - 1]);
         });
 
         describe('zero value transactions', () => {

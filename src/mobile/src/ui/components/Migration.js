@@ -3,7 +3,7 @@ import sample from 'lodash/sampleSize';
 import React, { Component } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import timer from 'react-native-timer';
 import { withNamespaces } from 'react-i18next';
 import { startTrackingProgress } from 'shared-modules/actions/progress';
@@ -132,7 +132,7 @@ class Migration extends Component {
         if (this.state.hasCompletedRealmMigration) {
             return t('seedMigrationExplanation');
         }
-        return `${t('dataMigrationExplanation')} {t('loading:thisMayTake')} {t('doNotMinimise')}`;
+        return `${t('dataMigrationExplanation')} ${t('loading:thisMayTake')} ${t('loading:doNotMinimise')}`;
     }
 
     /**
@@ -164,18 +164,7 @@ class Migration extends Component {
      */
     navigateToLoadingScreen() {
         KeepAwake.deactivate();
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'loading',
-                options: {
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                },
-            },
-        });
+        navigator.setStackRoot('loading');
     }
 
     /**

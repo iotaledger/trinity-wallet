@@ -71,6 +71,7 @@ describe('Reducer: settings', () => {
                 },
                 completedMigration: false,
                 ignoreProxy: false,
+                deepLinking: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -579,6 +580,25 @@ describe('Reducer: settings', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 acceptedPrivacy: true,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe(ActionTypes.SET_DEEP_LINKING, () => {
+        it('should set deepLinking to true', () => {
+            const initialState = {
+                deepLinking: false,
+            };
+
+            const action = {
+                type: ActionTypes.SET_DEEP_LINKING,
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                deepLinking: true,
             };
 
             expect(newState).to.eql(expectedState);

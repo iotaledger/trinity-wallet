@@ -250,14 +250,14 @@ describe('Reducer: ui', () => {
         });
     });
 
-    describe('IOTA/APP/WALLET/SET_DEEP_LINK', () => {
+    describe('IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST', () => {
         it('should set "sendAddressFieldText" state prop to "address" in action', () => {
             const initialState = {
                 sendAddressFieldText: '',
             };
 
             const action = {
-                type: 'IOTA/APP/WALLET/SET_DEEP_LINK',
+                type: 'IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST',
                 address: '9'.repeat(81),
             };
 
@@ -275,7 +275,7 @@ describe('Reducer: ui', () => {
             };
 
             const action = {
-                type: 'IOTA/APP/WALLET/SET_DEEP_LINK',
+                type: 'IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST',
                 amount: '100',
             };
 
@@ -293,7 +293,7 @@ describe('Reducer: ui', () => {
             };
 
             const action = {
-                type: 'IOTA/APP/WALLET/SET_DEEP_LINK',
+                type: 'IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST',
                 message: 'YNWA',
             };
 

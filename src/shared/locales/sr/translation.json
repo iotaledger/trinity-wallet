@@ -55,6 +55,7 @@
         "yes": "Da",
         "no": "Ne",
         "okay": "U redu",
+        "skip": "Skip",
         "password": "Lozinka",
         "unrecognisedPassword": "Lozinka nije prepoznata",
         "unrecognisedPasswordExplanation": "Lozinka nije prepoznata. Pokušajte ponovo.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Vaša adresa",
         "qrOptions": "QR opcije",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Heš paketa kopiran",
-        "noTransactionsFound": "Nisu pronađene transakcije",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Sakrij transakcije bez sredstava",
         "bundleHashCopiedExplanation": "Heš paketa je kopiran na klipbord.",
         "addressCopied": "Adresa kopirana",
@@ -494,7 +501,8 @@
         "pow": "PoW",
         "autoPromotion": "Automatska promocija",
         "autoPromotionExplanation": "Automatska promocija pomaže u potvrdi vaše transakcije na Tangle-u. Omogućite ovu postavku ako imate problema s potvrđivanjem vaših transakcija.",
-        "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW."
+        "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadina",
@@ -713,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Uspešno automatsko popunjavanje",
-        "autofillExplanation": "Podaci o transakciji uspešno automatski popunjeni sa linka."
+        "autofillExplanation": "Podaci o transakciji uspešno automatski popunjeni sa linka.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom učitavanja podataka o ažuriranju",

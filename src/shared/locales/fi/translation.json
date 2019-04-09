@@ -55,6 +55,7 @@
         "yes": "Kyllä",
         "no": "Ei",
         "okay": "Selvä",
+        "skip": "Skip",
         "password": "Salasana",
         "unrecognisedPassword": "Tunnistamaton salasana",
         "unrecognisedPasswordExplanation": "Salasanaa ei tunnistettu. Yritä uudelleen.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Osoitteesi",
         "qrOptions": "QR-koodi asetukset",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Kokoelman tiivisteluku kopioitu",
-        "noTransactionsFound": "Tapahtumia ei löytynyt",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Piilota nollasaldo",
         "bundleHashCopiedExplanation": "Kokoelman tiivisteluku on kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
@@ -494,7 +501,8 @@
         "pow": "Laskenta-asetukset",
         "autoPromotion": "Siirron edistäminen",
         "autoPromotionExplanation": "Automaattinen edistäminen auttaa varmistamaan siirron tangle-verkossa. Laita tämä asetus päälle jos siirron varmistuksessa esiintyy ongelmia.",
-        "autoPromotionPoW": "Automaattinen edistäminen toimii vain palvelimilla jotka tukevat laskentatyöntekoa (PoW)."
+        "autoPromotionPoW": "Automaattinen edistäminen toimii vain palvelimilla jotka tukevat laskentatyöntekoa (PoW).",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Tausta",
@@ -713,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Tiedot haettu onnistuneesti",
-        "autofillExplanation": "Siirron tilitiedot noudettu automaattisesti linkin kautta."
+        "autofillExplanation": "Siirron tilitiedot noudettu automaattisesti linkin kautta.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Virhe haettaessa päivityksiä",

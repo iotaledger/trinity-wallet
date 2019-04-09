@@ -55,6 +55,7 @@
         "yes": "Igen",
         "no": "Nem",
         "okay": "Rendben",
+        "skip": "Skip",
         "password": "Jelszó",
         "unrecognisedPassword": "Helytelen jelszó",
         "unrecognisedPasswordExplanation": "Helytelen jelszó. Kérjük, próbálja újra.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Nem használok mindenki által hozzáférhető WiFi hálózatot",
         "printerConfirmation": "Nem használok mindenki által hozzáférhető nyomtatót"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Ön címe",
         "qrOptions": "QR kód beállítások",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Tranzakciós csomag hash másolva",
-        "noTransactionsFound": "Nincs még tranzakció",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Nulla egyenleg elrejtése",
         "bundleHashCopiedExplanation": "A tranzakciós csomag hash a vágólapra lett másolva.",
         "addressCopied": "Cím másolva",
@@ -494,7 +501,8 @@
         "pow": "Kiszabott munka elvégzése",
         "autoPromotion": "Auto-tranzakció előrehelyezés",
         "autoPromotionExplanation": "Az automatikus tranzakció előrehelyezés segítségével a tranzakciók hamarabb teljesülhetnek. Engedélyezze ezt a beállítást, ha a tranzakciói sokáig nem teljesülnek.",
-        "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, amelyek támogatják a kiszabott munka távoli elvégzését."
+        "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, amelyek támogatják a kiszabott munka távoli elvégzését.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Háttér",
@@ -713,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Automatikus kitöltés sikeres",
-        "autofillExplanation": "Tranzakciós adatok automatikus kitöltése link alapján."
+        "autofillExplanation": "Tranzakciós adatok automatikus kitöltése link alapján.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Frissítés adatletöltési hiba",

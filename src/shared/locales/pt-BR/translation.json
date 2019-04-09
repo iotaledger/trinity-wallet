@@ -55,6 +55,7 @@
         "yes": "Sim",
         "no": "Não",
         "okay": "Ok",
+        "skip": "Skip",
         "password": "Senha",
         "unrecognisedPassword": "Senha Inválida",
         "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Não estou em wifi público",
         "printerConfirmation": "Não estou imprimindo em uma impressora pública"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Seu endereço",
         "qrOptions": "Opções de QR",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Pacote hash copiado",
-        "noTransactionsFound": "Nenhuma transação encontrada",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Esconder saldos zero",
         "bundleHashCopiedExplanation": "A chave do pacote foi copiada para a área de transferência.",
         "addressCopied": "Endereço copiado",
@@ -494,7 +501,8 @@
         "pow": "Prova de Trabalho",
         "autoPromotion": "Autopromoção",
         "autoPromotionExplanation": "Autopromoção ajuda a confirmar suas transações no Tangle. Habilite essa configuração se você está tendo dificuldade em confirmar suas transações.",
-        "autoPromotionPoW": "Autopromoção só é possível em servidores que suportam prova de trabalho remoto."
+        "autoPromotionPoW": "Autopromoção só é possível em servidores que suportam prova de trabalho remoto.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Plano de Fundo",
@@ -689,11 +697,11 @@
         "gettingTransactionsToApprove": "Obtendo as transações para aprovação",
         "proofOfWork": "Completando a aprovação",
         "broadcasting": "Transmitindo",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Preparando dados",
+        "migratingSettings": "Migrando configurações",
+        "migratingAccounts": "Migrando contas",
+        "cleaningUpOldData": "Limpando dados antigos",
+        "migrationComplete": "Migração completa",
         "transferComplete": "Transferência concluída"
     },
     "snapshotTransition": {
@@ -713,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Sucesso no preenchimento automático",
-        "autofillExplanation": "Dados da transação preenchida automaticamente através do link."
+        "autofillExplanation": "Dados da transação preenchida automaticamente através do link.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",
@@ -773,10 +786,10 @@
         "sweepConfirmationTitle": "Confirmação de varredura"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "dataMigration": "Migração de dados",
+        "dataMigrationExplanation": "Devido ao desempenho e limitações de armazenamento, a Trinity está usando um novo banco de dados para armazenar as configurações e dados da conta. Por favor aguarde enquanto a Trinity migra automaticamente seus dados existentes.",
+        "problemMigratingYourData": "Houve um problema de migração de dados. Por favor, tente novamente",
+        "seedMigrationExplanation": "Como parte do esforço para melhorar a segurança da carteira Trinity, sua Seed será migrada para uma metodologia de armazenamento aprimorada. Por favor aguarde enquanto a Trinity migra automaticamente o armazenamento das Seeds."
     },
     "ledger": {
         "ready": "Dispositivo Ledger conectado e pronto",
@@ -786,8 +799,8 @@
         "proceedWithLedger": "Continuar com a configuração de Ledger",
         "accountIndex": "Índice de conta",
         "accountPage": "Página da conta",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Acesso de dispositivo Ledger cancelado",
+        "actionCancelledExplanation": "Não é possível executar a ação sem acesso ao dispositivo Ledger.",
         "chooseAccountIndex": "Escolha o seu índice da conta Ledger",
         "accountIndexExplanation": "Seu Ledger pode armazenar varias Seeds. Cada Seed é identificada por um número de índice único. Um índice ainda não usado foi pre-selecionado, mas sinta-se a vontade de escolher o seu próprio. Certifique-se de anotar o número do índice escolhido.",
         "accountPageExplanation": "Algumas carteiras de terceiros exigem páginas.",

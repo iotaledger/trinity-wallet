@@ -120,7 +120,7 @@ class Loading extends Component {
         /** @ignore */
         changeHomeScreenRoute: PropTypes.func.isRequired,
         /** @ignore */
-        deepLinkActive: PropTypes.bool.isRequired,
+        deepLinkRequestActive: PropTypes.bool.isRequired,
         /** @ignore */
         setLoginRoute: PropTypes.func.isRequired,
         /** All stored account names */
@@ -147,7 +147,7 @@ class Loading extends Component {
             additionalAccountMeta,
             selectedAccountName,
             selectedAccountMeta,
-            deepLinkActive,
+            deepLinkRequestActive,
         } = this.props;
         leaveNavigationBreadcrumb('Loading');
         this.props.setLoginRoute('login');
@@ -165,9 +165,7 @@ class Loading extends Component {
         }
         this.props.setSetting('mainSettings');
         this.getWalletData();
-        if (deepLinkActive) {
-            this.props.changeHomeScreenRoute('send');
-        } else {
+        if (!deepLinkRequestActive) {
             this.props.changeHomeScreenRoute('balance');
         }
         if (addingAdditionalAccount) {
@@ -357,7 +355,7 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     isThemeDark: getThemeFromState(state).isDark,
     currency: state.settings.currency,
-    deepLinkActive: state.wallet.deepLinkActive,
+    deepLinkRequestActive: state.wallet.deepLinkRequestActive,
 });
 
 const mapDispatchToProps = {

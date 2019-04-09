@@ -55,6 +55,7 @@
         "yes": "是",
         "no": "否",
         "okay": "確定",
+        "skip": "Skip",
         "password": "密碼",
         "unrecognisedPassword": "密碼不符",
         "unrecognisedPasswordExplanation": "密碼不符，請再試一次。",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "您的地址",
         "qrOptions": "QR 碼選項",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "交易組雜湊值已複製",
-        "noTransactionsFound": "找不到交易紀錄",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "隱藏零元紀錄",
         "bundleHashCopiedExplanation": "交易組的雜湊值已複製到剪貼簿。",
         "addressCopied": "地址已複製",
@@ -494,7 +501,8 @@
         "pow": "工作量證明",
         "autoPromotion": "自動促進",
         "autoPromotionExplanation": "自動促進會協助確認您在 Tangle 上的交易。如果您在確認交易時遇到困難的話，請啟用此設定。",
-        "autoPromotionPoW": "自動促進僅能支援遠端工作量證明的節點上使用。"
+        "autoPromotionPoW": "自動促進僅能支援遠端工作量證明的節點上使用。",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -713,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "自動填入成功",
-        "autofillExplanation": "從連結自動填入交易資料。"
+        "autofillExplanation": "從連結自動填入交易資料。",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "取得更新資料時發生錯誤",

@@ -158,7 +158,6 @@ class ChangePassword extends Component {
                             onValidTextChange={(password) => this.setState({ currentPassword: password })}
                             returnKeyType="next"
                             theme={theme}
-                            widget="empty"
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically

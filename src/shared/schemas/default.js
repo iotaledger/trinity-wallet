@@ -286,6 +286,13 @@ export const WalletSettingsSchema = {
             type: 'bool',
             default: false,
         },
+        /**
+         * Determines if deep linking is enabled
+         */
+        deepLinking: {
+            type: 'bool',
+            default: false,
+        },
     },
 };
 
@@ -345,13 +352,6 @@ export const AccountInfoDuringSetupSchema = {
             default: false,
         },
         meta: 'AccountMeta',
-        /**
-         * Determines if the account info is complete and account ready to be created and synced
-         */
-        completed: {
-            type: 'bool',
-            default: false,
-        },
     },
 };
 
@@ -379,3 +379,18 @@ export const AccountMetaSchema = {
         },
     },
 };
+
+export default [
+    TransactionSchema,
+    WalletSchema,
+    NotificationsSettingsSchema,
+    AddressSchema,
+    AddressSpendStatusSchema,
+    ErrorLogSchema,
+    AccountSchema,
+    WalletSettingsSchema,
+    WalletVersionsSchema,
+    NodeSchema,
+    AccountInfoDuringSetupSchema,
+    AccountMetaSchema,
+];

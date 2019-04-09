@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>iota</string>
+			</array>
+		</dict>
+	</array>
 	<key>BugsnagAPIKey</key>
 	<string>fakeAPIkey</string>
 	<key>CFBundleAllowMixedLocalizations</key>
@@ -25,7 +34,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>49</string>
+	<string>52</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
@@ -60,6 +69,8 @@
 	<string>Trinity requires access to Face ID in order to enable biometric authentication.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>2018 IOTA Foundation. All rights reserved.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSMotionUsageDescription</key>
