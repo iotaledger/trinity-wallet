@@ -501,7 +501,8 @@
         "pow": "Kiszabott munka elvégzése",
         "autoPromotion": "Auto-tranzakció előrehelyezés",
         "autoPromotionExplanation": "Az automatikus tranzakció előrehelyezés segítségével a tranzakciók hamarabb teljesülhetnek. Engedélyezze ezt a beállítást, ha a tranzakciói sokáig nem teljesülnek.",
-        "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, amelyek támogatják a kiszabott munka távoli elvégzését."
+        "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, amelyek támogatják a kiszabott munka távoli elvégzését.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Háttér",
@@ -720,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Automatikus kitöltés sikeres",
-        "autofillExplanation": "Tranzakciós adatok automatikus kitöltése link alapján."
+        "autofillExplanation": "Tranzakciós adatok automatikus kitöltése link alapján.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Frissítés adatletöltési hiba",

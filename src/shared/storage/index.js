@@ -509,6 +509,19 @@ class Wallet {
     }
 
     /**
+     * Updates deep linking setting.
+     *
+     * @method updateDeepLinkingSetting
+     * @param {boolean} payload
+     */
+    static updateDeepLinkingSetting() {
+        realm.write(() => {
+            const settings = Wallet.latestSettings;
+            settings.deepLinking = !settings.deepLinking;
+        });
+    }
+
+    /**
      * Updates configuration for showing/hiding empty transactions.
      *
      * @method toggleEmptyTransactionsDisplay
@@ -516,7 +529,6 @@ class Wallet {
     static toggleEmptyTransactionsDisplay() {
         realm.write(() => {
             const settings = Wallet.latestSettings;
-
             settings.hideEmptyTransactions = !settings.hideEmptyTransactions;
         });
     }

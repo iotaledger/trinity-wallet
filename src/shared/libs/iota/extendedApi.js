@@ -18,6 +18,7 @@ import {
     WERE_ADDRESSES_SPENT_FROM_REQUEST_TIMEOUT,
     GET_BALANCES_REQUEST_TIMEOUT,
     ATTACH_TO_TANGLE_REQUEST_TIMEOUT,
+    GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
 } from '../../config';
 import {
@@ -49,6 +50,8 @@ const getApiTimeout = (method, payload) => {
             return GET_NODE_INFO_REQUEST_TIMEOUT;
         case 'attachToTangle':
             return ATTACH_TO_TANGLE_REQUEST_TIMEOUT;
+        case 'getTransactionsToApprove':
+            return GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT;
         default:
             return DEFAULT_NODE_REQUEST_TIMEOUT;
     }
@@ -387,13 +390,17 @@ const sendTransferAsync = (provider) => (
  */
 const getTransactionsToApproveAsync = (provider) => (reference = {}, depth = DEFAULT_DEPTH) =>
     new Promise((resolve, reject) => {
-        getIotaInstance(provider).api.getTransactionsToApprove(depth, reference, (err, transactionsToApprove) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(transactionsToApprove);
-            }
-        });
+        getIotaInstance(provider, getApiTimeout('getTransactionsToApprove')).api.getTransactionsToApprove(
+            depth,
+            reference,
+            (err, transactionsToApprove) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(transactionsToApprove);
+                }
+            },
+        );
     });
 
 /**

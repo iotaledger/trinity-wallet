@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -216,10 +215,10 @@ class CustomTextInput extends Component {
     onChangeText(value) {
         const { isPasswordInput, isSeedInput, onValidTextChange } = this.props;
         if (isSeedInput) {
-            if (value && !value.match(VALID_SEED_REGEX)) {
+            if (value && !value.match(/^[a-zA-Z9]+$/)) {
                 return;
             }
-            return onValidTextChange(trytesToTrits(value));
+            return onValidTextChange(trytesToTrits(value.toUpperCase()));
         } else if (isPasswordInput) {
             return onValidTextChange(stringToUInt8(value));
         }
@@ -303,7 +302,8 @@ class CustomTextInput extends Component {
         const { theme, containerStyle } = this.props;
         return (
             <TouchableOpacity
-                onPress={() => this.onSecretMaskPress()}
+                onPressIn={() => this.onSecretMaskPress()}
+                onPressOut={() => this.onSecretMaskPress()}
                 style={styles.widgetButton}
                 hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
             >
