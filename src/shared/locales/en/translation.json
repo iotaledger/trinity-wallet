@@ -244,6 +244,7 @@
     },
     "languageSetup": {
         "language": "Language",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Let's get started"
     },
     "login": {
@@ -453,7 +454,7 @@
         "keepSafe": "Please keep your seed safe."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "welcome": "Thank you for downloading Trinity Mobile"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",

@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
-import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
-import balloonsAnimation from 'shared-modules/animations/language.json';
-import LottieView from 'lottie-react-native';
 import { connect } from 'react-redux';
+import LottieView from 'lottie-react-native';
+import welcomeAnimation from 'shared-modules/animations/welcome.json';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { Styling } from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
-import Header from 'ui/components/Header';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
+import { width } from 'libs/dimensions';
+import Header from 'ui/components/Header';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -21,26 +22,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1.6,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
     midContainer: {
-        flex: 2.4,
+        flex: 2.6,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center'
     },
     bottomContainer: {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    infoText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize4,
-        backgroundColor: 'transparent',
-        textAlign: 'center',
-        lineHeight: height / 30,
     },
     animation: {
         width: width / 1.35,
@@ -48,34 +42,63 @@ const styles = StyleSheet.create({
     }
 });
 
-/** Onboarding Complete screen componenet */
-class OnboardingComplete extends Component {
+/** Welcome screen component */
+class Welcome extends Component {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        acceptedPrivacy: PropTypes.bool.isRequired,
+        /** @ignore */
+        acceptedTerms: PropTypes.bool.isRequired,
     };
 
-    componentDidMount() {
-        leaveNavigationBreadcrumb('OnboardingComplete');
+    constructor(props) {
+        super(props);
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('Welcome');
+    }
+
+    /**
+     * Navigates to the next screen
+     * @method onNextPress
+     */
     onNextPress() {
-        navigator.setStackRoot('loading');
+        navigator.push(this.getNextRoute());
+    }
+
+    /**
+     * Returns next navigation route
+     * @method getNextRoute
+     * @returns {function}
+     */
+    getNextRoute() {
+        const { acceptedTerms, acceptedPrivacy } = this.props;
+        let nextRoute = 'walletSetup';
+        if (!acceptedTerms && !acceptedPrivacy) {
+            nextRoute = 'termsAndConditions';
+        } else if (acceptedTerms && !acceptedPrivacy) {
+            nextRoute = 'privacyPolicy';
+        }
+        return nextRoute;
     }
 
     render() {
-        const { t, theme: { body, primary } } = this.props;
+        const { t, theme: { body } } = this.props;
+
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
                     <AnimatedComponent
-                        animationInType={['fadeIn','slideInRight']}
-                        animationOutType={['fadeOut', 'slideOutLeft']}
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
                     >
-                        <Header textSize={Styling.fontSize5} textColor={body.color}>{t('walletReady')}</Header>
+                        <Header textColor={body.color}>{t('welcome')}</Header>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
@@ -89,27 +112,19 @@ class OnboardingComplete extends Component {
                             ref={(animation) => {
                                 this.animation = animation;
                             }}
-                            source={balloonsAnimation}
+                            source={welcomeAnimation}
+                            style={styles.animation}
                             loop
                             autoPlay
-                            style={styles.animation}
                         />
                     </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <AnimatedComponent
-                        delay={0}
-                        animationInType={['fadeIn','slideInRight']}
-                        animationOutType={['fadeOut', 'slideOutLeft']}
-                    >
+                    <AnimatedComponent animationInType={['fadeIn','slideInRight']} animationOutType={['fadeOut','slideOutLeft']} delay={0}>
                         <SingleFooterButton
                             onButtonPress={() => this.onNextPress()}
                             testID="languageSetup-next"
-                            buttonStyle={{
-                                wrapper: { backgroundColor: primary.color },
-                                children: { color: primary.body },
-                            }}
-                            buttonText={t('openYourWallet')}
+                            buttonText={t('continue')}
                         />
                     </AnimatedComponent>
                 </View>
@@ -120,6 +135,13 @@ class OnboardingComplete extends Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
+    acceptedPrivacy: state.settings.acceptedPrivacy,
+    acceptedTerms: state.settings.acceptedTerms,
 });
 
-export default withNamespaces(['onboardingComplete', 'global'])(connect(mapStateToProps)(OnboardingComplete));
+const mapDispatchToProps = {
+    generateAlert,
+    toggleModalActivity,
+};
+
+export default withNamespaces(['welcome', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Welcome));
