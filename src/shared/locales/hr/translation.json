@@ -722,11 +722,11 @@
     "deepLink": {
         "autofill": "Uspješno automatsko popunjavanje",
         "autofillExplanation": "Podaci transakcije uspješno automatski popunjeni iz linka.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingOverview": "Deep links su klikabilni linkovi tipa (iota://...) koji automatski popunjavaju transakcijske podatke u vašem Trinity novčaniku.",
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingUpdated": "Deep linking postavke",
+        "deepLinkingEnabled": "Omogućili ste deep linking.",
+        "deepLinkingDisabled": "Onemogućili ste deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",
