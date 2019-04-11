@@ -96,6 +96,26 @@ export const decrypt = async (cipherText, hash) => {
 };
 
 /**
+ * Sets up main account in keychain
+ * @param {string} Password - Plain text password for decryption
+ * @returns {boolean}
+ */
+export const initVault = async (password) => {
+    try {
+        const vault = await Electron.readKeychain(ACC_MAIN);
+        const decryptedVault = vault === null ? {} : await decrypt(vault, password);
+
+        const updatedVault = await encrypt(decryptedVault, password);
+
+        await Electron.setKeychain(ACC_MAIN, updatedVault);
+
+        return true;
+    } catch (err) {
+        throw err;
+    }
+};
+
+/**
  * Set and store random salt to keychain
  */
 export const initKeychain = async () => {
@@ -108,10 +128,11 @@ export const initKeychain = async () => {
 /**
  * Check for valid vault key
  * @param {array} Key - Account decryption key
- * @returns {boolean | string} - Returns a Two-Factor authentication code or boolean of none set
+ * @returns {boolean | string}
  */
 export const authorize = async (key) => {
     const vault = await Electron.readKeychain(ACC_MAIN);
+
     if (!vault) {
         throw new Error('Local storage not available');
     }
