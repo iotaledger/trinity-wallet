@@ -29,7 +29,6 @@
     "fix-modal": "node node_modules/react-native-modal-translucent/scripts/translucent-modal.js"
   },
   "dependencies": {
-    "authenticator": "^1.1.3",
     "axios": "^0.18.0",
     "bugsnag-react-native": "^2.11.0",
     "events": "^1.1.1",

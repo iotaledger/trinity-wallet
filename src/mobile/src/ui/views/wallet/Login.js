@@ -2,7 +2,6 @@ import size from 'lodash/size';
 import { withNamespaces } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
 import SplashScreen from 'react-native-splash-screen';
@@ -19,9 +18,8 @@ import WithDeepLinking from 'ui/components/DeepLinking';
 import NodeOptionsOnLogin from 'ui/views/wallet/NodeOptionsOnLogin';
 import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import Enter2FAComponent from 'ui/components/Enter2FA';
 import SeedStore from 'libs/SeedStore';
-import { authorize, getTwoFactorAuthKeyFromKeychain, hash } from 'libs/keychain';
+import { authorize, hash } from 'libs/keychain';
 import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
@@ -39,8 +37,6 @@ class Login extends Component {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** @ignore */
-        is2FAEnabled: PropTypes.bool.isRequired,
         /** @ignore */
         setUserActivity: PropTypes.func.isRequired,
         /** @ignore */
@@ -63,7 +59,6 @@ class Login extends Component {
             nextLoginRoute: props.loginRoute,
             password: null,
         };
-        this.onComplete2FA = this.onComplete2FA.bind(this);
         this.onLoginPress = this.onLoginPress.bind(this);
     }
 
@@ -98,14 +93,12 @@ class Login extends Component {
 
     /**
      * Validates password and logs in user if accepted
-     * Navigates to 2FA validation if activated
      * @method onLoginPress
      * @returns {Promise<void>}
      */
     async onLoginPress() {
         const {
             t,
-            is2FAEnabled,
             hasConnection,
             forceUpdate,
             completedMigration,
@@ -127,11 +120,7 @@ class Login extends Component {
                 const completedSeedMigration = typeof (await seedStore.getSeeds())[selectedAccountName] !== 'string';
                 global.passwordHash = pwdHash;
                 delete this.state.password;
-                if (!is2FAEnabled) {
-                    this.navigateTo(completedMigration && completedSeedMigration ? 'loading' : 'migration');
-                } else {
-                    this.props.setLoginRoute('complete2FA');
-                }
+                this.navigateTo(completedMigration && completedSeedMigration ? 'loading' : 'migration');
             } catch (error) {
                 this.props.generateAlert(
                     'error',
@@ -139,36 +128,6 @@ class Login extends Component {
                     t('global:unrecognisedPasswordExplanation'),
                 );
             }
-        }
-    }
-
-    /**
-     * Validates 2FA token and logs in user if accepted
-     * @method onComplete2FA
-     */
-    async onComplete2FA(token) {
-        const { t, hasConnection, completedMigration } = this.props;
-        if (!hasConnection) {
-            return;
-        }
-        if (token) {
-            let key = await getTwoFactorAuthKeyFromKeychain(global.passwordHash);
-            if (key === null) {
-                this.props.generateAlert(
-                    'error',
-                    t('global:somethingWentWrong'),
-                    t('global:somethingWentWrongTryAgain'),
-                );
-            }
-            const verified = authenticator.verifyToken(key, token);
-            if (verified) {
-                this.navigateTo(completedMigration ? 'loading' : 'migration');
-                key = null;
-            } else {
-                this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
-            }
-        } else {
-            this.props.generateAlert('error', t('twoFA:emptyCode'), t('twoFA:emptyCodeExplanation'));
         }
     }
 
@@ -181,7 +140,7 @@ class Login extends Component {
      * @returns {object}
      */
     getAnimation(currentLoginRoute, nextLoginRoute, animationIn = true) {
-        const routes = ['login', 'nodeOptions', 'customNode', 'nodeSelection', 'complete2FA'];
+        const routes = ['login', 'nodeOptions', 'customNode', 'nodeSelection'];
         if (routes.indexOf(currentLoginRoute) < routes.indexOf(nextLoginRoute)) {
             if (animationIn) {
                 return ['slideInRightSmall', 'fadeIn'];
@@ -236,15 +195,7 @@ class Login extends Component {
                         isFingerprintEnabled={isFingerprintEnabled}
                     />
                 )}
-                {nextLoginRoute === 'complete2FA' && (
-                    <Enter2FAComponent
-                        verify={this.onComplete2FA}
-                        cancel={() => this.props.setLoginRoute('login')}
-                        theme={theme}
-                    />
-                )}
-                {nextLoginRoute !== 'complete2FA' &&
-                    nextLoginRoute !== 'login' && <NodeOptionsOnLogin loginRoute={nextLoginRoute} />}
+                {nextLoginRoute !== 'login' && <NodeOptionsOnLogin loginRoute={nextLoginRoute} />}
             </AnimatedComponent>
         );
     }
@@ -254,7 +205,6 @@ const mapStateToProps = (state) => ({
     node: state.settings.node,
     nodes: state.settings.nodes,
     theme: getThemeFromState(state),
-    is2FAEnabled: state.settings.is2FAEnabled,
     loginRoute: state.ui.loginRoute,
     hasConnection: state.wallet.hasConnection,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
@@ -273,5 +223,5 @@ const mapDispatchToProps = {
 };
 
 export default WithDeepLinking()(
-    withNamespaces(['login', 'global', 'twoFA'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
+    withNamespaces(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
 );

@@ -384,7 +384,7 @@ class SeedVaultExportComponent extends Component {
                             this.passwordFields = ref;
                         }}
                         onAcceptPassword={() => this.navigateToStep('isExporting')}
-                        passwordLabel={t('twoFA:key')}
+                        passwordLabel={t('key')}
                         reentryLabel={t('retypeKey')}
                         password={password}
                         reentry={reentry}
