@@ -2082,28 +2082,6 @@
       "integrity": "sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==",
       "dev": true
     },
-    "authenticator": {
-      "version": "1.1.5",
-      "resolved": "https://registry.npmjs.org/authenticator/-/authenticator-1.1.5.tgz",
-      "integrity": "sha512-eaT0Trfxka28DkljLQDxuoSn9uDTaYIoXhZMsAw3Z54fNC7BMIsvIxfG6Y5s+y02CH59IIyY3p1EOMqeIpljWQ==",
-      "requires": {
-        "authenticator-cli": "^1.0.5",
-        "notp": "^2.0.3",
-        "thirty-two": "0.0.2"
-      },
-      "dependencies": {
-        "authenticator-cli": {
-          "version": "1.0.5",
-          "resolved": "https://registry.npmjs.org/authenticator-cli/-/authenticator-cli-1.0.5.tgz",
-          "integrity": "sha512-8FjXzLnytd93zE9IxtOr7/uptlxGBjQhWw6qEjPPLhfq1TqrUpaBEhPYOErtHWIPuveAgzHHEBgp2bh6GdQ6Ew==",
-          "requires": {
-            "authenticator": "^1.1.0",
-            "cli": "^1.0.1",
-            "qrcode-terminal": "^0.12.0"
-          }
-        }
-      }
-    },
     "aws-sign2": {
       "version": "0.7.0",
       "resolved": "https://registry.npmjs.org/aws-sign2/-/aws-sign2-0.7.0.tgz",
@@ -3274,15 +3252,6 @@
       "dev": true,
       "requires": {
         "source-map": "~0.6.0"
-      }
-    },
-    "cli": {
-      "version": "1.0.1",
-      "resolved": "https://registry.npmjs.org/cli/-/cli-1.0.1.tgz",
-      "integrity": "sha1-IoF1NPJL+klQw01TLUjsvGIbjBQ=",
-      "requires": {
-        "exit": "0.1.2",
-        "glob": "^7.1.1"
       }
     },
     "cli-boxes": {
@@ -5060,11 +5029,6 @@
           }
         }
       }
-    },
-    "exit": {
-      "version": "0.1.2",
-      "resolved": "https://registry.npmjs.org/exit/-/exit-0.1.2.tgz",
-      "integrity": "sha1-BjJjj42HfMghB9MKD/8aF8uhzQw="
     },
     "exit-hook": {
       "version": "1.1.1",
@@ -8495,6 +8459,12 @@
                 "ms": "0.7.1"
               }
             },
+            "deep-extend": {
+              "version": "0.4.1",
+              "resolved": "https://registry.npmjs.org/deep-extend/-/deep-extend-0.4.1.tgz",
+              "integrity": "sha1-7+QRPQgIX05vlod1mBD4B0aeIlM=",
+              "optional": true
+            },
             "delayed-stream": {
               "version": "1.0.0",
               "resolved": "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz",
@@ -8977,6 +8947,7 @@
               "integrity": "sha1-Q2UbdrauU7XIAvEVH6P8OwWZack=",
               "optional": true,
               "requires": {
+                "deep-extend": "~0.4.0",
                 "ini": "~1.3.0",
                 "minimist": "^1.2.0",
                 "strip-json-comments": "~1.0.4"
@@ -11706,11 +11677,6 @@
       "integrity": "sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==",
       "dev": true
     },
-    "notp": {
-      "version": "2.0.3",
-      "resolved": "https://registry.npmjs.org/notp/-/notp-2.0.3.tgz",
-      "integrity": "sha1-qf0R4lz+HMs5/GaJVE7kwQ75pXc="
-    },
     "npm-bundled": {
       "version": "1.0.6",
       "resolved": "https://registry.npmjs.org/npm-bundled/-/npm-bundled-1.0.6.tgz",
@@ -12834,11 +12800,6 @@
       "version": "0.0.0",
       "resolved": "https://registry.npmjs.org/qr.js/-/qr.js-0.0.0.tgz",
       "integrity": "sha1-ys6GOG9ZoNuAUPqQ2baw6IoeNk8="
-    },
-    "qrcode-terminal": {
-      "version": "0.12.0",
-      "resolved": "https://registry.npmjs.org/qrcode-terminal/-/qrcode-terminal-0.12.0.tgz",
-      "integrity": "sha512-EXtzRZmC+YGmGlDFbXKxQiMZNwCLEO6BANKXG4iCtSIM0yqc/pappSx3RIKr4r0uh5JsBckOXeKrB3Iz7mdQpQ=="
     },
     "qs": {
       "version": "6.5.2",
@@ -14934,11 +14895,6 @@
           "integrity": "sha1-cVuW6phBWTzDMGeSP17GDr2k99c="
         }
       }
-    },
-    "thirty-two": {
-      "version": "0.0.2",
-      "resolved": "https://registry.npmjs.org/thirty-two/-/thirty-two-0.0.2.tgz",
-      "integrity": "sha1-QlPinYywWPBIAmfFaYwOSSflS2o="
     },
     "throttleit": {
       "version": "0.0.2",
