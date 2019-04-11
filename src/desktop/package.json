@@ -142,7 +142,7 @@
   },
   "dependencies": {
     "@babel/register": "7.0.0",
-    "@ledgerhq/hw-transport-node-hid": "4.40.0",
+    "@ledgerhq/hw-transport-node-hid": "4.50.0",
     "argon2": "rihardsgravis/node-argon2#ae1a860",
     "authenticator": "1.1.5",
     "babel-polyfill": "6.26.0",
