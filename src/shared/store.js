@@ -19,6 +19,8 @@ import networkMiddleware from './middlewares/network';
 import versionMiddleware from './middlewares/version';
 import alertsMiddleware from './middlewares/alerts';
 import modalMiddleware from './middlewares/modal';
+import { getEncryptionKey } from '../desktop/src/libs/realm';
+import { encrypt } from '../desktop/src/libs/crypto';
 import { __DEV__, __MOBILE__ } from './config';
 
 const developmentMiddleware = [thunk, networkMiddleware, versionMiddleware, alertsMiddleware, modalMiddleware];
@@ -65,8 +67,10 @@ const storeLocalStorage = (store) => (next) => (action) => {
         clearTimeout(bounceTimeout);
     }
 
-    bounceTimeout = setTimeout(() => {
-        Electron.setStorage('__STATE__', { accounts, alerts, settings });
+    bounceTimeout = setTimeout(async () => {
+        const key = await getEncryptionKey();
+        const cypherText = await encrypt(JSON.stringify({ accounts, alerts, settings }), key);
+        Electron.setStorage('__STATE__', cypherText);
     }, 500);
 
     next(action);

@@ -11,7 +11,6 @@ import i18next from 'libs/i18next';
 import store from 'store';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';
 import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
-import { mapStorageToState } from 'libs/storageToStateMappers';
 import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode } from 'libs/iota';
 import { initialise as initialiseStorage, realm } from 'storage';
@@ -23,6 +22,7 @@ import Tray from 'ui/Tray';
 import Alerts from 'ui/global/Alerts';
 
 import settings from '../package.json';
+import { decrypt } from './libs/crypto.js';
 
 export const bugsnagClient = bugsnag({
     apiKey: 'fakeAPIkey',
@@ -41,7 +41,13 @@ if (Electron.mode === 'tray') {
     });
 } else {
     initialiseStorage(getEncryptionKey)
-        .then(() => {
+        .then(async (key) => {
+            const persistedData = Electron.getStorage('__STATE__');
+            const data = await decrypt(persistedData, key);
+
+            return JSON.parse(data);
+        })
+        .then((persistedData) => {
             const oldPersistedData = Electron.getOldStorage();
             const hasDataToMigrate = !isEmpty(oldPersistedData);
 
@@ -51,8 +57,6 @@ if (Electron.mode === 'tray') {
                 });
             }
 
-            // Get persisted data from Realm storage
-            const persistedData = Electron.getStorage('__STATE__');
             const data = hasDataToMigrate ? oldPersistedData : persistedData;
 
             if (!isEmpty(data)) {
