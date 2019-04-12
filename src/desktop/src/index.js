@@ -13,7 +13,7 @@ import { assignAccountIndexIfNecessary } from 'actions/accounts';
 import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode } from 'libs/iota';
-import { initialise as initialiseStorage, realm } from 'storage';
+import { initialise as initialiseStorage } from 'storage';
 import createPlugin from 'bugsnag-react';
 
 import Index from 'ui/Index';
