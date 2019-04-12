@@ -10,7 +10,7 @@ import URL from 'url-parse';
 import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
 import { isNodeHealthy } from './extendedApi';
-import { NODELIST_URL } from '../../config';
+import { NODELIST_URL, MAX_REQUEST_TIMEOUT } from '../../config';
 import Errors from '../errors';
 
 export const MAX_SEED_LENGTH = 81;
@@ -441,4 +441,39 @@ export const throwIfNodeNotHealthy = (provider) => {
 
         return isSynced;
     });
+};
+
+/**
+ * Handles timeouts for network requests made to IRI nodes
+ * Catches "request timeout" exceptions and retries network request with increased timeout
+ * See (https://github.com/iotaledger/iota.js/blob/master/lib/utils/makeRequest.js#L115)
+ *
+ * @method withRequestTimeoutsHandler
+ *
+ * @param {number} timeout
+ *
+ * @returns {function}
+ */
+export const withRequestTimeoutsHandler = (timeout) => {
+    let attempt = 1;
+
+    const getNextTimeout = () => attempt * timeout;
+
+    const handleTimeout = (promiseFunc) => {
+        return promiseFunc(getNextTimeout()).catch((error) => {
+            attempt += 1;
+
+            if (
+                (includes(error.message, Errors.REQUEST_TIMED_OUT) ||
+                    includes(error.message, Errors.REQUEST_TIMED_OUT.toLowerCase())) &&
+                getNextTimeout() < MAX_REQUEST_TIMEOUT
+            ) {
+                return handleTimeout(promiseFunc);
+            }
+
+            throw error;
+        });
+    };
+
+    return handleTimeout;
 };
