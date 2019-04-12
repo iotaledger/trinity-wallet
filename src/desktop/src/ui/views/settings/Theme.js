@@ -41,7 +41,7 @@ class Theme extends React.PureComponent {
                     e.preventDefault();
                     if (themeName) {
                         document.body.style.background = themes[themeName].body.bg;
-                        updateTheme(themes[themeName], themeName);
+                        updateTheme(themeName);
                     }
                 }}
             >

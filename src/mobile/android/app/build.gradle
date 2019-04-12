@@ -92,11 +92,10 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
-        versionCode 40
-        versionName "0.6.1"
+        versionCode 52
+        versionName "0.6.2"
         minSdkVersion 21
         targetSdkVersion 26
-        multiDexEnabled true
         multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "x86"
@@ -152,27 +151,20 @@ android {
     }
 }
 dependencies {
+    compile project(':react-native-qr-generator')
+    implementation project(':react-native-modal-translucent')
     implementation project(':react-native-qr-scanner')
     implementation 'com.github.laumair:argon2jni:jitpack-SNAPSHOT'
     implementation project(':react-native-document-picker')
     implementation project(':nodejs-mobile-react-native')
-    implementation project(':react-native-fast-crypto')
-    implementation project(':react-native-modal-translucent')
     implementation project(':react-native-detect-navbar-android')
     implementation project(':react-native-fingerprint-scanner')
     implementation project(':react-native-keep-awake')
     implementation project(':react-native-device-info')
     implementation project(':react-native-extra-dimensions-android')
     implementation project(':react-native-os')
-    implementation(project(':react-native-camera')) {
-        exclude group: "com.google.android.gms:+"
-    }
-    implementation('com.google.android.gms:play-services-vision:10.2.0') {
-        force = true
-    }
+    implementation project(':react-native-camera')
     implementation project(':react-native-print')
-    implementation project(':react-native-udp')
-    implementation project(':react-native-tcp')
     implementation project(':react-native-svg')
     implementation project(':react-native-navigation')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -180,7 +172,6 @@ dependencies {
     implementation ('com.facebook.react:react-native:+')
     implementation project(':react-native-svg')
     implementation project(':react-native-keychain')
-    implementation 'com.android.support:multidex:1.0.1'
     implementation project(':lottie-react-native')
     implementation project(':react-native-exit-app')
     implementation project(':react-native-securerandom')
@@ -194,6 +185,7 @@ dependencies {
     implementation project(':react-native-view-shot')
     implementation project(':react-native-flag-secure-android')
     implementation project(':react-native-haptic-feedback')
+    implementation project(':realm')
     implementation project(':rn-fetch-blob')
 }
 // Run this once to be able to run the application with BUCK
@@ -205,6 +197,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
 project.ext.react = [
         nodeExecutableAndArgs : ["/usr/local/bin/node"]
 ]
-
 
 apply plugin: 'com.bugsnag.android.gradle'

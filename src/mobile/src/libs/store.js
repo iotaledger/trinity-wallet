@@ -1,25 +1,98 @@
 import get from 'lodash/get';
-import { getVersion, getBuildNumber } from 'react-native-device-info';
+import head from 'lodash/head';
+import last from 'lodash/last';
+import filter from 'lodash/filter';
+import includes from 'lodash/includes';
+import split from 'lodash/split';
+import transform from 'lodash/transform';
 import { AsyncStorage } from 'react-native';
-import { doesSaltExistInKeychain } from 'libs/keychain';
-import store, { persistStore, purgeStoredState, createPersistor } from '../../../shared/store';
-import { setAppVersions, resetWallet } from '../../../shared/actions/settings';
-import { shouldUpdate as triggerShouldUpdate, forceUpdate as triggerForceUpdate } from '../../../shared/actions/wallet';
-import { updatePersistedState, fetchVersions } from '../../../shared/libs/utils';
+import { getVersion, getBuildNumber } from 'react-native-device-info';
+import { hasEntryInKeychain, ALIAS_SALT, ALIAS_REALM } from 'libs/keychain';
+import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
+import { getEncryptionKey } from 'libs/realm';
+import { setAppVersions, resetWallet } from 'shared-modules/actions/settings';
+import { parse, fetchVersions } from 'shared-modules/libs/utils';
+import { shouldUpdate as triggerShouldUpdate, forceUpdate as triggerForceUpdate } from 'shared-modules/actions/wallet';
 
-export const persistConfig = {
-    storage: AsyncStorage,
-    blacklist: ['keychain', 'polling', 'ui', 'progress', 'deepLinks', 'wallet'],
-};
-
-const shouldMigrate = (restoredState) => {
-    const restoredVersion = get(restoredState, 'settings.versions.version');
-    const restoredBuildNumber = get(restoredState, 'settings.versions.buildNumber');
-
-    const currentVersion = getVersion();
-    const currentBuildNumber = getBuildNumber();
-
-    return restoredVersion !== currentVersion || restoredBuildNumber !== currentBuildNumber;
+/**
+ * AsyncStorage adapter for manipulating state persisted by redux-persist (https://github.com/rt2zz/redux-persist)
+ */
+export const reduxPersistStorageAdapter = {
+    /**
+     * Filters keys that do not have "reduxPersist:" prefix.
+     *
+     * @method _filterIrrelevantKeys
+     * @param {array} keys
+     *
+     * @returns {array}
+     */
+    _filterIrrelevantKeys(keys) {
+        return filter(keys, (key) => includes(key, 'reduxPersist:'));
+    },
+    /**
+     * Gets all keys stored in AsyncStorage
+     *
+     * @method getKeys
+     *
+     * @returns {Promise<array>}
+     */
+    getKeys() {
+        return new Promise((resolve, reject) => {
+            AsyncStorage.getAllKeys((error, keys) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(keys);
+                }
+            });
+        });
+    },
+    /**
+     * Gets data persisted by redux-persist (https://github.com/rt2zz/redux-persist) in AsyncStorage
+     *
+     * @method get
+     *
+     * @returns {Promise<object>}
+     */
+    get() {
+        return this.getKeys().then((keys) => {
+            return new Promise((resolve, reject) => {
+                AsyncStorage.multiGet(this._filterIrrelevantKeys(keys), (error, data) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        // multiGet(['k1', 'k2'], cb) -> cb([['k1', 'val1'], ['k2', 'val2']])
+                        // https://facebook.github.io/react-native/docs/asyncstorage#multiget
+                        resolve(
+                            transform(
+                                data,
+                                (acc, value) => {
+                                    acc[last(split(head(value), ':'))] = parse(last(value));
+                                },
+                                {},
+                            ),
+                        );
+                    }
+                });
+            });
+        });
+    },
+    /**
+     * Clears all data persisted by redux-persist (https://github.com/rt2zz/redux-persist)
+     *
+     * @method clear
+     *
+     * @returns {Promise}
+     */
+    clear() {
+        return this.getKeys().then((keys) => {
+            AsyncStorage.multiRemove(this._filterIrrelevantKeys(keys), (error) => {
+                if (error) {
+                    throw new Error(error);
+                }
+            });
+        });
+    },
 };
 
 /**
@@ -44,73 +117,38 @@ export const versionCheck = (store) => {
 };
 
 /**
- * Resets the wallet if the keychain is empty
- * Fixes issues related to iCloud backup
+ * Resets the wallet if the keychain is empty. Fixes issues related to iCloud backup
+ *
+ * @method resetIfKeychainIsEmpty
+ *
  * @param {object} store
  *
- * @returns {Promise<object>}
- *
+ * @returns {Promise}
  */
 export const resetIfKeychainIsEmpty = (store) => {
-    return doesSaltExistInKeychain().then((exists) => {
-        if (!exists) {
-            return purgeStoredState({ storage: persistConfig.storage }).then(() => {
-                store.dispatch(resetWallet());
-                // Set the new app version
-                store.dispatch(
-                    setAppVersions({
-                        version: getVersion(),
-                        buildNumber: getBuildNumber(),
-                    }),
-                );
-                return store;
-            });
-        }
-        return store;
-    });
-};
-
-export const migrate = (store, restoredState) => {
-    const hasAnUpdate = shouldMigrate(restoredState);
-
-    if (!hasAnUpdate) {
-        store.dispatch(
-            setAppVersions({
-                version: getVersion(),
-                buildNumber: getBuildNumber(),
-            }),
-        );
-        return Promise.resolve(store);
-    }
-    return purgeStoredState({ storage: persistConfig.storage }).then(() => {
+    const resetReduxState = () => {
         store.dispatch(resetWallet());
-        const propsToReset = [];
-
-        // FIXME: Temporarily needed for node list reset
-        if (get(restoredState, 'settings.versions.buildNumber') < 32) {
-            propsToReset.push('settings.nodes');
-        }
-
         // Set the new app version
         store.dispatch(
             setAppVersions({
                 version: getVersion(),
-                buildNumber: getBuildNumber(),
+                buildNumber: Number(getBuildNumber()),
             }),
         );
-        const persistor = createPersistor(store, persistConfig);
-        const updatedState = updatePersistedState(store.getState(), restoredState, propsToReset);
-        persistor.rehydrate(updatedState);
-        return store;
+    };
+
+    return hasEntryInKeychain(ALIAS_SALT).then((hasSalt) => {
+        if (!hasSalt) {
+            // If there is no entry against "ALIAS_SALT", check if there exists an entry against "ALIAS_REALM"
+            return hasEntryInKeychain(ALIAS_REALM).then(
+                (hasEncryptionKey) =>
+                    hasEncryptionKey
+                        ? Promise.resolve()
+                        : // Purge and reinitialise persistent storage
+                          reinitialiseStorage(getEncryptionKey).then(resetReduxState),
+            );
+        }
+
+        return Promise.resolve();
     });
 };
-
-export const persistStoreAsync = () =>
-    new Promise((resolve) =>
-        persistStore(store, persistConfig, (err, restoredState) =>
-            resolve({
-                store,
-                restoredState,
-            }),
-        ),
-    );

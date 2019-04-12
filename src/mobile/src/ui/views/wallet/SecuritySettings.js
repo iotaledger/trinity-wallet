@@ -5,6 +5,7 @@ import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import { navigator } from 'libs/navigation';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
@@ -38,24 +39,8 @@ class SecuritySettings extends Component {
      * @method on2FASetupPress
      */
     on2FASetupPress() {
-        const { is2FAEnabled, theme: { body } } = this.props;
-        navigator.push(is2FAEnabled ? 'disable2FA' : 'twoFactorSetupAddKey', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        const { is2FAEnabled } = this.props;
+        navigator.push(is2FAEnabled ? 'disable2FA' : 'twoFactorSetupAddKey');
     }
 
     /**
@@ -63,24 +48,7 @@ class SecuritySettings extends Component {
      * @method onBiometricAuthenticationPress
      */
     onBiometricAuthenticationPress() {
-        const { theme: { body } } = this.props;
-        navigator.push('biometricAuthentication', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        navigator.push('biometricAuthentication');
     }
 
     renderSettingsContent() {
@@ -111,7 +79,7 @@ class SecuritySettings extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     is2FAEnabled: state.settings.is2FAEnabled,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });

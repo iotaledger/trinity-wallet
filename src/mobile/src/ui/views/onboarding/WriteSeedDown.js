@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { withNamespaces, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FlagSecure from 'react-native-flag-secure-android';
-import RNPrint from 'react-native-print';
-import { paperWallet } from 'shared-modules/images/PaperWallets.js';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import SeedPicker from 'ui/components/SeedPicker';
 import WithUserActivity from 'ui/components/UserActivity';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
@@ -19,6 +17,7 @@ import { isAndroid } from 'libs/device';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import ChecksumComponent from 'ui/components/Checksum';
+import { tritsToChars } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     container: {
@@ -76,8 +75,6 @@ class WriteSeedDown extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        seed: PropTypes.string.isRequired,
-        /** @ignore */
         minimised: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
@@ -86,7 +83,6 @@ class WriteSeedDown extends Component {
     constructor(props) {
         super(props);
         this.openModal = this.openModal.bind(this);
-        Navigation.events().bindComponent(this);
     }
 
     componentDidMount() {
@@ -103,14 +99,6 @@ class WriteSeedDown extends Component {
     }
 
     /**
-     * Wrapper method for printing a blank paper wallet
-     * @method onPrintPress
-     */
-    onPrintPress() {
-        this.print();
-    }
-
-    /**
      * Navigates back to the previous active screen in navigation stack
      * @method onBackPress
      */
@@ -119,59 +107,11 @@ class WriteSeedDown extends Component {
     }
 
     /**
-     *  Triggers blank paper wallet print
-     *  @method print
+     * Navigates back to save your seed
+     * @method onBackPress
      */
-    async print() {
-        const blankWalletHTML = `
-            <!DOCTYPE html>
-            <html>
-            <head>
-               <meta charset="utf-8">
-               <style>
-                  html,
-                  body,
-                  #wallet {
-                     padding: 0px;
-                     margin: 0px;
-                     text-align: center;
-                     overflow: hidden;
-                     height: ${isAndroid ? '100vh' : null};
-                     width: ${isAndroid ? '100vw' : null};
-                  }
-                  svg{
-                     height: ${isAndroid ? '100vh' : '110vh'};
-                     width: 100vw;
-                  }
-               </style>
-            </head>
-            <body>
-              ${paperWallet}
-            </body>
-            </html>`;
-        try {
-            Navigation.mergeOptions('appStack', {
-                topBar: {
-                    visible: true,
-                },
-            });
-            await RNPrint.print({ html: blankWalletHTML });
-        } catch (err) {
-            console.error(err); // eslint-disable-line no-console
-        }
-    }
-
-    /**
-     * Hides navigation bar
-     *
-     * @method componentDidAppear
-     */
-    componentDidAppear() {
-        Navigation.mergeOptions('appStack', {
-            topBar: {
-                visible: false,
-            },
-        });
+    onDonePress() {
+        navigator.popTo('saveYourSeed');
     }
 
     openModal() {
@@ -187,7 +127,7 @@ class WriteSeedDown extends Component {
     }
 
     render() {
-        const { t, theme, seed, minimised } = this.props;
+        const { t, theme, minimised } = this.props;
         const textColor = { color: theme.body.color };
 
         return (
@@ -228,7 +168,7 @@ class WriteSeedDown extends Component {
                                 delay={200}
                                 style={{ flex: 1 }}
                             >
-                                <SeedPicker seed={seed} theme={theme} />
+                                <SeedPicker seed={tritsToChars(global.onboardingSeed)} theme={theme} />
                             </AnimatedComponent>
                             <View style={{ flex: 0.5 }} />
                             <AnimatedComponent
@@ -236,17 +176,21 @@ class WriteSeedDown extends Component {
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={100}
                             >
-                                <ChecksumComponent seed={seed} theme={theme} showModal={this.openModal} />
+                                <ChecksumComponent
+                                    seed={global.onboardingSeed}
+                                    theme={theme}
+                                    showModal={this.openModal}
+                                />
                             </AnimatedComponent>
                             <View style={{ flex: 0.25 }} />
                         </View>
                         <View style={styles.bottomContainer}>
                             <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                                 <DualFooterButtons
-                                    onLeftButtonPress={() => this.onPrintPress()}
-                                    onRightButtonPress={() => this.onBackPress()}
+                                    onLeftButtonPress={() => this.onBackPress()}
+                                    onRightButtonPress={() => this.onDonePress()}
                                     leftButtonText={t('saveYourSeed:printBlankWallet')}
-                                    rightButtonText={t('global:back')}
+                                    rightButtonText={t('done')}
                                 />
                             </AnimatedComponent>
                         </View>
@@ -258,8 +202,7 @@ class WriteSeedDown extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.wallet.seed,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     minimised: state.ui.minimised,
 });
 

@@ -55,6 +55,7 @@
         "yes": "Sì",
         "no": "No",
         "okay": "Va bene",
+        "skip": "Salta",
         "password": "Password",
         "unrecognisedPassword": "Password non riconosciuta",
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Non sono su wifi pubblico",
         "printerConfirmation": "Non sto stampando su una stampante pubblica"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Vuoi stampare un modello vuoto?",
+        "printTemplateInfo": "Puoi stampare un modello vuoto dove scrivere agevolmente il tuo seme.",
+        "printTemplateWarning": "Assicurati di conservare il tuo seme in un posto sicuro. Non mostrarlo a nessuno.",
+        "print": "Sì, stampa"
+    },
     "receive": {
         "yourAddress": "Il tuo indirizzo",
         "qrOptions": "Opzioni di QR",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash del pacchetto copiato",
-        "noTransactionsFound": "Nessuna transazione trovata",
+        "noTransactionsFound": "La tua cronologia di transazioni è vuota",
         "hideZeroBalance": "Nascondi saldo zero",
         "bundleHashCopiedExplanation": "L'hash del pacchetto è stato copiato negli Appunti.",
         "addressCopied": "Indirizzo copiato",
@@ -494,7 +501,8 @@
         "pow": "Prova di lavoro",
         "autoPromotion": "Auto-Promozione",
         "autoPromotionExplanation": "Auto-promozione contribuisce a confermare le transazioni sul Tangle. Abilitare questa impostazione se si hanno difficoltà a ottenere la conferma delle tue transazioni.",
-        "autoPromotionPoW": "Auto-promozione è possibile solo su nodi che supportano la prova di lavoro remota."
+        "autoPromotionPoW": "Auto-promozione è possibile solo su nodi che supportano la prova di lavoro remota.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Sfondo",
@@ -592,17 +600,17 @@
         "fingerprintUnavailable": "Autenticazione biometrica non disponibile",
         "deviceLocked": "Autenticazione disattivata per 30 secondi",
         "fingerprintUnavailableExplanation": "Il tuo dispositivo non supporta l'autenticazione biometrica o non è stato configurato nelle impostazioni del dispositivo.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "notSupported": "Il dispositivo non supporta l'autenticazione biometrica",
+        "notConfigured": "L'autenticazione biometrica non è stata configurata nelle impostazioni del dispositivo",
+        "buttonInstructionsDisable": "Premi il pulsante sotto per disabilitare l'autenticazione tramite impronta digitale.",
         "buttonInstructionsEnable": "Premi il pulsante sotto per abilitare l'autenticazione tramite impronta digitale.",
         "buttonInstructionsDisableIPhoneX": "Premere il pulsante qui sotto per disabilitare Face ID",
         "buttonInstructionsEnableIPhoneX": "Premere il pulsante qui sotto per attivare Face ID",
         "instructionsLogin": "Tocca il lettore di impronte digitali per accedere",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "L'autenticazione è stata annullata dal tuo dispositivo",
+        "userCancelledAuth": "Richiesta di autenticazione annullata",
+        "passwordFallback": "Tornare all'autenticazione tramite password",
+        "noPassword": "La password non è impostata sul dispositivo"
     },
     "transferConfirmation": {
         "youAreAbout": "Stai per inviare {{contents}} all'indirizzo",
@@ -689,6 +697,11 @@
         "gettingTransactionsToApprove": "Ottengo le transazioni da approvare",
         "proofOfWork": "Completo la prova di lavoro",
         "broadcasting": "Trasmissione",
+        "preparingData": "Preparazione dati",
+        "migratingSettings": "Migrazione impostazioni",
+        "migratingAccounts": "Migrazione conti",
+        "cleaningUpOldData": "Pulizia dati vecchi",
+        "migrationComplete": "Migrazione completata",
         "transferComplete": "Trasferimento completato"
     },
     "snapshotTransition": {
@@ -708,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Riempimento automatico",
-        "autofillExplanation": "Dati riempiti automaticamente da un collegamento."
+        "autofillExplanation": "Dati riempiti automaticamente da un collegamento.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
@@ -767,6 +785,12 @@
         "sweepConfirmation": "Stai per trasferire {{amount}} verso l'indirizzo {{address}}. Conto: {{accountName}}, indice dell'indirizzo: {{index}}",
         "sweepConfirmationTitle": "Conferma di trasferimento"
     },
+    "migration": {
+        "dataMigration": "Migrazione dati",
+        "dataMigrationExplanation": "Per far fronte a limiti di prestazioni e di archiviazione, Trinity passa a utilizzare un nuovo database per memorizzare le impostazioni e i dati dei conti. Si prega di attendere mentre Trinity migra automaticamente i dati esistenti.",
+        "problemMigratingYourData": "Si è verificato un problema durante la migrazione dei dati. Ti preghiamo di riprovare",
+        "seedMigrationExplanation": "Come parte del continuo sforzo di Trinity per migliorare la sicurezza del portafoglio, il tuo seme sarà migrato a una metodologia di archiviazione rafforzata. Attendere mentre Trinity migra automaticamente l'archiviazione dei semi."
+    },
     "ledger": {
         "ready": "Dispositivo Ledger collegato e pronto",
         "notReady": "Se desideri utilizzare un dispositivo Ledger, collegalo e sbloccalo adesso",
@@ -775,6 +799,8 @@
         "proceedWithLedger": "Procedi con la configurazione di Ledger",
         "accountIndex": "Indice di conto",
         "accountPage": "Pagina del conto",
+        "actionCancelled": "Accesso al dispositivo Ledger annullato",
+        "actionCancelledExplanation": "Impossibile eseguire l'azione senza accesso al dispositivo Ledger.",
         "chooseAccountIndex": "Scegli il tuo indice di conto su Ledger",
         "accountIndexExplanation": "Il tuo Ledger può memorizzare più semi. Ogni seme è identificato da un numero di indice univoco. È stato pre-selezionato un indice inutilizzato, ma puoi sceglierne un altro. Assicurati di aver annotato il numero di indice scelto.",
         "accountPageExplanation": "Alcuni portafogli di terze parti richiedono pagine.",

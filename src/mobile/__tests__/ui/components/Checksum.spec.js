@@ -4,13 +4,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { Checksum } from 'ui/components/Checksum';
+import { MAX_SEED_TRITS } from 'shared-modules/libs/iota/utils';
+import { trytesToTrits } from 'shared-modules/libs/iota/converter';
+import { latestAddressWithoutChecksum, latestAddressChecksum } from 'shared-modules/__tests__/__samples__/addresses';
+import theme from '../../../__mocks__/theme';
 
 const getProps = (overrides) =>
     assign(
         {},
         {
-            seed: '9'.repeat(81),
-            theme: { input: {}, body: {}, primary: {} },
+            seed: new Int8Array(MAX_SEED_TRITS),
+            theme,
             t: () => '',
             showModal: noop,
         },
@@ -19,8 +23,8 @@ const getProps = (overrides) =>
 
 describe('Testing Checksum component', () => {
     describe('propTypes', () => {
-        it('should require a seed string as a prop', () => {
-            expect(Checksum.propTypes.seed).toEqual(PropTypes.string.isRequired);
+        it('should require a seed object as a prop', () => {
+            expect(Checksum.propTypes.seed).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a theme object as a prop', () => {
@@ -48,39 +52,45 @@ describe('Testing Checksum component', () => {
         });
     });
 
-    describe('instance methods', () => {
+    describe('static methods', () => {
         describe('when called', () => {
-            describe('#getChecksumValue', () => {
-                describe('when seed length is not zero and seed contains any character other than (A-Z, 9)', () => {
-                    it('should return "!"', () => {
-                        const props = getProps({ seed: '-!' });
-
-                        const instance = shallow(<Checksum {...props} />).instance();
-                        const checksum = instance.getChecksumValue();
-
-                        expect(checksum).toEqual('!');
-                    });
-                });
-
-                describe('when seed length is not zero and seed length is less than 81', () => {
+            describe('#getValue', () => {
+                describe(`when seed length is not zero and seed length is less than ${MAX_SEED_TRITS}`, () => {
                     it('should return "< 81"', () => {
-                        const props = getProps({ seed: 'A'.repeat(80) });
-
-                        const instance = shallow(<Checksum {...props} />).instance();
-                        const checksum = instance.getChecksumValue();
-
-                        expect(checksum).toEqual('< 81');
+                        expect(Checksum.getValue(new Int8Array(MAX_SEED_TRITS - 10))).toEqual('< 81');
                     });
                 });
 
-                describe('when seed length is 81 and seed contains valid characters (A-Z, 9)', () => {
-                    it('should return computed checksum of seed', () => {
-                        const props = getProps({ seed: '9'.repeat(81) });
+                describe(`when seed length is greater than ${MAX_SEED_TRITS}`, () => {
+                    it('should return "> 81"', () => {
+                        expect(Checksum.getValue(new Int8Array(MAX_SEED_TRITS + 10))).toEqual('> 81');
+                    });
+                });
 
-                        const instance = shallow(<Checksum {...props} />).instance();
-                        const checksum = instance.getChecksumValue();
+                describe(`when seed length is equal to ${MAX_SEED_TRITS}`, () => {
+                    it('should return computed checksum of seed (in trytes)', () => {
+                        const expectedChecksum = latestAddressChecksum.slice(-3);
+                        const actualChecksum = Checksum.getValue(trytesToTrits(latestAddressWithoutChecksum));
 
-                        expect(checksum).toEqual('KZW');
+                        expect(expectedChecksum).toEqual(actualChecksum);
+                    });
+                });
+            });
+
+            describe('#getStyle', () => {
+                describe(`when seed length is equal to ${MAX_SEED_TRITS}`, () => {
+                    it('should return "theme.primary.color"', () => {
+                        expect(Checksum.getStyle(theme, new Int8Array(MAX_SEED_TRITS))).toEqual({
+                            color: theme.primary.color,
+                        });
+                    });
+                });
+
+                describe(`when seed length is not equal to ${MAX_SEED_TRITS}`, () => {
+                    it('should return "theme.body.color"', () => {
+                        expect(Checksum.getStyle(theme, new Int8Array(MAX_SEED_TRITS + 100))).toEqual({
+                            color: theme.body.color,
+                        });
                     });
                 });
             });

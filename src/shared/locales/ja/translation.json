@@ -55,6 +55,7 @@
         "yes": "はい",
         "no": "いいえ",
         "okay": "OK",
+        "skip": "スキップする",
         "password": "パスワード",
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "私は公共のWi-Fiを使用していません",
         "printerConfirmation": "私は公共のプリンタで印刷していません"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "空白のテンプレートを印刷しますか？",
+        "printTemplateInfo": "シードを書き留めるのを助けるために空白のテンプレートを印刷することができます。",
+        "printTemplateWarning": "シードを安全な場所に保管してください。誰にも絶対に見せないでください。",
+        "print": "はい、印刷します。"
+    },
     "receive": {
         "yourAddress": "あなたのアドレス",
         "qrOptions": "QRコードオプション",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
-        "noTransactionsFound": "取引がありません",
+        "noTransactionsFound": "取引履歴はありません",
         "hideZeroBalance": "残高0を非表示",
         "bundleHashCopiedExplanation": "バンドルのハッシュ値をクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
@@ -494,7 +501,8 @@
         "pow": "プルーフ・オブ・ワーク",
         "autoPromotion": "自動促進",
         "autoPromotionExplanation": "自動促進によってTangleによる取引承認を手助けします。取引承認に時間がかかる場合はこの設定をオンにしてください。",
-        "autoPromotionPoW": "自動促進はリモートによるプルーフ・オブ・ワークを許可するノードと接続している場合のみ有効です。"
+        "autoPromotionPoW": "自動促進はリモートによるプルーフ・オブ・ワークを許可するノードと接続している場合のみ有効です。",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -592,17 +600,17 @@
         "fingerprintUnavailable": "生体認証が利用できません。",
         "deviceLocked": "認証が30秒間無効になりました",
         "fingerprintUnavailableExplanation": "お使いのデバイスは生体認証をサポートしていないか、デバイス設定で設定されていません。",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "notSupported": "お使いの端末は生体認証をサポートしていません",
+        "notConfigured": "生体認証が端末の環境設定で設定されていません",
+        "buttonInstructionsDisable": "指紋認証を無効にするには、下のボタンを押してください。",
         "buttonInstructionsEnable": "指紋認証を有効にするには、下のボタンを押してください。",
         "buttonInstructionsDisableIPhoneX": "顔認証を無効にするには、下のボタンを押してください",
         "buttonInstructionsEnableIPhoneX": "顔認証を有効にするには、下のボタンを押してください",
         "instructionsLogin": "指紋リーダに触れてログインしてください。",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "認証が端末によってキャンセルされました",
+        "userCancelledAuth": "認証要求はキャンセルされました",
+        "passwordFallback": "パスワード認証に戻る",
+        "noPassword": "パスワードが設定されていません"
     },
     "transferConfirmation": {
         "youAreAbout": "アドレスに {{contents}} を送信しようとしています。",
@@ -689,6 +697,11 @@
         "gettingTransactionsToApprove": "承認する取引を取得中",
         "proofOfWork": "プルーフ・オブ・ワークを完了中",
         "broadcasting": "ブロードキャスト中",
+        "preparingData": "データを準備中",
+        "migratingSettings": "設定を移行中",
+        "migratingAccounts": "アカウントを移行中",
+        "cleaningUpOldData": "古いデータを削除中",
+        "migrationComplete": "移行完了",
         "transferComplete": "送金完了"
     },
     "snapshotTransition": {
@@ -708,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "自動入力成功",
-        "autofillExplanation": "取引データはリンクから自動入力されました。"
+        "autofillExplanation": "取引データはリンクから自動入力されました。",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "更新データの取得エラー",
@@ -767,6 +785,12 @@
         "sweepConfirmation": "アドレス{{address}}（アカウント名：{{accountName}}、アドレスインデックス：{{index}}）に資金{{amount}} を移動させようとしています。",
         "sweepConfirmationTitle": "移動を承認"
     },
+    "migration": {
+        "dataMigration": "データ移行",
+        "dataMigrationExplanation": "パフォーマンスとストレージの制限により、Trinityは設定とアカウントデータの保存に新しいデータベースを使用しています。 Trinityが今までのデータを自動的に移行するまで少々お待ちください。",
+        "problemMigratingYourData": "データの移行中に問題が発生しました。もう一度やり直してください。",
+        "seedMigrationExplanation": "ウォレットのセキュリティを向上させるためのTrinityの継続的な取り組みの一環として、シードは強化されたストレージに移行されます。Trinityが自動的にシードストレージを移行するまで少々お待ちください。"
+    },
     "ledger": {
         "ready": "Ledger端末の接続が完了し、準備完了です",
         "notReady": "Ledger端末を使いたい場合、今、接続しロックを解除してください",
@@ -775,6 +799,8 @@
         "proceedWithLedger": "Ledgerのセットアップを続行する",
         "accountIndex": "アカウントインデックス",
         "accountPage": "アカウントページ",
+        "actionCancelled": "Ledger端末へのアクセスはキャンセルされました。",
+        "actionCancelledExplanation": "Ledger端末にアクセスしないと操作を実行できません。",
         "chooseAccountIndex": "Ledgerのアカウントインデックスを選択してください",
         "accountIndexExplanation": "Ledgerは複数のシードを保存できます。各シードは一意のインデックス番号で識別されます。未使用のインデックスが事前に選択されますが、自分で選択することもできます。自分で選択したインデックス番号は書き留めておいてください。",
         "accountPageExplanation": "一部のサードパーティ製のウォレットではページが必要です。",

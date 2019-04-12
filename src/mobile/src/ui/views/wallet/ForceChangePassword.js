@@ -8,10 +8,11 @@ import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { zxcvbn } from 'shared-modules/libs/exports';
-import { setPassword, setSetting } from 'shared-modules/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import { passwordReasons } from 'shared-modules/libs/password';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import timer from 'react-native-timer';
 import SplashScreen from 'react-native-splash-screen';
 import { changePassword, authorize } from 'libs/keychain';
@@ -78,10 +79,6 @@ const styles = StyleSheet.create({
  */
 class ForceChangePassword extends Component {
     static propTypes = {
-        /** Hash for wallet's password */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
-        setPassword: PropTypes.func.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
@@ -98,9 +95,9 @@ class ForceChangePassword extends Component {
         super();
 
         this.state = {
-            currentPassword: '',
-            newPassword: '',
-            newPasswordReentry: '',
+            currentPassword: null,
+            newPassword: null,
+            newPasswordReentry: null,
         };
     }
 
@@ -111,8 +108,14 @@ class ForceChangePassword extends Component {
         }
     }
 
+    componentWillUnmount() {
+        delete this.state.currentPassword;
+        delete this.state.newPassword;
+        delete this.state.newPasswordReentry;
+    }
+
     async onSavePress() {
-        const { setPassword, t } = this.props;
+        const { t } = this.props;
         const { newPassword, currentPassword } = this.state;
 
         let oldPwdHash = await getOldPasswordHash(currentPassword);
@@ -134,7 +137,7 @@ class ForceChangePassword extends Component {
             return authorize(oldPwdHash)
                 .then(() => {
                     changePassword(oldPwdHash, newPwdHash, salt).then(() => {
-                        setPassword(newPwdHash);
+                        global.passwordHash = newPwdHash;
                         this.props.setCompletedForcedPasswordUpdate();
                         this.navigateToLogin();
                         timer.setTimeout(
@@ -166,39 +169,25 @@ class ForceChangePassword extends Component {
     }
 
     navigateToLogin() {
-        const { theme: { body } } = this.props;
-        navigator.setStackRoot('login', {
-            animations: {
-                setStackRoot: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        navigator.setStackRoot('login');
     }
 
     renderTextField(
         ref,
         value,
         label,
-        onChangeText,
+        onValidTextChange,
         returnKeyType,
         onSubmitEditing,
-        widget = 'empty',
         isPasswordValid = false,
         passwordStrength = 0,
+        isPasswordInput = true,
     ) {
         const { theme } = this.props;
         const props = {
             onRef: ref,
             label,
-            onChangeText,
+            onValidTextChange,
             containerStyle: { width: Styling.contentWidth },
             autoCapitalize: 'none',
             autoCorrect: false,
@@ -208,9 +197,9 @@ class ForceChangePassword extends Component {
             onSubmitEditing,
             value,
             theme,
-            widget,
             isPasswordValid,
             passwordStrength,
+            isPasswordInput,
         };
 
         return <CustomTextInput {...props} />;
@@ -330,11 +319,10 @@ class ForceChangePassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {
-    setPassword,
     setSetting,
     generateAlert,
     setCompletedForcedPasswordUpdate,

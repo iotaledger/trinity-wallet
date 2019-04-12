@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { navigator } from 'libs/navigation';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import { withNamespaces } from 'react-i18next';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import Fonts from 'ui/theme/fonts';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
@@ -61,8 +62,6 @@ class TwoFactorSetupEnterToken extends Component {
         set2FAStatus: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -99,21 +98,7 @@ class TwoFactorSetupEnterToken extends Component {
      * @method navigateToHome
      */
     navigateToHome() {
-        const { theme: { body, bar } } = this.props;
-        navigator.setStackRoot('home', {
-            animations: {
-                setStackRoot: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: bar.bg,
-            },
-        });
+        navigator.setStackRoot('home');
     }
 
     /**
@@ -121,8 +106,8 @@ class TwoFactorSetupEnterToken extends Component {
      * @method check2FA
      */
     check2FA() {
-        const { t, password } = this.props;
-        getTwoFactorAuthKeyFromKeychain(password).then((key) => {
+        const { t } = this.props;
+        getTwoFactorAuthKeyFromKeychain(global.passwordHash).then((key) => {
             if (key === null) {
                 this.props.generateAlert(
                     'error',
@@ -131,11 +116,9 @@ class TwoFactorSetupEnterToken extends Component {
                 );
             }
             const verified = authenticator.verifyToken(key, this.state.code);
-
             if (verified) {
                 this.props.set2FAStatus(true);
                 this.navigateToHome();
-
                 this.timeout = setTimeout(() => {
                     this.props.generateAlert('success', t('twoFAEnabled'), t('twoFAEnabledExplanation'));
                 }, 300);
@@ -177,7 +160,7 @@ class TwoFactorSetupEnterToken extends Component {
                         >
                             <CustomTextInput
                                 label={t('code')}
-                                onChangeText={(code) => this.setState({ code })}
+                                onValidTextChange={(code) => this.setState({ code })}
                                 containerStyle={{ width: Styling.contentWidth }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
@@ -186,6 +169,7 @@ class TwoFactorSetupEnterToken extends Component {
                                 onSubmitEditing={this.check2FA}
                                 theme={theme}
                                 keyboardType="numeric"
+                                value={this.state.code}
                             />
                         </AnimatedComponent>
                     </View>
@@ -210,8 +194,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
-    password: state.wallet.password,
+    theme: getThemeFromState(state),
 });
 
 export default withNamespaces(['twoFA', 'global'])(

@@ -15,4 +15,11 @@ export default {
         'progressSteps:proofOfWork',
         'progressSteps:broadcasting',
     ],
+    migration: [
+        'progressSteps:preparingData',
+        'progressSteps:migratingSettings',
+        'progressSteps:migratingAccounts',
+        'progressSteps:cleaningUpOldData',
+        'progressSteps:migrationComplete',
+    ],
 };

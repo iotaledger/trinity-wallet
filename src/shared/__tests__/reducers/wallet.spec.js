@@ -7,13 +7,12 @@ describe('Reducer: wallet', () => {
             const initialState = {
                 ready: false,
                 password: {},
-                seed: Array(82).join(' '),
                 seedIndex: 0,
                 currentSetting: 'mainSettings',
                 transitionBalance: 0,
                 transitionAddresses: [],
                 balanceCheckFlag: false,
-                deepLinkActive: false,
+                deepLinkRequestActive: false,
                 hasConnection: true,
                 isValidatingAddress: false,
                 navStack: [],
@@ -22,86 +21,6 @@ describe('Reducer: wallet', () => {
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
-        });
-    });
-
-    describe('IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP', () => {
-        describe('when seed is defined as a prop in action.payload', () => {
-            it('should set action.payload.seed to state.seed', () => {
-                const initialState = {
-                    seed: 'foo',
-                };
-
-                const action = {
-                    type: 'IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP',
-                    payload: { seed: 'bar' },
-                };
-
-                const newState = reducer(initialState, action);
-                const expectedState = {
-                    seed: 'bar',
-                };
-
-                expect(newState).to.eql(expectedState);
-            });
-        });
-
-        describe('when seed is not defined as a prop in action.payload', () => {
-            it('should not update state.seed', () => {
-                const initialState = {
-                    seed: 'foo',
-                };
-
-                const action = {
-                    type: 'IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP',
-                    payload: { randomProp: 'bar' },
-                };
-
-                const newState = reducer(initialState, action);
-                const expectedState = {
-                    seed: 'foo',
-                };
-
-                expect(newState).to.eql(expectedState);
-            });
-        });
-    });
-
-    describe('IOTA/UI/SET_ONBOARDING_SEED', () => {
-        it('should assign "seed" in payload to "seed" prop in state', () => {
-            const initialState = {
-                seed: '',
-            };
-
-            const action = {
-                type: 'IOTA/UI/SET_ONBOARDING_SEED',
-                payload: { seed: '9'.repeat(81) },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                seed: '9'.repeat(81),
-            };
-
-            expect(newState.seed).to.eql(expectedState.seed);
-        });
-
-        it('should assign negation of "isGenerated" in payload to "usedExistingSeed" prop in state', () => {
-            const initialState = {
-                usedExistingSeed: true,
-            };
-
-            const action = {
-                type: 'IOTA/UI/SET_ONBOARDING_SEED',
-                payload: { isGenerated: true },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                usedExistingSeed: false,
-            };
-
-            expect(newState.usedExistingSeed).to.eql(expectedState.usedExistingSeed);
         });
     });
 
@@ -234,9 +153,9 @@ describe('Reducer: wallet', () => {
             expect(newState.currentSetting).to.eql(expectedState.currentSetting);
         });
 
-        it('should set "deepLinkActive" state prop to false', () => {
+        it('should set "deepLinkRequestActive" state prop to false', () => {
             const initialState = {
-                deepLinkActive: true,
+                deepLinkRequestActive: true,
             };
 
             const action = {
@@ -245,30 +164,10 @@ describe('Reducer: wallet', () => {
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                deepLinkActive: false,
+                deepLinkRequestActive: false,
             };
 
-            expect(newState.deepLinkActive).to.eql(expectedState.deepLinkActive);
-        });
-    });
-
-    describe('IOTA/WALLET/CLEAR_SEED', () => {
-        it('should assign payload to "seed" in state', () => {
-            const initialState = {
-                seed: '9'.repeat(81),
-            };
-
-            const action = {
-                type: 'IOTA/WALLET/CLEAR_SEED',
-                payload: '',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                seed: '',
-            };
-
-            expect(newState).to.eql(expectedState);
+            expect(newState.deepLinkRequestActive).to.eql(expectedState.deepLinkRequestActive);
         });
     });
 
@@ -536,38 +435,38 @@ describe('Reducer: wallet', () => {
         });
     });
 
-    describe('IOTA/APP/WALLET/SET_DEEP_LINK', () => {
-        it('should set "deepLinkActive" in state to true', () => {
+    describe('IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST', () => {
+        it('should set "deepLinkRequestActive" in state to true', () => {
             const initialState = {
-                deepLinkActive: false,
+                deepLinkRequestActive: false,
             };
 
             const action = {
-                type: 'IOTA/APP/WALLET/SET_DEEP_LINK',
+                type: 'IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST',
             };
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                deepLinkActive: true,
+                deepLinkRequestActive: true,
             };
 
             expect(newState).to.eql(expectedState);
         });
     });
 
-    describe('IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE', () => {
-        it('should set "deepLinkActive" in state to false', () => {
+    describe('IOTA/APP/WALLET/COMPLETE_DEEP_LINK_REQUEST', () => {
+        it('should set "deepLinkRequestActive" in state to false', () => {
             const initialState = {
-                deepLinkActive: true,
+                deepLinkRequestActive: true,
             };
 
             const action = {
-                type: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
+                type: 'IOTA/APP/WALLET/COMPLETE_DEEP_LINK_REQUEST',
             };
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                deepLinkActive: false,
+                deepLinkRequestActive: false,
             };
 
             expect(newState).to.eql(expectedState);

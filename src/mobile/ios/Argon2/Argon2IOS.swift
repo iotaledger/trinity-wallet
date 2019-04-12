@@ -18,11 +18,13 @@ class Argon2IOS: NSObject {
   ///   - password: Password to hash
   ///   - resolve: A JS Promise resolve block
   ///   - reject: A JS Promise reject block
-  @objc func hash(_ password: String, salt: String, params: [String: Any], resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+  @objc func hash(_ password: [UInt8], salt: String, params: [String: Any], resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
     // Validate parameters
     if params["t_cost"] is Int && params["m_cost"] is Int && params["parallelism"] is Int && params["hashLength"] is Int {
+      // Convert from [UInt8] to String
+      let passwordString = String(bytes: password, encoding: .utf8)!
       // Resolve the hash
-      let h = Argon2Core.argon2Hash(password: password, salt: salt, params: params)
+      let h = Argon2Core.argon2Hash(password: passwordString, salt: salt, params: params)
       resolve(h)
     } else {
       // Reject with an error message containing the parameters passed

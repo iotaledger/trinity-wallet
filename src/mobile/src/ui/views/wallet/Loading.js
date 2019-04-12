@@ -11,6 +11,7 @@ import KeepAwake from 'react-native-keep-awake';
 import LottieView from 'lottie-react-native';
 import { getAccountInfo, getFullAccountInfo } from 'shared-modules/actions/accounts';
 import { setLoginRoute } from 'shared-modules/actions/ui';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/marketData';
 import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -109,8 +110,6 @@ class Loading extends Component {
         /** @ignore */
         additionalAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
         currency: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -121,7 +120,7 @@ class Loading extends Component {
         /** @ignore */
         changeHomeScreenRoute: PropTypes.func.isRequired,
         /** @ignore */
-        deepLinkActive: PropTypes.bool.isRequired,
+        deepLinkRequestActive: PropTypes.bool.isRequired,
         /** @ignore */
         setLoginRoute: PropTypes.func.isRequired,
         /** All stored account names */
@@ -141,15 +140,14 @@ class Loading extends Component {
         this.onChangeNodePress = this.onChangeNodePress.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const {
             addingAdditionalAccount,
             additionalAccountName,
             additionalAccountMeta,
             selectedAccountName,
             selectedAccountMeta,
-            password,
-            deepLinkActive,
+            deepLinkRequestActive,
         } = this.props;
         leaveNavigationBreadcrumb('Loading');
         this.props.setLoginRoute('login');
@@ -167,16 +165,17 @@ class Loading extends Component {
         }
         this.props.setSetting('mainSettings');
         this.getWalletData();
-        if (deepLinkActive) {
-            this.props.changeHomeScreenRoute('send');
-        } else {
+        if (!deepLinkRequestActive) {
             this.props.changeHomeScreenRoute('balance');
         }
         if (addingAdditionalAccount) {
-            const seedStore = new SeedStore[additionalAccountMeta.type](password, additionalAccountName);
+            const seedStore = await new SeedStore[additionalAccountMeta.type](
+                global.passwordHash,
+                additionalAccountName,
+            );
             this.props.getFullAccountInfo(seedStore, additionalAccountName);
         } else {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.getAccountInfo(seedStore, selectedAccountName);
         }
     }
@@ -264,21 +263,7 @@ class Loading extends Component {
      * @method redirectToLogin
      */
     redirectToLogin() {
-        const { theme: { body } } = this.props;
-        navigator.setStackRoot('login', {
-            animations: {
-                setStackRoot: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        navigator.setStackRoot('login');
     }
 
     /**
@@ -287,21 +272,7 @@ class Loading extends Component {
      * @method redirectToHome
      */
     redirectToHome() {
-        const { theme: { body, bar } } = this.props;
-        navigator.setStackRoot('home', {
-            animations: {
-                setStackRoot: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: bar.bg,
-            },
-        });
+        navigator.setStackRoot('home');
     }
 
     render() {
@@ -381,11 +352,10 @@ const mapStateToProps = (state) => ({
     additionalAccountName: state.accounts.accountInfoDuringSetup.name,
     additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
     ready: state.wallet.ready,
-    password: state.wallet.password,
-    theme: state.settings.theme,
-    isThemeDark: state.settings.theme.isDark,
+    theme: getThemeFromState(state),
+    isThemeDark: getThemeFromState(state).isDark,
     currency: state.settings.currency,
-    deepLinkActive: state.wallet.deepLinkActive,
+    deepLinkRequestActive: state.wallet.deepLinkRequestActive,
 });
 
 const mapDispatchToProps = {

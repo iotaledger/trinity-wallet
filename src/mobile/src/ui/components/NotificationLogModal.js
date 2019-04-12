@@ -52,6 +52,12 @@ export class NotificationLogModal extends PureComponent {
         clearLog: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** Deteremines whether to display the topBar */
+        displayTopBar: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        displayTopBar: true,
     };
 
     constructor() {
@@ -84,7 +90,7 @@ export class NotificationLogModal extends PureComponent {
 
         return (
             <ModalView
-                displayTopBar
+                displayTopBar={this.props.displayTopBar}
                 dualButtons
                 onLeftButtonPress={() => this.clearNotificationLog()}
                 onRightButtonPress={() => this.props.hideModal()}

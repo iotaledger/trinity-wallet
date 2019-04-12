@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { EnterPasswordOnLogin } from 'ui/components/EnterPasswordOnLogin';
+import theme from '../../../__mocks__/theme';
 
 jest.mock('bugsnag-react-native', () => ({
     Configuration: jest.fn(),
@@ -14,8 +15,8 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            password: '',
-            theme: { body: {}, primary: {} },
+            password: {},
+            theme,
             onLoginPress: noop,
             navigateToNodeOptions: noop,
             setLoginPasswordField: noop,
@@ -32,8 +33,8 @@ describe('Testing EnterPasswordOnLogin component', () => {
             expect(EnterPasswordOnLogin.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
 
-        it('should require a password string as a prop', () => {
-            expect(EnterPasswordOnLogin.propTypes.password).toEqual(PropTypes.string.isRequired);
+        it('should require a password object as a prop', () => {
+            expect(EnterPasswordOnLogin.propTypes.password).toEqual(PropTypes.object);
         });
 
         it('should require a onLoginPress function as a prop', () => {
@@ -90,7 +91,7 @@ describe('Testing EnterPasswordOnLogin component', () => {
             describe('#handleLogin', () => {
                 it('should call prop method "onLoginPress" with prop "password"', () => {
                     const props = getProps({
-                        password: 'foo',
+                        password: {},
                         onLoginPress: jest.fn(),
                     });
 
@@ -99,7 +100,7 @@ describe('Testing EnterPasswordOnLogin component', () => {
 
                     instance.handleLogin();
 
-                    expect(props.onLoginPress).toHaveBeenCalledWith('foo');
+                    expect(props.onLoginPress).toHaveBeenCalledWith({});
                 });
             });
 

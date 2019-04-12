@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Image } from 'react-native';
 import PropTypes from 'prop-types';
+import timer from 'react-native-timer';
 import { withNamespaces } from 'react-i18next';
 import { navigator } from 'libs/navigation';
 import SplashScreen from 'react-native-splash-screen';
@@ -10,6 +11,7 @@ import { setLanguage, setLocale } from 'shared-modules/actions/settings';
 import helloBackImagePath from 'shared-modules/images/hello-back.png';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import i18next from 'shared-modules/libs/i18next';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
@@ -79,41 +81,25 @@ class LanguageSetup extends Component {
         }
     }
 
+    componentWillUnmount() {
+        timer.clearTimeout('delayReset');
+    }
     onNextPress() {
-        const { theme: { body, bar }, acceptedTerms, acceptedPrivacy, forceUpdate } = this.props;
+        const { forceUpdate } = this.props;
         if (forceUpdate) {
             return;
         }
-        navigator.push(this.getNextRoute(), {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: !acceptedTerms || !acceptedPrivacy ? bar.bg : body.bg,
-            },
-        });
+        navigator.push(this.getNextRoute());
     }
 
     getNextRoute() {
         const { acceptedTerms, acceptedPrivacy } = this.props;
-
         let nextRoute = 'walletSetup';
-
         if (!acceptedTerms && !acceptedPrivacy) {
             nextRoute = 'termsAndConditions';
         } else if (acceptedTerms && !acceptedPrivacy) {
             nextRoute = 'privacyPolicy';
         }
-
         return nextRoute;
     }
 
@@ -167,7 +153,7 @@ class LanguageSetup extends Component {
                                         this.dropdown = c;
                                     }}
                                     title={t('language')}
-                                    defaultOption={defaultLanguageLabel}
+                                    value={defaultLanguageLabel}
                                     options={I18N_LOCALE_LABELS}
                                     saveSelection={(language) => this.clickDropdownItem(language)}
                                 />
@@ -194,7 +180,7 @@ class LanguageSetup extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     acceptedPrivacy: state.settings.acceptedPrivacy,
     acceptedTerms: state.settings.acceptedTerms,
     forceUpdate: state.wallet.forceUpdate,

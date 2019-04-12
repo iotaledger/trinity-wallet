@@ -13,6 +13,7 @@ import LanguageSetup from 'ui/views/onboarding/LanguageSetup';
 import EnterSeed from 'ui/views/onboarding/EnterSeed';
 import SaveYourSeed from 'ui/views/onboarding/SaveYourSeed';
 import SetPassword from 'ui/views/onboarding/SetPassword';
+import PrintBlankTemplate from 'ui/views/onboarding/PrintBlankTemplate';
 import WriteSeedDown from 'ui/views/onboarding/WriteSeedDown';
 import SaveSeedConfirmation from 'ui/views/onboarding/SaveSeedConfirmation';
 import Login from 'ui/views/wallet/Login';
@@ -29,6 +30,7 @@ import TermsAndConditions from 'ui/views/onboarding/TermsAndConditions';
 import PrivacyPolicy from 'ui/views/onboarding/PrivacyPolicy';
 import ForceChangePassword from 'ui/views/wallet/ForceChangePassword';
 import SeedVaultBackupComponent from 'ui/views/onboarding/SeedVaultBackup';
+import MigrationComponent from 'ui/components/Migration';
 import { isIPhoneX, isAndroid } from 'libs/device';
 
 function applyHOCs(screen) {
@@ -43,6 +45,7 @@ function applyHOCs(screen) {
 }
 
 export default function registerScreens(store, Provider) {
+    Navigation.registerComponentWithRedux('migration', () => applyHOCs(MigrationComponent), Provider, store);
     Navigation.registerComponentWithRedux('home', () => applyHOCs(Home), Provider, store);
     Navigation.registerComponentWithRedux('loading', () => applyHOCs(Loading), Provider, store);
     Navigation.registerComponentWithRedux('newSeedSetup', () => applyHOCs(NewSeedSetup), Provider, store);
@@ -52,6 +55,7 @@ export default function registerScreens(store, Provider) {
     Navigation.registerComponentWithRedux('setPassword', () => applyHOCs(SetPassword), Provider, store);
     Navigation.registerComponentWithRedux('login', () => applyHOCs(Login), Provider, store);
     Navigation.registerComponentWithRedux('writeSeedDown', () => applyHOCs(WriteSeedDown), Provider, store);
+    Navigation.registerComponentWithRedux('printBlankTemplate', () => applyHOCs(PrintBlankTemplate), Provider, store);
     Navigation.registerComponentWithRedux('languageSetup', () => applyHOCs(LanguageSetup), Provider, store);
     Navigation.registerComponentWithRedux(
         'walletResetConfirm',

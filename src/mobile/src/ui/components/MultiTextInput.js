@@ -7,6 +7,7 @@ import { setQrMessage, setQrAmount, setQrTag, setSelectedQrTab, setQrDenominatio
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import AmountTextInput from './AmountTextInput';
 
 const styles = StyleSheet.create({
@@ -200,7 +201,7 @@ class MultiTextInput extends Component {
                         <CustomTextInput
                             keyboardType="default"
                             label={null}
-                            onChangeText={(text) => this.onTagType(text)}
+                            onValidTextChange={(text) => this.onTagType(text)}
                             containerStyle={{ width: width / 1.25 }}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -216,7 +217,7 @@ class MultiTextInput extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     message: state.ui.qrMessage,
     amount: state.ui.qrAmount,
     tag: state.ui.qrTag,

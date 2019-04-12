@@ -1,13 +1,16 @@
+import isEqual from 'lodash/isEqual';
+import size from 'lodash/size';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX, MAX_SEED_TRITS } from 'shared-modules/libs/iota/utils';
 import { navigator } from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { toggleModalActivity } from 'shared-modules/actions/ui';
+import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
 import FlagSecure from 'react-native-flag-secure-android';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import WithUserActivity from 'ui/components/UserActivity';
 import { width, height } from 'libs/dimensions';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -19,6 +22,7 @@ import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import Header from 'ui/components/Header';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { trytesToTrits } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     container: {
@@ -73,17 +77,17 @@ class SeedReentry extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        seed: PropTypes.string.isRequired,
-        /** @ignore */
         minimised: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** @ignore */
+        setDoNotMinimise: PropTypes.func.isRequired,
     };
 
     constructor() {
         super();
         this.state = {
-            seed: '',
+            reenteredSeed: '',
         };
     }
 
@@ -98,6 +102,7 @@ class SeedReentry extends Component {
         if (isAndroid) {
             FlagSecure.deactivate();
         }
+        delete this.state.reenteredSeed;
     }
 
     /**
@@ -105,30 +110,15 @@ class SeedReentry extends Component {
      * @method onDonePress
      */
     onDonePress() {
-        const { t, seed, theme: { body } } = this.props;
-        if (this.state.seed === seed) {
+        const { t } = this.props;
+        const { reenteredSeed } = this.state;
+        if (global.onboardingSeed && isEqual(reenteredSeed, global.onboardingSeed)) {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
-            navigator.push('setAccountName', {
-                animations: {
-                    push: {
-                        enable: false,
-                    },
-                    pop: {
-                        enable: false,
-                    },
-                },
-                layout: {
-                    backgroundColor: body.bg,
-                    orientation: ['portrait'],
-                },
-                statusBar: {
-                    backgroundColor: body.bg,
-                },
-            });
-            this.setState({ seed: '' });
-        } else if (this.state.seed.length === MAX_SEED_LENGTH && this.state.seed.match(VALID_SEED_REGEX)) {
+            navigator.push('setAccountName');
+            delete this.state.reenteredSeed;
+        } else if (size(reenteredSeed) === MAX_SEED_TRITS) {
             this.props.generateAlert('error', t('incorrectSeed'), t('incorrectSeedExplanation'));
         } else {
             this.props.generateAlert(
@@ -165,9 +155,7 @@ class SeedReentry extends Component {
         const dataString = data.toString();
         const { t } = this.props;
         if (dataString.length === MAX_SEED_LENGTH && dataString.match(VALID_SEED_REGEX)) {
-            this.setState({
-                seed: data,
-            });
+            this.setState({ reenteredSeed: trytesToTrits(data) });
         } else {
             this.props.generateAlert(
                 'error',
@@ -186,6 +174,8 @@ class SeedReentry extends Component {
                     theme,
                     hideModal: () => this.props.toggleModalActivity(),
                     onQRRead: (data) => this.onQRRead(data),
+                    onMount: () => this.props.setDoNotMinimise(true),
+                    onUnmount: () => this.props.setDoNotMinimise(false),
                 });
             case 'passwordValidation':
                 return this.props.toggleModalActivity(modalContent, {
@@ -197,7 +187,6 @@ class SeedReentry extends Component {
     };
 
     render() {
-        const { seed } = this.state;
         const { t, theme, minimised } = this.props;
         const textColor = { color: theme.body.color };
 
@@ -239,22 +228,16 @@ class SeedReentry extends Component {
                                     >
                                         <CustomTextInput
                                             label={t('global:seed')}
-                                            onChangeText={(text) => {
-                                                if (text.match(VALID_SEED_REGEX) || text.length === 0) {
-                                                    this.setState({ seed: text.toUpperCase() });
-                                                }
-                                            }}
+                                            onValidTextChange={(text) => this.setState({ reenteredSeed: text })}
                                             maxLength={MAX_SEED_LENGTH}
-                                            autoCapitalize="characters"
                                             autoCorrect={false}
                                             enablesReturnKeyAutomatically
                                             returnKeyType="done"
                                             onSubmitEditing={() => this.onDonePress()}
                                             theme={theme}
-                                            value={seed}
-                                            widget="qr"
+                                            value={this.state.reenteredSeed}
+                                            widgets={['qr', 'mask']}
                                             onQRPress={() => this.onQRPress()}
-                                            seed={seed}
                                             isSeedInput
                                         />
                                     </AnimatedComponent>
@@ -268,7 +251,7 @@ class SeedReentry extends Component {
                                         <SeedVaultImport
                                             openPasswordValidationModal={() => this.showModal('passwordValidation')}
                                             onSeedImport={(seed) => {
-                                                this.setState({ seed });
+                                                this.setState({ reenteredSeed: seed });
                                                 this.props.toggleModalActivity();
                                             }}
                                             onRef={(ref) => {
@@ -302,14 +285,14 @@ class SeedReentry extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.wallet.seed,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     minimised: state.ui.minimised,
 });
 
 const mapDispatchToProps = {
     generateAlert,
     toggleModalActivity,
+    setDoNotMinimise,
 };
 
 export default WithUserActivity()(

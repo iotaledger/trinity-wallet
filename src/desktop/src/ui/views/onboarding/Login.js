@@ -12,6 +12,7 @@ import { getAccountInfo, getFullAccountInfo } from 'actions/accounts';
 import { clearWalletData, setPassword } from 'actions/wallet';
 
 import { getSelectedAccountName, getSelectedAccountMeta, isSettingUpNewAccount } from 'selectors/accounts';
+import { TWOFA_TOKEN_LENGTH } from 'libs/utils';
 
 import { capitalize } from 'libs/iota/converter';
 import { hash, authorize } from 'libs/crypto';
@@ -22,6 +23,8 @@ import Text from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
 import Modal from 'ui/components/modal/Modal';
+
+import Migration from 'ui/global/Migration';
 
 import css from './index.scss';
 
@@ -44,6 +47,8 @@ class Login extends React.Component {
         additionalAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         additionalAccountName: PropTypes.string.isRequired,
+        /** @ignore */
+        completedMigration: PropTypes.bool.isRequired,
         /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
         /** @ignore */
@@ -74,6 +79,7 @@ class Login extends React.Component {
         verifyTwoFA: false,
         code: '',
         password: '',
+        shouldMigrate: false,
     };
 
     componentDidMount() {
@@ -89,6 +95,12 @@ class Login extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (!prevProps.completedMigration && this.props.completedMigration) {
+            this.setupAccount();
+        }
+    }
+
     componentWillUnmount() {
         setTimeout(() => Electron.garbageCollect(), 1000);
     }
@@ -98,7 +110,7 @@ class Login extends React.Component {
      * @param {string} value - Code value
      */
     setCode = (value) => {
-        this.setState({ code: value }, () => value.length === 6 && this.handleSubmit());
+        this.setState({ code: value }, () => value.length === TWOFA_TOKEN_LENGTH && this.handleSubmit());
     };
 
     /**
@@ -161,7 +173,7 @@ class Login extends React.Component {
         }
 
         const { password, code, verifyTwoFA } = this.state;
-        const { setPassword, generateAlert, t } = this.props;
+        const { setPassword, generateAlert, t, completedMigration } = this.props;
 
         let passwordHash = null;
         let authorised = false;
@@ -200,6 +212,11 @@ class Login extends React.Component {
                 verifyTwoFA: false,
             });
 
+            if (!completedMigration) {
+                this.setState({ shouldMigrate: true });
+                return;
+            }
+
             try {
                 await this.setupAccount();
             } catch (err) {
@@ -213,8 +230,8 @@ class Login extends React.Component {
     };
 
     render() {
-        const { forceUpdate, t, addingAdditionalAccount, ui } = this.props;
-        const { verifyTwoFA, code } = this.state;
+        const { forceUpdate, t, addingAdditionalAccount, ui, completedMigration } = this.props;
+        const { verifyTwoFA, code, shouldMigrate } = this.state;
 
         if (ui.isFetchingAccountInfo) {
             return (
@@ -224,6 +241,10 @@ class Login extends React.Component {
                     subtitle={addingAdditionalAccount ? t('loading:thisMayTake') : null}
                 />
             );
+        }
+
+        if (shouldMigrate && !completedMigration) {
+            return <Migration />;
         }
 
         return (
@@ -281,8 +302,8 @@ const mapStateToProps = (state) => ({
     additionalAccountName: state.accounts.accountInfoDuringSetup.name,
     ui: state.ui,
     currency: state.settings.currency,
-    onboarding: state.ui.onboarding,
     forceUpdate: state.wallet.forceUpdate,
+    completedMigration: state.settings.completedMigration,
 });
 
 const mapDispatchToProps = {
@@ -297,7 +318,4 @@ const mapDispatchToProps = {
     getAccountInfo,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withI18n()(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Login));

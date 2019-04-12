@@ -11,10 +11,10 @@ const props = {
     accounts: {
         accountInfo: {
             foo: {
-                balance: 5500000,
+                addressData: [{ balance: 5000000 }, { balance: 500000 }],
             },
             bar: {
-                balance: 4000000,
+                addressData: [{ balance: 4000000 }],
             },
         },
     },

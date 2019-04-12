@@ -4,22 +4,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import CustomTextInput from 'ui/components/CustomTextInput';
+import theme from '../../../__mocks__/theme';
 
 const getProps = (overrides) =>
     assign(
         {},
         {
-            onChangeText: noop,
+            onValidTextChange: noop,
             label: 'foo',
-            theme: { body: {}, input: {}, primary: {}, label: {} },
+            theme,
         },
         overrides,
     );
 
 describe('Testing CustomTextInput component', () => {
     describe('propTypes', () => {
-        it('should require an onChangeText function as a prop', () => {
-            expect(CustomTextInput.propTypes.onChangeText).toEqual(PropTypes.func.isRequired);
+        it('should require an onValidTextChange function as a prop', () => {
+            expect(CustomTextInput.propTypes.onValidTextChange).toEqual(PropTypes.func);
         });
 
         it('should require a theme object as a prop', () => {
@@ -40,6 +41,10 @@ describe('Testing CustomTextInput component', () => {
 
         it('should accept a containerStyle object as a prop', () => {
             expect(CustomTextInput.propTypes.containerStyle).toEqual(PropTypes.object);
+        });
+
+        it('should accept a widgets array as a prop', () => {
+            expect(CustomTextInput.propTypes.widgets).toEqual(PropTypes.array);
         });
 
         it('should accept a onDenominationPress function as a prop', () => {
@@ -112,6 +117,22 @@ describe('Testing CustomTextInput component', () => {
 
             const wrapper = shallow(<CustomTextInput {...props} />);
             expect(wrapper.find('TextInput').length).toEqual(1);
+        });
+
+        it('should mask input when "mask" is specified in the "widgets" prop', () => {
+            const props = getProps();
+            props.widgets = ['mask'];
+
+            const wrapper = shallow(<CustomTextInput {...props} />);
+            expect(wrapper.find('Icon').prop('name')).toEqual('eyeSlash');
+            expect(wrapper.find('TextInput').prop('secureTextEntry')).toEqual(true);
+        });
+
+        it('should not mask input when "mask" is not specified in the "widgets" prop', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<CustomTextInput {...props} />);
+            expect(wrapper.find('TextInput').prop('secureTextEntry')).toEqual(false);
         });
     });
 

@@ -1,22 +1,22 @@
 PODS:
-  - CatCrypto (0.2.3)
+  - CatCrypto (0.3.0)
 
 DEPENDENCIES:
-  - CatCrypto (from `https://github.com/rajivshah3/CatCrypto.git`, branch `raw-hash`)
+  - CatCrypto (from `https://github.com/rajivshah3/CatCrypto.git`, branch `trinity`)
 
 EXTERNAL SOURCES:
   CatCrypto:
-    :branch: raw-hash
+    :branch: trinity
     :git: https://github.com/rajivshah3/CatCrypto.git
 
 CHECKOUT OPTIONS:
   CatCrypto:
-    :commit: 7e4ba07f326cecbce5fa56312ad7d7882a217547
+    :commit: d0eb6e13f19f99144fec8be1455d5a0c0f20a0ad
     :git: https://github.com/rajivshah3/CatCrypto.git
 
 SPEC CHECKSUMS:
-  CatCrypto: d3e607c328f7edc8befdf384515a38168e05c14e
+  CatCrypto: 7e3a6e0a03b699845b38cdc09d34a8127466c5e0
 
-PODFILE CHECKSUM: a979bb220d55bf8594eebb21cc8097095251f44e
+PODFILE CHECKSUM: 9dd38ddc58ea139da62f0c02fc28eecd6a36c7ac
 
 COCOAPODS: 1.5.3

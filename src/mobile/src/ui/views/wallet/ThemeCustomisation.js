@@ -6,6 +6,7 @@ import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } fr
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { updateTheme } from 'shared-modules/actions/settings';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import THEMES from 'shared-modules/themes/themes';
 import Dropdown from 'ui/components/Dropdown'; // eslint-disable-line import/no-named-as-default
 import { width, height } from 'libs/dimensions';
@@ -150,12 +151,10 @@ class ThemeCustomisation extends Component {
      * Update wallet's theme
      *
      * @method onApplyPress
-     * @param {object} theme
      * @param {string} themeName
      */
-    onApplyPress(theme, themeName) {
-        const newTheme = cloneDeep(theme);
-        this.props.updateTheme(newTheme, themeName);
+    onApplyPress(themeName) {
+        this.props.updateTheme(themeName);
     }
 
     getLocalizedThemeName(themeName) {
@@ -182,7 +181,7 @@ class ThemeCustomisation extends Component {
     }
 
     render() {
-        const { theme, themeName } = this.state;
+        const { themeName } = this.state;
         const { body, bar, secondary, primary, positive, negative } = this.state.theme;
         const { t } = this.props;
         const bodyColor = this.props.theme.body.color;
@@ -206,7 +205,7 @@ class ThemeCustomisation extends Component {
                                 dropdownWidth={{ width: width / 1.45 }}
                                 background
                                 shadow
-                                defaultOption={this.getLocalizedThemeName(themeName)}
+                                value={this.getLocalizedThemeName(themeName)}
                                 options={this.getLocalizedThemes().map(({ theme }) => theme)}
                                 saveSelection={(localizedSelection) => {
                                     const selection = this.getThemeName(localizedSelection);
@@ -287,7 +286,7 @@ class ThemeCustomisation extends Component {
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => this.onApplyPress(theme, themeName)}
+                            onPress={() => this.onApplyPress(themeName)}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemRight}>
@@ -303,7 +302,7 @@ class ThemeCustomisation extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     themeName: state.settings.themeName,
 });
 

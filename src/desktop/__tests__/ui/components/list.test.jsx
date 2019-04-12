@@ -13,7 +13,7 @@ const props = {
     updateAccount: jest.fn(),
     toggleEmptyTransactions: jest.fn(),
     /** Transaction history */
-    transfers: [
+    transactions: [
         {
             attachmentTimestamp: 1546934663241,
             bundle: 'ABCDEFGHIJKLMONPRSTUVXYZABCDEFGHIJKLMONPRSTUVXYZABCDEFGHIJKLMONPRSTUVXYZABCDEFGHI',

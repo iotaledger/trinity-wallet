@@ -11,6 +11,9 @@ global.Electron = {
                 getAddress,
             };
         }),
+        getAppMaxBundleSize: jest.fn(() => {
+            return 5;
+        }),
     },
 };
 
@@ -26,7 +29,8 @@ describe('Ledger SeedStore class', () => {
     test('get max inputs', async () => {
         const seedVault = await new Ledger();
 
-        expect(seedVault.maxInputs).toEqual(2);
+        const maxInputs = await seedVault.getMaxInputs();
+        expect(maxInputs).toEqual(5);
     });
 
     test('Get seed object', async () => {

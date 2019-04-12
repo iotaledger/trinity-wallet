@@ -1,4 +1,8 @@
+import assign from 'lodash/assign';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
 import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import { expect } from 'chai';
 import {
     syncAccountOnValueTransactionFailure,
@@ -6,69 +10,10 @@ import {
     syncAccountDuringSnapshotTransition,
 } from '../../../libs/iota/accounts';
 import mockAccounts from '../../__samples__/accounts';
+import { latestAddressObject, latestAddressIndex } from '../../__samples__/addresses';
+import { newValueTransaction as mockValueTransactionObjects } from '../../__samples__/transactions';
 
 describe('libs: iota/accounts', () => {
-    let transactionObjects;
-
-    before(() => {
-        transactionObjects = [
-            {
-                address: 'YPVQNKQTFKIZPDPMU9HYUT9YDVHITGAD9CNINJK9HWOSZYBZZFXVET9NRNUSVWWVWOHP9LQIUXBKMMRXW',
-                attachmentTimestampLowerBound: 0,
-                attachmentTimestampUpperBound: 3812798742493,
-                branchTransaction: 'LKWWJXN9EHMUGKTZMEASER9AQHUVQFXYEMGKWQCXQVQVAUUFHZD9PN9UMNXVCTR9OGE9TUWMWCXE99999',
-                bundle: 'VHMDWDTBGJLEWVESYLBOISSUIKROXZVWZE9EFKTDGLJGJEKJJAWLGFBBSCZGKXIPCHAJDTTQLHFAQCCDY',
-                currentIndex: 0,
-                hash: 'LTIIFRUPLKCUNUB9YDN9NSIVHIQXGNWUXSWTKVHBYFVQYYIQZUTBRQREQ9ZIZUXRVUKYWPH9TRVB99999',
-                lastIndex: 2,
-                nonce: 'ZEZGPA999999999999999999999',
-                obsoleteTag: 'STINITY99999999999999999999',
-                signatureMessageFragment: '9'.repeat(2187),
-                value: 2,
-                tag: 'TRINITY99999999999999999999',
-                timestamp: 1528875229,
-                attachmentTimestamp: 1528875232150,
-                trunkTransaction: 'QQGYXVMROZNKYOSIQGKDEZINGYJCUGBABWRJAGKVSYFDVFEYBNJZZE9QRGLIKPYGTQOBTF9XMGX9Z9999',
-            },
-            {
-                address: 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                attachmentTimestampLowerBound: 0,
-                attachmentTimestampUpperBound: 3812798742493,
-                branchTransaction: 'LKWWJXN9EHMUGKTZMEASER9AQHUVQFXYEMGKWQCXQVQVAUUFHZD9PN9UMNXVCTR9OGE9TUWMWCXE99999',
-                bundle: 'VHMDWDTBGJLEWVESYLBOISSUIKROXZVWZE9EFKTDGLJGJEKJJAWLGFBBSCZGKXIPCHAJDTTQLHFAQCCDY',
-                currentIndex: 1,
-                hash: 'QQGYXVMROZNKYOSIQGKDEZINGYJCUGBABWRJAGKVSYFDVFEYBNJZZE9QRGLIKPYGTQOBTF9XMGX9Z9999',
-                lastIndex: 2,
-                nonce: 'SGLUI9999999999999999999999',
-                obsoleteTag: 'STINITY99999999999999999999',
-                signatureMessageFragment: '9'.repeat(2187),
-                value: -10,
-                tag: 'TRINITY99999999999999999999',
-                timestamp: 1528875229,
-                attachmentTimestamp: 1528875232150,
-                trunkTransaction: 'USUTETYIDHYU9LVMECMITNIXLOWIYXLEUYAZZFPUOJVGYENCEDZSXYYTOLTCAZMKKOAQYOHAYUYMA9999',
-            },
-            {
-                address: 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                attachmentTimestampLowerBound: 0,
-                attachmentTimestampUpperBound: 3812798742493,
-                branchTransaction: 'JCAPOFKNTIG9SOIXXSITDIR9WHM9SVWZRTXJQDPUHOKE9HSNPUMTTLAPAOYRNOJC9ZZRSNVKCPO9A9999',
-                bundle: 'VHMDWDTBGJLEWVESYLBOISSUIKROXZVWZE9EFKTDGLJGJEKJJAWLGFBBSCZGKXIPCHAJDTTQLHFAQCCDY',
-                currentIndex: 2,
-                hash: 'USUTETYIDHYU9LVMECMITNIXLOWIYXLEUYAZZFPUOJVGYENCEDZSXYYTOLTCAZMKKOAQYOHAYUYMA9999',
-                lastIndex: 2,
-                nonce: 'QSFQG9999999999999999999999',
-                obsoleteTag: 'STINITY99999999999999999999',
-                signatureMessageFragment: '9'.repeat(2187),
-                value: 8,
-                tag: 'TRINITY99999999999999999999',
-                timestamp: 1528875229,
-                attachmentTimestamp: 1528875232150,
-                trunkTransaction: 'LKWWJXN9EHMUGKTZMEASER9AQHUVQFXYEMGKWQCXQVQVAUUFHZD9PN9UMNXVCTR9OGE9TUWMWCXE99999',
-            },
-        ];
-    });
-
     describe('#syncAccountOnValueTransactionFailure', () => {
         let accountName;
 
@@ -78,67 +23,38 @@ describe('libs: iota/accounts', () => {
 
         it('should mark input addresses as spent', () => {
             const accountState = mockAccounts.accountInfo[accountName];
-            const inputAddress = 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW';
-            expect(accountState.addresses[inputAddress].spent.local).to.equal(false);
+            const inputAddress = 'ZBQWFOZVCOURPSVBNIBWOBQNRQXDBESSEJWWETTWWMGSJDUJLITMJYYBM9ZUFXTYTTPSGDTVBNIKLKXJA';
 
-            const result = syncAccountOnValueTransactionFailure(transactionObjects, accountState);
+            // Assert that input address is unspent before syncAccountOnValueTransactionFailure is called
+            const inputAddressDataBefore = find(accountState.addressData, { address: inputAddress });
+            expect(inputAddressDataBefore.spent.local).to.equal(false);
 
-            expect(result.newState.addresses[inputAddress].spent.local).to.equal(true);
+            const result = syncAccountOnValueTransactionFailure(mockValueTransactionObjects, accountState);
+
+            const inputAddressDataAfter = find(result.addressData, { address: inputAddress });
+            expect(inputAddressDataAfter.spent.local).to.equal(true);
         });
 
-        it('should assign normalised transfer to existing transfers', () => {
+        it('should add new transaction objects to transactions in state (with persistence & broadcasted properties as false)', () => {
             const accountState = mockAccounts.accountInfo[accountName];
-            const bundle = 'VHMDWDTBGJLEWVESYLBOISSUIKROXZVWZE9EFKTDGLJGJEKJJAWLGFBBSCZGKXIPCHAJDTTQLHFAQCCDY';
+            const bundle = 'J9KGYQZZTWKJDAJYSNFAUJ9PGPJGKCFJGPTXWJAHZWPGBCJEPLXQGVXAPZDP9HDVGIHZZ9IFIWAAPFRNC';
 
-            expect(bundle in accountState.transfers).to.equal(false);
+            // Assert that bundle does not exist in existing transactions
 
-            const result = syncAccountOnValueTransactionFailure(transactionObjects, accountState);
+            expect(find(accountState.transactions, { bundle })).to.equal(undefined);
 
-            const normalisedTransfer = {
-                bundle: 'VHMDWDTBGJLEWVESYLBOISSUIKROXZVWZE9EFKTDGLJGJEKJJAWLGFBBSCZGKXIPCHAJDTTQLHFAQCCDY',
-                timestamp: 1528875229,
-                attachmentTimestamp: 1528875232150,
-                inputs: [
-                    {
-                        address: 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                        value: -10,
-                        hash: 'QQGYXVMROZNKYOSIQGKDEZINGYJCUGBABWRJAGKVSYFDVFEYBNJZZE9QRGLIKPYGTQOBTF9XMGX9Z9999',
-                        checksum: 'GDMMKORSW',
-                        currentIndex: 1,
-                        lastIndex: 2,
-                    },
-                ],
-                outputs: [
-                    {
-                        address: 'YPVQNKQTFKIZPDPMU9HYUT9YDVHITGAD9CNINJK9HWOSZYBZZFXVET9NRNUSVWWVWOHP9LQIUXBKMMRXW',
-                        value: 2,
-                        hash: 'LTIIFRUPLKCUNUB9YDN9NSIVHIQXGNWUXSWTKVHBYFVQYYIQZUTBRQREQ9ZIZUXRVUKYWPH9TRVB99999',
-                        checksum: 'KWHYM9THA',
-                        currentIndex: 0,
-                        lastIndex: 2,
-                    },
-                    {
-                        address: 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                        value: 8,
-                        hash: 'USUTETYIDHYU9LVMECMITNIXLOWIYXLEUYAZZFPUOJVGYENCEDZSXYYTOLTCAZMKKOAQYOHAYUYMA9999',
-                        checksum: 'GDMMKORSW',
-                        currentIndex: 2,
-                        lastIndex: 2,
-                    },
-                ],
-                persistence: false,
-                incoming: false,
-                transferValue: 2,
-                message: 'Empty',
-                tailTransactions: [
-                    {
-                        hash: 'LTIIFRUPLKCUNUB9YDN9NSIVHIQXGNWUXSWTKVHBYFVQYYIQZUTBRQREQ9ZIZUXRVUKYWPH9TRVB99999',
-                        attachmentTimestamp: 1528875232150,
-                    },
-                ],
-            };
-            expect(bundle in result.newState.transfers).to.equal(true);
-            expect(result.newState.transfers[bundle]).to.eql(normalisedTransfer);
+            const result = syncAccountOnValueTransactionFailure(mockValueTransactionObjects, accountState);
+
+            expect(find(result.transactions, { bundle })).to.not.equal(undefined);
+
+            expect(result.transactions).to.eql([
+                ...accountState.transactions,
+                ...map(mockValueTransactionObjects, (transaction) => ({
+                    ...transaction,
+                    persistence: false,
+                    broadcasted: false,
+                })),
+            ]);
         });
     });
 
@@ -149,100 +65,31 @@ describe('libs: iota/accounts', () => {
             accountName = 'TEST';
         });
 
-        it('should merge normalised transfer to existing transfers', () => {
+        it('should set "broadcasted" property to true for newly broadcasted transactions', () => {
             const accountState = {
                 ...mockAccounts.accountInfo[accountName],
-                ...mockAccounts.unconfirmedBundleTails,
-                hashes: [],
-            };
-            const bundle = 'VHMDWDTBGJLEWVESYLBOISSUIKROXZVWZE9EFKTDGLJGJEKJJAWLGFBBSCZGKXIPCHAJDTTQLHFAQCCDY';
-
-            const result = syncAccountOnSuccessfulRetryAttempt(
-                accountName,
-                map(transactionObjects, (tx) => ({ ...tx, hash: '9'.repeat(81) })),
-                accountState,
-            );
-
-            const normalisedTransfer = {
-                bundle: 'VHMDWDTBGJLEWVESYLBOISSUIKROXZVWZE9EFKTDGLJGJEKJJAWLGFBBSCZGKXIPCHAJDTTQLHFAQCCDY',
-                timestamp: 1528875229,
-                attachmentTimestamp: 1528875232150,
-                inputs: [
-                    {
-                        address: 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                        value: -10,
+                transactions: [
+                    ...mockAccounts.accountInfo[accountName].transactions,
+                    ...map(mockValueTransactionObjects, (transaction) => ({
+                        ...transaction,
+                        persistence: false,
+                        broadcasted: false,
+                        // Also assign a fake hash and test that it's overriden by the correct hash
                         hash: '9'.repeat(81),
-                        checksum: 'GDMMKORSW',
-                        currentIndex: 1,
-                        lastIndex: 2,
-                    },
-                ],
-                outputs: [
-                    {
-                        address: 'YPVQNKQTFKIZPDPMU9HYUT9YDVHITGAD9CNINJK9HWOSZYBZZFXVET9NRNUSVWWVWOHP9LQIUXBKMMRXW',
-                        value: 2,
-                        hash: '9'.repeat(81),
-                        checksum: 'KWHYM9THA',
-                        currentIndex: 0,
-                        lastIndex: 2,
-                    },
-                    {
-                        address: 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                        value: 8,
-                        hash: '9'.repeat(81),
-                        checksum: 'GDMMKORSW',
-                        currentIndex: 2,
-                        lastIndex: 2,
-                    },
-                ],
-                persistence: false,
-                incoming: false,
-                transferValue: 2,
-                message: 'Empty',
-                tailTransactions: [
-                    {
-                        hash: '9'.repeat(81),
-                        attachmentTimestamp: 1528875232150,
-                    },
+                    })),
                 ],
             };
 
-            expect(result.newState.transfers[bundle]).to.eql(normalisedTransfer);
-        });
+            const result = syncAccountOnSuccessfulRetryAttempt(mockValueTransactionObjects, accountState);
 
-        it('should concat new transaction hashes for own addresses', () => {
-            const accountState = {
-                ...mockAccounts.accountInfo[accountName],
-                ...mockAccounts.unconfirmedBundleTails,
-                hashes: [],
-            };
-
-            const result = syncAccountOnSuccessfulRetryAttempt(accountName, transactionObjects, accountState);
-
-            expect(result.newState.hashes).to.eql([
-                'QQGYXVMROZNKYOSIQGKDEZINGYJCUGBABWRJAGKVSYFDVFEYBNJZZE9QRGLIKPYGTQOBTF9XMGX9Z9999',
-                'USUTETYIDHYU9LVMECMITNIXLOWIYXLEUYAZZFPUOJVGYENCEDZSXYYTOLTCAZMKKOAQYOHAYUYMA9999',
+            expect(result.transactions).to.eql([
+                ...mockAccounts.accountInfo[accountName].transactions,
+                ...map(mockValueTransactionObjects, (transaction) => ({
+                    ...transaction,
+                    persistence: false,
+                    broadcasted: true,
+                })),
             ]);
-        });
-
-        it('should merge bundle hash to "unconfirmedBundleTails"', () => {
-            const accountState = {
-                ...mockAccounts.accountInfo[accountName],
-                ...mockAccounts.unconfirmedBundleTails,
-                hashes: [],
-            };
-
-            const result = syncAccountOnSuccessfulRetryAttempt(accountName, transactionObjects, accountState);
-
-            expect(result.newState.unconfirmedBundleTails).to.eql({
-                VHMDWDTBGJLEWVESYLBOISSUIKROXZVWZE9EFKTDGLJGJEKJJAWLGFBBSCZGKXIPCHAJDTTQLHFAQCCDY: [
-                    {
-                        account: 'TEST',
-                        attachmentTimestamp: 1528875232150,
-                        hash: 'LTIIFRUPLKCUNUB9YDN9NSIVHIQXGNWUXSWTKVHBYFVQYYIQZUTBRQREQ9ZIZUXRVUKYWPH9TRVB99999',
-                    },
-                ],
-            });
         });
     });
 
@@ -253,127 +100,79 @@ describe('libs: iota/accounts', () => {
             accountName = 'TEST';
         });
 
-        it('should merge addressData into existing addressData', () => {
-            const accountState = {
-                ...mockAccounts.accountInfo[accountName],
-                ...mockAccounts.unconfirmedBundleTails,
-                hashes: [],
-            };
+        describe('when address of attached address object already exists in existing address data', () => {
+            it('should replace latestAddressObject with existing address object', () => {
+                const accountState = mockAccounts.accountInfo[accountName];
 
-            const addressData = {
-                ['9'.repeat(81)]: {
-                    balance: 0,
-                    index: 10,
-                    checksum: 'FAKECHECKSUM',
-                    spent: false,
-                },
-            };
+                const attachedAddressObject = assign({}, latestAddressObject, { balance: 1000 });
 
-            const { newState } = syncAccountDuringSnapshotTransition(transactionObjects, addressData, accountState);
+                const result = syncAccountDuringSnapshotTransition(
+                    mockValueTransactionObjects,
+                    attachedAddressObject,
+                    accountState,
+                );
 
-            const expectedResult = { ...mockAccounts.accountInfo[accountName].addresses, ...addressData };
-            expect(newState.addresses).to.eql(expectedResult);
+                expect(result.addressData).to.eql([
+                    ...filter(
+                        result.addressData,
+                        (addressObject) => addressObject.address !== latestAddressObject.address,
+                    ),
+                    attachedAddressObject,
+                ]);
+            });
         });
 
-        it('should merge normalised transfer to existing transfers', () => {
+        describe('when address of attached address object does not exist in existing address data', () => {
+            it('should add attachedAddressObject to existing address data and sort addressData by index in ascending order', () => {
+                const accountState = {
+                    ...mockAccounts.accountInfo[accountName],
+                    addressData: orderBy(mockAccounts.accountInfo[accountName].addressData, 'index', ['desc']),
+                };
+
+                const attachedAddressObject = {
+                    address: 'U'.repeat(81),
+                    balance: 0,
+                    index: latestAddressIndex + 1,
+                    checksum: 'NXELTUENX',
+                    spent: { local: false, remote: false },
+                };
+
+                const result = syncAccountDuringSnapshotTransition(
+                    mockValueTransactionObjects,
+                    attachedAddressObject,
+                    accountState,
+                );
+
+                const expectedAddressData = orderBy([attachedAddressObject, ...accountState.addressData], 'index', [
+                    'asc',
+                ]);
+
+                expect(result.addressData).to.eql(expectedAddressData);
+            });
+        });
+
+        it('should add new transaction objects to transactions in state (with persistence property false & broadcasted property true)', () => {
             const accountState = {
                 ...mockAccounts.accountInfo[accountName],
-                ...mockAccounts.unconfirmedBundleTails,
-                hashes: [],
+                addressData: [],
             };
 
+            const latestAddressData = mockAccounts.accountInfo[accountName].addressData;
+
             const result = syncAccountDuringSnapshotTransition(
-                map(transactionObjects, (tx) => ({ ...tx, hash: '9'.repeat(81) })),
-                {},
+                mockValueTransactionObjects,
+                latestAddressData,
                 accountState,
             );
 
-            const bundle = 'VHMDWDTBGJLEWVESYLBOISSUIKROXZVWZE9EFKTDGLJGJEKJJAWLGFBBSCZGKXIPCHAJDTTQLHFAQCCDY';
-
-            const normalisedTransfer = {
-                bundle,
-                timestamp: 1528875229,
-                attachmentTimestamp: 1528875232150,
-                inputs: [
-                    {
-                        address: 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                        value: -10,
-                        hash: '9'.repeat(81),
-                        checksum: 'GDMMKORSW',
-                        currentIndex: 1,
-                        lastIndex: 2,
-                    },
-                ],
-                outputs: [
-                    {
-                        address: 'YPVQNKQTFKIZPDPMU9HYUT9YDVHITGAD9CNINJK9HWOSZYBZZFXVET9NRNUSVWWVWOHP9LQIUXBKMMRXW',
-                        value: 2,
-                        hash: '9'.repeat(81),
-                        checksum: 'KWHYM9THA',
-                        currentIndex: 0,
-                        lastIndex: 2,
-                    },
-                    {
-                        address: 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                        value: 8,
-                        hash: '9'.repeat(81),
-                        checksum: 'GDMMKORSW',
-                        currentIndex: 2,
-                        lastIndex: 2,
-                    },
-                ],
-                persistence: false,
-                incoming: false,
-                transferValue: 2,
-                message: 'Empty',
-                tailTransactions: [
-                    {
-                        hash: '9'.repeat(81),
-                        attachmentTimestamp: 1528875232150,
-                    },
-                ],
-            };
-
-            expect(result.newState.transfers[bundle]).to.eql(normalisedTransfer);
-        });
-
-        it('should concat new transaction hashes for all addresses in transaction', () => {
-            const accountState = {
-                ...mockAccounts.accountInfo[accountName],
-                ...mockAccounts.unconfirmedBundleTails,
-                hashes: [],
-            };
-
-            const result = syncAccountDuringSnapshotTransition(transactionObjects, {}, accountState);
-
-            expect(result.newState.hashes).to.eql([
-                'LTIIFRUPLKCUNUB9YDN9NSIVHIQXGNWUXSWTKVHBYFVQYYIQZUTBRQREQ9ZIZUXRVUKYWPH9TRVB99999',
-                'QQGYXVMROZNKYOSIQGKDEZINGYJCUGBABWRJAGKVSYFDVFEYBNJZZE9QRGLIKPYGTQOBTF9XMGX9Z9999',
-                'USUTETYIDHYU9LVMECMITNIXLOWIYXLEUYAZZFPUOJVGYENCEDZSXYYTOLTCAZMKKOAQYOHAYUYMA9999',
+            expect(result.transactions).to.eql([
+                ...accountState.transactions,
+                ...map(mockValueTransactionObjects, (transaction) => ({
+                    ...transaction,
+                    persistence: false,
+                    broadcasted: true,
+                })),
             ]);
-        });
-
-        it('should accumulate balance on new address data', () => {
-            const accountState = {
-                ...mockAccounts.accountInfo[accountName],
-                ...mockAccounts.unconfirmedBundleTails,
-                hashes: [],
-            };
-
-            const addressData = {
-                ['9'.repeat(81)]: {
-                    balance: 200,
-                    index: 10,
-                    checksum: 'FAKECHECKSUM',
-                    spent: false,
-                },
-            };
-
-            expect(accountState.balance).to.equal(110);
-
-            const result = syncAccountDuringSnapshotTransition(transactionObjects, addressData, accountState);
-
-            expect(result.newState.balance).to.equal(310);
         });
     });
 });

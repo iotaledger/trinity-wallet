@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Keyboard } from 'react-native';
 import { withNamespaces } from 'react-i18next';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
 import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
@@ -76,7 +77,6 @@ class SeedVaultSettings extends Component {
         this.state = {
             step: 'isValidatingWalletPassword',
             isAuthenticated: false,
-            seed: '',
         };
     }
 
@@ -101,7 +101,7 @@ class SeedVaultSettings extends Component {
 
     render() {
         const { t, theme } = this.props;
-        const { step, isAuthenticated, seed } = this.state;
+        const { step, isAuthenticated } = this.state;
         const textColor = { color: theme.body.color };
         const bodyColor = theme.body.color;
 
@@ -118,8 +118,6 @@ class SeedVaultSettings extends Component {
                             }}
                             isAuthenticated={isAuthenticated}
                             setAuthenticated={() => this.setState({ isAuthenticated: true })}
-                            seed={seed}
-                            setSeed={(seed) => this.setState({ seed })}
                         />
                         <View style={{ flex: 0.2 }} />
                     </View>
@@ -154,7 +152,7 @@ class SeedVaultSettings extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

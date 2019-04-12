@@ -1,22 +1,21 @@
 import merge from 'lodash/merge';
 import map from 'lodash/map';
-import has from 'lodash/has';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { computeStatusText, formatRelevantTransactions } from 'shared-modules/libs/iota/transfers';
 import { promoteTransaction, retryFailedTransaction } from 'shared-modules/actions/transfers';
 import {
-    getTransfersForSelectedAccount,
+    getTransactionsForSelectedAccount,
     getSelectedAccountName,
     getSelectedAccountMeta,
     getAddressesForSelectedAccount,
-    getFailedBundleHashesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import SeedStore from 'libs/SeedStore';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'shared-modules/libs/utils';
@@ -27,7 +26,9 @@ import TransactionRow from 'ui/components/TransactionRow';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import CtaButton from 'ui/components/CtaButton';
+import InfoBox from 'ui/components/InfoBox';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { Styling } from 'ui/theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -58,13 +59,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: height / 5,
     },
+    infoText: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: Styling.fontSize3,
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+        paddingBottom: height / 25,
+    },
 });
 
 /** History screen component */
 class History extends Component {
     static propTypes = {
         /** Transactions for selected account */
-        transfers: PropTypes.object.isRequired,
+        transactions: PropTypes.object.isRequired,
         /** Close active top bar */
         closeTopBar: PropTypes.func.isRequired,
         /** @ignore */
@@ -103,8 +111,6 @@ class History extends Component {
         onRefresh: PropTypes.func.isRequired,
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
-        /** Failed transactions bundle hashes for selected account */
-        failedBundleHashes: PropTypes.object.isRequired,
         /** @ignore */
         retryFailedTransaction: PropTypes.func.isRequired,
         /** @ignore */
@@ -135,9 +141,10 @@ class History extends Component {
             modalContent,
             theme: { primary, secondary },
         } = this.props;
+
         // FIXME: Overly-complex ugly code. Think of a new updateModalProps approach.
         if (isModalActive && modalContent === 'transactionHistory') {
-            const newBundleProps = newProps.transfers[modalProps.bundle];
+            const newBundleProps = newProps.transactions[modalProps.bundle];
             if (
                 isRetryingFailedTransaction !== newProps.isRetryingFailedTransaction ||
                 isAutoPromoting !== newProps.isAutoPromoting ||
@@ -148,11 +155,13 @@ class History extends Component {
                         newProps.isAutoPromoting ||
                         newProps.isPromotingTransaction ||
                         newProps.isRetryingFailedTransaction,
+                    isRetryingFailedTransaction: newProps.isRetryingFailedTransaction,
+                    isFailedTransaction: !newBundleProps.broadcasted,
                     bundleIsBeingPromoted:
                         newProps.currentlyPromotingBundleHash === modalProps.bundle && !newBundleProps.persistence,
                 });
             }
-            if (modalProps.bundle in newProps.transfers && newBundleProps.persistence !== modalProps.persistence) {
+            if (modalProps.bundle in newProps.transactions && newBundleProps.persistence !== modalProps.persistence) {
                 this.props.updateModalProps({
                     persistence: newBundleProps.persistence,
                     outputs: newBundleProps.outputs,
@@ -180,28 +189,36 @@ class History extends Component {
         return true;
     }
 
+    async promoteTransaction(bundle) {
+        const { selectedAccountMeta, selectedAccountName } = this.props;
+        const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash);
+        this.props.promoteTransaction(bundle, selectedAccountName, seedStore);
+    }
+
+    async retryFailedTransaction(bundle) {
+        const { selectedAccountMeta, selectedAccountName } = this.props;
+        const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash);
+        this.props.retryFailedTransaction(selectedAccountName, bundle, seedStore);
+    }
+
     /**
      * Formats transaction data
      * @return {Array} Formatted transaction data
      */
     prepTransactions() {
         const {
-            transfers,
+            transactions,
             theme: { primary, secondary, body, bar, dark },
             mode,
             t,
-            selectedAccountName,
-            selectedAccountMeta,
-            password,
             currentlyPromotingBundleHash,
             isRefreshing,
             addresses,
             isAutoPromoting,
             isPromotingTransaction,
             isRetryingFailedTransaction,
-            failedBundleHashes,
         } = this.props;
-        const relevantTransfers = formatRelevantTransactions(transfers, addresses);
+        const relevantTransfers = formatRelevantTransactions(transactions, addresses);
 
         const withUnitAndChecksum = (item) => ({
             address: `${item.address}${item.checksum}`,
@@ -209,10 +226,18 @@ class History extends Component {
             unit: formatUnit(item.value),
         });
 
-        const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
-
         const formattedTransfers = map(relevantTransfers, (transfer) => {
-            const { timestamp, incoming, persistence, transferValue, inputs, outputs, bundle, message } = transfer;
+            const {
+                timestamp,
+                incoming,
+                persistence,
+                transferValue,
+                inputs,
+                outputs,
+                bundle,
+                message,
+                broadcasted,
+            } = transfer;
             const value = round(formatValue(transferValue), 1);
             return {
                 t,
@@ -229,6 +254,7 @@ class History extends Component {
                 bundleIsBeingPromoted: currentlyPromotingBundleHash === bundle && !persistence,
                 status: computeStatusText(outputs, persistence, incoming),
                 outputs,
+                isFailedTransaction: !broadcasted,
                 updateModalProps: (content) => this.props.updateModalProps(content),
                 onPress: (props) => {
                     if (isRefreshing) {
@@ -240,10 +266,8 @@ class History extends Component {
                             disableWhen: isAutoPromoting || isPromotingTransaction || isRetryingFailedTransaction,
                             isRetryingFailedTransaction,
                             currentlyPromotingBundleHash,
-                            isFailedTransaction: (bundle) => has(failedBundleHashes, bundle),
-                            retryFailedTransaction: (bundle) =>
-                                this.props.retryFailedTransaction(selectedAccountName, bundle, seedStore),
-                            promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName, seedStore),
+                            retryFailedTransaction: (bundle) => this.retryFailedTransaction(bundle),
+                            promote: (bundle) => this.promoteTransaction(bundle),
                             hideModal: () => this.props.toggleModalActivity(),
                             generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
                             bundle,
@@ -277,7 +301,7 @@ class History extends Component {
     }
 
     renderTransactions() {
-        const { theme: { primary }, t, isRefreshing } = this.props;
+        const { theme: { primary, body }, t, isRefreshing } = this.props;
         const data = this.prepTransactions();
         const noTransactions = data.length === 0;
 
@@ -289,6 +313,7 @@ class History extends Component {
                 removeClippedSubviews
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => <TransactionRow {...item} />}
+                scrollEnabled={data.length > 0}
                 refreshControl={
                     <RefreshControl
                         refreshing={isRefreshing && !noTransactions}
@@ -298,27 +323,19 @@ class History extends Component {
                 }
                 ListEmptyComponent={
                     <View style={styles.noTransactionsContainer}>
-                        {!isRefreshing ? (
-                            <View style={styles.refreshButtonContainer}>
-                                <CtaButton
-                                    ctaColor={primary.color}
-                                    secondaryCtaColor={primary.body}
-                                    text={t('global:refresh')}
-                                    onPress={this.props.onRefresh}
-                                    ctaWidth={width / 2}
-                                    ctaHeight={height / 16}
-                                />
-                            </View>
-                        ) : (
-                            <View style={styles.refreshButtonContainer}>
-                                <ActivityIndicator
-                                    animating={isRefreshing}
-                                    style={styles.activityIndicator}
-                                    size="large"
-                                    color={primary.color}
-                                />
-                            </View>
-                        )}
+                        <InfoBox>
+                            <Text style={[styles.infoText, { color: body.color }]}>{t('noTransactionsFound')}</Text>
+                            <CtaButton
+                                ctaColor={primary.color}
+                                ctaBorderColor={primary.color}
+                                secondaryCtaColor={primary.body}
+                                text={t('refresh')}
+                                onPress={() => this.props.onRefresh()}
+                                ctaWidth={width / 1.6}
+                                ctaHeight={height / 12}
+                                displayActivityIndicator={isRefreshing}
+                            />
+                        </InfoBox>
                     </View>
                 }
             />
@@ -326,13 +343,11 @@ class History extends Component {
     }
 
     render() {
-        const transactions = this.renderTransactions();
-
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
                     <View style={{ flex: 0.2 }} />
-                    <View style={styles.listView}>{transactions}</View>
+                    <View style={styles.listView}>{this.renderTransactions()}</View>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -340,12 +355,12 @@ class History extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    transfers: getTransfersForSelectedAccount(state),
+    transactions: getTransactionsForSelectedAccount(state),
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),
     addresses: getAddressesForSelectedAccount(state),
     mode: state.settings.mode,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isSyncing: state.ui.isSyncing,
@@ -353,7 +368,6 @@ const mapStateToProps = (state) => ({
     isPromotingTransaction: state.ui.isPromotingTransaction,
     isAutoPromoting: state.polling.isAutoPromoting,
     currentlyPromotingBundleHash: state.ui.currentlyPromotingBundleHash,
-    failedBundleHashes: getFailedBundleHashesForSelectedAccount(state),
     isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
     modalProps: state.ui.modalProps,
     isModalActive: state.ui.isModalActive,

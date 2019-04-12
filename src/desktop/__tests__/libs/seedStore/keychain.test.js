@@ -31,7 +31,7 @@ describe('Keychain SeedStore class', () => {
     test('Get max inputs', async () => {
         const seedVault = await new Keychain(passwordMock);
 
-        expect(seedVault.maxInputs).toEqual(0);
+        expect(seedVault.getMaxInputs()).toEqual(0);
     });
 
     test('Create new account', async () => {

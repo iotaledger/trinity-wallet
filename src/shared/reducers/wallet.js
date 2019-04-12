@@ -2,7 +2,6 @@ import isEmpty from 'lodash/isEmpty';
 import union from 'lodash/union';
 import { ActionTypes } from '../actions/wallet';
 import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
-import { ActionTypes as UiActionTypes } from '../actions/ui';
 
 const initialState = {
     /**
@@ -13,10 +12,6 @@ const initialState = {
      * Wallet password hash
      */
     password: {},
-    /**
-     * User's seed stored temporarily during account setup
-     */
-    seed: Array(82).join(' '),
     /**
      * Active account index from the list of added account names
      */
@@ -38,9 +33,9 @@ const initialState = {
      */
     balanceCheckFlag: false,
     /**
-     * Determines if deep linking is activated on the wallet
+     * Determines if a deep link request is in progress
      */
-    deepLinkActive: false,
+    deepLinkRequestActive: false,
     /**
      * Determines if wallet has an active internet connection
      */
@@ -70,12 +65,6 @@ export default (state = initialState, action) => {
                 ...state,
                 seed: !isEmpty(action.payload.seed) ? action.payload.seed : state.seed,
             };
-        case UiActionTypes.SET_ONBOARDING_SEED:
-            return {
-                ...state,
-                seed: action.payload.seed,
-                usedExistingSeed: !action.payload.isGenerated,
-            };
         case ActionTypes.SET_PASSWORD:
             return {
                 ...state,
@@ -98,12 +87,7 @@ export default (state = initialState, action) => {
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
                 currentSetting: 'mainSettings',
-                deepLinkActive: false,
-            };
-        case ActionTypes.CLEAR_SEED:
-            return {
-                ...state,
-                seed: action.payload,
+                deepLinkRequestActive: false,
             };
         case ActionTypes.SET_SETTING:
             return {
@@ -116,12 +100,6 @@ export default (state = initialState, action) => {
                 ready: false,
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
-            return {
-                ...state,
-                ready: true,
-                seed: Array(82).join(' '),
-            };
-        case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
             return {
                 ...state,
                 ready: true,
@@ -166,15 +144,15 @@ export default (state = initialState, action) => {
                 ...state,
                 transitionAddresses: union(state.transitionAddresses, action.payload),
             };
-        case ActionTypes.SET_DEEP_LINK:
+        case ActionTypes.INITIATE_DEEP_LINK_REQUEST:
             return {
                 ...state,
-                deepLinkActive: true,
+                deepLinkRequestActive: true,
             };
-        case ActionTypes.SET_DEEP_LINK_INACTIVE:
+        case ActionTypes.COMPLETE_DEEP_LINK_REQUEST:
             return {
                 ...state,
-                deepLinkActive: false,
+                deepLinkRequestActive: false,
             };
         case ActionTypes.CONNECTION_CHANGED:
             return {
@@ -200,6 +178,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 navStack: state.navStack.slice(0, state.navStack.length - 1),
+            };
+        case ActionTypes.POP_TO_ROUTE:
+            return {
+                ...state,
+                navStack: state.navStack.slice(0, state.navStack.indexOf(action.payload) - 1),
             };
         case ActionTypes.RESET_ROUTE:
             return {

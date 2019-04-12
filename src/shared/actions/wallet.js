@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import noop from 'lodash/noop';
 import findLastIndex from 'lodash/findLastIndex';
 import reduce from 'lodash/reduce';
-import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
+import { updateAddressData, updateAccountAfterTransition } from '../actions/accounts';
 import {
     generateAlert,
     generateTransitionErrorAlert,
@@ -19,24 +19,21 @@ import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
 import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import Errors from '../libs/errors';
-import {
-    selectedAccountStateFactory,
-    getRemotePoWFromState,
-    getSelectedNodeFromState,
-    getNodesFromState,
-} from '../selectors/accounts';
+import { selectedAccountStateFactory } from '../selectors/accounts';
+import { getSelectedNodeFromState, getNodesFromState, getRemotePoWFromState } from '../selectors/global';
+import { Account } from '../storage';
 import { DEFAULT_SECURITY, DEFAULT_RETRIES } from '../config';
 
 export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
     GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS',
     GENERATE_NEW_ADDRESS_ERROR: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_ERROR',
+    SET_ACCOUNT_NAME: 'IOTA/WALLET/SET_ACCOUNT_NAME',
     SET_RECEIVE_ADDRESS: 'IOTA/WALLET/SET_RECEIVE_ADDRESS',
     SET_PASSWORD: 'IOTA/WALLET/SET_PASSWORD',
     CLEAR_WALLET_DATA: 'IOTA/WALLET/CLEAR_WALLET_DATA',
     SET_SEED_INDEX: 'IOTA/WALLET/SET_SEED_INDEX',
     SET_READY: 'IOTA/WALLET/SET_READY',
-    CLEAR_SEED: 'IOTA/WALLET/CLEAR_SEED',
     SET_SETTING: 'IOTA/WALLET/SET_SETTING',
     SNAPSHOT_TRANSITION_REQUEST: 'IOTA/WALLET/SNAPSHOT_TRANSITION_REQUEST',
     SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/WALLET/SNAPSHOT_TRANSITION_SUCCESS',
@@ -50,12 +47,14 @@ export const ActionTypes = {
     CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
     SHOULD_UPDATE: 'IOTA/APP/WALLET/SHOULD_UPDATE',
     FORCE_UPDATE: 'IOTA/APP/WALLET/FORCE_UPDATE',
-    SET_DEEP_LINK: 'IOTA/APP/WALLET/SET_DEEP_LINK',
-    SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
+    INITIATE_DEEP_LINK_REQUEST: 'IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST',
+    COMPLETE_DEEP_LINK_REQUEST: 'IOTA/APP/WALLET/COMPLETE_DEEP_LINK_REQUEST',
+    MAP_STORAGE_TO_STATE: 'IOTA/SETTINGS/MAP_STORAGE_TO_STATE',
     ADDRESS_VALIDATION_REQUEST: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_REQUEST',
     ADDRESS_VALIDATION_SUCCESS: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_SUCCESS',
     PUSH_ROUTE: 'IOTA/APP/WALLET/PUSH_ROUTE',
     POP_ROUTE: 'IOTA/APP/WALLET/POP_ROUTE',
+    POP_TO_ROUTE: 'IOTA/APP/WALLET/POP_TO_ROUTE',
     RESET_ROUTE: 'IOTA/APP/WALLET/RESET_ROUTE',
 };
 
@@ -108,7 +107,7 @@ export const setPassword = (payload) => ({
 /**
  * Dispatch to clear "wallet" reducer state
  *
- * @method setPassword
+ * @method clearWalletData
  *
  * @returns {{type: {string} }}
  */
@@ -139,18 +138,6 @@ export const setSeedIndex = (payload) => ({
 export const setReady = () => ({
     type: ActionTypes.SET_READY,
     payload: true,
-});
-
-/**
- * Dispatch to clear temporarily stored seed from state
- *
- * @method clearSeed
- *
- * @returns {{type: {string} }}
- */
-export const clearSeed = () => ({
-    type: ActionTypes.CLEAR_SEED,
-    payload: Array(82).join(' '),
 });
 
 /**
@@ -274,16 +261,16 @@ export const setBalanceCheckFlag = (payload) => ({
 /**
  * Dispatch to set parsed data from link (amount, address and message) in state
  *
- * @method setDeepLink
+ * @method initiateDeepLinkRequest
  * @param {string} amount
  * @param {string} address
  * @param {string} message
  *
  * @returns {{type: {string}, amount: {string}, address: {string}, message: {string} }}
  */
-export const setDeepLink = (amount, address, message) => {
+export const initiateDeepLinkRequest = (amount, address, message) => {
     return {
-        type: ActionTypes.SET_DEEP_LINK,
+        type: ActionTypes.INITIATE_DEEP_LINK_REQUEST,
         amount,
         address,
         message,
@@ -293,15 +280,28 @@ export const setDeepLink = (amount, address, message) => {
 /**
  * Dispatch to disable deep linking for wallet
  *
- * @method setDeepLinkInactive
+ * @method completeDeepLinkRequest
  *
  * @returns {{type: {string} }}
  */
-export const setDeepLinkInactive = () => {
+export const completeDeepLinkRequest = () => {
     return {
-        type: ActionTypes.SET_DEEP_LINK_INACTIVE,
+        type: ActionTypes.COMPLETE_DEEP_LINK_REQUEST,
     };
 };
+
+/**
+ * Dispatch to map storage (persisted) data to redux state
+ *
+ * @method mapStorageToState
+ * @param {object} payload
+
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const mapStorageToState = (payload) => ({
+    type: ActionTypes.MAP_STORAGE_TO_STATE,
+    payload,
+});
 
 /**
  * Generate new receive address for wallet
@@ -311,7 +311,6 @@ export const setDeepLinkInactive = () => {
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {object} existingAccountData
- * @param {function} genFn
  *
  * @returns {function(*): Promise<any>}
  */
@@ -323,10 +322,14 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
         return withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAddressesSyncRetryAlert()),
-        )(syncAddresses)(seedStore, existingAccountData.addresses, map(existingAccountData.transfers, (tx) => tx))
+        )(syncAddresses)(seedStore, existingAccountData.addressData, existingAccountData.transactions)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
-                dispatch(updateAddresses(accountName, result));
+
+                // Update address data in storage (realm)
+                Account.update(accountName, { addressData: result });
+
+                dispatch(updateAddressData(accountName, result));
                 dispatch(generateNewAddressSuccess());
             })
             .catch(() => {
@@ -378,10 +381,11 @@ export const transitionForSnapshot = (seedStore, addresses) => {
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {array} addresses
+ * @param {boolean} withQuorum
  *
  * @returns {function}
  */
-export const completeSnapshotTransition = (seedStore, accountName, addresses) => {
+export const completeSnapshotTransition = (seedStore, accountName, addresses, withQuorum = true) => {
     return (dispatch, getState) => {
         dispatch(
             generateAlert(
@@ -393,7 +397,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses) =>
 
         dispatch(snapshotAttachToTangleRequest());
 
-        getBalancesAsync()(addresses)
+        getBalancesAsync(undefined, withQuorum)(addresses)
             // Find balance on all addresses
             .then((balances) => {
                 const allBalances = map(balances.balances, Number);
@@ -419,7 +423,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses) =>
 
                             const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-                            return attachAndFormatAddress()(
+                            return attachAndFormatAddress(undefined, withQuorum)(
                                 address,
                                 index,
                                 relevantBalances[index],
@@ -432,15 +436,18 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses) =>
                                           { offloadPow: true },
                                       )
                                     : seedStore,
-                                map(existingAccountState.transfers, (tx) => tx),
-                                existingAccountState.addresses,
+                                existingAccountState,
                             )
-                                .then(({ addressData, transfer }) => {
-                                    const { newState } = syncAccountDuringSnapshotTransition(
-                                        transfer,
-                                        addressData,
+                                .then(({ attachedAddressObject, attachedTransactions }) => {
+                                    const newState = syncAccountDuringSnapshotTransition(
+                                        attachedTransactions,
+                                        attachedAddressObject,
                                         existingAccountState,
                                     );
+
+                                    // Update storage (realm)
+                                    Account.update(accountName, newState);
+                                    // Update redux store
                                     dispatch(updateAccountAfterTransition(newState));
 
                                     return result;
@@ -518,14 +525,16 @@ export const generateAddressesAndGetBalance = (seedStore, index) => {
  * @method getBalanceForCheck
  *
  * @param {array} addresses
+ * @param {boolean} withQuorum
  *
  * @returns {function}
  */
-export const getBalanceForCheck = (addresses) => {
+export const getBalanceForCheck = (addresses, withQuorum = true) => {
     return (dispatch) => {
-        getBalancesAsync()(addresses)
+        getBalancesAsync(undefined, withQuorum)(addresses)
             .then((balances) => {
                 const balanceOnAddresses = accumulateBalance(map(balances.balances, Number));
+
                 dispatch(updateTransitionBalance(balanceOnAddresses));
                 dispatch(setBalanceCheckFlag(true));
             })
@@ -583,6 +592,21 @@ export const pushRoute = (payload) => {
 export const popRoute = () => {
     return {
         type: ActionTypes.POP_ROUTE,
+    };
+};
+
+/**
+ * Dispatch to pop to a particular route in the navigation stack
+ *
+ * @method popToRoute
+ * @param {string} payload
+ *
+ * @returns {{type: {string}}}
+ */
+export const popToRoute = (payload) => {
+    return {
+        type: ActionTypes.POP_TO_ROUTE,
+        payload,
     };
 };
 

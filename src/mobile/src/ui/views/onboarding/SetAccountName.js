@@ -8,9 +8,9 @@ import { navigator } from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { connect } from 'react-redux';
-import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
-import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
+import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
@@ -65,30 +65,20 @@ export class SetAccountName extends Component {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        seed: PropTypes.string.isRequired,
-        /** @ignore */
         onboardingComplete: PropTypes.bool.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
         /** Determines whether to prevent new account setup */
         shouldPreventAction: PropTypes.bool.isRequired,
+        /** Temporarily stored account name during account setup */
+        accountName: PropTypes.string.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            accountName: '',
-        };
-    }
 
     async componentDidMount() {
         leaveNavigationBreadcrumb('SetAccountName');
         const { t } = this.props;
         const clipboardContent = await Clipboard.getString();
-        if (clipboardContent.match(VALID_SEED_REGEX)) {
+        if (clipboardContent.match(VALID_SEED_REGEX) && clipboardContent.length === MAX_SEED_LENGTH) {
             Clipboard.setString(' ');
             this.props.generateAlert(
                 'info',
@@ -103,13 +93,12 @@ export class SetAccountName extends Component {
      * @method onDonePress
      */
     async onDonePress() {
-        const { t, onboardingComplete, accountNames, seed, password, shouldPreventAction } = this.props;
-        const accountName = trim(this.state.accountName);
+        const { t, onboardingComplete, accountNames, shouldPreventAction } = this.props;
+        const accountName = trim(this.props.accountName);
 
         if (shouldPreventAction) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
-
         if (isEmpty(accountName)) {
             return this.props.generateAlert(
                 'error',
@@ -127,8 +116,8 @@ export class SetAccountName extends Component {
         }
 
         if (onboardingComplete) {
-            const seedStore = new SeedStore.keychain(password);
-            const isSeedUnique = await seedStore.isUniqueSeed(seed);
+            const seedStore = await new SeedStore.keychain(global.passwordHash);
+            const isSeedUnique = await seedStore.isUniqueSeed(global.onboardingSeed);
             if (!isSeedUnique) {
                 return this.props.generateAlert(
                     'error',
@@ -144,12 +133,12 @@ export class SetAccountName extends Component {
             completed: true,
         });
 
-        if (!onboardingComplete) {
-            this.navigateTo('setPassword');
-        } else {
-            const seedStore = new SeedStore.keychain(password);
-            seedStore.addAccount(accountName, seed);
+        if (onboardingComplete) {
+            const seedStore = await new SeedStore.keychain(global.passwordHash);
+            seedStore.addAccount(accountName, global.onboardingSeed);
             this.navigateTo('loading');
+        } else {
+            this.navigateTo('setPassword');
         }
     }
 
@@ -167,29 +156,11 @@ export class SetAccountName extends Component {
      * @param {string} screen
      */
     navigateTo(screen) {
-        const { theme: { body } } = this.props;
-        navigator.push(screen, {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        navigator.push(screen);
     }
 
     render() {
-        const { accountName } = this.state;
-        const { t, theme } = this.props;
+        const { t, theme, accountName } = this.props;
         const textColor = { color: theme.body.color };
 
         return (
@@ -224,7 +195,7 @@ export class SetAccountName extends Component {
                             >
                                 <CustomTextInput
                                     label={t('addAdditionalSeed:accountName')}
-                                    onChangeText={(text) => this.setState({ accountName: text })}
+                                    onValidTextChange={(text) => this.props.setAccountInfoDuringSetup({ name: text })}
                                     autoCapitalize="words"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
@@ -256,12 +227,11 @@ export class SetAccountName extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.wallet.seed,
     accountNames: getAccountNamesFromState(state),
     onboardingComplete: state.accounts.onboardingComplete,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     shouldPreventAction: shouldPreventAction(state),
-    password: state.wallet.password,
+    accountName: state.accounts.accountInfoDuringSetup.name,
 });
 
 const mapDispatchToProps = {

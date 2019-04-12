@@ -1,13 +1,15 @@
 import get from 'lodash/get';
 import keys from 'lodash/keys';
+import map from 'lodash/map';
 import { changeIotaNode } from '../libs/iota/index';
 import i18next from '../libs/i18next';
 import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
 import { fetchNodeList } from '../actions/polling';
 import { allowsRemotePow } from '../libs/iota/extendedApi';
-import { getSelectedNodeFromState } from '../selectors/accounts';
+import { getSelectedNodeFromState } from '../selectors/global';
 import { throwIfNodeNotHealthy } from '../libs/iota/utils';
 import Errors from '../libs/errors';
+import { Wallet, Node } from '../storage';
 
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
@@ -46,6 +48,7 @@ export const ActionTypes = {
     SET_NOTIFICATIONS: 'IOTA/SETTINGS/SET_NOTIFICATIONS',
     SET_PROXY: 'SET_PROXY',
     RESET_NODES_LIST: 'IOTA/SETTINGS/RESET_NODES_LIST',
+    SET_DEEP_LINKING: 'IOTA/SETTINGS/SET_DEEP_LINKING',
 };
 
 /**
@@ -56,10 +59,14 @@ export const ActionTypes = {
  * @param {object} payload
  * @returns {{type: {string}, payload: {object} }}
  */
-export const setAppVersions = (payload) => ({
-    type: ActionTypes.SET_VERSIONS,
-    payload,
-});
+export const setAppVersions = (payload) => {
+    Wallet.setVersions(payload);
+
+    return {
+        type: ActionTypes.SET_VERSIONS,
+        payload,
+    };
+};
 
 /**
  * Dispatch when user has accepted wallet's terms and conditions
@@ -68,9 +75,13 @@ export const setAppVersions = (payload) => ({
  *
  * @returns {{type: {string} }}
  */
-export const acceptTerms = () => ({
-    type: ActionTypes.ACCEPT_TERMS,
-});
+export const acceptTerms = () => {
+    Wallet.acceptTerms();
+
+    return {
+        type: ActionTypes.ACCEPT_TERMS,
+    };
+};
 
 /**
  * Dispatch when user has accepted wallet's privacy agreement
@@ -79,9 +90,13 @@ export const acceptTerms = () => ({
  *
  * @returns {{type: {string} }}
  */
-export const acceptPrivacy = () => ({
-    type: ActionTypes.ACCEPT_PRIVACY,
-});
+export const acceptPrivacy = () => {
+    Wallet.acceptPrivacyPolicy();
+
+    return {
+        type: ActionTypes.ACCEPT_PRIVACY,
+    };
+};
 
 /**
  * Dispatch when a network call for fetching currency information (conversion rates) is about to be made
@@ -102,10 +117,14 @@ const currencyDataFetchRequest = () => ({
  *
  * @returns {{type: {string}, payload: {object} }}
  */
-export const currencyDataFetchSuccess = (payload) => ({
-    type: ActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
-    payload,
-});
+export const currencyDataFetchSuccess = (payload) => {
+    Wallet.updateCurrencyData(payload);
+
+    return {
+        type: ActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
+        payload,
+    };
+};
 
 /**
  * Dispatch when there is an error fetching currency information
@@ -159,10 +178,17 @@ const addCustomNodeRequest = () => ({
  *
  * @returns {{type: {string}, payload: {string} }}
  */
-const addCustomNodeSuccess = (payload) => ({
-    type: ActionTypes.ADD_CUSTOM_NODE_SUCCESS,
-    payload,
-});
+const addCustomNodeSuccess = (url, remotePow) => {
+    // Add custom node.
+    Node.addCustomNode(url, remotePow);
+    // Update wallet's active node.
+    Wallet.updateNode(url);
+
+    return {
+        type: ActionTypes.ADD_CUSTOM_NODE_SUCCESS,
+        payload: url,
+    };
+};
 
 /**
  * Dispatch when an error occurs during health check for newly added custom node
@@ -183,10 +209,14 @@ const addCustomNodeError = () => ({
  *
  * @returns {{type: {string}, payload: {string} }}
  */
-export const setRandomlySelectedNode = (payload) => ({
-    type: ActionTypes.SET_RANDOMLY_SELECTED_NODE,
-    payload,
-});
+export const setRandomlySelectedNode = (payload) => {
+    Wallet.setRandomlySelectedNode(payload);
+
+    return {
+        type: ActionTypes.SET_RANDOMLY_SELECTED_NODE,
+        payload,
+    };
+};
 
 /**
  * Dispatch to change wallet's mode
@@ -196,10 +226,14 @@ export const setRandomlySelectedNode = (payload) => ({
  *
  * @returns {{type: {string}, payload: {string} }}
  */
-export const setMode = (payload) => ({
-    type: ActionTypes.SET_MODE,
-    payload,
-});
+export const setMode = (payload) => {
+    Wallet.updateMode(payload);
+
+    return {
+        type: ActionTypes.SET_MODE,
+        payload,
+    };
+};
 
 /**
  * Dispatch to change wallet's active IRI node
@@ -209,10 +243,14 @@ export const setMode = (payload) => ({
  *
  * @returns {{type: {string}, payload: {string} }}
  */
-export const setNode = (payload) => ({
-    type: ActionTypes.SET_NODE,
-    payload,
-});
+export const setNode = (payload) => {
+    Wallet.updateNode(payload);
+
+    return {
+        type: ActionTypes.SET_NODE,
+        payload,
+    };
+};
 
 /**
  * Dispatch to set updated list of IRI nodes for wallet
@@ -222,10 +260,14 @@ export const setNode = (payload) => ({
  *
  * @returns {{type: {string}, payload: {array} }}
  */
-export const setNodeList = (payload) => ({
-    type: ActionTypes.SET_NODELIST,
-    payload,
-});
+export const setNodeList = (payload) => {
+    Node.addNodes(payload);
+
+    return {
+        type: ActionTypes.SET_NODELIST,
+        payload: map(payload, (node) => node.url),
+    };
+};
 
 /**
  * Dispatch to remove an added custom node from wallet
@@ -235,10 +277,14 @@ export const setNodeList = (payload) => ({
  *
  * @returns {{type: {string}, payload: {string} }}
  */
-export const removeCustomNode = (payload) => ({
-    type: ActionTypes.REMOVE_CUSTOM_NODE,
-    payload,
-});
+export const removeCustomNode = (payload) => {
+    Node.delete(payload);
+
+    return {
+        type: ActionTypes.REMOVE_CUSTOM_NODE,
+        payload,
+    };
+};
 
 /**
  * Dispatch to update proof of work configuration for wallet
@@ -248,10 +294,14 @@ export const removeCustomNode = (payload) => ({
  *
  * @returns {{type: {string}, payload: {boolean} }}
  */
-export const setRemotePoW = (payload) => ({
-    type: ActionTypes.SET_REMOTE_POW,
-    payload,
-});
+export const setRemotePoW = (payload) => {
+    Wallet.updateRemotePowSetting(payload);
+
+    return {
+        type: ActionTypes.SET_REMOTE_POW,
+        payload,
+    };
+};
 
 /**
  * Dispatch to update auto promotion configuration for wallet
@@ -261,10 +311,14 @@ export const setRemotePoW = (payload) => ({
  *
  * @returns {{type: {string}, payload: {boolean} }}
  */
-export const setAutoPromotion = (payload) => ({
-    type: ActionTypes.SET_AUTO_PROMOTION,
-    payload,
-});
+export const setAutoPromotion = (payload) => {
+    Wallet.updateAutoPromotionSetting(payload);
+
+    return {
+        type: ActionTypes.SET_AUTO_PROMOTION,
+        payload,
+    };
+};
 
 /**
  * Dispatch to update auto node switching configuration for wallet
@@ -274,10 +328,14 @@ export const setAutoPromotion = (payload) => ({
  *
  * @returns {{type: {string}, payload: {boolean} }}
  */
-export const updateAutoNodeSwitching = (payload) => ({
-    type: ActionTypes.UPDATE_AUTO_NODE_SWITCHING,
-    payload,
-});
+export const updateAutoNodeSwitching = (payload) => {
+    Wallet.updateAutoNodeSwitchingSetting(payload);
+
+    return {
+        type: ActionTypes.UPDATE_AUTO_NODE_SWITCHING,
+        payload,
+    };
+};
 
 /**
  * Dispatch to set lock screen time for wallet
@@ -287,10 +345,14 @@ export const updateAutoNodeSwitching = (payload) => ({
  *
  * @returns {{type: {string}, payload: {number} }}
  */
-export const setLockScreenTimeout = (payload) => ({
-    type: ActionTypes.SET_LOCK_SCREEN_TIMEOUT,
-    payload,
-});
+export const setLockScreenTimeout = (payload) => {
+    Wallet.updateLockScreenTimeout(payload);
+
+    return {
+        type: ActionTypes.SET_LOCK_SCREEN_TIMEOUT,
+        payload,
+    };
+};
 
 /**
  * Change wallet's active language
@@ -303,6 +365,8 @@ export const setLockScreenTimeout = (payload) => ({
 export function setLocale(locale) {
     return (dispatch) => {
         i18next.changeLanguage(locale);
+        Wallet.updateLocale(locale);
+
         return dispatch({
             type: ActionTypes.SET_LOCALE,
             payload: locale,
@@ -361,13 +425,11 @@ export function getCurrencyData(currency, withAlerts = false) {
             .then((json) => {
                 const conversionRate = get(json, `rates.${currency}`) || 1;
                 const availableCurrencies = keys(get(json, 'rates'));
-                dispatch(
-                    currencyDataFetchSuccess({
-                        conversionRate,
-                        currency,
-                        availableCurrencies,
-                    }),
-                );
+
+                const payload = { conversionRate, currency, availableCurrencies };
+
+                // Update redux
+                dispatch(currencyDataFetchSuccess(payload));
 
                 if (withAlerts) {
                     dispatch(
@@ -391,6 +453,8 @@ export function getCurrencyData(currency, withAlerts = false) {
  * @returns {{type: {string}, payload: {string} }}
  */
 export function setLanguage(language) {
+    Wallet.updateLanguage(language);
+
     return {
         type: ActionTypes.SET_LANGUAGE,
         payload: language,
@@ -441,7 +505,10 @@ export function setFullNode(node, addingCustomNode = false) {
                 changeIotaNode(node);
 
                 // Update node in redux store
-                dispatch(dispatcher.success(node));
+                dispatch(dispatcher.success(node, hasRemotePow));
+
+                // Change IOTA provider on the global iota instance
+                changeIotaNode(node);
 
                 if (hasRemotePow) {
                     dispatch(
@@ -486,17 +553,17 @@ export function setFullNode(node, addingCustomNode = false) {
  *
  * @method updateTheme
  *
- * @param {object} theme
- * @param {string} themeName
+ * @param {string} payload
  *
  * @returns {function} dispatch
  */
-export function updateTheme(theme, themeName) {
+export function updateTheme(payload) {
+    Wallet.updateTheme(payload);
+
     return (dispatch) => {
         dispatch({
             type: ActionTypes.UPDATE_THEME,
-            theme,
-            themeName,
+            payload,
         });
     };
 }
@@ -600,10 +667,14 @@ export function resetWallet() {
  *
  * @returns {{type: {string}, payload: {boolean} }}
  */
-export const set2FAStatus = (payload) => ({
-    type: ActionTypes.SET_2FA_STATUS,
-    payload,
-});
+export const set2FAStatus = (payload) => {
+    Wallet.update2FASetting(payload);
+
+    return {
+        type: ActionTypes.SET_2FA_STATUS,
+        payload,
+    };
+};
 
 /**
  * Dispatch to show/hide empty transactions in transactions history
@@ -613,6 +684,8 @@ export const set2FAStatus = (payload) => ({
  * @returns {{type: {string} }}
  */
 export const toggleEmptyTransactions = () => {
+    Wallet.toggleEmptyTransactionsDisplay();
+
     return {
         type: ActionTypes.TOGGLE_EMPTY_TRANSACTIONS,
     };
@@ -626,21 +699,33 @@ export const toggleEmptyTransactions = () => {
  *
  * @returns {{type: {string}, payload: {boolean} }}
  */
-export const setFingerprintStatus = (payload) => ({
-    type: ActionTypes.SET_FINGERPRINT_STATUS,
-    payload,
-});
+export const setFingerprintStatus = (payload) => {
+    Wallet.updateFingerprintAuthenticationSetting(payload);
+
+    return {
+        type: ActionTypes.SET_FINGERPRINT_STATUS,
+        payload,
+    };
+};
 
 // FIXME: Temporarily needed for password migration
-export const setCompletedForcedPasswordUpdate = () => ({
-    type: ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE,
-});
+export const setCompletedForcedPasswordUpdate = () => {
+    Wallet.completeForcedPasswordUpdate();
+
+    return {
+        type: ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE,
+    };
+};
 
 // FIXME: Temporarily needed for byte-trit check
-export const setCompletedByteTritSweep = (payload) => ({
-    type: ActionTypes.SET_BYTETRIT_STATUS,
-    payload,
-});
+export const setCompletedByteTritSweep = (payload) => {
+    Wallet.updateByteTritSweepSetting(payload);
+
+    return {
+        type: ActionTypes.SET_BYTETRIT_STATUS,
+        payload,
+    };
+};
 
 // FIXME: Temporarily needed for byte-trit check
 export const setByteTritSweepInfo = (payload) => ({
@@ -656,10 +741,14 @@ export const setByteTritSweepInfo = (payload) => ({
  *
  * @returns {{type: {string}, payload: {boolean} }}
  */
-export const setTray = (payload) => ({
-    type: ActionTypes.SET_TRAY,
-    payload,
-});
+export const setTray = (payload) => {
+    Wallet.updateTraySetting(payload);
+
+    return {
+        type: ActionTypes.SET_TRAY,
+        payload,
+    };
+};
 
 /**
  * Dispatch to set if native notifications are enabled
@@ -669,10 +758,14 @@ export const setTray = (payload) => ({
  *
  * @returns {{type: {string}, payload: {object} }}
  */
-export const setNotifications = (payload) => ({
-    type: ActionTypes.SET_NOTIFICATIONS,
-    payload,
-});
+export const setNotifications = (payload) => {
+    Wallet.updateNotificationsSetting(payload);
+
+    return {
+        type: ActionTypes.SET_NOTIFICATIONS,
+        payload,
+    };
+};
 
 /**
  * Dispatch to update proxy settings
@@ -686,6 +779,42 @@ export const setProxy = (payload) => ({
     type: ActionTypes.SET_PROXY,
     payload,
 });
+
+/**
+ * Changes deep linking setting and generates alert
+ *
+ * @method changeDeepLinkingSettings
+ */
+export const changeDeepLinkingSettings = () => {
+    return (dispatch, getState) => {
+        const settings = getState().settings;
+        dispatch(setDeepLinking());
+        dispatch(
+            generateAlert(
+                'success',
+                i18next.t('deepLink:deepLinkingUpdated'),
+                settings.deepLinking
+                    ? i18next.t('deepLink:deepLinkingDisabled')
+                    : i18next.t('deepLink:deepLinkingEnabled'),
+            ),
+        );
+    };
+};
+
+/**
+ * Dispatch to update deep linking settings
+ *
+ * @method setDeepLinking
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const setDeepLinking = () => {
+    Wallet.updateDeepLinkingSetting();
+    return {
+        type: ActionTypes.SET_DEEP_LINKING,
+    };
+};
 
 /**
  * Dispatch to reset nodes list

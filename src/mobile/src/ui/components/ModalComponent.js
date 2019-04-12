@@ -21,9 +21,9 @@ import QrScanner from 'ui/components/QrScanner';
 import Print from 'ui/components/PrintModal';
 import BiometricInfo from 'ui/components/BiometricInfoModal';
 import NotificationLog from 'ui/components/NotificationLogModal';
-import SafeAreaView from 'react-native-safe-area-view';
-import { Styling } from 'ui/theme/general';
 import { isAndroid, isIPhoneX } from 'libs/device';
+import { getThemeFromState } from 'shared-modules/selectors/global';
+import { Styling } from 'ui/theme/general';
 import { height, width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
@@ -122,7 +122,7 @@ export default function withSafeAreaView(WrappedComponent) {
             if (!this.props.isModalActive && newProps.isModalActive) {
                 if (this.props.isKeyboardActive && !isAndroid) {
                     Keyboard.dismiss();
-                    return timer.setTimeout('delayOpenModal', () => this.setState({ isModalActive: true }), 2800);
+                    return timer.setTimeout('delayOpenModal', () => this.setState({ isModalActive: true }), 500);
                 }
                 this.setState({ isModalActive: true });
             }
@@ -164,10 +164,10 @@ export default function withSafeAreaView(WrappedComponent) {
                         useNativeDriver={isAndroid}
                         hideModalContentWhileAnimating
                     >
-                        <SafeAreaView style={{ flex: 1 }}>
+                        <View style={{ flex: 1 }}>
                             <ModalContent {...modalProps} />
                             {isModalActive && <StatefulDropdownAlert textColor="white" />}
-                        </SafeAreaView>
+                        </View>
                         {isIPhoneX && <View style={[styles.iPhoneXBottomInset, { backgroundColor: body.bg }]} />}
                     </Modal>
                 </View>
@@ -179,7 +179,7 @@ export default function withSafeAreaView(WrappedComponent) {
         modalProps: state.ui.modalProps,
         isModalActive: state.ui.isModalActive,
         modalContent: state.ui.modalContent,
-        theme: state.settings.theme,
+        theme: getThemeFromState(state),
         isKeyboardActive: state.ui.isKeyboardActive,
         navStack: state.wallet.navStack,
     });

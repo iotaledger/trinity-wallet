@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 
@@ -35,15 +36,15 @@ class InfoBox extends PureComponent {
         const { children, containerStyle, theme: { dark } } = this.props;
 
         return (
-            <View style={[styles.fieldContainer, containerStyle, { backgroundColor: dark.color }]}>
-                <View style={[styles.innerContainer]}>{children}</View>
+            <View style={[styles.fieldContainer, { backgroundColor: dark.color }, containerStyle]}>
+                <View style={styles.innerContainer}>{children}</View>
             </View>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default connect(mapStateToProps)(InfoBox);

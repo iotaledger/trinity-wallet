@@ -4,22 +4,20 @@ import SeedStoreCore from 'libs/SeedStore/SeedStoreCore';
 import trytes from '../../../__mocks__/samples/trytes.js';
 
 global.Electron = {
-    powFn: async () => 'N9UIMZQVDYWLXWGHLELNRCUUPMP',
+    getPowFn: () => async () => 'N9UIMZQVDYWLXWGHLELNRCUUPMP',
 };
 
 describe('SeedStore core class', () => {
     test('performPow', async () => {
         const seedStore = new SeedStoreCore();
-        const { transactionObjects } = await seedStore.performPow(
+        const pow = await seedStore.performPow(
             trytes.value,
             'GSHUHUWAUUGQHHNAPRDPDJRKZFJNIAPFNTVAHZPUNDJWRHZSZASOERZURXZVEHN9OJVS9QNRGSJE99999',
             'LLJWVVZFXF9ZGFSBSHPCD9HOIFBCLXGRV9XWSQDTGOMSRGQQIVFVZKHLKTJJVFMXQTZVPNRNAQEPA9999',
             14,
         );
 
-        transactionObjects.forEach((tx, index) => {
-            expect(tx.currentIndex).toEqual(index);
-        });
+        expect(pow).toEqual('N9UIMZQVDYWLXWGHLELNRCUUPMP');
     });
 
     test('getDigest', async () => {

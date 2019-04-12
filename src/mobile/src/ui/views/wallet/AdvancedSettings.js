@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { navigator } from 'libs/navigation';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
@@ -36,6 +37,8 @@ export class AdvancedSettings extends PureComponent {
         autoPromotion: PropTypes.bool.isRequired,
         /** @ignore */
         remotePoW: PropTypes.bool.isRequired,
+        /** @ignore */
+        deepLinking: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -97,24 +100,7 @@ export class AdvancedSettings extends PureComponent {
      * @method reset
      */
     reset() {
-        const { theme: { body } } = this.props;
-        navigator.push('walletResetConfirm', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        navigator.push('walletResetConfirm');
     }
 
     /**
@@ -124,7 +110,7 @@ export class AdvancedSettings extends PureComponent {
      * @returns {function}
      */
     renderSettingsContent() {
-        const { theme, t, node, autoPromotion, remotePoW } = this.props;
+        const { theme, t, node, autoPromotion, remotePoW, deepLinking } = this.props;
         const rows = [
             { name: t('selectNode'), icon: 'node', function: this.onNodeSelection, currentSetting: node },
             { name: t('addCustomNode'), icon: 'plusAlt', function: this.onAddCustomNode },
@@ -139,6 +125,12 @@ export class AdvancedSettings extends PureComponent {
                 icon: 'sync',
                 function: () => this.props.setSetting('autoPromotion'),
                 currentSetting: autoPromotion ? t('enabled') : t('disabled'),
+            },
+            {
+                name: t('deepLinking'),
+                icon: 'link',
+                function: () => this.props.setSetting('deepLinking'),
+                currentSetting: deepLinking ? t('enabled') : t('disabled'),
             },
             { name: 'separator' },
             {
@@ -160,10 +152,11 @@ export class AdvancedSettings extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     node: state.settings.node,
     autoPromotion: state.settings.autoPromotion,
     remotePoW: state.settings.remotePoW,
+    deepLinking: state.settings.deepLinking,
     isSendingTransfer: state.ui.isSendingTransfer,
 });
 

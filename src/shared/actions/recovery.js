@@ -2,7 +2,8 @@ import extend from 'lodash/extend';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import some from 'lodash/some';
-import { selectedAccountStateFactory, getRemotePoWFromState } from '../selectors/accounts';
+import { selectedAccountStateFactory } from '../selectors/accounts';
+import { getRemotePoWFromState } from '../selectors/global';
 import { syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
 import { cleanUpAccountState, updateAccountInfoAfterSpending, syncAccountBeforeSweeping } from './accounts';
 import { sweep } from '../libs/iota/recovery';
@@ -15,13 +16,17 @@ import i18next from '../libs/i18next';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
 import { generateAlert } from './alerts';
 import Errors from '../libs/errors';
+import { Account } from '../storage';
 
 /**
  * Do byte-trit check
+ *
  * @param {object} accounts - Account information {accountName, seedStore}
  * @param {function} genFn - Address generation function
+ * @param {boolean} [withQuorum]
+ *
  */
-export const byteTritCheck = (accounts, genFn) => async (dispatch, getState) => {
+export const byteTritCheck = (accounts, genFn, withQuorum = true) => async (dispatch, getState) => {
     const state = getState();
 
     const affectedAccounts = [];
@@ -29,14 +34,19 @@ export const byteTritCheck = (accounts, genFn) => async (dispatch, getState) => 
     for (let i = 0; i < accounts.length; i++) {
         const accountInfo = state.accounts.accountInfo[accounts[i].accountName];
 
-        const addressCount = Math.max(accountInfo.addresses ? Object.keys(accountInfo.addresses).length + 20 : 30, 30);
+        const addressCount = Math.max(
+            accountInfo.addressData ? Object.keys(accountInfo.addressData).length + 20 : 30,
+            30,
+        );
 
         const seed = await accounts[i].seedStore.getSeed(true);
 
         const seedTrits = bytesToTrits(seed.filter((trit) => trit > -1).slice(0, 81));
         const addresses = await genFn(seedTrits, 0, 2, addressCount);
 
-        const balances = await getBalancesAsync()(typeof addresses === 'string' ? [addresses] : addresses);
+        const balances = await getBalancesAsync(undefined, withQuorum)(
+            typeof addresses === 'string' ? [addresses] : addresses,
+        );
         const balanceTotal = balances.balances.reduce((total, balance) => parseInt(total) + parseInt(balance));
 
         if (balanceTotal > 0) {
@@ -64,6 +74,7 @@ export const byteTritCheck = (accounts, genFn) => async (dispatch, getState) => 
  * Do byte-trit sweep
  *
  * @method byteTritSweep
+ *
  * @param {function} dialogFn - Confirmation dialog functions
  * @param {function} dialogFn
  */
@@ -108,14 +119,15 @@ export const byteTritSweep = (SeedStore, dialogFn) => (dispatch, getState) => {
 /**
  * Recover funds.
  *
- * @param  {string} accountName
- * @param  {object} seedStore
- * @param  {object} inputs Inputs list [{ address, keyIndex, balance, security }]
- * @param  {function} dialogFn
+ * @param {string} accountName
+ * @param {object} seedStore
+ * @param {object} inputs Inputs list [{ address, keyIndex, balance, security }]
+ * @param {function} dialogFn
+ * @param {boolean} [withQuorum]
  *
  * @returns {function} dispatch
  */
-export const recover = (accountName, seedStore, inputs, dialogFn) => async (dispatch, getState) => {
+export const recover = (accountName, seedStore, inputs, dialogFn, withQuorum = true) => async (dispatch, getState) => {
     const seed = await seedStore.getSeed(true);
     const seedFromBytes = map(seed, (byte) => byteToChar(byte)).join('');
 
@@ -128,11 +140,17 @@ export const recover = (accountName, seedStore, inputs, dialogFn) => async (disp
         (promise, input) => {
             return promise.then((result) => {
                 // Sync account state in each iteration
-                return syncAccount()(selectedAccountStateFactory(accountName)(getState()), seedStore)
+                return syncAccount(undefined, withQuorum)(
+                    selectedAccountStateFactory(accountName)(getState()),
+                    seedStore,
+                )
                     .then((newState) => {
+                        // Update storage (realm)
+                        Account.update(accountName, newState);
+                        // Update redux store
                         dispatch(syncAccountBeforeSweeping(newState));
 
-                        const receiveAddress = getLatestAddress(newState.addresses);
+                        const receiveAddress = getLatestAddress(newState.addressData);
 
                         return (
                             dialogFn(
@@ -147,8 +165,7 @@ export const recover = (accountName, seedStore, inputs, dialogFn) => async (disp
                             )
                                 // Wait for user confirmation
                                 .then(() =>
-                                    sweep(
-                                        null,
+                                    sweep(undefined, withQuorum)(
                                         // See: extendedApi#attachToTangle
                                         getRemotePoWFromState(getState())
                                             ? extend(
@@ -159,26 +176,29 @@ export const recover = (accountName, seedStore, inputs, dialogFn) => async (disp
                                                   { offloadPow: true },
                                               )
                                             : seedStore,
-                                    )(seedFromBytes.slice(0, 81), input, {
-                                        address: receiveAddress,
-                                        value: input.balance,
-                                    }),
+                                        seedFromBytes.slice(0, 81),
+                                        input,
+                                        {
+                                            address: receiveAddress,
+                                            value: input.balance,
+                                        },
+                                    ),
                                 )
                         );
                     })
                     .then(({ transactionObjects }) =>
                         syncAccountAfterSpending()(
                             seedStore,
-                            accountName,
                             transactionObjects,
                             // Since we updated state before sweeping
                             // Get the latest state directly via store.getState()
                             selectedAccountStateFactory(accountName)(getState()),
-                            // We are sure that it is a value transaction
-                            true,
                         ),
                     )
-                    .then(({ newState }) => {
+                    .then((newState) => {
+                        // Update storage (realm)
+                        Account.update(accountName, newState);
+                        // Update redux store
                         dispatch(updateAccountInfoAfterSpending(newState));
                         result.sweptInputs.push(input);
 

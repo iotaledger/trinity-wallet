@@ -13,6 +13,8 @@ import {
     generateAddressesAndGetBalance,
 } from 'actions/wallet';
 
+import { getAddressesForSelectedAccount } from 'selectors/accounts';
+
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import SeedStore from 'libs/SeedStore';
@@ -36,6 +38,8 @@ class Tools extends PureComponent {
         ui: PropTypes.object.isRequired,
         /** @ignore */
         account: PropTypes.object.isRequired,
+        /** Addresses for selected account */
+        addresses: PropTypes.array.isRequired,
         /** @ignore */
         completeSnapshotTransition: PropTypes.func.isRequired,
         /** @ignore */
@@ -103,8 +107,8 @@ class Tools extends PureComponent {
      * @returns {Promise}
      */
     startSnapshotTransition = async () => {
-        const { wallet } = this.props;
-        const { accountName, meta, addresses } = this.props.account;
+        const { wallet, addresses } = this.props;
+        const { accountName, meta } = this.props.account;
 
         const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
@@ -117,7 +121,8 @@ class Tools extends PureComponent {
      */
     transitionBalanceOk = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, accountName, meta } = this.props;
+        const { wallet } = this.props;
+        const { accountName, meta } = this.props.account;
 
         const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
@@ -234,6 +239,7 @@ const mapStateToProps = (state) => ({
     ui: state.ui,
     wallet: state.wallet,
     settings: state.settings,
+    addresses: getAddressesForSelectedAccount(state),
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
 });

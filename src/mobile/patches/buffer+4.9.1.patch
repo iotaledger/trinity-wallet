@@ -1,0 +1,22 @@
+diff --git a/node_modules/buffer/index.js b/node_modules/buffer/index.js
+index 0fcd80a..a205935 100644
+--- a/node_modules/buffer/index.js
++++ b/node_modules/buffer/index.js
+@@ -1054,7 +1054,8 @@ function utf16leSlice (buf, start, end) {
+   return res
+ }
+ 
+-Buffer.prototype.slice = function slice (start, end) {
++if (!Buffer.prototype.slice) {
++Object.defineProperty(Buffer.prototype, 'slice', function slice (start, end) {
+   var len = this.length
+   start = ~~start
+   end = end === undefined ? len : ~~end
+@@ -1088,6 +1089,7 @@ Buffer.prototype.slice = function slice (start, end) {
+   }
+ 
+   return newBuf
++});
+ }
+ 
+ /*

@@ -55,6 +55,7 @@
         "yes": "بله",
         "no": "نه",
         "okay": "باشه",
+        "skip": "Skip",
         "password": "گذرواژه",
         "unrecognisedPassword": "گذرواژه غیر قابل شناسایی",
         "unrecognisedPasswordExplanation": "گذرواژه شناسایی نشد لطفا دوباره تلاش کنید.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "من از یک وای‌فای عمومی استفاده نمی‌کنم",
         "printerConfirmation": "من از یک چاپگر عمومی استفاده نمی‌کنم"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "آدرس شما",
         "qrOptions": "گزینه های QR",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "بسته نرم افزاری هش کپی شد",
-        "noTransactionsFound": "هیچ تراکنشی یافت نشد",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "پنهان کردن موجودی صفر",
         "bundleHashCopiedExplanation": "هش بسته نرم افزاری به کلیپ بورد کپی شد.",
         "addressCopied": "آدرس کپی شد",
@@ -494,7 +501,8 @@
         "pow": "اثبات کار",
         "autoPromotion": "ارتقا خودکار",
         "autoPromotionExplanation": "ارتقا خودکار کمک می کند تا معاملات خود را در Tangle تایید کنید. اگر شما دچار تردید در دریافت معاملات خود هستید این تنظیم را فعال کنید.",
-        "autoPromotionPoW": "ارتقا خودکار تنها در Node هایی است که از اثبات کار از راه دور پشتیبانی می کند."
+        "autoPromotionPoW": "ارتقا خودکار تنها در Node هایی است که از اثبات کار از راه دور پشتیبانی می کند.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "پس زمینه",
@@ -689,6 +697,11 @@
         "gettingTransactionsToApprove": "گرفتن معاملات برای تایید",
         "proofOfWork": "تکمیل اثبات کار",
         "broadcasting": "در حال پخش",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "انتقال کامل شد"
     },
     "snapshotTransition": {
@@ -708,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "موفقیت در تکمبل خودکار",
-        "autofillExplanation": "داده های تراکنش خودکار از لینک پر شده است."
+        "autofillExplanation": "داده های تراکنش خودکار از لینک پر شده است.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "خطا در بازیابی داده های به روزرسانی",
@@ -767,6 +785,12 @@
         "sweepConfirmation": "شما در حال جارو (sweep) کردن {{amount}} به آدرس {{address}} هستید. حساب: {{accountName}}، اندیس آدرس: {{index}}",
         "sweepConfirmationTitle": "تایید جارو کردن (sweep)"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+    },
     "ledger": {
         "ready": "دستگاه لدجر متصل و آماده است",
         "notReady": "اگر می‌خواهید از یک دستگاه لدجر استفاده کنید، هم‌اکنون آن را متصل و قفل‌گشایی کنید",
@@ -775,6 +799,8 @@
         "proceedWithLedger": "ادامه با برپایی لدجر",
         "accountIndex": "اندیس حساب",
         "accountPage": "صفحه حساب",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "اندیس حساب لدجر خود را انتخاب کنید",
         "accountIndexExplanation": "لدجر شما می‌تواند چندین سید مختلف را نگه‌داری کند. هر سید با یک شماره اندیس منحصر به فرد معین می‌گردد. یک اندیس استفاده نشده برایتان انتخاب شده ولی در صورت تمایل می‌توانید از اندیس دلخواهتان استفاده کنید. از یادداشت کردن اندیسی که انتخاب کرده‌اید اطمینان حاصل کنید.",
         "accountPageExplanation": "برخی از کیف پول‌های شخص ثالث نیاز به صفحات دارند.",

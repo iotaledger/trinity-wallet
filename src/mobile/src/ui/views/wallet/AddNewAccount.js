@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { BackHandler, View, StyleSheet } from 'react-native';
 import { navigator } from 'libs/navigation';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { withNamespaces } from 'react-i18next';
 import timer from 'react-native-timer';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -46,24 +47,7 @@ class AddNewAccount extends Component {
      * @method addNewSeed
      */
     addNewSeed() {
-        const { theme: { body } } = this.props;
-        navigator.push('newSeedSetup', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        navigator.push('newSeedSetup');
         timer.clearInterval('inactivityTimer');
         BackHandler.removeEventListener('homeBackPress');
     }
@@ -91,7 +75,7 @@ class AddNewAccount extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

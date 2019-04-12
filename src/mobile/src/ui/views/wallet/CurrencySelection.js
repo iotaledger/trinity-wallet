@@ -7,6 +7,7 @@ import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setQrDenomination, setSendDenomination } from 'shared-modules/actions/ui';
 import { IOTA_DENOMINATIONS } from 'shared-modules/libs/iota/utils';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { withNamespaces } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import DropdownComponent from 'ui/components/Dropdown';
@@ -170,7 +171,7 @@ export class CurrencySelection extends Component {
                             }}
                             title={t('currency')}
                             options={availableCurrencies}
-                            defaultOption={currency}
+                            value={currency}
                             dropdownWidth={{ width: width / 2 }}
                             disableWhen={isFetchingCurrencyData}
                             background
@@ -203,7 +204,7 @@ const mapStateToProps = (state) => ({
     availableCurrencies: state.settings.availableCurrencies,
     isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
     hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

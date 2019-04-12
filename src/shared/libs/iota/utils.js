@@ -16,7 +16,15 @@ import { roundDown } from '../utils';
 
 export const MAX_SEED_LENGTH = 81;
 
+export const MAX_SEED_TRITS = MAX_SEED_LENGTH * 3;
+
+export const SEED_CHECKSUM_LENGTH = 3;
+
+export const ADDRESS_LENGTH_WITHOUT_CHECKSUM = MAX_SEED_LENGTH;
+
 export const ADDRESS_LENGTH = 90;
+
+export const CHECKSUM_LENGTH = ADDRESS_LENGTH - ADDRESS_LENGTH_WITHOUT_CHECKSUM;
 
 export const VALID_SEED_REGEX = /^[A-Z9]+$/;
 
@@ -59,15 +67,29 @@ export const convertFromTrytes = (trytes) => {
 };
 
 /**
- * Gets checksum for seed
+ * Gets checksum.
  *
  * @method getChecksum
- * @param {string} seed
  *
- * @returns {string}
+ * @param {string | array} input - seed trytes | seed trits
+ * @param {number} [length]
+ *
+ * @returns {string | array}
  */
-export const getChecksum = (seed) => {
-    return iota.utils.addChecksum(seed, 3, false).substr(-3);
+export const getChecksum = (
+    input,
+    // Trinity trytes to trits conversion creates Int8Array
+    length = isArray(input) || input instanceof Int8Array ? SEED_CHECKSUM_LENGTH * 3 : SEED_CHECKSUM_LENGTH,
+) => {
+    return iota.utils
+        .addChecksum(
+            // https://github.com/iotaledger/iota.js/blob/develop/lib/utils/utils.js#L64
+            // iota.lib.js throws an exception for typed arrays
+            input instanceof Int8Array ? Array.from(input) : input,
+            length,
+            false,
+        )
+        .slice(-length);
 };
 
 /**
@@ -310,6 +332,7 @@ export const parseAddress = (input) => {
  * Retry IOTA api calls on different nodes
  *
  * @method withRetriesOnDifferentNodes
+ *
  * @param {array} nodes
  * @param {array|function} [failureCallbacks]
  *
@@ -329,6 +352,10 @@ export const withRetriesOnDifferentNodes = (nodes, failureCallbacks) => {
             return promiseFunc(nodes[attempt])(...args)
                 .then((result) => ({ node: nodes[attempt], result }))
                 .catch((err) => {
+                    // Abort retries on user cancalled Ledger action
+                    if (err === Errors.LEDGER_CANCELLED) {
+                        throw new Error(Errors.LEDGER_CANCELLED);
+                    }
                     // If a function is passed as failure callback
                     // Just trigger it once.
                     if (isFunction(failureCallbacks)) {

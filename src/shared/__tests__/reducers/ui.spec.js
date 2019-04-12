@@ -21,12 +21,7 @@ describe('Reducer: ui', () => {
                 sendAddressFieldText: '',
                 sendAmountFieldText: '',
                 sendMessageFieldText: '',
-                loginPasswordFieldText: '',
                 sendDenomination: 'i',
-                onboarding: {
-                    seed: null,
-                    isGenerated: false,
-                },
                 doNotMinimise: false,
                 isModalActive: false,
                 isCheckingCustomNode: false,
@@ -139,26 +134,6 @@ describe('Reducer: ui', () => {
             };
 
             expect(newState.hasErrorFetchingCurrencyData).to.eql(expectedState.hasErrorFetchingCurrencyData);
-        });
-    });
-
-    describe('IOTA/UI/SET_LOGIN_PASSWORD_FIELD', () => {
-        it('should set "loginPasswordFieldText" state prop to "payload"', () => {
-            const initialState = {
-                loginPasswordFieldText: '',
-            };
-
-            const action = {
-                type: 'IOTA/UI/SET_LOGIN_PASSWORD_FIELD',
-                payload: 'baz',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                loginPasswordFieldText: 'baz',
-            };
-
-            expect(newState).to.eql(expectedState);
         });
     });
 
@@ -275,14 +250,14 @@ describe('Reducer: ui', () => {
         });
     });
 
-    describe('IOTA/APP/WALLET/SET_DEEP_LINK', () => {
+    describe('IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST', () => {
         it('should set "sendAddressFieldText" state prop to "address" in action', () => {
             const initialState = {
                 sendAddressFieldText: '',
             };
 
             const action = {
-                type: 'IOTA/APP/WALLET/SET_DEEP_LINK',
+                type: 'IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST',
                 address: '9'.repeat(81),
             };
 
@@ -300,7 +275,7 @@ describe('Reducer: ui', () => {
             };
 
             const action = {
-                type: 'IOTA/APP/WALLET/SET_DEEP_LINK',
+                type: 'IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST',
                 amount: '100',
             };
 
@@ -318,7 +293,7 @@ describe('Reducer: ui', () => {
             };
 
             const action = {
-                type: 'IOTA/APP/WALLET/SET_DEEP_LINK',
+                type: 'IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST',
                 message: 'YNWA',
             };
 
@@ -896,34 +871,6 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isAttachingToTangle: false,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/UI/SET_ONBOARDING_SEED', () => {
-        it('should assign payload to "onboarding" state prop', () => {
-            const initialState = {
-                onboarding: {
-                    name: '',
-                    seed: null,
-                    isGenerated: false,
-                },
-            };
-
-            const action = {
-                type: 'IOTA/UI/SET_ONBOARDING_SEED',
-                payload: { isGenerated: true },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                onboarding: {
-                    name: '',
-                    seed: null,
-                    isGenerated: true,
-                },
             };
 
             expect(newState).to.eql(expectedState);

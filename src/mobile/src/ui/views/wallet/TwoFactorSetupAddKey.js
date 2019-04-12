@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
-import QRCode from 'react-native-qrcode-svg';
+import QRCode from 'react-native-qr-generator';
 import { navigator } from 'libs/navigation';
 import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { withNamespaces } from 'react-i18next';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { storeTwoFactorAuthKeyInKeychain } from 'libs/keychain';
 import Fonts from 'ui/theme/fonts';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
@@ -75,16 +76,12 @@ export class TwoFactorSetupAddKey extends Component {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
     };
 
     constructor() {
         super();
-
         this.goBack = this.goBack.bind(this);
         this.navigateToEnterToken = this.navigateToEnterToken.bind(this);
-
         this.state = {
             authKey: authenticator.generateKey(),
         };
@@ -92,6 +89,10 @@ export class TwoFactorSetupAddKey extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('TwoFactorSetupAddKey');
+    }
+
+    componentWillUnmount() {
+        delete this.state.authKey;
     }
 
     /**
@@ -122,26 +123,10 @@ export class TwoFactorSetupAddKey extends Component {
      */
     navigateToEnterToken() {
         Clipboard.setString(' ');
-        const { t, theme: { body }, password } = this.props;
-        return storeTwoFactorAuthKeyInKeychain(password, this.state.authKey)
+        const { t } = this.props;
+        return storeTwoFactorAuthKeyInKeychain(global.passwordHash, this.state.authKey)
             .then(() => {
-                navigator.push('twoFactorSetupEnterToken', {
-                    animations: {
-                        push: {
-                            enable: false,
-                        },
-                        pop: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    statusBar: {
-                        backgroundColor: body.bg,
-                    },
-                });
+                navigator.push('twoFactorSetupEnterToken');
             })
             .catch(() =>
                 this.props.generateAlert(
@@ -156,6 +141,9 @@ export class TwoFactorSetupAddKey extends Component {
         const { theme: { body }, t } = this.props;
         const backgroundColor = { backgroundColor: body.bg };
         const textColor = { color: body.color };
+        const totpLink = `${'otpauth://totp/Trinity Wallet Mobile?secret='}${this.state.authKey
+            .replace(/\W/g, '')
+            .toLowerCase()}`;
 
         return (
             <View style={[styles.container, backgroundColor]}>
@@ -182,12 +170,7 @@ export class TwoFactorSetupAddKey extends Component {
                         delay={200}
                     >
                         <View style={styles.qrContainer}>
-                            <QRCode
-                                value={authenticator.generateTotpUri(this.state.authKey, 'Trinity Wallet Mobile')}
-                                size={height / 5}
-                                bgColor="#000"
-                                fgColor="#FFF"
-                            />
+                            <QRCode value={totpLink} size={height / 5} backgroundColor="#00000000" />
                         </View>
                     </AnimatedComponent>
                     <AnimatedComponent
@@ -223,8 +206,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
-    password: state.wallet.password,
+    theme: getThemeFromState(state),
 });
 
 export default withNamespaces(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey));

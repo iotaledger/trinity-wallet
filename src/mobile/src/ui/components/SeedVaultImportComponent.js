@@ -1,5 +1,6 @@
+import isEmpty from 'lodash/isEmpty';
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
@@ -8,10 +9,16 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import { withNamespaces } from 'react-i18next';
+import { getThemeFromState } from 'shared-modules/selectors/global';
+import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
+import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/constants';
 import { height, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
+import { trytesToTrits } from 'shared-modules/libs/iota/converter';
+import { parse } from 'shared-modules/libs/utils';
+import { UInt8ToString } from 'libs/crypto';
 
 const styles = StyleSheet.create({
     infoText: {
@@ -46,6 +53,8 @@ export class SeedVaultImportComponent extends Component {
          * @param {object} instance - Component instance
          */
         onRef: PropTypes.func.isRequired,
+        /** @ignore */
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -69,9 +78,18 @@ export class SeedVaultImportComponent extends Component {
                         t('seedVault:unrecognisedKeyExplanation'),
                     );
                 }
-                this.props.onSeedImport(msg);
+
+                const data = parse(msg);
+
+                this.props.onSeedImport(trytesToTrits(data.seed));
+
+                // Set account name so that it can be auto-filled
+                this.props.setAccountInfoDuringSetup({
+                    name: data.title || SEED_VAULT_DEFAULT_TITLE,
+                });
+
                 return timer.setTimeout(
-                    'timeout',
+                    'importSuccessTimeout',
                     () =>
                         this.props.generateAlert(
                             'success',
@@ -86,8 +104,11 @@ export class SeedVaultImportComponent extends Component {
     }
 
     componentWillUnmount() {
+        timer.clearTimeout('delayDocumentPicker');
+        timer.clearTimeout('importSuccessTimeout');
         this.props.onRef(undefined);
         nodejs.channel.removeAllListeners();
+        delete this.state.seedVault;
     }
 
     /**
@@ -96,11 +117,12 @@ export class SeedVaultImportComponent extends Component {
      */
     validatePassword(password) {
         const { t } = this.props;
-        if (password === '') {
+        if (isEmpty(password)) {
             return this.props.generateAlert('error', t('seedVault:emptyKey'), t('seedVault:emptyKeyExplanation'));
         }
         const seedVaultString = this.state.seedVault.toString();
-        return nodejs.channel.send('import:' + seedVaultString + ':' + password);
+        // FIXME: Password should be UInt8, not string
+        return nodejs.channel.send('import~' + seedVaultString + '~' + UInt8ToString(password));
     }
 
     /**
@@ -121,49 +143,60 @@ export class SeedVaultImportComponent extends Component {
 
     /**
      * Opens document picker, reads chosen file and opens password validation modal
+     * @method showDocumentPicker
+     */
+    showDocumentPicker() {
+        const { t } = this.props;
+        DocumentPicker.show(
+            {
+                filetype: isAndroid
+                    ? ['application/octet-stream']
+                    : ['public.data', 'public.item', 'dyn.ah62d4rv4ge8003dcta'],
+            },
+            (error, res) => {
+                if (error) {
+                    return this.props.generateAlert(
+                        'error',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongTryAgain'),
+                    );
+                }
+                let path = res.uri;
+                if (path.startsWith('file://')) {
+                    path = path.slice(7);
+                }
+                RNFetchBlob.fs
+                    .readFile(path, 'ascii')
+                    .then((data) => {
+                        this.setState({ seedVault: data });
+                        this.props.openPasswordValidationModal();
+                    })
+                    .catch(() =>
+                        this.props.generateAlert(
+                            'error',
+                            t('seedVault:seedFileError'),
+                            t('seedVault:seedFileErrorExplanation'),
+                        ),
+                    );
+            },
+        );
+    }
+
+    /**
+     * Initiates SeedVault import and requests permissions if necessary
      * @method importSeedVault
      */
     importSeedVault() {
-        const { t, generateAlert } = this.props;
+        const { t } = this.props;
+        Keyboard.dismiss();
         (isAndroid ? this.grantPermissions() : Promise.resolve())
             .then(() => {
-                DocumentPicker.show(
-                    {
-                        filetype: isAndroid
-                            ? ['application/octet-stream']
-                            : ['public.data', 'public.item', 'dyn.ah62d4rv4ge8003dcta'],
-                    },
-                    (error, res) => {
-                        if (error) {
-                            return generateAlert(
-                                'error',
-                                t('global:somethingWentWrong'),
-                                t('global:somethingWentWrongTryAgain'),
-                            );
-                        }
-                        let path = res.uri;
-                        if (path.startsWith('file://')) {
-                            path = path.slice(7);
-                        }
-                        RNFetchBlob.fs
-                            .readFile(path, 'ascii')
-                            .then((data) => {
-                                this.setState({ seedVault: data });
-                                this.props.openPasswordValidationModal();
-                            })
-                            .catch(() =>
-                                generateAlert(
-                                    'error',
-                                    t('seedVault:seedFileError'),
-                                    t('seedVault:seedFileErrorExplanation'),
-                                ),
-                            );
-                    },
-                );
+                // Delay showing document picker to allow time for the keyboard to close
+                timer.setTimeout('delayDocumentPicker', () => this.showDocumentPicker(), 200);
             })
             .catch((err) => {
                 if (err.message === 'Read permissions not granted.') {
-                    return generateAlert(
+                    return this.props.generateAlert(
                         'error',
                         t('receive:missingPermission'),
                         t('receive:missingPermissionExplanation'),
@@ -187,11 +220,12 @@ export class SeedVaultImportComponent extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {
     generateAlert,
+    setAccountInfoDuringSetup,
 };
 
 export default withNamespaces(['seedVault', 'global'])(

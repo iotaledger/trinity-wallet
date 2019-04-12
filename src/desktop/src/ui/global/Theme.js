@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
+import { getThemeFromState } from 'selectors/global';
 /**
  * Theming style provider component
  */
@@ -43,7 +43,7 @@ class Theme extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     themeName: state.settings.themeName,
 });
 

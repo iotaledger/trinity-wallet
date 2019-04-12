@@ -14,7 +14,14 @@ import { fetchVersions } from 'libs/utils';
 import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
 
 import { setOnboardingComplete, setAccountInfoDuringSetup } from 'actions/accounts';
-import { setPassword, clearWalletData, setDeepLink, setSeedIndex, shouldUpdate, forceUpdate } from 'actions/wallet';
+import {
+    setPassword,
+    clearWalletData,
+    initiateDeepLinkRequest,
+    setSeedIndex,
+    shouldUpdate,
+    forceUpdate,
+} from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { dismissAlert, generateAlert } from 'actions/alerts';
@@ -88,7 +95,7 @@ class App extends React.Component {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        setDeepLink: PropTypes.func.isRequired,
+        initiateDeepLinkRequest: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -137,6 +144,8 @@ class App extends React.Component {
                 return this.props.history.push('/onboarding/login');
             }
 
+            Electron.setOnboardingSeed(null);
+
             if (!this.props.onboardingComplete) {
                 this.props.setOnboardingComplete(true);
             }
@@ -168,7 +177,7 @@ class App extends React.Component {
         const parsedData = parseAddress(data);
 
         if (parsedData) {
-            this.props.setDeepLink(
+            this.props.initiateDeepLinkRequest(
                 parsedData.amount ? String(parsedData.amount) : '0',
                 parsedData.address,
                 parsedData.message || '',
@@ -328,7 +337,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     clearWalletData,
     setPassword,
-    setDeepLink,
+    initiateDeepLinkRequest,
     setSeedIndex,
     dismissAlert,
     generateAlert,

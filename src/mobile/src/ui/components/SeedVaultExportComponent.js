@@ -15,8 +15,13 @@ import { Styling } from 'ui/theme/general';
 import { hash } from 'libs/keychain';
 import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
-import { removeNonAlphaNumeric } from 'shared-modules/libs/utils';
+import { removeNonAlphaNumeric, serialise } from 'shared-modules/libs/utils';
+import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/constants';
+import { tritsToChars } from 'shared-modules/libs/iota/converter';
+import { moment } from 'shared-modules/libs/exports';
+import { UInt8ToString } from 'libs/crypto';
 import InfoBox from './InfoBox';
 import Button from './Button';
 import CustomTextInput from './CustomTextInput';
@@ -64,7 +69,7 @@ class SeedVaultExportComponent extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        seed: PropTypes.string.isRequired,
+        seed: PropTypes.string,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** Name for selected account */
@@ -83,33 +88,58 @@ class SeedVaultExportComponent extends Component {
         onRef: PropTypes.func.isRequired,
         /** Determines whether user needs to enter wallet password */
         isAuthenticated: PropTypes.bool.isRequired,
-        /** @ignore */
-        storedPasswordHash: PropTypes.object.isRequired,
         /** Triggered when user enters the correct wallet password */
         setAuthenticated: PropTypes.func,
-        /** Sets seed variable in parent component following successful SeedVault import */
-        setSeed: PropTypes.func.isRequired,
     };
 
-    constructor() {
-        super();
+    static defaultProps = {
+        seed: '',
+    };
+
+    /**
+     * Gets seed vault file path
+     *
+     * @method getPath
+     *
+     * @param {string} prefix
+     *
+     * @returns {string}
+     */
+    static getPath(prefix) {
+        return `${
+            isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir
+        }/${prefix}-${moment().format('YYYYMMDD-HHmm')}.kdbx`;
+    }
+
+    constructor(props) {
+        super(props);
         this.state = {
-            password: '',
-            reentry: '',
+            currentPassword: null,
+            password: null,
+            reentry: null,
             path: '',
             saveToDownloadFolder: false,
+            seed: props.seed,
         };
     }
 
     componentWillMount() {
-        const { isAuthenticated, onRef } = this.props;
+        const { isAuthenticated, onRef, t } = this.props;
         onRef(this);
         this.animatedValue = new Animated.Value(isAuthenticated ? width : width * 2);
         nodejs.start('main.js');
         nodejs.channel.addListener(
             'message',
-            (vault) => {
-                this.onGenerateVault(vault);
+            (message) => {
+                if (message === 'error') {
+                    return this.props.generateAlert(
+                        'error',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongTryAgain'),
+                    );
+                }
+
+                this.onGenerateVault(message);
             },
             this,
         );
@@ -121,6 +151,10 @@ class SeedVaultExportComponent extends Component {
         if (this.state.path !== '' && !this.state.saveToDownloadFolder) {
             RNFetchBlob.fs.unlink(this.state.path);
         }
+        delete this.state.currentPassword;
+        delete this.state.password;
+        delete this.state.reentry;
+        delete this.state.seed;
     }
 
     /**
@@ -134,16 +168,11 @@ class SeedVaultExportComponent extends Component {
             await getAndroidFileSystemPermissions();
         }
         const { t, selectedAccountName } = this.props;
-        const now = new Date();
-        const prefix = removeNonAlphaNumeric(selectedAccountName, 'SeedVault').trim();
-        const path =
-            (isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir) +
-            `/${prefix}${now
-                .toISOString()
-                .slice(0, 16)
-                .replace(/[-:]/g, '')
-                .replace('T', '-')}.kdbx`;
+
+        const path = SeedVaultExportComponent.getPath(removeNonAlphaNumeric(selectedAccountName, 'SeedVault').trim());
+
         this.setState({ path });
+
         RNFetchBlob.fs.exists(path).then((fileExists) => {
             if (fileExists) {
                 RNFetchBlob.fs.unlink(path);
@@ -224,7 +253,19 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
-        return nodejs.channel.send('export:' + this.props.seed + ':' + this.state.password);
+        const { selectedAccountName } = this.props;
+        // FIXME: Password should be UInt8, not string
+        return nodejs.channel.send(
+            'export~' +
+                // selectedAccountName would be undefined if seed is being exported during onboarding
+                // If it's undefined, use the fallback title
+                serialise({
+                    seed: tritsToChars(this.state.seed),
+                    title: removeNonAlphaNumeric(selectedAccountName, SEED_VAULT_DEFAULT_TITLE),
+                }) +
+                '~' +
+                UInt8ToString(this.state.password),
+        );
     }
 
     /**
@@ -263,19 +304,19 @@ class SeedVaultExportComponent extends Component {
      * @method validateWalletPassword
      */
     async validateWalletPassword() {
-        const { t, storedPasswordHash, selectedAccountName, selectedAccountMeta } = this.props;
-        const { password } = this.state;
-        if (!password) {
+        const { t, selectedAccountName, selectedAccountMeta } = this.props;
+        const { currentPassword } = this.state;
+        if (!currentPassword) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else {
-            const enteredPasswordHash = await hash(password);
-            if (isEqual(enteredPasswordHash, storedPasswordHash)) {
-                const seedStore = new SeedStore[selectedAccountMeta.type](enteredPasswordHash, selectedAccountName);
-                const seed = await seedStore.getSeed();
-
-                this.props.setSeed(seed);
+            const enteredPasswordHash = await hash(currentPassword);
+            if (isEqual(enteredPasswordHash, global.passwordHash)) {
+                const seedStore = await new SeedStore[selectedAccountMeta.type](
+                    enteredPasswordHash,
+                    selectedAccountName,
+                );
+                this.setState({ seed: await seedStore.getSeed() });
                 this.props.setAuthenticated(true);
-                this.setState({ password: '' });
                 return this.navigateToStep('isViewingGeneralInfo');
             }
             this.props.generateAlert(
@@ -305,7 +346,7 @@ class SeedVaultExportComponent extends Component {
 
     render() {
         const { t, theme, isAuthenticated } = this.props;
-        const { password, reentry } = this.state;
+        const { currentPassword, password, reentry } = this.state;
         const textColor = { color: theme.body.color };
 
         return (
@@ -316,7 +357,7 @@ class SeedVaultExportComponent extends Component {
                     </Text>
                     <CustomTextInput
                         label={t('password')}
-                        onChangeText={(password) => this.setState({ password })}
+                        onValidTextChange={(currentPassword) => this.setState({ currentPassword })}
                         containerStyle={{ width: Styling.contentWidth }}
                         autoCapitalize="none"
                         autoCorrect={false}
@@ -325,7 +366,8 @@ class SeedVaultExportComponent extends Component {
                         secureTextEntry
                         onSubmitEditing={() => this.onNextPress()}
                         theme={theme}
-                        value={password}
+                        value={currentPassword}
+                        isPasswordInput
                     />
                 </View>
                 <View style={styles.viewContainer}>
@@ -402,9 +444,8 @@ class SeedVaultExportComponent extends Component {
 const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     minimised: state.ui.minimised,
-    storedPasswordHash: state.wallet.password,
 });
 
 const mapDispatchToProps = {

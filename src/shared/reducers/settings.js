@@ -2,8 +2,9 @@ import merge from 'lodash/merge';
 import union from 'lodash/union';
 import sortBy from 'lodash/sortBy';
 import { ActionTypes } from '../actions/settings';
+import { ActionTypes as MigrationsActionTypes } from '../actions/migrations';
 import { defaultNode as node, nodes } from '../config';
-import themes from '../themes/themes';
+import { availableCurrencies } from '../libs/currency';
 
 const initialState = {
     /**
@@ -38,41 +39,7 @@ const initialState = {
     /**
      * Wallet's available currencies
      */
-    availableCurrencies: [
-        'USD',
-        'GBP',
-        'EUR',
-        'AUD',
-        'BGN',
-        'BRL',
-        'CAD',
-        'CHF',
-        'CNY',
-        'CZK',
-        'DKK',
-        'HKD',
-        'HRK',
-        'HUF',
-        'IDR',
-        'ILS',
-        'INR',
-        'ISK',
-        'JPY',
-        'KRW',
-        'MXN',
-        'MYR',
-        'NOK',
-        'NZD',
-        'PHP',
-        'PLN',
-        'RON',
-        'RUB',
-        'SEK',
-        'SGD',
-        'THB',
-        'TRY',
-        'ZAR',
-    ],
+    availableCurrencies,
     /**
      * Conversion rate for IOTA token
      */
@@ -82,12 +49,7 @@ const initialState = {
      */
     themeName: 'Default',
     /**
-     * Active theme object
-     */
-    theme: themes.Default,
-    /**
      * Determines if the wallet has randomised node on initial setup.
-     *
      */
     hasRandomizedNode: false,
     /**
@@ -147,13 +109,26 @@ const initialState = {
         messages: true,
     },
     /**
+     * Determines the status of AsyncStorage to realm migration
+     */
+    completedMigration: false,
+    /*
      * Desktop: Use system proxy settings
      */
     ignoreProxy: false,
+    /**
+     * Determines if deep linking is enabled
+     */
+    deepLinking: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ActionTypes.SET_LOCK_SCREEN_TIMEOUT:
+            return {
+                ...state,
+                lockScreenTimeout: action.payload,
+            };
         case ActionTypes.SET_REMOTE_POW:
             return {
                 ...state,
@@ -168,11 +143,6 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 autoNodeSwitching: action.payload === undefined ? !state.autoNodeSwitching : action.payload,
-            };
-        case ActionTypes.SET_LOCK_SCREEN_TIMEOUT:
-            return {
-                ...state,
-                lockScreenTimeout: action.payload,
             };
         case ActionTypes.SET_LOCALE:
             return {
@@ -211,11 +181,6 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 mode: action.payload,
             };
-        case ActionTypes.SET_THEME:
-            return {
-                ...state,
-                theme: action.payload,
-            };
         case ActionTypes.SET_LANGUAGE:
             return {
                 ...state,
@@ -234,8 +199,7 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.UPDATE_THEME:
             return {
                 ...state,
-                theme: action.theme,
-                themeName: action.themeName,
+                themeName: action.payload,
             };
         case ActionTypes.SET_RANDOMLY_SELECTED_NODE:
             return {
@@ -286,6 +250,7 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.SET_BYTETRIT_INFO:
             return {
                 ...state,
+                // FIXME: byteTritInfo not defined in initial state.
                 byteTritInfo: action.payload,
             };
         case ActionTypes.SET_TRAY:
@@ -301,6 +266,11 @@ const settingsReducer = (state = initialState, action) => {
                     [action.payload.type]: action.payload.enabled,
                 },
             };
+        case MigrationsActionTypes.SET_REALM_MIGRATION_STATUS:
+            return {
+                ...state,
+                completedMigration: action.payload,
+            };
         case ActionTypes.SET_PROXY:
             return {
                 ...state,
@@ -310,6 +280,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 nodes: [],
+            };
+        case ActionTypes.SET_DEEP_LINKING:
+            return {
+                ...state,
+                deepLinking: !state.deepLinking,
             };
     }
 

@@ -3,25 +3,23 @@
 import Electron from '../../../native/preload/Electron';
 
 import trytes from '../../../__mocks__/samples/trytes.js';
-import { seedTrytesMock, passwordMock } from '../../../__mocks__/samples/keychain';
+import { seedTrytesMock, passwordMock, addressMocks } from '../../../__mocks__/samples/keychain';
 
 describe('Electron preload class', () => {
     test('Proof of Work', async () => {
-        const nonce = await Electron.powFn(trytes.value[0], 14);
+        const pow = Electron.getPowFn();
+        const nonce = await pow(trytes.value[0], 14);
         expect(nonce.length).toEqual(27);
     });
 
     test('Single address generation', async () => {
         const address = await Electron.genFn(seedTrytesMock, 0, 2, 1);
-        expect(address).toEqual('XUERGHWTYRTFUYKFKXURKHMFEVLOIFTTCNTXOGLDPCZ9CJLKHROOPGNAQYFJEPGK9OKUQROUECBAVNXRX');
+        expect(address).toEqual(addressMocks[1]);
     });
 
     test('Multiple address generation', async () => {
         const address = await Electron.genFn(seedTrytesMock, 0, 2, 2);
-        expect(address).toEqual([
-            'XUERGHWTYRTFUYKFKXURKHMFEVLOIFTTCNTXOGLDPCZ9CJLKHROOPGNAQYFJEPGK9OKUQROUECBAVNXRX',
-            'RJBYLCIOUKWJVCUKZQZCPIKNBUOGRGVXHRTTE9ZFSCGTFRKELMJBDDAKEYYCLHLJDNSHQ9RTIUIDLMUOB',
-        ]);
+        expect(address).toEqual([addressMocks[1], addressMocks[2]]);
     });
 
     test('Calculate seed checksum', () => {

@@ -6,11 +6,11 @@ import { StyleSheet, View, Text, TouchableHighlight, FlatList, BackHandler, Touc
 import timer from 'react-native-timer';
 import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
-import { clearSeed } from 'shared-modules/actions/wallet';
-import { setOnboardingSeed, toggleModalActivity } from 'shared-modules/actions/ui';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateNewSeed, randomiseSeedCharacter } from 'shared-modules/libs/crypto';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import FlagSecure from 'react-native-flag-secure-android';
@@ -23,6 +23,7 @@ import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { trytesToTrits } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     container: {
@@ -88,17 +89,11 @@ class NewSeedSetup extends Component {
         /** Component ID */
         componentId: PropTypes.string.isRequired,
         /** @ignore */
-        setOnboardingSeed: PropTypes.func.isRequired,
-        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         onboardingComplete: PropTypes.bool.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** @ignore */
-        clearSeed: PropTypes.func.isRequired,
-        /** @ignore */
-        seed: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -111,7 +106,8 @@ class NewSeedSetup extends Component {
         super();
         console.disableYellowBox = true; // eslint-disable-line no-console
         this.state = {
-            randomised: false,
+            hasGeneratedSeed: false,
+            seed: '',
         };
     }
 
@@ -119,7 +115,7 @@ class NewSeedSetup extends Component {
         leaveNavigationBreadcrumb('NewSeedSetup');
         if (this.props.onboardingComplete) {
             BackHandler.addEventListener('newSeedSetupBackPress', () => {
-                this.setState({ randomised: false });
+                this.setState({ hasGeneratedSeed: false });
                 this.onBackPress();
                 return true;
             });
@@ -137,60 +133,36 @@ class NewSeedSetup extends Component {
             FlagSecure.deactivate();
         }
         timer.clearTimeout('newSeedSetup');
+        delete this.state.seed;
     }
 
     async onGeneratePress() {
         const { t } = this.props;
-        const seed = await generateNewSeed(generateSecureRandom);
-        this.props.setOnboardingSeed(seed, true);
-        this.setState({ randomised: true });
+        this.setState({ hasGeneratedSeed: true, seed: await generateNewSeed(generateSecureRandom) });
         this.props.generateAlert('success', t('generateSuccess'), t('individualLetters'));
     }
 
     async onCharPress(sectionID) {
-        const { seed } = this.props;
-        const { randomised } = this.state;
-        if (randomised) {
-            const updatedSeed = await randomiseSeedCharacter(seed, sectionID, generateSecureRandom);
-            this.props.setOnboardingSeed(updatedSeed, true);
+        const { hasGeneratedSeed } = this.state;
+        if (hasGeneratedSeed) {
+            this.setState({ seed: await randomiseSeedCharacter(this.state.seed, sectionID, generateSecureRandom) });
         }
     }
 
     onNextPress() {
-        const { t, theme: { body } } = this.props;
+        const { t } = this.props;
         if (isAndroid) {
             FlagSecure.deactivate();
         }
-        if (this.state.randomised) {
-            navigator.push('saveYourSeed', {
-                animations: {
-                    push: {
-                        enable: false,
-                    },
-                    pop: {
-                        enable: false,
-                    },
-                },
-                layout: {
-                    backgroundColor: body.bg,
-                    orientation: ['portrait'],
-                },
-                topBar: {
-                    title: {
-                        color: body.color,
-                    },
-                },
-                statusBar: {
-                    backgroundColor: body.bg,
-                },
-            });
+        if (this.state.hasGeneratedSeed) {
+            global.onboardingSeed = trytesToTrits(this.state.seed);
+            navigator.push('saveYourSeed');
         } else {
             this.props.generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
         }
     }
 
     onBackPress() {
-        this.props.clearSeed();
         navigator.pop(this.props.componentId);
     }
 
@@ -205,7 +177,7 @@ class NewSeedSetup extends Component {
     renderChequerboard(character, index) {
         const { theme: { input, primary } } = this.props;
 
-        const { randomised } = this.state;
+        const { hasGeneratedSeed } = this.state;
 
         return (
             <TouchableHighlight
@@ -215,7 +187,7 @@ class NewSeedSetup extends Component {
                 hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
             >
                 <View style={styles.tile}>
-                    <Text style={[styles.tileText, { color: input.color, opacity: randomised ? 1 : 0.1 }]}>
+                    <Text style={[styles.tileText, { color: input.color, opacity: hasGeneratedSeed ? 1 : 0.1 }]}>
                         {character}
                     </Text>
                 </View>
@@ -224,9 +196,10 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { t, theme: { primary, secondary, body }, seed, minimised } = this.props;
-        const viewOpacity = this.state.randomised ? 1 : 0.2;
-        const opacity = this.state.randomised ? 1 : 0.4;
+        const { t, theme: { primary, secondary, body }, minimised } = this.props;
+        const { hasGeneratedSeed } = this.state;
+        const viewOpacity = hasGeneratedSeed ? 1 : 0.2;
+        const opacity = hasGeneratedSeed ? 1 : 0.4;
         const textColor = { color: body.color };
 
         return (
@@ -286,7 +259,7 @@ class NewSeedSetup extends Component {
                             >
                                 <FlatList
                                     contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
-                                    data={split(seed, '')}
+                                    data={hasGeneratedSeed ? split(this.state.seed, '') : Array(82).join(' ')}
                                     keyExtractor={(item, index) => index.toString()}
                                     renderItem={({ item, index }) => this.renderChequerboard(item, index)}
                                     initialNumToRender={MAX_SEED_LENGTH}
@@ -315,15 +288,12 @@ class NewSeedSetup extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.wallet.seed,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     onboardingComplete: state.accounts.onboardingComplete,
     minimised: state.ui.minimised,
 });
 
 const mapDispatchToProps = {
-    setOnboardingSeed,
-    clearSeed,
     generateAlert,
     toggleModalActivity,
 };

@@ -91,8 +91,6 @@ class AccountName extends React.PureComponent {
                 const seedStore = await new SeedStore.keychain(wallet.password);
                 await seedStore.addAccount(this.state.name, Electron.getOnboardingSeed());
 
-                Electron.setOnboardingSeed(null);
-
                 history.push('/onboarding/login');
             } else {
                 history.push('/onboarding/account-password');

@@ -1,31 +1,20 @@
 import assign from 'lodash/assign';
+import each from 'lodash/each';
 import find from 'lodash/find';
 import keys from 'lodash/keys';
 import includes from 'lodash/includes';
-import isArray from 'lodash/isArray';
-import isObject from 'lodash/isObject';
-import omit from 'lodash/omit';
 import map from 'lodash/map';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import nock from 'nock';
 import {
     prepareTransferArray,
-    categoriseTransactionsByPersistence,
-    getPendingTxTailsHashes,
-    markTransfersConfirmed,
     getTransactionsDiff,
-    categoriseTransactions,
     normaliseBundle,
-    mergeNewTransfers,
     categoriseBundleByInputsOutputs,
     performPow,
-    filterInvalidPendingTransactions,
-    getBundleHashesForNewlyConfirmedTransactions,
-    constructNormalisedBundles,
-    prepareForAutoPromotion,
-    getOwnTransactionHashes,
-    pickNewTailTransactions,
+    performSequentialPow,
+    constructBundlesFromTransactions,
     retryFailedTransaction,
     sortTransactionTrytesArray,
     getTransferValue,
@@ -33,10 +22,32 @@ import {
     isValidTransfer,
     isFundedBundle,
     categoriseInclusionStatesByBundleHash,
+    assignInclusionStatesToBundles,
+    filterZeroValueBundles,
+    isBundleTraversable,
+    isBundle,
 } from '../../../libs/iota/transfers';
-import { iota, SwitchingConfig, quorum } from '../../../libs/iota/index';
-import trytes from '../../__samples__/trytes';
-import * as mockTransactions from '../../__samples__/transactions';
+import { confirmedValueBundles, unconfirmedValueBundles, confirmedZeroValueBundles } from '../../__samples__/bundles';
+import { iota, SwitchingConfig } from '../../../libs/iota';
+import {
+    newValueTransactionTrytes,
+    newValueAttachedTransactionTrytes,
+    failedTrytesWithCorrectTransactionHashes,
+    milestoneTrytes,
+} from '../../__samples__/trytes';
+import {
+    newValueAttachedTransactionBaseTrunk,
+    newValueAttachedTransactionBaseBranch,
+    newValueAttachedTransaction,
+    confirmedValueTransactions,
+    unconfirmedValueTransactions,
+    failedTransactionsWithCorrectTransactionHashes,
+    failedTransactionsWithIncorrectTransactionHashes,
+    LATEST_MILESTONE,
+    LATEST_SOLID_SUBTANGLE_MILESTONE,
+    LATEST_MILESTONE_INDEX,
+    LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+} from '../../__samples__/transactions';
 import { EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_TRYTES, EMPTY_TRANSACTION_MESSAGE } from '../../../libs/iota/utils';
 import { IRI_API_VERSION } from '../../../config';
 
@@ -199,10 +210,20 @@ describe('libs: iota/transfers', () => {
         let addressData;
 
         before(() => {
-            addressData = {
-                ['X'.repeat(81)]: { index: 0, balance: 0, spent: { local: false, remote: false } },
-                ['Y'.repeat(81)]: { index: 1, balance: 0, spent: { local: false, remote: false } },
-            };
+            addressData = [
+                {
+                    address: 'X'.repeat(81),
+                    index: 0,
+                    balance: 0,
+                    spent: { local: false, remote: false },
+                },
+                {
+                    address: 'Y'.repeat(81),
+                    index: 1,
+                    balance: 0,
+                    spent: { local: false, remote: false },
+                },
+            ];
         });
 
         describe('when value is zero', () => {});
@@ -255,102 +276,6 @@ describe('libs: iota/transfers', () => {
         });
     });
 
-    describe('#categoriseTransactionsByPersistence', () => {
-        it('should always return an object with props "unconfirmed" and "confirmed"', () => {
-            const args = [
-                [undefined, undefined],
-                [undefined, null],
-                [null, null],
-                [[], []],
-                [{}, {}],
-                ['', undefined],
-                [0, 0],
-                ['foo', undefined],
-            ];
-
-            args.forEach((arg) => {
-                expect(categoriseTransactionsByPersistence(...arg)).to.have.keys(['confirmed', 'unconfirmed']);
-            });
-        });
-
-        it('should map all those transactions to "confirmed" prop array that have corresponding states true', () => {
-            const transactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
-
-            const states = [true, false];
-
-            expect(categoriseTransactionsByPersistence(transactions, states).confirmed).to.eql([{ bundle: 'foo' }]);
-        });
-
-        it('should map all those transactions to "unconfirmed" prop array that have corresponding states false', () => {
-            const transactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
-
-            const states = [true, false];
-
-            expect(categoriseTransactionsByPersistence(transactions, states).unconfirmed).to.eql([{ bundle: 'baz' }]);
-        });
-    });
-
-    describe('#getPendingTxTailsHashes', () => {
-        describe('when argument passed is empty, null or undefined', () => {
-            it('should return an empty array', () => {
-                expect(getPendingTxTailsHashes([])).to.eql([]);
-                expect(getPendingTxTailsHashes(undefined)).to.eql([]);
-                expect(getPendingTxTailsHashes(null)).to.eql([]);
-            });
-        });
-
-        describe('when argument passed is an object', () => {
-            it('should return an empty array if no values have persistence false', () => {
-                const args = { bundleOne: {}, bundleTwo: {} };
-
-                expect(getPendingTxTailsHashes(args)).to.eql([]);
-            });
-
-            it('should return an array with hashes for elements with persistence false', () => {
-                const args = {
-                    bundleOne: { tailTransactions: [{ hash: '999' }, { hash: 'UUU' }], value: 100, persistence: false },
-                    bundleTwo: { tailTransactions: [{ hash: 'XXX' }, { hash: 'YYY' }], value: 100, persistence: true },
-                };
-
-                expect(getPendingTxTailsHashes(args)).to.eql(['999', 'UUU']);
-            });
-        });
-    });
-
-    describe('#markTransfersConfirmed', () => {
-        describe('when second argument passed is empty, null or undefined', () => {
-            it('should return first argument', () => {
-                expect(markTransfersConfirmed({}, null)).to.eql({});
-                expect(markTransfersConfirmed({}, undefined)).to.eql({});
-                expect(markTransfersConfirmed({}, [])).to.eql({});
-            });
-        });
-
-        describe('when second argument passed is not an empty array', () => {
-            it('should assign persistence true to those objects that have any tail transaction hash in second argument array', () => {
-                const normalisedTransfers = {
-                    bundleHashOne: {
-                        persistence: false,
-                        tailTransactions: [{ hash: 'UUU' }],
-                    },
-                    bundleHashTwo: {
-                        persistence: false,
-                        tailTransactions: [{ hash: 'XXX' }],
-                    },
-                };
-
-                const confirmedTransactionsHashes = ['XXX'];
-
-                const result = {
-                    bundleHashOne: { persistence: false, tailTransactions: [{ hash: 'UUU' }] },
-                    bundleHashTwo: { persistence: true, tailTransactions: [{ hash: 'XXX' }] },
-                };
-
-                expect(markTransfersConfirmed(normalisedTransfers, confirmedTransactionsHashes)).to.eql(result);
-            });
-        });
-    });
-
     describe('#getTransactionsDiff', () => {
         describe('when second argument size is not greater than first argument size', () => {
             let firstArgument;
@@ -378,28 +303,6 @@ describe('libs: iota/transfers', () => {
             it('should return an array with difference of first and second arguments', () => {
                 expect(getTransactionsDiff(firstArgument, secondArgument)).to.eql(['baz']);
             });
-        });
-    });
-
-    describe('#categoriseTransactions', () => {
-        it('should always return an object with props "incoming" and "outgoing"', () => {
-            const args = [[undefined], [null], [], [{}], [''], [0], ['foo']];
-
-            args.forEach((arg) => {
-                expect(categoriseTransactions(...arg)).to.have.keys(['incoming', 'outgoing']);
-            });
-        });
-
-        it('should categorise incoming transactions to "incoming" prop array', () => {
-            const transactions = [{ incoming: true }, { incoming: false }, { incoming: false }];
-
-            expect(categoriseTransactions(transactions).incoming).to.eql([{ incoming: true }]);
-        });
-
-        it('should categorise outgoing transactions to "outgoing" prop array', () => {
-            const transactions = [{ incoming: true }, { incoming: false }];
-
-            expect(categoriseTransactions(transactions).outgoing).to.eql([{ incoming: false }]);
         });
     });
 
@@ -537,234 +440,6 @@ describe('libs: iota/transfers', () => {
             normalisedBundle.tailTransactions.forEach((tailTransaction) =>
                 expect(keys(tailTransaction)).to.eql(['hash', 'attachmentTimestamp']),
             );
-        });
-    });
-
-    describe('#mergeNewTransfers', () => {
-        describe('when bundle hash of new normalised transfer exists in existing normalised transfers', () => {
-            it('should add tail transactions of new tranfers to tail transactions in existing transfer', () => {
-                const existingNormalizedTransfers = {
-                    bundleHashOne: {
-                        tailTransactions: [
-                            {
-                                hash: 'YYY',
-                            },
-                            {
-                                hash: 'ZZZ',
-                            },
-                        ],
-                        bundle: 'bundleHashOne',
-                    },
-                    bundleHashTwo: {
-                        tailTransactions: [
-                            {
-                                hash: 'AAA',
-                            },
-                            {
-                                hash: 'FFF',
-                            },
-                        ],
-                        bundle: 'bundleHashTwo',
-                    },
-                };
-
-                const newNormalizedTransfers = {
-                    bundleHashTwo: {
-                        tailTransactions: [
-                            {
-                                hash: 'CCC',
-                            },
-                        ],
-                        bundle: 'bundleHashTwo',
-                    },
-                };
-
-                const mergedTransfers = {
-                    bundleHashOne: {
-                        tailTransactions: [
-                            {
-                                hash: 'YYY',
-                            },
-                            {
-                                hash: 'ZZZ',
-                            },
-                        ],
-                        bundle: 'bundleHashOne',
-                    },
-                    bundleHashTwo: {
-                        tailTransactions: [
-                            {
-                                hash: 'AAA',
-                            },
-                            {
-                                hash: 'FFF',
-                            },
-                            {
-                                hash: 'CCC',
-                            },
-                        ],
-                        bundle: 'bundleHashTwo',
-                    },
-                };
-
-                expect(mergeNewTransfers(newNormalizedTransfers, existingNormalizedTransfers)).to.eql(mergedTransfers);
-            });
-
-            it('should keep unique hash values of tail transactions', () => {
-                const existingNormalizedTransfers = {
-                    bundleHashOne: {
-                        tailTransactions: [
-                            {
-                                hash: 'YYY',
-                            },
-                            {
-                                hash: 'ZZZ',
-                            },
-                        ],
-                        bundle: 'bundleHashOne',
-                    },
-                    bundleHashTwo: {
-                        tailTransactions: [
-                            {
-                                hash: 'AAA',
-                            },
-                            {
-                                hash: 'FFF',
-                            },
-                        ],
-                        bundle: 'bundleHashTwo',
-                    },
-                };
-
-                const newNormalizedTransfers = {
-                    bundleHashTwo: {
-                        tailTransactions: [
-                            {
-                                hash: 'FFF',
-                            },
-                        ],
-                        bundle: 'bundleHashTwo',
-                    },
-                };
-
-                const mergedTransfers = {
-                    bundleHashOne: {
-                        tailTransactions: [
-                            {
-                                hash: 'YYY',
-                            },
-                            {
-                                hash: 'ZZZ',
-                            },
-                        ],
-                        bundle: 'bundleHashOne',
-                    },
-                    bundleHashTwo: {
-                        tailTransactions: [
-                            {
-                                hash: 'AAA',
-                            },
-                            {
-                                hash: 'FFF',
-                            },
-                        ],
-                        bundle: 'bundleHashTwo',
-                    },
-                };
-
-                expect(mergeNewTransfers(newNormalizedTransfers, existingNormalizedTransfers)).to.eql(mergedTransfers);
-            });
-        });
-
-        describe('when bundle hash of new normalised transfer does not exist in existing normalised transfers', () => {
-            it('should assign new normalised transfer to the existing normalised transfers', () => {
-                const existingNormalizedTransfers = {
-                    bundleHashOne: {
-                        tailTransactions: [
-                            {
-                                hash: 'YYY',
-                            },
-                            {
-                                hash: 'ZZZ',
-                            },
-                        ],
-                        bundle: 'bundleHashOne',
-                    },
-                    bundleHashTwo: {
-                        tailTransactions: [
-                            {
-                                hash: 'AAA',
-                            },
-                            {
-                                hash: 'FFF',
-                            },
-                        ],
-                        bundle: 'bundleHashTwo',
-                    },
-                };
-
-                const newNormalizedTransfers = {
-                    bundleHashThree: {
-                        tailTransactions: [
-                            {
-                                hash: 'CCC',
-                            },
-                        ],
-                        bundle: 'bundleHashThree',
-                    },
-                    bundleHashFour: {
-                        tailTransactions: [
-                            {
-                                hash: 'DDD',
-                            },
-                        ],
-                        bundle: 'bundleHashFour',
-                    },
-                };
-
-                const mergedTransfers = {
-                    bundleHashOne: {
-                        tailTransactions: [
-                            {
-                                hash: 'YYY',
-                            },
-                            {
-                                hash: 'ZZZ',
-                            },
-                        ],
-                        bundle: 'bundleHashOne',
-                    },
-                    bundleHashTwo: {
-                        tailTransactions: [
-                            {
-                                hash: 'AAA',
-                            },
-                            {
-                                hash: 'FFF',
-                            },
-                        ],
-                        bundle: 'bundleHashTwo',
-                    },
-                    bundleHashThree: {
-                        tailTransactions: [
-                            {
-                                hash: 'CCC',
-                            },
-                        ],
-                        bundle: 'bundleHashThree',
-                    },
-                    bundleHashFour: {
-                        tailTransactions: [
-                            {
-                                hash: 'DDD',
-                            },
-                        ],
-                        bundle: 'bundleHashFour',
-                    },
-                };
-
-                expect(mergeNewTransfers(newNormalizedTransfers, existingNormalizedTransfers)).to.eql(mergedTransfers);
-            });
         });
     });
 
@@ -1037,17 +712,51 @@ describe('libs: iota/transfers', () => {
     });
 
     describe('#performPow', () => {
+        describe('when first argument (powFn) is not a function', () => {
+            it('should throw an error with message "Proof of work function is undefined."', () => {
+                return performPow(undefined, () => Promise.resolve(), [], '9'.repeat(81), '9'.repeat(81))
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((error) => expect(error.message).to.equal('Proof of work function is undefined.'));
+            });
+        });
+
+        describe('when second argument (digestFn) is not a function', () => {
+            it('should throw an error with message "Digest function is undefined."', () => {
+                return performPow(() => Promise.resolve(), undefined, [], '9'.repeat(81), '9'.repeat(81))
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((error) => expect(error.message).to.equal('Digest function is undefined.'));
+            });
+        });
+
+        describe('when first (powFn) & second (digestFn) arguments are functions', () => {
+            describe('when batchedPow is true', () => {
+                it('should call proof-of-work function with trytes, trunk, branch and minWeightMagnitude', () => {
+                    const powFn = sinon.stub();
+
+                    powFn.resolves([]);
+
+                    return performPow(powFn, () => Promise.resolve(), ['foo'], '9'.repeat(81), 'U'.repeat(81)).then(
+                        () =>
+                            expect(powFn.calledOnceWithExactly(['foo'], '9'.repeat(81), 'U'.repeat(81), 14)).to.equal(
+                                true,
+                            ),
+                    );
+                });
+            });
+        });
+    });
+
+    describe('#performSequentialPow', () => {
         let powFn;
         let digestFn;
         let trunkTransaction;
         let branchTransaction;
 
-        const nonces = [
-            'N9UIMZQVDYWLXWGHLELNRCUUPMP',
-            'SLSJJSDPDTDSKEVCBVPMWDNOLAH',
-            'K9JXMYPREJZGUFFSANKRNPOMAGR',
-            'CAIYIYWLTPMFZOABIHTXOPWCZNQ',
-        ];
+        const nonces = ['N9UIMZQVDYWLXWGHLELNRCUUPMP', 'SLSJJSDPDTDSKEVCBVPMWDNOLAH', 'K9JXMYPREJZGUFFSANKRNPOMAGR'];
 
         beforeEach(() => {
             powFn = () => {
@@ -1068,10 +777,10 @@ describe('libs: iota/transfers', () => {
         });
 
         it('should sort transaction objects in ascending order by currentIndex', () => {
-            const fn = performPow(
+            const fn = performSequentialPow(
                 powFn(),
                 digestFn,
-                trytes.value.slice().reverse(),
+                newValueTransactionTrytes.slice().reverse(),
                 trunkTransaction,
                 branchTransaction,
                 14,
@@ -1083,10 +792,10 @@ describe('libs: iota/transfers', () => {
         });
 
         it('should assign generated nonce', () => {
-            const fn = performPow(
+            const fn = performSequentialPow(
                 powFn(),
                 digestFn,
-                trytes.value.slice().reverse(),
+                newValueTransactionTrytes.slice().reverse(),
                 trunkTransaction,
                 branchTransaction,
                 14,
@@ -1097,10 +806,10 @@ describe('libs: iota/transfers', () => {
         });
 
         it('should set correct bundle sequence', () => {
-            const fn = performPow(
+            const fn = performSequentialPow(
                 powFn(),
                 digestFn,
-                trytes.value.slice().reverse(),
+                newValueTransactionTrytes.slice().reverse(),
                 trunkTransaction,
                 branchTransaction,
                 14,
@@ -1113,358 +822,36 @@ describe('libs: iota/transfers', () => {
                 expect(transactionObjects[1].trunkTransaction).to.equal(transactionObjects[2].hash);
                 expect(transactionObjects[1].branchTransaction).to.equal(trunkTransaction);
 
-                expect(transactionObjects[2].trunkTransaction).to.equal(transactionObjects[3].hash);
-                expect(transactionObjects[2].branchTransaction).to.equal(trunkTransaction);
-
-                expect(transactionObjects[3].trunkTransaction).to.equal(trunkTransaction);
-                expect(transactionObjects[3].branchTransaction).to.equal(branchTransaction);
+                expect(transactionObjects[2].trunkTransaction).to.equal(trunkTransaction);
+                expect(transactionObjects[2].branchTransaction).to.equal(branchTransaction);
             });
         });
     });
 
-    describe('#filterInvalidPendingTransactions', () => {
-        let sandbox;
-
-        beforeEach(() => {
-            sandbox = sinon.sandbox.create();
-
-            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-        });
-
-        afterEach(() => {
-            sandbox.restore();
-        });
-
-        describe('when there are no pending transactions', () => {
-            it('should return an empty array', () => {
-                const transactions = Array.from(new Array(5), () => ({ persistence: true }));
-
-                const promise = filterInvalidPendingTransactions()(transactions, {});
-
-                return promise.then((transactions) => {
-                    expect(transactions).to.eql([]);
-                });
+    describe('#constructBundlesFromTransactions', () => {
+        describe('when provided argument is not an array', () => {
+            it('should throw an error with message "Invalid transactions provided"', () => {
+                expect(constructBundlesFromTransactions.bind(null, 'foo')).to.throw('Invalid transactions provided.');
             });
         });
 
-        describe('when there are incoming pending transfers', () => {
-            it('should filter transaction if input addresses do not have enough balance', () => {
-                const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['0'] });
-                const addressData = {
-                    ['U'.repeat(81)]: { spent: true },
-                    ['V'.repeat(81)]: { spent: false },
-                };
+        it('should construct bundles', () => {
+            // Pass in valid transactions
+            const bundles = constructBundlesFromTransactions([
+                ...confirmedValueTransactions,
+                ...unconfirmedValueTransactions,
+            ]);
 
-                const transactions = [
-                    {
-                        incoming: true,
-                        persistence: false,
-                        inputs: [{ address: 'A'.repeat(81), value: 10 }],
-                    },
-                ];
+            expect(bundles.length > 0).to.equal(true);
 
-                const promise = filterInvalidPendingTransactions()(transactions, addressData);
-                return promise.then((txs) => {
-                    expect(txs).to.eql([]);
-                    getBalances.restore();
-                });
-            });
-
-            it('should not filter transaction if input addresses still have enough balance', () => {
-                const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['10'] });
-                const addressData = {
-                    ['U'.repeat(81)]: { spent: true },
-                    ['V'.repeat(81)]: { spent: false },
-                };
-
-                const transactions = [
-                    {
-                        incoming: true,
-                        persistence: false,
-                        inputs: [{ address: 'A'.repeat(81), value: 10 }],
-                    },
-                ];
-
-                const promise = filterInvalidPendingTransactions()(transactions, addressData);
-                return promise.then((txs) => {
-                    expect(txs).to.eql(transactions);
-                    getBalances.restore();
-                });
-            });
-        });
-
-        describe('when there are outgoing pending transfers', () => {
-            it('should filter transaction if input addresses do not have enough balance', () => {
-                const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['0'] });
-                const addressData = {
-                    ['U'.repeat(81)]: { spent: true },
-                    ['V'.repeat(81)]: { spent: false },
-                };
-
-                const transactions = [
-                    {
-                        incoming: true,
-                        persistence: false,
-                        inputs: [{ address: 'U'.repeat(81), value: -10 }],
-                    },
-                ];
-
-                const promise = filterInvalidPendingTransactions()(transactions, addressData);
-                return promise.then((txs) => {
-                    expect(txs).to.eql([]);
-                    getBalances.restore();
-                });
-            });
-
-            it('should not filter transaction if input addresses still have enough balance', () => {
-                const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['10'] });
-                const addressData = {
-                    ['U'.repeat(81)]: { spent: true },
-                    ['V'.repeat(81)]: { spent: false },
-                };
-
-                const transactions = [
-                    {
-                        incoming: true,
-                        persistence: false,
-                        inputs: [{ address: 'U'.repeat(81), value: -10 }],
-                    },
-                ];
-
-                const promise = filterInvalidPendingTransactions()(transactions, addressData);
-                return promise.then((txs) => {
-                    expect(txs).to.eql(transactions);
-                    getBalances.restore();
-                });
-            });
-        });
-    });
-
-    describe('#getBundleHashesForNewlyConfirmedTransactions', () => {
-        it('should always return an array', () => {
-            const args = [[undefined, undefined], [null, undefined], [], [{}, {}], ['', ''], [0, 0]];
-
-            args.forEach((arg) => {
-                expect(isArray(getBundleHashesForNewlyConfirmedTransactions(...arg))).to.equal(true);
-            });
-        });
-
-        it('should return bundle hashes with any tail transaction existing in confirmed transaction hashes', () => {
-            const unconfirmedBundleTails = {
-                firstBundleHash: [{ hash: 'foo' }, { hash: 'baz' }],
-                secondBundleHash: [{ hash: 'bar' }],
-            };
-
-            const confirmedTransactionsHashes = ['baz'];
-
-            expect(
-                getBundleHashesForNewlyConfirmedTransactions(unconfirmedBundleTails, confirmedTransactionsHashes),
-            ).to.eql(['firstBundleHash']);
-        });
-    });
-
-    describe('#constructNormalisedBundles', () => {
-        it('should always return an object', () => {
-            const args = [[undefined, undefined, undefined, undefined], [null, undefined, null, null], [], [{}, {}]];
-
-            args.forEach((arg) => {
-                expect(isObject(constructNormalisedBundles(...arg))).to.equal(true);
-            });
-        });
-
-        it('should return normalized bundles', () => {
-            expect(
-                constructNormalisedBundles(
-                    mockTransactions.tailTransactions,
-                    mockTransactions.transactionObjects,
-                    [false, true, false],
-                    [
-                        'WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID',
-                        'ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX',
-                    ],
-                ),
-            ).to.eql(mockTransactions.normalizedBundles);
-        });
-
-        it('should not return invalid bundles', () => {
-            const invalidTransactionObjects = mockTransactions.transactionObjects.map((tx) =>
-                omit(tx, 'signatureMessageFragment'),
-            );
-            expect(
-                constructNormalisedBundles(
-                    mockTransactions.tailTransactions,
-                    invalidTransactionObjects,
-                    [false, true, false],
-                    [
-                        'WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID',
-                        'ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX',
-                    ],
-                ),
-            ).to.eql({});
-        });
-    });
-
-    describe('#prepareForAutoPromotion', () => {
-        let sandbox;
-
-        beforeEach(() => {
-            sandbox = sinon.sandbox.create();
-
-            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-        });
-
-        afterEach(() => {
-            sandbox.restore();
-        });
-
-        describe('when there are no pending transfers', () => {
-            it('should resolve an empty array', () => {
-                return prepareForAutoPromotion()([{ persistence: true }, { persistence: true }], {}, 'TEST').then(
-                    (result) => expect(result).to.eql({}),
-                );
-            });
-        });
-
-        describe('when there are valid pending transfers', () => {
-            it('should transform transfers by bundle', () => {
-                const transactions = map(mockTransactions.normalizedBundles, (tx) => tx);
-                const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['100'] });
-
-                return prepareForAutoPromotion()(
-                    transactions,
-                    {
-                        WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID: {},
-                        ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX: {},
-                    },
-                    'TEST',
-                ).then((result) => {
-                    expect(result).to.eql({
-                        BHA9U99WJWBADGCDLLZSNRXNS9C9HCEDODDVACLZIGGTUDODOJQGJRGXNRBJCWKTLRXSAJLAGLYZQZXIA: [
-                            {
-                                hash:
-                                    'KIYCLXKBYIIBRSZDZZTZZZ9WMSINGIWWOZBEYDCYTSREFRCMYJBJZ9NOXCJ9ORDXKVHJKCUBDLIDZ9999',
-                                attachmentTimestamp: 1524573605144,
-                                account: 'TEST',
-                            },
-                        ],
-                    });
-
-                    getBalances.restore();
-                });
-            });
-        });
-
-        describe('when there are invalid pending transfers', () => {
-            it('should not include them in transformed bundles', () => {
-                const transactions = map(mockTransactions.normalizedBundles, (tx) => tx);
-                const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['0'] });
-
-                return prepareForAutoPromotion()(
-                    transactions,
-                    {
-                        WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID: {},
-                        ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX: {},
-                    },
-                    'TEST',
-                ).then((result) => {
-                    expect(result).to.eql({});
-
-                    getBalances.restore();
-                });
-            });
-        });
-    });
-
-    describe('#getOwnTransactionHashes', () => {
-        it('should return transaction hashes for own addresses', () => {
-            const bundles = keys(mockTransactions.normalizedBundles);
-
-            const addressData = {
-                SRWJECVJMNGLRTRNUBRBWOFWKXHWFOWXSZIARUSCAGQRMQNDOFJKJYRUIBCMQWIUTHSMQEYW9ZK9QBXAC: {},
-                ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX: {},
-            };
-
-            const results = [
-                [
-                    'HGT9QOBW9KKRQY9G9AWXAKDUIICKRUWVQ9MOWLX9YLXJMTNWX9L9RUMDHIHNJD9MYXIECZTFATOEA9999',
-                    'RXPWGHVYSRKQWRONOWMPAQJUMBZCUTXGAPAOKAFCTDUNNBN9VKUUJQOGZGNUYBFCJABFZWFCHBMKA9999',
-                    'HW9YVRZRJAUMWI9BMIYCRFPXMNBG9ACAKZFWCTRNTJHKZHPXK9RDGKQGJHMNMUYWSIQBIEWKLOOEA9999',
-                ],
-                [],
-            ];
-
-            bundles.forEach((bundle, idx) => {
-                const result = getOwnTransactionHashes(mockTransactions.normalizedBundles[bundle], addressData);
-
-                expect(result).to.eql(results[idx]);
-            });
-        });
-    });
-
-    describe('#pickNewTailTransactions', () => {
-        let tailTransactionFromUnseenBundle;
-        let transactionObjects;
-
-        before(() => {
-            tailTransactionFromUnseenBundle = {
-                currentIndex: 0,
-                bundle: 'U'.repeat(81),
-                hash: '9'.repeat(81),
-            };
-
-            transactionObjects = [
-                tailTransactionFromUnseenBundle,
-                {
-                    currentIndex: 1,
-                    bundle: 'U'.repeat(81),
-                    hash: 'A'.repeat(81),
-                },
-                {
-                    currentIndex: 2,
-                    bundle: 'U'.repeat(81),
-                    hash: 'B'.repeat(81),
-                },
-            ];
-        });
-
-        describe('when tail transaction object is from an unseen bundle', () => {
-            it('should return tail transaction', () => {
-                expect(pickNewTailTransactions(transactionObjects, mockTransactions.normalizedBundles)).to.eql([
-                    tailTransactionFromUnseenBundle,
-                ]);
-            });
-        });
-
-        describe('when tail transaction object is from a seen bundle', () => {
-            it('should only return new (unseen) tail transaction', () => {
-                const newTailTransactionForSeenBundle = {
-                    currentIndex: 0,
-                    bundle: 'HAXVESTQCJHLGZYTEG9DGBXHWNURRIAUXJEW9LGDQKJEFEXAWLSEOOMNATDGXGVDAIAAKLOPZHLLXPNTZ',
-                    hash: 'R'.repeat(81),
-                };
-
-                const oldTailTransactionForSeenBundle = {
-                    currentIndex: 0,
-                    bundle: 'HAXVESTQCJHLGZYTEG9DGBXHWNURRIAUXJEW9LGDQKJEFEXAWLSEOOMNATDGXGVDAIAAKLOPZHLLXPNTZ',
-                    hash: 'RXPWGHVYSRKQWRONOWMPAQJUMBZCUTXGAPAOKAFCTDUNNBN9VKUUJQOGZGNUYBFCJABFZWFCHBMKA9999',
-                };
-
-                expect(
-                    pickNewTailTransactions(
-                        [newTailTransactionForSeenBundle, oldTailTransactionForSeenBundle],
-                        mockTransactions.normalizedBundles,
-                    ),
-                ).to.eql([newTailTransactionForSeenBundle]);
-            });
+            bundles.forEach((bundle) => expect(iota.utils.isBundle(bundle)).to.equal(true));
         });
     });
 
     describe('#retryFailedTransaction', () => {
-        let transactionObjects;
         let seedStore;
 
         before(() => {
-            transactionObjects = map(trytes.value, iota.utils.transactionObject);
             seedStore = {
                 performPow: (trytes) =>
                     Promise.resolve({
@@ -1477,11 +864,14 @@ describe('libs: iota/transfers', () => {
 
         describe('when all transaction objects have valid hash', () => {
             it('should not perform proof of work', () => {
-                sinon.stub(seedStore, 'performPow');
+                sinon.stub(seedStore, 'performPow').resolves({
+                    trytes: failedTrytesWithCorrectTransactionHashes,
+                    transactionObjects: failedTransactionsWithCorrectTransactionHashes,
+                });
+
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
 
-                // Mock value trytes have a valid transaction hash
-                return retryFailedTransaction()(transactionObjects, seedStore).then(() => {
+                return retryFailedTransaction()(failedTransactionsWithCorrectTransactionHashes, seedStore).then(() => {
                     expect(seedStore.performPow.callCount).to.equal(0);
 
                     seedStore.performPow.restore();
@@ -1493,48 +883,44 @@ describe('libs: iota/transfers', () => {
         describe('when any transaction object has an invalid hash', () => {
             it('should perform proof of work', () => {
                 sinon.stub(seedStore, 'performPow').resolves({
-                    trytes: trytes.value,
-                    transactionObjects: transactionObjects.slice().reverse(),
+                    trytes: newValueAttachedTransactionTrytes,
+                    transactionObjects: newValueAttachedTransaction,
                 });
 
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
                 const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
-                    trunkTransaction: 'R'.repeat(81),
-                    branchTransaction: 'A'.repeat(81),
+                    trunkTransaction: newValueAttachedTransactionBaseTrunk,
+                    branchTransaction: newValueAttachedTransactionBaseBranch,
                 });
 
-                return retryFailedTransaction()(
-                    map(
-                        transactionObjects,
-                        (tx, idx) => (idx % 2 === 0 ? tx : Object.assign({}, tx, { hash: 'U'.repeat(81) })),
-                    ),
-                    seedStore,
-                ).then(() => {
-                    expect(seedStore.performPow.callCount).to.equal(1);
+                return retryFailedTransaction()(failedTransactionsWithIncorrectTransactionHashes, seedStore).then(
+                    () => {
+                        expect(seedStore.performPow.callCount).to.equal(1);
 
-                    seedStore.performPow.restore();
-                    storeAndBroadcast.restore();
-                    getTransactionToApprove.restore();
-                });
+                        seedStore.performPow.restore();
+                        storeAndBroadcast.restore();
+                        getTransactionToApprove.restore();
+                    },
+                );
             });
         });
 
         describe('when any transaction object has an empty hash', () => {
             it('should perform proof of work', () => {
                 sinon.stub(seedStore, 'performPow').resolves({
-                    trytes: trytes.value,
-                    transactionObjects: transactionObjects.slice().reverse(),
+                    trytes: newValueAttachedTransactionTrytes,
+                    transactionObjects: newValueAttachedTransaction,
                 });
 
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
                 const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
-                    trunkTransaction: 'R'.repeat(81),
-                    branchTransaction: 'A'.repeat(81),
+                    trunkTransaction: newValueAttachedTransactionBaseTrunk,
+                    branchTransaction: newValueAttachedTransactionBaseBranch,
                 });
 
                 return retryFailedTransaction()(
                     map(
-                        transactionObjects,
+                        failedTransactionsWithCorrectTransactionHashes,
                         (tx, idx) => (idx % 2 === 0 ? tx : Object.assign({}, tx, { hash: EMPTY_HASH_TRYTES })),
                     ),
                     seedStore,
@@ -1551,19 +937,21 @@ describe('libs: iota/transfers', () => {
 
     describe('#sortTransactionTrytesArray', () => {
         it('should sort transaction trytes in ascending order', () => {
-            // trytes.value is is ordered as descending by default
-            const result = sortTransactionTrytesArray(trytes.value, 'currentIndex', 'asc');
+            // failedTrytesWithCorrectTransactionHashes is in ascending order by default
+            const trytes = failedTrytesWithCorrectTransactionHashes.slice().reverse();
+            const result = sortTransactionTrytesArray(trytes, 'currentIndex', 'asc');
 
-            expect(result).to.not.eql(trytes.value);
-            expect(result).to.eql(trytes.value.slice().reverse());
+            expect(result).to.eql(failedTrytesWithCorrectTransactionHashes);
             expect(iota.utils.transactionObject(result[0], EMPTY_TRANSACTION_TRYTES).currentIndex).to.equal(0);
         });
 
         it('should sort transaction trytes in descending order', () => {
-            const result = sortTransactionTrytesArray(trytes.value.slice().reverse());
+            const trytes = failedTrytesWithCorrectTransactionHashes.slice().reverse();
+            const result = sortTransactionTrytesArray(trytes);
 
-            expect(result).to.eql(trytes.value);
-            expect(iota.utils.transactionObject(result[0], EMPTY_TRANSACTION_TRYTES).currentIndex).to.equal(3);
+            // failedTrytesWithCorrectTransactionHashes is in ascending order by default to assert with a reversed list
+            expect(result).to.eql(failedTrytesWithCorrectTransactionHashes.slice().reverse());
+            expect(iota.utils.transactionObject(result[0], EMPTY_TRANSACTION_TRYTES).currentIndex).to.equal(2);
         });
     });
 
@@ -1630,13 +1018,6 @@ describe('libs: iota/transfers', () => {
 
             describe('when total balance of bundle inputs is greater than latest balance on input addresses', () => {
                 beforeEach(() => {
-                    const {
-                        LATEST_MILESTONE,
-                        LATEST_SOLID_SUBTANGLE_MILESTONE,
-                        LATEST_MILESTONE_INDEX,
-                        LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
-                    } = mockTransactions;
-
                     nock('http://localhost:14265', {
                         reqheaders: {
                             'Content-Type': 'application/json',
@@ -1659,7 +1040,7 @@ describe('libs: iota/transfers', () => {
                                 },
                                 getTrytes: {
                                     trytes: includes(body.hashes, LATEST_MILESTONE)
-                                        ? [trytes.milestone]
+                                        ? milestoneTrytes
                                         : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
                                 },
                             };
@@ -1681,13 +1062,6 @@ describe('libs: iota/transfers', () => {
 
             describe('when total balance of bundle inputs is equal to latest balance on input addresses', () => {
                 beforeEach(() => {
-                    const {
-                        LATEST_MILESTONE,
-                        LATEST_SOLID_SUBTANGLE_MILESTONE,
-                        LATEST_MILESTONE_INDEX,
-                        LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
-                    } = mockTransactions;
-
                     nock('http://localhost:14265', {
                         reqheaders: {
                             'Content-Type': 'application/json',
@@ -1710,7 +1084,7 @@ describe('libs: iota/transfers', () => {
                                 },
                                 getTrytes: {
                                     trytes: includes(body.hashes, LATEST_MILESTONE)
-                                        ? [trytes.milestone]
+                                        ? milestoneTrytes
                                         : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
                                 },
                             };
@@ -1732,13 +1106,6 @@ describe('libs: iota/transfers', () => {
 
             describe('when total balance of bundle inputs is less than latest balance on input addresses', () => {
                 beforeEach(() => {
-                    const {
-                        LATEST_MILESTONE,
-                        LATEST_SOLID_SUBTANGLE_MILESTONE,
-                        LATEST_MILESTONE_INDEX,
-                        LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
-                    } = mockTransactions;
-
                     nock('http://localhost:14265', {
                         reqheaders: {
                             'Content-Type': 'application/json',
@@ -1761,7 +1128,7 @@ describe('libs: iota/transfers', () => {
                                 },
                                 getTrytes: {
                                     trytes: includes(body.hashes, LATEST_MILESTONE)
-                                        ? [trytes.milestone]
+                                        ? milestoneTrytes
                                         : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
                                 },
                             };
@@ -1784,14 +1151,17 @@ describe('libs: iota/transfers', () => {
     });
 
     describe('#categoriseInclusionStatesByBundleHash', () => {
-        describe('when transactions provided (passed as first param) is empty', () => {
-            it('should return an empty object', () => {
-                const result = categoriseInclusionStatesByBundleHash([], [false, false]);
-                expect(result).to.eql({});
+        describe('when size of first param does not equal size of second param', () => {
+            it('should throw an error with message "Inclusion states size mismatch."', () => {
+                try {
+                    categoriseInclusionStatesByBundleHash([], [false, false]);
+                } catch (error) {
+                    expect(error.message).to.eql('Inclusion states size mismatch.');
+                }
             });
         });
 
-        describe('when transactions provided (passed as first param) is not empty', () => {
+        describe('when size of first param equals size of second param', () => {
             it('should categorise inclusion states (passed as second param) by bundle hashes', () => {
                 const tailTransactions = [
                     { bundle: 'A'.repeat(81) },
@@ -1818,6 +1188,141 @@ describe('libs: iota/transfers', () => {
                     ['C'.repeat(81)]: false,
                 });
             });
+        });
+    });
+
+    describe('#assignInclusionStatesToBundles', () => {
+        describe('when provided bundles is not an array', () => {
+            it('should throw with an error "Invalid bundles provided."', () => {
+                return assignInclusionStatesToBundles()(0)
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((error) => expect(error.message).to.equal('Invalid bundles provided.'));
+            });
+        });
+
+        describe('when provided bundles is an empty array', () => {
+            it('should return an empty array', () => {
+                return assignInclusionStatesToBundles()([]).then((result) => expect(result).to.eql([]));
+            });
+        });
+
+        describe('when provided bundles is not an empty array', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const resultMap = {
+                            getNodeInfo: { latestSolidSubtangleMilestone: 'A'.repeat(81) },
+                            // Return inclusion states as false for all tail transactions
+                            getInclusionStates: { states: map(body.transactions, () => false) },
+                        };
+
+                        return resultMap[body.command] || {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should assign correct inclusion state to each transaction in bundle', () => {
+                return assignInclusionStatesToBundles()(confirmedValueBundles).then((updatedBundles) => {
+                    each(updatedBundles, (bundle) =>
+                        each(bundle, (transaction) => expect(transaction.persistence).to.equal(false)),
+                    );
+                });
+            });
+        });
+    });
+
+    describe('#filterZeroValueBundles', () => {
+        it('should filter zero value bundles', () => {
+            const result = filterZeroValueBundles([
+                ...confirmedValueBundles,
+                ...unconfirmedValueBundles,
+                ...confirmedZeroValueBundles,
+            ]);
+
+            const expectedResult = [...confirmedValueBundles, ...unconfirmedValueBundles];
+
+            expect(result).to.eql(expectedResult);
+        });
+    });
+
+    describe('#isBundleTraversable', () => {
+        let trunkTransaction;
+        let branchTransaction;
+
+        before(() => {
+            // See trunk/branch transactions of newValueAttachedTransaction transaction object with currentIndex 2
+            trunkTransaction = 'LHPBIUXOUJFVXDXOH9RAFDHPZHKKQXOBWWWRAYBKSYFZGEFRYWJBTCETHFUMJUTWGTNXTIPVJTOM99999';
+            branchTransaction = 'VEZTEROA9IUNBSIKJMZRDFYAVNCZAGQJEERLZIFCSHISPKATHRPLOQGECZWLWFAMBX9DRLUUPNI999999';
+        });
+
+        it('should return true for bundle with correct trunk/branch assignment', () => {
+            expect(isBundleTraversable(newValueAttachedTransaction, trunkTransaction, branchTransaction)).to.equal(
+                true,
+            );
+        });
+
+        it('should return false for bundle with incorrect trunk/branch assignment', () => {
+            expect(
+                isBundleTraversable(
+                    map(
+                        newValueAttachedTransaction,
+                        (transaction, index) =>
+                            index % 2 === 0
+                                ? {
+                                      ...transaction,
+                                      trunkTransaction: '9'.repeat(81),
+                                  }
+                                : transaction,
+                    ),
+                ),
+            ).to.equal(false);
+        });
+    });
+
+    describe('#isBundle', () => {
+        it('should return true for valid bundle with incorrect (descending) transactions order', () => {
+            expect(
+                isBundle(
+                    // Transactions are in ascending order by default so reverse them.
+                    newValueAttachedTransaction.slice().reverse(),
+                ),
+            ).to.equal(true);
+        });
+
+        it('should return true for valid bundle with correct (ascending) transactions order', () => {
+            expect(isBundle(newValueAttachedTransaction)).to.equal(true);
+        });
+
+        it('should return false for invalid bundle with incorrect (descending) transactions order', () => {
+            expect(
+                isBundle(
+                    // Transactions are in ascending order by default so reverse them.
+                    map(newValueAttachedTransaction, (transaction) => ({ ...transaction, bundle: '9'.repeat(81) }))
+                        .slice()
+                        .reverse(),
+                ),
+            ).to.equal(false);
+        });
+
+        it('should return false for invalid bundle with correct (ascending) transactions order', () => {
+            expect(
+                isBundle(
+                    map(newValueAttachedTransaction, (transaction) => ({ ...transaction, bundle: '9'.repeat(81) })),
+                ),
+            ).to.equal(false);
         });
     });
 });

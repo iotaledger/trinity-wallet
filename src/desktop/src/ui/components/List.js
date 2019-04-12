@@ -38,9 +38,7 @@ export class ListComponent extends React.PureComponent {
         /** Toggle hide empty transactions */
         toggleEmptyTransactions: PropTypes.func.isRequired,
         /** Transaction history */
-        transfers: PropTypes.array.isRequired,
-        /** @ignore */
-        failedHashes: PropTypes.object.isRequired,
+        transactions: PropTypes.array.isRequired,
         /** Promotes bundle
          * @param {string} bundle - bundle hash
          * @param {object} seedStore
@@ -148,8 +146,7 @@ export class ListComponent extends React.PureComponent {
             hideEmptyTransactions,
             toggleEmptyTransactions,
             updateAccount,
-            transfers,
-            failedHashes,
+            transactions,
             setItem,
             currentItem,
             t,
@@ -165,19 +162,19 @@ export class ListComponent extends React.PureComponent {
             Pending: 0,
         };
 
-        const historyTx = orderBy(transfers, 'timestamp', ['desc']).filter((transfer) => {
-            const isReceived = transfer.incoming;
-            const isConfirmed = transfer.persistence;
+        const filteredTransactions = orderBy(transactions, 'timestamp', ['desc']).filter((transaction) => {
+            const isReceived = transaction.incoming;
+            const isConfirmed = transaction.persistence;
 
-            if (hideEmptyTransactions && transfer.transferValue === 0) {
+            if (hideEmptyTransactions && transaction.transferValue === 0) {
                 return false;
             }
 
             if (
                 search.length &&
-                transfer.message.toLowerCase().indexOf(search.toLowerCase()) < 0 &&
-                transfer.bundle.toLowerCase().indexOf(search.toLowerCase()) !== 0 &&
-                (!/^\+?\d+$/.test(search) || transfer.transferValue < parseInt(search))
+                transaction.message.toLowerCase().indexOf(search.toLowerCase()) < 0 &&
+                transaction.bundle.toLowerCase().indexOf(search.toLowerCase()) !== 0 &&
+                (!/^\+?\d+$/.test(search) || transaction.transferValue < parseInt(search))
             ) {
                 return false;
             }
@@ -204,17 +201,15 @@ export class ListComponent extends React.PureComponent {
             return filter === 'All';
         });
 
-        const failedBundles = Object.keys(failedHashes);
-
-        const activeTransfer = currentItem ? historyTx.filter((tx) => tx.bundle === currentItem)[0] : null;
-        const isActiveFailed = activeTransfer && failedBundles.indexOf(activeTransfer.bundle) > -1;
+        const activeTx = currentItem ? filteredTransactions.filter((tx) => tx.bundle === currentItem)[0] : null;
+        const isActiveFailed = activeTx && activeTx.broadcasted === false;
 
         return (
             <React.Fragment>
                 <nav className={css.nav}>
                     <ul>
                         <a key="active" onClick={() => this.switchFilter(filter)}>
-                            {t(filter.toLowerCase())} <small>({historyTx.length})</small>
+                            {t(filter.toLowerCase())} <small>({filteredTransactions.length})</small>
                             <Icon icon="chevronDown" size={8} />
                         </a>
                         {loaded ? (
@@ -262,15 +257,15 @@ export class ListComponent extends React.PureComponent {
                 <hr />
                 <div className={css.list}>
                     <Scrollbar>
-                        {historyTx.length ? (
-                            historyTx.map((transfer, key) => {
-                                const isReceived = transfer.incoming;
-                                const isConfirmed = transfer.persistence;
+                        {filteredTransactions.length ? (
+                            filteredTransactions.map((transaction, key) => {
+                                const isReceived = transaction.incoming;
+                                const isConfirmed = transaction.persistence;
 
                                 return (
                                     <a
                                         key={key}
-                                        onClick={() => setItem(transfer.bundle)}
+                                        onClick={() => setItem(transaction.bundle)}
                                         className={classNames(
                                             isConfirmed ? css.confirmed : css.pending,
                                             isReceived ? css.received : css.sent,
@@ -286,7 +281,7 @@ export class ListComponent extends React.PureComponent {
                                                 {formatTime(
                                                     navigator.language,
                                                     detectedTimezone,
-                                                    convertUnixTimeToJSDate(transfer.timestamp),
+                                                    convertUnixTimeToJSDate(transaction.timestamp),
                                                 )}
                                             </span>
                                             <span>
@@ -299,8 +294,8 @@ export class ListComponent extends React.PureComponent {
                                                         : t('sent')}
                                             </span>
                                             <span>
-                                                {transfer.transferValue === 0 ? '' : isReceived ? '+' : '-'}
-                                                {formatIotas(transfer.transferValue, true, true)}
+                                                {transaction.transferValue === 0 ? '' : isReceived ? '+' : '-'}
+                                                {formatIotas(transaction.transferValue, true, true)}
                                             </span>
                                         </div>
                                     </a>
@@ -308,38 +303,36 @@ export class ListComponent extends React.PureComponent {
                             })
                         ) : (
                             <p className={css.empty}>
-                                {!transfers.length ? t('noTransactions') : t('history:noTransactionsFound')}
+                                {!transactions.length ? t('noTransactions') : t('history:noTransactionsFound')}
                             </p>
                         )}
                     </Scrollbar>
                 </div>
-                <div className={classNames(css.popup, activeTransfer ? css.on : null)} onClick={() => setItem(null)}>
+                <div className={classNames(css.popup, activeTx ? css.on : null)} onClick={() => setItem(null)}>
                     <div>
-                        {activeTransfer ? (
+                        {activeTx ? (
                             <div
                                 className={classNames(
-                                    activeTransfer.incoming ? css.received : css.sent,
-                                    activeTransfer.persistence ? css.confirmed : css.pending,
+                                    activeTx.incoming ? css.received : css.sent,
+                                    activeTx.persistence ? css.confirmed : css.pending,
                                 )}
                             >
                                 <p>
                                     <strong>
-                                        {activeTransfer.incoming ? t('history:receive') : t('history:send')}{' '}
+                                        {activeTx.incoming ? t('history:receive') : t('history:send')}{' '}
                                         <span>
-                                            {formatIotas(activeTransfer.transferValue, false, true)}
+                                            {formatIotas(activeTx.transferValue, false, true)}
                                         </span>
                                     </strong>
                                     <small>
-                                        {!activeTransfer.persistence
+                                        {!activeTx.persistence
                                             ? t('pending')
-                                            : activeTransfer.incoming
-                                                ? t('received')
-                                                : t('sent')}
+                                            : activeTx.incoming ? t('received') : t('sent')}
                                         <em>
                                             {formatModalTime(
                                                 navigator.language,
                                                 detectedTimezone,
-                                                convertUnixTimeToJSDate(activeTransfer.timestamp),
+                                                convertUnixTimeToJSDate(activeTx.timestamp),
                                             )}
                                         </em>
                                     </small>
@@ -347,29 +340,29 @@ export class ListComponent extends React.PureComponent {
                                 <h6>{t('bundleHash')}:</h6>
                                 <p className={css.hash}>
                                     <Clipboard
-                                        text={activeTransfer.bundle}
+                                        text={activeTx.bundle}
                                         title={t('history:bundleHashCopied')}
                                         success={t('history:bundleHashCopiedExplanation')}
                                     />
                                 </p>
-                                {mode === 'Advanced' && this.listAddresses(activeTransfer)}
+                                {mode === 'Advanced' && this.listAddresses(activeTx)}
                                 <div className={css.message}>
                                     <strong>{t('send:message')}:</strong>
                                     <Scrollbar>
                                         <Clipboard
-                                            text={activeTransfer.message}
+                                            text={activeTx.message}
                                             title={t('history:messageCopied')}
                                             success={t('history:messageCopiedExplanation')}
                                         />
                                     </Scrollbar>
                                 </div>
-                                {!activeTransfer.persistence && (
+                                {!activeTx.persistence && (
                                     <nav>
                                         {isActiveFailed && (
                                             <Button
                                                 className="small"
                                                 loading={isRetryingFailedTransaction}
-                                                onClick={(e) => this.retryFailedTransaction(e, activeTransfer.bundle)}
+                                                onClick={(e) => this.retryFailedTransaction(e, activeTx.bundle)}
                                             >
                                                 {t('retry')}
                                             </Button>
@@ -377,8 +370,8 @@ export class ListComponent extends React.PureComponent {
                                         {!isActiveFailed && (
                                             <Button
                                                 className="small"
-                                                loading={currentlyPromotingBundleHash === activeTransfer.bundle}
-                                                onClick={(e) => this.promoteTransaction(e, activeTransfer.bundle)}
+                                                loading={currentlyPromotingBundleHash === activeTx.bundle}
+                                                onClick={(e) => this.promoteTransaction(e, activeTx.bundle)}
                                             >
                                                 {t('retry')}
                                             </Button>

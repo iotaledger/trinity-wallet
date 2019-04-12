@@ -18,7 +18,7 @@
         "keyReuseError": "No puede enviar a una dirección que ya se ha usado.",
         "invalidResponse": "Error de nodo",
         "invalidResponseExplanation": "El nodo devolvió un error. Pruebe cambiando de nodo.",
-        "invalidResponseFetchingAccount": "El servidor devolvió un error mientras obtenía la información de su cuenta. Intenta cambiar el nodo.",
+        "invalidResponseFetchingAccount": "El servidor devolvió un error mientras obtenía la información de su cuenta. Intente cambiar el nodo.",
         "invalidResponseFetchingAccountDesktop": "Error al intentar obtener información del nodo. Si el problema persiste intente cambiar el nodo o deshabilite el proxy en la configuración.",
         "nodeOutOfSync": "Nodo desincronizado",
         "nodeOutOfSyncExplanation": "Su nodo seleccionado esta desincronizado. Por favor cámbielo y pruebe devuelta.",
@@ -55,6 +55,7 @@
         "yes": "Sí",
         "no": "No",
         "okay": "De acuerdo",
+        "skip": "Skip",
         "password": "Contraseña",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
@@ -254,7 +255,7 @@
     },
     "loading": {
         "loadingFirstTime": "Cargando la semilla por primera vez.",
-        "thisMayTake": "Esto puede tardar un rato.",
+        "thisMayTake": "Esto puede tomar unos segundos.",
         "doNotMinimise": "No minimizar ni cerrar la aplicación.",
         "takingAWhile": "Esto tomará un rato"
     },
@@ -285,6 +286,12 @@
         "pleaseCheck": "Por favor revisa y confirma antes de imprimir",
         "wifiConfirmation": "No estoy usando wifi público",
         "printerConfirmation": "No estoy imprimiendo en una impresora publica"
+    },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
     },
     "receive": {
         "yourAddress": "Su dirección",
@@ -318,7 +325,7 @@
         "everySeedHasAChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres.",
         "iHavesavedMySeed": "He guardado mi semilla",
         "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
-        "mustSaveYourSeed": "<0><0>Debe guardar su semilla con </0><1>al menos una</1><2> de las opciones a continuación.</2></0>"
+        "mustSaveYourSeed": "<0><0>Debe guardar su semilla con</0><1>al menos una</1><2>de las opciones a continuación.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Por favor confirme su semilla",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
-        "noTransactionsFound": "No sé encontraron transacciones",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Esconder balance nulo",
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
@@ -494,7 +501,8 @@
         "pow": "Prueba de trabajo",
         "autoPromotion": "Auto-promoción",
         "autoPromotionExplanation": "La auto-promoción ayuda a confirmar sus transacciones en el Tangle. Habilite esta opción si está experimentando dificultades para conseguir que se confirmen sus transacciones.",
-        "autoPromotionPoW": "La auto-promoción solo es posible en los nodos que soportan PoW remota."
+        "autoPromotionPoW": "La auto-promoción solo es posible en los nodos que soportan PoW remota.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Fondo",
@@ -592,17 +600,17 @@
         "fingerprintUnavailable": "Autenticación biométrica no disponible",
         "deviceLocked": "Autentificación desactivada por 30 segundos",
         "fingerprintUnavailableExplanation": "Su dispositivo no soporta autenticación biométrica o no está correctamente configurada.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "notSupported": "El dispositivo no soporta autenticación biométrica",
+        "notConfigured": "La autenticación biométrica no fue configurada en la configuración del dispositivo",
+        "buttonInstructionsDisable": "Presione el botón debajo para desactivar la autentificación por huella dactilar.",
         "buttonInstructionsEnable": "Pulsa el botón que hay a continuación para habilitar la autenticación de huellas dactilares.",
         "buttonInstructionsDisableIPhoneX": "Presione el botón debajo para desactivar Face ID",
         "buttonInstructionsEnableIPhoneX": "Presione el botón debajo para activar Face ID",
         "instructionsLogin": "Toque el lector de huellas para loguearse",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "La autentificación fue cancelada por su dispositivo",
+        "userCancelledAuth": "Solicitud de autentificación cancelada",
+        "passwordFallback": "Retroceda para la autentificación de la contraseña",
+        "noPassword": "El dispositivo no tiene contraseña"
     },
     "transferConfirmation": {
         "youAreAbout": "Estás a punto de enviar {{contents}} a la dirección",
@@ -689,6 +697,11 @@
         "gettingTransactionsToApprove": "Obteniendo transacciones para aprobar",
         "proofOfWork": "Completando PoW",
         "broadcasting": "Transmitiendo",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete",
         "transferComplete": "Transferencia completa"
     },
     "snapshotTransition": {
@@ -708,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Autocompletado exitoso",
-        "autofillExplanation": "Información de la transacción completada por el link."
+        "autofillExplanation": "Información de la transacción completada por el link.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Error al recuperar los datos de actualización",
@@ -767,6 +785,12 @@
         "sweepConfirmation": "Estás a punto de barrer {{amount}} para la dirección {{address}}. Cuenta: {{accountName}}, dirección índice: {{index}}",
         "sweepConfirmationTitle": "Confirmación de barrido"
     },
+    "migration": {
+        "dataMigration": "Data migration",
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+    },
     "ledger": {
         "ready": "Dispositivo de ledger conectado y listo",
         "notReady": "Si desea usar un dispositivo de ledger, conecte y desbloquelo ahora",
@@ -775,6 +799,8 @@
         "proceedWithLedger": "Proceder con la configuración del ledger",
         "accountIndex": "Índice de cuenta",
         "accountPage": "Perfil de cuenta",
+        "actionCancelled": "Ledger device access cancelled",
+        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Elija el índice de cuenta del ledger",
         "accountIndexExplanation": "Su ledger puede almacenar múltiples semillas. Cada semilla es identificada por un número de índice único. Se ha preseleccionado uno, pero no dude en elegir uno propio. Asegúrese de anotar el número de índice elegido.",
         "accountPageExplanation": "Algunas billeteras de terceros requieren páginas.",

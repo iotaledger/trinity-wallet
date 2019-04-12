@@ -21,7 +21,6 @@ const mapStateToProps = (state) => ({
     isSyncing: state.ui.isSyncing,
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),
-    password: state.wallet.password,
     seedIndex: state.wallet.seedIndex,
 });
 
@@ -71,11 +70,16 @@ export default () => (C) => {
         /**
          *  Updates account with latest data
          */
-        updateAccountData() {
-            const { selectedAccountName, selectedAccountMeta, password } = this.props;
+        async updateAccountData() {
+            const { selectedAccountName, selectedAccountMeta } = this.props;
 
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
-            this.props.getAccountInfo(seedStore, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+            this.props.getAccountInfo(
+                seedStore,
+                selectedAccountName,
+                undefined,
+                true, // Sync account with quorum enabled
+            );
         }
 
         /**
@@ -111,8 +115,6 @@ export default () => (C) => {
         selectedAccountName: PropTypes.string.isRequired,
         /** Account meta data for selected account */
         selectedAccountMeta: PropTypes.object.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
         /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
         /** @ignore */

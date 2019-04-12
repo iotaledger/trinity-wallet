@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, ListView, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
 import Triangle from 'react-native-triangle';
 import { connect } from 'react-redux';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { isIPhoneX, isAndroid } from 'libs/device';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -106,7 +107,7 @@ export class Dropdown extends Component {
         /** Determines whether to render a shadow */
         shadow: PropTypes.bool,
         /** Default selected option for dropdown */
-        defaultOption: PropTypes.string,
+        value: PropTypes.string,
         /** Saves dropdown selection
          * @param {string} option
          */
@@ -129,7 +130,7 @@ export class Dropdown extends Component {
         shadow: false,
         disableWhen: false,
         onRef: () => {},
-        defaultOption: '',
+        value: '',
         background: false,
         saveSelection: () => {},
         title: '',
@@ -142,7 +143,7 @@ export class Dropdown extends Component {
 
         this.state = {
             isDropdownOpen: false,
-            selectedOption: this.props.defaultOption,
+            selectedOption: this.props.value,
         };
     }
 
@@ -326,7 +327,7 @@ export class Dropdown extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default connect(mapStateToProps)(Dropdown);

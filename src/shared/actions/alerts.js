@@ -1,6 +1,7 @@
 import isString from 'lodash/isString';
 import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
+import { Wallet } from '../storage';
 
 export const ActionTypes = {
     SHOW: 'IOTA/ALERTS/SHOW',
@@ -275,6 +276,20 @@ export const generateTransactionSuccessAlert = (isZeroValue = false) => (dispatc
 };
 
 /**
+ * Generates an error for user cancelled Ledger request
+ *
+ * @method generateLedgerCancelledAlert
+ * @param {object} err
+ *
+ * @returns {function} dispatch
+ */
+export const generateLedgerCancelledAlert = () => (dispatch) => {
+    dispatch(
+        generateAlert('error', i18next.t('ledger:actionCancelled'), i18next.t('ledger:actionCancelledExplanation')),
+    );
+};
+
+/**
  * Hides an active alert
  *
  * @method dismissAlert
@@ -310,19 +325,27 @@ export const prepareLogUpdate = (err) => (dispatch) => {
  *
  * @returns {{type: {string}, logItem: {object} }}
  */
-export const updateLog = (logItem) => ({
-    type: ActionTypes.UPDATE_LOG,
-    logItem,
-});
+export const updateLog = (logItem) => {
+    Wallet.updateErrorLog(logItem);
+
+    return {
+        type: ActionTypes.UPDATE_LOG,
+        logItem,
+    };
+};
 
 /**
  * Dispatch to clear notification log in state
  *
  *
- * @method updateLog
+ * @method clearLog
  *
  * @returns {{type: {string} }}
  */
-export const clearLog = () => ({
-    type: ActionTypes.CLEAR_LOG,
-});
+export const clearLog = () => {
+    Wallet.clearErrorLog();
+
+    return {
+        type: ActionTypes.CLEAR_LOG,
+    };
+};

@@ -1,7 +1,6 @@
 package com.iota.trinity;
 
 import android.content.Context;
-import android.support.multidex.MultiDex;
 import com.bitgo.randombytes.RandomBytesPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
@@ -16,7 +15,6 @@ import com.christopherdro.RNPrint.RNPrintPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
 import net.rhogan.rnsecurerandom.RNSecureRandomPackage;
 import org.iota.mobile.IOTAMobilePackage;
-import co.airbitz.fastcrypto.RNFastCryptoPackage;
 import cl.json.ShareApplication;
 import module.share.ShareSecurePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -29,6 +27,7 @@ import cl.json.RNSharePackage;
 import fr.greweb.reactnativeviewshot.RNViewShotPackage;
 import com.kristiansorens.flagsecure.FlagSecurePackage;
 import com.mkuczera.RNReactNativeHapticFeedbackPackage;
+import io.realm.react.RealmReactPackage;
 import me.listenzz.modal.TranslucentModalReactPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.janeasystems.rn_nodejs_mobile.RNNodeJsMobilePackage;
@@ -39,11 +38,11 @@ import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
 import com.facebook.react.ReactNativeHost;
+import com.zapper.QRCodePackage;
 
 import java.util.Arrays;
 import java.util.List;
 
-import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 
 public class MainApplication extends NavigationApplication implements ShareApplication {
 
@@ -52,8 +51,6 @@ public class MainApplication extends NavigationApplication implements ShareAppli
         super.attachBaseContext(base);
 
         System.loadLibrary("dummy");
-
-        MultiDex.install(this);
     }
 
     @Override
@@ -67,14 +64,14 @@ public class MainApplication extends NavigationApplication implements ShareAppli
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(
                 // eg. new VectorIconsPackage()
+                new TranslucentModalReactPackage(),
                 new SvgPackage(),
                 new MainReactPackage(),
+                new QRCodePackage(),
                 new RNCameraPackage(),
                 new QRScanReaderPackage(),
                 new ReactNativeDocumentPicker(),
                 new RNNodeJsMobilePackage(),
-                new RNFastCryptoPackage(),
-                new TranslucentModalReactPackage(),
                 new FlagSecurePackage(),
                 new RNDetectNavbarAndroidPackage(),
                 new RNDeviceInfo(),
@@ -97,6 +94,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
                 new RNReactNativeHapticFeedbackPackage(),
                 new RNSharePackage(),
                 new RNViewShotPackage(),
+                new RealmReactPackage(),
                 new RNFetchBlobPackage()
         );
     }

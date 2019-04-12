@@ -5,6 +5,7 @@ import { withI18n, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
+import { getEncryptionKey, ALIAS_REALM } from 'libs/realm';
 
 import {
     changePowSettings,
@@ -16,6 +17,8 @@ import {
 } from 'actions/settings';
 
 import { generateAlert } from 'actions/alerts';
+
+import { reinitialise as reinitialiseStorage } from 'storage';
 
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
@@ -40,6 +43,10 @@ class Advanced extends PureComponent {
         setTray: PropTypes.func.isRequired,
         /** @ignore */
         setProxy: PropTypes.func.isRequired,
+        /** @ignore */
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
         /** @ignore */
         setNotifications: PropTypes.func.isRequired,
         /** @ignore */
@@ -68,18 +75,42 @@ class Advanced extends PureComponent {
     }
 
     /**
+     * Enable/disable global system proxy bypass
+     * @returns {undefined}
+     */
+    setProxy = () => {
+        const enabled = !this.props.settings.ignoreProxy;
+        Electron.setStorage('ignore-proxy', enabled);
+        this.props.setProxy(enabled);
+    };
+
+    /**
+     * Enable/disable Tray application
+     * @returns {undefined}
+     */
+    setTray = () => {
+        const enabled = !this.props.settings.isTrayEnabled;
+        Electron.setTray(enabled);
+        this.props.setTray(enabled);
+    };
+
+    /**
      * Hard reset wallet
      * @returns {undefined}
      */
-    resetWallet = () => {
-        const { t, generateAlert } = this.props;
+    resetWallet = async () => {
+        const { t, generateAlert, history } = this.props;
 
         try {
-            clearVault();
+            history.push('/');
+
+            await clearVault(ALIAS_REALM);
             localStorage.clear();
             Electron.clearStorage();
+
+            await reinitialiseStorage(getEncryptionKey);
             location.reload();
-        } catch (err) {
+        } catch (_err) {
             generateAlert(
                 'error',
                 t('changePassword:incorrectPassword'),
@@ -124,9 +155,7 @@ class Advanced extends PureComponent {
             changePowSettings,
             changeAutoPromotionSettings,
             lockScreenTimeout,
-            setTray,
             setNotifications,
-            setProxy,
             t,
         } = this.props;
 
@@ -165,7 +194,7 @@ class Advanced extends PureComponent {
                                         <h3>{t('tray:trayApplication')}</h3>
                                         <Toggle
                                             checked={settings.isTrayEnabled}
-                                            onChange={() => setTray(!settings.isTrayEnabled)}
+                                            onChange={this.setTray}
                                             on={t('enabled')}
                                             off={t('disabled')}
                                         />
@@ -213,7 +242,7 @@ class Advanced extends PureComponent {
                             <h3>{t('proxy:proxy')}</h3>
                             <Toggle
                                 checked={!settings.ignoreProxy}
-                                onChange={() => setProxy(!settings.ignoreProxy)}
+                                onChange={this.setProxy}
                                 on={t('enabled')}
                                 off={t('disabled')}
                             />

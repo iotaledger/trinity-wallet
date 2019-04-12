@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { getBackgroundColor } from 'ui/theme/general';
+import { getThemeFromState } from 'shared-modules/selectors/global';
+import { getBorderColor } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 
 export default function withSafeAreaView(WrappedComponent) {
@@ -39,7 +40,7 @@ export default function withSafeAreaView(WrappedComponent) {
                     style={{
                         height,
                         width,
-                        backgroundColor: inactive ? theme.body.bg : getBackgroundColor(currentScreen, theme, inactive),
+                        backgroundColor: getBorderColor(currentScreen, theme, inactive),
                     }}
                 >
                     <WrappedComponent {...this.props} />
@@ -49,7 +50,7 @@ export default function withSafeAreaView(WrappedComponent) {
     }
 
     const mapStateToProps = (state) => ({
-        theme: state.settings.theme,
+        theme: getThemeFromState(state),
         inactive: state.ui.inactive,
         isModalActive: state.ui.isModalActive,
     });
