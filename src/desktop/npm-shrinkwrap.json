@@ -4866,8 +4866,8 @@
       }
     },
     "entangled-node": {
-      "version": "github:rihardsgravis/entangled-node#87142d9ee5ed684d300f9ed5b49de680ab040ca5",
-      "from": "github:rihardsgravis/entangled-node#87142d9",
+      "version": "github:rihardsgravis/entangled-node#fa88d133897042fea3b34f2a4dbd27612636c814",
+      "from": "github:rihardsgravis/entangled-node#v0.2.2",
       "requires": {
         "nan": "^2.12.1",
         "prebuild-install": "^5.2.4"
