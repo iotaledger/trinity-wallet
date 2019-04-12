@@ -537,7 +537,6 @@ class CustomTextInput extends Component {
                         onChangeText={(text) => this.onChangeText(text)}
                         selectionColor={theme.input.alt}
                         underlineColorAndroid="transparent"
-                        autoCorrect={false}
                         value={this.getValue(value)}
                         {...restProps}
                     />
