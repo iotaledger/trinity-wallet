@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Animated, Easing } from 'react-native';
 import PropTypes from 'prop-types';
-import { width, height } from 'libs/dimensions';
+import { width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 
 const styles = StyleSheet.create({
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width,
-        height: height / 11,
+        height: Styling.footerButtonHeight,
     },
 });
 

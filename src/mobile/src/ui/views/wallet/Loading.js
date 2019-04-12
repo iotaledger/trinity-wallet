@@ -38,11 +38,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     infoText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
-        paddingBottom: height / 30,
+        lineHeight: Styling.fontSize4 * 1.5,
     },
     animationLoading: {
         justifyContent: 'center',
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     infoTextContainer: {
         flex: 1,
         justifyContent: 'flex-end',
-        paddingBottom: isIPhoneX ? height / 40 : height / 20,
+        paddingBottom: isIPhoneX ? height / 30 : height / 15,
     },
     bottomContainer: {
         position: 'absolute',
@@ -163,6 +163,7 @@ class Loading extends Component {
         } else {
             timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 15000);
         }
+
         this.props.setSetting('mainSettings');
         this.getWalletData();
         if (!deepLinkRequestActive) {
@@ -306,33 +307,35 @@ class Loading extends Component {
                     style={styles.bottomContainer}
                 >
                     <View>
-                        {(this.state.addingAdditionalAccount && (
-                            <View style={styles.infoTextContainer}>
-                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                    <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
-                                    <Text style={[styles.infoText, textColor]}>{t('doNotMinimise')}</Text>
-                                    <View style={{ flexDirection: 'row' }}>
-                                        <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
-                                        <View style={{ alignItems: 'flex-start', width: width / 30 }}>
-                                            <Text style={[styles.infoText, textColor]}>
-                                                {isAndroid ? '..' : this.state.elipsis}
-                                            </Text>
-                                        </View>
-                                    </View>
-                                </View>
+                        {(this.state.displayNodeChangeOption && (
+                            <View>
+                                <Text style={[styles.infoText, textColor, { paddingBottom: height / 30 }]}>
+                                    {t('takingAWhile')}...
+                                </Text>
+                                <SingleFooterButton
+                                    onButtonPress={this.onChangeNodePress}
+                                    buttonStyle={{
+                                        wrapper: { backgroundColor: primary.color },
+                                        children: { color: primary.body },
+                                    }}
+                                    buttonText={t('global:changeNode')}
+                                />
                             </View>
                         )) ||
-                            (this.state.displayNodeChangeOption && (
-                                <View>
-                                    <Text style={[styles.infoText, textColor]}>{t('takingAWhile')}...</Text>
-                                    <SingleFooterButton
-                                        onButtonPress={this.onChangeNodePress}
-                                        buttonStyle={{
-                                            wrapper: { backgroundColor: primary.color },
-                                            children: { color: primary.body },
-                                        }}
-                                        buttonText={t('global:changeNode')}
-                                    />
+                            (this.state.addingAdditionalAccount && (
+                                <View style={styles.infoTextContainer}>
+                                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                        <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
+                                        <Text style={[styles.infoText, textColor]}>{t('doNotMinimise')}</Text>
+                                        <View style={{ flexDirection: 'row' }}>
+                                            <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
+                                            <View style={{ alignItems: 'flex-start', width: width / 30 }}>
+                                                <Text style={[styles.infoText, textColor]}>
+                                                    {isAndroid ? '..' : this.state.elipsis}
+                                                </Text>
+                                            </View>
+                                        </View>
+                                    </View>
                                 </View>
                             ))}
                     </View>

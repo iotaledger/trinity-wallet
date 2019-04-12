@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
-import balloonsAnimation from 'shared-modules/animations/language.json';
+import balloonsAnimation from 'shared-modules/animations/onboardingComplete.json';
 import LottieView from 'lottie-react-native';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -21,12 +21,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1.6,
+        flex: 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
     midContainer: {
-        flex: 2.4,
+        flex: 2.7,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
@@ -40,12 +40,13 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
-        lineHeight: height / 30,
+        lineHeight: Styling.fontSize4 * 1.5,
+        paddingTop: height / 35,
     },
     animation: {
         width: width / 1.35,
         height: width / 1.35,
-    }
+    },
 });
 
 /** Onboarding Complete screen componenet */
@@ -71,16 +72,16 @@ class OnboardingComplete extends Component {
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
                     <AnimatedComponent
-                        animationInType={['fadeIn','slideInRight']}
+                        animationInType={['fadeIn', 'slideInRight']}
                         animationOutType={['fadeOut', 'slideOutLeft']}
                         delay={400}
                     >
-                        <Header textSize={Styling.fontSize5} textColor={body.color}>{t('walletReady')}</Header>
+                        <Header textColor={body.color}>{t('congratulations')}</Header>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
                     <AnimatedComponent
-                        animationInType={['fadeIn','slideInRight']}
+                        animationInType={['fadeIn', 'slideInRight']}
                         animationOutType={['fadeOut', 'slideOutLeft']}
                         delay={200}
                         style={styles.animation}
@@ -94,12 +95,13 @@ class OnboardingComplete extends Component {
                             autoPlay
                             style={styles.animation}
                         />
+                        <Text style={[styles.infoText, { color: body.color }]}>{t('walletReady')}</Text>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent
                         delay={0}
-                        animationInType={['fadeIn','slideInRight']}
+                        animationInType={['fadeIn', 'slideInRight']}
                         animationOutType={['fadeOut', 'slideOutLeft']}
                     >
                         <SingleFooterButton
