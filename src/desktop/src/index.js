@@ -42,7 +42,7 @@ if (Electron.mode === 'tray') {
 } else {
     initialiseStorage(getEncryptionKey)
         .then(() => {
-            const oldPersistedData = Electron.getAllStorage();
+            const oldPersistedData = Electron.getOldStorage();
             const hasDataToMigrate = !isEmpty(oldPersistedData);
 
             if (hasDataToMigrate) {
@@ -52,28 +52,20 @@ if (Electron.mode === 'tray') {
             }
 
             // Get persisted data from Realm storage
-            const persistedDataFromRealm = mapStorageToState();
-            const data = hasDataToMigrate ? oldPersistedData : persistedDataFromRealm;
+            const persistedData = Electron.getStorage('__STATE__');
+            const data = hasDataToMigrate ? oldPersistedData : persistedData;
 
-            // Change provider on global iota instance
-            const node = get(data, 'settings.node');
-            changeIotaNode(node);
+            if (!isEmpty(data)) {
+                // Change provider on global iota instance
+                const node = get(data, 'settings.node');
+                changeIotaNode(node);
 
-            // Update store with persisted state
-            store.dispatch(mapStorageToStateAction(data));
+                // Update store with persisted state
+                store.dispatch(mapStorageToStateAction(data));
 
-            // Assign accountIndex to every account in accountInfo if it is not assigned already
-            store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
-
-            // Proxy realm changes to Tray application
-            realm.addListener('change', () => {
-                const data = mapStorageToState();
-                Electron.storeUpdate(JSON.stringify(data));
-            });
-
-            // Start Tray application if enabled in settings
-            const isTrayEnabled = get(data, 'settings.isTrayEnabled');
-            Electron.setTray(isTrayEnabled);
+                // Assign accountIndex to every account in accountInfo if it is not assigned already
+                store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
+            }
 
             // Show Wallet window after inital store update
             Electron.focus();

@@ -26,7 +26,7 @@ const electronStorage = {
     clear: () => {
         return new Promise((resolve, reject) => {
             try {
-                Electron.clearStorage();
+                Electron.clearOldStorage();
                 resolve();
             } catch (err) {
                 reject();

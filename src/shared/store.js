@@ -1,3 +1,4 @@
+/* global Electron */
 import assign from 'lodash/assign';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import logger from 'redux-logger';
@@ -55,10 +56,26 @@ const rootReducer = (state, action) => {
 
 const middleware = __DEV__ ? developmentMiddleware : productionMiddleware;
 
+let bounceTimeout = null;
+
+const storeLocalStorage = (store) => (next) => (action) => {
+    const { accounts, alerts, settings } = store.getState();
+
+    if (bounceTimeout) {
+        clearTimeout(bounceTimeout);
+    }
+
+    bounceTimeout = setTimeout(() => {
+        Electron.setStorage('__STATE__', { accounts, alerts, settings });
+    }, 500);
+
+    next(action);
+};
+
 const store = createStore(
     rootReducer,
     compose(
-        applyMiddleware(...middleware),
+        applyMiddleware(...middleware, storeLocalStorage),
         typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : (f) => f,
     ),
 );
