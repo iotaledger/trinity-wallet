@@ -55,6 +55,7 @@
         "yes": "Ja",
         "no": "Nej",
         "okay": "Okay",
+        "skip": "Skip",
         "password": "Adgangskode",
         "unrecognisedPassword": "Ukendt adgangskode",
         "unrecognisedPasswordExplanation": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Jeg er ikke på et offentligt Wi-Fi netværk",
         "printerConfirmation": "Jeg udskriver ikke via en offentlig printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Din adresse",
         "qrOptions": "QR-indstillinger",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Bundt-hash kopieret",
-        "noTransactionsFound": "Ingen transaktioner fundet",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Skjul nulsaldo",
         "bundleHashCopiedExplanation": "Den gruppérede hash er blevet kopiret til udklipsholderen.",
         "addressCopied": "Adresse kopieret",
@@ -494,7 +501,8 @@
         "pow": "Netværksvalidering",
         "autoPromotion": "Auto-promovering",
         "autoPromotionExplanation": "Auto-promovering hjælper med at bekræfte dine transaktioner på netværket. Aktivér denne indstilling, hvis du oplever problemer med at få dine transaktioner bekræftet.",
-        "autoPromotionPoW": "Auto-promovering er kun muligt på noder, som understøtter ekstern netværksgodkendelse."
+        "autoPromotionPoW": "Auto-promovering er kun muligt på noder, som understøtter ekstern netværksgodkendelse.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Baggrund",
@@ -713,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Autoudfyldning fuldendt",
-        "autofillExplanation": "Transaktionsdata er autoudfyldt fra linket."
+        "autofillExplanation": "Transaktionsdata er autoudfyldt fra linket.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fejl under indhentning af opdateringsdata",

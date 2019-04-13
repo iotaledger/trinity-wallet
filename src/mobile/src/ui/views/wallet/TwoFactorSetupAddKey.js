@@ -141,7 +141,9 @@ export class TwoFactorSetupAddKey extends Component {
         const { theme: { body }, t } = this.props;
         const backgroundColor = { backgroundColor: body.bg };
         const textColor = { color: body.color };
-        const totpLink = `${'otpauth://totp/Trinity Wallet Mobile?secret='}${this.state.authKey.replace(/\W/g, '').toLowerCase()}`;
+        const totpLink = `${'otpauth://totp/Trinity Wallet Mobile?secret='}${this.state.authKey
+            .replace(/\W/g, '')
+            .toLowerCase()}`;
 
         return (
             <View style={[styles.container, backgroundColor]}>
@@ -168,11 +170,7 @@ export class TwoFactorSetupAddKey extends Component {
                         delay={200}
                     >
                         <View style={styles.qrContainer}>
-                            <QRCode
-                                value={totpLink}
-                                size={height / 5}
-                                backgroundColor="#00000000"
-                            />
+                            <QRCode value={totpLink} size={height / 5} backgroundColor="#00000000" />
                         </View>
                     </AnimatedComponent>
                     <AnimatedComponent

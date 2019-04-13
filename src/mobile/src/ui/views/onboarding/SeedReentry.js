@@ -87,7 +87,7 @@ class SeedReentry extends Component {
     constructor() {
         super();
         this.state = {
-            reenteredSeed: null,
+            reenteredSeed: '',
         };
     }
 
@@ -230,7 +230,6 @@ class SeedReentry extends Component {
                                             label={t('global:seed')}
                                             onValidTextChange={(text) => this.setState({ reenteredSeed: text })}
                                             maxLength={MAX_SEED_LENGTH}
-                                            autoCapitalize="characters"
                                             autoCorrect={false}
                                             enablesReturnKeyAutomatically
                                             returnKeyType="done"
@@ -293,7 +292,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     toggleModalActivity,
-    setDoNotMinimise
+    setDoNotMinimise,
 };
 
 export default WithUserActivity()(

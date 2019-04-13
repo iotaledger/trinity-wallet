@@ -55,6 +55,7 @@
         "yes": "Oui",
         "no": "Non",
         "okay": "Ok",
+        "skip": "Passer",
         "password": "Mot de passe",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Je ne suis pas sur un wifi public",
         "printerConfirmation": "Je n'imprimerai pas sur une imprimante publique"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Voulez-vous imprimer un modèle vide ?",
+        "printTemplateInfo": "Vous pouvez imprimer un modèle vide pour vous aider à écrire votre seed.",
+        "printTemplateWarning": "Assurez-vous de stocker votre seed dans un endroit sûr. Ne la montrez à personne.",
+        "print": "Oui, imprimer"
+    },
     "receive": {
         "yourAddress": "Votre adresse",
         "qrOptions": "QR options",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash du paquet copié",
-        "noTransactionsFound": "Aucune transaction trouvée",
+        "noTransactionsFound": "Votre historique de transaction est vide",
         "hideZeroBalance": "Masquer un solde nul",
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papier.",
         "addressCopied": "Adressée copiée",
@@ -494,7 +501,8 @@
         "pow": "Preuve de Travail",
         "autoPromotion": "Promotion automatique",
         "autoPromotionExplanation": "La promotion automatique aide à confirmer vos transactions sur le Tangle. Activez ce paramètre si vous rencontrez des difficultés à confirmer vos transactions.",
-        "autoPromotionPoW": "La promotion automatique n’est possible que sur les serveurs qui prennent en charge la preuve de travail à distance."
+        "autoPromotionPoW": "La promotion automatique n’est possible que sur les serveurs qui prennent en charge la preuve de travail à distance.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Arrière-plan",
@@ -713,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Succès du remplissage automatique",
-        "autofillExplanation": "Remplissage automatique des transactions depuis les liens."
+        "autofillExplanation": "Remplissage automatique des transactions depuis les liens.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Erreur lors de la récupération des données de mise à jour",

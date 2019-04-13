@@ -55,6 +55,7 @@
         "yes": "네",
         "no": "아니오",
         "okay": "확인",
+        "skip": "Skip",
         "password": "비밀번호",
         "unrecognisedPassword": "잘못된 비밀번호",
         "unrecognisedPasswordExplanation": "비밀번호가 맞지 않습니다. 다시 시도해주세요.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "공용 와이파이를 사용 중이 아닙니다",
         "printerConfirmation": "공용 프린터를 사용 중이 아닙니다"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "주소",
         "qrOptions": "QR 옵션",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "번들 해시 복사함",
-        "noTransactionsFound": "트랜잭션 없음",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "0i 거래 숨기기",
         "bundleHashCopiedExplanation": "번들 해시를 클립보드에 복사하였습니다.",
         "addressCopied": "주소 복사함",
@@ -494,7 +501,8 @@
         "pow": "작업증명",
         "autoPromotion": "자동 프로모트",
         "autoPromotionExplanation": "자동 프로모트를 사용하면 트랜잭션이 승인되는데에 도움이 됩니다. 트랜잭션이 잘 승인되지 않는다면 이 기능을 사용해 보세요.",
-        "autoPromotionPoW": "자동 프로모트는 원격 작업증명을 지원하는 노드에서만 사용 가능합니다."
+        "autoPromotionPoW": "자동 프로모트는 원격 작업증명을 지원하는 노드에서만 사용 가능합니다.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "배경",
@@ -713,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "자동 완성 성공",
-        "autofillExplanation": "링크를 통해 트랜잭션 데이터가 자동 완성 되었습니다."
+        "autofillExplanation": "링크를 통해 트랜잭션 데이터가 자동 완성 되었습니다.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "업데이트를 받아오는 중 오류 발생",

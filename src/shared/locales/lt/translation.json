@@ -55,6 +55,7 @@
         "yes": "Taip",
         "no": "Ne",
         "okay": "Gerai",
+        "skip": "Praleisti",
         "password": "Slaptažodis",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
         "unrecognisedPasswordExplanation": "Slaptažodis neatpažintas. Bandykite dar kartą.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Nesinaudoju viešu wifi",
         "printerConfirmation": "Nesinaudoju viešu spausdintuvu"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Ar norėtumėte atsispausdinti neužpildytą šabloną?",
+        "printTemplateInfo": "Galite atsispausdinti neužpildytą šabloną ir įrašyti užraktą patys.",
+        "printTemplateWarning": "Įsitikinkite, kad užraktą laikote saugioje vietoje. Niekam jo nerodykite.",
+        "print": "Atspausdinti"
+    },
     "receive": {
         "yourAddress": "Jūsų adresas",
         "qrOptions": "QR nustatymai",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
-        "noTransactionsFound": "Pavedimų nėra",
+        "noTransactionsFound": "Jūsų pavedimų istorija tuščia",
         "hideZeroBalance": "Slėpti nulinius pavedimus",
         "bundleHashCopiedExplanation": "Paketo šifras nukopijuotas į iškarpinę.",
         "addressCopied": "Adresas nukopijuotas",
@@ -494,7 +501,8 @@
         "pow": "Skaičiavimų įrodymas",
         "autoPromotion": "Automatinis iškėlimas",
         "autoPromotionExplanation": "Automatinis iškėlimas padeda greičiau patvirtinti jūsų pavedimus. Įjunkite šią funkciją, jeigu jūsų pavedimai ilgai nėra patvirtinami.",
-        "autoPromotionPoW": "Automatinis iškėlimas įmanomas tik tuose serveriuose, kurie palaiko nuotolinį skaičiavimą."
+        "autoPromotionPoW": "Automatinis iškėlimas įmanomas tik tuose serveriuose, kurie palaiko nuotolinį skaičiavimą.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Fonas",
@@ -713,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "Automatinis įkėlimas sėkmingas",
-        "autofillExplanation": "Pavedimo duomenys automatiškai įkelti iš nuorodos."
+        "autofillExplanation": "Pavedimo duomenys automatiškai įkelti iš nuorodos.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Klaida siunčiant atnaujinimus",

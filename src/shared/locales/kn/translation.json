@@ -55,6 +55,7 @@
         "yes": "ಹೌದು",
         "no": "ಇಲ್ಲ",
         "okay": "ಸರಿ",
+        "skip": "Skip",
         "password": "ಗುಪ್ತಪದ",
         "unrecognisedPassword": "ಗುರುತಿಗೆ ಸಿಕ್ಕದ ಗುಪ್ತಪದ",
         "unrecognisedPasswordExplanation": "ಗುಪ್ತಪದ ಗುರುತಿಸಲಾಗಿಲ್ಲ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "ನಿಮ್ಮ ವಿಳಾಸ",
         "qrOptions": "QR ಆಯ್ಕೆಗಳು",
@@ -449,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "ವ್ಯವಹಾರ ಗುಂಪಿನ ಹ್ಯಾಶ್ ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ",
-        "noTransactionsFound": "ಯಾವುದೇ ವ್ಯವಹಾರಗಳು ಕಂಡುಬಂದಿಲ್ಲ",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "ಖಾತೆಯ ಶೂನ್ಯ ಮೊತ್ತವನ್ನು ಮರೆಮಾಡಿ",
         "bundleHashCopiedExplanation": "ವ್ಯವಹಾರ ಗುಂಪಿನ ಹ್ಯಾಶ್ ಅನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲಾಗಿದೆ.",
         "addressCopied": "ವಿಳಾಸ ನಕಲಿಸಲಾಗಿದೆ",
@@ -494,7 +501,8 @@
         "pow": "ಕೆಲಸದ ಪುರಾವೆ",
         "autoPromotion": "ಸ್ವಯಂ-ಬಡತಿ",
         "autoPromotionExplanation": "ಟ್ಯಾಂಗಲ್ ಜಾಲದಲ್ಲಿ ನಿಮ್ಮ ವ್ಯವಹಾರಗಳನ್ನು ಖಚಿತಪಡಿಸಲು ಸ್ವಯಂ-ಬಡತಿ ಸಹಾಯ ಮಾಡುತ್ತದೆ. ನಿಮ್ಮ ವ್ಯವಹಾರಗಳನ್ನು ದೃಢೀಕರಿಸಲು ನಿಮಗೆ ಕಷ್ಟವಾಗಿದ್ದರೆ ಈ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
-        "autoPromotionPoW": "ದೂರ ಕೆಲಸದ ಪುರಾವೆಯನ್ನು ಬೆಂಬಲಿಸುವ ನೋಡ್ಗಳಲ್ಲಿ ಮಾತ್ರ ಸ್ವಯಂ-ಬಡತಿ ಸಾಧ್ಯ."
+        "autoPromotionPoW": "ದೂರ ಕೆಲಸದ ಪುರಾವೆಯನ್ನು ಬೆಂಬಲಿಸುವ ನೋಡ್ಗಳಲ್ಲಿ ಮಾತ್ರ ಸ್ವಯಂ-ಬಡತಿ ಸಾಧ್ಯ.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "ಹಿನ್ನೆಲೆ",
@@ -713,7 +721,12 @@
     },
     "deepLink": {
         "autofill": "ಸ್ವಯಂತುಂಬುವಿಕೆ ಯಶಸ್ಸು",
-        "autofillExplanation": "ವ್ಯವಹಾರ ಮಾಹಿತಿಯನ್ನು ಲಿಂಕ್ನಿಂದ ಸ್ವಯಂ ತುಂಬಿಸಲಾಗಿದೆ."
+        "autofillExplanation": "ವ್ಯವಹಾರ ಮಾಹಿತಿಯನ್ನು ಲಿಂಕ್ನಿಂದ ಸ್ವಯಂ ತುಂಬಿಸಲಾಗಿದೆ.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "ನವೀಕರಿಸಿದ ಮಾಹಿತಿಯನ್ನು ಹಿಂಪಡೆಯುವಲ್ಲಿ ದೋಷ",

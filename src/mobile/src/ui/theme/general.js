@@ -28,6 +28,7 @@ const screens = [
     'privacyPolicy',
     'forceChangePassword',
     'seedVaultBackup',
+    'biometricAuthentication',
 ];
 
 export const Styling = {

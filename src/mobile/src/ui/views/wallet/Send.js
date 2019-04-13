@@ -13,7 +13,7 @@ import {
     VALID_SEED_REGEX,
     ADDRESS_LENGTH,
 } from 'shared-modules/libs/iota/utils';
-import { setDeepLinkInactive } from 'shared-modules/actions/wallet';
+import { completeDeepLinkRequest } from 'shared-modules/actions/wallet';
 import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
 import { getFromKeychainRequest, getFromKeychainSuccess, getFromKeychainError } from 'shared-modules/actions/keychain';
 import { makeTransaction } from 'shared-modules/actions/transfers';
@@ -154,9 +154,9 @@ export class Send extends Component {
         /** @ignore */
         generateTransferErrorAlert: PropTypes.func.isRequired,
         /** @ignore */
-        deepLinkActive: PropTypes.bool.isRequired,
+        deepLinkRequestActive: PropTypes.bool.isRequired,
         /** @ignore */
-        setDeepLinkInactive: PropTypes.func.isRequired,
+        completeDeepLinkRequest: PropTypes.func.isRequired,
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
         /** @ignore */
@@ -194,10 +194,10 @@ export class Send extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('Send');
-        const { t, deepLinkActive } = this.props;
-        if (deepLinkActive) {
+        const { t, deepLinkRequestActive } = this.props;
+        if (deepLinkRequestActive) {
             this.props.generateAlert('success', t('deepLink:autofill'), t('deepLink:autofillExplanation'));
-            this.props.setDeepLinkInactive();
+            this.props.completeDeepLinkRequest();
         }
     }
 
@@ -704,7 +704,6 @@ export class Send extends Component {
                                     this.props.setSendAddressField(text);
                                 }
                             }}
-                            autoCapitalize="characters"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="next"
@@ -871,7 +870,7 @@ const mapStateToProps = (state) => ({
     denomination: state.ui.sendDenomination,
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
-    deepLinkActive: state.wallet.deepLinkActive,
+    deepLinkRequestActive: state.wallet.deepLinkRequestActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     isKeyboardActive: state.ui.isKeyboardActive,
 });
@@ -888,7 +887,7 @@ const mapDispatchToProps = {
     setSendDenomination,
     startTrackingProgress,
     generateTransferErrorAlert,
-    setDeepLinkInactive,
+    completeDeepLinkRequest,
     setDoNotMinimise,
     toggleModalActivity,
 };

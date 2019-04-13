@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderTopRightRadius: 6,
         borderTopLeftRadius: 6,
+        zIndex: 1,
     },
     qrContainerFront: {
         flex: 3.75,
@@ -417,7 +418,14 @@ class Receive extends Component {
      *   @method generateAddress
      **/
     async generateAddress() {
-        const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning, isGeneratingReceiveAddress } = this.props;
+        const {
+            t,
+            selectedAccountData,
+            selectedAccountName,
+            isSyncing,
+            isTransitioning,
+            isGeneratingReceiveAddress,
+        } = this.props;
         if (isGeneratingReceiveAddress) {
             return;
         }
@@ -618,7 +626,10 @@ class Receive extends Component {
                                 >
                                     {!isGeneratingReceiveAddress &&
                                         hasSuccessfullyGeneratedAddress && (
-                                            <CustomQrCodeComponent value={qrContent} size={isAndroid ? width / 2 : width / 3} />
+                                            <CustomQrCodeComponent
+                                                value={qrContent}
+                                                size={isAndroid ? width / 2 : width / 3}
+                                            />
                                         )}
                                     {/* FIXME: Overflow: 'visible' is not supported on Android*/}
                                     {isAndroid && (
@@ -747,7 +758,10 @@ class Receive extends Component {
                                             this.qr = c;
                                         }}
                                     >
-                                        <CustomQrCodeComponent value={qrContent} size={isAndroid ? width / 2 : width / 3} />
+                                        <CustomQrCodeComponent
+                                            value={qrContent}
+                                            size={isAndroid ? width / 2 : width / 3}
+                                        />
                                     </View>
                                 </View>
                                 <View
