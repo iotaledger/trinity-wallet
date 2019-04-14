@@ -502,7 +502,7 @@
         "autoPromotion": "自動促進",
         "autoPromotionExplanation": "自動促進によってTangleによる取引承認を手助けします。取引承認に時間がかかる場合はこの設定をオンにしてください。",
         "autoPromotionPoW": "自動促進はリモートによるプルーフ・オブ・ワークを許可するノードと接続している場合のみ有効です。",
-        "deepLinking": "Deep linking"
+        "deepLinking": "ディープリンク"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -723,10 +723,10 @@
         "autofill": "自動入力成功",
         "autofillExplanation": "取引データはリンクから自動入力されました。",
         "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingWarning": "フィッシング詐欺にご注意ください。開いたリンク先が公式のTrinityアプリであることをご確認ください。",
+        "deepLinkingUpdated": "ディープリンク設定",
+        "deepLinkingEnabled": "ディープリンクを有効にしました。",
+        "deepLinkingDisabled": "ディープリンクを無効にしました。"
     },
     "updates": {
         "errorRetrievingUpdateData": "更新データの取得エラー",
