@@ -391,7 +391,6 @@
         "language": "언어",
         "accountManagement": "계정 관리",
         "addNewSeed": "새 시드 추가",
-        "twoFA": "2단계 인증",
         "changePassword": "비밀번호 변경",
         "general": "일반 설정",
         "advanced": "고급 설정",
@@ -620,23 +619,6 @@
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
-    "twoFA": {
-        "wrongCode": "잘못된 코드",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "코드 미입력",
-        "emptyCodeExplanation": "코드를 입력하고 다시 시도해 주세요.",
-        "keyCopied": "키를 클립보드에 복사함",
-        "keyCopiedExplanation": "OTP 키가 클립보드에 복사되었습니다.",
-        "addKey": "OTP 앱에 이 키를 추가하세요",
-        "key": "키",
-        "twoFAEnabled": "OTP 인증 활성화됨",
-        "twoFAEnabledExplanation": "OTP 인증을 활성화했습니다.",
-        "twoFADisabled": "OTP 인증 비활성화",
-        "twoFADisabledExplanation": "OTP 인증을 비활성화했습니다.",
-        "enterCode": "OTP 코드를 입력하십시오",
-        "code": "코드",
-        "twoFaToken": "OTP 토큰"
-    },
     "seedVault": {
         "exportSeedVault": "SeedValut 내보내기",
         "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
@@ -661,7 +643,8 @@
         "seedFileError": "SeedVault 열기 실패함",
         "seedFileErrorExplanation": "SeedVault를 여는 도중 문제가 발생하였습니다. 파일이 손상되었을 수 있습니다.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "Key"
     },
     "chart": {
         "mcap": "시가총액",
