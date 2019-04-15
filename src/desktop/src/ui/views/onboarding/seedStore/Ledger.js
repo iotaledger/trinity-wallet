@@ -115,16 +115,20 @@ class Ledger extends React.PureComponent {
         if (udevError) {
             const { t } = this.props;
 
-            // Select text with a single click
-            const linkStyle = {
-                WebkitUserSelect: 'all',
-            };
-
             return (
                 <Modal variant="fullscreen" isOpen isForced onClose={() => {}}>
                     <h1>{t('ledger:udevError')}</h1>
                     <p>{t('ledger:udevErrorExplanation')}</p>
-                    <pre style={linkStyle}>https://support.ledger.com/hc/articles/115005165269</pre>
+                    <p>
+                        <a href="https://support.ledger.com/hc/articles/115005165269">
+                            https://support.ledger.com/hc/articles/115005165269
+                        </a>
+                    </p>
+                    <footer>
+                        <Button to="/onboarding/seed-intro" className="square"variant="dark">
+                            {t('goBackStep')}
+                        </Button>
+                    </footer>
                 </Modal>
             );
         }
