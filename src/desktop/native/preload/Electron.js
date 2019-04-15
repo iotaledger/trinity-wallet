@@ -217,7 +217,7 @@ const Electron = {
     },
 
     /**
-     * Get all depracated redux-persist local storage items
+     * Get all deprecated redux-persist local storage items
      * @returns {object} Storage items
      */
     getOldStorage() {
