@@ -391,7 +391,6 @@
         "language": "Sprog",
         "accountManagement": "Konto administration",
         "addNewSeed": "Tilføj ny hovednøgle",
-        "twoFA": "Totrinsbekræftelse",
         "changePassword": "Skift adgangskode",
         "general": "Generelle indstillinger",
         "advanced": "Avancerede indstillinger",
@@ -620,23 +619,6 @@
         "sendingAMessage": "Sender en besked",
         "sendingAnEmptyMessage": "Sender en tom besked"
     },
-    "twoFA": {
-        "wrongCode": "Forkert kode",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "Tom kode",
-        "emptyCodeExplanation": "Indtast venligst en kode og prøv igen.",
-        "keyCopied": "Nøgle kopieret til udklipsholder",
-        "keyCopiedExplanation": "Din 2FA-nøgle er kopieret til Udklipsholderen.",
-        "addKey": "Tilføj denne nøgle til din 2FA-app",
-        "key": "Nøgle",
-        "twoFAEnabled": "2FA er nu aktiveret",
-        "twoFAEnabledExplanation": "Du har succesfuldt aktiveret totrinsbekræftelse.",
-        "twoFADisabled": "Totrinsbekræftelse er nu deaktiveret",
-        "twoFADisabledExplanation": "Du har succesfuldt deaktiveret totrinsbekræftelse.",
-        "enterCode": "Angiv koden fra din 2FA-app",
-        "code": "Kode",
-        "twoFaToken": "2FA Token"
-    },
     "seedVault": {
         "exportSeedVault": "Eksportere SeedVault",
         "seedVaultExplanation": "En SeedVault er en krypteret fil til sikkerhedskopiering af din hovednøgle. Hovednøglen er krypteret med en SeedVault-nøgle og kan ikke tilgås uden denne nøgle.",
@@ -661,7 +643,8 @@
         "seedFileError": "Kunne ikke åbne SeedVault",
         "seedFileErrorExplanation": "Der var problemer med at åbne af SeedVault. Har du valgt den korrekte fil, kan denne være beskadiget.",
         "seedVaultKeyExplanation": "Først skal din SeedVault sikres. Vælg en nøgle til at kryptere filen. Du vil skulle benytte denne nøgle for at genoprette din hovednøgle fra SeedVault-sikkerhedskopien.",
-        "retypeKey": "Angiv nøgle igen"
+        "retypeKey": "Angiv nøgle igen",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",

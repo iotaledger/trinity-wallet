@@ -391,7 +391,6 @@
         "language": "Язык",
         "accountManagement": "Управление счётом",
         "addNewSeed": "Добавить новый ключ",
-        "twoFA": "Двухфакторная аутентификация",
         "changePassword": "Изменить пароль",
         "general": "General settings",
         "advanced": "Дополнительные настройки",
@@ -620,23 +619,6 @@
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
-    "twoFA": {
-        "wrongCode": "Неправильный код",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "Код пустой",
-        "emptyCodeExplanation": "Пожалуйста введите код и повторите попытку.",
-        "keyCopied": "Ключ скопирован в буфер обмена",
-        "keyCopiedExplanation": "Ваш 2FA ключ был скопирована в буфер обмена.",
-        "addKey": "Добавить этот ключ к Вашему 2FA приложению",
-        "key": "Ключ",
-        "twoFAEnabled": "2FA теперь включена",
-        "twoFAEnabledExplanation": "Вы успешно включили аутентификацию по отпечаткам пальцев.",
-        "twoFADisabled": "Двухфакторная аутентификация теперь отключена",
-        "twoFADisabledExplanation": "Вы успешно отключили Двухфакторную аутентификацию.",
-        "enterCode": "Введите код из 2FA приложения",
-        "code": "Код",
-        "twoFaToken": "Токен 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
         "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
@@ -661,7 +643,8 @@
         "seedFileError": "Failed to open SeedVault",
         "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",
