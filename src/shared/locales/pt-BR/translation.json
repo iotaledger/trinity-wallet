@@ -55,7 +55,7 @@
         "yes": "Sim",
         "no": "Não",
         "okay": "Ok",
-        "skip": "Skip",
+        "skip": "Pular",
         "password": "Senha",
         "unrecognisedPassword": "Senha Inválida",
         "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
@@ -237,7 +237,7 @@
         "send": "ENVIAR",
         "receive": "RECEBER",
         "history": "HISTÓRICO",
-        "settings": "CONFIGURAÇÕES"
+        "settings": "OPÇÕES"
     },
     "languageSetup": {
         "language": "Idioma",
@@ -288,10 +288,10 @@
         "printerConfirmation": "Não estou imprimindo em uma impressora pública"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "Gostaria de imprimir um modelo em branco?",
+        "printTemplateInfo": "Você pode imprimir um modelo em branco para escrever sua Seed.",
+        "printTemplateWarning": "Certifique-se de armazenar sua Seed em um lugar seguro. Não mostre-a para ninguém.",
+        "print": "Sim, imprimir"
     },
     "receive": {
         "yourAddress": "Seu endereço",
@@ -393,7 +393,7 @@
         "addNewSeed": "Adicionar nova seed",
         "changePassword": "Alterar Senha",
         "general": "Configurações gerais",
-        "advanced": "Configurações Avançadas",
+        "advanced": "Opções Avançadas",
         "account": "Configurações de conta",
         "logout": "Desconectar",
         "reset": "Redefinir a carteira",
@@ -455,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "Pacote hash copiado",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Seu histórico de transações está vazio",
         "hideZeroBalance": "Esconder saldos zero",
         "bundleHashCopiedExplanation": "A chave do pacote foi copiada para a área de transferência.",
         "addressCopied": "Endereço copiado",
@@ -644,7 +644,7 @@
         "seedFileErrorExplanation": "Houve um problema ao abrir o SeedVault. Se você selecionou o arquivo correto então o mesmo pode estar corrompido.",
         "seedVaultKeyExplanation": "Primeiro precisamos proteger seu SeedVault. Por favor, escolha uma chave para criptografar o arquivo. Você usará esta chave se caso precisar restaurar sua Seed do SeedVault.",
         "retypeKey": "Redigite a chave",
-        "key": "Key"
+        "key": "Chave"
     },
     "chart": {
         "mcap": "MCAP",
@@ -705,11 +705,11 @@
     "deepLink": {
         "autofill": "Sucesso no preenchimento automático",
         "autofillExplanation": "Dados da transação preenchida automaticamente através do link.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "Deep links são links clicáveis (iota://...) que preenchem automaticamente os dados de transação na Trinity.",
+        "deepLinkingWarning": "Cuidado com fraudes de phishing. Certifique-se de que o link que você abrir navegue para o aplicativo oficial de Trinity.",
+        "deepLinkingUpdated": "Configurações de deep linking",
+        "deepLinkingEnabled": "Você ativou o deep linking.",
+        "deepLinkingDisabled": "Você desativou o deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",
