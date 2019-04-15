@@ -391,7 +391,6 @@
         "language": "Langue",
         "accountManagement": "Gestion du compte",
         "addNewSeed": "Ajouter une nouvelle seed",
-        "twoFA": "Authentification à deux facteurs",
         "changePassword": "Modifier le mot de passe",
         "general": "Paramètres généraux",
         "advanced": "Réglages avancés",
@@ -620,23 +619,6 @@
         "sendingAMessage": "Envoi d'un message",
         "sendingAnEmptyMessage": "Envoi d'un message vide"
     },
-    "twoFA": {
-        "wrongCode": "Code incorrect",
-        "wrongCodeExplanation": "Le code que vous avez entré est incorrect. Si l'erreur persiste, vérifiez que le réglage de l'heure est correct sur votre appareil.",
-        "emptyCode": "Code vide",
-        "emptyCodeExplanation": "Veuillez entrer un code et réessayer.",
-        "keyCopied": "Clé copiée dans le presse-papier",
-        "keyCopiedExplanation": "Votre clé 2FA a été copiée dans le presse-papier.",
-        "addKey": "Ajoutez cette clé à votre application 2FA",
-        "key": "Clé",
-        "twoFAEnabled": "L'authentification 2FA est maintenant activée",
-        "twoFAEnabledExplanation": "Vous avez correctement activé l’authentification à deux facteurs.",
-        "twoFADisabled": "2FA est maintenant désactivée",
-        "twoFADisabledExplanation": "Vous avez désactivé l'authentification à deux facteurs avec succès.",
-        "enterCode": "Entrez le code de votre application 2FA",
-        "code": "Code",
-        "twoFaToken": "Code 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "Exporter SeedVault",
         "seedVaultExplanation": "Un SeedVault est un fichier crypté pour stocker votre seed en toute sécurité. La seed est encryptée à l'aide d'une clé SeedVault et n'est pas accessible sans ce mot de passe.",
@@ -661,7 +643,8 @@
         "seedFileError": "Échec de l'ouverture du SeedVaulet",
         "seedFileErrorExplanation": "Il y a eu un problème lors de l'ouverture du SeedVault. Si vous avez sélectionné le bon fichier, il est peut-être endommagé.",
         "seedVaultKeyExplanation": "Tout d’abord, nous devons sécuriser votre SeedVault. Veuillez choisir une clé pour chiffrer le fichier. Vous utiliserez cette clé si vous devez restaurer votre seed à partir du fichier SeedVault.",
-        "retypeKey": "Veuillez ré-entrer la clé"
+        "retypeKey": "Veuillez ré-entrer la clé",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",

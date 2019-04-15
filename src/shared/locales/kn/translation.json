@@ -391,7 +391,6 @@
         "language": "ಭಾಷೆ",
         "accountManagement": "ಖಾತೆ ನಿರ್ವಹಣೆ",
         "addNewSeed": "ಹೊಸ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಸೇರಿಸಿ",
-        "twoFA": "ಎರಡು-ಅಂಶದ ದೃಢೀಕರಣ",
         "changePassword": "ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಿ",
         "general": "General settings",
         "advanced": "ಮು೦ದುವರಿದ ಸೆಟ್ಟಿಂಗ್ಸ್",
@@ -620,23 +619,6 @@
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
-    "twoFA": {
-        "wrongCode": "ತಪ್ಪಾದ ಸಂಕೇತ",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "ಖಾಲಿ ಸಂಕೇತ",
-        "emptyCodeExplanation": "ದಯವಿಟ್ಟು ಸಂಕೇತ ನಮೂದಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
-        "keyCopied": "ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ಕೀಲಿ ನಕಲಿಸಲಾಗಿದೆ",
-        "keyCopiedExplanation": "ನಿಮ್ಮ ೨-ಅಂಶ ದೃಢೀಕರಣಕಾರ ಕೀಲಿಯನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲಾಗಿದೆ.",
-        "addKey": "ನಿಮ್ಮ ೨-ಅಂಶ ದೃಢೀಕರಣಕಾರ ಅಪ್ಲಿಕೇಶನ್ನಲ್ಲಿ ಈ ಕೀಲಿಯನ್ನು ಸೇರಿಸಿ",
-        "key": "ಕೀಲಿ",
-        "twoFAEnabled": "೨-ಅಂಶ ದೃಢೀಕರಣಕಾರ ವನ್ನು ಇದೀಗ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ",
-        "twoFAEnabledExplanation": "ನೀವು ಎರಡು ಅಂಶ ದೃಢೀಕರಣವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸಕ್ರಿಯಗೊಳಿಸಿದ್ದೀರಿ.",
-        "twoFADisabled": "೨-ಅಂಶ ದೃಢೀಕರಣಕಾರವನ್ನು ಈಗ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ",
-        "twoFADisabledExplanation": "ನೀವು ಎರಡು ಅಂಶ ದೃಢೀಕರಣವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದ್ದೀರಿ.",
-        "enterCode": "ನಿಮ್ಮ ೨-ಅಂಶ ದೃಢೀಕರಣಕಾರ ಅಪ್ಲಿಕೇಶನ್ನಿಂದ ಕೋಡ್ ನಮೂದಿಸಿ",
-        "code": "ಸಂಕೇತ",
-        "twoFaToken": "೨-ಅಂಶ ದೃಢೀಕರಣಕಾರನ ಟೋಕನ್"
-    },
     "seedVault": {
         "exportSeedVault": "ಸೀಡ್ವಾಲ್ಟ್ ರಫ್ತು ಮಾಡಿ",
         "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
@@ -661,7 +643,8 @@
         "seedFileError": "ಸೀಡ್ವಾಲ್ಟ್ ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ",
         "seedFileErrorExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಅನ್ನು ತೆರೆಯುವಲ್ಲಿ ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿದೆ. ನೀವು ಸರಿಯಾದ ಫೈಲ್ ಅನ್ನು ಆರಿಸಿದರೆ ಅದು ದೋಷಪೂರಿತವಾಗಬಹುದು.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "Key"
     },
     "chart": {
         "mcap": "ಮಾರುಕಟ್ಟೆ ಬಂಡವಾಳ",
