@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     },
     topContainer: {
         flex: 11,
+        justifyContent: 'center',
     },
     itemLeft: {
         flexDirection: 'row',
@@ -114,7 +115,6 @@ class LanguageSelection extends Component {
             >
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.4 }} />
                         <DropdownComponent
                             onRef={(c) => {
                                 this.dropdown = c;
@@ -126,8 +126,8 @@ class LanguageSelection extends Component {
                             saveSelection={(lang) => {
                                 this.setState({ languageSelected: lang });
                             }}
-                            background
                         />
+                        <View style={{ flex: 0.15 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity

@@ -7303,6 +7303,13 @@ react-native-optimized-flatlist@^1.0.4:
   version "1.1.0"
   resolved "git+https://github.com/laumair/react-native-os.git#527b0aef4e30041b5230f5b901767dd9f54903fe"
 
+react-native-picker-select@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-picker-select/-/react-native-picker-select-6.1.0.tgz#0ae6ba1578e3edc8b89660b81fdd85eef2226a35"
+  integrity sha512-JYD0nMr9lXwcW/xxxf09TF8SN5ZqDlfIyr96Q4248ElvPpxVrSNlNNcZMo4OPnfogu1zBBVbrZzURh0oG+BV6g==
+  dependencies:
+    lodash.isequal "^4.5.0"
+
 react-native-print@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/react-native-print/-/react-native-print-0.5.0.tgz#f95301fe4979afeac6816d8019754ec7bdf7bfe6"
