@@ -391,7 +391,6 @@
         "language": "Idioma",
         "accountManagement": "Administración de cuentas",
         "addNewSeed": "Añadir nueva semilla",
-        "twoFA": "Autenticación de dos factores",
         "changePassword": "Cambiar contraseña",
         "general": "Configuración general",
         "advanced": "Opciones avanzadas",
@@ -620,23 +619,6 @@
         "sendingAMessage": "Enviando un mensaje",
         "sendingAnEmptyMessage": "Enviando un mensaje vacío"
     },
-    "twoFA": {
-        "wrongCode": "Código incorrecto",
-        "wrongCodeExplanation": "El código que ingreso es incorrecto. Si este error persiste, revise que el horario en su dispositivo es correcto.",
-        "emptyCode": "Código vacío",
-        "emptyCodeExplanation": "Por favor, introduce el código e inténtalo de nuevo.",
-        "keyCopied": "Clave copiada al portapapeles",
-        "keyCopiedExplanation": "Su clave 2FA se ha copiado al portapapeles.",
-        "addKey": "Añada esta clave a su aplicación 2FA",
-        "key": "Clave",
-        "twoFAEnabled": "2FA habilitado",
-        "twoFAEnabledExplanation": "Has habilitado la autenticación de doble factor correctamente.",
-        "twoFADisabled": "2FA esta desactivado",
-        "twoFADisabledExplanation": "Ha desactivado 2FA.",
-        "enterCode": "Introduzca el código de su aplicación 2FA",
-        "code": "Código",
-        "twoFaToken": "Código 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "Exportar SeedVault",
         "seedVaultExplanation": "Una SeedVault es un archivo encriptado para respaldar su semilla. La semilla es encriptada con una clave y no puede ser desencriptada sin esta.",
@@ -661,7 +643,8 @@
         "seedFileError": "Fallo al abrir SeedVault",
         "seedFileErrorExplanation": "Hubo un problema al abrir el SeedVault. Si ha seleccionado el archivo correcto entonces puede estar corrompido.",
         "seedVaultKeyExplanation": "Primero necesitamos asegurar su SeedVault. Por favor elija una clave para encriptar el archivo. Debe usar esta clave si necesita restaurar su semilla desde SeedVault.",
-        "retypeKey": "Reingrese la clave"
+        "retypeKey": "Reingrese la clave",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",

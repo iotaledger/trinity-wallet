@@ -391,7 +391,6 @@
         "language": "Jazyk",
         "accountManagement": "Správa účtu",
         "addNewSeed": "Přidat nový Seed",
-        "twoFA": "Dvoufaktorové ověření 2FA",
         "changePassword": "Změnit heslo",
         "general": "Obecná nastavení",
         "advanced": "Pokročilé nastavení",
@@ -660,8 +659,9 @@
         "noSeedFoundExplanation": "SeedVault je buď prázdný, nebo obsahuje Seed v neplatném formátu.",
         "seedFileError": "Otevření SeedVault se nezdařilo",
         "seedFileErrorExplanation": "Během otevírání SeedVault nastal problém. Jestliže jste zvolili správný soubor, je možné, že je poškozený.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Zadejte znovu heslo"
+        "seedVaultKeyExplanation": "Nejprve potřebujeme zabezpečit Váš SeedVault. Vyberte si prosím heslo k zašifrování souboru. Toto heslo použijete, pokud budete potřebovat obnovit Váš Seed ze zálohy SeedVault.",
+        "retypeKey": "Zadejte znovu heslo",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",

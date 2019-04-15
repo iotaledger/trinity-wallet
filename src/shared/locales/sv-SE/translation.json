@@ -391,7 +391,6 @@
         "language": "Språk",
         "accountManagement": "Kontohantering",
         "addNewSeed": "Lägg till ny seed",
-        "twoFA": "Tvåfaktorsautentisering",
         "changePassword": "Ändra lösenord",
         "general": "Allmänna inställningar",
         "advanced": "Avancerade inställningar",
@@ -620,23 +619,6 @@
         "sendingAMessage": "Skickar ett meddelande",
         "sendingAnEmptyMessage": "Skickar ett tomt meddelande"
     },
-    "twoFA": {
-        "wrongCode": "Fel kod",
-        "wrongCodeExplanation": "Den kod du angett är felaktig. Om felet kvarstår, kontrollera att klockan på dina enheter är korrekt konfigurerade.",
-        "emptyCode": "Tom kod",
-        "emptyCodeExplanation": "Var vänlig och ange en kod och försök igen.",
-        "keyCopied": "Nyckel kopierad till urklipp",
-        "keyCopiedExplanation": "Din 2FA nyckel har kopierats till urklipp.",
-        "addKey": "Lägg till denna nyckel i din 2FA-app",
-        "key": "Nyckel",
-        "twoFAEnabled": "2FA är nu aktiverat",
-        "twoFAEnabledExplanation": "Du har framgångsrikt aktiverat tvåfaktorsautentisering.",
-        "twoFADisabled": "2FA är nu avaktiverat",
-        "twoFADisabledExplanation": "Du har framgångsrikt avaktiverat tvåfaktorsautentisering.",
-        "enterCode": "Ange koden från din 2FA app",
-        "code": "Kod",
-        "twoFaToken": "2FA-token"
-    },
     "seedVault": {
         "exportSeedVault": "Exportera SeedVault",
         "seedVaultExplanation": "En SeedVault är en krypterad fil för att lagra din seed på ett säkert sätt. Din seed är krypterad bakom en SeedVault-nyckel och kan inte nås utan den nyckeln.",
@@ -661,7 +643,8 @@
         "seedFileError": "Det gick inte att öppna din SeedVault",
         "seedFileErrorExplanation": "Ett problem uppstod vid öppning av SeedVault. Om du har valt den korrekta filen kan den vara skadad.",
         "seedVaultKeyExplanation": "Först måste vi säkra din SeedVault. Vänligen välj en nyckel för att kryptera filen. Du kommer att använda denna nyckel om du behöver återställa din seed från din SeedVault-säkerhetskopia.",
-        "retypeKey": "Skriv nyckeln igen"
+        "retypeKey": "Skriv nyckeln igen",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",
