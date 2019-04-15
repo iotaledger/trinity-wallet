@@ -14,11 +14,11 @@ import { setSetting } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import i18next from 'shared-modules/libs/i18next';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import { width, height } from 'libs/dimensions';
-import { isAndroid } from 'libs/device';
+import { width } from 'libs/dimensions';
+import { isAndroid, isIOS } from 'libs/device';
 import DropdownComponent from 'ui/components/Dropdown';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
-import { Icon } from 'ui/theme/icons';
+import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
         flex: 4,
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 1,
+        flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
@@ -103,7 +102,7 @@ class LanguageSetup extends Component {
         return nextRoute;
     }
 
-    clickDropdownItem(language) {
+    selectLanguage(language) {
         i18next.changeLanguage(getLocaleFromLabel(language));
         this.props.setLanguage(language);
         this.props.setLocale(getLocaleFromLabel(language));
@@ -115,7 +114,7 @@ class LanguageSetup extends Component {
         return (
             <TouchableWithoutFeedback
                 onPress={() => {
-                    if (this.dropdown) {
+                    if (isIOS) {
                         this.dropdown.closeDropdown();
                     }
                 }}
@@ -137,17 +136,15 @@ class LanguageSetup extends Component {
                                 animationOutType={['fadeOut', 'slideOutLeft']}
                                 delay={200}
                             >
-                                <Icon name="iota" size={width / 8} color={body.color} />
+                                <Header textColor={body.color} />
                             </AnimatedComponent>
                         </View>
                         <View style={styles.midContainer}>
                             <AnimatedComponent
-                                style={{ position: 'absolute', height: height / 1.3 }}
                                 animationInType={['fadeIn']}
                                 animationOutType={['fadeOut', 'slideOutLeft']}
                                 delay={100}
                             >
-                                <View style={{ flex: 0.5 }} />
                                 <DropdownComponent
                                     onRef={(c) => {
                                         this.dropdown = c;
@@ -155,7 +152,7 @@ class LanguageSetup extends Component {
                                     title={t('language')}
                                     value={defaultLanguageLabel}
                                     options={I18N_LOCALE_LABELS}
-                                    saveSelection={(language) => this.clickDropdownItem(language)}
+                                    saveSelection={(language) => this.selectLanguage(language)}
                                 />
                             </AnimatedComponent>
                         </View>

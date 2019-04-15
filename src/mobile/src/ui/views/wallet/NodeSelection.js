@@ -19,8 +19,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     topContainer: {
-        flex: 11,
-        justifyContent: 'flex-end',
+        flex: 5,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    innerContainer: {
+        flex: 6,
+        justifyContent: 'center',
         alignItems: 'center',
     },
     bottomContainer: {
@@ -58,11 +63,6 @@ const styles = StyleSheet.create({
     activityIndicator: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-    },
-    innerContainer: {
-        position: 'absolute',
-        bottom: height / 4.5,
         alignItems: 'center',
     },
 });
@@ -113,7 +113,7 @@ class NodeSelection extends Component {
 
     saveNodeSelection() {
         const { node } = this.props;
-        const nextNode = this.dropdown.getSelected();
+        const nextNode = this.dropdown.getSelectedItem();
         if (nextNode === node) {
             return;
         }
@@ -139,7 +139,7 @@ class NodeSelection extends Component {
             >
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.25 }} />
+                        <View style={{ flex: 1.2 }} />
                         <DropdownComponent
                             onRef={(c) => {
                                 this.dropdown = c;
@@ -149,20 +149,20 @@ class NodeSelection extends Component {
                             value={node}
                             saveSelection={(node) => this.setState({ node })}
                             options={nodes}
-                            background
                         />
-                        {isChangingNode && (
-                            <View style={styles.innerContainer}>
-                                <ActivityIndicator
-                                    animating
-                                    style={styles.activityIndicator}
-                                    size="large"
-                                    color={primary.color}
-                                />
-                            </View>
-                        )}
-                        <View style={{ flex: 0.25 }} />
                     </View>
+                    {isChangingNode ? (
+                        <View style={styles.innerContainer}>
+                            <ActivityIndicator
+                                animating
+                                style={styles.activityIndicator}
+                                size="large"
+                                color={primary.color}
+                            />
+                        </View>
+                    ) : (
+                        <View style={styles.innerContainer} />
+                    )}
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
                             onPress={() => this.props.backPress()}
