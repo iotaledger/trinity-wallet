@@ -21,7 +21,6 @@ let language = {
     node: 'Node',
     currency: 'Currency',
     theme: 'Theme',
-    twoFA: 'Two-factor authentication',
     changePassword: 'Change password',
     advanced: 'Advanced settings',
     hide: 'Hide',
@@ -206,11 +205,6 @@ export const initMenu = (app, getWindowFunc) => {
                             },
                             {
                                 type: 'separator',
-                            },
-                            {
-                                label: language.twoFA,
-                                enabled: state.authorised && state.enabled,
-                                click: () => navigate('settings/twoFa'),
                             },
                             {
                                 label: language.changePassword,
