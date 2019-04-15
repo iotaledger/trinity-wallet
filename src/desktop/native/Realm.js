@@ -1,5 +1,5 @@
 /**
- * Realm database mock for Windows 7 compataibillity
+ * Realm database mock for Windows 7 compatibility
  */
 class Realm {
     constructor() {}
