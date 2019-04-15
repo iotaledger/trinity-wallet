@@ -391,7 +391,6 @@
         "language": "Język",
         "accountManagement": "Zarządzanie kontem",
         "addNewSeed": "Dodaj nowy seed",
-        "twoFA": "Autoryzacja dwustopniowa",
         "changePassword": "Zmień hasło",
         "general": "Ustawienia ogólne",
         "advanced": "Ustawienia zaawansowane",
@@ -620,23 +619,6 @@
         "sendingAMessage": "Wysyłanie wiadomości",
         "sendingAnEmptyMessage": "Wysyłanie pustej wiadomości"
     },
-    "twoFA": {
-        "wrongCode": "Błędny kod",
-        "wrongCodeExplanation": "Podany kod jest nieprawidłowy. Jeśli ten błąd będzie się powtarzał, sprawdź, czy masz prawidłowo ustawioną godzinę w swoim urządzeniu.",
-        "emptyCode": "Kod pusty",
-        "emptyCodeExplanation": "Wprowadź kod i spróbuj ponownie.",
-        "keyCopied": "Klucz skopiowany do schowka",
-        "keyCopiedExplanation": "Twój klucz autoryzacji dwustopniowej został skopiowany do schowka.",
-        "addKey": "Dodaj ten klucz do aplikacji autoryzacji dwustopniowej",
-        "key": "Klucz",
-        "twoFAEnabled": "Włączono 2FA",
-        "twoFAEnabledExplanation": "Pomyślnie włączono funkcję autoryzacji dwustopniowej.",
-        "twoFADisabled": "Wyłączono 2FA",
-        "twoFADisabledExplanation": "Pomyślnie wyłączono funkcję autoryzacji dwustopniowej.",
-        "enterCode": "Wpisz kod z aplikacji autoryzacji dwustopniowej",
-        "code": "Kod 2FA",
-        "twoFaToken": "Kod 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "Eksportuj SeedVault",
         "seedVaultExplanation": "SeedVault to zaszyfrowany plik, w którym bezpiecznie możesz przechowywać swój seed. Seed zostaje zaszyfrowany osobnym kluczem SeedVault i nie jest dostępny bez jego podania.",
@@ -661,7 +643,8 @@
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
         "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Ustal osobny klucz do zaszyfrowania tego pliku. Będziesz używać tego klucza, aby przywrócić swój seed z tej kopii zapasowej SeedVault.",
-        "retypeKey": "Wpisz klucz ponownie"
+        "retypeKey": "Wpisz klucz ponownie",
+        "key": "Key"
     },
     "chart": {
         "mcap": "Market",
