@@ -208,7 +208,7 @@ const Electron = {
     },
 
     /**
-     * Remove all epracated redux-persist local storage items
+     * Remove all deprecated redux-persist local storage items
      * @returns {undefined}
      */
     clearOldStorage() {
