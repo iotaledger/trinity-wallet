@@ -136,6 +136,7 @@ export class SetAccountName extends Component {
         if (onboardingComplete) {
             const seedStore = await new SeedStore.keychain(global.passwordHash);
             seedStore.addAccount(accountName, global.onboardingSeed);
+            delete global.onboardingSeed;
             navigator.setStackRoot('loading');
         } else {
             navigator.push('setPassword');
