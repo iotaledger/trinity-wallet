@@ -391,7 +391,6 @@
         "language": "Lingua",
         "accountManagement": "Gestione conti",
         "addNewSeed": "Aggiungi un nuovo seme",
-        "twoFA": "Autenticazione a due fattori",
         "changePassword": "Cambia password",
         "general": "Impostazioni generali",
         "advanced": "Impostazioni avanzate",
@@ -501,7 +500,8 @@
         "pow": "Prova di lavoro",
         "autoPromotion": "Auto-Promozione",
         "autoPromotionExplanation": "Auto-promozione contribuisce a confermare le transazioni sul Tangle. Abilitare questa impostazione se si hanno difficoltà a ottenere la conferma delle tue transazioni.",
-        "autoPromotionPoW": "Auto-promozione è possibile solo su nodi che supportano la prova di lavoro remota."
+        "autoPromotionPoW": "Auto-promozione è possibile solo su nodi che supportano la prova di lavoro remota.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Sfondo",
@@ -619,23 +619,6 @@
         "sendingAMessage": "Invio di un messaggio",
         "sendingAnEmptyMessage": "Invio di un messaggio vuoto"
     },
-    "twoFA": {
-        "wrongCode": "Codice errato",
-        "wrongCodeExplanation": "Il codice immesso non è corretto. Se questo errore persiste, controllare che gli orari nei dispositivi siano corretti.",
-        "emptyCode": "Codice vuoto",
-        "emptyCodeExplanation": "Si prega di inserire un codice e riprovare.",
-        "keyCopied": "Chiave copiata negli Appunti",
-        "keyCopiedExplanation": "La chiave di autenticazione a 2 fattori è stata copiata negli Appunti.",
-        "addKey": "Aggiungi questa chiave alla tua app di 2FA",
-        "key": "Chiave",
-        "twoFAEnabled": "Autenticazione a 2 fattori abilitata",
-        "twoFAEnabledExplanation": "È stata attivata con successo l'autenticazione a due fattori.",
-        "twoFADisabled": "Autenticazione a 2 fattori disabilitata",
-        "twoFADisabledExplanation": "È stata disattivata con successo l'autenticazione a due fattori.",
-        "enterCode": "Inserisci il codice dall'app di 2FA",
-        "code": "Codice",
-        "twoFaToken": "Token di 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "Esporta come SeedVault",
         "seedVaultExplanation": "Una Cassaforte di Seme è un file crittografato per il backup dei propri semi. Il seme è crittografato con una chiave SeedVault e non è possibile accedervi senza quella chiave.",
@@ -660,7 +643,8 @@
         "seedFileError": "Impossibile accedere il SeedVault",
         "seedFileErrorExplanation": "Si è verificato un problema accedendo il SeedVault. Se è stato selezionato il file corretto questo potrebbe essere danneggiato.",
         "seedVaultKeyExplanation": "Per prima cosa dobbiamo proteggere la tua cassaforte di Seme. Si prega di scegliere una chiave per crittografare il file. Questa chiave verrà utilizzata se è necessario ripristinare il seme dal backup di SeedVault.",
-        "retypeKey": "Riscrivi la chiave"
+        "retypeKey": "Riscrivi la chiave",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -720,7 +704,12 @@
     },
     "deepLink": {
         "autofill": "Riempimento automatico",
-        "autofillExplanation": "Dati riempiti automaticamente da un collegamento."
+        "autofillExplanation": "Dati riempiti automaticamente da un collegamento.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",

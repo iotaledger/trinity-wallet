@@ -391,7 +391,6 @@
         "language": "Sprache",
         "accountManagement": "Konto-Verwaltung",
         "addNewSeed": "Neuen Seed hinzufügen",
-        "twoFA": "2-Faktor-Authentifizierung",
         "changePassword": "Passwort ändern",
         "general": "Einstellungen",
         "advanced": "Erweiterte Einstellungen",
@@ -501,7 +500,8 @@
         "pow": "Proof of Work",
         "autoPromotion": "Auto-Promotion",
         "autoPromotionExplanation": "Auto-Promotion hilft dir Transaktionen auf dem Tangle zu bestätigen. Aktiviere diese Einstellung, wenn du Schwierigkeiten hast deine Transaktionen zu bestätigen.",
-        "autoPromotionPoW": "Auto-Promotion ist nur auf Nodes mit aktiviertem \"Remote Proof of Work\" möglich."
+        "autoPromotionPoW": "Auto-Promotion ist nur auf Nodes mit aktiviertem \"Remote Proof of Work\" möglich.",
+        "deepLinking": "Deep-Linking"
     },
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
@@ -619,23 +619,6 @@
         "sendingAMessage": "Sende die Nachricht",
         "sendingAnEmptyMessage": "Sende eine leere Nachricht"
     },
-    "twoFA": {
-        "wrongCode": "Falscher Code",
-        "wrongCodeExplanation": "Der eingegebene Code ist nicht korrekt. Stelle sicher, dass die Uhrzeit auf deinem Gerät stimmt, falls der Fehler erneut auftritt.",
-        "emptyCode": "Fehlender 2FA-Code",
-        "emptyCodeExplanation": "Bitte gib einen Code ein und versuche es erneut.",
-        "keyCopied": "Schlüssel in die Zwischenablage kopiert",
-        "keyCopiedExplanation": "Dein 2FA Schlüssel wurde in die Zwischenablage kopiert.",
-        "addKey": "Füge diesen Schlüssel in deine 2FA App ein",
-        "key": "Schlüssel",
-        "twoFAEnabled": "2FA ist jetzt aktiviert",
-        "twoFAEnabledExplanation": "Du hast die Zwei-Faktor-Authentifizierung erfolgreich aktiviert.",
-        "twoFADisabled": "2FA ist jetzt deaktiviert",
-        "twoFADisabledExplanation": "Du hast die Zwei-Faktor-Authentifizierung erfolgreich deaktiviert.",
-        "enterCode": "Gib den Code aus deiner 2FA App ein",
-        "code": "Code",
-        "twoFaToken": "2FA Token"
-    },
     "seedVault": {
         "exportSeedVault": "SeedVault exportieren",
         "seedVaultExplanation": "Ein SeedVault ist eine Möglichkeit deinen Seed sicher zu speichern. Dein Seed wird verschlüsselt in einer Datei gespeichert und kann ohne den dazugehörigen Schlüssel nicht eingesehen werden.",
@@ -660,7 +643,8 @@
         "seedFileError": "Fehler beim Öffnen",
         "seedFileErrorExplanation": "Beim Öffnen deines SeedVault ist ein Fehler aufgetreten. Stelle sicher dass du die korrekte Datei auswählt hast und die Datei nicht beschädigt ist.",
         "seedVaultKeyExplanation": "Zuerst müssen den SeedVault absichern. Bitte wähle einen Schlüssel, um die Datei zu verschlüsseln. Du wirst diesen Schlüssel verwenden, wenn du deinen Seed aus dem SeedVault Backup wiederherstellen musst.",
-        "retypeKey": "Schlüssel erneut eingeben"
+        "retypeKey": "Schlüssel erneut eingeben",
+        "key": "Key"
     },
     "chart": {
         "mcap": "Börsenwert",
@@ -720,7 +704,12 @@
     },
     "deepLink": {
         "autofill": "Automatisches ausfüllen erfolgreich",
-        "autofillExplanation": "Transaktionsdaten automatisch durch den Link ausgefüllt."
+        "autofillExplanation": "Transaktionsdaten automatisch durch den Link ausgefüllt.",
+        "deepLinkingOverview": "Deep-Links sind anklickbare Links (iota://...) die automatisch Transaktionen in Trinity ausfüllen.",
+        "deepLinkingWarning": "Achte auf Betrugsversuche. Stelle sicher, dass der Link, den du öffnen möchtest, das offzielle Trinity Wallet verwendet.",
+        "deepLinkingUpdated": "Deep-Link Einstellungen",
+        "deepLinkingEnabled": "Du hast Deep-Linking aktiviert.",
+        "deepLinkingDisabled": "Du hast Deep-Linking deaktiviert."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",

@@ -141,7 +141,6 @@ export default function withBackPress(C) {
 
         withBackPressNavigateNodeOptions(loginRoute) {
             switch (loginRoute) {
-                case 'complete2FA':
                 case 'nodeOptions':
                     this.props.setLoginRoute('login');
                     break;

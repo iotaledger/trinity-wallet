@@ -391,7 +391,6 @@
         "language": "Γλώσσα",
         "accountManagement": "Διαχείριση λογαριασμού",
         "addNewSeed": "Προσθέστε νέο σπόρο",
-        "twoFA": "Έλεγχος ταυτότητας δύο παραγόντων",
         "changePassword": "Αλλάξτε κωδικό πρόσβασης",
         "general": "General settings",
         "advanced": "Ρυθμίσεις για προχωρημένους",
@@ -501,7 +500,8 @@
         "pow": "Proof of Work",
         "autoPromotion": "Auto-promotion",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Φόντο",
@@ -619,23 +619,6 @@
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
-    "twoFA": {
-        "wrongCode": "Λανθασμένος κωδικός",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "Κενός κωδικός",
-        "emptyCodeExplanation": "Παρακαλώ εισάγετε έναν κωδικό και προσπαθήστε ξανά.",
-        "keyCopied": "Το κλειδί αντιγράφτηκε στο πρόχειρο",
-        "keyCopiedExplanation": "Το κλειδί  2FA έχει αντιγραφεί στο Πρόχειρο.",
-        "addKey": "Προσθέστε αυτό το κλειδί στον  (2FA) ελεγχο ταυτότητας δύο στοιχείων εφαρμογή. ",
-        "key": "Κλειδί",
-        "twoFAEnabled": "Ο Έλεγχος ταυτότητας δύο στοιχείων (2FA) είναι διαθέσιμος.",
-        "twoFAEnabledExplanation": "Έχετε ενεργοποιήσει με επιτυχία έλεγχος ταυτότητας δύο παραγόντων. (2FA) ",
-        "twoFADisabled": "2FA is now disabled",
-        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
-        "enterCode": "Εισαγάγετε τον κωδικό από την εφαρμογή ελεγχοs ταυτότητας δύο στοιχείων  (2FA) ",
-        "code": "Κωδικός",
-        "twoFaToken": "2FA Token"
-    },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
         "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
@@ -660,7 +643,8 @@
         "seedFileError": "Failed to open SeedVault",
         "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -720,7 +704,12 @@
     },
     "deepLink": {
         "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofillExplanation": "Transaction data autofilled from link.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",

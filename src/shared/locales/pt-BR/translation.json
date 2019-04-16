@@ -391,7 +391,6 @@
         "language": "Idioma",
         "accountManagement": "Gerenciar Contas",
         "addNewSeed": "Adicionar nova seed",
-        "twoFA": "Autenticação 2FA",
         "changePassword": "Alterar Senha",
         "general": "Configurações gerais",
         "advanced": "Configurações Avançadas",
@@ -501,7 +500,8 @@
         "pow": "Prova de Trabalho",
         "autoPromotion": "Autopromoção",
         "autoPromotionExplanation": "Autopromoção ajuda a confirmar suas transações no Tangle. Habilite essa configuração se você está tendo dificuldade em confirmar suas transações.",
-        "autoPromotionPoW": "Autopromoção só é possível em servidores que suportam prova de trabalho remoto."
+        "autoPromotionPoW": "Autopromoção só é possível em servidores que suportam prova de trabalho remoto.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Plano de Fundo",
@@ -619,23 +619,6 @@
         "sendingAMessage": "Enviando uma mensagem",
         "sendingAnEmptyMessage": "Enviando uma mensagem vazia"
     },
-    "twoFA": {
-        "wrongCode": "Código incorreto",
-        "wrongCodeExplanation": "O código inserido está incorreto. Se este erro persistir, verifique se o fuso-horário do seu dispositivo está correto.",
-        "emptyCode": "Código vazio",
-        "emptyCodeExplanation": "Por favor, introduza um código e tente novamente.",
-        "keyCopied": "Chave copiada para a área de transferência",
-        "keyCopiedExplanation": "Seu código 2FA foi copiado para a área de transferência.",
-        "addKey": "Adicione essa chave em seu aplicativo 2FA",
-        "key": "Chave",
-        "twoFAEnabled": "2FA foi habilitado",
-        "twoFAEnabledExplanation": "Você ativou a autenticação de dois fatores com sucesso.",
-        "twoFADisabled": "2FA foi desativado",
-        "twoFADisabledExplanation": "Você desativou a Autenticação Biométrica com sucesso.",
-        "enterCode": "Digite o código de seu aplicativo 2FA",
-        "code": "Código",
-        "twoFaToken": "Token 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "Exportar SeedVault",
         "seedVaultExplanation": "Um SeedVault é um arquivo criptografado para o armazenamento de sua Seed. A Seed é criptografada com uma chave SeedVault e não pode ser acessada sem essa chave.",
@@ -660,7 +643,8 @@
         "seedFileError": "Falha ao abrir o SeedVault",
         "seedFileErrorExplanation": "Houve um problema ao abrir o SeedVault. Se você selecionou o arquivo correto então o mesmo pode estar corrompido.",
         "seedVaultKeyExplanation": "Primeiro precisamos proteger seu SeedVault. Por favor, escolha uma chave para criptografar o arquivo. Você usará esta chave se caso precisar restaurar sua Seed do SeedVault.",
-        "retypeKey": "Redigite a chave"
+        "retypeKey": "Redigite a chave",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -720,7 +704,12 @@
     },
     "deepLink": {
         "autofill": "Sucesso no preenchimento automático",
-        "autofillExplanation": "Dados da transação preenchida automaticamente através do link."
+        "autofillExplanation": "Dados da transação preenchida automaticamente através do link.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",

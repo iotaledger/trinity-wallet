@@ -136,9 +136,10 @@ export class SetAccountName extends Component {
         if (onboardingComplete) {
             const seedStore = await new SeedStore.keychain(global.passwordHash);
             seedStore.addAccount(accountName, global.onboardingSeed);
-            this.navigateTo('loading');
+            delete global.onboardingSeed;
+            navigator.setStackRoot('loading');
         } else {
-            this.navigateTo('setPassword');
+            navigator.push('setPassword');
         }
     }
 
@@ -148,15 +149,6 @@ export class SetAccountName extends Component {
      */
     onBackPress() {
         navigator.pop(this.props.componentId);
-    }
-
-    /**
-     * Navigates to the provided screen name
-     * @method navigateTo
-     * @param {string} screen
-     */
-    navigateTo(screen) {
-        navigator.push(screen);
     }
 
     render() {

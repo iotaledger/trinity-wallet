@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
-import authenticator from 'authenticator';
 
 import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
@@ -12,17 +11,14 @@ import { getAccountInfo, getFullAccountInfo } from 'actions/accounts';
 import { clearWalletData, setPassword } from 'actions/wallet';
 
 import { getSelectedAccountName, getSelectedAccountMeta, isSettingUpNewAccount } from 'selectors/accounts';
-import { TWOFA_TOKEN_LENGTH } from 'libs/utils';
 
 import { capitalize } from 'libs/iota/converter';
 import { hash, authorize } from 'libs/crypto';
 import SeedStore from 'libs/SeedStore';
 
 import PasswordInput from 'ui/components/input/Password';
-import Text from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
-import Modal from 'ui/components/modal/Modal';
 
 import Migration from 'ui/global/Migration';
 
@@ -76,8 +72,6 @@ class Login extends React.Component {
     };
 
     state = {
-        verifyTwoFA: false,
-        code: '',
         password: '',
         shouldMigrate: false,
     };
@@ -104,14 +98,6 @@ class Login extends React.Component {
     componentWillUnmount() {
         setTimeout(() => Electron.garbageCollect(), 1000);
     }
-
-    /**
-     * Update 2fa code value and trigger authentication once necessary length is reached
-     * @param {string} value - Code value
-     */
-    setCode = (value) => {
-        this.setState({ code: value }, () => value.length === TWOFA_TOKEN_LENGTH && this.handleSubmit());
-    };
 
     /**
      * Update current input password value
@@ -163,7 +149,7 @@ class Login extends React.Component {
     };
 
     /**
-     * Verify password and 2fa code, trigger account setup
+     * Verify password and trigger account setup
      * @param {event} Event - Form submit event
      * @returns {undefined}
      */
@@ -172,7 +158,7 @@ class Login extends React.Component {
             e.preventDefault();
         }
 
-        const { password, code, verifyTwoFA } = this.state;
+        const { password } = this.state;
         const { setPassword, generateAlert, t, completedMigration } = this.props;
 
         let passwordHash = null;
@@ -186,19 +172,6 @@ class Login extends React.Component {
 
         try {
             authorised = await authorize(passwordHash);
-
-            if (typeof authorised === 'string' && !authenticator.verifyToken(authorised, code)) {
-                if (verifyTwoFA) {
-                    generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
-                }
-
-                this.setState({
-                    verifyTwoFA: true,
-                    code: '',
-                });
-
-                return;
-            }
         } catch (err) {
             generateAlert('error', t('unrecognisedPassword'), t('unrecognisedPasswordExplanation'));
         }
@@ -208,8 +181,6 @@ class Login extends React.Component {
 
             this.setState({
                 password: '',
-                code: '',
-                verifyTwoFA: false,
             });
 
             if (!completedMigration) {
@@ -231,7 +202,7 @@ class Login extends React.Component {
 
     render() {
         const { forceUpdate, t, addingAdditionalAccount, ui, completedMigration } = this.props;
-        const { verifyTwoFA, code, shouldMigrate } = this.state;
+        const { shouldMigrate } = this.state;
 
         if (ui.isFetchingAccountInfo) {
             return (
@@ -269,25 +240,6 @@ class Login extends React.Component {
                         </Button>
                     </footer>
                 </form>
-                <Modal variant="confirm" isOpen={verifyTwoFA} onClose={() => this.setState({ verifyTwoFA: false })}>
-                    <p>{t('twoFA:enterCode')}</p>
-                    <form onSubmit={(e) => this.handleSubmit(e)}>
-                        <Text value={code} focus={verifyTwoFA} label={t('twoFA:code')} onChange={this.setCode} />
-                        <footer>
-                            <Button
-                                onClick={() => {
-                                    this.setState({ verifyTwoFA: false });
-                                }}
-                                variant="dark"
-                            >
-                                {t('back')}
-                            </Button>
-                            <Button type="submit" variant="primary">
-                                {t('login:login')}
-                            </Button>
-                        </footer>
-                    </form>
-                </Modal>
             </React.Fragment>
         );
     }

@@ -36,7 +36,6 @@ export const ActionTypes = {
     SET_LOCK_SCREEN_TIMEOUT: 'IOTA/SETTINGS/SET_LOCK_SCREEN_TIMEOUT',
     SET_VERSIONS: 'IOTA/SETTINGS/WALLET/SET_VERSIONS',
     WALLET_RESET: 'IOTA/SETTINGS/WALLET/RESET',
-    SET_2FA_STATUS: 'IOTA/SETTINGS/SET_2FA_STATUS',
     SET_FINGERPRINT_STATUS: 'IOTA/SETTINGS/SET_FINGERPRINT_STATUS',
     ACCEPT_TERMS: 'IOTA/SETTINGS/ACCEPT_TERMS',
     ACCEPT_PRIVACY: 'IOTA/SETTINGS/ACCEPT_PRIVACY',
@@ -48,6 +47,7 @@ export const ActionTypes = {
     SET_NOTIFICATIONS: 'IOTA/SETTINGS/SET_NOTIFICATIONS',
     SET_PROXY: 'SET_PROXY',
     RESET_NODES_LIST: 'IOTA/SETTINGS/RESET_NODES_LIST',
+    SET_DEEP_LINKING: 'IOTA/SETTINGS/SET_DEEP_LINKING',
 };
 
 /**
@@ -659,23 +659,6 @@ export function resetWallet() {
 }
 
 /**
- * Dispatch to update wallet's two factor authentication configuration
- *
- * @method set2FAStatus
- * @param {boolean} payload
- *
- * @returns {{type: {string}, payload: {boolean} }}
- */
-export const set2FAStatus = (payload) => {
-    Wallet.update2FASetting(payload);
-
-    return {
-        type: ActionTypes.SET_2FA_STATUS,
-        payload,
-    };
-};
-
-/**
  * Dispatch to show/hide empty transactions in transactions history
  *
  * @method toggleEmptyTransactions
@@ -778,6 +761,42 @@ export const setProxy = (payload) => ({
     type: ActionTypes.SET_PROXY,
     payload,
 });
+
+/**
+ * Changes deep linking setting and generates alert
+ *
+ * @method changeDeepLinkingSettings
+ */
+export const changeDeepLinkingSettings = () => {
+    return (dispatch, getState) => {
+        const settings = getState().settings;
+        dispatch(setDeepLinking());
+        dispatch(
+            generateAlert(
+                'success',
+                i18next.t('deepLink:deepLinkingUpdated'),
+                settings.deepLinking
+                    ? i18next.t('deepLink:deepLinkingDisabled')
+                    : i18next.t('deepLink:deepLinkingEnabled'),
+            ),
+        );
+    };
+};
+
+/**
+ * Dispatch to update deep linking settings
+ *
+ * @method setDeepLinking
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const setDeepLinking = () => {
+    Wallet.updateDeepLinkingSetting();
+    return {
+        type: ActionTypes.SET_DEEP_LINKING,
+    };
+};
 
 /**
  * Dispatch to reset nodes list

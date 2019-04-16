@@ -391,7 +391,6 @@
         "language": "Jazyk",
         "accountManagement": "Správa účtu",
         "addNewSeed": "Pridať nový Seed",
-        "twoFA": "Dvojfaktorové overenie (2FA)",
         "changePassword": "Zmeniť heslo",
         "general": "Všeobecné nastavenia",
         "advanced": "Pokročilé nastavenia",
@@ -501,7 +500,8 @@
         "pow": "Proof of Work",
         "autoPromotion": "Automatická podpora",
         "autoPromotionExplanation": "Automatická podpora vám pomôže potvrdiť vašu transakciu v sieti Tangle. Povoľte toto nastavenie, ak máte problémy s potvrdzovaním transakcií.",
-        "autoPromotionPoW": "Automatická podpora je možná iba na Nodoch, ktoré podporujú vzdialený Proof of Work."
+        "autoPromotionPoW": "Automatická podpora je možná iba na Nodoch, ktoré podporujú vzdialený Proof of Work.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadie",
@@ -619,23 +619,6 @@
         "sendingAMessage": "Odosielanie správy",
         "sendingAnEmptyMessage": "Odosielanie prázdnej správy"
     },
-    "twoFA": {
-        "wrongCode": "Neplatný kód",
-        "wrongCodeExplanation": "Zadaný kód je nesprávny. Pokiaľ táto chyba pretrváva, skontrolujte, či máte v zariadení nastavený správny čas.",
-        "emptyCode": "Prázdny kód",
-        "emptyCodeExplanation": "Prosím, zadajte kód a skúste to znova.",
-        "keyCopied": "Kľúč skopírovaný do schránky",
-        "keyCopiedExplanation": "Váš 2FA kľúč bol skopírovaný do schránky.",
-        "addKey": "Pridať tento kľúč do vašej 2FA aplikácie",
-        "key": "Kľúč",
-        "twoFAEnabled": "2FA autentifikácia aktivovaná",
-        "twoFAEnabledExplanation": "Úspešne ste aktivovali dvojfaktorové overenie (2FA).",
-        "twoFADisabled": "2FA je teraz deaktiovovaná",
-        "twoFADisabledExplanation": "Úspešne ste deaktivovali dvojfaktorovú autentifikáciu.",
-        "enterCode": "Vložte kód z vašej 2FA aplikácie",
-        "code": "Kód",
-        "twoFaToken": "2FA Token"
-    },
     "seedVault": {
         "exportSeedVault": "Exportovať SeedVault",
         "seedVaultExplanation": "SeedVault je spôsob, ako bezpečne uložiť Váš Seed. Seed je uložený v zašifrovanom súbore a nemôže byť zobrazený bez príslušného hesla.",
@@ -660,7 +643,8 @@
         "seedFileError": "Otvorenie SeedVault zlyhalo",
         "seedFileErrorExplanation": "Počas otvárania SeedVault nastal problém. Ak Ste zvolili naozaj správny súbor, je možné, že je poškodený.",
         "seedVaultKeyExplanation": "Najprv potrebujeme zabezpečiť Váš SeedVault. Vyberte si prosím heslo k zašifrovaniu súboru. Toto heslo použijete, pokiaľ budete potrebovať obnoviť Váš Seed zo zálohy SeedVault.",
-        "retypeKey": "Zadajte heslo znova"
+        "retypeKey": "Zadajte heslo znova",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -720,7 +704,12 @@
     },
     "deepLink": {
         "autofill": "Automatické vyplnenie úspešné",
-        "autofillExplanation": "Údaje o transakcii boli automaticky doplnené z odkazu."
+        "autofillExplanation": "Údaje o transakcii boli automaticky doplnené z odkazu.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba pri získavaní aktualizačných dát",
