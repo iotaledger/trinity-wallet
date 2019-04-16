@@ -329,7 +329,7 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "あなたのシードを確認してください。",
-        "trinityWillNeverAskToReenter": "Trinity ウォレットは、ウォレットのリセット、またはアプリの削除をしない限りは、決してシードの再入力を求めません。",
+        "trinityWillNeverAskToReenter": "Trinityウォレットは、ウォレットのリセット、またはアプリの削除をしない限りは、決してシードの再入力を求めません。",
         "enterYourSeed": "シードを入力してください。",
         "incorrectSeed": "シードが違います。",
         "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直してください。",
@@ -644,7 +644,7 @@
         "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。",
         "seedVaultKeyExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するための鍵を選んでください。シード金庫からシードを復元する時に、この鍵が必要です。",
         "retypeKey": "鍵を再入力してください",
-        "key": "Key"
+        "key": "キー"
     },
     "chart": {
         "mcap": "時価総額",
@@ -705,7 +705,7 @@
     "deepLink": {
         "autofill": "自動入力成功",
         "autofillExplanation": "取引データはリンクから自動入力されました。",
-        "deepLinkingOverview": "ディープリンクとはトリニティにあるトランザクションデータを自動で取得できるようにするリンク (iota://...) のことです。",
+        "deepLinkingOverview": "ディープリンクとはTrinityにあるトランザクションデータを自動で取得できるようにするリンク (iota://...) のことです。",
         "deepLinkingWarning": "フィッシング詐欺にご注意ください。開いたリンク先が公式のTrinityアプリであることをご確認ください。",
         "deepLinkingUpdated": "ディープリンク設定",
         "deepLinkingEnabled": "ディープリンクを有効にしました。",
@@ -762,8 +762,8 @@
         "sweepError": "資金のロック解除エラー",
         "sweepErrorExplanation": "資金のロック解除に失敗しました。もう一度やり直してください。",
         "warningTitle": "警告：ロックされた資金が検出されました",
-        "explanation": "Trinity デスクトップウォレット ver. 0.3.4には、一時的に資金をロックできてしまうバグが含まれていました。これはver. 0.3.4でトランザクションを発行した少数のユーザーに影響します。",
-        "explanationAccounts": "アカウント：{{accounts}} にロックされた資金が検出されました。Trinity ウォレットでは自動的に資金を新しいアドレスに移動させることで、資金を回復します。",
+        "explanation": "Trinityデスクトップウォレット ver. 0.3.4には、一時的に資金をロックできてしまうバグが含まれていました。これはver. 0.3.4でトランザクションを発行した少数のユーザーに影響します。",
+        "explanationAccounts": "アカウント：{{accounts}} にロックされた資金が検出されました。Trinityウォレットでは自動的に資金を新しいアドレスに移動させることで、資金を回復します。",
         "proceed": "資金回復に進む",
         "sweepConfirmation": "アドレス{{address}}（アカウント名：{{accountName}}、アドレスインデックス：{{index}}）に資金{{amount}} を移動させようとしています。",
         "sweepConfirmationTitle": "移動を承認"
@@ -807,7 +807,7 @@
         "checkAddressExplanation": "アプリのアドレスがLedger端末に表示されているアドレスと一致することを確認してください。",
         "applicationNotInitialised": "未確定に関する警告",
         "applicationNotInitialisedExplanation": "LedgerでIOTAアプリを再度開いて、警告情報に同意してから、もう一度やり直してください。",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevError": "レッジャー端末と通信できませんでした",
+        "udevErrorExplanation": "Trinity はお使いのLedger端末と通信できませんでした。この問題を解決するには下記のURLにアクセスしてください。"
     }
 }
