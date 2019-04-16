@@ -807,7 +807,7 @@
         "checkAddressExplanation": "Provjerite da li adresa odgovara onoj prikazanoj na vašem Ledger uređaju.",
         "applicationNotInitialised": "Upozorenje nije prihvaćeno",
         "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevError": "Nije bilo moguće uspostaviti komunikaciju s Ledger uređajem",
+        "udevErrorExplanation": "Trinity nije mogao uspostaviti komunikaciju s vašim Ledger uređajem. Molimo posjetite URL naveden ispod kako bi riješili ovaj problem."
     }
 }
