@@ -806,6 +806,8 @@
         "checkAddress": "Tjek modtagelsesadressen",
         "checkAddressExplanation": "Tjek at adressen matcher dén, der vises på din Bogføringsenhed.",
         "applicationNotInitialised": "Advarsel, ubekræftet",
-        "applicationNotInitialisedExplanation": "Genåbn IOTA-app'en på din Bogføringsenhed, acceptér oplysningsadvarslen og forsøg igen."
+        "applicationNotInitialisedExplanation": "Genåbn IOTA-app'en på din Bogføringsenhed, acceptér oplysningsadvarslen og forsøg igen.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }
