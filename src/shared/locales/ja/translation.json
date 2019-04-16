@@ -806,6 +806,8 @@
         "checkAddress": "受取用のアドレスを確認してください",
         "checkAddressExplanation": "アプリのアドレスがLedger端末に表示されているアドレスと一致することを確認してください。",
         "applicationNotInitialised": "未確定に関する警告",
-        "applicationNotInitialisedExplanation": "LedgerでIOTAアプリを再度開いて、警告情報に同意してから、もう一度やり直してください。"
+        "applicationNotInitialisedExplanation": "LedgerでIOTAアプリを再度開いて、警告情報に同意してから、もう一度やり直してください。",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }
