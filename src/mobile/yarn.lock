@@ -7254,10 +7254,10 @@ react-native-keyboard-aware-scroll-view@^0.7.4:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
-react-native-keychain@2.0.0-rc:
-  version "2.0.0-rc"
-  resolved "https://registry.yarnpkg.com/react-native-keychain/-/react-native-keychain-2.0.0-rc.tgz#2446fc520bc630741e95eb722fe48e44988f4c12"
-  integrity sha512-pQONdjg/67qX0dpBf4s9VjwontzeaBepuRwp8RyTCyvMJ5REy19Etit0BrfuJCRGUxpU3tb9c4Gh8UdM0B2feQ==
+react-native-keychain@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-keychain/-/react-native-keychain-3.0.0.tgz#29da1dfa43c2581f76bf9420914fd38a1558cf18"
+  integrity sha512-0incABt1+aXsZvG34mDV57KKanSB+iMHmxvWv+N6lgpNLaSoqrCxazjbZdeqD4qJ7Z+Etp5CLf/4v1aI+sNLBw==
 
 react-native-markdown-renderer@^3.2.1:
   version "3.2.8"
