@@ -807,7 +807,7 @@
         "checkAddressExplanation": "Sprawdź, czy adres jest zgodny z adresem wyświetlanym w Twoim urządzeniu Ledger.",
         "applicationNotInitialised": "Ostrzeżenie niezaakceptowane",
         "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevError": "Brak możliwości połączenia z urządzeniem Ledger",
+        "udevErrorExplanation": "Trinity nie może połączyć się z Twoim urządzeniem Ledger. Odwiedź poniższy adres, aby rozwiązać ten problem."
     }
 }
