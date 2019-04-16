@@ -226,8 +226,9 @@ function createWindow() {
                 'protect-eu.mimecast.com',
                 'privacy@iota.org',
             ];
+            const ledgerOnboarding = ['support.ledger.com'];
 
-            const externalWhitelist = [...privacyPolicyLinks, ...termsAndConditionsLinks];
+            const externalWhitelist = [...privacyPolicyLinks, ...termsAndConditionsLinks, ...ledgerOnboarding];
 
             try {
                 if (
