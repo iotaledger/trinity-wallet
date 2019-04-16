@@ -501,7 +501,7 @@
         "autoPromotion": "Auto-Promozione",
         "autoPromotionExplanation": "Auto-promozione contribuisce a confermare le transazioni sul Tangle. Abilitare questa impostazione se si hanno difficoltà a ottenere la conferma delle tue transazioni.",
         "autoPromotionPoW": "Auto-promozione è possibile solo su nodi che supportano la prova di lavoro remota.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep link"
     },
     "advancedThemeCustomisation": {
         "background": "Sfondo",
@@ -644,7 +644,7 @@
         "seedFileErrorExplanation": "Si è verificato un problema accedendo il SeedVault. Se è stato selezionato il file corretto questo potrebbe essere danneggiato.",
         "seedVaultKeyExplanation": "Per prima cosa dobbiamo proteggere la tua cassaforte di Seme. Si prega di scegliere una chiave per crittografare il file. Questa chiave verrà utilizzata se è necessario ripristinare il seme dal backup di SeedVault.",
         "retypeKey": "Riscrivi la chiave",
-        "key": "Key"
+        "key": "Chiave"
     },
     "chart": {
         "mcap": "MCAP",
@@ -705,11 +705,11 @@
     "deepLink": {
         "autofill": "Riempimento automatico",
         "autofillExplanation": "Dati riempiti automaticamente da un collegamento.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "I deep link sono collegamenti cliccabili (iota://...) che riempono automaticamente i dati di una transazione in Trinity.",
+        "deepLinkingWarning": "Stai attento che esistono truffe di phishing. Assicurati che il link che apri attivi l'app di Trinity ufficiale.",
+        "deepLinkingUpdated": "Impostazioni deep link",
+        "deepLinkingEnabled": "Hai abilitato l'uso dei deep link.",
+        "deepLinkingDisabled": "Hai disabilitato l'uso dei deep link."
     },
     "updates": {
         "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
@@ -806,6 +806,8 @@
         "checkAddress": "Controllare l'indirizzo di ricezione",
         "checkAddressExplanation": "Verifica che l'indirizzo corrisponda a quello visualizzato sul dispositivo Ledger.",
         "applicationNotInitialised": "Avvertenza non confermato",
-        "applicationNotInitialisedExplanation": "Riaprire l'app IOTA sul dispositivo Ledger, accettare l'avviso informativo e riprovare."
+        "applicationNotInitialisedExplanation": "Riaprire l'app IOTA sul dispositivo Ledger, accettare l'avviso informativo e riprovare.",
+        "udevError": "Impossibile comunicare con il dispositivo Ledger",
+        "udevErrorExplanation": "Trinity non ha potuto comunicare con il tuo dispositivo Ledger. Visita l'URL qui sotto per risolvere questo problema."
     }
 }

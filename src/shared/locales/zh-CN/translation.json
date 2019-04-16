@@ -805,7 +805,9 @@
         "ledgerIncorrectIndexExplanation": "连接的Ledger设备与链接到此帐户的Ledger设备不匹配，或者恢复短语已更改。",
         "checkAddress": "检查接收地址",
         "checkAddressExplanation": "检查地址是否与Ledger设备上显示的地址匹配。",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。"
+        "applicationNotInitialised": "未经确认的警告",
+        "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }
