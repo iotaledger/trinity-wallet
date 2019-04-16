@@ -391,7 +391,6 @@
         "language": "言語",
         "accountManagement": "アカウント設定",
         "addNewSeed": "新しいシードを追加",
-        "twoFA": "二要素認証",
         "changePassword": "パスワード変更",
         "general": "一般設定",
         "advanced": "詳細設定",
@@ -502,7 +501,7 @@
         "autoPromotion": "自動促進",
         "autoPromotionExplanation": "自動促進によってTangleによる取引承認を手助けします。取引承認に時間がかかる場合はこの設定をオンにしてください。",
         "autoPromotionPoW": "自動促進はリモートによるプルーフ・オブ・ワークを許可するノードと接続している場合のみ有効です。",
-        "deepLinking": "Deep linking"
+        "deepLinking": "ディープリンク"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -620,23 +619,6 @@
         "sendingAMessage": "メッセージを送信中",
         "sendingAnEmptyMessage": "空のメッセージを送信中"
     },
-    "twoFA": {
-        "wrongCode": "コードが間違っています。",
-        "wrongCodeExplanation": "入力したコードが正しくありません。このエラーが解決しない場合は、デバイスの時刻が正しいかどうか確認してください。",
-        "emptyCode": "コードが入力されていません。",
-        "emptyCodeExplanation": "コードを入力して、もう一度やり直してください。",
-        "keyCopied": "キーをクリップボードにコピーしました。",
-        "keyCopiedExplanation": "二要素認証キーをクリップボードにコピーしました。",
-        "addKey": "二要素認証アプリにキーを追加してください。",
-        "key": "キー",
-        "twoFAEnabled": "二要素認証が有効になりました。",
-        "twoFAEnabledExplanation": "二要素認証を有効にしました。",
-        "twoFADisabled": "二要素認証を無効化",
-        "twoFADisabledExplanation": "二要素認証を無効にしました。",
-        "enterCode": "二要素認証アプリのコードを入力してください。",
-        "code": "コード",
-        "twoFaToken": "二要素認証トークン"
-    },
     "seedVault": {
         "exportSeedVault": "シード金庫へ書き出す",
         "seedVaultExplanation": "シード金庫は、シードをバックアップするための暗号化されたファイルです。シードはシード金庫鍵で暗号化されており、このシード金庫鍵なしではアクセスできません。",
@@ -661,7 +643,8 @@
         "seedFileError": "イオタ金庫を開けませんでした",
         "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。",
         "seedVaultKeyExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するための鍵を選んでください。シード金庫からシードを復元する時に、この鍵が必要です。",
-        "retypeKey": "鍵を再入力してください"
+        "retypeKey": "鍵を再入力してください",
+        "key": "Key"
     },
     "chart": {
         "mcap": "時価総額",
@@ -722,11 +705,11 @@
     "deepLink": {
         "autofill": "自動入力成功",
         "autofillExplanation": "取引データはリンクから自動入力されました。",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "ディープリンクとはトリニティにあるトランザクションデータを自動で取得できるようにするリンク (iota://...) のことです。",
+        "deepLinkingWarning": "フィッシング詐欺にご注意ください。開いたリンク先が公式のTrinityアプリであることをご確認ください。",
+        "deepLinkingUpdated": "ディープリンク設定",
+        "deepLinkingEnabled": "ディープリンクを有効にしました。",
+        "deepLinkingDisabled": "ディープリンクを無効にしました。"
     },
     "updates": {
         "errorRetrievingUpdateData": "更新データの取得エラー",

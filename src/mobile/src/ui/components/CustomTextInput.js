@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -9,6 +8,7 @@ import { Checksum } from 'ui/components/Checksum';
 import { isAndroid } from 'libs/device';
 import { stringToUInt8, UInt8ToString } from 'libs/crypto';
 import { trytesToTrits, tritsToChars } from 'shared-modules/libs/iota/converter';
+import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 
 const styles = StyleSheet.create({
     fieldContainer: {

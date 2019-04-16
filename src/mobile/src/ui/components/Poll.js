@@ -164,7 +164,7 @@ export class Poll extends Component {
      *
      * @returns {undefined}
      */
-    retryFailedTransaction() {
+    async retryFailedTransaction() {
         const { failedBundleHashes, password } = this.props;
 
         if (!isEmpty(failedBundleHashes)) {
@@ -172,7 +172,9 @@ export class Poll extends Component {
             const bundleForRetry = head(bundleHashes);
             const { name, type } = failedBundleHashes[bundleForRetry];
 
-            this.props.retryFailedTransaction(name, bundleForRetry, new SeedStore[type](password, name));
+            const seedStore = await new SeedStore[type](password, name);
+
+            this.props.retryFailedTransaction(name, bundleForRetry, seedStore);
         } else {
             this.moveToNextPollService();
         }

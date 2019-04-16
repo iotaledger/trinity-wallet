@@ -391,7 +391,6 @@
         "language": "语言",
         "accountManagement": "帐号管理",
         "addNewSeed": "添加新种子",
-        "twoFA": "双重认证",
         "changePassword": "更改密码",
         "general": "常用设置",
         "advanced": "高级设置",
@@ -620,23 +619,6 @@
         "sendingAMessage": "发送消息",
         "sendingAnEmptyMessage": "发送空消息"
     },
-    "twoFA": {
-        "wrongCode": "验证码错误",
-        "wrongCodeExplanation": "您输入的代码不正确。如果此错误仍然存在, 请检查您的设备时间是否正确。",
-        "emptyCode": "验证码为空",
-        "emptyCodeExplanation": "请输入验证码并重试。",
-        "keyCopied": "密钥已复制到剪贴板",
-        "keyCopiedExplanation": "您的双重认证密钥已复制到剪贴板。",
-        "addKey": "将此密钥添加到您的双重认证应用程序中",
-        "key": "密钥",
-        "twoFAEnabled": "双重认证现在已启用",
-        "twoFAEnabledExplanation": "您已成功启用了双重身份验证（2FA）。",
-        "twoFADisabled": "双重认证现在已禁用",
-        "twoFADisabledExplanation": "您已成功禁用了双重身份验证。",
-        "enterCode": "输入您的双重验证应用中显示的验证码",
-        "code": "验证码",
-        "twoFaToken": "2FA通证"
-    },
     "seedVault": {
         "exportSeedVault": "导出SeedVault",
         "seedVaultExplanation": "SeedVault是一个用于备份您的种子的加密文件。种子由一个SeedVault密钥加密，在没有该密钥时无法访问。",
@@ -661,7 +643,8 @@
         "seedFileError": "打开SeedVault失败",
         "seedFileErrorExplanation": "打开 SeedVault 时遇到问题。如果您选择了正确的文件, 那么它可能已损坏。",
         "seedVaultKeyExplanation": "首先，我们需要加密你的种子库。请选择加密文件的密钥。如果需要从SeedVault备份中恢复种子，您将使用此密钥。",
-        "retypeKey": "重新输入密钥"
+        "retypeKey": "重新输入密钥",
+        "key": "Key"
     },
     "chart": {
         "mcap": "市值",
