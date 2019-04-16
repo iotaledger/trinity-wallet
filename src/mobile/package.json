@@ -61,7 +61,7 @@
     "react-native-is-device-rooted": "https://github.com/rajivshah3/react-native-isDeviceRooted#latest",
     "react-native-keep-awake": "^2.0.6",
     "react-native-keyboard-aware-scroll-view": "^0.7.4",
-    "react-native-keychain": "2.0.0-rc",
+    "react-native-keychain": "3.0.0",
     "react-native-markdown-renderer": "^3.2.1",
     "react-native-modal": "^7.0.1",
     "react-native-navigation": "https://github.com/rajivshah3/react-native-navigation#2.0.255-0.57",

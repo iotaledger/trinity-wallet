@@ -1,0 +1,20 @@
+diff --git a/node_modules/react-native-keychain/RNKeychainManager/RNKeychainManager.m b/node_modules/react-native-keychain/RNKeychainManager/RNKeychainManager.m
+index 381981b..80d1d9f 100644
+--- a/node_modules/react-native-keychain/RNKeychainManager/RNKeychainManager.m
++++ b/node_modules/react-native-keychain/RNKeychainManager/RNKeychainManager.m
+@@ -336,6 +336,7 @@ - (OSStatus)deleteCredentialsForServer:(NSString *)server
+   NSString *username = (NSString *) [found objectForKey:(__bridge id)(kSecAttrAccount)];
+   NSString *password = [[NSString alloc] initWithData:[found objectForKey:(__bridge id)(kSecValueData)] encoding:NSUTF8StringEncoding];
+ 
++  CFRelease(foundTypeRef);
+   return resolve(@{
+     @"service": service,
+     @"username": username,
+@@ -401,6 +402,7 @@ - (OSStatus)deleteCredentialsForServer:(NSString *)server
+   NSString *username = (NSString *) [found objectForKey:(__bridge id)(kSecAttrAccount)];
+   NSString *password = [[NSString alloc] initWithData:[found objectForKey:(__bridge id)(kSecValueData)] encoding:NSUTF8StringEncoding];
+ 
++  CFRelease(foundTypeRef);
+   return resolve(@{
+     @"server": server,
+     @"username": username,
