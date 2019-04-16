@@ -40,7 +40,23 @@ class PuppeteerEnvironment extends ElectronEnvironment {
         });
 
         this.global.__screenshot = async (route, authorisedRoute, timeout) => {
-            page.evaluateOnNewDocument(electronMock, settings, authorisedRoute ? stateMock : {});
+            stateMock.wallet.ready = authorisedRoute;
+
+            page.evaluateOnNewDocument(electronMock, settings, stateMock);
+
+            page.on('console', async (msg) => {
+                const args = await msg.args();
+                args.forEach(async (arg) => {
+                    const val = await arg.jsonValue();
+                    if (JSON.stringify(val) !== JSON.stringify({})) console.log(val);
+                    else {
+                        const { type, subtype, description } = arg._remoteObject;
+                        console.log(`type: ${type}, subtype: ${subtype}, description:\n ${description}`);
+                    }
+                });
+            });
+
+            console.log(`http://localhost:1074/${route}`);
 
             await page.goto(`http://localhost:1074/${route}`);
 

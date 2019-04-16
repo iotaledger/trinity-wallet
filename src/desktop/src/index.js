@@ -52,8 +52,7 @@ if (Electron.mode === 'tray') {
             }
 
             // Get persisted data from Realm storage
-            const persistedDataFromRealm = mapStorageToState();
-            const data = hasDataToMigrate ? oldPersistedData : persistedDataFromRealm;
+            const data = hasDataToMigrate ? oldPersistedData : mapStorageToState();
 
             // Change provider on global iota instance
             const node = get(data, 'settings.node');

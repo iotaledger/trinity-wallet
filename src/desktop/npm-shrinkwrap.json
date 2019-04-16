@@ -5346,22 +5346,14 @@
       "dev": true
     },
     "electron": {
-      "version": "4.1.4",
-      "resolved": "https://registry.npmjs.org/electron/-/electron-4.1.4.tgz",
-      "integrity": "sha512-MelOjntJvd33izEjR6H4N/Uii7y535z/b2BuYXJGLNSHL6o1IlyhUQmfiT87kWABayERgeuYERgvsyf956OOFw==",
+      "version": "3.1.8",
+      "resolved": "https://registry.npmjs.org/electron/-/electron-3.1.8.tgz",
+      "integrity": "sha512-1MiFoMzxGaR0wDfwFE5Ydnuk6ry/4lKgF0c+NFyEItxM/WyEHNZPNjJAeKJ+M/0sevmZ+6W4syNZnQL5M3GgsQ==",
       "dev": true,
       "requires": {
-        "@types/node": "^10.12.18",
+        "@types/node": "^8.0.24",
         "electron-download": "^4.1.0",
         "extract-zip": "^1.0.3"
-      },
-      "dependencies": {
-        "@types/node": {
-          "version": "10.14.4",
-          "resolved": "https://registry.npmjs.org/@types/node/-/node-10.14.4.tgz",
-          "integrity": "sha512-DT25xX/YgyPKiHFOpNuANIQIVvYEwCWXgK2jYYwqgaMrYE6+tq+DtmMwlD3drl6DJbUwtlIDnn0d7tIn/EbXBg==",
-          "dev": true
-        }
       }
     },
     "electron-builder": {
@@ -12372,31 +12364,17 @@
       }
     },
     "react-redux": {
-      "version": "7.0.1",
-      "resolved": "https://registry.npmjs.org/react-redux/-/react-redux-7.0.1.tgz",
-      "integrity": "sha512-orSiI/QXtGiiJmf8lN/zVTx4hysFo/kGOsce28IUu/mu98AGemBwPTDzf64P4Vf/miRmevO8/w2RSw2awDd21w==",
+      "version": "5.1.1",
+      "resolved": "https://registry.npmjs.org/react-redux/-/react-redux-5.1.1.tgz",
+      "integrity": "sha512-LE7Ned+cv5qe7tMV5BPYkGQ5Lpg8gzgItK07c67yHvJ8t0iaD9kPFPAli/mYkiyJYrs2pJgExR2ZgsGqlrOApg==",
       "requires": {
-        "@babel/runtime": "^7.4.3",
-        "hoist-non-react-statics": "^3.3.0",
+        "@babel/runtime": "^7.1.2",
+        "hoist-non-react-statics": "^3.1.0",
         "invariant": "^2.2.4",
-        "loose-envify": "^1.4.0",
-        "prop-types": "^15.7.2",
-        "react-is": "^16.8.6"
-      },
-      "dependencies": {
-        "@babel/runtime": {
-          "version": "7.4.3",
-          "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.4.3.tgz",
-          "integrity": "sha512-9lsJwJLxDh/T3Q3SZszfWOTkk3pHbkmH+3KY+zwIDmsNlxsumuhS2TH3NIpktU4kNvfzy+k3eLT7aTJSPTo0OA==",
-          "requires": {
-            "regenerator-runtime": "^0.13.2"
-          }
-        },
-        "react-is": {
-          "version": "16.8.6",
-          "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.8.6.tgz",
-          "integrity": "sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA=="
-        }
+        "loose-envify": "^1.1.0",
+        "prop-types": "^15.6.1",
+        "react-is": "^16.6.0",
+        "react-lifecycles-compat": "^3.0.0"
       }
     },
     "react-resize-detector": {
@@ -12777,7 +12755,8 @@
     "regenerator-runtime": {
       "version": "0.13.2",
       "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.2.tgz",
-      "integrity": "sha512-S/TQAZJO+D3m9xeN1WTI8dLKBBiRgXBlTJvbWjCThHWZj9EvHK70Ff50/tYj2J/fvBY6JtFVwRuazHN2E7M9BA=="
+      "integrity": "sha512-S/TQAZJO+D3m9xeN1WTI8dLKBBiRgXBlTJvbWjCThHWZj9EvHK70Ff50/tYj2J/fvBY6JtFVwRuazHN2E7M9BA==",
+      "dev": true
     },
     "regenerator-transform": {
       "version": "0.13.4",

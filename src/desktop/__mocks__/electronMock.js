@@ -16,7 +16,7 @@ module.exports = ({ version }, stateMock) => {
         },
         garbageCollect: () => {},
         setOnboardingSeed: () => {},
-        readKeychain: async () => {},
+        readKeychain: async () => 'ABC,DEF',
         getUuid: async () => '',
         changeLanguage: () => {},
         onEvent: () => {},
@@ -29,13 +29,24 @@ module.exports = ({ version }, stateMock) => {
             addListener: () => {},
             removeListener: () => {},
         },
-        getAllStorage: () => {
-            const keys = Object.keys(window.__STATE_MOCK__).map((key) => `reduxPersist:${key}`);
-            return keys;
-        },
+        getAllStorage: () => window.__STATE_MOCK__,
+        getUserDataPath: () => '',
         getStorage: (key) => JSON.stringify(window.__STATE_MOCK__[key.replace('reduxPersist:', '')]),
         getOnboardingGenerated: () => new Array(81).fill(0),
+        getRealm: () =>
+            class Realm {
+                constructor() {}
+                addListener() {}
+                objectForPrimaryKey() {}
+                schemaVersion() {
+                    return -1;
+                }
+                objects() {}
+                create() {}
+                write() {}
+                close() {}
+            },
+        setTray: () => {},
+        focus: () => {},
     };
-
-    window.__STATE_MOCK__ = stateMock;
 };
