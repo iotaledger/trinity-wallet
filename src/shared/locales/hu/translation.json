@@ -806,6 +806,8 @@
         "checkAddress": "Ellenőrizze a fogadási címet",
         "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik-e a hardveres tárcán megjelenő címmel.",
         "applicationNotInitialised": "Jóváhagyásra váró figyelmeztetés",
-        "applicationNotInitialisedExplanation": "Nyissa meg újra az IOTA alkalmazást a hardveres tárcáján, hagyja jóvá a megjelenő figyelmeztetést, majd próbálja úra."
+        "applicationNotInitialisedExplanation": "Nyissa meg újra az IOTA alkalmazást a hardveres tárcáján, hagyja jóvá a megjelenő figyelmeztetést, majd próbálja úra.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

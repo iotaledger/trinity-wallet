@@ -806,6 +806,8 @@
         "checkAddress": "Zkontrolujte adresu příjemce",
         "checkAddressExplanation": "Zkontrolujte, zda adresa odpovídá adrese zobrazené na Vašem zařízení Ledger.",
         "applicationNotInitialised": "Informační upozornění, nebylo přijato",
-        "applicationNotInitialisedExplanation": "Znovu otevřete aplikaci IOTA na Vašem zařízení Ledger, přijměte informační upozornění a zkuste to znovu."
+        "applicationNotInitialisedExplanation": "Znovu otevřete aplikaci IOTA na Vašem zařízení Ledger, přijměte informační upozornění a zkuste to znovu.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

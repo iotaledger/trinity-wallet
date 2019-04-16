@@ -806,6 +806,8 @@
         "checkAddress": "Patikrinkite priėmimo adresą",
         "checkAddressExplanation": "Patikrinkite ar adresas sutampa su rodomu adresu Ledger įrenginyje.",
         "applicationNotInitialised": "Pranešimas nepatvirtintas",
-        "applicationNotInitialisedExplanation": "Iš naujo atidarykite IOTA aplikaciją Ledger įrenginyje, patvirtinkite informacinį pranešimą ir bandykite dar kartą."
+        "applicationNotInitialisedExplanation": "Iš naujo atidarykite IOTA aplikaciją Ledger įrenginyje, patvirtinkite informacinį pranešimą ir bandykite dar kartą.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }
