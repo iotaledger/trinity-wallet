@@ -644,7 +644,7 @@
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
         "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Ustal osobny klucz do zaszyfrowania tego pliku. Będziesz używać tego klucza, aby przywrócić swój seed z tej kopii zapasowej SeedVault.",
         "retypeKey": "Wpisz klucz ponownie",
-        "key": "Key"
+        "key": "Klucz"
     },
     "chart": {
         "mcap": "Market",
@@ -806,6 +806,8 @@
         "checkAddress": "Sprawdź adres odbioru",
         "checkAddressExplanation": "Sprawdź, czy adres jest zgodny z adresem wyświetlanym w Twoim urządzeniu Ledger.",
         "applicationNotInitialised": "Ostrzeżenie niezaakceptowane",
-        "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie."
+        "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie.",
+        "udevError": "Brak możliwości połączenia z urządzeniem Ledger",
+        "udevErrorExplanation": "Trinity nie może połączyć się z Twoim urządzeniem Ledger. Odwiedź poniższy adres, aby rozwiązać ten problem."
     }
 }
