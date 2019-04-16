@@ -128,6 +128,16 @@ class SeedInput extends React.PureComponent {
             );
         }
 
+        const isValidVault = Electron.validateVault(buffer);
+
+        if (!isValidVault) {
+            return this.props.generateAlert(
+                'error',
+                t('seedVault:invalidseedFileError'),
+                t('seedVault:invalidseedFileErrorExplanation'),
+            );
+        }
+
         this.setState({
             importBuffer: buffer,
         });
