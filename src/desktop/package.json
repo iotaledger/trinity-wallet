@@ -154,7 +154,7 @@
     "hw-app-iota": "0.6.1",
     "i18next": "15.0.9",
     "iota.lib.js": "0.5.1",
-    "kdbxweb": "1.2.6",
+    "kdbxweb": "1.2.7",
     "keytar": "4.4.1",
     "machine-uuid-sync": "https://github.com/rajivshah3/machine-uuid-sync#a5ffa8e",
     "perfect-scrollbar": "1.4.0",
