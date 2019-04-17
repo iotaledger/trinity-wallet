@@ -11,6 +11,7 @@ This is the repository for the IOTA Trinity Desktop Wallet. The application is b
 -   [NodeJS](https://nodejs.org/en/)
 -   NPM (automatically installed with NodeJS)
 -   Electron (`npm install electron -g`)
+-   Visual Studio and C++ development workload (https://visualstudio.microsoft.com/downloads/)
 
 On **Windows** platforms you'll need to install build tools to succesfully compile native modules:
 
