@@ -269,7 +269,7 @@ class List extends React.PureComponent {
                         <input
                             className={search.length > 0 ? css.filled : null}
                             value={search}
-                            placeholder="Type !help for available commands"
+                            placeholder={t('history:typeHelp')}
                             onChange={(e) => this.setState({ search: e.target.value })}
                         />
                         <div onClick={() => this.setState({ search: '' })}>
@@ -277,19 +277,19 @@ class List extends React.PureComponent {
                             {search === '!help' && (
                                 <ul className={css.tooltip}>
                                     <li>
-                                        <strong>XYZ</strong> search by bundle hash or message content
+                                        <strong>XYZ</strong> {t('history:searchHelpText')}
                                     </li>
                                     <li>
-                                        <strong>100</strong> find transactions with exact iota value
+                                        <strong>100</strong> {t('history:searchHelpValue')}
                                     </li>
                                     <li>
-                                        <strong>100Mi</strong> use units for another amounts
+                                        <strong>100Mi</strong> {t('history:searchHelpUnits')}
                                     </li>
                                     <li>
-                                        <strong>&gt;100 </strong> find transactions with value more than
+                                        <strong>&gt;100 </strong> {t('history:searchHelpMore')}
                                     </li>
                                     <li>
-                                        <strong>&lt;100i</strong> find transactions with value less than
+                                        <strong>&lt;100i</strong> {t('history:searchHelpLess')}
                                     </li>
                                 </ul>
                             )}
