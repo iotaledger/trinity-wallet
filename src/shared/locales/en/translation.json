@@ -475,11 +475,11 @@
         "promotingAnotherBundle": "Promoting another bundle",
         "pleaseWait": "Please wait, Trinity is promoting another bundle.",
         "typeHelp": "Type !help for available commands",
-        "searchHelpText": "search by bundle hash or message content",
-        "searchHelpValue": "find transactions with exact iota value",
-        "searchHelpUnits": "use units for another amounts",
-        "searchHelpMore": "find transactions with value more than",
-        "searchHelpLess": "find transactions with value less than"
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "View seed",
