@@ -57,4 +57,5 @@ export default {
     LEDGER_CANCELLED: 'Ledger transaction cancelled',
     LEDGER_DENIED: 'Ledger transaction denied by user',
     LEDGER_INVALID_INDEX: 'Incorrect Ledger device or changed mnemonic',
+    REQUEST_TIMED_OUT: 'Request timed out',
 };

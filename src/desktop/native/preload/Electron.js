@@ -530,7 +530,6 @@ const Electron = {
             node: t('node'),
             currency: t('settings:currency'),
             theme: t('settings:theme'),
-            twoFA: t('settings:twoFA'),
             changePassword: t('settings:changePassword'),
             advanced: t('settings:advanced'),
             hide: t('settings:hide'),

@@ -17,7 +17,6 @@ import Currency from 'ui/views/settings/Currency';
 import Password from 'ui/views/settings/Password';
 import Mode from 'ui/views/settings/Mode';
 import Advanced from 'ui/views/settings/Advanced';
-import TwoFA from 'ui/views/settings/TwoFA';
 
 import AccountName from 'ui/views/settings/account/Name';
 import AccountSeed from 'ui/views/settings/account/Seed';
@@ -94,9 +93,6 @@ class Settings extends React.PureComponent {
                                         <Icon icon="password" size={16} />{' '}
                                         <strong>{t('settings:changePassword')}</strong>
                                     </NavLink>
-                                    <NavLink to="/settings/twoFa">
-                                        <Icon icon="twoFA" size={16} /> <strong>{t('settings:twoFA')}</strong>
-                                    </NavLink>
                                     <hr />
                                     <NavLink to="/settings/mode">
                                         <Icon icon="mode" size={16} /> <strong>{t('settings:mode')}</strong>
@@ -167,7 +163,6 @@ class Settings extends React.PureComponent {
                         <Route path="/settings/node" component={SetNode} />
                         <Route path="/settings/currency" component={Currency} />
                         <Route path="/settings/password" component={Password} />
-                        <Route path="/settings/twoFa" component={TwoFA} />
                         <Route path="/settings/mode" component={Mode} />
                         <Route path="/settings/advanced" component={Advanced} />
                         <Route

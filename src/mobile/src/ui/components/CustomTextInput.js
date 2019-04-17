@@ -8,6 +8,7 @@ import { Checksum } from 'ui/components/Checksum';
 import { isAndroid } from 'libs/device';
 import { stringToUInt8, UInt8ToString } from 'libs/crypto';
 import { trytesToTrits, tritsToChars } from 'shared-modules/libs/iota/converter';
+import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 
 const styles = StyleSheet.create({
     fieldContainer: {
@@ -215,10 +216,10 @@ class CustomTextInput extends Component {
     onChangeText(value) {
         const { isPasswordInput, isSeedInput, onValidTextChange } = this.props;
         if (isSeedInput) {
-            if (value && !value.match(/^[a-zA-Z9]+$/)) {
+            if (value && !value.match(VALID_SEED_REGEX)) {
                 return;
             }
-            return onValidTextChange(trytesToTrits(value.toUpperCase()));
+            return onValidTextChange(trytesToTrits(value));
         } else if (isPasswordInput) {
             return onValidTextChange(stringToUInt8(value));
         }
@@ -302,8 +303,7 @@ class CustomTextInput extends Component {
         const { theme, containerStyle } = this.props;
         return (
             <TouchableOpacity
-                onPressIn={() => this.onSecretMaskPress()}
-                onPressOut={() => this.onSecretMaskPress()}
+                onPress={() => this.onSecretMaskPress()}
                 style={styles.widgetButton}
                 hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
             >

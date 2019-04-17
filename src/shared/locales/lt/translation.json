@@ -391,7 +391,6 @@
         "language": "Kalba",
         "accountManagement": "Paskyros valdymas",
         "addNewSeed": "Pridėti naują užraktą",
-        "twoFA": "Dviejų veiksnių autentifikavimas",
         "changePassword": "Keisti slaptažodį",
         "general": "Bendri nustatymai",
         "advanced": "Išplėstiniai parametrai",
@@ -620,23 +619,6 @@
         "sendingAMessage": "Siunčiama žinutė",
         "sendingAnEmptyMessage": "Siunčiama tuščia žinutė"
     },
-    "twoFA": {
-        "wrongCode": "Neteisingas kodas",
-        "wrongCodeExplanation": "Kodas, kurį įvedėte yra neteisingas. Jeigu ši klaida kartosis, patikrinkite ar jūsų įrenginio laikai teisingi.",
-        "emptyCode": "Neįvestas kodas",
-        "emptyCodeExplanation": "Įveskite kodą ir bandykite dar kartą.",
-        "keyCopied": "Kodas nukopijuotas į iškarpinę",
-        "keyCopiedExplanation": "Jūsų 2FA kodas nukopijuotas į iškarpinę.",
-        "addKey": "Pridėkite šį kodą į 2FA programėlę",
-        "key": "Kodas",
-        "twoFAEnabled": "2FA įjungtas",
-        "twoFAEnabledExplanation": "Jūs sėkmingai įjungėte dviejų veiksnių autentifikavimą.",
-        "twoFADisabled": "2FA išjungtas",
-        "twoFADisabledExplanation": "Jūs sėkmingai išjungėte dviejų veiksnių autentifikavimą.",
-        "enterCode": "Įveskite kodą iš 2FA programėlės",
-        "code": "Kodas",
-        "twoFaToken": "2FA kodas"
-    },
     "seedVault": {
         "exportSeedVault": "Iškelti SeedVault",
         "seedVaultExplanation": "SeedVault yra užšifruotas failas skirtas išsisaugoti savo užraktą. Užraktas yra užšifruojamas SeedVault raktu ir negali būti atskleistas be to rakto.",
@@ -661,7 +643,8 @@
         "seedFileError": "Atidaryti SeedVault nepavyko",
         "seedFileErrorExplanation": "Įvyko klaida atidarant SeedVault. Jeigu pasirinkote teisingą failą, gali būti, kad jis yra pažeistas.",
         "seedVaultKeyExplanation": "Pirmiausia, jums reikia apsaugoti SeedVault. Sukurkite slaptažodį norėdami užšifruoti failą. Šio slaptažodžio jums prireiks, norint atkurti užraktą iš SeedVault failo.",
-        "retypeKey": "Pakartokite slaptažodį"
+        "retypeKey": "Pakartokite slaptažodį",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -823,6 +806,8 @@
         "checkAddress": "Patikrinkite priėmimo adresą",
         "checkAddressExplanation": "Patikrinkite ar adresas sutampa su rodomu adresu Ledger įrenginyje.",
         "applicationNotInitialised": "Pranešimas nepatvirtintas",
-        "applicationNotInitialisedExplanation": "Iš naujo atidarykite IOTA aplikaciją Ledger įrenginyje, patvirtinkite informacinį pranešimą ir bandykite dar kartą."
+        "applicationNotInitialisedExplanation": "Iš naujo atidarykite IOTA aplikaciją Ledger įrenginyje, patvirtinkite informacinį pranešimą ir bandykite dar kartą.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

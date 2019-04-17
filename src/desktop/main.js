@@ -116,9 +116,7 @@ function createWindow() {
         show: false,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
-        icon: `${paths.assets}icon.${
-            process.platform === 'win32' ? 'ico' : process.platform === 'darwin' ? 'icns' : 'png'
-        }`,
+        icon: path.resolve(paths.assets, `icon.${process.platform === 'win32' ? 'ico' : process.platform === 'darwin' ? 'icns' : 'png'}`),
         webPreferences: {
             nodeIntegration: false,
             preload: path.resolve(paths.preload, devMode ? 'preloadDev.js' : 'preloadProd.js'),
@@ -226,8 +224,9 @@ function createWindow() {
                 'protect-eu.mimecast.com',
                 'privacy@iota.org',
             ];
+            const ledgerOnboarding = ['support.ledger.com'];
 
-            const externalWhitelist = [...privacyPolicyLinks, ...termsAndConditionsLinks];
+            const externalWhitelist = [...privacyPolicyLinks, ...termsAndConditionsLinks, ...ledgerOnboarding];
 
             try {
                 if (
