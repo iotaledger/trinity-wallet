@@ -122,6 +122,26 @@ class List extends React.PureComponent {
         );
     }
 
+    toIota(str) {
+        const value = parseInt(str);
+        const unit = str.substr(value.toString().length).toLowerCase();
+
+        switch (unit) {
+            case 'ki':
+                return value * 1000;
+            case 'mi':
+                return value * 1000000;
+            case 'gi':
+                return value * 1000000000;
+            case 'ti':
+                return value * 1000000000000;
+            case 'pi':
+                return value * 1000000000000000;
+            default:
+                return value;
+        }
+    }
+
     async promoteTransaction(e, bundle) {
         e.stopPropagation();
 
@@ -178,7 +198,9 @@ class List extends React.PureComponent {
                 search.length &&
                 transaction.message.toLowerCase().indexOf(search.toLowerCase()) < 0 &&
                 transaction.bundle.toLowerCase().indexOf(search.toLowerCase()) !== 0 &&
-                (!/^\+?\d+$/.test(search) || transaction.transferValue < parseInt(search))
+                !(search[0] === '>' && this.toIota(search.substr(1)) < transaction.transferValue) &&
+                !(search[0] === '<' && this.toIota(search.substr(1)) > transaction.transferValue) &&
+                transaction.transferValue !== this.toIota(search)
             ) {
                 return false;
             }
@@ -247,9 +269,31 @@ class List extends React.PureComponent {
                         <input
                             className={search.length > 0 ? css.filled : null}
                             value={search}
+                            placeholder="Type !help for available commands"
                             onChange={(e) => this.setState({ search: e.target.value })}
                         />
-                        <Icon icon="search" size={20} />
+                        <div onClick={() => this.setState({ search: '' })}>
+                            <Icon icon={search.length > 0 ? 'cross' : 'search'} size={search.length > 0 ? 16 : 20} />
+                            {search === '!help' && (
+                                <ul className={css.tooltip}>
+                                    <li>
+                                        <strong>XYZ</strong> search by bundle hash or message content
+                                    </li>
+                                    <li>
+                                        <strong>100</strong> find transactions with exact iota value
+                                    </li>
+                                    <li>
+                                        <strong>100Mi</strong> use units for another amounts
+                                    </li>
+                                    <li>
+                                        <strong>&gt;100 </strong> find transactions with value more than
+                                    </li>
+                                    <li>
+                                        <strong>&lt;100i</strong> find transactions with value less than
+                                    </li>
+                                </ul>
+                            )}
+                        </div>
                     </div>
                     {updateAccount && (
                         <a
