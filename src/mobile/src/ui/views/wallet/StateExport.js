@@ -124,11 +124,11 @@ export class StateExport extends Component {
                             fs.ls(fs.dirs.MainBundleDir),
                         ]);
 
-                        const fileExists = RNFetchBlob.fs.exists(path);
+                        const fileExists = await fs.exists(path);
                         if (fileExists) {
-                            RNFetchBlob.fs.unlink(path);
+                            fs.unlink(path);
                         }
-                        await RNFetchBlob.fs.createFile(
+                        await fs.createFile(
                             path,
                             serialise(
                                 {
