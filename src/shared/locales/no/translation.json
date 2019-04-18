@@ -572,6 +572,7 @@
         "viewSeed": "Vis hovednøkkel",
         "hideSeed": "Gjem hovednøkkel",
         "notAvailable": "Eksport av hovednøkkel er ikke tilgjengelig for {{accountType}} kontotype",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Din Ledger konto indeks",
         "accountPage": "Din Ledger kontoside"
     },
