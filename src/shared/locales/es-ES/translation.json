@@ -572,6 +572,7 @@
         "viewSeed": "Ver semilla",
         "hideSeed": "Ocultar semilla",
         "notAvailable": "La exportación de la semilla no está disponible para el tipo de cuenta {{accountType}}",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Su índice del ledger de la cuenta",
         "accountPage": "Su página de cuenta de ledger"
     },
