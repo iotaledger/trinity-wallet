@@ -572,6 +572,7 @@
         "viewSeed": "Rodyti užraktą",
         "hideSeed": "Slėpti užraktą",
         "notAvailable": "Užrakto iškėlimas yra negalimas {{accountType}} paskyros tipui",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Jūsų Ledger paskyros indeksas",
         "accountPage": "Jūsų Ledger paskyros puslapis"
     },
