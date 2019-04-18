@@ -642,6 +642,8 @@
         "noSeedFoundExplanation": "O SeedVault está vazio ou contém uma Seed com um formato inválido.",
         "seedFileError": "Falha ao abrir o SeedVault",
         "seedFileErrorExplanation": "Houve um problema ao abrir o SeedVault. Se você selecionou o arquivo correto então o mesmo pode estar corrompido.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Primeiro precisamos proteger seu SeedVault. Por favor, escolha uma chave para criptografar o arquivo. Você usará esta chave se caso precisar restaurar sua Seed do SeedVault.",
         "retypeKey": "Redigite a chave",
         "key": "Chave"
