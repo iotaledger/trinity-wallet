@@ -572,7 +572,7 @@
         "viewSeed": "Visa seed",
         "hideSeed": "Dölj seed",
         "notAvailable": "Seed export inte tillgänglig för {{accountType}} kontotyp",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "Ledger-enheten använder ett säkert element för att lagra din seed. Din seed är krypterad på ett säkert sätt och lämnar inte enheten.",
         "accountIndex": "Ditt Ledger konto-index",
         "accountPage": "Din Ledger-kontosida"
     },
@@ -643,11 +643,11 @@
         "noSeedFoundExplanation": "Din SeedVault är antingen tom eller innehåller en seed i ett ogiltigt format.",
         "seedFileError": "Det gick inte att öppna din SeedVault",
         "seedFileErrorExplanation": "Ett problem uppstod vid öppning av SeedVault. Om du har valt den korrekta filen kan den vara skadad.",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileError": "Ogiltig SeedVault-fil",
+        "invalidSeedFileErrorExplanation": "Detta filformat stöds inte. Endast SeedVault-filer (.kdbx) skapade via Trinity eller en lösenordshanterare stöds.",
         "seedVaultKeyExplanation": "Först måste vi säkra din SeedVault. Vänligen välj en nyckel för att kryptera filen. Du kommer att använda denna nyckel om du behöver återställa din seed från din SeedVault-säkerhetskopia.",
         "retypeKey": "Skriv nyckeln igen",
-        "key": "Key"
+        "key": "Nyckel"
     },
     "chart": {
         "mcap": "MCAP",
@@ -810,7 +810,7 @@
         "checkAddressExplanation": "Kontrollera att adressen matchar den som visas på din Ledger-enhet.",
         "applicationNotInitialised": "Varning obekräftad",
         "applicationNotInitialisedExplanation": "Stäng och öppna på nytt IOTA-appen på din Ledger-enhet, acceptera den informativa varningen och försök igen.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevError": "Kunde inte kommunicera med Ledger-enheten",
+        "udevErrorExplanation": "Trinity kunde inte kommunicera med Ledger-enheten. Besök webbadressen nedan för att lösa problemet."
     }
 }
