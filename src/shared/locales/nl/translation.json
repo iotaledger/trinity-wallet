@@ -572,6 +572,7 @@
         "viewSeed": "Bekijk Seed",
         "hideSeed": "Verberg Seed",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
