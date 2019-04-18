@@ -642,6 +642,8 @@
         "noSeedFoundExplanation": "Seemnehoidla on tühi või sisaldab seemet vales vormingus.",
         "seedFileError": "Seemnehoidla avamine nurjus",
         "seedFileErrorExplanation": "Seemnehoidla avamisega oli probleem. Kui valisite õige faili, siis võib see olla rikutud.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
         "key": "Key"
