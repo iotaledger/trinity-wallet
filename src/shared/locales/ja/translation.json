@@ -572,6 +572,7 @@
         "viewSeed": "シードを表示",
         "hideSeed": "シードを隠す",
         "notAvailable": "シード出力は{{accountType}}のアカウントタイプでは利用できません",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Ledgerのアカウントインデックス",
         "accountPage": "Ledgerのアカウントページ"
     },
