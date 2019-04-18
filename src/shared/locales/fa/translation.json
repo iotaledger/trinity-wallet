@@ -572,6 +572,7 @@
         "viewSeed": "مشاهده سید",
         "hideSeed": "پنهان کردن سید",
         "notAvailable": "برون‌ریزی سید برای نوع حساب {{accountType}} در دسترس نمی‌باشد",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "اندیس حساب لدجر شما",
         "accountPage": "صفحه حساب لدجر شما"
     },
