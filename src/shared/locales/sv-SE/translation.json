@@ -572,6 +572,7 @@
         "viewSeed": "Visa seed",
         "hideSeed": "Dölj seed",
         "notAvailable": "Seed export inte tillgänglig för {{accountType}} kontotyp",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Ditt Ledger konto-index",
         "accountPage": "Din Ledger-kontosida"
     },
