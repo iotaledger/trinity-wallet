@@ -577,7 +577,7 @@
         "viewSeed": "View Seed",
         "hideSeed": "Hide Seed",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "notAvailableExplanationLedger": "Ledger device uses a secure element chip to store your accounts seed and it is designed to never allow an extraction of the seed.",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
