@@ -572,6 +572,7 @@
         "viewSeed": "查看种子",
         "hideSeed": "隐藏种子",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "您的Ledger账户索引",
         "accountPage": "您的Ledger账户页面"
     },
