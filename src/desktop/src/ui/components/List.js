@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
 
-import { formatValue, formatUnit } from 'libs/iota/utils';
+import { formatValue, formatUnit, unitStringToValue } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate, detectedTimezone } from 'libs/date';
 import SeedStore from 'libs/SeedStore';
@@ -122,26 +122,6 @@ class List extends React.PureComponent {
         );
     }
 
-    toIota(str) {
-        const value = parseInt(str);
-        const unit = str.substr(value.toString().length).toLowerCase();
-
-        switch (unit) {
-            case 'ki':
-                return value * 1000;
-            case 'mi':
-                return value * 1000000;
-            case 'gi':
-                return value * 1000000000;
-            case 'ti':
-                return value * 1000000000000;
-            case 'pi':
-                return value * 1000000000000000;
-            default:
-                return value;
-        }
-    }
-
     async promoteTransaction(e, bundle) {
         e.stopPropagation();
 
@@ -198,9 +178,9 @@ class List extends React.PureComponent {
                 search.length &&
                 transaction.message.toLowerCase().indexOf(search.toLowerCase()) < 0 &&
                 transaction.bundle.toLowerCase().indexOf(search.toLowerCase()) !== 0 &&
-                !(search[0] === '>' && this.toIota(search.substr(1)) < transaction.transferValue) &&
-                !(search[0] === '<' && this.toIota(search.substr(1)) > transaction.transferValue) &&
-                transaction.transferValue !== this.toIota(search)
+                !(search[0] === '>' && unitStringToValue(search.substr(1)) < transaction.transferValue) &&
+                !(search[0] === '<' && unitStringToValue(search.substr(1)) > transaction.transferValue) &&
+                transaction.transferValue !== unitStringToValue(search)
             ) {
                 return false;
             }
