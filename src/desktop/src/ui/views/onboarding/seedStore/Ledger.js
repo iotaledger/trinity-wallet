@@ -11,6 +11,7 @@ import { setAccountInfoDuringSetup } from 'actions/accounts';
 import Button from 'ui/components/Button';
 import Number from 'ui/components/input/Number';
 import Toggle from 'ui/components/Toggle';
+import Modal from 'ui/components/modal/Modal';
 
 import css from './index.scss';
 
@@ -38,6 +39,7 @@ class Ledger extends React.PureComponent {
         page: this.props.additionalAccountMeta.page || 0,
         loading: false,
         advancedMode: false,
+        udevError: false,
     };
 
     /**
@@ -94,18 +96,52 @@ class Ledger extends React.PureComponent {
                     t('ledger:applicationNotInitialisedExplanation'),
                 );
             }
+
+            // Handle udev errors
+            // See https://github.com/LedgerHQ/ledger-live-desktop/issues/1057 and https://github.com/iotaledger/trinity-wallet/issues/589
+            if (error.message.includes('cannot open device with path')) {
+                this.setState({
+                    udevError: true,
+                });
+            }
+
             this.setState({
                 loading: false,
             });
         }
     };
 
+    showUdevModal = (udevError) => {
+        if (udevError) {
+            const { t } = this.props;
+
+            return (
+                <Modal variant="fullscreen" isOpen isForced onClose={() => {}}>
+                    <h1>{t('ledger:udevError')}</h1>
+                    <p>{t('ledger:udevErrorExplanation')}</p>
+                    <p>
+                        <a href="https://support.ledger.com/hc/articles/115005165269">
+                            https://support.ledger.com/hc/articles/115005165269
+                        </a>
+                    </p>
+                    <footer>
+                        <Button to="/onboarding/seed-intro" className="square"variant="dark">
+                            {t('goBackStep')}
+                        </Button>
+                    </footer>
+                </Modal>
+            );
+        }
+        return null;
+    };
+
     render() {
         const { t } = this.props;
-        const { page, index, loading, advancedMode } = this.state;
+        const { page, index, loading, advancedMode, udevError } = this.state;
 
         return (
             <form className={css.ledger} onSubmit={this.setIndex}>
+                {this.showUdevModal(udevError)}
                 <section>
                     <h1>{t('ledger:chooseAccountIndex')}</h1>
                     <p>{t('ledger:accountIndexExplanation')}</p>

@@ -391,7 +391,6 @@
         "language": "Kieli",
         "accountManagement": "Tilinhallinta",
         "addNewSeed": "Lisää uusi seed-luku",
-        "twoFA": "Kaksivaiheinen tunnistautuminen (2FA)",
         "changePassword": "Vaihda salasana",
         "general": "General settings",
         "advanced": "Lisäasetukset",
@@ -620,23 +619,6 @@
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
-    "twoFA": {
-        "wrongCode": "Väärä koodi",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "Tyhjennä tunnusluku",
-        "emptyCodeExplanation": "Syötä tunnusluku ja yritä uudelleen.",
-        "keyCopied": "Avain kopioitu leikepöydälle",
-        "keyCopiedExplanation": "Sinun 2FA-avaimesi on kopioitu leikepöydälle.",
-        "addKey": "Lisää alla oleva avain 2FA-sovellukseen",
-        "key": "Avain",
-        "twoFAEnabled": "2FA on nyt käytössä",
-        "twoFAEnabledExplanation": "Olet onnistuneesti ottanut käyttöön kaksivaihetunnistautumisen (2FA).",
-        "twoFADisabled": "Kaksivaiheinen tunnistautuminen (2FA) poistettu käytöstä",
-        "twoFADisabledExplanation": "Kaksivaihetunnistautumisen (2FA) poistettu käytöstä onnistuneesti.",
-        "enterCode": "Syötä tunnusluku 2FA-sovelluksesta",
-        "code": "Tunnusluku",
-        "twoFaToken": "2FA tunnus"
-    },
     "seedVault": {
         "exportSeedVault": "Vie SeedVault-tiedosto",
         "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
@@ -661,7 +643,8 @@
         "seedFileError": "SeedVault-tiedoston avaaminen epäonnistui",
         "seedFileErrorExplanation": "SeedVault-tiedoston avaamisessa ilmeni ongelmia. Varmista että sinulla on oikea tiedosto, eikä se ole korruptoitunut.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MARVO",
@@ -823,6 +806,8 @@
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

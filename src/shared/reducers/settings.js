@@ -73,10 +73,6 @@ const initialState = {
      */
     versions: {},
     /**
-     * Determines if user has enabled two factor authentication on the wallet
-     */
-    is2FAEnabled: false,
-    /**
      * Determines if user has enabled finger print authentication
      */
     isFingerprintEnabled: false,
@@ -206,11 +202,6 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 node: action.payload,
                 hasRandomizedNode: true,
-            };
-        case ActionTypes.SET_2FA_STATUS:
-            return {
-                ...state,
-                is2FAEnabled: action.payload,
             };
         case ActionTypes.SET_FINGERPRINT_STATUS:
             return {

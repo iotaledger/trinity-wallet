@@ -25,22 +25,11 @@ class SecuritySettings extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        is2FAEnabled: PropTypes.bool.isRequired,
-        /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
     };
 
     componentDidMount() {
         leaveNavigationBreadcrumb('SecuritySettings');
-    }
-
-    /**
-     * Navigates to two factor authentication screen
-     * @method on2FASetupPress
-     */
-    on2FASetupPress() {
-        const { is2FAEnabled } = this.props;
-        navigator.push(is2FAEnabled ? 'disable2FA' : 'twoFactorSetupAddKey');
     }
 
     /**
@@ -52,16 +41,10 @@ class SecuritySettings extends Component {
     }
 
     renderSettingsContent() {
-        const { theme, t, is2FAEnabled, isFingerprintEnabled } = this.props;
+        const { theme, t, isFingerprintEnabled } = this.props;
         const rows = [
             { name: t('changePassword'), icon: 'password', function: () => this.props.setSetting('changePassword') },
             { name: 'separator' },
-            {
-                name: t('twoFA'),
-                icon: 'twoFA',
-                function: () => this.on2FASetupPress(),
-                currentSetting: is2FAEnabled ? t('enabled') : t('disabled'),
-            },
             {
                 name: t('fingerprint'),
                 icon: 'biometric',
@@ -80,7 +63,6 @@ class SecuritySettings extends Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
-    is2FAEnabled: state.settings.is2FAEnabled,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 

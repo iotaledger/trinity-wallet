@@ -391,7 +391,6 @@
         "language": "زبان",
         "accountManagement": "مدیریت حساب",
         "addNewSeed": "سید جدید را اضافه کنید",
-        "twoFA": "احراز هویت دو مرحله ای",
         "changePassword": "تغییر گذرواژه",
         "general": "تنظیمات عمومی",
         "advanced": "تنظیمات پیشرفته",
@@ -620,23 +619,6 @@
         "sendingAMessage": "در حال ارسال یک پیام",
         "sendingAnEmptyMessage": "در حال ارسال یک پیام خالی"
     },
-    "twoFA": {
-        "wrongCode": "کد اشتباه است",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "کد خالی است",
-        "emptyCodeExplanation": "لطفا یک کد وارد کنید و دوباره تلاش کنید.",
-        "keyCopied": "کلید به کلیپ بورد کپی شد",
-        "keyCopiedExplanation": "کلید 2FA شما به کلیپ بورد کپی شده است.",
-        "addKey": "این کلید را به برنامه 2FA اضافه کنید",
-        "key": "کلید",
-        "twoFAEnabled": "2FA در حال حاضر فعال است",
-        "twoFAEnabledExplanation": "شما دو عامل تایید هویت را با موفقیت فعال کردید.",
-        "twoFADisabled": "2FA در حال حاضر غیرفعال است",
-        "twoFADisabledExplanation": "شما دو عامل تایید هویت را با موفقیت غیرفعال کردید.",
-        "enterCode": "کد را از برنامه 2FA خود وارد کنید",
-        "code": "کد",
-        "twoFaToken": "نشانه 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "استخراج سید Vault",
         "seedVaultExplanation": "SeedVault یک فایل رمزنگاری شده برای پشتیبان‌گیری از سید شما است. سید با کلید SeedVault رمزنگاری می‌شود و بدون آن کلید قابل دسترسی نخواهد بود.",
@@ -661,7 +643,8 @@
         "seedFileError": "باز کردن فایل سید Vault ناموفق بود",
         "seedFileErrorExplanation": "در باز کردن سید Vault با مشکل مواجه شد. اگر فایل درست را انتخاب کردید، ممکن است خراب شده باشد.",
         "seedVaultKeyExplanation": "ما ابتدا نیاز داریم که SeedVault شما را امن کنیم. لطفا یک کلید برای رمزنگاری فایل انتخاب کنید. شما زمانی که نیاز به بازیابی سید خود از پشتیبان‌گیری SeedVault داشته باشید، از این کلید استفاده خواهید کرد.",
-        "retypeKey": "کلید را دوباره وارد کنید"
+        "retypeKey": "کلید را دوباره وارد کنید",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -823,6 +806,8 @@
         "checkAddress": "آدرس دریافت را بررسی کنید",
         "checkAddressExplanation": "بررسی کنید که آدرس با آنچه در دستگاه لدجر شما نشان داده می‌شود همخوانی دارد.",
         "applicationNotInitialised": "هشدار تایید نشده",
-        "applicationNotInitialisedExplanation": "برنامه IOTA را در دستگاه لدجر خود مجددا باز کرده، هشدارهای اطلاعاتی را قبول و مجددا تلاش کنید."
+        "applicationNotInitialisedExplanation": "برنامه IOTA را در دستگاه لدجر خود مجددا باز کرده، هشدارهای اطلاعاتی را قبول و مجددا تلاش کنید.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

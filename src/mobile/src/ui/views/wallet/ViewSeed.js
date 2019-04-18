@@ -1,5 +1,4 @@
 import isEqual from 'lodash/isEqual';
-import authenticator from 'authenticator';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -32,8 +31,7 @@ import InfoBox from 'ui/components/InfoBox';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
-import { TWOFA_TOKEN_LENGTH } from 'shared-modules/libs/utils';
-import { hash, getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
+import { hash } from 'libs/keychain';
 
 const styles = StyleSheet.create({
     container: {
@@ -102,8 +100,6 @@ class ViewSeed extends Component {
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** @ignore */
-        is2FAEnabled: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -112,10 +108,7 @@ class ViewSeed extends Component {
             password: null,
             seed: '',
             step: 'isViewingGeneralInfo',
-            token: '',
-            steps: props.is2FAEnabled
-                ? ['isViewingGeneralInfo', 'isEnteringPassword', 'isEntering2FA', 'isViewingSeed']
-                : ['isViewingGeneralInfo', 'isEnteringPassword', 'isViewingSeed'],
+            steps: ['isViewingGeneralInfo', 'isEnteringPassword', 'isViewingSeed'],
         };
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
         this.onNextPress = this.onNextPress.bind(this);
@@ -132,12 +125,6 @@ class ViewSeed extends Component {
     componentWillReceiveProps(newProps) {
         if (this.props.seedIndex !== newProps.seedIndex) {
             this.resetComponent();
-        }
-    }
-
-    componentWillUpdate(newProps, newState) {
-        if (this.state.token.length !== TWOFA_TOKEN_LENGTH && newState.token.length === TWOFA_TOKEN_LENGTH) {
-            this.onComplete2FA(newState.token);
         }
     }
 
@@ -161,8 +148,6 @@ class ViewSeed extends Component {
             return this.navigateToStep('isEnteringPassword');
         } else if (step === 'isEnteringPassword') {
             return this.verifyPassword();
-        } else if (step === 'isEntering2FA') {
-            return await this.verifyPassword();
         }
     }
 
@@ -177,32 +162,6 @@ class ViewSeed extends Component {
             return this.props.setSetting('accountManagement');
         }
         this.resetComponent();
-    }
-
-    /**
-     * Validates 2FA token and logs in user if accepted
-     * @method onComplete2FA
-     */
-    async onComplete2FA(token) {
-        const { t } = this.props;
-        if (token) {
-            const key = await getTwoFactorAuthKeyFromKeychain(global.passwordHash);
-            if (key === null) {
-                this.props.generateAlert(
-                    'error',
-                    t('global:somethingWentWrong'),
-                    t('global:somethingWentWrongTryAgain'),
-                );
-            }
-            const verified = authenticator.verifyToken(key, token);
-            if (verified) {
-                this.navigateToStep('isViewingSeed');
-            } else {
-                this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
-            }
-        } else {
-            this.props.generateAlert('error', t('twoFA:emptyCode'), t('twoFA:emptyCodeExplanation'));
-        }
     }
 
     /**
@@ -230,7 +189,7 @@ class ViewSeed extends Component {
      * @returns {Promise<void>}
      */
     async verifyPassword() {
-        const { t, selectedAccountName, selectedAccountMeta, is2FAEnabled } = this.props;
+        const { t, selectedAccountName, selectedAccountMeta } = this.props;
         if (!this.state.password) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         }
@@ -241,7 +200,7 @@ class ViewSeed extends Component {
                 FlagSecure.activate();
             }
             this.setState({ seed: await seedStore.getSeed() });
-            this.navigateToStep(is2FAEnabled ? 'isEntering2FA' : 'isViewingSeed');
+            this.navigateToStep('isViewingSeed');
         } else {
             this.props.generateAlert(
                 'error',
@@ -269,13 +228,13 @@ class ViewSeed extends Component {
      */
     resetComponent() {
         this.navigateToStep('isViewingGeneralInfo');
-        this.setState({ password: null, seed: '', token: '' });
+        this.setState({ password: null, seed: '' });
     }
 
     render() {
-        const { t, theme, is2FAEnabled } = this.props;
+        const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
-        const { password, token, steps, step } = this.state;
+        const { password, steps, step } = this.state;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -329,28 +288,6 @@ class ViewSeed extends Component {
                                 containerStyle={{ marginTop: height / 20 }}
                             />
                         </View>
-                        {is2FAEnabled && (
-                            <View style={styles.viewContainer}>
-                                <Text style={[styles.generalText, textColor]}>{t('twoFA:enterCode')}</Text>
-                                <CustomTextInput
-                                    label={t('twoFA:twoFaToken')}
-                                    onValidTextChange={(token) => this.setState({ token })}
-                                    containerStyle={{
-                                        width: Styling.contentWidth,
-                                        paddingTop: height / 20,
-                                        paddingBottom: height / 16 + height / 20,
-                                    }}
-                                    autoCapitalize="none"
-                                    keyboardType="numeric"
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically
-                                    returnKeyType="done"
-                                    onSubmitEditing={() => this.onComplete2FA(token)}
-                                    theme={theme}
-                                    value={token}
-                                />
-                            </View>
-                        )}
                         <View style={styles.viewContainer}>
                             <View style={{ flex: 1 }}>
                                 {step === 'isViewingSeed' && (
@@ -381,7 +318,6 @@ const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),
     theme: getThemeFromState(state),
-    is2FAEnabled: state.settings.is2FAEnabled,
 });
 
 const mapDispatchToProps = {

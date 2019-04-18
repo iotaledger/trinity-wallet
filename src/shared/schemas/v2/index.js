@@ -1,6 +1,6 @@
 import merge from 'lodash/merge';
 import map from 'lodash/map';
-import defaultSchemas from '../default';
+import v1Schema from '../v1';
 
 const migration = (_, newRealm) => {
     const walletData = newRealm.objectForPrimaryKey('Wallet', 1);
@@ -9,7 +9,7 @@ const migration = (_, newRealm) => {
     walletData.version = 2;
 };
 
-export default map(defaultSchemas, (schema) => {
+export default map(v1Schema, (schema) => {
     if (schema.name === 'WalletSettings') {
         return merge({}, schema, {
             properties: {
