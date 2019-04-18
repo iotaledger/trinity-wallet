@@ -642,6 +642,8 @@
         "noSeedFoundExplanation": "De Seedkluis is leeg, of heeft een seed in een ongeldig formaat.",
         "seedFileError": "Kan Seedkluis niet openen",
         "seedFileErrorExplanation": "Er was een probleem tijdens het openen van de Seedkluis. Als u het juiste bestand hebt gekozen, kan het zijn dat dit corrupt is.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
         "key": "Key"
