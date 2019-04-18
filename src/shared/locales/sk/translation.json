@@ -572,6 +572,7 @@
         "viewSeed": "Zobraziť Seed",
         "hideSeed": "Skryť Seed",
         "notAvailable": "Seed export nie je k dispozícii pre typ účtu {{accountType}}",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Index účtu vo Vašom Ledgeri",
         "accountPage": "Stránka účtu vo Vašom Ledgeri"
     },
