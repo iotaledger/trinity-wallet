@@ -128,6 +128,16 @@ class SeedInput extends React.PureComponent {
             );
         }
 
+        const isValidVault = Electron.validateVault(buffer);
+
+        if (!isValidVault) {
+            return this.props.generateAlert(
+                'error',
+                t('seedVault:invalidSeedFileError'),
+                t('seedVault:invalidSeedFileErrorExplanation'),
+            );
+        }
+
         this.setState({
             importBuffer: buffer,
         });
@@ -286,7 +296,9 @@ class SeedInput extends React.PureComponent {
         const checkSum =
             seed.length < MAX_SEED_LENGTH
                 ? '< 81'
-                : seed.length > MAX_SEED_LENGTH ? '> 81' : Electron.getChecksum(seed);
+                : seed.length > MAX_SEED_LENGTH
+                ? '> 81'
+                : Electron.getChecksum(seed);
 
         return (
             <div className={classNames(css.input, css.seed)}>
@@ -387,4 +399,7 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(null, mapDispatchToProps)(withI18n()(SeedInput));
+export default connect(
+    null,
+    mapDispatchToProps,
+)(withI18n()(SeedInput));
