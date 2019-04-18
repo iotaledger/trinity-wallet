@@ -572,6 +572,7 @@
         "viewSeed": "Prikaži seed",
         "hideSeed": "Sakrij seed",
         "notAvailable": "Izvod seed-a nije dostupan za {{accountType}} tip naloga",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Indeks vašeg Ledger naloga",
         "accountPage": "Your Ledger account page"
     },
