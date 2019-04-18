@@ -572,6 +572,7 @@
         "viewSeed": "檢視種子碼",
         "hideSeed": "隱藏種子碼",
         "notAvailable": "{{accountType}} 帳戶類型無法匯出種子碼",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "您的 Ledger 帳戶索引",
         "accountPage": "Your Ledger account page"
     },
