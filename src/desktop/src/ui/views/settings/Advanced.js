@@ -55,6 +55,8 @@ class Advanced extends PureComponent {
         /** @ignore */
         changeAutoPromotionSettings: PropTypes.func.isRequired,
         /** @ignore */
+        changeDeepLinkingSettings: PropTypes.func.isRequired,
+        /** @ignore */
         setLockScreenTimeout: PropTypes.func.isRequired,
         /** @ignore */
         lockScreenTimeout: PropTypes.number.isRequired,
