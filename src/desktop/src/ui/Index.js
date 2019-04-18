@@ -177,7 +177,8 @@ class App extends React.Component {
         const { deepLinking, generateAlert, t } = this.props;
 
         if (!deepLinking) {
-            return this.props.history.push('/settings/advanced');
+            this.props.history.push('/settings/advanced');
+            return generateAlert('info', t('deepLink:deepLinkingInfoTitle'), t('deepLink:deepLinkingInfoMessage'));
         }
 
         const parsedData = parseAddress(data);
