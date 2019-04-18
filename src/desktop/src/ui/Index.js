@@ -89,6 +89,8 @@ class App extends React.Component {
         /** @ignore */
         shouldUpdate: PropTypes.func.isRequired,
         /** @ignore */
+        deepLinking: PropTypes.bool.isRequired,
+        /** @ignore */
         forceUpdate: PropTypes.func.isRequired,
         /** @ignore */
         setAccountInfoDuringSetup: PropTypes.func.isRequired,
@@ -172,7 +174,11 @@ class App extends React.Component {
      * @param {string} Data - data passed
      */
     setDeepUrl(data) {
-        const { generateAlert, t } = this.props;
+        const { deepLinking, generateAlert, t } = this.props;
+
+        if (!deepLinking) {
+            return;
+        }
 
         const parsedData = parseAddress(data);
 
@@ -330,6 +336,7 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
     themeName: state.settings.themeName,
     onboardingComplete: state.accounts.onboardingComplete,
+    deepLinking: state.settings.deepLinking,
     isBusy:
         !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
 });

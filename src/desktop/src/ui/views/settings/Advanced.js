@@ -10,6 +10,7 @@ import { getEncryptionKey, ALIAS_REALM } from 'libs/realm';
 import {
     changePowSettings,
     changeAutoPromotionSettings,
+    changeDeepLinkingSettings,
     setLockScreenTimeout,
     setTray,
     setNotifications,
@@ -154,6 +155,7 @@ class Advanced extends PureComponent {
             wallet,
             changePowSettings,
             changeAutoPromotionSettings,
+            changeDeepLinkingSettings,
             lockScreenTimeout,
             setNotifications,
             t,
@@ -187,6 +189,17 @@ class Advanced extends PureComponent {
                                     off={t('disabled')}
                                 />
                                 <p>{t('advancedSettings:autoPromotionExplanation')}</p>
+                                <hr />
+
+                                <h3>{t('advancedSettings:deepLinking')}</h3>
+                                <Toggle
+                                    checked={settings.deepLinking}
+                                    onChange={() => changeDeepLinkingSettings()}
+                                    on={t('enabled')}
+                                    off={t('disabled')}
+                                />
+                                <p>{t('deepLink:deepLinkingOverview')}</p>
+                                <p>{t('deepLink:deepLinkingWarning')}</p>
                                 <hr />
 
                                 {Electron.getOS() === 'darwin' && (
@@ -327,6 +340,7 @@ const mapDispatchToProps = {
     generateAlert,
     changePowSettings,
     changeAutoPromotionSettings,
+    changeDeepLinkingSettings,
     setLockScreenTimeout,
     setTray,
     setNotifications,
