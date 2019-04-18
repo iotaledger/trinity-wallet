@@ -642,6 +642,8 @@
         "noSeedFoundExplanation": "SeedVault kosong atau tidak mempunyai format Seed yang valid.",
         "seedFileError": "Gagal membuka SeedVault",
         "seedFileErrorExplanation": "Gagal membuka SeedVault. Jika ini benar, file ini mungkin rusak.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
         "key": "Key"
