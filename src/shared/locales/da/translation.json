@@ -572,6 +572,7 @@
         "viewSeed": "Se hovednøgle",
         "hideSeed": "Skjul hovednøgle",
         "notAvailable": "Hovednøgleeksport er ikke tilgængelig for {{accountType}}-kontotypen",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Dit hovedkontoindeks",
         "accountPage": "Din hovedkontoside"
     },
