@@ -769,25 +769,42 @@ const initialise = (getEncryptionKeyPromise) => {
             hasVersionOneRealmAtDeprecatedPath = Realm.schemaVersion(getDeprecatedStoragePath(1), encryptionKey) !== -1;
         } catch (error) {}
 
-        if (hasVersionZeroRealmAtDeprecatedPath) {
-            const config = {
-                encryptionKey,
-                schemaVersion: 0,
-                path: getDeprecatedStoragePath(0),
-                schema: v0Schema,
-            };
+        const versionZeroConfig = {
+            encryptionKey,
+            schemaVersion: 0,
+            path: getDeprecatedStoragePath(0),
+            schema: v0Schema,
+        };
 
-            migrateToNewStoragePath(config);
-        } else if (hasVersionOneRealmAtDeprecatedPath) {
-            const config = {
-                encryptionKey,
-                schemaVersion: 1,
-                path: getDeprecatedStoragePath(1),
-                schema: v1Schema,
-            };
+        const versionOneConfig = {
+            encryptionKey,
+            schemaVersion: 1,
+            path: getDeprecatedStoragePath(1),
+            schema: v1Schema,
+        };
 
-            migrateToNewStoragePath(config);
+        if (
+            hasVersionZeroRealmAtDeprecatedPath &&
+            // Make sure version one realm file doesn't exist
+            // If both version zero and version one files exist,
+            // that probably means that a user already migrated to version one schema but version zero file wasn't removed
+            !hasVersionOneRealmAtDeprecatedPath
+        ) {
+            migrateToNewStoragePath(versionZeroConfig);
         }
+
+        if (hasVersionOneRealmAtDeprecatedPath) {
+            migrateToNewStoragePath(versionOneConfig);
+        }
+
+        // Realm.schemaVersion(path) creates unnecessary files at provided path
+        try {
+            Realm.deleteFile(versionZeroConfig);
+        } catch (error) {}
+
+        try {
+            Realm.deleteFile(versionOneConfig);
+        } catch (error) {}
 
         const schemasSize = size(schemas);
         let nextSchemaIndex = 0;
