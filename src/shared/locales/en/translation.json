@@ -514,7 +514,7 @@
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work.",
         "deepLinking": "Deep linking",
-        "exportState": "Export state"
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Background",
@@ -665,9 +665,9 @@
         "key": "Key"
     },
     "stateExport": {
-        "stateExportExplanation" : "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version and names of storage files",
+        "stateExportExplanation" : "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
         "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully"
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",

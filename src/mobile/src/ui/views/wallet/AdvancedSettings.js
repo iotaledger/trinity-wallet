@@ -140,7 +140,7 @@ export class AdvancedSettings extends PureComponent {
             },
             { name: t('manualSync'), icon: 'sync', function: () => this.props.setSetting('manualSync') },
             {
-                name: t('exportState'),
+                name: t('stateExport'),
                 icon: 'copy',
                 function: () => this.props.setSetting('stateExport'),
             },
@@ -170,6 +170,9 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['advancedSettings', 'settings', 'global', 'stateExport'])(
-    connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings),
+export default withNamespaces(['advancedSettings', 'settings', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(AdvancedSettings),
 );
