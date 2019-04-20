@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Balíček hash zkopírován",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "No transactions found",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Skrýt nulový zůstatek",
         "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
         "addressCopied": "Adresa zkopírována",
@@ -468,7 +469,13 @@
         "retrying": "Opakování",
         "yesterday": "Včera",
         "promotingAnotherBundle": "Podpora dalšího balíčku",
-        "pleaseWait": "Prosím počkejte, Trinity podporuje další balíček."
+        "pleaseWait": "Prosím počkejte, Trinity podporuje další balíček.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
