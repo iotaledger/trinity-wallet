@@ -324,7 +324,7 @@ class History extends Component {
                 ListEmptyComponent={
                     <View style={styles.noTransactionsContainer}>
                         <InfoBox>
-                            <Text style={[styles.infoText, { color: body.color }]}>{t('noTransactionsFound')}</Text>
+                            <Text style={[styles.infoText, { color: body.color }]}>{t('emptyHistory')}</Text>
                             <CtaButton
                                 ctaColor={primary.color}
                                 ctaBorderColor={primary.color}
