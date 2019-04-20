@@ -28,6 +28,7 @@ import ThemeCustomisation from 'ui/views/wallet/ThemeCustomisation';
 import SnapshotTransitionComponent from 'ui/views/wallet/SnapshotTransition';
 import SecuritySettings from 'ui/views/wallet/SecuritySettings';
 import SeedVaultSettings from 'ui/views/wallet/SeedVaultSettings';
+import StateExportComponent from 'ui/views/wallet/StateExport';
 import About from 'ui/views/wallet/About';
 import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
@@ -58,6 +59,7 @@ const SETTINGS_COMPONENTS = {
     deepLinking: DeepLinking,
     about: About,
     exportSeedVault: SeedVaultSettings,
+    stateExport: StateExportComponent,
 };
 
 const SettingsContent = ({ component, ...props }) => {

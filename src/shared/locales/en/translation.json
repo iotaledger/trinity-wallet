@@ -1,5 +1,6 @@
 {
     "global": {
+        "exportState": "Export State",
         "send": "SEND",
         "cancel": "Cancel",
         "continue?": "Are you sure you want to continue?",
@@ -662,6 +663,11 @@
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
         "key": "Key"
+    },
+    "stateExport": {
+        "stateExportExplanation" : "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version and names of storage files",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully"
     },
     "chart": {
         "mcap": "MCAP",
