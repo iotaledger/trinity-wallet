@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "بسته نرم افزاری هش کپی شد",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "No transactions found",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "پنهان کردن موجودی صفر",
         "bundleHashCopiedExplanation": "هش بسته نرم افزاری به کلیپ بورد کپی شد.",
         "addressCopied": "آدرس کپی شد",
@@ -468,7 +469,13 @@
         "retrying": "درحال تلاش دوباره",
         "yesterday": "دیروز",
         "promotingAnotherBundle": "در حال ارتقای یک بسته تراکنش دیگر",
-        "pleaseWait": "لطفا صبر کنید، Trinity در حال ارتقای یک بسته تراکنش دیگر است."
+        "pleaseWait": "لطفا صبر کنید، Trinity در حال ارتقای یک بسته تراکنش دیگر است.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "مشاهده سید",
