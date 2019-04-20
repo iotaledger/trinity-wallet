@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Hashbunt kopierad",
-        "noTransactionsFound": "Din transaktionshistorik är tom",
+        "noTransactionsFound": "No transactions found",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Dölj nollvärden",
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
@@ -468,7 +469,13 @@
         "retrying": "Försöker igen",
         "yesterday": "Igår",
         "promotingAnotherBundle": "Främjar en annan transaktionsbunt",
-        "pleaseWait": "Vänta vänligen, Trinity är upptagen med att befordra en annan transaktionsbunt."
+        "pleaseWait": "Vänta vänligen, Trinity är upptagen med att befordra en annan transaktionsbunt.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
