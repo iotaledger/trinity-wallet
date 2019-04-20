@@ -306,6 +306,13 @@
 			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
 			remoteInfo = RNCamera;
 		};
+		605C6A8D226AE8290036E480 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 205C47BA61DC4D6733E748712B4E50C6 /* RNKeychain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6478985F1F38BF9100DA1C12;
+			remoteInfo = "RNKeychain-tvOS";
+		};
 		60F7E3B22125EAE7005355C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 60F7E3AE2125EAE7005355C7 /* RNDocumentPicker.xcodeproj */;
@@ -841,13 +848,14 @@
 				601673EB221D16A70011CC20 /* libRealmReact.a in Frameworks */,
 				601673EA221D169E0011CC20 /* libc++.tbd in Frameworks */,
 				CB563C0C21C1470F00AE4437 /* libQRCode.a in Frameworks */,
+				2F852D5F92D3F66B78914D33F296087F /* libLottie.a in Frameworks */,
 				CBDE11BF21AF008D00CA1909 /* libLottieReactNative.a in Frameworks */,
+				CBDE11BB21AEFFFE00CA1909 /* Lottie.framework in Frameworks */,
 				6020D31F21A507BC00159E5A /* libReact.a in Frameworks */,
 				6020D31E21A5077600159E5A /* libRCTAnimation.a in Frameworks */,
 				CBEA4C9421494823007DA583 /* libReactNativeNavigation.a in Frameworks */,
 				60F7E4242125EBE7005355C7 /* libRNDocumentPicker.a in Frameworks */,
 				CB305F0421185EF800657575 /* libRNFetchBlob.a in Frameworks */,
-				CBDE11BB21AEFFFE00CA1909 /* Lottie.framework in Frameworks */,
 				601BFD6220C39A610097D329 /* libRNViewShot.a in Frameworks */,
 				601BFCF220C3679D0097D329 /* MessageUI.framework in Frameworks */,
 				601BFCF020C3677F0097D329 /* Social.framework in Frameworks */,
@@ -858,7 +866,6 @@
 				C2F42249DD5989B1962B809D5CCC00F3 /* libART.a in Frameworks */,
 				0C2504A17226DF5FFD3C2A54AD060E8A /* libBugsnagReactNative.a in Frameworks */,
 				6ED5CBEF7B1A39258C560F6CDCD36254 /* libKCKeepAwake.a in Frameworks */,
-				2F852D5F92D3F66B78914D33F296087F /* libLottie.a in Frameworks */,
 				227F5ECF692F599792F69DC4D573B2E6 /* libRCTActionSheet.a in Frameworks */,
 				E3AE8565650D2534125883D55649D450 /* libRCTGeolocation.a in Frameworks */,
 				C4646F689AA9CF8E8FFC65C04944FF13 /* libRCTImage.a in Frameworks */,
@@ -1193,6 +1200,7 @@
 			isa = PBXGroup;
 			children = (
 				D373EB5A6D14212CD152A952A67FEB62 /* libRNKeychain.a */,
+				605C6A8E226AE8290036E480 /* libRNKeychain.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1656,6 +1664,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				fr,
 				de,
 				"zh-Hans",
@@ -2025,6 +2034,13 @@
 			fileType = archive.ar;
 			path = libRNCamera.a;
 			remoteRef = 6056CF5320827D2F0006A2F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		605C6A8E226AE8290036E480 /* libRNKeychain.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNKeychain.a;
+			remoteRef = 605C6A8D226AE8290036E480 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		60F7E3B32125EAE7005355C7 /* libRNDocumentPicker.a */ = {
