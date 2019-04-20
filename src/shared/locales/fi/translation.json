@@ -455,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "Kokoelman tiivisteluku kopioitu",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "Tapahtumia ei löytynyt",
         "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Piilota nollasaldo",
         "bundleHashCopiedExplanation": "Kokoelman tiivisteluku on kopioitu leikepöydälle.",
@@ -609,7 +609,7 @@
         "fingerprintUnavailableExplanation": "Laitteesi ei tue biometristä tunnistusta tai se on otettu pois käytöstä asetuksista.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Paina alla olevaa painiketta poistaaksesi sormenjälkitunnistuksen käytöstä.",
         "buttonInstructionsEnable": "Paina alla olevaa painiketta ottaaksesi sormenjälkitunnistuksen käyttöön.",
         "buttonInstructionsDisableIPhoneX": "Paina alla olevaa painiketta poistaaksesi kasvotunnistuksen",
         "buttonInstructionsEnableIPhoneX": "Paina alla olevaa painiketta ottaaksesi kasvontunnistuksen käyttöön",
@@ -654,7 +654,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
-        "key": "Key"
+        "key": "Avain"
     },
     "chart": {
         "mcap": "MARVO",
