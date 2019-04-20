@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash du paquet copié",
-        "noTransactionsFound": "Votre historique de transaction est vide",
+        "noTransactionsFound": "No transactions found",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Masquer un solde nul",
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papier.",
         "addressCopied": "Adressée copiée",
@@ -468,7 +469,13 @@
         "retrying": "Nouvelle tentative",
         "yesterday": "Hier",
         "promotingAnotherBundle": "Promotion d'un autre bundle en cours",
-        "pleaseWait": "Veuillez patienter, Trinity est en train de promouvoir un autre bundle."
+        "pleaseWait": "Veuillez patienter, Trinity est en train de promouvoir un autre bundle.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
