@@ -455,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "Balíček hash zkopírován",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "Nebyly nalezeny žádné transakce",
         "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Skrýt nulový zůstatek",
         "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
@@ -654,7 +654,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Nejprve potřebujeme zabezpečit Váš SeedVault. Vyberte si prosím heslo k zašifrování souboru. Toto heslo použijete, pokud budete potřebovat obnovit Váš Seed ze zálohy SeedVault.",
         "retypeKey": "Zadejte znovu heslo",
-        "key": "Key"
+        "key": "Klíč"
     },
     "chart": {
         "mcap": "MCAP",
