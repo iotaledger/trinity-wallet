@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
+import Share from 'react-native-share';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { withNamespaces } from 'react-i18next';
@@ -99,7 +100,7 @@ export class StateExport extends Component {
     }
 
     async exportStateFile() {
-        const { accounts, settings, notificationLog, t } = this.props;
+        const { accounts, settings, notificationLog, t, generateAlert } = this.props;
         if (isAndroid) {
             await getAndroidFileSystemPermissions();
         }
@@ -134,9 +135,17 @@ export class StateExport extends Component {
                     4,
                 ),
             );
-            this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
+            Share.open({
+                url: isAndroid ? 'file://' + path : path,
+                type: 'text/plain',
+            })
+                .then(() => {
+                    generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
+                })
+                .catch(() => fs.unlink(path));
         } catch (error) {
-            this.props.generateAlert('error', t('global:somethingWentWrong'), t('global:somethingWentWrongTryAgain'));
+            fs.unlink(path);
+            generateAlert('error', t('global:somethingWentWrong'), t('global:somethingWentWrongTryAgain'));
         }
     }
 
