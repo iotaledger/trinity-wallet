@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Pakke hash kopiert",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "No transactions found",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Gjem nullbeløp",
         "bundleHashCopiedExplanation": "Pakke hash har blitt kopiert til utklippstavlen.",
         "addressCopied": "Addresse kopiert",
@@ -468,7 +469,13 @@
         "retrying": "Prøver på nytt",
         "yesterday": "I går",
         "promotingAnotherBundle": "Fremme en pakke til",
-        "pleaseWait": "Vennligst vent, Trinity promoterer en transaksjon."
+        "pleaseWait": "Vennligst vent, Trinity promoterer en transaksjon.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Vis hovednøkkel",
