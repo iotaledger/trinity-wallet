@@ -508,7 +508,7 @@
         "autoPromotion": "Promotion automatique",
         "autoPromotionExplanation": "La promotion automatique aide à confirmer vos transactions sur le Tangle. Activez ce paramètre si vous rencontrez des difficultés à confirmer vos transactions.",
         "autoPromotionPoW": "La promotion automatique n’est possible que sur les serveurs qui prennent en charge la preuve de travail à distance.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Liens"
     },
     "advancedThemeCustomisation": {
         "background": "Arrière-plan",
@@ -651,7 +651,7 @@
         "seedFileError": "Échec de l'ouverture du SeedVaulet",
         "seedFileErrorExplanation": "Il y a eu un problème lors de l'ouverture du SeedVault. Si vous avez sélectionné le bon fichier, il est peut-être endommagé.",
         "invalidSeedFileError": "Fichier SeedVault invalide",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileErrorExplanation": "Ce format de fichier n'est pas pris en charge. Seuls les fichiers SeedVault (.kdbx) créés via Trinity ou un gestionnaire de mot de passe sont pris en charge.",
         "seedVaultKeyExplanation": "Tout d’abord, nous devons sécuriser votre SeedVault. Veuillez choisir une clé pour chiffrer le fichier. Vous utiliserez cette clé si vous devez restaurer votre seed à partir du fichier SeedVault.",
         "retypeKey": "Veuillez ré-entrer la clé",
         "key": "Clé"
@@ -715,11 +715,11 @@
     "deepLink": {
         "autofill": "Succès du remplissage automatique",
         "autofillExplanation": "Remplissage automatique des transactions depuis les liens.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "Les liens profonds sont des liens cliquables (iota://...) qui remplissent automatiquement les données de transaction dans Trinity.",
+        "deepLinkingWarning": "Soyez conscient des arnaques de phishing. Assurez-vous que le lien que vous ouvrez navigue vers l'application officielle Trinity.",
+        "deepLinkingUpdated": "Paramètres des liens",
+        "deepLinkingEnabled": "Vous avez activé les liens.",
+        "deepLinkingDisabled": "Vous avez activé les liens."
     },
     "updates": {
         "errorRetrievingUpdateData": "Erreur lors de la récupération des données de mise à jour",
@@ -817,7 +817,7 @@
         "checkAddressExplanation": "Vérifiez que les adresses correspondent à celles affichées sur votre Ledger.",
         "applicationNotInitialised": "Avertissements non confirmés",
         "applicationNotInitialisedExplanation": "Rouvrez l’application IOTA sur votre Ledger, acceptez l’avertissement d’information et essayez à nouveau.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevError": "N'a pas pu communiquer avec le dispositif Ledger",
+        "udevErrorExplanation": "Trinity n'a pas pu communiquer avec votre appareil Ledger. Veuillez visiter l'URL ci-dessous pour résoudre ce problème."
     }
 }
