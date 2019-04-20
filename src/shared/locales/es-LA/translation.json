@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "No transactions found",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Esconder balance nulo",
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
@@ -468,7 +469,13 @@
         "retrying": "Reintentando",
         "yesterday": "Ayer",
         "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Ver semilla",
