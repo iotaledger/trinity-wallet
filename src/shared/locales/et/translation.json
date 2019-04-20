@@ -394,6 +394,7 @@
         "changePassword": "Muuda parooli",
         "general": "General settings",
         "advanced": "Täpsemad sätted",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "Logi välja",
         "reset": "Lähtesta rahakott",
@@ -508,7 +509,8 @@
         "autoPromotion": "Automaatne edutamine",
         "autoPromotionExplanation": "Automaatne edutamine aitab teil kinnitada oma tehinguid Tangle võrgustikus. Lubage see säte, kui teil on probleeme oma tehingute kinnitamisega.",
         "autoPromotionPoW": "Automaatne edutamine on saadaval ainult sõlmedes, mis toetavad kaugtöö tõendit.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Taustapilt",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
         "key": "Võti"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "TURUKAPITAL",
