@@ -455,8 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
-        "noTransactionsFound": "No transactions found",
-        "emptyHistory": "Your transaction history is empty",
+        "noTransactionsFound": "Pavedimų nėra",
+        "emptyHistory": "Jūsų pavedimų istorija tuščia",
         "hideZeroBalance": "Slėpti nulinius pavedimus",
         "bundleHashCopiedExplanation": "Paketo šifras nukopijuotas į iškarpinę.",
         "addressCopied": "Adresas nukopijuotas",
@@ -654,7 +654,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Pirmiausia, jums reikia apsaugoti SeedVault. Sukurkite slaptažodį norėdami užšifruoti failą. Šio slaptažodžio jums prireiks, norint atkurti užraktą iš SeedVault failo.",
         "retypeKey": "Pakartokite slaptažodį",
-        "key": "Key"
+        "key": "Kodas"
     },
     "chart": {
         "mcap": "MCAP",
