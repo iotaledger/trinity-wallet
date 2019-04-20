@@ -394,6 +394,7 @@
         "changePassword": "ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಿ",
         "general": "General settings",
         "advanced": "ಮು೦ದುವರಿದ ಸೆಟ್ಟಿಂಗ್ಸ್",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "ಲಾಗ್ ಔಟ್",
         "reset": "ವಾಲೆಟ್ ಅನ್ನು ಮರುಹೊಂದಿಸಿ",
@@ -508,7 +509,8 @@
         "autoPromotion": "ಸ್ವಯಂ-ಬಡತಿ",
         "autoPromotionExplanation": "ಟ್ಯಾಂಗಲ್ ಜಾಲದಲ್ಲಿ ನಿಮ್ಮ ವ್ಯವಹಾರಗಳನ್ನು ಖಚಿತಪಡಿಸಲು ಸ್ವಯಂ-ಬಡತಿ ಸಹಾಯ ಮಾಡುತ್ತದೆ. ನಿಮ್ಮ ವ್ಯವಹಾರಗಳನ್ನು ದೃಢೀಕರಿಸಲು ನಿಮಗೆ ಕಷ್ಟವಾಗಿದ್ದರೆ ಈ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
         "autoPromotionPoW": "ದೂರ ಕೆಲಸದ ಪುರಾವೆಯನ್ನು ಬೆಂಬಲಿಸುವ ನೋಡ್ಗಳಲ್ಲಿ ಮಾತ್ರ ಸ್ವಯಂ-ಬಡತಿ ಸಾಧ್ಯ.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "ಹಿನ್ನೆಲೆ",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
         "key": "ಕೀಲಿ"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "ಮಾರುಕಟ್ಟೆ ಬಂಡವಾಳ",
