@@ -26,13 +26,7 @@ export class AdvancedSettings extends PureComponent {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        generateAlert: PropTypes.func.isRequired,
-        /** @ignore */
-        node: PropTypes.string.isRequired,
-        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** @ignore */
-        isSendingTransfer: PropTypes.bool.isRequired,
         /** @ignore */
         autoPromotion: PropTypes.bool.isRequired,
         /** @ignore */
@@ -43,55 +37,11 @@ export class AdvancedSettings extends PureComponent {
 
     constructor() {
         super();
-
         this.reset = this.reset.bind(this);
-        this.onNodeSelection = this.onNodeSelection.bind(this);
-        this.onAddCustomNode = this.onAddCustomNode.bind(this);
     }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('AdvancedSettings');
-    }
-
-    /**
-     * Navigates to node selection setting screen
-     *
-     * @method onNodeSelection
-     */
-    onNodeSelection() {
-        if (this.props.isSendingTransfer) {
-            this.generateChangeNodeAlert();
-        } else {
-            this.props.setSetting('nodeSelection');
-        }
-    }
-
-    /**
-     * Navigates to add custom node setting screen
-     *
-     * @method onAddCustomNode
-     */
-    onAddCustomNode() {
-        if (this.props.isSendingTransfer) {
-            this.generateChangeNodeAlert();
-        } else {
-            this.props.setSetting('addCustomNode');
-        }
-    }
-
-    /**
-     * Generates an alert if a user tries to navigate to change node or add custom node screen when a transaction is in progress
-     *
-     * @method generateChangeNodeAlert
-     */
-    generateChangeNodeAlert() {
-        this.props.generateAlert(
-            'error',
-            this.props.t('settings:cannotChangeNode'),
-            `${this.props.t('settings:cannotChangeNodeWhileSending')} ${this.props.t(
-                'settings:transferSendingExplanation',
-            )}`,
-        );
     }
 
     /**
@@ -110,10 +60,9 @@ export class AdvancedSettings extends PureComponent {
      * @returns {function}
      */
     renderSettingsContent() {
-        const { theme, t, node, autoPromotion, remotePoW, deepLinking } = this.props;
+        const { theme, t, autoPromotion, remotePoW, deepLinking } = this.props;
         const rows = [
-            { name: t('selectNode'), icon: 'node', function: this.onNodeSelection, currentSetting: node },
-            { name: t('addCustomNode'), icon: 'plusAlt', function: this.onAddCustomNode },
+            { name: t('settings:nodeSettings'), icon: 'node', function: () => this.props.setSetting('nodeSettings') },
             {
                 name: t('pow'),
                 icon: 'pow',
@@ -158,7 +107,6 @@ export class AdvancedSettings extends PureComponent {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
-    node: state.settings.node,
     autoPromotion: state.settings.autoPromotion,
     remotePoW: state.settings.remotePoW,
     deepLinking: state.settings.deepLinking,
@@ -171,8 +119,5 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['advancedSettings', 'settings', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(AdvancedSettings),
+    connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings),
 );

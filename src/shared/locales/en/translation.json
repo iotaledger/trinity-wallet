@@ -399,6 +399,7 @@
         "changePassword": "Change password",
         "general": "General settings",
         "advanced": "Advanced settings",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "Log out",
         "reset": "Reset wallet",

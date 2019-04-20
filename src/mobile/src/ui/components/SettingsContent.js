@@ -18,6 +18,7 @@ import DeleteAccount from 'ui/views/wallet/DeleteAccount';
 import AddNewAccount from 'ui/views/wallet/AddNewAccount';
 import UseExistingSeed from 'ui/views/wallet/UseExistingSeed';
 import NodeSelection from 'ui/views/wallet/NodeSelection';
+import NodeSettingsComponent from 'ui/views/wallet/NodeSettings';
 import AddCustomNodeComponent from 'ui/views/wallet/AddCustomNode';
 import CurrencySelectionComponent from 'ui/views/wallet/CurrencySelection';
 import ModeSelection from 'ui/views/wallet/ModeSelection';
@@ -44,6 +45,7 @@ const SETTINGS_COMPONENTS = {
     deleteAccount: DeleteAccount,
     addNewAccount: AddNewAccount,
     addExistingSeed: UseExistingSeed,
+    nodeSettings: NodeSettingsComponent,
     nodeSelection: NodeSelection,
     addCustomNode: AddCustomNodeComponent,
     currencySelection: CurrencySelectionComponent,

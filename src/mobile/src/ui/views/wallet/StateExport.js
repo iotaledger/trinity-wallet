@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 5,
+        flex: 10,
         justifyContent: 'flex-start',
     },
     itemLeft: {
@@ -216,9 +216,4 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withNamespaces(['stateExport', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(StateExport),
-);
+export default withNamespaces(['stateExport', 'global'])(connect(mapStateToProps, mapDispatchToProps)(StateExport));
