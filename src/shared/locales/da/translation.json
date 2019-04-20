@@ -394,6 +394,7 @@
         "changePassword": "Skift adgangskode",
         "general": "Generelle indstillinger",
         "advanced": "Avancerede indstillinger",
+        "nodeSettings": "Node settings",
         "account": "Kontoindstillinger",
         "logout": "Log ud",
         "reset": "Nulstil tegnebog",
@@ -508,7 +509,8 @@
         "autoPromotion": "Auto-promovering",
         "autoPromotionExplanation": "Auto-promovering hjælper med at bekræfte dine transaktioner på netværket. Aktivér denne indstilling, hvis du oplever problemer med at få dine transaktioner bekræftet.",
         "autoPromotionPoW": "Auto-promovering er kun muligt på noder, som understøtter ekstern netværksgodkendelse.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Baggrund",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "Først skal din SeedVault sikres. Vælg en nøgle til at kryptere filen. Du vil skulle benytte denne nøgle for at genoprette din hovednøgle fra SeedVault-sikkerhedskopien.",
         "retypeKey": "Angiv nøgle igen",
         "key": "Nøgle"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
