@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
-        "noTransactionsFound": "Jūsų pavedimų istorija tuščia",
+        "noTransactionsFound": "No transactions found",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Slėpti nulinius pavedimus",
         "bundleHashCopiedExplanation": "Paketo šifras nukopijuotas į iškarpinę.",
         "addressCopied": "Adresas nukopijuotas",
@@ -468,7 +469,13 @@
         "retrying": "Kraunama",
         "yesterday": "Vakar",
         "promotingAnotherBundle": "Iškeliamas kitas paketas",
-        "pleaseWait": "Prašome palaukti, Trinity iškelia kitą paketą."
+        "pleaseWait": "Prašome palaukti, Trinity iškelia kitą paketą.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
