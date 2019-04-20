@@ -455,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "ವ್ಯವಹಾರ ಗುಂಪಿನ ಹ್ಯಾಶ್ ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "ಯಾವುದೇ ವ್ಯವಹಾರಗಳು ಕಂಡುಬಂದಿಲ್ಲ",
         "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "ಖಾತೆಯ ಶೂನ್ಯ ಮೊತ್ತವನ್ನು ಮರೆಮಾಡಿ",
         "bundleHashCopiedExplanation": "ವ್ಯವಹಾರ ಗುಂಪಿನ ಹ್ಯಾಶ್ ಅನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲಾಗಿದೆ.",
@@ -609,7 +609,7 @@
         "fingerprintUnavailableExplanation": "ನಿಮ್ಮ ಸಾಧನವು ಬಯೋಮೆಟ್ರಿಕ್ ದೃಢೀಕರಣವನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಅಥವಾ ಸಾಧನ ಸೆಟ್ಟಿಂಗ್ಗಳಲ್ಲಿ ಇದನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಲಾಗಿಲ್ಲ.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "ಬೆರಳಿನ ಗುರುತು ದೃಢೀಕರಣವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿರಿ.",
         "buttonInstructionsEnable": "ಬೆರಳುಗುರುತು ದೃಢೀಕರಣ ಸಕ್ರಿಯಗೊಳಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿರಿ.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
@@ -654,7 +654,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
-        "key": "Key"
+        "key": "ಕೀಲಿ"
     },
     "chart": {
         "mcap": "ಮಾರುಕಟ್ಟೆ ಬಂಡವಾಳ",
