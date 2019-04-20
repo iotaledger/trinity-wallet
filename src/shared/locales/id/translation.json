@@ -455,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "Salin rangkaian hash",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "Transaksi tidak ditemukan",
         "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Sembunyikan saldo nol",
         "bundleHashCopiedExplanation": "Rangkaian hash telah disalin ke papan klip.",
@@ -609,7 +609,7 @@
         "fingerprintUnavailableExplanation": "Perangkat anda tidak mendukung otentikasi biometrik atau belum dikonfigurasi di pengaturan perangkat.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari.",
         "buttonInstructionsEnable": "Tekan tombol dibawah ini untuk mengaktifkan autentikasi sidik jari.",
         "buttonInstructionsDisableIPhoneX": "Tekan tombol di bawah ini untuk mematikan Face ID",
         "buttonInstructionsEnableIPhoneX": "Tekan tombol di bawah ini untuk mengaktifkan Face ID",
@@ -654,7 +654,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
-        "key": "Key"
+        "key": "Kunci"
     },
     "chart": {
         "mcap": "MCAP",
