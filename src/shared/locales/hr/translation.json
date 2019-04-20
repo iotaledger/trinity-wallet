@@ -394,6 +394,7 @@
         "changePassword": "Promjena lozinke",
         "general": "Opće postavke",
         "advanced": "Napredne postavke",
+        "nodeSettings": "Node settings",
         "account": "Postavke računa",
         "logout": "Odjavi se",
         "reset": "Resetiraj novčanik",
@@ -508,7 +509,8 @@
         "autoPromotion": "Automatska promocija",
         "autoPromotionExplanation": "Automatska promocija pomaže potvrditi vašu transakciju na Tangle-u. Omogućite ovu postavku ako imate problema s potvrđivanjem vaših transakcija.",
         "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadina",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "Prvo trebamo osigurati vaš SeedVault. Molimo odaberite lozinku za enkripciju vaše SeedVault datoteke. Ova lozinka bit će potrebna za ponovni pristup sigurnosnoj kopiji vašeg seed-a koja se nalazi u SeedVault-u.",
         "retypeKey": "Ponovno unesite lozinku",
         "key": "Ključ"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
