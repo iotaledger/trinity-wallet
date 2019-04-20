@@ -455,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "No sé encontraron transacciones",
         "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Esconder balance nulo",
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
@@ -609,7 +609,7 @@
         "fingerprintUnavailableExplanation": "Tu dispositivo no soporta autenticación biométrica o no está configurada en los ajustes del equipo.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Pulsa el botón que hay a continuación para deshabilitar la autenticación de huella dactilar.",
         "buttonInstructionsEnable": "Pulsa el botón que hay a continuación para habilitar la autenticación de huella dactilar.",
         "buttonInstructionsDisableIPhoneX": "Presione el botón de abajo para desactivar el ID de cara",
         "buttonInstructionsEnableIPhoneX": "Presione el botón de abajo para activar ID de cara",
@@ -654,7 +654,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
-        "key": "Key"
+        "key": "Clave"
     },
     "chart": {
         "mcap": "Market cap",
