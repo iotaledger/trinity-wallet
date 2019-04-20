@@ -455,8 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
-        "noTransactionsFound": "No transactions found",
-        "emptyHistory": "Your transaction history is empty",
+        "noTransactionsFound": "取引がありません",
+        "emptyHistory": "取引履歴はありません",
         "hideZeroBalance": "残高0を非表示",
         "bundleHashCopiedExplanation": "バンドルのハッシュ値をクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
