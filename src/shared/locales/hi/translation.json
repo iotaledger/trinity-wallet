@@ -394,6 +394,7 @@
         "changePassword": "पासवर्ड परिवर्तित करें",
         "general": "General settings",
         "advanced": "उच्च सेटिंग्स",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "लॉग आउट",
         "reset": "वॉलेट रिसेट",
@@ -508,7 +509,8 @@
         "autoPromotion": "ऑटो प्रमोशन",
         "autoPromotionExplanation": "ऑटो प्रमोशन आपके लेनदेन की पुष्टि करने में मदद करता है । इस सेटिंग को सक्षम करें यदि आपको पुष्टि करने के लिए अपने लेन-देन में कठिनाई हो रही है ।",
         "autoPromotionPoW": "स्वत: पदोन्नति केवल उन नोड्स पर संभव है जो कार्य के दूरस्थ प्रमाण का समर्थन करते हैं।",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "बैकग्राउंड",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
         "key": "कुँजी"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
