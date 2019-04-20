@@ -1,6 +1,5 @@
 {
     "global": {
-        "exportState": "Export State",
         "send": "SEND",
         "cancel": "Cancel",
         "continue?": "Are you sure you want to continue?",
@@ -514,7 +513,8 @@
         "autoPromotion": "Auto-promotion",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "exportState": "Export state"
     },
     "advancedThemeCustomisation": {
         "background": "Background",

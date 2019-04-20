@@ -60,6 +60,19 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
+    infoText: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: Styling.fontSize4,
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+    },
+    infoBoxText: {
+        color: 'white',
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: Styling.fontSize3,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
 });
 
 /** State export component */
@@ -85,12 +98,54 @@ export class StateExport extends Component {
         leaveNavigationBreadcrumb('StateExport');
     }
 
+    async exportStateFile() {
+        const { accounts, settings, notificationLog, t } = this.props;
+        if (isAndroid) {
+            await getAndroidFileSystemPermissions();
+        }
+
+        const path = `${
+            isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir
+        }/Trinity-${moment().format('YYYYMMDD-HHmm')}.txt`;
+
+        const fs = RNFetchBlob.fs;
+
+        try {
+            const files = await Promise.all([
+                fs.ls(fs.dirs.DocumentDir),
+                fs.ls(fs.dirs.CacheDir),
+                fs.ls(fs.dirs.MainBundleDir),
+            ]);
+
+            const fileExists = await fs.exists(path);
+            if (fileExists) {
+                fs.unlink(path);
+            }
+            await fs.createFile(
+                path,
+                serialise(
+                    {
+                        accounts: pick(accounts, ['onboardingComplete', 'accountInfo']),
+                        settings: pick(settings, ['versions']),
+                        notificationLog,
+                        storageFiles: filter(flatMap(files), (name) => includes(name, 'realm')),
+                    },
+                    null,
+                    4,
+                ),
+            );
+            this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
+        } catch (error) {
+            this.props.generateAlert('error', t('global:somethingWentWrong'), t('global:somethingWentWrongTryAgain'));
+        }
+    }
+
     renderBackOption() {
         const { theme, t } = this.props;
 
         return (
             <TouchableOpacity
-                onPress={() => this.props.setSetting('mainSettings')}
+                onPress={() => this.props.setSetting('advancedSettings')}
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.itemLeft}>
@@ -102,54 +157,11 @@ export class StateExport extends Component {
     }
 
     renderExportOption() {
-        const { accounts, settings, notificationLog, t, theme } = this.props;
+        const { t, theme } = this.props;
 
         return (
             <TouchableOpacity
-                onPress={async () => {
-                    if (isAndroid) {
-                        await getAndroidFileSystemPermissions();
-                    }
-
-                    const path = `${
-                        isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir
-                    }/Trinity-${moment().format('YYYYMMDD-HHmm')}.txt`;
-
-                    const fs = RNFetchBlob.fs;
-
-                    try {
-                        const files = await Promise.all([
-                            fs.ls(fs.dirs.DocumentDir),
-                            fs.ls(fs.dirs.CacheDir),
-                            fs.ls(fs.dirs.MainBundleDir),
-                        ]);
-
-                        const fileExists = await fs.exists(path);
-                        if (fileExists) {
-                            fs.unlink(path);
-                        }
-                        await fs.createFile(
-                            path,
-                            serialise(
-                                {
-                                    accounts: pick(accounts, ['onboardingComplete', 'accountInfo']),
-                                    settings: pick(settings, ['versions']),
-                                    notificationLog,
-                                    storageFiles: filter(flatMap(files), (name) => includes(name, 'realm')),
-                                },
-                                null,
-                                4,
-                            ),
-                        );
-                        this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
-                    } catch (error) {
-                        this.props.generateAlert(
-                            'error',
-                            t('global:somethingWentWrong'),
-                            t('global:somethingWentWrongTryAgain'),
-                        );
-                    }
-                }}
+                onPress={() => this.exportStateFile()}
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.itemRight}>
@@ -195,4 +207,9 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withNamespaces(['stateExport', 'global'])(connect(mapStateToProps, mapDispatchToProps)(StateExport));
+export default withNamespaces(['stateExport', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(StateExport),
+);
