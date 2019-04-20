@@ -394,6 +394,7 @@
         "changePassword": "Cambia password",
         "general": "Impostazioni generali",
         "advanced": "Impostazioni avanzate",
+        "nodeSettings": "Node settings",
         "account": "Impostazioni account",
         "logout": "Esci",
         "reset": "Reimposta il portafoglio",
@@ -508,7 +509,8 @@
         "autoPromotion": "Auto-Promozione",
         "autoPromotionExplanation": "Auto-promozione contribuisce a confermare le transazioni sul Tangle. Abilitare questa impostazione se si hanno difficoltà a ottenere la conferma delle tue transazioni.",
         "autoPromotionPoW": "Auto-promozione è possibile solo su nodi che supportano la prova di lavoro remota.",
-        "deepLinking": "Deep link"
+        "deepLinking": "Deep link",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Sfondo",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "Per prima cosa dobbiamo proteggere la tua cassaforte di Seme. Si prega di scegliere una chiave per crittografare il file. Questa chiave verrà utilizzata se è necessario ripristinare il seme dal backup di SeedVault.",
         "retypeKey": "Riscrivi la chiave",
         "key": "Chiave"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
