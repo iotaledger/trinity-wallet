@@ -394,6 +394,7 @@
         "changePassword": "Ubah Kata Sandi",
         "general": "General settings",
         "advanced": "Pengaturan Lanjutan",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "Keluar",
         "reset": "Hapus dompet",
@@ -508,7 +509,8 @@
         "autoPromotion": "Promosi otomatis",
         "autoPromotionExplanation": "Promosi otomatis membantu konfirmasi transaksi di Tangle. Aktifkan aturan ini jika mengalami kesulitan dalam mengkonfirmasi.",
         "autoPromotionPoW": "Promosi otomatis hanya memungkinkan di Node yang mendukung Proof of Work jarak jauh.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Latar belakang",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
         "key": "Kunci"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
