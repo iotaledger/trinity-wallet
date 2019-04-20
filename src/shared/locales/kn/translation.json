@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "ವ್ಯವಹಾರ ಗುಂಪಿನ ಹ್ಯಾಶ್ ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "No transactions found",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "ಖಾತೆಯ ಶೂನ್ಯ ಮೊತ್ತವನ್ನು ಮರೆಮಾಡಿ",
         "bundleHashCopiedExplanation": "ವ್ಯವಹಾರ ಗುಂಪಿನ ಹ್ಯಾಶ್ ಅನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲಾಗಿದೆ.",
         "addressCopied": "ವಿಳಾಸ ನಕಲಿಸಲಾಗಿದೆ",
@@ -468,7 +469,13 @@
         "retrying": "ಮರುಪ್ರಯತ್ನಿಸಲಾಗುತ್ತಿದೆ",
         "yesterday": "ನೆನ್ನೆ ದಿನ",
         "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ವೀಕ್ಷಿಸಿ",
