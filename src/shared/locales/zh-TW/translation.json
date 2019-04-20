@@ -394,6 +394,7 @@
         "changePassword": "修改密碼",
         "general": "General settings",
         "advanced": "進階設定",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "登出",
         "reset": "重設錢包",
@@ -508,7 +509,8 @@
         "autoPromotion": "自動促進",
         "autoPromotionExplanation": "自動促進會協助確認您在 Tangle 上的交易。如果您在確認交易時遇到困難的話，請啟用此設定。",
         "autoPromotionPoW": "自動促進僅能支援遠端工作量證明的節點上使用。",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
         "key": "密鑰"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "總市值",
