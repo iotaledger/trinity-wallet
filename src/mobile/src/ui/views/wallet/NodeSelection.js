@@ -75,7 +75,7 @@ class NodeSelection extends Component {
         /** @ignore */
         nodes: PropTypes.array.isRequired,
         /** Navigate to previous screen */
-        backPress: PropTypes.func.isRequired,
+        backPress: PropTypes.func,
         /** @ignore */
         setFullNode: PropTypes.func.isRequired,
         /** @ignore */

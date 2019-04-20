@@ -18,6 +18,7 @@ import DeleteAccount from 'ui/views/wallet/DeleteAccount';
 import AddNewAccount from 'ui/views/wallet/AddNewAccount';
 import UseExistingSeed from 'ui/views/wallet/UseExistingSeed';
 import NodeSelection from 'ui/views/wallet/NodeSelection';
+import NodeSettingsComponent from 'ui/views/wallet/NodeSettings';
 import AddCustomNodeComponent from 'ui/views/wallet/AddCustomNode';
 import CurrencySelectionComponent from 'ui/views/wallet/CurrencySelection';
 import ModeSelection from 'ui/views/wallet/ModeSelection';
@@ -28,6 +29,7 @@ import ThemeCustomisation from 'ui/views/wallet/ThemeCustomisation';
 import SnapshotTransitionComponent from 'ui/views/wallet/SnapshotTransition';
 import SecuritySettings from 'ui/views/wallet/SecuritySettings';
 import SeedVaultSettings from 'ui/views/wallet/SeedVaultSettings';
+import StateExportComponent from 'ui/views/wallet/StateExport';
 import About from 'ui/views/wallet/About';
 import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
@@ -43,6 +45,7 @@ const SETTINGS_COMPONENTS = {
     deleteAccount: DeleteAccount,
     addNewAccount: AddNewAccount,
     addExistingSeed: UseExistingSeed,
+    nodeSettings: NodeSettingsComponent,
     nodeSelection: NodeSelection,
     addCustomNode: AddCustomNodeComponent,
     currencySelection: CurrencySelectionComponent,
@@ -58,6 +61,7 @@ const SETTINGS_COMPONENTS = {
     deepLinking: DeepLinking,
     about: About,
     exportSeedVault: SeedVaultSettings,
+    stateExport: StateExportComponent,
 };
 
 const SettingsContent = ({ component, ...props }) => {
