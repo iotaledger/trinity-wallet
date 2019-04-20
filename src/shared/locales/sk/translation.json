@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Bundle hash skopírovaný",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Nenašla sa žiadna transakcia",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Skryť nulový zostatok",
         "bundleHashCopiedExplanation": "Bundle hash bol skopírovaný do schránky.",
         "addressCopied": "Adresa skopírovaná",
@@ -468,7 +469,13 @@
         "retrying": "Pokúša sa znova",
         "yesterday": "Včera",
         "promotingAnotherBundle": "Podpora ďalšieho balíčku",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Prosím počkajte, Trinity podporuje ďalší balíček.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Zobraziť Seed",
@@ -572,6 +579,7 @@
         "viewSeed": "Zobraziť Seed",
         "hideSeed": "Skryť Seed",
         "notAvailable": "Seed export nie je k dispozícii pre typ účtu {{accountType}}",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Index účtu vo Vašom Ledgeri",
         "accountPage": "Stránka účtu vo Vašom Ledgeri"
     },
@@ -659,9 +667,11 @@
         "noSeedFoundExplanation": "SeedVault je buď prázdny, alebo obsahuje seed v neplatnom formáte.",
         "seedFileError": "Otvorenie SeedVault zlyhalo",
         "seedFileErrorExplanation": "Počas otvárania SeedVault nastal problém. Ak Ste zvolili naozaj správny súbor, je možné, že je poškodený.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Najprv potrebujeme zabezpečiť Váš SeedVault. Vyberte si prosím heslo k zašifrovaniu súboru. Toto heslo použijete, pokiaľ budete potrebovať obnoviť Váš Seed zo zálohy SeedVault.",
         "retypeKey": "Zadajte heslo znova",
-        "key": "Key"
+        "key": "Kľúč"
     },
     "chart": {
         "mcap": "MCAP",

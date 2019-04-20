@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Kimbu räsi kopeeritud",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Tehinguid ei leitud",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Peida nullsaldo",
         "bundleHashCopiedExplanation": "Kimbu räsi on kopeeritud lõikelauale.",
         "addressCopied": "Aadress kopeeritud",
@@ -468,7 +469,13 @@
         "retrying": "Uuesti proovimine",
         "yesterday": "Eile",
         "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Vaata seemet",
@@ -572,6 +579,7 @@
         "viewSeed": "Vaata seemet",
         "hideSeed": "Peida seeme",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
@@ -601,7 +609,7 @@
         "fingerprintUnavailableExplanation": "Teie seade ei toeta biomeetrilist autentimist või pole see seadme seadetes konfigureeritud.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Sõrmejäljega autentimise keelamiseks vajutage allpool olevat nuppu.",
         "buttonInstructionsEnable": "Sõrmejäljega autentimise lubamiseks vajutage allolevat nuppu.",
         "buttonInstructionsDisableIPhoneX": "Face ID keelamiseks vajutage allolevat nuppu",
         "buttonInstructionsEnableIPhoneX": "Face ID lubamiseks vajutage allolevat nuppu",
@@ -642,9 +650,11 @@
         "noSeedFoundExplanation": "Seemnehoidla on tühi või sisaldab seemet vales vormingus.",
         "seedFileError": "Seemnehoidla avamine nurjus",
         "seedFileErrorExplanation": "Seemnehoidla avamisega oli probleem. Kui valisite õige faili, siis võib see olla rikutud.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
-        "key": "Key"
+        "key": "Võti"
     },
     "chart": {
         "mcap": "TURUKAPITAL",

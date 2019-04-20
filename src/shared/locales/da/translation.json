@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Bundt-hash kopieret",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Ingen transaktioner fundet",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Skjul nulsaldo",
         "bundleHashCopiedExplanation": "Den gruppérede hash er blevet kopiret til udklipsholderen.",
         "addressCopied": "Adresse kopieret",
@@ -468,7 +469,13 @@
         "retrying": "Forsøger igen",
         "yesterday": "I går",
         "promotingAnotherBundle": "Promovering en anden pakke",
-        "pleaseWait": "Vent venligst, Trinity promoverer en anden pakke."
+        "pleaseWait": "Vent venligst, Trinity promoverer en anden pakke.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Se hovednøgle",
@@ -572,6 +579,7 @@
         "viewSeed": "Se hovednøgle",
         "hideSeed": "Skjul hovednøgle",
         "notAvailable": "Hovednøgleeksport er ikke tilgængelig for {{accountType}}-kontotypen",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Dit hovedkontoindeks",
         "accountPage": "Din hovedkontoside"
     },
@@ -601,7 +609,7 @@
         "fingerprintUnavailableExplanation": "Din enhed understøtter ikke biometrisk godkendelse, eller også er dette ikke konfigureret under indstillingerne på din enhed.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Tryk på knappen nedenfor for at deaktivere godkendelse med fingeraftryk.",
         "buttonInstructionsEnable": "Tryk på knappen nedenfor for at aktivere godkendelse med fingeraftryk.",
         "buttonInstructionsDisableIPhoneX": "Tryk på knappen herunder for at deaktivere ansigtsgenkendelse",
         "buttonInstructionsEnableIPhoneX": "Tryk på knappen herunder for at aktivere ansigtsgenkendelse",
@@ -642,9 +650,11 @@
         "noSeedFoundExplanation": "SeedVault er enten tom eller indeholder en hovednøgle i et ugyldigt format.",
         "seedFileError": "Kunne ikke åbne SeedVault",
         "seedFileErrorExplanation": "Der var problemer med at åbne af SeedVault. Har du valgt den korrekte fil, kan denne være beskadiget.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Først skal din SeedVault sikres. Vælg en nøgle til at kryptere filen. Du vil skulle benytte denne nøgle for at genoprette din hovednøgle fra SeedVault-sikkerhedskopien.",
         "retypeKey": "Angiv nøgle igen",
-        "key": "Key"
+        "key": "Nøgle"
     },
     "chart": {
         "mcap": "MCAP",
