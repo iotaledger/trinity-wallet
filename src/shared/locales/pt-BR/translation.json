@@ -394,6 +394,7 @@
         "changePassword": "Alterar Senha",
         "general": "Configurações gerais",
         "advanced": "Opções Avançadas",
+        "nodeSettings": "Node settings",
         "account": "Configurações de conta",
         "logout": "Desconectar",
         "reset": "Redefinir a carteira",
@@ -508,7 +509,8 @@
         "autoPromotion": "Autopromoção",
         "autoPromotionExplanation": "Autopromoção ajuda a confirmar suas transações no Tangle. Habilite essa configuração se você está tendo dificuldade em confirmar suas transações.",
         "autoPromotionPoW": "Autopromoção só é possível em servidores que suportam prova de trabalho remoto.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Plano de Fundo",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "Primeiro precisamos proteger seu SeedVault. Por favor, escolha uma chave para criptografar o arquivo. Você usará esta chave se caso precisar restaurar sua Seed do SeedVault.",
         "retypeKey": "Redigite a chave",
         "key": "Chave"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
