@@ -455,8 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Hashbunt kopierad",
-        "noTransactionsFound": "No transactions found",
-        "emptyHistory": "Your transaction history is empty",
+        "noTransactionsFound": "Inga transaktioner hittade",
+        "emptyHistory": "Din transaktionshistorik är tom",
         "hideZeroBalance": "Dölj nollvärden",
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
