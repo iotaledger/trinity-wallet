@@ -455,8 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash del pacchetto copiato",
-        "noTransactionsFound": "No transactions found",
-        "emptyHistory": "Your transaction history is empty",
+        "noTransactionsFound": "Nessuna transazione trovata",
+        "emptyHistory": "La tua cronologia di transazioni è vuota",
         "hideZeroBalance": "Nascondi saldo zero",
         "bundleHashCopiedExplanation": "L'hash del pacchetto è stato copiato negli Appunti.",
         "addressCopied": "Indirizzo copiato",
