@@ -455,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "Kimbu räsi kopeeritud",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "Tehinguid ei leitud",
         "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Peida nullsaldo",
         "bundleHashCopiedExplanation": "Kimbu räsi on kopeeritud lõikelauale.",
@@ -609,7 +609,7 @@
         "fingerprintUnavailableExplanation": "Teie seade ei toeta biomeetrilist autentimist või pole see seadme seadetes konfigureeritud.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Sõrmejäljega autentimise keelamiseks vajutage allpool olevat nuppu.",
         "buttonInstructionsEnable": "Sõrmejäljega autentimise lubamiseks vajutage allolevat nuppu.",
         "buttonInstructionsDisableIPhoneX": "Face ID keelamiseks vajutage allolevat nuppu",
         "buttonInstructionsEnableIPhoneX": "Face ID lubamiseks vajutage allolevat nuppu",
@@ -654,7 +654,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
-        "key": "Key"
+        "key": "Võti"
     },
     "chart": {
         "mcap": "TURUKAPITAL",
