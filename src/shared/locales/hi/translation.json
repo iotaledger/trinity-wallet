@@ -609,7 +609,7 @@
         "fingerprintUnavailableExplanation": "आपका डिवाइस बायोमेट्रिक प्रमाणीकरण का समर्थन नहीं करता है या यह डिवाइस सेटिंग्स में कॉंफ़िगर नहीं किया गया है ।",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "फ़िंगरप्रिंट प्रमाणीकरण को बंद करने के लिए नीचे बटन दबाएँ.",
         "buttonInstructionsEnable": "फ़िंगरप्रिंट प्रमाणीकरण को चालू करने के लिए नीचे बटन दबाएँ.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
@@ -654,7 +654,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
-        "key": "Key"
+        "key": "कुँजी"
     },
     "chart": {
         "mcap": "MCAP",
