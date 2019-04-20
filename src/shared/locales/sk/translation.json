@@ -394,6 +394,7 @@
         "changePassword": "Zmeniť heslo",
         "general": "Všeobecné nastavenia",
         "advanced": "Pokročilé nastavenia",
+        "nodeSettings": "Node settings",
         "account": "Nastavenie účtu",
         "logout": "Odhlásiť",
         "reset": "Obnoviť peňaženku",
@@ -508,7 +509,8 @@
         "autoPromotion": "Automatická podpora",
         "autoPromotionExplanation": "Automatická podpora vám pomôže potvrdiť vašu transakciu v sieti Tangle. Povoľte toto nastavenie, ak máte problémy s potvrdzovaním transakcií.",
         "autoPromotionPoW": "Automatická podpora je možná iba na Nodoch, ktoré podporujú vzdialený Proof of Work.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadie",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "Najprv potrebujeme zabezpečiť Váš SeedVault. Vyberte si prosím heslo k zašifrovaniu súboru. Toto heslo použijete, pokiaľ budete potrebovať obnoviť Váš Seed zo zálohy SeedVault.",
         "retypeKey": "Zadajte heslo znova",
         "key": "Kľúč"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
