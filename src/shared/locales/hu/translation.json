@@ -455,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "Tranzakciós csomag hash másolva",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "Nincs még tranzakció",
         "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Nulla egyenleg elrejtése",
         "bundleHashCopiedExplanation": "A tranzakciós csomag hash a vágólapra lett másolva.",
@@ -654,7 +654,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "A SeedVault fájl biztonságos tárolásához kérjük válasszon egy titkosító kulcsot. A titkosító kulcsra akkor lehet szüksége, ha a mester jelszavát a titkosított SeedVault biztonsági mentésből szeretné később egy másik, vagy egy újratelepített tárcába betölteni.",
         "retypeKey": "Titkosító kulcs még egyszer",
-        "key": "Key"
+        "key": "Kulcs"
     },
     "chart": {
         "mcap": "Piaci kapitalizáció",
