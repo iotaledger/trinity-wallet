@@ -394,6 +394,7 @@
         "changePassword": "Vaihda salasana",
         "general": "General settings",
         "advanced": "Lisäasetukset",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "Kirjaudu ulos",
         "reset": "Tyhjennä lompakko",
@@ -508,7 +509,8 @@
         "autoPromotion": "Siirron edistäminen",
         "autoPromotionExplanation": "Automaattinen edistäminen auttaa varmistamaan siirron tangle-verkossa. Laita tämä asetus päälle jos siirron varmistuksessa esiintyy ongelmia.",
         "autoPromotionPoW": "Automaattinen edistäminen toimii vain palvelimilla jotka tukevat laskentatyöntekoa (PoW).",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Tausta",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
         "key": "Avain"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MARVO",
