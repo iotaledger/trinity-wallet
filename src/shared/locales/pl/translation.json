@@ -394,6 +394,7 @@
         "changePassword": "Zmień hasło",
         "general": "Ustawienia ogólne",
         "advanced": "Ustawienia zaawansowane",
+        "nodeSettings": "Node settings",
         "account": "Ustawienia konta",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
@@ -508,7 +509,8 @@
         "autoPromotion": "Autopromowanie",
         "autoPromotionExplanation": "Autopromowanie pomaga w potwierdzaniu Twoich transakcji w sieci Tangle. Włącz tę funkcję, jeśli Twoje transakcje nie są potwierdzane w odpowiednim czasie.",
         "autoPromotionPoW": "Autopromowanie możliwe jest jedynie na serwerach, które obsługują zdalny tryb Proof of Work.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Tło",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Ustal osobny klucz do zaszyfrowania tego pliku. Będziesz używać tego klucza, aby przywrócić swój seed z tej kopii zapasowej SeedVault.",
         "retypeKey": "Wpisz klucz ponownie",
         "key": "Klucz"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "Market",
