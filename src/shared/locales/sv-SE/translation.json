@@ -394,6 +394,7 @@
         "changePassword": "Ändra lösenord",
         "general": "Allmänna inställningar",
         "advanced": "Avancerade inställningar",
+        "nodeSettings": "Node settings",
         "account": "Kontoinställningar",
         "logout": "Logga ut",
         "reset": "Återställ plånbok",
@@ -508,7 +509,8 @@
         "autoPromotion": "Automatisk befordran",
         "autoPromotionExplanation": "Automatisk befordran hjälper till att bekräfta dina transaktioner på Tangle. Aktivera den här inställningen om du har svårt att få dina transaktioner bekräftade.",
         "autoPromotionPoW": "Automatisk befordran är endast tillgänglig på noder som stöder fjärr PoW.",
-        "deepLinking": "Hyperlänkar"
+        "deepLinking": "Hyperlänkar",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrund",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "Först måste vi säkra din SeedVault. Vänligen välj en nyckel för att kryptera filen. Du kommer att använda denna nyckel om du behöver återställa din seed från din SeedVault-säkerhetskopia.",
         "retypeKey": "Skriv nyckeln igen",
         "key": "Nyckel"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
