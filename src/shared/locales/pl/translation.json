@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
-        "noTransactionsFound": "Historia transakcji jest pusta",
+        "noTransactionsFound": "Nie znaleziono transakcji",
+        "emptyHistory": "Historia transakcji jest pusta",
         "hideZeroBalance": "Ukryj zerowe",
         "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
@@ -468,7 +469,13 @@
         "retrying": "Ponawianie",
         "yesterday": "Wczoraj",
         "promotingAnotherBundle": "Promowanie innego pakietu",
-        "pleaseWait": "Proszę czekać, Trinity promuje obecnie inny pakiet."
+        "pleaseWait": "Proszę czekać, Trinity promuje obecnie inny pakiet.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -572,6 +579,7 @@
         "viewSeed": "Pokaż seed",
         "hideSeed": "Ukryj seed",
         "notAvailable": "Eksport klucza seed nie jest dostępny dla tego rodzaju konta: {{accountType}}",
+        "notAvailableExplanationLedger": "Twój portfel Ledger używa sprzętowego zabezpieczenia do przechowywania Twojego klucza seed. Seed jest bezpiecznie zaszyfrowany i nigdy nie opuszcza Twojego urządzenia Ledger.",
         "accountIndex": "Indeks Twojego konta Ledger",
         "accountPage": "Strona Twojego konta Ledger"
     },
@@ -642,6 +650,8 @@
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
+        "invalidSeedFileError": "Nieprawidłowy plik SeedVault",
+        "invalidSeedFileErrorExplanation": "Ten format pliku nie jest obsługiwany. Obsługiwane są jedynie pliki SeedVault (.kdbx), utworzone przez Trinity lub menedżer haseł.",
         "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Ustal osobny klucz do zaszyfrowania tego pliku. Będziesz używać tego klucza, aby przywrócić swój seed z tej kopii zapasowej SeedVault.",
         "retypeKey": "Wpisz klucz ponownie",
         "key": "Klucz"

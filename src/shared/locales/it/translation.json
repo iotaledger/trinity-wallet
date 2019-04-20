@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash del pacchetto copiato",
-        "noTransactionsFound": "La tua cronologia di transazioni è vuota",
+        "noTransactionsFound": "Nessuna transazione trovata",
+        "emptyHistory": "La tua cronologia di transazioni è vuota",
         "hideZeroBalance": "Nascondi saldo zero",
         "bundleHashCopiedExplanation": "L'hash del pacchetto è stato copiato negli Appunti.",
         "addressCopied": "Indirizzo copiato",
@@ -468,7 +469,13 @@
         "retrying": "Sto riprovando",
         "yesterday": "Ieri",
         "promotingAnotherBundle": "Promozione di un altro pacchetto",
-        "pleaseWait": "Per favore aspetta, Trinity sta promuovendo un altro pacchetto."
+        "pleaseWait": "Per favore aspetta, Trinity sta promuovendo un altro pacchetto.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",
@@ -572,6 +579,7 @@
         "viewSeed": "Visualizza seme",
         "hideSeed": "Nascondi seme",
         "notAvailable": "Esportazione di seme non è disponibile per il tipo di account {{accountType}}",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Il tuo indice di conto su Ledger",
         "accountPage": "Pagina di conto sul Ledger"
     },
@@ -642,6 +650,8 @@
         "noSeedFoundExplanation": "Il SeedVault o è vuoto o contiene un seme in un formato non valido.",
         "seedFileError": "Impossibile accedere il SeedVault",
         "seedFileErrorExplanation": "Si è verificato un problema accedendo il SeedVault. Se è stato selezionato il file corretto questo potrebbe essere danneggiato.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Per prima cosa dobbiamo proteggere la tua cassaforte di Seme. Si prega di scegliere una chiave per crittografare il file. Questa chiave verrà utilizzata se è necessario ripristinare il seme dal backup di SeedVault.",
         "retypeKey": "Riscrivi la chiave",
         "key": "Chiave"

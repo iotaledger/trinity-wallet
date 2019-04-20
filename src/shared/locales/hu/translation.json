@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Tranzakciós csomag hash másolva",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Nincs még tranzakció",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Nulla egyenleg elrejtése",
         "bundleHashCopiedExplanation": "A tranzakciós csomag hash a vágólapra lett másolva.",
         "addressCopied": "Cím másolva",
@@ -468,7 +469,13 @@
         "retrying": "Újrapróbálkozás",
         "yesterday": "Tegnap",
         "promotingAnotherBundle": "Újabb tranzakciós csomag előrehelyezése",
-        "pleaseWait": "Kérjük várjon. Jelenleg egy másik tranzakciós csomag előbbre helyezése van folyamatban."
+        "pleaseWait": "Kérjük várjon. Jelenleg egy másik tranzakciós csomag előbbre helyezése van folyamatban.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Mester jelszó megtekintése",
@@ -572,6 +579,7 @@
         "viewSeed": "Mester jelszó megtekintése",
         "hideSeed": "Mester jelszó elrejtése",
         "notAvailable": "A mester jelszó {{accountType}} típusú számla esetén nem exportálható",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Számlájának sorszáma",
         "accountPage": "Hardveres tárca számla oldala"
     },
@@ -642,9 +650,11 @@
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "A SeedVault fájl biztonságos tárolásához kérjük válasszon egy titkosító kulcsot. A titkosító kulcsra akkor lehet szüksége, ha a mester jelszavát a titkosított SeedVault biztonsági mentésből szeretné később egy másik, vagy egy újratelepített tárcába betölteni.",
         "retypeKey": "Titkosító kulcs még egyszer",
-        "key": "Key"
+        "key": "Kulcs"
     },
     "chart": {
         "mcap": "Piaci kapitalizáció",
