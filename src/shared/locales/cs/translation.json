@@ -55,6 +55,7 @@
         "yes": "Ano",
         "no": "Ne",
         "okay": "OK",
+        "skip": "Skip",
         "password": "Heslo",
         "unrecognisedPassword": "Neznámé heslo",
         "unrecognisedPasswordExplanation": "Nesprávné heslo. Prosím zkuste to znovu.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Nejsem připojen k veřejné WiFi síti",
         "printerConfirmation": "Netisknu na veřejné tiskárně"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Vaše adresa",
         "qrOptions": "QR nastavení",
@@ -384,7 +391,6 @@
         "language": "Jazyk",
         "accountManagement": "Správa účtu",
         "addNewSeed": "Přidat nový Seed",
-        "twoFA": "Dvoufaktorové ověření 2FA",
         "changePassword": "Změnit heslo",
         "general": "Obecná nastavení",
         "advanced": "Pokročilé nastavení",
@@ -449,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "Balíček hash zkopírován",
-        "noTransactionsFound": "Nebyly nalezeny žádné transakce",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Skrýt nulový zůstatek",
         "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
         "addressCopied": "Adresa zkopírována",
@@ -494,7 +500,8 @@
         "pow": "Proof of Work",
         "autoPromotion": "Automatická podpora",
         "autoPromotionExplanation": "Automatická podpora Vám pomůže potvrdit Vaši transakci v síti Tangle. Povolte toto nastavení, pokud máte problémy s potvrzováním transakcí.",
-        "autoPromotionPoW": "Automatická podpora je možná pouze na Nodech, které podporují vzdálený Proof of Work."
+        "autoPromotionPoW": "Automatická podpora je možná pouze na Nodech, které podporují vzdálený Proof of Work.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadí",
@@ -612,23 +619,6 @@
         "sendingAMessage": "Odeslání zprávy",
         "sendingAnEmptyMessage": "Odeslání prázdné zprávy"
     },
-    "twoFA": {
-        "wrongCode": "Nesprávný kód",
-        "wrongCodeExplanation": "Zadaný kód je nesprávný. Pokud tato chyba přetrvává, zkontrolujte, zda máte v přístroji nastaven správný čas.",
-        "emptyCode": "Prázdný kód",
-        "emptyCodeExplanation": "Prosím opakujte zadání kódu.",
-        "keyCopied": "Klíč zkopírován do schránky",
-        "keyCopiedExplanation": "Váš 2FA klíč byl zkopírován do schránky.",
-        "addKey": "Přidejte tento klíč do Vaší 2FA aplikace",
-        "key": "Klíč",
-        "twoFAEnabled": "2FA aktivována",
-        "twoFAEnabledExplanation": "Úspěšně jste aktivovali dvoufaktorovou autentifikaci 2FA.",
-        "twoFADisabled": "2FA je nyní deaktivována",
-        "twoFADisabledExplanation": "Úspěšně jste deaktivovali dvoufaktorovou autentifikaci 2FA.",
-        "enterCode": "Zadejte kód z Vaší 2FA aplikace",
-        "code": "Kód",
-        "twoFaToken": "2FA Token"
-    },
     "seedVault": {
         "exportSeedVault": "Exportovat SeedVault",
         "seedVaultExplanation": "SeedVault je způsob, jak bezpečně ukládat Váš Seed. Seed je uložen v zašifrovaném souboru a nemůže být zobrazen bez příslušného hesla.",
@@ -653,7 +643,8 @@
         "seedFileError": "Otevření SeedVault se nezdařilo",
         "seedFileErrorExplanation": "Během otevírání SeedVault nastal problém. Jestliže jste zvolili správný soubor, je možné, že je poškozený.",
         "seedVaultKeyExplanation": "Nejprve potřebujeme zabezpečit Váš SeedVault. Vyberte si prosím heslo k zašifrování souboru. Toto heslo použijete, pokud budete potřebovat obnovit Váš Seed ze zálohy SeedVault.",
-        "retypeKey": "Zadejte znovu heslo"
+        "retypeKey": "Zadejte znovu heslo",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -713,7 +704,12 @@
     },
     "deepLink": {
         "autofill": "Automatické vyplňování úspěšné",
-        "autofillExplanation": "Údaje o transakci byly automaticky doplněny z odkazu."
+        "autofillExplanation": "Údaje o transakci byly automaticky doplněny z odkazu.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba při získávání aktualizačních dat",
@@ -810,6 +806,8 @@
         "checkAddress": "Zkontrolujte adresu příjemce",
         "checkAddressExplanation": "Zkontrolujte, zda adresa odpovídá adrese zobrazené na Vašem zařízení Ledger.",
         "applicationNotInitialised": "Informační upozornění, nebylo přijato",
-        "applicationNotInitialisedExplanation": "Znovu otevřete aplikaci IOTA na Vašem zařízení Ledger, přijměte informační upozornění a zkuste to znovu."
+        "applicationNotInitialisedExplanation": "Znovu otevřete aplikaci IOTA na Vašem zařízení Ledger, přijměte informační upozornění a zkuste to znovu.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

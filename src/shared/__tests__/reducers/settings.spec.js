@@ -57,7 +57,6 @@ describe('Reducer: settings', () => {
                 remotePoW: false,
                 lockScreenTimeout: 3,
                 versions: {},
-                is2FAEnabled: false,
                 isFingerprintEnabled: false,
                 acceptedTerms: false,
                 acceptedPrivacy: false,
@@ -71,6 +70,7 @@ describe('Reducer: settings', () => {
                 },
                 completedMigration: false,
                 ignoreProxy: false,
+                deepLinking: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -487,26 +487,6 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_2FA_STATUS, () => {
-        it('should set is2FAEnabled to payload', () => {
-            const initialState = {
-                is2FAEnabled: false,
-            };
-
-            const action = {
-                type: ActionTypes.SET_2FA_STATUS,
-                payload: true,
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                is2FAEnabled: true,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
     describe(ActionTypes.SET_FINGERPRINT_STATUS, () => {
         it('should set isFingerprintEnabled to payload', () => {
             const initialState = {
@@ -579,6 +559,25 @@ describe('Reducer: settings', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 acceptedPrivacy: true,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe(ActionTypes.SET_DEEP_LINKING, () => {
+        it('should set deepLinking to true', () => {
+            const initialState = {
+                deepLinking: false,
+            };
+
+            const action = {
+                type: ActionTypes.SET_DEEP_LINKING,
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                deepLinking: true,
             };
 
             expect(newState).to.eql(expectedState);

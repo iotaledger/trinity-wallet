@@ -55,6 +55,7 @@
         "yes": "是",
         "no": "否",
         "okay": "確定",
+        "skip": "Skip",
         "password": "密碼",
         "unrecognisedPassword": "密碼不符",
         "unrecognisedPasswordExplanation": "密碼不符，請再試一次。",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "您的地址",
         "qrOptions": "QR 碼選項",
@@ -384,7 +391,6 @@
         "language": "語言",
         "accountManagement": "帳戶管理",
         "addNewSeed": "增加新的種子碼",
-        "twoFA": "雙重身分驗證",
         "changePassword": "修改密碼",
         "general": "General settings",
         "advanced": "進階設定",
@@ -449,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "交易組雜湊值已複製",
-        "noTransactionsFound": "找不到交易紀錄",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "隱藏零元紀錄",
         "bundleHashCopiedExplanation": "交易組的雜湊值已複製到剪貼簿。",
         "addressCopied": "地址已複製",
@@ -494,7 +500,8 @@
         "pow": "工作量證明",
         "autoPromotion": "自動促進",
         "autoPromotionExplanation": "自動促進會協助確認您在 Tangle 上的交易。如果您在確認交易時遇到困難的話，請啟用此設定。",
-        "autoPromotionPoW": "自動促進僅能支援遠端工作量證明的節點上使用。"
+        "autoPromotionPoW": "自動促進僅能支援遠端工作量證明的節點上使用。",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -612,23 +619,6 @@
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
-    "twoFA": {
-        "wrongCode": "驗證碼錯誤",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "驗證碼為空",
-        "emptyCodeExplanation": "請輸入驗證碼並重試。",
-        "keyCopied": "密鑰已複製到剪貼簿",
-        "keyCopiedExplanation": "您的 2FA 密鑰已經複製到剪貼簿。",
-        "addKey": "新增此密鑰至您的 2FA 應用程式",
-        "key": "密鑰",
-        "twoFAEnabled": "2FA 現已啟用",
-        "twoFAEnabledExplanation": "您已成功啟用雙重身分驗證。",
-        "twoFADisabled": "2FA 現已停用",
-        "twoFADisabledExplanation": "您已成功停用雙重身分驗證。",
-        "enterCode": "請輸入您的 2FA 應用程式中的驗證碼",
-        "code": "驗證碼",
-        "twoFaToken": "2FA 金鑰"
-    },
     "seedVault": {
         "exportSeedVault": "匯出 SeedVault",
         "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
@@ -653,7 +643,8 @@
         "seedFileError": "開啟 SeedVault 失敗",
         "seedFileErrorExplanation": "開啟 SeedVault 時遇到問題，如果您選擇的檔案是正確的，那麼它可能已損壞。",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "Key"
     },
     "chart": {
         "mcap": "總市值",
@@ -713,7 +704,12 @@
     },
     "deepLink": {
         "autofill": "自動填入成功",
-        "autofillExplanation": "從連結自動填入交易資料。"
+        "autofillExplanation": "從連結自動填入交易資料。",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "取得更新資料時發生錯誤",
@@ -810,6 +806,8 @@
         "checkAddress": "檢查接收地址",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

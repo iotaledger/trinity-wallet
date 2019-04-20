@@ -55,6 +55,7 @@
         "yes": "हाँ",
         "no": "नहीं",
         "okay": "ठीक है",
+        "skip": "Skip",
         "password": "पासवर्ड",
         "unrecognisedPassword": "पासवर्ड मेल नहीं खाया",
         "unrecognisedPasswordExplanation": "पासवर्ड की पहचान नहीं की गई । कृपया पुन: प्रयास करें ।",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Your address",
         "qrOptions": "QR options",
@@ -384,7 +391,6 @@
         "language": "भाषा ",
         "accountManagement": "अकाउंट प्रबंध",
         "addNewSeed": "नए सीड जोड़ें",
-        "twoFA": "Two-factor authentication",
         "changePassword": "पासवर्ड परिवर्तित करें",
         "general": "General settings",
         "advanced": "उच्च सेटिंग्स",
@@ -449,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "बंडल हैश की प्रतिलिपि बनाई गई",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "बंडल हैश को क्लिपबोर्ड पर कॉपी किया गया है ।",
         "addressCopied": "पता प्रतिलिपि बनाई गई",
@@ -494,7 +500,8 @@
         "pow": "Proof of Work",
         "autoPromotion": "ऑटो प्रमोशन",
         "autoPromotionExplanation": "ऑटो प्रमोशन आपके लेनदेन की पुष्टि करने में मदद करता है । इस सेटिंग को सक्षम करें यदि आपको पुष्टि करने के लिए अपने लेन-देन में कठिनाई हो रही है ।",
-        "autoPromotionPoW": "स्वत: पदोन्नति केवल उन नोड्स पर संभव है जो कार्य के दूरस्थ प्रमाण का समर्थन करते हैं।"
+        "autoPromotionPoW": "स्वत: पदोन्नति केवल उन नोड्स पर संभव है जो कार्य के दूरस्थ प्रमाण का समर्थन करते हैं।",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "बैकग्राउंड",
@@ -612,23 +619,6 @@
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
-    "twoFA": {
-        "wrongCode": "गलत कोड!",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "रिक्त कोड",
-        "emptyCodeExplanation": "कृपया कोई कोड दर्ज करें और पुनः प्रयास करे ।",
-        "keyCopied": "कुंजी क्लिपबोर्ड में प्रतिलिपि बनाई गई",
-        "keyCopiedExplanation": "आपकी 2FA कुंजी की क्लिपबोर्ड पर प्रतिलिपि बनाई गई है ।",
-        "addKey": "अपने 2FA ऐप में इस कुंजी को जोड़ें",
-        "key": "कुँजी",
-        "twoFAEnabled": "2FA अब चालू है",
-        "twoFAEnabledExplanation": "आपने सफलतापूर्वक 2FA प्रमाणीकरण चालू कर दिया है",
-        "twoFADisabled": "2FA अब चालू है",
-        "twoFADisabledExplanation": "आपने सफलतापूर्वक 2FA प्रमाणीकरण चालू कर दिया है",
-        "enterCode": "अपने 2FA एप्लिकेशन से कोड दर्ज करें",
-        "code": "कोड",
-        "twoFaToken": "2FA टोकन"
-    },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
         "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
@@ -653,7 +643,8 @@
         "seedFileError": "Failed to open SeedVault",
         "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -713,7 +704,12 @@
     },
     "deepLink": {
         "autofill": "ऑटो फील सफल",
-        "autofillExplanation": "लिंक से लेनदेन डेटा का स्वत: भरण"
+        "autofillExplanation": "लिंक से लेनदेन डेटा का स्वत: भरण",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "अपडेट डेटा पुनर्प्राप्त करने में त्रुटि",
@@ -810,6 +806,8 @@
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

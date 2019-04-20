@@ -12,6 +12,7 @@ import ViewSeed from 'ui/views/wallet/ViewSeed';
 import ViewAddressesComponent from 'ui/views/wallet/ViewAddresses';
 import ProofOfWork from 'ui/views/wallet/Pow';
 import AutoPromotion from 'ui/views/wallet/AutoPromotion';
+import DeepLinking from 'ui/views/wallet/DeepLinking';
 import EditAccountNameComponent from 'ui/views/wallet/EditAccountName';
 import DeleteAccount from 'ui/views/wallet/DeleteAccount';
 import AddNewAccount from 'ui/views/wallet/AddNewAccount';
@@ -54,6 +55,7 @@ const SETTINGS_COMPONENTS = {
     modeSelection: ModeSelection,
     pow: ProofOfWork,
     autoPromotion: AutoPromotion,
+    deepLinking: DeepLinking,
     about: About,
     exportSeedVault: SeedVaultSettings,
 };

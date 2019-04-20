@@ -55,6 +55,7 @@
         "yes": "Да",
         "no": "Нет",
         "okay": "Хорошо",
+        "skip": "Skip",
         "password": "Пароль",
         "unrecognisedPassword": "Нераспознанный пароль",
         "unrecognisedPasswordExplanation": "Неверный пароль. Пожалуйста, попробуйте снова.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Your address",
         "qrOptions": "QR options",
@@ -384,7 +391,6 @@
         "language": "Язык",
         "accountManagement": "Управление счётом",
         "addNewSeed": "Добавить новый ключ",
-        "twoFA": "Двухфакторная аутентификация",
         "changePassword": "Изменить пароль",
         "general": "General settings",
         "advanced": "Дополнительные настройки",
@@ -449,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "Хэш пакет скопирован",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "Хэш пакет скопирован в буфер обмена.",
         "addressCopied": "Адрес скопирован",
@@ -494,7 +500,8 @@
         "pow": "Доказательство Работы (PoW)",
         "autoPromotion": "Авто-продвижение",
         "autoPromotionExplanation": "Авто-продвижение помогает Вашим транзакциям получить статус подтвержденных в Tangle. Включите эту опцию, если у Вас трудности с подтверждением Ваших транзакций.",
-        "autoPromotionPoW": "Авто-продвижение возможно только на узлах, которые поддерживают удалённое проведение Proof of Work."
+        "autoPromotionPoW": "Авто-продвижение возможно только на узлах, которые поддерживают удалённое проведение Proof of Work.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Фон",
@@ -612,23 +619,6 @@
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
-    "twoFA": {
-        "wrongCode": "Неправильный код",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "Код пустой",
-        "emptyCodeExplanation": "Пожалуйста введите код и повторите попытку.",
-        "keyCopied": "Ключ скопирован в буфер обмена",
-        "keyCopiedExplanation": "Ваш 2FA ключ был скопирована в буфер обмена.",
-        "addKey": "Добавить этот ключ к Вашему 2FA приложению",
-        "key": "Ключ",
-        "twoFAEnabled": "2FA теперь включена",
-        "twoFAEnabledExplanation": "Вы успешно включили аутентификацию по отпечаткам пальцев.",
-        "twoFADisabled": "Двухфакторная аутентификация теперь отключена",
-        "twoFADisabledExplanation": "Вы успешно отключили Двухфакторную аутентификацию.",
-        "enterCode": "Введите код из 2FA приложения",
-        "code": "Код",
-        "twoFaToken": "Токен 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
         "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
@@ -653,7 +643,8 @@
         "seedFileError": "Failed to open SeedVault",
         "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -713,7 +704,12 @@
     },
     "deepLink": {
         "autofill": "Автозаполнение прошло успешно",
-        "autofillExplanation": "Данные транзакции были автоматически заполнены из ссылки."
+        "autofillExplanation": "Данные транзакции были автоматически заполнены из ссылки.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Ошибка при получении данных обновления",
@@ -810,6 +806,8 @@
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

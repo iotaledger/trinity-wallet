@@ -55,6 +55,7 @@
         "yes": "Ja",
         "no": "Nein",
         "okay": "Okay",
+        "skip": "Überspringen",
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte versuche es erneut.",
@@ -76,8 +77,8 @@
         "wallet": "Wallet",
         "all": "Alle",
         "sent": "Gesendet",
-        "youReceived": "Du hast erhalten",
-        "youSent": "Du hast gesendet",
+        "youReceived": "Du hast erhalten:",
+        "youSent": "Du hast gesendet:",
         "received": "Empfangen",
         "sending": "Sende...",
         "receiving": "Empfange...",
@@ -124,7 +125,7 @@
         "touchSensor": "Berühre den Fingerabdrucksensor",
         "fingerprintOnSend": "Berühre den Fingerabdrucksensor um den Transfer zu bestätigen.",
         "masterKey": "Dein IOTA Seed ist der Hauptschlüssel zu deinem Guthaben.",
-        "seedThief": "Wenn eine andere Person deinen Seed hat, kann diese deine IOTA stehlen.",
+        "seedThief": "Wenn eine andere Person deinen Seed hat, kann sie deine IOTA stehlen.",
         "googlePlayServicesNotAvailable": "Google Play-Dienste nicht verfügbar",
         "couldNotVerifyDeviceIntegrity": "Gerät konnte nicht überprüft werden, da die Google-Play-Dienste nicht verfügbar sind.",
         "clear": "Löschen",
@@ -220,7 +221,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed gelöscht",
-        "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht."
+        "seedClearedExplanation": "Aus Sicherheitsgründen wurde dein Seed aus der Zwischenablage gelöscht."
     },
     "enterSeed": {
         "invalidCharacters": "Der Seed enthält ungültige Zeichen",
@@ -249,24 +250,24 @@
         "login": "Anmelden",
         "setNode": "Node wählen",
         "whyBiometricDisabled": "Warum ist die biometrische Authentifizierung deaktiviert?",
-        "whyBiometricDisabledExplanationPart1": "Biometrische Authentifizierung ist beim ersten App-Start aus Sicherheitsgründen deaktiviert.",
+        "whyBiometricDisabledExplanationPart1": "Aus Sicherheitsgründen ist die biometrische Authentifizierung beim ersten App-Start deaktiviert.",
         "whyBiometricDisabledExplanationPart2": "Trinity wird dich bei Inaktivität automatisch abmelden. Du kannst dich anschließend mit biometrischer Authentifizierung erneut anmelden."
     },
     "loading": {
         "loadingFirstTime": "Dein Seed wird initialisiert.",
         "thisMayTake": "Das kann eine Weile dauern.",
         "doNotMinimise": "Die App nicht minimieren oder schließen.",
-        "takingAWhile": "Das scheint eine Weile zu dauern"
+        "takingAWhile": "Das kann eine Weile dauern"
     },
     "newSeedSetup": {
         "generatedSeed": "Seed generiert",
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
         "seedNotGeneratedExplanation": "Bitte erstelle einen neuen Seed.",
-        "pressForNewSeed": "Drücke für neuen Seed",
+        "pressForNewSeed": "Tippe für neuen Seed",
         "generateSuccess": "Seed erfolgreich generiert",
         "individualLetters": "Tippe einzelne Buchstaben an, um sie neu zu generieren.",
-        "individualLetterCount": "Drücke <1><0>{{count}}</0></1> weiteren Buchstaben für eine zufällige Auswahl.",
-        "individualLetterCount_plural": "Drücke <1><0>{{count}}</0></1> oder mehr Buchstaben für eine zufällige Auswahl.",
+        "individualLetterCount": "Tippe <1><0>{{count}}</0></1> weiteren Buchstaben für eine zufällige Auswahl.",
+        "individualLetterCount_plural": "Tippe <1><0>{{count}}</0></1> oder mehr Buchstaben für eine zufällige Auswahl.",
         "randomiseCharsToContinue": "Wähle <1>{{count}}</1> zufälliges Zeichen um fortzufahren.",
         "randomiseCharsToContinue_plural": "Wähle <1>{{count}}</1> zufällige Zeichen um fortzufahren.",
         "whatIsASeed": "Was ist ein Seed?"
@@ -285,6 +286,12 @@
         "pleaseCheck": "Überprüfe und Bestätige bevor du druckst",
         "wifiConfirmation": "Ich befinde mich nicht in einem öffentlichen WLAN",
         "printerConfirmation": "Ich drucke nicht auf einem öffentlich zugänglichen Drucker"
+    },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Möchtest du eine leere Vorlage drucken?",
+        "printTemplateInfo": "Um das Notieren des Seed zu vereinfachen, kannst du eine leere Vorlage drucken.",
+        "printTemplateWarning": "Bewahre deinen Seed an einem sicheren Ort auf und zeige ihn niemandem.",
+        "print": "Ja, drucken"
     },
     "receive": {
         "yourAddress": "Deine Adresse",
@@ -310,7 +317,7 @@
         "leastSecure": "Am unsichersten",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Notiere deinen Seed",
-        "seedClearedExplanation": "Dein Seed wurde aus Sicherheitsgründen aus der Zwischenablage entfernt.",
+        "seedClearedExplanation": "Aus Sicherheitsgründen wurde dein Seed aus der Zwischenablage entfernt.",
         "letsWriteDownYourSeed": "Notiere deinen Seed",
         "youCanHighlightCharacters": "Du kannst neun Buchstaben gleichzeitig auswählen",
         "printBlankWallet": "Leeres Paper-Wallet drucken",
@@ -318,7 +325,7 @@
         "everySeedHasAChecksum": "Jeder Seed hat eine dreistellige Prüfsumme.",
         "iHavesavedMySeed": "Ich habe meinen Seed gesichert",
         "checksumExplanation": "Immer wenn du einen Seed eingibst, solltest du sicherstellen, dass die angezeigte Prüfsumme mit deiner aufgeschriebenen Prüfsumme übereinstimmt.",
-        "mustSaveYourSeed": "<0><0>Du musst deinen Seed mit </0><1>mindestens einer</1><2> der unten aufgelisteten Optionen sichern.</2></0>"
+        "mustSaveYourSeed": "<0><0>Du musst deinen Seed mit </0><1>mindestens einer</1><2> der folgenden Optionen sichern.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Bitte bestätige deinen Seed",
@@ -384,7 +391,6 @@
         "language": "Sprache",
         "accountManagement": "Konto-Verwaltung",
         "addNewSeed": "Neuen Seed hinzufügen",
-        "twoFA": "2-Faktor-Authentifizierung",
         "changePassword": "Passwort ändern",
         "general": "Einstellungen",
         "advanced": "Erweiterte Einstellungen",
@@ -449,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
-        "noTransactionsFound": "Keine Transaktionen gefunden",
+        "noTransactionsFound": "Dein Transaktionsverlauf ist leer",
         "hideZeroBalance": "Nullsaldo ausblenden",
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
@@ -494,7 +500,8 @@
         "pow": "Proof of Work",
         "autoPromotion": "Auto-Promotion",
         "autoPromotionExplanation": "Auto-Promotion hilft dir Transaktionen auf dem Tangle zu bestätigen. Aktiviere diese Einstellung, wenn du Schwierigkeiten hast deine Transaktionen zu bestätigen.",
-        "autoPromotionPoW": "Auto-Promotion ist nur auf Nodes mit aktiviertem \"Remote Proof of Work\" möglich."
+        "autoPromotionPoW": "Auto-Promotion ist nur auf Nodes mit aktiviertem \"Remote Proof of Work\" möglich.",
+        "deepLinking": "Deep-Linking"
     },
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
@@ -549,7 +556,7 @@
     },
     "manualSync": {
         "outOfSync": "Sieht der Verlauf deiner Transaktionen so aus, als ob er nicht synchronisiert wäre?",
-        "pressToSync": "Drücke die folgende Schaltfläche, um dein Konto zu synchronisieren.",
+        "pressToSync": "Verwende die folgende Schaltfläche, um dein Konto zu synchronisieren.",
         "thisMayTake": "Das kann eine Weile dauern. Dein Gerät könnte etwas langsamer werden.",
         "doNotClose": "Minimieren der App wird die Synchronisierung abbrechen.",
         "syncAccount": "Konto synchronisieren",
@@ -583,9 +590,9 @@
         "instructionsEnable": "Berühre den Fingerabdrucksensor, um die Authentifizierung mittels Fingerabdruck einzurichten",
         "instructionsDisable": "Berühre den Fingerabdrucksensor, um die Authentifizierung mittels Fingerabdruck zu deaktivieren",
         "fingerprintAuthEnabled": "Biometrische Authentifizierung aktiviert",
-        "fingerprintAuthEnabledExplanation": "Du hast erfolgreich die biometrische Authentifizierung aktiviert.",
+        "fingerprintAuthEnabledExplanation": "Du hast die biometrische Authentifizierung erfolgreich aktiviert.",
         "fingerprintAuthDisabled": "Biometrische Authentifizierung deaktiviert",
-        "fingerprintAuthDisabledExplanation": "Du hast erfolgreich die biometrische Authentifizierung deaktiviert.",
+        "fingerprintAuthDisabledExplanation": "Du hast die biometrische Authentifizierung erfolgreich deaktiviert.",
         "fingerprintAuthFailed": "Biometrische Authentifizierung fehlgeschlagen",
         "fingerprintAuthFailedExplanation": "Fingerabdruck-Authentifizierung fehlgeschlagen. Bitte erneut versuchen.",
         "status": "Status",
@@ -594,8 +601,8 @@
         "fingerprintUnavailableExplanation": "Dein Gerät unterstützt keine biometrische Authentifizierung oder die Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
         "notSupported": "Die biometrische Authentifizierung wird von deinem Gerät nicht unterstützt",
         "notConfigured": "Die biometrische Authentifizierung wurde noch nicht in deinen Geräteeinstellungen konfiguriert",
-        "buttonInstructionsDisable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
-        "buttonInstructionsEnable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
+        "buttonInstructionsDisable": "Tippe auf die Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
+        "buttonInstructionsEnable": "Tippe auf die Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
         "buttonInstructionsDisableIPhoneX": "Drücke den Button unten um Face ID zu deaktivieren",
         "buttonInstructionsEnableIPhoneX": "Drücke den Button unten um Face ID zu aktivieren",
         "instructionsLogin": "Zur Anmeldung den Fingerabdrucksensor berühren",
@@ -611,23 +618,6 @@
         "toAddress": "An Adresse",
         "sendingAMessage": "Sende die Nachricht",
         "sendingAnEmptyMessage": "Sende eine leere Nachricht"
-    },
-    "twoFA": {
-        "wrongCode": "Falscher Code",
-        "wrongCodeExplanation": "Der eingegebene Code ist nicht korrekt. Stelle sicher, dass die Uhrzeit auf deinem Gerät stimmt, falls der Fehler erneut auftritt.",
-        "emptyCode": "Fehlender 2FA-Code",
-        "emptyCodeExplanation": "Bitte gib einen Code ein und versuche es erneut.",
-        "keyCopied": "Schlüssel in die Zwischenablage kopiert",
-        "keyCopiedExplanation": "Dein 2FA Schlüssel wurde in die Zwischenablage kopiert.",
-        "addKey": "Füge diesen Schlüssel in deine 2FA App ein",
-        "key": "Schlüssel",
-        "twoFAEnabled": "2FA ist jetzt aktiviert",
-        "twoFAEnabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung aktiviert.",
-        "twoFADisabled": "2FA ist jetzt deaktiviert",
-        "twoFADisabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung deaktiviert.",
-        "enterCode": "Gib den Code aus deiner 2FA App ein",
-        "code": "Code",
-        "twoFaToken": "2FA Token"
     },
     "seedVault": {
         "exportSeedVault": "SeedVault exportieren",
@@ -652,8 +642,9 @@
         "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",
         "seedFileError": "Fehler beim Öffnen",
         "seedFileErrorExplanation": "Beim Öffnen deines SeedVault ist ein Fehler aufgetreten. Stelle sicher dass du die korrekte Datei auswählt hast und die Datei nicht beschädigt ist.",
-        "seedVaultKeyExplanation": "Zuerst müssen den SeedVault absichern. Bitte wähle einen Schlüssel, um die Datei zu verschlüsseln. Du wirst diesen Schlüssel verwenden, wenn du deinen Seed aus dem SeedVault Backup wiederherstellen musst.",
-        "retypeKey": "Schlüssel erneut eingeben"
+        "seedVaultKeyExplanation": "Zuerst musst du deinen SeedVault absichern. Bitte wähle einen Schlüssel, um die Datei zu verschlüsseln. Du musst diesen Schlüssel verwenden, wenn du deinen Seed aus dem SeedVault Backup wiederherstellen möchtest.",
+        "retypeKey": "Schlüssel erneut eingeben",
+        "key": "Schlüssel"
     },
     "chart": {
         "mcap": "Börsenwert",
@@ -713,7 +704,12 @@
     },
     "deepLink": {
         "autofill": "Automatisches ausfüllen erfolgreich",
-        "autofillExplanation": "Transaktionsdaten automatisch durch den Link ausgefüllt."
+        "autofillExplanation": "Transaktionsdaten automatisch durch den Link ausgefüllt.",
+        "deepLinkingOverview": "Deep-Links sind anklickbare Links (iota://...) die automatisch Transaktionen in Trinity ausfüllen.",
+        "deepLinkingWarning": "Achte auf Betrugsversuche. Stelle sicher, dass der Link, den du öffnen möchtest, das offzielle Trinity Wallet verwendet.",
+        "deepLinkingUpdated": "Deep-Link Einstellungen",
+        "deepLinkingEnabled": "Du hast Deep-Linking aktiviert.",
+        "deepLinkingDisabled": "Du hast Deep-Linking deaktiviert."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",
@@ -810,6 +806,8 @@
         "checkAddress": "Prüfe die Empfangsadresse",
         "checkAddressExplanation": "Stelle sicher dass die hier angezeigte Adresse mit der Anzeige auf deinem Ledger übereinstimmt.",
         "applicationNotInitialised": "Unbestätigte Warnung",
-        "applicationNotInitialisedExplanation": "Öffne die IOTA-App auf deinem Ledger, akzeptiere die Hinweise und versuche es erneut."
+        "applicationNotInitialisedExplanation": "Öffne die IOTA-App auf deinem Ledger, akzeptiere die Hinweise und versuche es erneut.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

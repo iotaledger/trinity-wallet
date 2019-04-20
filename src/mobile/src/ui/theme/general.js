@@ -20,14 +20,12 @@ const screens = [
     'setAccountName',
     'seedReentry',
     'saveSeedConfirmation',
-    'twoFactorSetupAddKey',
-    'twoFactorSetupEnterToken',
-    'disable2FA',
     'fingerprintSetup',
     'termsAndConditions',
     'privacyPolicy',
     'forceChangePassword',
     'seedVaultBackup',
+    'biometricAuthentication',
 ];
 
 export const Styling = {

@@ -3,7 +3,7 @@ export const __TEST__ = process.env.NODE_ENV === 'test';
 export const __MOBILE__ = typeof navigator !== 'undefined' && navigator.product === 'ReactNative';
 
 /** Default IRI node */
-export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.iota.fm:443';
+export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.thetangle.org:443';
 
 export const nodesWithPowDisabled = ['https://trinity.iota-tangle.io:14265', 'https://node.iota-tangle.io:14265'];
 
@@ -34,11 +34,14 @@ export const DEFAULT_BALANCES_THRESHOLD = 100;
 
 export const BUNDLE_OUTPUTS_THRESHOLD = 50;
 
+export const MAX_REQUEST_TIMEOUT = 60 * 1000 * 2;
+
 export const DEFAULT_NODE_REQUEST_TIMEOUT = 6000 * 2;
 export const GET_NODE_INFO_REQUEST_TIMEOUT = 2500;
 export const GET_BALANCES_REQUEST_TIMEOUT = 6000;
 export const WERE_ADDRESSES_SPENT_FROM_REQUEST_TIMEOUT = 4000;
 export const ATTACH_TO_TANGLE_REQUEST_TIMEOUT = 25000;
+export const GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT = 40000;
 
 export const DEFAULT_RETRIES = 4;
 

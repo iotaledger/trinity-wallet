@@ -55,6 +55,7 @@
         "yes": "Sí",
         "no": "No",
         "okay": "De acuerdo",
+        "skip": "Skip",
         "password": "Contraseña",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "No estoy usando wifi público",
         "printerConfirmation": "No estoy imprimiendo en una impresora publica"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Su dirección",
         "qrOptions": "Opciones QR",
@@ -384,7 +391,6 @@
         "language": "Idioma",
         "accountManagement": "Administración de cuentas",
         "addNewSeed": "Añadir nueva semilla",
-        "twoFA": "Autenticación de dos factores",
         "changePassword": "Cambiar contraseña",
         "general": "Configuración general",
         "advanced": "Opciones avanzadas",
@@ -449,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
-        "noTransactionsFound": "No sé encontraron transacciones",
+        "noTransactionsFound": "Your transaction history is empty",
         "hideZeroBalance": "Esconder balance nulo",
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
@@ -494,7 +500,8 @@
         "pow": "Prueba de trabajo",
         "autoPromotion": "Auto-promoción",
         "autoPromotionExplanation": "La auto-promoción ayuda a confirmar sus transacciones en el Tangle. Habilite esta opción si está experimentando dificultades para conseguir que se confirmen sus transacciones.",
-        "autoPromotionPoW": "La auto-promoción solo es posible en los nodos que soportan PoW remota."
+        "autoPromotionPoW": "La auto-promoción solo es posible en los nodos que soportan PoW remota.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Fondo",
@@ -612,23 +619,6 @@
         "sendingAMessage": "Enviando un mensaje",
         "sendingAnEmptyMessage": "Enviando un mensaje vacío"
     },
-    "twoFA": {
-        "wrongCode": "Código incorrecto",
-        "wrongCodeExplanation": "El código que ingreso es incorrecto. Si este error persiste, revise que el horario en su dispositivo es correcto.",
-        "emptyCode": "Código vacío",
-        "emptyCodeExplanation": "Por favor, introduce el código e inténtalo de nuevo.",
-        "keyCopied": "Clave copiada al portapapeles",
-        "keyCopiedExplanation": "Su clave 2FA se ha copiado al portapapeles.",
-        "addKey": "Añada esta clave a su aplicación 2FA",
-        "key": "Clave",
-        "twoFAEnabled": "2FA habilitado",
-        "twoFAEnabledExplanation": "Has habilitado la autenticación de doble factor correctamente.",
-        "twoFADisabled": "2FA esta desactivado",
-        "twoFADisabledExplanation": "Ha desactivado 2FA.",
-        "enterCode": "Introduzca el código de su aplicación 2FA",
-        "code": "Código",
-        "twoFaToken": "Código 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "Exportar SeedVault",
         "seedVaultExplanation": "Una SeedVault es un archivo encriptado para respaldar su semilla. La semilla es encriptada con una clave y no puede ser desencriptada sin esta.",
@@ -653,7 +643,8 @@
         "seedFileError": "Fallo al abrir SeedVault",
         "seedFileErrorExplanation": "Hubo un problema al abrir el SeedVault. Si ha seleccionado el archivo correcto entonces puede estar corrompido.",
         "seedVaultKeyExplanation": "Primero necesitamos asegurar su SeedVault. Por favor elija una clave para encriptar el archivo. Debe usar esta clave si necesita restaurar su semilla desde SeedVault.",
-        "retypeKey": "Reingrese la clave"
+        "retypeKey": "Reingrese la clave",
+        "key": "Key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -713,7 +704,12 @@
     },
     "deepLink": {
         "autofill": "Autocompletado exitoso",
-        "autofillExplanation": "Información de la transacción completada por el link."
+        "autofillExplanation": "Información de la transacción completada por el link.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Error al recuperar los datos de actualización",
@@ -810,6 +806,8 @@
         "checkAddress": "Revise la dirección de recepción",
         "checkAddressExplanation": "Compruebe que la dirección coincida con la mostrada en su dispositivo de ledger.",
         "applicationNotInitialised": "Advertencia no confirmada",
-        "applicationNotInitialisedExplanation": "Re abra la aplicación IOTA en su dispositivo ledger, acepte la advertencia informativa y reintente."
+        "applicationNotInitialisedExplanation": "Re abra la aplicación IOTA en su dispositivo ledger, acepte la advertencia informativa y reintente.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

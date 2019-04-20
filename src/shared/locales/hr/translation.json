@@ -55,6 +55,7 @@
         "yes": "Da",
         "no": "Ne",
         "okay": "U redu",
+        "skip": "Preskoči",
         "password": "Lozinka",
         "unrecognisedPassword": "Neispravna Lozinka",
         "unrecognisedPasswordExplanation": "Vaša lozinka je neispravna. Molimo pokušajte ponovno.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Moj uređaj nije spojen na javno dostupan wifi",
         "printerConfirmation": "Ne vršim ispis na javno dostupnom pisaču"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Želite li ispisati prazan predložak?",
+        "printTemplateInfo": "Možete ispisati prazan predložak kao pomoć pri zapisu vašeg seed-a.",
+        "printTemplateWarning": "Pobrinite se da pohranite svoj seed na sigurno mjesto. Nemojte ga pokazati nikome.",
+        "print": "Da, ispiši"
+    },
     "receive": {
         "yourAddress": "Vaša adresa",
         "qrOptions": "QR opcije",
@@ -384,7 +391,6 @@
         "language": "Jezik",
         "accountManagement": "Upravljanje računima",
         "addNewSeed": "Dodaj novi seed",
-        "twoFA": "Autorizacija s dva faktora",
         "changePassword": "Promjena lozinke",
         "general": "Opće postavke",
         "advanced": "Napredne postavke",
@@ -449,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash paketa kopiran",
-        "noTransactionsFound": "Nije pronađena niti jedna transakcija",
+        "noTransactionsFound": "Povijest transakcija je prazna",
         "hideZeroBalance": "Sakrij transakcije s nula sredstava",
         "bundleHashCopiedExplanation": "Hash paketa je kopiran u međuspremnik.",
         "addressCopied": "Adresa kopirana",
@@ -494,7 +500,8 @@
         "pow": "PoW",
         "autoPromotion": "Automatska promocija",
         "autoPromotionExplanation": "Automatska promocija pomaže potvrditi vašu transakciju na Tangle-u. Omogućite ovu postavku ako imate problema s potvrđivanjem vaših transakcija.",
-        "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW."
+        "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadina",
@@ -612,23 +619,6 @@
         "sendingAMessage": "Šaljem poruku",
         "sendingAnEmptyMessage": "Šaljem praznu poruku"
     },
-    "twoFA": {
-        "wrongCode": "Pogrešan kod",
-        "wrongCodeExplanation": "Kod koji ste unijeli je neispravan. Ukoliko se greška ponovi, molimo provjerite da li je vrijeme na vašim uređajima ispravno (sinkronizirano).",
-        "emptyCode": "Prazan kôd",
-        "emptyCodeExplanation": "Molimo unesite kôd i pokušajte ponovno.",
-        "keyCopied": "Kopirano u međuspremnik",
-        "keyCopiedExplanation": "Vaš 2FA ključ je kopiran u međuspremnik.",
-        "addKey": "Dodajte ovaj ključ vašoj 2FA aplikaciji",
-        "key": "Ključ",
-        "twoFAEnabled": "2FA je omogućena",
-        "twoFAEnabledExplanation": "Uspješno ste omogućili autorizaciju s dva faktora (2FA).",
-        "twoFADisabled": "2FA je onemogućena",
-        "twoFADisabledExplanation": "Uspješno ste onemogućili autorizaciju s dva faktora (2FA).",
-        "enterCode": "Unesite kod iz vaše 2FA aplikacije",
-        "code": "Kôd",
-        "twoFaToken": "2FA Token"
-    },
     "seedVault": {
         "exportSeedVault": "Izvezi SeedVault",
         "seedVaultExplanation": "SeedVault je kodirana datoteka namijenjena spremanju vašeg seed-a na siguran način. Seed je kodiran i zaštićen lozinkom, te mu se ne može pristupiti bez te lozinke.",
@@ -653,7 +643,8 @@
         "seedFileError": "Neuspješno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
         "seedVaultKeyExplanation": "Prvo trebamo osigurati vaš SeedVault. Molimo odaberite lozinku za enkripciju vaše SeedVault datoteke. Ova lozinka bit će potrebna za ponovni pristup sigurnosnoj kopiji vašeg seed-a koja se nalazi u SeedVault-u.",
-        "retypeKey": "Ponovno unesite lozinku"
+        "retypeKey": "Ponovno unesite lozinku",
+        "key": "Ključ"
     },
     "chart": {
         "mcap": "MCAP",
@@ -713,7 +704,12 @@
     },
     "deepLink": {
         "autofill": "Uspješno automatsko popunjavanje",
-        "autofillExplanation": "Podaci transakcije uspješno automatski popunjeni iz linka."
+        "autofillExplanation": "Podaci transakcije uspješno automatski popunjeni iz linka.",
+        "deepLinkingOverview": "Deep links su klikabilni linkovi tipa (iota://...) koji automatski popunjavaju transakcijske podatke u vašem Trinity novčaniku.",
+        "deepLinkingWarning": "Budite svjesni pokušaja phishinga (mrežne krađa identiteta). Pobrinite se da vas link koji otvarate vodi prema službenoj Trinity aplikaciji.",
+        "deepLinkingUpdated": "Deep linking postavke",
+        "deepLinkingEnabled": "Omogućili ste deep linking.",
+        "deepLinkingDisabled": "Onemogućili ste deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",
@@ -810,6 +806,8 @@
         "checkAddress": "Provjerite adresu primatelja",
         "checkAddressExplanation": "Provjerite da li adresa odgovara onoj prikazanoj na vašem Ledger uređaju.",
         "applicationNotInitialised": "Upozorenje nije prihvaćeno",
-        "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno."
+        "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

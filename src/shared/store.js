@@ -1,5 +1,8 @@
 import assign from 'lodash/assign';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+/* eslint-disable no-unused-vars */
+import logger from 'redux-logger';
+/* eslint-enable no-unused-vars */
 import thunk from 'redux-thunk';
 import marketData from './reducers/marketData';
 import wallet from './reducers/wallet';
@@ -17,10 +20,14 @@ import networkMiddleware from './middlewares/network';
 import versionMiddleware from './middlewares/version';
 import alertsMiddleware from './middlewares/alerts';
 import modalMiddleware from './middlewares/modal';
-import { __DEV__ } from './config';
+import { __DEV__, __MOBILE__ } from './config';
 
 const developmentMiddleware = [thunk, networkMiddleware, versionMiddleware, alertsMiddleware, modalMiddleware];
 const productionMiddleware = [thunk, networkMiddleware, versionMiddleware, alertsMiddleware, modalMiddleware];
+
+if (__MOBILE__) {
+    /* developmentMiddleware.unshift(logger); */
+}
 
 const reducers = combineReducers({
     alerts,
