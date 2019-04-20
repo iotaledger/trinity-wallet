@@ -609,7 +609,7 @@
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Parmak izi doğrulamayı devre dışı bırakmak için aşağıdaki tuşa basın.",
         "buttonInstructionsEnable": "Parmak izi doğrulamayı aktifleştirmek için aşağıdaki tuşa basın.",
         "buttonInstructionsDisableIPhoneX": "Face ID'yi devre dışış bırakmak için aşağıdaki tuşa basın",
         "buttonInstructionsEnableIPhoneX": "Face ID'yi aktifleştirmek için aşağıdaki tuşa basın",
@@ -654,7 +654,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
-        "key": "Key"
+        "key": "Anahtar"
     },
     "chart": {
         "mcap": "MCAP",
