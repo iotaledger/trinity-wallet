@@ -455,7 +455,7 @@
     },
     "history": {
         "bundleHashCopied": "Bundt-hash kopieret",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "Ingen transaktioner fundet",
         "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Skjul nulsaldo",
         "bundleHashCopiedExplanation": "Den gruppérede hash er blevet kopiret til udklipsholderen.",
@@ -609,7 +609,7 @@
         "fingerprintUnavailableExplanation": "Din enhed understøtter ikke biometrisk godkendelse, eller også er dette ikke konfigureret under indstillingerne på din enhed.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Tryk på knappen nedenfor for at deaktivere godkendelse med fingeraftryk.",
         "buttonInstructionsEnable": "Tryk på knappen nedenfor for at aktivere godkendelse med fingeraftryk.",
         "buttonInstructionsDisableIPhoneX": "Tryk på knappen herunder for at deaktivere ansigtsgenkendelse",
         "buttonInstructionsEnableIPhoneX": "Tryk på knappen herunder for at aktivere ansigtsgenkendelse",
@@ -654,7 +654,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Først skal din SeedVault sikres. Vælg en nøgle til at kryptere filen. Du vil skulle benytte denne nøgle for at genoprette din hovednøgle fra SeedVault-sikkerhedskopien.",
         "retypeKey": "Angiv nøgle igen",
-        "key": "Key"
+        "key": "Nøgle"
     },
     "chart": {
         "mcap": "MCAP",
