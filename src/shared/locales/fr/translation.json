@@ -394,6 +394,7 @@
         "changePassword": "Modifier le mot de passe",
         "general": "Paramètres généraux",
         "advanced": "Réglages avancés",
+        "nodeSettings": "Node settings",
         "account": "Paramètres du compte",
         "logout": "Déconnexion",
         "reset": "Réinitialiser le portefeuille",
@@ -508,7 +509,8 @@
         "autoPromotion": "Promotion automatique",
         "autoPromotionExplanation": "La promotion automatique aide à confirmer vos transactions sur le Tangle. Activez ce paramètre si vous rencontrez des difficultés à confirmer vos transactions.",
         "autoPromotionPoW": "La promotion automatique n’est possible que sur les serveurs qui prennent en charge la preuve de travail à distance.",
-        "deepLinking": "Liens"
+        "deepLinking": "Liens",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Arrière-plan",
@@ -655,6 +657,11 @@
         "seedVaultKeyExplanation": "Tout d’abord, nous devons sécuriser votre SeedVault. Veuillez choisir une clé pour chiffrer le fichier. Vous utiliserez cette clé si vous devez restaurer votre seed à partir du fichier SeedVault.",
         "retypeKey": "Veuillez ré-entrer la clé",
         "key": "Clé"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
