@@ -455,8 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash du paquet copié",
-        "noTransactionsFound": "No transactions found",
-        "emptyHistory": "Your transaction history is empty",
+        "noTransactionsFound": "Aucune transaction trouvée",
+        "emptyHistory": "Votre historique de transaction est vide",
         "hideZeroBalance": "Masquer un solde nul",
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papier.",
         "addressCopied": "Adressée copiée",
@@ -654,7 +654,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Tout d’abord, nous devons sécuriser votre SeedVault. Veuillez choisir une clé pour chiffrer le fichier. Vous utiliserez cette clé si vous devez restaurer votre seed à partir du fichier SeedVault.",
         "retypeKey": "Veuillez ré-entrer la clé",
-        "key": "Key"
+        "key": "Clé"
     },
     "chart": {
         "mcap": "MCAP",
