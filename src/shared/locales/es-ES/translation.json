@@ -470,7 +470,7 @@
         "yesterday": "Ayer",
         "promotingAnotherBundle": "Promoviendo otro paquete",
         "pleaseWait": "Por favor espere, Trinity está promoviendo otro paquete.",
-        "typeHelp": "Type !help for available commands",
+        "typeHelp": "Escriba !help para comandos disponibles",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
