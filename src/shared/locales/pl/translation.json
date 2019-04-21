@@ -394,7 +394,7 @@
         "changePassword": "Zmień hasło",
         "general": "Ustawienia ogólne",
         "advanced": "Ustawienia zaawansowane",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "Ustawienia serwera",
         "account": "Ustawienia konta",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
@@ -471,12 +471,12 @@
         "yesterday": "Wczoraj",
         "promotingAnotherBundle": "Promowanie innego pakietu",
         "pleaseWait": "Proszę czekać, Trinity promuje obecnie inny pakiet.",
-        "typeHelp": "Type !help for available commands",
+        "typeHelp": "Wpisz !help w celu poznania dostępnych komend",
         "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpValue": "Znajdź transakcje według dokładnej wartości iota",
+        "searchHelpUnits": "Znajdź transakcje według wartości i jednostek iota",
+        "searchHelpMore": "Znajdź transakcje o wartości większej niż X",
+        "searchHelpLess": "Znajdź transakcje o wartości mniejszej niż X"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -659,7 +659,7 @@
         "key": "Klucz"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "stateExportExplanation": "Eksport stanu portfela zapisze plik txt na Twoim urządzeniu. Plik ten będzie zawierał informacje o Twoim koncie (transakcje, adresy) oraz wersję portfela i nazwy plików pamięci.",
         "exportSuccess": "Stan portfela wyeksportowany",
         "exportSuccessExplanation": "Plik ze stanem Twojego portfela został wyeksportowany pomyślnie."
     },
