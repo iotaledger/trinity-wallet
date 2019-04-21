@@ -394,7 +394,7 @@
         "changePassword": "Ändra lösenord",
         "general": "Allmänna inställningar",
         "advanced": "Avancerade inställningar",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "Nod-inställningar",
         "account": "Kontoinställningar",
         "logout": "Logga ut",
         "reset": "Återställ plånbok",
@@ -471,12 +471,12 @@
         "yesterday": "Igår",
         "promotingAnotherBundle": "Främjar en annan transaktionsbunt",
         "pleaseWait": "Vänta vänligen, Trinity är upptagen med att befordra en annan transaktionsbunt.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "typeHelp": "Skriv !help för tillgängliga kommandon",
+        "searchHelpText": "Sök på hashbunt eller meddelandets innehåll",
+        "searchHelpValue": "Hitta transaktioner med exakta IOTA-värdet",
+        "searchHelpUnits": "Hitta transaktioner med IOTA-värdet och enhet",
+        "searchHelpMore": "Hitta transaktioner med ett värde större än X",
+        "searchHelpLess": "Hitta transaktioner med ett värde mindre än X"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
