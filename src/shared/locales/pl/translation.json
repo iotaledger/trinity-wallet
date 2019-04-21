@@ -510,7 +510,7 @@
         "autoPromotionExplanation": "Autopromowanie pomaga w potwierdzaniu Twoich transakcji w sieci Tangle. Włącz tę funkcję, jeśli Twoje transakcje nie są potwierdzane w odpowiednim czasie.",
         "autoPromotionPoW": "Autopromowanie możliwe jest jedynie na serwerach, które obsługują zdalny tryb Proof of Work.",
         "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "stateExport": "Eksport stanu portfela"
     },
     "advancedThemeCustomisation": {
         "background": "Tło",
@@ -660,8 +660,8 @@
     },
     "stateExport": {
         "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "exportSuccess": "Stan portfela wyeksportowany",
+        "exportSuccessExplanation": "Plik ze stanem Twojego portfela został wyeksportowany pomyślnie."
     },
     "chart": {
         "mcap": "Market",
