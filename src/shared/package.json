@@ -11,6 +11,7 @@
     ],
     "scripts": {
         "test": "NODE_ENV=test ./node_modules/.bin/mocha --timeout 5000 --exit --require @babel/register \"__tests__/**/*.spec.js\"",
+        "posttest": "rimraf realm-object-server",
         "test:watch": "yarn test --watch",
         "test:coverage": "nyc --check-coverage --lines 50 --statements 50 --functions 50 --branches 50 yarn test",
         "auditjs": "./../../node_modules/.bin/auditjs -n -l error -w whitelist.json",
@@ -61,6 +62,7 @@
         "realm": "^2.21.0",
         "redux-logger": "^3.0.6",
         "redux-mock-store": "^1.5.1",
+        "rimraf": "^2.6.3",
         "sinon": "^7.2.7",
         "svg2ttf": "^4.1.0",
         "svgicons2svgfont": "^9.0.2",
