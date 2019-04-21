@@ -510,7 +510,7 @@
         "autoPromotionExplanation": "Automatisk befordran hjälper till att bekräfta dina transaktioner på Tangle. Aktivera den här inställningen om du har svårt att få dina transaktioner bekräftade.",
         "autoPromotionPoW": "Automatisk befordran är endast tillgänglig på noder som stöder fjärr PoW.",
         "deepLinking": "Hyperlänkar",
-        "stateExport": "State export"
+        "stateExport": "Tillstånds-exportering"
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrund",
@@ -659,9 +659,9 @@
         "key": "Nyckel"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "Tillstånds-exportering kommer att lagra en txt-fil på din enhet med kontoinformation (transaktioner, adresser), plånboksversion och namnen på lagringsfilerna.",
+        "exportSuccess": "Tillstånd exporterat",
+        "exportSuccessExplanation": "Din tillstånds-fil exporterades framgångsrikt."
     },
     "chart": {
         "mcap": "MCAP",
