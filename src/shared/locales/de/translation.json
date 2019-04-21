@@ -659,9 +659,9 @@
         "key": "Schlüssel"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "Der Status-Export wird eine Textdatei mit Informationen zu deinem Konto (Tansaktionen, Adressen), Trinityversion, sowie für Trinity relevante Dateinamen auf deinem Gerät speichern.",
+        "exportSuccess": "Status exportiert",
+        "exportSuccessExplanation": "Der Status-Export wurde erfolgreich generiert."
     },
     "chart": {
         "mcap": "Börsenwert",
