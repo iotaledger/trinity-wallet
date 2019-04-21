@@ -472,7 +472,7 @@
         "promotingAnotherBundle": "Promowanie innego pakietu",
         "pleaseWait": "Proszę czekać, Trinity promuje obecnie inny pakiet.",
         "typeHelp": "Wpisz !help w celu poznania dostępnych komend",
-        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpText": "Szukaj według hashu pakietu lub treści wiadomości",
         "searchHelpValue": "Znajdź transakcje według dokładnej wartości iota",
         "searchHelpUnits": "Znajdź transakcje według wartości i jednostek iota",
         "searchHelpMore": "Znajdź transakcje o wartości większej niż X",
