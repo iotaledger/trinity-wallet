@@ -394,7 +394,7 @@
         "changePassword": "Promjena lozinke",
         "general": "Opće postavke",
         "advanced": "Napredne postavke",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "Node postavke",
         "account": "Postavke računa",
         "logout": "Odjavi se",
         "reset": "Resetiraj novčanik",
@@ -471,12 +471,12 @@
         "yesterday": "Jučer",
         "promotingAnotherBundle": "Promocija drugog paketa",
         "pleaseWait": "Molimo pričekajte. Promocija drugog paketa je trenutno u tijeku.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "typeHelp": "Upiši !help za dostupne naredbe",
+        "searchHelpText": "Pretraži po hash-u paketa ili sadržaju poruke",
+        "searchHelpValue": "Prikaži transakcije s točnim iznosom iota-e",
+        "searchHelpUnits": "Prikaži transakcije po iznosu iota-e i jedinici",
+        "searchHelpMore": "Prikaži transakcije s vrijednošću većom od X",
+        "searchHelpLess": "Prikaži transakcije s vrijednošću manjom od X"
     },
     "accountManagement": {
         "viewSeed": "Prikaži seed",
@@ -510,7 +510,7 @@
         "autoPromotionExplanation": "Automatska promocija pomaže potvrditi vašu transakciju na Tangle-u. Omogućite ovu postavku ako imate problema s potvrđivanjem vaših transakcija.",
         "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW.",
         "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "stateExport": "Izvoz stanja"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadina",
