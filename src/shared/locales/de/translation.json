@@ -472,11 +472,11 @@
         "promotingAnotherBundle": "Promote anderes Bundle",
         "pleaseWait": "Bitte warten. Trinity promotet ein anderes Bundle.",
         "typeHelp": "Gib !help ein, um eine Liste mit Befehlen angezeigt zu bekommen",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpText": "Suche anhand von Bundle-Hash oder Nachricht",
+        "searchHelpValue": "Finde Transaktionen anhand vom exakten Iota-Wert",
+        "searchHelpUnits": "Finde Transaktionen anhand von Iota-Wert und Einheit",
+        "searchHelpMore": "Finde Transaktionen mit einem Wert größer als X",
+        "searchHelpLess": "Finde Transaktionen mit einem Wert kleiner als X"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
@@ -510,7 +510,7 @@
         "autoPromotionExplanation": "Auto-Promotion hilft dir Transaktionen auf dem Tangle zu bestätigen. Aktiviere diese Einstellung, wenn du Schwierigkeiten hast deine Transaktionen zu bestätigen.",
         "autoPromotionPoW": "Auto-Promotion ist nur auf Nodes mit aktiviertem \"Remote Proof of Work\" möglich.",
         "deepLinking": "Deep-Linking",
-        "stateExport": "State export"
+        "stateExport": "Status exportieren"
     },
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
