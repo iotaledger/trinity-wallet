@@ -1,13 +1,16 @@
 /* global Electron */
 import assign from 'lodash/assign';
 import each from 'lodash/each';
+import find from 'lodash/find';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import isUndefined from 'lodash/isUndefined';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
+import orderBy from 'lodash/orderBy';
 import size from 'lodash/size';
+import some from 'lodash/some';
 import schemas, { getDeprecatedStoragePath, STORAGE_PATH as latestStoragePath, v0Schema, v1Schema } from '../schemas';
 import { __MOBILE__, __TEST__ } from '../config';
 import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
@@ -80,6 +83,25 @@ class Account {
     }
 
     /**
+     * Orders accounts by indexes
+     *
+     * @method orderAccountsByIndex
+     *
+     * @returns {void}
+     */
+    static orderAccountsByIndex() {
+        const orderedAccounts = orderBy(Account.getDataAsArray(), ['index']);
+
+        if (some(orderedAccounts, (account, index) => index !== account.index)) {
+            realm.write(() => {
+                each(orderedAccounts, (account, index) => {
+                    realm.create('Account', assign({}, account, { index }), true);
+                });
+            });
+        }
+    }
+
+    /**
      * Creates account.
      * @method create
      *
@@ -148,7 +170,27 @@ class Account {
      * @param {string} name
      */
     static delete(name) {
-        realm.write(() => realm.delete(Account.getObjectForId(name)));
+        realm.write(() => {
+            const accountsBeforeDeletion = Account.getDataAsArray();
+            const accountForDeletion = find(accountsBeforeDeletion, { name });
+
+            if (accountForDeletion) {
+                realm.delete(Account.getObjectForId(name));
+
+                const accountsAfterDeletion = Account.getDataAsArray();
+                const deletedAccountIndex = accountForDeletion.index;
+
+                each(accountsAfterDeletion, (account) => {
+                    realm.create(
+                        'Account',
+                        assign({}, account, {
+                            index: account.index > deletedAccountIndex ? account.index - 1 : account.index,
+                        }),
+                        true,
+                    );
+                });
+            }
+        });
     }
 
     /**

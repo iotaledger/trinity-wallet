@@ -11,7 +11,9 @@ import { Account, Node, Wallet } from '../storage';
  * @returns {object}
  */
 export const mapStorageToState = () => {
+    Account.orderAccountsByIndex();
     const accountsData = Account.getDataAsArray();
+
     const { settings, onboardingComplete, errorLog, accountInfoDuringSetup } = Wallet.latestData;
     const nodes = Node.getDataAsArray();
 
