@@ -726,7 +726,9 @@
         "deepLinkingWarning": "Achte auf Betrugsversuche. Stelle sicher, dass der Link, den du öffnen möchtest, das offzielle Trinity Wallet verwendet.",
         "deepLinkingUpdated": "Deep-Link Einstellungen",
         "deepLinkingEnabled": "Du hast Deep-Linking aktiviert.",
-        "deepLinkingDisabled": "Du hast Deep-Linking deaktiviert."
+        "deepLinkingDisabled": "Du hast Deep-Linking deaktiviert.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",
