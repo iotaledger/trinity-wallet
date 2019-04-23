@@ -727,8 +727,8 @@
         "deepLinkingUpdated": "Hyperlänk-inställningar",
         "deepLinkingEnabled": "Du har aktiverat hyperlänkar.",
         "deepLinkingDisabled": "Du har avaktiverat hyperlänkar.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoTitle": "Hyperlänkar är inte aktiverat",
+        "deepLinkingInfoMessage": "Du öppnade en iota:// hyperlänk men hyperlänkar är inte aktiverat."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fel vid hämtning av uppdateringsdata",
