@@ -727,8 +727,8 @@
         "deepLinkingUpdated": "Ustawienia deep linków",
         "deepLinkingEnabled": "Włączyłeś funkcję deep linków.",
         "deepLinkingDisabled": "Wyłączyłeś funkcję deep linków.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoTitle": "Funkcja deep linków nie jest włączona",
+        "deepLinkingInfoMessage": "Otworzyłeś deep link iota://, jednak obsługa tej funkcji nie jest aktywna."
     },
     "updates": {
         "errorRetrievingUpdateData": "Błąd podczas pobierania danych aktualizacji",
