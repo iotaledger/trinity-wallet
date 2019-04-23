@@ -455,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
-        "noTransactionsFound": "Jūsų pavedimų istorija tuščia",
+        "noTransactionsFound": "Pavedimų nėra",
+        "emptyHistory": "Jūsų pavedimų istorija tuščia",
         "hideZeroBalance": "Slėpti nulinius pavedimus",
         "bundleHashCopiedExplanation": "Paketo šifras nukopijuotas į iškarpinę.",
         "addressCopied": "Adresas nukopijuotas",
@@ -468,7 +469,13 @@
         "retrying": "Kraunama",
         "yesterday": "Vakar",
         "promotingAnotherBundle": "Iškeliamas kitas paketas",
-        "pleaseWait": "Prašome palaukti, Trinity iškelia kitą paketą."
+        "pleaseWait": "Prašome palaukti, Trinity iškelia kitą paketą.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -572,6 +579,7 @@
         "viewSeed": "Rodyti užraktą",
         "hideSeed": "Slėpti užraktą",
         "notAvailable": "Užrakto iškėlimas yra negalimas {{accountType}} paskyros tipui",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Jūsų Ledger paskyros indeksas",
         "accountPage": "Jūsų Ledger paskyros puslapis"
     },
@@ -642,9 +650,11 @@
         "noSeedFoundExplanation": "SeedVault yra tuščias arba turi netinkamo formato užraktą.",
         "seedFileError": "Atidaryti SeedVault nepavyko",
         "seedFileErrorExplanation": "Įvyko klaida atidarant SeedVault. Jeigu pasirinkote teisingą failą, gali būti, kad jis yra pažeistas.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Pirmiausia, jums reikia apsaugoti SeedVault. Sukurkite slaptažodį norėdami užšifruoti failą. Šio slaptažodžio jums prireiks, norint atkurti užraktą iš SeedVault failo.",
         "retypeKey": "Pakartokite slaptažodį",
-        "key": "Key"
+        "key": "Kodas"
     },
     "chart": {
         "mcap": "MCAP",
