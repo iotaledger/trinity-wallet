@@ -726,7 +726,9 @@
         "deepLinkingWarning": "フィッシング詐欺にご注意ください。開いたリンク先が公式のTrinityアプリであることをご確認ください。",
         "deepLinkingUpdated": "ディープリンク設定",
         "deepLinkingEnabled": "ディープリンクを有効にしました。",
-        "deepLinkingDisabled": "ディープリンクを無効にしました。"
+        "deepLinkingDisabled": "ディープリンクを無効にしました。",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "更新データの取得エラー",
