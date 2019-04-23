@@ -169,6 +169,19 @@ class Advanced extends PureComponent {
             <div className={css.scroll}>
                 <Scrollbar>
                     <article>
+                        <React.Fragment>
+                            <h3>{t('advancedSettings:deepLinking')}</h3>
+                            <Toggle
+                                checked={settings.deepLinking}
+                                onChange={() => changeDeepLinkingSettings()}
+                                on={t('enabled')}
+                                off={t('disabled')}
+                            />
+                            <p>{t('deepLink:deepLinkingOverview')}</p>
+                            <p>{t('deepLink:deepLinkingWarning')}</p>
+                            <hr />
+                        </React.Fragment>
+
                         {wallet && wallet.ready ? (
                             <React.Fragment>
                                 <h3>{t('pow:powUpdated')}</h3>
@@ -191,17 +204,6 @@ class Advanced extends PureComponent {
                                     off={t('disabled')}
                                 />
                                 <p>{t('advancedSettings:autoPromotionExplanation')}</p>
-                                <hr />
-
-                                <h3>{t('advancedSettings:deepLinking')}</h3>
-                                <Toggle
-                                    checked={settings.deepLinking}
-                                    onChange={() => changeDeepLinkingSettings()}
-                                    on={t('enabled')}
-                                    off={t('disabled')}
-                                />
-                                <p>{t('deepLink:deepLinkingOverview')}</p>
-                                <p>{t('deepLink:deepLinkingWarning')}</p>
                                 <hr />
 
                                 {Electron.getOS() === 'darwin' && (
