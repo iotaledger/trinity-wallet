@@ -726,7 +726,9 @@
         "deepLinkingWarning": "Var medveten om phishing-bedrägerier. Kontrollera att länken du öppnar navigerar till den officiella Trinity-appen.",
         "deepLinkingUpdated": "Hyperlänk-inställningar",
         "deepLinkingEnabled": "Du har aktiverat hyperlänkar.",
-        "deepLinkingDisabled": "Du har avaktiverat hyperlänkar."
+        "deepLinkingDisabled": "Du har avaktiverat hyperlänkar.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fel vid hämtning av uppdateringsdata",
