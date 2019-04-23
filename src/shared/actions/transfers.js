@@ -798,6 +798,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             'error',
                             i18next.t('global:rebroadcastError'),
                             i18next.t('global:signedTrytesBroadcastErrorExplanation'),
+                            20000,
                             error,
                         ),
                     );
