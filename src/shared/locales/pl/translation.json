@@ -726,7 +726,9 @@
         "deepLinkingWarning": "Uważaj na oszustwa typu phishing. Upewnij się, że otwarty link prowadzi do oficjalnej aplikacji Trinity.",
         "deepLinkingUpdated": "Ustawienia deep linków",
         "deepLinkingEnabled": "Włączyłeś funkcję deep linków.",
-        "deepLinkingDisabled": "Wyłączyłeś funkcję deep linków."
+        "deepLinkingDisabled": "Wyłączyłeś funkcję deep linków.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Błąd podczas pobierania danych aktualizacji",
