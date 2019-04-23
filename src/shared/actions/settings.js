@@ -36,7 +36,6 @@ export const ActionTypes = {
     SET_LOCK_SCREEN_TIMEOUT: 'IOTA/SETTINGS/SET_LOCK_SCREEN_TIMEOUT',
     SET_VERSIONS: 'IOTA/SETTINGS/WALLET/SET_VERSIONS',
     WALLET_RESET: 'IOTA/SETTINGS/WALLET/RESET',
-    SET_2FA_STATUS: 'IOTA/SETTINGS/SET_2FA_STATUS',
     SET_FINGERPRINT_STATUS: 'IOTA/SETTINGS/SET_FINGERPRINT_STATUS',
     ACCEPT_TERMS: 'IOTA/SETTINGS/ACCEPT_TERMS',
     ACCEPT_PRIVACY: 'IOTA/SETTINGS/ACCEPT_PRIVACY',
@@ -658,23 +657,6 @@ export function resetWallet() {
         type: ActionTypes.WALLET_RESET,
     };
 }
-
-/**
- * Dispatch to update wallet's two factor authentication configuration
- *
- * @method set2FAStatus
- * @param {boolean} payload
- *
- * @returns {{type: {string}, payload: {boolean} }}
- */
-export const set2FAStatus = (payload) => {
-    Wallet.update2FASetting(payload);
-
-    return {
-        type: ActionTypes.SET_2FA_STATUS,
-        payload,
-    };
-};
 
 /**
  * Dispatch to show/hide empty transactions in transactions history

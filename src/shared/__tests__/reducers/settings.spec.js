@@ -57,7 +57,6 @@ describe('Reducer: settings', () => {
                 remotePoW: false,
                 lockScreenTimeout: 3,
                 versions: {},
-                is2FAEnabled: false,
                 isFingerprintEnabled: false,
                 acceptedTerms: false,
                 acceptedPrivacy: false,
@@ -485,26 +484,6 @@ describe('Reducer: settings', () => {
             };
 
             expect(newState.hasRandomizedNode).to.eql(expectedState.hasRandomizedNode);
-        });
-    });
-
-    describe(ActionTypes.SET_2FA_STATUS, () => {
-        it('should set is2FAEnabled to payload', () => {
-            const initialState = {
-                is2FAEnabled: false,
-            };
-
-            const action = {
-                type: ActionTypes.SET_2FA_STATUS,
-                payload: true,
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                is2FAEnabled: true,
-            };
-
-            expect(newState).to.eql(expectedState);
         });
     });
 

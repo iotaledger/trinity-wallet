@@ -80,7 +80,7 @@ $footer: 70px;
             margin: 0px;
             padding: 0px;
 
-            button {
+            a, button {
                 margin: 0px;
             }
             * {
@@ -111,6 +111,10 @@ $footer: 70px;
         p {
             word-wrap: break-word;
             margin-bottom: 40px;
+        }
+
+        p > a {
+            color: var(--body);
         }
 
         form {

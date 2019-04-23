@@ -506,10 +506,8 @@ export class Send extends Component {
                 return this.props.toggleModalActivity(modalContent, {
                     hideModal: () => this.hideModal(),
                     theme,
-                    textColor: { color: theme.bar.color },
-                    lineColor: { borderLeftColor: theme.bar.color },
-                    borderColor: { borderColor: theme.bar.color },
-                    bar: theme.bar.color,
+                    textColor: { color: theme.body.color },
+                    lineColor: { borderBottomColor: theme.body.color },
                 });
             case 'usedAddress':
                 return this.props.toggleModalActivity(modalContent, {

@@ -10,7 +10,7 @@ import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
 import SeedStore from 'libs/SeedStore';
-import { hash, initKeychain, setTwoFA } from 'libs/crypto';
+import { hash, initKeychain, initVault } from 'libs/crypto';
 import { passwordReasons } from 'libs/password';
 
 import Button from 'ui/components/Button';
@@ -95,7 +95,7 @@ class AccountPassword extends React.PureComponent {
 
         const passwordHash = await hash(password);
 
-        await setTwoFA(passwordHash, null);
+        await initVault(passwordHash);
         setPassword(passwordHash);
 
         this.props.setAccountInfoDuringSetup({
