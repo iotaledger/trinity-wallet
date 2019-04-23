@@ -720,7 +720,7 @@
         "deepLinkingEnabled": "You have enabled deep linking.",
         "deepLinkingDisabled": "You have disabled deep linking.",
         "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened a deep link but deep linking is not enabled."
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
 
     },
     "updates": {
