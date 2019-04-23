@@ -727,8 +727,8 @@
         "deepLinkingUpdated": "Deep-Link Einstellungen",
         "deepLinkingEnabled": "Du hast Deep-Linking aktiviert.",
         "deepLinkingDisabled": "Du hast Deep-Linking deaktiviert.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoTitle": "Deep-Links sind deaktiviert",
+        "deepLinkingInfoMessage": "Du hast einen iota:// Deep-Link geöffnet, aber Deep-Links nicht aktiviert."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",
