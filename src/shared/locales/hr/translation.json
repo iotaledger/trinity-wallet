@@ -726,7 +726,9 @@
         "deepLinkingWarning": "Budite svjesni pokušaja phishinga (mrežne krađa identiteta). Pobrinite se da vas link koji otvarate vodi prema službenoj Trinity aplikaciji.",
         "deepLinkingUpdated": "Deep linking postavke",
         "deepLinkingEnabled": "Omogućili ste deep linking.",
-        "deepLinkingDisabled": "Onemogućili ste deep linking."
+        "deepLinkingDisabled": "Onemogućili ste deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",
