@@ -394,6 +394,7 @@
         "changePassword": "비밀번호 변경",
         "general": "일반 설정",
         "advanced": "고급 설정",
+        "nodeSettings": "Node settings",
         "account": "계정 설정",
         "logout": "로그아웃",
         "reset": "지갑 초기화",
@@ -508,7 +509,8 @@
         "autoPromotion": "자동 프로모트",
         "autoPromotionExplanation": "자동 프로모트를 사용하면 트랜잭션이 승인되는데에 도움이 됩니다. 트랜잭션이 잘 승인되지 않는다면 이 기능을 사용해 보세요.",
         "autoPromotionPoW": "자동 프로모트는 원격 작업증명을 지원하는 노드에서만 사용 가능합니다.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "배경",
@@ -656,6 +658,11 @@
         "retypeKey": "Retype key",
         "key": "키"
     },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
+    },
     "chart": {
         "mcap": "시가총액",
         "change": "변동 (24시)",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "업데이트를 받아오는 중 오류 발생",

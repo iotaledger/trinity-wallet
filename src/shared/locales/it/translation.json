@@ -394,6 +394,7 @@
         "changePassword": "Cambia password",
         "general": "Impostazioni generali",
         "advanced": "Impostazioni avanzate",
+        "nodeSettings": "Impostazioni nodo",
         "account": "Impostazioni account",
         "logout": "Esci",
         "reset": "Reimposta il portafoglio",
@@ -470,12 +471,12 @@
         "yesterday": "Ieri",
         "promotingAnotherBundle": "Promozione di un altro pacchetto",
         "pleaseWait": "Per favore aspetta, Trinity sta promuovendo un altro pacchetto.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "typeHelp": "Digita !help per i comandi disponibili",
+        "searchHelpText": "Cerca per hash del pacchetto o contenuto del messaggio",
+        "searchHelpValue": "Trova le transazioni per valore di iota esatto",
+        "searchHelpUnits": "Trova le transazioni per valore e unità iota",
+        "searchHelpMore": "Trova le transazioni con un valore maggiore di X",
+        "searchHelpLess": "Trova le transazioni con un valore minore di X"
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",
@@ -508,7 +509,8 @@
         "autoPromotion": "Auto-Promozione",
         "autoPromotionExplanation": "Auto-promozione contribuisce a confermare le transazioni sul Tangle. Abilitare questa impostazione se si hanno difficoltà a ottenere la conferma delle tue transazioni.",
         "autoPromotionPoW": "Auto-promozione è possibile solo su nodi che supportano la prova di lavoro remota.",
-        "deepLinking": "Deep link"
+        "deepLinking": "Deep link",
+        "stateExport": "Esportazione dello stato"
     },
     "advancedThemeCustomisation": {
         "background": "Sfondo",
@@ -579,7 +581,7 @@
         "viewSeed": "Visualizza seme",
         "hideSeed": "Nascondi seme",
         "notAvailable": "Esportazione di seme non è disponibile per il tipo di account {{accountType}}",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "Il tuo dispositivo ledger utilizza un elemento sicuro per memorizzare il tuo seme. Il seme è crittografato in modo sicuro e non lascia il dispositivo.",
         "accountIndex": "Il tuo indice di conto su Ledger",
         "accountPage": "Pagina di conto sul Ledger"
     },
@@ -650,11 +652,16 @@
         "noSeedFoundExplanation": "Il SeedVault o è vuoto o contiene un seme in un formato non valido.",
         "seedFileError": "Impossibile accedere il SeedVault",
         "seedFileErrorExplanation": "Si è verificato un problema accedendo il SeedVault. Se è stato selezionato il file corretto questo potrebbe essere danneggiato.",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileError": "File SeedVault non valido",
+        "invalidSeedFileErrorExplanation": "Questo formato file non è supportato. Sono supportati solo file SeedVault (.kdbx) creati tramite Trinity o un gestore password.",
         "seedVaultKeyExplanation": "Per prima cosa dobbiamo proteggere la tua cassaforte di Seme. Si prega di scegliere una chiave per crittografare il file. Questa chiave verrà utilizzata se è necessario ripristinare il seme dal backup di SeedVault.",
         "retypeKey": "Riscrivi la chiave",
         "key": "Chiave"
+    },
+    "stateExport": {
+        "stateExportExplanation": "L'esportazione dello stato immagazzina in un file di testo sul tuo dispositivo le informazioni del tuo account (transazioni, indirizzi), versione del portafoglio e nomi dei file di archiviazione.",
+        "exportSuccess": "File di stato esportato",
+        "exportSuccessExplanation": "Il file di stato è stato esportato con successo."
     },
     "chart": {
         "mcap": "MCAP",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "Stai attento che esistono truffe di phishing. Assicurati che il link che apri attivi l'app di Trinity ufficiale.",
         "deepLinkingUpdated": "Impostazioni deep link",
         "deepLinkingEnabled": "Hai abilitato l'uso dei deep link.",
-        "deepLinkingDisabled": "Hai disabilitato l'uso dei deep link."
+        "deepLinkingDisabled": "Hai disabilitato l'uso dei deep link.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
