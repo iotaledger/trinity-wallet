@@ -362,20 +362,20 @@
         "iotaUnits": "IOTA birim açıklaması",
         "sendMax": "TÜMÜNÜ GÖNDER",
         "totalTime": "Toplam zaman",
-        "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
-        "invalid": "INVALID",
-        "swipeToSend": "Swipe to send"
+        "addressPasteDetected": "Adres yapıştırması tespit edildi",
+        "addressPasteExplanation": "Bir adres yapıştırılmış gibi. Adresin göndermek istediğiniz adresle aynı olduğundan emin olun.",
+        "invalid": "GEÇERSİZ",
+        "swipeToSend": "Göndermek için kaydır"
     },
     "setSeedName": {
-        "letsAddName": "Let's add a name",
+        "letsAddName": "Bir isim ekleyin",
         "canUseMultipleSeeds": "Bu cüzdanı ile birden çok tohum kullanabilirsiniz. Her tohum bir hesap adı gerektirir.",
         "youCanAdd": "Ayarlar menüsünden daha fazla tohum ekleyebilirsiniz."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Gelişmiş",
         "standard": "Standart",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "advancedModeExplanation": "Gelişmiş mod daha ayrıntılı teknik bilgileri gösterir.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
         "modeUpdated": "Mode updated",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
