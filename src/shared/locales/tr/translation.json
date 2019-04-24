@@ -211,12 +211,12 @@
         "reasonWord": "Tek bir kelimenin tahmin edilmesi kolaydır."
     },
     "setPassword": {
-        "choosePassword": "Choose a new password",
+        "choosePassword": "Yeni bir parola seçin",
         "passwordTooShort": "Parola çok kısa",
         "passwordTooShortExplanation": "Tohumlar {{minLength}} karakter uzunluğunda olmalıdır. Tohumunuz şu anda {{currentLength}} karakter uzunluktadır. Lütfen yeniden deneyin.",
         "passwordMismatch": "Parolalar eşleşmiyor",
         "passwordMismatchExplanation": "Girdiğiniz parolalar eşleşmiyor. Lütfen tekrar girin.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Bu ana cüzdan parolanız. Giriş yapmak için kullanacaksınız.",
         "retypePassword": "Şifrenizi tekrar girin"
     },
     "copyToClipboard": {
@@ -227,7 +227,7 @@
         "invalidCharacters": "Cüzdan şifresi geçersiz karakterler içerir",
         "invalidCharactersExplanation": "Cüzdan şifreleri yalnızca A-Z büyük harflerinden ve 9 numaradan oluşabilir. Tohumunuz geçersiz karakterlere sahiptir. Lütfen tekrar deneyin.",
         "seedTooShort": "Cüzdan şifresi çok kısa",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "Seed çok uzun",
         "seedTooShortExplanation": "Cüzdan şifrenizin uzunluğu {{maxLength}} olmalıdır. Cüzdan şifreniz şu anda {{currentLength}} karakter uzunluğunda. Lütfen tekrar deneyin.",
         "seedExplanation": "Cüzdan şifreleri {{maxLength}} karakter uzunluğunda olmalı ve A-Z büyük harfleri veya sayı 9 olmalıdır. {{maxLength}} karakterden uzun cüzdan şifrelerini kullanamazsınız.",
         "neverShare": "CÜZDAN ŞİFRENİZİ ASLA KİMSEYLE PAYLAŞMAYIN"
@@ -241,14 +241,14 @@
     },
     "languageSetup": {
         "language": "Dil",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "Haydi başlayalım"
     },
     "login": {
         "emptyPassword": "Şifre boş",
         "emptyPasswordExplanation": "Giriş yapmak için bir şifre girmelisin. Lütfen tekrar dene.",
         "enterPassword": "Lütfen şifrenizi girin.",
-        "login": "Log In",
-        "setNode": "Set Node",
+        "login": "Oturum Aç",
+        "setNode": "Düğüm Ayarla",
         "whyBiometricDisabled": "Why is biometric authentication disabled?",
         "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
