@@ -394,6 +394,7 @@
         "changePassword": "Skift adgangskode",
         "general": "Generelle indstillinger",
         "advanced": "Avancerede indstillinger",
+        "nodeSettings": "Node settings",
         "account": "Kontoindstillinger",
         "logout": "Log ud",
         "reset": "Nulstil tegnebog",
@@ -508,7 +509,8 @@
         "autoPromotion": "Auto-promovering",
         "autoPromotionExplanation": "Auto-promovering hjælper med at bekræfte dine transaktioner på netværket. Aktivér denne indstilling, hvis du oplever problemer med at få dine transaktioner bekræftet.",
         "autoPromotionPoW": "Auto-promovering er kun muligt på noder, som understøtter ekstern netværksgodkendelse.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Baggrund",
@@ -656,6 +658,11 @@
         "retypeKey": "Angiv nøgle igen",
         "key": "Nøgle"
     },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
+    },
     "chart": {
         "mcap": "MCAP",
         "change": "Skift (24t)",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fejl under indhentning af opdateringsdata",

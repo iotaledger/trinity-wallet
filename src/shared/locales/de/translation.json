@@ -394,6 +394,7 @@
         "changePassword": "Passwort ändern",
         "general": "Einstellungen",
         "advanced": "Erweiterte Einstellungen",
+        "nodeSettings": "Node-Einstellungen",
         "account": "Kontoeinstellungen",
         "logout": "Abmelden",
         "reset": "Wallet zurücksetzen",
@@ -470,12 +471,12 @@
         "yesterday": "Gestern",
         "promotingAnotherBundle": "Promote anderes Bundle",
         "pleaseWait": "Bitte warten. Trinity promotet ein anderes Bundle.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "typeHelp": "Gib !help ein, um eine Liste mit Befehlen angezeigt zu bekommen",
+        "searchHelpText": "Suche anhand von Bundle-Hash oder Nachricht",
+        "searchHelpValue": "Finde Transaktionen anhand vom exakten Iota-Wert",
+        "searchHelpUnits": "Finde Transaktionen anhand von Iota-Wert und Einheit",
+        "searchHelpMore": "Finde Transaktionen mit einem Wert größer als X",
+        "searchHelpLess": "Finde Transaktionen mit einem Wert kleiner als X"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
@@ -508,7 +509,8 @@
         "autoPromotion": "Auto-Promotion",
         "autoPromotionExplanation": "Auto-Promotion hilft dir Transaktionen auf dem Tangle zu bestätigen. Aktiviere diese Einstellung, wenn du Schwierigkeiten hast deine Transaktionen zu bestätigen.",
         "autoPromotionPoW": "Auto-Promotion ist nur auf Nodes mit aktiviertem \"Remote Proof of Work\" möglich.",
-        "deepLinking": "Deep-Linking"
+        "deepLinking": "Deep-Linking",
+        "stateExport": "Status exportieren"
     },
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
@@ -656,6 +658,11 @@
         "retypeKey": "Schlüssel erneut eingeben",
         "key": "Schlüssel"
     },
+    "stateExport": {
+        "stateExportExplanation": "Der Status-Export wird eine Textdatei mit Informationen zu deinem Konto (Tansaktionen, Adressen), Trinityversion, sowie für Trinity relevante Dateinamen auf deinem Gerät speichern.",
+        "exportSuccess": "Status exportiert",
+        "exportSuccessExplanation": "Der Status-Export wurde erfolgreich generiert."
+    },
     "chart": {
         "mcap": "Börsenwert",
         "change": "Änderung (24 Std.)",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "Achte auf Betrugsversuche. Stelle sicher, dass der Link, den du öffnen möchtest, das offzielle Trinity Wallet verwendet.",
         "deepLinkingUpdated": "Deep-Link Einstellungen",
         "deepLinkingEnabled": "Du hast Deep-Linking aktiviert.",
-        "deepLinkingDisabled": "Du hast Deep-Linking deaktiviert."
+        "deepLinkingDisabled": "Du hast Deep-Linking deaktiviert.",
+        "deepLinkingInfoTitle": "Deep-Links sind deaktiviert",
+        "deepLinkingInfoMessage": "Du hast einen iota:// Deep-Link geöffnet, aber Deep-Links nicht aktiviert."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",

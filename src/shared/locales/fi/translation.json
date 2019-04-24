@@ -394,6 +394,7 @@
         "changePassword": "Vaihda salasana",
         "general": "General settings",
         "advanced": "Lisäasetukset",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "Kirjaudu ulos",
         "reset": "Tyhjennä lompakko",
@@ -508,7 +509,8 @@
         "autoPromotion": "Siirron edistäminen",
         "autoPromotionExplanation": "Automaattinen edistäminen auttaa varmistamaan siirron tangle-verkossa. Laita tämä asetus päälle jos siirron varmistuksessa esiintyy ongelmia.",
         "autoPromotionPoW": "Automaattinen edistäminen toimii vain palvelimilla jotka tukevat laskentatyöntekoa (PoW).",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Tausta",
@@ -656,6 +658,11 @@
         "retypeKey": "Retype key",
         "key": "Avain"
     },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
+    },
     "chart": {
         "mcap": "MARVO",
         "change": "Muutos (24h)",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Virhe haettaessa päivityksiä",

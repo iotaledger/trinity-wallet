@@ -394,6 +394,7 @@
         "changePassword": "Jelszó módosítása",
         "general": "Általános beállítások",
         "advanced": "Haladó beállítások",
+        "nodeSettings": "Node settings",
         "account": "Fiók beállításai",
         "logout": "Kijelentkezés",
         "reset": "Tárca gyári állapotának visszaállítása",
@@ -508,7 +509,8 @@
         "autoPromotion": "Auto-tranzakció előrehelyezés",
         "autoPromotionExplanation": "Az automatikus tranzakció előrehelyezés segítségével a tranzakciók hamarabb teljesülhetnek. Engedélyezze ezt a beállítást, ha a tranzakciói sokáig nem teljesülnek.",
         "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, amelyek támogatják a kiszabott munka távoli elvégzését.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Háttér",
@@ -656,6 +658,11 @@
         "retypeKey": "Titkosító kulcs még egyszer",
         "key": "Kulcs"
     },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
+    },
     "chart": {
         "mcap": "Piaci kapitalizáció",
         "change": "Változás (24 óra)",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Frissítés adatletöltési hiba",

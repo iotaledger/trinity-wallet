@@ -394,6 +394,7 @@
         "changePassword": "Alterar Senha",
         "general": "Configurações gerais",
         "advanced": "Opções Avançadas",
+        "nodeSettings": "Node settings",
         "account": "Configurações de conta",
         "logout": "Desconectar",
         "reset": "Redefinir a carteira",
@@ -508,7 +509,8 @@
         "autoPromotion": "Autopromoção",
         "autoPromotionExplanation": "Autopromoção ajuda a confirmar suas transações no Tangle. Habilite essa configuração se você está tendo dificuldade em confirmar suas transações.",
         "autoPromotionPoW": "Autopromoção só é possível em servidores que suportam prova de trabalho remoto.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Plano de Fundo",
@@ -656,6 +658,11 @@
         "retypeKey": "Redigite a chave",
         "key": "Chave"
     },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
+    },
     "chart": {
         "mcap": "MCAP",
         "change": "Mudança (24h)",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "Cuidado com fraudes de phishing. Certifique-se de que o link que você abrir navegue para o aplicativo oficial de Trinity.",
         "deepLinkingUpdated": "Configurações de deep linking",
         "deepLinkingEnabled": "Você ativou o deep linking.",
-        "deepLinkingDisabled": "Você desativou o deep linking."
+        "deepLinkingDisabled": "Você desativou o deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",
