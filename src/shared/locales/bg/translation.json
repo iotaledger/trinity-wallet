@@ -394,6 +394,7 @@
         "changePassword": "Промяна на паролата",
         "general": "Общи настройки",
         "advanced": "Разширени настройки",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "Изход",
         "reset": "Reset wallet",
@@ -508,7 +509,8 @@
         "autoPromotion": "Auto-promotion",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Background",
@@ -656,6 +658,11 @@
         "retypeKey": "Retype key",
         "key": "Key"
     },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
+    },
     "chart": {
         "mcap": "MCAP",
         "change": "Change (24h)",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",

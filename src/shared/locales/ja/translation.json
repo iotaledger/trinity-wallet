@@ -394,6 +394,7 @@
         "changePassword": "パスワード変更",
         "general": "一般設定",
         "advanced": "詳細設定",
+        "nodeSettings": "Node settings",
         "account": "アカウント設定",
         "logout": "ログアウト",
         "reset": "ウォレットをリセット",
@@ -508,7 +509,8 @@
         "autoPromotion": "自動促進",
         "autoPromotionExplanation": "自動促進によってTangleによる取引承認を手助けします。取引承認に時間がかかる場合はこの設定をオンにしてください。",
         "autoPromotionPoW": "自動促進はリモートによるプルーフ・オブ・ワークを許可するノードと接続している場合のみ有効です。",
-        "deepLinking": "ディープリンク"
+        "deepLinking": "ディープリンク",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -656,6 +658,11 @@
         "retypeKey": "鍵を再入力してください",
         "key": "キー"
     },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
+    },
     "chart": {
         "mcap": "時価総額",
         "change": "変動 (24h)",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "フィッシング詐欺にご注意ください。開いたリンク先が公式のTrinityアプリであることをご確認ください。",
         "deepLinkingUpdated": "ディープリンク設定",
         "deepLinkingEnabled": "ディープリンクを有効にしました。",
-        "deepLinkingDisabled": "ディープリンクを無効にしました。"
+        "deepLinkingDisabled": "ディープリンクを無効にしました。",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "更新データの取得エラー",

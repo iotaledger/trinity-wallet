@@ -394,6 +394,7 @@
         "changePassword": "Změnit heslo",
         "general": "Obecná nastavení",
         "advanced": "Pokročilé nastavení",
+        "nodeSettings": "Node settings",
         "account": "Nastavení účtu",
         "logout": "Odhlásit",
         "reset": "Obnovit peněženku",
@@ -508,7 +509,8 @@
         "autoPromotion": "Automatická podpora",
         "autoPromotionExplanation": "Automatická podpora Vám pomůže potvrdit Vaši transakci v síti Tangle. Povolte toto nastavení, pokud máte problémy s potvrzováním transakcí.",
         "autoPromotionPoW": "Automatická podpora je možná pouze na Nodech, které podporují vzdálený Proof of Work.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadí",
@@ -656,6 +658,11 @@
         "retypeKey": "Zadejte znovu heslo",
         "key": "Klíč"
     },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
+    },
     "chart": {
         "mcap": "MCAP",
         "change": "Změna (24h)",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba při získávání aktualizačních dat",

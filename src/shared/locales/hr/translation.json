@@ -394,6 +394,7 @@
         "changePassword": "Promjena lozinke",
         "general": "Opće postavke",
         "advanced": "Napredne postavke",
+        "nodeSettings": "Node postavke",
         "account": "Postavke računa",
         "logout": "Odjavi se",
         "reset": "Resetiraj novčanik",
@@ -470,12 +471,12 @@
         "yesterday": "Jučer",
         "promotingAnotherBundle": "Promocija drugog paketa",
         "pleaseWait": "Molimo pričekajte. Promocija drugog paketa je trenutno u tijeku.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "typeHelp": "Upiši !help za dostupne naredbe",
+        "searchHelpText": "Pretraži po hash-u paketa ili sadržaju poruke",
+        "searchHelpValue": "Prikaži transakcije s točnim iznosom iota-e",
+        "searchHelpUnits": "Prikaži transakcije po iznosu iota-e i jedinici",
+        "searchHelpMore": "Prikaži transakcije s vrijednošću većom od X",
+        "searchHelpLess": "Prikaži transakcije s vrijednošću manjom od X"
     },
     "accountManagement": {
         "viewSeed": "Prikaži seed",
@@ -508,7 +509,8 @@
         "autoPromotion": "Automatska promocija",
         "autoPromotionExplanation": "Automatska promocija pomaže potvrditi vašu transakciju na Tangle-u. Omogućite ovu postavku ako imate problema s potvrđivanjem vaših transakcija.",
         "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "Izvoz stanja"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadina",
@@ -579,7 +581,7 @@
         "viewSeed": "Prikaži seed",
         "hideSeed": "Sakrij seed",
         "notAvailable": "Izvoz seed-a nije dostupan za tip računa {{accountType}}",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "Vaš Ledger uređaj koristi sigurnosni element za pohranu vašeg seed-a. Seed je kodiran na siguran način i ne napušta vaš Ledger uređaj.",
         "accountIndex": "Indeks vašeg Ledger računa",
         "accountPage": "Stranica vašeg Ledger uređaja"
     },
@@ -650,11 +652,16 @@
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspješno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileError": "Neispravna SeedVault datoteka",
+        "invalidSeedFileErrorExplanation": "Datoteka ovog formata nije podržana. Samo SeedVault datoteke (.kdbx) kreirane putem Trinity novčanika ili programa za upravljanje lozinkama su podržane.",
         "seedVaultKeyExplanation": "Prvo trebamo osigurati vaš SeedVault. Molimo odaberite lozinku za enkripciju vaše SeedVault datoteke. Ova lozinka bit će potrebna za ponovni pristup sigurnosnoj kopiji vašeg seed-a koja se nalazi u SeedVault-u.",
         "retypeKey": "Ponovno unesite lozinku",
         "key": "Ključ"
+    },
+    "stateExport": {
+        "stateExportExplanation": "Izvoz datoteke s vašim stanjem će spremiti txt dokument na vaš uređaj s podatcima o vašem računu (transakcije, adrese), verzijom Trinity novčanika, te imenima datoteka za pohranu.",
+        "exportSuccess": "Stanje izvezeno",
+        "exportSuccessExplanation": "Datoteka s vašim stanjem je uspješno izvezena."
     },
     "chart": {
         "mcap": "MCAP",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "Budite svjesni pokušaja phishinga (mrežne krađa identiteta). Pobrinite se da vas link koji otvarate vodi prema službenoj Trinity aplikaciji.",
         "deepLinkingUpdated": "Deep linking postavke",
         "deepLinkingEnabled": "Omogućili ste deep linking.",
-        "deepLinkingDisabled": "Onemogućili ste deep linking."
+        "deepLinkingDisabled": "Onemogućili ste deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",

@@ -394,6 +394,7 @@
         "changePassword": "تغییر گذرواژه",
         "general": "تنظیمات عمومی",
         "advanced": "تنظیمات پیشرفته",
+        "nodeSettings": "Node settings",
         "account": "تنظیمات حساب",
         "logout": "خروج",
         "reset": "بازنشانی کیف پول",
@@ -508,7 +509,8 @@
         "autoPromotion": "ارتقا خودکار",
         "autoPromotionExplanation": "ارتقا خودکار کمک می کند تا معاملات خود را در Tangle تایید کنید. اگر شما دچار تردید در دریافت معاملات خود هستید این تنظیم را فعال کنید.",
         "autoPromotionPoW": "ارتقا خودکار تنها در Node هایی است که از اثبات کار از راه دور پشتیبانی می کند.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "پس زمینه",
@@ -656,6 +658,11 @@
         "retypeKey": "کلید را دوباره وارد کنید",
         "key": "کلید"
     },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
+    },
     "chart": {
         "mcap": "MCAP",
         "change": "تغییر (24 ساعته)",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "خطا در بازیابی داده های به روزرسانی",

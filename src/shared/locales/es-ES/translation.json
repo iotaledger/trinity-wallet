@@ -394,6 +394,7 @@
         "changePassword": "Cambiar contraseña",
         "general": "Configuración general",
         "advanced": "Opciones avanzadas",
+        "nodeSettings": "Node settings",
         "account": "Configuración de cuenta",
         "logout": "Cerrar sesión",
         "reset": "Reiniciar cartera",
@@ -508,7 +509,8 @@
         "autoPromotion": "Auto-promoción",
         "autoPromotionExplanation": "La auto-promoción ayuda a confirmar sus transacciones en el Tangle. Habilite esta opción si está experimentando dificultades para conseguir que se confirmen sus transacciones.",
         "autoPromotionPoW": "La auto-promoción solo es posible en los nodos que soportan PoW remota.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Fondo",
@@ -656,6 +658,11 @@
         "retypeKey": "Reingrese la clave",
         "key": "Clave"
     },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
+    },
     "chart": {
         "mcap": "MCAP",
         "change": "Cambio (24h)",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Error al recuperar los datos de actualización",

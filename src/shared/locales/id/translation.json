@@ -394,6 +394,7 @@
         "changePassword": "Ubah Kata Sandi",
         "general": "General settings",
         "advanced": "Pengaturan Lanjutan",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "Keluar",
         "reset": "Hapus dompet",
@@ -508,7 +509,8 @@
         "autoPromotion": "Promosi otomatis",
         "autoPromotionExplanation": "Promosi otomatis membantu konfirmasi transaksi di Tangle. Aktifkan aturan ini jika mengalami kesulitan dalam mengkonfirmasi.",
         "autoPromotionPoW": "Promosi otomatis hanya memungkinkan di Node yang mendukung Proof of Work jarak jauh.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Latar belakang",
@@ -656,6 +658,11 @@
         "retypeKey": "Retype key",
         "key": "Kunci"
     },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
+    },
     "chart": {
         "mcap": "MCAP",
         "change": "Perubahan (24h)",
@@ -719,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Gagal dalam mengunduh data pembaruan",
