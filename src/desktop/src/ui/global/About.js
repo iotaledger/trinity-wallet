@@ -74,6 +74,20 @@ class About extends React.PureComponent {
                                 <li>- Fix: Minor bugs in Realm and polling</li>
                                 <li>- Fix: Snapshot transition showing 0 balance</li>
                                 <li>- Fix: Colon in 2FA QR code scan</li>
+                                <li>- Update: Deep link support</li>
+                                <li>- Fix: Add missing domains to external link whitelist</li>
+                                <li>- Fix: Disable quorum on initial account load and manual sync</li>
+                                <li>- Fix: Increase timeout for getTransactionsToApprove requests</li>
+                                <li>- Fix: Improve performance by not reconstructing bundles unnecessarily</li>
+                                <li>- Update: Remove 2FA</li>
+                                <li>- Update: Show modal for Ledger errors related to udev</li>
+                                <li>- Fix: Linux app icon</li>
+                                <li>- Fix: Only trigger notifications for new transactions</li>
+                                <li>- Update: Validate SeedVault before attemtping to import</li>
+                                <li>- Update: Add seed export unavailable explanation</li>
+                                <li>- Update: Transaction history search</li>
+                                <li>- Fix: Various Realm migration bugs</li>
+                                <li>- Fix: Update account indexes in Realm if an account is deleted</li>
                             </ul>
                             <h5>0.5.0-RC1</h5>
                             <ul>
