@@ -376,9 +376,9 @@
         "advanced": "Gelişmiş",
         "standard": "Standart",
         "advancedModeExplanation": "Gelişmiş mod daha ayrıntılı teknik bilgileri gösterir.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
+        "modesExplanation": "Gelişmiş modu yalnızca deneyimli bir IOTA kullanıcıysanız deneyimleyin. Aksi takdirde kafa karıştırıcı bulabilirsiniz.",
         "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdatedExplanation": "{{mode}} moduna geçtiniz"
     },
     "settings": {
         "transferSending": "Transfer gönderiliyor",
@@ -392,10 +392,10 @@
         "accountManagement": "Hesap Yönetimi",
         "addNewSeed": "Yeni tohum ekleyin",
         "changePassword": "Parola Değiştir",
-        "general": "General settings",
+        "general": "Genel ayarlar",
         "advanced": "Gelişmiş ayarlar",
         "nodeSettings": "Node settings",
-        "account": "Account settings",
+        "account": "Hesap ayarları",
         "logout": "Çıkış yap",
         "reset": "Cüzdanı Sıfırla",
         "syncingComplete": "Senkronizasyon Tamamlandı",
@@ -419,27 +419,27 @@
         "securitySettings": "Güvenlik ayarları",
         "fingerprint": "Biyometrik doğrulama",
         "couldNotFetchRates": "Oranlar alınamadı",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rate",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
+        "couldNotFetchRatesExplanation": "{{currency}} için dönüşüm oranı alınırken bir şeyler yanlış gitti.",
+        "fetchedConversionRates": "Dönüşüm oranı alındı",
+        "fetchedConversionRatesExplanation": "{{currency}} ilgili en son dönüşüm oranı başarıyla alındı.",
         "undo": "Geri al",
         "redo": "Tekrarla",
         "aboutTrinity": "Trinity hakkında",
         "lockScreenTimeout": "Kilit Ekranı Zaman Aşımı (Dakika)",
         "autoNodeSwitching": "Seçili ağa ulaşılamazsa otomatik olarak ağ değiştir",
         "nodeChangeSuccess": "Ağ başaıyla değiştirildi",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessNoRemotePow": "Node {{node}} olarak değiştirildi. Bu node İş Kanıtını desteklemiyor.",
         "nodeChangeSuccessExplanation": "Ağ {{node}} olarak değiştirildi.",
         "nodeChangeError": "Ağ değiştirme hatası",
         "nodeChangeErrorExplanation": "Ağ değiştirilirken bir hata oluştu. Lütfen tekrar deneyin."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Cüzdanınızı sıfırlamak için şifrenizi girin.",
-        "reset": "Reset"
+        "reset": "Sıfırla"
     },
     "walletSetup": {
         "okay": "Tamam. Cüzdanını ayarlayabilirsin!",
-        "doYouNeedASeed": "Do you need to create a new seed?",
+        "doYouNeedASeed": "Yeni bir seed oluşturmaya ihtiyacınız var mı?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
