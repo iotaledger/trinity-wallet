@@ -331,6 +331,22 @@ export const NodeSchema = {
 };
 
 /**
+ * Schema for blacklisted nodes
+ */
+export const QuorumBlacklistedNodeSchema = {
+    name: 'QuorumBlacklistedNode',
+    properties: {
+        node: 'Node',
+        // The node can be removed from the blacklist after a certain time
+        // This is useful if the node has been blacklisted because of rate limiting
+        expiration: {
+            type: 'date',
+            optional: true,
+        },
+    }
+};
+
+/**
  * Schema for account information (while the account is being setup)
  */
 export const AccountInfoDuringSetupSchema = {
