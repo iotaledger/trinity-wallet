@@ -665,9 +665,9 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Değiştir (24 saat)",
         "volume": "Hacim (24 saat)",
-        "error": "Error fetching chart data"
+        "error": "Grafik verileri alınırken hata oluştu"
     },
     "rootDetection": {
         "warning": "UYARI",
@@ -688,21 +688,21 @@
         "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "Node sağlığı kontrol ediliyor",
         "validatingReceiveAddress": "Alıcı adresi doğrulanıyor",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "İşlem adresleri doğrulanıyor",
         "syncingAccount": "Hesap senkronize ediliyor",
         "preparingInputs": "Girişler hazırlanıyor",
         "preparingTransfers": "Transferler hazırlanıyor",
         "gettingTransactionsToApprove": "Onaylamak için işlemler alınıyor",
         "proofOfWork": "İşin kanıtı tamamlanıyor",
         "broadcasting": "Yayınlanıyor",
-        "preparingData": "Preparing data",
+        "preparingData": "Veri hazırlanıyor",
         "migratingSettings": "Migrating settings",
         "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "cleaningUpOldData": "Eski veriler temizleniyor",
+        "migrationComplete": "Geçiş tamamlandı",
+        "transferComplete": "Transfer tamamlandı"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Anlık görüntü geçişi tamamlanamıyor",
@@ -722,7 +722,7 @@
     "deepLink": {
         "autofill": "Otomatik doldurma başarılı",
         "autofillExplanation": "İşlem bilgisi linken otomatik olarak girildi.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingOverview": "Derin linkler, Trinity'deki işlem verilerini otomatik olarak dolduran tıklanabilir bağlantılardır (iota://...).",
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
