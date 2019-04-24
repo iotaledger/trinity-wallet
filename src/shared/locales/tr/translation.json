@@ -626,13 +626,13 @@
         "aMessage": "mesaj",
         "fromAccount": "{{selectedAccountName}}'den",
         "toAddress": "Adresine",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "sendingAMessage": "Mesaj gönder",
+        "sendingAnEmptyMessage": "Boş bir mesaj gönder"
     },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
         "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
-        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
+        "seedVaultWarning": "Dosyayı birden fazla konumda yedeklediğinizden emin olun (örneğin, sabit disk, bulut, USB). Bu dosyayı kaybederseniz ve seed'inizi başka bir yerde saklamadıysanız, IOTA'nızı kaybedersiniz.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
         "exportSuccess": "SeedVault exported",
