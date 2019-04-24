@@ -440,9 +440,9 @@
     "walletSetup": {
         "okay": "Tamam. Cüzdanını ayarlayabilirsin!",
         "doYouNeedASeed": "Yeni bir seed oluşturmaya ihtiyacınız var mı?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
+        "seedExplanation": "IOTA seed'iniz fonlarınızın ana anahtarıdır. 81 karakter uzunluğunda, sadece A-Z harflerini veya 9 sayıyı kullanıyor.",
+        "noIHaveOne": "Hayır bir tane var",
+        "yesINeedASeed": "Evet, bir seed'e ihtiyacım var",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
         "loseSeed": "Fakat cüzdan şifrenizi kaybederseniz, IOTA'nızı da kaybedersiniz.",
         "keepSafe": "Lütfen cüzdan şifrenizi güvende tutun."
@@ -452,13 +452,13 @@
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Oluşumunuzu ve sağlamanızı </0><1> birden çok kez </1><2> doğru olduğuna dair kontrol edin. </2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Aşağıya doğru kaydır"
     },
     "history": {
         "bundleHashCopied": "Paket karması kopyalanır",
-        "noTransactionsFound": "No transactions found",
-        "emptyHistory": "Your transaction history is empty",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "İşlem bulunamadı",
+        "emptyHistory": "İşlem geçmişiniz boş",
+        "hideZeroBalance": "Bakiye 0 ise gizle",
         "bundleHashCopiedExplanation": "Paket karması panoya kopyalanmış.",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adres panoya kopyalanmış.",
@@ -466,12 +466,12 @@
         "messageCopiedExplanation": "Mesaj panoya kopyalandı.",
         "send": "Göndermek",
         "receive": "Almak",
-        "empty": "Empty",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday",
+        "empty": "Boş",
+        "retrying": "Yeniden deneniyor",
+        "yesterday": "Dün",
         "promotingAnotherBundle": "Promoting another bundle",
         "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Type !help for available commands",
+        "typeHelp": "Kullanılabilir komutlar için !help yazın",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
