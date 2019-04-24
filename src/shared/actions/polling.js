@@ -364,7 +364,7 @@ export const fetchNodeList = (chooseRandomNode = false) => {
 
                     // A temporary addition
                     // Only choose a random node with PoW enabled.
-                    setRandomNode(union(defaultNodesWithPowEnabled, remoteNodesWithPowEnabled));
+                    setRandomNode(remoteNodesWithPowEnabled);
 
                     const nodes = [
                         ...map(defaultNodesWithPowEnabled, (url) => ({ url, pow: true })),

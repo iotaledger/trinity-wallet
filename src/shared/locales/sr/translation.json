@@ -55,6 +55,7 @@
         "yes": "Da",
         "no": "Ne",
         "okay": "U redu",
+        "skip": "Skip",
         "password": "Lozinka",
         "unrecognisedPassword": "Lozinka nije prepoznata",
         "unrecognisedPasswordExplanation": "Lozinka nije prepoznata. Pokušajte ponovo.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Vaša adresa",
         "qrOptions": "QR opcije",
@@ -384,7 +391,6 @@
         "language": "Jezik",
         "accountManagement": "Upravljanje računom",
         "addNewSeed": "Dodaj novi seed",
-        "twoFA": "Dvofaktorska autentikacija",
         "changePassword": "Promena lozinke",
         "general": "General settings",
         "advanced": "Napredne postavke",
@@ -450,6 +456,7 @@
     "history": {
         "bundleHashCopied": "Heš paketa kopiran",
         "noTransactionsFound": "Nisu pronađene transakcije",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Sakrij transakcije bez sredstava",
         "bundleHashCopiedExplanation": "Heš paketa je kopiran na klipbord.",
         "addressCopied": "Adresa kopirana",
@@ -462,7 +469,13 @@
         "retrying": "Ponovni pokušaj u toku",
         "yesterday": "Juče",
         "promotingAnotherBundle": "Promocija drugog paketa",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Prikaži seed",
@@ -494,7 +507,8 @@
         "pow": "PoW",
         "autoPromotion": "Automatska promocija",
         "autoPromotionExplanation": "Automatska promocija pomaže u potvrdi vaše transakcije na Tangle-u. Omogućite ovu postavku ako imate problema s potvrđivanjem vaših transakcija.",
-        "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW."
+        "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadina",
@@ -565,6 +579,7 @@
         "viewSeed": "Prikaži seed",
         "hideSeed": "Sakrij seed",
         "notAvailable": "Izvod seed-a nije dostupan za {{accountType}} tip naloga",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Indeks vašeg Ledger naloga",
         "accountPage": "Your Ledger account page"
     },
@@ -594,7 +609,7 @@
         "fingerprintUnavailableExplanation": "Vaš uređaj ne podržava biometrijsku autentikaciji ili nije konfigurisan u postavkama uređaja.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Pritisnite dugme u nastavku da biste onemogućili autorizaciju pomoću otiska prsta.",
         "buttonInstructionsEnable": "Pritisnite dugme u nastavku da biste omogućii autentikaciji pomoću otiska prsta.",
         "buttonInstructionsDisableIPhoneX": "Pritisnite dugme u nastavku da biste onemogućili Face ID",
         "buttonInstructionsEnableIPhoneX": "Pritisnite dugme u nastavku da biste omogućili Face ID",
@@ -611,23 +626,6 @@
         "toAddress": "To address",
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
-    },
-    "twoFA": {
-        "wrongCode": "Pogrešan kod",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "Prazan kod",
-        "emptyCodeExplanation": "Unesite kod ponovo.",
-        "keyCopied": "Ključ kopiran u klipbord",
-        "keyCopiedExplanation": "Vaš 2FA ključ je kopiran u klipbord.",
-        "addKey": "Dodajte ovaj ključ 2FA aplikaciji",
-        "key": "Ključ",
-        "twoFAEnabled": "2FA je omogućena",
-        "twoFAEnabledExplanation": "Omogućili ste dvofaktorsku autentikaciju.",
-        "twoFADisabled": "2FA je onemogućena",
-        "twoFADisabledExplanation": "Uspješno ste onemogućili dvofaktorsku autentikaciju.",
-        "enterCode": "Unesite kod iz 2FA aplikacije",
-        "code": "Kod",
-        "twoFaToken": "2FA Token"
     },
     "seedVault": {
         "exportSeedVault": "Izvezi SeedVault",
@@ -652,8 +650,11 @@
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspešno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "Ključ"
     },
     "chart": {
         "mcap": "MCAP",
@@ -713,7 +714,12 @@
     },
     "deepLink": {
         "autofill": "Uspešno automatsko popunjavanje",
-        "autofillExplanation": "Podaci o transakciji uspešno automatski popunjeni sa linka."
+        "autofillExplanation": "Podaci o transakciji uspešno automatski popunjeni sa linka.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom učitavanja podataka o ažuriranju",
@@ -810,6 +816,8 @@
         "checkAddress": "Proverite adresu za prijem",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

@@ -14,7 +14,14 @@ import { fetchVersions } from 'libs/utils';
 import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
 
 import { setOnboardingComplete, setAccountInfoDuringSetup } from 'actions/accounts';
-import { setPassword, clearWalletData, setDeepLink, setSeedIndex, shouldUpdate, forceUpdate } from 'actions/wallet';
+import {
+    setPassword,
+    clearWalletData,
+    initiateDeepLinkRequest,
+    setSeedIndex,
+    shouldUpdate,
+    forceUpdate,
+} from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { dismissAlert, generateAlert } from 'actions/alerts';
@@ -82,13 +89,15 @@ class App extends React.Component {
         /** @ignore */
         shouldUpdate: PropTypes.func.isRequired,
         /** @ignore */
+        deepLinking: PropTypes.bool.isRequired,
+        /** @ignore */
         forceUpdate: PropTypes.func.isRequired,
         /** @ignore */
         setAccountInfoDuringSetup: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        setDeepLink: PropTypes.func.isRequired,
+        initiateDeepLinkRequest: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -165,12 +174,17 @@ class App extends React.Component {
      * @param {string} Data - data passed
      */
     setDeepUrl(data) {
-        const { generateAlert, t } = this.props;
+        const { deepLinking, generateAlert, t } = this.props;
+
+        if (!deepLinking) {
+            this.props.history.push('/settings/advanced');
+            return generateAlert('info', t('deepLink:deepLinkingInfoTitle'), t('deepLink:deepLinkingInfoMessage'));
+        }
 
         const parsedData = parseAddress(data);
 
         if (parsedData) {
-            this.props.setDeepLink(
+            this.props.initiateDeepLinkRequest(
                 parsedData.amount ? String(parsedData.amount) : '0',
                 parsedData.address,
                 parsedData.message || '',
@@ -323,6 +337,7 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
     themeName: state.settings.themeName,
     onboardingComplete: state.accounts.onboardingComplete,
+    deepLinking: state.settings.deepLinking,
     isBusy:
         !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
 });
@@ -330,7 +345,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     clearWalletData,
     setPassword,
-    setDeepLink,
+    initiateDeepLinkRequest,
     setSeedIndex,
     dismissAlert,
     generateAlert,

@@ -3,6 +3,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import clone from 'lodash/clone';
 import get from 'lodash/get';
 import each from 'lodash/each';
+import every from 'lodash/every';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 import flatMap from 'lodash/flatMap';
@@ -382,7 +383,7 @@ export const constructBundlesFromTransactions = (transactions) => {
  *
  * @returns {array}
  */
-export const filterInvalidBundles = (bundles) => filter(bundles, iota.utils.isBundle);
+export const filterInvalidBundles = (bundles) => filter(bundles, isBundle);
 
 /**
  *   Normalises bundle.
@@ -441,20 +442,36 @@ export const syncTransactions = (provider) => (diff, existingTransactions) => {
                 return findTransactionObjectsAsync(provider)({ bundles: Array.from(bundleHashes) });
             })
             .then((transactionObjects) => {
-                return flatMap(
-                    filterInvalidBundles(
-                        constructBundlesFromTransactions(
-                            map(transactionObjects, (transaction) => ({
-                                ...transaction,
-                                // Assign broadcasted as true as all these transactions were pulled in from the ledger
-                                broadcasted: true,
-                                // Temporarily assign persistence false
-                                // In the next step, communicate with the ledger to get correct inclusion state (persistence) and assign those
-                                persistence: false,
-                            })),
-                        ),
-                    ),
+                const existingTransactionHashes = map(existingTransactions, (transaction) => transaction.hash);
+
+                // In the previous step, we pulled all transactions against the bundle hash
+                // Querying by bundle hash retrieves all transactions including reattachments
+                // It is possible that we have already retrieved and validated some of these reattachments
+                // Therefore, there is no need to reconstruct bundles for the transactions that are already stored locally
+                // Bundle validation is expensive and could lead to performance issues
+                const newTransactions = filter(
+                    transactionObjects,
+                    (transaction) => !includes(existingTransactionHashes, transaction.hash),
                 );
+
+                // Construct bundles only for newer (not yet seen/stored) transactions
+                const bundles = constructBundlesFromTransactions(
+                    map(newTransactions, (transaction) => ({
+                        ...transaction,
+                        // Assign broadcasted as true as all these transactions were pulled in from the ledger
+                        broadcasted: true,
+                        // Temporarily assign persistence false
+                        // In the next step, communicate with the ledger to get correct inclusion state (persistence) and assign those
+                        persistence: false,
+                    })),
+                );
+
+                const transactions = flatMap(
+                    // Get rid of invalid bundles
+                    filterInvalidBundles(bundles),
+                );
+
+                return transactions;
             });
     };
 
@@ -1011,7 +1028,7 @@ export const constructBundleFromAttachedTrytes = (attachedTrytes, seedStore) => 
                 return seedStore.getDigest(tryteString).then((digest) => {
                     const transactionObject = iota.utils.transactionObject(tryteString, digest);
 
-                    result.push(transactionObject);
+                    result.unshift(transactionObject);
 
                     return result;
                 });
@@ -1020,3 +1037,38 @@ export const constructBundleFromAttachedTrytes = (attachedTrytes, seedStore) => 
         Promise.resolve([]),
     );
 };
+
+/**
+ * Checks if bundle can be traversed
+ *
+ * @method isBundleTraversable
+ *
+ * @param {array} bundle
+ * @param {string} trunkTransaction
+ * @param {string} branchTransaction
+ *
+ * @returns {boolean}
+ */
+export const isBundleTraversable = (bundle, trunkTransaction, branchTransaction) =>
+    !isEmpty(bundle) &&
+    every(
+        orderBy(bundle, ['currentIndex'], ['desc']),
+        (transaction, index, transactions) =>
+            index
+                ? transaction.trunkTransaction === transactions[index - 1].hash &&
+                  transaction.branchTransaction === trunkTransaction
+                : transaction.trunkTransaction === trunkTransaction &&
+                  transaction.branchTransaction === branchTransaction,
+    );
+
+/**
+ * Wraps iota.utils.isBundle (https://github.com/iotaledger/iota.js/blob/develop/lib/utils/utils.js#L421)
+ * Ensures transaction objects in bundle are in correct (ascending) order
+ *
+ * @method isBundle
+ *
+ * @param {array} bundle
+ *
+ * @returns {boolean}
+ */
+export const isBundle = (bundle) => iota.utils.isBundle(orderBy(bundle, ['currentIndex'], ['asc']));

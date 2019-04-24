@@ -32,6 +32,7 @@ import {
     retryFailedTransaction as retry,
     constructBundlesFromTransactions,
     isFundedBundle,
+    isBundle,
 } from '../libs/iota/transfers';
 import {
     syncAccountAfterReattachment,
@@ -245,7 +246,7 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, withQuoru
                 filter(accountState.transactions, (transaction) => transaction.bundle === bundleHash),
             );
 
-            if (isEmpty(filter(bundles, iota.utils.isBundle))) {
+            if (isEmpty(filter(bundles, isBundle))) {
                 throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
             }
 
@@ -567,7 +568,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 const convertToTransactionObjects = (tryteString) => iota.utils.transactionObject(tryteString);
                 cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
 
-                if (iota.utils.isBundle(cached.transactionObjects.slice().reverse())) {
+                if (isBundle(cached.transactionObjects)) {
                     isValidBundle = true;
                     // Progressbar step => (Getting transactions to approve)
                     dispatch(setNextStepAsActive());
@@ -682,7 +683,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
             })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;
-                cached.transactionObjects = transactionObjects.slice().reverse();
+                cached.transactionObjects = transactionObjects;
 
                 // Progressbar step => (Broadcasting)
                 dispatch(setNextStepAsActive());
@@ -764,6 +765,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             'error',
                             i18next.t('global:rebroadcastError'),
                             i18next.t('global:signedTrytesBroadcastErrorExplanation'),
+                            20000,
                             error,
                         ),
                     );

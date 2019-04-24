@@ -55,6 +55,7 @@
         "yes": "Ja",
         "no": "Nej",
         "okay": "Okay",
+        "skip": "Skip",
         "password": "Adgangskode",
         "unrecognisedPassword": "Ukendt adgangskode",
         "unrecognisedPasswordExplanation": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Jeg er ikke på et offentligt Wi-Fi netværk",
         "printerConfirmation": "Jeg udskriver ikke via en offentlig printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Din adresse",
         "qrOptions": "QR-indstillinger",
@@ -384,7 +391,6 @@
         "language": "Sprog",
         "accountManagement": "Konto administration",
         "addNewSeed": "Tilføj ny hovednøgle",
-        "twoFA": "Totrinsbekræftelse",
         "changePassword": "Skift adgangskode",
         "general": "Generelle indstillinger",
         "advanced": "Avancerede indstillinger",
@@ -450,6 +456,7 @@
     "history": {
         "bundleHashCopied": "Bundt-hash kopieret",
         "noTransactionsFound": "Ingen transaktioner fundet",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Skjul nulsaldo",
         "bundleHashCopiedExplanation": "Den gruppérede hash er blevet kopiret til udklipsholderen.",
         "addressCopied": "Adresse kopieret",
@@ -462,7 +469,13 @@
         "retrying": "Forsøger igen",
         "yesterday": "I går",
         "promotingAnotherBundle": "Promovering en anden pakke",
-        "pleaseWait": "Vent venligst, Trinity promoverer en anden pakke."
+        "pleaseWait": "Vent venligst, Trinity promoverer en anden pakke.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Se hovednøgle",
@@ -494,7 +507,8 @@
         "pow": "Netværksvalidering",
         "autoPromotion": "Auto-promovering",
         "autoPromotionExplanation": "Auto-promovering hjælper med at bekræfte dine transaktioner på netværket. Aktivér denne indstilling, hvis du oplever problemer med at få dine transaktioner bekræftet.",
-        "autoPromotionPoW": "Auto-promovering er kun muligt på noder, som understøtter ekstern netværksgodkendelse."
+        "autoPromotionPoW": "Auto-promovering er kun muligt på noder, som understøtter ekstern netværksgodkendelse.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "Baggrund",
@@ -565,6 +579,7 @@
         "viewSeed": "Se hovednøgle",
         "hideSeed": "Skjul hovednøgle",
         "notAvailable": "Hovednøgleeksport er ikke tilgængelig for {{accountType}}-kontotypen",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Dit hovedkontoindeks",
         "accountPage": "Din hovedkontoside"
     },
@@ -594,7 +609,7 @@
         "fingerprintUnavailableExplanation": "Din enhed understøtter ikke biometrisk godkendelse, eller også er dette ikke konfigureret under indstillingerne på din enhed.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Tryk på knappen nedenfor for at deaktivere godkendelse med fingeraftryk.",
         "buttonInstructionsEnable": "Tryk på knappen nedenfor for at aktivere godkendelse med fingeraftryk.",
         "buttonInstructionsDisableIPhoneX": "Tryk på knappen herunder for at deaktivere ansigtsgenkendelse",
         "buttonInstructionsEnableIPhoneX": "Tryk på knappen herunder for at aktivere ansigtsgenkendelse",
@@ -611,23 +626,6 @@
         "toAddress": "Til adresse",
         "sendingAMessage": "Sender en besked",
         "sendingAnEmptyMessage": "Sender en tom besked"
-    },
-    "twoFA": {
-        "wrongCode": "Forkert kode",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "Tom kode",
-        "emptyCodeExplanation": "Indtast venligst en kode og prøv igen.",
-        "keyCopied": "Nøgle kopieret til udklipsholder",
-        "keyCopiedExplanation": "Din 2FA-nøgle er kopieret til Udklipsholderen.",
-        "addKey": "Tilføj denne nøgle til din 2FA-app",
-        "key": "Nøgle",
-        "twoFAEnabled": "2FA er nu aktiveret",
-        "twoFAEnabledExplanation": "Du har succesfuldt aktiveret totrinsbekræftelse.",
-        "twoFADisabled": "Totrinsbekræftelse er nu deaktiveret",
-        "twoFADisabledExplanation": "Du har succesfuldt deaktiveret totrinsbekræftelse.",
-        "enterCode": "Angiv koden fra din 2FA-app",
-        "code": "Kode",
-        "twoFaToken": "2FA Token"
     },
     "seedVault": {
         "exportSeedVault": "Eksportere SeedVault",
@@ -652,8 +650,11 @@
         "noSeedFoundExplanation": "SeedVault er enten tom eller indeholder en hovednøgle i et ugyldigt format.",
         "seedFileError": "Kunne ikke åbne SeedVault",
         "seedFileErrorExplanation": "Der var problemer med at åbne af SeedVault. Har du valgt den korrekte fil, kan denne være beskadiget.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Først skal din SeedVault sikres. Vælg en nøgle til at kryptere filen. Du vil skulle benytte denne nøgle for at genoprette din hovednøgle fra SeedVault-sikkerhedskopien.",
-        "retypeKey": "Angiv nøgle igen"
+        "retypeKey": "Angiv nøgle igen",
+        "key": "Nøgle"
     },
     "chart": {
         "mcap": "MCAP",
@@ -713,7 +714,12 @@
     },
     "deepLink": {
         "autofill": "Autoudfyldning fuldendt",
-        "autofillExplanation": "Transaktionsdata er autoudfyldt fra linket."
+        "autofillExplanation": "Transaktionsdata er autoudfyldt fra linket.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fejl under indhentning af opdateringsdata",
@@ -810,6 +816,8 @@
         "checkAddress": "Tjek modtagelsesadressen",
         "checkAddressExplanation": "Tjek at adressen matcher dén, der vises på din Bogføringsenhed.",
         "applicationNotInitialised": "Advarsel, ubekræftet",
-        "applicationNotInitialisedExplanation": "Genåbn IOTA-app'en på din Bogføringsenhed, acceptér oplysningsadvarslen og forsøg igen."
+        "applicationNotInitialisedExplanation": "Genåbn IOTA-app'en på din Bogføringsenhed, acceptér oplysningsadvarslen og forsøg igen.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

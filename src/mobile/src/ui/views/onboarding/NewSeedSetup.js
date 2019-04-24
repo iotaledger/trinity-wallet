@@ -163,6 +163,7 @@ class NewSeedSetup extends Component {
     }
 
     onBackPress() {
+        delete global.onboardingSeed;
         navigator.pop(this.props.componentId);
     }
 

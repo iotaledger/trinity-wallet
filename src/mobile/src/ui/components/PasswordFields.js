@@ -74,10 +74,10 @@ class PasswordFields extends Component {
      */
     checkPassword() {
         const { t, password, reentry } = this.props;
-        const { score } = this.state;
+        const { score: { score, feedback: { warning } } } = this.state;
         if (isEmpty(password)) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
-        } else if (size(password) >= MIN_PASSWORD_LENGTH && isEqual(password, reentry) && score.score === 4) {
+        } else if (size(password) >= MIN_PASSWORD_LENGTH && isEqual(password, reentry) && score === 4) {
             return this.props.onAcceptPassword();
         } else if (!isEqual(password, reentry)) {
             return this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
@@ -90,9 +90,9 @@ class PasswordFields extends Component {
                     currentLength: password.length,
                 }),
             );
-        } else if (score.score < 4) {
-            const reason = score.feedback.warning
-                ? t(`changePassword:${passwordReasons[score.feedback.warning]}`)
+        } else if (score < 4) {
+            const reason = warning
+                ? t(`changePassword:${passwordReasons[warning]}`)
                 : t('changePassword:passwordTooWeakReason');
             return this.props.generateAlert('error', t('changePassword:passwordTooWeak'), reason);
         }
@@ -100,8 +100,8 @@ class PasswordFields extends Component {
 
     render() {
         const { t, theme, password, reentry, passwordLabel, reentryLabel } = this.props;
-        const { score } = this.state;
-        const isValid = score.score === 4;
+        const { score: { score } } = this.state;
+        const isValid = score === 4;
 
         return (
             <View style={[styles.container]}>
@@ -116,9 +116,9 @@ class PasswordFields extends Component {
                     }}
                     containerStyle={{ width: Styling.contentWidth }}
                     autoCapitalize="none"
-                    widget="password"
+                    widgets={['checkMark']}
                     isPasswordValid={isValid}
-                    passwordStrength={score.score}
+                    passwordStrength={score}
                     autoCorrect={false}
                     enablesReturnKeyAutomatically
                     returnKeyType="next"
@@ -141,7 +141,7 @@ class PasswordFields extends Component {
                     label={reentryLabel || t('setPassword:retypePassword')}
                     onValidTextChange={(reentry) => this.props.setReentry(reentry)}
                     containerStyle={{ width: Styling.contentWidth, marginTop: height / 60 }}
-                    widget="passwordReentry"
+                    widgets={['checkMark']}
                     isPasswordValid={isValid && isEqual(password, reentry)}
                     autoCapitalize="none"
                     autoCorrect={false}

@@ -55,6 +55,7 @@
         "yes": "ಹೌದು",
         "no": "ಇಲ್ಲ",
         "okay": "ಸರಿ",
+        "skip": "Skip",
         "password": "ಗುಪ್ತಪದ",
         "unrecognisedPassword": "ಗುರುತಿಗೆ ಸಿಕ್ಕದ ಗುಪ್ತಪದ",
         "unrecognisedPasswordExplanation": "ಗುಪ್ತಪದ ಗುರುತಿಸಲಾಗಿಲ್ಲ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "ನಿಮ್ಮ ವಿಳಾಸ",
         "qrOptions": "QR ಆಯ್ಕೆಗಳು",
@@ -384,7 +391,6 @@
         "language": "ಭಾಷೆ",
         "accountManagement": "ಖಾತೆ ನಿರ್ವಹಣೆ",
         "addNewSeed": "ಹೊಸ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಸೇರಿಸಿ",
-        "twoFA": "ಎರಡು-ಅಂಶದ ದೃಢೀಕರಣ",
         "changePassword": "ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಿ",
         "general": "General settings",
         "advanced": "ಮು೦ದುವರಿದ ಸೆಟ್ಟಿಂಗ್ಸ್",
@@ -450,6 +456,7 @@
     "history": {
         "bundleHashCopied": "ವ್ಯವಹಾರ ಗುಂಪಿನ ಹ್ಯಾಶ್ ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ",
         "noTransactionsFound": "ಯಾವುದೇ ವ್ಯವಹಾರಗಳು ಕಂಡುಬಂದಿಲ್ಲ",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "ಖಾತೆಯ ಶೂನ್ಯ ಮೊತ್ತವನ್ನು ಮರೆಮಾಡಿ",
         "bundleHashCopiedExplanation": "ವ್ಯವಹಾರ ಗುಂಪಿನ ಹ್ಯಾಶ್ ಅನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲಾಗಿದೆ.",
         "addressCopied": "ವಿಳಾಸ ನಕಲಿಸಲಾಗಿದೆ",
@@ -462,7 +469,13 @@
         "retrying": "ಮರುಪ್ರಯತ್ನಿಸಲಾಗುತ್ತಿದೆ",
         "yesterday": "ನೆನ್ನೆ ದಿನ",
         "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ವೀಕ್ಷಿಸಿ",
@@ -494,7 +507,8 @@
         "pow": "ಕೆಲಸದ ಪುರಾವೆ",
         "autoPromotion": "ಸ್ವಯಂ-ಬಡತಿ",
         "autoPromotionExplanation": "ಟ್ಯಾಂಗಲ್ ಜಾಲದಲ್ಲಿ ನಿಮ್ಮ ವ್ಯವಹಾರಗಳನ್ನು ಖಚಿತಪಡಿಸಲು ಸ್ವಯಂ-ಬಡತಿ ಸಹಾಯ ಮಾಡುತ್ತದೆ. ನಿಮ್ಮ ವ್ಯವಹಾರಗಳನ್ನು ದೃಢೀಕರಿಸಲು ನಿಮಗೆ ಕಷ್ಟವಾಗಿದ್ದರೆ ಈ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
-        "autoPromotionPoW": "ದೂರ ಕೆಲಸದ ಪುರಾವೆಯನ್ನು ಬೆಂಬಲಿಸುವ ನೋಡ್ಗಳಲ್ಲಿ ಮಾತ್ರ ಸ್ವಯಂ-ಬಡತಿ ಸಾಧ್ಯ."
+        "autoPromotionPoW": "ದೂರ ಕೆಲಸದ ಪುರಾವೆಯನ್ನು ಬೆಂಬಲಿಸುವ ನೋಡ್ಗಳಲ್ಲಿ ಮಾತ್ರ ಸ್ವಯಂ-ಬಡತಿ ಸಾಧ್ಯ.",
+        "deepLinking": "Deep linking"
     },
     "advancedThemeCustomisation": {
         "background": "ಹಿನ್ನೆಲೆ",
@@ -565,6 +579,7 @@
         "viewSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ವೀಕ್ಷಿಸಿ",
         "hideSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮರೆಮಾಡಿ",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
@@ -594,7 +609,7 @@
         "fingerprintUnavailableExplanation": "ನಿಮ್ಮ ಸಾಧನವು ಬಯೋಮೆಟ್ರಿಕ್ ದೃಢೀಕರಣವನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಅಥವಾ ಸಾಧನ ಸೆಟ್ಟಿಂಗ್ಗಳಲ್ಲಿ ಇದನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಲಾಗಿಲ್ಲ.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "ಬೆರಳಿನ ಗುರುತು ದೃಢೀಕರಣವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿರಿ.",
         "buttonInstructionsEnable": "ಬೆರಳುಗುರುತು ದೃಢೀಕರಣ ಸಕ್ರಿಯಗೊಳಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿರಿ.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
@@ -611,23 +626,6 @@
         "toAddress": "To address",
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
-    },
-    "twoFA": {
-        "wrongCode": "ತಪ್ಪಾದ ಸಂಕೇತ",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "ಖಾಲಿ ಸಂಕೇತ",
-        "emptyCodeExplanation": "ದಯವಿಟ್ಟು ಸಂಕೇತ ನಮೂದಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
-        "keyCopied": "ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ಕೀಲಿ ನಕಲಿಸಲಾಗಿದೆ",
-        "keyCopiedExplanation": "ನಿಮ್ಮ ೨-ಅಂಶ ದೃಢೀಕರಣಕಾರ ಕೀಲಿಯನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲಾಗಿದೆ.",
-        "addKey": "ನಿಮ್ಮ ೨-ಅಂಶ ದೃಢೀಕರಣಕಾರ ಅಪ್ಲಿಕೇಶನ್ನಲ್ಲಿ ಈ ಕೀಲಿಯನ್ನು ಸೇರಿಸಿ",
-        "key": "ಕೀಲಿ",
-        "twoFAEnabled": "೨-ಅಂಶ ದೃಢೀಕರಣಕಾರ ವನ್ನು ಇದೀಗ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ",
-        "twoFAEnabledExplanation": "ನೀವು ಎರಡು ಅಂಶ ದೃಢೀಕರಣವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸಕ್ರಿಯಗೊಳಿಸಿದ್ದೀರಿ.",
-        "twoFADisabled": "೨-ಅಂಶ ದೃಢೀಕರಣಕಾರವನ್ನು ಈಗ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ",
-        "twoFADisabledExplanation": "ನೀವು ಎರಡು ಅಂಶ ದೃಢೀಕರಣವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದ್ದೀರಿ.",
-        "enterCode": "ನಿಮ್ಮ ೨-ಅಂಶ ದೃಢೀಕರಣಕಾರ ಅಪ್ಲಿಕೇಶನ್ನಿಂದ ಕೋಡ್ ನಮೂದಿಸಿ",
-        "code": "ಸಂಕೇತ",
-        "twoFaToken": "೨-ಅಂಶ ದೃಢೀಕರಣಕಾರನ ಟೋಕನ್"
     },
     "seedVault": {
         "exportSeedVault": "ಸೀಡ್ವಾಲ್ಟ್ ರಫ್ತು ಮಾಡಿ",
@@ -652,8 +650,11 @@
         "noSeedFoundExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಖಾಲಿಯಾಗಿದೆ ಅಥವಾ ಅಮಾನ್ಯ ಸ್ವರೂಪದಲ್ಲಿ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಹೊಂದಿರುತ್ತದೆ.",
         "seedFileError": "ಸೀಡ್ವಾಲ್ಟ್ ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ",
         "seedFileErrorExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಅನ್ನು ತೆರೆಯುವಲ್ಲಿ ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿದೆ. ನೀವು ಸರಿಯಾದ ಫೈಲ್ ಅನ್ನು ಆರಿಸಿದರೆ ಅದು ದೋಷಪೂರಿತವಾಗಬಹುದು.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "ಕೀಲಿ"
     },
     "chart": {
         "mcap": "ಮಾರುಕಟ್ಟೆ ಬಂಡವಾಳ",
@@ -713,7 +714,12 @@
     },
     "deepLink": {
         "autofill": "ಸ್ವಯಂತುಂಬುವಿಕೆ ಯಶಸ್ಸು",
-        "autofillExplanation": "ವ್ಯವಹಾರ ಮಾಹಿತಿಯನ್ನು ಲಿಂಕ್ನಿಂದ ಸ್ವಯಂ ತುಂಬಿಸಲಾಗಿದೆ."
+        "autofillExplanation": "ವ್ಯವಹಾರ ಮಾಹಿತಿಯನ್ನು ಲಿಂಕ್ನಿಂದ ಸ್ವಯಂ ತುಂಬಿಸಲಾಗಿದೆ.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "ನವೀಕರಿಸಿದ ಮಾಹಿತಿಯನ್ನು ಹಿಂಪಡೆಯುವಲ್ಲಿ ದೋಷ",
@@ -810,6 +816,8 @@
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

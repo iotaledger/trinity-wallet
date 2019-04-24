@@ -55,6 +55,7 @@
         "yes": "Oui",
         "no": "Non",
         "okay": "Ok",
+        "skip": "Passer",
         "password": "Mot de passe",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Je ne suis pas sur un wifi public",
         "printerConfirmation": "Je n'imprimerai pas sur une imprimante publique"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Voulez-vous imprimer un modèle vide ?",
+        "printTemplateInfo": "Vous pouvez imprimer un modèle vide pour vous aider à écrire votre seed.",
+        "printTemplateWarning": "Assurez-vous de stocker votre seed dans un endroit sûr. Ne la montrez à personne.",
+        "print": "Oui, imprimer"
+    },
     "receive": {
         "yourAddress": "Votre adresse",
         "qrOptions": "QR options",
@@ -384,7 +391,6 @@
         "language": "Langue",
         "accountManagement": "Gestion du compte",
         "addNewSeed": "Ajouter une nouvelle seed",
-        "twoFA": "Authentification à deux facteurs",
         "changePassword": "Modifier le mot de passe",
         "general": "Paramètres généraux",
         "advanced": "Réglages avancés",
@@ -450,6 +456,7 @@
     "history": {
         "bundleHashCopied": "Hash du paquet copié",
         "noTransactionsFound": "Aucune transaction trouvée",
+        "emptyHistory": "Votre historique de transaction est vide",
         "hideZeroBalance": "Masquer un solde nul",
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papier.",
         "addressCopied": "Adressée copiée",
@@ -462,7 +469,13 @@
         "retrying": "Nouvelle tentative",
         "yesterday": "Hier",
         "promotingAnotherBundle": "Promotion d'un autre bundle en cours",
-        "pleaseWait": "Veuillez patienter, Trinity est en train de promouvoir un autre bundle."
+        "pleaseWait": "Veuillez patienter, Trinity est en train de promouvoir un autre bundle.",
+        "typeHelp": "Tapez !help pour les commandes disponibles",
+        "searchHelpText": "Rechercher par hash ou par message",
+        "searchHelpValue": "Trouver des transactions par valeur exacte d'iota",
+        "searchHelpUnits": "Trouver des transactions par valeur et unité iota",
+        "searchHelpMore": "Trouver des transactions avec une valeur supérieure à X",
+        "searchHelpLess": "Trouver des transactions avec une valeur inférieure à X"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -494,7 +507,8 @@
         "pow": "Preuve de Travail",
         "autoPromotion": "Promotion automatique",
         "autoPromotionExplanation": "La promotion automatique aide à confirmer vos transactions sur le Tangle. Activez ce paramètre si vous rencontrez des difficultés à confirmer vos transactions.",
-        "autoPromotionPoW": "La promotion automatique n’est possible que sur les serveurs qui prennent en charge la preuve de travail à distance."
+        "autoPromotionPoW": "La promotion automatique n’est possible que sur les serveurs qui prennent en charge la preuve de travail à distance.",
+        "deepLinking": "Liens"
     },
     "advancedThemeCustomisation": {
         "background": "Arrière-plan",
@@ -565,6 +579,7 @@
         "viewSeed": "Afficher la seed",
         "hideSeed": "Masquer la seed",
         "notAvailable": "L'exportation de la seed n’est pas disponible pour le compte {{accountType}}",
+        "notAvailableExplanationLedger": "Votre Ledger utilise un élément sécurisé pour stocker votre seed. La seed est cryptée en toute sécurité et ne sort jamais de l'appareil.",
         "accountIndex": "L'index de votre compte Ledger",
         "accountPage": "Numéro de page du compte de votre Ledger"
     },
@@ -612,23 +627,6 @@
         "sendingAMessage": "Envoi d'un message",
         "sendingAnEmptyMessage": "Envoi d'un message vide"
     },
-    "twoFA": {
-        "wrongCode": "Code incorrect",
-        "wrongCodeExplanation": "Le code que vous avez entré est incorrect. Si l'erreur persiste, vérifiez que le réglage de l'heure est correct sur votre appareil.",
-        "emptyCode": "Code vide",
-        "emptyCodeExplanation": "Veuillez entrer un code et réessayer.",
-        "keyCopied": "Clé copiée dans le presse-papier",
-        "keyCopiedExplanation": "Votre clé 2FA a été copiée dans le presse-papier.",
-        "addKey": "Ajoutez cette clé à votre application 2FA",
-        "key": "Clé",
-        "twoFAEnabled": "L'authentification 2FA est maintenant activée",
-        "twoFAEnabledExplanation": "Vous avez correctement activé l’authentification à deux facteurs.",
-        "twoFADisabled": "2FA est maintenant désactivée",
-        "twoFADisabledExplanation": "Vous avez désactivé l'authentification à deux facteurs avec succès.",
-        "enterCode": "Entrez le code de votre application 2FA",
-        "code": "Code",
-        "twoFaToken": "Code 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "Exporter SeedVault",
         "seedVaultExplanation": "Un SeedVault est un fichier crypté pour stocker votre seed en toute sécurité. La seed est encryptée à l'aide d'une clé SeedVault et n'est pas accessible sans ce mot de passe.",
@@ -652,8 +650,11 @@
         "noSeedFoundExplanation": "Le SeedVault est vide ou contient une seed dans un format non valide.",
         "seedFileError": "Échec de l'ouverture du SeedVaulet",
         "seedFileErrorExplanation": "Il y a eu un problème lors de l'ouverture du SeedVault. Si vous avez sélectionné le bon fichier, il est peut-être endommagé.",
+        "invalidSeedFileError": "Fichier SeedVault invalide",
+        "invalidSeedFileErrorExplanation": "Ce format de fichier n'est pas pris en charge. Seuls les fichiers SeedVault (.kdbx) créés via Trinity ou un gestionnaire de mot de passe sont pris en charge.",
         "seedVaultKeyExplanation": "Tout d’abord, nous devons sécuriser votre SeedVault. Veuillez choisir une clé pour chiffrer le fichier. Vous utiliserez cette clé si vous devez restaurer votre seed à partir du fichier SeedVault.",
-        "retypeKey": "Veuillez ré-entrer la clé"
+        "retypeKey": "Veuillez ré-entrer la clé",
+        "key": "Clé"
     },
     "chart": {
         "mcap": "MCAP",
@@ -713,7 +714,12 @@
     },
     "deepLink": {
         "autofill": "Succès du remplissage automatique",
-        "autofillExplanation": "Remplissage automatique des transactions depuis les liens."
+        "autofillExplanation": "Remplissage automatique des transactions depuis les liens.",
+        "deepLinkingOverview": "Les liens profonds sont des liens cliquables (iota://...) qui remplissent automatiquement les données de transaction dans Trinity.",
+        "deepLinkingWarning": "Soyez conscient des arnaques de phishing. Assurez-vous que le lien que vous ouvrez navigue vers l'application officielle Trinity.",
+        "deepLinkingUpdated": "Paramètres des liens",
+        "deepLinkingEnabled": "Vous avez activé les liens.",
+        "deepLinkingDisabled": "Vous avez activé les liens."
     },
     "updates": {
         "errorRetrievingUpdateData": "Erreur lors de la récupération des données de mise à jour",
@@ -810,6 +816,8 @@
         "checkAddress": "Vérifiez l’adresse de réception",
         "checkAddressExplanation": "Vérifiez que les adresses correspondent à celles affichées sur votre Ledger.",
         "applicationNotInitialised": "Avertissements non confirmés",
-        "applicationNotInitialisedExplanation": "Rouvrez l’application IOTA sur votre Ledger, acceptez l’avertissement d’information et essayez à nouveau."
+        "applicationNotInitialisedExplanation": "Rouvrez l’application IOTA sur votre Ledger, acceptez l’avertissement d’information et essayez à nouveau.",
+        "udevError": "N'a pas pu communiquer avec le dispositif Ledger",
+        "udevErrorExplanation": "Trinity n'a pas pu communiquer avec votre appareil Ledger. Veuillez visiter l'URL ci-dessous pour résoudre ce problème."
     }
 }
