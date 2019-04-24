@@ -475,8 +475,8 @@
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpMore": "X'ten büyük bir değere sahip işlemleri bulun",
+        "searchHelpLess": "X'ten daha düşük bir değere sahip işlemleri bulun"
     },
     "accountManagement": {
         "viewSeed": "Kaynağı görüntüle",
@@ -484,17 +484,17 @@
         "editAccountName": "Hesap adını Düzenle",
         "deleteAccount": "Hesabı Sil",
         "addNewAccount": "Yeni hesap ekle",
-        "tools": "Tools"
+        "tools": "Araçlar"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Özel ağ eklenemedi",
         "customNode": "Özel düğüm",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Özel node'i kaldır",
         "invalidNodeResponse": "Ağ geçersiz",
         "add": "Ekle",
         "nodeFieldEmpty": "Bu alan boş",
         "nodeFieldEmptyExplanation": "Lütfen özel ağınızı girin.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Lütfen geçerli bir URL giriniz."
     },
     "addNewAccount": {
         "useExistingSeed": "Mevcut kaynağı kullan",
@@ -618,14 +618,14 @@
         "instructionsLogin": "Giriş yapmak için parmak izi okuyucusuna dokunun",
         "systemCancelledAuth": "Authentication was cancelled by your device",
         "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "passwordFallback": "Parola doğrulamasına geri dönün",
+        "noPassword": "Cihazda parola ayarlanmamış"
     },
     "transferConfirmation": {
         "youAreAbout": "Adrese {{contents}} göndermek üzeresiniz",
         "aMessage": "mesaj",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
+        "fromAccount": "{{selectedAccountName}}'den",
+        "toAddress": "Adresine",
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
