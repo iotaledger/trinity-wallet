@@ -394,6 +394,7 @@
         "changePassword": "Změnit heslo",
         "general": "Obecná nastavení",
         "advanced": "Pokročilé nastavení",
+        "nodeSettings": "Node settings",
         "account": "Nastavení účtu",
         "logout": "Odhlásit",
         "reset": "Obnovit peněženku",
@@ -455,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Balíček hash zkopírován",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Nebyly nalezeny žádné transakce",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Skrýt nulový zůstatek",
         "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
         "addressCopied": "Adresa zkopírována",
@@ -468,7 +470,13 @@
         "retrying": "Opakování",
         "yesterday": "Včera",
         "promotingAnotherBundle": "Podpora dalšího balíčku",
-        "pleaseWait": "Prosím počkejte, Trinity podporuje další balíček."
+        "pleaseWait": "Prosím počkejte, Trinity podporuje další balíček.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
@@ -501,7 +509,8 @@
         "autoPromotion": "Automatická podpora",
         "autoPromotionExplanation": "Automatická podpora Vám pomůže potvrdit Vaši transakci v síti Tangle. Povolte toto nastavení, pokud máte problémy s potvrzováním transakcí.",
         "autoPromotionPoW": "Automatická podpora je možná pouze na Nodech, které podporují vzdálený Proof of Work.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadí",
@@ -572,6 +581,7 @@
         "viewSeed": "Zobrazit Seed",
         "hideSeed": "Skrýt Seed",
         "notAvailable": "Seed export není k dispozici pro typ účtu {{accountType}}",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Index účtu ve Vašem Ledgeru",
         "accountPage": "Stránka účtu ve Vašem Ledgeru"
     },
@@ -642,9 +652,16 @@
         "noSeedFoundExplanation": "SeedVault je buď prázdný, nebo obsahuje Seed v neplatném formátu.",
         "seedFileError": "Otevření SeedVault se nezdařilo",
         "seedFileErrorExplanation": "Během otevírání SeedVault nastal problém. Jestliže jste zvolili správný soubor, je možné, že je poškozený.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Nejprve potřebujeme zabezpečit Váš SeedVault. Vyberte si prosím heslo k zašifrování souboru. Toto heslo použijete, pokud budete potřebovat obnovit Váš Seed ze zálohy SeedVault.",
         "retypeKey": "Zadejte znovu heslo",
-        "key": "Key"
+        "key": "Klíč"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
@@ -709,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba při získávání aktualizačních dat",

@@ -1056,9 +1056,7 @@ export const isBundleTraversable = (bundle, trunkTransaction, branchTransaction)
         (transaction, index, transactions) =>
             index
                 ? transaction.trunkTransaction === transactions[index - 1].hash &&
-                  // In IRI, tx at lastIndex has branch and trunk swapped, while Entangled pow-bundle does not. See https://github.com/iotaledger/entangled/issues/1008#issuecomment-476608211
-                  (transaction.branchTransaction === trunkTransaction ||
-                      transaction.branchTransaction === branchTransaction)
+                  transaction.branchTransaction === trunkTransaction
                 : transaction.trunkTransaction === trunkTransaction &&
                   transaction.branchTransaction === branchTransaction,
     );

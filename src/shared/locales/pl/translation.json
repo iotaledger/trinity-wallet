@@ -394,6 +394,7 @@
         "changePassword": "Zmień hasło",
         "general": "Ustawienia ogólne",
         "advanced": "Ustawienia zaawansowane",
+        "nodeSettings": "Ustawienia serwera",
         "account": "Ustawienia konta",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
@@ -455,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
-        "noTransactionsFound": "Historia transakcji jest pusta",
+        "noTransactionsFound": "Nie znaleziono transakcji",
+        "emptyHistory": "Historia transakcji jest pusta",
         "hideZeroBalance": "Ukryj zerowe",
         "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
@@ -468,7 +470,13 @@
         "retrying": "Ponawianie",
         "yesterday": "Wczoraj",
         "promotingAnotherBundle": "Promowanie innego pakietu",
-        "pleaseWait": "Proszę czekać, Trinity promuje obecnie inny pakiet."
+        "pleaseWait": "Proszę czekać, Trinity promuje obecnie inny pakiet.",
+        "typeHelp": "Wpisz !help w celu poznania dostępnych komend",
+        "searchHelpText": "Szukaj według hashu pakietu lub treści wiadomości",
+        "searchHelpValue": "Znajdź transakcje według dokładnej wartości iota",
+        "searchHelpUnits": "Znajdź transakcje według wartości i jednostek iota",
+        "searchHelpMore": "Znajdź transakcje o wartości większej niż X",
+        "searchHelpLess": "Znajdź transakcje o wartości mniejszej niż X"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -501,7 +509,8 @@
         "autoPromotion": "Autopromowanie",
         "autoPromotionExplanation": "Autopromowanie pomaga w potwierdzaniu Twoich transakcji w sieci Tangle. Włącz tę funkcję, jeśli Twoje transakcje nie są potwierdzane w odpowiednim czasie.",
         "autoPromotionPoW": "Autopromowanie możliwe jest jedynie na serwerach, które obsługują zdalny tryb Proof of Work.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "Eksport stanu portfela"
     },
     "advancedThemeCustomisation": {
         "background": "Tło",
@@ -572,6 +581,7 @@
         "viewSeed": "Pokaż seed",
         "hideSeed": "Ukryj seed",
         "notAvailable": "Eksport klucza seed nie jest dostępny dla tego rodzaju konta: {{accountType}}",
+        "notAvailableExplanationLedger": "Twój portfel Ledger używa sprzętowego zabezpieczenia do przechowywania Twojego klucza seed. Seed jest bezpiecznie zaszyfrowany i nigdy nie opuszcza Twojego urządzenia Ledger.",
         "accountIndex": "Indeks Twojego konta Ledger",
         "accountPage": "Strona Twojego konta Ledger"
     },
@@ -642,9 +652,16 @@
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
+        "invalidSeedFileError": "Nieprawidłowy plik SeedVault",
+        "invalidSeedFileErrorExplanation": "Ten format pliku nie jest obsługiwany. Obsługiwane są jedynie pliki SeedVault (.kdbx), utworzone przez Trinity lub menedżer haseł.",
         "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Ustal osobny klucz do zaszyfrowania tego pliku. Będziesz używać tego klucza, aby przywrócić swój seed z tej kopii zapasowej SeedVault.",
         "retypeKey": "Wpisz klucz ponownie",
         "key": "Klucz"
+    },
+    "stateExport": {
+        "stateExportExplanation": "Eksport stanu portfela zapisze plik txt na Twoim urządzeniu. Plik ten będzie zawierał informacje o Twoim koncie (transakcje, adresy) oraz wersję portfela i nazwy plików pamięci.",
+        "exportSuccess": "Stan portfela wyeksportowany",
+        "exportSuccessExplanation": "Plik ze stanem Twojego portfela został wyeksportowany pomyślnie."
     },
     "chart": {
         "mcap": "Market",
@@ -709,7 +726,9 @@
         "deepLinkingWarning": "Uważaj na oszustwa typu phishing. Upewnij się, że otwarty link prowadzi do oficjalnej aplikacji Trinity.",
         "deepLinkingUpdated": "Ustawienia deep linków",
         "deepLinkingEnabled": "Włączyłeś funkcję deep linków.",
-        "deepLinkingDisabled": "Wyłączyłeś funkcję deep linków."
+        "deepLinkingDisabled": "Wyłączyłeś funkcję deep linków.",
+        "deepLinkingInfoTitle": "Funkcja deep linków nie jest włączona",
+        "deepLinkingInfoMessage": "Otworzyłeś deep link iota://, jednak obsługa tej funkcji nie jest aktywna."
     },
     "updates": {
         "errorRetrievingUpdateData": "Błąd podczas pobierania danych aktualizacji",

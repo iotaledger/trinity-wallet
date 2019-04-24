@@ -394,6 +394,7 @@
         "changePassword": "Passwort ändern",
         "general": "Einstellungen",
         "advanced": "Erweiterte Einstellungen",
+        "nodeSettings": "Node-Einstellungen",
         "account": "Kontoeinstellungen",
         "logout": "Abmelden",
         "reset": "Wallet zurücksetzen",
@@ -455,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
-        "noTransactionsFound": "Dein Transaktionsverlauf ist leer",
+        "noTransactionsFound": "Keine Transaktionen gefunden",
+        "emptyHistory": "Dein Transaktionsverlauf ist leer",
         "hideZeroBalance": "Nullsaldo ausblenden",
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
@@ -468,7 +470,13 @@
         "retrying": "Erneuter Versuch",
         "yesterday": "Gestern",
         "promotingAnotherBundle": "Promote anderes Bundle",
-        "pleaseWait": "Bitte warten. Trinity promotet ein anderes Bundle."
+        "pleaseWait": "Bitte warten. Trinity promotet ein anderes Bundle.",
+        "typeHelp": "Gib !help ein, um eine Liste mit Befehlen angezeigt zu bekommen",
+        "searchHelpText": "Suche anhand von Bundle-Hash oder Nachricht",
+        "searchHelpValue": "Finde Transaktionen anhand vom exakten Iota-Wert",
+        "searchHelpUnits": "Finde Transaktionen anhand von Iota-Wert und Einheit",
+        "searchHelpMore": "Finde Transaktionen mit einem Wert größer als X",
+        "searchHelpLess": "Finde Transaktionen mit einem Wert kleiner als X"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
@@ -501,7 +509,8 @@
         "autoPromotion": "Auto-Promotion",
         "autoPromotionExplanation": "Auto-Promotion hilft dir Transaktionen auf dem Tangle zu bestätigen. Aktiviere diese Einstellung, wenn du Schwierigkeiten hast deine Transaktionen zu bestätigen.",
         "autoPromotionPoW": "Auto-Promotion ist nur auf Nodes mit aktiviertem \"Remote Proof of Work\" möglich.",
-        "deepLinking": "Deep-Linking"
+        "deepLinking": "Deep-Linking",
+        "stateExport": "Status exportieren"
     },
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
@@ -572,6 +581,7 @@
         "viewSeed": "Seed anzeigen",
         "hideSeed": "Seed ausblenden",
         "notAvailable": "Dein Seed kann bei einem {{accountType}}-Konto nicht angezeigt werden",
+        "notAvailableExplanationLedger": "Dein Ledger verwendet einen besonderen Sicherheitsmechanismus, wodurch dein Seed verschlüsselt gespeichert wird und niemals dein Gerät verlässt.",
         "accountIndex": "Dein Ledger Account Index",
         "accountPage": "Deine Ledger Account Seite"
     },
@@ -642,9 +652,16 @@
         "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",
         "seedFileError": "Fehler beim Öffnen",
         "seedFileErrorExplanation": "Beim Öffnen deines SeedVault ist ein Fehler aufgetreten. Stelle sicher dass du die korrekte Datei auswählt hast und die Datei nicht beschädigt ist.",
+        "invalidSeedFileError": "Ungültige SeedVault-Datei",
+        "invalidSeedFileErrorExplanation": "Dieses Dateiformat wird nicht unterstützt. Nur SeedVault-Dateien (.kdbx), die durch Trinity oder einen entsprechenden Passwortmanager erstellt wurden, werden unterstützt.",
         "seedVaultKeyExplanation": "Zuerst musst du deinen SeedVault absichern. Bitte wähle einen Schlüssel, um die Datei zu verschlüsseln. Du musst diesen Schlüssel verwenden, wenn du deinen Seed aus dem SeedVault Backup wiederherstellen möchtest.",
         "retypeKey": "Schlüssel erneut eingeben",
         "key": "Schlüssel"
+    },
+    "stateExport": {
+        "stateExportExplanation": "Der Status-Export wird eine Textdatei mit Informationen zu deinem Konto (Tansaktionen, Adressen), Trinityversion, sowie für Trinity relevante Dateinamen auf deinem Gerät speichern.",
+        "exportSuccess": "Status exportiert",
+        "exportSuccessExplanation": "Der Status-Export wurde erfolgreich generiert."
     },
     "chart": {
         "mcap": "Börsenwert",
@@ -709,7 +726,9 @@
         "deepLinkingWarning": "Achte auf Betrugsversuche. Stelle sicher, dass der Link, den du öffnen möchtest, das offzielle Trinity Wallet verwendet.",
         "deepLinkingUpdated": "Deep-Link Einstellungen",
         "deepLinkingEnabled": "Du hast Deep-Linking aktiviert.",
-        "deepLinkingDisabled": "Du hast Deep-Linking deaktiviert."
+        "deepLinkingDisabled": "Du hast Deep-Linking deaktiviert.",
+        "deepLinkingInfoTitle": "Deep-Links sind deaktiviert",
+        "deepLinkingInfoMessage": "Du hast einen iota:// Deep-Link geöffnet, aber Deep-Links nicht aktiviert."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",
@@ -807,7 +826,7 @@
         "checkAddressExplanation": "Stelle sicher dass die hier angezeigte Adresse mit der Anzeige auf deinem Ledger übereinstimmt.",
         "applicationNotInitialised": "Unbestätigte Warnung",
         "applicationNotInitialisedExplanation": "Öffne die IOTA-App auf deinem Ledger, akzeptiere die Hinweise und versuche es erneut.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevError": "Kommunikation mit Ledger fehlgeschlagen",
+        "udevErrorExplanation": "Trinity konnte nicht mit deinem Ledger kommunizieren. Bitte besuche folgende Website um das Problem zu beheben."
     }
 }

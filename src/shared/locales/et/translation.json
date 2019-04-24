@@ -394,6 +394,7 @@
         "changePassword": "Muuda parooli",
         "general": "General settings",
         "advanced": "Täpsemad sätted",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "Logi välja",
         "reset": "Lähtesta rahakott",
@@ -455,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Kimbu räsi kopeeritud",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Tehinguid ei leitud",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Peida nullsaldo",
         "bundleHashCopiedExplanation": "Kimbu räsi on kopeeritud lõikelauale.",
         "addressCopied": "Aadress kopeeritud",
@@ -468,7 +470,13 @@
         "retrying": "Uuesti proovimine",
         "yesterday": "Eile",
         "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Vaata seemet",
@@ -501,7 +509,8 @@
         "autoPromotion": "Automaatne edutamine",
         "autoPromotionExplanation": "Automaatne edutamine aitab teil kinnitada oma tehinguid Tangle võrgustikus. Lubage see säte, kui teil on probleeme oma tehingute kinnitamisega.",
         "autoPromotionPoW": "Automaatne edutamine on saadaval ainult sõlmedes, mis toetavad kaugtöö tõendit.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Taustapilt",
@@ -572,6 +581,7 @@
         "viewSeed": "Vaata seemet",
         "hideSeed": "Peida seeme",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
@@ -601,7 +611,7 @@
         "fingerprintUnavailableExplanation": "Teie seade ei toeta biomeetrilist autentimist või pole see seadme seadetes konfigureeritud.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Sõrmejäljega autentimise keelamiseks vajutage allpool olevat nuppu.",
         "buttonInstructionsEnable": "Sõrmejäljega autentimise lubamiseks vajutage allolevat nuppu.",
         "buttonInstructionsDisableIPhoneX": "Face ID keelamiseks vajutage allolevat nuppu",
         "buttonInstructionsEnableIPhoneX": "Face ID lubamiseks vajutage allolevat nuppu",
@@ -642,9 +652,16 @@
         "noSeedFoundExplanation": "Seemnehoidla on tühi või sisaldab seemet vales vormingus.",
         "seedFileError": "Seemnehoidla avamine nurjus",
         "seedFileErrorExplanation": "Seemnehoidla avamisega oli probleem. Kui valisite õige faili, siis võib see olla rikutud.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
-        "key": "Key"
+        "key": "Võti"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "TURUKAPITAL",
@@ -709,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Uuendamisandmete allalaadimise viga",
