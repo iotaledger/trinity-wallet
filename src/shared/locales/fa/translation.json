@@ -391,7 +391,6 @@
         "language": "زبان",
         "accountManagement": "مدیریت حساب",
         "addNewSeed": "سید جدید را اضافه کنید",
-        "twoFA": "احراز هویت دو مرحله ای",
         "changePassword": "تغییر گذرواژه",
         "general": "تنظیمات عمومی",
         "advanced": "تنظیمات پیشرفته",
@@ -456,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "بسته نرم افزاری هش کپی شد",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "هیچ تراکنشی یافت نشد",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "پنهان کردن موجودی صفر",
         "bundleHashCopiedExplanation": "هش بسته نرم افزاری به کلیپ بورد کپی شد.",
         "addressCopied": "آدرس کپی شد",
@@ -469,7 +469,13 @@
         "retrying": "درحال تلاش دوباره",
         "yesterday": "دیروز",
         "promotingAnotherBundle": "در حال ارتقای یک بسته تراکنش دیگر",
-        "pleaseWait": "لطفا صبر کنید، Trinity در حال ارتقای یک بسته تراکنش دیگر است."
+        "pleaseWait": "لطفا صبر کنید، Trinity در حال ارتقای یک بسته تراکنش دیگر است.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "مشاهده سید",
@@ -573,6 +579,7 @@
         "viewSeed": "مشاهده سید",
         "hideSeed": "پنهان کردن سید",
         "notAvailable": "برون‌ریزی سید برای نوع حساب {{accountType}} در دسترس نمی‌باشد",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "اندیس حساب لدجر شما",
         "accountPage": "صفحه حساب لدجر شما"
     },
@@ -602,7 +609,7 @@
         "fingerprintUnavailableExplanation": "دستگاه شما از تاییدیه بیومتریک پشتیبانی نمیکند یا در تنظیمات دستگاه پیکربندی نشده است.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "برای غیرفعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید.",
         "buttonInstructionsEnable": "برای فعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید.",
         "buttonInstructionsDisableIPhoneX": "برای غیرفعال کردن Face ID، دکمه زیر را فشار دهید",
         "buttonInstructionsEnableIPhoneX": "برای فعال کردن Face ID، دکمه زیر را فشار دهید",
@@ -619,23 +626,6 @@
         "toAddress": "به آدرس",
         "sendingAMessage": "در حال ارسال یک پیام",
         "sendingAnEmptyMessage": "در حال ارسال یک پیام خالی"
-    },
-    "twoFA": {
-        "wrongCode": "کد اشتباه است",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "کد خالی است",
-        "emptyCodeExplanation": "لطفا یک کد وارد کنید و دوباره تلاش کنید.",
-        "keyCopied": "کلید به کلیپ بورد کپی شد",
-        "keyCopiedExplanation": "کلید 2FA شما به کلیپ بورد کپی شده است.",
-        "addKey": "این کلید را به برنامه 2FA اضافه کنید",
-        "key": "کلید",
-        "twoFAEnabled": "2FA در حال حاضر فعال است",
-        "twoFAEnabledExplanation": "شما دو عامل تایید هویت را با موفقیت فعال کردید.",
-        "twoFADisabled": "2FA در حال حاضر غیرفعال است",
-        "twoFADisabledExplanation": "شما دو عامل تایید هویت را با موفقیت غیرفعال کردید.",
-        "enterCode": "کد را از برنامه 2FA خود وارد کنید",
-        "code": "کد",
-        "twoFaToken": "نشانه 2FA"
     },
     "seedVault": {
         "exportSeedVault": "استخراج سید Vault",
@@ -660,8 +650,11 @@
         "noSeedFoundExplanation": "سید Vault یا خالی است یا حاوی یک سید در قالب نامعتبر است.",
         "seedFileError": "باز کردن فایل سید Vault ناموفق بود",
         "seedFileErrorExplanation": "در باز کردن سید Vault با مشکل مواجه شد. اگر فایل درست را انتخاب کردید، ممکن است خراب شده باشد.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "ما ابتدا نیاز داریم که SeedVault شما را امن کنیم. لطفا یک کلید برای رمزنگاری فایل انتخاب کنید. شما زمانی که نیاز به بازیابی سید خود از پشتیبان‌گیری SeedVault داشته باشید، از این کلید استفاده خواهید کرد.",
-        "retypeKey": "کلید را دوباره وارد کنید"
+        "retypeKey": "کلید را دوباره وارد کنید",
+        "key": "کلید"
     },
     "chart": {
         "mcap": "MCAP",
@@ -823,6 +816,8 @@
         "checkAddress": "آدرس دریافت را بررسی کنید",
         "checkAddressExplanation": "بررسی کنید که آدرس با آنچه در دستگاه لدجر شما نشان داده می‌شود همخوانی دارد.",
         "applicationNotInitialised": "هشدار تایید نشده",
-        "applicationNotInitialisedExplanation": "برنامه IOTA را در دستگاه لدجر خود مجددا باز کرده، هشدارهای اطلاعاتی را قبول و مجددا تلاش کنید."
+        "applicationNotInitialisedExplanation": "برنامه IOTA را در دستگاه لدجر خود مجددا باز کرده، هشدارهای اطلاعاتی را قبول و مجددا تلاش کنید.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

@@ -391,7 +391,6 @@
         "language": "Język",
         "accountManagement": "Zarządzanie kontem",
         "addNewSeed": "Dodaj nowy seed",
-        "twoFA": "Autoryzacja dwustopniowa",
         "changePassword": "Zmień hasło",
         "general": "Ustawienia ogólne",
         "advanced": "Ustawienia zaawansowane",
@@ -456,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
-        "noTransactionsFound": "Historia transakcji jest pusta",
+        "noTransactionsFound": "Nie znaleziono transakcji",
+        "emptyHistory": "Historia transakcji jest pusta",
         "hideZeroBalance": "Ukryj zerowe",
         "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
@@ -469,7 +469,13 @@
         "retrying": "Ponawianie",
         "yesterday": "Wczoraj",
         "promotingAnotherBundle": "Promowanie innego pakietu",
-        "pleaseWait": "Proszę czekać, Trinity promuje obecnie inny pakiet."
+        "pleaseWait": "Proszę czekać, Trinity promuje obecnie inny pakiet.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -573,6 +579,7 @@
         "viewSeed": "Pokaż seed",
         "hideSeed": "Ukryj seed",
         "notAvailable": "Eksport klucza seed nie jest dostępny dla tego rodzaju konta: {{accountType}}",
+        "notAvailableExplanationLedger": "Twój portfel Ledger używa sprzętowego zabezpieczenia do przechowywania Twojego klucza seed. Seed jest bezpiecznie zaszyfrowany i nigdy nie opuszcza Twojego urządzenia Ledger.",
         "accountIndex": "Indeks Twojego konta Ledger",
         "accountPage": "Strona Twojego konta Ledger"
     },
@@ -620,23 +627,6 @@
         "sendingAMessage": "Wysyłanie wiadomości",
         "sendingAnEmptyMessage": "Wysyłanie pustej wiadomości"
     },
-    "twoFA": {
-        "wrongCode": "Błędny kod",
-        "wrongCodeExplanation": "Podany kod jest nieprawidłowy. Jeśli ten błąd będzie się powtarzał, sprawdź, czy masz prawidłowo ustawioną godzinę w swoim urządzeniu.",
-        "emptyCode": "Kod pusty",
-        "emptyCodeExplanation": "Wprowadź kod i spróbuj ponownie.",
-        "keyCopied": "Klucz skopiowany do schowka",
-        "keyCopiedExplanation": "Twój klucz autoryzacji dwustopniowej został skopiowany do schowka.",
-        "addKey": "Dodaj ten klucz do aplikacji autoryzacji dwustopniowej",
-        "key": "Klucz",
-        "twoFAEnabled": "Włączono 2FA",
-        "twoFAEnabledExplanation": "Pomyślnie włączono funkcję autoryzacji dwustopniowej.",
-        "twoFADisabled": "Wyłączono 2FA",
-        "twoFADisabledExplanation": "Pomyślnie wyłączono funkcję autoryzacji dwustopniowej.",
-        "enterCode": "Wpisz kod z aplikacji autoryzacji dwustopniowej",
-        "code": "Kod 2FA",
-        "twoFaToken": "Kod 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "Eksportuj SeedVault",
         "seedVaultExplanation": "SeedVault to zaszyfrowany plik, w którym bezpiecznie możesz przechowywać swój seed. Seed zostaje zaszyfrowany osobnym kluczem SeedVault i nie jest dostępny bez jego podania.",
@@ -660,8 +650,11 @@
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
+        "invalidSeedFileError": "Nieprawidłowy plik SeedVault",
+        "invalidSeedFileErrorExplanation": "Ten format pliku nie jest obsługiwany. Obsługiwane są jedynie pliki SeedVault (.kdbx), utworzone przez Trinity lub menedżer haseł.",
         "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Ustal osobny klucz do zaszyfrowania tego pliku. Będziesz używać tego klucza, aby przywrócić swój seed z tej kopii zapasowej SeedVault.",
-        "retypeKey": "Wpisz klucz ponownie"
+        "retypeKey": "Wpisz klucz ponownie",
+        "key": "Klucz"
     },
     "chart": {
         "mcap": "Market",
@@ -722,11 +715,11 @@
     "deepLink": {
         "autofill": "Autouzupełniono",
         "autofillExplanation": "Dane transakcji zostały automatycznie uzupełnione z linku.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "Deep linki to klikalne linki typu (iota://...), które automatycznie wypełnią szczegóły Twojej transakcji w Trinity.",
+        "deepLinkingWarning": "Uważaj na oszustwa typu phishing. Upewnij się, że otwarty link prowadzi do oficjalnej aplikacji Trinity.",
+        "deepLinkingUpdated": "Ustawienia deep linków",
+        "deepLinkingEnabled": "Włączyłeś funkcję deep linków.",
+        "deepLinkingDisabled": "Wyłączyłeś funkcję deep linków."
     },
     "updates": {
         "errorRetrievingUpdateData": "Błąd podczas pobierania danych aktualizacji",
@@ -823,6 +816,8 @@
         "checkAddress": "Sprawdź adres odbioru",
         "checkAddressExplanation": "Sprawdź, czy adres jest zgodny z adresem wyświetlanym w Twoim urządzeniu Ledger.",
         "applicationNotInitialised": "Ostrzeżenie niezaakceptowane",
-        "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie."
+        "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie.",
+        "udevError": "Brak możliwości połączenia z urządzeniem Ledger",
+        "udevErrorExplanation": "Trinity nie może połączyć się z Twoim urządzeniem Ledger. Odwiedź poniższy adres, aby rozwiązać ten problem."
     }
 }

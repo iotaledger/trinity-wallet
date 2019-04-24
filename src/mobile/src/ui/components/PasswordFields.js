@@ -74,7 +74,7 @@ class PasswordFields extends Component {
      */
     checkPassword() {
         const { t, password, reentry } = this.props;
-        const { score } = this.state;
+        const { score: { score, feedback: { warning } } } = this.state;
         if (isEmpty(password)) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         } else if (size(password) >= MIN_PASSWORD_LENGTH && isEqual(password, reentry) && score === 4) {
@@ -91,8 +91,8 @@ class PasswordFields extends Component {
                 }),
             );
         } else if (score < 4) {
-            const reason = score.feedback.warning
-                ? t(`changePassword:${passwordReasons[score.feedback.warning]}`)
+            const reason = warning
+                ? t(`changePassword:${passwordReasons[warning]}`)
                 : t('changePassword:passwordTooWeakReason');
             return this.props.generateAlert('error', t('changePassword:passwordTooWeak'), reason);
         }
@@ -100,7 +100,7 @@ class PasswordFields extends Component {
 
     render() {
         const { t, theme, password, reentry, passwordLabel, reentryLabel } = this.props;
-        const { score } = this.state;
+        const { score: { score } } = this.state;
         const isValid = score === 4;
 
         return (
@@ -112,7 +112,7 @@ class PasswordFields extends Component {
                     label={passwordLabel || t('global:password')}
                     onValidTextChange={(password) => {
                         this.props.setPassword(password);
-                        this.setState({ score: zxcvbn(password ? UInt8ToString(password) : '').score });
+                        this.setState({ score: zxcvbn(password ? UInt8ToString(password) : '') });
                     }}
                     containerStyle={{ width: Styling.contentWidth }}
                     autoCapitalize="none"

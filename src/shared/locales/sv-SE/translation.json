@@ -391,7 +391,6 @@
         "language": "Språk",
         "accountManagement": "Kontohantering",
         "addNewSeed": "Lägg till ny seed",
-        "twoFA": "Tvåfaktorsautentisering",
         "changePassword": "Ändra lösenord",
         "general": "Allmänna inställningar",
         "advanced": "Avancerade inställningar",
@@ -456,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Hashbunt kopierad",
-        "noTransactionsFound": "Din transaktionshistorik är tom",
+        "noTransactionsFound": "Inga transaktioner hittade",
+        "emptyHistory": "Din transaktionshistorik är tom",
         "hideZeroBalance": "Dölj nollvärden",
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
@@ -469,7 +469,13 @@
         "retrying": "Försöker igen",
         "yesterday": "Igår",
         "promotingAnotherBundle": "Främjar en annan transaktionsbunt",
-        "pleaseWait": "Vänta vänligen, Trinity är upptagen med att befordra en annan transaktionsbunt."
+        "pleaseWait": "Vänta vänligen, Trinity är upptagen med att befordra en annan transaktionsbunt.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
@@ -502,7 +508,7 @@
         "autoPromotion": "Automatisk befordran",
         "autoPromotionExplanation": "Automatisk befordran hjälper till att bekräfta dina transaktioner på Tangle. Aktivera den här inställningen om du har svårt att få dina transaktioner bekräftade.",
         "autoPromotionPoW": "Automatisk befordran är endast tillgänglig på noder som stöder fjärr PoW.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Hyperlänkar"
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrund",
@@ -573,6 +579,7 @@
         "viewSeed": "Visa seed",
         "hideSeed": "Dölj seed",
         "notAvailable": "Seed export inte tillgänglig för {{accountType}} kontotyp",
+        "notAvailableExplanationLedger": "Ledger-enheten använder ett säkert element för att lagra din seed. Din seed är krypterad på ett säkert sätt och lämnar inte enheten.",
         "accountIndex": "Ditt Ledger konto-index",
         "accountPage": "Din Ledger-kontosida"
     },
@@ -598,7 +605,7 @@
         "fingerprintAuthFailedExplanation": "Fingeravtrycksautentisering misslyckades. Var god försök igen.",
         "status": "Status",
         "fingerprintUnavailable": "Biometrisk autentisering otillgänglig",
-        "deviceLocked": "Autentisering inaktiverad i 30 sekunder",
+        "deviceLocked": "Autentisering avaktiverad i 30 sekunder",
         "fingerprintUnavailableExplanation": "Din enhet stödjer ej biometrisk autentisering eller så har det ej konfigurerats i enhetens inställningar.",
         "notSupported": "Enheten stöder inte biometrisk autentisering",
         "notConfigured": "Biometrisk autentisering har inte konfigurerats i enhetsinställningarna",
@@ -619,23 +626,6 @@
         "toAddress": "Till adress",
         "sendingAMessage": "Skickar ett meddelande",
         "sendingAnEmptyMessage": "Skickar ett tomt meddelande"
-    },
-    "twoFA": {
-        "wrongCode": "Fel kod",
-        "wrongCodeExplanation": "Den kod du angett är felaktig. Om felet kvarstår, kontrollera att klockan på dina enheter är korrekt konfigurerade.",
-        "emptyCode": "Tom kod",
-        "emptyCodeExplanation": "Var vänlig och ange en kod och försök igen.",
-        "keyCopied": "Nyckel kopierad till urklipp",
-        "keyCopiedExplanation": "Din 2FA nyckel har kopierats till urklipp.",
-        "addKey": "Lägg till denna nyckel i din 2FA-app",
-        "key": "Nyckel",
-        "twoFAEnabled": "2FA är nu aktiverat",
-        "twoFAEnabledExplanation": "Du har framgångsrikt aktiverat tvåfaktorsautentisering.",
-        "twoFADisabled": "2FA är nu avaktiverat",
-        "twoFADisabledExplanation": "Du har framgångsrikt avaktiverat tvåfaktorsautentisering.",
-        "enterCode": "Ange koden från din 2FA app",
-        "code": "Kod",
-        "twoFaToken": "2FA-token"
     },
     "seedVault": {
         "exportSeedVault": "Exportera SeedVault",
@@ -660,8 +650,11 @@
         "noSeedFoundExplanation": "Din SeedVault är antingen tom eller innehåller en seed i ett ogiltigt format.",
         "seedFileError": "Det gick inte att öppna din SeedVault",
         "seedFileErrorExplanation": "Ett problem uppstod vid öppning av SeedVault. Om du har valt den korrekta filen kan den vara skadad.",
+        "invalidSeedFileError": "Ogiltig SeedVault-fil",
+        "invalidSeedFileErrorExplanation": "Detta filformat stöds inte. Endast SeedVault-filer (.kdbx) skapade via Trinity eller en lösenordshanterare stöds.",
         "seedVaultKeyExplanation": "Först måste vi säkra din SeedVault. Vänligen välj en nyckel för att kryptera filen. Du kommer att använda denna nyckel om du behöver återställa din seed från din SeedVault-säkerhetskopia.",
-        "retypeKey": "Skriv nyckeln igen"
+        "retypeKey": "Skriv nyckeln igen",
+        "key": "Nyckel"
     },
     "chart": {
         "mcap": "MCAP",
@@ -722,11 +715,11 @@
     "deepLink": {
         "autofill": "Autofyll lyckat",
         "autofillExplanation": "Transaktionsdata ifylld automatiskt från länk.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "Hyperlänkar är klickbara länkar (iota://...) som automatiskt fyller i transaktionsdata i Trinity.",
+        "deepLinkingWarning": "Var medveten om phishing-bedrägerier. Kontrollera att länken du öppnar navigerar till den officiella Trinity-appen.",
+        "deepLinkingUpdated": "Hyperlänk-inställningar",
+        "deepLinkingEnabled": "Du har aktiverat hyperlänkar.",
+        "deepLinkingDisabled": "Du har avaktiverat hyperlänkar."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fel vid hämtning av uppdateringsdata",
@@ -823,6 +816,8 @@
         "checkAddress": "Kontrollera mottagaradressen",
         "checkAddressExplanation": "Kontrollera att adressen matchar den som visas på din Ledger-enhet.",
         "applicationNotInitialised": "Varning obekräftad",
-        "applicationNotInitialisedExplanation": "Stäng och öppna på nytt IOTA-appen på din Ledger-enhet, acceptera den informativa varningen och försök igen."
+        "applicationNotInitialisedExplanation": "Stäng och öppna på nytt IOTA-appen på din Ledger-enhet, acceptera den informativa varningen och försök igen.",
+        "udevError": "Kunde inte kommunicera med Ledger-enheten",
+        "udevErrorExplanation": "Trinity kunde inte kommunicera med Ledger-enheten. Besök webbadressen nedan för att lösa problemet."
     }
 }

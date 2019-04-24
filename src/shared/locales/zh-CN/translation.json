@@ -391,7 +391,6 @@
         "language": "语言",
         "accountManagement": "帐号管理",
         "addNewSeed": "添加新种子",
-        "twoFA": "双重认证",
         "changePassword": "更改密码",
         "general": "常用设置",
         "advanced": "高级设置",
@@ -456,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "交易包哈希值已复制",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "没有找到任何交易",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "隐藏零余额",
         "bundleHashCopiedExplanation": "交易包哈希值已复制到剪贴板。",
         "addressCopied": "已复制地址",
@@ -469,7 +469,13 @@
         "retrying": "重试中",
         "yesterday": "昨天",
         "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "查看种子",
@@ -573,6 +579,7 @@
         "viewSeed": "查看种子",
         "hideSeed": "隐藏种子",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "您的Ledger账户索引",
         "accountPage": "您的Ledger账户页面"
     },
@@ -602,7 +609,7 @@
         "fingerprintUnavailableExplanation": "您的设备不支持生物识别认证或者尚未在设备设置中对此功能进行配置。",
         "notSupported": "设备不支持生物识别身份验证",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "点击下面的按钮禁用指纹身份验证。",
         "buttonInstructionsEnable": "按下方按钮启用指纹认证。",
         "buttonInstructionsDisableIPhoneX": "点击下面的按钮禁用Face ID",
         "buttonInstructionsEnableIPhoneX": "点击下面的按钮启用Face ID",
@@ -619,23 +626,6 @@
         "toAddress": "接受付款地址",
         "sendingAMessage": "发送消息",
         "sendingAnEmptyMessage": "发送空消息"
-    },
-    "twoFA": {
-        "wrongCode": "验证码错误",
-        "wrongCodeExplanation": "您输入的代码不正确。如果此错误仍然存在, 请检查您的设备时间是否正确。",
-        "emptyCode": "验证码为空",
-        "emptyCodeExplanation": "请输入验证码并重试。",
-        "keyCopied": "密钥已复制到剪贴板",
-        "keyCopiedExplanation": "您的双重认证密钥已复制到剪贴板。",
-        "addKey": "将此密钥添加到您的双重认证应用程序中",
-        "key": "密钥",
-        "twoFAEnabled": "双重认证现在已启用",
-        "twoFAEnabledExplanation": "您已成功启用了双重身份验证（2FA）。",
-        "twoFADisabled": "双重认证现在已禁用",
-        "twoFADisabledExplanation": "您已成功禁用了双重身份验证。",
-        "enterCode": "输入您的双重验证应用中显示的验证码",
-        "code": "验证码",
-        "twoFaToken": "2FA通证"
     },
     "seedVault": {
         "exportSeedVault": "导出SeedVault",
@@ -660,8 +650,11 @@
         "noSeedFoundExplanation": "SeedVault 是空的或包含无效格式的种子。",
         "seedFileError": "打开SeedVault失败",
         "seedFileErrorExplanation": "打开 SeedVault 时遇到问题。如果您选择了正确的文件, 那么它可能已损坏。",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "首先，我们需要加密你的种子库。请选择加密文件的密钥。如果需要从SeedVault备份中恢复种子，您将使用此密钥。",
-        "retypeKey": "重新输入密钥"
+        "retypeKey": "重新输入密钥",
+        "key": "密钥"
     },
     "chart": {
         "mcap": "市值",
@@ -823,6 +816,8 @@
         "checkAddress": "检查接收地址",
         "checkAddressExplanation": "检查地址是否与Ledger设备上显示的地址匹配。",
         "applicationNotInitialised": "未经确认的警告",
-        "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。"
+        "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

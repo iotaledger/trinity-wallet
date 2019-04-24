@@ -1,7 +1,6 @@
 import values from 'lodash/values';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
-import isString from 'lodash/isString';
 import * as Keychain from 'react-native-keychain';
 import { getVersion } from 'react-native-device-info';
 import { serialise } from 'shared-modules/libs/utils';
@@ -149,27 +148,6 @@ export const authorize = async (pwdHash) => {
     return true;
 };
 
-export const getTwoFactorAuthKeyFromKeychain = async (pwdHash) => {
-    return await getSecretBoxFromKeychainAndOpenIt(ALIAS_AUTH, pwdHash);
-};
-
-export const storeTwoFactorAuthKeyInKeychain = async (pwdHash, authKey) => {
-    // Should only allow storing two factor authkey if the user has an account
-    const info = await keychain.get(ALIAS_SEEDS);
-    const shouldNotAllow = !info;
-
-    if (!isString(authKey)) {
-        throw new Error('Invalid two factor authentication key.');
-    } else if (shouldNotAllow) {
-        throw new Error('Cannot store two factor authentication key.');
-    }
-    return await createAndStoreBoxInKeychain(pwdHash, authKey, ALIAS_AUTH);
-};
-
-export const deleteTwoFactorAuthKeyFromKeychain = async () => {
-    return await keychain.clear(ALIAS_AUTH);
-};
-
 export const clearKeychain = async () => {
     await keychain.clear(ALIAS_SEEDS);
     await keychain.clear(ALIAS_AUTH);
@@ -224,19 +202,11 @@ export const changePassword = async (oldPwdHash, newPwdHash, salt) => {
     const seedInfo = await getSecretBoxFromKeychainAndOpenIt(ALIAS_SEEDS, oldPwdHash);
     // Clear keychain for alias "seeds"
     await keychain.clear(ALIAS_SEEDS);
-    const authKey = await getTwoFactorAuthKeyFromKeychain(oldPwdHash);
-    if (authKey) {
-        await keychain.clear(ALIAS_AUTH);
-    }
     // Clear salt and store new salt in keychain
     await keychain.clear(ALIAS_SALT);
     await storeSaltInKeychain(salt);
     // Create a secret box with new password hash
     await createAndStoreBoxInKeychain(newPwdHash, seedInfo, ALIAS_SEEDS);
-    // Only update keychain with authKey alias if wallet has a twoFa key
-    if (authKey) {
-        return await storeTwoFactorAuthKeyInKeychain(newPwdHash, authKey);
-    }
     return Promise.resolve();
 };
 
@@ -266,16 +236,8 @@ export const migrateSeedStorage = async (pwdHash) => {
     const updatedSeedInfo = await updateSeedInfo(seedInfo);
     // Clear keychain for alias "seeds"
     await keychain.clear(ALIAS_SEEDS);
-    const authKey = await getTwoFactorAuthKeyFromKeychain(pwdHash);
-    if (authKey) {
-        await keychain.clear(ALIAS_AUTH);
-    }
     // Create a secret box with new password hash
     await createAndStoreBoxInKeychain(pwdHash, updatedSeedInfo, ALIAS_SEEDS);
-    // Only update keychain with authKey alias if wallet has a twoFa key
-    if (authKey) {
-        return await storeTwoFactorAuthKeyInKeychain(pwdHash, authKey);
-    }
     return Promise.resolve();
 };
 

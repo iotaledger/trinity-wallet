@@ -391,7 +391,6 @@
         "language": "Jezik",
         "accountManagement": "Upravljanje računima",
         "addNewSeed": "Dodaj novi seed",
-        "twoFA": "Autorizacija s dva faktora",
         "changePassword": "Promjena lozinke",
         "general": "Opće postavke",
         "advanced": "Napredne postavke",
@@ -456,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash paketa kopiran",
-        "noTransactionsFound": "Povijest transakcija je prazna",
+        "noTransactionsFound": "Nije pronađena niti jedna transakcija",
+        "emptyHistory": "Povijest transakcija je prazna",
         "hideZeroBalance": "Sakrij transakcije s nula sredstava",
         "bundleHashCopiedExplanation": "Hash paketa je kopiran u međuspremnik.",
         "addressCopied": "Adresa kopirana",
@@ -469,7 +469,13 @@
         "retrying": "Ponovni pokušaj u tijeku",
         "yesterday": "Jučer",
         "promotingAnotherBundle": "Promocija drugog paketa",
-        "pleaseWait": "Molimo pričekajte. Promocija drugog paketa je trenutno u tijeku."
+        "pleaseWait": "Molimo pričekajte. Promocija drugog paketa je trenutno u tijeku.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Prikaži seed",
@@ -573,6 +579,7 @@
         "viewSeed": "Prikaži seed",
         "hideSeed": "Sakrij seed",
         "notAvailable": "Izvoz seed-a nije dostupan za tip računa {{accountType}}",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Indeks vašeg Ledger računa",
         "accountPage": "Stranica vašeg Ledger uređaja"
     },
@@ -620,23 +627,6 @@
         "sendingAMessage": "Šaljem poruku",
         "sendingAnEmptyMessage": "Šaljem praznu poruku"
     },
-    "twoFA": {
-        "wrongCode": "Pogrešan kod",
-        "wrongCodeExplanation": "Kod koji ste unijeli je neispravan. Ukoliko se greška ponovi, molimo provjerite da li je vrijeme na vašim uređajima ispravno (sinkronizirano).",
-        "emptyCode": "Prazan kôd",
-        "emptyCodeExplanation": "Molimo unesite kôd i pokušajte ponovno.",
-        "keyCopied": "Kopirano u međuspremnik",
-        "keyCopiedExplanation": "Vaš 2FA ključ je kopiran u međuspremnik.",
-        "addKey": "Dodajte ovaj ključ vašoj 2FA aplikaciji",
-        "key": "Ključ",
-        "twoFAEnabled": "2FA je omogućena",
-        "twoFAEnabledExplanation": "Uspješno ste omogućili autorizaciju s dva faktora (2FA).",
-        "twoFADisabled": "2FA je onemogućena",
-        "twoFADisabledExplanation": "Uspješno ste onemogućili autorizaciju s dva faktora (2FA).",
-        "enterCode": "Unesite kod iz vaše 2FA aplikacije",
-        "code": "Kôd",
-        "twoFaToken": "2FA Token"
-    },
     "seedVault": {
         "exportSeedVault": "Izvezi SeedVault",
         "seedVaultExplanation": "SeedVault je kodirana datoteka namijenjena spremanju vašeg seed-a na siguran način. Seed je kodiran i zaštićen lozinkom, te mu se ne može pristupiti bez te lozinke.",
@@ -660,8 +650,11 @@
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspješno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Prvo trebamo osigurati vaš SeedVault. Molimo odaberite lozinku za enkripciju vaše SeedVault datoteke. Ova lozinka bit će potrebna za ponovni pristup sigurnosnoj kopiji vašeg seed-a koja se nalazi u SeedVault-u.",
-        "retypeKey": "Ponovno unesite lozinku"
+        "retypeKey": "Ponovno unesite lozinku",
+        "key": "Ključ"
     },
     "chart": {
         "mcap": "MCAP",
@@ -722,11 +715,11 @@
     "deepLink": {
         "autofill": "Uspješno automatsko popunjavanje",
         "autofillExplanation": "Podaci transakcije uspješno automatski popunjeni iz linka.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "Deep links su klikabilni linkovi tipa (iota://...) koji automatski popunjavaju transakcijske podatke u vašem Trinity novčaniku.",
+        "deepLinkingWarning": "Budite svjesni pokušaja phishinga (mrežne krađa identiteta). Pobrinite se da vas link koji otvarate vodi prema službenoj Trinity aplikaciji.",
+        "deepLinkingUpdated": "Deep linking postavke",
+        "deepLinkingEnabled": "Omogućili ste deep linking.",
+        "deepLinkingDisabled": "Onemogućili ste deep linking."
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",
@@ -823,6 +816,8 @@
         "checkAddress": "Provjerite adresu primatelja",
         "checkAddressExplanation": "Provjerite da li adresa odgovara onoj prikazanoj na vašem Ledger uređaju.",
         "applicationNotInitialised": "Upozorenje nije prihvaćeno",
-        "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno."
+        "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno.",
+        "udevError": "Nije bilo moguće uspostaviti komunikaciju s Ledger uređajem",
+        "udevErrorExplanation": "Trinity nije mogao uspostaviti komunikaciju s vašim Ledger uređajem. Molimo posjetite URL naveden ispod kako bi riješili ovaj problem."
     }
 }

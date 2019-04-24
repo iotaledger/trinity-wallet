@@ -31,7 +31,8 @@ export default () => (C) => {
             const { t, generateAlert, deepLinking } = this.props;
 
             if (!deepLinking) {
-                return this.navigateToSettings();
+                this.navigateToSettings();
+                return generateAlert('info', t('deepLink:deepLinkingInfoTitle'), t('deepLink:deepLinkingInfoMessage'));
             }
             const parsedData = parseAddress(data.url);
             if (parsedData) {

@@ -391,7 +391,6 @@
         "language": "Lingua",
         "accountManagement": "Gestione conti",
         "addNewSeed": "Aggiungi un nuovo seme",
-        "twoFA": "Autenticazione a due fattori",
         "changePassword": "Cambia password",
         "general": "Impostazioni generali",
         "advanced": "Impostazioni avanzate",
@@ -456,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash del pacchetto copiato",
-        "noTransactionsFound": "La tua cronologia di transazioni è vuota",
+        "noTransactionsFound": "Nessuna transazione trovata",
+        "emptyHistory": "La tua cronologia di transazioni è vuota",
         "hideZeroBalance": "Nascondi saldo zero",
         "bundleHashCopiedExplanation": "L'hash del pacchetto è stato copiato negli Appunti.",
         "addressCopied": "Indirizzo copiato",
@@ -469,7 +469,13 @@
         "retrying": "Sto riprovando",
         "yesterday": "Ieri",
         "promotingAnotherBundle": "Promozione di un altro pacchetto",
-        "pleaseWait": "Per favore aspetta, Trinity sta promuovendo un altro pacchetto."
+        "pleaseWait": "Per favore aspetta, Trinity sta promuovendo un altro pacchetto.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",
@@ -502,7 +508,7 @@
         "autoPromotion": "Auto-Promozione",
         "autoPromotionExplanation": "Auto-promozione contribuisce a confermare le transazioni sul Tangle. Abilitare questa impostazione se si hanno difficoltà a ottenere la conferma delle tue transazioni.",
         "autoPromotionPoW": "Auto-promozione è possibile solo su nodi che supportano la prova di lavoro remota.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep link"
     },
     "advancedThemeCustomisation": {
         "background": "Sfondo",
@@ -573,6 +579,7 @@
         "viewSeed": "Visualizza seme",
         "hideSeed": "Nascondi seme",
         "notAvailable": "Esportazione di seme non è disponibile per il tipo di account {{accountType}}",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Il tuo indice di conto su Ledger",
         "accountPage": "Pagina di conto sul Ledger"
     },
@@ -620,23 +627,6 @@
         "sendingAMessage": "Invio di un messaggio",
         "sendingAnEmptyMessage": "Invio di un messaggio vuoto"
     },
-    "twoFA": {
-        "wrongCode": "Codice errato",
-        "wrongCodeExplanation": "Il codice immesso non è corretto. Se questo errore persiste, controllare che gli orari nei dispositivi siano corretti.",
-        "emptyCode": "Codice vuoto",
-        "emptyCodeExplanation": "Si prega di inserire un codice e riprovare.",
-        "keyCopied": "Chiave copiata negli Appunti",
-        "keyCopiedExplanation": "La chiave di autenticazione a 2 fattori è stata copiata negli Appunti.",
-        "addKey": "Aggiungi questa chiave alla tua app di 2FA",
-        "key": "Chiave",
-        "twoFAEnabled": "Autenticazione a 2 fattori abilitata",
-        "twoFAEnabledExplanation": "È stata attivata con successo l'autenticazione a due fattori.",
-        "twoFADisabled": "Autenticazione a 2 fattori disabilitata",
-        "twoFADisabledExplanation": "È stata disattivata con successo l'autenticazione a due fattori.",
-        "enterCode": "Inserisci il codice dall'app di 2FA",
-        "code": "Codice",
-        "twoFaToken": "Token di 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "Esporta come SeedVault",
         "seedVaultExplanation": "Una Cassaforte di Seme è un file crittografato per il backup dei propri semi. Il seme è crittografato con una chiave SeedVault e non è possibile accedervi senza quella chiave.",
@@ -660,8 +650,11 @@
         "noSeedFoundExplanation": "Il SeedVault o è vuoto o contiene un seme in un formato non valido.",
         "seedFileError": "Impossibile accedere il SeedVault",
         "seedFileErrorExplanation": "Si è verificato un problema accedendo il SeedVault. Se è stato selezionato il file corretto questo potrebbe essere danneggiato.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Per prima cosa dobbiamo proteggere la tua cassaforte di Seme. Si prega di scegliere una chiave per crittografare il file. Questa chiave verrà utilizzata se è necessario ripristinare il seme dal backup di SeedVault.",
-        "retypeKey": "Riscrivi la chiave"
+        "retypeKey": "Riscrivi la chiave",
+        "key": "Chiave"
     },
     "chart": {
         "mcap": "MCAP",
@@ -722,11 +715,11 @@
     "deepLink": {
         "autofill": "Riempimento automatico",
         "autofillExplanation": "Dati riempiti automaticamente da un collegamento.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "I deep link sono collegamenti cliccabili (iota://...) che riempono automaticamente i dati di una transazione in Trinity.",
+        "deepLinkingWarning": "Stai attento che esistono truffe di phishing. Assicurati che il link che apri attivi l'app di Trinity ufficiale.",
+        "deepLinkingUpdated": "Impostazioni deep link",
+        "deepLinkingEnabled": "Hai abilitato l'uso dei deep link.",
+        "deepLinkingDisabled": "Hai disabilitato l'uso dei deep link."
     },
     "updates": {
         "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
@@ -823,6 +816,8 @@
         "checkAddress": "Controllare l'indirizzo di ricezione",
         "checkAddressExplanation": "Verifica che l'indirizzo corrisponda a quello visualizzato sul dispositivo Ledger.",
         "applicationNotInitialised": "Avvertenza non confermato",
-        "applicationNotInitialisedExplanation": "Riaprire l'app IOTA sul dispositivo Ledger, accettare l'avviso informativo e riprovare."
+        "applicationNotInitialisedExplanation": "Riaprire l'app IOTA sul dispositivo Ledger, accettare l'avviso informativo e riprovare.",
+        "udevError": "Impossibile comunicare con il dispositivo Ledger",
+        "udevErrorExplanation": "Trinity non ha potuto comunicare con il tuo dispositivo Ledger. Visita l'URL qui sotto per risolvere questo problema."
     }
 }

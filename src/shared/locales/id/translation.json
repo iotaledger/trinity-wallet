@@ -391,7 +391,6 @@
         "language": "Bahasa",
         "accountManagement": "Pengelolaan akun",
         "addNewSeed": "Tambahkan Seed baru",
-        "twoFA": "Autentikasi dua faktor",
         "changePassword": "Ubah Kata Sandi",
         "general": "General settings",
         "advanced": "Pengaturan Lanjutan",
@@ -456,7 +455,8 @@
     },
     "history": {
         "bundleHashCopied": "Salin rangkaian hash",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Transaksi tidak ditemukan",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Sembunyikan saldo nol",
         "bundleHashCopiedExplanation": "Rangkaian hash telah disalin ke papan klip.",
         "addressCopied": "Alamat telah disalin",
@@ -469,7 +469,13 @@
         "retrying": "Mencoba lagi",
         "yesterday": "Kemarin",
         "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Lihat seed",
@@ -573,6 +579,7 @@
         "viewSeed": "Lihat Seed",
         "hideSeed": "Sembunyikan Seed",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
@@ -602,7 +609,7 @@
         "fingerprintUnavailableExplanation": "Perangkat anda tidak mendukung otentikasi biometrik atau belum dikonfigurasi di pengaturan perangkat.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari.",
         "buttonInstructionsEnable": "Tekan tombol dibawah ini untuk mengaktifkan autentikasi sidik jari.",
         "buttonInstructionsDisableIPhoneX": "Tekan tombol di bawah ini untuk mematikan Face ID",
         "buttonInstructionsEnableIPhoneX": "Tekan tombol di bawah ini untuk mengaktifkan Face ID",
@@ -619,23 +626,6 @@
         "toAddress": "To address",
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
-    },
-    "twoFA": {
-        "wrongCode": "Kode salah",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "Kode kosong",
-        "emptyCodeExplanation": "Silakan masukkan kode dan coba lagi.",
-        "keyCopied": "Kunci disalin ke papan klip",
-        "keyCopiedExplanation": "Kunci 2FA Anda telah disalin ke papan klip.",
-        "addKey": "Tambahkan tombol ini ke aplikasi 2FA Anda",
-        "key": "Kunci",
-        "twoFAEnabled": "2FA sekarang aktif",
-        "twoFAEnabledExplanation": "Anda telah berhasil mengaktifkan dua faktor otentikasi.",
-        "twoFADisabled": "2FA sekarang tidak aktif",
-        "twoFADisabledExplanation": "Anda telah berhasil mengnonaktifkan dua faktor otentikasi.",
-        "enterCode": "Masukkan kode dari aplikasi 2FA",
-        "code": "Kode",
-        "twoFaToken": "2FA Token"
     },
     "seedVault": {
         "exportSeedVault": "Ekspor SeedVault",
@@ -660,8 +650,11 @@
         "noSeedFoundExplanation": "SeedVault kosong atau tidak mempunyai format Seed yang valid.",
         "seedFileError": "Gagal membuka SeedVault",
         "seedFileErrorExplanation": "Gagal membuka SeedVault. Jika ini benar, file ini mungkin rusak.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "Kunci"
     },
     "chart": {
         "mcap": "MCAP",
@@ -823,6 +816,8 @@
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }
