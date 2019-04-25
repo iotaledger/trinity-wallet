@@ -11,6 +11,7 @@ import merge from 'lodash/merge';
 import orderBy from 'lodash/orderBy';
 import size from 'lodash/size';
 import some from 'lodash/some';
+import { serialise, parse } from '../libs/utils';
 import schemas, { getDeprecatedStoragePath, STORAGE_PATH as latestStoragePath, v0Schema, v1Schema } from '../schemas';
 import { __MOBILE__, __TEST__ } from '../config';
 import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
@@ -334,6 +335,15 @@ class Wallet {
         const dataForCurrentVersion = Wallet.getObjectForId();
 
         return dataForCurrentVersion.settings;
+    }
+
+    /**
+     * Wallet data (as plain object) for most recent version.
+     */
+    static get latestDataAsPlainObject() {
+        const data = Wallet.latestData;
+
+        return parse(serialise(data));
     }
 
     /**

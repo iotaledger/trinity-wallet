@@ -14,7 +14,7 @@ export const mapStorageToState = () => {
     Account.orderAccountsByIndex();
     const accountsData = Account.getDataAsArray();
 
-    const { settings, onboardingComplete, errorLog, accountInfoDuringSetup } = Wallet.latestData;
+    const { settings, onboardingComplete, errorLog, accountInfoDuringSetup } = Wallet.latestDataAsPlainObject;
     const nodes = Node.getDataAsArray();
 
     return {
@@ -53,6 +53,7 @@ export const mapStorageToState = () => {
         },
         settings: assign({}, settings, {
             nodes: map(nodes, (node) => node.url),
+            availableCurrencies: map(settings.availableCurrencies, (currency) => currency),
             customNodes: map(filter(nodes, (node) => node.custom === true), (node) => node.url),
         }),
         alerts: { notificationLog: map(errorLog, (error) => error) },
