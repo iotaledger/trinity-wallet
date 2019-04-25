@@ -7,7 +7,7 @@ import { getIotaInstance, isNodeHealthy, allowsRemotePow } from '../../../libs/i
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import { newZeroValueTransactionTrytes } from '../../__samples__/trytes';
 import { EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
-import { IRI_API_VERSION } from '../../../config';
+import { IRI_API_VERSION, MAX_MILESTONE_FALLBEHIND } from '../../../config';
 
 describe('libs: iota/extendedApi', () => {
     before(() => {
@@ -150,7 +150,7 @@ describe('libs: iota/extendedApi', () => {
             });
         });
 
-        describe('when latestSolidSubtangleMilestoneIndex is 1 less than latestMilestoneIndex', () => {
+        describe(`when latestSolidSubtangleMilestoneIndex is ${MAX_MILESTONE_FALLBEHIND} less than latestMilestoneIndex`, () => {
             describe('when "timestamp" on trytes is from five minutes ago', () => {
                 beforeEach(() => {
                     nock('http://localhost:14265', {
@@ -169,7 +169,7 @@ describe('libs: iota/extendedApi', () => {
                                 getNodeInfo: {
                                     appVersion: '0.0.0',
                                     latestMilestoneIndex: 426550,
-                                    latestSolidSubtangleMilestoneIndex: 426550 - 1,
+                                    latestSolidSubtangleMilestoneIndex: 426550 - MAX_MILESTONE_FALLBEHIND,
                                     latestMilestone: 'U'.repeat(81),
                                     latestSolidSubtangleMilestone: 'A'.repeat(81),
                                 },
@@ -207,7 +207,7 @@ describe('libs: iota/extendedApi', () => {
                                 getNodeInfo: {
                                     appVersion: '0.0.0',
                                     latestMilestoneIndex: 426550,
-                                    latestSolidSubtangleMilestoneIndex: 426550 - 1,
+                                    latestSolidSubtangleMilestoneIndex: 426550 - MAX_MILESTONE_FALLBEHIND,
                                     latestMilestone: 'U'.repeat(81),
                                     latestSolidSubtangleMilestone: 'A'.repeat(81),
                                 },

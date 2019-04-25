@@ -3,7 +3,7 @@ export const __TEST__ = process.env.NODE_ENV === 'test';
 export const __MOBILE__ = typeof navigator !== 'undefined' && navigator.product === 'ReactNative';
 
 /** Default IRI node */
-export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.thetangle.org:443';
+export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.iota.org';
 
 export const nodesWithPowDisabled = ['https://trinity.iota-tangle.io:14265', 'https://node.iota-tangle.io:14265'];
 
@@ -50,3 +50,6 @@ export const IRI_API_VERSION = '1';
 export const QUORUM_THRESHOLD = 67;
 export const QUORUM_SIZE = 4;
 export const QUORUM_SYNC_CHECK_INTERVAL = 120;
+
+/** Maximum milestone fallbehind threshold for node sync checks */
+export const MAX_MILESTONE_FALLBEHIND = 2;
