@@ -112,7 +112,7 @@ class Tools extends PureComponent {
 
         const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
-        this.props.transitionForSnapshot(seedStore, addresses);
+        this.props.transitionForSnapshot(seedStore, addresses, meta.type);
     };
 
     /**
