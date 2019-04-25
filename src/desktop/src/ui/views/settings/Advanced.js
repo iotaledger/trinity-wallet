@@ -10,6 +10,7 @@ import { getEncryptionKey, ALIAS_REALM } from 'libs/realm';
 import {
     changePowSettings,
     changeAutoPromotionSettings,
+    changeDeepLinkingSettings,
     setLockScreenTimeout,
     setTray,
     setNotifications,
@@ -53,6 +54,8 @@ class Advanced extends PureComponent {
         changePowSettings: PropTypes.func.isRequired,
         /** @ignore */
         changeAutoPromotionSettings: PropTypes.func.isRequired,
+        /** @ignore */
+        changeDeepLinkingSettings: PropTypes.func.isRequired,
         /** @ignore */
         setLockScreenTimeout: PropTypes.func.isRequired,
         /** @ignore */
@@ -154,6 +157,7 @@ class Advanced extends PureComponent {
             wallet,
             changePowSettings,
             changeAutoPromotionSettings,
+            changeDeepLinkingSettings,
             lockScreenTimeout,
             setNotifications,
             t,
@@ -165,6 +169,19 @@ class Advanced extends PureComponent {
             <div className={css.scroll}>
                 <Scrollbar>
                     <article>
+                        <React.Fragment>
+                            <h3>{t('advancedSettings:deepLinking')}</h3>
+                            <Toggle
+                                checked={settings.deepLinking}
+                                onChange={() => changeDeepLinkingSettings()}
+                                on={t('enabled')}
+                                off={t('disabled')}
+                            />
+                            <p>{t('deepLink:deepLinkingOverview')}</p>
+                            <p>{t('deepLink:deepLinkingWarning')}</p>
+                            <hr />
+                        </React.Fragment>
+
                         {wallet && wallet.ready ? (
                             <React.Fragment>
                                 <h3>{t('pow:powUpdated')}</h3>
@@ -327,6 +344,7 @@ const mapDispatchToProps = {
     generateAlert,
     changePowSettings,
     changeAutoPromotionSettings,
+    changeDeepLinkingSettings,
     setLockScreenTimeout,
     setTray,
     setNotifications,

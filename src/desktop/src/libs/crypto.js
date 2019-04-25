@@ -96,21 +96,14 @@ export const decrypt = async (cipherText, hash) => {
 };
 
 /**
- * Set Two-Factor authentication key
+ * Sets up main account in keychain
  * @param {string} Password - Plain text password for decryption
- * @param {string} Key - Two-factor authentication key
- * @returns {boolean} Two-Factor key set success state
+ * @returns {boolean}
  */
-export const setTwoFA = async (password, key) => {
+export const initVault = async (password) => {
     try {
         const vault = await Electron.readKeychain(ACC_MAIN);
         const decryptedVault = vault === null ? {} : await decrypt(vault, password);
-
-        if (key) {
-            decryptedVault.twoFaKey = key;
-        } else {
-            delete decryptedVault.twoFaKey;
-        }
 
         const updatedVault = await encrypt(decryptedVault, password);
 
@@ -135,18 +128,16 @@ export const initKeychain = async () => {
 /**
  * Check for valid vault key
  * @param {array} Key - Account decryption key
- * @returns {boolean | string} - Returns a Two-Factor authentication code or boolean of none set
+ * @returns {boolean | string}
  */
 export const authorize = async (key) => {
     const vault = await Electron.readKeychain(ACC_MAIN);
+
     if (!vault) {
         throw new Error('Local storage not available');
     }
     try {
-        const decryptedVault = await decrypt(vault, key);
-        if (decryptedVault.twoFaKey) {
-            return decryptedVault.twoFaKey;
-        }
+        await decrypt(vault, key);
         return true;
     } catch (err) {
         throw err;

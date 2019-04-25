@@ -167,6 +167,34 @@ export const formatUnit = (value) => {
 };
 
 /**
+ * Converts iota value-unit string to int value
+ *
+ * @method unitStringToValue
+ * @param {string}
+ *
+ * @returns {number}
+ */
+export const unitStringToValue = (str) => {
+    const value = parseInt(str);
+    const unit = str.substr(value.toString().length).toLowerCase();
+
+    switch (unit) {
+        case 'ki':
+            return value * 1000;
+        case 'mi':
+            return value * 1000000;
+        case 'gi':
+            return value * 1000000000;
+        case 'ti':
+            return value * 1000000000000;
+        case 'pi':
+            return value * 1000000000000000;
+        default:
+            return value;
+    }
+};
+
+/**
  * Formats IOTA value and assigns appropriate unit
  *
  * @method formatIota

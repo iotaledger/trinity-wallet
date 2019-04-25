@@ -55,7 +55,7 @@
         "yes": "Sim",
         "no": "Não",
         "okay": "Ok",
-        "skip": "Skip",
+        "skip": "Pular",
         "password": "Senha",
         "unrecognisedPassword": "Senha Inválida",
         "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
@@ -70,9 +70,9 @@
         "somethingWentWrongTryAgain": "Por favor, tente novamente.",
         "node": "Servidor",
         "cannotPerformAction": "Não é possível executar a ação",
-        "cannotPerformActionExplanation": "Vá para configurações avançadas para redefinir a carteira.",
+        "cannotPerformActionExplanation": "Vá para opções avançadas para redefinir a carteira.",
         "attachToTangleUnavailable": "Prova de trabalho remoto não está disponível",
-        "attachToTangleUnavailableExplanation": "Prova de trabalho remoto não está disponível no servidor selecionado. Altere o servidor ou a prova de trabalho para Local em configurações avançadas.",
+        "attachToTangleUnavailableExplanation": "Prova de trabalho remoto não está disponível no servidor selecionado. Altere o servidor ou a prova de trabalho para Local em opções avançadas.",
         "attachToTangleUnavailableExplanationShort": "Anexar a Prova de Trabalho não está disponível no servidor selecionado.",
         "wallet": "Carteira",
         "all": "Todos",
@@ -140,7 +140,7 @@
         "deviceMayBecomeUnresponsive": "Seu dispositivo pode ficar sem responder por um tempo.",
         "isYourBalanceCorrect": "Seu saldo está correto?",
         "ifYourBalanceIsNotCorrect": "Se seu saldo estiver incorreto, é provável que você esteja usando uma seed criada antes do último snapshot.",
-        "headToAdvancedSettingsForTransition": "Vá até as Configurações Avançadas e realize uma Transição de Snapshot.",
+        "headToAdvancedSettingsForTransition": "Vá até as Opções Avançadas e realize uma Transição de Snapshot.",
         "usingTrinityWalletWithKeePass": "Usando a carteira Trinity com Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Houve um erro ao processar sua transação.",
         "broadcastError": "Não foi possível enviar transação",
@@ -237,7 +237,7 @@
         "send": "ENVIAR",
         "receive": "RECEBER",
         "history": "HISTÓRICO",
-        "settings": "CONFIGURAÇÕES"
+        "settings": "OPÇÕES"
     },
     "languageSetup": {
         "language": "Idioma",
@@ -288,10 +288,10 @@
         "printerConfirmation": "Não estou imprimindo em uma impressora pública"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "Gostaria de imprimir um modelo em branco?",
+        "printTemplateInfo": "Você pode imprimir um modelo em branco para escrever sua Seed.",
+        "printTemplateWarning": "Certifique-se de armazenar sua Seed em um lugar seguro. Não mostre-a para ninguém.",
+        "print": "Sim, imprimir"
     },
     "receive": {
         "yourAddress": "Seu endereço",
@@ -391,10 +391,10 @@
         "language": "Idioma",
         "accountManagement": "Gerenciar Contas",
         "addNewSeed": "Adicionar nova seed",
-        "twoFA": "Autenticação 2FA",
         "changePassword": "Alterar Senha",
         "general": "Configurações gerais",
-        "advanced": "Configurações Avançadas",
+        "advanced": "Opções Avançadas",
+        "nodeSettings": "Node settings",
         "account": "Configurações de conta",
         "logout": "Desconectar",
         "reset": "Redefinir a carteira",
@@ -405,7 +405,7 @@
         "accountDeleted": "Conta excluída",
         "accountDeletedExplanation": "Sua conta foi removida da carteira.",
         "cannotPerformAction": "Não é possível executar a ação",
-        "cannotPerformActionExplanation": "Vá para Configurações Avançadas para redefinir a carteira.",
+        "cannotPerformActionExplanation": "Vá para opções avançadas para redefinir a carteira.",
         "hide": "Ocultar",
         "hideOthers": "Ocultar Outros",
         "show": "Exibir",
@@ -456,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Pacote hash copiado",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Nenhuma transação encontrada",
+        "emptyHistory": "Seu histórico de transações está vazio",
         "hideZeroBalance": "Esconder saldos zero",
         "bundleHashCopiedExplanation": "A chave do pacote foi copiada para a área de transferência.",
         "addressCopied": "Endereço copiado",
@@ -469,7 +470,13 @@
         "retrying": "Tentando de novo",
         "yesterday": "Ontem",
         "promotingAnotherBundle": "Promover outro pacote",
-        "pleaseWait": "Por favor aguarde, Trinity está promovendo outro pacote."
+        "pleaseWait": "Por favor aguarde, Trinity está promovendo outro pacote.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
@@ -502,7 +509,8 @@
         "autoPromotion": "Autopromoção",
         "autoPromotionExplanation": "Autopromoção ajuda a confirmar suas transações no Tangle. Habilite essa configuração se você está tendo dificuldade em confirmar suas transações.",
         "autoPromotionPoW": "Autopromoção só é possível em servidores que suportam prova de trabalho remoto.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Plano de Fundo",
@@ -573,6 +581,7 @@
         "viewSeed": "Ver Seed",
         "hideSeed": "Esconder Seed",
         "notAvailable": "Exportação da Seed não está disponível para o tipo de conta {{accountType}}",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Seu índice de conta Ledger",
         "accountPage": "Página de sua conta Ledger"
     },
@@ -620,23 +629,6 @@
         "sendingAMessage": "Enviando uma mensagem",
         "sendingAnEmptyMessage": "Enviando uma mensagem vazia"
     },
-    "twoFA": {
-        "wrongCode": "Código incorreto",
-        "wrongCodeExplanation": "O código inserido está incorreto. Se este erro persistir, verifique se o fuso-horário do seu dispositivo está correto.",
-        "emptyCode": "Código vazio",
-        "emptyCodeExplanation": "Por favor, introduza um código e tente novamente.",
-        "keyCopied": "Chave copiada para a área de transferência",
-        "keyCopiedExplanation": "Seu código 2FA foi copiado para a área de transferência.",
-        "addKey": "Adicione essa chave em seu aplicativo 2FA",
-        "key": "Chave",
-        "twoFAEnabled": "2FA foi habilitado",
-        "twoFAEnabledExplanation": "Você ativou a autenticação de dois fatores com sucesso.",
-        "twoFADisabled": "2FA foi desativado",
-        "twoFADisabledExplanation": "Você desativou a Autenticação Biométrica com sucesso.",
-        "enterCode": "Digite o código de seu aplicativo 2FA",
-        "code": "Código",
-        "twoFaToken": "Token 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "Exportar SeedVault",
         "seedVaultExplanation": "Um SeedVault é um arquivo criptografado para o armazenamento de sua Seed. A Seed é criptografada com uma chave SeedVault e não pode ser acessada sem essa chave.",
@@ -660,8 +652,16 @@
         "noSeedFoundExplanation": "O SeedVault está vazio ou contém uma Seed com um formato inválido.",
         "seedFileError": "Falha ao abrir o SeedVault",
         "seedFileErrorExplanation": "Houve um problema ao abrir o SeedVault. Se você selecionou o arquivo correto então o mesmo pode estar corrompido.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Primeiro precisamos proteger seu SeedVault. Por favor, escolha uma chave para criptografar o arquivo. Você usará esta chave se caso precisar restaurar sua Seed do SeedVault.",
-        "retypeKey": "Redigite a chave"
+        "retypeKey": "Redigite a chave",
+        "key": "Chave"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
@@ -722,11 +722,13 @@
     "deepLink": {
         "autofill": "Sucesso no preenchimento automático",
         "autofillExplanation": "Dados da transação preenchida automaticamente através do link.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "Deep links são links clicáveis (iota://...) que preenchem automaticamente os dados de transação na Trinity.",
+        "deepLinkingWarning": "Cuidado com fraudes de phishing. Certifique-se de que o link que você abrir navegue para o aplicativo oficial de Trinity.",
+        "deepLinkingUpdated": "Configurações de deep linking",
+        "deepLinkingEnabled": "Você ativou o deep linking.",
+        "deepLinkingDisabled": "Você desativou o deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",
@@ -823,6 +825,8 @@
         "checkAddress": "Verifique o endereço do destinatário",
         "checkAddressExplanation": "Verifique se o endereço é igual ao endereço no dispositivo Ledger.",
         "applicationNotInitialised": "Aviso não confirmado",
-        "applicationNotInitialisedExplanation": "Reabra o aplicativo IOTA no seu dispositivo Ledger, aceite o aviso e tente novamente."
+        "applicationNotInitialisedExplanation": "Reabra o aplicativo IOTA no seu dispositivo Ledger, aceite o aviso e tente novamente.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

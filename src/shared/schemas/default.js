@@ -286,13 +286,6 @@ export const WalletSettingsSchema = {
             type: 'bool',
             default: false,
         },
-        /**
-         * Determines if deep linking is enabled
-         */
-        deepLinking: {
-            type: 'bool',
-            default: false,
-        },
     },
 };
 

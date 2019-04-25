@@ -127,14 +127,16 @@ class Settings extends Component {
             viewSeed: 3,
             exportSeedVault: 3,
             changePassword: 3,
-            nodeSelection: 3,
-            addCustomNode: 3,
+            nodeSettings: 3,
             pow: 3,
             autoPromotion: 3,
             snapshotTransition: 3,
             manualSync: 3,
+            stateExport: 3,
             about: 3,
             deepLinking: 3,
+            nodeSelection: 4,
+            addCustomNode: 4,
         };
 
         if (animationIn) {
