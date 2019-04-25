@@ -88,6 +88,8 @@ class About extends React.PureComponent {
                                 <li>- Update: Transaction history search</li>
                                 <li>- Fix: Various Realm migration bugs</li>
                                 <li>- Fix: Update account indexes in Realm if an account is deleted</li>
+                                <li>- Fix: Use less strict threshold for out-of-sync checks</li>
+                                <li>- Fix: Align Entangled trunk/branch assignment with IRI</li>
                             </ul>
                             <h5>0.5.0-RC1</h5>
                             <ul>
