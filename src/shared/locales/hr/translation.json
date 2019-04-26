@@ -727,8 +727,8 @@
         "deepLinkingUpdated": "Deep linking postavke",
         "deepLinkingEnabled": "Omogućili ste deep linking.",
         "deepLinkingDisabled": "Onemogućili ste deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoTitle": "Deep linking nije omogućen",
+        "deepLinkingInfoMessage": "Otvorili ste iota:// deep link, no deep linking nije omogućen."
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",

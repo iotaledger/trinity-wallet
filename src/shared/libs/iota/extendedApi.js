@@ -621,7 +621,7 @@ const isNodeHealthy = (provider) => {
                 cached.latestMilestone = latestMilestone;
                 if (
                     (cached.latestMilestone === latestSolidSubtangleMilestone ||
-                        latestMilestoneIndex - MAX_MILESTONE_FALLBEHIND === latestSolidSubtangleMilestoneIndex) &&
+                        latestMilestoneIndex - MAX_MILESTONE_FALLBEHIND <= latestSolidSubtangleMilestoneIndex) &&
                     cached.latestMilestone !== EMPTY_HASH_TRYTES
                 ) {
                     return getTrytesAsync(provider)([cached.latestMilestone]);

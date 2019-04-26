@@ -6867,9 +6867,9 @@
       }
     },
     "i18next": {
-      "version": "15.0.9",
-      "resolved": "https://registry.npmjs.org/i18next/-/i18next-15.0.9.tgz",
-      "integrity": "sha512-IdVj7DqErUuMbGuj2dFT431T7zKlmDci63eae6pNA/bMwgBZKT74/KnwHXE0WH7ivo2EV/LNme4pP4Yw6vB79w==",
+      "version": "15.1.0",
+      "resolved": "https://registry.npmjs.org/i18next/-/i18next-15.1.0.tgz",
+      "integrity": "sha512-7cCrVn/BcoSOGJwTilAjGgWWzUDg4scTLX1sIBMWq6QjYYBrT+ChSAvmgVyQxkHinaIcswC04XK6l15RxM4Dkg==",
       "requires": {
         "@babel/runtime": "^7.3.1"
       }
@@ -10771,9 +10771,9 @@
       }
     },
     "keytar": {
-      "version": "4.5.0",
-      "resolved": "https://registry.npmjs.org/keytar/-/keytar-4.5.0.tgz",
-      "integrity": "sha512-YovZReB9TUsNJEnQwCZsjdDCHTDdoxjdSkufdpMzNv1B7WDrrGtg+vXlqWFUCrZ8avlMwjZ1S8jQq93F1FFiyA==",
+      "version": "4.6.0",
+      "resolved": "https://registry.npmjs.org/keytar/-/keytar-4.6.0.tgz",
+      "integrity": "sha512-8wWWTC62QHvUvgW/QYyJv7X0GFZfp2Ykr5n3PuXKADro0Sv2RKvuYxbkzoZvsw33EDNAKnUTSA0/KLGN/MbwDw==",
       "requires": {
         "nan": "2.13.2",
         "prebuild-install": "5.3.0"
@@ -15837,9 +15837,9 @@
       }
     },
     "webpack-hot-middleware": {
-      "version": "2.24.3",
-      "resolved": "https://registry.npmjs.org/webpack-hot-middleware/-/webpack-hot-middleware-2.24.3.tgz",
-      "integrity": "sha512-pPlmcdoR2Fn6UhYjAhp1g/IJy1Yc9hD+T6O9mjRcWV2pFbBjIFoJXhP0CoD0xPOhWJuWXuZXGBga9ybbOdzXpg==",
+      "version": "2.24.4",
+      "resolved": "https://registry.npmjs.org/webpack-hot-middleware/-/webpack-hot-middleware-2.24.4.tgz",
+      "integrity": "sha512-YFA4j2tg9WPkcQKcyHMZn6787QngWf/ahXvAJRZ1ripySa+4ihjzDcYBsfC4ihOucTd02IJ12v+VTGMsEGxq0w==",
       "dev": true,
       "requires": {
         "ansi-html": "0.0.7",

@@ -394,7 +394,7 @@
         "changePassword": "パスワード変更",
         "general": "一般設定",
         "advanced": "詳細設定",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "ノード設定",
         "account": "アカウント設定",
         "logout": "ログアウト",
         "reset": "ウォレットをリセット",
@@ -471,12 +471,12 @@
         "yesterday": "昨日",
         "promotingAnotherBundle": "別のバンドルを促進中",
         "pleaseWait": "少々お待ちください。Trinityは他のバンドルを促進しています。",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "typeHelp": "利用可能なコマンドについては !help と入力してください。",
+        "searchHelpText": "バンドルハッシュまたはメッセージコンテンツで検索",
+        "searchHelpValue": "正確なIOTAの値で取引を検索",
+        "searchHelpUnits": "IOTAの値と単位で取引を検索",
+        "searchHelpMore": "Xより大きな値を持つ取引を検索",
+        "searchHelpLess": "Xより小さな値を持つ取引を検索"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -510,7 +510,7 @@
         "autoPromotionExplanation": "自動促進によってTangleによる取引承認を手助けします。取引承認に時間がかかる場合はこの設定をオンにしてください。",
         "autoPromotionPoW": "自動促進はリモートによるプルーフ・オブ・ワークを許可するノードと接続している場合のみ有効です。",
         "deepLinking": "ディープリンク",
-        "stateExport": "State export"
+        "stateExport": "状態ファイル出力"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -581,7 +581,7 @@
         "viewSeed": "シードを表示",
         "hideSeed": "シードを隠す",
         "notAvailable": "シード出力は{{accountType}}のアカウントタイプでは利用できません",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "Ledger端末は安全な要素を使ってシードを保管します。シードは安全に暗号化されLedger端末の外へは出ません。",
         "accountIndex": "Ledgerのアカウントインデックス",
         "accountPage": "Ledgerのアカウントページ"
     },
@@ -652,16 +652,16 @@
         "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
         "seedFileError": "イオタ金庫を開けませんでした",
         "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileError": "無効なシード金庫ファイルです。",
+        "invalidSeedFileErrorExplanation": "このファイル形式はサポートされていません。Trinityまたはパスワード・マネージャーを介して作成されたシード金庫ファイル（.kdbx）のみがサポートされています。",
         "seedVaultKeyExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するための鍵を選んでください。シード金庫からシードを復元する時に、この鍵が必要です。",
         "retypeKey": "鍵を再入力してください",
         "key": "キー"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "状態ファイル出力はアカウント情報（取引やアドレス）、ウォレットのバージョンおよび保管ファイル名をテキストファイルとしてお使いの端末に保存します。",
+        "exportSuccess": "状態ファイルの出力完了",
+        "exportSuccessExplanation": "状態ファイルは正常に保存されました。"
     },
     "chart": {
         "mcap": "時価総額",
@@ -727,8 +727,8 @@
         "deepLinkingUpdated": "ディープリンク設定",
         "deepLinkingEnabled": "ディープリンクを有効にしました。",
         "deepLinkingDisabled": "ディープリンクを無効にしました。",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoTitle": "ディープリンクが有効になっていません。",
+        "deepLinkingInfoMessage": "iota://ディープリンク名 を開きましたが、ディープリンクが有効になっていません。"
     },
     "updates": {
         "errorRetrievingUpdateData": "更新データの取得エラー",

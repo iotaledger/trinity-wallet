@@ -64,7 +64,7 @@
     "webpack": "4.30.0",
     "webpack-cli": "3.3.1",
     "webpack-dev-middleware": "3.6.2",
-    "webpack-hot-middleware": "2.24.3"
+    "webpack-hot-middleware": "2.24.4"
   },
   "build": {
     "productName": "Trinity",
@@ -152,10 +152,10 @@
     "electron-updater": "4.0.6",
     "entangled-node": "rihardsgravis/entangled-node#73ccd5e",
     "hw-app-iota": "0.6.1",
-    "i18next": "15.0.9",
+    "i18next": "15.1.0",
     "iota.lib.js": "0.5.1",
     "kdbxweb": "1.2.7",
-    "keytar": "4.5.0",
+    "keytar": "4.6.0",
     "machine-uuid-sync": "https://github.com/rajivshah3/machine-uuid-sync#a5ffa8e",
     "perfect-scrollbar": "1.4.0",
     "qr.js": "0.0.0",

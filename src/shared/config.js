@@ -8,14 +8,10 @@ export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.
 export const nodesWithPowDisabled = ['https://trinity.iota-tangle.io:14265', 'https://node.iota-tangle.io:14265'];
 
 export const nodesWithPowEnabled = [
-    'https://iotanode.us:443',
+    'https://nodes.iota.org',
     'https://nodes.thetangle.org:443',
+    'https://iotanode.us:443',
     'https://pool.trytes.eu',
-    'https://peanut.iotasalad.org:14265',
-    'https://potato.iotasalad.org:14265',
-    'https://tuna.iotasalad.org:14265',
-    'https://durian.iotasalad.org:14265',
-    'https://turnip.iotasalad.org:14265',
     'https://pow.iota.community:443',
 ];
 
