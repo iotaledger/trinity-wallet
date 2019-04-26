@@ -1,9 +1,15 @@
 import welcome from './welcome.json';
+import language from './language.json';
+import ledger from './ledger.json';
+import onboardingComplete from './onboardingComplete.json';
 import get from 'lodash.get';
 
 import themes from '../themes/themes';
 
 export const animations = {
+    language,
+    ledger,
+    onboardingComplete,
     welcome,
 };
 

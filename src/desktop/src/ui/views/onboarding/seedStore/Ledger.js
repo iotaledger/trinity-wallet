@@ -170,7 +170,7 @@ class Ledger extends React.PureComponent {
                     <small>{advancedMode && t('ledger:accountPageExplanation')}</small>
                 </section>
                 <footer>
-                    <Button disabled={!loading} to="/onboarding/seed-intro" className="square" variant="dark">
+                    <Button disabled={loading} to="/onboarding/seed-intro" className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
                     <Button loading={loading} type="submit" className="square" variant="primary">

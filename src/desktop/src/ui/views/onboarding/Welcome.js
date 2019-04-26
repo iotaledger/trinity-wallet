@@ -6,10 +6,13 @@ import ReactMarkdown from 'react-markdown';
 
 import { acceptTerms, acceptPrivacy } from 'actions/settings';
 
+import { getAnimation } from 'animations';
+
 import { enTermsAndConditionsIOS, deTermsAndConditionsIOS, enPrivacyPolicyIOS, dePrivacyPolicyIOS } from 'markdown';
 
 import Button from 'ui/components/Button';
 import Language from 'ui/components/input/Language';
+import Lottie from 'ui/components/Lottie';
 import Scrollbar from 'ui/components/Scrollbar';
 
 import css from './welcome.scss';
@@ -23,6 +26,8 @@ class Welcome extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
         /** @ignore */
         language: PropTypes.string.isRequired,
         /** @ignore */
@@ -40,7 +45,7 @@ class Welcome extends React.PureComponent {
     };
 
     state = {
-        step: 'language',
+        step: 'intro',
         scrollEnd: false,
     };
 
@@ -48,11 +53,16 @@ class Welcome extends React.PureComponent {
         const { history, acceptedTerms, acceptedPrivacy, acceptTerms, acceptPrivacy } = this.props;
         const { step } = this.state;
 
-        if (acceptedTerms && acceptedPrivacy) {
+        if (acceptedTerms && acceptedPrivacy && step === 'language') {
             return history.push('/onboarding/seed-intro');
         }
 
         switch (step) {
+            case 'intro':
+                this.setState({
+                    step: 'language',
+                });
+                break;
             case 'language':
                 this.setState({
                     step: 'terms',
@@ -73,7 +83,7 @@ class Welcome extends React.PureComponent {
     };
 
     render() {
-        const { forceUpdate, language, t } = this.props;
+        const { forceUpdate, language, themeName, t } = this.props;
         const { step, scrollEnd } = this.state;
 
         let markdown = '';
@@ -86,11 +96,31 @@ class Welcome extends React.PureComponent {
 
         return (
             <form>
-                <section className={step !== 'language' ? css.welcome : null}>
-                    {step === 'language' ? (
+                <section className={css.welcome}>
+                    {step === 'intro' ? (
                         <React.Fragment>
-                            <h1>{t('welcome:thankYou')}</h1>
+                            <h1>{t('welcome:welcome')}</h1>
+                            <Lottie
+                                width={280}
+                                height={280}
+                                data={getAnimation('welcome', themeName)}
+                                segments={[20, 150]}
+                                loop
+                            />
+                        </React.Fragment>
+                    ) : step === 'language' ? (
+                        <React.Fragment>
+                            <h1>{t('welcome:welcome')}</h1>
                             <Language />
+                            <div className={css.language}>
+                                <Lottie
+                                    width={240}
+                                    height={240}
+                                    data={getAnimation('language', themeName)}
+                                    segments={[40, 210]}
+                                    loop
+                                />
+                            </div>
                         </React.Fragment>
                     ) : (
                         <React.Fragment>
@@ -107,14 +137,16 @@ class Welcome extends React.PureComponent {
                 </section>
                 <footer>
                     <Button
-                        disabled={forceUpdate || (step !== 'language' && !scrollEnd)}
+                        disabled={forceUpdate || (step !== 'language' && step !== 'intro' && !scrollEnd)}
                         onClick={this.onNextClick}
                         className="square"
                         variant="primary"
                     >
-                        {step === 'language'
-                            ? t('continue')
-                            : !scrollEnd ? t('terms:readAllToContinue') : t('terms:accept')}
+                        {step === 'intro'
+                            ? t('languageSetup:letsGetStarted')
+                            : step === 'language'
+                                ? t('continue')
+                                : !scrollEnd ? t('terms:readAllToContinue') : t('terms:accept')}
                     </Button>
                 </footer>
             </form>
@@ -127,6 +159,7 @@ const mapStateToProps = (state) => ({
     acceptedTerms: state.settings.acceptedTerms,
     language: state.settings.locale,
     forceUpdate: state.wallet.forceUpdate,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {

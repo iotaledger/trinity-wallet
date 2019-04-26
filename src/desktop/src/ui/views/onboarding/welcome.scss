@@ -24,6 +24,10 @@
         }
     }
 
+    h1 {
+        margin-bottom: 50px;
+    }
+
     h2,
     h3 {
         display: inline-block;
@@ -40,5 +44,12 @@
         line-height: 21px;
         margin: 0 0 4px 24px;
         list-style: circle;
+    }
+
+    .language {
+        position: absolute;
+        bottom: 140px;
+        left: 50%;
+        transform: translate(-50%, 0);
     }
 }
