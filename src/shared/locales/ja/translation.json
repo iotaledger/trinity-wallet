@@ -473,9 +473,9 @@
         "pleaseWait": "少々お待ちください。Trinityは他のバンドルを促進しています。",
         "typeHelp": "利用可能なコマンドについては !help と入力してください。",
         "searchHelpText": "バンドルハッシュまたはメッセージコンテンツで検索",
-        "searchHelpValue": "正確なIOTAの値でトランザクションを検索",
-        "searchHelpUnits": "IOTAの値と単位でトランザクションを検索",
-        "searchHelpMore": "Xより大きな値を持つトランザクションを検索",
+        "searchHelpValue": "正確なIOTAの値で取引を検索",
+        "searchHelpUnits": "IOTAの値と単位で取引を検索",
+        "searchHelpMore": "Xより大きな値を持つ取引を検索",
         "searchHelpLess": "Xより小さな値を持つ取引を検索"
     },
     "accountManagement": {
@@ -659,9 +659,9 @@
         "key": "キー"
     },
     "stateExport": {
-        "stateExportExplanation": "状態ファイル出力はアカウント情報（取引やアドレス）、ウォレットのバージョン、保管ファイル名をテキストファイルとしてお使いの端末に保存します。",
-        "exportSuccess": "状態ファイルの保存完了",
-        "exportSuccessExplanation": "状態ファイルは正常にエクスポートされました。"
+        "stateExportExplanation": "状態ファイル出力はアカウント情報（取引やアドレス）、ウォレットのバージョンおよび保管ファイル名をテキストファイルとしてお使いの端末に保存します。",
+        "exportSuccess": "状態ファイルの出力完了",
+        "exportSuccessExplanation": "状態ファイルは正常に保存されました。"
     },
     "chart": {
         "mcap": "時価総額",
@@ -727,8 +727,8 @@
         "deepLinkingUpdated": "ディープリンク設定",
         "deepLinkingEnabled": "ディープリンクを有効にしました。",
         "deepLinkingDisabled": "ディープリンクを無効にしました。",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoTitle": "ディープリンクが有効になっていません。",
+        "deepLinkingInfoMessage": "iota://ディープリンク名 を開きましたが、ディープリンクが有効になっていません。"
     },
     "updates": {
         "errorRetrievingUpdateData": "更新データの取得エラー",
