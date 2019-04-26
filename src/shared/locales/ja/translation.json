@@ -476,7 +476,7 @@
         "searchHelpValue": "正確なIOTAの値でトランザクションを検索",
         "searchHelpUnits": "IOTAの値と単位でトランザクションを検索",
         "searchHelpMore": "Xより大きな値を持つトランザクションを検索",
-        "searchHelpLess": "Xより小さな値を持つトランザクション検索"
+        "searchHelpLess": "Xより小さな値を持つ取引を検索"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -510,7 +510,7 @@
         "autoPromotionExplanation": "自動促進によってTangleによる取引承認を手助けします。取引承認に時間がかかる場合はこの設定をオンにしてください。",
         "autoPromotionPoW": "自動促進はリモートによるプルーフ・オブ・ワークを許可するノードと接続している場合のみ有効です。",
         "deepLinking": "ディープリンク",
-        "stateExport": "State export"
+        "stateExport": "状態ファイル出力"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -581,7 +581,7 @@
         "viewSeed": "シードを表示",
         "hideSeed": "シードを隠す",
         "notAvailable": "シード出力は{{accountType}}のアカウントタイプでは利用できません",
-        "notAvailableExplanationLedger": "Ledger端末は安全な要素を使ってシードを保管しています。シードは安全に暗号化されLedger端末の外へは出ません。",
+        "notAvailableExplanationLedger": "Ledger端末は安全な要素を使ってシードを保管します。シードは安全に暗号化されLedger端末の外へは出ません。",
         "accountIndex": "Ledgerのアカウントインデックス",
         "accountPage": "Ledgerのアカウントページ"
     },
@@ -659,8 +659,8 @@
         "key": "キー"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
+        "stateExportExplanation": "状態ファイル出力はアカウント情報（取引やアドレス）、ウォレットのバージョン、保管ファイル名をテキストファイルとしてお使いの端末に保存します。",
+        "exportSuccess": "状態ファイルの保存完了",
         "exportSuccessExplanation": "状態ファイルは正常にエクスポートされました。"
     },
     "chart": {
