@@ -76,7 +76,7 @@ class About extends React.PureComponent {
                                 <li>- Fix: Colon in 2FA QR code scan</li>
                                 <li>- Update: Deep link support</li>
                                 <li>- Fix: Add missing domains to external link whitelist</li>
-                                <li>- Fix: Disable quorum on initial account load and manual sync</li>
+                                <li>- Fix: Disable quorum on initial account load, manual sync, and migration</li>
                                 <li>- Fix: Increase timeout for getTransactionsToApprove requests</li>
                                 <li>- Fix: Improve performance by not reconstructing bundles unnecessarily</li>
                                 <li>- Update: Remove 2FA</li>
@@ -90,6 +90,7 @@ class About extends React.PureComponent {
                                 <li>- Fix: Update account indexes in Realm if an account is deleted</li>
                                 <li>- Fix: Use less strict threshold for out-of-sync checks</li>
                                 <li>- Fix: Align Entangled trunk/branch assignment with IRI</li>
+                                <li>- Update: Add iota.org node cluster</li>
                             </ul>
                             <h5>0.5.0-RC1</h5>
                             <ul>
