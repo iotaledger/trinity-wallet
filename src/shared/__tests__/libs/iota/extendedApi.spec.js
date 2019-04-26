@@ -242,6 +242,99 @@ describe('libs: iota/extendedApi', () => {
             });
         });
 
+        describe(`when latestSolidSubtangleMilestoneIndex is ${MAX_MILESTONE_FALLBEHIND -
+            1} less than latestMilestoneIndex`, () => {
+            describe('when "timestamp" on trytes is from five minutes ago', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .persist()
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const { command } = body;
+
+                            const resultMap = {
+                                getNodeInfo: {
+                                    appVersion: '0.0.0',
+                                    latestMilestoneIndex: 426550,
+                                    latestSolidSubtangleMilestoneIndex: 426550 - (MAX_MILESTONE_FALLBEHIND - 1),
+                                    latestMilestone: 'U'.repeat(81),
+                                    latestSolidSubtangleMilestone: 'A'.repeat(81),
+                                },
+                                getTrytes: { trytes: [head(newZeroValueTransactionTrytes)] },
+                            };
+
+                            return resultMap[command] || {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return false', () => {
+                    return isNodeHealthy().then((result) => expect(result).to.equal(false));
+                });
+            });
+
+            describe('when "timestamp" on trytes is within five minutes', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .persist()
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const { command } = body;
+
+                            const resultMap = {
+                                getNodeInfo: {
+                                    appVersion: '0.0.0',
+                                    latestMilestoneIndex: 426550,
+                                    latestSolidSubtangleMilestoneIndex: 426550 - (MAX_MILESTONE_FALLBEHIND - 1),
+                                    latestMilestone: 'U'.repeat(81),
+                                    latestSolidSubtangleMilestone: 'A'.repeat(81),
+                                },
+                                getTrytes: {
+                                    trytes: [
+                                        head(
+                                            map(newZeroValueTransactionTrytes, (tryteString) => {
+                                                const transactionObject = iota.utils.transactionObject(tryteString);
+                                                const timestampLessThanAMinuteAgo = Date.now() - 60000;
+
+                                                return iota.utils.transactionTrytes({
+                                                    ...transactionObject,
+                                                    timestamp: Math.round(timestampLessThanAMinuteAgo / 1000),
+                                                });
+                                            }),
+                                        ),
+                                    ],
+                                },
+                            };
+
+                            return resultMap[command] || {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return true if "timestamp" on trytes is within five minutes', () => {
+                    return isNodeHealthy().then((result) => expect(result).to.equal(true));
+                });
+            });
+        });
+
         describe(`when latestMilestone is not ${EMPTY_HASH_TRYTES} and is equal to latestSolidSubtangleMilestone`, () => {
             describe('when "timestamp" on trytes is from five minutes ago', () => {
                 beforeEach(() => {
