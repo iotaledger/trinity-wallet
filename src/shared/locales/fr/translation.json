@@ -509,7 +509,7 @@
         "autoPromotion": "Promotion automatique",
         "autoPromotionExplanation": "La promotion automatique aide à confirmer vos transactions sur le Tangle. Activez ce paramètre si vous rencontrez des difficultés à confirmer vos transactions.",
         "autoPromotionPoW": "La promotion automatique n’est possible que sur les serveurs qui prennent en charge la preuve de travail à distance.",
-        "deepLinking": "Liens",
+        "deepLinking": "Liens profonds",
         "stateExport": "Exportation de l'état"
     },
     "advancedThemeCustomisation": {
@@ -724,11 +724,11 @@
         "autofillExplanation": "Remplissage automatique des transactions depuis les liens.",
         "deepLinkingOverview": "Les liens profonds sont des liens cliquables (iota://...) qui remplissent automatiquement les données de transaction dans Trinity.",
         "deepLinkingWarning": "Soyez conscient des arnaques de phishing. Assurez-vous que le lien que vous ouvrez navigue vers l'application officielle Trinity.",
-        "deepLinkingUpdated": "Paramètres des liens",
-        "deepLinkingEnabled": "Vous avez activé les liens.",
-        "deepLinkingDisabled": "Vous avez activé les liens.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingUpdated": "Paramètres des liens profonds",
+        "deepLinkingEnabled": "Vous avez activé les liens profonds.",
+        "deepLinkingDisabled": "Vous avez désactivé les liens profonds.",
+        "deepLinkingInfoTitle": "Les liens profonds ne sont pas activés",
+        "deepLinkingInfoMessage": "Vous avez ouvert un lien profond iota:// mais les liens profonds ne sont pas activés."
     },
     "updates": {
         "errorRetrievingUpdateData": "Erreur lors de la récupération des données de mise à jour",
