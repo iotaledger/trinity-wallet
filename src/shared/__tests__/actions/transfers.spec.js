@@ -11,7 +11,6 @@ import * as accountsUtils from '../../libs/iota/accounts';
 import * as inputUtils from '../../libs/iota/inputs';
 import { iota, quorum, SwitchingConfig } from '../../libs/iota';
 import { realm, Account, Wallet, getRealm, initialise } from '../../storage';
-import schemas from '../../schemas';
 import accounts from '../__samples__/accounts';
 import { addressData, latestAddressObject } from '../__samples__/addresses';
 import { newZeroValueTransactionTrytes, newValueTransactionTrytes } from '../__samples__/trytes';
@@ -36,7 +35,7 @@ describe('actions: transfers', () => {
         let seedStore;
 
         before(() => {
-            Realm.deleteFile(schemas[schemas.length - 1]);
+            Realm.clearTestState();
             initialise(() => Promise.resolve(new Int8Array(64)));
             seedStore = {
                 performPow: () =>
@@ -61,7 +60,7 @@ describe('actions: transfers', () => {
         });
 
         after(() => {
-            Realm.deleteFile(schemas[schemas.length - 1]);
+            Realm.clearTestState();
         });
 
         describe('when called', () => {
@@ -295,7 +294,7 @@ describe('actions: transfers', () => {
         let seedStore;
 
         before(() => {
-            Realm.deleteFile(schemas[schemas.length - 1]);
+            Realm.clearTestState();
             initialise(() => Promise.resolve(new Int8Array(64)));
             seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
@@ -344,7 +343,7 @@ describe('actions: transfers', () => {
         });
 
         after(() => {
-            Realm.deleteFile(schemas[schemas.length - 1]);
+            Realm.clearTestState();
         });
 
         describe('zero value transactions', () => {

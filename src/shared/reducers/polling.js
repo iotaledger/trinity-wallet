@@ -2,6 +2,7 @@ import findIndex from 'lodash/findIndex';
 import isNumber from 'lodash/isNumber';
 import size from 'lodash/size';
 import { ActionTypes } from '../actions/polling';
+import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 
 export const setNextPollIfSuccessful = (state) => {
     const { allPollingServices, pollFor } = state;
@@ -181,6 +182,16 @@ const polling = (
             return {
                 ...state,
                 isAutoPromoting: false,
+                ...setNextPollIfUnsuccessful(state),
+            };
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
+            return {
+                ...state,
+                ...setNextPollIfSuccessful(state),
+            };
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_ERROR:
+            return {
+                ...state,
                 ...setNextPollIfUnsuccessful(state),
             };
         case ActionTypes.SET_POLL_FOR:

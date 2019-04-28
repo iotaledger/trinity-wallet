@@ -468,6 +468,15 @@ const Electron = {
     },
 
     /**
+     * Check if buffer is a valid SeedVault file
+     * @param {buffer} buffer - SeedVault file content
+     * @returns {boolean}
+     */
+    validateVault: (buffer) => {
+        return kdbx.checkFormat(buffer);
+    },
+
+    /**
      * Create and show a native notification based on new transactions
      * @param {string} accountName - target account name
      * @param {array} transactions - new transactions

@@ -498,12 +498,12 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, wi
  *
  * @returns {function}
  */
-export const generateAddressesAndGetBalance = (seedStore, index) => {
+export const generateAddressesAndGetBalance = (seedStore, index, seedType = 'keychain') => {
     return (dispatch) => {
         const options = {
             index,
             security: DEFAULT_SECURITY,
-            total: 20,
+            total: seedType === 'ledger' ? 15 : 60,
         };
 
         seedStore

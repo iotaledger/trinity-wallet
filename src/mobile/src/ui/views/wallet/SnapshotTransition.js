@@ -214,7 +214,11 @@ export class SnapshotTransition extends Component {
     async onSnapshotTransitionPress() {
         const { addresses, shouldPreventAction, selectedAccountName, selectedAccountMeta, t } = this.props;
         if (!shouldPreventAction) {
-            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](
+                global.passwordHash,
+                selectedAccountName,
+                selectedAccountMeta.type,
+            );
             this.props.transitionForSnapshot(seedStore, addresses);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));

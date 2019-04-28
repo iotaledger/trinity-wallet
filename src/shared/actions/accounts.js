@@ -511,6 +511,10 @@ export const getAccountInfo = (seedStore, accountName, notificationFn, withQuoru
             .catch((err) => {
                 if (err.message === Errors.LEDGER_CANCELLED) {
                     dispatch(generateLedgerCancelledAlert());
+                } else if (err.message === Errors.NODE_NOT_SYNCED) {
+                    dispatch(generateNodeOutOfSyncErrorAlert());
+                } else if (err.message === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert());
                 } else {
                     setTimeout(() => dispatch(generateAccountInfoErrorAlert(err)), 500);
                 }

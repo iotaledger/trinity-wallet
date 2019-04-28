@@ -128,6 +128,16 @@ class SeedInput extends React.PureComponent {
             );
         }
 
+        const isValidVault = Electron.validateVault(buffer);
+
+        if (!isValidVault) {
+            return this.props.generateAlert(
+                'error',
+                t('seedVault:invalidSeedFileError'),
+                t('seedVault:invalidSeedFileErrorExplanation'),
+            );
+        }
+
         this.setState({
             importBuffer: buffer,
         });
@@ -340,10 +350,10 @@ class SeedInput extends React.PureComponent {
                 {importBuffer && (
                     <Password
                         content={{
-                            title: t('enterPassword'),
-                            message: t('seedVault:enterKeyExplanation'),
+                            title: t('seedVault:enterKeyExplanation'),
                             confirm: t('seedVault:importSeedVault'),
                         }}
+                        isSeedVaultField
                         isOpen
                         onClose={() => this.setState({ importBuffer: null })}
                         onSubmit={(password) => this.decryptFile(password)}

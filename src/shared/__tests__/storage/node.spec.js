@@ -1,12 +1,11 @@
 import { expect } from 'chai';
 import { getRealm, realm, Node, initialise } from '../../storage';
-import schemas from '../../schemas';
 
 const Realm = getRealm();
 
 describe('storage: Node', () => {
     before(() => {
-        Realm.deleteFile(schemas[schemas.length - 1]);
+        Realm.clearTestState();
 
         initialise(() => Promise.resolve(new Int8Array(64)));
     });
@@ -32,7 +31,7 @@ describe('storage: Node', () => {
     });
 
     after(() => {
-        Realm.deleteFile(schemas[schemas.length - 1]);
+        Realm.clearTestState();
     });
 
     describe('#getObjectForId', () => {
