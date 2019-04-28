@@ -30,6 +30,8 @@ class SeedExport extends PureComponent {
         onClose: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        generateAlert: PropTypes.func.isRequired,
     };
 
     state = {
@@ -187,4 +189,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(null, mapDispatchToProps)(withI18n()(SeedExport));
+export default connect(
+    null,
+    mapDispatchToProps,
+)(withI18n()(SeedExport));
