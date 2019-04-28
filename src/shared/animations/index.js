@@ -17,7 +17,7 @@ export const animations = {
  * Returns colorised Lottie animation data
  * @param {string} animationName - Target animation name
  * @param {object} themeName - Target colors
- * @returns {object} -Target animation data
+ * @returns {object} - Target animation data
  */
 export const getAnimation = (animationName, themeName) => {
     const data = animations[animationName];
