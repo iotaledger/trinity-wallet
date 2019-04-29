@@ -457,7 +457,7 @@
     "history": {
         "bundleHashCopied": "Balíček hash zkopírován",
         "noTransactionsFound": "Nebyly nalezeny žádné transakce",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "Vaše historie transakcí je prázdná",
         "hideZeroBalance": "Skrýt nulový zůstatek",
         "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
         "addressCopied": "Adresa zkopírována",
@@ -471,10 +471,10 @@
         "yesterday": "Včera",
         "promotingAnotherBundle": "Podpora dalšího balíčku",
         "pleaseWait": "Prosím počkejte, Trinity podporuje další balíček.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
+        "typeHelp": "Zadejte příkaz !help a dozvíte se o dostupných příkazech",
+        "searchHelpText": "Vyhledávání podle hash balíčků nebo obsahu zprávy",
+        "searchHelpValue": "Vyhledání transakcí na základě přesné hodnoty IOTA",
+        "searchHelpUnits": "Vyhledání transakcí na základě hodnoty IOTA a jednotky",
         "searchHelpMore": "Find transactions with a value greater than X",
         "searchHelpLess": "Find transactions with a value less than X"
     },
