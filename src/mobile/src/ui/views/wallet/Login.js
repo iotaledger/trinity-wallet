@@ -51,6 +51,12 @@ class Login extends Component {
         completedMigration: PropTypes.bool.isRequired,
         /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
+        /** @ignore */
+        hasConnection: PropTypes.bool.isRequired,
+        /** Currently selected account name */
+        selectedAccountName: PropTypes.string.isRequired,
+        /** Currently selected account meta */
+        selectedAccountMeta: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -223,5 +229,10 @@ const mapDispatchToProps = {
 };
 
 export default WithDeepLinking()(
-    withNamespaces(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
+    withNamespaces(['login', 'global'])(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(Login),
+    ),
 );

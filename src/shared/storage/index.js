@@ -793,8 +793,6 @@ const migrateToNewStoragePath = (config) => {
     });
 
     oldRealm.write(() => oldRealm.deleteAll());
-
-    Realm.deleteFile(config);
 };
 
 /**
