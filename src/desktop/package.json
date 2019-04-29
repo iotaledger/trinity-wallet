@@ -165,7 +165,7 @@
     "react-lottie": "1.2.3",
     "react-markdown": "4.0.8",
     "react-qr-reader": "2.2.1",
-    "react-redux": "5.1.1",
+    "react-redux": "7.0.3",
     "react-router-dom": "5.0.0",
     "react-transition-group": "4.0.0",
     "realm": "2.23.0",
