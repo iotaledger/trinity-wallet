@@ -473,10 +473,10 @@
         "pleaseWait": "Prosím počkejte, Trinity podporuje další balíček.",
         "typeHelp": "Zadejte příkaz !help a dozvíte se o dostupných příkazech",
         "searchHelpText": "Vyhledávání podle hash balíčků nebo obsahu zprávy",
-        "searchHelpValue": "Vyhledání transakcí na základě přesné hodnoty IOTA",
-        "searchHelpUnits": "Vyhledání transakcí na základě hodnoty IOTA a jednotky",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpValue": "Vyhledat transakce na základě přesné IOTA hodnoty",
+        "searchHelpUnits": "Vyhledat transakce na základě IOTA hodnoty a jednotky",
+        "searchHelpMore": "Vyhledat transakce s hodnotou větší než X",
+        "searchHelpLess": "Vyhledat transakce s hodnotou menší než X"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
