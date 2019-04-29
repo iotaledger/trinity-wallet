@@ -55,7 +55,7 @@
         "yes": "Ano",
         "no": "Ne",
         "okay": "OK",
-        "skip": "Skip",
+        "skip": "Přeskočit",
         "password": "Heslo",
         "unrecognisedPassword": "Neznámé heslo",
         "unrecognisedPasswordExplanation": "Nesprávné heslo. Prosím zkuste to znovu.",
@@ -288,7 +288,7 @@
         "printerConfirmation": "Netisknu na veřejné tiskárně"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateQuestion": "Chcete vytisknout prázdnou šablonu?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
         "print": "Yes, print"
