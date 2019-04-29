@@ -104,7 +104,7 @@ class Welcome extends React.PureComponent {
                                 width={280}
                                 height={280}
                                 data={getAnimation('welcome', themeName)}
-                                segments={[20, 150]}
+                                segments={[161, 395]}
                                 loop
                             />
                         </React.Fragment>
@@ -117,7 +117,7 @@ class Welcome extends React.PureComponent {
                                     width={240}
                                     height={240}
                                     data={getAnimation('language', themeName)}
-                                    segments={[40, 210]}
+                                    segments={[52, 431]}
                                     loop
                                 />
                             </div>

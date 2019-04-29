@@ -20,7 +20,7 @@ export default {
         border: 'rgba(255, 255, 255, 0)',
         body: 'rgb(0, 50, 65)',
     },
-    body: { bg: 'rgb(3, 41, 62)', color: 'rgb(240, 242, 246)', alt: 'rgba(240, 240, 240, 0.25)' },
+    body: { bg: 'rgb(3, 41, 62)', color: 'rgb(240, 242, 246)', alt: 'rgb(61, 91, 107)' },
     wave: { primary: 'rgba(49, 94, 119, 0.3)', secondary: 'rgba(11, 27, 31, 0.6)' },
     isDark: true,
     animations: [
