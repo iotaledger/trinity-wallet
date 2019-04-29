@@ -290,8 +290,8 @@
     "printBlankTemplate": {
         "printTemplateQuestion": "Chcete vytisknout prázdnou šablonu?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateWarning": "Uchovávejte Seed na bezpečném místě a nikomu ho neukazujte.",
+        "print": "Ano, tisk"
     },
     "receive": {
         "yourAddress": "Vaše adresa",
@@ -394,7 +394,7 @@
         "changePassword": "Změnit heslo",
         "general": "Obecná nastavení",
         "advanced": "Pokročilé nastavení",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "Nastavení Nodu",
         "account": "Nastavení účtu",
         "logout": "Odhlásit",
         "reset": "Obnovit peněženku",
