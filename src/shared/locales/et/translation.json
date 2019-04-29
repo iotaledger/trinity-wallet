@@ -134,7 +134,7 @@
         "spentAddressExplanation": "Hoiatus: Vahendid on kasutatud aadressil",
         "discordInformation": "Samalt aadressilt saatmine rohkem kui üks kord on ohtlik. Palun suunduge #help kanalile Discordis, et teada saada, mida saakiste teha.",
         "androidInsecureClipboardWarning": "Android ei paku turvalist lõikepuhvrit.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "Ärge mitte kunagi kopeerige/kleepige seemet Android seadmes.",
         "willNotCopyPasteSeed": "Ma ei kopeeri/kleebi oma seemet",
         "mustBeStoredAppropriately": "Seda tuleb nõuetekohaselt varundada.",
         "deviceMayBecomeUnresponsive": "Teie seade võib mõnda aega mitte vastata.",
@@ -159,7 +159,7 @@
         "shouldUpdate": "Uuendus on saadaval",
         "shouldUpdateExplanation": "Uus uuendus on väljas. Soovitatavalt uuendage uusimale versioonile.",
         "forceUpdate": "Jätkamiseks uuendage rakendust",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "forceUpdateExplanation": "Kriitiline uuendus on väljas. Palun uuendage kohe rakendust.",
         "missingPermission": "Failisüsteemi luba on nõutud",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
         "swipeToConfirm": "Tõmba kinnitamiseks"
@@ -572,7 +572,7 @@
         "syncingYourAccount": "Sünkroniseerin teie kontot."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Sisestage konto nimi ja seeme",
         "incorrectFormat": "Vale seemne vorming",
         "validSeedExplanation": "Kehtivad seemned peaksid olema 81 tähemärki pikad ja sisaldama ainult A-Z või 9."
     },
