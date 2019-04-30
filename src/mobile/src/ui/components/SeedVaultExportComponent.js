@@ -21,7 +21,7 @@ import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import { removeNonAlphaNumeric, serialise } from 'shared-modules/libs/utils';
 import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/constants';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
-import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
+import { MAX_SEED_TRITS } from 'shared-modules/libs/iota/utils';
 import { moment } from 'shared-modules/libs/exports';
 import { UInt8ToString } from 'libs/crypto';
 import InfoBox from './InfoBox';
@@ -260,8 +260,7 @@ class SeedVaultExportComponent extends Component {
      */
     onExportPress() {
         const { t, selectedAccountName } = this.props;
-        const seedString = tritsToChars(this.state.seed);
-        if (!seedString.match(VALID_SEED_REGEX)) {
+        if (this.state.seed.length !== MAX_SEED_TRITS) {
             return this.props.generateAlert(
                 'error',
                 t('global:somethingWentWrong'),
@@ -274,7 +273,7 @@ class SeedVaultExportComponent extends Component {
                 // selectedAccountName would be undefined if seed is being exported during onboarding
                 // If it's undefined, use the fallback title
                 serialise({
-                    seed: seedString,
+                    seed: tritsToChars(this.state.seed),
                     title: removeNonAlphaNumeric(
                         isEmpty(global.onboardingSeed) ? selectedAccountName : '',
                         SEED_VAULT_DEFAULT_TITLE,
