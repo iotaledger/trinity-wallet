@@ -6,6 +6,7 @@ import { withI18n } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
+import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
 import { passwordReasons } from 'libs/password';
 
@@ -86,6 +87,14 @@ class SeedExport extends PureComponent {
                 'error',
                 t('changePassword:passwordsDoNotMatch'),
                 t('changePassword:passwordsDoNotMatchExplanation'),
+            );
+        }
+
+        if (seed.length !== MAX_SEED_LENGTH) {
+            return this.props.generateAlert(
+                'error',
+                t('global:somethingWentWrong'),
+                t('global:somethingWentWrongTryAgain'),
             );
         }
 
@@ -189,7 +198,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(
-    null,
-    mapDispatchToProps,
-)(withI18n()(SeedExport));
+export default connect(null, mapDispatchToProps)(withI18n()(SeedExport));
