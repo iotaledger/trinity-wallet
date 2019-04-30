@@ -275,7 +275,7 @@
     "onboardingComplete": {
         "allDone": "Alles erledigt!",
         "openYourWallet": "Dein Wallet öffnen",
-        "walletReady": "Dein Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen möchtest, verwende das Einstellungsmenü."
+        "walletReady": "Dein Wallet ist jetzt eingerichtet und bereit. Um Änderungen an deinem Wallet vorzunehmen, verwende das Einstellungsmenü."
     },
     "paperWallet": {
         "neverShare": "Teile niemals deinen Seed.",
@@ -795,7 +795,7 @@
     },
     "ledger": {
         "ready": "Ledger verbunden und bereit",
-        "notReady": "Wenn du einen Ledger verwenden möchtest verbinde und entsperre das Gerät jetzt",
+        "notReady": "Wenn du einen Ledger verwenden möchtest, verbinde und entsperre das Gerät jetzt.",
         "indexInUse": "Dieser Index wird bereits für das Konto {{account}} verwendet",
         "indexInUseExplanation": "Der gewählte Index ist bereits in Verwendung. Bitte wähle einen anderen Index.",
         "proceedWithLedger": "Mit der Einrichtung von Ledger fortfahren",
