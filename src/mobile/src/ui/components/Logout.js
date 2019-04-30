@@ -71,6 +71,8 @@ export default () => (C) => {
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
         setUserActivity: PropTypes.func.isRequired,
+        /**@ignore */
+        t: PropTypes.func.isRequired,
     };
 
     const mapDispatchToProps = {
@@ -83,5 +85,10 @@ export default () => (C) => {
         theme: getThemeFromState(state),
     });
 
-    return withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithLogout));
+    return withNamespaces(['global'])(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(WithLogout),
+    );
 };

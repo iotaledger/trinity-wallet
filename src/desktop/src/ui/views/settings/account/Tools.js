@@ -56,6 +56,12 @@ class Tools extends PureComponent {
         activeSteps: PropTypes.array.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        isTransitioning: PropTypes.bool.isRequired,
+        /** @ignore */
+        isAttachingToTangle: PropTypes.bool.isRequired,
+        /** @ignore */
+        balanceCheckFlag: PropTypes.bool.isRequired,
     };
 
     static renderProgressChildren(activeStepIndex, sizeOfActiveSteps, t) {
@@ -252,4 +258,7 @@ const mapDispatchToProps = {
     setBalanceCheckFlag,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Tools));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(Tools));
