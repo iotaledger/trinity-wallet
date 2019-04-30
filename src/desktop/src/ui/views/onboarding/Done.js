@@ -1,5 +1,6 @@
 /* global Electron */
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
@@ -37,7 +38,7 @@ class Done extends React.PureComponent {
         const { t, themeName } = this.props;
         return (
             <form>
-                <section className={css.done}>
+                <section className={classNames(css.done, css.long)}>
                     <h1>{t('onboardingComplete:allDone')}</h1>
                     <p>{t('onboardingComplete:walletReady')}</p>
                     <Lottie width={340} height={340} data={getAnimation('onboardingComplete', themeName)} />

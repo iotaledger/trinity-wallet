@@ -49,16 +49,25 @@ const rgbToVector = (color) => {
 };
 
 const defaultTones = [
-    'rgb(3,41,62)',
-    'rgb(147,168,172)',
-    'rgb(65,220,243)',
-    'rgb(15,62,87)',
-    'rgb(208,220,238)',
-    'rgb(4,52,81)',
-    'rgb(61,91,107)',
-    'rgb(192,205,225)',
-    'rgb(7,30,39)',
-].map((tone) => rgbToVector(tone));
+    //rgb(3,41,62)
+    [0.011764, 0.160784, 0.243137, 1],
+    //rgb(147,168,172)
+    [0.57647, 0.658823, 0.674509, 1],
+    //rgb(65,220,243)
+    [0.254901, 0.862745, 0.952941, 1],
+    //rgb(15,62,87)
+    [0.058823, 0.243137, 0.341176, 1],
+    //rgb(208,220,238)
+    [0.815686, 0.862745, 0.933333, 1],
+    //rgb(4,52,81)
+    [0.015686, 0.203921, 0.317647, 1],
+    //rgb(61,91,107)
+    [0.239215, 0.356862, 0.419607, 1],
+    //rgb(192,205,225)
+    [0.752941, 0.803921, 0.882352, 1],
+    //rgb(7,30,39)
+    [0.02745, 0.117647, 0.152941, 1],
+];
 
 /**
  * Replaces Lottie animation data colors to corresponding theme colors
@@ -70,7 +79,7 @@ const replaceColors = (data, theme) => {
     const tones = theme.animations;
 
     if (!tones) {
-        return result;
+        return data;
     }
 
     let result = JSON.stringify(data);

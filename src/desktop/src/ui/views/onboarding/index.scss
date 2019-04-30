@@ -55,6 +55,10 @@ $footer: 70px;
                     max-width: none;
                 }
 
+                &.long {
+                    padding-top: 100px;
+                }
+
                 > p {
                     margin-bottom: 50px;
                 }
