@@ -76,9 +76,9 @@ class Account {
 
         return map(accounts, (account) =>
             assign({}, account, {
-                addressData: map(account.addressData, (data) => assign({}, data)),
-                transactions: map(account.transactions, (transaction) => assign({}, transaction)),
-                meta: assign({}, account.meta),
+                addressData: map(account.addressData, (data) => parse(serialise(data))),
+                transactions: map(account.transactions, (transaction) => parse(serialise(transaction))),
+                meta: parse(serialise(account.meta)),
             }),
         );
     }
@@ -247,7 +247,7 @@ class Node {
      * @return {array}
      */
     static getDataAsArray() {
-        return map(Node.data, (node) => assign({}, node));
+        return map(Node.data, (node) => parse(serialise(node)));
     }
 
     /**
