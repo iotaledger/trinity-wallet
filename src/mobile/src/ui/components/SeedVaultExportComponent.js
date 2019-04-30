@@ -21,6 +21,7 @@ import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import { removeNonAlphaNumeric, serialise } from 'shared-modules/libs/utils';
 import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/constants';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
+import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import { moment } from 'shared-modules/libs/exports';
 import { UInt8ToString } from 'libs/crypto';
 import InfoBox from './InfoBox';
@@ -258,14 +259,22 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
-        const { selectedAccountName } = this.props;
+        const { t, selectedAccountName } = this.props;
+        const seedString = tritsToChars(this.state.seed);
+        if (!seedString.match(VALID_SEED_REGEX)) {
+            return this.props.generateAlert(
+                'error',
+                t('global:somethingWentWrong'),
+                t('global:somethingWentWrongTryAgain'),
+            );
+        }
         // FIXME: Password should be UInt8, not string
         return nodejs.channel.send(
             'export~' +
                 // selectedAccountName would be undefined if seed is being exported during onboarding
                 // If it's undefined, use the fallback title
                 serialise({
-                    seed: tritsToChars(this.state.seed),
+                    seed: seedString,
                     title: removeNonAlphaNumeric(
                         isEmpty(global.onboardingSeed) ? selectedAccountName : '',
                         SEED_VAULT_DEFAULT_TITLE,
