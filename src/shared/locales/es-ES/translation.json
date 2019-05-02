@@ -55,7 +55,7 @@
         "yes": "Sí",
         "no": "No",
         "okay": "De acuerdo",
-        "skip": "Skip",
+        "skip": "Omitir",
         "password": "Contraseña",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
@@ -288,10 +288,10 @@
         "printerConfirmation": "No estoy imprimiendo en una impresora publica"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "¿Quieres imprimir una plantilla en blanco?",
+        "printTemplateInfo": "Puede imprimir una plantilla en blanco para ayudarle a escribir su semilla.",
+        "printTemplateWarning": "Asegúrese de que almacena su semilla en un lugar seguro. No lo muestre a nadie.",
+        "print": "Sí, imprimir"
     },
     "receive": {
         "yourAddress": "Su dirección",
@@ -394,7 +394,7 @@
         "changePassword": "Cambiar contraseña",
         "general": "Configuración general",
         "advanced": "Opciones avanzadas",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "Ajustes del nodo",
         "account": "Configuración de cuenta",
         "logout": "Cerrar sesión",
         "reset": "Reiniciar cartera",
@@ -457,7 +457,7 @@
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
         "noTransactionsFound": "No se encontraron transacciones",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "Tu historial de transacciones está vacío",
         "hideZeroBalance": "Esconder balance nulo",
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
