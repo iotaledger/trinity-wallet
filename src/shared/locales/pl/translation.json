@@ -307,7 +307,7 @@
         "generateAnAddress": "Wygeneruj adres",
         "generateAnAddressTitle": "Wygeneruj adres",
         "generateAnAddressExplanation": "Należy wygenerować adres przed użyciem tej funkcji.",
-        "generateAddressInformation": "Wygeneruj nowy adres odbioru, za każdym razem, gdy chcesz otrzymać środki IOTA"
+        "generateAddressInformation": "Wygeneruj nowy adres odbioru za każdym razem, gdy chcesz otrzymać środki IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Zapisywanie klucza seed",
