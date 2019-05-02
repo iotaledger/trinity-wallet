@@ -44,7 +44,7 @@ export default () => (C) => {
                     parsedData.message || null,
                 );
             } else {
-                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'), { maxLength: ADDRESS_LENGTH });
+                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
             }
         }
 
