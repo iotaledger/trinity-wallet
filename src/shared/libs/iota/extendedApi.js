@@ -633,7 +633,7 @@ const isNodeHealthy = (provider) => {
         .then((trytes) => {
             const { timestamp } = iota.utils.transactionObject(head(trytes), cached.latestMilestone);
 
-            return isWithinMinutes(timestamp * 1000, 5);
+            return isWithinMinutes(timestamp * 1000, 5 * MAX_MILESTONE_FALLBEHIND);
         });
 };
 
