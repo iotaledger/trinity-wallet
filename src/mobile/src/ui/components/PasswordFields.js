@@ -74,7 +74,7 @@ class PasswordFields extends Component {
      */
     checkPassword() {
         const { t, password, reentry } = this.props;
-        const { score: { score, feedback: { warning } } } = this.state;
+        const { score: { score } } = this.state;
         if (isEmpty(password)) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         } else if (size(password) >= MIN_PASSWORD_LENGTH && isEqual(password, reentry) && score === 4) {
@@ -91,6 +91,7 @@ class PasswordFields extends Component {
                 }),
             );
         } else if (score < 4) {
+            const { feedback: { warning } } = this.state;
             const reason = warning
                 ? t(`changePassword:${passwordReasons[warning]}`)
                 : t('changePassword:passwordTooWeakReason');
