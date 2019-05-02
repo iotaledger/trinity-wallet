@@ -66,6 +66,8 @@ Lottie.propTypes = {
     height: PropTypes.number.isRequired,
     /** Should animation be looped */
     loop: PropTypes.bool,
+    /** Animation end callback */
+    onEnd: PropTypes.func,
     /** Is animation paused */
     paused: PropTypes.bool,
     /** Animation width */

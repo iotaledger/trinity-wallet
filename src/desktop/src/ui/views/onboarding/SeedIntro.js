@@ -1,6 +1,5 @@
 /* global Electron */
 import React from 'react';
-import classNames from 'classnames';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withI18n, Trans } from 'react-i18next';
