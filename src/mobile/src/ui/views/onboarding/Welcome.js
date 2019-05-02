@@ -123,7 +123,7 @@ class Welcome extends Component {
                     <AnimatedComponent animationInType={['fadeIn','slideInRight']} animationOutType={['fadeOut','slideOutLeft']} delay={0}>
                         <SingleFooterButton
                             onButtonPress={() => this.onNextPress()}
-                            testID="languageSetup-next"
+                            testID="welcome-next"
                             buttonText={t('continue')}
                         />
                     </AnimatedComponent>
