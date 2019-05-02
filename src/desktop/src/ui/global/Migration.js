@@ -114,6 +114,7 @@ class Migration extends React.Component {
             <Modal variant="global" isOpen isForced onClose={() => {}}>
                 <form>
                     <h1>{t('migration:dataMigration')}</h1>
+                    <p>{t('migration:seedVaultExplanation')}</p>
                     {activeSteps.length > 0 && (
                         <article>
                             <Progress
