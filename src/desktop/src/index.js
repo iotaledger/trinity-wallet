@@ -43,6 +43,11 @@ if (Electron.mode === 'tray') {
     initialiseStorage(getEncryptionKey)
         .then(async (key) => {
             const persistedData = Electron.getStorage('__STATE__');
+
+            if (!persistedData) {
+                return null;
+            }
+
             const data = await decrypt(persistedData, key);
 
             return JSON.parse(data);
