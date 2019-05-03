@@ -56,6 +56,12 @@ class Tools extends PureComponent {
         activeSteps: PropTypes.array.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        isTransitioning: PropTypes.bool.isRequired,
+        /** @ignore */
+        isAttachingToTangle: PropTypes.bool.isRequired,
+        /** @ignore */
+        balanceCheckFlag: PropTypes.bool.isRequired,
     };
 
     static renderProgressChildren(activeStepIndex, sizeOfActiveSteps, t) {
@@ -112,7 +118,7 @@ class Tools extends PureComponent {
 
         const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
-        this.props.transitionForSnapshot(seedStore, addresses);
+        this.props.transitionForSnapshot(seedStore, addresses, meta.type);
     };
 
     /**
@@ -252,4 +258,7 @@ const mapDispatchToProps = {
     setBalanceCheckFlag,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Tools));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(Tools));

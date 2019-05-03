@@ -42,8 +42,8 @@
         "continue": "Kontynuuj",
         "enable": "Włącz",
         "disable": "Wyłącz",
-        "enabled": "Włączone",
-        "disabled": "Wyłączone",
+        "enabled": "Włączono",
+        "disabled": "Wyłączono",
         "enterPassword": "Wprowadź hasło",
         "paperWallet": "Wydrukuj kopię papierową",
         "addToPasswordManager": "Dodaj do menedżera haseł",
@@ -391,10 +391,10 @@
         "language": "Język",
         "accountManagement": "Zarządzanie kontem",
         "addNewSeed": "Dodaj nowy seed",
-        "twoFA": "Autoryzacja dwustopniowa",
         "changePassword": "Zmień hasło",
         "general": "Ustawienia ogólne",
         "advanced": "Ustawienia zaawansowane",
+        "nodeSettings": "Ustawienia serwera",
         "account": "Ustawienia konta",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
@@ -456,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
-        "noTransactionsFound": "Historia transakcji jest pusta",
+        "noTransactionsFound": "Nie znaleziono transakcji",
+        "emptyHistory": "Historia transakcji jest pusta",
         "hideZeroBalance": "Ukryj zerowe",
         "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
@@ -469,7 +470,13 @@
         "retrying": "Ponawianie",
         "yesterday": "Wczoraj",
         "promotingAnotherBundle": "Promowanie innego pakietu",
-        "pleaseWait": "Proszę czekać, Trinity promuje obecnie inny pakiet."
+        "pleaseWait": "Proszę czekać, Trinity promuje obecnie inny pakiet.",
+        "typeHelp": "Wpisz !help w celu poznania dostępnych komend",
+        "searchHelpText": "Szukaj według hashu pakietu lub treści wiadomości",
+        "searchHelpValue": "Znajdź transakcje według dokładnej wartości iota",
+        "searchHelpUnits": "Znajdź transakcje według wartości i jednostek iota",
+        "searchHelpMore": "Znajdź transakcje o wartości większej niż X",
+        "searchHelpLess": "Znajdź transakcje o wartości mniejszej niż X"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -502,7 +509,8 @@
         "autoPromotion": "Autopromowanie",
         "autoPromotionExplanation": "Autopromowanie pomaga w potwierdzaniu Twoich transakcji w sieci Tangle. Włącz tę funkcję, jeśli Twoje transakcje nie są potwierdzane w odpowiednim czasie.",
         "autoPromotionPoW": "Autopromowanie możliwe jest jedynie na serwerach, które obsługują zdalny tryb Proof of Work.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "Eksport stanu portfela"
     },
     "advancedThemeCustomisation": {
         "background": "Tło",
@@ -536,13 +544,13 @@
         "scan": "Zeskanuj swój kod QR"
     },
     "unitInfoModal": {
-        "unitSystem": "Jednostka miary",
+        "unitSystem": "Jednostki miary",
         "trillion": "Bilion",
         "billion": "Miliard",
         "million": "Milion",
         "thousand": "Tysiąc",
         "one": "Jeden",
-        "unitInfoExplanation": "Tokeny IOTA są zazwyczaj nabywane w wielokrotnościach jednego miliona, ale mogą być też transferowane, jako pojedyncze IOTA."
+        "unitInfoExplanation": "Tokeny IOTA są zazwyczaj nabywane w jednostce Mi (czyli 1 000 000 IOTA), ale można używać ich w mniejszych jednostkach bądź jako pojedyncze IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Dlaczego nie mogę zużyć całego stanu mojego konta?",
@@ -573,6 +581,7 @@
         "viewSeed": "Pokaż seed",
         "hideSeed": "Ukryj seed",
         "notAvailable": "Eksport klucza seed nie jest dostępny dla tego rodzaju konta: {{accountType}}",
+        "notAvailableExplanationLedger": "Twój portfel Ledger używa sprzętowego zabezpieczenia do przechowywania Twojego klucza seed. Seed jest bezpiecznie zaszyfrowany i nigdy nie opuszcza Twojego urządzenia Ledger.",
         "accountIndex": "Indeks Twojego konta Ledger",
         "accountPage": "Strona Twojego konta Ledger"
     },
@@ -620,23 +629,6 @@
         "sendingAMessage": "Wysyłanie wiadomości",
         "sendingAnEmptyMessage": "Wysyłanie pustej wiadomości"
     },
-    "twoFA": {
-        "wrongCode": "Błędny kod",
-        "wrongCodeExplanation": "Podany kod jest nieprawidłowy. Jeśli ten błąd będzie się powtarzał, sprawdź, czy masz prawidłowo ustawioną godzinę w swoim urządzeniu.",
-        "emptyCode": "Kod pusty",
-        "emptyCodeExplanation": "Wprowadź kod i spróbuj ponownie.",
-        "keyCopied": "Klucz skopiowany do schowka",
-        "keyCopiedExplanation": "Twój klucz autoryzacji dwustopniowej został skopiowany do schowka.",
-        "addKey": "Dodaj ten klucz do aplikacji autoryzacji dwustopniowej",
-        "key": "Klucz",
-        "twoFAEnabled": "Włączono 2FA",
-        "twoFAEnabledExplanation": "Pomyślnie włączono funkcję autoryzacji dwustopniowej.",
-        "twoFADisabled": "Wyłączono 2FA",
-        "twoFADisabledExplanation": "Pomyślnie wyłączono funkcję autoryzacji dwustopniowej.",
-        "enterCode": "Wpisz kod z aplikacji autoryzacji dwustopniowej",
-        "code": "Kod 2FA",
-        "twoFaToken": "Kod 2FA"
-    },
     "seedVault": {
         "exportSeedVault": "Eksportuj SeedVault",
         "seedVaultExplanation": "SeedVault to zaszyfrowany plik, w którym bezpiecznie możesz przechowywać swój seed. Seed zostaje zaszyfrowany osobnym kluczem SeedVault i nie jest dostępny bez jego podania.",
@@ -660,11 +652,19 @@
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
+        "invalidSeedFileError": "Nieprawidłowy plik SeedVault",
+        "invalidSeedFileErrorExplanation": "Ten format pliku nie jest obsługiwany. Obsługiwane są jedynie pliki SeedVault (.kdbx), utworzone przez Trinity lub menedżer haseł.",
         "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Ustal osobny klucz do zaszyfrowania tego pliku. Będziesz używać tego klucza, aby przywrócić swój seed z tej kopii zapasowej SeedVault.",
-        "retypeKey": "Wpisz klucz ponownie"
+        "retypeKey": "Wpisz klucz ponownie",
+        "key": "Klucz"
+    },
+    "stateExport": {
+        "stateExportExplanation": "Funkcja eksportu stanu portfela zapisze plik .txt na Twoim urządzeniu. Plik ten będzie zawierał informacje o Twoim koncie (transakcje, adresy) oraz wersję portfela i nazwy plików pamięci.",
+        "exportSuccess": "Stan portfela wyeksportowany",
+        "exportSuccessExplanation": "Plik ze stanem Twojego portfela został wyeksportowany pomyślnie."
     },
     "chart": {
-        "mcap": "Market",
+        "mcap": "Kapitalizacja",
         "change": "Zmiana (24h)",
         "volume": "Wolumen (24h)",
         "error": "Błąd pobierania danych do wykresu"
@@ -722,11 +722,13 @@
     "deepLink": {
         "autofill": "Autouzupełniono",
         "autofillExplanation": "Dane transakcji zostały automatycznie uzupełnione z linku.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "Deep linki to klikalne linki (iota://...), które służą do automatycznego wypełniania szczegółów Twoich transakcji w Trinity.",
+        "deepLinkingWarning": "Uważaj na oszustwa typu phishing. Upewnij się, że otwarty link prowadzi do oficjalnej aplikacji Trinity.",
+        "deepLinkingUpdated": "Zmieniono ustawienia deep linków",
+        "deepLinkingEnabled": "Funkcja deep linków została włączona.",
+        "deepLinkingDisabled": "Funkcja deep linków została wyłączona.",
+        "deepLinkingInfoTitle": "Funkcja deep linków nie jest włączona",
+        "deepLinkingInfoMessage": "Otworzyłeś deep link iota://, jednak obsługa tej funkcji nie jest aktywna."
     },
     "updates": {
         "errorRetrievingUpdateData": "Błąd podczas pobierania danych aktualizacji",
@@ -823,6 +825,8 @@
         "checkAddress": "Sprawdź adres odbioru",
         "checkAddressExplanation": "Sprawdź, czy adres jest zgodny z adresem wyświetlanym w Twoim urządzeniu Ledger.",
         "applicationNotInitialised": "Ostrzeżenie niezaakceptowane",
-        "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie."
+        "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie.",
+        "udevError": "Brak możliwości połączenia z urządzeniem Ledger",
+        "udevErrorExplanation": "Trinity nie może połączyć się z Twoim urządzeniem Ledger. Odwiedź poniższy adres, aby rozwiązać ten problem."
     }
 }

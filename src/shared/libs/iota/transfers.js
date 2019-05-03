@@ -442,20 +442,36 @@ export const syncTransactions = (provider) => (diff, existingTransactions) => {
                 return findTransactionObjectsAsync(provider)({ bundles: Array.from(bundleHashes) });
             })
             .then((transactionObjects) => {
-                return flatMap(
-                    filterInvalidBundles(
-                        constructBundlesFromTransactions(
-                            map(transactionObjects, (transaction) => ({
-                                ...transaction,
-                                // Assign broadcasted as true as all these transactions were pulled in from the ledger
-                                broadcasted: true,
-                                // Temporarily assign persistence false
-                                // In the next step, communicate with the ledger to get correct inclusion state (persistence) and assign those
-                                persistence: false,
-                            })),
-                        ),
-                    ),
+                const existingTransactionHashes = map(existingTransactions, (transaction) => transaction.hash);
+
+                // In the previous step, we pulled all transactions against the bundle hash
+                // Querying by bundle hash retrieves all transactions including reattachments
+                // It is possible that we have already retrieved and validated some of these reattachments
+                // Therefore, there is no need to reconstruct bundles for the transactions that are already stored locally
+                // Bundle validation is expensive and could lead to performance issues
+                const newTransactions = filter(
+                    transactionObjects,
+                    (transaction) => !includes(existingTransactionHashes, transaction.hash),
                 );
+
+                // Construct bundles only for newer (not yet seen/stored) transactions
+                const bundles = constructBundlesFromTransactions(
+                    map(newTransactions, (transaction) => ({
+                        ...transaction,
+                        // Assign broadcasted as true as all these transactions were pulled in from the ledger
+                        broadcasted: true,
+                        // Temporarily assign persistence false
+                        // In the next step, communicate with the ledger to get correct inclusion state (persistence) and assign those
+                        persistence: false,
+                    })),
+                );
+
+                const transactions = flatMap(
+                    // Get rid of invalid bundles
+                    filterInvalidBundles(bundles),
+                );
+
+                return transactions;
             });
     };
 
@@ -1040,9 +1056,7 @@ export const isBundleTraversable = (bundle, trunkTransaction, branchTransaction)
         (transaction, index, transactions) =>
             index
                 ? transaction.trunkTransaction === transactions[index - 1].hash &&
-                  // In IRI, tx at lastIndex has branch and trunk swapped, while Entangled pow-bundle does not. See https://github.com/iotaledger/entangled/issues/1008#issuecomment-476608211
-                  (transaction.branchTransaction === trunkTransaction ||
-                      transaction.branchTransaction === branchTransaction)
+                  transaction.branchTransaction === trunkTransaction
                 : transaction.trunkTransaction === trunkTransaction &&
                   transaction.branchTransaction === branchTransaction,
     );

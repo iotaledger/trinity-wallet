@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
 
-import { formatIotas } from 'libs/iota/utils';
+import { formatIotas, unitStringToValue } from 'libs/iota/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate, detectedTimezone } from 'libs/date';
 import SeedStore from 'libs/SeedStore';
 
@@ -174,7 +174,9 @@ export class ListComponent extends React.PureComponent {
                 search.length &&
                 transaction.message.toLowerCase().indexOf(search.toLowerCase()) < 0 &&
                 transaction.bundle.toLowerCase().indexOf(search.toLowerCase()) !== 0 &&
-                (!/^\+?\d+$/.test(search) || transaction.transferValue < parseInt(search))
+                !(search[0] === '>' && unitStringToValue(search.substr(1)) < transaction.transferValue) &&
+                !(search[0] === '<' && unitStringToValue(search.substr(1)) > transaction.transferValue) &&
+                transaction.transferValue !== unitStringToValue(search)
             ) {
                 return false;
             }
@@ -243,9 +245,31 @@ export class ListComponent extends React.PureComponent {
                         <input
                             className={search.length > 0 ? css.filled : null}
                             value={search}
+                            placeholder={t('history:typeHelp')}
                             onChange={(e) => this.setState({ search: e.target.value })}
                         />
-                        <Icon icon="search" size={20} />
+                        <div onClick={() => this.setState({ search: '' })}>
+                            <Icon icon={search.length > 0 ? 'cross' : 'search'} size={search.length > 0 ? 16 : 20} />
+                            {search === '!help' && (
+                                <ul className={css.tooltip}>
+                                    <li>
+                                        <strong>XYZ</strong> {t('history:searchHelpText')}
+                                    </li>
+                                    <li>
+                                        <strong>100</strong> {t('history:searchHelpValue')}
+                                    </li>
+                                    <li>
+                                        <strong>100Mi</strong> {t('history:searchHelpUnits')}
+                                    </li>
+                                    <li>
+                                        <strong>&gt;100 </strong> {t('history:searchHelpMore')}
+                                    </li>
+                                    <li>
+                                        <strong>&lt;100i</strong> {t('history:searchHelpLess')}
+                                    </li>
+                                </ul>
+                            )}
+                        </div>
                     </div>
                     <a
                         onClick={() => updateAccount()}

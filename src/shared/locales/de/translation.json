@@ -102,7 +102,7 @@
         "promotionErrorExplanation": "Beim Senden der Transaktion ist ein Fehler aufgetreten. Bitte versuche es erneut.",
         "noLongerValid": "Das Bundle, das du promoten möchtest, ist nicht mehr gültig",
         "transactionAlreadyConfirmed": "Transaktion bereits bestätigt",
-        "transactionAlreadyConfirmedExplanation": "Die Transaktion, die Du versuchst zu promoten ist bereits bestätigt.",
+        "transactionAlreadyConfirmedExplanation": "Die Transaktion, die du versuchst zu promoten, ist bereits bestätigt.",
         "cannotSendToOwn": "Senden an Empfangsadresse",
         "cannotSendToOwnExplanation": "Du kannst nicht an diese Adresse senden, da sie als ausgehende Adresse verwendet wird.",
         "pleaseWait": "Bitte warten",
@@ -177,7 +177,7 @@
         "noNickname": "Kein Kontoname eingegeben",
         "noNicknameExplanation": "Bitte gib einen Kontonamen für deinen Seed ein.",
         "seedInUse": "Dieser Seed wird bereits verwendet",
-        "seedInUseExplanation": "Dieser Seed ist bereits mit deinem Wallet verknüpft. Bitte verwende einen anderen."
+        "seedInUseExplanation": "Dieser Seed ist bereits mit deinem Wallet verknüpft. Bitte verwende einen anderen Seed."
     },
     "changePassword": {
         "passwordUpdated": "Passwort aktualisiert",
@@ -263,11 +263,11 @@
         "generatedSeed": "Seed generiert",
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
         "seedNotGeneratedExplanation": "Bitte erstelle einen neuen Seed.",
-        "pressForNewSeed": "Drücke für neuen Seed",
+        "pressForNewSeed": "Tippe für neuen Seed",
         "generateSuccess": "Seed erfolgreich generiert",
         "individualLetters": "Tippe einzelne Buchstaben an, um sie neu zu generieren.",
-        "individualLetterCount": "Drücke <1><0>{{count}}</0></1> weiteren Buchstaben für eine zufällige Auswahl.",
-        "individualLetterCount_plural": "Drücke <1><0>{{count}}</0></1> oder mehr Buchstaben für eine zufällige Auswahl.",
+        "individualLetterCount": "Tippe <1><0>{{count}}</0></1> weiteren Buchstaben für eine zufällige Auswahl.",
+        "individualLetterCount_plural": "Tippe <1><0>{{count}}</0></1> oder mehr Buchstaben für eine zufällige Auswahl.",
         "randomiseCharsToContinue": "Wähle <1>{{count}}</1> zufälliges Zeichen um fortzufahren.",
         "randomiseCharsToContinue_plural": "Wähle <1>{{count}}</1> zufällige Zeichen um fortzufahren.",
         "whatIsASeed": "Was ist ein Seed?"
@@ -275,7 +275,7 @@
     "onboardingComplete": {
         "allDone": "Alles erledigt!",
         "openYourWallet": "Dein Wallet öffnen",
-        "walletReady": "Dein Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen möchtest, verwende das Einstellungsmenü."
+        "walletReady": "Dein Wallet ist jetzt eingerichtet und bereit. Um Änderungen an deinem Wallet vorzunehmen, verwende das Einstellungsmenü."
     },
     "paperWallet": {
         "neverShare": "Teile niemals deinen Seed.",
@@ -325,7 +325,7 @@
         "everySeedHasAChecksum": "Jeder Seed hat eine dreistellige Prüfsumme.",
         "iHavesavedMySeed": "Ich habe meinen Seed gesichert",
         "checksumExplanation": "Immer wenn du einen Seed eingibst, solltest du sicherstellen, dass die angezeigte Prüfsumme mit deiner aufgeschriebenen Prüfsumme übereinstimmt.",
-        "mustSaveYourSeed": "<0><0>Du musst deinen Seed mit </0><1>mindestens einer</1><2> der unten aufgelisteten Optionen sichern.</2></0>"
+        "mustSaveYourSeed": "<0><0>Du musst deinen Seed mit </0><1>mindestens einer</1><2> der folgenden Optionen sichern.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Bitte bestätige deinen Seed",
@@ -391,10 +391,10 @@
         "language": "Sprache",
         "accountManagement": "Konto-Verwaltung",
         "addNewSeed": "Neuen Seed hinzufügen",
-        "twoFA": "2-Faktor-Authentifizierung",
         "changePassword": "Passwort ändern",
         "general": "Einstellungen",
         "advanced": "Erweiterte Einstellungen",
+        "nodeSettings": "Node-Einstellungen",
         "account": "Kontoeinstellungen",
         "logout": "Abmelden",
         "reset": "Wallet zurücksetzen",
@@ -456,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
-        "noTransactionsFound": "Dein Transaktionsverlauf ist leer",
+        "noTransactionsFound": "Keine Transaktionen gefunden",
+        "emptyHistory": "Dein Transaktionsverlauf ist leer",
         "hideZeroBalance": "Nullsaldo ausblenden",
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
@@ -469,7 +470,13 @@
         "retrying": "Erneuter Versuch",
         "yesterday": "Gestern",
         "promotingAnotherBundle": "Promote anderes Bundle",
-        "pleaseWait": "Bitte warten. Trinity promotet ein anderes Bundle."
+        "pleaseWait": "Bitte warten. Trinity promotet ein anderes Bundle.",
+        "typeHelp": "Gib !help ein, um eine Liste mit Befehlen angezeigt zu bekommen",
+        "searchHelpText": "Suche anhand von Bundle-Hash oder Nachricht",
+        "searchHelpValue": "Finde Transaktionen anhand vom exakten Iota-Wert",
+        "searchHelpUnits": "Finde Transaktionen anhand von Iota-Wert und Einheit",
+        "searchHelpMore": "Finde Transaktionen mit einem Wert größer als X",
+        "searchHelpLess": "Finde Transaktionen mit einem Wert kleiner als X"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
@@ -502,7 +509,8 @@
         "autoPromotion": "Auto-Promotion",
         "autoPromotionExplanation": "Auto-Promotion hilft dir Transaktionen auf dem Tangle zu bestätigen. Aktiviere diese Einstellung, wenn du Schwierigkeiten hast deine Transaktionen zu bestätigen.",
         "autoPromotionPoW": "Auto-Promotion ist nur auf Nodes mit aktiviertem \"Remote Proof of Work\" möglich.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep-Linking",
+        "stateExport": "Status exportieren"
     },
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
@@ -546,7 +554,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Warum kann ich nicht mein gesamtes Guthaben ausgeben?",
-        "spentAddressExplanation": "Du hast Guthaben auf einer oder mehreren bereits verwendeten Adressen. Adress-Wiederverwendung ist bei IOTA gefährlich. Daher lässt es die Wallet nicht zu, mehr als einmal von der gleichen Adresse zu senden.",
+        "spentAddressExplanation": "Du hast Guthaben auf einer oder mehreren bereits verwendeten Adressen. Die Wiederverwendung von Adressen ist bei IOTA gefährlich. Daher lässt es die Wallet nicht zu, mehr als einmal von der gleichen Adresse zu senden.",
         "discordInformation": "Bitte besuche den #help Kanal auf Discord um herauszufinden, was du tun kannst."
     },
     "deleteAccount": {
@@ -573,6 +581,7 @@
         "viewSeed": "Seed anzeigen",
         "hideSeed": "Seed ausblenden",
         "notAvailable": "Dein Seed kann bei einem {{accountType}}-Konto nicht angezeigt werden",
+        "notAvailableExplanationLedger": "Dein Ledger verwendet einen besonderen Sicherheitsmechanismus, wodurch dein Seed verschlüsselt gespeichert wird und niemals dein Gerät verlässt.",
         "accountIndex": "Dein Ledger Account Index",
         "accountPage": "Deine Ledger Account Seite"
     },
@@ -620,23 +629,6 @@
         "sendingAMessage": "Sende die Nachricht",
         "sendingAnEmptyMessage": "Sende eine leere Nachricht"
     },
-    "twoFA": {
-        "wrongCode": "Falscher Code",
-        "wrongCodeExplanation": "Der eingegebene Code ist nicht korrekt. Stelle sicher, dass die Uhrzeit auf deinem Gerät stimmt, falls der Fehler erneut auftritt.",
-        "emptyCode": "Fehlender 2FA-Code",
-        "emptyCodeExplanation": "Bitte gib einen Code ein und versuche es erneut.",
-        "keyCopied": "Schlüssel in die Zwischenablage kopiert",
-        "keyCopiedExplanation": "Dein 2FA Schlüssel wurde in die Zwischenablage kopiert.",
-        "addKey": "Füge diesen Schlüssel in deine 2FA App ein",
-        "key": "Schlüssel",
-        "twoFAEnabled": "2FA ist jetzt aktiviert",
-        "twoFAEnabledExplanation": "Du hast die Zwei-Faktor-Authentifizierung erfolgreich aktiviert.",
-        "twoFADisabled": "2FA ist jetzt deaktiviert",
-        "twoFADisabledExplanation": "Du hast die Zwei-Faktor-Authentifizierung erfolgreich deaktiviert.",
-        "enterCode": "Gib den Code aus deiner 2FA App ein",
-        "code": "Code",
-        "twoFaToken": "2FA Token"
-    },
     "seedVault": {
         "exportSeedVault": "SeedVault exportieren",
         "seedVaultExplanation": "Ein SeedVault ist eine Möglichkeit deinen Seed sicher zu speichern. Dein Seed wird verschlüsselt in einer Datei gespeichert und kann ohne den dazugehörigen Schlüssel nicht eingesehen werden.",
@@ -660,8 +652,16 @@
         "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",
         "seedFileError": "Fehler beim Öffnen",
         "seedFileErrorExplanation": "Beim Öffnen deines SeedVault ist ein Fehler aufgetreten. Stelle sicher dass du die korrekte Datei auswählt hast und die Datei nicht beschädigt ist.",
-        "seedVaultKeyExplanation": "Zuerst müssen den SeedVault absichern. Bitte wähle einen Schlüssel, um die Datei zu verschlüsseln. Du wirst diesen Schlüssel verwenden, wenn du deinen Seed aus dem SeedVault Backup wiederherstellen musst.",
-        "retypeKey": "Schlüssel erneut eingeben"
+        "invalidSeedFileError": "Ungültige SeedVault-Datei",
+        "invalidSeedFileErrorExplanation": "Dieses Dateiformat wird nicht unterstützt. Nur SeedVault-Dateien (.kdbx), die durch Trinity oder einen entsprechenden Passwortmanager erstellt wurden, werden unterstützt.",
+        "seedVaultKeyExplanation": "Zuerst musst du deinen SeedVault absichern. Bitte wähle einen Schlüssel, um die Datei zu verschlüsseln. Du musst diesen Schlüssel verwenden, wenn du deinen Seed aus dem SeedVault Backup wiederherstellen möchtest.",
+        "retypeKey": "Schlüssel erneut eingeben",
+        "key": "Schlüssel"
+    },
+    "stateExport": {
+        "stateExportExplanation": "Der Status-Export wird eine Textdatei mit Informationen zu deinem Konto (Tansaktionen, Adressen), Trinityversion, sowie für Trinity relevante Dateinamen auf deinem Gerät speichern.",
+        "exportSuccess": "Status exportiert",
+        "exportSuccessExplanation": "Der Status-Export wurde erfolgreich generiert."
     },
     "chart": {
         "mcap": "Börsenwert",
@@ -722,11 +722,13 @@
     "deepLink": {
         "autofill": "Automatisches ausfüllen erfolgreich",
         "autofillExplanation": "Transaktionsdaten automatisch durch den Link ausgefüllt.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "Deep-Links sind anklickbare Links (iota://...) die automatisch Transaktionen in Trinity ausfüllen.",
+        "deepLinkingWarning": "Achte auf Betrugsversuche. Stelle sicher, dass der Link, den du öffnen möchtest, das offzielle Trinity Wallet verwendet.",
+        "deepLinkingUpdated": "Deep-Link Einstellungen",
+        "deepLinkingEnabled": "Du hast Deep-Linking aktiviert.",
+        "deepLinkingDisabled": "Du hast Deep-Linking deaktiviert.",
+        "deepLinkingInfoTitle": "Deep-Links sind deaktiviert",
+        "deepLinkingInfoMessage": "Du hast einen iota:// Deep-Link geöffnet, aber Deep-Links nicht aktiviert."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",
@@ -793,7 +795,7 @@
     },
     "ledger": {
         "ready": "Ledger verbunden und bereit",
-        "notReady": "Wenn du einen Ledger verwenden möchtest verbinde und entsperre das Gerät jetzt",
+        "notReady": "Wenn du einen Ledger verwenden möchtest, verbinde und entsperre das Gerät jetzt.",
         "indexInUse": "Dieser Index wird bereits für das Konto {{account}} verwendet",
         "indexInUseExplanation": "Der gewählte Index ist bereits in Verwendung. Bitte wähle einen anderen Index.",
         "proceedWithLedger": "Mit der Einrichtung von Ledger fortfahren",
@@ -823,6 +825,8 @@
         "checkAddress": "Prüfe die Empfangsadresse",
         "checkAddressExplanation": "Stelle sicher dass die hier angezeigte Adresse mit der Anzeige auf deinem Ledger übereinstimmt.",
         "applicationNotInitialised": "Unbestätigte Warnung",
-        "applicationNotInitialisedExplanation": "Öffne die IOTA-App auf deinem Ledger, akzeptiere die Hinweise und versuche es erneut."
+        "applicationNotInitialisedExplanation": "Öffne die IOTA-App auf deinem Ledger, akzeptiere die Hinweise und versuche es erneut.",
+        "udevError": "Kommunikation mit Ledger fehlgeschlagen",
+        "udevErrorExplanation": "Trinity konnte nicht mit deinem Ledger kommunizieren. Bitte besuche folgende Website um das Problem zu beheben."
     }
 }

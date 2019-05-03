@@ -3,14 +3,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
-import authenticator from 'authenticator';
 
 import { hash, authorize } from 'libs/crypto';
 
 import { generateAlert } from 'actions/alerts';
-import { TWOFA_TOKEN_LENGTH } from 'libs/utils';
 
-import Text from 'ui/components/input/Text';
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
 import Modal from 'ui/components/modal/Modal';
@@ -29,8 +26,6 @@ class ModalPassword extends PureComponent {
         isOpen: PropTypes.bool,
         /** Should the dialog be without a cancel option */
         isForced: PropTypes.bool,
-        /** Should 2fa authorisation be skipped */
-        skip2fa: PropTypes.bool,
         /** Modal inline style state */
         inline: PropTypes.bool,
         /** On dialog close event */
@@ -55,12 +50,16 @@ class ModalPassword extends PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        /** Determines whether user is entering SeedVault key */
+        isSeedVaultField: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        isSeedVaultField: false,
     };
 
     state = {
         password: '',
-        code: '',
-        verifyTwoFA: false,
     };
 
     componentWillReceiveProps(nextProps) {
@@ -75,17 +74,9 @@ class ModalPassword extends PureComponent {
         setTimeout(() => Electron.garbageCollect(), 1000);
     }
 
-    /**
-     * Update 2fa code value and trigger authentication once necessary length is reached
-     * @param {string} value - Code value
-     */
-    setCode = (value) => {
-        this.setState({ code: value }, () => value.length === TWOFA_TOKEN_LENGTH && this.handleSubmit());
-    };
-
     handleSubmit = async (e) => {
-        const { password, code, verifyTwoFA } = this.state;
-        const { skip2fa, onSuccess, onSubmit, generateAlert, t } = this.props;
+        const { password } = this.state;
+        const { onSuccess, onSubmit, generateAlert, t } = this.props;
 
         if (e) {
             e.preventDefault();
@@ -95,25 +86,10 @@ class ModalPassword extends PureComponent {
             return onSubmit(password);
         }
 
-        let authorised = false;
-
         const passwordHash = await hash(password);
 
         try {
-            authorised = await authorize(passwordHash);
-
-            if (!skip2fa && typeof authorised === 'string' && !authenticator.verifyToken(authorised, code)) {
-                if (verifyTwoFA) {
-                    generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
-                }
-
-                this.setState({
-                    verifyTwoFA: true,
-                    code: '',
-                });
-
-                return;
-            }
+            await authorize(passwordHash);
         } catch (err) {
             generateAlert(
                 'error',
@@ -127,7 +103,7 @@ class ModalPassword extends PureComponent {
     };
 
     passwordContent = () => {
-        const { content, category, isOpen, isForced, onClose, t } = this.props;
+        const { content, category, isOpen, isForced, onClose, t, isSeedVaultField } = this.props;
         const { password } = this.state;
         return (
             <React.Fragment>
@@ -137,7 +113,7 @@ class ModalPassword extends PureComponent {
                     <Password
                         value={password}
                         focus={isOpen}
-                        label={t('password')}
+                        label={isSeedVaultField ? t('seedVault:key') : t('password')}
                         onChange={(value) => this.setState({ password: value })}
                     />
                     <footer>
@@ -155,36 +131,12 @@ class ModalPassword extends PureComponent {
         );
     };
 
-    twoFaContent = () => {
-        const { isForced, onClose, t } = this.props;
-        const { code } = this.state;
-        return (
-            <React.Fragment>
-                <p>{t('twoFA:enterCode')}</p>
-                <form onSubmit={(e) => this.handleSubmit(e)}>
-                    <Text value={code} focus label={t('twoFA:code')} onChange={this.setCode} />
-                    <footer>
-                        {!isForced && (
-                            <Button onClick={() => onClose()} variant="dark">
-                                {t('cancel')}
-                            </Button>
-                        )}
-                        <Button type="submit" variant="primary">
-                            {t('login:login')}
-                        </Button>
-                    </footer>
-                </form>
-            </React.Fragment>
-        );
-    };
-
     render() {
         const { isOpen, isForced, inline, onClose } = this.props;
-        const { verifyTwoFA } = this.state;
 
         return (
             <Modal variant="confirm" isOpen={isOpen} inline={inline} isForced={isForced} onClose={() => onClose()}>
-                {verifyTwoFA ? this.twoFaContent() : this.passwordContent()}
+                {this.passwordContent()}
             </Modal>
         );
     }

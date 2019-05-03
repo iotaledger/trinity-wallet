@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import values from 'lodash/values';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
@@ -20,6 +21,7 @@ import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import { removeNonAlphaNumeric, serialise } from 'shared-modules/libs/utils';
 import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/constants';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
+import { MAX_SEED_TRITS } from 'shared-modules/libs/iota/utils';
 import { moment } from 'shared-modules/libs/exports';
 import { UInt8ToString } from 'libs/crypto';
 import InfoBox from './InfoBox';
@@ -168,8 +170,12 @@ class SeedVaultExportComponent extends Component {
             await getAndroidFileSystemPermissions();
         }
         const { t, selectedAccountName } = this.props;
-
-        const path = SeedVaultExportComponent.getPath(removeNonAlphaNumeric(selectedAccountName, 'SeedVault').trim());
+        const path = SeedVaultExportComponent.getPath(
+            removeNonAlphaNumeric(
+                isEmpty(global.onboardingSeed) ? selectedAccountName : '',
+                SEED_VAULT_DEFAULT_TITLE,
+            ).trim(),
+        );
 
         this.setState({ path });
 
@@ -253,7 +259,14 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
-        const { selectedAccountName } = this.props;
+        const { t, selectedAccountName } = this.props;
+        if (this.state.seed.length !== MAX_SEED_TRITS) {
+            return this.props.generateAlert(
+                'error',
+                t('global:somethingWentWrong'),
+                t('global:somethingWentWrongTryAgain'),
+            );
+        }
         // FIXME: Password should be UInt8, not string
         return nodejs.channel.send(
             'export~' +
@@ -261,7 +274,10 @@ class SeedVaultExportComponent extends Component {
                 // If it's undefined, use the fallback title
                 serialise({
                     seed: tritsToChars(this.state.seed),
-                    title: removeNonAlphaNumeric(selectedAccountName, SEED_VAULT_DEFAULT_TITLE),
+                    title: removeNonAlphaNumeric(
+                        isEmpty(global.onboardingSeed) ? selectedAccountName : '',
+                        SEED_VAULT_DEFAULT_TITLE,
+                    ),
                 }) +
                 '~' +
                 UInt8ToString(this.state.password),
@@ -384,7 +400,7 @@ class SeedVaultExportComponent extends Component {
                             this.passwordFields = ref;
                         }}
                         onAcceptPassword={() => this.navigateToStep('isExporting')}
-                        passwordLabel={t('twoFA:key')}
+                        passwordLabel={t('key')}
                         reentryLabel={t('retypeKey')}
                         password={password}
                         reentry={reentry}

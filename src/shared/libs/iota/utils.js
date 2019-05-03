@@ -10,7 +10,7 @@ import URL from 'url-parse';
 import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
 import { isNodeHealthy } from './extendedApi';
-import { NODELIST_URL } from '../../config';
+import { NODELIST_URL, MAX_REQUEST_TIMEOUT } from '../../config';
 import Errors from '../errors';
 import { roundDown } from '../utils';
 
@@ -168,10 +168,40 @@ export const formatUnit = (value) => {
 };
 
 /**
+ * Converts iota value-unit string to int value
+ *
+ * @method unitStringToValue
+ * @param {string}
+ *
+ * @returns {number}
+ */
+export const unitStringToValue = (str) => {
+    const value = parseInt(str);
+    const unit = str.substr(value.toString().length).toLowerCase();
+
+    switch (unit) {
+        case 'ki':
+            return value * 1000;
+        case 'mi':
+            return value * 1000000;
+        case 'gi':
+            return value * 1000000000;
+        case 'ti':
+            return value * 1000000000000;
+        case 'pi':
+            return value * 1000000000000000;
+        default:
+            return value;
+    }
+};
+
+/**
  * Format iotas to human readable format
  * @param {number} iotas - Input value in iotas
  * @param {boolean} showShort - Should output short format
  * @param {boolean} showUnit - Should output unit
+ *
+ * @returns {string}
  */
 export const formatIotas = (iotas, showShort, showUnit) => {
     const formattedValue = formatValue(iotas);
@@ -442,4 +472,39 @@ export const throwIfNodeNotHealthy = (provider) => {
 
         return isSynced;
     });
+};
+
+/**
+ * Handles timeouts for network requests made to IRI nodes
+ * Catches "request timeout" exceptions and retries network request with increased timeout
+ * See (https://github.com/iotaledger/iota.js/blob/master/lib/utils/makeRequest.js#L115)
+ *
+ * @method withRequestTimeoutsHandler
+ *
+ * @param {number} timeout
+ *
+ * @returns {function}
+ */
+export const withRequestTimeoutsHandler = (timeout) => {
+    let attempt = 1;
+
+    const getNextTimeout = () => attempt * timeout;
+
+    const handleTimeout = (promiseFunc) => {
+        return promiseFunc(getNextTimeout()).catch((error) => {
+            attempt += 1;
+
+            if (
+                (includes(error.message, Errors.REQUEST_TIMED_OUT) ||
+                    includes(error.message, Errors.REQUEST_TIMED_OUT.toLowerCase())) &&
+                getNextTimeout() < MAX_REQUEST_TIMEOUT
+            ) {
+                return handleTimeout(promiseFunc);
+            }
+
+            throw error;
+        });
+    };
+
+    return handleTimeout;
 };

@@ -124,9 +124,6 @@ class Dropzone extends React.Component {
 
         const reader = new FileReader();
 
-        // Init with empty buffer first
-        onDrop([]);
-
         reader.onload = (e) => {
             const buffer = e.target.result;
             onDrop(buffer);

@@ -20,6 +20,7 @@ import {
     ATTACH_TO_TANGLE_REQUEST_TIMEOUT,
     GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
+    MAX_MILESTONE_FALLBEHIND,
 } from '../../config';
 import {
     sortTransactionTrytesArray,
@@ -27,7 +28,7 @@ import {
     isBundle,
     isBundleTraversable,
 } from './transfers';
-import { EMPTY_HASH_TRYTES } from './utils';
+import { EMPTY_HASH_TRYTES, withRequestTimeoutsHandler } from './utils';
 
 /**
  * Returns timeouts for specific quorum requests
@@ -505,36 +506,41 @@ const attachToTangleAsync = (provider, seedStore) => (
     const shouldOffloadPow = get(seedStore, 'offloadPow') === true;
 
     if (shouldOffloadPow) {
-        return new Promise((resolve, reject) => {
-            getIotaInstance(provider, getApiTimeout('attachToTangle')).api.attachToTangle(
-                trunkTransaction,
-                branchTransaction,
-                minWeightMagnitude,
-                // Make sure trytes are sorted properly
-                sortTransactionTrytesArray(trytes),
-                (err, attachedTrytes) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        constructBundleFromAttachedTrytes(attachedTrytes, seedStore)
-                            .then((transactionObjects) => {
-                                if (
-                                    isBundle(transactionObjects) &&
-                                    isBundleTraversable(transactionObjects, trunkTransaction, branchTransaction)
-                                ) {
-                                    resolve({
-                                        transactionObjects,
-                                        trytes: attachedTrytes,
-                                    });
-                                } else {
-                                    reject(new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_WITH_REMOTE_POW));
-                                }
-                            })
-                            .catch(reject);
-                    }
-                },
-            );
-        });
+        const request = (requestTimeout) =>
+            new Promise((resolve, reject) => {
+                getIotaInstance(provider, requestTimeout).api.attachToTangle(
+                    trunkTransaction,
+                    branchTransaction,
+                    minWeightMagnitude,
+                    // Make sure trytes are sorted properly
+                    sortTransactionTrytesArray(trytes),
+                    (err, attachedTrytes) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            constructBundleFromAttachedTrytes(attachedTrytes, seedStore)
+                                .then((transactionObjects) => {
+                                    if (
+                                        isBundle(transactionObjects) &&
+                                        isBundleTraversable(transactionObjects, trunkTransaction, branchTransaction)
+                                    ) {
+                                        resolve({
+                                            transactionObjects,
+                                            trytes: attachedTrytes,
+                                        });
+                                    } else {
+                                        reject(new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_WITH_REMOTE_POW));
+                                    }
+                                })
+                                .catch(reject);
+                        }
+                    },
+                );
+            });
+
+        const defaultRequestTimeout = getApiTimeout('attachToTangle');
+
+        return withRequestTimeoutsHandler(defaultRequestTimeout)(request);
     }
 
     return seedStore
@@ -615,7 +621,7 @@ const isNodeHealthy = (provider) => {
                 cached.latestMilestone = latestMilestone;
                 if (
                     (cached.latestMilestone === latestSolidSubtangleMilestone ||
-                        latestMilestoneIndex - 1 === latestSolidSubtangleMilestoneIndex) &&
+                        latestMilestoneIndex - MAX_MILESTONE_FALLBEHIND <= latestSolidSubtangleMilestoneIndex) &&
                     cached.latestMilestone !== EMPTY_HASH_TRYTES
                 ) {
                     return getTrytesAsync(provider)([cached.latestMilestone]);
@@ -627,7 +633,7 @@ const isNodeHealthy = (provider) => {
         .then((trytes) => {
             const { timestamp } = iota.utils.transactionObject(head(trytes), cached.latestMilestone);
 
-            return isWithinMinutes(timestamp * 1000, 5);
+            return isWithinMinutes(timestamp * 1000, 5 * MAX_MILESTONE_FALLBEHIND);
         });
 };
 
