@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import LottieView from 'lottie-react-native';
-import welcomeAnimation from 'shared-modules/animations/welcome.json';
+import { getAnimation } from 'shared-modules/animations';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     midContainer: {
         flex: 2.6,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     bottomContainer: {
         flex: 0.5,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     animation: {
         width: width / 1.35,
         height: width / 1.35,
-    }
+    },
 });
 
 /** Welcome screen component */
@@ -53,6 +53,8 @@ class Welcome extends Component {
         acceptedPrivacy: PropTypes.bool.isRequired,
         /** @ignore */
         acceptedTerms: PropTypes.bool.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -88,7 +90,11 @@ class Welcome extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+            themeName,
+        } = this.props;
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -103,16 +109,13 @@ class Welcome extends Component {
                 </View>
                 <View style={styles.midContainer}>
                     <AnimatedComponent
-                        animationInType={['fadeIn','slideInRight']}
+                        animationInType={['fadeIn', 'slideInRight']}
                         animationOutType={['fadeOut', 'slideOutLeft']}
                         delay={200}
                         style={styles.animation}
                     >
                         <LottieView
-                            ref={(animation) => {
-                                this.animation = animation;
-                            }}
-                            source={welcomeAnimation}
+                            source={getAnimation('welcomeAnimation', themeName)}
                             style={styles.animation}
                             loop
                             autoPlay
@@ -120,7 +123,11 @@ class Welcome extends Component {
                     </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <AnimatedComponent animationInType={['fadeIn','slideInRight']} animationOutType={['fadeOut','slideOutLeft']} delay={0}>
+                    <AnimatedComponent
+                        animationInType={['fadeIn', 'slideInRight']}
+                        animationOutType={['fadeOut', 'slideOutLeft']}
+                        delay={0}
+                    >
                         <SingleFooterButton
                             onButtonPress={() => this.onNextPress()}
                             testID="welcome-next"
@@ -137,6 +144,7 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     acceptedPrivacy: state.settings.acceptedPrivacy,
     acceptedTerms: state.settings.acceptedTerms,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {
@@ -144,4 +152,9 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['welcome', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Welcome));
+export default withNamespaces(['welcome', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Welcome),
+);

@@ -9,7 +9,7 @@ import { getDeviceLocale } from 'react-native-device-info';
 import LottieView from 'lottie-react-native';
 import { I18N_LOCALE_LABELS, getLabelFromLocale, getLocaleFromLabel, detectLocale } from 'shared-modules/libs/i18n';
 import { setLanguage, setLocale } from 'shared-modules/actions/settings';
-import languageAnimation from 'shared-modules/animations/language.json';
+import { getAnimation } from 'shared-modules/animations';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     animation: {
         width: width / 1.35,
         height: width / 1.35,
-    }
+    },
 });
 
 const defaultLocale = detectLocale(getDeviceLocale());
@@ -64,6 +64,8 @@ class LanguageSetup extends Component {
         setLocale: PropTypes.func.isRequired,
         /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     componentWillMount() {
@@ -75,7 +77,6 @@ class LanguageSetup extends Component {
         if (!isAndroid) {
             SplashScreen.hide();
         }
-        this.animation.play();
     }
 
     componentWillUnmount() {
@@ -96,7 +97,11 @@ class LanguageSetup extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+            themeName,
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -126,16 +131,13 @@ class LanguageSetup extends Component {
                                 style={styles.animation}
                             >
                                 <LottieView
-                                    ref={(animation) => {
-                                        this.animation = animation;
-                                    }}
-                                    source={languageAnimation}
+                                    source={getAnimation('language', themeName)}
                                     style={styles.animation}
                                     loop
                                     autoPlay
                                 />
                             </AnimatedComponent>
-                            <View style={{ flex: 0.2 }}/>
+                            <View style={{ flex: 0.2 }} />
                             <AnimatedComponent
                                 animationInType={['fadeIn']}
                                 animationOutType={['fadeOut', 'slideOutLeft']}
@@ -175,6 +177,7 @@ class LanguageSetup extends Component {
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     forceUpdate: state.wallet.forceUpdate,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {
@@ -183,4 +186,9 @@ const mapDispatchToProps = {
     setLocale,
 };
 
-export default withNamespaces(['languageSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(LanguageSetup));
+export default withNamespaces(['languageSetup', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(LanguageSetup),
+);

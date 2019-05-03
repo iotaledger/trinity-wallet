@@ -3,7 +3,7 @@ import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
-import balloonsAnimation from 'shared-modules/animations/onboardingComplete.json';
+import { getAnimation } from 'shared-modules/animations';
 import LottieView from 'lottie-react-native';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -56,6 +56,8 @@ class OnboardingComplete extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     componentDidMount() {
@@ -67,7 +69,11 @@ class OnboardingComplete extends Component {
     }
 
     render() {
-        const { t, theme: { body, primary } } = this.props;
+        const {
+            t,
+            theme: { body, primary },
+            themeName,
+        } = this.props;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
@@ -87,10 +93,7 @@ class OnboardingComplete extends Component {
                         style={styles.animation}
                     >
                         <LottieView
-                            ref={(animation) => {
-                                this.animation = animation;
-                            }}
-                            source={balloonsAnimation}
+                            source={getAnimation('onboardingComplete', themeName)}
                             loop
                             autoPlay
                             style={styles.animation}
@@ -122,6 +125,7 @@ class OnboardingComplete extends Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
+    themeName: state.settings.themeName,
 });
 
 export default withNamespaces(['onboardingComplete', 'global'])(connect(mapStateToProps)(OnboardingComplete));

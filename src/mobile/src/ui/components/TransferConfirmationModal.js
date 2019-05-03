@@ -3,7 +3,7 @@ import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import LottieView from 'lottie-react-native';
-import sendingAnimation from 'shared-modules/animations/transactionA.json';
+import { getAnimation } from 'shared-modules/animations';
 import { round } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { Styling } from 'ui/theme/general';
@@ -85,6 +85,8 @@ class TransferConfirmationModal extends Component {
         onBackButtonPress: PropTypes.func.isRequired,
         /** Transaction message */
         message: PropTypes.string,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     static defaultProps = {
@@ -101,7 +103,6 @@ class TransferConfirmationModal extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('TransferConfirmationModal');
-        this.animation.play();
     }
 
     onSendPress() {
@@ -129,7 +130,15 @@ class TransferConfirmationModal extends Component {
     }
 
     render() {
-        const { t, theme: { body, dark, primary }, value, conversionText, amount, message } = this.props;
+        const {
+            t,
+            theme: { body, dark, primary },
+            value,
+            conversionText,
+            amount,
+            message,
+            themeName,
+        } = this.props;
         const isMessage = value === 0 || amount === '';
         return (
             <ModalView
@@ -148,27 +157,26 @@ class TransferConfirmationModal extends Component {
                                 : t('sendingAnEmptyMessage').toUpperCase()}
                         </Text>
                     )}
-                    {isMessage &&
-                        message.length > 0 && (
-                            <ScrollView
-                                scrollEnabled={this.state.scrollable}
-                                showsVerticalScrollIndicator={this.state.scrollable}
+                    {isMessage && message.length > 0 && (
+                        <ScrollView
+                            scrollEnabled={this.state.scrollable}
+                            showsVerticalScrollIndicator={this.state.scrollable}
+                            style={{
+                                maxHeight: height / 9.5,
+                            }}
+                            onContentSizeChange={(x, y) => this.setScrollable(y)}
+                        >
+                            <View
                                 style={{
-                                    maxHeight: height / 9.5,
+                                    paddingTop: height / 40,
+                                    alignItems: 'center',
+                                    paddingHorizontal: width / 20,
                                 }}
-                                onContentSizeChange={(x, y) => this.setScrollable(y)}
                             >
-                                <View
-                                    style={{
-                                        paddingTop: height / 40,
-                                        alignItems: 'center',
-                                        paddingHorizontal: width / 20,
-                                    }}
-                                >
-                                    <Text style={[styles.messageText, { color: body.color }]}>{message}</Text>
-                                </View>
-                            </ScrollView>
-                        )}
+                                <Text style={[styles.messageText, { color: body.color }]}>{message}</Text>
+                            </View>
+                        </ScrollView>
+                    )}
                     {!isMessage && (
                         <View style={{ paddingTop: isMessage && height / 80, alignItems: 'center' }}>
                             <View style={styles.valueContainer}>
@@ -194,15 +202,7 @@ class TransferConfirmationModal extends Component {
                     )}
                 </View>
                 <View style={{ paddingVertical: height / 60 }}>
-                    <LottieView
-                        source={sendingAnimation}
-                        style={styles.animation}
-                        loop
-                        autoPlay
-                        ref={(animation) => {
-                            this.animation = animation;
-                        }}
-                    />
+                    <LottieView source={getAnimation('sending', themeName)} style={styles.animation} loop autoPlay />
                 </View>
                 <View style={[styles.itemContainer, { backgroundColor: dark.color }]}>
                     <Text style={[styles.titleText, { color: primary.color }]}>{t('toAddress').toUpperCase()}</Text>

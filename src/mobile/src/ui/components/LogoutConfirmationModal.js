@@ -2,10 +2,12 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Text, StyleSheet } from 'react-native';
 import { withNamespaces } from 'react-i18next';
+import LottieView from 'lottie-react-native';
 import { Styling } from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
+import { width } from 'libs/dimensions';
+import { getAnimation } from 'shared-modules/animations';
+
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import { Icon } from 'ui/theme/icons';
 import WithLogout from 'ui/components/Logout';
 import ModalView from './ModalView';
 
@@ -22,10 +24,9 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize5,
     },
-    icon: {
-        opacity: 0.6,
-        paddingVertical: height / 30,
-        backgroundColor: 'transparent',
+    animation: {
+        width: width / 1.35,
+        height: width / 1.35,
     },
 });
 
@@ -39,6 +40,8 @@ export class LogoutConfirmationModal extends PureComponent {
         logout: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     componentDidMount() {
@@ -46,7 +49,11 @@ export class LogoutConfirmationModal extends PureComponent {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+            themeName,
+        } = this.props;
 
         return (
             <ModalView
@@ -58,7 +65,7 @@ export class LogoutConfirmationModal extends PureComponent {
                 rightButtonText={t('yes')}
             >
                 <Text style={[styles.infoText, { color: body.color }]}>{t('aboutToLogOut')}</Text>
-                <Icon name="logout" size={width / 5} color={body.color} style={styles.icon} />
+                <LottieView source={getAnimation('logout', themeName)} style={styles.animation} autoPlay />
                 <Text style={[styles.questionText, { color: body.color }]}>{t('areYouSure')}</Text>
             </ModalView>
         );

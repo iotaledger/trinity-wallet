@@ -1,8 +1,10 @@
+import get from 'lodash/get';
 import welcome from './welcome.json';
 import language from './language.json';
 import ledger from './ledger.json';
 import onboardingComplete from './onboardingComplete.json';
-import get from 'lodash.get';
+import sending from './transactionA.json';
+import logout from './thanks.json';
 
 import themes from '../themes/themes';
 
@@ -11,6 +13,8 @@ export const animations = {
     ledger,
     onboardingComplete,
     welcome,
+    sending,
+    logout,
 };
 
 /**
@@ -44,7 +48,7 @@ const rgbToVector = (color) => {
     return color
         .substr(color.indexOf('(') + 1)
         .split(',')
-        .map((str) => Math.floor(parseInt(str) / 255 * precision) / precision)
+        .map((str) => Math.floor((parseInt(str) / 255) * precision) / precision)
         .concat([1]);
 };
 

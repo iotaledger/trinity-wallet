@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     animationLoading: {
         justifyContent: 'center',
         width: width * 1.5,
-        height: width / 1.77 * 1.5,
+        height: (width / 1.77) * 1.5,
     },
     animationNewSeed: {
         justifyContent: 'center',
@@ -152,7 +152,6 @@ class Loading extends Component {
         leaveNavigationBreadcrumb('Loading');
         this.props.setLoginRoute('login');
         KeepAwake.activate();
-        this.animation.play();
         // Ensures animation completes at least one cycle
         timer.setTimeout('animationTimeout', () => this.setState({ animationCycleComplete: true }), 3000);
         if (addingAdditionalAccount) {
@@ -276,7 +275,11 @@ class Loading extends Component {
     }
 
     render() {
-        const { t, theme: { body, primary }, isThemeDark } = this.props;
+        const {
+            t,
+            theme: { body, primary },
+            isThemeDark,
+        } = this.props;
         const textColor = { color: body.color };
         const loadingAnimationPath = isThemeDark ? whiteLoadingAnimation : blackLoadingAnimation;
 
@@ -289,14 +292,7 @@ class Loading extends Component {
                         delay={0}
                         style={styles.loadingAnimationContainer}
                     >
-                        <LottieView
-                            ref={(animation) => {
-                                this.animation = animation;
-                            }}
-                            source={loadingAnimationPath}
-                            style={styles.animationNewSeed}
-                            loop
-                        />
+                        <LottieView source={loadingAnimationPath} style={styles.animationNewSeed} loop autoPlay />
                     </AnimatedComponent>
                 </View>
                 <AnimatedComponent
@@ -372,4 +368,9 @@ const mapDispatchToProps = {
     setLoginRoute,
 };
 
-export default withNamespaces(['loading', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Loading));
+export default withNamespaces(['loading', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Loading),
+);
