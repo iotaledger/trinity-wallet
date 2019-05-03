@@ -394,6 +394,7 @@
         "changePassword": "Endre passord",
         "general": "Generelle innstillinger",
         "advanced": "Avanserte innstillinger",
+        "nodeSettings": "Node settings",
         "account": "Kontoinnstillinger",
         "logout": "Logg ut",
         "reset": "Tilbakestill lommeboken",
@@ -455,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Pakke hash kopiert",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Ingen transaksjon ble funnet",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Gjem nullbeløp",
         "bundleHashCopiedExplanation": "Pakke hash har blitt kopiert til utklippstavlen.",
         "addressCopied": "Addresse kopiert",
@@ -468,7 +470,13 @@
         "retrying": "Prøver på nytt",
         "yesterday": "I går",
         "promotingAnotherBundle": "Fremme en pakke til",
-        "pleaseWait": "Vennligst vent, Trinity promoterer en transaksjon."
+        "pleaseWait": "Vennligst vent, Trinity promoterer en transaksjon.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Vis hovednøkkel",
@@ -501,7 +509,8 @@
         "autoPromotion": "Auto promoter",
         "autoPromotionExplanation": "Automatisk promotering hjelper deg å få bekreftet transaksjoner på Tangle. Aktiver denne innstillingen dersom du har problemer med å få transaksjoner bekreftet.",
         "autoPromotionPoW": "Automatisk promotering er kun mulig på noder som støtter ekstern PoW (Proof of Work).",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrunn",
@@ -572,6 +581,7 @@
         "viewSeed": "Vis hovednøkkel",
         "hideSeed": "Gjem hovednøkkel",
         "notAvailable": "Eksport av hovednøkkel er ikke tilgjengelig for {{accountType}} kontotype",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Din Ledger konto indeks",
         "accountPage": "Din Ledger kontoside"
     },
@@ -601,7 +611,7 @@
         "fingerprintUnavailableExplanation": "Enheten din støtter ikke biometrisk autentisering eller så har ikke dette blitt konfigurert i enhetens innstillinger.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Trykk på knappen nedenfor for å deaktivere biometrisk autentisering.",
         "buttonInstructionsEnable": "Trykk på knappen nedenfor for å aktivere biometrisk autentisering.",
         "buttonInstructionsDisableIPhoneX": "Trykk på knappen nedenfor for å deaktivere Face ID",
         "buttonInstructionsEnableIPhoneX": "Trykk på knappen nedenfor for å aktivere Face ID",
@@ -642,9 +652,16 @@
         "noSeedFoundExplanation": "SeedVault er enten tom eller inneholder en hovednøkkel i et ugyldig format.",
         "seedFileError": "Kunne ikke åpne SeedVault",
         "seedFileErrorExplanation": "Det var et problem med åpning av SeedVault. Hvis du valgte den riktige filen kan den være skadet.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Først må vi å sikre din SeedVault. Velg en nøkkel for å kryptere filen. Du vil bruke denne nøkkelen hvis du må gjenopprette din hovednøkkel fra SeedVault sikkerhetskopi.",
         "retypeKey": "Skriv nøkkel på nytt",
-        "key": "Key"
+        "key": "Nøkkel"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
@@ -709,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Feil under henting av oppdaterte data",

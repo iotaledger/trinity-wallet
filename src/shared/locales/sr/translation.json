@@ -394,6 +394,7 @@
         "changePassword": "Promena lozinke",
         "general": "General settings",
         "advanced": "Napredne postavke",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "Odjavi se",
         "reset": "Resetuj novčanik",
@@ -455,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Heš paketa kopiran",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Nisu pronađene transakcije",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Sakrij transakcije bez sredstava",
         "bundleHashCopiedExplanation": "Heš paketa je kopiran na klipbord.",
         "addressCopied": "Adresa kopirana",
@@ -468,7 +470,13 @@
         "retrying": "Ponovni pokušaj u toku",
         "yesterday": "Juče",
         "promotingAnotherBundle": "Promocija drugog paketa",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Prikaži seed",
@@ -501,7 +509,8 @@
         "autoPromotion": "Automatska promocija",
         "autoPromotionExplanation": "Automatska promocija pomaže u potvrdi vaše transakcije na Tangle-u. Omogućite ovu postavku ako imate problema s potvrđivanjem vaših transakcija.",
         "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadina",
@@ -572,6 +581,7 @@
         "viewSeed": "Prikaži seed",
         "hideSeed": "Sakrij seed",
         "notAvailable": "Izvod seed-a nije dostupan za {{accountType}} tip naloga",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Indeks vašeg Ledger naloga",
         "accountPage": "Your Ledger account page"
     },
@@ -601,7 +611,7 @@
         "fingerprintUnavailableExplanation": "Vaš uređaj ne podržava biometrijsku autentikaciji ili nije konfigurisan u postavkama uređaja.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Pritisnite dugme u nastavku da biste onemogućili autorizaciju pomoću otiska prsta.",
         "buttonInstructionsEnable": "Pritisnite dugme u nastavku da biste omogućii autentikaciji pomoću otiska prsta.",
         "buttonInstructionsDisableIPhoneX": "Pritisnite dugme u nastavku da biste onemogućili Face ID",
         "buttonInstructionsEnableIPhoneX": "Pritisnite dugme u nastavku da biste omogućili Face ID",
@@ -642,9 +652,16 @@
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspešno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
-        "key": "Key"
+        "key": "Ključ"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
@@ -709,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom učitavanja podataka o ažuriranju",

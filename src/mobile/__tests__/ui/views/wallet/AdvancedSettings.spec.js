@@ -24,10 +24,7 @@ const getProps = (overrides) =>
         {
             setSetting: noop,
             t: () => '',
-            generateAlert: noop,
-            node: 'https://foo.baz',
             theme,
-            isSendingTransfer: false,
             autoPromotion: false,
             remotePoW: false,
         },
@@ -44,20 +41,8 @@ describe('Testing AdvancedSettings component', () => {
             expect(AdvancedSettings.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a generateAlert function as a prop', () => {
-            expect(AdvancedSettings.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
-        });
-
-        it('should require a node string as a prop', () => {
-            expect(AdvancedSettings.propTypes.node).toEqual(PropTypes.string.isRequired);
-        });
-
         it('should require a theme object as a prop', () => {
             expect(AdvancedSettings.propTypes.theme).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a isSendingTransfer boolean as a prop', () => {
-            expect(AdvancedSettings.propTypes.isSendingTransfer).toEqual(PropTypes.bool.isRequired);
         });
     });
 
@@ -67,60 +52,6 @@ describe('Testing AdvancedSettings component', () => {
 
             const wrapper = shallow(<AdvancedSettings {...props} />);
             expect(wrapper.name()).toEqual('View');
-        });
-    });
-
-    describe('instance methods', () => {
-        describe('when called', () => {
-            describe('#onNodeSelection', () => {
-                it('should call prop method "setSetting" with "nodeSelection" if "isSendingTransfer" is false', () => {
-                    const props = getProps({
-                        setSetting: jest.fn(),
-                    });
-
-                    const instance = shallow(<AdvancedSettings {...props} />).instance();
-                    instance.onNodeSelection();
-
-                    expect(props.setSetting).toHaveBeenCalledWith('nodeSelection');
-                });
-
-                it('should not call prop method "setSetting" if "isSendingTransfer" is true', () => {
-                    const props = getProps({
-                        setSetting: jest.fn(),
-                        isSendingTransfer: true,
-                    });
-
-                    const instance = shallow(<AdvancedSettings {...props} />).instance();
-                    instance.onNodeSelection();
-
-                    expect(props.setSetting).toHaveBeenCalledTimes(0);
-                });
-            });
-
-            describe('#onAddCustomNode', () => {
-                it('should call prop method "setSetting" with "addCustomNode" if "isSendingTransfer" is false', () => {
-                    const props = getProps({
-                        setSetting: jest.fn(),
-                    });
-
-                    const instance = shallow(<AdvancedSettings {...props} />).instance();
-                    instance.onAddCustomNode();
-
-                    expect(props.setSetting).toHaveBeenCalledWith('addCustomNode');
-                });
-
-                it('should not call prop method "setSetting" if "isSendingTransfer" is true', () => {
-                    const props = getProps({
-                        setSetting: jest.fn(),
-                        isSendingTransfer: true,
-                    });
-
-                    const instance = shallow(<AdvancedSettings {...props} />).instance();
-                    instance.onAddCustomNode();
-
-                    expect(props.setSetting).toHaveBeenCalledTimes(0);
-                });
-            });
         });
     });
 });

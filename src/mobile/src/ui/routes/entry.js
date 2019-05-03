@@ -31,6 +31,8 @@ import { mapStorageToState } from 'shared-modules/libs/storageToStateMappers';
 // Assign Realm to global RN variable
 global.Realm = Realm;
 
+let firstLaunch = true;
+
 const launch = () => {
     // Disable auto node switching.
     SwitchingConfig.autoSwitch = false;
@@ -57,26 +59,37 @@ const launch = () => {
     // Set default language
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
 
-    // FIXME: Temporarily needed for password migration
-    const updatedState = reduxStore.getState();
-
-    const navigateToForceChangePassword =
-        updatedState.settings.versions.version === '0.5.0' && !updatedState.settings.completedForcedPasswordUpdate;
-
-    // Select initial screen
-    const initialScreen = state.accounts.onboardingComplete
-        ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
-        : 'languageSetup';
-
-    renderInitialScreen(initialScreen, state);
+    renderInitialScreen(getInitialScreen());
 };
 
 const onAppStart = () => {
     registerScreens(reduxStore, Provider);
-    return new Promise((resolve) => Navigation.events().registerAppLaunchedListener(resolve));
+    return new Promise((resolve) => {
+        Navigation.events().registerAppLaunchedListener(() => {
+            if (firstLaunch) {
+                firstLaunch = false;
+                return;
+            }
+            delete global.passwordHash;
+            return renderInitialScreen(getInitialScreen());
+        });
+        resolve();
+    });
 };
 
-const renderInitialScreen = (initialScreen, state) => {
+const getInitialScreen = () => {
+    const state = reduxStore.getState();
+    // FIXME: Temporarily needed for password migration
+    const navigateToForceChangePassword =
+        state.settings.versions.version === '0.5.0' && !state.settings.completedForcedPasswordUpdate;
+    // Select initial screen
+    return state.accounts.onboardingComplete
+        ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
+        : 'languageSetup';
+};
+
+const renderInitialScreen = (initialScreen) => {
+    const state = reduxStore.getState();
     const theme = Themes[state.settings.themeName] || Themes.Default;
 
     const options = {
@@ -197,13 +210,13 @@ onAppStart()
             version: getVersion(),
             buildNumber: Number(getBuildNumber()),
         };
-
         // Get persisted data in AsyncStorage
         return reduxPersistStorageAdapter.get().then((storedData) => {
             const buildNumber = get(storedData, 'settings.versions.buildNumber');
             const completedMigration = get(storedData, 'settings.completedMigration', false);
+
             if (
-                buildNumber < 43 &&
+                buildNumber < 58 &&
                 !completedMigration &&
                 // Also check if there is persisted data in AsyncStorage that needs to be migrated
                 // If this check is omitted, the condition will be satisfied on a fresh install.

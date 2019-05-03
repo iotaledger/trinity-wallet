@@ -55,7 +55,7 @@
         "yes": "Sí",
         "no": "No",
         "okay": "De acuerdo",
-        "skip": "Skip",
+        "skip": "Omitir",
         "password": "Contraseña",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
@@ -288,10 +288,10 @@
         "printerConfirmation": "No estoy imprimiendo en una impresora publica"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "¿Quieres imprimir una plantilla en blanco?",
+        "printTemplateInfo": "Puede imprimir una plantilla en blanco para ayudarle a escribir su semilla.",
+        "printTemplateWarning": "Asegúrese de que almacena su semilla en un lugar seguro. No lo muestre a nadie.",
+        "print": "Sí, imprimir"
     },
     "receive": {
         "yourAddress": "Su dirección",
@@ -394,6 +394,7 @@
         "changePassword": "Cambiar contraseña",
         "general": "Configuración general",
         "advanced": "Opciones avanzadas",
+        "nodeSettings": "Ajustes del nodo",
         "account": "Configuración de cuenta",
         "logout": "Cerrar sesión",
         "reset": "Reiniciar cartera",
@@ -455,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "No se encontraron transacciones",
+        "emptyHistory": "Tu historial de transacciones está vacío",
         "hideZeroBalance": "Esconder balance nulo",
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
@@ -468,7 +470,13 @@
         "retrying": "Reintentar",
         "yesterday": "Ayer",
         "promotingAnotherBundle": "Promoviendo otro paquete",
-        "pleaseWait": "Por favor espere, Trinity está promoviendo otro paquete."
+        "pleaseWait": "Por favor espere, Trinity está promoviendo otro paquete.",
+        "typeHelp": "Escriba !help para comandos disponibles",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Ver semilla",
@@ -501,7 +509,8 @@
         "autoPromotion": "Auto-promoción",
         "autoPromotionExplanation": "La auto-promoción ayuda a confirmar sus transacciones en el Tangle. Habilite esta opción si está experimentando dificultades para conseguir que se confirmen sus transacciones.",
         "autoPromotionPoW": "La auto-promoción solo es posible en los nodos que soportan PoW remota.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Fondo",
@@ -572,6 +581,7 @@
         "viewSeed": "Ver semilla",
         "hideSeed": "Ocultar semilla",
         "notAvailable": "La exportación de la semilla no está disponible para el tipo de cuenta {{accountType}}",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Su índice del ledger de la cuenta",
         "accountPage": "Su página de cuenta de ledger"
     },
@@ -642,9 +652,16 @@
         "noSeedFoundExplanation": "El SeedVault se encuentra vacío o contiene una semilla con un formato no válido.",
         "seedFileError": "Fallo al abrir SeedVault",
         "seedFileErrorExplanation": "Hubo un problema al abrir el SeedVault. Si ha seleccionado el archivo correcto entonces puede estar corrompido.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Primero necesitamos asegurar su SeedVault. Por favor elija una clave para encriptar el archivo. Debe usar esta clave si necesita restaurar su semilla desde SeedVault.",
         "retypeKey": "Reingrese la clave",
-        "key": "Key"
+        "key": "Clave"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
@@ -709,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Error al recuperar los datos de actualización",

@@ -50,6 +50,12 @@ class ModalPassword extends PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        /** Determines whether user is entering SeedVault key */
+        isSeedVaultField: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        isSeedVaultField: false,
     };
 
     state = {
@@ -97,7 +103,7 @@ class ModalPassword extends PureComponent {
     };
 
     passwordContent = () => {
-        const { content, category, isOpen, isForced, onClose, t } = this.props;
+        const { content, category, isOpen, isForced, onClose, t, isSeedVaultField } = this.props;
         const { password } = this.state;
         return (
             <React.Fragment>
@@ -107,7 +113,7 @@ class ModalPassword extends PureComponent {
                     <Password
                         value={password}
                         focus={isOpen}
-                        label={t('password')}
+                        label={isSeedVaultField ? t('seedVault:key') : t('password')}
                         onChange={(value) => this.setState({ password: value })}
                     />
                     <footer>

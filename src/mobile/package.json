@@ -1,6 +1,6 @@
 {
   "name": "trinity-mobile",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -69,7 +69,7 @@
     "react-native-navigation": "https://github.com/rajivshah3/react-native-navigation#2.0.255-0.57",
     "react-native-optimized-flatlist": "^1.0.4",
     "react-native-os": "git+https://github.com/laumair/react-native-os.git#527b0ae",
-    "react-native-picker-select": "^6.1.0",
+    "react-native-picker-select": "git+https://github.com/cvarley100/react-native-picker-select#master",
     "react-native-print": "^0.5.0",
     "react-native-progress": "^3.4.0",
     "react-native-qr-generator": "^1.0.3",

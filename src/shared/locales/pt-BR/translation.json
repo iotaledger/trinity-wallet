@@ -394,6 +394,7 @@
         "changePassword": "Alterar Senha",
         "general": "Configurações gerais",
         "advanced": "Opções Avançadas",
+        "nodeSettings": "Node settings",
         "account": "Configurações de conta",
         "logout": "Desconectar",
         "reset": "Redefinir a carteira",
@@ -455,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Pacote hash copiado",
-        "noTransactionsFound": "Seu histórico de transações está vazio",
+        "noTransactionsFound": "Nenhuma transação encontrada",
+        "emptyHistory": "Seu histórico de transações está vazio",
         "hideZeroBalance": "Esconder saldos zero",
         "bundleHashCopiedExplanation": "A chave do pacote foi copiada para a área de transferência.",
         "addressCopied": "Endereço copiado",
@@ -468,7 +470,13 @@
         "retrying": "Tentando de novo",
         "yesterday": "Ontem",
         "promotingAnotherBundle": "Promover outro pacote",
-        "pleaseWait": "Por favor aguarde, Trinity está promovendo outro pacote."
+        "pleaseWait": "Por favor aguarde, Trinity está promovendo outro pacote.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
@@ -501,7 +509,8 @@
         "autoPromotion": "Autopromoção",
         "autoPromotionExplanation": "Autopromoção ajuda a confirmar suas transações no Tangle. Habilite essa configuração se você está tendo dificuldade em confirmar suas transações.",
         "autoPromotionPoW": "Autopromoção só é possível em servidores que suportam prova de trabalho remoto.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Plano de Fundo",
@@ -572,6 +581,7 @@
         "viewSeed": "Ver Seed",
         "hideSeed": "Esconder Seed",
         "notAvailable": "Exportação da Seed não está disponível para o tipo de conta {{accountType}}",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Seu índice de conta Ledger",
         "accountPage": "Página de sua conta Ledger"
     },
@@ -642,9 +652,16 @@
         "noSeedFoundExplanation": "O SeedVault está vazio ou contém uma Seed com um formato inválido.",
         "seedFileError": "Falha ao abrir o SeedVault",
         "seedFileErrorExplanation": "Houve um problema ao abrir o SeedVault. Se você selecionou o arquivo correto então o mesmo pode estar corrompido.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Primeiro precisamos proteger seu SeedVault. Por favor, escolha uma chave para criptografar o arquivo. Você usará esta chave se caso precisar restaurar sua Seed do SeedVault.",
         "retypeKey": "Redigite a chave",
         "key": "Chave"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
@@ -709,7 +726,9 @@
         "deepLinkingWarning": "Cuidado com fraudes de phishing. Certifique-se de que o link que você abrir navegue para o aplicativo oficial de Trinity.",
         "deepLinkingUpdated": "Configurações de deep linking",
         "deepLinkingEnabled": "Você ativou o deep linking.",
-        "deepLinkingDisabled": "Você desativou o deep linking."
+        "deepLinkingDisabled": "Você desativou o deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",

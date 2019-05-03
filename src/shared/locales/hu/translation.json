@@ -394,6 +394,7 @@
         "changePassword": "Jelszó módosítása",
         "general": "Általános beállítások",
         "advanced": "Haladó beállítások",
+        "nodeSettings": "Node settings",
         "account": "Fiók beállításai",
         "logout": "Kijelentkezés",
         "reset": "Tárca gyári állapotának visszaállítása",
@@ -455,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Tranzakciós csomag hash másolva",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Nincs még tranzakció",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Nulla egyenleg elrejtése",
         "bundleHashCopiedExplanation": "A tranzakciós csomag hash a vágólapra lett másolva.",
         "addressCopied": "Cím másolva",
@@ -468,7 +470,13 @@
         "retrying": "Újrapróbálkozás",
         "yesterday": "Tegnap",
         "promotingAnotherBundle": "Újabb tranzakciós csomag előrehelyezése",
-        "pleaseWait": "Kérjük várjon. Jelenleg egy másik tranzakciós csomag előbbre helyezése van folyamatban."
+        "pleaseWait": "Kérjük várjon. Jelenleg egy másik tranzakciós csomag előbbre helyezése van folyamatban.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Mester jelszó megtekintése",
@@ -501,7 +509,8 @@
         "autoPromotion": "Auto-tranzakció előrehelyezés",
         "autoPromotionExplanation": "Az automatikus tranzakció előrehelyezés segítségével a tranzakciók hamarabb teljesülhetnek. Engedélyezze ezt a beállítást, ha a tranzakciói sokáig nem teljesülnek.",
         "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, amelyek támogatják a kiszabott munka távoli elvégzését.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Háttér",
@@ -572,6 +581,7 @@
         "viewSeed": "Mester jelszó megtekintése",
         "hideSeed": "Mester jelszó elrejtése",
         "notAvailable": "A mester jelszó {{accountType}} típusú számla esetén nem exportálható",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Számlájának sorszáma",
         "accountPage": "Hardveres tárca számla oldala"
     },
@@ -642,9 +652,16 @@
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "A SeedVault fájl biztonságos tárolásához kérjük válasszon egy titkosító kulcsot. A titkosító kulcsra akkor lehet szüksége, ha a mester jelszavát a titkosított SeedVault biztonsági mentésből szeretné később egy másik, vagy egy újratelepített tárcába betölteni.",
         "retypeKey": "Titkosító kulcs még egyszer",
-        "key": "Key"
+        "key": "Kulcs"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "Piaci kapitalizáció",
@@ -709,7 +726,9 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Frissítés adatletöltési hiba",
