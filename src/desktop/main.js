@@ -21,6 +21,35 @@ if (argv.includes('inspect') || argv.includes('remote') || typeof v8debug !== 'u
 }
 
 /**
+ * Define wallet windows
+ */
+const windows = {
+    main: null,
+    tray: null,
+};
+
+/**
+ * Create a single instance only
+ */
+const isFirstInstance = app.requestSingleInstanceLock();
+
+if (!isFirstInstance) {
+    app.quit();
+}
+
+app.on('second-instance', (_e, args) => {
+    if (windows.main) {
+        if (args.length > 1 && args[1].indexOf('iota://') === 0) {
+            windows.main.webContents.send('url-params', args[1]);
+        }
+        if (windows.main.isMinimized()) {
+            windows.main.restore();
+        }
+        windows.main.focus();
+    }
+});
+
+/**
  * Set AppUserModelID for Windows notifications functionallity
  */
 app.setAppUserModelId('org.iota.trinity');
@@ -45,21 +74,18 @@ let tray = null;
 let windowSizeTimer = null;
 
 /**
- * Define wallet windows
- */
-const windows = {
-    main: null,
-    tray: null,
-};
-
-/**
  * Register iota:// protocol for deep links
  * Set Trinity as the default handler for iota:// protocol
- * TODO: Should be made as a user setting
  */
 if (!devMode) {
     protocol.registerStandardSchemes(['iota'], { secure: true });
-    app.setAsDefaultProtocolClient('iota');
+    if (process.defaultApp) {
+        if (process.argv.length >= 2) {
+            app.setAsDefaultProtocolClient('iota', process.execPath, [path.resolve(process.argv[1])]);
+        }
+    } else {
+        app.setAsDefaultProtocolClient('iota');
+    }
 }
 
 let windowState = {
@@ -116,7 +142,10 @@ function createWindow() {
         show: false,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
-        icon: path.resolve(paths.assets, `icon.${process.platform === 'win32' ? 'ico' : process.platform === 'darwin' ? 'icns' : 'png'}`),
+        icon: path.resolve(
+            paths.assets,
+            `icon.${process.platform === 'win32' ? 'ico' : process.platform === 'darwin' ? 'icns' : 'png'}`,
+        ),
         webPreferences: {
             nodeIntegration: false,
             preload: path.resolve(paths.preload, devMode ? 'preloadDev.js' : 'preloadProd.js'),
@@ -413,20 +442,6 @@ ipc.on('window.focus', (e, payload) => {
         }
     }
 });
-
-/**
- * Create a single instance only
- */
-const isFirstInstance = app.requestSingleInstanceLock();
-
-if (!isFirstInstance) {
-    app.quit();
-} else {
-    if (windows.main) {
-        windows.main.show();
-        windows.main.focus();
-    }
-}
 
 /**
  * On screenshot event, create a screenshot of the wallet

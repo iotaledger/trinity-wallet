@@ -163,10 +163,9 @@ class Loading extends Component {
         } else {
             timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 15000);
         }
-
-        this.props.setSetting('mainSettings');
         this.getWalletData();
         if (!deepLinkRequestActive) {
+            this.props.setSetting('mainSettings');
             this.props.changeHomeScreenRoute('balance');
         }
         if (addingAdditionalAccount) {
