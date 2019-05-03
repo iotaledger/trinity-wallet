@@ -659,7 +659,7 @@
         "key": "Klucz"
     },
     "stateExport": {
-        "stateExportExplanation": "Funkcja eksportu stanu portfela zapisze plik .txt na Twoim urządzeniu. Plik ten będzie zawierał informacje o Twoim koncie (transakcje, adresy) oraz wersję portfela i nazwy plików pamięci.",
+        "stateExportExplanation": "Funkcja eksportu stanu portfela zapisze plik .txt na Twoim urządzeniu. Plik ten będzie zawierał informacje o Twoim koncie (transakcje, adresy), wersji portfela oraz nazwy plików pamięci.",
         "exportSuccess": "Stan portfela wyeksportowany",
         "exportSuccessExplanation": "Plik ze stanem Twojego portfela został wyeksportowany pomyślnie."
     },
