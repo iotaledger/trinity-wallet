@@ -307,7 +307,7 @@
         "generateAnAddress": "주소 생성",
         "generateAnAddressTitle": "주소 생성 필요",
         "generateAnAddressExplanation": "이 기능을 사용하려면 먼저 주소를 생성해야 합니다.",
-        "generateAddressInformation": "IOTA를 받고자 할 때마다 입금 주소를 새로 생성해 주세요"
+        "generateAddressInformation": "IOTA를 받고자 할 때마다 입금 주소를 새로 생성해야 합니다"
     },
     "saveYourSeed": {
         "saveYourSeed": "시드 저장하기",
@@ -471,7 +471,7 @@
         "yesterday": "어제",
         "promotingAnotherBundle": "다른 번들 프로모트중",
         "pleaseWait": "잠시만 기다려 주세요. 다른 번들을 프로모트하는 중입니다.",
-        "typeHelp": "Type !help for available commands",
+        "typeHelp": "!help를 입력하여 명령어들을 확인할 수 있습니다",
         "searchHelpText": "번들 해쉬 또는 메세지 내용으로 검색하세요.",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
