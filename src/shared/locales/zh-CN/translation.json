@@ -781,11 +781,11 @@
         "sweepError": "解锁资金时出错",
         "sweepErrorExplanation": "在解锁您的资金时出现了一些错误。请重新尝试。",
         "warningTitle": "警告：检测到锁定的资金",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "explanation": "Trinity 桌面版 0.3.4 存在一个可能会将资金暂时锁住的问题。这个问题可能会影响一小部分在0.3.4版本交易的用户。",
+        "explanationAccounts": "发现您的账户：{{accounts}} 存在资金锁住的问题。Trinity 将会自动找到您的资金，并将它们移至新的地址。",
         "proceed": "进行恢复",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepConfirmation": "您即将要把 {{amount}} 转移至地址 {{address}}。账户：{{accountName}}，地址索引：{{index}}",
+        "sweepConfirmationTitle": "滑动确认"
     },
     "migration": {
         "dataMigration": "数据迁移",
