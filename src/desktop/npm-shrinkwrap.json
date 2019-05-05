@@ -1402,9 +1402,9 @@
       }
     },
     "@types/node": {
-      "version": "8.10.45",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-8.10.45.tgz",
-      "integrity": "sha512-tGVTbA+i3qfXsLbq9rEq/hezaHY55QxQLeXQL2ejNgFAxxrgu8eMmYIOsRcl7hN1uTLVsKOOYacV/rcJM3sfgQ==",
+      "version": "10.14.6",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-10.14.6.tgz",
+      "integrity": "sha512-Fvm24+u85lGmV4hT5G++aht2C5I4Z4dYlWZIh62FAfFO/TfzXtPpoLI6I7AuBWkIFqZCnhFOoTT7RjjaIL5Fjg==",
       "dev": true
     },
     "@webassemblyjs/ast": {
@@ -4327,12 +4327,12 @@
       "dev": true
     },
     "electron": {
-      "version": "3.1.8",
-      "resolved": "https://registry.npmjs.org/electron/-/electron-3.1.8.tgz",
-      "integrity": "sha512-1MiFoMzxGaR0wDfwFE5Ydnuk6ry/4lKgF0c+NFyEItxM/WyEHNZPNjJAeKJ+M/0sevmZ+6W4syNZnQL5M3GgsQ==",
+      "version": "5.0.1",
+      "resolved": "https://registry.npmjs.org/electron/-/electron-5.0.1.tgz",
+      "integrity": "sha512-8KksyhAPcpXVeO8ViVGxfZAuf8yEVBCtV0h/lMBD8VFbCQ9icej1K5csCFAGirbZbqOz5IdsBZX9Gpb9n4RCag==",
       "dev": true,
       "requires": {
-        "@types/node": "^8.0.24",
+        "@types/node": "^10.12.18",
         "electron-download": "^4.1.0",
         "extract-zip": "^1.0.3"
       }
