@@ -742,21 +742,21 @@
         "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Jurnal de erori"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept",
+        "termsAndConditions": "Termeni și Condiții",
+        "accept": "Sunt de acord",
         "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Politică de confidenţialitate",
+        "agree": "Sunt de acord"
     },
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
+        "notLoggedIn": "Nu sunteţi logat",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
