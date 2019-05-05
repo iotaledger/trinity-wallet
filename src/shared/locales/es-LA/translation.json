@@ -716,7 +716,7 @@
         "transition": "TRANSICIÓN",
         "transitioning": "Transicionando para el snapshot.",
         "generatingAndDetecting": "Generando direcciones y leyendo el balance.",
-        "attaching": "Vinculando direcciones con la Tangle.",
+        "attaching": "Vinculando direcciones con la Tangle",
         "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
