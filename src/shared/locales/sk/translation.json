@@ -55,7 +55,7 @@
         "yes": "Áno",
         "no": "Nie",
         "okay": "Dobre",
-        "skip": "Skip",
+        "skip": "Preskočiť",
         "password": "Heslo",
         "unrecognisedPassword": "Nesprávne heslo",
         "unrecognisedPasswordExplanation": "Nesprávne heslo. Prosím, skúste znova.",
@@ -288,10 +288,10 @@
         "printerConfirmation": "Netlačím na verejnej tlačiarni"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "Chcete vytlačiť prázdnu šablónu?",
+        "printTemplateInfo": "Pre uľahčenie zapísania seedu si môžete vytlačiť prázdnu šablónu.",
+        "printTemplateWarning": "Uistite sa, že ste si svoj seed uložili na bezpečné miesto. Nikomu ho neukazujte.",
+        "print": "Áno, vytlačiť"
     },
     "receive": {
         "yourAddress": "Vaša adresa",
