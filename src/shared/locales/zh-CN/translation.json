@@ -475,8 +475,8 @@
         "searchHelpText": "使用交易组的哈希值或者讯息内容来搜索",
         "searchHelpValue": "使用准确的IOTA 价值来搜索交易",
         "searchHelpUnits": "使用IOTA 价值和数量来搜索交易",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpMore": "搜索价值高于X 的交易",
+        "searchHelpLess": "搜索价值小于X 的交易"
     },
     "accountManagement": {
         "viewSeed": "查看种子",
@@ -509,8 +509,8 @@
         "autoPromotion": "自动促进",
         "autoPromotionExplanation": "自动促进可以帮助确认您在Tangle上的交易。 如果您的交易很难得到确认，请启用此设置。",
         "autoPromotionPoW": "只有支持远程工作量证明的节点才可以进行交易的自动促进。",
-        "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "deepLinking": "深度链接",
+        "stateExport": "状态导出"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -550,7 +550,7 @@
         "million": "百万",
         "thousand": "千",
         "one": "一",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "通常，IOTA 会被以百万计(MIOTA) 来储存, 但是一个IOTA 也是可以被用来交易的。"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "为什么我不能支出全部余额？",
@@ -580,8 +580,8 @@
         "enterPassword": "输入密码查看您的种子。",
         "viewSeed": "查看种子",
         "hideSeed": "隐藏种子",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailable": "钱包种子的导出不适用于{{accountType}} 账户类型。",
+        "notAvailableExplanationLedger": "你的Ledger 设备安全地存储你的钱包种子。你的钱包种子被安全的加密并且不会离开Ledger 设备。",
         "accountIndex": "您的Ledger账户索引",
         "accountPage": "您的Ledger账户页面"
     },
