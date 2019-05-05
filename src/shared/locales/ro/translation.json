@@ -183,7 +183,7 @@
         "passwordUpdated": "Parolă actualizată",
         "passwordUpdatedExplanation": "Parola ta a fost actualizată cu succes.",
         "incorrectPassword": "Parolă incorectă",
-        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
+        "incorrectPasswordExplanation": "Parola curentă este incorectă. Vă rugăm să încercați din nou.",
         "passwordsDoNotMatch": "Parolele nu se potrivesc",
         "passwordsDoNotMatchExplanation": "Parolele nu se potrivesc, vă rugăm să încercați din nou.",
         "passwordTooShort": "Parola este prea scurtă",
