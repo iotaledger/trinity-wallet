@@ -659,7 +659,7 @@
         "key": "Clave"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "stateExportExplanation": "La exportación de estado guardará un archivo txt en su dispositivo junto con su información de cuenta (transacciones, direcciones), versión de la billetera y nombres de los archivos de almacenamiento.",
         "exportSuccess": "Estado exportado",
         "exportSuccessExplanation": "Tu archivo de estado ha sido exportado con éxito."
     },
@@ -723,11 +723,11 @@
         "autofill": "Autocompletado exitoso",
         "autofillExplanation": "Información de la transacción completada por el link.",
         "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingWarning": "Cuidado con el phishing. Asegúrate de que el link que vayas a abrir te lleve a la app oficial de Trinity.",
         "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingEnabled": "Has activado deep linking o referenciación profunda.",
+        "deepLinkingDisabled": "Has desactivado deep linking o referenciación profunda.",
+        "deepLinkingInfoTitle": "Referenciación profunda (o deep linking) está desactivado",
         "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
