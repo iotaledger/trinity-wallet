@@ -229,27 +229,27 @@
         "seedTooShort": "Seed-ul este prea scurt",
         "seedTooLong": "Seed-ul este prea lung",
         "seedTooShortExplanation": "Seed-ul trebuie să fie de o lungime de {{maxLength}} caractere. Seed-ul dumneavoastră are momentan o lungime de {{currentLength}} caractere. Vă rugăm încercați din nou.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "seedExplanation": "Seed-ul ar trebui să aibă o lungime de {{maxLength}} caractere și ar trebui să conțină majuscule de la A la Z, sau cifra 9. Nu puteți folosi un seed cu o lungime mai mare de {{maxLength}} caractere.",
+        "neverShare": "NU ÎMPĂRȚIȚI SEED-UL DUMNEAVOASTRĂ CU NIMENI"
     },
     "home": {
-        "balance": "BALANCE",
+        "balance": "SOLD",
         "send": "TRIMITE",
-        "receive": "RECEIVE",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "receive": "PRIMEȘTE",
+        "history": "ISTORIC",
+        "settings": "SETĂRI"
     },
     "languageSetup": {
-        "language": "Language",
-        "letsGetStarted": "Let's get started"
+        "language": "Limbă",
+        "letsGetStarted": "Să începem"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "login": "Log In",
-        "setNode": "Set Node",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "emptyPassword": "Parolă goală",
+        "emptyPasswordExplanation": "Trebuie să introduceți o parolă pentru autentificare. Vă rugăm încercați din nou.",
+        "enterPassword": "Vă rugăm să introduceţi parola.",
+        "login": "Autentificare",
+        "setNode": "Selectaţi Nodul",
+        "whyBiometricDisabled": "De ce este autentificarea biometrică dezactivată?",
         "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
@@ -388,7 +388,7 @@
         "currency": "Currency",
         "cannotChangeNode": "Cannot change node",
         "cannotChangeNodeWhileSending": "Cannot change node while sending.",
-        "language": "Language",
+        "language": "Limbă",
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
         "changePassword": "Change password",
