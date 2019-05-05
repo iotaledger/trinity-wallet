@@ -473,10 +473,10 @@
         "pleaseWait": "잠시만 기다려 주세요. 다른 번들을 프로모트하는 중입니다.",
         "typeHelp": "!help를 입력하여 명령어들을 확인할 수 있습니다",
         "searchHelpText": "번들 해쉬 또는 메세지 내용으로 검색하세요.",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpValue": "IOTA 값으로 거래 찾기",
+        "searchHelpUnits": "IOTA 값과 단위로 거래 찾기",
+        "searchHelpMore": "값이 X보다 큰 거래 찾기",
+        "searchHelpLess": "값이 X보다 작은 거래 찾기"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",
@@ -509,8 +509,8 @@
         "autoPromotion": "자동 프로모트",
         "autoPromotionExplanation": "자동 프로모트를 사용하면 트랜잭션이 승인되는데에 도움이 됩니다. 트랜잭션이 잘 승인되지 않는다면 이 기능을 사용해 보세요.",
         "autoPromotionPoW": "자동 프로모트는 원격 작업증명을 지원하는 노드에서만 사용 가능합니다.",
-        "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "deepLinking": "딥 링크",
+        "stateExport": "상태 내보내기"
     },
     "advancedThemeCustomisation": {
         "background": "배경",
@@ -537,7 +537,7 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "정말로 로그아웃 하시겠습니까?",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "로그아웃합니다",
         "areYouSure": "확실합니까?"
     },
     "qrScanner": {
@@ -550,7 +550,7 @@
         "million": "백만",
         "thousand": "천",
         "one": "일",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "일반적인 경우 IOTA는 백만 개 단위로 거래되나, 필요시 한 개 단위로도 전송할 수 있습니다."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "왜 거래에 잔고를 전부 사용할 수 없죠?",
@@ -572,7 +572,7 @@
         "syncingYourAccount": "계정을 동기화 중입니다."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "계정 이름과 시드를 입력해 주세요",
         "incorrectFormat": "잘못된 시드 형식",
         "validSeedExplanation": "유효한 시드는 대문자 A-Z와 숫자 9만을 사용한 81자의 문자열 형태를 갖습니다."
     },
@@ -580,14 +580,14 @@
         "enterPassword": "시드를 보기 위해 암호를 입력해 주세요.",
         "viewSeed": "시드 보기",
         "hideSeed": "시드 숨기기",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailable": "{{accountType}} 계정으로는 시드 내보내기를 할 수 없습니다",
         "notAvailableExplanationLedger": "귀하의 원장 장치는 시드를 저장하기 위해 보안 요소를 사용합니다. 해당 시드는 안전하게 암호화 되어 장치에 보관 됩니다.",
         "accountIndex": "귀하의 원장 계정 인덱스",
         "accountPage": "귀하의 원장 계정 페이지"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "시드를 저장하셨나요?",
-        "iHaveBackedUp": "I have safely backed up my seed",
+        "iHaveBackedUp": "시드를 안전하게 저장했습니다",
         "reenterSeed": "다음 단계에서 시드를 다시 입력해야 합니다.",
         "reenterSeedWarning": "기기가 고장났을 때 기존에 별도로 저장해 둔 시드가 없다면 지갑에 저장한 IOTA를 모두 잃게 됩니다.",
         "pleaseConfirm": "시드를 안전하게 저장하였는지 확인해 주세요."
@@ -624,10 +624,10 @@
     "transferConfirmation": {
         "youAreAbout": "아래의 주소로 {{contents}}를 보내려고 합니다.",
         "aMessage": "메시지",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "{{selectedAccountName}} 에서",
+        "toAddress": "아래 주소로",
+        "sendingAMessage": "아래의 메시지를",
+        "sendingAnEmptyMessage": "빈 메시지를"
     },
     "seedVault": {
         "exportSeedVault": "SeedValut 내보내기",
