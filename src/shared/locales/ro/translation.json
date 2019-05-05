@@ -126,7 +126,7 @@
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "seedThief": "If someone else has your seed they can steal your IOTA.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "googlePlayServicesNotAvailable": "Serviciul Google Play nu este disponibil",
         "couldNotVerifyDeviceIntegrity": "Nu se poate verifica integritatea dispozitivului deoarece Serviciile Google Play nu sunt disponibile.",
         "clear": "Elimină",
         "noNetworkConnection": "Nici o conexiune la reţea",
@@ -151,7 +151,7 @@
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
         "errorFetchingAccountInformation": "Error fetching account information.",
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
-        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychain": "Eroare Keychain",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
         "mainWallet": "CONTUL PRINCIPAL",
         "confirm": "Confirmă",
@@ -173,7 +173,7 @@
         "nameInUseExplanation": "Vă rugăm să folosiți un nume de cont unic pentru seed-ul dumnevoastră.",
         "accountNameTooLong": "Nume de cont prea lung",
         "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
-        "accountName": "Account name",
+        "accountName": "Numele contului",
         "noNickname": "Nu a fost introdus nici un nume de cont",
         "noNicknameExplanation": "Vă rugăm să introduceţi un nume de cont pentru secretul dumnevoastră.",
         "seedInUse": "Acest secret este deja folosit",
@@ -250,11 +250,11 @@
         "login": "Autentificare",
         "setNode": "Selectaţi Nodul",
         "whyBiometricDisabled": "De ce este autentificarea biometrică dezactivată?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "Autentificarea biometrică este dezactivată la prima încărcare a aplicației pentru securitatea dumneavoastră.",
+        "whyBiometricDisabledExplanationPart2": "Când folosiți Trinity veți fi delogat pentru inactivitate. Puteți să vă autentificați din nou cu autentificarea biometrică."
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
+        "loadingFirstTime": "Încărcarea seed-ului pentru prima dată.",
         "thisMayTake": "This may take a while.",
         "doNotMinimise": "Do not minimise or close the app.",
         "takingAWhile": "This seems to be taking a while"
