@@ -728,7 +728,7 @@
         "deepLinkingEnabled": "Has activado deep linking o referenciación profunda.",
         "deepLinkingDisabled": "Has desactivado deep linking o referenciación profunda.",
         "deepLinkingInfoTitle": "Referenciación profunda (o deep linking) está desactivado",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoMessage": "Has abierto una referencia profunda (o deep link) iota:// pero la referenciación profunda (o deep linking) está desactivada."
     },
     "updates": {
         "errorRetrievingUpdateData": "Error al recuperar los datos de actualización",
@@ -788,10 +788,10 @@
         "sweepConfirmationTitle": "Confirmación de barrido"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "dataMigration": "Migración de datos",
+        "dataMigrationExplanation": "Debido a limitaciones de rendimiento y almacenamiento, Trinity está usando una nueva base de datos para almacenar la configuración e información de cuenta. Por favor espera un momento mientras Trinity migra automáticamente tu información existente.",
+        "problemMigratingYourData": "Hubo un problema con la migración de su información. Por favor intente otra vez",
+        "seedMigrationExplanation": "Como parte del continuo esfuerzo para mejorar la seguridad de la billetera, su semilla será migrada a una metodología de almacenamiento mejorada. Por favor espera mientras Trinity migra el almacenamiento de la semilla automáticamente."
     },
     "ledger": {
         "ready": "Dispositivo de ledger conectado y listo",
