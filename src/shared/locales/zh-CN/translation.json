@@ -791,7 +791,7 @@
         "dataMigration": "数据迁移",
         "dataMigrationExplanation": "由于性能和储存限制，Trinity 正在使用一个新的数据库存储设置和帐户数据。请稍候，Trinity 自动迁移您的现有数据。",
         "problemMigratingYourData": "迁移您的数据时出现问题。请重试",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "seedMigrationExplanation": "作为Trinity 继续努力提升安全性的一部分，您的IOTA 种子将被迁移并以一个更好的存储方式储存。请在Trinity 迁移您的IOTA 种子时耐心等待。"
     },
     "ledger": {
         "ready": "Ledger设备已连接并准备完毕",
@@ -805,7 +805,7 @@
         "actionCancelledExplanation": "不能在无法访问Ledger设备的情况下执行操作。",
         "chooseAccountIndex": "选择您的Ledger账户索引",
         "accountIndexExplanation": "您的Ledger可以存储多个种子。每个种子都由一个唯一的索引号码。系统已经预先选择未使用的索引，但您也可以随意选择自己的索引。请务必记下您选择的索引号码。",
-        "accountPageExplanation": "Some third party wallets require pages.",
+        "accountPageExplanation": "一些第三方钱包需要pages。",
         "connectionError": "无法连接至Ledger",
         "connectionErrorExplanation": "检查您的Ledger是否已连接并解锁。",
         "connectionTitle": "连接您的Ledger",
@@ -826,7 +826,7 @@
         "checkAddressExplanation": "检查地址是否与Ledger设备上显示的地址匹配。",
         "applicationNotInitialised": "未经确认的警告",
         "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevError": "无法与Ledger 设备进行通信",
+        "udevErrorExplanation": "Trinity 无法与您的Ledger 设备通信。请访问以下网址来解决这个问题。"
     }
 }
