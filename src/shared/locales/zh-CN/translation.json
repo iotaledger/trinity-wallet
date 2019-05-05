@@ -25,7 +25,7 @@
         "experimentalNode": "不支持的节点版本",
         "experimentalNodeExplanation": "您当前选定的节点正在运行不受支持的实验性版本。请更改节点或重试。",
         "thisNodeOutOfSync": "此节点不同步，请更换节点或重试。",
-        "seed": "种子",
+        "seed": "IOTA 种子",
         "checksum": "校验和",
         "back": "返回",
         "goBack": "返回",
