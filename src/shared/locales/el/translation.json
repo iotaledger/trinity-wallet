@@ -75,7 +75,7 @@
         "attachToTangleUnavailableExplanation": "Η απομακρυσμένη απόδειξη εργασίας δεν είναι διαθέσιμη για τον επιλεγμένο κόμβο. Αλλάξετε κόμβο ή ορίστε τοπική απόδειξη εργασίας στις ρυθμίσεις για προχωρημένους.",
         "attachToTangleUnavailableExplanationShort": "Η επισύναψη στο Tangle δεν είναι διαθέσιμη για το επιλεγμένο κόμβο.",
         "wallet": "Πορτοφόλι",
-        "all": "All",
+        "all": "Όλα",
         "sent": "Εστάλη",
         "youReceived": "You received",
         "youSent": "You sent",
