@@ -89,7 +89,7 @@
         "reattach": "KIINNITÄ UUDELLEEN",
         "promote": "EDISTÄ",
         "retry": "Yritä uudelleen",
-        "pressBackAgain": "Paina paluu-painiketta sulkeaksesi sovelluksen",
+        "pressBackAgain": "Paina paluu-painiketta sulkeaksesi sovellus",
         "reattached": "Siirron uudelleenliitos onnistui",
         "reattachedExplanation": "Siirto tiivisteluvulla {{hash}} onnistui",
         "promotingTransaction": "Edistetään siirtoa",
@@ -105,8 +105,8 @@
         "transactionAlreadyConfirmedExplanation": "Siirto jota yrität edistää on jo vahvistettu.",
         "cannotSendToOwn": "Sending to an input address",
         "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
-        "pleaseWait": "Odota hetki",
-        "pleaseWaitEllipses": "Odota hetki...",
+        "pleaseWait": "Ole hyvä ja odota",
+        "pleaseWaitEllipses": "Ole hyvä ja odota...",
         "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
         "pleaseWaitTransferExplanation": "Saldoasi käytetään jo olemassa olevissa siirroissa. Odota, että ne on vahvistettu ennen kuin yrität uudelleen.",
         "pleaseWaitIncomingTransferExplanation": "Sinulla on saapuvia siirtoja, jotka ovat vielä kesken. Odota että ne valmistuvat ennen kuin yrität uudelleen.",
@@ -335,8 +335,8 @@
         "incorrectSeedExplanation": "Antamasi seed-luku on virheellinen. Yritä uudelleen.",
         "ifYouHaveNotSaved": "Jos et ole tallentanut seed-lukuasi, palaa takaisin ja tee se.",
         "enterSeedBelow": "Anna seed-lukusi uudelleen, jotta voimme varmistaa että tallensit sen asianmukaisesti",
-        "clipboardWarning": "Varoitus: Seediä ei voida liittää",
-        "clipboardWarningExplanation": "Liittäminen ei ole mahdollista turvallisuussyistä. Voit sen sijaan vetää ja pudottaa seedisi tekstitiedostosta."
+        "clipboardWarning": "Varoitus: Seed-lukua ei voida liittää",
+        "clipboardWarningExplanation": "Liittäminen ei ole mahdollista turvallisuussyistä. Voit sen sijaan vetää ja pudottaa seed-lukusi tekstitiedostosta."
     },
     "send": {
         "invalidAddress": "Virheellinen osoite",
@@ -510,7 +510,7 @@
         "autoPromotionExplanation": "Automaattinen edistäminen auttaa varmistamaan siirron tangle-verkossa. Laita tämä asetus päälle jos siirron varmistuksessa esiintyy ongelmia.",
         "autoPromotionPoW": "Automaattinen edistäminen toimii vain palvelimilla jotka tukevat laskentatyöntekoa (PoW).",
         "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "stateExport": "Tilan vienti"
     },
     "advancedThemeCustomisation": {
         "background": "Tausta",
@@ -588,7 +588,7 @@
     "saveSeedConfirmation": {
         "didSaveSeed": "Tallensitko seed-lukusi?",
         "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "reenterSeed": "Seuraavassa vaiheessa sinun tulee syöttää seed-lukusi uudestaan.",
         "reenterSeedWarning": "Jos et ole tallentanut seed-lukuasi laitteen ulkopuolelle, saatat laitteen hajotessa menettää kaikki varasi.",
         "pleaseConfirm": "Varmista, että olet tallentanut seed-lukusi turvallisesti."
     },
@@ -607,19 +607,19 @@
         "fingerprintAuthFailedExplanation": "Sormenjälkitunnistus epäonnistui. Yritä uudelleen.",
         "status": "Tila",
         "fingerprintUnavailable": "Biometrinen tunnistus ei ole käytettävissä",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "Tunnistautuminen on lukittu 30 sekunniksi",
         "fingerprintUnavailableExplanation": "Laitteesi ei tue biometristä tunnistusta tai se on otettu pois käytöstä asetuksista.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "notSupported": "Laite ei tue biometristä tunnistautumista",
+        "notConfigured": "Biometristä tunnistautumista ei ole konfigoroitu laitteen asetuksissa",
         "buttonInstructionsDisable": "Paina alla olevaa painiketta poistaaksesi sormenjälkitunnistuksen käytöstä.",
         "buttonInstructionsEnable": "Paina alla olevaa painiketta ottaaksesi sormenjälkitunnistuksen käyttöön.",
         "buttonInstructionsDisableIPhoneX": "Paina alla olevaa painiketta poistaaksesi kasvotunnistuksen",
         "buttonInstructionsEnableIPhoneX": "Paina alla olevaa painiketta ottaaksesi kasvontunnistuksen käyttöön",
         "instructionsLogin": "Kosketa sormenjälkilukijaa kirjautuaksesi sisään",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
+        "systemCancelledAuth": "Tunnistautuminen peruttiin laitteesi toimesta",
+        "userCancelledAuth": "Tunnistautumispyyntö peruttu",
         "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "noPassword": "Laitteelle ei ole asetettu salasanaa"
     },
     "transferConfirmation": {
         "youAreAbout": "Olet lähettämässä {{contents}} osoitteeseen",
