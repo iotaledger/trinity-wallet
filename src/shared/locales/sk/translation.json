@@ -1,6 +1,6 @@
 {
     "global": {
-        "send": "ODOSLAŤ",
+        "send": "POSLAŤ",
         "cancel": "Zrušiť",
         "continue?": "Ste si istý, že chcete pokračovať?",
         "noTransactions": "ŽIADNA NEDÁVNA HISTÓRIA",
@@ -723,12 +723,12 @@
         "autofill": "Automatické vyplnenie úspešné",
         "autofillExplanation": "Údaje o transakcii boli automaticky doplnené z odkazu.",
         "deepLinkingOverview": "Hlboké odkazy sú kliknuteľné odkazy (iota: // ...), ktoré automaticky vyplňujú údaje o transakcii v Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingWarning": "Dávajte pozor na phishingové podvody. Uistite sa, že odkaz, ktorý otvoríte, prejde na oficiálnu aplikáciu Trinity.",
+        "deepLinkingUpdated": "Nastavenie hlbokých odkazov",
+        "deepLinkingEnabled": "Aktivovali ste hlboké odkazy.",
+        "deepLinkingDisabled": "Zakázali ste hlboké odkazy.",
+        "deepLinkingInfoTitle": "Hlboké odkazy niesu zapnuté",
+        "deepLinkingInfoMessage": "Otvorili ste hlboký odkaz iota: //, ale hlboké odkazy nie sú povolené."
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba pri získavaní aktualizačných dát",
@@ -791,7 +791,7 @@
         "dataMigration": "Migrácia dát",
         "dataMigrationExplanation": "V záujme lepšieho výkonu a niektorých obmedzení, Trinity momentálne používa novú databázu pre ukladanie nastavení účtu a dát. Počkajte, kým Trinity automaticky prenesie Vaše dáta.",
         "problemMigratingYourData": "Objavil sa problém s migráciu Vaších dát, skúste to prosím znova",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "seedMigrationExplanation": "Ako súčasť pokračujúcej snahy spoločnosti Trinity o zlepšenie bezpečnosti peňaženky, bude váš seed zmigrovaný na rozšírenú metodológiu úložiska. Počkajte, kým Trinity automaticky zmigruje úložisko seedu."
     },
     "ledger": {
         "ready": "Zariadenie Ledger je pripojené a pripravené k práci",
@@ -826,7 +826,7 @@
         "checkAddressExplanation": "Skontrolujte, či adresa odpovedá adrese zobrazenej na Vašom zariadení Ledger.",
         "applicationNotInitialised": "Informačné upozornenie nebolo prijaté",
         "applicationNotInitialisedExplanation": "Znovu otvorte aplikáciu IOTA na Vašom zariadení Ledger, prijmite informačné upozornenie a skúste to znova.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevError": "Nepodarilo sa komunikovať so zariadením Ledger",
+        "udevErrorExplanation": "Trinity nemohla komunikovať so zariadením Ledger. Ak chcete tento problém vyriešiť, prejdite na nižšie uvedenú URL adresu."
     }
 }
