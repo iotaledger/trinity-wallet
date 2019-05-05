@@ -622,7 +622,7 @@
         "noPassword": "设备上未设置密码"
     },
     "transferConfirmation": {
-        "youAreAbout": "您将发送 {{内容}} 到地址",
+        "youAreAbout": "您将发送 {{contents}} 到地址",
         "aMessage": "一条消息",
         "fromAccount": "来自{{selectedAccountName}}",
         "toAddress": "接受付款地址",
