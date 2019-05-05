@@ -335,15 +335,15 @@
         "incorrectSeedExplanation": "Antamasi seed-luku on virheellinen. Yritä uudelleen.",
         "ifYouHaveNotSaved": "Jos et ole tallentanut seed-lukuasi, palaa takaisin ja tee se.",
         "enterSeedBelow": "Anna seed-lukusi uudelleen, jotta voimme varmistaa että tallensit sen asianmukaisesti",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "Varoitus: Seediä ei voida liittää",
+        "clipboardWarningExplanation": "Liittäminen ei ole mahdollista turvallisuussyistä. Voit sen sijaan vetää ja pudottaa seedisi tekstitiedostosta."
     },
     "send": {
         "invalidAddress": "Virheellinen osoite",
         "invalidAddressExplanation1": "Osoitteen on oltava {{maxLength}} merkkiä pitkä ja sen pitäisi sisältää tarkistussumma.",
         "invalidAddressExplanation2": "Osoite sisältää virheellisiä merkkejä.",
         "invalidAddressExplanation3": "Osoite sisältää virheellisen tarkistussumman.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "Ole hyvä ja tarkasta, että olet syöttänyt osoitteen oikein.",
         "invalidAddressExplanationGeneric": "Osoitteen on oltava 90 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9.",
         "notEnoughFunds": "Varoja ei riittävästi",
         "notEnoughFundsExplanation": "Sinulla ei ole tarpeeksi saldoa siirron loppuun suorittamiseksi.",
@@ -373,10 +373,10 @@
         "youCanAdd": "Seed-lukuja voit hallita Asetukset-valikossa."
     },
     "modeSelection": {
-        "advanced": "Kehittynyt",
+        "advanced": "Advanced",
         "standard": "Tavallinen käyttäjä",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
+        "advancedModeExplanation": "Advanced-tilassa näet teknistä informatiota yksityiskohtaisemmin.",
+        "modesExplanation": "Käytä Advanced-tilaa vain jos olet kokenut IOTA käyttäjä. Voit muuten kokea tilan monimutkaiseksi.",
         "modeUpdated": "Mode updated",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
