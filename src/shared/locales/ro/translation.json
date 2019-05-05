@@ -670,9 +670,9 @@
         "error": "Error fetching chart data"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "warning": "AVERTISMENT",
+        "appearsRooted": "Dispozitivul dumneavoastră apare ca rootat.",
+        "securityRisk": "Lucrul acesta poate reprezenta un risc semnificativ pentru securitatea portofelului dumneavoastră.",
         "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
