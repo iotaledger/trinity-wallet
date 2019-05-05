@@ -2,7 +2,7 @@
     "global": {
         "send": "ODESLAT",
         "cancel": "Storno",
-        "continue?": "Opravdu si přejete pokračovat?",
+        "continue?": "Jste si jistý, že chcete pokračovat?",
         "noTransactions": "ŽÁDNÁ NEDÁVNÁ HISTORIE",
         "refresh": "Obnovit",
         "balanceError": "Nedostatečný zůstatek",
@@ -289,7 +289,7 @@
     },
     "printBlankTemplate": {
         "printTemplateQuestion": "Chcete vytisknout prázdnou šablonu?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateInfo": "Pro ulehčení si můžete vytisknout prázdnou šablonu k zapsání vašeho seedu.",
         "printTemplateWarning": "Uchovávejte Seed na bezpečném místě a nikomu ho neukazujte.",
         "print": "Ano, tisk"
     },
