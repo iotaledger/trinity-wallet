@@ -581,7 +581,7 @@
         "viewSeed": "Zobraziť Seed",
         "hideSeed": "Skryť Seed",
         "notAvailable": "Seed export nie je k dispozícii pre typ účtu {{accountType}}",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "Váš ledger používa bezpečný prvok na ukladanie vášho seedu. Seed je bezpečne zakódovaný a neopustí zariadenie.",
         "accountIndex": "Index účtu vo Vašom Ledgeri",
         "accountPage": "Stránka účtu vo Vašom Ledgeri"
     },
@@ -652,16 +652,16 @@
         "noSeedFoundExplanation": "SeedVault je buď prázdny, alebo obsahuje seed v neplatnom formáte.",
         "seedFileError": "Otvorenie SeedVault zlyhalo",
         "seedFileErrorExplanation": "Počas otvárania SeedVault nastal problém. Ak Ste zvolili naozaj správny súbor, je možné, že je poškodený.",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileError": "Neplatný súbor SeedVault",
+        "invalidSeedFileErrorExplanation": "Tento formát súboru nie je podporovaný. Podporované sú iba súbory SeedVault (.kdbx) vytvorené prostredníctvom aplikácie Trinity alebo správcu hesiel.",
         "seedVaultKeyExplanation": "Najprv potrebujeme zabezpečiť Váš SeedVault. Vyberte si prosím heslo k zašifrovaniu súboru. Toto heslo použijete, pokiaľ budete potrebovať obnoviť Váš Seed zo zálohy SeedVault.",
         "retypeKey": "Zadajte heslo znova",
         "key": "Kľúč"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "Export stavu uloží do vášho zariadenia súbor txt s informáciami o vašom účte (transakciách, adresách), verzii peňaženky a názvami úložných súborov.",
+        "exportSuccess": "Stav bol vyexportovaný",
+        "exportSuccessExplanation": "Váš stavový súbor bol úspešne vyexportovaný."
     },
     "chart": {
         "mcap": "MCAP",
@@ -722,7 +722,7 @@
     "deepLink": {
         "autofill": "Automatické vyplnenie úspešné",
         "autofillExplanation": "Údaje o transakcii boli automaticky doplnené z odkazu.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingOverview": "Hlboké odkazy sú kliknuteľné odkazy (iota: // ...), ktoré automaticky vyplňujú údaje o transakcii v Trinity.",
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
