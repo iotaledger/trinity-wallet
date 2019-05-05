@@ -162,7 +162,7 @@
         "forceUpdateExplanation": "En kritisk oppdatering er lansert. Oppdater applikasjonen nå.",
         "missingPermission": "Trenger tillatelse til filsystemet",
         "missingPermissionExplanation": "Tilgang til filsystemet kreves for å utføre denne funksjonen.",
-        "swipeToConfirm": "Swipe to confirm"
+        "swipeToConfirm": "Dra for å bekrefte"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -288,10 +288,10 @@
         "printerConfirmation": "Jeg skriver ikke ut på en offentlig skriver"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "Vil du skrive ut en tom mal?",
+        "printTemplateInfo": "Du kan skrive ut en tom mal for å hjelpe deg å skrive med din seed.",
+        "printTemplateWarning": "Pass på å lagre hovednøkkelen din på en trygg plass. Ikke vis den til noen.",
+        "print": "Ja, skriv ut"
     },
     "receive": {
         "yourAddress": "Din adresse",
@@ -307,7 +307,7 @@
         "generateAnAddress": "Generer adresse",
         "generateAnAddressTitle": "Generere en adresse",
         "generateAnAddressExplanation": "Vennligst generer en adresse før du bruker denne funksjonen.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "Generer en ny mottakeradresse hver gang du ønsker å motta IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Ta vare på hovednøkkelen",
