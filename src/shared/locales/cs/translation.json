@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "ODESLAT",
-        "cancel": "Zrušit",
+        "cancel": "Storno",
         "continue?": "Opravdu si přejete pokračovat?",
         "noTransactions": "ŽÁDNÁ NEDÁVNÁ HISTORIE",
         "refresh": "Obnovit",
