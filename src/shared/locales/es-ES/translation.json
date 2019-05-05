@@ -473,10 +473,10 @@
         "pleaseWait": "Por favor espere, Trinity está promoviendo otro paquete.",
         "typeHelp": "Escriba !help para comandos disponibles",
         "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpValue": "Buscar transacciones de iota por valor exacto",
+        "searchHelpUnits": "Buscar transacciones de iota por valor y unidad",
+        "searchHelpMore": "Buscar transacciones con valor mayor que X",
+        "searchHelpLess": "Buscar transacciones con valor menor que X"
     },
     "accountManagement": {
         "viewSeed": "Ver semilla",
@@ -510,7 +510,7 @@
         "autoPromotionExplanation": "La auto-promoción ayuda a confirmar sus transacciones en el Tangle. Habilite esta opción si está experimentando dificultades para conseguir que se confirmen sus transacciones.",
         "autoPromotionPoW": "La auto-promoción solo es posible en los nodos que soportan PoW remota.",
         "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "stateExport": "Exportar estado"
     },
     "advancedThemeCustomisation": {
         "background": "Fondo",
@@ -660,8 +660,8 @@
     },
     "stateExport": {
         "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "exportSuccess": "Estado exportado",
+        "exportSuccessExplanation": "Tu archivo de estado ha sido exportado con éxito."
     },
     "chart": {
         "mcap": "MCAP",
@@ -697,11 +697,11 @@
         "gettingTransactionsToApprove": "Obteniendo transacciones para aprobar",
         "proofOfWork": "Completando PoW",
         "broadcasting": "Transmitiendo",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
+        "preparingData": "Preparando datos",
+        "migratingSettings": "Configuración de migración",
         "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "cleaningUpOldData": "Borrando datos antiguos",
+        "migrationComplete": "Migración completada",
         "transferComplete": "Transferencia completa"
     },
     "snapshotTransition": {
