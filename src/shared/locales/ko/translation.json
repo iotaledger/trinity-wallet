@@ -288,8 +288,8 @@
         "printerConfirmation": "공용 프린터를 사용 중이 아닙니다"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateQuestion": "빈 양식을 인쇄하시겠습니까?",
+        "printTemplateInfo": "양식을 인쇄하여 시드를 적는 데에 사용할 수 있습니다.",
         "printTemplateWarning": "귀하의 시드를 안전한 장소에 보관하십시오. 누구에게도 보여주지 마십시오.",
         "print": "예, 프린트 하세요."
     },
@@ -470,7 +470,7 @@
         "retrying": "다시 시도 중",
         "yesterday": "어제",
         "promotingAnotherBundle": "다른 번들 프로모트중",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "pleaseWait": "잠시만 기다려 주세요. 다른 번들을 프로모트하는 중입니다.",
         "typeHelp": "Type !help for available commands",
         "searchHelpText": "번들 해쉬 또는 메세지 내용으로 검색하세요.",
         "searchHelpValue": "Find transactions by exact iota value",
