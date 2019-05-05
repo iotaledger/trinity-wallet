@@ -653,7 +653,7 @@
         "seedFileError": "打开SeedVault失败",
         "seedFileErrorExplanation": "打开 SeedVault 时遇到问题。如果您选择了正确的文件, 那么它可能已损坏。",
         "invalidSeedFileError": "无效的SeedVault 文件",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileErrorExplanation": "无法支持此文件类型。 只有在Trinity 生成的SeedVaule 文件(.kdbx)或者密码管理可以被支持。",
         "seedVaultKeyExplanation": "首先，我们需要加密你的种子库。请选择加密文件的密钥。如果需要从SeedVault备份中恢复种子，您将使用此密钥。",
         "retypeKey": "重新输入密钥",
         "key": "密钥"
