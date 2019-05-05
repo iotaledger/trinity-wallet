@@ -472,7 +472,7 @@
         "promotingAnotherBundle": "Promoviendo otro paquete",
         "pleaseWait": "Por favor espere, Trinity está promoviendo otro paquete.",
         "typeHelp": "Escriba !help para comandos disponibles",
-        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpText": "Búsqueda por bundle hash o contenido de mensaje",
         "searchHelpValue": "Buscar transacciones de iota por valor exacto",
         "searchHelpUnits": "Buscar transacciones de iota por valor y unidad",
         "searchHelpMore": "Buscar transacciones con valor mayor que X",
@@ -509,7 +509,7 @@
         "autoPromotion": "Auto-promoción",
         "autoPromotionExplanation": "La auto-promoción ayuda a confirmar sus transacciones en el Tangle. Habilite esta opción si está experimentando dificultades para conseguir que se confirmen sus transacciones.",
         "autoPromotionPoW": "La auto-promoción solo es posible en los nodos que soportan PoW remota.",
-        "deepLinking": "Deep linking",
+        "deepLinking": "Referenciación profunda",
         "stateExport": "Exportar estado"
     },
     "advancedThemeCustomisation": {
