@@ -291,7 +291,7 @@
         "printTemplateQuestion": "Haluatko tulostaa tyhjän pohjan?",
         "printTemplateInfo": "Voit tulostaa tyhjän pohjan kirjoittaaksesi seed-lukusi ylös.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "print": "Kyllä, tulosta"
     },
     "receive": {
         "yourAddress": "Osoitteesi",
@@ -318,10 +318,10 @@
         "paperWallet": "Paperilompakko",
         "writeYourSeedDown": "Kirjoita seed-luku paperille",
         "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Tallennetaan seed-lukusi",
         "youCanHighlightCharacters": "Voit korostaa 9 merkkiä kerrallaan",
         "printBlankWallet": "Tulosta tyhjä lompakko",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Mikä on tarkistussumma?",
         "everySeedHasAChecksum": "Jokaisella seed-luvulla on kolmen merkin pituinen tarkistussumma.",
         "iHavesavedMySeed": "Seed-luku turvassa",
         "checksumExplanation": "Kun lisäät seed-luvun lompakkoon, varmista että kolmen merkin pituinen tarkistussumma vastaa alkuperäistä.",
