@@ -300,13 +300,13 @@
         "copyAddress": "Kopioi osoite",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoitteesi on kopioitu leikepöydälle.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Luo osoite",
         "noAddresses": "EI OSOITTEITA",
         "spent": "Käytetty",
         "tag": "Tunniste",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAnAddress": "Luo osoite",
+        "generateAnAddressTitle": "Luo osoite",
+        "generateAnAddressExplanation": "Ole hyvä ja luo osoite ennen tätä toimintoa.",
         "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
@@ -365,7 +365,7 @@
         "addressPasteDetected": "Osoitteen liittäminen havaittu",
         "addressPasteExplanation": "Näyttää siltä että olet liittänyt osoitteen muualta. Varmista että liitetty osoite vastaa alkuperäistä.",
         "invalid": "VIRHEELLINEN",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Pyyhkäise lähettääksesi"
     },
     "setSeedName": {
         "letsAddName": "Annetaan seed-luvulle nimi",
@@ -373,7 +373,7 @@
         "youCanAdd": "Seed-lukuja voit hallita Asetukset-valikossa."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Kehittynyt",
         "standard": "Tavallinen käyttäjä",
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
