@@ -213,7 +213,7 @@
     "setPassword": {
         "choosePassword": "Choose a new password",
         "passwordTooShort": "Parola este prea scurtă",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "Parola dumneavoastră trebuie să fie de minim {{minLength}} caractere. Momentan este de {{currentLength}} caractere. Vă rugăm reîncercați.",
         "passwordMismatch": "Parolele nu se potrivesc",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
         "anEncryptedCopy": "Aceasta este parola portofelului dumneavoastră principal. O veți folosi când vă veți autentifica.",
@@ -278,24 +278,24 @@
         "walletReady": "Portofelul este acum configurat și gata de utilizare. Dacă trebuie să faceți modificări în viitor, căutați în meniul Setări."
     },
     "paperWallet": {
-        "neverShare": "Never share your seed with anyone.",
-        "iotaLogo": "IOTA logo",
-        "print": "Print",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "neverShare": "Nu împărtășiți seed-ul dumneavoastră cu nimeni.",
+        "iotaLogo": "Logo-ul IOTA",
+        "print": "Tipăriți",
+        "paperConvenience": "Tipărirea pe hârtie a unei copii a seed-ului este o metodă convenabilă pentru a depozita seed-ul.",
+        "publicInsecure": "Dar tipărirea pe un wifi public sau o imprimanta publică nu este sigură.",
+        "pleaseCheck": "Vă rugăm să verificați și să confirmați înainte de a tipări",
+        "wifiConfirmation": "Nu sunt pe un wifi public",
+        "printerConfirmation": "Nu tipăresc pe o imprimantă publică"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "Doriți să tipăriți un șablon gol?",
+        "printTemplateInfo": "Puteți tipări un șablon gol ca să vă ajute să scrieți seed-ul.",
+        "printTemplateWarning": "Asigurați-vă că depozitați seed-ul într-un spațiu sigur. Nu arătați seed-ul nimănui.",
+        "print": "Da, tipărește"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
+        "yourAddress": "Adresa dumneavoastră",
+        "qrOptions": "Opțiuni QR",
         "shareQr": "Share QR code",
         "copyAddress": "Copy address",
         "addressCopied": "Address copied",
@@ -413,8 +413,8 @@
         "quit": "Quit",
         "edit": "Edit",
         "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
+        "copy": "Copiază",
+        "paste": "Inserează",
         "selectAll": "Select All",
         "securitySettings": "Security settings",
         "fingerprint": "Biometric authentication",
