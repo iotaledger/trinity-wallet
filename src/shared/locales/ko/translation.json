@@ -55,7 +55,7 @@
         "yes": "네",
         "no": "아니오",
         "okay": "확인",
-        "skip": "Skip",
+        "skip": "건너뛰기",
         "password": "비밀번호",
         "unrecognisedPassword": "잘못된 비밀번호",
         "unrecognisedPasswordExplanation": "비밀번호가 맞지 않습니다. 다시 시도해주세요.",
