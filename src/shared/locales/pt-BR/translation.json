@@ -394,7 +394,7 @@
         "changePassword": "Alterar Senha",
         "general": "Configurações gerais",
         "advanced": "Opções Avançadas",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "Opções do servidor",
         "account": "Configurações de conta",
         "logout": "Desconectar",
         "reset": "Redefinir a carteira",
@@ -471,12 +471,12 @@
         "yesterday": "Ontem",
         "promotingAnotherBundle": "Promover outro pacote",
         "pleaseWait": "Por favor aguarde, Trinity está promovendo outro pacote.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "typeHelp": "Digite !help para acessar os comandos disponíveis",
+        "searchHelpText": "Pesquisar por bundle hash ou conteúdo da mensagem",
+        "searchHelpValue": "Pesquisar transações por valor exato em iota",
+        "searchHelpUnits": "Pesquisar transações por valor de iota e unidade",
+        "searchHelpMore": "Pesquisar transações com o valor acima de X",
+        "searchHelpLess": "Pesquisar transações com o valor abaixo de X"
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
