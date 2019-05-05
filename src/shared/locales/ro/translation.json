@@ -643,8 +643,8 @@
         "emptyKeyExplanation": "You must enter a key. Please try again.",
         "importSuccess": "Seed imported",
         "importSuccessExplanation": "Your seed was imported successfully.",
-        "saveToDownloadFolder": "Save to Download Folder",
-        "importSeedVault": "Import SeedVault",
+        "saveToDownloadFolder": "Salvați in Fișierul Descărcări",
+        "importSeedVault": "Importați SeedVault",
         "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
         "dropActive": "Drop SeedVault or text here",
         "enterKeyExplanation": "Enter your key to open the SeedVault",
@@ -656,11 +656,11 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
-        "key": "Key"
+        "key": "Cheie"
     },
     "stateExport": {
         "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
+        "exportSuccess": "Stare exportată",
         "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
@@ -679,7 +679,7 @@
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
-        "remote": "Remote",
+        "remote": "La distanţă",
         "powUpdated": "Proof of work settings",
         "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
