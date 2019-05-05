@@ -208,7 +208,7 @@
         "reasonTop100": "This is a top 100 common password.",
         "reasonCommon": "This is a very common password.",
         "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonWord": "Un singur cuvânt este ușor de ghicit."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -230,7 +230,7 @@
         "seedTooLong": "Seed-ul este prea lung",
         "seedTooShortExplanation": "Seed-ul trebuie să fie de o lungime de {{maxLength}} caractere. Seed-ul dumneavoastră are momentan o lungime de {{currentLength}} caractere. Vă rugăm încercați din nou.",
         "seedExplanation": "Seed-ul ar trebui să aibă o lungime de {{maxLength}} caractere și ar trebui să conțină majuscule de la A la Z, sau cifra 9. Nu puteți folosi un seed cu o lungime mai mare de {{maxLength}} caractere.",
-        "neverShare": "NU ÎMPĂRȚIȚI SEED-UL DUMNEAVOASTRĂ CU NIMENI"
+        "neverShare": "NU ÎMPĂRTĂȘIȚI SEED-UL DUMNEAVOASTRĂ CU NIMENI"
     },
     "home": {
         "balance": "SOLD",
@@ -255,27 +255,27 @@
     },
     "loading": {
         "loadingFirstTime": "Încărcarea seed-ului pentru prima dată.",
-        "thisMayTake": "This may take a while.",
-        "doNotMinimise": "Do not minimise or close the app.",
-        "takingAWhile": "This seems to be taking a while"
+        "thisMayTake": "Aceasta s-ar putea sa dureze o vreme.",
+        "doNotMinimise": "Nu minimalizați sau închideți aplicația.",
+        "takingAWhile": "Acest lucru pare să dureze ceva timp"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
-        "seedNotGenerated": "Seed has not been generated",
+        "generatedSeed": "Seed creeat",
+        "seedNotGenerated": "Seed-ul nu a fost creeat",
         "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "Press for New Seed",
-        "generateSuccess": "Seed generated successfully",
-        "individualLetters": "Press individual letters to randomise them.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
-        "whatIsASeed": "What is a seed?"
+        "pressForNewSeed": "Apasă pentru un Nou Seed",
+        "generateSuccess": "Seed creeat cu succes",
+        "individualLetters": "Apăsați literele individual pentru a le randomiza.",
+        "individualLetterCount": "Apăsați încă <1><0>{{count}}</0></1> literă pentru a o randomiza.",
+        "individualLetterCount_plural": "Apăsați încă <1><0>{{count}}</0></1> litere pentru a le randomiza.",
+        "randomiseCharsToContinue": "Randomizați <1>{{count}}</1> caracter pentru a continua.",
+        "randomiseCharsToContinue_plural": "Randomizați <1>{{count}}</1> caractere pentru a continua.",
+        "whatIsASeed": "Ce este un seed?"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "allDone": "Totul este gata!",
+        "openYourWallet": "Deschideți portofelul",
+        "walletReady": "Portofelul este acum configurat și gata de utilizare. Dacă trebuie să faceți modificări în viitor, căutați în meniul Setări."
     },
     "paperWallet": {
         "neverShare": "Never share your seed with anyone.",
