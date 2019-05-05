@@ -581,7 +581,7 @@
         "viewSeed": "Ver semilla",
         "hideSeed": "Ocultar semilla",
         "notAvailable": "La exportación de la semilla no está disponible para el tipo de cuenta {{accountType}}",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "Su dispositivo contable o ledger usa un elemento seguro para guardar su semilla. La semilla está encriptada de forma segura y nunca abandona el dispositivo.",
         "accountIndex": "Su índice del ledger de la cuenta",
         "accountPage": "Su página de cuenta de ledger"
     },
@@ -652,8 +652,8 @@
         "noSeedFoundExplanation": "El SeedVault se encuentra vacío o contiene una semilla con un formato no válido.",
         "seedFileError": "Fallo al abrir SeedVault",
         "seedFileErrorExplanation": "Hubo un problema al abrir el SeedVault. Si ha seleccionado el archivo correcto entonces puede estar corrompido.",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileError": "Archivo SeedVault inválido",
+        "invalidSeedFileErrorExplanation": "Este formato de archivo no es válido. Solamente son soportados los archivos SeedVault creados en Trinity o en algún gestor de contraseñas (.kdbx).",
         "seedVaultKeyExplanation": "Primero necesitamos asegurar su SeedVault. Por favor elija una clave para encriptar el archivo. Debe usar esta clave si necesita restaurar su semilla desde SeedVault.",
         "retypeKey": "Reingrese la clave",
         "key": "Clave"
