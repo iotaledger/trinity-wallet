@@ -283,13 +283,13 @@
         "print": "Tulosta",
         "paperConvenience": "Seed-luvun tulostaminen paperille on hyvä tapa tallentaa se laitteen ulkopuolelle.",
         "publicInsecure": "Tulostaminen julkisessa verkossa tai julkisella tulostimella ei kuitenkaan ole turvallista.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Ole hyvä ja tarkista ennen tulostusta",
+        "wifiConfirmation": "En käytä yleistä wifiä",
+        "printerConfirmation": "En tulosta yleiseen tulostimeen"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateQuestion": "Haluatko tulostaa tyhjän pohjan?",
+        "printTemplateInfo": "Voit tulostaa tyhjän pohjan kirjoittaaksesi seed-lukusi ylös.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
         "print": "Yes, print"
     },
