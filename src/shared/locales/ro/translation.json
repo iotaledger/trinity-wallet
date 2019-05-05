@@ -655,7 +655,7 @@
         "invalidSeedFileError": "Invalid SeedVault file",
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key",
+        "retypeKey": "Rescrieți cheia",
         "key": "Cheie"
     },
     "stateExport": {
@@ -665,8 +665,8 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
-        "volume": "Volume (24h)",
+        "change": "Schimbare (24)",
+        "volume": "Volum (24h)",
         "error": "Error fetching chart data"
     },
     "rootDetection": {
@@ -680,7 +680,7 @@
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
         "remote": "La distanţă",
-        "powUpdated": "Proof of work settings",
+        "powUpdated": "Setările Dovezii de lucru",
         "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "autoPromotion": {
@@ -732,13 +732,13 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
-        "noUpdatesAvailable": "No updates available",
+        "noUpdatesAvailable": "Nu există actualizări disponibile",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
-        "newVersionAvailable": "New version available",
+        "newVersionAvailable": "O nouă versiune este disponibilă",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Install update and restart",
+        "installUpdate": "Instalați actualizarea și restartați",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
-        "downloadingUpdate": "Downloading update",
+        "downloadingUpdate": "Descărcare actualizare",
         "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
