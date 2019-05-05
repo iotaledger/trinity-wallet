@@ -17,8 +17,7 @@
     "auditjs": "./../../node_modules/.bin/auditjs -n -l error -w whitelist.json",
     "themes:sync": "node themes/sync.js",
     "postinstall": "node debian-rebuild-realm.js",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "snyk-protect": "snyk protect"
   },
   "license": "Apache-2.0 OR EPL-2.0",
   "dependencies": {
