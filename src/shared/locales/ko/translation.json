@@ -291,7 +291,7 @@
         "printTemplateQuestion": "Would you like to print a blank template?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
         "printTemplateWarning": "귀하의 시드를 안전한 장소에 보관하십시오. 누구에게도 보여주지 마십시오.",
-        "print": "Yes, print"
+        "print": "예, 프린트 하세요."
     },
     "receive": {
         "yourAddress": "주소",
@@ -472,7 +472,7 @@
         "promotingAnotherBundle": "다른 번들 프로모트중",
         "pleaseWait": "Please wait, Trinity is promoting another bundle.",
         "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpText": "번들 해쉬 또는 메세지 내용으로 검색하세요.",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "Find transactions with a value greater than X",
@@ -616,9 +616,9 @@
         "buttonInstructionsDisableIPhoneX": "아래 버튼을 눌러 Face ID를 비활성화할 수 있습니다",
         "buttonInstructionsEnableIPhoneX": "아래 버튼을 눌러 Face ID를 활성화할 수 있습니다",
         "instructionsLogin": "로그인하려면 손가락을 지문 센서 위에 올리세요",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
+        "systemCancelledAuth": "장치에서 인증이 취소되었습니다.",
+        "userCancelledAuth": "인증 요청이 취소되었습니다.",
+        "passwordFallback": "비밀번호 인증으로 돌아갑니다.",
         "noPassword": "장치에 비밀번호가 설정되어 있지 않습니다"
     },
     "transferConfirmation": {
