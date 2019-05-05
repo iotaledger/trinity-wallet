@@ -26,8 +26,7 @@
     "auditjs": "./../../node_modules/.bin/auditjs -n -l error -w whitelist.json",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect",
-    "fix-modal": "node node_modules/react-native-modal-translucent/scripts/translucent-modal.js",
-    "prepublish": "npm run snyk-protect"
+    "fix-modal": "node node_modules/react-native-modal-translucent/scripts/translucent-modal.js"
   },
   "dependencies": {
     "@tradle/react-native-http": "^2.0.0",
