@@ -619,7 +619,7 @@
         "systemCancelledAuth": "Authentication was cancelled by your device",
         "userCancelledAuth": "Authentication request cancelled",
         "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "noPassword": "장치에 비밀번호가 설정되어 있지 않습니다"
     },
     "transferConfirmation": {
         "youAreAbout": "아래의 주소로 {{contents}}를 보내려고 합니다.",
