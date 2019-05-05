@@ -377,8 +377,8 @@
         "standard": "Tavallinen käyttäjä",
         "advancedModeExplanation": "Advanced-tilassa näet teknistä informatiota yksityiskohtaisemmin.",
         "modesExplanation": "Käytä Advanced-tilaa vain jos olet kokenut IOTA käyttäjä. Voit muuten kokea tilan monimutkaiseksi.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "Tila päivitetty",
+        "modeUpdatedExplanation": "Olet vaihtanut {{tilan}} tilaksi"
     },
     "settings": {
         "transferSending": "Siirto käynnissä",
@@ -392,10 +392,10 @@
         "accountManagement": "Tilinhallinta",
         "addNewSeed": "Lisää uusi seed-luku",
         "changePassword": "Vaihda salasana",
-        "general": "General settings",
+        "general": "Yleiset asetukset",
         "advanced": "Lisäasetukset",
-        "nodeSettings": "Node settings",
-        "account": "Account settings",
+        "nodeSettings": "Node asetukset",
+        "account": "Tilin asetukset",
         "logout": "Kirjaudu ulos",
         "reset": "Tyhjennä lompakko",
         "syncingComplete": "Synkronointi valmis",
@@ -457,7 +457,7 @@
     "history": {
         "bundleHashCopied": "Kokoelman tiivisteluku kopioitu",
         "noTransactionsFound": "Tapahtumia ei löytynyt",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "Tapahtumahistoriasi on tyhjä",
         "hideZeroBalance": "Piilota nollasaldo",
         "bundleHashCopiedExplanation": "Kokoelman tiivisteluku on kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
@@ -470,7 +470,7 @@
         "retrying": "Yritetään uudelleen",
         "yesterday": "Eilen",
         "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "pleaseWait": "Ole hyvä ja odota, Trinity edistää toista kokoelmaa.",
         "typeHelp": "Type !help for available commands",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
@@ -484,7 +484,7 @@
         "editAccountName": "Muokkaa tilin nimeä",
         "deleteAccount": "Poista tili",
         "addNewAccount": "Lisää uusi tili",
-        "tools": "Tools"
+        "tools": "Työkalut"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Palvelinta ei voitu lisätä",
@@ -521,30 +521,30 @@
         "mockup": "Malli"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
+        "classic": "Klassinen",
+        "contemporary": "Nykyaikainen",
         "dark": "Tumma",
-        "default": "Default",
+        "default": "Oletus",
         "electric": "Sähköinen",
-        "ionic": "Ionic",
+        "ionic": "Ioninen",
         "light": "Vaalea",
-        "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "lucky": "Onnekas",
+        "mint": "Mintunvihreä",
+        "steelblue": "Teräksen sininen"
     },
     "currencySelection": {
         "currency": "Valuutta"
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Haluatko varmasti kirjautua ulos?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "Olet kirjautumassa ulos",
+        "areYouSure": "Oletko varma?"
     },
     "qrScanner": {
         "scan": "Skannaa QR-koodi"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Yksikköjärjestelmä",
         "trillion": "Biljoonaa",
         "billion": "Miljardia",
         "million": "Miljoonaa",
