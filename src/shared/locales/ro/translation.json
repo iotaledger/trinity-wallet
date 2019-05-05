@@ -401,9 +401,9 @@
         "syncingComplete": "Sincronizare completă",
         "syncingCompleteExplanation": "Contul dumneavoastră a fost sincronizat cu succes.",
         "nicknameChanged": "Nume de cont schimbat",
-        "nicknameChangedExplanation": "Your account name has been changed.",
+        "nicknameChangedExplanation": "Numele contului dumneavoastră a fost schimbat.",
         "accountDeleted": "Cont șters",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "accountDeletedExplanation": "Contul dumneavoastră a fost eliminat din portofel.",
         "cannotPerformAction": "Nu se poate efectua acțiunea",
         "cannotPerformActionExplanation": "Du-te la setările avansate pentru a reseta portofelul.",
         "hide": "Ascunde",
@@ -415,12 +415,12 @@
         "cut": "Taie",
         "copy": "Copiază",
         "paste": "Inserează",
-        "selectAll": "Select All",
-        "securitySettings": "Security settings",
-        "fingerprint": "Biometric authentication",
-        "couldNotFetchRates": "Could not fetch rate",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rate",
+        "selectAll": "Selectați tot",
+        "securitySettings": "Setările de securitate",
+        "fingerprint": "Autentificarea biometrică",
+        "couldNotFetchRates": "Prețurile nu au putut fi încărcate",
+        "couldNotFetchRatesExplanation": "S-a întâmplat ceva în timpul preluării ratei de conversie pentru {{currency}}.",
+        "fetchedConversionRates": "Rată de conversie incarcată",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Undo",
         "redo": "Redo",
@@ -528,20 +528,20 @@
         "electric": "Electric",
         "ionic": "Ionic",
         "light": "Light",
-        "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "lucky": "Norocos",
+        "mint": "Mentă",
+        "steelblue": "Oțel Albastru"
     },
     "currencySelection": {
         "currency": "Monedă"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "logoutConfirmation": "Sunteți sigur că doriți să vă delogați?",
+        "aboutToLogOut": "Sunteți pe cale să fiți delogat/ă",
+        "areYouSure": "Sunteți sigur/ă?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Scanați codul QR"
     },
     "unitInfoModal": {
         "unitSystem": "Unit System",
@@ -617,20 +617,20 @@
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
         "instructionsLogin": "Touch fingerprint reader to log in",
         "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
+        "userCancelledAuth": "Cerere de autentificare respinsă",
         "passwordFallback": "Fall back to password authentication",
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "aMessage": "un mesaj",
+        "fromAccount": "De la {{selectedAccountName}}",
+        "toAddress": "Către adresa",
+        "sendingAMessage": "Trimițând un mesaj",
+        "sendingAnEmptyMessage": "Trimițând un mesaj gol"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
+        "exportSeedVault": "Exportați SeedVault",
         "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
