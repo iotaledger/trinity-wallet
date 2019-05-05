@@ -158,7 +158,7 @@
         "delete": "Poista",
         "shouldUpdate": "Uusi päivitys on saatavilla",
         "shouldUpdateExplanation": "Uusi päivitys on saatavilla. Suosittelemme päivittämään uusimpaan versioon.",
-        "forceUpdate": "Päivitä applikaatio jatkaaksesi",
+        "forceUpdate": "Päivitä sovellus jatkaaksesi",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
@@ -329,7 +329,7 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Ole hyvä ja vahvista seed-lukusi",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity ei koskaan pyydä sinua syöttämään uudelleen tätä seed-lukua ellet resetoi lompakkoasi tai poista sovellusta.",
         "enterYourSeed": "Anna seed-lukusi",
         "incorrectSeed": "Virheellinen seed-luku",
         "incorrectSeedExplanation": "Antamasi seed-luku on virheellinen. Yritä uudelleen.",
