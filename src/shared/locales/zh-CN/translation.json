@@ -659,9 +659,9 @@
         "key": "密钥"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "在你的设备上将状态导出至一个txt 文件，这个文件包含你的账户信息（交易和地址），钱包版本和存储文件的文件名。",
+        "exportSuccess": "状态已导出。",
+        "exportSuccessExplanation": "您的状态文件已被成功导出。"
     },
     "chart": {
         "mcap": "市值",
@@ -722,13 +722,13 @@
     "deepLink": {
         "autofill": "自动填充成功",
         "autofillExplanation": "从链接中自动填充了交易数据。",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingOverview": "深度链接是可以被点击的链接(iota://...)。深度链接将会在Trinity 自动填充交易信息数据。",
+        "deepLinkingWarning": "请小心钓鱼照片。请确保您打开的链接指向官方的Trinity 应用程序。",
+        "deepLinkingUpdated": "深度链接设置",
+        "deepLinkingEnabled": "您以激活深度链接。",
+        "deepLinkingDisabled": "您已取消深度链接。",
+        "deepLinkingInfoTitle": "深度链接没有被激活。",
+        "deepLinkingInfoMessage": "您点击了深度链接 iota:// ，但深度链接并没有在设置中被激活。"
     },
     "updates": {
         "errorRetrievingUpdateData": "提取更新数据时发生错误",
@@ -776,10 +776,10 @@
         "confirmedOut": "帐户 {{account}} 的 {{value}} 转出交易已确认"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepSucceeded": "资金已成功解锁",
+        "sweepSucceededExplanation": "您的资金已成功解锁并被移动至一个新的地址。推广此交易以帮助其获得确认。",
         "sweepError": "解锁资金时出错",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "sweepErrorExplanation": "在解锁您的资金时出现了一些错误。请重新尝试。",
         "warningTitle": "警告：检测到锁定的资金",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
