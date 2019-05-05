@@ -473,10 +473,10 @@
         "pleaseWait": "Vennligst vent, Trinity promoterer en transaksjon.",
         "typeHelp": "Skriv !hjelp for mulige kommandoer",
         "searchHelpText": "Søk med adresse hash eller med meldingsinnhold",
-        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpValue": "Finn transaksjoner ved identisk iota verdi",
         "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpMore": "Finn transaksjoner med verdi større enn X",
+        "searchHelpLess": "Finn transaksjoner med verdi mindre enn X"
     },
     "accountManagement": {
         "viewSeed": "Vis hovednøkkel",
