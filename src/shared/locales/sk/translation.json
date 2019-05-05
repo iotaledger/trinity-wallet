@@ -394,7 +394,7 @@
         "changePassword": "Zmeniť heslo",
         "general": "Všeobecné nastavenia",
         "advanced": "Pokročilé nastavenia",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "Nastavenia uzla",
         "account": "Nastavenie účtu",
         "logout": "Odhlásiť",
         "reset": "Obnoviť peňaženku",
@@ -457,7 +457,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash skopírovaný",
         "noTransactionsFound": "Nenašla sa žiadna transakcia",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "Vaša história transakcií je prázdna",
         "hideZeroBalance": "Skryť nulový zostatok",
         "bundleHashCopiedExplanation": "Bundle hash bol skopírovaný do schránky.",
         "addressCopied": "Adresa skopírovaná",
@@ -471,12 +471,12 @@
         "yesterday": "Včera",
         "promotingAnotherBundle": "Podpora ďalšieho balíčku",
         "pleaseWait": "Prosím počkajte, Trinity podporuje ďalší balíček.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "typeHelp": "Napíšte !help pre dostupné príkazy",
+        "searchHelpText": "Vyhľadávanie podľa bundle hashov alebo obsahu správy",
+        "searchHelpValue": "Nájsť transakcie podľa presnej iota hodnoty",
+        "searchHelpUnits": "Nájsť transakcie podľa iota hodnoty a jednotky",
+        "searchHelpMore": "Nájsť transakcie s hodnotou väčšou ako X",
+        "searchHelpLess": "Nájsť transakcie s hodnotou menšou ako X"
     },
     "accountManagement": {
         "viewSeed": "Zobraziť Seed",
@@ -509,8 +509,8 @@
         "autoPromotion": "Automatická podpora",
         "autoPromotionExplanation": "Automatická podpora vám pomôže potvrdiť vašu transakciu v sieti Tangle. Povoľte toto nastavenie, ak máte problémy s potvrdzovaním transakcií.",
         "autoPromotionPoW": "Automatická podpora je možná iba na Nodoch, ktoré podporujú vzdialený Proof of Work.",
-        "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "deepLinking": "Hlboké prepojenie",
+        "stateExport": "Export stavu"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadie",
