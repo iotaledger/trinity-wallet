@@ -7,7 +7,7 @@
         "refresh": "Päivitä",
         "balanceError": "Ei tarpeeksi katetta",
         "balanceErrorMessage": "Sinulla ei ole tarpeeksi saldoa siirron loppuun suorittamiseksi.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Saldo yhteensä",
         "transferError": "Siirtovirhe",
         "transferErrorMessage": "Siirrossa tapahtui virhe. Yritä uudelleen.",
         "transferSent": "Siirto lähetty",
