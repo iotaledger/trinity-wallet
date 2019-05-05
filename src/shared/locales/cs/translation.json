@@ -440,10 +440,10 @@
     "walletSetup": {
         "okay": "OK - přejděme nyní k nastavení Vaší peněženky!",
         "doYouNeedASeed": "Potřebujete vytvořit nový Seed?",
-        "seedExplanation": "IOTA Seed je hlavním přístupovým klíčem k Vašim prostředkům. Je dlouhý 81 znaků a používá pouze písmena A-Z nebo číslo 9.",
+        "seedExplanation": "IOTA Seed je hlavním přístupovým klíčem k vašim prostředkům. Je dlouhý 81 znaků a používá pouze písmena A-Z nebo číslo 9.",
         "noIHaveOne": "Ne, již mám Seed",
         "yesINeedASeed": "Ano, potřebuji Seed",
-        "explanation": "<0><0>Můžete ho použít pro přístup k Vašim prostředkům z</0><1> jakékoliv jiné peněženky</1><2>, na</2><3> libovolném zařízení.</3></0>",
+        "explanation": "<0><0>Můžete ho použít pro přístup k vašim prostředkům z</0><1>jakékoliv jiné peněženky</1><2>, na</2><3>libovolném zařízení.</3></0>",
         "loseSeed": "Ale pokud ztratíte Váš Seed, ztratíte vaše IOTY.",
         "keepSafe": "Uchovávejte Váš Seed v bezpečí."
     },
