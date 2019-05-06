@@ -474,7 +474,7 @@
         "typeHelp": "Skriv !hjelp for mulige kommandoer",
         "searchHelpText": "Søk med adresse hash eller med meldingsinnhold",
         "searchHelpValue": "Finn transaksjoner ved identisk iota verdi",
-        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpUnits": "Finn transaksjoner med iota-verdi og enhet",
         "searchHelpMore": "Finn transaksjoner med verdi større enn X",
         "searchHelpLess": "Finn transaksjoner med verdi mindre enn X"
     },
