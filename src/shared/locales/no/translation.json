@@ -509,8 +509,8 @@
         "autoPromotion": "Auto promoter",
         "autoPromotionExplanation": "Automatisk promotering hjelper deg å få bekreftet transaksjoner på Tangle. Aktiver denne innstillingen dersom du har problemer med å få transaksjoner bekreftet.",
         "autoPromotionPoW": "Automatisk promotering er kun mulig på noder som støtter ekstern PoW (Proof of Work).",
-        "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "deepLinking": "Dyplenking",
+        "stateExport": "Tilstands-eksportering"
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrunn",
