@@ -280,8 +280,8 @@
     "paperWallet": {
         "neverShare": "Ποτέ μη μοιράζεστε το σπόρο σας με κανέναν.",
         "iotaLogo": "Λογότυπο ΙΟΤΑ",
-        "print": "Print",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "print": "Εκτυπώσει",
+        "paperConvenience": "Η εκτύπωση ενός αντιγράφου σε χαρτί του σπόρου σας είναι ένας βολικός τρόπος για να το αποθηκεύσετε.",
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
         "pleaseCheck": "Please check and confirm before you print",
         "wifiConfirmation": "I am not on on public wifi",
