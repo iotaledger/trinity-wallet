@@ -4,7 +4,7 @@
         "cancel": "PREKLIČI",
         "continue?": "Ali ste prepričani da želite nadaljevati?",
         "noTransactions": "NI NEDAVNE ZGODOVINE",
-        "refresh": "Refresh",
+        "refresh": "Osveži",
         "balanceError": "Ni dovolj sredstev",
         "balanceErrorMessage": "Nimate dovolj IOTA za dokončanje tega prenosa.",
         "totalBalance": "Total balance",
