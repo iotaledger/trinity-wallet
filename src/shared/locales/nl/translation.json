@@ -307,7 +307,7 @@
         "generateAnAddress": "Genereer nieuw adres",
         "generateAnAddressTitle": "Genereer een adres",
         "generateAnAddressExplanation": "Genereer een adres voordat u deze functie gebruikt.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "Genereer telkens een nieuw deposito adres wanneer u IOTA wilt ontvangen"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back uw seed up",
@@ -321,7 +321,7 @@
         "letsWriteDownYourSeed": "Laten we uw seed opschrijven",
         "youCanHighlightCharacters": "U kan 9 karakters tegelijk markeren",
         "printBlankWallet": "Print een lege portemonnee",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Wat is een controlesom?",
         "everySeedHasAChecksum": "Iedereen seed heeft een overeenkomende 3-karakter controlesleutel.",
         "iHavesavedMySeed": "Ik heb mijn seed opgeslagen",
         "checksumExplanation": "Wanneer u uw seed toevoegt aan uw portemonnee, moet u er zeker van zijn dat de gegenereerde controlesom hetzelfde is als degene die u heeft opgeschreven.",
@@ -329,21 +329,21 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Bevestig uw seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity zal u nooit vragen om uw seed opnieuw in te voeren, tenzij u uw wallet reset of de app herinstalleert.",
         "enterYourSeed": "Voer uw seed in",
         "incorrectSeed": "Onjuiste seed",
         "incorrectSeedExplanation": "De ingevoerde seed is onjuist. Probeer het nog eens.",
         "ifYouHaveNotSaved": "Als u uw seed nog niet opgeslagen heeft, ga dan terug en doe dit alsnog.",
         "enterSeedBelow": "Voer uw zojuist gegenereerde seed hieronder in om te bevestigen dat uw reservekopie klopt",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "WAARSCHUWING: Kan seed niet plakken",
+        "clipboardWarningExplanation": "Plakken is uitgeschakeld voor uw veiligheid. U kunt uw seed in plaats daarvan uit een tekstbestand slepen."
     },
     "send": {
         "invalidAddress": "Ongeldig adres",
         "invalidAddressExplanation1": "Adres moet {{maxLength}} tekens lang zijn en moet een controlesom bevatten.",
         "invalidAddressExplanation2": "Adres bevat ongeldige tekens.",
         "invalidAddressExplanation3": "Adres bevat een ongeldige controlesom.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "Controleer of u het adres correct hebt ingevuld.",
         "invalidAddressExplanationGeneric": "Geldige adressen zijn 90 tekens lang en bevatten alleen A-Z of 9.",
         "notEnoughFunds": "Onvoldoende saldo",
         "notEnoughFundsExplanation": "U heeft onvoldoende IOTA om deze transactie te voltooien.",
@@ -365,7 +365,7 @@
         "addressPasteDetected": "Adres plakken gedetecteerd",
         "addressPasteExplanation": "Het lijkt erop dat u een adres wil plakken. Zorg ervoor dat dit adres overeenkomt met het adres waarnaar u wilt zenden.",
         "invalid": "ONGELDIG",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Swipe om te verzenden"
     },
     "setSeedName": {
         "letsAddName": "Laten we een naam toevoegen",
@@ -377,8 +377,8 @@
         "standard": "Standaard",
         "advancedModeExplanation": "Geavanceerde modus toont meer gedetailleerde technische informatie.",
         "modesExplanation": "Schakel geavanceerde modus alleen in als u bekend bent met IOTA. Het kan anders verwarrend zijn.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "Modus bijgewerkt",
+        "modeUpdatedExplanation": "Je bent veranderd in {{mode}} modus"
     },
     "settings": {
         "transferSending": "Transactie in behandeling",
@@ -392,10 +392,10 @@
         "accountManagement": "Accountbeheer",
         "addNewSeed": "Nieuwe seed toevoegen",
         "changePassword": "Wachtwoord wijzigen",
-        "general": "General settings",
+        "general": "Algemene instellingen",
         "advanced": "Geavanceerde instellingen",
-        "nodeSettings": "Node settings",
-        "account": "Account settings",
+        "nodeSettings": "Node instellingen",
+        "account": "Accountinstellingen",
         "logout": "Uitloggen",
         "reset": "Portemonnee opnieuw instellen",
         "syncingComplete": "Synchronisatie voltooid",
@@ -457,7 +457,7 @@
     "history": {
         "bundleHashCopied": "Bundel hash gekopieerd",
         "noTransactionsFound": "Geen transacties gevonden",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "Uw transactiegeschiedenis is leeg",
         "hideZeroBalance": "Verberg nul saldo",
         "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het klembord.",
         "addressCopied": "Adres gekopieerd",
@@ -470,13 +470,13 @@
         "retrying": "Opnieuw proberen...",
         "yesterday": "Gisteren",
         "promotingAnotherBundle": "Andere bundel aan het promoten",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "pleaseWait": "Even geduld, Trinity promoot een andere bundel.",
+        "typeHelp": "Type !help voor beschikbare commando's",
+        "searchHelpText": "Zoeken op bundle hash of bericht inhoud",
+        "searchHelpValue": "Zoek transacties op exacte iota waarde",
+        "searchHelpUnits": "Zoek transacties op iota waarde en eenheid",
+        "searchHelpMore": "Zoek transacties met een waarde groter dan X",
+        "searchHelpLess": "Zoek transacties met een waarde kleinder dan X"
     },
     "accountManagement": {
         "viewSeed": "Seed bekijken",
@@ -509,8 +509,8 @@
         "autoPromotion": "Auto-promotie",
         "autoPromotionExplanation": "Auto-promotie helpt uw transactie te bevestigen op de Tangle. Schakel deze instelling in wanneer u problemen ondervindt met bevestigen.",
         "autoPromotionPoW": "Auto-promotie is alleen mogelijk op nodes die ondersteuning bieden voor extern Bewijs van Inspanning (PoW).",
-        "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "deepLinking": "Diepe koppeling",
+        "stateExport": "Status exporteren"
     },
     "advancedThemeCustomisation": {
         "background": "Achtergrond",
@@ -537,14 +537,14 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Weet u zeker dat u wilt uitloggen?",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "U staat op het punt om uit te loggen",
         "areYouSure": "Weet u dit zeker?"
     },
     "qrScanner": {
         "scan": "QR-code scannen"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Eenheid Systeem",
         "trillion": "Biljoen",
         "billion": "Miljard",
         "million": "Miljoen",
