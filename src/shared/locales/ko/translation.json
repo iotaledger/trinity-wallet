@@ -654,8 +654,8 @@
         "seedFileErrorExplanation": "SeedVault를 여는 도중 문제가 발생하였습니다. 파일이 손상되었을 수 있습니다.",
         "invalidSeedFileError": "유효하지 않은 SeedVault 파일",
         "invalidSeedFileErrorExplanation": "지원되지 않는 파일 형식입니다. 트리니티 지갑 또는 비밀번호 관리 프로그램으로 만들어진 SeedVault 파일(.kdbx)만 지원됩니다.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key",
+        "seedVaultKeyExplanation": "우선 SeedVault의 보안을 설정합니다. SeedVault 파일을 암호화할 보안 키를 설정해 주세요. 이 보안 키가 있어야 SeedVault 저장소에서 시드를 찾을 수 있습니다.",
+        "retypeKey": "키 다시 입력",
         "key": "키"
     },
     "stateExport": {
