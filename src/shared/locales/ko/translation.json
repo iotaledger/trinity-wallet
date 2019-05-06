@@ -659,9 +659,9 @@
         "key": "키"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "상태를 내보내는 것으로 계정의 트랜잭션 및 주소에 대한 정보 및 지갑 버전, 저장소 파일명이 담긴 텍스트 파일을 기기에 저장합니다.",
+        "exportSuccess": "상태 내보냄",
+        "exportSuccessExplanation": "지갑 상태를 내보내는 데 성공했습니다."
     },
     "chart": {
         "mcap": "시가총액",
@@ -690,19 +690,19 @@
     "progressSteps": {
         "checkingNodeHealth": "노드 상태 확인중",
         "validatingReceiveAddress": "받는 주소 확인 중",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "트랜잭션 주소 확인",
         "syncingAccount": "계정 동기화중",
         "preparingInputs": "출금 트랜잭션 준비중",
         "preparingTransfers": "전송 준비중",
         "gettingTransactionsToApprove": "승인할 트랜잭션을 받아오는 중",
         "proofOfWork": "작업 증명 수행중",
         "broadcasting": "송출중",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "preparingData": "데이터 준비",
+        "migratingSettings": "설정 이전",
+        "migratingAccounts": "계정 이전",
+        "cleaningUpOldData": "예전 데이터 정리",
+        "migrationComplete": "이전 완료",
+        "transferComplete": "전송 완료"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "스냅샷 이전을 완료할 수 없음",
