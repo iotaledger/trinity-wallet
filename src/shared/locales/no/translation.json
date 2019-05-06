@@ -697,11 +697,11 @@
         "gettingTransactionsToApprove": "Mottar transaksjoner til godkjenning",
         "proofOfWork": "Fullfører PoW (Proof of Work)",
         "broadcasting": "Kringkasting",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Forbereder data",
+        "migratingSettings": "Migrerer innstillinger",
+        "migratingAccounts": "Migrerer kontoer",
+        "cleaningUpOldData": "Renser opp gamle data",
+        "migrationComplete": "Migrering fullført",
         "transferComplete": "Transaksjon fullført"
     },
     "snapshotTransition": {
@@ -724,10 +724,10 @@
         "autofillExplanation": "Transaksjonsdata er autoutfylt fra lenken.",
         "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingUpdated": "Innstillinger for dyplenking",
+        "deepLinkingEnabled": "Du har aktivert dyplenking.",
+        "deepLinkingDisabled": "Du har deaktivert dyplenking.",
+        "deepLinkingInfoTitle": "Dyplenking er ikke aktivert",
         "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
@@ -788,9 +788,9 @@
         "sweepConfirmationTitle": "Samlebekreftelse"
     },
     "migration": {
-        "dataMigration": "Data migration",
+        "dataMigration": "Datamigrering",
         "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "problemMigratingYourData": "Det oppsto et problem under migrering av dine data. Vennligst prøv igjen",
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
