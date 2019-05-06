@@ -617,7 +617,7 @@
         "buttonInstructionsEnableIPhoneX": "Trykk på knappen nedenfor for å aktivere Face ID",
         "instructionsLogin": "Berør fingeravtrykkleseren for å logge inn",
         "systemCancelledAuth": "Autentisering avbrutt av enheten",
-        "userCancelledAuth": "Authentication request cancelled",
+        "userCancelledAuth": "Autentiseringsforespørsel avbrutt",
         "passwordFallback": "Fall back to password authentication",
         "noPassword": "Password is not set on device"
     },
