@@ -24,7 +24,7 @@
         "nodeOutOfSyncExplanation": "Vaš odabrani node nije sinkroniziran. Molimo vas promijenite node i pokušajte ponovno.",
         "experimentalNode": "Nepodržana verzija node-a",
         "experimentalNodeExplanation": "Vaš trenutno odabrani node koristi eksperimentalnu verziju koja nije podržana. Molimo promijenite node i pokušajte ponovno.",
-        "thisNodeOutOfSync": "Vaš odabrani node nije sinkroniziran. Molimo vas promijenite node i pokušajte ponovno.",
+        "thisNodeOutOfSync": "Vaš odabrani node nije sinkroniziran. Molimo Vas promijenite node i pokušajte ponovno.",
         "seed": "Seed",
         "checksum": "Kontrolni zbroj",
         "back": "Natrag",
