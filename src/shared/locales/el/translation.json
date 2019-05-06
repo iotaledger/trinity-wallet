@@ -207,16 +207,16 @@
         "reasonTop10": "Αυτός είναι ένας από τους 10 πιο συνηθισμένους κωδικούς πρόσβασης.",
         "reasonTop100": "Αυτός είναι από τα 100 κοινούς κωδικους πρόσβασης.",
         "reasonCommon": "Αυτός είναι ένας πολύ συνηθισμένος κωδικός πρόσβασης.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonSimilar": "Αυτό είναι παρόμοιο με έναν συνήθη κωδικό πρόσβασης.",
+        "reasonWord": "Μία λέξη είναι εύκολο να μαντέψει."
     },
     "setPassword": {
-        "choosePassword": "Choose a new password",
+        "choosePassword": "Επιλέξτε έναν νέο κωδικό πρόσβασης",
         "passwordTooShort": "Ο κωδικός πρόσβασης είναι πολύ σύντομος",
         "passwordTooShortExplanation": "Οι σπόροι πρέπει να έχουν {{minLength}} χαρακτήρες μήκος. Ο σπόρος σας επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "passwordMismatch": "Οι κωδικοί πρόσβασης δεν ταιριάζουν",
         "passwordMismatchExplanation": "Οι κωδικοί πρόσβασης που έχετε καταχωρήσει δεν ταιριάζουν. Παρακαλώ ξαναπροσπαθήστε.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Αυτός είναι ο κύριος κωδικός του πορτοφολιού σας. Θα το χρησιμοποιήσετε για να συνδεθείτε.",
         "retypePassword": "Πληκτρολογήστε ξανά τον κωδικό πρόσβασης"
     },
     "copyToClipboard": {
@@ -227,7 +227,7 @@
         "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
         "invalidCharactersExplanation": "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "Το seed είναι πολύ μακρύς",
         "seedTooShortExplanation": "Οι σπόροι πρέπει να έχουν {{maxLength}} χαρακτήρες μήκος. Ο σπόρος σας επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedExplanation": "Οι σπόροι πρέπει να είναι {{maxLength}} χαρακτήρων και πρέπει να περιέχουν τα κεφαλαία γράμματα A-Z, ή τον αριθμό 9. Δεν μπορείτε να χρησιμοποιήσετε σπόρους που είναι μεγαλύτεροι από {{maxLength}} χαρακτήρες.",
         "neverShare": "ΜΗ ΜΟΙΡΑΖΕΣΤΕ ΠΟΤΕ ΤΟΝ ΣΠΟΡΟ ΣΑΣ ΜΕ ΚΑΝΕΝΑΝ"
@@ -241,13 +241,13 @@
     },
     "languageSetup": {
         "language": "Γλώσσα",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "Ας αρχίσουμε"
     },
     "login": {
         "emptyPassword": "Κενός κωδικός πρόσβασης",
         "emptyPasswordExplanation": "Πρέπει να εισαγάγετε έναν κωδικό πρόσβασης για να συνδεθείτε. Παρακαλώ δοκιμάστε ξανά.",
         "enterPassword": "Παρακαλώ εισάγετε τον κωδικό σας.",
-        "login": "Log In",
+        "login": "Σύνδεση",
         "setNode": "Set Node",
         "whyBiometricDisabled": "Why is biometric authentication disabled?",
         "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
