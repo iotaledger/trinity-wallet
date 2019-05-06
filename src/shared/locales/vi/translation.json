@@ -216,7 +216,7 @@
         "passwordTooShortExplanation": "Mật khẩu của bạn phải có ít nhất {{minLength}} ký tự. Mật khẩu hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
         "passwordMismatch": "Mật khẩu không trùng khớp",
         "passwordMismatchExplanation": "Mật khẩu vừa nhập không trùng khớp. Xin vui lòng thử lại.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Đây là mật khẩu để vào ví chính của bạn. Bạn sẽ sử dụng nó để đăng nhập.",
         "retypePassword": "Nhập Lại Mật Khẩu"
     },
     "copyToClipboard": {
@@ -250,7 +250,7 @@
         "login": "Đăng Nhập",
         "setNode": "Chọn Nút Mạng",
         "whyBiometricDisabled": "Tại sao xác thực sinh trắc học bị vô hiệu hóa?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart1": "Xác thực sinh trắc học bị vô hiệu hóa ở lần chạy đầu tiên vì lí do bảo mật của bạn.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
@@ -306,7 +306,7 @@
         "tag": "Tag",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAnAddressExplanation": "Vui lòng khởi tạo một địa chỉ trước khi sử dụng chức năng này.",
         "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
@@ -321,7 +321,7 @@
         "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "Bạn có thể đánh dấu 9 ký tự trong một lần",
         "printBlankWallet": "In một ví trống",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Giá trị kiểm tra là gì?",
         "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
         "iHavesavedMySeed": "Tôi đã lưu từ khóa",
         "checksumExplanation": "Khi bạn cho từ khoá vào ví, bạn nên chắc chắn rằng mã kiểm tra của ví trùng khớp với mã bạn đã ghi xuống.",
@@ -474,8 +474,8 @@
         "typeHelp": "Type !help for available commands",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpUnits": "Tìm những giao dịch bằng iota theo giá trị và đơn vị",
+        "searchHelpMore": "Tìm những giao dịch với giá trị lớn hơn X",
         "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
