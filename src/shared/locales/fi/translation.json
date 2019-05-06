@@ -469,7 +469,7 @@
         "empty": "Tyhjä",
         "retrying": "Yritetään uudelleen",
         "yesterday": "Eilen",
-        "promotingAnotherBundle": "Promoting another bundle",
+        "promotingAnotherBundle": "Edistetään toista kokoelmaa",
         "pleaseWait": "Ole hyvä ja odota, Trinity edistää toista kokoelmaa.",
         "typeHelp": "Kirjoita !help komentojen saamiseksi",
         "searchHelpText": "Search by bundle hash or message content",
@@ -761,17 +761,17 @@
         "completeSetup": "Complete setup"
     },
     "proxy": {
-        "proxy": "Use system proxy",
+        "proxy": "Käytä järjestelmän proxy-asetuksia",
         "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Ilmoitukset",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
+        "typeConfirmations": "Ilmoita minulle vahvistuksista",
         "typeMessages": "Notify me about zero value transactions",
         "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
+        "valueTx": "Vastaanotetaan {{value}} tilille {{account}}",
+        "messageTx": "Sait viestin tilille {{account}}",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     },
@@ -783,7 +783,7 @@
         "warningTitle": "Warning: Locked funds detected",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
+        "proceed": "Etene palautukseen",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     },
@@ -795,7 +795,7 @@
     },
     "ledger": {
         "ready": "Ledger-laite yhdistetty ja valmis",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "notReady": "Mikäli haluat käyttää Ledger-laitetta, yhdistä se nyt ja avaa sen lukitus",
         "indexInUse": "Index already in use for account {{account}}",
         "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
         "proceedWithLedger": "Proceed with Ledger setup",
@@ -807,7 +807,7 @@
         "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
         "accountPageExplanation": "Some third party wallets require pages.",
         "connectionError": "Ledgeriin yhdistäminen ei onnistu",
-        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionErrorExplanation": "Tarkista, että Ledger-laitteesi on yhdistettu ja lukituksesta avattu.",
         "connectionTitle": "Yhdistä Ledger-laitteesi",
         "connectionExplanation": "A Ledger device must be connected to perform this function.",
         "transactionTitle": "Scroll through and approve the transaction on your Ledger",
