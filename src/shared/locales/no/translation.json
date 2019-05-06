@@ -735,7 +735,7 @@
         "noUpdatesAvailable": "Ingen tilgjengelige oppdateringer",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Ny versjon tilgjengelig",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "En ny versjon av Trinity er tilgjengelig. Vil du oppdatere nå?",
         "installUpdate": "Installere oppdateringen og starte på nytt",
         "installUpdateExplanation": "Nedlastingen er fullført, Trinity startes nå på nytt for å installere oppdateringen.",
         "downloadingUpdate": "Laster ned oppdatering",
@@ -789,7 +789,7 @@
     },
     "migration": {
         "dataMigration": "Datamigrering",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
+        "dataMigrationExplanation": "På grunn av ytelses- og lagringsbegrensninger bruker Trinity en ny database for lagring av innstillinger og kontoinformasjon. Vennligst vent mens Trinity automatisk migrerer dine eksisterende data.",
         "problemMigratingYourData": "Det oppsto et problem under migrering av dine data. Vennligst prøv igjen",
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
