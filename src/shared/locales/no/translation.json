@@ -827,6 +827,6 @@
         "applicationNotInitialised": "Informasjonsadvarsel ikke godkjent",
         "applicationNotInitialisedExplanation": "Åpne IOTA programmet på din Ledger, godta informasjonen og prøv igjen.",
         "udevError": "Kunne ikke kommunisere med Ledger-enheten",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevErrorExplanation": "Trinity kunne ikke kommunisere med din Ledger-enhet. Vennligst besøk nettadressen nedenfor for å løse dette problemet."
     }
 }
