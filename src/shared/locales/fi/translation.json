@@ -19,7 +19,7 @@
         "invalidResponse": "Palvelin virhe",
         "invalidResponseExplanation": "Palvelin antoi virheilmoituksen. Kokeile uudestaan vaihtamalla palvelinta.",
         "invalidResponseFetchingAccount": "Palvelin antoi virheilmoituksen haettaessa tilitietoja. Kokeile uudestaan vaihtamalla palvelinta.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "Noodin ei onnistunut noutamaan tilisi tietojasi. Mikäli ongelma jatkuu koita vaihtaa noodi tai ottaa järjestelmäsi välityspalvelin pois käytöstä Trinityn asetuksista.",
         "nodeOutOfSync": "Palvelin ei ole ajantasalla",
         "nodeOutOfSyncExplanation": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen tai yritä uudestaan.",
         "experimentalNode": "Palvelin versiota ei tueta",
@@ -104,7 +104,7 @@
         "transactionAlreadyConfirmed": "Siirto on jo vahvistettu",
         "transactionAlreadyConfirmedExplanation": "Siirto jota yrität edistää on jo vahvistettu.",
         "cannotSendToOwn": "Lähetetään osoitteeseen.",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwnExplanation": "Et voi lähettää osoitteeseen, jota käytetään syöttävänä osoitteena.",
         "pleaseWait": "Ole hyvä ja odota",
         "pleaseWaitEllipses": "Ole hyvä ja odota...",
         "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
@@ -624,10 +624,10 @@
     "transferConfirmation": {
         "youAreAbout": "Olet lähettämässä {{contents}} osoitteeseen",
         "aMessage": "viesti",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "Osoitteesta {{selectedAccountName}}",
+        "toAddress": "Osoitteeseen",
+        "sendingAMessage": "Lähetetään viesti",
+        "sendingAnEmptyMessage": "Lähetetään tyhjä viesti"
     },
     "seedVault": {
         "exportSeedVault": "Vie SeedVault-tiedosto",
