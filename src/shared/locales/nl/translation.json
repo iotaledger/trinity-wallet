@@ -251,7 +251,7 @@
         "setNode": "Kies Node",
         "whyBiometricDisabled": "Waarom is biometrische autenticatie uitgeschakeld?",
         "whyBiometricDisabledExplanationPart1": "Biometrische authenticatie is voor uw eigen veiligheid uitgeschakeld bij het opstarten voor de eerste keer.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart2": "Wanneer je Trinity gebruikt, zal je automatisch worden uitgelogd wegens inactiviteit. Je kunt vervolgens opnieuw inloggen middels biometrische verificatie."
     },
     "loading": {
         "loadingFirstTime": "Seed voor de eerste keer laden.",
@@ -280,18 +280,18 @@
     "paperWallet": {
         "neverShare": "Deel uw seed met niemand.",
         "iotaLogo": "IOTA logo",
-        "print": "Print",
+        "print": "Afdrukken",
         "paperConvenience": "Een papieren kopie van uw seed printen is een handige manier om het op te slaan.",
         "publicInsecure": "Maar printen op publieke wifi of een publieke printer is onveilig.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Controleer en bevestig voordat u afdrukt",
+        "wifiConfirmation": "Ik ben niet verbonden via openbare WiFi",
+        "printerConfirmation": "Ik druk niet af op een openbare printer"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "Wilt u een blanco sjabloon afdrukken?",
+        "printTemplateInfo": "U kunt een blanco sjabloon afdrukken om u te helpen uw seed op te schrijven.",
+        "printTemplateWarning": "Zorg ervoor dat u uw seed op een veilige plek opslaat. Laat het aan niemand zien.",
+        "print": "Ja, afdrukken"
     },
     "receive": {
         "yourAddress": "Jouw adres",
@@ -300,13 +300,13 @@
         "copyAddress": "Kopieer adres",
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Uw adres is naar het klembord gekopieerd.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Genereer nieuw adres",
         "noAddresses": "GEEN ADRESSEN",
         "spent": "Uitgegeven",
         "tag": "Label",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAnAddress": "Genereer nieuw adres",
+        "generateAnAddressTitle": "Genereer een adres",
+        "generateAnAddressExplanation": "Genereer een adres voordat u deze functie gebruikt.",
         "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
