@@ -162,7 +162,7 @@
         "forceUpdateExplanation": "Er is een kritische update vrijgegeven. Update de app nu alsjeblieft.",
         "missingPermission": "Toegang tot bestandsysteem vereist",
         "missingPermissionExplanation": "Toegang tot het bestandssysteem is vereist om deze functie uit te voeren.",
-        "swipeToConfirm": "Swipe to confirm"
+        "swipeToConfirm": "Veeg om te bevestigen"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -216,7 +216,7 @@
         "passwordTooShortExplanation": "Uw wachtwoord moet minstens {{minLength}} tekens lang zijn. Het is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
         "passwordMismatch": "Wachtwoorden komen niet overeen",
         "passwordMismatchExplanation": "Het ingevoerde wachtwoord is onjuist. Probeer het nogmaals.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Dit is uw hoofdwachtwoord voor uw portemonnee. U zult het gebruiken om in te kunnen loggen.",
         "retypePassword": "Herhaal wachtwoord"
     },
     "copyToClipboard": {
@@ -250,7 +250,7 @@
         "login": "Log In",
         "setNode": "Kies Node",
         "whyBiometricDisabled": "Waarom is biometrische autenticatie uitgeschakeld?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart1": "Biometrische authenticatie is voor uw eigen veiligheid uitgeschakeld bij het opstarten voor de eerste keer.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
