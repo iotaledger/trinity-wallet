@@ -722,13 +722,13 @@
     "deepLink": {
         "autofill": "Automatisk utfylling vellykket",
         "autofillExplanation": "Transaksjonsdata er autoutfylt fra lenken.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingOverview": "Dyplenker er klikkbare lenker (iota://...) som automatisk fyller inn transaksjonsdata i Trinity.",
+        "deepLinkingWarning": "Vær oppmerksom på phishing-svindel. Kontroller at lenken du åpner navigerer til den offisielle Trinity-appen.",
         "deepLinkingUpdated": "Innstillinger for dyplenking",
         "deepLinkingEnabled": "Du har aktivert dyplenking.",
         "deepLinkingDisabled": "Du har deaktivert dyplenking.",
         "deepLinkingInfoTitle": "Dyplenking er ikke aktivert",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoMessage": "Du åpnet en iota:// dyplenke, men dyplenking er ikke aktivert."
     },
     "updates": {
         "errorRetrievingUpdateData": "Feil under henting av oppdaterte data",
