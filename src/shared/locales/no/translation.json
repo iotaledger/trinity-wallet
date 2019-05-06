@@ -618,8 +618,8 @@
         "instructionsLogin": "Berør fingeravtrykkleseren for å logge inn",
         "systemCancelledAuth": "Autentisering avbrutt av enheten",
         "userCancelledAuth": "Autentiseringsforespørsel avbrutt",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "passwordFallback": "Bruk passordautentisering i stedet",
+        "noPassword": "Passord er ikke angitt på enheten"
     },
     "transferConfirmation": {
         "youAreAbout": "Du er nå klar til å sende {{contents}} til adressen",
@@ -652,8 +652,8 @@
         "noSeedFoundExplanation": "SeedVault er enten tom eller inneholder en hovednøkkel i et ugyldig format.",
         "seedFileError": "Kunne ikke åpne SeedVault",
         "seedFileErrorExplanation": "Det var et problem med åpning av SeedVault. Hvis du valgte den riktige filen kan den være skadet.",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileError": "Ugyldig SeedVault-fil",
+        "invalidSeedFileErrorExplanation": "Filformatet støttes ikke. Kun SeedVault-filer (.kdbx) generert av Trinity eller et passordverktøy støttes.",
         "seedVaultKeyExplanation": "Først må vi å sikre din SeedVault. Velg en nøkkel for å kryptere filen. Du vil bruke denne nøkkelen hvis du må gjenopprette din hovednøkkel fra SeedVault sikkerhetskopi.",
         "retypeKey": "Skriv nøkkel på nytt",
         "key": "Nøkkel"
