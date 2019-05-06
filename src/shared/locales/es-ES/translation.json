@@ -782,7 +782,7 @@
         "sweepErrorExplanation": "Algo salió mal al intentar el desbloqueo de sus fondos. Intente otra vez.",
         "warningTitle": "Advertencia: Fondos bloqueados detectados",
         "explanation": "La versión 0.3.4 de Trinity Desktop contenía un error que puede bloquear temporalmente los fondos. Esto afecta a un pequeño número de usuarios que realizan transacciones con 0.3.4.",
-        "explanationAccounts": "Fondos bloqueados se han detectado en las cuentas: {{accounts}}. Trinity recuperará ahora sus fondos, moviéndolos a una nueva dirección.",
+        "explanationAccounts": "Se han detectado fondos bloqueados en las cuentas: {{accounts}}. Trinity recuperará ahora sus fondos automáticamente, moviéndolos a una nueva dirección.",
         "proceed": "Proceder a la recuperación",
         "sweepConfirmation": "Estás a punto de barrer {{amount}} para la dirección {{address}}. Cuenta: {{accountName}}, dirección índice: {{index}}",
         "sweepConfirmationTitle": "Confirmación de barrido"
