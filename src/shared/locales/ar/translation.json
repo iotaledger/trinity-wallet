@@ -19,7 +19,7 @@
         "invalidResponse": "خطأ في العقدة",
         "invalidResponseExplanation": "هناك خطأ في العقدة ، المرجو تحديث العقدة.",
         "invalidResponseFetchingAccount": "هناك خطأ اثناء تحميل بياناتك من العقدة، المرجو تحديث العقدة.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "هناك خطأ اثناء تحميل بياناتك من عقدة التفرع،\nإذا استمرالعطل ، فحاول تغيير العقدة أو توقيف المخدم الفرعي في إعدادات الترينيتي.",
         "nodeOutOfSync": "عقدة غير محدثة",
         "nodeOutOfSyncExplanation": "العقدة المختارة غير محدثة. نرجوكم إختيار عقدة اخرى أو الإعادة في وقت لاحق.",
         "experimentalNode": "Node version not supported",
