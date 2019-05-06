@@ -824,9 +824,9 @@
         "ledgerIncorrectIndexExplanation": "연결된 Ledger 장치의 계정 정보가 현재 계정과 일치하지 않습니다. Ledger 복구 문장이 바뀌었을 수 있습니다.",
         "checkAddress": "받는 주소 확인",
         "checkAddressExplanation": "받는 주소가 Ledger 장치에 표시된 주소와 일치하는지 확인해 주세요.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "applicationNotInitialised": "경고 확인 필요",
+        "applicationNotInitialisedExplanation": "Ledger 장치에서 IOTA 앱을 다시 열어 경고를 확인한 후 다시 확인해 주세요.",
+        "udevError": "Ledger 장치에 연결할 수 없음",
+        "udevErrorExplanation": "트리니티가 Ledger 장치에 연결하지 못했습니다. 아래 URL에 접속해 이 문제에 대해 더 알아볼 수 있습니다."
     }
 }
