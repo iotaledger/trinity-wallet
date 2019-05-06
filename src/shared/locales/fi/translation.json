@@ -250,7 +250,7 @@
         "login": "Kirjaudu Sisään",
         "setNode": "Aseta Palvelin",
         "whyBiometricDisabled": "Miksi biometrinen tunnistus pois käytöstä?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart1": "Biometrinen tunnistaminen on poistettu käytöstä sovelluksen ensimmäisellä käyttökerralla turvallisuussyistä.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
@@ -735,7 +735,7 @@
         "noUpdatesAvailable": "Ei uusia päivityksiä",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Uusi versio saatavilla",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "Uusi Trinity-versio on saatavilla. Haluatko päivittää nyt?",
         "installUpdate": "Install update and restart",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
         "downloadingUpdate": "Downloading update",
