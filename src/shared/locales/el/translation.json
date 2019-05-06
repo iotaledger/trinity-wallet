@@ -248,33 +248,33 @@
         "emptyPasswordExplanation": "Πρέπει να εισαγάγετε έναν κωδικό πρόσβασης για να συνδεθείτε. Παρακαλώ δοκιμάστε ξανά.",
         "enterPassword": "Παρακαλώ εισάγετε τον κωδικό σας.",
         "login": "Σύνδεση",
-        "setNode": "Set Node",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "setNode": "Ορίστε τον κόμβο",
+        "whyBiometricDisabled": "Γιατί είναι απενεργοποιημένος ο βιομετρικός έλεγχος ταυτότητας;",
+        "whyBiometricDisabledExplanationPart1": "Ο βιομετρικός έλεγχος ταυτότητας είναι απενεργοποιημένος κατά την πρώτη φόρτωση εφαρμογών για την ασφάλειά σας.",
+        "whyBiometricDisabledExplanationPart2": "Όταν χρησιμοποιείτε το Trinity, θα αποσυνδεθείτε όταν βρίσκετε σε αδράνεια. Στη συνέχεια, μπορείτε να συνδεθείτε ξανά με βιομετρική πιστοποίηση ταυτότητας."
     },
     "loading": {
         "loadingFirstTime": "Φόρτωση σπόρου για πρώτη φορά.",
         "thisMayTake": "Αυτό μπορεί να διαρκέσει λίγο.",
         "doNotMinimise": "Μην ελαχιστοποιήσετε ή κλείσετε την εφαρμογή.",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "Αυτό φαίνεται να διαρκεί λίγο"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "Δημιουργημένοι seed",
         "seedNotGenerated": "Δεν έχει παραχθεί σπόρος",
         "seedNotGeneratedExplanation": "Παρακαλούμε να δημιουργήσετε ένα νέο κωδικό ",
-        "pressForNewSeed": "Press for New Seed",
-        "generateSuccess": "Seed generated successfully",
+        "pressForNewSeed": "Πατήστε για νέο seed",
+        "generateSuccess": "Seed δημιουργήθηκε με επιτυχία",
         "individualLetters": "Πατήστε μεμονομένα γράμματα για να τα τυχαιοποιήσετε.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
-        "whatIsASeed": "What is a seed?"
+        "individualLetterCount": "Πατήστε <1> <0> </ 0> </ 1> περισσότερα γράμματα για τυχαιοποίηση.{{count}}</0>.",
+        "individualLetterCount_plural": "Πατήστε <1> <0> </ 0> </ 1> περισσότερα γράμματα για τυχαιοποίηση.{{count}}</0>.",
+        "randomiseCharsToContinue": "Τυχαία <1> {{count}} </ 1> για να συνεχίσετε.",
+        "randomiseCharsToContinue_plural": "Τυχαία <1> {{count}} </ 1> για να συνεχίσετε.",
+        "whatIsASeed": "Τι είναι το seed;"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
+        "allDone": "Ολα έτοιμα!",
+        "openYourWallet": "Ανοίξτε το πορτοφόλι σας",
         "walletReady": "Το πορτοφόλι είναι πλέον εγκατεστημένο και έτοιμο για χρήση. Εάν χρειάζεται να κάνετε οποιεσδήποτε αλλαγές στο μέλλον, κοιτάξτε στο μενού ρυθμίσεων."
     },
     "paperWallet": {
