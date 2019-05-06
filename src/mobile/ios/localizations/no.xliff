@@ -72,7 +72,7 @@
         <note>Privacy - Face ID Usage Description</note>
         <target state="translated">Trinity krever tilgang til ansikts-ID for å aktivere biometrisk godkjenning.</target>
         <alt-trans>
-          <target>Trinity trenger tilgang til ansiktsgjenkjenning for å aktivere biometrisk autentisering.</target>
+          <target>Trinity trenger tilgang til ansiktsgjenkjenning (Face ID) for å aktivere biometrisk autentisering.</target>
         </alt-trans>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
