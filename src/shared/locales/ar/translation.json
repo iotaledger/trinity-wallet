@@ -18,7 +18,7 @@
         "keyReuseError": "لا يمكنك الإرسال إلى عنوان تم إنفاقه من قبل.",
         "invalidResponse": "خطأ في العقدة",
         "invalidResponseExplanation": "هناك خطأ في العقدة ، المرجو تحديث العقدة.",
-        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "هناك خطأ اثناء تحميل بياناتك من العقدة، المرجو تحديث العقدة.",
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "عقدة غير محدثة",
         "nodeOutOfSyncExplanation": "العقدة المختارة غير محدثة. نرجوكم إختيار عقدة اخرى أو الإعادة في وقت لاحق.",
