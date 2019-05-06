@@ -656,7 +656,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "اعد كتابة المفتاح",
-        "key": "Key"
+        "key": "مفتاح"
     },
     "stateExport": {
         "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
@@ -701,8 +701,8 @@
         "migratingSettings": "ترحيل الاعدادات",
         "migratingAccounts": "ترحيل الحسابات",
         "cleaningUpOldData": "تنظيف البيانات القديمة",
-        "migrationComplete": "Migration complete",
-        "transferComplete": "التحويل اكتمل"
+        "migrationComplete": "تم الترحيل",
+        "transferComplete": "تم التحويل"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
@@ -710,17 +710,17 @@
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
         "detectedBalance": "Detected balance: {{amount}} {{unit}}",
-        "isThisCorrect": "Is this correct?",
+        "isThisCorrect": "هل هذا صحيح؟",
         "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
         "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
-        "transition": "Transition",
+        "transition": "انتقال",
         "transitioning": "Transitioning for the snapshot.",
         "generatingAndDetecting": "Generating addresses and detecting balance.",
         "attaching": "Attaching addresses to Tangle.",
         "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
-        "autofill": "Autofill success",
+        "autofill": "نجح الاكمال التلقائي",
         "autofillExplanation": "Transaction data autofilled from link.",
         "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
@@ -734,7 +734,7 @@
         "errorRetrievingUpdateData": "Error retrieving update data",
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
-        "newVersionAvailable": "New version available",
+        "newVersionAvailable": "اصدار جديد متوفر",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Install update and restart",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
@@ -742,16 +742,16 @@
         "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "سجل الخطأ"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept",
-        "readAllToContinue": "Please read the full text"
+        "termsAndConditions": "الشروط والأحكام",
+        "accept": "أنا أقبل",
+        "readAllToContinue": "الرجاء قراءة النص بالكامل"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "سياسة الخصوصية",
+        "agree": "موافق"
     },
     "tray": {
         "trayApplication": "Tray application",
@@ -765,7 +765,7 @@
         "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "التنبيهات",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
         "typeConfirmations": "Notify me about confirmations",
         "typeMessages": "Notify me about zero value transactions",
