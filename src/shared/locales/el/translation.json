@@ -7,7 +7,7 @@
         "refresh": "Ανανέωση",
         "balanceError": "Μη αρκετό υπόλοιπο",
         "balanceErrorMessage": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Συνολικό υπόλοιπο",
         "transferError": "Σφάλμα μεταφοράς",
         "transferErrorMessage": "Κάτι πήγε στραβά κατά την αποστολή της μεταφοράς σας. Παρακαλώ δοκιμάστε ξανά.",
         "transferSent": "Μεταφορά απεστάλει",
