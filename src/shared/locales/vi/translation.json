@@ -7,7 +7,7 @@
         "refresh": "Làm Mới",
         "balanceError": "Tài khoản không đủ",
         "balanceErrorMessage": "Bạn không có đủ IOTA để hoàn thành giao dịch này.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Tổng số dư",
         "transferError": "Lỗi chuyển khoản",
         "transferErrorMessage": "Có lỗi xảy ra trong khi chuyển khoản. Xin vui lòng thử lại.",
         "transferSent": "Đã chuyển khoản",
