@@ -104,7 +104,7 @@
         "transactionAlreadyConfirmed": "Tranzacție este deja confirmată",
         "transactionAlreadyConfirmedExplanation": "Tranzacția pe care incercați sa o promovati a fost deja confirmată.",
         "cannotSendToOwn": "Trimitere către o adresă introdusă.",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwnExplanation": "Nu poti trimite la o adresa care este folosita ca input in tranzactie.",
         "pleaseWait": "Vă rugăm așteptați",
         "pleaseWaitEllipses": "Vă rugăm așteptați...",
         "pleaseWaitExplanation": "Trinity indeplinește alta functie. Vă rugăm sa asteptați si sa incercați din nou.",
