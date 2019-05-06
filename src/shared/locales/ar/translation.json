@@ -655,7 +655,7 @@
         "invalidSeedFileError": "Invalid SeedVault file",
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key",
+        "retypeKey": "اعد كتابة المفتاح",
         "key": "Key"
     },
     "stateExport": {
@@ -670,7 +670,7 @@
         "error": "Error fetching chart data"
     },
     "rootDetection": {
-        "warning": "WARNING",
+        "warning": "تحذير",
         "appearsRooted": "Your device appears to be rooted.",
         "securityRisk": "This can pose a significant risk to the security of your wallet.",
         "continueDepsiteRisk": "Do you wish to continue despite this risk?"
@@ -678,8 +678,8 @@
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote",
+        "local": "محلي",
+        "remote": "عن بعد",
         "powUpdated": "Proof of work settings",
         "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
@@ -691,18 +691,18 @@
         "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Validating receive address",
         "validatingTransactionAddresses": "Validating transaction addresses",
-        "syncingAccount": "Syncing account",
+        "syncingAccount": "مزامنة الحساب",
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Preparing transfers",
         "gettingTransactionsToApprove": "Getting transactions to approve",
         "proofOfWork": "Completing proof of work",
         "broadcasting": "Broadcasting",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
+        "preparingData": "تجهيز البيانات",
+        "migratingSettings": "ترحيل الاعدادات",
+        "migratingAccounts": "ترحيل الحسابات",
+        "cleaningUpOldData": "تنظيف البيانات القديمة",
         "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "التحويل اكتمل"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
