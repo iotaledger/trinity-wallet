@@ -776,13 +776,13 @@
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
+        "sweepSucceeded": "Varat avattu onnistuneesti",
+        "sweepSucceededExplanation": "Varasi on avattu onnistuneesti ja siirretty uuteen osoitteeseen. Edistä siirtoa sen vahvistamisen nopeuttamiseksi.",
+        "sweepError": "Virhe varojen avaamisessa",
+        "sweepErrorExplanation": "Jotain meni vikaan varojen avaamisessa. Yritetään uudelleen.",
+        "warningTitle": "Varoitus: Lukittuja varoja havaittu",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "explanationAccounts": "Lukittuja varoja on havaittu seuraavilla tileillä: {{accounts}}. Trinity palauttaa nyt varat automaattisesti siirtämällä ne uuteen osoitteeseen.",
         "proceed": "Etene palautukseen",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
@@ -809,7 +809,7 @@
         "connectionError": "Ledgeriin yhdistäminen ei onnistu",
         "connectionErrorExplanation": "Tarkista, että Ledger-laitteesi on yhdistettu ja lukituksesta avattu.",
         "connectionTitle": "Yhdistä Ledger-laitteesi",
-        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "connectionExplanation": "Ledger-laite on oltava yhdistettynä suorittaaksesi tämän toiminnon.",
         "transactionTitle": "Scroll through and approve the transaction on your Ledger",
         "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
         "applicationTitle": "Open Ledger IOTA app",
