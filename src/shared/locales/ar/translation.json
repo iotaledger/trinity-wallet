@@ -17,7 +17,7 @@
         "keyReuse": "إرسال إلى عنوان الإنفاق",
         "keyReuseError": "لا يمكنك الإرسال إلى عنوان تم إنفاقه من قبل.",
         "invalidResponse": "خطأ في العقدة",
-        "invalidResponseExplanation": "The node returned an error. Try changing node.",
+        "invalidResponseExplanation": "هناك خطأ في العقدة ، المرجو تحديث العقدة.",
         "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing node.",
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "عقدة غير محدثة",
