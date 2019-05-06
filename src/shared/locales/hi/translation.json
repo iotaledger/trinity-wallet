@@ -321,7 +321,7 @@
         "letsWriteDownYourSeed": "अपने सीड लिख लेवे",
         "youCanHighlightCharacters": "आप एक बार में 9 वर्णों को हाइलाइट कर सकते हैं",
         "printBlankWallet": "खाली वॉलेट प्रिंट करे",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Checksum क्या है?",
         "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
         "iHavesavedMySeed": "मैंने अपना सीड सहेज लिया है",
         "checksumExplanation": "जब भी आप अपने वॉलेट में कोई बीज जोड़ते हैं, तो आपको यह सुनिश्चित करना चाहिए कि वॉलेट जेनरेट किया गया checksum आपके द्वारा लिखे गए एक से मेल खाता है ।",
