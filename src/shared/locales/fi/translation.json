@@ -641,8 +641,8 @@
         "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
         "emptyKey": "No SeedVault Key entered",
         "emptyKeyExplanation": "You must enter a key. Please try again.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
+        "importSuccess": "Seed-luku tuotu",
+        "importSuccessExplanation": "Seed-lukusi on tuotu onnistuneesti.",
         "saveToDownloadFolder": "Tallenna lataukset kansioon",
         "importSeedVault": "Tuo Seedvault-tiedosto",
         "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
@@ -717,7 +717,7 @@
         "transitioning": "Siirrytään uuteen snapshot -versioon.",
         "generatingAndDetecting": "Luodaan osoitteita ja haetaan saldoa.",
         "attaching": "Yhdistetään osoitteita Tangle-verkkoon.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Yhdistetään osoitetta {{currentAddress}} / {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Tiedot haettu onnistuneesti",
@@ -736,10 +736,10 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Uusi versio saatavilla",
         "newVersionAvailableExplanation": "Uusi Trinity-versio on saatavilla. Haluatko päivittää nyt?",
-        "installUpdate": "Install update and restart",
+        "installUpdate": "Päivitä ja käynnistä uudelleen",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Ladataan päivitystä",
+        "downloadProgress": "{{transferred}} / {{total}} ladattu"
     },
     "notificationLog": {
         "errorLog": "Virhe loki"
@@ -756,7 +756,7 @@
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
+        "notLoggedIn": "Et ole kirjautunut sisään",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
@@ -765,7 +765,7 @@
         "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "Ilmoitukset",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
         "typeConfirmations": "Notify me about confirmations",
         "typeMessages": "Notify me about zero value transactions",
@@ -822,7 +822,7 @@
         "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
         "ledgerIncorrectIndex": "Ledger device mismatch",
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
-        "checkAddress": "Check the receive address",
+        "checkAddress": "Tarkista vastaanottajan osoite",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
