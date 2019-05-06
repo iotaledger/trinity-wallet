@@ -290,7 +290,7 @@
     "printBlankTemplate": {
         "printTemplateQuestion": "Haluatko tulostaa tyhjän pohjan?",
         "printTemplateInfo": "Voit tulostaa tyhjän pohjan kirjoittaaksesi seed-lukusi ylös.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "printTemplateWarning": "Muista säilyttää seed-lukusi turvallisessa paikassa. Älä näytä sitä kenellekään.",
         "print": "Kyllä, tulosta"
     },
     "receive": {
@@ -473,7 +473,7 @@
         "pleaseWait": "Ole hyvä ja odota, Trinity edistää toista kokoelmaa.",
         "typeHelp": "Kirjoita !help komentojen saamiseksi",
         "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpValue": "Etsi tapahtumia tarkalla iota-arvolla",
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "Find transactions with a value greater than X",
         "searchHelpLess": "Find transactions with a value less than X"
@@ -558,7 +558,7 @@
         "discordInformation": "Siirry Discord yhteisön #help kanavalle saadaksesi apua ongelmaan."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Oletko varma, että haluat poistaa tilisi?",
         "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoriasi poistetaan.",
         "thisAction": "Tätä toimintoa ei voi kumota",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
@@ -580,7 +580,7 @@
         "enterPassword": "Syötä salasana nähdäksesi seed-lukusi.",
         "viewSeed": "Näytä Seed-luku",
         "hideSeed": "Piilota Seed-luku",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailable": "Seed-luvun vienti ei ole mahdollista tilityypillä {{accountType}}",
         "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
@@ -702,7 +702,7 @@
         "migratingAccounts": "Migrating accounts",
         "cleaningUpOldData": "Siivotaan vanhaa dataa",
         "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Siirto on valmis"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot-siirtymä ei onnistu",
@@ -816,9 +816,9 @@
         "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
         "cannotSendZeroValueTitle": "Cannot send zero value transfer",
         "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
-        "ledgerDisconnectedTitle": "Ledger device disconnected",
-        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
-        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDisconnectedTitle": "Yhteys Ledger-laitteeseen katkaistu",
+        "ledgerDisconnectedExplanation": "Ledger-laitteesi yhteys katkesi. Yhdistä laite ja yritä uudelleen.",
+        "ledgerDeniedTitle": "Tapahtuma hylätty",
         "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
         "ledgerIncorrectIndex": "Ledger device mismatch",
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
