@@ -473,7 +473,7 @@
         "pleaseWait": "Veuillez patienter, Trinity est en train de promouvoir un autre bundle.",
         "typeHelp": "Tapez !help pour les commandes disponibles",
         "searchHelpText": "Rechercher par hash ou par message",
-        "searchHelpValue": "Trouver des transactions par valeur exacte d'iota",
+        "searchHelpValue": "Trouver des transactions avec une valeur iota exacte",
         "searchHelpUnits": "Trouver des transactions par valeur et unité iota",
         "searchHelpMore": "Trouver des transactions avec une valeur supérieure à X",
         "searchHelpLess": "Trouver des transactions avec une valeur inférieure à X"
