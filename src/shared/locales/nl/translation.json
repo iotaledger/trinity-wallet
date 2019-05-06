@@ -818,15 +818,15 @@
         "cannotSendZeroValueExplanation": "Kan geen nulwaarde overdrachten verzenden met een Ledger apparaat.",
         "ledgerDisconnectedTitle": "Ledger apparaat losgekoppeld",
         "ledgerDisconnectedExplanation": "Het Ledger apparaat is losgekoppeld. Gelieve opnieuw verbinden en nogmaals proberen.",
-        "ledgerDeniedTitle": "Transaction denied",
-        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
-        "ledgerIncorrectIndex": "Ledger device mismatch",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "ledgerDeniedTitle": "Transactie geweigerd",
+        "ledgerDeniedExplanation": "De transactie is geweigerd op het Ledger apparaat.",
+        "ledgerIncorrectIndex": "Ledger apparaat komt niet overeen",
+        "ledgerIncorrectIndexExplanation": "Het aangesloten Ledger apparaat komt niet overeen met dit account of de recovery phrase is gewijzigd.",
+        "checkAddress": "Controleer het ontvangstadres",
+        "checkAddressExplanation": "Controleer of het adres overeenkomt met het adres dat wordt weergegeven op uw Ledger apparaat.",
+        "applicationNotInitialised": "Waarschuwing niet bevestigd",
+        "applicationNotInitialisedExplanation": "Heropen de IOTA app op uw Ledger apparaat, accepteer de informatieve waarschuwing en probeer het opnieuw.",
+        "udevError": "Kan niet communiceren met Ledger apparaat",
+        "udevErrorExplanation": "Trinity kon niet communiceren met uw Ledger-apparaat. Bezoek de onderstaande URL om dit probleem op te lossen."
     }
 }
