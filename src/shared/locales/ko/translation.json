@@ -717,29 +717,29 @@
         "transitioning": "스냅샷 이전 수행 중",
         "generatingAndDetecting": "주소를 생성하고 잔고를 찾는 중",
         "attaching": "주소를 탱글에 어태치하는 중.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "주소 {{totalAddresses}}개 중 {{currentAddress}} 어태치"
     },
     "deepLink": {
         "autofill": "자동 완성 성공",
         "autofillExplanation": "링크를 통해 트랜잭션 데이터가 자동 완성 되었습니다.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingOverview": "딥 링크(iota://...)는 트리니티의 트랜잭션 정보를 담고 있어 클릭 한 번으로 정보를 채울 수 있는 링크입니다.",
+        "deepLinkingWarning": "이와 관련된 피싱에 주의하세요. 누른 링크가 공식 트리니티 앱으로 연결되는지 확인하세요.",
+        "deepLinkingUpdated": "딥 링크 설정",
+        "deepLinkingEnabled": "딥 링크를 활성화하였습니다.",
+        "deepLinkingDisabled": "딥 링크를 비활성화하였습니다.",
+        "deepLinkingInfoTitle": "딥 링크 비활성화됨",
+        "deepLinkingInfoMessage": "딥 링크 기능이 비활성화 되어있어 iota://로 시작하는 딥 링크를 열 수 없습니다."
     },
     "updates": {
         "errorRetrievingUpdateData": "업데이트를 받아오는 중 오류 발생",
         "noUpdatesAvailable": "사용 가능한 업데이트 없음",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "새 버전 이용 가능",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "새 버전의 트리니티가 있습니다. 업데이트하시겠습니까?",
         "installUpdate": "업데이트를 설치하고 다시 시작",
         "installUpdateExplanation": "다운로드가 완료되었습니다. 트리니티를 재시작하여 업데이트를 설치합니다.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "업데이트 다운로드",
+        "downloadProgress": "{{total}} 중 {{transferred}} 다운로드 됨"
     },
     "notificationLog": {
         "errorLog": "오류 로그"
@@ -761,8 +761,8 @@
         "completeSetup": "설정 완료"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxy": "시스템 프록시 설정 사용",
+        "proxyExplanation": "시스템의 네트워크 프록시 설정을 사용합니다. 설정을 바꾼 후에는 지갑을 재시작하여야 합니다."
     },
     "notifications": {
         "notifications": "알림",
