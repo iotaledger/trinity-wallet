@@ -363,20 +363,20 @@
         "sendMax": "ΑΠΟΣΤΟΛΗ ΜΕΓΙΣΤΟΥ ΠΟΣΟΥ",
         "totalTime": "Συνολικός χρόνος",
         "addressPasteDetected": "Η εντοπισμένη επικάλυψη διευθύνσεων",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
-        "invalid": "INVALID",
-        "swipeToSend": "Swipe to send"
+        "addressPasteExplanation": "Φαίνεται ότι έχετε επικολλήσει μια διεύθυνση. Βεβαιωθείτε ότι η διεύθυνση αντιστοιχεί σε εκείνη με την οποία θέλετε να στείλετε.",
+        "invalid": "ΜΗ ΕΓΚΥΡΟ",
+        "swipeToSend": "Σύρετε για αποστολή"
     },
     "setSeedName": {
-        "letsAddName": "Let's add a name",
+        "letsAddName": "Ας προσθέσουμε ένα όνομα",
         "canUseMultipleSeeds": "Μπορείτε να χρησιμοποιήσετε πολλούς σπόρους με αυτό το πορτοφόλι. Κάθε Σπόρος απαιτεί ένα όνομα λογαριασμού.",
         "youCanAdd": "Μπορείτε να προσθέσετε περισσότερους σπόρους από το μενού ρυθμίσεων."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Προχωρημένος",
         "standard": "Κανονικός",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
+        "advancedModeExplanation": "H προηγμένη λειτουργία θα εμφανίσει λεπτομερέστερες τεχνικές πληροφορίες.",
+        "modesExplanation": "Ενεργοποιήστε την κατάσταση σύνθετων λειτουργιών μόνο εάν είστε έμπειροι χρησιμοποιώντας το IOTA. Μπορεί να θεωρείτε ότι προκαλεί σύγχυση διαφορετικά.",
         "modeUpdated": "Mode updated",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
