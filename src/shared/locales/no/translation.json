@@ -791,7 +791,7 @@
         "dataMigration": "Datamigrering",
         "dataMigrationExplanation": "På grunn av ytelses- og lagringsbegrensninger bruker Trinity en ny database for lagring av innstillinger og kontoinformasjon. Vennligst vent mens Trinity automatisk migrerer dine eksisterende data.",
         "problemMigratingYourData": "Det oppsto et problem under migrering av dine data. Vennligst prøv igjen",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "seedMigrationExplanation": "Som en del av Trinity's pågående innsats for å forbedre sikkerheten, vil hovednøkkelen din migreres til en forbedret lagringsmetode. Vennligst vent mens Trinity automatisk migrerer hovednøkkelen til en sikrere lagringsplass."
     },
     "ledger": {
         "ready": "Ledger tilkoblet og klar",
@@ -801,8 +801,8 @@
         "proceedWithLedger": "Fortsett med Ledger installasjonen",
         "accountIndex": "Kontoindex",
         "accountPage": "Kontoside",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Ledger-enhetstilgang avbrutt",
+        "actionCancelledExplanation": "Kan ikke utføre handlingen uten tilgang til Ledger-enheten.",
         "chooseAccountIndex": "Velg din Ledger kontoindeks",
         "accountIndexExplanation": "Du kan lagre fler hovednøkkler. Hver hovednøkkel er identifisert med et unikt indeks-nummer. Et ubenyttet index-nummer er valgt for deg, men endre dette om du ønsker. Husk å skriv ned ditt valgte index-nummer.",
         "accountPageExplanation": "Noen tredjeparts lommebøker krever pages.",
@@ -826,7 +826,7 @@
         "checkAddressExplanation": "Kontroller at adressen er lik den vises på din Ledger.",
         "applicationNotInitialised": "Informasjonsadvarsel ikke godkjent",
         "applicationNotInitialisedExplanation": "Åpne IOTA programmet på din Ledger, godta informasjonen og prøv igjen.",
-        "udevError": "Could not communicate with Ledger device",
+        "udevError": "Kunne ikke kommunisere med Ledger-enheten",
         "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }
