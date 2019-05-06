@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "هناك خطأ اثناء تحميل بياناتك من عقدة التفرع،\nإذا استمرالعطل ، فحاول تغيير العقدة أو توقيف المخدم الفرعي في إعدادات الترينيتي.",
         "nodeOutOfSync": "عقدة غير محدثة",
         "nodeOutOfSyncExplanation": "العقدة المختارة غير محدثة. نرجوكم إختيار عقدة اخرى أو الإعادة في وقت لاحق.",
-        "experimentalNode": "Node version not supported",
+        "experimentalNode": "نسخة عقدة التفرع غير مدعومة",
         "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "سييد",
