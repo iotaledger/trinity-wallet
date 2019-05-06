@@ -104,7 +104,7 @@
         "transactionAlreadyConfirmed": "ट्रान्सेक्शन की पहले ही पुष्टि हो गयी है",
         "transactionAlreadyConfirmedExplanation": "जिस ट्रान्सेक्शन को बढ़ावा देने के लिए आप प्रयास कर रहे है उसकी पहले से ही पुष्टि जा चुकी है ।",
         "cannotSendToOwn": "दिए गए पते पर भेजा जा रहा है",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwnExplanation": "आप ऐसे पतेपर नहीं भेज सकते जो पहले ही किसी लेन-देन में इनपुट के रूप में उपयोग किया जा रहा हो",
         "pleaseWait": "कृपया प्रतीक्षा करें",
         "pleaseWaitEllipses": "कृपया प्रतीक्षा करें...",
         "pleaseWaitExplanation": "ट्रिनिटी एक और काम कर रहा है । कृपया प्रतीक्षा करें और पुन: प्रयास करे ।",
