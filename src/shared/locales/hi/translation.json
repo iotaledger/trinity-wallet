@@ -7,7 +7,7 @@
         "refresh": "रिफ्रेश",
         "balanceError": "अपर्याप्त बैलेंस",
         "balanceErrorMessage": "आपके पास प्रर्याप्त IOTA नहीं है इस ट्रान्सेक्शन के लिए.",
-        "totalBalance": "Total balance",
+        "totalBalance": "कुल शेष राशि",
         "transferError": "स्थानांतरण त्रुटि",
         "transferErrorMessage": "ट्रांसफर करते समय कुछ गड़बड़ हो गई । कृपया पुन: प्रयास करें ।",
         "transferSent": "ट्रांसफर पूर्ण हुवा",
@@ -36,26 +36,26 @@
         "apply": "लागू करें",
         "save": "सेव करें",
         "close": "बंद करें",
-        "export": "Export",
-        "help": "Help",
+        "export": "एक्सपोर्ट करे",
+        "help": "मदद",
         "import": "Import",
         "continue": "जारी रखें",
         "enable": "सक्षम करें",
         "disable": "अक्षम करें",
         "enabled": "सक्षम किया गया",
         "disabled": "अक्षम कर दिया गया",
-        "enterPassword": "Enter password",
+        "enterPassword": "अपना पासवोर्ड डाले",
         "paperWallet": "काग़ज़ की प्रतिलिपि मुद्रित करें",
         "addToPasswordManager": "पासवर्ड मैनेजर में जोड़े",
         "shareSeed": "सीड साझा करे",
-        "share": "Share",
+        "share": "साझा करें",
         "proceed": "आगे बढ़ें",
         "qr": "QR",
         "enterSeed": "कृपया अपना सीड दर्ज करे",
         "yes": "हाँ",
         "no": "नहीं",
         "okay": "ठीक है",
-        "skip": "Skip",
+        "skip": "छोड़ें",
         "password": "पासवर्ड",
         "unrecognisedPassword": "पासवर्ड मेल नहीं खाया",
         "unrecognisedPasswordExplanation": "पासवर्ड की पहचान नहीं की गई । कृपया पुन: प्रयास करें ।",
@@ -75,10 +75,10 @@
         "attachToTangleUnavailableExplanation": "कार्य का दूरस्थ प्रमाण आपके चयनित नोड पर उपलब्ध नहीं है । या तो नोड बदलें या कार्य का प्रमाण स्थानीय में उंनत सेटिंग्स में सेट करें ।",
         "attachToTangleUnavailableExplanationShort": "आपके चुने हुए नोड के लिए \"टैंगल से अटैच\" उपलब्ध नहीं है",
         "wallet": "वॉलेट",
-        "all": "All",
+        "all": "सभी",
         "sent": "भेजे गए",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "आपने प्राप्त किया",
+        "youSent": "आपने भेजा",
         "received": "प्राप्त हुआ",
         "sending": "भेज रहे है",
         "receiving": "प्राप्त हो रहा है",
@@ -88,7 +88,7 @@
         "addresses": "पता",
         "reattach": "पुनः अटैच",
         "promote": "प्रमोट",
-        "retry": "Retry",
+        "retry": "पुनः प्रयास करें",
         "pressBackAgain": "एप बंद करने के लिए वापस फिर से दबाएं",
         "reattached": "ट्रान्सेक्शन को सफलतापूर्वक री अटैच किया गया |",
         "reattachedExplanation": "हैश {{hash}} ट्रांजेक्शन को री अटैच कर रहे है",
@@ -128,7 +128,7 @@
         "seedThief": "अगर किसी और के पास आपका सीड है तो वे आपकी IOTA चुरा सकते हैं ।",
         "googlePlayServicesNotAvailable": "Google Play सेवाएं उपलब्ध नहीं",
         "couldNotVerifyDeviceIntegrity": "डिवाइस अक्षतता सत्यापित नहीं कर सका क्योंकि Google Play सेवाएं उपलब्ध नहीं हैं ।",
-        "clear": "Clear",
+        "clear": "हटाएं",
         "noNetworkConnection": "नेटवर्क कनेक्शन नहीं है",
         "noNetworkConnectionExplanation": "लगता है इंटरनेट कनेक्शन ऑफलाइन है।",
         "spentAddressExplanation": "चेतावनी: पहले से उपयोग एड्रेस पर बैलेंस",
@@ -280,7 +280,7 @@
     "paperWallet": {
         "neverShare": "कभी किसी के साथ अपने सीड का साझा न करे ।",
         "iotaLogo": "IOTA लोगो",
-        "print": "Print",
+        "print": "प्रिंट",
         "paperConvenience": "अपने सीड की एक कागज प्रति प्रिंट एक सुविधाजनक तरीका है सहेजने के लिए |",
         "publicInsecure": "लेकिन सार्वजनिक वाईफ़ाई या एक सार्वजनिक प्रिंटर पर मुद्रण असुरक्षित है ।",
         "pleaseCheck": "Please check and confirm before you print",
@@ -294,7 +294,7 @@
         "print": "Yes, print"
     },
     "receive": {
-        "yourAddress": "Your address",
+        "yourAddress": "आपका पता",
         "qrOptions": "QR options",
         "shareQr": "Share QR code",
         "copyAddress": "पता कॉपी करें",
@@ -304,7 +304,7 @@
         "noAddresses": "कोई पता नहीं",
         "spent": "खर्च",
         "tag": "टैग",
-        "generateAnAddress": "Generate address",
+        "generateAnAddress": "नया पता उत्पन्न करें",
         "generateAnAddressTitle": "Generate an address",
         "generateAnAddressExplanation": "Please generate an address before using this function.",
         "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
@@ -318,7 +318,7 @@
         "paperWallet": "पेपर वॉलेट",
         "writeYourSeedDown": "सीड लिखें",
         "seedClearedExplanation": "आपकी सुरक्षा के लिए सीड को क्लिपबोर्ड से मिटा कर दिया गया है ।",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "अपने सीड लिख लेवे",
         "youCanHighlightCharacters": "आप एक बार में 9 वर्णों को हाइलाइट कर सकते हैं",
         "printBlankWallet": "खाली वॉलेट प्रिंट करे",
         "whatIsAChecksum": "What is a checksum?",
@@ -364,7 +364,7 @@
         "totalTime": "कुल समय",
         "addressPasteDetected": "एड्रेस पेस्ट डेटेक्टेड",
         "addressPasteExplanation": "ऐसा लगता है कि आपने एक एड्रेस पेस्ट किया है । सुनिश्चित करें कि एड्रेस उस एक से मेल खाता है जिसे आप भेजना चाहते हैं ।",
-        "invalid": "INVALID",
+        "invalid": "अमान्य",
         "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
@@ -373,7 +373,7 @@
         "youCanAdd": "आप सेटिंग मेनू में और सीड अधिक जोड़ सकते हैं ।"
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "एडवांस्ड",
         "standard": "मानक",
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
@@ -392,10 +392,10 @@
         "accountManagement": "अकाउंट प्रबंध",
         "addNewSeed": "नए सीड जोड़ें",
         "changePassword": "पासवर्ड परिवर्तित करें",
-        "general": "General settings",
+        "general": "सामान्य सेटिंग",
         "advanced": "उच्च सेटिंग्स",
-        "nodeSettings": "Node settings",
-        "account": "Account settings",
+        "nodeSettings": "नोड सेटिंग्स",
+        "account": "खाता सेटिंग",
         "logout": "लॉग आउट",
         "reset": "वॉलेट रिसेट",
         "syncingComplete": "सिंकिंग पूर्ण",
@@ -435,7 +435,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "इस खाते को हटाने के लिए अपना पासवर्ड दर्ज करें ।",
-        "reset": "Reset"
+        "reset": "रीसेट"
     },
     "walletSetup": {
         "okay": "चलो अपने वॉलेट को सेट करे!",
@@ -484,17 +484,17 @@
         "editAccountName": "खाता नाम सुधार करें",
         "deleteAccount": "खाता नष्ट करें",
         "addNewAccount": "नया खाता जोड़ें",
-        "tools": "Tools"
+        "tools": "टूल्स"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "कस्टम नोड जोड़ा नहीं जा सका",
         "customNode": "कस्टम नोड",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "कस्टम नोड को हटाए",
         "invalidNodeResponse": "नोड ने कोई अमान्य प्रतिक्रिया दिया ।",
         "add": "जोड़ें",
         "nodeFieldEmpty": "यह फील्ड रिक्त है।",
         "nodeFieldEmptyExplanation": "कृपया कोई कस्टम नोड दर्ज करें ।",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "मान्य URL दर्ज करे"
     },
     "addNewAccount": {
         "useExistingSeed": "मौजूदा सीड का उपयोग करें",
@@ -521,15 +521,15 @@
         "mockup": "Mockup"
     },
     "themes": {
-        "classic": "Classic",
+        "classic": "क्लासिक",
         "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
+        "dark": "डार्क",
+        "default": "डिफ़ॉल्ट",
+        "electric": "विद्युत",
         "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
-        "mint": "Mint",
+        "light": "हल्का",
+        "lucky": "भाग्यशाली",
+        "mint": "मिंट",
         "steelblue": "Steel Blue"
     },
     "currencySelection": {
@@ -537,8 +537,8 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "क्या वाकई आप लॉग आउट करने के लिए चाहते हैं?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "आप लॉगआउट होने वाले है",
+        "areYouSure": "क्या आप सुनिश्चित हैं?"
     },
     "qrScanner": {
         "scan": "QR कोड स्कैन करें"
@@ -788,7 +788,7 @@
         "sweepConfirmationTitle": "Sweep confirmation"
     },
     "migration": {
-        "dataMigration": "Data migration",
+        "dataMigration": "डाटा माइग्रेशन",
         "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
         "problemMigratingYourData": "There was a problem migrating your data. Please try again",
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
@@ -800,7 +800,7 @@
         "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
         "proceedWithLedger": "Proceed with Ledger setup",
         "accountIndex": "Account index",
-        "accountPage": "Account page",
+        "accountPage": "अकाउंट पेज",
         "actionCancelled": "Ledger device access cancelled",
         "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Choose your Ledger account index",
