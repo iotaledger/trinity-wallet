@@ -717,29 +717,29 @@
         "transitioning": "Aan het overgaan voor de snapshot.",
         "generatingAndDetecting": "Adressen aan het genereren en saldo aan het detecteren.",
         "attaching": "Adressen aan het koppelen aan de Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Adres {{currentAddress}} van {{totalAddresses}} aan het toevoegen"
     },
     "deepLink": {
         "autofill": "Automatisch vullen succesvol",
         "autofillExplanation": "De transactie gegevens worden automatisch ingevuld vanuit de link.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingOverview": "Deep links zijn klikbare links (iota://...) die automatisch transactiegegevens in Trinity invullen.",
+        "deepLinkingWarning": "Wees bewust van phishing scams. Controleer of de link die u opent naar de officiële Trinity app gaat.",
+        "deepLinkingUpdated": "Deeplink instellingen",
+        "deepLinkingEnabled": "Je hebt deeplinken aangezet.",
+        "deepLinkingDisabled": "Je hebt deeplinken uitgezet.",
+        "deepLinkingInfoTitle": "Deeplinken staat niet aan",
+        "deepLinkingInfoMessage": "Je hebt een iota:// deeplink geopend, maar deeplinks zijn niet ingeschakeld."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fout bij het ophalen van de update data",
         "noUpdatesAvailable": "Geen updates beschikbaar",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Nieuwe versie beschikbaar",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "Er is een nieuwe versie van Trinity beschikbaar. Wil je nu updaten?",
         "installUpdate": "Update installeren en opnieuw starten",
         "installUpdateExplanation": "Download compleet. Trinity zal nu herstarten om de update te installeren.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Update aan het downloaden",
+        "downloadProgress": "{{transferred}} van {{total}} gedownload"
     },
     "notificationLog": {
         "errorLog": "Foutlog"
