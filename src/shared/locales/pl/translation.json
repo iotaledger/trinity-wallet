@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Błąd podczas pobierania danych aktualizacji",
         "noUpdatesAvailable": "Brak dostępnych aktualizacji",
-        "noUpdatesAvailableExplanation": "Masz zainstalowaną najnowszą wersję portfela Trinity.",
+        "noUpdatesAvailableExplanation": "Posiadasz zainstalowaną najnowszą wersję portfela Trinity!",
         "newVersionAvailable": "Nowa wersja dostępna",
         "newVersionAvailableExplanation": "Dostępna jest nowa wersja portfela Trinity. Czy chcesz dokonać aktualizacji?",
         "installUpdate": "Instalacja aktualizacji i restart",
