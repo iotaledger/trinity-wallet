@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
         "noUpdatesAvailable": "Nu există actualizări disponibile",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "O nouă versiune este disponibilă",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Instalați actualizarea și restartați",
