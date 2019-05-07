@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Fout bij het ophalen van de update data",
         "noUpdatesAvailable": "Geen updates beschikbaar",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "Je hebt de nieuwste versie van Trinity!",
         "newVersionAvailable": "Nieuwe versie beschikbaar",
         "newVersionAvailableExplanation": "Er is een nieuwe versie van Trinity beschikbaar. Wil je nu updaten?",
         "installUpdate": "Update installeren en opnieuw starten",
