@@ -618,20 +618,20 @@
         "instructionsLogin": "Raak vingerafdruklezer aan om in te loggen",
         "systemCancelledAuth": "Authenticatie is geannuleerd door uw apparaat",
         "userCancelledAuth": "Verificatieverzoek geannuleerd",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "passwordFallback": "Terugvallen naar wachtwoordauthenticatie",
+        "noPassword": "Wachtwoord is niet ingesteld op apparaat"
     },
     "transferConfirmation": {
         "youAreAbout": "U staat op het punt om {{contents}} te versturen naar het adres",
         "aMessage": "een bericht",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "Van {{selectedAccountName}}",
+        "toAddress": "Naar adres",
+        "sendingAMessage": "Bericht aan het versturen",
+        "sendingAnEmptyMessage": "Een leeg bericht aan het verzenden"
     },
     "seedVault": {
         "exportSeedVault": "Seedkluis exporteren",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "Een SeedVault is een versleuteld bestand voor het veilig opslaan van uw seed. Uw seed is vergrendeld achter een SeedVault Key (Sleutel) en zonder deze Key kunt u geen toegang tot uw seed verkrijgen.",
         "seedVaultWarning": "Zorg ervoor dat u het bestand op meerdere locaties backupt (bijvoorbeeld: harde schijf, cloud, USB). Raakt u dit bestand kwijt en heeft u uw seed niet ergens opgeslagen, bent u uw IOTA kwijt.",
         "exportFail": "Exporteren van Seedkluis mislukt",
         "exportFailExplanation": "Er was een probleem met het exporteren van de Seedkluis. Zorg ervoor dat u de juiste bevoegdheden en genoeg vrije ruimte hebt.",
@@ -645,23 +645,23 @@
         "importSuccessExplanation": "Uw seed is succesvol geïmporteerd.",
         "saveToDownloadFolder": "Opslaan in Download map",
         "importSeedVault": "Seedkluis importeren",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
+        "dropInstructions": "Sleep SeedVault of tekst hier naar toe <1></1> of klik om te bladeren",
+        "dropActive": "Sleep SeedVault of tekst hier",
         "enterKeyExplanation": "Voer uw Key in om de SeedVault te openen",
         "noSeedFound": "Seedkluis bevat geen geldige seed",
         "noSeedFoundExplanation": "De Seedkluis is leeg, of heeft een seed in een ongeldig formaat.",
         "seedFileError": "Kan Seedkluis niet openen",
         "seedFileErrorExplanation": "Er was een probleem tijdens het openen van de Seedkluis. Als u het juiste bestand hebt gekozen, kan het zijn dat dit corrupt is.",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key",
+        "invalidSeedFileError": "Ongeldig SeedVault bestand",
+        "invalidSeedFileErrorExplanation": "Dit bestandsformaat wordt niet ondersteund. Alleen SeedVault bestanden (.kdbx) gemaakt via Trinity of een password manager worden ondersteund.",
+        "seedVaultKeyExplanation": "Eerst moeten we je SeedVault beveiligen. Kies een sleutel om het bestand te versleutelen. Je zal deze sleutel gebruiken als je je seed van de SeedVault moet herstellen.",
+        "retypeKey": "Herhaal sleutel",
         "key": "Sleutel"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "Het exporteren van de staat zal een txt bestand op je apparaat opslaan met je account (transacties, addressen) informatie, wallet versie en namen van de opslagbestanden.",
+        "exportSuccess": "Staat geëxporteerd",
+        "exportSuccessExplanation": "Je staat-bestand is succesvol geëxporteerd."
     },
     "chart": {
         "mcap": "MCAP",
@@ -690,19 +690,19 @@
     "progressSteps": {
         "checkingNodeHealth": "Gezondheid node aan het checken",
         "validatingReceiveAddress": "Ontvangstadres wordt gevalideerd",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "Transactie adressen aan het valideren",
         "syncingAccount": "Account synchroniseren",
         "preparingInputs": "Invoer voorbereiden",
         "preparingTransfers": "Voorbereiding van transacties",
         "gettingTransactionsToApprove": "Bezig met transacties akkoorderen",
         "proofOfWork": "Bewijs van inspanning voltooien",
         "broadcasting": "Uitzenden",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "preparingData": "Gegevens voorbereiden",
+        "migratingSettings": "Instellingen migreren",
+        "migratingAccounts": "Accounts migreren",
+        "cleaningUpOldData": "Oude gegevens opschonen",
+        "migrationComplete": "Migratie voltooid",
+        "transferComplete": "Overdracht voltooid"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot transitie kan niet worden voltooid",
