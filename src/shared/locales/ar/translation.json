@@ -71,7 +71,7 @@
         "node": "عقدة",
         "cannotPerformAction": "يتعذر تنفيذ الإجراء",
         "cannotPerformActionExplanation": "اذهب إلى الإعدادات المتقدمة لإعادة المحفظة.",
-        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailable": "دليل العمل التحكم عن بعد غير متوفر",
         "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
         "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "المحفظة",
