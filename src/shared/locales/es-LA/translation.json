@@ -6,7 +6,7 @@
         "noTransactions": "NO HAY HISTORIAL RECIENTE",
         "refresh": "ACTUALIZAR",
         "balanceError": "No hay suficiente balance",
-        "balanceErrorMessage": "No tienes suficientes IOTA para completar esta transferencia.",
+        "balanceErrorMessage": "No tiene suficientes IOTA para completar esta transferencia.",
         "totalBalance": "Balance total",
         "transferError": "Error de transferencia",
         "transferErrorMessage": "Algo salió mal al enviar tu transferencia. Por favor, inténtalo de nuevo.",
@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Error al recuperar datos de actualización",
         "noUpdatesAvailable": "No hay actualizaciones disponibles",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "¡Tiene la última versión de Trinity!",
         "newVersionAvailable": "Nueva versión disponible",
         "newVersionAvailableExplanation": "Una nueva versión de Trinity está disponible. Quieres actualizar ahora?",
         "installUpdate": "Instalar actualización y reiniciar",
