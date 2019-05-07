@@ -475,8 +475,8 @@
         "searchHelpText": "Αναζήτηση βάσει συσχέτισης ή περιεχομένου μηνυμάτων",
         "searchHelpValue": "Βρείτε συναλλαγές με ακριβή τιμή iota",
         "searchHelpUnits": "Βρείτε συναλλαγές ανά αξία και μονάδα iota",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpMore": "Βρείτε συναλλαγές με τιμή μεγαλύτερη από X",
+        "searchHelpLess": "Βρείτε συναλλαγές με τιμή μικρότερη από X"
     },
     "accountManagement": {
         "viewSeed": "Προβολή σπόρου",
@@ -487,14 +487,14 @@
         "tools": "Εργαλεία"
     },
     "addCustomNode": {
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeCouldNotBeAdded": "Δεν ήταν δυνατή η προσθήκη προσαρμοσμένου κόμβου",
         "customNode": "Προσαρμοσμένος κόμβος",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Κατάργηση προσαρμοσμένου κόμβου",
         "invalidNodeResponse": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση",
         "add": "Προσθήκη",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node.",
-        "invalidURL": "Please enter a valid URL."
+        "nodeFieldEmpty": "Το πεδίο κειμένου είναι άδειο",
+        "nodeFieldEmptyExplanation": "Εισαγάγετε έναν προσαρμοσμένο κόμβο.",
+        "invalidURL": "Εισαγάγετε μια έγκυρη διεύθυνση URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Χρήση υπάρχοντος σπόρου",
@@ -505,9 +505,9 @@
         "addCustomNode": "Προσθήκη προσαρμοσμένου κόμβου",
         "manualSync": "Χειροκίνητος συγχρονισμός",
         "snapshotTransition": "Στιγμιότυπο μετάβασης",
-        "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "pow": "Απόδειξη της εργασίας",
+        "autoPromotion": "Αυτόματη προώθηση",
+        "autoPromotionExplanation": "Η αυτόματη προώθηση βοηθά να επιβεβαιώσετε τις συναλλαγές σας στο Tangle. Ενεργοποιήστε αυτήν τη ρύθμιση, εάν δυσκολεύεστε να επιβεβαιώσετε τις συναλλαγές σας.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work.",
         "deepLinking": "Deep linking",
         "stateExport": "State export"
