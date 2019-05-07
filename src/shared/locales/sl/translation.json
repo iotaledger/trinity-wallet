@@ -121,7 +121,7 @@
         "nodeDuplicated": "Podvojen Node",
         "nodeDuplicatedExplanation": "Ta Node že obstaja.",
         "nodeAutoChanged": "Node se je automatsko zamenjal",
-        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
+        "nodeAutoChangedExplanation": "Prehod na Node {{- nodeAddress}}, ker izbrani Node ni dosegljiv.",
         "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
         "masterKey": "Your IOTA seed is the master key to your funds.",
