@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",
         "noUpdatesAvailable": "Nema dostupnih ažuriranja",
-        "noUpdatesAvailableExplanation": "Imate najnoviju verziju Trinity Desktop-a!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Dostupna je nova verzija",
         "newVersionAvailableExplanation": "Dostupna je nova verzija Trinity novčanika. Želite li ažurirati aplikaciju?",
         "installUpdate": "Instaliraj novu verziju i ponovno pokreni aplikaciju",
