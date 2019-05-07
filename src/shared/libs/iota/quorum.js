@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
@@ -26,7 +27,7 @@ import Errors from '../errors';
  * @param {number} quorumSize
  * @returns {Promise}
  */
-const rejectIfNotEnoughSyncedNodes = (nodes, quorumSize = QUORUM_SIZE) => {
+const rejectIfNotEnoughSyncedNodes = (nodes, quorumSize) => {
     if (size(nodes) < quorumSize) {
         return Promise.reject(new Error(Errors.NOT_ENOUGH_SYNCED_NODES));
     }
@@ -60,7 +61,7 @@ const rejectIfEmptyHashTrytes = (trytes) => {
  *
  *   @returns {function(string, [number]): {boolean | string}}
  **/
-const determineQuorumResult = (validResults, quorumSize = QUORUM_SIZE) => {
+const determineQuorumResult = (validResults, quorumSize) => {
     const { frequency, mostFrequent } = findMostFrequent(validResults);
 
     return (method, threshold = QUORUM_THRESHOLD) => {
@@ -99,7 +100,7 @@ const fallbackToSafeResult = (method) => {
 };
 
 /**
- *   For a list of nodes, find healthy (synced) nodes N, where size(N) === QUORUM_SIZE
+ *   For a list of nodes, find healthy (synced) nodes N, where size(N) === quorumSize
  *
  *   @method findSyncedNodes
  *   @param {array} nodes
@@ -175,11 +176,12 @@ const findSyncedNodes = (nodes, quorumSize, selectedNodes = [], blacklistedNodes
  * @method prepareQuorumResults
  *
  * @param {string} method
+ * @param {number} quorumSize
  * @param  {...any} requestArgs
  *
  * @returns {function(array, number): {array | object | string}}
  */
-const prepareQuorumResults = (method, ...requestArgs) => {
+const prepareQuorumResults = (method, quorumSize, ...requestArgs) => {
     const prepare = (results, payloadSize) => {
         // Before determining the actual quorum result, filter results from unresponsive nodes.
         // See #getQuorum where we explicitly resolve undefined as a result from unresponsive nodes.
@@ -190,7 +192,7 @@ const prepareQuorumResults = (method, ...requestArgs) => {
 
         while (idx < payloadSize) {
             /* eslint-disable no-loop-func */
-            quorumResult.push(determineQuorumResult(map(validResults, (result) => result[idx]))(method));
+            quorumResult.push(determineQuorumResult(map(validResults, (result) => result[idx]), quorumSize)(method));
             /* eslint-enable no-loop-func */
 
             idx += 1;
@@ -255,18 +257,18 @@ const prepareQuorumResults = (method, ...requestArgs) => {
 /**
  * Gets quorum results for provided method.
  *
- * @param {string} method
+ * @param {number} quorumSize
  * @param {array} syncedNodes
  * @param {array} [payload]
  * @param  {...any} [args]
  *
- * @return {Promise<array | object | string>}
+ * @returns {function(string, array, [array], *) => Promise<array | object | string>}
  */
-const getQuorum = (method, syncedNodes, payload, ...args) => {
+const getQuorum = (quorumSize) => (method, syncedNodes, payload, ...args) => {
     const requestArgs = [...(isEmpty(payload) ? [] : [payload]), ...(isEmpty(args) ? [] : args)];
     const iotaApiMethod = head(split(method, ':'));
 
-    return rejectIfNotEnoughSyncedNodes(syncedNodes)
+    return rejectIfNotEnoughSyncedNodes(syncedNodes, quorumSize)
         .then(() =>
             Promise.all(
                 map(
@@ -292,7 +294,7 @@ const getQuorum = (method, syncedNodes, payload, ...args) => {
         .then((results) => {
             const requestPayloadSize = size(payload);
 
-            return prepareQuorumResults(method, ...args)(results, requestPayloadSize);
+            return prepareQuorumResults(method, quorumSize, ...args)(results, requestPayloadSize);
         });
 };
 
@@ -300,11 +302,15 @@ const getQuorum = (method, syncedNodes, payload, ...args) => {
  *   Wrapper for quorum enabled iota methods
  *
  *   @method Quorum
- *   @param {array} quorumNodes
+ *
+ *   @param {object} config - { nodes: <Array>, quorumSize: <Number> }
  *
  *   @returns {object}
  **/
-export default function Quorum(quorumNodes) {
+export default function Quorum(config) {
+    const quorumNodes = get(config, 'nodes') || [];
+    const quorumSize = get(config, 'quorumSize') || QUORUM_SIZE;
+
     let nodes = uniq(quorumNodes);
 
     if (size(nodes) < QUORUM_SIZE) {
@@ -318,7 +324,7 @@ export default function Quorum(quorumNodes) {
         const timeElapsed = (new Date() - lastSyncedAt) / 1000;
 
         if (isEmpty(selectedNodes) || timeElapsed >= QUORUM_SYNC_CHECK_INTERVAL) {
-            return findSyncedNodes(nodes, QUORUM_SIZE, selectedNodes).then((syncedNodes) => {
+            return findSyncedNodes(nodes, quorumSize, selectedNodes).then((syncedNodes) => {
                 selectedNodes = syncedNodes;
                 lastSyncedAt = new Date();
 
@@ -351,7 +357,7 @@ export default function Quorum(quorumNodes) {
             return isEmpty(addresses)
                 ? Promise.resolve([])
                 : findSyncedNodesIfNecessary().then((syncedNodes) =>
-                      getQuorum('wereAddressesSpentFrom', syncedNodes, addresses),
+                      getQuorum(quorumSize)('wereAddressesSpentFrom', syncedNodes, addresses),
                   );
         },
         /**
@@ -368,12 +374,14 @@ export default function Quorum(quorumNodes) {
             return isEmpty(hashes)
                 ? Promise.resolve([])
                 : findSyncedNodesIfNecessary().then((syncedNodes) =>
-                      getQuorum('getNodeInfo:latestSolidSubtangleMilestone', syncedNodes)
+                      getQuorum(quorumSize)('getNodeInfo:latestSolidSubtangleMilestone', syncedNodes)
                           // If nodes cannot agree on the latestSolidSubtangleMilestone
                           // No need to proceed further.
                           .then(rejectIfEmptyHashTrytes)
                           .then((latestSolidSubtangleMilestone) =>
-                              getQuorum('getInclusionStates', syncedNodes, hashes, [latestSolidSubtangleMilestone]),
+                              getQuorum(quorumSize)('getInclusionStates', syncedNodes, hashes, [
+                                  latestSolidSubtangleMilestone,
+                              ]),
                           ),
                   );
         },
@@ -392,12 +400,12 @@ export default function Quorum(quorumNodes) {
             return isEmpty(addresses)
                 ? Promise.resolve([])
                 : findSyncedNodesIfNecessary().then((syncedNodes) =>
-                      getQuorum('getNodeInfo:latestSolidSubtangleMilestone', syncedNodes)
+                      getQuorum(quorumSize)('getNodeInfo:latestSolidSubtangleMilestone', syncedNodes)
                           // If nodes cannot agree on the latestSolidSubtangleMilestone
                           // No need to proceed further.
                           .then(rejectIfEmptyHashTrytes)
                           .then((latestSolidSubtangleMilestone) =>
-                              getQuorum('getBalances:balances', syncedNodes, addresses, threshold, [
+                              getQuorum(quorumSize)('getBalances:balances', syncedNodes, addresses, threshold, [
                                   latestSolidSubtangleMilestone,
                               ]),
                           ),
