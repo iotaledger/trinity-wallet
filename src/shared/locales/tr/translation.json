@@ -280,7 +280,7 @@
     "paperWallet": {
         "neverShare": "Cüzdan şifrenizi sakın kimseyle paylaşmayın.",
         "iotaLogo": "IOTA logosu",
-        "print": "Print",
+        "print": "Yazdır",
         "paperConvenience": "Oluşumunuzun bir kopyasını yazdırmak onu saklamak için etkili bir yöntemdir.",
         "publicInsecure": "Fakat halka açık bir Wi-fi'da veya halka açık bir yazıcıyla yazdırmak güvenli değildir.",
         "pleaseCheck": "Please check and confirm before you print",
@@ -291,20 +291,20 @@
         "printTemplateQuestion": "Would you like to print a blank template?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "print": "Evet, yazdır"
     },
     "receive": {
-        "yourAddress": "Your address",
+        "yourAddress": "Adresiniz",
         "qrOptions": "QR options",
         "shareQr": "Share QR code",
-        "copyAddress": "Copy address",
+        "copyAddress": "Adresi kopyala",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adresin panoya kopyalanmış.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Yeni bir adres oluştur",
         "noAddresses": "ADRESİ YOK",
         "spent": "Harcanan",
         "tag": "Etiket",
-        "generateAnAddress": "Generate address",
+        "generateAnAddress": "Yeni adres oluştur",
         "generateAnAddressTitle": "Generate an address",
         "generateAnAddressExplanation": "Please generate an address before using this function.",
         "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
@@ -319,7 +319,7 @@
         "writeYourSeedDown": "Write your seed down",
         "seedClearedExplanation": "Güvenliğiniz için cüzdan şifresi panodan temizlendi.",
         "letsWriteDownYourSeed": "Let's write down your seed",
-        "youCanHighlightCharacters": "You can highlight 9 characters at a time",
+        "youCanHighlightCharacters": "Bir seferde sadece 9 karakter secebilirsiniz",
         "printBlankWallet": "Print a blank wallet",
         "whatIsAChecksum": "What is a checksum?",
         "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
