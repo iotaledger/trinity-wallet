@@ -587,10 +587,10 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Έχετε δημιουργήσει αντίγραφο του seed σας;",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "iHaveBackedUp": "Έχω με ασφάλεια αποθήκευση το seed μου",
+        "reenterSeed": "Στο επόμενο βήμα θα πρέπει να εισάγετε ξανά το seed σας.",
+        "reenterSeedWarning": "Εάν δεν έχετε δημιουργήσει αντίγραφο ασφαλείας του seed σας και η συσκευή σας, έχει βλάβη, θα χάσετε όλη την IOTA σας.",
+        "pleaseConfirm": "Βεβαιωθείτε ότι έχετε αποθηκεύσει με ασφάλεια το seed σας."
     },
     "walletResetConfirmation": {
         "cannotUndo": "ΑΥΤΗ Η ΕΝΕΡΓΕΙΑ ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΑΝΑΙΡΕΘΕΙ.",
