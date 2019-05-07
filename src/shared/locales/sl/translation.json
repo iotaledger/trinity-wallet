@@ -102,7 +102,7 @@
         "promotionErrorExplanation": "Pri promoviranju transakcije je prišlo do napake. Prosim poskusite ponovno.",
         "noLongerValid": "Paket, katerega poskušate promovirati, ni več veljaven",
         "transactionAlreadyConfirmed": "Transakcija je že potrjena",
-        "transactionAlreadyConfirmedExplanation": "The transaction you are trying to promote is already confirmed.",
+        "transactionAlreadyConfirmedExplanation": "Transakcija, katero poskušate promovirati, je že potrjena.",
         "cannotSendToOwn": "Sending to an input address",
         "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
         "pleaseWait": "Prosim, počakajte",
