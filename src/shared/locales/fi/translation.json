@@ -161,7 +161,7 @@
         "forceUpdate": "Päivitä sovellus jatkaaksesi",
         "forceUpdateExplanation": "Tärkeä päivitys on julkaistu. Ole hyvä ja päivitä sovellus.",
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "missingPermissionExplanation": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan suorittaaksesi tämän toiminnon.",
         "swipeToConfirm": "Pyyhkäise vahvistaaksesi"
     },
     "addAdditionalSeed": {
@@ -572,7 +572,7 @@
         "syncingYourAccount": "Synkronoidaan tiliä."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Anna tilin nimi ja seed-luku",
         "incorrectFormat": "Seed-luku on virheellinen",
         "validSeedExplanation": "Hyväksytyn seed-luvun on oltava 81 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9."
     },
@@ -587,7 +587,7 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Tallensitko seed-lukusi?",
-        "iHaveBackedUp": "I have safely backed up my seed",
+        "iHaveBackedUp": "Olen varmuuskopioinut seed-lukuni turvallisesti",
         "reenterSeed": "Seuraavassa vaiheessa sinun tulee syöttää seed-lukusi uudestaan.",
         "reenterSeedWarning": "Jos et ole tallentanut seed-lukuasi laitteen ulkopuolelle, saatat laitteen hajotessa menettää kaikki varasi.",
         "pleaseConfirm": "Varmista, että olet tallentanut seed-lukusi turvallisesti."
