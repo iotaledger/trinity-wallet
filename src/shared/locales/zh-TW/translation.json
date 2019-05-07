@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "取得更新資料時發生錯誤",
         "noUpdatesAvailable": "尚無更新",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "有新版本可用",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "安裝更新並重啟",
