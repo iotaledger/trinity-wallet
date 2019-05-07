@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "अपडेट डेटा पुनर्प्राप्त करने में त्रुटि",
         "noUpdatesAvailable": "कोई अपडेट उपलब्ध नहीं",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "नया संस्करण उपलब्ध है",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Install update and restart",
