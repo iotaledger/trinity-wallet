@@ -307,7 +307,7 @@
         "generateAnAddress": "Luo osoite",
         "generateAnAddressTitle": "Luo osoite",
         "generateAnAddressExplanation": "Ole hyvä ja luo osoite ennen tätä toimintoa.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "Halutessasi vastaanottaa IOTA tokeneita luo aina uusi talletusosoite"
     },
     "saveYourSeed": {
         "saveYourSeed": "Tallenna seed-luku",
@@ -639,7 +639,7 @@
         "exportSuccessExplanation": "Salattu seed-tiedostosi on tallennettu onnistuneesti.",
         "unrecognisedKey": "Tuntematon SeedVault-avain",
         "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
-        "emptyKey": "No SeedVault Key entered",
+        "emptyKey": "Seed-lukuavainta ei ole syötetty",
         "emptyKeyExplanation": "You must enter a key. Please try again.",
         "importSuccess": "Seed-luku tuotu",
         "importSuccessExplanation": "Seed-lukusi on tuotu onnistuneesti.",
@@ -699,9 +699,9 @@
         "broadcasting": "Lähetetään",
         "preparingData": "Valmistellaan dataa",
         "migratingSettings": "Siirretään asetuksia",
-        "migratingAccounts": "Migrating accounts",
+        "migratingAccounts": "Tilejä siirretään",
         "cleaningUpOldData": "Siivotaan vanhaa dataa",
-        "migrationComplete": "Migration complete",
+        "migrationComplete": "Siirto onnistui",
         "transferComplete": "Siirto on valmis"
     },
     "snapshotTransition": {
