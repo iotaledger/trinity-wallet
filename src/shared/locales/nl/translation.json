@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Fout bij het ophalen van de update data",
         "noUpdatesAvailable": "Geen updates beschikbaar",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Nieuwe versie beschikbaar",
         "newVersionAvailableExplanation": "Er is een nieuwe versie van Trinity beschikbaar. Wil je nu updaten?",
         "installUpdate": "Update installeren en opnieuw starten",
@@ -761,8 +761,8 @@
         "completeSetup": "Voltooi setup"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxy": "Gebruik systeem proxy",
+        "proxyExplanation": "Detecteer en gebruik systeem brede netwerkproxy instellingen. Sluit en heropen de wallet na het wijzigen van deze instelling."
     },
     "notifications": {
         "notifications": "Notificaties",
@@ -788,22 +788,22 @@
         "sweepConfirmationTitle": "Verplaatsing bevestigen"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "dataMigration": "Datamigratie",
+        "dataMigrationExplanation": "Vanwege prestatiebeperkingen en opslagbeperkingen gebruikt Trinity een nieuwe database voor het opslaan van instellingen en accountgegevens. Wacht even terwijl Trinity automatisch uw bestaande gegevens migreert.",
+        "problemMigratingYourData": "Er is een probleem opgetreden bij het migreren van uw gegevens. Probeer het opnieuw",
+        "seedMigrationExplanation": "Als onderdeel van de voortdurende inspanningen van Trinity om de wallet beveiliging te verbeteren, zal uw seed worden gemigreerd naar een verbeterde opslagmethode. Wacht even terwijl Trinity automatisch uw seed opslag migreert."
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
+        "ready": "Ledger verbonden en klaar voor gebruik",
+        "notReady": "Indien je een Ledger apparaat wil gebruiken dien je deze nu aan te sluiten en te ontgrendelen",
+        "indexInUse": "Index is al in gebruik voor account {{account}}",
+        "indexInUseExplanation": "Uw gekozen index is al in gebruik op een van uw accounts. Kies een ander index nummer.",
+        "proceedWithLedger": "Ga verder met Ledger installatie",
         "accountIndex": "Account index",
-        "accountPage": "Account page",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
-        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountPage": "Account pagina",
+        "actionCancelled": "Ledger apparaat toegang geannuleerd",
+        "actionCancelledExplanation": "Kan de actie niet uitvoeren zonder toegang tot het Ledger apparaat.",
+        "chooseAccountIndex": "Kies uw Ledger account index",
         "accountIndexExplanation": "Uw Ledger kan meerdere seeds opslaan. Elk seed wordt geïdentificeerd middels een uniek index nummer. Een ongebruikte index is vooraf geselecteerd, maar u kunt ook zelf kiezen. Zorg ervoor dat u uw gekozen index nummer noteert.",
         "accountPageExplanation": "Sommige wallets van een derde partij vereisen pagina's.",
         "connectionError": "Kan geen verbinding maken met Ledger",
