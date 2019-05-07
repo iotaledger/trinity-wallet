@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Fel vid hämtning av uppdateringsdata",
         "noUpdatesAvailable": "Inga uppdateringar tillgängliga",
-        "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity.",
+        "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity!",
         "newVersionAvailable": "Ny version tillgänglig",
         "newVersionAvailableExplanation": "Det finns en ny Trinity-version. Vill du uppdatera nu?",
         "installUpdate": "Installera uppdateringen och starta om",
