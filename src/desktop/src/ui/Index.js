@@ -1,5 +1,6 @@
 /* global Electron */
 import React from 'react';
+import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
@@ -121,6 +122,7 @@ class App extends React.Component {
         Electron.onEvent('url-params', this.onSetDeepUrl);
         Electron.requestDeepLink();
 
+        this.checkOldData();
         this.checkVaultAvailability();
         this.versionCheck();
     }
@@ -230,6 +232,15 @@ class App extends React.Component {
         if (accountIndex > -1 && !this.props.isBusy) {
             this.props.setSeedIndex(accountIndex);
             this.props.history.push('/wallet');
+        }
+    }
+
+    checkOldData() {
+        const oldPersistedData = Electron.getOldStorage();
+        if (!isEmpty(oldPersistedData)) {
+            this.setState({
+                fatalError: 'Found old data',
+            });
         }
     }
 

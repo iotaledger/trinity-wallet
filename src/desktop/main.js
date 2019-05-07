@@ -255,7 +255,14 @@ function createWindow() {
             ];
             const ledgerOnboarding = ['support.ledger.com'];
 
-            const externalWhitelist = [...privacyPolicyLinks, ...termsAndConditionsLinks, ...ledgerOnboarding];
+            const miscLinks = ['github.com'];
+
+            const externalWhitelist = [
+                ...privacyPolicyLinks,
+                ...termsAndConditionsLinks,
+                ...ledgerOnboarding,
+                ...miscLinks,
+            ];
 
             try {
                 if (
