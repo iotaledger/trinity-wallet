@@ -637,7 +637,7 @@
         "exportFailExplanation": "SeedVault-tiedoston viennissä ilmeni ongelmia. Varmista että sinulla on riittävät oikeudet ja tarpeeksi tilaa levyllä.",
         "exportSuccess": "SeedVault-tiedoston vienti onnistui",
         "exportSuccessExplanation": "Salattu seed-tiedostosi on tallennettu onnistuneesti.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
+        "unrecognisedKey": "Tuntematon SeedVault-avain",
         "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
         "emptyKey": "No SeedVault Key entered",
         "emptyKeyExplanation": "You must enter a key. Please try again.",
