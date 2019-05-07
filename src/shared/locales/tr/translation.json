@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Güncelleme bilgisi alınırken hata oluştu",
         "noUpdatesAvailable": "Kullanılabilir güncelleme yok",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Yeni versiyon mevcut",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Install update and restart",
