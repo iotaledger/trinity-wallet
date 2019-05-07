@@ -251,7 +251,7 @@
         "setNode": "Aseta Palvelin",
         "whyBiometricDisabled": "Miksi biometrinen tunnistus pois käytöstä?",
         "whyBiometricDisabledExplanationPart1": "Biometrinen tunnistaminen on poistettu käytöstä sovelluksen ensimmäisellä käyttökerralla turvallisuussyistä.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart2": "Oltuasi liian pitkään passiivisena, sinut kirjataan ulos Trinitysta. Voit kirjautua takaisin käyttämällä biometristä tunnistautumista."
     },
     "loading": {
         "loadingFirstTime": "Ladataan seed-lukua ensimmäistä kertaa.",
@@ -474,7 +474,7 @@
         "typeHelp": "Kirjoita !help komentojen saamiseksi",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Etsi tapahtumia tarkalla iota-arvolla",
-        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpUnits": "Etsi siirtoja iota arvoilla ja yksiköillä",
         "searchHelpMore": "Find transactions with a value greater than X",
         "searchHelpLess": "Find transactions with a value less than X"
     },
@@ -768,7 +768,7 @@
         "notifications": "Ilmoitukset",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
         "typeConfirmations": "Ilmoita minulle vahvistuksista",
-        "typeMessages": "Notify me about zero value transactions",
+        "typeMessages": "Ilmoita arvottomista siirroista",
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "Vastaanotetaan {{value}} tilille {{account}}",
         "messageTx": "Sait viestin tilille {{account}}",
@@ -781,10 +781,10 @@
         "sweepError": "Virhe varojen avaamisessa",
         "sweepErrorExplanation": "Jotain meni vikaan varojen avaamisessa. Yritetään uudelleen.",
         "warningTitle": "Varoitus: Lukittuja varoja havaittu",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanation": "Trinity työpöytäversio 0.3.4 sisälsi vian mikä saattoi väliaikaisesti lukita varat. Tämä vaikuttaa pieneen määrään käyttäjiä jotka suorittivat siirtoja 0.3.4 versiolla.",
         "explanationAccounts": "Lukittuja varoja on havaittu seuraavilla tileillä: {{accounts}}. Trinity palauttaa nyt varat automaattisesti siirtämällä ne uuteen osoitteeseen.",
         "proceed": "Etene palautukseen",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
+        "sweepConfirmation": "Olet siirtämässä {{amount}} osoitteeseen {{address}}. Tili: {{accountName}}, osoite indeksi: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     },
     "migration": {
@@ -805,7 +805,7 @@
         "actionCancelledExplanation": "Ei voida suorittaa toimintoa ilman Ledger laitteen yhteyttä",
         "chooseAccountIndex": "Valitse Ledgerin käyttäjä hakemisto",
         "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
-        "accountPageExplanation": "Some third party wallets require pages.",
+        "accountPageExplanation": "Eräät kolmannen osapuolen lompakot vaativat sivut.",
         "connectionError": "Ledgeriin yhdistäminen ei onnistu",
         "connectionErrorExplanation": "Tarkista, että Ledger-laitteesi on yhdistettu ja lukituksesta avattu.",
         "connectionTitle": "Yhdistä Ledger-laitteesi",
@@ -814,8 +814,8 @@
         "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
         "applicationTitle": "Open Ledger IOTA app",
         "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
-        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
-        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "cannotSendZeroValueTitle": "Ei voida lähettää nolla-arvoista siirtoa",
+        "cannotSendZeroValueExplanation": "Ei voida lähettää nolla-arvoista siirtoa tilikirja laitteella.",
         "ledgerDisconnectedTitle": "Yhteys Ledger-laitteeseen katkaistu",
         "ledgerDisconnectedExplanation": "Ledger-laitteesi yhteys katkesi. Yhdistä laite ja yritä uudelleen.",
         "ledgerDeniedTitle": "Tapahtuma hylätty",
@@ -824,7 +824,7 @@
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
         "checkAddress": "Tarkista vastaanottajan osoite",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialised": "Varoitusta ei ole vahvistettu",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
         "udevError": "Ledger-laitteen yhdistäminen epäonnistui",
         "udevErrorExplanation": "Trinity ei voinut yhdistää Ledger-laitteeseen. Vieraile alla olevalla verkkosivulla ratkaistaksesi ongelman."
