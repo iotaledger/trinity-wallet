@@ -49,10 +49,6 @@ const initialState = {
      */
     themeName: 'Default',
     /**
-     * Determines if the wallet has randomised node on initial setup.
-     */
-    hasRandomizedNode: false,
-    /**
      * Determines if proof of work should be offloaded to the selected IRI node
      */
     remotePoW: false,

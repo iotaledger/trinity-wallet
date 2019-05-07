@@ -8,8 +8,8 @@ import reduce from 'lodash/reduce';
 import union from 'lodash/union';
 import unionBy from 'lodash/unionBy';
 import { setPrice, setChartData, setMarketData } from './marketData';
-import { quorum, getRandomNode, changeIotaNode } from '../libs/iota';
-import { setNodeList, setRandomlySelectedNode, setAutoPromotion, changeNode } from './settings';
+import { quorum } from '../libs/iota';
+import { setNodeList, setAutoPromotion, changeNode } from './settings';
 import { fetchRemoteNodes, withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
@@ -19,7 +19,6 @@ import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState } 
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
 import {
-    nodes as defaultNodes,
     nodesWithPowEnabled as defaultNodesWithPowEnabled,
     nodesWithPowDisabled as defaultNodesWithPowDisabled,
     DEFAULT_RETRIES,
@@ -340,32 +339,15 @@ export const fetchPrice = () => {
  *
  * @method fetchNodeList
  *
- * @param {boolean} chooseRandomNode
  * @returns {function}
  */
-export const fetchNodeList = (chooseRandomNode = false) => {
+export const fetchNodeList = () => {
     return (dispatch, getState) => {
         dispatch(fetchNodeListRequest());
-
-        const setRandomNode = (nodesList) => {
-            if (chooseRandomNode) {
-                const node = getRandomNode(nodesList);
-                dispatch(setRandomlySelectedNode(node));
-                changeIotaNode(node);
-            }
-        };
 
         fetchRemoteNodes()
             .then((remoteNodes) => {
                 if (remoteNodes.length) {
-                    const remoteNodesWithPowEnabled = remoteNodes
-                        .filter((node) => node.pow)
-                        .map((nodeWithPoWEnabled) => nodeWithPoWEnabled.node);
-
-                    // A temporary addition
-                    // Only choose a random node with PoW enabled.
-                    setRandomNode(remoteNodesWithPowEnabled);
-
                     const nodes = [
                         ...map(defaultNodesWithPowEnabled, (url) => ({ url, pow: true })),
                         ...map(defaultNodesWithPowDisabled, (url) => ({ url, pow: false })),
@@ -386,7 +368,6 @@ export const fetchNodeList = (chooseRandomNode = false) => {
                 dispatch(fetchNodeListSuccess());
             })
             .catch(() => {
-                setRandomNode(defaultNodes);
                 dispatch(fetchNodeListError());
             });
     };

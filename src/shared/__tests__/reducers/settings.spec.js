@@ -53,7 +53,6 @@ describe('Reducer: settings', () => {
                 ],
                 conversionRate: 1,
                 themeName: 'Default',
-                hasRandomizedNode: false,
                 remotePoW: false,
                 lockScreenTimeout: 3,
                 versions: {},

@@ -141,12 +141,11 @@ const renderInitialScreen = (initialScreen) => {
  **/
 const fetchNodeList = (store) => {
     const { settings } = store.getState();
-    const hasAlreadyRandomized = get(settings, 'hasRandomizedNode');
 
     // Update provider
     changeIotaNode(get(settings, 'node'));
 
-    store.dispatch(fetchNodes(!hasAlreadyRandomized));
+    store.dispatch(fetchNodes());
 };
 
 /**
