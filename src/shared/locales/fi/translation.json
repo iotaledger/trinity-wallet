@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Virhe haettaessa päivityksiä",
         "noUpdatesAvailable": "Ei uusia päivityksiä",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Uusi versio saatavilla",
         "newVersionAvailableExplanation": "Uusi Trinity-versio on saatavilla. Haluatko päivittää nyt?",
         "installUpdate": "Päivitä ja käynnistä uudelleen",
