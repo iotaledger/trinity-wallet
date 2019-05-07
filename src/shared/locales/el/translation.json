@@ -572,21 +572,21 @@
         "syncingYourAccount": "Ο λογαριασμός σας συντονίζεται."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "title": "Καταχωρίστε ένα όνομα λογαριασμού και το seed σας",
+        "incorrectFormat": "Λανθασμένη μορφή Seed",
+        "validSeedExplanation": "Έγκυρο seed πρέπει να είναι 81 χαρακτήρες και να περιέχουν μόνο A-Z ή 9."
     },
     "viewSeed": {
         "enterPassword": "Εισάγετε κωδικό πρόσβασης για να δείτε το σπόρο σας.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "viewSeed": "Προβολή seed",
+        "hideSeed": "Απόκρυψη seed",
+        "notAvailable": "Η εξαγωγή του seed δεν είναι διαθέσιμη για τον τύπο λογαριασμού",
+        "notAvailableExplanationLedger": "Η συσκευή ημερολογίου σας χρησιμοποιεί ένα ασφαλές στοιχείο για την αποθήκευση του seed σας. To seed είναι ασφαλώς κρυπτογραφημένος και δεν αφήνει τη συσκευή.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
+        "didSaveSeed": "Έχετε δημιουργήσει αντίγραφο του seed σας;",
         "iHaveBackedUp": "I have safely backed up my seed",
         "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
