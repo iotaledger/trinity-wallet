@@ -305,8 +305,8 @@
         "spent": "Harcanan",
         "tag": "Etiket",
         "generateAnAddress": "Yeni adres oluştur",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAnAddressTitle": "Yeni bir adres oluştur",
+        "generateAnAddressExplanation": "Lütfen bu işlevi kullanabilmek için yeni bir adres oluşturun.",
         "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
