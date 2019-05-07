@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",
         "noUpdatesAvailable": "Nenhuma atualização disponível",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Nova versão disponível",
         "newVersionAvailableExplanation": "Uma nova versão da Trinity está disponível. Deseja atualizar agora?",
         "installUpdate": "Instale a atualização e reinicie",
