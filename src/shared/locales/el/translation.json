@@ -597,8 +597,8 @@
         "warning": "<0><0>Όλοι τα δεδομένα του πορτοφολιού συμπεριλαμβανομένων</0> <1>του seed, του κωδικού πρόσβασης,</1> <2>και</2> <3>άλλες πληροφορίες του λογαριασμού</3> <4>θα χαθούν.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
+        "instructionsEnable": "Αγγίξτε τον αναγνώστη δακτυλικών αποτυπωμάτων για να ενεργοποιήσετε τον έλεγχο ταυτότητας δακτυλικών αποτυπωμάτων",
+        "instructionsDisable": "Αγγίξτε τον αναγνώστη δακτυλικών αποτυπωμάτων για να απενεργοποιήσετε τον έλεγχο ταυτότητας δακτυλικών αποτυπωμάτων",
         "fingerprintAuthEnabled": "Biometric authentication enabled",
         "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
         "fingerprintAuthDisabled": "Biometric authentication disabled",
