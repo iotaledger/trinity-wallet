@@ -335,15 +335,15 @@
         "incorrectSeedExplanation": "La semilla que ingresaste es incorrecta. Por favor vuelve a intentarlo.",
         "ifYouHaveNotSaved": "Si no has guardado tu semilla, por favor regresa y hazlo.",
         "enterSeedBelow": "Introduzca su semilla recientemente creada para confirmar que la guardado correctamente",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "ADVERTENCIA: No se puede pegar la seed",
+        "clipboardWarningExplanation": "Pegar esta desactivado por su seguridad. Puede arrastrar y soltar su semilla desde un archivo de texto."
     },
     "send": {
         "invalidAddress": "Dirección inválida",
         "invalidAddressExplanation1": "La dirección debe ser de {{maxLength}} caracteres y debe tener un checksum.",
         "invalidAddressExplanation2": "La dirección contiene caracteres inválidos.",
         "invalidAddressExplanation3": "La dirección contiene un checksum no válido.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "Por favor asegúrese de haber ingresado la address correcta.",
         "invalidAddressExplanationGeneric": "Direcciones validas deben ser de 90 caracteres y contener solo A-Z o 9.",
         "notEnoughFunds": "Fondos insuficientes",
         "notEnoughFundsExplanation": "No tienes suficiente IOTA para completar esta transferencia.",
@@ -365,7 +365,7 @@
         "addressPasteDetected": "Dirección copiada en el portapapeles",
         "addressPasteExplanation": "Parece que ha pegado una dirección. Asegúrese de que la dirección coincida con aquella a la que quiere enviar.",
         "invalid": "INVALIDO",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Deslice para enviar"
     },
     "setSeedName": {
         "letsAddName": "Vamos a añadir un nombre",
@@ -377,8 +377,8 @@
         "standard": "Normal",
         "advancedModeExplanation": "Modo avanzado mostrará información técnica más detallada.",
         "modesExplanation": "Solo habilite modo avanzado si tiene experiencia usando IOTA. Puede resultar confuso de otra forma.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "Modo actualizado",
+        "modeUpdatedExplanation": "Has cambiado a modo {{mode}}"
     },
     "settings": {
         "transferSending": "Transferencia en envío",
@@ -392,10 +392,10 @@
         "accountManagement": "Administración de cuenta",
         "addNewSeed": "Añadir nueva semilla",
         "changePassword": "Cambiar contraseña",
-        "general": "General settings",
+        "general": "Configuración general",
         "advanced": "Configuración avanzada",
-        "nodeSettings": "Node settings",
-        "account": "Account settings",
+        "nodeSettings": "Configuración de nodo",
+        "account": "Configuración de cuenta",
         "logout": "Cerrar sesión",
         "reset": "Reiniciar cartera",
         "syncingComplete": "Sincronización completada",
@@ -457,7 +457,7 @@
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
         "noTransactionsFound": "No se encontraron transacciones",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "Tu historial de transacciones está vacío",
         "hideZeroBalance": "Esconder balance nulo",
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
@@ -469,7 +469,7 @@
         "empty": "Vacío",
         "retrying": "Reintentando",
         "yesterday": "Ayer",
-        "promotingAnotherBundle": "Promoting another bundle",
+        "promotingAnotherBundle": "Promoviendo otro bundle",
         "pleaseWait": "Please wait, Trinity is promoting another bundle.",
         "typeHelp": "Type !help for available commands",
         "searchHelpText": "Search by bundle hash or message content",
@@ -699,10 +699,10 @@
         "broadcasting": "Transmitiendo",
         "preparingData": "Preparing data",
         "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "migratingAccounts": "Migrando cuenta",
+        "cleaningUpOldData": "Eliminando datos antiguos",
+        "migrationComplete": "Migración completada",
+        "transferComplete": "Transferencia completada"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "No se puede completar la transicion de snapshot",
@@ -717,13 +717,13 @@
         "transitioning": "Transicionando para el snapshot.",
         "generatingAndDetecting": "Generando direcciones y leyendo el balance.",
         "attaching": "Vinculando direcciones con la Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Vinculando address {{currentAddress}} de {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Auto completado exitoso",
         "autofillExplanation": "Información de la transacción auto completada desde el enlace.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingOverview": "Los deep links son links clickeables (iota://...) que completan automáticamente la información de transacción en Trinity.",
+        "deepLinkingWarning": "Tenga cuidado con el phishing. Asegúrese de que el link conduzca a la app oficial de Trinity.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
         "deepLinkingDisabled": "You have disabled deep linking.",
