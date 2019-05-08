@@ -475,8 +475,8 @@
         "searchHelpText": "使用交易捆的雜湊值或是訊息內容來搜尋",
         "searchHelpValue": "使用明確的 IOTA 價值來搜尋交易",
         "searchHelpUnits": "使用明確的 IOTA 價值和單位來搜尋交易",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpMore": "搜尋價值高於 X 的交易",
+        "searchHelpLess": "搜尋價值低於 X 的交易"
     },
     "accountManagement": {
         "viewSeed": "檢視種子",
@@ -509,8 +509,8 @@
         "autoPromotion": "自動促進",
         "autoPromotionExplanation": "自動促進會協助確認您在 Tangle 上的交易。如果您在確認交易時遇到困難的話，請啟用此設定。",
         "autoPromotionPoW": "自動促進僅能支援遠端工作量證明的節點上使用。",
-        "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "deepLinking": "深度連結",
+        "stateExport": "輸出狀態"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -537,14 +537,14 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "您確定要登出？",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "您即將登出",
         "areYouSure": "是否確定？"
     },
     "qrScanner": {
         "scan": "掃描 QR 碼"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "單位系統",
         "trillion": "兆",
         "billion": "十億",
         "million": "百萬",
