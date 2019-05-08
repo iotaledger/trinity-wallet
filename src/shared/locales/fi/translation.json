@@ -725,19 +725,19 @@
         "deepLinkingOverview": "Deep linkit ovat klikattavia linkkejä (iota://...), jotka täyttävät automaattisesti transaktion tiedot Trinityssä.",
         "deepLinkingWarning": "Varo phishing-huijauksia. Varmista, että avattava linkki siirtyy viralliseen Trinity-sovellukseen.",
         "deepLinkingUpdated": "Deep link asetukset",
-        "deepLinkingEnabled": "Olet ottanut käyttöön deep linkit.",
+        "deepLinkingEnabled": "Olet ottanut deep linkit käyttöön.",
         "deepLinkingDisabled": "Olet poistanut deep linkit käytöstä.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoTitle": "Deep linkit eivät ole käytössä",
+        "deepLinkingInfoMessage": "Avasit iota:// deep linkin, mutta deep linkit eivät ole käytössä."
     },
     "updates": {
         "errorRetrievingUpdateData": "Virhe haettaessa päivityksiä",
         "noUpdatesAvailable": "Ei uusia päivityksiä",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "Sinulla on uusin Trinity-versio!",
         "newVersionAvailable": "Uusi versio saatavilla",
         "newVersionAvailableExplanation": "Uusi Trinity-versio on saatavilla. Haluatko päivittää nyt?",
         "installUpdate": "Päivitä ja käynnistä uudelleen",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
+        "installUpdateExplanation": "Lataus suoritettu. Trinity käynistyy nyt udelleen asentaakseen päivityksen.",
         "downloadingUpdate": "Ladataan päivitystä",
         "downloadProgress": "{{transferred}} / {{total}} ladattu"
     },
