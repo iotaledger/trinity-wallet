@@ -473,8 +473,8 @@
         "pleaseWait": "請稍候，Trinit 錢包正在促進其他交易捆。",
         "typeHelp": "輸入 !help 來查看可用的指令",
         "searchHelpText": "使用交易捆的雜湊值或是訊息內容來搜尋",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpValue": "使用明確的 IOTA 價值來搜尋交易",
+        "searchHelpUnits": "使用明確的 IOTA 價值和單位來搜尋交易",
         "searchHelpMore": "Find transactions with a value greater than X",
         "searchHelpLess": "Find transactions with a value less than X"
     },
