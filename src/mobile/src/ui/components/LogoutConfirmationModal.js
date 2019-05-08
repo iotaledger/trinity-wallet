@@ -65,7 +65,7 @@ export class LogoutConfirmationModal extends PureComponent {
                 rightButtonText={t('yes')}
             >
                 <Text style={[styles.infoText, { color: body.color }]}>{t('aboutToLogOut')}</Text>
-                <LottieView source={getAnimation('logout', themeName)} style={styles.animation} autoPlay />
+                <LottieView source={getAnimation('logout', themeName)} style={styles.animation} autoPlay loop={false} />
                 <Text style={[styles.questionText, { color: body.color }]}>{t('areYouSure')}</Text>
             </ModalView>
         );

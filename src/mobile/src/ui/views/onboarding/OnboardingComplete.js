@@ -94,7 +94,7 @@ class OnboardingComplete extends Component {
                     >
                         <LottieView
                             source={getAnimation('onboardingComplete', themeName)}
-                            loop
+                            loop={false}
                             autoPlay
                             style={styles.animation}
                         />

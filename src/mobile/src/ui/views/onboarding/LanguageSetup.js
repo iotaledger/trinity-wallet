@@ -133,8 +133,12 @@ class LanguageSetup extends Component {
                                 <LottieView
                                     source={getAnimation('language', themeName)}
                                     style={styles.animation}
-                                    loop
+                                    loop={false}
                                     autoPlay
+                                    ref={(ref) => {
+                                        this.animation = ref;
+                                    }}
+                                    onAnimationFinish={() => this.animation.play(52, 431)}
                                 />
                             </AnimatedComponent>
                             <View style={{ flex: 0.2 }} />

@@ -57,10 +57,6 @@ class Welcome extends Component {
         themeName: PropTypes.string.isRequired,
     };
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         leaveNavigationBreadcrumb('Welcome');
     }
@@ -115,10 +111,14 @@ class Welcome extends Component {
                         style={styles.animation}
                     >
                         <LottieView
-                            source={getAnimation('welcomeAnimation', themeName)}
+                            source={getAnimation('welcome', themeName)}
                             style={styles.animation}
-                            loop
+                            loop={false}
                             autoPlay
+                            ref={(ref) => {
+                                this.animation = ref;
+                            }}
+                            onAnimationFinish={() => this.animation.play(161, 395)}
                         />
                     </AnimatedComponent>
                 </View>
