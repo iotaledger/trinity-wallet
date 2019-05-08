@@ -108,7 +108,7 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-preset-stage-0": "^7.0.0-beta",
     "cross-env": "^5.2.0",
-    "detox": "^10.0.10",
+    "detox": "^12.7.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "jest": "24.0.0",
