@@ -17,3 +17,7 @@ export const navigateToWalletSetup = async () => {
     await element(by.id('privacyPolicy-scrollView')).scrollTo('bottom');
     await element(by.id('privacyPolicy-next')).tap();
 };
+
+export const navigateToNewSeedSetup = async () => {
+    await element(by.id('walletSetup-yes')).tap();
+};

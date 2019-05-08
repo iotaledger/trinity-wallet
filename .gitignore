@@ -132,3 +132,4 @@ package-lock.json
 
 # Detox
 src/mobile/ios/build/
+src/mobile/artifacts/
