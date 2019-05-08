@@ -661,7 +661,7 @@
     "stateExport": {
         "stateExportExplanation": "Tilan vienti tallentaa laitteellesi txt-tiedoston, joka sisältää tilisi (transaktiot, osoitteet) tiedot, lompakkoversion ja tallennustiedostojen nimet.",
         "exportSuccess": "Tila viety",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "exportSuccessExplanation": "Tilatiedostosi on tallennettu onnistuneesti."
     },
     "chart": {
         "mcap": "MARVO",
@@ -722,11 +722,11 @@
     "deepLink": {
         "autofill": "Tiedot haettu onnistuneesti",
         "autofillExplanation": "Siirron tilitiedot noudettu automaattisesti linkin kautta.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingOverview": "Deep linkit ovat klikattavia linkkejä (iota://...), jotka täyttävät automaattisesti transaktion tiedot Trinityssä.",
+        "deepLinkingWarning": "Varo phishing-huijauksia. Varmista, että avattava linkki siirtyy viralliseen Trinity-sovellukseen.",
+        "deepLinkingUpdated": "Deep link asetukset",
+        "deepLinkingEnabled": "Olet ottanut käyttöön deep linkit.",
+        "deepLinkingDisabled": "Olet poistanut deep linkit käytöstä.",
         "deepLinkingInfoTitle": "Deep linking is not enabled",
         "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
