@@ -724,7 +724,7 @@
         "autofillExplanation": "Información de la transacción auto completada desde el enlace.",
         "deepLinkingOverview": "Los deep links son links clickeables (iota://...) que completan automáticamente la información de transacción en Trinity.",
         "deepLinkingWarning": "Tenga cuidado con el phishing. Asegúrese de que el link conduzca a la app oficial de Trinity.",
-        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingUpdated": "Configuración de deep linking",
         "deepLinkingEnabled": "You have enabled deep linking.",
         "deepLinkingDisabled": "You have disabled deep linking.",
         "deepLinkingInfoTitle": "Deep linking is not enabled",
