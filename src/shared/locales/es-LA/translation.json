@@ -159,10 +159,10 @@
         "shouldUpdate": "Hay una nueva actualización disponible",
         "shouldUpdateExplanation": "Hay una nueva actualización disponible. Siempre es recomendado actualizar a la ultima version.",
         "forceUpdate": "Actualice la aplicacion para continuar",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "forceUpdateExplanation": "Una actualización crítica esta disponible. Por favor actualice inmediatamente.",
         "missingPermission": "Permisos de sistema de archivos requeridos",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
-        "swipeToConfirm": "Swipe to confirm"
+        "missingPermissionExplanation": "Se requiere acceso al sistema de archivos para realizar esta función.",
+        "swipeToConfirm": "Desliza para confirmar"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -216,7 +216,7 @@
         "passwordTooShortExplanation": "Tu contraseña debe tener al menos {{minLength}} caracteres. Actualmente tiene {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
         "passwordMismatch": "Las contraseñas no coinciden",
         "passwordMismatchExplanation": "Las contraseñas introducidas no coinciden. Por favor, inténtalo de nuevo.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Está es su contraseña de la billetera principal. Usala para loguearte.",
         "retypePassword": "Escribe la contraseña de nuevo"
     },
     "copyToClipboard": {
@@ -250,8 +250,8 @@
         "login": "INICIAR SESIÓN",
         "setNode": "ESTABLECER NODO",
         "whyBiometricDisabled": "Por que la autentificación biométrica está deshabilitada?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "La autenticación biométrica está desactivada en la primera carga de la aplicación por seguridad.",
+        "whyBiometricDisabledExplanationPart2": "Cuando uses Trinity serás deslogueado por inactividad. Puedes entrar nuevamente con la autenticación biométrica."
     },
     "loading": {
         "loadingFirstTime": "Cargando la semilla por primera vez.",
@@ -280,18 +280,18 @@
     "paperWallet": {
         "neverShare": "Nunca compartas tu semilla con nadie.",
         "iotaLogo": "Logo IOTA",
-        "print": "Print",
+        "print": "Imprimir",
         "paperConvenience": "Imprimir una copia en papel de su semilla es una buena forma de guardarla.",
         "publicInsecure": "Pero imprimir con WiFi o impresora publica es inseguro.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Por favor revisa y confirma antes de imprimir",
+        "wifiConfirmation": "No estoy usando wifi público",
+        "printerConfirmation": "No estoy imprimiendo en una impresora publica"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "¿Quieres imprimir una plantilla en blanco?",
+        "printTemplateInfo": "Puede imprimir una plantilla en blanco para ayudarle a escribir su semilla.",
+        "printTemplateWarning": "Asegúrese de que almacena su seed en un lugar seguro. No lo muestre a nadie.",
+        "print": "Sí, imprimir"
     },
     "receive": {
         "yourAddress": "Su dirección",
@@ -300,14 +300,14 @@
         "copyAddress": "Copiar dirección",
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "Tu dirección se ha copiado en el portapapeles.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Generar address",
         "noAddresses": "SIN DIRECCIONES",
         "spent": "Usada",
         "tag": "Etiqueta",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAnAddress": "Generar address",
+        "generateAnAddressTitle": "Generar una address",
+        "generateAnAddressExplanation": "Por favor genere una address antes de usar esta función.",
+        "generateAddressInformation": "Genere una nueva address de depósito cada vez que desee recibir fondos"
     },
     "saveYourSeed": {
         "saveYourSeed": "Haga un respaldo de su semilla",
@@ -321,7 +321,7 @@
         "letsWriteDownYourSeed": "Vamos a anotar su semilla",
         "youCanHighlightCharacters": "Puede resaltar 9 caracteres a la vez",
         "printBlankWallet": "Imprima una billetera en blanco",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Que es un checksum?",
         "everySeedHasAChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres.",
         "iHavesavedMySeed": "He guardado mi semilla",
         "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
@@ -329,7 +329,7 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Por favor confirme su semilla",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity nunca le pedira reingresar está semilla salvo que reinicie la billetera o borre la aplicación.",
         "enterYourSeed": "Introduzca su semilla",
         "incorrectSeed": "Semilla incorrecta",
         "incorrectSeedExplanation": "La semilla que ingresaste es incorrecta. Por favor vuelve a intentarlo.",
