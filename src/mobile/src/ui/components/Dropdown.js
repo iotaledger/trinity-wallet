@@ -73,8 +73,6 @@ export class Dropdown extends Component {
         dropdownWidth: PropTypes.object,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** ID for automated tests **/
-        testID: PropTypes.string,
     };
 
     static defaultProps = {
@@ -149,7 +147,7 @@ export class Dropdown extends Component {
     }
 
     render() {
-        const { t, options, title, dropdownWidth, disableWhen, theme, testID } = this.props;
+        const { t, options, title, dropdownWidth, disableWhen, theme } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
         const formattedOptions = this.formatOptions(options);
