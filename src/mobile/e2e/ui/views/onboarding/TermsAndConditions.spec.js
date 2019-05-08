@@ -1,5 +1,5 @@
 /*global expect element by*/
-import { navigateToTermsAndConditions } from '../../../internal/navigation';
+import { navigateToTermsAndConditions } from '../../../internal/statelessNavigation';
 
 describe('TermsAndConditions', () => {
     it('should show the terms and conditions', async () => {

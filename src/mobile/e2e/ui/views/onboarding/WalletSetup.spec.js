@@ -1,5 +1,5 @@
 /*global expect element by*/
-import { navigateToWalletSetup } from '../../../internal/navigation';
+import { navigateToWalletSetup } from '../../../internal/statelessNavigation';
 
 describe('WalletSetup', () => {
     it('should show the WalletSetup screen', async () => {

@@ -1,5 +1,5 @@
 /*global expect element by*/
-import { navigateToPrivacyPolicy } from '../../../internal/navigation';
+import { navigateToPrivacyPolicy } from '../../../internal/statelessNavigation';
 
 describe('PrivacyPolicy', () => {
     it('should show the privacy policy', async () => {
