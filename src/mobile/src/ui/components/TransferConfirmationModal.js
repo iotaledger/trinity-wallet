@@ -202,7 +202,16 @@ class TransferConfirmationModal extends Component {
                     )}
                 </View>
                 <View style={{ paddingVertical: height / 60 }}>
-                    <LottieView source={getAnimation('sending', themeName)} style={styles.animation} loop autoPlay />
+                    <LottieView
+                        source={getAnimation('sending', themeName)}
+                        style={styles.animation}
+                        loop={false}
+                        autoPlay
+                        ref={(ref) => {
+                            this.animation = ref;
+                        }}
+                        onAnimationFinish={() => this.animation.play(52, 431)}
+                    />
                 </View>
                 <View style={[styles.itemContainer, { backgroundColor: dark.color }]}>
                     <Text style={[styles.titleText, { color: primary.color }]}>{t('toAddress').toUpperCase()}</Text>
