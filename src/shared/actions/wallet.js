@@ -47,6 +47,7 @@ export const ActionTypes = {
     CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
     SHOULD_UPDATE: 'IOTA/APP/WALLET/SHOULD_UPDATE',
     FORCE_UPDATE: 'IOTA/APP/WALLET/FORCE_UPDATE',
+    DISPLAY_TEST_WARNING: 'IOTA/APP/WALLET/DISPLAY_TEST_WARNING',
     INITIATE_DEEP_LINK_REQUEST: 'IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST',
     COMPLETE_DEEP_LINK_REQUEST: 'IOTA/APP/WALLET/COMPLETE_DEEP_LINK_REQUEST',
     MAP_STORAGE_TO_STATE: 'IOTA/SETTINGS/MAP_STORAGE_TO_STATE',
@@ -645,4 +646,15 @@ export const shouldUpdate = () => ({
  */
 export const forceUpdate = () => ({
     type: ActionTypes.FORCE_UPDATE,
+});
+
+/**
+ * Dispatch to display test version warning
+ *
+ * @method displayTestWarning
+ *
+ * @returns {{type: {string} }}
+ */
+export const displayTestWarning = () => ({
+    type: ActionTypes.DISPLAY_TEST_WARNING,
 });
