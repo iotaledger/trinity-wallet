@@ -269,7 +269,7 @@
         "individualLetterCount": "Paina vielä <1><0>{{count}}</0></1> kirjainta satunnaistaaksesi sen.",
         "individualLetterCount_plural": "Paina vielä <1><0>{{count}}</0></1> kirjainta satunnaistaaksesi ne.",
         "randomiseCharsToContinue": "Satunnaista <1>{{count}}</1> merkki jatkaaksesi.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "randomiseCharsToContinue_plural": "Satunnaista <1>{{count}}</1> merkkiä jatkaaksesi.",
         "whatIsASeed": "Mikä on seed-luku?"
     },
     "onboardingComplete": {
