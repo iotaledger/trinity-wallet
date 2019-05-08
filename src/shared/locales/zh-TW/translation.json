@@ -300,13 +300,13 @@
         "copyAddress": "複製地址",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
-        "generateNewAddress": "產生新地址。",
+        "generateNewAddress": "產生新地址",
         "noAddresses": "無地址",
         "spent": "已支出",
         "tag": "標籤",
-        "generateAnAddress": "產生新地址。",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAnAddress": "產生新地址",
+        "generateAnAddressTitle": "產生新地址",
+        "generateAnAddressExplanation": "請在使用此功能前產生一個新的地址。",
         "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
