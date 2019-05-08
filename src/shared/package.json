@@ -65,7 +65,7 @@
     "redux-mock-store": "^1.5.1",
     "rimraf": "^2.6.3",
     "sinon": "^7.2.7",
-    "snyk": "^1.161.1",
+    "snyk": "^1.162.0",
     "svg2ttf": "^4.1.0",
     "svgicons2svgfont": "^9.0.2",
     "timekeeper": "^2.0.0"
