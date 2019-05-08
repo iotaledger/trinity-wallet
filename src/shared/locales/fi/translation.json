@@ -737,12 +737,12 @@
         "newVersionAvailable": "Uusi versio saatavilla",
         "newVersionAvailableExplanation": "Uusi Trinity-versio on saatavilla. Haluatko päivittää nyt?",
         "installUpdate": "Päivitä ja käynnistä uudelleen",
-        "installUpdateExplanation": "Lataus suoritettu. Trinity käynistyy nyt udelleen asentaakseen päivityksen.",
+        "installUpdateExplanation": "Lataus suoritettu. Trinity käynistyy nyt uudelleen asentaakseen päivityksen.",
         "downloadingUpdate": "Ladataan päivitystä",
         "downloadProgress": "{{transferred}} / {{total}} ladattu"
     },
     "notificationLog": {
-        "errorLog": "Virhe loki"
+        "errorLog": "Virheloki"
     },
     "terms": {
         "termsAndConditions": "Yleiset Sopimusehdot",
@@ -755,7 +755,7 @@
     },
     "tray": {
         "trayApplication": "Ilmaisinalueen kuvake",
-        "trayExplanation": "Tarjoaa yhteenvedon tilisi saldoista ja viimeaikaisesta transaktiohistoriasta.",
+        "trayExplanation": "Tarjoaa yhteenvedon tilisi saldoista ja viimeaikaisesta siirtohistoriasta.",
         "notLoggedIn": "Et ole kirjautunut sisään",
         "setupIncomplete": "Lompakon määrittäminen on kesken",
         "completeSetup": "Päätä määrittäminen"
@@ -769,7 +769,7 @@
         "notificationExplanation": "Vastaanota järjestelmänlaajuisia ilmoituksia uusista tapahtumista.",
         "typeConfirmations": "Ilmoita minulle vahvistuksista",
         "typeMessages": "Ilmoita arvottomista siirroista",
-        "multipleTx": "Vastaanotetaan useita transaktioita tilille {{account}}",
+        "multipleTx": "Vastaanotetaan useita siirtoja tilille {{account}}",
         "valueTx": "Vastaanotetaan {{value}} tilille {{account}}",
         "messageTx": "Sait viestin tilille {{account}}",
         "confirmedIn": "Saapuneet {{value}} tilille {{account}} on vahvistettu",
@@ -791,7 +791,7 @@
         "dataMigration": "Tiedonsiirto",
         "dataMigrationExplanation": "Suorituskyky- ja tallennusrajoitusten vuoksi, Trinity käyttää uutta tietokantaa asetusten ja tilitietojen tallentamiseen. Odota sen aikaa, että Trinity siirtää automaattisesti olemassa olevat tietosi.",
         "problemMigratingYourData": "Tietojen siirtämisessä tapahtui virhe. Yritä uudelleen",
-        "seedMigrationExplanation": "Osana Trinityn jatkuvaa pyrkimystä parantaa lompakon turvallisuutta, Seed-lukusi siirretään parannettuun tallennusmenetelmään. Odota sen aikaa, että Trinity siirtää automaattisesti Seed-lukukuvaraston."
+        "seedMigrationExplanation": "Osana Trinityn jatkuvaa pyrkimystä parantaa lompakon turvallisuutta, Seed-lukusi siirretään parannettuun tallennusmenetelmään. Odota sen aikaa, että Trinity siirtää automaattisesti Seed-lukuvaraston."
     },
     "ledger": {
         "ready": "Ledger-laite yhdistetty ja valmis",
@@ -810,7 +810,7 @@
         "connectionErrorExplanation": "Tarkista, että Ledger-laitteesi on yhdistettu ja lukituksesta avattu.",
         "connectionTitle": "Yhdistä Ledger-laitteesi",
         "connectionExplanation": "Ledger-laite on oltava yhdistettynä suorittaaksesi tämän toiminnon.",
-        "transactionTitle": "Selaa ja hyväksy transaktio Ledgerissä",
+        "transactionTitle": "Selaa ja hyväksy siirto Ledgerissä",
         "transactionExplanation": "Käytä Ledger-laitettasi lähtevien transaktioiden hyväksymiseen.",
         "applicationTitle": "Avoin Ledger IOTA sovellus",
         "applicationExplanation": "Siirry Ledgeriin ja avaa IOTA-sovellus jatkaaksesi Trinityn käyttöä.",
