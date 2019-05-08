@@ -772,8 +772,8 @@
         "multipleTx": "Vastaanotetaan useita transaktioita tilille {{account}}",
         "valueTx": "Vastaanotetaan {{value}} tilille {{account}}",
         "messageTx": "Sait viestin tilille {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedIn": "Saapuneet {{value}} tilille {{account}} on vahvistettu",
+        "confirmedOut": "Lähteneet {{value}} tililtä {{account}} on vahvistettu"
     },
     "bytetrit": {
         "sweepSucceeded": "Varat avattu onnistuneesti",
@@ -785,20 +785,20 @@
         "explanationAccounts": "Lukittuja varoja on havaittu seuraavilla tileillä: {{accounts}}. Trinity palauttaa nyt varat automaattisesti siirtämällä ne uuteen osoitteeseen.",
         "proceed": "Etene palautukseen",
         "sweepConfirmation": "Olet siirtämässä {{amount}} osoitteeseen {{address}}. Tili: {{accountName}}, osoite indeksi: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepConfirmationTitle": "Pyyhkäisyvahvistus"
     },
     "migration": {
         "dataMigration": "Tiedonsiirto",
         "dataMigrationExplanation": "Suorituskyky- ja tallennusrajoitusten vuoksi, Trinity käyttää uutta tietokantaa asetusten ja tilitietojen tallentamiseen. Odota sen aikaa, että Trinity siirtää automaattisesti olemassa olevat tietosi.",
         "problemMigratingYourData": "Tietojen siirtämisessä tapahtui virhe. Yritä uudelleen",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "seedMigrationExplanation": "Osana Trinityn jatkuvaa pyrkimystä parantaa lompakon turvallisuutta, Seed-lukusi siirretään parannettuun tallennusmenetelmään. Odota sen aikaa, että Trinity siirtää automaattisesti Seed-lukukuvaraston."
     },
     "ledger": {
         "ready": "Ledger-laite yhdistetty ja valmis",
         "notReady": "Mikäli haluat käyttää Ledger-laitetta, yhdistä se nyt ja avaa sen lukitus",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
+        "indexInUse": "Indeksi on jo käytössä tilille {{account}}",
+        "indexInUseExplanation": "Valitsemasi indeksi on jo käytössä toisessa tilissäsi. Valitse toinen indeksinumero.",
+        "proceedWithLedger": "Jatka Ledgerin määrittämistä",
         "accountIndex": "Tili hakemisto",
         "accountPage": "Tili sivu",
         "actionCancelled": "Ledger laitteen käyttö estetty",
