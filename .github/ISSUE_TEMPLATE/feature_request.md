@@ -1,3 +1,11 @@
+---
+name: "Feature Request"
+about: Suggest a feature or enhancement
+title: ''
+labels: ''
+
+---
+
 <!--- Remove text and sections that do not apply -->
 
 The issue tracker is only for feature requests. If you need technical assistance for using Trinity Wallet, please consult the Trinity [documentation](https://docs.iota.works/trinity) and [knowledge base](https://iotaledger.atlassian.net/wiki/spaces/trinity/overview). For further assistance, please visit the #help channel on [Discord](https://discord.gg/7Gu2mG5).
