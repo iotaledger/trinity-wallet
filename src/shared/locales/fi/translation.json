@@ -754,8 +754,8 @@
         "agree": "Hyväksyn"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayApplication": "Ilmaisinalueen kuvake",
+        "trayExplanation": "Tarjoaa yhteenvedon tilisi saldoista ja viimeaikaisesta transaktiohistoriasta.",
         "notLoggedIn": "Et ole kirjautunut sisään",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
