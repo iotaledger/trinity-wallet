@@ -130,7 +130,7 @@
         "couldNotVerifyDeviceIntegrity": "Nie można zweryfikować integralności urządzenia, ponieważ Usługi Google Play są niedostępne.",
         "clear": "Wyczyść",
         "noNetworkConnection": "Brak połączenia z siecią",
-        "noNetworkConnectionExplanation": "Wygląda na to, że utracono dostęp do internetu.",
+        "noNetworkConnectionExplanation": "Wygląda na to, że utracono dostęp do Internetu.",
         "spentAddressExplanation": "UWAGA: Środki na zużytym adresie",
         "discordInformation": "Wysyłanie z tego samego adresu więcej niż jeden raz jest niebezpieczne. Wejdź na kanał #help czatu Discord, aby dowiedzieć się, co możesz zrobić.",
         "androidInsecureClipboardWarning": "System Android nie zapewnia bezpiecznego schowka.",
@@ -282,9 +282,9 @@
         "iotaLogo": "Logo IOTA",
         "print": "Drukuj",
         "paperConvenience": "Wydruk papierowej kopii klucza seed jest wygodnym sposobem na jego przechowywanie.",
-        "publicInsecure": "Jednak drukowanie na publicznej sieci WiFi lub publicznej drukarce jest niebezpieczne.",
+        "publicInsecure": "Jednak drukowanie na publicznej sieci Wi-Fi lub publicznej drukarce jest niebezpieczne.",
         "pleaseCheck": "Sprawdź i potwierdź przed wydrukowaniem",
-        "wifiConfirmation": "Nie jestem połączony z publicznym WiFi",
+        "wifiConfirmation": "Nie jestem połączony z publicznym Wi-Fi",
         "printerConfirmation": "Nie drukuję na publicznej drukarce"
     },
     "printBlankTemplate": {
@@ -728,7 +728,7 @@
         "deepLinkingEnabled": "Funkcja deep linków została włączona.",
         "deepLinkingDisabled": "Funkcja deep linków została wyłączona.",
         "deepLinkingInfoTitle": "Funkcja deep linków nie jest włączona",
-        "deepLinkingInfoMessage": "Otworzyłeś deep link iota://, jednak obsługa tej funkcji nie jest aktywna."
+        "deepLinkingInfoMessage": "Otworzyłeś deep link (iota://), jednak obsługa tej funkcji nie jest aktywna."
     },
     "updates": {
         "errorRetrievingUpdateData": "Błąd podczas pobierania danych aktualizacji",
