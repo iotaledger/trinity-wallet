@@ -472,11 +472,11 @@
         "promotingAnotherBundle": "Edistetään toista kokoelmaa",
         "pleaseWait": "Ole hyvä ja odota, Trinity edistää toista kokoelmaa.",
         "typeHelp": "Kirjoita !help komentojen saamiseksi",
-        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpText": "Etsi kokoelman tiiviste-luvulla tai viestin sisällöllä",
         "searchHelpValue": "Etsi tapahtumia tarkalla iota-arvolla",
         "searchHelpUnits": "Etsi siirtoja iota arvoilla ja yksiköillä",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpMore": "Etsi transaktiot, joiden arvo on suurempi kuin X",
+        "searchHelpLess": "Etsi transaktiot, joiden arvo on pienempi kuin X"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
@@ -509,7 +509,7 @@
         "autoPromotion": "Siirron edistäminen",
         "autoPromotionExplanation": "Automaattinen edistäminen auttaa varmistamaan siirron tangle-verkossa. Laita tämä asetus päälle jos siirron varmistuksessa esiintyy ongelmia.",
         "autoPromotionPoW": "Automaattinen edistäminen toimii vain palvelimilla jotka tukevat laskentatyöntekoa (PoW).",
-        "deepLinking": "Deep linking",
+        "deepLinking": "Deep linkkaus",
         "stateExport": "Tilan vienti"
     },
     "advancedThemeCustomisation": {
@@ -550,7 +550,7 @@
         "million": "Miljoonaa",
         "thousand": "Tuhatta",
         "one": "Yksi",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTA:t hankitaan tyypillisesti miljoonan kerrannaisina, mutta ne voidaan siirtää yksittäisinä IOTA:na."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Miksi en voi käyttää koko tilin saldoa?",
@@ -581,9 +581,9 @@
         "viewSeed": "Näytä Seed-luku",
         "hideSeed": "Piilota Seed-luku",
         "notAvailable": "Seed-luvun vienti ei ole mahdollista tilityypillä {{accountType}}",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "notAvailableExplanationLedger": "Ledger-laitteesi käyttää suojattua elementtiä Seed-luvun tallentamiseen. Seed-luku on turvallisesti salattu eikä se poistu laitteesta.",
+        "accountIndex": "Ledger-tilisi indeksi",
+        "accountPage": "Ledger-tilisi sivu"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Tallensitko seed-lukusi?",
