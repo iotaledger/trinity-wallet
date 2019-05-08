@@ -6,7 +6,7 @@
         "noTransactions": "GEEN RECENTE GESCHIEDENIS",
         "refresh": "Ververs",
         "balanceError": "Onvoldoende saldo",
-        "balanceErrorMessage": "U hoeft niet genoeg IOTA om deze transactie te voltooien.",
+        "balanceErrorMessage": "U heeft niet genoeg IOTA om deze transactie te voltooien.",
         "totalBalance": "Totaalsaldo",
         "transferError": "Transactiefout",
         "transferErrorMessage": "Er is iets misgegaan tijdens het verzenden van uw transactie. Probeer het opnieuw.",
