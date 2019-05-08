@@ -220,7 +220,7 @@ class App extends React.Component {
             this.props.displayTestWarning();
         } else if (data.desktopBlacklist && data.desktopBlacklist.includes(versionId)) {
             this.props.forceUpdate();
-        } else if (data.latestDesktop && versionId !== data.latestDesktop && !versionId.includes('RC')) {
+        } else if (data.latestDesktop && versionId !== data.latestDesktop) {
             this.props.shouldUpdate();
         }
     }
