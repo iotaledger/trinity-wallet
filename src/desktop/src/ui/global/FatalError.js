@@ -60,15 +60,38 @@ class FatalError extends React.PureComponent {
     };
 
     generalContent = () => {
+        const { error } = this.props;
+
         return (
             <form>
                 <h1>Error launching wallet</h1>
-                <p>There was a fatal error launching the wallet.</p>
+                <p>There was a fatal error launching the wallet. {error}</p>
             </form>
         );
     };
 
     render() {
+        const { error } = this.props;
+
+        if (error === 'Found old data') {
+            return (
+                <main className={css.onboarding}>
+                    <header />
+                    <div>
+                        <form className={css.tutorial}>
+                            <h1>Pre 0.5.0 version data found</h1>
+                            <p>
+                                Trinity desktop wallet Windows 7 release 0.5.0 version is not compatible with older
+                                Trinity desktop versions. Backup your seeds using version{' '}
+                                <a href="https://github.com/iotaledger/trinity-wallet/releases/tag/0.4.6">0.4.6.</a> and
+                                reset the wallet.
+                            </p>
+                        </form>
+                    </div>
+                </main>
+            );
+        }
+
         return (
             <main className={css.onboarding}>
                 <header />

@@ -52,18 +52,7 @@ if (Electron.mode === 'tray') {
 
             return JSON.parse(data);
         })
-        .then((persistedData) => {
-            const oldPersistedData = Electron.getOldStorage();
-            const hasDataToMigrate = !isEmpty(oldPersistedData);
-
-            if (hasDataToMigrate) {
-                Object.assign(oldPersistedData.settings, {
-                    completedMigration: false,
-                });
-            }
-
-            const data = hasDataToMigrate ? oldPersistedData : persistedData;
-
+        .then((data) => {
             if (!isEmpty(data)) {
                 // Change provider on global iota instance
                 const node = get(data, 'settings.node');
@@ -79,8 +68,9 @@ if (Electron.mode === 'tray') {
             // Show Wallet window after inital store update
             Electron.focus();
         })
-        // eslint-disable-next-line no-console
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            Electron.focus();
+        });
 }
 
 render(
