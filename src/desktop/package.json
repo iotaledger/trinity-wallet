@@ -135,7 +135,7 @@
     },
     "publish": {
       "provider": "generic",
-      "url": "https://iotaledger-files.s3.amazonaws.com/trinity/desktop/releases/",
+      "url": "https://iotaledger-files.s3.amazonaws.com/trinity/desktop/releases/win7/",
       "publishAutoUpdate": true,
       "channel": "latest"
     }
