@@ -144,7 +144,10 @@ class SetPassword extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -201,6 +204,8 @@ class SetPassword extends Component {
                                 onRightButtonPress={() => this.onDonePress()}
                                 leftButtonText={t('global:goBack')}
                                 rightButtonText={t('global:done')}
+                                leftButtonTestID="setPassword-back"
+                                rightButtonTestID="setPassword-done"
                             />
                         </AnimatedComponent>
                     </View>
@@ -222,5 +227,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['setPassword', 'global', 'addAdditionalSeed'])(
-    connect(mapStateToProps, mapDispatchToProps)(SetPassword),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(SetPassword),
 );

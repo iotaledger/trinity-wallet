@@ -70,7 +70,10 @@ class OnboardingComplete extends Component {
     }
 
     render() {
-        const { t, theme: { body, primary } } = this.props;
+        const {
+            t,
+            theme: { body, primary },
+        } = this.props;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
@@ -107,7 +110,7 @@ class OnboardingComplete extends Component {
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                         <SingleFooterButton
                             onButtonPress={() => this.onNextPress()}
-                            testID="languageSetup-next"
+                            buttonTestID="onboardingComplete-done"
                             buttonStyle={{
                                 wrapper: { backgroundColor: primary.color },
                                 children: { color: primary.body },

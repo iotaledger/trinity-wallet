@@ -195,6 +195,7 @@ export class SetAccountName extends Component {
                                     onSubmitEditing={() => this.onDonePress()}
                                     theme={theme}
                                     value={accountName}
+                                    testID="setAccountName-textinput"
                                 />
                             </AnimatedComponent>
                             <View style={{ flex: 0.55 }} />
@@ -232,5 +233,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['setSeedName', 'global', 'addAdditionalSeed'])(
-    connect(mapStateToProps, mapDispatchToProps)(SetAccountName),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(SetAccountName),
 );

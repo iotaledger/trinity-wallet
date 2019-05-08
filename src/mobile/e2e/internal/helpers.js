@@ -4,3 +4,5 @@ export const sleep = (ms) => {
 };
 
 export const TEST_SEED = 'TRINITY' + '9'.repeat(74);
+
+export const TEST_PASSWORD = 'weniotamoon999';
