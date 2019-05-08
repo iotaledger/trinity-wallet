@@ -618,7 +618,7 @@
         "instructionsLogin": "Kosketa sormenjälkilukijaa kirjautuaksesi sisään",
         "systemCancelledAuth": "Tunnistautuminen peruttiin laitteesi toimesta",
         "userCancelledAuth": "Tunnistautumispyyntö peruttu",
-        "passwordFallback": "Fall back to password authentication",
+        "passwordFallback": "Palaa salasanatunnistautumiseen",
         "noPassword": "Laitteelle ei ole asetettu salasanaa"
     },
     "transferConfirmation": {
@@ -640,7 +640,7 @@
         "unrecognisedKey": "Tuntematon SeedVault-avain",
         "unrecognisedKeyExplanation": "Avainta ei tunnistettu. Yritä uudelleen.",
         "emptyKey": "Seed-lukuavainta ei ole syötetty",
-        "emptyKeyExplanation": "Sinun on pakko kirjoittaa avain. Ole hyvä ja yritä uudelleen.",
+        "emptyKeyExplanation": "Sinun täytyy syöttää avain. Ole hyvä ja yritä uudelleen.",
         "importSuccess": "Seed-luku tuotu",
         "importSuccessExplanation": "Seed-lukusi on tuotu onnistuneesti.",
         "saveToDownloadFolder": "Tallenna lataukset kansioon",
