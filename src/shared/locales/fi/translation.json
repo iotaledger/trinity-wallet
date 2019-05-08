@@ -659,7 +659,7 @@
         "key": "Avain"
     },
     "stateExport": {
-        "stateExportExplanation": "Tilan vienti tallentaa laitteellesi txt-tiedoston, joka sisältää tilisi (transaktiot, osoitteet) tiedot, lompakkoversion ja tallennustiedostojen nimet.",
+        "stateExportExplanation": "Tilan vienti tallentaa laitteellesi txt-tiedoston, joka sisältää tilisi (siirrot, osoitteet) tiedot, lompakkoversion ja tallennustiedostojen nimet.",
         "exportSuccess": "Tila viety",
         "exportSuccessExplanation": "Tilatiedostosi on tallennettu onnistuneesti."
     },
@@ -766,7 +766,7 @@
     },
     "notifications": {
         "notifications": "Ilmoitukset",
-        "notificationExplanation": "Vastaanota järjestelmänlaajuisia ilmoituksia uusista tapahtumista.",
+        "notificationExplanation": "Vastaanota järjestelmänlaajuisia ilmoituksia uusista siirroista.",
         "typeConfirmations": "Ilmoita minulle vahvistuksista",
         "typeMessages": "Ilmoita arvottomista siirroista",
         "multipleTx": "Vastaanotetaan useita siirtoja tilille {{account}}",
@@ -811,7 +811,7 @@
         "connectionTitle": "Yhdistä Ledger-laitteesi",
         "connectionExplanation": "Ledger-laite on oltava yhdistettynä suorittaaksesi tämän toiminnon.",
         "transactionTitle": "Selaa ja hyväksy siirto Ledgerissä",
-        "transactionExplanation": "Käytä Ledger-laitettasi lähtevien transaktioiden hyväksymiseen.",
+        "transactionExplanation": "Käytä Ledger-laitettasi lähtevien siirtojen hyväksymiseen.",
         "applicationTitle": "Avoin Ledger IOTA sovellus",
         "applicationExplanation": "Siirry Ledgeriin ja avaa IOTA-sovellus jatkaaksesi Trinityn käyttöä.",
         "cannotSendZeroValueTitle": "Ei voida lähettää nolla-arvoista siirtoa",
@@ -819,7 +819,7 @@
         "ledgerDisconnectedTitle": "Yhteys Ledger-laitteeseen katkaistu",
         "ledgerDisconnectedExplanation": "Ledger-laitteesi yhteys katkesi. Yhdistä laite ja yritä uudelleen.",
         "ledgerDeniedTitle": "Tapahtuma hylätty",
-        "ledgerDeniedExplanation": "Transaktio hylättiin Ledger-laitteessa.",
+        "ledgerDeniedExplanation": "Siirto hylättiin Ledger-laitteessa.",
         "ledgerIncorrectIndex": "Ledger-laite ei täsmää",
         "ledgerIncorrectIndexExplanation": "Liitetty Ledger-laite ei vastaa tähän tiliin linkitettyä laitetta, tai palautuslause on muutettu.",
         "checkAddress": "Tarkista vastaanottajan osoite",
