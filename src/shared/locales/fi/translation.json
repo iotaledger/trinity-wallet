@@ -125,7 +125,7 @@
         "touchSensor": "Kosketa sormenjälkitunnistinta",
         "fingerprintOnSend": "Jos hyväksyt siirron kosketa sormenjälkilukijaa",
         "masterKey": "Seed-luku on varojesi pääavain ja näinollen erityisin tärkeä.",
-        "seedThief": "Jos seed-lukusi päätyy muiden haltuun, IOTA:si voidaan varastaa.",
+        "seedThief": "Jos seed-lukusi päätyy muiden haltuun, IOTA: si voidaan varastaa.",
         "googlePlayServicesNotAvailable": "Google Play Services ei ole käytettävissä",
         "couldNotVerifyDeviceIntegrity": "Laitteen tietoturvaa ei voida varmistaa koska Google palveluihin ei saada yhteyttä.",
         "clear": "Tyhjennä",
@@ -152,7 +152,7 @@
         "errorFetchingAccountInformation": "Ongelma tilitietojen hakemisessa.",
         "errorSyncingAddresses": "Ongelma synkronoidessa osoitteen tietoja. Yritä uudelleen toisella noodilla.",
         "errorAccessingKeychain": "Ongelma avainketjussa.",
-        "errorAccessingKeychainExplanation": "Suojattua tallennusta varten tarvittavaa avainnippua ei ole saatavilla.",
+        "errorAccessingKeychainExplanation": "Suojattua tallennusta varten tarvittavaa avainketjua ei ole saatavilla.",
         "mainWallet": "PÄÄTILI",
         "confirm": "Vahvista",
         "delete": "Poista",
@@ -266,10 +266,10 @@
         "pressForNewSeed": "Luo Uusi Seed-Luku",
         "generateSuccess": "Seed-luvun luonti onnistu",
         "individualLetters": "Paina yksittäisiä merkkejä saadaksesi ne satunnaisiksi.",
-        "individualLetterCount": "Paina vielä <1><0>{{count}}</0></1> kirjainta satunnaistaaksesi sen.",
+        "individualLetterCount": "Paina vielä <1><0>{{count}}</0></1> kirjain satunnaistaaksesi sen.",
         "individualLetterCount_plural": "Paina vielä <1><0>{{count}}</0></1> kirjainta satunnaistaaksesi ne.",
-        "randomiseCharsToContinue": "Satunnaista <1>{{count}}</1> merkki jatkaaksesi.",
-        "randomiseCharsToContinue_plural": "Satunnaista <1>{{count}}</1> merkkiä jatkaaksesi.",
+        "randomiseCharsToContinue": "Valitse satunnaisesti <1>{{count}}</1> merkki jatkaaksesi.",
+        "randomiseCharsToContinue_plural": "Valitse satunnaisesti <1>{{count}}</1> merkkiä jatkaaksesi.",
         "whatIsASeed": "Mikä on seed-luku?"
     },
     "onboardingComplete": {
@@ -475,8 +475,8 @@
         "searchHelpText": "Etsi kokoelman tiiviste-luvulla tai viestin sisällöllä",
         "searchHelpValue": "Etsi tapahtumia tarkalla iota-arvolla",
         "searchHelpUnits": "Etsi siirtoja iota arvoilla ja yksiköillä",
-        "searchHelpMore": "Etsi transaktiot, joiden arvo on suurempi kuin X",
-        "searchHelpLess": "Etsi transaktiot, joiden arvo on pienempi kuin X"
+        "searchHelpMore": "Etsi siirrot, joiden arvo on suurempi kuin X",
+        "searchHelpLess": "Etsi siirrot, joiden arvo on pienempi kuin X"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
@@ -631,7 +631,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Vie SeedVault-tiedosto",
-        "seedVaultExplanation": "SeedVault on salattu tiedosto, joka varmuuskopioi Seed-lukusi. Seed-luku salataan SeedVault-avaimella, eikä siihen ole pääsyä ilman kyseistä avainta.",
+        "seedVaultExplanation": "SeedVault on salattu tiedosto Seed-lukusi varmuuskopiointia varten. Seed-luku salataan SeedVault-avaimella, eikä siihen ole pääsyä ilman kyseistä avainta.",
         "seedVaultWarning": "Varmista että tallennat tiedoston useaan eri paikkaan (kovalevy, pilvi, USB-tikku). Jos hävitä tiedoston, etkä ole tallentanut tiedostoa muualle, menetät pääsyn IOTA-varoihisi.",
         "exportFail": "SeedVault-tiedoston vienti epäonnistui",
         "exportFailExplanation": "SeedVault-tiedoston viennissä ilmeni ongelmia. Varmista että sinulla on riittävät oikeudet ja tarpeeksi tilaa levyllä.",
