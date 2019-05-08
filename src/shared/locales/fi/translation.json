@@ -769,7 +769,7 @@
         "notificationExplanation": "Vastaanota järjestelmänlaajuisia ilmoituksia uusista tapahtumista.",
         "typeConfirmations": "Ilmoita minulle vahvistuksista",
         "typeMessages": "Ilmoita arvottomista siirroista",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "multipleTx": "Vastaanotetaan useita transaktioita tilille {{account}}",
         "valueTx": "Vastaanotetaan {{value}} tilille {{account}}",
         "messageTx": "Sait viestin tilille {{account}}",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
