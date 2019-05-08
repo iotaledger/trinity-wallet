@@ -1,6 +1,32 @@
+import map from 'lodash/map';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, isIPhoneX } from 'libs/device';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
+
+const screens = [
+    'home',
+    'loading',
+    'newSeedSetup',
+    'walletSetup',
+    'enterSeed',
+    'saveYourSeed',
+    'setPassword',
+    'login',
+    'writeSeedDown',
+    'languageSetup',
+    'walletResetConfirm',
+    'walletResetRequirePassword',
+    'onboardingComplete',
+    'setAccountName',
+    'seedReentry',
+    'saveSeedConfirmation',
+    'fingerprintSetup',
+    'termsAndConditions',
+    'privacyPolicy',
+    'forceChangePassword',
+    'seedVaultBackup',
+    'biometricAuthentication',
+];
 
 export const Styling = {
     contentWidth: isIPhoneX ? width / 1.08 : width / 1.15,
@@ -16,41 +42,34 @@ export const Styling = {
     fontSize5: width / 19,
     fontSize6: width / 14,
     fontSize7: width / 8,
-    topbarHeightRatio: isIPhoneX ? 1 / 6 : 1 / 8,
-    get topbarHeight() {
-        return height * this.topbarHeightRatio;
+    topBarHeightRatio: isIPhoneX ? 1 / 6 : 1 / 8,
+    get topBarHeight() {
+        return height * this.topBarHeightRatio;
     },
     iPhoneXBottomInsetHeight: 34,
     statusBarHeight: isAndroid ? ExtraDimensions.get('STATUS_BAR_HEIGHT') : isIPhoneX ? 44 : 20,
 };
 
-export function getBackgroundColor(screen, theme, inactive = false) {
+export function getBorderColor(screen, theme, inactive = false) {
     const { bar, body } = theme;
-    const screenMap = {
-        home: inactive ? body.bg : bar.bg,
-        loading: body.bg,
-        newSeedSetup: body.bg,
-        walletSetup: body.bg,
-        enterSeed: body.bg,
-        saveYourSeed: body.bg,
-        setPassword: body.bg,
-        login: body.bg,
-        writeSeedDown: body.bg,
-        languageSetup: body.bg,
-        walletResetConfirm: body.bg,
-        walletResetRequirePassword: body.bg,
-        onboardingComplete: body.bg,
-        setAccountName: body.bg,
-        seedReentry: body.bg,
-        saveSeedConfirmation: body.bg,
-        twoFactorSetupAddKey: body.bg,
-        twoFactorSetupEnterToken: body.bg,
-        disable2FA: body.bg,
-        fingerprintSetup: body.bg,
-        termsAndConditions: bar.bg,
-        privacyPolicy: bar.bg,
-        forceChangePassword: body.bg,
-        seedVaultBackup: body.bg,
+    const applyColour = (screen) => {
+        if (screen === 'home') {
+            return { [screen]: inactive ? body.bg : bar.bg };
+        } else if (screen === 'termsAndConditions' || screen === 'privacyPolicy') {
+            return { [screen]: bar.bg };
+        }
+        return { [screen]: body.bg };
     };
-    return screenMap[screen];
+    return Object.assign({}, ...map(screens, (item) => applyColour(item)))[screen];
+}
+
+export function getBackgroundColor(screen, theme) {
+    const { bar, body } = theme;
+    const applyColour = (screen) => {
+        if (screen === 'termsAndConditions' || screen === 'privacyPolicy') {
+            return { [screen]: bar.bg };
+        }
+        return { [screen]: body.bg };
+    };
+    return Object.assign({}, ...map(screens, (item) => applyColour(item)))[screen];
 }

@@ -55,6 +55,7 @@
         "yes": "Áno",
         "no": "Nie",
         "okay": "Dobre",
+        "skip": "Skip",
         "password": "Heslo",
         "unrecognisedPassword": "Nesprávne heslo",
         "unrecognisedPasswordExplanation": "Nesprávne heslo. Prosím, skúste znova.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Nie som pripojený k verejnej WiFi sieti",
         "printerConfirmation": "Netlačím na verejnej tlačiarni"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Vaša adresa",
         "qrOptions": "QR možnosti",
@@ -384,10 +391,10 @@
         "language": "Jazyk",
         "accountManagement": "Správa účtu",
         "addNewSeed": "Pridať nový Seed",
-        "twoFA": "Dvojfaktorové overenie (2FA)",
         "changePassword": "Zmeniť heslo",
         "general": "Všeobecné nastavenia",
         "advanced": "Pokročilé nastavenia",
+        "nodeSettings": "Node settings",
         "account": "Nastavenie účtu",
         "logout": "Odhlásiť",
         "reset": "Obnoviť peňaženku",
@@ -450,6 +457,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash skopírovaný",
         "noTransactionsFound": "Nenašla sa žiadna transakcia",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Skryť nulový zostatok",
         "bundleHashCopiedExplanation": "Bundle hash bol skopírovaný do schránky.",
         "addressCopied": "Adresa skopírovaná",
@@ -462,7 +470,13 @@
         "retrying": "Pokúša sa znova",
         "yesterday": "Včera",
         "promotingAnotherBundle": "Podpora ďalšieho balíčku",
-        "pleaseWait": "Prosím počkajte, Trinity podporuje ďalší balíček."
+        "pleaseWait": "Prosím počkajte, Trinity podporuje ďalší balíček.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Zobraziť Seed",
@@ -494,7 +508,9 @@
         "pow": "Proof of Work",
         "autoPromotion": "Automatická podpora",
         "autoPromotionExplanation": "Automatická podpora vám pomôže potvrdiť vašu transakciu v sieti Tangle. Povoľte toto nastavenie, ak máte problémy s potvrdzovaním transakcií.",
-        "autoPromotionPoW": "Automatická podpora je možná iba na Nodoch, ktoré podporujú vzdialený Proof of Work."
+        "autoPromotionPoW": "Automatická podpora je možná iba na Nodoch, ktoré podporujú vzdialený Proof of Work.",
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadie",
@@ -565,6 +581,7 @@
         "viewSeed": "Zobraziť Seed",
         "hideSeed": "Skryť Seed",
         "notAvailable": "Seed export nie je k dispozícii pre typ účtu {{accountType}}",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Index účtu vo Vašom Ledgeri",
         "accountPage": "Stránka účtu vo Vašom Ledgeri"
     },
@@ -612,23 +629,6 @@
         "sendingAMessage": "Odosielanie správy",
         "sendingAnEmptyMessage": "Odosielanie prázdnej správy"
     },
-    "twoFA": {
-        "wrongCode": "Neplatný kód",
-        "wrongCodeExplanation": "Zadaný kód je nesprávny. Pokiaľ táto chyba pretrváva, skontrolujte, či máte v zariadení nastavený správny čas.",
-        "emptyCode": "Prázdny kód",
-        "emptyCodeExplanation": "Prosím, zadajte kód a skúste to znova.",
-        "keyCopied": "Kľúč skopírovaný do schránky",
-        "keyCopiedExplanation": "Váš 2FA kľúč bol skopírovaný do schránky.",
-        "addKey": "Pridať tento kľúč do vašej 2FA aplikácie",
-        "key": "Kľúč",
-        "twoFAEnabled": "2FA autentifikácia aktivovaná",
-        "twoFAEnabledExplanation": "Úspešne ste aktivovali dvojfaktorové overenie (2FA).",
-        "twoFADisabled": "2FA je teraz deaktiovovaná",
-        "twoFADisabledExplanation": "Úspešne ste deaktivovali dvojfaktorovú autentifikáciu.",
-        "enterCode": "Vložte kód z vašej 2FA aplikácie",
-        "code": "Kód",
-        "twoFaToken": "2FA Token"
-    },
     "seedVault": {
         "exportSeedVault": "Exportovať SeedVault",
         "seedVaultExplanation": "SeedVault je spôsob, ako bezpečne uložiť Váš Seed. Seed je uložený v zašifrovanom súbore a nemôže byť zobrazený bez príslušného hesla.",
@@ -652,8 +652,16 @@
         "noSeedFoundExplanation": "SeedVault je buď prázdny, alebo obsahuje seed v neplatnom formáte.",
         "seedFileError": "Otvorenie SeedVault zlyhalo",
         "seedFileErrorExplanation": "Počas otvárania SeedVault nastal problém. Ak Ste zvolili naozaj správny súbor, je možné, že je poškodený.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Najprv potrebujeme zabezpečiť Váš SeedVault. Vyberte si prosím heslo k zašifrovaniu súboru. Toto heslo použijete, pokiaľ budete potrebovať obnoviť Váš Seed zo zálohy SeedVault.",
-        "retypeKey": "Zadajte heslo znova"
+        "retypeKey": "Zadajte heslo znova",
+        "key": "Kľúč"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
@@ -713,7 +721,14 @@
     },
     "deepLink": {
         "autofill": "Automatické vyplnenie úspešné",
-        "autofillExplanation": "Údaje o transakcii boli automaticky doplnené z odkazu."
+        "autofillExplanation": "Údaje o transakcii boli automaticky doplnené z odkazu.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba pri získavaní aktualizačných dát",
@@ -810,6 +825,8 @@
         "checkAddress": "Skontrolujte adresu príjemcu",
         "checkAddressExplanation": "Skontrolujte, či adresa odpovedá adrese zobrazenej na Vašom zariadení Ledger.",
         "applicationNotInitialised": "Informačné upozornenie nebolo prijaté",
-        "applicationNotInitialisedExplanation": "Znovu otvorte aplikáciu IOTA na Vašom zariadení Ledger, prijmite informačné upozornenie a skúste to znova."
+        "applicationNotInitialisedExplanation": "Znovu otvorte aplikáciu IOTA na Vašom zariadení Ledger, prijmite informačné upozornenie a skúste to znova.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

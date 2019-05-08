@@ -125,7 +125,7 @@ TabContent.propTypes = {
      * @param {string} name - Next route name
      */
     onTabSwitch: PropTypes.func.isRequired,
-    /** Closes topbar */
+    /** Closes topBar */
     handleCloseTopBar: PropTypes.func.isRequired,
     /** @ignore */
 

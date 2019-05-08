@@ -30,7 +30,7 @@ export class ModalViewComponent extends PureComponent {
         theme: PropTypes.object.isRequired,
         /** Modal content */
         children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-        /** Determines whether to display the topbar */
+        /** Determines whether to display the topBar */
         displayTopBar: PropTypes.bool,
         /** Determines whether to display dual footer buttons */
         dualButtons: PropTypes.bool,
@@ -65,16 +65,16 @@ export class ModalViewComponent extends PureComponent {
     };
 
     /**
-     * Returns styling for when topbar is displayed, dependent on device type
+     * Returns styling for when topBar is displayed, dependent on device type
      *
-     * @method getStylingWhenDisplayingTopbar
+     * @method getStylingWhenDisplayingTopBar
      * @returns {any}
      */
-    getStylingWhenDisplayingTopbar() {
+    getStylingWhenDisplayingTopBar() {
         if (isAndroid) {
-            return { flex: 1 - Styling.topbarHeightRatio };
+            return { flex: 1 - Styling.topBarHeightRatio };
         }
-        return { height: isIPhoneX ? height - Styling.topbarHeight + 20 : height - Styling.topbarHeight };
+        return { height: isIPhoneX ? height - Styling.topBarHeight + 20 : height - Styling.topBarHeight };
     }
 
     render() {
@@ -98,14 +98,17 @@ export class ModalViewComponent extends PureComponent {
                 resetScrollToCoords={{ x: 0, y: 0 }}
                 scrollEnabled={false}
                 extraHeight={0}
-                contentContainerStyle={styles.container}
+                contentContainerStyle={[
+                    styles.container,
+                    isIPhoneX && { marginBottom: Styling.iPhoneXBottomInsetHeight },
+                ]}
             >
-                {displayTopBar && isAndroid && <View style={{ flex: Styling.topbarHeightRatio }} />}
+                {displayTopBar && isAndroid && <View style={{ flex: Styling.topBarHeightRatio }} />}
                 <View
                     style={[
                         styles.modalContent,
                         { backgroundColor: body.bg },
-                        displayTopBar ? this.getStylingWhenDisplayingTopbar() : { height },
+                        displayTopBar ? this.getStylingWhenDisplayingTopBar() : { height },
                     ]}
                 >
                     {children}

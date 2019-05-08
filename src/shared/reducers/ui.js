@@ -193,7 +193,7 @@ export default (state = initialState, action) => {
                 sendAmountFieldText: '',
                 sendMessageFieldText: '',
             };
-        case WalletActionTypes.SET_DEEP_LINK:
+        case WalletActionTypes.INITIATE_DEEP_LINK_REQUEST:
             return {
                 ...state,
                 sendAddressFieldText: action.address,

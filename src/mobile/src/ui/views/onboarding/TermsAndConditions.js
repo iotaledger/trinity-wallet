@@ -93,33 +93,16 @@ class TermsAndConditions extends Component {
      * @method onNextPress
      */
     onNextPress() {
-        const { theme: { body, bar } } = this.props;
         this.props.acceptTerms();
-        navigator.push('privacyPolicy', {
-            animations: {
-                push: {
-                    enable: false,
-                },
-                pop: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: bar.bg,
-            },
-        });
+        navigator.push('privacyPolicy');
     }
 
     render() {
-        const { t, theme: { primary, body, bar } } = this.props;
+        const { t, theme: { primary, bar } } = this.props;
         const textColor = { color: bar.color };
 
         return (
-            <View style={[styles.container, { backgroundColor: body.bg }]}>
+            <View style={[styles.container, { backgroundColor: bar.bg }]}>
                 <AnimatedComponent
                     animationInType={['slideInRight', 'fadeIn']}
                     animationOutType={['slideOutLeft', 'fadeOut']}

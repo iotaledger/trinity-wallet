@@ -1,74 +1,27 @@
+import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, ListView, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { withNamespaces } from 'react-i18next';
 import Triangle from 'react-native-triangle';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { isIPhoneX, isAndroid } from 'libs/device';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
-
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
-const CustomLayoutSpring = {
-    duration: 100,
-    create: {
-        type: LayoutAnimation.Types.spring,
-        property: LayoutAnimation.Properties.scaleXY,
-        springDamping: 0.7,
-    },
-    update: {
-        type: LayoutAnimation.Types.spring,
-        springDamping: 0.7,
-    },
-};
+import RNPickerSelect from 'react-native-picker-select';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-    },
-    dropdownContainer: {
-        justifyContent: 'flex-start',
-        paddingLeft: 2,
-        paddingRight: 2,
-        paddingBottom: 2,
+        paddingTop: height / 35,
     },
     dropdownTitle: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize2,
         backgroundColor: 'transparent',
         paddingLeft: width / 100,
-    },
-    dropdownItemContainer: {
-        flex: 1,
-        height: height / 22.4,
-        alignItems: 'stretch',
-        justifyContent: 'center',
-        paddingLeft: width / 100,
-    },
-    listView: {
-        flex: 1,
-        justifyContent: 'flex-start',
-    },
-    dropdownItem: {
-        fontSize: Styling.fontSize4,
-        fontFamily: 'SourceSansPro-Light',
-        backgroundColor: 'transparent',
-        textAlign: 'left',
-        paddingTop: height / 100,
-        width: width / 3,
-    },
-    dropdownButtonContainer: {
-        marginTop: height / 150,
-    },
-    dropdownInnerContainer: {
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowRadius: 4,
-        shadowOpacity: 0.6,
+        position: 'absolute',
+        top: -height / 35,
     },
     selected: {
         fontFamily: 'SourceSansPro-Light',
@@ -78,16 +31,16 @@ const styles = StyleSheet.create({
         paddingLeft: width / 100,
         flex: 1,
     },
+    pickerItem: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: Styling.fontSize4,
+    },
     dropdownButton: {
         flexDirection: 'row',
         alignItems: 'flex-end',
         justifyContent: 'space-between',
         borderBottomWidth: 0.7,
-        width: width / 3,
         height: height / 22,
-    },
-    additionalPadding: {
-        height: height / 78,
     },
     triangle: {
         marginBottom: height / 80,
@@ -98,16 +51,16 @@ const styles = StyleSheet.create({
 /** Dropdown component */
 export class Dropdown extends Component {
     static propTypes = {
+        /** @ignore */
+        t: PropTypes.func.isRequired,
         /** Callback function returning dropdown component instance as an argument */
         /** @param {object} instance - dropdown instance
          */
         onRef: PropTypes.func,
         /** Determines whether onPress event should be disabled for dropdown */
         disableWhen: PropTypes.bool,
-        /** Determines whether to render a shadow */
-        shadow: PropTypes.bool,
         /** Default selected option for dropdown */
-        defaultOption: PropTypes.string,
+        value: PropTypes.string,
         /** Saves dropdown selection
          * @param {string} option
          */
@@ -118,12 +71,8 @@ export class Dropdown extends Component {
         title: PropTypes.string,
         /** Dropdown width */
         dropdownWidth: PropTypes.object,
-        /** Determines whether to render a background */
-        background: PropTypes.bool,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Determines how many rows should be visible */
-        visibleRows: PropTypes.number,
         /** ID for automated tests **/
         testID: PropTypes.string,
     };
@@ -132,21 +81,18 @@ export class Dropdown extends Component {
         shadow: false,
         disableWhen: false,
         onRef: () => {},
-        defaultOption: '',
-        background: false,
+        value: '',
         saveSelection: () => {},
         title: '',
         dropdownWidth: { width: isIPhoneX ? width / 1.3 : width / 1.5 },
-        visibleRows: 8,
         testID: '',
     };
 
     constructor(props) {
         super(props);
-
         this.state = {
             isDropdownOpen: false,
-            selectedOption: this.props.defaultOption,
+            selectedOption: { label: this.props.value, value: this.props.value },
         };
     }
 
@@ -155,6 +101,7 @@ export class Dropdown extends Component {
             this.props.onRef(this);
         }
     }
+
     componentWillUnmount() {
         if (this.props.onRef) {
             this.props.onRef(null);
@@ -162,178 +109,90 @@ export class Dropdown extends Component {
     }
 
     /**
-     * Selects dropdown option in internal state
+     * Returns currently selected dropdown item
      *
-     * @method onOptionPress
-     * @param {string} option
+     * @method getSelectedItem
      */
-    onOptionPress(option) {
-        this.setState({
-            isDropdownOpen: false,
-            selectedOption: option,
-        });
-
-        const { saveSelection } = this.props;
-
-        if (!saveSelection) {
-            return;
-        }
-
-        saveSelection(option);
+    getSelectedItem() {
+        return this.state.selectedOption.value;
     }
 
     /**
-     * Show/hide dropdown options
-     *
-     * @method onDropdownTitlePress
-     */
-    onDropdownTitlePress() {
-        LayoutAnimation.configureNext(CustomLayoutSpring);
-
-        const { isDropdownOpen } = this.state;
-
-        this.setState({
-            isDropdownOpen: !isDropdownOpen,
-        });
-    }
-
-    /**
-     * Gets selected dropdown option
-     *
-     * @method getSelected
-     */
-    getSelected() {
-        return this.state.selectedOption;
-    }
-
-    /**
-     * Hides dropdown options
+     * Trigger to close dropdown
      *
      * @method closeDropdown
      */
     closeDropdown() {
-        this.setState({ isDropdownOpen: false });
+        if (this.dropdown.state.showPicker) {
+            this.dropdown.togglePicker();
+        }
+    }
+
+    /**
+     * Trigger to open dropdown
+     *
+     * @method openDropdown
+     */
+    openDropdown() {
+        if (!this.dropdown.state.showPicker) {
+            this.dropdown.togglePicker();
+        }
+    }
+
+    /**
+     * Formats dropdown options for use with RNPickerSelect
+     *
+     * @method formatOptions
+     */
+    formatOptions(options) {
+        return map(options, (option) => ({ label: option, value: option }));
     }
 
     render() {
-        const {
-            options,
-            title,
-            dropdownWidth,
-            background,
-            disableWhen,
-            theme,
-            shadow,
-            visibleRows,
-            testID,
-        } = this.props;
+        const { t, options, title, dropdownWidth, disableWhen, theme, testID } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
-        const heightValue = height / 22.4 * visibleRows + height / 70;
-        const dropdownHeight = isDropdownOpen ? heightValue : 0;
-        const backgroundColor = background ? { backgroundColor: theme.body.bg } : { backgroundColor: 'transparent' };
-        const shadowColor = shadow ? { shadowColor: '#222' } : { shadowColor: 'transparent' };
-        const lastItem = options.length - 1;
+        const formattedOptions = this.formatOptions(options);
 
         return (
-            <View style={[styles.container, dropdownWidth]} testID={testID}>
-                <Text style={[styles.dropdownTitle, { color: theme.primary.color }, isAndroid ? null : dropdownWidth]}>
-                    {title}
-                </Text>
-                <View style={styles.dropdownButtonContainer}>
-                    <TouchableWithoutFeedback
-                        onPress={() => {
-                            if (!disableWhen) {
-                                this.onDropdownTitlePress();
-                            }
-                        }}
-                    >
-                        <View style={[styles.dropdownButton, dropdownWidth, { borderBottomColor: theme.body.color }]}>
-                            <Text numberOfLines={1} style={[styles.selected, { color: theme.body.color }]}>
-                                {selectedOption}
-                            </Text>
-                            <Triangle
-                                width={width / 40}
-                                height={width / 40}
-                                color={theme.body.color}
-                                direction={triangleDirection}
-                                style={styles.triangle}
-                            />
-                        </View>
-                    </TouchableWithoutFeedback>
-                </View>
-                <View
-                    style={{
-                        height: dropdownHeight,
-                        overflow: 'hidden',
-                        backgroundColor: 'transparent',
-                        alignItems: 'flex-start',
-                        justifyContent: 'flex-start',
+            <View style={[styles.container, dropdownWidth]}>
+                <RNPickerSelect
+                    ref={(ref) => {
+                        this.dropdown = ref;
                     }}
+                    onOpen={() => this.setState({ isDropdownOpen: true })}
+                    onClose={() => this.setState({ isDropdownOpen: false })}
+                    placeholder={{}}
+                    items={formattedOptions}
+                    onValueChange={(value) => {
+                        this.setState({ selectedOption: { value, label: value } });
+                        this.props.saveSelection(value);
+                    }}
+                    doneText={t('done')}
+                    disabled={disableWhen}
+                    value={selectedOption.value}
+                    useNativeAndroidPickerStyle={false}
+                    Icon={() => {}}
+                    pickerProps={{ itemStyle: [styles.pickerItem] }}
                 >
-                    <View style={[styles.dropdownContainer, dropdownWidth]}>
-                        <View style={[styles.dropdownInnerContainer, shadowColor, backgroundColor]}>
-                            <ListView
-                                dataSource={ds.cloneWithRows(options)}
-                                renderRow={(rowData, sectionId, rowId) => {
-                                    if (rowId.toString() === lastItem.toString()) {
-                                        return (
-                                            <View>
-                                                <TouchableWithoutFeedback
-                                                    onPress={() => this.onOptionPress(rowData)}
-                                                    style={{ alignItems: 'flex-start', flex: 1 }}
-                                                >
-                                                    <View
-                                                        style={[
-                                                            styles.dropdownItemContainer,
-                                                            backgroundColor,
-                                                            dropdownWidth,
-                                                        ]}
-                                                    >
-                                                        <Text
-                                                            numberOfLines={1}
-                                                            style={[
-                                                                styles.dropdownItem,
-                                                                dropdownWidth,
-                                                                { color: theme.body.color },
-                                                            ]}
-                                                        >
-                                                            {rowData}
-                                                        </Text>
-                                                    </View>
-                                                </TouchableWithoutFeedback>
-                                                <View style={[styles.additionalPadding, backgroundColor]} />
-                                            </View>
-                                        );
-                                    }
-                                    return (
-                                        <TouchableWithoutFeedback
-                                            onPress={() => this.onOptionPress(rowData)}
-                                            style={{ alignItems: 'flex-start', flex: 1 }}
-                                        >
-                                            <View
-                                                style={[styles.dropdownItemContainer, backgroundColor, dropdownWidth]}
-                                            >
-                                                <Text
-                                                    numberOfLines={1}
-                                                    style={[
-                                                        styles.dropdownItem,
-                                                        dropdownWidth,
-                                                        { color: theme.body.color },
-                                                    ]}
-                                                >
-                                                    {rowData}
-                                                </Text>
-                                            </View>
-                                        </TouchableWithoutFeedback>
-                                    );
-                                }}
-                                contentContainerView={styles.listView}
-                                enableEmptySections
-                            />
-                        </View>
+                    <Text
+                        style={[styles.dropdownTitle, { color: theme.primary.color }, isAndroid ? null : dropdownWidth]}
+                    >
+                        {title}
+                    </Text>
+                    <View style={[styles.dropdownButton, dropdownWidth, { borderBottomColor: theme.body.color }]}>
+                        <Text numberOfLines={1} style={[styles.selected, { color: theme.body.color }]}>
+                            {selectedOption.label}
+                        </Text>
+                        <Triangle
+                            width={width / 40}
+                            height={width / 40}
+                            color={theme.body.color}
+                            direction={triangleDirection}
+                            style={styles.triangle}
+                        />
                     </View>
-                </View>
+                </RNPickerSelect>
             </View>
         );
     }
@@ -343,4 +202,4 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
 });
 
-export default connect(mapStateToProps)(Dropdown);
+export default withNamespaces(['global'])(connect(mapStateToProps)(Dropdown));

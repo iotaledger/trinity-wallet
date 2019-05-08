@@ -3,13 +3,14 @@ import sample from 'lodash/sampleSize';
 import React, { Component } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import timer from 'react-native-timer';
 import { withNamespaces } from 'react-i18next';
 import { startTrackingProgress } from 'shared-modules/actions/progress';
 import { connect } from 'react-redux';
 import { Styling } from 'ui/theme/general';
 import { migrate } from 'shared-modules/actions/migrations';
+import KeepAwake from 'react-native-keep-awake';
 import { setFullNode } from 'shared-modules/actions/settings';
 import { reduxPersistStorageAdapter } from 'libs/store';
 import { migrateSeedStorage } from 'libs/keychain';
@@ -99,6 +100,7 @@ class Migration extends Component {
     }
 
     componentDidMount() {
+        KeepAwake.activate();
         if (!this.props.completedMigration) {
             this.executeRealmMigration();
         } else {
@@ -130,7 +132,7 @@ class Migration extends Component {
         if (this.state.hasCompletedRealmMigration) {
             return t('seedMigrationExplanation');
         }
-        return t('dataMigrationExplanation') + ' ' + t('loading:thisMayTake');
+        return `${t('dataMigrationExplanation')} ${t('loading:thisMayTake')} ${t('loading:doNotMinimise')}`;
     }
 
     /**
@@ -141,7 +143,7 @@ class Migration extends Component {
     executeSeedMigration() {
         const { t } = this.props;
         migrateSeedStorage(global.passwordHash)
-            .then(() => timer.setTimeout('delayNavigation', () => this.navigateToLoadingScreen(), 7500))
+            .then(() => timer.setTimeout('delayNavigation', () => this.navigateToLoadingScreen(), 10000))
             .catch(() => this.props.generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain')));
     }
 
@@ -161,32 +163,8 @@ class Migration extends Component {
      * @method navigateToLoadingScreen
      */
     navigateToLoadingScreen() {
-        const { theme: { body } } = this.props;
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'loading',
-                options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
-                },
-            },
-        });
+        KeepAwake.deactivate();
+        navigator.setStackRoot('loading');
     }
 
     /**

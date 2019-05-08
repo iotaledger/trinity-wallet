@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { Linking, StyleSheet, View, KeyboardAvoidingView, Animated } from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView, Animated } from 'react-native';
 import {
     shouldTransitionForSnapshot,
     hasDisplayedSnapshotTransitionGuide,
@@ -10,23 +10,22 @@ import {
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from 'shared-modules/actions/home';
 import { markTaskAsDone } from 'shared-modules/actions/accounts';
-import { setSetting, setDeepLink } from 'shared-modules/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import { setUserActivity, toggleModalActivity } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { parseAddress } from 'shared-modules/libs/iota/utils';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import timer from 'react-native-timer';
 import UserInactivity from 'ui/components/UserInactivity';
-import TopBar from 'ui/components/TopBar';
 import WithUserActivity from 'ui/components/UserActivity';
 import WithLogout from 'ui/components/Logout';
+import WithDeepLinking from 'ui/components/DeepLinking';
+import TopBar from 'ui/components/TopBar';
 import PollComponent from 'ui/components/Poll';
 import Tabs from 'ui/components/Tabs';
 import Tab from 'ui/components/Tab';
 import TabContent from 'ui/components/TabContent';
 import EnterPassword from 'ui/components/EnterPassword';
-import { Styling } from 'ui/theme/general';
-import { isAndroid, isIPhoneX } from 'libs/device';
+import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
     midContainer: {
@@ -78,8 +77,6 @@ class Home extends Component {
         /** @ignore */
         toggleTopBarDisplay: PropTypes.func.isRequired,
         /** @ignore */
-        setDeepLink: PropTypes.func.isRequired,
-        /** @ignore */
         isModalActive: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
@@ -103,13 +100,7 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.setDeepUrl = this.setDeepUrl.bind(this);
         this.viewFlex = new Animated.Value(0.7);
-        this.topBarHeight = new Animated.Value(Styling.topbarHeight);
-    }
-
-    componentWillMount() {
-        this.deepLinkSub = Linking.addEventListener('url', this.setDeepUrl);
     }
 
     componentDidMount() {
@@ -120,38 +111,16 @@ class Home extends Component {
     componentWillReceiveProps(newProps) {
         if (!this.props.isKeyboardActive && newProps.isKeyboardActive && !this.props.isModalActive) {
             this.handleCloseTopBar();
-            if (isAndroid) {
-                this.topBarHeight = 20;
-                this.viewFlex = 0.2;
-                return;
-            }
-            Animated.parallel([
-                Animated.timing(this.viewFlex, {
-                    duration: 250,
-                    toValue: 0.2,
-                }),
-                Animated.timing(this.topBarHeight, {
-                    duration: 250,
-                    toValue: isIPhoneX ? 0 : 20,
-                }),
-            ]).start();
+            Animated.timing(this.viewFlex, {
+                duration: isAndroid ? 100 : 250,
+                toValue: 0.2,
+            }).start();
         }
         if (this.props.isKeyboardActive && !newProps.isKeyboardActive) {
-            if (isAndroid) {
-                this.topBarHeight = Styling.topbarHeight;
-                this.viewFlex = 0.7;
-                return;
-            }
-            Animated.parallel([
-                Animated.timing(this.viewFlex, {
-                    duration: 250,
-                    toValue: 0.7,
-                }),
-                Animated.timing(this.topBarHeight, {
-                    duration: 250,
-                    toValue: Styling.topbarHeight,
-                }),
-            ]).start();
+            Animated.timing(this.viewFlex, {
+                duration: isAndroid ? 100 : 250,
+                toValue: 0.7,
+            }).start();
         }
         if (this.props.inactive && !newProps.inactive) {
             this.userInactivity.setActiveFromComponent();
@@ -174,7 +143,6 @@ class Home extends Component {
 
     componentWillUnmount() {
         const { isModalActive } = this.props;
-        Linking.removeEventListener('url');
         if (isModalActive) {
             this.props.toggleModalActivity();
         }
@@ -202,17 +170,6 @@ class Home extends Component {
 
         if (!isSyncing && !isCheckingCustomNode) {
             this.resetSettings();
-        }
-    }
-
-    setDeepUrl(data) {
-        const { generateAlert, t } = this.props;
-        const parsedData = parseAddress(data.url);
-        if (parsedData) {
-            this.props.setDeepLink(parsedData.amount.toString() || '0', parsedData.address, parsedData.message || null);
-            this.props.changeHomeScreenRoute('send');
-        } else {
-            generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
         }
     }
 
@@ -280,7 +237,15 @@ class Home extends Component {
     }
 
     render() {
-        const { t, inactive, minimised, isFingerprintEnabled, theme: { body, negative, positive }, theme } = this.props;
+        const {
+            t,
+            inactive,
+            minimised,
+            isFingerprintEnabled,
+            theme: { body, negative, positive },
+            theme,
+            isKeyboardActive,
+        } = this.props;
         const textColor = { color: body.color };
 
         return (
@@ -298,7 +263,11 @@ class Home extends Component {
                     {(!inactive && (
                         <View style={{ flex: 1 }}>
                             {(!minimised && (
-                                <KeyboardAvoidingView style={styles.midContainer} behavior="padding">
+                                <KeyboardAvoidingView
+                                    enabled={isKeyboardActive}
+                                    style={styles.midContainer}
+                                    behavior="padding"
+                                >
                                     <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
                                     <View style={{ flex: 4.72 }}>
                                         <TabContent
@@ -337,7 +306,7 @@ class Home extends Component {
                                     />
                                 </Tabs>
                             </View>
-                            <TopBar minimised={minimised} topBarHeight={this.topBarHeight} />
+                            <TopBar minimised={minimised} />
                         </View>
                     )) || (
                         <View style={[styles.inactivityLogoutContainer, { backgroundColor: body.bg }]}>
@@ -388,11 +357,12 @@ const mapDispatchToProps = {
     setUserActivity,
     setSetting,
     toggleTopBarDisplay,
-    setDeepLink,
     toggleModalActivity,
     markTaskAsDone,
 };
 
 export default WithUserActivity()(
-    WithLogout()(withNamespaces(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
+    WithDeepLinking()(
+        WithLogout()(withNamespaces(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
+    ),
 );

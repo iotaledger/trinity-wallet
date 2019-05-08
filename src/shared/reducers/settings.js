@@ -50,7 +50,6 @@ const initialState = {
     themeName: 'Default',
     /**
      * Determines if the wallet has randomised node on initial setup.
-     *
      */
     hasRandomizedNode: false,
     /**
@@ -73,10 +72,6 @@ const initialState = {
      * Keeps track of wallet's version information.
      */
     versions: {},
-    /**
-     * Determines if user has enabled two factor authentication on the wallet
-     */
-    is2FAEnabled: false,
     /**
      * Determines if user has enabled finger print authentication
      */
@@ -117,6 +112,10 @@ const initialState = {
      * Desktop: Use system proxy settings
      */
     ignoreProxy: false,
+    /**
+     * Determines if deep linking is enabled
+     */
+    deepLinking: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -204,11 +203,6 @@ const settingsReducer = (state = initialState, action) => {
                 node: action.payload,
                 hasRandomizedNode: true,
             };
-        case ActionTypes.SET_2FA_STATUS:
-            return {
-                ...state,
-                is2FAEnabled: action.payload,
-            };
         case ActionTypes.SET_FINGERPRINT_STATUS:
             return {
                 ...state,
@@ -277,6 +271,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 nodes: [],
+            };
+        case ActionTypes.SET_DEEP_LINKING:
+            return {
+                ...state,
+                deepLinking: !state.deepLinking,
             };
     }
 

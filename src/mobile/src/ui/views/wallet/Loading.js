@@ -120,7 +120,7 @@ class Loading extends Component {
         /** @ignore */
         changeHomeScreenRoute: PropTypes.func.isRequired,
         /** @ignore */
-        deepLinkActive: PropTypes.bool.isRequired,
+        deepLinkRequestActive: PropTypes.bool.isRequired,
         /** @ignore */
         setLoginRoute: PropTypes.func.isRequired,
         /** All stored account names */
@@ -147,7 +147,7 @@ class Loading extends Component {
             additionalAccountMeta,
             selectedAccountName,
             selectedAccountMeta,
-            deepLinkActive,
+            deepLinkRequestActive,
         } = this.props;
         leaveNavigationBreadcrumb('Loading');
         this.props.setLoginRoute('login');
@@ -163,11 +163,9 @@ class Loading extends Component {
         } else {
             timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 15000);
         }
-        this.props.setSetting('mainSettings');
         this.getWalletData();
-        if (deepLinkActive) {
-            this.props.changeHomeScreenRoute('send');
-        } else {
+        if (!deepLinkRequestActive) {
+            this.props.setSetting('mainSettings');
             this.props.changeHomeScreenRoute('balance');
         }
         if (addingAdditionalAccount) {
@@ -265,21 +263,7 @@ class Loading extends Component {
      * @method redirectToLogin
      */
     redirectToLogin() {
-        const { theme: { body } } = this.props;
-        navigator.setStackRoot('login', {
-            animations: {
-                setStackRoot: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        navigator.setStackRoot('login');
     }
 
     /**
@@ -288,21 +272,7 @@ class Loading extends Component {
      * @method redirectToHome
      */
     redirectToHome() {
-        const { theme: { body, bar } } = this.props;
-        navigator.setStackRoot('home', {
-            animations: {
-                setStackRoot: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: bar.bg,
-            },
-        });
+        navigator.setStackRoot('home');
     }
 
     render() {
@@ -385,7 +355,7 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     isThemeDark: getThemeFromState(state).isDark,
     currency: state.settings.currency,
-    deepLinkActive: state.wallet.deepLinkActive,
+    deepLinkRequestActive: state.wallet.deepLinkRequestActive,
 });
 
 const mapDispatchToProps = {

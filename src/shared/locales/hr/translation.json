@@ -55,6 +55,7 @@
         "yes": "Da",
         "no": "Ne",
         "okay": "U redu",
+        "skip": "Preskoči",
         "password": "Lozinka",
         "unrecognisedPassword": "Neispravna Lozinka",
         "unrecognisedPasswordExplanation": "Vaša lozinka je neispravna. Molimo pokušajte ponovno.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Moj uređaj nije spojen na javno dostupan wifi",
         "printerConfirmation": "Ne vršim ispis na javno dostupnom pisaču"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Želite li ispisati prazan predložak?",
+        "printTemplateInfo": "Možete ispisati prazan predložak kao pomoć pri zapisu vašeg seed-a.",
+        "printTemplateWarning": "Pobrinite se da pohranite svoj seed na sigurno mjesto. Nemojte ga pokazati nikome.",
+        "print": "Da, ispiši"
+    },
     "receive": {
         "yourAddress": "Vaša adresa",
         "qrOptions": "QR opcije",
@@ -384,10 +391,10 @@
         "language": "Jezik",
         "accountManagement": "Upravljanje računima",
         "addNewSeed": "Dodaj novi seed",
-        "twoFA": "Autorizacija s dva faktora",
         "changePassword": "Promjena lozinke",
         "general": "Opće postavke",
         "advanced": "Napredne postavke",
+        "nodeSettings": "Node postavke",
         "account": "Postavke računa",
         "logout": "Odjavi se",
         "reset": "Resetiraj novčanik",
@@ -450,6 +457,7 @@
     "history": {
         "bundleHashCopied": "Hash paketa kopiran",
         "noTransactionsFound": "Nije pronađena niti jedna transakcija",
+        "emptyHistory": "Povijest transakcija je prazna",
         "hideZeroBalance": "Sakrij transakcije s nula sredstava",
         "bundleHashCopiedExplanation": "Hash paketa je kopiran u međuspremnik.",
         "addressCopied": "Adresa kopirana",
@@ -462,7 +470,13 @@
         "retrying": "Ponovni pokušaj u tijeku",
         "yesterday": "Jučer",
         "promotingAnotherBundle": "Promocija drugog paketa",
-        "pleaseWait": "Molimo pričekajte. Promocija drugog paketa je trenutno u tijeku."
+        "pleaseWait": "Molimo pričekajte. Promocija drugog paketa je trenutno u tijeku.",
+        "typeHelp": "Upiši !help za dostupne naredbe",
+        "searchHelpText": "Pretraži po hash-u paketa ili sadržaju poruke",
+        "searchHelpValue": "Prikaži transakcije s točnim iznosom iota-e",
+        "searchHelpUnits": "Prikaži transakcije po iznosu iota-e i jedinici",
+        "searchHelpMore": "Prikaži transakcije s vrijednošću većom od X",
+        "searchHelpLess": "Prikaži transakcije s vrijednošću manjom od X"
     },
     "accountManagement": {
         "viewSeed": "Prikaži seed",
@@ -494,7 +508,9 @@
         "pow": "PoW",
         "autoPromotion": "Automatska promocija",
         "autoPromotionExplanation": "Automatska promocija pomaže potvrditi vašu transakciju na Tangle-u. Omogućite ovu postavku ako imate problema s potvrđivanjem vaših transakcija.",
-        "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW."
+        "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW.",
+        "deepLinking": "Deep linking",
+        "stateExport": "Izvoz stanja"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadina",
@@ -565,6 +581,7 @@
         "viewSeed": "Prikaži seed",
         "hideSeed": "Sakrij seed",
         "notAvailable": "Izvoz seed-a nije dostupan za tip računa {{accountType}}",
+        "notAvailableExplanationLedger": "Vaš Ledger uređaj koristi sigurnosni element za pohranu vašeg seed-a. Seed je kodiran na siguran način i ne napušta vaš Ledger uređaj.",
         "accountIndex": "Indeks vašeg Ledger računa",
         "accountPage": "Stranica vašeg Ledger uređaja"
     },
@@ -592,17 +609,17 @@
         "fingerprintUnavailable": "Biometrijska autorizacija nedostupna",
         "deviceLocked": "Autorizaciju onemogućena sljedećih 30 sekundi",
         "fingerprintUnavailableExplanation": "Vaš uređaj ne podržava biometrijsku autorizaciju ili ista nije konfigurirana u postavkama uređaja.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "notSupported": "Uređaj ne podržava biometrijsku autorizaciju",
+        "notConfigured": "Biometrijska autorizacija nije konfigurirana u postavkama uređaja",
+        "buttonInstructionsDisable": "Pritisnite donji gumb kako bi onemogućili autorizaciju putem otiska prsta.",
         "buttonInstructionsEnable": "Pritisnite donji gumb kako bi omogućili autorizaciju putem otiska prsta.",
         "buttonInstructionsDisableIPhoneX": "Pritisnite donji gumb kako bi onemogućili Face ID",
         "buttonInstructionsEnableIPhoneX": "Pritisnite donji gumb kako bi omogućili Face ID",
         "instructionsLogin": "Dodirnite čitač otiska prstiju za prijavu",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "Autorizacija je poništena od strane vašeg uređaja",
+        "userCancelledAuth": "Autorizacija je poništena od strane korisnika",
+        "passwordFallback": "Povratak na autorizaciju putem lozinke",
+        "noPassword": "Lozinka nije postavljena na uređaju"
     },
     "transferConfirmation": {
         "youAreAbout": "Poslat ćete {{contents}} na adresu",
@@ -611,23 +628,6 @@
         "toAddress": "Na adresu",
         "sendingAMessage": "Šaljem poruku",
         "sendingAnEmptyMessage": "Šaljem praznu poruku"
-    },
-    "twoFA": {
-        "wrongCode": "Pogrešan kod",
-        "wrongCodeExplanation": "Kod koji ste unijeli je neispravan. Ukoliko se greška ponovi, molimo provjerite da li je vrijeme na vašim uređajima ispravno (sinkronizirano).",
-        "emptyCode": "Prazan kôd",
-        "emptyCodeExplanation": "Molimo unesite kôd i pokušajte ponovno.",
-        "keyCopied": "Kopirano u međuspremnik",
-        "keyCopiedExplanation": "Vaš 2FA ključ je kopiran u međuspremnik.",
-        "addKey": "Dodajte ovaj ključ vašoj 2FA aplikaciji",
-        "key": "Ključ",
-        "twoFAEnabled": "2FA je omogućena",
-        "twoFAEnabledExplanation": "Uspješno ste omogućili autorizaciju s dva faktora (2FA).",
-        "twoFADisabled": "2FA je onemogućena",
-        "twoFADisabledExplanation": "Uspješno ste onemogućili autorizaciju s dva faktora (2FA).",
-        "enterCode": "Unesite kod iz vaše 2FA aplikacije",
-        "code": "Kôd",
-        "twoFaToken": "2FA Token"
     },
     "seedVault": {
         "exportSeedVault": "Izvezi SeedVault",
@@ -652,8 +652,16 @@
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspješno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
+        "invalidSeedFileError": "Neispravna SeedVault datoteka",
+        "invalidSeedFileErrorExplanation": "Datoteka ovog formata nije podržana. Samo SeedVault datoteke (.kdbx) kreirane putem Trinity novčanika ili programa za upravljanje lozinkama su podržane.",
         "seedVaultKeyExplanation": "Prvo trebamo osigurati vaš SeedVault. Molimo odaberite lozinku za enkripciju vaše SeedVault datoteke. Ova lozinka bit će potrebna za ponovni pristup sigurnosnoj kopiji vašeg seed-a koja se nalazi u SeedVault-u.",
-        "retypeKey": "Ponovno unesite lozinku"
+        "retypeKey": "Ponovno unesite lozinku",
+        "key": "Ključ"
+    },
+    "stateExport": {
+        "stateExportExplanation": "Izvoz datoteke s vašim stanjem će spremiti txt dokument na vaš uređaj s podatcima o vašem računu (transakcije, adrese), verzijom Trinity novčanika, te imenima datoteka za pohranu.",
+        "exportSuccess": "Stanje izvezeno",
+        "exportSuccessExplanation": "Datoteka s vašim stanjem je uspješno izvezena."
     },
     "chart": {
         "mcap": "MCAP",
@@ -689,11 +697,11 @@
         "gettingTransactionsToApprove": "Dohvat transakcija za odobriti",
         "proofOfWork": "Završetak PoW-a",
         "broadcasting": "Emitiranje",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Priprema podataka",
+        "migratingSettings": "Migracija postavki",
+        "migratingAccounts": "Migracija računa",
+        "cleaningUpOldData": "Čišćenje starih podataka",
+        "migrationComplete": "Migracija završena",
         "transferComplete": "Transakcija dovršena"
     },
     "snapshotTransition": {
@@ -713,7 +721,14 @@
     },
     "deepLink": {
         "autofill": "Uspješno automatsko popunjavanje",
-        "autofillExplanation": "Podaci transakcije uspješno automatski popunjeni iz linka."
+        "autofillExplanation": "Podaci transakcije uspješno automatski popunjeni iz linka.",
+        "deepLinkingOverview": "Deep links su klikabilni linkovi tipa (iota://...) koji automatski popunjavaju transakcijske podatke u vašem Trinity novčaniku.",
+        "deepLinkingWarning": "Budite svjesni pokušaja phishinga (mrežne krađa identiteta). Pobrinite se da vas link koji otvarate vodi prema službenoj Trinity aplikaciji.",
+        "deepLinkingUpdated": "Deep linking postavke",
+        "deepLinkingEnabled": "Omogućili ste deep linking.",
+        "deepLinkingDisabled": "Onemogućili ste deep linking.",
+        "deepLinkingInfoTitle": "Deep linking nije omogućen",
+        "deepLinkingInfoMessage": "Otvorili ste iota:// deep link, no deep linking nije omogućen."
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",
@@ -773,10 +788,10 @@
         "sweepConfirmationTitle": "Potvrda otključavanja"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "dataMigration": "Migracija podataka",
+        "dataMigrationExplanation": "S ciljem poboljšanja performansi, Trinity je unaprijeđen, te koristi novu bazu podataka za spremanje vaših postavka i računa. Molimo pričekajte dok Trinity automatski migrira vaše postojeće podatke.",
+        "problemMigratingYourData": "Došlo je do greške prilikom migracije vaših podataka. Molimo pokušajte ponovno",
+        "seedMigrationExplanation": "Kao dio kontinuiranog nastojanja s ciljem poboljšanja sigurnosti Trinity novčanika, vaš seed će biti migriran kako bi koristio poboljšanu i sigurniju metodu pohrane. Molimo pričekajte dok Trinity automatski migrira vaš seed."
     },
     "ledger": {
         "ready": "Ledger uređaj povezan i spreman",
@@ -786,8 +801,8 @@
         "proceedWithLedger": "Nastavite s postavljanjem Ledger uređaja",
         "accountIndex": "Indeks računa (Ledger Nano S)",
         "accountPage": "Stranica računa (Deviota Romeo)",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Pristup Ledger uređaju otkazan",
+        "actionCancelledExplanation": "Nije moguće izvršiti radnju bez pristupa Ledger uređaju.",
         "chooseAccountIndex": "Odaberite indeks računa vašeg Ledger uređaja",
         "accountIndexExplanation": "Vaš Ledger može pohraniti više seed-ova. Svaki seed je povezan s jedinstvenim brojem indeksa. Neiskorišteni broj indeksa je trenutno odabran, no slobodno može biti odabran i neki drugi. Obavezno zapišite odabrani broj indeksa.",
         "accountPageExplanation": "Neki novčanici trećih strana zahtijevaju stranice (npr. Deviota Romeo).",
@@ -810,6 +825,8 @@
         "checkAddress": "Provjerite adresu primatelja",
         "checkAddressExplanation": "Provjerite da li adresa odgovara onoj prikazanoj na vašem Ledger uređaju.",
         "applicationNotInitialised": "Upozorenje nije prihvaćeno",
-        "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno."
+        "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno.",
+        "udevError": "Nije bilo moguće uspostaviti komunikaciju s Ledger uređajem",
+        "udevErrorExplanation": "Trinity nije mogao uspostaviti komunikaciju s vašim Ledger uređajem. Molimo posjetite URL naveden ispod kako bi riješili ovaj problem."
     }
 }

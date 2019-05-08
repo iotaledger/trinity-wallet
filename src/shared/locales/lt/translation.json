@@ -55,6 +55,7 @@
         "yes": "Taip",
         "no": "Ne",
         "okay": "Gerai",
+        "skip": "Praleisti",
         "password": "Slaptažodis",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
         "unrecognisedPasswordExplanation": "Slaptažodis neatpažintas. Bandykite dar kartą.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "Nesinaudoju viešu wifi",
         "printerConfirmation": "Nesinaudoju viešu spausdintuvu"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Ar norėtumėte atsispausdinti neužpildytą šabloną?",
+        "printTemplateInfo": "Galite atsispausdinti neužpildytą šabloną ir įrašyti užraktą patys.",
+        "printTemplateWarning": "Įsitikinkite, kad užraktą laikote saugioje vietoje. Niekam jo nerodykite.",
+        "print": "Atspausdinti"
+    },
     "receive": {
         "yourAddress": "Jūsų adresas",
         "qrOptions": "QR nustatymai",
@@ -384,10 +391,10 @@
         "language": "Kalba",
         "accountManagement": "Paskyros valdymas",
         "addNewSeed": "Pridėti naują užraktą",
-        "twoFA": "Dviejų veiksnių autentifikavimas",
         "changePassword": "Keisti slaptažodį",
         "general": "Bendri nustatymai",
         "advanced": "Išplėstiniai parametrai",
+        "nodeSettings": "Node settings",
         "account": "Paskyros nustatymai",
         "logout": "Atsijungti",
         "reset": "Iš naujo nustatyti piniginę",
@@ -450,6 +457,7 @@
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
         "noTransactionsFound": "Pavedimų nėra",
+        "emptyHistory": "Jūsų pavedimų istorija tuščia",
         "hideZeroBalance": "Slėpti nulinius pavedimus",
         "bundleHashCopiedExplanation": "Paketo šifras nukopijuotas į iškarpinę.",
         "addressCopied": "Adresas nukopijuotas",
@@ -462,7 +470,13 @@
         "retrying": "Kraunama",
         "yesterday": "Vakar",
         "promotingAnotherBundle": "Iškeliamas kitas paketas",
-        "pleaseWait": "Prašome palaukti, Trinity iškelia kitą paketą."
+        "pleaseWait": "Prašome palaukti, Trinity iškelia kitą paketą.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -494,7 +508,9 @@
         "pow": "Skaičiavimų įrodymas",
         "autoPromotion": "Automatinis iškėlimas",
         "autoPromotionExplanation": "Automatinis iškėlimas padeda greičiau patvirtinti jūsų pavedimus. Įjunkite šią funkciją, jeigu jūsų pavedimai ilgai nėra patvirtinami.",
-        "autoPromotionPoW": "Automatinis iškėlimas įmanomas tik tuose serveriuose, kurie palaiko nuotolinį skaičiavimą."
+        "autoPromotionPoW": "Automatinis iškėlimas įmanomas tik tuose serveriuose, kurie palaiko nuotolinį skaičiavimą.",
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Fonas",
@@ -565,6 +581,7 @@
         "viewSeed": "Rodyti užraktą",
         "hideSeed": "Slėpti užraktą",
         "notAvailable": "Užrakto iškėlimas yra negalimas {{accountType}} paskyros tipui",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Jūsų Ledger paskyros indeksas",
         "accountPage": "Jūsų Ledger paskyros puslapis"
     },
@@ -612,23 +629,6 @@
         "sendingAMessage": "Siunčiama žinutė",
         "sendingAnEmptyMessage": "Siunčiama tuščia žinutė"
     },
-    "twoFA": {
-        "wrongCode": "Neteisingas kodas",
-        "wrongCodeExplanation": "Kodas, kurį įvedėte yra neteisingas. Jeigu ši klaida kartosis, patikrinkite ar jūsų įrenginio laikai teisingi.",
-        "emptyCode": "Neįvestas kodas",
-        "emptyCodeExplanation": "Įveskite kodą ir bandykite dar kartą.",
-        "keyCopied": "Kodas nukopijuotas į iškarpinę",
-        "keyCopiedExplanation": "Jūsų 2FA kodas nukopijuotas į iškarpinę.",
-        "addKey": "Pridėkite šį kodą į 2FA programėlę",
-        "key": "Kodas",
-        "twoFAEnabled": "2FA įjungtas",
-        "twoFAEnabledExplanation": "Jūs sėkmingai įjungėte dviejų veiksnių autentifikavimą.",
-        "twoFADisabled": "2FA išjungtas",
-        "twoFADisabledExplanation": "Jūs sėkmingai išjungėte dviejų veiksnių autentifikavimą.",
-        "enterCode": "Įveskite kodą iš 2FA programėlės",
-        "code": "Kodas",
-        "twoFaToken": "2FA kodas"
-    },
     "seedVault": {
         "exportSeedVault": "Iškelti SeedVault",
         "seedVaultExplanation": "SeedVault yra užšifruotas failas skirtas išsisaugoti savo užraktą. Užraktas yra užšifruojamas SeedVault raktu ir negali būti atskleistas be to rakto.",
@@ -652,8 +652,16 @@
         "noSeedFoundExplanation": "SeedVault yra tuščias arba turi netinkamo formato užraktą.",
         "seedFileError": "Atidaryti SeedVault nepavyko",
         "seedFileErrorExplanation": "Įvyko klaida atidarant SeedVault. Jeigu pasirinkote teisingą failą, gali būti, kad jis yra pažeistas.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Pirmiausia, jums reikia apsaugoti SeedVault. Sukurkite slaptažodį norėdami užšifruoti failą. Šio slaptažodžio jums prireiks, norint atkurti užraktą iš SeedVault failo.",
-        "retypeKey": "Pakartokite slaptažodį"
+        "retypeKey": "Pakartokite slaptažodį",
+        "key": "Kodas"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
@@ -689,11 +697,11 @@
         "gettingTransactionsToApprove": "Pavedimai ruošiami patvirtinimui",
         "proofOfWork": "Atliekami skaičiavimai",
         "broadcasting": "Transliuojama",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Ruošiami duomenys",
+        "migratingSettings": "Perkeliami nustatymai",
+        "migratingAccounts": "Perkeliamos paskyros",
+        "cleaningUpOldData": "Išvalomi seni duomenys",
+        "migrationComplete": "Perkėlimas baigtas",
         "transferComplete": "Pavedimas atliktas"
     },
     "snapshotTransition": {
@@ -713,7 +721,14 @@
     },
     "deepLink": {
         "autofill": "Automatinis įkėlimas sėkmingas",
-        "autofillExplanation": "Pavedimo duomenys automatiškai įkelti iš nuorodos."
+        "autofillExplanation": "Pavedimo duomenys automatiškai įkelti iš nuorodos.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Klaida siunčiant atnaujinimus",
@@ -773,10 +788,10 @@
         "sweepConfirmationTitle": "Perkėlimo patvirtinimas"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "dataMigration": "Duomenų perkėlimas",
+        "dataMigrationExplanation": "Dėl efektyvumo ir atminties ribotumo, Trinity naudoja naują duomenų bazę, kurioje laikomi jūsų nustatymų ir paskyrų duomenys. Prašome palaukti, kol Trinity automatiškai perkels jūsų duomenis.",
+        "problemMigratingYourData": "Įvyko klaida perkeliant jūsų duomenis. Bandykite dar kartą",
+        "seedMigrationExplanation": "Trinity siekdami pagerinti piniginės saugumą, jūsų užraktą perkels į sustiprintą raktų saugyklą. Prašome palaukti, kol Trinity automatiškai perkels užraktą."
     },
     "ledger": {
         "ready": "Ledger įrenginys prijungtas",
@@ -810,6 +825,8 @@
         "checkAddress": "Patikrinkite priėmimo adresą",
         "checkAddressExplanation": "Patikrinkite ar adresas sutampa su rodomu adresu Ledger įrenginyje.",
         "applicationNotInitialised": "Pranešimas nepatvirtintas",
-        "applicationNotInitialisedExplanation": "Iš naujo atidarykite IOTA aplikaciją Ledger įrenginyje, patvirtinkite informacinį pranešimą ir bandykite dar kartą."
+        "applicationNotInitialisedExplanation": "Iš naujo atidarykite IOTA aplikaciją Ledger įrenginyje, patvirtinkite informacinį pranešimą ir bandykite dar kartą.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

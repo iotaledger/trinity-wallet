@@ -46,24 +46,10 @@ export default () => (C) => {
          * @method logout
          */
         logout() {
-            const { theme: { body } } = this.props;
             timer.setTimeout(
                 'delayLogout',
                 () => {
-                    navigator.setStackRoot('login', {
-                        animations: {
-                            setStackRoot: {
-                                enable: false,
-                            },
-                        },
-                        layout: {
-                            backgroundColor: body.bg,
-                            orientation: ['portrait'],
-                        },
-                        statusBar: {
-                            backgroundColor: body.bg,
-                        },
-                    });
+                    navigator.setStackRoot('login');
                     delete global.passwordHash;
                     this.props.clearWalletData();
                 },
@@ -85,6 +71,8 @@ export default () => (C) => {
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
         setUserActivity: PropTypes.func.isRequired,
+        /**@ignore */
+        t: PropTypes.func.isRequired,
     };
 
     const mapDispatchToProps = {
@@ -97,5 +85,10 @@ export default () => (C) => {
         theme: getThemeFromState(state),
     });
 
-    return withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithLogout));
+    return withNamespaces(['global'])(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(WithLogout),
+    );
 };

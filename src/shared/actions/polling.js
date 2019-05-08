@@ -364,7 +364,7 @@ export const fetchNodeList = (chooseRandomNode = false) => {
 
                     // A temporary addition
                     // Only choose a random node with PoW enabled.
-                    setRandomNode(union(defaultNodesWithPowEnabled, remoteNodesWithPowEnabled));
+                    setRandomNode(remoteNodesWithPowEnabled);
 
                     const nodes = [
                         ...map(defaultNodesWithPowEnabled, (url) => ({ url, pow: true })),
@@ -455,14 +455,17 @@ export const fetchChartData = () => {
 };
 
 /**
- *   Accepts account names and syncs local account state with ledger's.
+ * Accepts account names and syncs local account state with ledger's.
  *
- *   @method getAccountInfoForAllAccounts
- *   @param {array} accountNames
- *   @param {function} notificationFn - New transaction callback function
- *   @returns {function} dispatch
+ * @method getAccountInfoForAllAccounts
+ *
+ * @param {array} accountNames
+ * @param {function} notificationFn - New transaction callback function
+ * @param {boolean} withQuorum
+ *
+ * @returns {function} dispatch
  **/
-export const getAccountInfoForAllAccounts = (accountNames, notificationFn) => {
+export const getAccountInfoForAllAccounts = (accountNames, notificationFn, withQuorum = true) => {
     return (dispatch, getState) => {
         dispatch(accountInfoForAllAccountsFetchRequest());
 
@@ -477,12 +480,9 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn) => {
                 return promise.then(() => {
                     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-                    return withRetriesOnDifferentNodes([selectedNode, ...randomNodes])(syncAccount)(
-                        existingAccountState,
-                        undefined,
-                        notificationFn,
-                        settings,
-                    ).then(({ node, result }) => {
+                    return withRetriesOnDifferentNodes([selectedNode, ...randomNodes])((...args) =>
+                        syncAccount(...[...args, withQuorum]),
+                    )(existingAccountState, undefined, notificationFn, settings).then(({ node, result }) => {
                         dispatch(changeNode(node));
                         dispatch(syncAccountWhilePolling(result));
                     });
@@ -501,17 +501,20 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn) => {
 };
 
 /**
- *   Accepts a bundle hash and all tail transaction objects relevant to the bundle.
- *   Checks if a bundle is still valid.
- *   For cases where a bundle is invalid, it would remove the transaction for promotion.
- *   For cases where a bundle is valid, find first consistent tail and promote it.
+ * Accepts a bundle hash and all tail transaction objects relevant to the bundle.
+ * Checks if a bundle is still valid.
+ * For cases where a bundle is invalid, it would remove the transaction for promotion.
+ * For cases where a bundle is valid, find first consistent tail and promote it.
  *
- *   @method promoteTransfer
- *   @param {string} bundleHash
- *   @param {string} accountName
- *   @returns {function} - dispatch
+ * @method promoteTransfer
+ *
+ * @param {string} bundleHash
+ * @param {string} accountName
+ * @param {boolean} [withQuorum]
+ *
+ * @returns {function} - dispatch
  **/
-export const promoteTransfer = (bundleHash, accountName) => (dispatch, getState) => {
+export const promoteTransfer = (bundleHash, accountName, withQuorum = true) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
     let accountState = selectedAccountStateFactory(accountName)(getState());
@@ -519,7 +522,7 @@ export const promoteTransfer = (bundleHash, accountName) => (dispatch, getState)
     const getTailTransactionsForThisBundleHash = (transactions) =>
         filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
 
-    return syncAccount()(accountState)
+    return syncAccount(undefined, withQuorum)(accountState)
         .then((newState) => {
             accountState = newState;
 
@@ -544,7 +547,7 @@ export const promoteTransfer = (bundleHash, accountName) => (dispatch, getState)
                 throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
             }
 
-            return isFundedBundle()(head(bundles));
+            return isFundedBundle(undefined, withQuorum)(head(bundles));
         })
         .then((isFunded) => {
             if (!isFunded) {

@@ -1,7 +1,8 @@
 import { addressData } from './addresses';
 import transactions from './transactions';
 
-const NAME = 'TEST';
+export const NAME = 'TEST';
+export const TYPE = 'ledger';
 
 export default {
     onboardingComplete: true,
@@ -9,7 +10,7 @@ export default {
         [NAME]: {
             addressData,
             transactions,
-            type: 'ledger',
+            meta: { type: TYPE },
         },
     },
     setupInfo: {

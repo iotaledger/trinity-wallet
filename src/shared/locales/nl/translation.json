@@ -55,6 +55,7 @@
         "yes": "Ja",
         "no": "Nee",
         "okay": "Oké",
+        "skip": "Skip",
         "password": "Wachtwoord",
         "unrecognisedPassword": "Onjuist wachtwoord",
         "unrecognisedPasswordExplanation": "Het wachtwoord is onjuist. Probeer het opnieuw.",
@@ -286,6 +287,12 @@
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
+    "printBlankTemplate": {
+        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "print": "Yes, print"
+    },
     "receive": {
         "yourAddress": "Jouw adres",
         "qrOptions": "QR opties",
@@ -384,10 +391,10 @@
         "language": "Taal",
         "accountManagement": "Accountbeheer",
         "addNewSeed": "Nieuwe seed toevoegen",
-        "twoFA": "Twee-staps verificatie (2FA)",
         "changePassword": "Wachtwoord wijzigen",
         "general": "General settings",
         "advanced": "Geavanceerde instellingen",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "Uitloggen",
         "reset": "Portemonnee opnieuw instellen",
@@ -450,6 +457,7 @@
     "history": {
         "bundleHashCopied": "Bundel hash gekopieerd",
         "noTransactionsFound": "Geen transacties gevonden",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Verberg nul saldo",
         "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het klembord.",
         "addressCopied": "Adres gekopieerd",
@@ -462,7 +470,13 @@
         "retrying": "Opnieuw proberen...",
         "yesterday": "Gisteren",
         "promotingAnotherBundle": "Andere bundel aan het promoten",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Seed bekijken",
@@ -494,7 +508,9 @@
         "pow": "Bewijs van inspanning",
         "autoPromotion": "Auto-promotie",
         "autoPromotionExplanation": "Auto-promotie helpt uw transactie te bevestigen op de Tangle. Schakel deze instelling in wanneer u problemen ondervindt met bevestigen.",
-        "autoPromotionPoW": "Auto-promotie is alleen mogelijk op nodes die ondersteuning bieden voor extern Bewijs van Inspanning (PoW)."
+        "autoPromotionPoW": "Auto-promotie is alleen mogelijk op nodes die ondersteuning bieden voor extern Bewijs van Inspanning (PoW).",
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Achtergrond",
@@ -565,6 +581,7 @@
         "viewSeed": "Bekijk Seed",
         "hideSeed": "Verberg Seed",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
@@ -594,7 +611,7 @@
         "fingerprintUnavailableExplanation": "Uw apparaat ondersteunt geen biometrische authenticatie of het is niet ingesteld in de apparaatinstellingen.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen.",
         "buttonInstructionsEnable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen.",
         "buttonInstructionsDisableIPhoneX": "Druk op de knop hieronder om Face ID uit te schakelen",
         "buttonInstructionsEnableIPhoneX": "Druk op de knop hieronder om Face ID in te schakelen",
@@ -611,23 +628,6 @@
         "toAddress": "To address",
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
-    },
-    "twoFA": {
-        "wrongCode": "Verkeerde code",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "Lege code",
-        "emptyCodeExplanation": "Voer een code in en probeer het opnieuw.",
-        "keyCopied": "Sleutel naar het klembord gekopieerd",
-        "keyCopiedExplanation": "Uw 2FA-sleutel is naar het klembord gekopieerd.",
-        "addKey": "Voeg deze sleutel toe aan uw 2FA app",
-        "key": "Sleutel",
-        "twoFAEnabled": "2FA is nu ingeschakeld",
-        "twoFAEnabledExplanation": "U hebt de Twee-staps verificatie nu ingeschakeld.",
-        "twoFADisabled": "2FA is nu ingeschakeld",
-        "twoFADisabledExplanation": "U heeft Twee-staps Verificatie succesvol uitgeschakeld.",
-        "enterCode": "Voer de code uit uw 2FA app in",
-        "code": "Code",
-        "twoFaToken": "2FA Token"
     },
     "seedVault": {
         "exportSeedVault": "Seedkluis exporteren",
@@ -652,8 +652,16 @@
         "noSeedFoundExplanation": "De Seedkluis is leeg, of heeft een seed in een ongeldig formaat.",
         "seedFileError": "Kan Seedkluis niet openen",
         "seedFileErrorExplanation": "Er was een probleem tijdens het openen van de Seedkluis. Als u het juiste bestand hebt gekozen, kan het zijn dat dit corrupt is.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "Sleutel"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
@@ -713,7 +721,14 @@
     },
     "deepLink": {
         "autofill": "Automatisch vullen succesvol",
-        "autofillExplanation": "De transactie gegevens worden automatisch ingevuld vanuit de link."
+        "autofillExplanation": "De transactie gegevens worden automatisch ingevuld vanuit de link.",
+        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingUpdated": "Deep linking settings",
+        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fout bij het ophalen van de update data",
@@ -810,6 +825,8 @@
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

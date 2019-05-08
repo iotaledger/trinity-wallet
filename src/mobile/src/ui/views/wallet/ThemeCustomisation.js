@@ -30,8 +30,6 @@ const styles = StyleSheet.create({
         borderStyle: 'dotted',
         alignItems: 'center',
         marginTop: height / 30,
-        position: 'absolute',
-        top: height / 8.5,
         zIndex: 1,
     },
     bottomContainer: {
@@ -45,6 +43,7 @@ const styles = StyleSheet.create({
     topContainer: {
         flex: 11,
         alignItems: 'center',
+        justifyContent: 'center',
     },
     itemLeft: {
         flexDirection: 'row',
@@ -203,9 +202,7 @@ class ThemeCustomisation extends Component {
                                 }}
                                 title={t('theme')}
                                 dropdownWidth={{ width: width / 1.45 }}
-                                background
-                                shadow
-                                defaultOption={this.getLocalizedThemeName(themeName)}
+                                value={this.getLocalizedThemeName(themeName)}
                                 options={this.getLocalizedThemes().map(({ theme }) => theme)}
                                 saveSelection={(localizedSelection) => {
                                     const selection = this.getThemeName(localizedSelection);
@@ -219,6 +216,7 @@ class ThemeCustomisation extends Component {
                                 visibleRows={Object.keys(THEMES).length}
                             />
                         </View>
+                        <View style={{ flex: 0.2 }} />
                         <View
                             style={[
                                 styles.demoContainer,

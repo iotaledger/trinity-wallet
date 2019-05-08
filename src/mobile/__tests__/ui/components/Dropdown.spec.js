@@ -15,6 +15,7 @@ const getProps = (overrides) =>
     assign(
         {},
         {
+            t: () => '',
             theme,
             onRef: noop,
             options: [],
@@ -58,44 +59,6 @@ describe('Testing Dropdown component', () => {
                 wrapper.unmount();
 
                 expect(props.onRef).toHaveBeenCalledWith(null);
-            });
-        });
-    });
-
-    describe('when onPress prop on TouchableWithoutFeedback is triggered', () => {
-        beforeEach(() => {
-            jest.mock('LayoutAnimation');
-        });
-
-        describe('when disableWhen prop is false', () => {
-            it('should call instance method onDropdownTitlePress', () => {
-                const props = getProps();
-                const wrapper = shallow(<Dropdown {...props} />);
-                const instance = wrapper.instance();
-
-                jest.spyOn(instance, 'onDropdownTitlePress');
-                wrapper
-                    .find('TouchableWithoutFeedback')
-                    .props()
-                    .onPress();
-
-                expect(instance.onDropdownTitlePress).toHaveBeenCalled();
-            });
-        });
-
-        describe('when disableWhen prop is true', () => {
-            it('should not call instance method onDropdownTitlePress', () => {
-                const props = getProps({ disableWhen: true });
-                const wrapper = shallow(<Dropdown {...props} />);
-                const instance = wrapper.instance();
-
-                jest.spyOn(instance, 'onDropdownTitlePress');
-                wrapper
-                    .find('TouchableWithoutFeedback')
-                    .props()
-                    .onPress();
-
-                expect(instance.onDropdownTitlePress).toHaveBeenCalledTimes(0);
             });
         });
     });

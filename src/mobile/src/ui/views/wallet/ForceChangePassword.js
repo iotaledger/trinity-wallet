@@ -169,21 +169,7 @@ class ForceChangePassword extends Component {
     }
 
     navigateToLogin() {
-        const { theme: { body } } = this.props;
-        navigator.setStackRoot('login', {
-            animations: {
-                setStackRoot: {
-                    enable: false,
-                },
-            },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            statusBar: {
-                backgroundColor: body.bg,
-            },
-        });
+        navigator.setStackRoot('login');
     }
 
     renderTextField(
@@ -193,7 +179,6 @@ class ForceChangePassword extends Component {
         onValidTextChange,
         returnKeyType,
         onSubmitEditing,
-        widget = 'empty',
         isPasswordValid = false,
         passwordStrength = 0,
         isPasswordInput = true,
@@ -212,7 +197,6 @@ class ForceChangePassword extends Component {
             onSubmitEditing,
             value,
             theme,
-            widget,
             isPasswordValid,
             passwordStrength,
             isPasswordInput,

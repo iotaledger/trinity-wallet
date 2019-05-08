@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import values from 'lodash/values';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
@@ -17,8 +18,11 @@ import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
-import { removeNonAlphaNumeric } from 'shared-modules/libs/utils';
+import { removeNonAlphaNumeric, serialise } from 'shared-modules/libs/utils';
+import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/constants';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
+import { MAX_SEED_TRITS } from 'shared-modules/libs/iota/utils';
+import { moment } from 'shared-modules/libs/exports';
 import { UInt8ToString } from 'libs/crypto';
 import InfoBox from './InfoBox';
 import Button from './Button';
@@ -94,6 +98,21 @@ class SeedVaultExportComponent extends Component {
         seed: '',
     };
 
+    /**
+     * Gets seed vault file path
+     *
+     * @method getPath
+     *
+     * @param {string} prefix
+     *
+     * @returns {string}
+     */
+    static getPath(prefix) {
+        return `${
+            isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir
+        }/${prefix}-${moment().format('YYYYMMDD-HHmm')}.kdbx`;
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -107,14 +126,22 @@ class SeedVaultExportComponent extends Component {
     }
 
     componentWillMount() {
-        const { isAuthenticated, onRef } = this.props;
+        const { isAuthenticated, onRef, t } = this.props;
         onRef(this);
         this.animatedValue = new Animated.Value(isAuthenticated ? width : width * 2);
         nodejs.start('main.js');
         nodejs.channel.addListener(
             'message',
-            (vault) => {
-                this.onGenerateVault(vault);
+            (message) => {
+                if (message === 'error') {
+                    return this.props.generateAlert(
+                        'error',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongTryAgain'),
+                    );
+                }
+
+                this.onGenerateVault(message);
             },
             this,
         );
@@ -143,16 +170,15 @@ class SeedVaultExportComponent extends Component {
             await getAndroidFileSystemPermissions();
         }
         const { t, selectedAccountName } = this.props;
-        const now = new Date();
-        const prefix = removeNonAlphaNumeric(selectedAccountName, 'SeedVault').trim();
-        const path =
-            (isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir) +
-            `/${prefix}${now
-                .toISOString()
-                .slice(0, 16)
-                .replace(/[-:]/g, '')
-                .replace('T', '-')}.kdbx`;
+        const path = SeedVaultExportComponent.getPath(
+            removeNonAlphaNumeric(
+                isEmpty(global.onboardingSeed) ? selectedAccountName : '',
+                SEED_VAULT_DEFAULT_TITLE,
+            ).trim(),
+        );
+
         this.setState({ path });
+
         RNFetchBlob.fs.exists(path).then((fileExists) => {
             if (fileExists) {
                 RNFetchBlob.fs.unlink(path);
@@ -233,9 +259,28 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
+        const { t, selectedAccountName } = this.props;
+        if (this.state.seed.length !== MAX_SEED_TRITS) {
+            return this.props.generateAlert(
+                'error',
+                t('global:somethingWentWrong'),
+                t('global:somethingWentWrongTryAgain'),
+            );
+        }
         // FIXME: Password should be UInt8, not string
         return nodejs.channel.send(
-            'export:' + tritsToChars(this.state.seed) + ':' + UInt8ToString(this.state.password),
+            'export~' +
+                // selectedAccountName would be undefined if seed is being exported during onboarding
+                // If it's undefined, use the fallback title
+                serialise({
+                    seed: tritsToChars(this.state.seed),
+                    title: removeNonAlphaNumeric(
+                        isEmpty(global.onboardingSeed) ? selectedAccountName : '',
+                        SEED_VAULT_DEFAULT_TITLE,
+                    ),
+                }) +
+                '~' +
+                UInt8ToString(this.state.password),
         );
     }
 
@@ -355,7 +400,7 @@ class SeedVaultExportComponent extends Component {
                             this.passwordFields = ref;
                         }}
                         onAcceptPassword={() => this.navigateToStep('isExporting')}
-                        passwordLabel={t('twoFA:key')}
+                        passwordLabel={t('key')}
                         reentryLabel={t('retypeKey')}
                         password={password}
                         reentry={reentry}

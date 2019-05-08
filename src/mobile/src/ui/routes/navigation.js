@@ -13,6 +13,7 @@ import LanguageSetup from 'ui/views/onboarding/LanguageSetup';
 import EnterSeed from 'ui/views/onboarding/EnterSeed';
 import SaveYourSeed from 'ui/views/onboarding/SaveYourSeed';
 import SetPassword from 'ui/views/onboarding/SetPassword';
+import PrintBlankTemplate from 'ui/views/onboarding/PrintBlankTemplate';
 import WriteSeedDown from 'ui/views/onboarding/WriteSeedDown';
 import SaveSeedConfirmation from 'ui/views/onboarding/SaveSeedConfirmation';
 import Login from 'ui/views/wallet/Login';
@@ -21,9 +22,6 @@ import WalletResetRequirePassword from 'ui/views/wallet/WalletResetRequirePasswo
 import OnboardingComplete from 'ui/views/onboarding/OnboardingComplete';
 import SetAccountNameComponent from 'ui/views/onboarding/SetAccountName';
 import SeedReentry from 'ui/views/onboarding/SeedReentry';
-import TwoFactorSetupAddKeyComponent from 'ui/views/wallet/TwoFactorSetupAddKey';
-import TwoFactorSetupEnterToken from 'ui/views/wallet/TwoFactorSetupEnterToken';
-import Disable2FA from 'ui/views/wallet/Disable2FA';
 import BiometricAuthentication from 'ui/views/wallet/BiometricAuthentication';
 import TermsAndConditions from 'ui/views/onboarding/TermsAndConditions';
 import PrivacyPolicy from 'ui/views/onboarding/PrivacyPolicy';
@@ -54,6 +52,7 @@ export default function registerScreens(store, Provider) {
     Navigation.registerComponentWithRedux('setPassword', () => applyHOCs(SetPassword), Provider, store);
     Navigation.registerComponentWithRedux('login', () => applyHOCs(Login), Provider, store);
     Navigation.registerComponentWithRedux('writeSeedDown', () => applyHOCs(WriteSeedDown), Provider, store);
+    Navigation.registerComponentWithRedux('printBlankTemplate', () => applyHOCs(PrintBlankTemplate), Provider, store);
     Navigation.registerComponentWithRedux('languageSetup', () => applyHOCs(LanguageSetup), Provider, store);
     Navigation.registerComponentWithRedux(
         'walletResetConfirm',
@@ -76,19 +75,6 @@ export default function registerScreens(store, Provider) {
         Provider,
         store,
     );
-    Navigation.registerComponentWithRedux(
-        'twoFactorSetupAddKey',
-        () => applyHOCs(TwoFactorSetupAddKeyComponent),
-        Provider,
-        store,
-    );
-    Navigation.registerComponentWithRedux(
-        'twoFactorSetupEnterToken',
-        () => applyHOCs(TwoFactorSetupEnterToken),
-        Provider,
-        store,
-    );
-    Navigation.registerComponentWithRedux('disable2FA', () => applyHOCs(Disable2FA), Provider, store);
     Navigation.registerComponentWithRedux(
         'biometricAuthentication',
         () => applyHOCs(BiometricAuthentication),

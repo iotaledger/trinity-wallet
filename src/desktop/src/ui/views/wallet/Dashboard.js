@@ -59,7 +59,12 @@ class Dashboard extends React.PureComponent {
 
         const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
 
-        this.props.getAccountInfo(seedStore, accountName, Electron.notify);
+        this.props.getAccountInfo(
+            seedStore,
+            accountName,
+            Electron.notify,
+            true, // Sync with quorum enabled
+        );
     };
 
     render() {
@@ -127,7 +132,7 @@ const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
     accountMeta: getSelectedAccountMeta(state),
     password: state.wallet.password,
-    isDeepLinkActive: state.wallet.deepLinkActive,
+    isDeepLinkActive: state.wallet.deepLinkRequestActive,
 });
 
 const mapDispatchToProps = {

@@ -21,7 +21,6 @@ let language = {
     node: 'Node',
     currency: 'Currency',
     theme: 'Theme',
-    twoFA: 'Two-factor authentication',
     changePassword: 'Change password',
     advanced: 'Advanced settings',
     hide: 'Hide',
@@ -208,11 +207,6 @@ export const initMenu = (app, getWindowFunc) => {
                                 type: 'separator',
                             },
                             {
-                                label: language.twoFA,
-                                enabled: state.authorised && state.enabled,
-                                click: () => navigate('settings/twoFa'),
-                            },
-                            {
                                 label: language.changePassword,
                                 enabled: state.authorised && state.enabled,
                                 click: () => navigate('settings/password'),
@@ -220,6 +214,7 @@ export const initMenu = (app, getWindowFunc) => {
                             {
                                 label: language.advanced,
                                 click: () => navigate('settings/advanced'),
+                                enabled: state.enabled,
                             },
                         ],
                     },
@@ -363,7 +358,7 @@ export const initMenu = (app, getWindowFunc) => {
                 {
                     label: `${app.getName()} ${language.help}`,
                     click: function() {
-                        shell.openExternal('https://docs.iota.works/trinity/faqs');
+                        shell.openExternal('https://docs.iota.org/docs/trinity/0.1/introduction/overview');
                     },
                 },
             ],

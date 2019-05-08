@@ -141,7 +141,7 @@ class EnterPassword extends Component {
                             secureTextEntry
                             onSubmitEditing={this.handleLogin}
                             theme={theme}
-                            widget="fingerprint"
+                            widgets={isFingerprintEnabled ? ['fingerprint'] : []}
                             fingerprintAuthentication={isFingerprintEnabled}
                             onFingerprintPress={this.activateFingerprintScanner}
                             value={this.state.password}
@@ -166,4 +166,9 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterPassword));
+export default withNamespaces(['login', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(EnterPassword),
+);

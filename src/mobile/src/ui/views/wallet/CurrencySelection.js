@@ -140,7 +140,7 @@ export class CurrencySelection extends Component {
 
         return (
             <TouchableOpacity
-                onPress={() => this.props.getCurrencyData(this.dropdown.getSelected(), true)}
+                onPress={() => this.props.getCurrencyData(this.dropdown.getSelectedItem(), true)}
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.itemRight}>
@@ -153,7 +153,6 @@ export class CurrencySelection extends Component {
 
     render() {
         const { currency, availableCurrencies, t, theme, isFetchingCurrencyData } = this.props;
-
         return (
             <TouchableWithoutFeedback
                 onPress={() => {
@@ -171,10 +170,9 @@ export class CurrencySelection extends Component {
                             }}
                             title={t('currency')}
                             options={availableCurrencies}
-                            defaultOption={currency}
+                            value={currency}
                             dropdownWidth={{ width: width / 2 }}
                             disableWhen={isFetchingCurrencyData}
-                            background
                         />
                     </View>
                     {(isFetchingCurrencyData && (

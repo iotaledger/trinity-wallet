@@ -27,19 +27,21 @@ import {
     categoriseInclusionStatesByBundleHash,
     promoteTransactionTilConfirmed,
     isFundedBundle,
+    isBundle,
 } from './transfers';
 import { accumulateBalance } from './addresses';
 
 /**
- *  Sweeps funds
+ * Sweeps funds
  *
- *   @method sweep
- *   @param {any} [provider]
- *   @param {object} seedStore
+ * @method sweep
  *
- *   @returns {function(string, object, object): Promise<object>}
+ * @param {string} provider
+ * @param {boolean} seedStore
+ *
+ * @returns {function(object, string, object, object): Promise<object>}
  **/
-export const sweep = (provider, seedStore) => (seed, input, transfer) => {
+export const sweep = (provider, withQuorum) => (seedStore, seed, input, transfer) => {
     if (!isValidInput(input)) {
         return Promise.reject(new Error(Errors.INVALID_INPUT));
     }
@@ -63,7 +65,7 @@ export const sweep = (provider, seedStore) => (seed, input, transfer) => {
     // Before proceeding make sure:
     //  - Latest balance hasn't changed
     //  - We don't require a remainder transaction
-    return getBalancesAsync(provider)([validInput.address])
+    return getBalancesAsync(provider, withQuorum)([validInput.address])
         .then((balances) => {
             const latestBalance = accumulateBalance(map(balances.balances, Number));
 
@@ -83,7 +85,7 @@ export const sweep = (provider, seedStore) => (seed, input, transfer) => {
             // if there are no value transactions, validate spend statuses
             if (isEmpty(valueTransactions)) {
                 // Check both recipient & input addresses
-                return wereAddressesSpentFromAsync(provider)([validInput.address, validTransfer.address]);
+                return wereAddressesSpentFromAsync(provider, withQuorum)([validInput.address, validTransfer.address]);
             }
 
             // If there are value transactions:
@@ -98,19 +100,22 @@ export const sweep = (provider, seedStore) => (seed, input, transfer) => {
                     map(filter(transactionsFromBundles, (tx) => tx.currentIndex === 0), (tailTransaction) =>
                         constructBundle(tailTransaction, transactionsFromBundles),
                     ),
-                    iota.utils.isBundle,
+                    isBundle,
                 );
 
                 if (isEmpty(validBundles)) {
                     // Check both recipient & input addresses
-                    return wereAddressesSpentFromAsync(provider)([validInput.address, validTransfer.address]);
+                    return wereAddressesSpentFromAsync(provider, withQuorum)([
+                        validInput.address,
+                        validTransfer.address,
+                    ]);
                 }
 
                 return reduce(
                     validBundles,
                     (promise, bundle) => {
                         return promise.then((result) => {
-                            return isFundedBundle(provider)(bundle).then((isFunded) => {
+                            return isFundedBundle(provider, withQuorum)(bundle).then((isFunded) => {
                                 if (isFunded) {
                                     return [...result, bundle];
                                 }
@@ -124,7 +129,7 @@ export const sweep = (provider, seedStore) => (seed, input, transfer) => {
                     const transactions = flatMap(fundedBundles, (bundle) => bundle);
                     // Check both recipient & input addresses
                     const checkSpendStatuses = () =>
-                        wereAddressesSpentFromAsync(provider)([validInput.address, validTransfer.address]);
+                        wereAddressesSpentFromAsync(provider, withQuorum)([validInput.address, validTransfer.address]);
 
                     if (isEmpty(transactions)) {
                         return checkSpendStatuses();
@@ -186,7 +191,7 @@ export const sweep = (provider, seedStore) => (seed, input, transfer) => {
             cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
 
             // Check if prepared bundle is valid, especially if its signed correctly.
-            if (iota.utils.isBundle(cached.transactionObjects.slice().reverse())) {
+            if (isBundle(cached.transactionObjects)) {
                 return getTransactionsToApproveAsync(provider)();
             }
 

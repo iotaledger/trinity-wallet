@@ -178,7 +178,9 @@ class DeleteAccount extends Component {
     async delete() {
         const { selectedAccountName, selectedAccountMeta } = this.props;
         const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
-        await seedStore.removeAccount();
+        try {
+            await seedStore.removeAccount();
+        } catch (err) { }
         this.props.deleteAccount(selectedAccountName);
     }
 

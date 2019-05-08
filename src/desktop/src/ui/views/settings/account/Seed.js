@@ -1,5 +1,5 @@
 /* global Electron */
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withI18n } from 'react-i18next';
 
@@ -77,16 +77,24 @@ class Seed extends PureComponent {
                 <div className={cssIndex.scroll}>
                     <article>
                         <h3>{t('viewSeed:notAvailable', { accountType: capitalize(meta.type) })}</h3>
+                        <p>{t(`viewSeed:notAvailableExplanation${capitalize(meta.type)}`)}</p>
                         {typeof meta.index === 'number' && (
-                            <p>
-                                {t('viewSeed:accountIndex')}: <strong>{meta.index}</strong>
-                            </p>
+                            <Fragment>
+                                <hr />
+                                <p>
+                                    {t('viewSeed:accountIndex')}: <strong>{meta.index}</strong>
+                                </p>
+                            </Fragment>
                         )}
                         {typeof meta.page === 'number' &&
                             meta.page > 0 && (
-                                <p>
-                                    {t('viewSeed:accountPage')}: <strong>{meta.page}</strong>
-                                </p>
+                                <Fragment>
+                                    <hr />
+                                    <p>
+                                        <hr />
+                                        {t('viewSeed:accountPage')}: <strong>{meta.page}</strong>
+                                    </p>
+                                </Fragment>
                             )}
                     </article>
                 </div>

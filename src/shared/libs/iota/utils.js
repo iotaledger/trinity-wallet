@@ -10,12 +10,14 @@ import URL from 'url-parse';
 import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
 import { isNodeHealthy } from './extendedApi';
-import { NODELIST_URL } from '../../config';
+import { NODELIST_URL, MAX_REQUEST_TIMEOUT } from '../../config';
 import Errors from '../errors';
 
 export const MAX_SEED_LENGTH = 81;
 
 export const MAX_SEED_TRITS = MAX_SEED_LENGTH * 3;
+
+export const SEED_CHECKSUM_LENGTH = 3;
 
 export const ADDRESS_LENGTH_WITHOUT_CHECKSUM = MAX_SEED_LENGTH;
 
@@ -64,15 +66,29 @@ export const convertFromTrytes = (trytes) => {
 };
 
 /**
- * Gets checksum for seed
+ * Gets checksum.
  *
  * @method getChecksum
- * @param {string} seed
  *
- * @returns {string}
+ * @param {string | array} input - seed trytes | seed trits
+ * @param {number} [length]
+ *
+ * @returns {string | array}
  */
-export const getChecksum = (seed) => {
-    return iota.utils.addChecksum(seed, 3, false).substr(-3);
+export const getChecksum = (
+    input,
+    // Trinity trytes to trits conversion creates Int8Array
+    length = isArray(input) || input instanceof Int8Array ? SEED_CHECKSUM_LENGTH * 3 : SEED_CHECKSUM_LENGTH,
+) => {
+    return iota.utils
+        .addChecksum(
+            // https://github.com/iotaledger/iota.js/blob/develop/lib/utils/utils.js#L64
+            // iota.lib.js throws an exception for typed arrays
+            input instanceof Int8Array ? Array.from(input) : input,
+            length,
+            false,
+        )
+        .slice(-length);
 };
 
 /**
@@ -147,6 +163,34 @@ export const formatUnit = (value) => {
             return 'Gi';
         default:
             return 'Ti';
+    }
+};
+
+/**
+ * Converts iota value-unit string to int value
+ *
+ * @method unitStringToValue
+ * @param {string}
+ *
+ * @returns {number}
+ */
+export const unitStringToValue = (str) => {
+    const value = parseInt(str);
+    const unit = str.substr(value.toString().length).toLowerCase();
+
+    switch (unit) {
+        case 'ki':
+            return value * 1000;
+        case 'mi':
+            return value * 1000000;
+        case 'gi':
+            return value * 1000000000;
+        case 'ti':
+            return value * 1000000000000;
+        case 'pi':
+            return value * 1000000000000000;
+        default:
+            return value;
     }
 };
 
@@ -315,6 +359,7 @@ export const parseAddress = (input) => {
  * Retry IOTA api calls on different nodes
  *
  * @method withRetriesOnDifferentNodes
+ *
  * @param {array} nodes
  * @param {array|function} [failureCallbacks]
  *
@@ -424,4 +469,39 @@ export const throwIfNodeNotHealthy = (provider) => {
 
         return isSynced;
     });
+};
+
+/**
+ * Handles timeouts for network requests made to IRI nodes
+ * Catches "request timeout" exceptions and retries network request with increased timeout
+ * See (https://github.com/iotaledger/iota.js/blob/master/lib/utils/makeRequest.js#L115)
+ *
+ * @method withRequestTimeoutsHandler
+ *
+ * @param {number} timeout
+ *
+ * @returns {function}
+ */
+export const withRequestTimeoutsHandler = (timeout) => {
+    let attempt = 1;
+
+    const getNextTimeout = () => attempt * timeout;
+
+    const handleTimeout = (promiseFunc) => {
+        return promiseFunc(getNextTimeout()).catch((error) => {
+            attempt += 1;
+
+            if (
+                (includes(error.message, Errors.REQUEST_TIMED_OUT) ||
+                    includes(error.message, Errors.REQUEST_TIMED_OUT.toLowerCase())) &&
+                getNextTimeout() < MAX_REQUEST_TIMEOUT
+            ) {
+                return handleTimeout(promiseFunc);
+            }
+
+            throw error;
+        });
+    };
+
+    return handleTimeout;
 };

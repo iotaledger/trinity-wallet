@@ -9,6 +9,7 @@ import argon2 from 'argon2';
 import machineUuid from 'machine-uuid-sync';
 import { byteToTrit, byteToChar } from 'libs/iota/converter';
 import { removeNonAlphaNumeric } from 'libs/utils';
+import { moment } from 'libs/exports';
 
 import kdbx from '../kdbx';
 import Entangled from '../Entangled';
@@ -432,18 +433,13 @@ const Electron = {
     exportSeeds: async (seeds, password) => {
         try {
             const content = await kdbx.exportVault(seeds, password);
-            const now = new Date();
             let prefix = 'SeedVault';
             if (seeds.length === 1) {
                 prefix = removeNonAlphaNumeric(seeds[0].title, 'SeedVault').trim();
             }
             const path = await remote.dialog.showSaveDialog(remote.getCurrentWindow(), {
                 title: 'Export keyfile',
-                defaultPath: `${prefix}-${now
-                    .toISOString()
-                    .slice(0, 16)
-                    .replace(/[-:]/g, '')
-                    .replace('T', '-')}.kdbx`,
+                defaultPath: `${prefix}-${moment().format('YYYYMMDD-HHmm')}.kdbx`,
                 buttonLabel: 'Export',
                 filters: [{ name: 'SeedVault File', extensions: ['kdbx'] }],
             });
@@ -469,6 +465,15 @@ const Electron = {
     importSeed: async (buffer, password) => {
         const seeds = await kdbx.importVault(buffer, password);
         return seeds;
+    },
+
+    /**
+     * Check if buffer is a valid SeedVault file
+     * @param {buffer} buffer - SeedVault file content
+     * @returns {boolean}
+     */
+    validateVault: (buffer) => {
+        return kdbx.checkFormat(buffer);
     },
 
     /**
@@ -534,7 +539,6 @@ const Electron = {
             node: t('node'),
             currency: t('settings:currency'),
             theme: t('settings:theme'),
-            twoFA: t('settings:twoFA'),
             changePassword: t('settings:changePassword'),
             advanced: t('settings:advanced'),
             hide: t('settings:hide'),
