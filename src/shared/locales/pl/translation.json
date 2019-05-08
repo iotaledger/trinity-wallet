@@ -336,14 +336,14 @@
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to.",
         "enterSeedBelow": "Wprowadź swój nowy klucz seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię",
         "clipboardWarning": "OSTRZEŻENIE: Nie można wkleić klucza seed",
-        "clipboardWarningExplanation": "Możliwość wklejania, jest wyłączona dla Twojego bezpieczeństwa. Zamiast tego, możesz przeciągnąć i upuścić Twój seed, z pliku tekstowego."
+        "clipboardWarningExplanation": "Możliwość wklejania jest wyłączona dla Twojego bezpieczeństwa. Zamiast tego, możesz przeciągnąć i upuścić Twój seed z pliku tekstowego."
     },
     "send": {
         "invalidAddress": "Błędny adres",
         "invalidAddressExplanation1": "Adres powinien składać się z {{maxLength}} znaków i posiadać sumę kontrolną.",
         "invalidAddressExplanation2": "Adres zawiera nieprawidłowe znaki.",
         "invalidAddressExplanation3": "Adres zawiera nieprawidłową sumę kontrolną.",
-        "invalidAddressExplanation4": "Sprawdź czy wprowadziłeś adres poprawnie.",
+        "invalidAddressExplanation4": "Sprawdź, czy wprowadziłeś adres poprawnie.",
         "invalidAddressExplanationGeneric": "Poprawny adres powinien składać się z 90 znaków i zawierać wielkie litery A-Z oraz cyfry 9.",
         "notEnoughFunds": "Brak wystarczających środków",
         "notEnoughFundsExplanation": "Nie masz wystarczających środków IOTA, aby wykonać ten transfer.",
