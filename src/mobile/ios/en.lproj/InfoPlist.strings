@@ -1,0 +1,5 @@
+NSHumanReadableCopyright = "2019 IOTA Foundation. All rights reserved.";
+NSCameraUsageDescription = "Trinity requires access to the camera in order to enable QR scanning.";
+NSFaceIDUsageDescription = "Trinity requires access to Face ID in order to enable biometric authentication.";
+NSPhotoLibraryAddUsageDescription = "Trinity requires access to your photo library in order to save QR codes to the camera roll.";
+NSMicrophoneUsageDescription = "Trinity requires access to your microphone for camera functionality.";

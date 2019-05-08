@@ -39,6 +39,7 @@
 		6079C42420D95F18006B252E /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6079C42320D95F17006B252E /* Empty.swift */; };
 		608CB5E822457FA400A521AC /* EntangledKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 608CB5E722457FA400A521AC /* EntangledKit.framework */; };
 		608E448A221B228A005CCFB1 /* EntangledIOSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 608E4489221B228A005CCFB1 /* EntangledIOSUtils.m */; };
+		6094A0592282576D00927785 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6094A05B2282576D00927785 /* InfoPlist.strings */; };
 		60F7E4242125EBE7005355C7 /* libRNDocumentPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7E3B32125EAE7005355C7 /* libRNDocumentPicker.a */; };
 		653C5DB7CF56434CA39B6922 /* libRNNodeJsMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8482B7D9E05463F9505DCB4 /* libRNNodeJsMobile.a */; };
 		6ED5CBEF7B1A39258C560F6CDCD36254 /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F418B6A7C158123D272588757B8B5E /* libKCKeepAwake.a */; };
@@ -735,6 +736,7 @@
 		608CB5E722457FA400A521AC /* EntangledKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EntangledKit.framework; sourceTree = "<group>"; };
 		608E4489221B228A005CCFB1 /* EntangledIOSUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntangledIOSUtils.m; sourceTree = "<group>"; };
 		608E44D6221B229A005CCFB1 /* EntangledIOSUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntangledIOSUtils.h; sourceTree = "<group>"; };
+		6094A05A2282576D00927785 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		60F7E3AE2125EAE7005355C7 /* RNDocumentPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDocumentPicker.xcodeproj; path = "../node_modules/react-native-document-picker/ios/RNDocumentPicker.xcodeproj"; sourceTree = "<group>"; };
 		679A4B0BB6333961124F2288316630DD /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		67EDAC9474CCB127E47DDAA9D0A40C1A /* buildnumber.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = buildnumber.xcconfig; sourceTree = "<group>"; };
@@ -953,6 +955,7 @@
 				3AFCA4EA113044613D95E46BDAC0C1E3 /* AppDelegate.m */,
 				CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */,
 				EEAE9D5C606B7556253D3AD01EB78CE0 /* Info.plist */,
+				6094A05B2282576D00927785 /* InfoPlist.strings */,
 				6EB779EC5853FB7A3F49999F69549ACA /* Launch Screen.storyboard */,
 				3ED8B034A474AECCC552AF72B1AE4884 /* iotaWallet.entitlements */,
 				1E03CB0A809B5BED4BE0DCAF8776D770 /* main.jsbundle */,
@@ -2442,6 +2445,7 @@
 				CB98FB9420A0A5BB0047877B /* SourceSansPro-Bold.ttf in Resources */,
 				CB98FB9520A0A5BB0047877B /* SourceSansPro-Regular.ttf in Resources */,
 				F47E436883524D18AB563054 /* nodejs-project in Resources */,
+				6094A0592282576D00927785 /* InfoPlist.strings in Resources */,
 				D07D1D9D21444F2D88F12F73 /* builtin_modules in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2698,6 +2702,17 @@
 			targetProxy = CBDE11BD21AEFFFE00CA1909 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6094A05B2282576D00927785 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6094A05A2282576D00927785 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2E5397219FE6BFB92B66674C2DE598F9 /* Release */ = {
