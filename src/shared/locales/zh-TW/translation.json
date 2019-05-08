@@ -19,7 +19,7 @@
         "invalidResponse": "節點錯誤",
         "invalidResponseExplanation": "節點回傳錯誤，請嘗試更換節點。",
         "invalidResponseFetchingAccount": "節點在取得您的帳戶訊息時點回傳錯誤，請嘗試更換節點。",
-        "invalidResponseFetchingAccountDesktop": "該節點在取得帳號資訊時回傳了錯誤訊息。如果這個這個問題持續發生，請嘗試更換節點或是將 Trinity 中的系統代理停用.",
+        "invalidResponseFetchingAccountDesktop": "該節點在取得帳號資訊時回傳了錯誤訊息。如果這個這個問題持續發生，請嘗試更換節點或是將 Trinity 中的系統代理停用。",
         "nodeOutOfSync": "節點失去同步",
         "nodeOutOfSyncExplanation": "您目前所選的節點並不同步，請變更節點或再試一次。",
         "experimentalNode": "不支持的 Node 版本",
@@ -150,7 +150,7 @@
         "tryingAgainWithLocalPoW": "請改為本地端工作量證明再試一次。",
         "tryingAgainWithDifferentNode": "請使用不同節點再試一次。",
         "errorFetchingAccountInformation": "取得帳戶資訊時發生錯誤。",
-        "errorSyncingAddresses": "同步地址資訊時發生錯誤. 請更換節點並再次嘗試.",
+        "errorSyncingAddresses": "同步地址資訊時發生錯誤。請更換節點並再次嘗試。",
         "errorAccessingKeychain": "鑰匙串錯誤",
         "errorAccessingKeychainExplanation": "無法訪問安全儲存所需的鑰匙串。",
         "mainWallet": "主帳戶",
@@ -159,10 +159,10 @@
         "shouldUpdate": "有可用的更新",
         "shouldUpdateExplanation": "有可用的更新，建議你更新到最新的版本。",
         "forceUpdate": "請更新應用程式並繼續",
-        "forceUpdateExplanation": "有重大版本更新. 請立即更新 Trinity 錢包.",
+        "forceUpdateExplanation": "有重大的版本更新。請立即更新 Trinity 錢包。",
         "missingPermission": "需要檔案系統權限",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
-        "swipeToConfirm": "Swipe to confirm"
+        "missingPermissionExplanation": "這個功能必須擁有訪問檔案系統的權限。",
+        "swipeToConfirm": "滑動來確認。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -216,7 +216,7 @@
         "passwordTooShortExplanation": "您的密碼必須至少為 {{minLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
         "passwordMismatch": "密碼不符",
         "passwordMismatchExplanation": "您輸入的密碼不符，請再試一次。",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "這是您的主錢包密碼。您將會使用它用以登入。",
         "retypePassword": "重新輸入密碼"
     },
     "copyToClipboard": {
