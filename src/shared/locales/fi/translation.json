@@ -757,16 +757,16 @@
         "trayApplication": "Ilmaisinalueen kuvake",
         "trayExplanation": "Tarjoaa yhteenvedon tilisi saldoista ja viimeaikaisesta transaktiohistoriasta.",
         "notLoggedIn": "Et ole kirjautunut sisään",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "setupIncomplete": "Lompakon määrittäminen on kesken",
+        "completeSetup": "Päätä määrittäminen"
     },
     "proxy": {
         "proxy": "Käytä järjestelmän proxy-asetuksia",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxyExplanation": "Tunnista ja käytä järjestelmän välityspalvelinasetuksia. Sulje lompakko ja avaa se uudelleen tämän asetuksen muuttamisen jälkeen."
     },
     "notifications": {
         "notifications": "Ilmoitukset",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "notificationExplanation": "Vastaanota järjestelmänlaajuisia ilmoituksia uusista tapahtumista.",
         "typeConfirmations": "Ilmoita minulle vahvistuksista",
         "typeMessages": "Ilmoita arvottomista siirroista",
         "multipleTx": "Receiving multiple transactions to {{account}}",
