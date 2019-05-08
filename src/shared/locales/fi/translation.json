@@ -654,12 +654,12 @@
         "seedFileErrorExplanation": "SeedVault-tiedoston avaamisessa ilmeni ongelmia. Varmista että sinulla on oikea tiedosto, eikä se ole korruptoitunut.",
         "invalidSeedFileError": "Ei kelvollinen SeedVault tiedosto",
         "invalidSeedFileErrorExplanation": "Tämä tiedostomuoto ei ole tuettu. Ainoastaan Trinityllä tai salasananhallintasovelluksella luodut SeedVault-tiedostot (.kbdx) ovat tuettuja.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "Ensin meidän täytyy suojata sinun SeedVaultisi. Ole hyvä ja valitse avain, jolla tiedosto salataan. Käytät tätä avainta, jos sinun täytyy palauttaa Seed-luku SeedVault-varmuuskopiosta.",
         "retypeKey": "Kirjoita avain uudelleen",
         "key": "Avain"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "stateExportExplanation": "Tilan vienti tallentaa laitteellesi txt-tiedoston, joka sisältää tilisi (transaktiot, osoitteet) tiedot, lompakkoversion ja tallennustiedostojen nimet.",
         "exportSuccess": "Tila viety",
         "exportSuccessExplanation": "Your state file was exported successfully."
     },
