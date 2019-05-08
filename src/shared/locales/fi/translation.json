@@ -125,7 +125,7 @@
         "touchSensor": "Kosketa sormenjälkitunnistinta",
         "fingerprintOnSend": "Jos hyväksyt siirron kosketa sormenjälkilukijaa",
         "masterKey": "Seed-luku on varojesi pääavain ja näinollen erityisin tärkeä.",
-        "seedThief": "Jos seed-lukusi päätyy muiden haltuun, IOTA: si voidaan varastaa.",
+        "seedThief": "Jos seed-lukusi päätyy muiden haltuun, IOTA:si voidaan varastaa.",
         "googlePlayServicesNotAvailable": "Google Play Services ei ole käytettävissä",
         "couldNotVerifyDeviceIntegrity": "Laitteen tietoturvaa ei voida varmistaa koska Google palveluihin ei saada yhteyttä.",
         "clear": "Tyhjennä",
@@ -722,7 +722,7 @@
     "deepLink": {
         "autofill": "Tiedot haettu onnistuneesti",
         "autofillExplanation": "Siirron tilitiedot noudettu automaattisesti linkin kautta.",
-        "deepLinkingOverview": "Deep linkit ovat klikattavia linkkejä (iota://...), jotka täyttävät automaattisesti transaktion tiedot Trinityssä.",
+        "deepLinkingOverview": "Deep linkit ovat klikattavia linkkejä (iota://...), jotka täyttävät automaattisesti siirron tiedot Trinityssä.",
         "deepLinkingWarning": "Varo phishing-huijauksia. Varmista, että avattava linkki siirtyy viralliseen Trinity-sovellukseen.",
         "deepLinkingUpdated": "Deep link asetukset",
         "deepLinkingEnabled": "Olet ottanut deep linkit käyttöön.",
