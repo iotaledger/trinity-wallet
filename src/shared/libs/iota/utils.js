@@ -464,7 +464,7 @@ export const getRandomNodes = (nodes, size = 5, blacklisted = []) => {
 export const throwIfNodeNotHealthy = (provider) => {
     return isNodeHealthy(provider).then((isSynced) => {
         if (!isSynced) {
-            throw new Error(Errors.NODE_NOT_SYNCED);
+            throw new Error(Errors.NODE_NOT_SYNCED_BY_TIMESTAMP);
         }
 
         return isSynced;

@@ -415,6 +415,8 @@ export const getFullAccountInfo = (seedStore, accountName, withQuorum = false) =
                 const dispatchErrors = () => {
                     if (err.message === Errors.NODE_NOT_SYNCED) {
                         dispatch(generateNodeOutOfSyncErrorAlert());
+                    } else if (err.message === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
+                        dispatch(generateNodeOutOfSyncErrorAlert(true));
                     } else if (err.message === Errors.UNSUPPORTED_NODE) {
                         dispatch(generateUnsupportedNodeErrorAlert());
                     } else {
@@ -513,6 +515,8 @@ export const getAccountInfo = (seedStore, accountName, notificationFn, withQuoru
                     dispatch(generateLedgerCancelledAlert());
                 } else if (err.message === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert());
+                } else if (err.message === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(true));
                 } else if (err.message === Errors.UNSUPPORTED_NODE) {
                     dispatch(generateUnsupportedNodeErrorAlert());
                 } else {

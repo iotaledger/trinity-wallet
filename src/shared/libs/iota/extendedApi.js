@@ -617,7 +617,6 @@ const isNodeHealthy = (provider) => {
                 if (['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1)) {
                     throw new Error(Errors.UNSUPPORTED_NODE);
                 }
-
                 cached.latestMilestone = latestMilestone;
                 if (
                     (cached.latestMilestone === latestSolidSubtangleMilestone ||
