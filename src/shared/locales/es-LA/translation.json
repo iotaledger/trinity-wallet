@@ -725,8 +725,8 @@
         "deepLinkingOverview": "Los deep links son links clickeables (iota://...) que completan automáticamente la información de transacción en Trinity.",
         "deepLinkingWarning": "Tenga cuidado con el phishing. Asegúrese de que el link conduzca a la app oficial de Trinity.",
         "deepLinkingUpdated": "Configuración de deep linking",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingEnabled": "Has activado deep linking.",
+        "deepLinkingDisabled": "Has desactivado deep linking.",
         "deepLinkingInfoTitle": "Deep linking is not enabled",
         "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
