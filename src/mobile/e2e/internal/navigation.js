@@ -21,3 +21,7 @@ export const navigateToWalletSetup = async () => {
 export const navigateToNewSeedSetup = async () => {
     await element(by.id('walletSetup-yes')).tap();
 };
+
+export const navigateToEnterSeed = async () => {
+    await element(by.id('walletSetup-no')).tap();
+};
