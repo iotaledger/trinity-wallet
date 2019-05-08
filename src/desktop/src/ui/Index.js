@@ -213,10 +213,9 @@ class App extends React.Component {
     async versionCheck() {
         const data = await fetchVersions();
         const versionId = Electron.getVersion();
-
         if (data.desktopBlacklist && data.desktopBlacklist.includes(versionId)) {
             this.props.forceUpdate();
-        } else if (data.latestDesktop && versionId !== data.latestDesktop) {
+        } else if (data.latestDesktop && versionId !== data.latestDesktop && !versionId.contains('RC')) {
             this.props.shouldUpdate();
         }
     }
