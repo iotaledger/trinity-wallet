@@ -343,7 +343,7 @@
         "invalidAddressExplanation1": "地址應該為 {{maxLength}} 個字元且應有一個檢查碼。",
         "invalidAddressExplanation2": "地址包含無效的字元。",
         "invalidAddressExplanation3": "地址包含一個無效檢查碼。",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "請檢查您輸入的地址是否正確？",
         "invalidAddressExplanationGeneric": "有效地址應為 90 個字元而且僅包含 A-Z 或 9。",
         "notEnoughFunds": "餘額不足",
         "notEnoughFundsExplanation": "您沒有足夠的 IOTA 完成本次交易。",
@@ -365,7 +365,7 @@
         "addressPasteDetected": "檢測到地址貼上",
         "addressPasteExplanation": "看起來您已貼上地址，請確認貼上的地址與您想送出去的相符。",
         "invalid": "無效",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "滑動來發送"
     },
     "setSeedName": {
         "letsAddName": "請輸入名稱",
@@ -392,10 +392,10 @@
         "accountManagement": "帳戶管理",
         "addNewSeed": "增加新的種子碼",
         "changePassword": "修改密碼",
-        "general": "General settings",
+        "general": "一般設定",
         "advanced": "進階設定",
-        "nodeSettings": "Node settings",
-        "account": "Account settings",
+        "nodeSettings": "節點設定",
+        "account": "帳號設定",
         "logout": "登出",
         "reset": "重設錢包",
         "syncingComplete": "同步完成",
@@ -457,7 +457,7 @@
     "history": {
         "bundleHashCopied": "交易組雜湊值已複製",
         "noTransactionsFound": "找不到交易紀錄",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "您沒有任何交易紀錄",
         "hideZeroBalance": "隱藏零元紀錄",
         "bundleHashCopiedExplanation": "交易組的雜湊值已複製到剪貼簿。",
         "addressCopied": "地址已複製",
