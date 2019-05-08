@@ -336,7 +336,7 @@
         "ifYouHaveNotSaved": "假如你尚未儲存您的種子碼，請返回並儲存。",
         "enterSeedBelow": "請在下面輸入您剛產生的種子碼來確認您已經妥善備份了",
         "clipboardWarning": "警告：您無法貼上種子碼。",
-        "clipboardWarningExplanation": "為了您的錢包安全，貼上功能已被停用。您可以將種子碼從文字檔案中拖曳至此。"
+        "clipboardWarningExplanation": "為了您的錢包安全，貼上功能已被停用。您可以將種子碼改從文字檔案中拖曳至此。"
     },
     "send": {
         "invalidAddress": "地址無效",
@@ -470,9 +470,9 @@
         "retrying": "重試中",
         "yesterday": "昨日",
         "promotingAnotherBundle": "正在促進另一組交易中",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
+        "pleaseWait": "請稍候，Trinit 錢包正在促進其他交易捆。",
+        "typeHelp": "輸入 !help 來查看可用的指令",
+        "searchHelpText": "使用交易捆的雜湊值或是訊息內容來搜尋",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "Find transactions with a value greater than X",
