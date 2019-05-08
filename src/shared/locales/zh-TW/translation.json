@@ -250,8 +250,8 @@
         "login": "登入",
         "setNode": "設置節點",
         "whyBiometricDisabled": "為何生物識別驗證是停用的？",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "為了您的錢包安全，首次載入錢包時，生物辨識技術將會被停用。",
+        "whyBiometricDisabledExplanationPart2": "Trinity 錢包會在閒置時將您登出，您可以使用生物辨識技術再次登入。"
     },
     "loading": {
         "loadingFirstTime": "首次讀取種子碼。",
@@ -280,18 +280,18 @@
     "paperWallet": {
         "neverShare": "千萬別和任何人分享您的種子碼。",
         "iotaLogo": "IOTA 標誌",
-        "print": "Print",
+        "print": "列印",
         "paperConvenience": "將您的種子碼列列印成紙本是最簡便的儲存方式。",
         "publicInsecure": "但請注意使用公共 wifi 或公共印表機列印的話可能會不安全。",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "請在列印前再次檢查以及確認。",
+        "wifiConfirmation": "我沒有使用公共的 WIFI。",
+        "printerConfirmation": "我不會使用公共的印表機來列印。"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "您會想要列印一個空白的模板嗎？",
+        "printTemplateInfo": "您可以列印一個空白的模板，幫助自己記錄下種子碼。",
+        "printTemplateWarning": "請確認您將種子碼儲存在一個安全的地方，並且切勿向他人洩露。",
+        "print": "是的，列印。"
     },
     "receive": {
         "yourAddress": "您的地址",
@@ -300,11 +300,11 @@
         "copyAddress": "複製地址",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "產生新地址。",
         "noAddresses": "無地址",
         "spent": "已支出",
         "tag": "標籤",
-        "generateAnAddress": "Generate address",
+        "generateAnAddress": "產生新地址。",
         "generateAnAddressTitle": "Generate an address",
         "generateAnAddressExplanation": "Please generate an address before using this function.",
         "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
