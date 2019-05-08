@@ -27,7 +27,7 @@ export default class Header extends PureComponent {
         /* Text color for heading */
         textColor: PropTypes.string.isRequired,
         /* Heading text content */
-        children: PropTypes.string.isRequired,
+        children: PropTypes.string,
         /** Id for automated screenshots */
         testID: PropTypes.string,
     };
