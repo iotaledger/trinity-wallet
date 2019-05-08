@@ -307,7 +307,7 @@
         "generateAnAddress": "產生新地址",
         "generateAnAddressTitle": "產生新地址",
         "generateAnAddressExplanation": "請在使用此功能前產生一個新的地址。",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "每次接收 IOTA 時都要產生一個新的收款地址。"
     },
     "saveYourSeed": {
         "saveYourSeed": "備份您的種子碼",
@@ -321,7 +321,7 @@
         "letsWriteDownYourSeed": "請寫下您的種子碼",
         "youCanHighlightCharacters": "您可以一次顯示 9 個字元",
         "printBlankWallet": "印出空白錢包",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "什麼是檢查碼？",
         "everySeedHasAChecksum": "每個種子碼會有相對應 3 字元的檢查碼.",
         "iHavesavedMySeed": "我已儲存我的種子碼",
         "checksumExplanation": "每當您新增種子碼到錢包時，請確認錢包顯示的檢查碼和您當時寫下的相符。",
@@ -329,14 +329,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "請確認您的種子碼",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity 錢包絕不會要求您重新輸入種子碼，除非您重置了錢包或是移除了錢包。",
         "enterYourSeed": "輸入您的種子碼",
         "incorrectSeed": "錯誤種子",
         "incorrectSeedExplanation": "您輸入的種子碼錯誤，請再試一次。",
         "ifYouHaveNotSaved": "假如你尚未儲存您的種子碼，請返回並儲存。",
         "enterSeedBelow": "請在下面輸入您剛產生的種子碼來確認您已經妥善備份了",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "警告：您無法貼上種子碼。",
+        "clipboardWarningExplanation": "為了您的錢包安全，貼上功能已被停用。您可以將種子碼從文字檔案中拖曳至此。"
     },
     "send": {
         "invalidAddress": "地址無效",
