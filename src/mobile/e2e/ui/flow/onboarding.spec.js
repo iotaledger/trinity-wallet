@@ -40,6 +40,5 @@ describe('Onboarding process', () => {
 
         // Complete onboarding
         await element(by.id('setPassword-done')).tap();
-        //await element(by.id('onboardingComplete-done')).tap();
     });
 });

@@ -83,7 +83,6 @@ export class Dropdown extends Component {
         saveSelection: () => {},
         title: '',
         dropdownWidth: { width: isIPhoneX ? width / 1.3 : width / 1.5 },
-        testID: '',
     };
 
     constructor(props) {
