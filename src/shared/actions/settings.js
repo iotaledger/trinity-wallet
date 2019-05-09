@@ -537,9 +537,9 @@ export function setFullNode(node, addingCustomNode = false) {
                 dispatch(dispatcher.error());
 
                 if (err.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateNodeOutOfSyncErrorAlert());
+                    dispatch(generateNodeOutOfSyncErrorAlert(err));
                 } else if (err.message === Errors.UNSUPPORTED_NODE) {
-                    dispatch(generateUnsupportedNodeErrorAlert());
+                    dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
                     dispatch(dispatcher.alerts.defaultError(err));
                 }

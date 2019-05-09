@@ -97,9 +97,15 @@ export const generateNodeOutOfSyncErrorAlert = () => (dispatch) => {
  *
  * @returns {function} dispatch
  */
-export const generateUnsupportedNodeErrorAlert = () => (dispatch) => {
+export const generateUnsupportedNodeErrorAlert = (err) => (dispatch) => {
     dispatch(
-        generateAlert('error', i18next.t('global:experimentalNode'), i18next.t('global:experimentalNodeExplanation')),
+        generateAlert(
+            'error',
+            i18next.t('global:experimentalNode'),
+            i18next.t('global:experimentalNodeExplanation'),
+            10000,
+            err,
+        ),
     );
 };
 
@@ -119,6 +125,7 @@ export const generateTransitionErrorAlert = (err) => (dispatch) => {
                 i18next.t('global:attachToTangleUnavailable'),
                 i18next.t('global:attachToTangleUnavailableExplanation'),
                 10000,
+                err,
             ),
         );
     } else if (err.message.includes(Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE)) {
@@ -128,6 +135,7 @@ export const generateTransitionErrorAlert = (err) => (dispatch) => {
                 i18next.t('snapshotTransition:cannotCompleteTransition'),
                 i18next.t('snapshotTransition:cannotCompleteTransitionExplanation'),
                 10000,
+                err,
             ),
         );
     } else {
@@ -137,10 +145,10 @@ export const generateTransitionErrorAlert = (err) => (dispatch) => {
                 i18next.t('snapshotTransition:cannotCompleteTransition'),
                 i18next.t('snapshotTransition:somethingWentWrongTryAgain'),
                 10000,
+                err,
             ),
         );
     }
-    dispatch(prepareLogUpdate(err));
 };
 
 /**
@@ -183,9 +191,14 @@ export const generateAccountDeletedAlert = () => (dispatch) =>
  */
 export const generateSyncingErrorAlert = (err) => (dispatch) => {
     dispatch(
-        generateAlert('error', i18next.t('settings:invalidResponse'), i18next.t('settings:invalidResponseExplanation')),
+        generateAlert(
+            'error',
+            i18next.t('settings:invalidResponse'),
+            i18next.t('settings:invalidResponseExplanation'),
+            20000,
+            err,
+        ),
     );
-    dispatch(prepareLogUpdate(err));
 };
 
 /**
@@ -221,7 +234,7 @@ export const generatePromotionErrorAlert = (error) => (dispatch) =>
             'error',
             i18next.t('global:promotionError'),
             i18next.t('global:promotionErrorExplanation'),
-            20000,
+            undefined,
             error,
         ),
     );
@@ -283,23 +296,35 @@ export const generateTransactionSuccessAlert = (isZeroValue = false) => (dispatc
  *
  * @returns {function} dispatch
  */
-export const generateLedgerCancelledAlert = () => (dispatch) => {
+export const generateLedgerCancelledAlert = (err) => (dispatch) => {
     dispatch(
-        generateAlert('error', i18next.t('ledger:actionCancelled'), i18next.t('ledger:actionCancelledExplanation')),
+        generateAlert(
+            'error',
+            i18next.t('ledger:actionCancelled'),
+            i18next.t('ledger:actionCancelledExplanation'),
+            10000,
+            err,
+        ),
     );
 };
 
 /**
- * Generates an error for user cancelled Ledger request
+ * Generates an error for incorrect ledger
  *
- * @method generateLedgerCancelledAlert
+ * @method generateLedgerIncorrectIndexAlert
  * @param {object} err
  *
  * @returns {function} dispatch
  */
-export const generateLedgerIncorrectIndexAlert = () => (dispatch) => {
+export const generateLedgerIncorrectIndexAlert = (err) => (dispatch) => {
     dispatch(
-        generateAlert('error', i18next.t('ledger:ledgerIncorrectIndex'), i18next.t('ledger:ledgerIncorrectIndexExplanation')),
+        generateAlert(
+            'error',
+            i18next.t('ledger:ledgerIncorrectIndex'),
+            i18next.t('ledger:ledgerIncorrectIndexExplanation'),
+            15000,
+            err,
+        ),
     );
 };
 

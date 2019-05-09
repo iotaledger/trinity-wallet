@@ -333,13 +333,14 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
                 dispatch(updateAddressData(accountName, result));
                 dispatch(generateNewAddressSuccess());
             })
-            .catch(() => {
+            .catch((err) => {
                 dispatch(
                     generateAlert(
                         'error',
                         i18next.t('global:somethingWentWrong'),
                         i18next.t('global:somethingWentWrongTryAgain'),
                         10000,
+                        err,
                     ),
                 );
                 dispatch(generateNewAddressError());
@@ -473,13 +474,13 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, wi
 
                 dispatch(resetProgress());
             })
-            .catch((error) => {
-                if (error.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateNodeOutOfSyncErrorAlert());
-                } else if (error.message === Errors.UNSUPPORTED_NODE) {
-                    dispatch(generateUnsupportedNodeErrorAlert());
+            .catch((err) => {
+                if (err.message === Errors.NODE_NOT_SYNCED) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err));
+                } else if (err.message === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
-                    dispatch(generateTransitionErrorAlert(error));
+                    dispatch(generateTransitionErrorAlert(err));
                 }
 
                 dispatch(snapshotTransitionError());

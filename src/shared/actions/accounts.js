@@ -21,7 +21,7 @@ import {
     generateUnsupportedNodeErrorAlert,
     generateAccountSyncRetryAlert,
     generateLedgerCancelledAlert,
-    generateLedgerIncorrectIndexAlert
+    generateLedgerIncorrectIndexAlert,
 } from '../actions/alerts';
 import { changeNode } from '../actions/settings';
 import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
@@ -415,9 +415,9 @@ export const getFullAccountInfo = (seedStore, accountName, withQuorum = false) =
             .catch((err) => {
                 const dispatchErrors = () => {
                     if (err.message === Errors.NODE_NOT_SYNCED) {
-                        dispatch(generateNodeOutOfSyncErrorAlert());
+                        dispatch(generateNodeOutOfSyncErrorAlert(err));
                     } else if (err.message === Errors.UNSUPPORTED_NODE) {
-                        dispatch(generateUnsupportedNodeErrorAlert());
+                        dispatch(generateUnsupportedNodeErrorAlert(err));
                     } else {
                         dispatch(generateAccountInfoErrorAlert(err));
                     }
@@ -464,11 +464,11 @@ export const manuallySyncAccount = (seedStore, accountName, withQuorum = false) 
             })
             .catch((err) => {
                 if (err.message === Errors.LEDGER_CANCELLED) {
-                    dispatch(generateLedgerCancelledAlert());
+                    dispatch(generateLedgerCancelledAlert(err));
                 } else if (err.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateNodeOutOfSyncErrorAlert());
+                    dispatch(generateNodeOutOfSyncErrorAlert(err));
                 } else if (err.message === Errors.UNSUPPORTED_NODE) {
-                    dispatch(generateUnsupportedNodeErrorAlert());
+                    dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
                     dispatch(generateSyncingErrorAlert(err));
                 }
@@ -511,13 +511,13 @@ export const getAccountInfo = (seedStore, accountName, notificationFn, withQuoru
             })
             .catch((err) => {
                 if (err.message === Errors.LEDGER_CANCELLED) {
-                    dispatch(generateLedgerCancelledAlert());
+                    dispatch(generateLedgerCancelledAlert(err));
                 } else if (err.message === Errors.LEDGER_INVALID_INDEX) {
-                    dispatch(generateLedgerIncorrectIndexAlert());
+                    dispatch(generateLedgerIncorrectIndexAlert(err));
                 } else if (err.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateNodeOutOfSyncErrorAlert());
+                    dispatch(generateNodeOutOfSyncErrorAlert(err));
                 } else if (err.message === Errors.UNSUPPORTED_NODE) {
-                    dispatch(generateUnsupportedNodeErrorAlert());
+                    dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
                     setTimeout(() => dispatch(generateAccountInfoErrorAlert(err)), 500);
                 }
