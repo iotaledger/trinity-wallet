@@ -624,10 +624,10 @@
     "transferConfirmation": {
         "youAreAbout": "आप पते पर {{contents}} भेजने वाले है",
         "aMessage": "संदेश",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "{{selectedAccountName}} से",
+        "toAddress": "पते पर",
+        "sendingAMessage": "संदेश भेज रहे है",
+        "sendingAnEmptyMessage": "खाली संदेश भेज रहे है"
     },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
@@ -747,7 +747,7 @@
     "terms": {
         "termsAndConditions": "नियम एवं शर्तें",
         "accept": "मैं स्वीकार करता हूं",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "कृपया पूरा पाठ पढ़ें"
     },
     "privacyPolicy": {
         "privacyPolicy": "गोपनीयता नीति",
@@ -761,7 +761,7 @@
         "completeSetup": "पूर्ण सेटअप"
     },
     "proxy": {
-        "proxy": "Use system proxy",
+        "proxy": "सिस्टम प्रॉक्सी का उपयोग करें",
         "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
@@ -824,9 +824,9 @@
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "applicationNotInitialised": "चेतावनी की पुष्टि नहीं हुई",
+        "applicationNotInitialisedExplanation": "अपने लेजर डिवाइस पर IOTA ऐप को फिर से खोलें, सूचनात्मक चेतावनी को स्वीकार करें और फिर से प्रयास करें।",
+        "udevError": "लेजर डिवाइस के साथ संवाद नहीं कर सका",
+        "udevErrorExplanation": "ट्रिनिटी आपके लेजर डिवाइस के साथ संवाद नहीं कर सका। कृपया इस समस्या को हल करने के लिए नीचे दिए गए URL पर जाएँ"
     }
 }
