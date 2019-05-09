@@ -148,7 +148,7 @@
         "problemSendingYourTransaction": "Pri izvajanju transakcije je prišlo do napake.",
         "problemPerformingProofOfWork": "Prišlo je do napake, pri izvajanju Proof of Work-a.",
         "tryingAgainWithLocalPoW": "Poskusite znova z lokalnim Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "tryingAgainWithDifferentNode": "Poskušanje znova, z naslednjim Node.",
         "errorFetchingAccountInformation": "Error fetching account information.",
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
