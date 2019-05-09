@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Fejl under indhentning af opdateringsdata",
         "noUpdatesAvailable": "Ingen tilgængelige opdateringer",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Ny version tilgængelig",
         "newVersionAvailableExplanation": "En ny Trinity-version er tilgængelig. Vil du opdatere nu?",
         "installUpdate": "Installér opdatering og genstart",
