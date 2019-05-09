@@ -473,7 +473,7 @@
         "pleaseWait": "Veuillez patienter, Trinity est en train de promouvoir un autre bundle.",
         "typeHelp": "Tapez !help pour les commandes disponibles",
         "searchHelpText": "Rechercher par hash ou par message",
-        "searchHelpValue": "Trouver des transactions par valeur exacte d'iota",
+        "searchHelpValue": "Trouver des transactions avec une valeur iota exacte",
         "searchHelpUnits": "Trouver des transactions par valeur et unité iota",
         "searchHelpMore": "Trouver des transactions avec une valeur supérieure à X",
         "searchHelpLess": "Trouver des transactions avec une valeur inférieure à X"
@@ -723,7 +723,7 @@
         "autofill": "Succès du remplissage automatique",
         "autofillExplanation": "Remplissage automatique des transactions depuis les liens.",
         "deepLinkingOverview": "Les liens profonds sont des liens cliquables (iota://...) qui remplissent automatiquement les données de transaction dans Trinity.",
-        "deepLinkingWarning": "Soyez conscient des arnaques de phishing. Assurez-vous que le lien que vous ouvrez navigue vers l'application officielle Trinity.",
+        "deepLinkingWarning": "Soyez conscient des arnaques de hameçonnage. Assurez-vous que le lien que vous ouvrez navigue vers l'application officielle Trinity.",
         "deepLinkingUpdated": "Paramètres des liens profonds",
         "deepLinkingEnabled": "Vous avez activé les liens profonds.",
         "deepLinkingDisabled": "Vous avez désactivé les liens profonds.",
@@ -826,7 +826,7 @@
         "checkAddressExplanation": "Vérifiez que les adresses correspondent à celles affichées sur votre Ledger.",
         "applicationNotInitialised": "Avertissements non confirmés",
         "applicationNotInitialisedExplanation": "Rouvrez l’application IOTA sur votre Ledger, acceptez l’avertissement d’information et essayez à nouveau.",
-        "udevError": "N'a pas pu communiquer avec le dispositif Ledger",
+        "udevError": "Impossible de communiquer avec le dispositif Ledger",
         "udevErrorExplanation": "Trinity n'a pas pu communiquer avec votre appareil Ledger. Veuillez visiter l'URL ci-dessous pour résoudre ce problème."
     }
 }
