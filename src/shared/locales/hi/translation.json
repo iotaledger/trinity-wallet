@@ -613,13 +613,13 @@
         "notConfigured": "Biometric authentication has not been configured in device settings",
         "buttonInstructionsDisable": "फ़िंगरप्रिंट प्रमाणीकरण को बंद करने के लिए नीचे बटन दबाएँ.",
         "buttonInstructionsEnable": "फ़िंगरप्रिंट प्रमाणीकरण को चालू करने के लिए नीचे बटन दबाएँ.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "चेहरा आईडी को निष्क्रिय करने के लिए नीचे बटन दबाएँ.",
+        "buttonInstructionsEnableIPhoneX": "चेहरा आईडी सक्रीय करने के लिए नीचे दिए गए बटन दबाएँ.",
         "instructionsLogin": "लॉग इन करने के लिए फ़िंगरप्रिंट रीडर स्पर्श करें ।",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "प्रमाणीकरण आपके डिवाइस द्वारा रद्द कर दिया गया था",
+        "userCancelledAuth": "प्रमाणीकरण अनुरोध रद्द",
+        "passwordFallback": "पासवर्ड प्रमाणीकरण वापस करें",
+        "noPassword": "पासवर्ड डिवाइस पर सेट नहीं है"
     },
     "transferConfirmation": {
         "youAreAbout": "आप पते पर {{contents}} भेजने वाले है",
@@ -701,8 +701,8 @@
         "migratingSettings": "Migrating settings",
         "migratingAccounts": "Migrating accounts",
         "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "migrationComplete": "माइग्रेशन पूर्ण",
+        "transferComplete": "ट्रांसफर कम्पलीट"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "स्नैपशॉट पूरा नहीं कर सकता",
@@ -736,7 +736,7 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "नया संस्करण उपलब्ध है",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Install update and restart",
+        "installUpdate": "नए अपडेट को इनस्टॉल करे और पुनः स्टार्ट करे",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
         "downloadingUpdate": "Downloading update",
         "downloadProgress": "{{transferred}} of {{total}} downloaded"
@@ -756,9 +756,9 @@
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "notLoggedIn": "आप लॉग इन नहीं हैं।",
+        "setupIncomplete": "वॉलेट सेटअप अधूरा",
+        "completeSetup": "पूर्ण सेटअप"
     },
     "proxy": {
         "proxy": "Use system proxy",
