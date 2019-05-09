@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Klaida siunčiant atnaujinimus",
         "noUpdatesAvailable": "Atnaujinimų nėra",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Galima nauja versija",
         "newVersionAvailableExplanation": "Galima nauja Trinity versija. Ar norite atlikti atnaujinimus?",
         "installUpdate": "Atnaujinimų įdiegimas ir paleidimas iš naujo",
