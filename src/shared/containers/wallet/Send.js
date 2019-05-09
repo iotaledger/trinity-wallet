@@ -40,7 +40,6 @@ export default function withSendData(SendComponent) {
             makeTransaction: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
             t: PropTypes.func.isRequired,
-            deepLinkActive: PropTypes.bool.isRequired,
             setSendAddressField: PropTypes.func.isRequired,
             setSendAmountField: PropTypes.func.isRequired,
             setSendMessageField: PropTypes.func.isRequired,

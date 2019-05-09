@@ -4,7 +4,8 @@ describe('Settings language view', () => {
 
         expect(snapshot).toMatchImageSnapshot({
             customSnapshotsDir: `${__dirname}/__snapshots__/`,
+                customDiffConfig: { threshold: 1 },
             customSnapshotIdentifier: 'language.test.jsx',
         });
-    });
+    }, 10000);
 });

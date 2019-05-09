@@ -4,7 +4,8 @@ describe('Onboarding seed intro view', () => {
 
         expect(snapshot).toMatchImageSnapshot({
             customSnapshotsDir: `${__dirname}/__snapshots__/`,
+                customDiffConfig: { threshold: 1 },
             customSnapshotIdentifier: 'seedIntro.test.jsx',
         });
-    });
+    }, 10000);
 });

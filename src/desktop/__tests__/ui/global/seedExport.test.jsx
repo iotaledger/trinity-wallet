@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import { SeedExportComponent as SeedExport } from 'ui/global/SeedExport';
 
 const props = {
+    generateAlert: () => {},
     seed: Array(81).fill(1),
     title: 'Foo',
     onClose: jest.fn(),
@@ -23,10 +24,10 @@ describe('SeedExport component', () => {
         expect(wrapper.hasClass('step1')).toBeTruthy();
     });
 
-    test('Second export step', () => {
+    test('Last export step', () => {
         const wrapper = shallow(<SeedExport {...props} />);
 
-        wrapper.setState({ step: 2 });
+        wrapper.setState({ step: 4 });
         expect(wrapper.hasClass('step2')).toBeTruthy();
     });
 });

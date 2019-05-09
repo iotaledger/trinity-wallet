@@ -1,436 +1,358 @@
 {
-	"alerts": {
-	  "category": "",
-	  "title": "",
-	  "message": "",
-	  "closeInterval": 5500,
-	  "notificationLog": []
-	},
-	"marketData": {
-	  "currency": "USD",
-	  "timeframe": "24h",
-	  "chartData": {
-		 "USD": {
-			"24h": [
-			  {
-				 "x": 0,
-				 "y": 0.2573,
-				 "time": 1549202400
-			  },
-			  {
-				 "x": 1,
-				 "y": 0.2579,
-				 "time": 1549206000
-			  },
-			  {
-				 "x": 2,
-				 "y": 0.2586,
-				 "time": 1549209600
-			  },
-			  {
-				 "x": 3,
-				 "y": 0.256,
-				 "time": 1549213200
-			  },
-			  {
-				 "x": 4,
-				 "y": 0.2557,
-				 "time": 1549216800
-			  },
-			  {
-				 "x": 5,
-				 "y": 0.2542,
-				 "time": 1549220400
-			  },
-			  {
-				 "x": 6,
-				 "y": 0.2539,
-				 "time": 1549224000
-			  },
-			  {
-				 "x": 7,
-				 "y": 0.252,
-				 "time": 1549227600
-			  },
-			  {
-				 "x": 8,
-				 "y": 0.2549,
-				 "time": 1549231200
-			  },
-			  {
-				 "x": 9,
-				 "y": 0.2547,
-				 "time": 1549234800
-			  },
-			  {
-				 "x": 10,
-				 "y": 0.2542,
-				 "time": 1549238400
-			  },
-			  {
-				 "x": 11,
-				 "y": 0.2539,
-				 "time": 1549242000
-			  },
-			  {
-				 "x": 12,
-				 "y": 0.2533,
-				 "time": 1549245600
-			  },
-			  {
-				 "x": 13,
-				 "y": 0.2538,
-				 "time": 1549249200
-			  },
-			  {
-				 "x": 14,
-				 "y": 0.255,
-				 "time": 1549252800
-			  },
-			  {
-				 "x": 15,
-				 "y": 0.2559,
-				 "time": 1549256400
-			  },
-			  {
-				 "x": 16,
-				 "y": 0.2559,
-				 "time": 1549260000
-			  },
-			  {
-				 "x": 17,
-				 "y": 0.256,
-				 "time": 1549263600
-			  },
-			  {
-				 "x": 18,
-				 "y": 0.2564,
-				 "time": 1549267200
-			  },
-			  {
-				 "x": 19,
-				 "y": 0.2551,
-				 "time": 1549270800
-			  },
-			  {
-				 "x": 20,
-				 "y": 0.2544,
-				 "time": 1549274400
-			  },
-			  {
-				 "x": 21,
-				 "y": 0.2541,
-				 "time": 1549278000
-			  },
-			  {
-				 "x": 22,
-				 "y": 0.2545,
-				 "time": 1549281600
-			  },
-			  {
-				 "x": 23,
-				 "y": 0.2547,
-				 "time": 1549285200
-			  }
-			],
-			"7d": [],
-			"1m": [],
-			"1h": []
-		 }
-	  },
-	  "mcap": 707946363,
-	  "volume": 2971137,
-	  "change24h": "-1.09",
-	  "usdPrice": 0.2547,
-	  "eurPrice": 0.223,
-	  "btcPrice": 0.00007332,
-	  "ethPrice": 0.002356798457087753
-	},
-	"accounts": {
-	  "accountInfoDuringSetup": {
-		 "name": "",
-		 "meta": {
-			"type": "keychain"
-		 },
-		 "completed": false,
-		 "usedExistingSeed": false
-	  },
-	  "onboardingComplete": true,
-	  "failedBundleHashes": {},
-	  "accountInfo": {
-		 "Foo": {
-			"index": 0,
-			"meta": {
-			  "type": "keychain"
-			},
-			"balance": 0,
-			"addresses": {
-			  "ABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEF": {
-				 "index": 0,
-				 "spent": {
-					"local": false,
-					"remote": true
-				 },
-				 "balance": 0,
-				 "checksum": "ABCDEFGHI"
-			  },
-			  "BCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFG": {
-				 "index": 1,
-				 "spent": {
-					"local": false,
-					"remote": true
-				 },
-				 "balance": 0,
-				 "checksum": "BCDEFGHIJ"
-			  },
-			  "CDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGH": {
-				 "index": 2,
-				 "spent": {
-					"local": false,
-					"remote": false
-				 },
-				 "balance": 10000,
-				 "checksum": "CDEFGHIJK"
-			  }
-			},
-			"transfers": {
-			  "DEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHI": {
-				 "bundle": "DEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHI",
-				 "timestamp": 1548873927,
-				 "attachmentTimestamp": 1548873928281,
-				 "inputs": [],
-				 "outputs": [
-					{
-					  "address": "DEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHI",
-					  "value": 0,
-					  "hash": "FGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKL",
-					  "currentIndex": 0,
-					  "lastIndex": 0,
-					  "checksum": "DEFGHIJKL"
-					}
-				 ],
-				 "persistence": true,
-				 "incoming": true,
-				 "transferValue": 40000,
-				 "message": "Lorem ipsum",
-				 "tailTransactions": [
-					{
-					  "hash": "GHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLM",
-					  "attachmentTimestamp": 1548873928281
-					}
-				 ]
-			  },
-			  "HIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLMN": {
-				 "bundle": "IJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLMNO",
-				 "timestamp": 1548602461,
-				 "attachmentTimestamp": 1548602464004,
-				 "inputs": [],
-				 "outputs": [
-					{
-					  "address": "JKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLMNOP",
-					  "value": 0,
-					  "hash": "KLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLMNOPR",
-					  "currentIndex": 0,
-					  "lastIndex": 0,
-					  "checksum": "CWFKDASDB"
-					}
-				 ],
-				 "persistence": false,
-				 "incoming": false,
-				 "transferValue": 0,
-				 "message": "Empty",
-				 "tailTransactions": [
-					{
-					  "hash": "LMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLMNOPRS",
-					  "attachmentTimestamp": 1548602464004
-					}
-				 ]
-			  },
-			  "MNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLMNOPRST": {
-				 "bundle": "NOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLMNOPRSTU",
-				 "timestamp": 1548847449,
-				 "attachmentTimestamp": 1548848376228,
-				 "inputs": [],
-				 "outputs": [
-					{
-					  "address": "OPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLMNOPRSTUV",
-					  "value": 0,
-					  "hash": "PQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLMNOPRSTUVZ",
-					  "currentIndex": 0,
-					  "lastIndex": 1,
-					  "checksum": "RKBKGLYBD"
-					}
-				 ],
-				 "persistence": true,
-				 "incoming": false,
-				 "transferValue": 5000000,
-				 "message": "Lipsum dolor",
-				 "tailTransactions": [
-					{
-					  "hash": "QRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLMNOPRSTUVZA",
-					  "attachmentTimestamp": 1548848138709
-					}
-				 ]
-			  }
-			},
-			"hashes": [
-			  "VKM9UJFJU9YCTGVYFSCTTPIVWESEAUZZDXLCMGFKPTMSTECHOXHYEWDFCNKHXQSOXPJQIGQLSBNCZ9999",
-			  "ELWXSGGIPRJXXLLUQWAHJSSVPR9EVPPULFPGKKWNILCMUBLSLWQVW9KYZJOLDNBMLAPVA9VMDIGPZ9999",
-			  "V9RRETVEFNZZJNNIPCNKISMSRLMKVXEPUTOQFMHDPVNTAOTLBPCWFOWHPGFKTZIONAM9JZQDZVQR99999",
-			  "YBILFYVLCFIPXNQEQXGOWAAIOZHCIVEIUFBQOATNSDUNLUDWNMCBURPTJJWMMVCHMPVNCROTGEPF99999",
-			  "KGAZOWIPFPLWXQLUHJHCDGVJYVTMKCOZVXR9MBEFUBY9UHALNGHENYPPNE9FZAVOMPZCBQCFJHTKA9999"
-			]
-		 }
-	  },
-	  "setupInfo": {
-		 "Foo": {
-			"usedExistingSeed": false
-		 }
-	  },
-	  "tasks": {
-		 "Foo": {
-			"hasDisplayedTransitionGuide": false
-		 }
-	  },
-	  "unconfirmedBundleTails": {}
-	},
-	"settings": {
-	  "locale": "en",
-	  "node": "https://wallet1.iota.town:443",
-	  "nodes": [
-		 "https://pow1.iota.community:443",
-		 "https://pow2.iota.community:443",
-		 "https://pow3.iota.community:443",
-		 "https://pow5.iota.community:443"
-	  ],
-	  "customNodes": [],
-	  "mode": "Standard",
-	  "language": "English (International)",
-	  "currency": "USD",
-	  "availableCurrencies": [
-		 "USD",
-		 "EUR"
-	  ],
-	  "conversionRate": 1,
-	  "themeName": "Default",
-	  "theme": {
-		 "chart": {
-			"color": "rgb(65, 220, 243)"
-		 },
-		 "box": {
-			"bg": "rgb(5, 33, 50)",
-			"alt": "rgb(4, 52, 81)",
-			"body": "rgb(240, 242, 246)"
-		 },
-		 "bar": {
-			"bg": "rgb(20, 23, 37)",
-			"hover": "rgb(25, 39, 51)",
-			"alt": "rgb(33, 51, 67)",
-			"color": "rgb(240, 242, 246)"
-		 },
-		 "label": {
-			"color": "rgb(240, 242, 246)",
-			"hover": "rgb(65, 220, 243)"
-		 },
-		 "input": {
-			"bg": "rgb(15, 62, 88)",
-			"border": "rgba(255, 255, 255, 0.1)",
-			"alt": "rgb(148, 168, 172)",
-			"hover": "rgba(255, 255, 255, 0.4)",
-			"color": "rgb(255, 255, 255)"
-		 },
-		 "negative": {
-			"color": "rgb(172, 69, 69)",
-			"hover": "rgb(146, 57, 57)",
-			"body": "rgb(255, 255, 255)"
-		 },
-		 "positive": {
-			"color": "rgb(36, 147, 87)",
-			"hover": "rgb(31, 126, 74)",
-			"body": "rgb(255, 255, 255)"
-		 },
-		 "dark": {
-			"color": "rgb(6, 35, 50)",
-			"hover": "rgb(7, 30, 39)",
-			"body": "rgb(240, 242, 246)"
-		 },
-		 "secondary": {
-			"color": "rgb(208, 220, 238)",
-			"hover": "rgb(192, 205, 225)",
-			"body": "rgb(30, 30, 30)"
-		 },
-		 "primary": {
-			"color": "rgb(65, 220, 243)",
-			"hover": "rgb(0, 205, 235)",
-			"border": "rgba(255, 255, 255, 0)",
-			"body": "rgb(0, 50, 65)"
-		 },
-		 "body": {
-			"bg": "rgb(3, 41, 62)",
-			"color": "rgb(240, 242, 246)",
-			"alt": "rgba(240, 240, 240, 0.25)"
-		 },
-		 "wave": {
-			"primary": "rgba(49, 94, 119, 0.3)",
-			"secondary": "rgba(11, 27, 31, 0.6)"
-		 },
-		 "isDark": true
-	  },
-	  "hasRandomizedNode": false,
-	  "remotePoW": false,
-	  "autoPromotion": true,
-	  "lockScreenTimeout": 3,
-	  "autoNodeSwitching": false,
-	  "versions": {
-		 "version": "0.4.6"
-	  },
-	  "is2FAEnabled": false,
-	  "isFingerprintEnabled": false,
-	  "acceptedTerms": true,
-	  "acceptedPrivacy": true,
-	  "hideEmptyTransactions": false,
-	  "isTrayEnabled": true,
-	  "completedByteTritSweep": true,
-	  "notifications": {
-		 "general": true,
-		 "confirmations": true,
-		 "messages": true
-	  },
-	  "ignoreProxy": false
-	},
-	"home": {
-	  "childRoute": "balance",
-	  "isTopBarActive": false
-	},
-	"keychain": {
-	  "isGettingSensitiveInfo": {
-		 "receive": {
-			"addressGeneration": false
-		 },
-		 "send": {
-			"makeTransaction": false
-		 }
-	  }
-	},
-	"progress": {
-	  "lastStepInitializationTime": 1548928907152,
-	  "timeTakenByEachStep": [],
-	  "activeStepIndex": -1,
-	  "activeSteps": []
-	},
-	"wallet": {
-		"ready": true,
-		"password": {"0": 0},
-		"seedIndex": 0,
-		"transitionBalance": 0,
-		"transitionAddresses": [],
-		"balanceCheckFlag": false,
-		"deepLinkActive": false,
-		"hasConnection": true,
-		"isValidatingAddress": false,
-		"navStack": [],
-		"shouldUpdate": false,
-		"forceUpdate": false,
-		"isGeneratingReceiveAddress": false
-	}
- }
+    "alerts": {
+        "category": "",
+        "title": "",
+        "message": "",
+        "closeInterval": 5500,
+        "notificationLog": []
+    },
+    "marketData": {
+        "currency": "USD",
+        "timeframe": "24h",
+        "chartData": {
+            "USD": {
+                "24h": [
+                    {
+                        "x": 0,
+                        "y": 0.2573,
+                        "time": 1549202400
+                    },
+                    {
+                        "x": 1,
+                        "y": 0.2579,
+                        "time": 1549206000
+                    },
+                    {
+                        "x": 2,
+                        "y": 0.2586,
+                        "time": 1549209600
+                    },
+                    {
+                        "x": 3,
+                        "y": 0.256,
+                        "time": 1549213200
+                    },
+                    {
+                        "x": 4,
+                        "y": 0.2557,
+                        "time": 1549216800
+                    },
+                    {
+                        "x": 5,
+                        "y": 0.2542,
+                        "time": 1549220400
+                    },
+                    {
+                        "x": 6,
+                        "y": 0.2539,
+                        "time": 1549224000
+                    },
+                    {
+                        "x": 7,
+                        "y": 0.252,
+                        "time": 1549227600
+                    },
+                    {
+                        "x": 8,
+                        "y": 0.2549,
+                        "time": 1549231200
+                    },
+                    {
+                        "x": 9,
+                        "y": 0.2547,
+                        "time": 1549234800
+                    },
+                    {
+                        "x": 10,
+                        "y": 0.2542,
+                        "time": 1549238400
+                    },
+                    {
+                        "x": 11,
+                        "y": 0.2539,
+                        "time": 1549242000
+                    },
+                    {
+                        "x": 12,
+                        "y": 0.2533,
+                        "time": 1549245600
+                    },
+                    {
+                        "x": 13,
+                        "y": 0.2538,
+                        "time": 1549249200
+                    },
+                    {
+                        "x": 14,
+                        "y": 0.255,
+                        "time": 1549252800
+                    },
+                    {
+                        "x": 15,
+                        "y": 0.2559,
+                        "time": 1549256400
+                    },
+                    {
+                        "x": 16,
+                        "y": 0.2559,
+                        "time": 1549260000
+                    },
+                    {
+                        "x": 17,
+                        "y": 0.256,
+                        "time": 1549263600
+                    },
+                    {
+                        "x": 18,
+                        "y": 0.2564,
+                        "time": 1549267200
+                    },
+                    {
+                        "x": 19,
+                        "y": 0.2551,
+                        "time": 1549270800
+                    },
+                    {
+                        "x": 20,
+                        "y": 0.2544,
+                        "time": 1549274400
+                    },
+                    {
+                        "x": 21,
+                        "y": 0.2541,
+                        "time": 1549278000
+                    },
+                    {
+                        "x": 22,
+                        "y": 0.2545,
+                        "time": 1549281600
+                    },
+                    {
+                        "x": 23,
+                        "y": 0.2547,
+                        "time": 1549285200
+                    }
+                ],
+                "7d": [],
+                "1m": [],
+                "1h": []
+            }
+        },
+        "mcap": 707946363,
+        "volume": 2971137,
+        "change24h": "-1.09",
+        "usdPrice": 0.2547,
+        "eurPrice": 0.223,
+        "btcPrice": 0.00007332,
+        "ethPrice": 0.002356798457087753
+    },
+    "accounts": {
+        "accountInfoDuringSetup": {
+            "name": "",
+            "usedExistingSeed": false,
+            "meta": {},
+            "completed": false
+        },
+        "onboardingComplete": true,
+        "accountInfo": {
+            "Foo": {
+                "index": 0,
+                "meta": {
+                    "type": "keychain",
+                    "index": null,
+                    "page": null,
+                    "indexAddress": null
+                },
+                "addressData": [
+                    {
+                        "address": "ABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEF",
+                        "index": 0,
+                        "balance": 0,
+                        "checksum": "ABCDEFGHI",
+                        "spent": {
+                            "remote": true,
+                            "local": false
+                        }
+                    },
+                    {
+                        "address": "BCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFG",
+                        "index": 1,
+                        "balance": 1000000,
+                        "checksum": "BCDEFGHIJ",
+                        "spent": {
+                            "remote": false,
+                            "local": false
+                        }
+                    }
+                ],
+                "transactions": [
+                    {
+                        "hash": "DEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHI",
+                        "signatureMessageFragment":
+                            "HCOB99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+                        "address": "BCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFG",
+                        "value": 0,
+                        "obsoleteTag": "AXINITY99999999999999999999",
+                        "timestamp": 1555408133,
+                        "currentIndex": 0,
+                        "lastIndex": 1,
+                        "tag": "TRINITY99999999999999999999",
+                        "trunkTransaction":
+                            "PQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLMNOPRSTUVZ",
+                        "branchTransaction":
+                            "QRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLMNOPRSTUVZA",
+                        "bundle": "RSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFFGHIJKLMNOPQRSTVXYZABCDEFGHIJKLMNOPRSTUVZAB",
+                        "attachmentTimestamp": 1555408141420,
+                        "attachmentTimestampLowerBound": 0,
+                        "attachmentTimestampUpperBound": 3812798742493,
+                        "nonce": "VLDTA9999999999999999999999",
+                        "persistence": true,
+                        "broadcasted": true
+                    }
+                ]
+            }
+        },
+        "tasks": {
+            "Foo": {
+                "displayedSnapshotTransitionGuide": false
+            }
+        }
+    },
+    "settings": {
+        "locale": "en",
+        "node": "https://wallet1.iota.town:443",
+        "nodes": [
+            "https://pow1.iota.community:443",
+            "https://pow2.iota.community:443",
+            "https://pow3.iota.community:443",
+            "https://pow5.iota.community:443"
+        ],
+        "customNodes": [],
+        "mode": "Standard",
+        "language": "English (International)",
+        "currency": "USD",
+        "availableCurrencies": ["USD", "EUR"],
+        "conversionRate": 1,
+        "themeName": "Default",
+        "theme": {
+            "chart": {
+                "color": "rgb(65, 220, 243)"
+            },
+            "box": {
+                "bg": "rgb(5, 33, 50)",
+                "alt": "rgb(4, 52, 81)",
+                "body": "rgb(240, 242, 246)"
+            },
+            "bar": {
+                "bg": "rgb(20, 23, 37)",
+                "hover": "rgb(25, 39, 51)",
+                "alt": "rgb(33, 51, 67)",
+                "color": "rgb(240, 242, 246)"
+            },
+            "label": {
+                "color": "rgb(240, 242, 246)",
+                "hover": "rgb(65, 220, 243)"
+            },
+            "input": {
+                "bg": "rgb(15, 62, 88)",
+                "border": "rgba(255, 255, 255, 0.1)",
+                "alt": "rgb(148, 168, 172)",
+                "hover": "rgba(255, 255, 255, 0.4)",
+                "color": "rgb(255, 255, 255)"
+            },
+            "negative": {
+                "color": "rgb(172, 69, 69)",
+                "hover": "rgb(146, 57, 57)",
+                "body": "rgb(255, 255, 255)"
+            },
+            "positive": {
+                "color": "rgb(36, 147, 87)",
+                "hover": "rgb(31, 126, 74)",
+                "body": "rgb(255, 255, 255)"
+            },
+            "dark": {
+                "color": "rgb(6, 35, 50)",
+                "hover": "rgb(7, 30, 39)",
+                "body": "rgb(240, 242, 246)"
+            },
+            "secondary": {
+                "color": "rgb(208, 220, 238)",
+                "hover": "rgb(192, 205, 225)",
+                "body": "rgb(30, 30, 30)"
+            },
+            "primary": {
+                "color": "rgb(65, 220, 243)",
+                "hover": "rgb(0, 205, 235)",
+                "border": "rgba(255, 255, 255, 0)",
+                "body": "rgb(0, 50, 65)"
+            },
+            "body": {
+                "bg": "rgb(3, 41, 62)",
+                "color": "rgb(240, 242, 246)",
+                "alt": "rgba(240, 240, 240, 0.25)"
+            },
+            "wave": {
+                "primary": "rgba(49, 94, 119, 0.3)",
+                "secondary": "rgba(11, 27, 31, 0.6)"
+            },
+            "isDark": true
+        },
+        "hasRandomizedNode": false,
+        "remotePoW": false,
+        "autoPromotion": true,
+        "lockScreenTimeout": 3,
+        "autoNodeSwitching": false,
+        "versions": {
+            "version": "0.4.6"
+        },
+        "is2FAEnabled": false,
+        "isFingerprintEnabled": false,
+        "acceptedTerms": true,
+        "acceptedPrivacy": true,
+        "hideEmptyTransactions": false,
+        "isTrayEnabled": true,
+        "completedByteTritSweep": true,
+        "deepLinking": true,
+        "notifications": {
+            "general": true,
+            "confirmations": true,
+            "messages": true
+        },
+        "ignoreProxy": false
+    },
+    "home": {
+        "childRoute": "balance",
+        "isTopBarActive": false
+    },
+    "keychain": {
+        "isGettingSensitiveInfo": {
+            "receive": {
+                "addressGeneration": false
+            },
+            "send": {
+                "makeTransaction": false
+            }
+        }
+    },
+    "progress": {
+        "lastStepInitializationTime": 1548928907152,
+        "timeTakenByEachStep": [],
+        "activeStepIndex": -1,
+        "activeSteps": []
+    },
+    "wallet": {
+        "ready": true,
+        "password": { "0": 0 },
+        "seedIndex": 0,
+        "transitionBalance": 0,
+        "transitionAddresses": [],
+        "balanceCheckFlag": false,
+        "deepLinkActive": false,
+        "hasConnection": true,
+        "isValidatingAddress": false,
+        "navStack": [],
+        "shouldUpdate": false,
+        "forceUpdate": false,
+        "isGeneratingReceiveAddress": false
+    }
+}

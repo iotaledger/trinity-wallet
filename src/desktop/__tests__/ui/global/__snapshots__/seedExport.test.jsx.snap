@@ -16,11 +16,6 @@ exports[`SeedExport component Render the component 1`] = `
     <p>
       seedVault:seedVaultExplanation
     </p>
-    <p>
-      <strong>
-        seedVault:seedVaultWarning
-      </strong>
-    </p>
   </section>
   <footer>
     <Button

@@ -22,47 +22,36 @@ class PuppeteerEnvironment extends ElectronEnvironment {
     async setup() {
         await super.setup();
 
-        const wsEndpoint = fs.readFileSync(path.join(DIR, 'wsEndpoint'), 'utf8');
-        if (!wsEndpoint) {
-            throw new Error('wsEndpoint not found');
-        }
-
-        const browser = await puppeteer.connect({
-            browserWSEndpoint: wsEndpoint,
-        });
-
-        const page = await browser.newPage();
-
-        page.setViewport({
-            width: 1280,
-            height: 800,
-            deviceScaleFactor: 2,
-        });
-
         this.global.__screenshot = async (route, authorisedRoute, timeout) => {
             stateMock.wallet.ready = authorisedRoute;
 
-            page.evaluateOnNewDocument(electronMock, settings, stateMock);
+            const wsEndpoint = fs.readFileSync(path.join(DIR, 'wsEndpoint'), 'utf8');
+            if (!wsEndpoint) {
+                throw new Error('wsEndpoint not found');
+            }
 
-            page.on('console', async (msg) => {
-                const args = await msg.args();
-                args.forEach(async (arg) => {
-                    const val = await arg.jsonValue();
-                    if (JSON.stringify(val) !== JSON.stringify({})) console.log(val);
-                    else {
-                        const { type, subtype, description } = arg._remoteObject;
-                        console.log(`type: ${type}, subtype: ${subtype}, description:\n ${description}`);
-                    }
-                });
+            const browser = await puppeteer.connect({
+                browserWSEndpoint: wsEndpoint,
             });
 
-            console.log(`http://localhost:1074/${route}`);
+            const page = await browser.newPage();
 
-            await page.goto(`http://localhost:1074/${route}`);
+            page.setViewport({
+                width: 1280,
+                height: 800,
+                deviceScaleFactor: 2,
+            });
 
-            await new Promise((resolve) => setTimeout(resolve, timeout || 400));
+            page.evaluateOnNewDocument(electronMock, settings, stateMock);
+
+            await page.goto(`http://localhost:1074/${route}`, { waitUntil: 'networkidle2' });
+
+            await new Promise((resolve) => setTimeout(resolve, timeout || 800));
 
             const screenshot = await page.screenshot();
+
+            page.close();
+
             return screenshot;
         };
     }

@@ -4,7 +4,8 @@ describe('Wallet receive view', () => {
 
        expect(snapshot).toMatchImageSnapshot({
            customSnapshotsDir: `${__dirname}/__snapshots__/`,
+                customDiffConfig: { threshold: 1 },
            customSnapshotIdentifier: 'receive.test.jsx',
        });
-   });
+   }, 10000);
 });

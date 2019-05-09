@@ -4,7 +4,8 @@ describe('Onboarding account password view', () => {
 
         expect(snapshot).toMatchImageSnapshot({
             customSnapshotsDir: `${__dirname}/__snapshots__/`,
+                customDiffConfig: { threshold: 1 },
             customSnapshotIdentifier: 'accountPassword.test.jsx',
         });
-    });
+    }, 10000);
 });

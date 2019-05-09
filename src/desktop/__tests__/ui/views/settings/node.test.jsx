@@ -4,7 +4,8 @@ describe('Settings node view', () => {
 
         expect(snapshot).toMatchImageSnapshot({
             customSnapshotsDir: `${__dirname}/__snapshots__/`,
+                customDiffConfig: { threshold: 1 },
             customSnapshotIdentifier: 'node.test.jsx',
         });
-    });
+    }, 10000);
 });

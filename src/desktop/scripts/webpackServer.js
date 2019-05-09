@@ -4,8 +4,6 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 1074;
 
-const useHotReload = process.argv.indexOf('hot') > -1;
-
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpack = require('webpack');
@@ -20,22 +18,24 @@ const webpackDev = webpackDevMiddleware(compiler, {
         colors: true,
     },
 });
-
 app.use(webpackDev);
 
 const webpackHot = webpackHotMiddleware(compiler);
+app.use(webpackHot);
 
-if (useHotReload) {
-    app.use(webpackHot);
-}
-
-app.use(express.static(path.join(__dirname, 'dist')));
-
-app.get('*', (_request, response) => {
-    response.sendFile(path.join(__dirname, '../dist/index.html'));
+app.use('*', (_req, res, next) => {
+    const filename = path.join(compiler.outputPath, 'index.html');
+    compiler.outputFileSystem.readFile(filename, (err, result) => {
+        if (err) {
+            return next(err);
+        }
+        res.set('content-type', 'text/html');
+        res.send(result);
+        res.end();
+    });
 });
 
-const instance = app.listen(PORT, (error) => {
+app.listen(PORT, (error) => {
     if (error) {
         console.error(error); /* eslint-disable-line no-console */
     } else {
@@ -43,13 +43,4 @@ const instance = app.listen(PORT, (error) => {
     }
 });
 
-const close = () => {
-    webpackDev.close();
-    instance.close();
-
-    if (useHotReload) {
-        webpackHot.close();
-    }
-};
-
-module.exports = { close, PORT, webpackDev };
+module.exports = { PORT, webpackDev };

@@ -4,7 +4,8 @@ describe('Onboarding account name view', () => {
 
         expect(snapshot).toMatchImageSnapshot({
             customSnapshotsDir: `${__dirname}/__snapshots__/`,
+                customDiffConfig: { threshold: 1 },
             customSnapshotIdentifier: 'accountName.test.jsx',
         });
-    });
+    }, 10000);
 });

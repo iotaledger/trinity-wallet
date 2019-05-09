@@ -15,7 +15,7 @@ module.exports = {
     node: {
         __dirname: false,
     },
-    optimization:{
+    optimization: {
         minimize: false,
     },
     module: {

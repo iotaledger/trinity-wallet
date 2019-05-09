@@ -1,6 +1,6 @@
 'use strict';
 
-import { ACC_MAIN, randomBytes, sha256, hash, encrypt, decrypt, setTwoFA, initKeychain, authorize } from 'libs/crypto';
+import { ACC_MAIN, randomBytes, sha256, hash, encrypt, decrypt, initKeychain, authorize } from 'libs/crypto';
 import { passwordMock, saltMock, vaultMock } from '../../__mocks__/samples/keychain';
 
 global.Electron = {
@@ -21,7 +21,7 @@ describe('Crypto helper lib', () => {
 
         test('Correctly limit item maximum values', () => {
             const maxRange = 27;
-            const maxValue = 256 - (256 % maxRange);
+            const maxValue = 256 - 256 % maxRange;
             const bytes = randomBytes(81, maxRange);
             for (let i = 0; i < bytes.length; i++) {
                 expect(bytes[i]).toBeLessThan(maxValue);
@@ -36,16 +36,6 @@ describe('Crypto helper lib', () => {
 
             const decrypted = await decrypt(encrypted, passwordMock);
             expect(decrypted).toEqual('Foo');
-        });
-    });
-
-    describe('setTwoFA', () => {
-        test('Set two-factor key', async () => {
-            await setTwoFA(passwordMock, '1234');
-            expect(global.Electron.setKeychain).toBeCalledWith(
-                ACC_MAIN,
-                expect.stringMatching(/[0-9]+(,[0-9]+){11}\|[0-9]+(,[0-9]+){34}/),
-            );
         });
     });
 

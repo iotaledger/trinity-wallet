@@ -79,12 +79,17 @@ exports[`List component Render the component 1`] = `
       <input
         className={null}
         onChange={[Function]}
+        placeholder="history:typeHelp"
         value=""
       />
-      <Icon
-        icon="search"
-        size={20}
-      />
+      <div
+        onClick={[Function]}
+      >
+        <Icon
+          icon="search"
+          size={20}
+        />
+      </div>
     </div>
     <a
       className="refresh"
