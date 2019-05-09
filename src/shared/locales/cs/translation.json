@@ -1,8 +1,8 @@
 {
     "global": {
         "send": "ODESLAT",
-        "cancel": "Zrušit",
-        "continue?": "Opravdu si přejete pokračovat?",
+        "cancel": "Storno",
+        "continue?": "Jste si jistý, že chcete pokračovat?",
         "noTransactions": "ŽÁDNÁ NEDÁVNÁ HISTORIE",
         "refresh": "Obnovit",
         "balanceError": "Nedostatečný zůstatek",
@@ -275,7 +275,7 @@
     "onboardingComplete": {
         "allDone": "Všechno je nastavené!",
         "openYourWallet": "Otevřít Vaši peněženku",
-        "walletReady": "Peněženka je nyní nastavena a připravena k použití. Pokud budete potřebovat něco měnit najdete to v Menu Nastavení."
+        "walletReady": "Peněženka je nyní nastavena a připravena k použití. Pokud budete potřebovat něco změnit najdete to v menu Nastavení."
     },
     "paperWallet": {
         "neverShare": "Nikdy s nikým nesdílejte Váš Seed!",
@@ -289,7 +289,7 @@
     },
     "printBlankTemplate": {
         "printTemplateQuestion": "Chcete vytisknout prázdnou šablonu?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateInfo": "Pro ulehčení si můžete vytisknout prázdnou šablonu k zapsání vašeho seedu.",
         "printTemplateWarning": "Uchovávejte Seed na bezpečném místě a nikomu ho neukazujte.",
         "print": "Ano, tisk"
     },
@@ -546,7 +546,7 @@
     "unitInfoModal": {
         "unitSystem": "Jednotkový systém",
         "trillion": "Bilion",
-        "billion": "Miliard",
+        "billion": "Miliarda",
         "million": "Milion",
         "thousand": "Tisíc",
         "one": "Jedna",
@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Chyba při získávání aktualizačních dat",
         "noUpdatesAvailable": "Nejsou dostupné žádné aktualizace",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "K dispozici je nová verze",
         "newVersionAvailableExplanation": "K dispozici je nová verze Trinity. Chcete nyní aktualizovat?",
         "installUpdate": "Nainstalujte aktualizaci a restartujte",
