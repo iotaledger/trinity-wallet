@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Gagal dalam mengunduh data pembaruan",
         "noUpdatesAvailable": "Tidak ada pembaruan tersedia",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Versi baru tersedia",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Instal pembaruan dan ulang kembali",

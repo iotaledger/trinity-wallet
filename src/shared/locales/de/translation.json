@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",
         "noUpdatesAvailable": "Keine Updates verfügbar",
-        "noUpdatesAvailableExplanation": "Du hast bereits die neueste Version von Trinity Desktop installiert.",
+        "noUpdatesAvailableExplanation": "Du hast die aktuelle Version von Trinity installiert!",
         "newVersionAvailable": "Neue Version verfügbar",
         "newVersionAvailableExplanation": "Eine neue Trinity Version ist verfügbar. Möchtest du das Update jetzt durchführen?",
         "installUpdate": "Update installieren und Trinity neu starten",
@@ -805,7 +805,7 @@
         "actionCancelledExplanation": "Ohne den Zugriff auf deinen Ledger kann der Vorgang nicht ausgeführt werden.",
         "chooseAccountIndex": "Wähle deinen Ledger Konto Index",
         "accountIndexExplanation": "Dein Ledger kann mehrere Seeds speichern. Jeder Seed wird durch einen eindeutigen Index identifiziert. Ein ungenutzter Index wurde bereits ausgewählt aber wenn du möchtest kannst du Diesen ändern. Stelle sicher, dass du deinen Index notierst.",
-        "accountPageExplanation": "Einige Drittanbieter Wallets benötigen Seiten.",
+        "accountPageExplanation": "Einige Drittanbieter-Wallets benötigen Seiten.",
         "connectionError": "Verbindung zu Ledger nicht möglich",
         "connectionErrorExplanation": "Prüfe, ob dein Ledger verbunden und entsperrt ist.",
         "connectionTitle": "Verbinde deinen Ledger",
