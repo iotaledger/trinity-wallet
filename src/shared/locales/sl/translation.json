@@ -141,7 +141,7 @@
         "isYourBalanceCorrect": "Je vaš saldo pravilen?",
         "ifYourBalanceIsNotCorrect": "Če je vaš saldo nepravilen, je mogoče da uporabljate Seed, ki potrebuje Snapshot-obnovitev.",
         "headToAdvancedSettingsForTransition": "Prosim odprite Napredne-nastavitve in izvedite Snapshot-obnovitev.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
+        "usingTrinityWalletWithKeePass": "Uporabljanje Trinity denarnice z Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction.",
         "broadcastError": "Could not broadcast transfer",
         "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
