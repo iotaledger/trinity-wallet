@@ -1,3 +1,11 @@
 # The Deliverfile allows you to store various App Store Connect metadata
 # For more information, check out the docs
 # https://docs.fastlane.tools/actions/deliver/
+
+app_identifier 'com.iota.trinity'
+skip_binary_upload true
+skip_screenshots true
+skip_metadata false
+skip_app_version_update true
+submit_for_review false
+precheck_include_in_app_purchases false
