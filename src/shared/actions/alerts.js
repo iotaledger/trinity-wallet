@@ -290,6 +290,20 @@ export const generateLedgerCancelledAlert = () => (dispatch) => {
 };
 
 /**
+ * Generates an error for user cancelled Ledger request
+ *
+ * @method generateLedgerCancelledAlert
+ * @param {object} err
+ *
+ * @returns {function} dispatch
+ */
+export const generateLedgerIncorrectIndexAlert = () => (dispatch) => {
+    dispatch(
+        generateAlert('error', i18next.t('ledger:ledgerIncorrectIndex'), i18next.t('ledger:ledgerIncorrectIndexExplanation')),
+    );
+};
+
+/**
  * Hides an active alert
  *
  * @method dismissAlert

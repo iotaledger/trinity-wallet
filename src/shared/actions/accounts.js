@@ -21,6 +21,7 @@ import {
     generateUnsupportedNodeErrorAlert,
     generateAccountSyncRetryAlert,
     generateLedgerCancelledAlert,
+    generateLedgerIncorrectIndexAlert
 } from '../actions/alerts';
 import { changeNode } from '../actions/settings';
 import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
@@ -511,6 +512,8 @@ export const getAccountInfo = (seedStore, accountName, notificationFn, withQuoru
             .catch((err) => {
                 if (err.message === Errors.LEDGER_CANCELLED) {
                     dispatch(generateLedgerCancelledAlert());
+                } else if (err.message === Errors.LEDGER_INVALID_INDEX) {
+                    dispatch(generateLedgerIncorrectIndexAlert());
                 } else if (err.message === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert());
                 } else if (err.message === Errors.UNSUPPORTED_NODE) {
