@@ -199,14 +199,14 @@
         "reasonRow": "कीबोर्ड/कुंजीपटल की सीधी पंक्तियाँ अनुमान लगाना आसान है",
         "reasonPattern": "Keys के छोटे पैटर्न अनुमान लगाने के लिए आसान हैं",
         "reasonNames": "आम नाम और उपनाम का अनुमान लगाना आसान है",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
-        "reasonYears": "Recent years are easy to guess.",
-        "reasonDates": "Dates are often easy to guess.",
-        "reasonTop10": "This is a top 10 common password.",
-        "reasonTop100": "This is a top 100 common password.",
-        "reasonCommon": "This is a very common password.",
+        "reasonRepeats": "किसी वर्ण को लगातार दोहराने (\"जैसे aaa\") से इसे आसानी से जाना/अनुमान लगाया जा सकता है",
+        "reasonRepeats2": "'Abcabcabc' जैसे दोहराना 'abc' से अनुमान लगाने के लिए थोड़ा कठिन है",
+        "reasonSequence": "एबीसी या 54321 जैसे अनुक्रम अनुमान लगाना आसान है",
+        "reasonYears": "हाल के वर्षों का अनुमान लगाना आसान है",
+        "reasonDates": "तिथियाँ अक्सर अनुमान करने के लिए आसान हैं",
+        "reasonTop10": "यह एक शीर्ष 10 आम पासवर्ड है",
+        "reasonTop100": "यह एक शीर्ष 100 आम पासवर्ड है",
+        "reasonCommon": "यह एक आम पासवर्ड है",
         "reasonSimilar": "यह आमतौर पर उपयोग किए जाने वाले पासवर्ड के समान है",
         "reasonWord": "शब्द का अनुमान लगाना आसान है"
     },
@@ -216,7 +216,7 @@
         "passwordTooShortExplanation": "आपका पासवर्ड कम से कम {{minLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
         "passwordMismatch": "पासवर्ड्स समान नहीं हैं",
         "passwordMismatchExplanation": "पासवर्ड्स जो आप दर्ज किया, मिलान नहीं हो रहा हैं। कृपया दोबारा लिखें।",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "यह आपका मुख्य वॉलेट पासवर्ड है। आप इसे लॉग इन करने के लिए उपयोग करेंगे।",
         "retypePassword": "पासवर्ड पुन: लिखें"
     },
     "copyToClipboard": {
@@ -249,8 +249,8 @@
         "enterPassword": "कृपया अपना पासवर्ड डालें",
         "login": "लॉग इन करें",
         "setNode": "नोड सेट करें",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabled": "बायोमेट्रिक प्रमाणीकरण को चालू क्यों नहीं किया गया है",
+        "whyBiometricDisabledExplanationPart1": "आपकी सुरक्षा के लिए पहले एप्लिकेशन लोड पर बायोमेट्रिक प्रमाणीकरण अक्षम है।",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
@@ -284,13 +284,13 @@
         "paperConvenience": "अपने सीड की एक कागज प्रति प्रिंट एक सुविधाजनक तरीका है सहेजने के लिए |",
         "publicInsecure": "लेकिन सार्वजनिक वाईफ़ाई या एक सार्वजनिक प्रिंटर पर मुद्रण असुरक्षित है ।",
         "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "wifiConfirmation": "मैं सार्वजनिक वाईफाई पर नहीं हूं",
+        "printerConfirmation": "मैं किसी सार्वजनिक प्रिंटर पर प्रिंट नहीं करूंगा"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "printTemplateQuestion": "क्या आप एक रिक्त टेम्पलेट प्रिंट करना चाहेंगे?",
+        "printTemplateInfo": "आप अपना सीड नीचे लिखने में मदद करने के लिए एक खाली टेम्पलेट प्रिंट कर सकते हैं।",
+        "printTemplateWarning": "सुनिश्चित करें कि आप अपने सीड को सुरक्षित स्थान पर स्टोर करें। इसे किसी को न दिखाएं।",
         "print": "जी हाँ, प्रिंट करे"
     },
     "receive": {
@@ -329,14 +329,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "कृपया अपने सीड की पुष्टि करें।",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "जब तक आप अपने वॉलेट और एप्लीकेशन को रिसेट नहीं करेंगे, ट्रिनिटी आपको दोबारा सीड नहीं पूछेगा",
         "enterYourSeed": "अपना सीड डालें",
         "incorrectSeed": "गलत सीड",
         "incorrectSeedExplanation": "आपके द्वारा दर्ज किया गया सीड गलत है । कृपया पुन: प्रयास करें ।",
         "ifYouHaveNotSaved": "यदि आप अपने सीड कहीं नहीं सहेजा है, कृपया वापस जाओ और सीड को सहेज लो।",
         "enterSeedBelow": "आप इसे सही ढंग से बैकअप ले लिया है, इसकी पुष्टि करने के लिए नीचे अपने नए बनाए सीड दर्ज करें",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "चेतावनी: सीड पेस्ट नहीं कर सकते",
+        "clipboardWarningExplanation": "आपकी सुरक्षा के लिए पेस्ट को बंद किया गया है है। आप इसके बजाय एक फ़ाइल से अपना बीज खींच और छोड़ सकते हैं।"
     },
     "send": {
         "invalidAddress": "अवैध पता",
@@ -365,7 +365,7 @@
         "addressPasteDetected": "एड्रेस पेस्ट डेटेक्टेड",
         "addressPasteExplanation": "ऐसा लगता है कि आपने एक एड्रेस पेस्ट किया है । सुनिश्चित करें कि एड्रेस उस एक से मेल खाता है जिसे आप भेजना चाहते हैं ।",
         "invalid": "अमान्य",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "भेजने के लिए स्वाइप करें"
     },
     "setSeedName": {
         "letsAddName": "आइए एक नाम जोड़ें",
