@@ -149,7 +149,7 @@
         "problemPerformingProofOfWork": "Prišlo je do napake, pri izvajanju Proof of Work-a.",
         "tryingAgainWithLocalPoW": "Poskusite znova z lokalnim Proof of Work.",
         "tryingAgainWithDifferentNode": "Poskušanje znova, z naslednjim Node.",
-        "errorFetchingAccountInformation": "Error fetching account information.",
+        "errorFetchingAccountInformation": "Napaka pri dostopu do informacij računa.",
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
