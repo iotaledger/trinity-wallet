@@ -550,7 +550,7 @@
         "million": "百萬",
         "thousand": "千",
         "one": "一",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTA通常以一百萬或其倍數為單位獲得，但轉送時亦可以細分為單個IOTA。"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "我為何無法支出所有餘額？",
@@ -624,10 +624,10 @@
     "transferConfirmation": {
         "youAreAbout": "您將轉帳{{contents}} 到地址",
         "aMessage": "訊息",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
+        "fromAccount": "由{{selectedAccountName}}",
+        "toAddress": "目的地址",
         "sendingAMessage": "訊息正在傳送",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "sendingAnEmptyMessage": "正在傳送"
     },
     "seedVault": {
         "exportSeedVault": "匯出 SeedVault",
