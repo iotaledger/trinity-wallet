@@ -167,7 +167,7 @@
     "react-qr-reader": "2.2.1",
     "react-redux": "5.1.1",
     "react-router-dom": "5.0.0",
-    "react-transition-group": "4.0.0",
+    "react-transition-group": "4.0.1",
     "realm": "2.23.0",
     "recharts": "1.5.0",
     "redux": "4.0.1"
