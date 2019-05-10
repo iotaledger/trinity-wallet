@@ -48,7 +48,7 @@
     "css-loader": "2.1.1",
     "dart-sass": "1.20.1",
     "electron": "3.1.9",
-    "electron-builder": "20.39.0",
+    "electron-builder": "20.40.2",
     "electron-devtools-installer": "2.2.4",
     "electron-screenshot": "1.0.5",
     "express": "4.16.4",
