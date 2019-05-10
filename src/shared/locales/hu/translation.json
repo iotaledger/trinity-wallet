@@ -725,8 +725,8 @@
         "deepLinkingOverview": "Az iota:// kezdetű ún. deep linkekre kattintva a Trinity automatikusan kitölti a tranzakció adatait.",
         "deepLinkingWarning": "Figyelem! Adathalászok próbálkozhatnak az adatainak megszerzésével. Mindig győzödjön meg arról, hogy a linkre kattintva a hivatalos Trinity applikáció nyílt meg.",
         "deepLinkingUpdated": "Automatikus adatkitöltés beállításai",
-        "deepLinkingEnabled": "Automatikus adatkitöltés engedélyezve",
-        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingEnabled": "Automatikus adatkitöltés engedélyezve.",
+        "deepLinkingDisabled": "Automatikus adatkitöltés letiltva.",
         "deepLinkingInfoTitle": "Deep linking is not enabled",
         "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
