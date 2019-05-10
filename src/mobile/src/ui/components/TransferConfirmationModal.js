@@ -178,7 +178,7 @@ class TransferConfirmationModal extends Component {
                         </ScrollView>
                     )}
                     {!isMessage && (
-                        <View style={{ paddingTop: isMessage && height / 80, alignItems: 'center' }}>
+                        <View style={{ alignItems: 'center' }}>
                             <View style={styles.valueContainer}>
                                 <TextWithLetterSpacing
                                     spacing={width / 100}
