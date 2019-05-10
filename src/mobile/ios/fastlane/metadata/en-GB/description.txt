@@ -2,11 +2,11 @@ The Trinity wallet is a new, user-friendly wallet for IOTA. IOTA is a distribute
 
 Application features include:
 
-- Stateful Wallet Storage
-- Multi-Account Management
-- Pricing and Chart Data
-- Biometric Login
-- Auto-Reattach and Promotion (when in foreground)
-- Snapshot Transition
+- State of the art encryption
+- Multi-account management
+- Pricing and chart data
+- Biometric login
+- Automatic node selection
+- Auto-reattachment and promotion
 
 For help, please refer to https://docs.iota.org/trinity
