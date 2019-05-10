@@ -217,7 +217,9 @@ function createWindow() {
     if (devMode) {
         windows.main.webContents.openDevTools({ mode: 'detach' });
         if (process.platform === 'darwin') {
-            windows.tray.webContents.openDevTools({ mode: 'detach' });
+            /* Uncomment to enable Tray applications devtools
+                windows.tray.webContents.openDevTools({ mode: 'detach' });
+            */
         }
 
         installExtension(REACT_DEVELOPER_TOOLS);
