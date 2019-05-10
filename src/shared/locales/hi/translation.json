@@ -636,7 +636,7 @@
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
         "exportSuccess": "SeedVault exported",
-        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
+        "exportSuccessExplanation": "आपकी एन्क्रिप्टेड सीड फ़ाइल सफलतापूर्वक एक्सपोर्ट की गई।",
         "unrecognisedKey": "Unrecognised SeedVault Key",
         "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
         "emptyKey": "No SeedVault Key entered",
@@ -791,12 +791,12 @@
         "dataMigration": "डाटा माइग्रेशन",
         "dataMigrationExplanation": "प्रदर्शन और भंडारण सीमाओं के कारण, ट्रिनिटी सेटिंग्स और खाता डेटा संग्रहीत करने के लिए एक नया डेटाबेस का उपयोग कर रहा है। कृपया प्रतीक्षा करें, जबकि ट्रिनिटी स्वचालित रूप से आपके मौजूदा डेटा को स्थानांतरित कर देती है।",
         "problemMigratingYourData": "आपके डेटा को माइग्रेट करने में समस्या थी। कृपया पुन: प्रयास करें",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "seedMigrationExplanation": "वॉलेट सुरक्षा में सुधार के लिए ट्रिनिटी के निरंतर प्रयास के हिस्से के रूप में, आपके सीड को एक विस्तारित भंडारण पद्धति में माइग्रेट किया जाएगा। कृपया प्रतीक्षा करें, जबकि ट्रिनिटी स्वचालित रूप से सीड भंडारण को स्थानांतरित करती है।"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
+        "ready": "लेजर डिवाइस जुड़ा हुआ है और तैयार है",
+        "notReady": "यदि आप लेजर डिवाइस का उपयोग करना चाहते हैं, तो इसे कनेक्ट और अनलॉक करें",
+        "indexInUse": "सूचकांक पहले से ही खाता {{account}} के लिए उपयोग में है",
         "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
         "proceedWithLedger": "Proceed with Ledger setup",
         "accountIndex": "Account index",
