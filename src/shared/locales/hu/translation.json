@@ -789,9 +789,9 @@
     },
     "migration": {
         "dataMigration": "Adatok átmozgatása",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "dataMigrationExplanation": "A sebesség növelése és a kevesebb tárhely igény érdekében a Trinity új fajta adatbázist használ a beállítások és a fiók adatainak tárolására. Kérjük várjon, amíg a Trinity az adatait átmozgatja az új adatbázisba.",
+        "problemMigratingYourData": "Nem sikerült az adatok átmozgatása. Kérjük próbálja újra.",
+        "seedMigrationExplanation": "A még nagyobb adatbiztonság érdekében a Trinity a mester jelszavát egy új fajta eljárással titkosítva tárolja. Kérjük várjon, amíg a Trinity a mester jelszavát újra titkosítja."
     },
     "ledger": {
         "ready": "Hardveres tárca csatlakoztatva és készen áll",
@@ -801,8 +801,8 @@
         "proceedWithLedger": "Hardveres tárca beállítása",
         "accountIndex": "Számlasorszám",
         "accountPage": "Számla oldal",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Hardveres tárca elérés megszakítva",
+        "actionCancelledExplanation": "A művelet nem hajtható végre a hardveres tárca nélkül.",
         "chooseAccountIndex": "Válassza ki a hardveres tárca számlasorszámát",
         "accountIndexExplanation": "A hardveres tárca több mester jelszót is képes tárolni. Minden mester jelszót egy egyedi számlasorszám azonosít. Egy még használaton kÍvüli számlasorszámot kiválasztottunk, de ha kívánja, nyugodtan megadhat egy szabadon választott számlasorszámot. Kérjük, jegyezze fel a választott számlasorszámot.",
         "accountPageExplanation": "Néhány gyártó tárcája ún. számla oldal megadását igényli.",
@@ -826,7 +826,7 @@
         "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik-e a hardveres tárcán megjelenő címmel.",
         "applicationNotInitialised": "Jóváhagyásra váró figyelmeztetés",
         "applicationNotInitialisedExplanation": "Nyissa meg újra az IOTA alkalmazást a hardveres tárcáján, hagyja jóvá a megjelenő figyelmeztetést, majd próbálja úra.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevError": "Hardveres tárca nem elérhető",
+        "udevErrorExplanation": "A Trinity nem tudott a hardveres tárcával kapcsolatba lépni. A probléma megoldásával kapcsolatos további információkért kérjük látogassa meg az alábbi linken található oldalt."
     }
 }
