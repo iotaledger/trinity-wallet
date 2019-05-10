@@ -572,7 +572,7 @@
         "syncingYourAccount": "同步您的帳戶中。"
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "輸入您帳戶名稱與種子",
         "incorrectFormat": "種子碼格式不符",
         "validSeedExplanation": "有效的種子碼應為 81 個字元而且僅包含 A-Z 或 9。"
     },
@@ -581,14 +581,14 @@
         "viewSeed": "檢視種子碼",
         "hideSeed": "隱藏種子碼",
         "notAvailable": "{{accountType}} 帳戶類型無法匯出種子碼",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "種子(seed) 被放在裝置的安全元件內, 種子(seed) 安全的被加密, 且不會外流給其他裝置",
         "accountIndex": "您的 Ledger 帳戶索引",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "您的帳戶"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "您備份種子碼了嗎？",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "您的種子已經安全的備份",
+        "reenterSeed": "在下一步, 您需要重新輸入您的種子",
         "reenterSeedWarning": "如果您尚未備份您的種子碼然後裝置停止的話，您將失去您所有的 IOTA。",
         "pleaseConfirm": "請確認您已安全地儲存了您的種子碼。"
     },
@@ -607,9 +607,9 @@
         "fingerprintAuthFailedExplanation": "指紋驗證失敗，請再試一次。",
         "status": "狀態",
         "fingerprintUnavailable": "生物識別驗證無法使用",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "暫停身分驗證30秒",
         "fingerprintUnavailableExplanation": "您的裝置不支援生物識別驗證，或者裝置設定中並沒有啟用此權限。",
-        "notSupported": "Device does not support biometric authentication",
+        "notSupported": "裝置並不提供生物識別驗證(指紋, 靜脈...)",
         "notConfigured": "Biometric authentication has not been configured in device settings",
         "buttonInstructionsDisable": "按下方按鈕停用指紋驗證。",
         "buttonInstructionsEnable": "按下方按鈕啟用指紋驗證。",
