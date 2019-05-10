@@ -378,7 +378,7 @@
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
         "modeUpdated": "मोड अपडेट किया गया",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdatedExplanation": "आप {{mode}} मोड में बदल गए हैं"
     },
     "settings": {
         "transferSending": "ट्रांसफर हो रहा है",
@@ -440,7 +440,7 @@
     "walletSetup": {
         "okay": "चलो अपने वॉलेट को सेट करे!",
         "doYouNeedASeed": "क्या आपको एक नया सीड बनाने की जरूरत है?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "आपका IOTA सीड आपके फण्ड के लिए मुख्य कुंजी है। यह केवल 81 अक्षर Z या संख्या 9 का उपयोग करते हुए, 81 वर्ण लंबा है।",
         "noIHaveOne": "नहीं, मेरे पास पहले से है",
         "yesINeedASeed": "हाँ, मुझे सीड की जरुरत है",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
@@ -466,11 +466,11 @@
         "messageCopiedExplanation": "पते की क्लिपबोर्ड पर कॉपी बनाई गई है ।",
         "send": "भेजें",
         "receive": "प्राप्त करें",
-        "empty": "Empty",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday",
-        "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "empty": "खाली",
+        "retrying": "पुन: प्रयास हो रहा है...",
+        "yesterday": "कल",
+        "promotingAnotherBundle": "दूसरे बंडल को प्रोमोट कर रहे है",
+        "pleaseWait": "कृपया प्रतीक्षा करे, दूसरे बंडल को प्रोमोट कर रहे है",
         "typeHelp": "Type !help for available commands",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
