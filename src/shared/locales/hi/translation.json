@@ -630,7 +630,7 @@
         "sendingAnEmptyMessage": "खाली संदेश भेज रहे है"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
+        "exportSeedVault": "एक्सपोर्ट सीडवॉल्ट",
         "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
@@ -737,9 +737,9 @@
         "newVersionAvailable": "नया संस्करण उपलब्ध है",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "नए अपडेट को इनस्टॉल करे और पुनः स्टार्ट करे",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "installUpdateExplanation": "डाउनलोड कम्पलीट हुवा अब ट्रिनिटी पुनः इनस्टॉल करना आरम्भ करेगा |",
+        "downloadingUpdate": "अपडेट डाउनलोड हो रहा है...",
+        "downloadProgress": "{{transferred}} का {{total}} डाउनलोड हो गया"
     },
     "notificationLog": {
         "errorLog": "त्रुटि लॉग"
@@ -768,7 +768,7 @@
         "notifications": "नोटिफिकेशन",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
         "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
+        "typeMessages": "मुझे शून्य मूल्य लेनदेन के बारे में सूचित करें",
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
