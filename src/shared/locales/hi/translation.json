@@ -767,7 +767,7 @@
     "notifications": {
         "notifications": "नोटिफिकेशन",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
+        "typeConfirmations": "पुष्टि के बारे में मुझे सूचित करें",
         "typeMessages": "मुझे शून्य मूल्य लेनदेन के बारे में सूचित करें",
         "multipleTx": "{{account}} में एक से अधिक ट्रांसक्शन हो रहा है",
         "valueTx": "Receiving {{value}} to {{account}}",
@@ -780,12 +780,12 @@
         "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
         "sweepError": "Error unlocking funds",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
+        "warningTitle": "चेतावनी: लॉक्ड फण्ड मिला",
+        "explanation": "ट्रिनिटी डेस्कटॉप संस्करण 0.3.4 में एक बग होता है जो अस्थायी रूप से फण्ड को लॉक कर सकता है। यह उन उपयोगकर्ताओं की एक छोटी संख्या को प्रभावित करता है जिन्होंने 0.3.4 के साथ लेनदेन किया था।",
+        "explanationAccounts": "आपके खातों पर लॉक्ड फंड्स का पता लगाया गया है: {{accounts}}। ट्रिनिटी अब उन्हें एक नए पते पर ले जाकर आपके फंड्स को स्वचालित रूप से पुनर्प्राप्त करेगी ।",
+        "proceed": "रिकवरी के लिए आगे बढ़ें",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepConfirmationTitle": "स्वीप की पुष्टि"
     },
     "migration": {
         "dataMigration": "डाटा माइग्रेशन",
