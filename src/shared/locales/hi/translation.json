@@ -251,7 +251,7 @@
         "setNode": "नोड सेट करें",
         "whyBiometricDisabled": "बायोमेट्रिक प्रमाणीकरण को चालू क्यों नहीं किया गया है",
         "whyBiometricDisabledExplanationPart1": "आपकी सुरक्षा के लिए पहले एप्लिकेशन लोड पर बायोमेट्रिक प्रमाणीकरण अक्षम है।",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart2": "ट्रिनिटी का उपयोग करते समय आपको निष्क्रियता के लिए लॉग आउट किया जाएगा। फिर आप बायोमेट्रिक प्रमाणीकरण के साथ वापस लॉग इन कर सकते हैं।"
     },
     "loading": {
         "loadingFirstTime": "पहली बार के लिए seed लोड हो रहा है ।",
@@ -266,7 +266,7 @@
         "pressForNewSeed": "नए सीड के लिए प्रेस के लिए दबाये",
         "generateSuccess": "सफलतापूर्वक नए सीड बन गए",
         "individualLetters": "अलग अलग लेटर को दबाये, ताकि आपका सीड अद्वितीय बन सके",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount": "<1> <0> {{गिनती}} </ 0> </ 1> इसे यादृच्छिक करने के लिए अधिक अक्षर दबाएं।",
         "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
         "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
         "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
@@ -283,7 +283,7 @@
         "print": "प्रिंट",
         "paperConvenience": "अपने सीड की एक कागज प्रति प्रिंट एक सुविधाजनक तरीका है सहेजने के लिए |",
         "publicInsecure": "लेकिन सार्वजनिक वाईफ़ाई या एक सार्वजनिक प्रिंटर पर मुद्रण असुरक्षित है ।",
-        "pleaseCheck": "Please check and confirm before you print",
+        "pleaseCheck": "कृपया प्रिंट करने से पहले जाँचें और पुष्टि करें",
         "wifiConfirmation": "मैं सार्वजनिक वाईफाई पर नहीं हूं",
         "printerConfirmation": "मैं किसी सार्वजनिक प्रिंटर पर प्रिंट नहीं करूंगा"
     },
@@ -377,7 +377,7 @@
         "standard": "मानक",
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
-        "modeUpdated": "Mode updated",
+        "modeUpdated": "मोड अपडेट किया गया",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
