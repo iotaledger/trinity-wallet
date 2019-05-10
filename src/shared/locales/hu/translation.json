@@ -653,15 +653,15 @@
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
         "invalidSeedFileError": "Hibás SeedVault fájl",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileErrorExplanation": "Ez a fájlformátum nem támogatott. Csak .kdbx kiterjesztésű, a Trinity vagy egy jelszókezelő szoftver által létrehozott SeedVault fájl importálása támogatott.",
         "seedVaultKeyExplanation": "A SeedVault fájl biztonságos tárolásához kérjük válasszon egy titkosító kulcsot. A titkosító kulcsra akkor lehet szüksége, ha a mester jelszavát a titkosított SeedVault biztonsági mentésből szeretné később egy másik, vagy egy újratelepített tárcába betölteni.",
         "retypeKey": "Titkosító kulcs még egyszer",
         "key": "Kulcs"
     },
     "stateExport": {
         "stateExportExplanation": "Az adatmentés funkció a készülékén egy szöveges fájlban eltárolja a fiókjának (tranzakciók, címek) adatait, a tárca verzióját és a biztonsági mentés fájlok nevét.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "exportSuccess": "Adatmentés sikeres",
+        "exportSuccessExplanation": "Az adatmentés sikeresen befejeződött."
     },
     "chart": {
         "mcap": "Piaci kapitalizáció",
@@ -697,11 +697,11 @@
         "gettingTransactionsToApprove": "Ellenőrizendő tranzakciók lekérése",
         "proofOfWork": "Kiszabott munka elvégzése",
         "broadcasting": "Tranzakció elküldése",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Adatok előkészítése",
+        "migratingSettings": "Beállítások átmozgatása",
+        "migratingAccounts": "Fiókok átmozgatása",
+        "cleaningUpOldData": "Elavult adatok törlése",
+        "migrationComplete": "Adatok átmozgatása sikeres",
         "transferComplete": "Utalás végrehajtva"
     },
     "snapshotTransition": {
@@ -722,10 +722,10 @@
     "deepLink": {
         "autofill": "Automatikus kitöltés sikeres",
         "autofillExplanation": "Tranzakciós adatok automatikus kitöltése link alapján.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
+        "deepLinkingOverview": "Az iota:// kezdetű ún. deep linkekre kattintva a Trinity automatikusan kitölti a tranzakció adatait.",
+        "deepLinkingWarning": "Figyelem! Adathalászok próbálkozhatnak az adatainak megszerzésével. Mindig győzödjön meg arról, hogy a linkre kattintva a hivatalos Trinity applikáció nyílt meg.",
+        "deepLinkingUpdated": "Automatikus adatkitöltés beállításai",
+        "deepLinkingEnabled": "Automatikus adatkitöltés engedélyezve",
         "deepLinkingDisabled": "You have disabled deep linking.",
         "deepLinkingInfoTitle": "Deep linking is not enabled",
         "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
