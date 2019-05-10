@@ -727,8 +727,8 @@
         "deepLinkingUpdated": "Automatikus adatkitöltés beállításai",
         "deepLinkingEnabled": "Automatikus adatkitöltés engedélyezve.",
         "deepLinkingDisabled": "Automatikus adatkitöltés letiltva.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoTitle": "Automatikus adatkitöltés letiltva",
+        "deepLinkingInfoMessage": "Egy iota:// deep linket próbált megnyitni, de az automatikus adatkitöltést nem engedélyezte."
     },
     "updates": {
         "errorRetrievingUpdateData": "Frissítés adatletöltési hiba",
@@ -788,7 +788,7 @@
         "sweepConfirmationTitle": "Zárolás feloldás jóváhagyása"
     },
     "migration": {
-        "dataMigration": "Data migration",
+        "dataMigration": "Adatok átmozgatása",
         "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
         "problemMigratingYourData": "There was a problem migrating your data. Please try again",
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
