@@ -631,7 +631,7 @@
     },
     "seedVault": {
         "exportSeedVault": "匯出 SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "種子密碼是用來保護您的種子\n當您需要使用種子時, 請輸入種子密碼解鎖種子",
         "seedVaultWarning": "請確認您有備份檔案在許多不同位置 (像是硬碟、雲端、USB)。如果您遺失此檔案而且沒有在其他地方儲存種子碼的話，您將失去您的 IOTA。",
         "exportFail": "SeedVault 匯出失敗",
         "exportFailExplanation": "匯出 SeedVault 時發生錯誤，請確認您有對應的權限以及足夠的可用空間。",
