@@ -610,23 +610,23 @@
         "deviceLocked": "暫停身分驗證30秒",
         "fingerprintUnavailableExplanation": "您的裝置不支援生物識別驗證，或者裝置設定中並沒有啟用此權限。",
         "notSupported": "裝置並不提供生物識別驗證(指紋, 靜脈...)",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "notConfigured": "生物識別驗證無法成功設定",
         "buttonInstructionsDisable": "按下方按鈕停用指紋驗證。",
         "buttonInstructionsEnable": "按下方按鈕啟用指紋驗證。",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "按下下面按鈕關掉臉部辨識",
+        "buttonInstructionsEnableIPhoneX": "按下下面按鈕開啟臉部辨識",
         "instructionsLogin": "觸摸指紋辨識器來登入",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "您的裝置已經關掉身分驗證",
+        "userCancelledAuth": "身分驗證請求已取消",
+        "passwordFallback": "回到輸入密碼",
+        "noPassword": "密碼尚未設定"
     },
     "transferConfirmation": {
         "youAreAbout": "您將轉帳{{contents}} 到地址",
         "aMessage": "訊息",
         "fromAccount": "From {{selectedAccountName}}",
         "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
+        "sendingAMessage": "訊息正在傳送",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
     "seedVault": {
