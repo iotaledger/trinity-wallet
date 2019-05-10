@@ -735,7 +735,7 @@
         "noUpdatesAvailable": "कोई अपडेट उपलब्ध नहीं",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "नया संस्करण उपलब्ध है",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "एक नया ट्रिनिटी संस्करण उपलब्ध है। क्या आप अभी अपडेट करना चाहते हैं?",
         "installUpdate": "नए अपडेट को इनस्टॉल करे और पुनः स्टार्ट करे",
         "installUpdateExplanation": "डाउनलोड कम्पलीट हुवा अब ट्रिनिटी पुनः इनस्टॉल करना आरम्भ करेगा |",
         "downloadingUpdate": "अपडेट डाउनलोड हो रहा है...",
@@ -755,7 +755,7 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayExplanation": "आपके खाते की शेष राशि और हाल के लेन-देन के इतिहास का अवलोकन प्रदान करता है।",
         "notLoggedIn": "आप लॉग इन नहीं हैं।",
         "setupIncomplete": "वॉलेट सेटअप अधूरा",
         "completeSetup": "पूर्ण सेटअप"
@@ -776,10 +776,10 @@
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "sweepSucceeded": "फण्ड को सफलतापूर्वक अनलॉक किया गया",
+        "sweepSucceededExplanation": "आपके फण्ड को सफलतापूर्वक अनलॉक कर एक नए पते पर ले जाया गया है। लेनदेन की पुष्टि करने में उनकी मदद करें।",
+        "sweepError": "फण्ड को अनलॉक करने में त्रुटि आ गया",
+        "sweepErrorExplanation": "आपके फण्ड को अनलॉक करते समय कुछ गलत हुआ। दोबारा प्रयास करे।",
         "warningTitle": "चेतावनी: लॉक्ड फण्ड मिला",
         "explanation": "ट्रिनिटी डेस्कटॉप संस्करण 0.3.4 में एक बग होता है जो अस्थायी रूप से फण्ड को लॉक कर सकता है। यह उन उपयोगकर्ताओं की एक छोटी संख्या को प्रभावित करता है जिन्होंने 0.3.4 के साथ लेनदेन किया था।",
         "explanationAccounts": "आपके खातों पर लॉक्ड फंड्स का पता लगाया गया है: {{accounts}}। ट्रिनिटी अब उन्हें एक नए पते पर ले जाकर आपके फंड्स को स्वचालित रूप से पुनर्प्राप्त करेगी ।",
@@ -789,8 +789,8 @@
     },
     "migration": {
         "dataMigration": "डाटा माइग्रेशन",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "dataMigrationExplanation": "प्रदर्शन और भंडारण सीमाओं के कारण, ट्रिनिटी सेटिंग्स और खाता डेटा संग्रहीत करने के लिए एक नया डेटाबेस का उपयोग कर रहा है। कृपया प्रतीक्षा करें, जबकि ट्रिनिटी स्वचालित रूप से आपके मौजूदा डेटा को स्थानांतरित कर देती है।",
+        "problemMigratingYourData": "आपके डेटा को माइग्रेट करने में समस्या थी। कृपया पुन: प्रयास करें",
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
@@ -820,7 +820,7 @@
         "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
         "ledgerDeniedTitle": "लेन-देन से इनकार किया",
         "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
-        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndex": "लेजर डिवाइस मेल नहीं हो पाया",
         "ledgerIncorrectIndexExplanation": "जुड़ा हुआ लेजर डिवाइस इस खाते से जुड़े एक से मेल नहीं खाता है, या रिकवरी फ्रेज को बदल दिया गया है",
         "checkAddress": "प्राप्त करने वाले पते की जाँच करें",
         "checkAddressExplanation": "जांचें कि पता आपके लेजर डिवाइस पर प्रदर्शित एक से मेल खाता है।",
