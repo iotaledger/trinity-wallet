@@ -444,21 +444,21 @@
         "noIHaveOne": "नहीं, मेरे पास पहले से है",
         "yesINeedASeed": "हाँ, मुझे सीड की जरुरत है",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "loseSeed": "लेकिन अगर आप अपना सीड खो देते हैं, तो आप अपना IOTA भी खो देते हैं",
         "keepSafe": "कृपया अपने सीड को सुरक्षित रखें"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Iota वॉलेट डाउनलोड करने के लिए धन्यवाद।"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> अपना सीड और चेकसम लिखें और </ 0> <1> ट्रिपल चेक कर ले </ 1> <2> यह सही है। </ 2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "नीचे स्क्रॉल करें"
     },
     "history": {
         "bundleHashCopied": "बंडल हैश की प्रतिलिपि बनाई गई",
-        "noTransactionsFound": "No transactions found",
-        "emptyHistory": "Your transaction history is empty",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "कोई लेनदेन नहीं मिला",
+        "emptyHistory": "आपका लेन-देन इतिहास खाली है",
+        "hideZeroBalance": "शून्य बैलेंस छिपाएं",
         "bundleHashCopiedExplanation": "बंडल हैश को क्लिपबोर्ड पर कॉपी किया गया है ।",
         "addressCopied": "पता प्रतिलिपि बनाई गई",
         "addressCopiedExplanation": "पते की क्लिपबोर्ड पर कॉपी बनाई गई है ।",
@@ -471,12 +471,12 @@
         "yesterday": "कल",
         "promotingAnotherBundle": "दूसरे बंडल को प्रोमोट कर रहे है",
         "pleaseWait": "कृपया प्रतीक्षा करे, दूसरे बंडल को प्रोमोट कर रहे है",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "typeHelp": "उपलब्ध कमांड के लिए !help टाइप करे",
+        "searchHelpText": "बंडल हैश या मैसेज कंटेंट द्वारा खोजें",
+        "searchHelpValue": "सटीक iota मूल्य द्वारा लेनदेन का पता लगाएं",
+        "searchHelpUnits": "Iota मूल्य और इकाई द्वारा लेनदेन का पता लगाएं",
+        "searchHelpMore": "X से अधिक मूल्य वाले लेनदेन का पता लगाएं",
+        "searchHelpLess": "X से कम मूल्य वाले लेनदेन का पता लगाएं"
     },
     "accountManagement": {
         "viewSeed": "सीड देखें",
@@ -509,8 +509,8 @@
         "autoPromotion": "ऑटो प्रमोशन",
         "autoPromotionExplanation": "ऑटो प्रमोशन आपके लेनदेन की पुष्टि करने में मदद करता है । इस सेटिंग को सक्षम करें यदि आपको पुष्टि करने के लिए अपने लेन-देन में कठिनाई हो रही है ।",
         "autoPromotionPoW": "स्वत: पदोन्नति केवल उन नोड्स पर संभव है जो कार्य के दूरस्थ प्रमाण का समर्थन करते हैं।",
-        "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "deepLinking": "कसा हुआ संयोजन करे",
+        "stateExport": "स्टेट एक्सपोर्ट"
     },
     "advancedThemeCustomisation": {
         "background": "बैकग्राउंड",
@@ -522,15 +522,15 @@
     },
     "themes": {
         "classic": "क्लासिक",
-        "contemporary": "Contemporary",
+        "contemporary": "समकालीन",
         "dark": "डार्क",
         "default": "डिफ़ॉल्ट",
         "electric": "विद्युत",
-        "ionic": "Ionic",
+        "ionic": "आयोनिक",
         "light": "हल्का",
         "lucky": "भाग्यशाली",
         "mint": "मिंट",
-        "steelblue": "Steel Blue"
+        "steelblue": "स्टील ब्लू"
     },
     "currencySelection": {
         "currency": "करेंसी"
@@ -550,7 +550,7 @@
         "million": "मिलियन",
         "thousand": "हज़ार",
         "one": "एक",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "OTAs आम तौर पर एक मिलियन के गुणकों में प्राप्त किए जाते हैं, लेकिन एक IOTA के रूप में स्थानांतरित किया जा सकता है।"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "मैं अपना पूरा बैलेंस क्यों नहीं खर्च कर सकता?",
@@ -558,9 +558,9 @@
         "discordInformation": "यह पता लगाने के लिए कि आप क्या कर सकते हैं, कृपया डिस्कॉर्ड पर #help चैनल पर जाएं।"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "क्या वास्तव में आप अपना खाता हटाना चाहते हैं?",
         "yourSeedWillBeRemoved": "आपके सीड और लेन-देन विवरण को हटा दिया जाएगा ।",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "यह पूर्ववत् नहीं किया जा सकता है!",
         "enterPassword": "इस खाते को हटाने के लिए अपना पासवर्ड दर्ज करें ।"
     },
     "manualSync": {
@@ -572,7 +572,7 @@
         "syncingYourAccount": "अपना खाता सिंक्रनाइज़ कर रहा है ।"
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "खाता नाम और सीड डाले।",
         "incorrectFormat": "सीड का फॉर्मेट सही नहीं है",
         "validSeedExplanation": "वैध सीड 81 वर्ण होना चाहिए और केवल A-Z या 9 होते हैं ।"
     },
