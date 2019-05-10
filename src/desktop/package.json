@@ -143,10 +143,10 @@
   "dependencies": {
     "@babel/register": "7.4.4",
     "@ledgerhq/hw-transport-node-hid": "4.54.0",
+    "@bugsnag/js": "^6.2.0",
+    "@bugsnag/plugin-react": "^6.2.0",
     "argon2": "rihardsgravis/node-argon2#ae1a860",
     "babel-polyfill": "6.26.0",
-    "bugsnag-js": "4.7.3",
-    "bugsnag-react": "1.1.1",
     "classnames": "2.2.6",
     "electron-settings": "3.2.0",
     "electron-updater": "4.0.6",
