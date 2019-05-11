@@ -700,7 +700,7 @@
         "preparingData": "डेटा तैयार हो रहा है",
         "migratingSettings": "सेटिंग को माइग्रेट कर रहे है",
         "migratingAccounts": "खाते को माइग्रेट कर रहे है",
-        "cleaningUpOldData": "Cleaning up old data",
+        "cleaningUpOldData": "पुराने डेटा को साफ कर रहे है",
         "migrationComplete": "माइग्रेशन पूर्ण",
         "transferComplete": "ट्रांसफर कम्पलीट"
     },
