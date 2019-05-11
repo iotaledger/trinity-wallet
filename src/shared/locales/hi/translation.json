@@ -307,7 +307,7 @@
         "generateAnAddress": "नया पता उत्पन्न करें",
         "generateAnAddressTitle": "नया पता उत्पन्न करें",
         "generateAnAddressExplanation": "कृपया आप पहले नया पता उत्पन्न करे",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "IOTA प्राप्त करने के लिए हर बार एक नया डिपोसिट एड्रेस बनाएं"
     },
     "saveYourSeed": {
         "saveYourSeed": "अपने सीड का बैक अप लें",
@@ -322,7 +322,7 @@
         "youCanHighlightCharacters": "आप एक बार में 9 वर्णों को हाइलाइट कर सकते हैं",
         "printBlankWallet": "खाली वॉलेट प्रिंट करे",
         "whatIsAChecksum": "Checksum क्या है?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "प्रत्येक बीज में एक 3-वर्ण वाला चेकसम होता है।",
         "iHavesavedMySeed": "मैंने अपना सीड सहेज लिया है",
         "checksumExplanation": "जब भी आप अपने वॉलेट में कोई बीज जोड़ते हैं, तो आपको यह सुनिश्चित करना चाहिए कि वॉलेट जेनरेट किया गया checksum आपके द्वारा लिखे गए एक से मेल खाता है ।",
         "mustSaveYourSeed": "<0> <0> आपको </0> <1> के साथ अपने सीड को नीचे सूचीबद्ध विकल्पों में से कम एक </1> <2> से बचाना होगा । </2> </0>"
@@ -634,7 +634,7 @@
         "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
-        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
+        "exportFailExplanation": "सीडवॉल्ट को निर्यात करने में समस्या थी। कृपया सुनिश्चित करें कि आपके पास उपयुक्त अनुमति और पर्याप्त खाली स्थान है।",
         "exportSuccess": "SeedVault exported",
         "exportSuccessExplanation": "आपकी एन्क्रिप्टेड सीड फ़ाइल सफलतापूर्वक एक्सपोर्ट की गई।",
         "unrecognisedKey": "Unrecognised SeedVault Key",
@@ -661,7 +661,7 @@
     "stateExport": {
         "stateExportExplanation": "स्टेट एक्सपोर्ट आपके खाते (लेनदेन, पते) की जानकारी, वॉलेट संस्करण और भंडारण फ़ाइलों के नाम के साथ आपके डिवाइस पर एक टेक्स्ट फ़ाइल संग्रहीत करेगा।",
         "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "exportSuccessExplanation": "आपकी एन्क्रिप्टेड सीड फ़ाइल सफलतापूर्वक एक्सपोर्ट की गई।"
     },
     "chart": {
         "mcap": "MCAP",
@@ -690,7 +690,7 @@
     "progressSteps": {
         "checkingNodeHealth": "नोड स्वास्थ्य जांच रहा है",
         "validatingReceiveAddress": "प्राप्त पता की जाँच कर रहे है",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "लेनदेन के पते को मान्य कर रहे है",
         "syncingAccount": "खाता सिंकिंग",
         "preparingInputs": "इनपुट की तैयारी",
         "preparingTransfers": "ट्रांसफर के लिए रेडी हो रहे है",
@@ -727,13 +727,13 @@
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
         "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoTitle": "डीप लिंकिंग सक्षम नहीं है",
         "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "अपडेट डेटा पुनर्प्राप्त करने में त्रुटि",
         "noUpdatesAvailable": "कोई अपडेट उपलब्ध नहीं",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "आपके पास ट्रिनिटी का नवीनतम संस्करण है!",
         "newVersionAvailable": "नया संस्करण उपलब्ध है",
         "newVersionAvailableExplanation": "एक नया ट्रिनिटी संस्करण उपलब्ध है। क्या आप अभी अपडेट करना चाहते हैं?",
         "installUpdate": "नए अपडेट को इनस्टॉल करे और पुनः स्टार्ट करे",
@@ -762,7 +762,7 @@
     },
     "proxy": {
         "proxy": "सिस्टम प्रॉक्सी का उपयोग करें",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxyExplanation": "सिस्टम वाइड नेटवर्क प्रॉक्सी सेटिंग्स का पता लगाएं और उनका उपयोग करें। इस सेटिंग को बदलने के बाद वॉलेट को बंद करें और फिर से खोलें"
     },
     "notifications": {
         "notifications": "नोटिफिकेशन",
