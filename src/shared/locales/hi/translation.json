@@ -697,9 +697,9 @@
         "gettingTransactionsToApprove": "लेन-देन को मंजूरी मिल रही",
         "proofOfWork": "काम का प्रमाण पूरा करना",
         "broadcasting": "प्रसारण",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
+        "preparingData": "डेटा तैयार हो रहा है",
+        "migratingSettings": "सेटिंग को माइग्रेट कर रहे है",
+        "migratingAccounts": "खाते को माइग्रेट कर रहे है",
         "cleaningUpOldData": "Cleaning up old data",
         "migrationComplete": "माइग्रेशन पूर्ण",
         "transferComplete": "ट्रांसफर कम्पलीट"
@@ -766,12 +766,12 @@
     },
     "notifications": {
         "notifications": "नोटिफिकेशन",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "notificationExplanation": "नए लेनदेन के बारे में सिस्टम-वाइड सूचनाएं प्राप्त करें।",
         "typeConfirmations": "पुष्टि के बारे में मुझे सूचित करें",
         "typeMessages": "मुझे शून्य मूल्य लेनदेन के बारे में सूचित करें",
         "multipleTx": "{{account}} में एक से अधिक ट्रांसक्शन हो रहा है",
         "valueTx": "{{खाता}} में {{मान}} रिसीव हो रहा है",
-        "messageTx": "You received a message to {{account}}",
+        "messageTx": "आपको {{account}} के लिए एक संदेश मिला",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     },
