@@ -28,7 +28,7 @@
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.21",
-    "proxy-polyfill": "git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d7",
+    "proxy-polyfill": "^0.3.0",
     "react": "16.2.0",
     "react-i18next": "^8.0.7",
     "react-redux": "^5.0.6",
