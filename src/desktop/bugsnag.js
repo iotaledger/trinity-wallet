@@ -28,16 +28,5 @@ upload({
     minifiedFile: resolve(__dirname, 'dist/bundle.js'),
     overwrite: true,
 })
-    .then(
-        upload({
-            apiKey: API_KEY,
-            appVersion: version,
-            publicPath: 'iota://dist/',
-            sourceMap: resolve(__dirname, 'dist/css/main.css.map'),
-            minifiedUrl: 'iota://dist/css/main.css',
-            minifiedFile: resolve(__dirname, 'dist/css/main.css'),
-            overwrite: true,
-        }),
-    )
     .then(() => console.log('Sourcemaps successfully uploaded to Bugsnag'))
     .catch((err) => console.log('Sourcemaps could not uploaded to Bugsnag: ', err.messsage));

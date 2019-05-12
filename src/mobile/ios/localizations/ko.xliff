@@ -62,17 +62,26 @@
       <trans-unit id="NSCameraUsageDescription">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <note>Privacy - Camera Usage Description</note>
-        <target state="translated">권한을 부여하면 트리니티가 QR 코드를 읽을 수 있습니다.</target>
+        <target state="translated">QR 코드를 읽기 위해 카메라 접근 권한이 필요합니다.</target>
+        <alt-trans>
+          <target>권한을 부여하면 트리니티가 QR 코드를 읽을 수 있습니다.</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <note>Privacy - Face ID Usage Description</note>
-        <target state="translated">권한을 부여하면 트리니티가 Face ID를 사용할 수 있습니다.</target>
+        <target state="translated">생체 인증 기능을 위해 Face ID 접근 권한이 필요합니다.</target>
+        <alt-trans>
+          <target>권한을 부여하면 트리니티가 Face ID를 사용할 수 있습니다.</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>
         <note>Copyright (human-readable)</note>
-        <target state="translated">2018 IOTA 재단. 이 앱에 대한 모든 권리는 재단 측에서 보유합니다.</target>
+        <target state="translated">트리니티 앱에 대한 모든 권리는 IOTA 재단이 소유합니다. 2018 IOTA 재단.</target>
+        <alt-trans>
+          <target>2018 IOTA 재단. 이 앱에 대한 모든 권리는 재단 측에서 보유합니다.</target>
+        </alt-trans>
         <alt-trans>
           <target>2018 IOTA 재단. 모든 권리 보유.</target>
         </alt-trans>

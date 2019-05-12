@@ -226,6 +226,14 @@
         margin: 32px 0;
         border-top: 1px solid var(--body-alt);
     }
+
+    &.busy {
+        a,
+        button {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
 }
 
 .scroll {
