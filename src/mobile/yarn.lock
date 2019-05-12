@@ -7006,9 +7006,10 @@ proxy-from-env@^1.0.0:
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.0.0.tgz#33c50398f70ea7eb96d21f7b817630a55791c7ee"
   integrity sha1-M8UDmPcOp+uW0h97gXYwpVeRx+4=
 
-"proxy-polyfill@git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d7":
-  version "0.2.0"
-  resolved "git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d73d44caebaf2da1cc991f0113989a83886"
+proxy-polyfill@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/proxy-polyfill/-/proxy-polyfill-0.3.0.tgz#385c13d1402d4ae1357b6e44652d9b8d6289b0ef"
+  integrity sha512-0HN+SoV3qKJ1EIIOsEybYgyTTnR26PJ0af/shBqaXLUMIg7/8PHEyQ28QfaDFwmvH77yRuLtclnERgrCq4v+xg==
 
 pseudomap@^1.0.2:
   version "1.0.2"
@@ -8227,7 +8228,7 @@ shared-modules@../shared/:
     lodash "^4.17.11"
     moment "^2.22.2"
     moment-timezone "^0.5.21"
-    proxy-polyfill "git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d7"
+    proxy-polyfill "^0.3.0"
     react "16.2.0"
     react-i18next "^8.0.7"
     react-redux "^5.0.6"
