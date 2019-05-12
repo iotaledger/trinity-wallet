@@ -722,13 +722,13 @@
     "deepLink": {
         "autofill": "ऑटो फील सफल",
         "autofillExplanation": "लिंक से लेनदेन डेटा का स्वत: भरण",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
+        "deepLinkingOverview": "डीप लिंक क्लिक करने योग्य लिंक (iota: //...) हैं जो स्वचालित रूप से ट्रिनिटी में लेनदेन डेटा भरते हैं।",
         "deepLinkingWarning": "फिशिंग घोटालों से अवगत रहें। सुनिश्चित करें कि आपके द्वारा आधिकारिक ट्रिनिटी ऐप के लिए लिंक को खोला गया है।",
         "deepLinkingUpdated": "डीप लिंकिंग सेटिंग्स",
         "deepLinkingEnabled": "आपने डीप लिंकिंग सक्षम की है।",
         "deepLinkingDisabled": "आपने डीप लिंकिंग अक्षम की है।",
         "deepLinkingInfoTitle": "डीप लिंकिंग सक्षम नहीं है",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoMessage": "आपने एक iota:// खोला है, डीप लिंक लेकिन डीप लिंकिंग सक्षम नहीं है।"
     },
     "updates": {
         "errorRetrievingUpdateData": "अपडेट डेटा पुनर्प्राप्त करने में त्रुटि",
@@ -772,8 +772,8 @@
         "multipleTx": "{{account}} में एक से अधिक ट्रांसक्शन हो रहा है",
         "valueTx": "{{खाता}} में {{मान}} रिसीव हो रहा है",
         "messageTx": "आपको {{account}} के लिए एक संदेश मिला",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedIn": "आने वाली {{value}} से {{account}} की पुष्टि की है",
+        "confirmedOut": "{{account}} से आउटगोइंग {{value}} की पुष्टि हो गयी है"
     },
     "bytetrit": {
         "sweepSucceeded": "फण्ड को सफलतापूर्वक अनलॉक किया गया",
