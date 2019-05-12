@@ -268,8 +268,8 @@
         "individualLetters": "अलग अलग लेटर को दबाये, ताकि आपका सीड अद्वितीय बन सके",
         "individualLetterCount": "<1> <0> {{गिनती}} </ 0> </ 1> इसे यादृच्छिक करने के लिए अधिक अक्षर दबाएं।",
         "individualLetterCount_plural": "उन्हें और भी रैंडम जेनेरेट करने के लिए <1> <0> {{count}} </ 0> </ 1> को प्रेस करे",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "randomiseCharsToContinue": "यादृच्छिकता <1> {{count}} </ 1> चरित्र जारी रखने के लिए।",
+        "randomiseCharsToContinue_plural": "यादृच्छिकता <1> {{count}} </ 1> वर्ण जारी रखने के लिए।",
         "whatIsASeed": "सीड क्या है?"
     },
     "onboardingComplete": {
