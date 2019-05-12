@@ -661,7 +661,7 @@
     "stateExport": {
         "stateExportExplanation": "Export stavu uloží do Vašeho zařízení soubor txt s informacemi o vašem účtě (transakcích, adresách), verzi peněženky a názvy uložených souborů.",
         "exportSuccess": "Stav byl vyexportován",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "exportSuccessExplanation": "Váš stavový soubor byl úspěšně vyexportován."
     },
     "chart": {
         "mcap": "MCAP",
