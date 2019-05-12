@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Chyba při získávání aktualizačních dat",
         "noUpdatesAvailable": "Nejsou dostupné žádné aktualizace",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "Máte nainstalovanou nejnovější verzi Trinity!",
         "newVersionAvailable": "K dispozici je nová verze",
         "newVersionAvailableExplanation": "K dispozici je nová verze Trinity. Chcete nyní aktualizovat?",
         "installUpdate": "Nainstalujte aktualizaci a restartujte",
