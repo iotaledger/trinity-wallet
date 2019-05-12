@@ -267,7 +267,7 @@
         "generateSuccess": "सफलतापूर्वक नए सीड बन गए",
         "individualLetters": "अलग अलग लेटर को दबाये, ताकि आपका सीड अद्वितीय बन सके",
         "individualLetterCount": "<1> <0> {{गिनती}} </ 0> </ 1> इसे यादृच्छिक करने के लिए अधिक अक्षर दबाएं।",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "individualLetterCount_plural": "उन्हें और भी रैंडम जेनेरेट करने के लिए <1> <0> {{count}} </ 0> </ 1> को प्रेस करे",
         "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
         "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "सीड क्या है?"
@@ -645,7 +645,7 @@
         "importSuccessExplanation": "आपका सीड सफलतापूर्वक इम्पोर्ट कर लिया गया।",
         "saveToDownloadFolder": "डाउनलोड फ़ोल्डर में सहेजें",
         "importSeedVault": "एक्सपोर्ट सीडवॉल्ट",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
+        "dropInstructions": "सीड वॉल्ट ड्रॉप करें या यहां टेक्स्ट <1> </ 1> करे या ब्राउज़ करने के लिए क्लिक करें",
         "dropActive": "यहां सीडवॉल्ट या टेक्स्ट ड्रॉप करें",
         "enterKeyExplanation": "सीड वॉल्ट खोलने के लिए अपनी कुंजी दर्ज करें",
         "noSeedFound": "सीडवॉल्ट में एक सीड बीज नहीं होता है",
@@ -665,7 +665,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "बदले (24 घण्टे)",
         "volume": "वॉल्यूम (24 घ)",
         "error": "चार्ट डेटा लाने में त्रुटि"
     },
@@ -717,16 +717,16 @@
         "transitioning": "स्नैपशॉट के लिए स्नैपशॉट ।",
         "generatingAndDetecting": "बैलेंस चेक करने के साथ नया एड्रेस गेनेराते हो रहा है |",
         "attaching": "एड्रेस को टैंगल से अटैच कर रहे है",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "{{totalAddresses}} के {{currentAddress}} पते को अटैच कर रहे है"
     },
     "deepLink": {
         "autofill": "ऑटो फील सफल",
         "autofillExplanation": "लिंक से लेनदेन डेटा का स्वत: भरण",
         "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
         "deepLinkingWarning": "फिशिंग घोटालों से अवगत रहें। सुनिश्चित करें कि आपके द्वारा आधिकारिक ट्रिनिटी ऐप के लिए लिंक को खोला गया है।",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingUpdated": "डीप लिंकिंग सेटिंग्स",
+        "deepLinkingEnabled": "आपने डीप लिंकिंग सक्षम की है।",
+        "deepLinkingDisabled": "आपने डीप लिंकिंग अक्षम की है।",
         "deepLinkingInfoTitle": "डीप लिंकिंग सक्षम नहीं है",
         "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
@@ -754,7 +754,7 @@
         "agree": "मैं सहमत हूँ"
     },
     "tray": {
-        "trayApplication": "Tray application",
+        "trayApplication": "ट्रे एप्लीकेशन",
         "trayExplanation": "आपके खाते की शेष राशि और हाल के लेन-देन के इतिहास का अवलोकन प्रदान करता है।",
         "notLoggedIn": "आप लॉग इन नहीं हैं।",
         "setupIncomplete": "वॉलेट सेटअप अधूरा",
@@ -784,7 +784,7 @@
         "explanation": "ट्रिनिटी डेस्कटॉप संस्करण 0.3.4 में एक बग होता है जो अस्थायी रूप से फण्ड को लॉक कर सकता है। यह उन उपयोगकर्ताओं की एक छोटी संख्या को प्रभावित करता है जिन्होंने 0.3.4 के साथ लेनदेन किया था।",
         "explanationAccounts": "आपके खातों पर लॉक्ड फंड्स का पता लगाया गया है: {{accounts}}। ट्रिनिटी अब उन्हें एक नए पते पर ले जाकर आपके फंड्स को स्वचालित रूप से पुनर्प्राप्त करेगी ।",
         "proceed": "रिकवरी के लिए आगे बढ़ें",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
+        "sweepConfirmation": "आप {{amount}} {{address}} पते पर स्वीप करने वाले हैं। खाता: {{accountName}}, पता सूचकांक: {{index}}",
         "sweepConfirmationTitle": "स्वीप की पुष्टि"
     },
     "migration": {
