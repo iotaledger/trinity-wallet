@@ -3,7 +3,7 @@
 set -e
 
 # Add Bugsnag API key to src/index.js
-cat src/index.js | sed -e "s/fakeAPIkey/$BUGSNAG_KEY/" | tee src/index.js
+sed -i".orig" -e "s/fakeAPIkey/$BUGSNAG_KEY/" ./src/index.js && rm ./src/index.js.orig
 
 # Add Bugsnag API key to bugsnag.js
-cat bugsnag.js | sed -e "s/fakeAPIkey/$BUGSNAG_KEY/" | tee bugsnag.js
+sed -i".orig" -e "s/fakeAPIkey/$BUGSNAG_KEY/" ./bugsnag.js && rm ./bugsnag.js.orig
