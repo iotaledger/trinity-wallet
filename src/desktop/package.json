@@ -50,7 +50,7 @@
     "css-loader": "2.1.1",
     "dart-sass": "1.20.1",
     "electron": "3.1.9",
-    "electron-builder": "20.39.0",
+    "electron-builder": "20.40.2",
     "electron-devtools-installer": "2.2.4",
     "electron-screenshot": "1.0.5",
     "enzyme": "^3.9.0",
@@ -70,7 +70,6 @@
     "style-loader": "0.23.1",
     "url-loader": "1.1.2",
     "webpack": "4.31.0",
-    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "3.3.2",
     "webpack-dev-middleware": "3.6.2",
     "webpack-hot-middleware": "2.24.4"
@@ -176,7 +175,7 @@
     "react-qr-reader": "2.2.1",
     "react-redux": "5.1.1",
     "react-router-dom": "5.0.0",
-    "react-transition-group": "4.0.0",
+    "react-transition-group": "4.0.1",
     "realm": "2.23.0",
     "recharts": "1.5.0",
     "redux": "4.0.1"

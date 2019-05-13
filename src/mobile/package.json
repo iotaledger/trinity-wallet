@@ -118,6 +118,9 @@
     "react-test-renderer": "16.6.1",
     "rn-nodeify": "^10.0.1"
   },
+  "resolutions": {
+    "handlebars": ">=4.1.2"
+  },
   "jest": {
     "preset": "react-native",
     "setupFilesAfterEnv": [
