@@ -49,6 +49,7 @@ export const ActionTypes = {
     RESET_NODES_LIST: 'IOTA/SETTINGS/RESET_NODES_LIST',
     SET_DEEP_LINKING: 'IOTA/SETTINGS/SET_DEEP_LINKING',
     UPDATE_QUORUM_CONFIG: 'IOTA/SETTINGS/UPDATE_QUORUM_CONFIG',
+    UPDATE_NODE_AUTO_SWITCH_SETTING: 'IOTA/SETTINGS/UPDATE_NODE_AUTO_SWITCH_SETTING',
 };
 
 /**
@@ -835,5 +836,18 @@ export const reinitialiseNodesList = () => (dispatch) => {
  */
 export const updateQuorumConfig = (payload) => ({
     type: ActionTypes.UPDATE_QUORUM_CONFIG,
+    payload,
+});
+
+/**
+ * Dispatch to update node auto-switch setting
+ *
+ * @method updateNodeAutoSwitchSetting
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const updateNodeAutoSwitchSetting = (payload) => ({
+    type: ActionTypes.UPDATE_NODE_AUTO_SWITCH_SETTING,
     payload,
 });

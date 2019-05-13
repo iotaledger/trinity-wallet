@@ -74,6 +74,7 @@ describe('Reducer: settings', () => {
                     size: QUORUM_SIZE,
                     enabled: true,
                 },
+                nodeAutoSwitch: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

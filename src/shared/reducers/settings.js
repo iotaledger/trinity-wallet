@@ -125,6 +125,10 @@ const initialState = {
          */
         enabled: true,
     },
+    /**
+     * Determines if (primary) node should automatically be auto-switched
+     */
+    nodeAutoSwitch: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -290,6 +294,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 quorum: { ...state.quorum, ...action.payload },
+            };
+        case ActionTypes.UPDATE_NODE_AUTO_SWITCH_SETTING:
+            return {
+                ...state,
+                nodeAutoSwitch: action.payload,
             };
     }
 
