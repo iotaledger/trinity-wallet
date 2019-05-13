@@ -2,11 +2,13 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { width, height } from 'libs/dimensions';
+import { Styling } from 'ui/theme/general';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
 const styles = StyleSheet.create({
@@ -30,59 +32,27 @@ export class NodeSettings extends PureComponent {
         node: PropTypes.string.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** @ignore */
-        isSendingTransfer: PropTypes.bool.isRequired,
     };
 
     constructor() {
         super();
-        this.onNodeSelection = this.onNodeSelection.bind(this);
-        this.onAddCustomNode = this.onAddCustomNode.bind(this);
+        this.state = {
+            autoNodeSelection: true,
+            autoNodeList: true,
+            autoSwitching: true,
+            quorum: true
+        };
     }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('NodeSettings');
     }
 
-    /**
-     * Navigates to node selection setting screen
-     *
-     * @method onNodeSelection
-     */
-    onNodeSelection() {
-        if (this.props.isSendingTransfer) {
-            this.generateChangeNodeAlert();
-        } else {
-            this.props.setSetting('nodeSelection');
+    toggleAutomaticNodeSelection() {
+        if (!this.state.autoNodeSelection) {
+            this.setState({ autoNodeList: true, autoSwitching: true, quorum: true });
         }
-    }
-
-    /**
-     * Navigates to add custom node setting screen
-     *
-     * @method onAddCustomNode
-     */
-    onAddCustomNode() {
-        if (this.props.isSendingTransfer) {
-            this.generateChangeNodeAlert();
-        } else {
-            this.props.setSetting('addCustomNode');
-        }
-    }
-
-    /**
-     * Generates an alert if a user tries to navigate to change node or add custom node screen when a transaction is in progress
-     *
-     * @method generateChangeNodeAlert
-     */
-    generateChangeNodeAlert() {
-        this.props.generateAlert(
-            'error',
-            this.props.t('settings:cannotChangeNode'),
-            `${this.props.t('settings:cannotChangeNodeWhileSending')} ${this.props.t(
-                'settings:transferSendingExplanation',
-            )}`,
-        );
+        this.setState({ autoNodeSelection: !this.state.autoNodeSelection });
     }
 
     /**
@@ -92,11 +62,55 @@ export class NodeSettings extends PureComponent {
      * @returns {function}
      */
     renderSettingsContent() {
-        const { theme, t, node } = this.props;
+        const { theme, t } = this.props;
+        const { autoNodeSelection, autoNodeList, autoSwitching, quorum } = this.state;
         const rows = [
-            { name: t('selectNode'), icon: 'node', function: this.onNodeSelection, currentSetting: node },
-            { name: t('addCustomNode'), icon: 'plusAlt', function: this.onAddCustomNode },
-            { name: 'back', function: () => this.props.setSetting('advancedSettings') },
+            {
+                name: 'Automatic node selection',
+                function: () => this.toggleAutomaticNodeSelection(),
+                toggle: autoNodeSelection
+            },
+            { name: 'separator' },
+            {
+                name: 'Add custom nodes',
+                function: () => {},
+            },
+            {
+                name: 'Use automatic node list',
+                function: () => { !autoNodeSelection && this.setState({ autoNodeList: !autoNodeList }); },
+                toggle: autoNodeList,
+                inactive: autoNodeSelection
+            },
+            { name: 'separator', inactive: autoNodeSelection },
+            {
+                name: 'Node autoswitching',
+                function: () => { !autoNodeSelection && this.setState({ autoSwitching: !autoSwitching }); },
+                toggle: autoSwitching,
+                inactive: autoNodeSelection
+            },
+            {
+                name: 'Primary node address',
+                function: () => {},
+                inactive: autoNodeSelection
+            },
+            { name: 'separator', inactive: autoNodeSelection },
+            {
+                name: 'Quorum active',
+                function: () => { !autoNodeSelection && this.setState({ quorum: !quorum }); },
+                toggle: quorum,
+                inactive: autoNodeSelection
+            },
+            {
+                name: 'Quorum size',
+                function: () => {},
+                inactive: autoNodeSelection
+            },
+            {
+                name: 'dualFooter',
+                backFunction: () => this.props.setSetting('advancedSettings'),
+                actionName: 'Apply',
+                actionFunction: () => {},
+            },
         ];
         return renderSettingsRows(rows, theme);
     }
@@ -109,7 +123,6 @@ export class NodeSettings extends PureComponent {
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     node: state.settings.node,
-    isSendingTransfer: state.ui.isSendingTransfer,
 });
 
 const mapDispatchToProps = {

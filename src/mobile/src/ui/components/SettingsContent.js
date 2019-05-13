@@ -31,6 +31,7 @@ import SecuritySettings from 'ui/views/wallet/SecuritySettings';
 import SeedVaultSettings from 'ui/views/wallet/SeedVaultSettings';
 import StateExportComponent from 'ui/views/wallet/StateExport';
 import About from 'ui/views/wallet/About';
+import Toggle from 'ui/components/Toggle';
 import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -86,12 +87,12 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center'
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
-        marginLeft: width / 25,
     },
     separator: {
         borderBottomWidth: 0.5,
@@ -116,37 +117,74 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
+    footerItemLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    footerItemRight: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+    },
+    footerTextLeft: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: Styling.fontSize3,
+        backgroundColor: 'transparent',
+        marginLeft: width / 20,
+    },
+    footerTextRight: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: Styling.fontSize3,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
+    },
+    dualFooterContainer: {
+        flex: 1,
+        width,
+        paddingHorizontal: width / 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
 });
 
 export const renderSettingsRows = (rows, theme) => {
-    const textColor = { color: theme.body.color };
-    const bodyColor = theme.body.color;
-    const borderBottomColor = { borderBottomColor: theme.body.color };
+    const { body, primary } = theme;
+
     return (
         <View style={{ flex: 1 }}>
             {map(rows, (row, index) => {
                 if (row.name === 'separator') {
                     return (
-                        <View style={styles.separatorContainer} key={index}>
-                            <View style={[styles.separator, borderBottomColor]} />
+                        <View style={[ styles.separatorContainer, row.inactive && { opacity: 0.35 } ]} key={index}>
+                            <View style={[styles.separator, { borderBottomColor: theme.body.color }]} />
                         </View>
                     );
-                } else if (row.name !== 'back') {
+                } else if (row.name !== 'back' && row.name !== 'dualFooter') {
                     return (
-                        <View style={styles.itemContainer} key={index}>
+                        <View style={[ styles.itemContainer, row.inactive && { opacity: 0.35 } ]} key={index}>
                             <TouchableOpacity
                                 onPress={row.function}
                                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                             >
                                 <View style={styles.item}>
-                                    <Icon name={row.icon} size={width / 22} color={bodyColor} />
+                                    {row.icon && <Icon name={row.icon} size={width / 22} color={body.color} />}
                                     <View style={styles.content}>
-                                        <Text style={[styles.titleText, textColor]}>{row.name}</Text>
+                                        <Text style={[styles.titleText, { color: body.color }, row.icon && { marginLeft: width / 25 }]}>{row.name}</Text>
                                         {row.currentSetting && (
-                                            <Text numberOfLines={1} style={[styles.settingText, textColor]}>
+                                            <Text numberOfLines={1} style={[styles.settingText, { color: body.color }]}>
                                                 {row.currentSetting}
                                             </Text>
                                         )}
+                                        {row.toggle !== undefined &&
+                                            <Toggle
+                                                active={row.toggle}
+                                                bodyColor={body.color}
+                                                primaryColor={primary.color}
+                                                scale={1}
+                                            />
+                                        }
                                     </View>
                                 </View>
                             </TouchableOpacity>
@@ -156,14 +194,36 @@ export const renderSettingsRows = (rows, theme) => {
             })}
             {rows.length < 12 && <View style={{ flex: 12 - rows.length }} />}
             {some(rows, { name: 'back' }) && (
-                <View style={styles.itemContainer}>
+                <View style={[ styles.itemContainer, find(rows, { name: 'back' }).inactive && { opacity: 0.35 } ]}>
                     <TouchableOpacity
                         onPress={find(rows, { name: 'back' }).function}
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.item}>
-                            <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                            <Text style={[styles.backText, textColor]}>{i18next.t('global:back')}</Text>
+                            <Icon name="chevronLeft" size={width / 28} color={body.color} />
+                            <Text style={[styles.backText, { color: body.color }]}>{i18next.t('global:back')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            )}
+            {some(rows, { name: 'dualFooter' }) && (
+                <View style={styles.dualFooterContainer}>
+                    <TouchableOpacity
+                        onPress={find(rows, { name: 'dualFooter' }).backFunction}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.footerItemLeft}>
+                            <Icon name="chevronLeft" size={width / 28} color={body.color} />
+                            <Text style={[styles.footerTextLeft, { color: body.color }]}>{i18next.t('global:back')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={find(rows, { name: 'dualFooter' }).actionFunction}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.footerItemRight}>
+                            <Text style={[styles.footerTextRight, { color: body.color }]}>{find(rows, { name: 'dualFooter' }).actionName}</Text>
+                            <Icon name="tick" size={width / 28} color={body.color} />
                         </View>
                     </TouchableOpacity>
                 </View>
