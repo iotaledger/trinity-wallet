@@ -15,8 +15,8 @@ module.exports = ({ version }, stateMock) => {
             return version;
         },
         garbageCollect: () => {},
-        setOnboardingSeed: (seed, isGenerated) => {
-            window.onboardingSeed = seed;
+        setOnboardingSeed: (_seed, isGenerated) => {
+            window.onboardingSeed = Array(81).fill(0);
             window.isGenerated = isGenerated;
         },
         listKeychain: () => [],

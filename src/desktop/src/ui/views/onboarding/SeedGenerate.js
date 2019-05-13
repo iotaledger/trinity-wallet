@@ -69,6 +69,10 @@ class GenerateSeed extends React.PureComponent {
      * @returns {undefined}
      */
     updateLetter = (e) => {
+        if (e) {
+            e.preventDefault();
+        }
+
         const { seed, clicks, scramble } = this.state;
 
         const position = e.target.value;
@@ -192,10 +196,11 @@ class GenerateSeed extends React.PureComponent {
                     </Button>
                 </section>
                 <footer>
-                    <Button onClick={this.onRequestPrevious} className="square" variant="dark">
+                    <Button id="to-seed-intro" onClick={this.onRequestPrevious} className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
                     <Button
+                        id="to-account-name"
                         disabled={!existingSeed && clicksLeft > 0}
                         onClick={this.onRequestNext}
                         className="square"
