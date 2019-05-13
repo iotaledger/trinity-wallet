@@ -1,7 +1,8 @@
 /* global Electron */
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
-import bugsnag from 'bugsnag-js';
+import bugsnag from '@bugsnag/js';
+import bugsnagReact from '@bugsnag/plugin-react';
 import React from 'react';
 import { render } from 'react-dom';
 import { I18nextProvider } from 'react-i18next';
@@ -14,7 +15,6 @@ import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode } from 'libs/iota';
 import { initialise as initialiseStorage } from 'storage';
-import createPlugin from 'bugsnag-react';
 
 import Index from 'ui/Index';
 import Tray from 'ui/Tray';
@@ -31,8 +31,9 @@ export const bugsnagClient = bugsnag({
     collectUserIp: false,
     user: { id: Electron.getUuid() },
 });
+bugsnagClient.use(bugsnagReact, React);
 
-const ErrorBoundary = bugsnagClient.use(createPlugin(React));
+const ErrorBoundary = bugsnagClient.getPlugin('react');
 
 if (Electron.mode === 'tray') {
     Electron.onEvent('store.update', (payload) => {
