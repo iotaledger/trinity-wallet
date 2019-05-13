@@ -267,9 +267,9 @@
         "generateSuccess": "Seed berhasil dibuat",
         "individualLetters": "Tekan masing-masing huruf untuk mengacaknya.",
         "individualLetterCount": "Tekan <1><0>{{count}}</0> </1> lebih banyak surat untuk mengacaknya.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount_plural": "Tekan <1><0>{{count}}</0> </1> lebih banyak surat untuk mengacaknya.",
+        "randomiseCharsToContinue": "Acak karakter <1> {{count}} </1> untuk melanjutkan.",
+        "randomiseCharsToContinue_plural": "Acak karakter <1> {{count}} </1> untuk melanjutkan.",
         "whatIsASeed": "Apakah itu Seed?"
     },
     "onboardingComplete": {
@@ -280,15 +280,15 @@
     "paperWallet": {
         "neverShare": "Jangan pernah memberitahukan Seed Anda dengan siapa pun.",
         "iotaLogo": "Logo IOTA",
-        "print": "Print",
+        "print": "Cetak",
         "paperConvenience": "Mencetak Seed ke kertas adalah cara yang mudah untuk menyimpan.",
         "publicInsecure": "Tetapi mencetak dengan Wifi atau printer publik tidak aman.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Silakan periksa dan konfirmasi sebelum anda mencetak",
+        "wifiConfirmation": "Saya tidak aktif di wifi publik",
+        "printerConfirmation": "Saya tidak mencetak pada printer publik"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateQuestion": "Apakah Anda ingin mencetak template kosong?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
         "print": "Yes, print"
