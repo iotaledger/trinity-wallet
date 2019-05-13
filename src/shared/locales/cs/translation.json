@@ -724,11 +724,11 @@
         "autofillExplanation": "Údaje o transakci byly automaticky doplněny z odkazu.",
         "deepLinkingOverview": "Hluboké odkazy jsou klikací odkazy (iota://...), které automaticky vyplňují údaje o transakci v Trinity.",
         "deepLinkingWarning": "Dejte si pozor na podvody typu phishing. Ujistěte se, že odkaz který otevřete přejde na oficiální aplikaci Trinity.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingUpdated": "Nastavení hlubokých odkazů",
+        "deepLinkingEnabled": "Povolili jste hluboké odkazy.",
+        "deepLinkingDisabled": "Zakázali jste hluboké odkazy.",
+        "deepLinkingInfoTitle": "Hluboké odkazy nejsou zapnuté",
+        "deepLinkingInfoMessage": "Otevřeli jste hluboký odkaz iota://, ale hluboké odkazy nejsou zapnuté."
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba při získávání aktualizačních dat",
