@@ -27,7 +27,7 @@
     "iota.lib.js": "git+https://git@github.com/iotaledger/iota.js#develop",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
-    "moment-timezone": "^0.5.21",
+    "moment-timezone": "^0.5.25",
     "proxy-polyfill": "^0.3.0",
     "react": "16.2.0",
     "react-i18next": "^8.0.7",
