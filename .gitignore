@@ -76,7 +76,6 @@ src/mobile/*/fastlane/screenshots
 screenshots
 
 node_modules_*
-dist
 
 # Created by https://www.gitignore.io/api/crashlytics
 
