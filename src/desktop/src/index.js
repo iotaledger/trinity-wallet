@@ -24,6 +24,8 @@ import Alerts from 'ui/global/Alerts';
 
 import settings from '../package.json';
 
+import css from './ui/index.scss'; // eslint-disable-line
+
 export const bugsnagClient = bugsnag({
     apiKey: 'fakeAPIkey',
     appVersion: settings.version,

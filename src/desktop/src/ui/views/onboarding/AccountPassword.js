@@ -152,10 +152,10 @@ class AccountPassword extends React.PureComponent {
                     />
                 </section>
                 <footer>
-                    <Button onClick={this.stepBack} className="square" variant="dark">
+                    <Button id="account-password-prev" onClick={this.stepBack} className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
-                    <Button type="submit" className="square" variant="primary">
+                    <Button id="account-password-next" type="submit" className="square" variant="primary">
                         {t('continue')}
                     </Button>
                 </footer>

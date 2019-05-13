@@ -23,6 +23,8 @@ app.use(webpackDev);
 const webpackHot = webpackHotMiddleware(compiler);
 app.use(webpackHot);
 
+app.use(express.static(compiler.outputPath));
+
 app.use('*', (_req, res, next) => {
     const filename = path.join(compiler.outputPath, 'index.html');
     compiler.outputFileSystem.readFile(filename, (err, result) => {

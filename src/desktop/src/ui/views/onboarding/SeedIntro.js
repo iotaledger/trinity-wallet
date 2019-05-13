@@ -90,15 +90,25 @@ class SeedIntro extends React.PureComponent {
                 </section>
                 <footer className={!ledger ? css.choiceDefault : css.choiceLedger}>
                     <div>
-                        <Button onClick={() => this.stepForward('seed-verify')} className="square" variant="dark">
+                        <Button
+                            id="to-seed-verify"
+                            onClick={() => this.stepForward('seed-verify')}
+                            className="square"
+                            variant="dark"
+                        >
                             {t('walletSetup:noIHaveOne')}
                         </Button>
-                        <Button onClick={() => this.stepForward('seed-generate')} className="square" variant="primary">
+                        <Button
+                            id="to-seed-generate"
+                            onClick={() => this.stepForward('seed-generate')}
+                            className="square"
+                            variant="primary"
+                        >
                             {t('walletSetup:yesINeedASeed')}
                         </Button>
                     </div>
                     <div>
-                        <Button to="/onboarding/seed-ledger" className="square" variant="primary">
+                        <Button id="to-seed-ledger" to="/onboarding/seed-ledger" className="square" variant="primary">
                             {t('ledger:proceedWithLedger')}
                         </Button>
                     </div>

@@ -22,19 +22,29 @@ class PuppeteerEnvironment extends ElectronEnvironment {
     async setup() {
         await super.setup();
 
-        this.global.__screenshot = async (route, authorisedRoute, timeout) => {
-            stateMock.wallet.ready = authorisedRoute;
+        const wsEndpoint = fs.readFileSync(path.join(DIR, 'wsEndpoint'), 'utf8');
 
-            const wsEndpoint = fs.readFileSync(path.join(DIR, 'wsEndpoint'), 'utf8');
-            if (!wsEndpoint) {
-                throw new Error('wsEndpoint not found');
+        if (!wsEndpoint) {
+            throw new Error('wsEndpoint not found');
+        }
+
+        this.browser = null;
+
+        const getNewPage = async (route, isAuthorised) => {
+            if (!this.browser) {
+                this.browser = await puppeteer.connect({
+                    browserWSEndpoint: wsEndpoint,
+                });
             }
 
-            const browser = await puppeteer.connect({
-                browserWSEndpoint: wsEndpoint,
-            });
+            const page = await this.browser.newPage();
 
-            const page = await browser.newPage();
+            stateMock.wallet.ready = isAuthorised;
+            stateMock.accounts.onboardingComplete = isAuthorised;
+
+            if (!isAuthorised) {
+                stateMock.accounts.accountInfo = {};
+            }
 
             page.setViewport({
                 width: 1280,
@@ -46,9 +56,17 @@ class PuppeteerEnvironment extends ElectronEnvironment {
 
             await page.goto(`http://localhost:1074/${route}`, { waitUntil: 'networkidle2' });
 
+            return page;
+        };
+
+        this.global.__getBrowserPage = (route, isAuthorised) => getNewPage(route, isAuthorised);
+
+        this.global.__screenshot = async (route, isAuthorised, timeout) => {
+            const page = await getNewPage(route, isAuthorised);
+
             await new Promise((resolve) => setTimeout(resolve, timeout || 800));
 
-            const screenshot = await page.screenshot();
+            const screenshot = await page.screenshot(route, isAuthorised);
 
             page.close();
 

@@ -128,12 +128,11 @@ class Welcome extends React.PureComponent {
                         onClick={this.onNextClick}
                         className="square"
                         variant="primary"
+                        id="to-seed-intro"
                     >
                         {step === 'language'
                             ? t('continue')
-                            : !scrollEnd
-                                ? t('terms:readAllToContinue')
-                                : t('terms:accept')}
+                            : !scrollEnd ? t('terms:readAllToContinue') : t('terms:accept')}
                     </Button>
                 </footer>
             </form>
@@ -154,7 +153,4 @@ const mapDispatchToProps = {
     setLocale,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withI18n()(Welcome));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Welcome));

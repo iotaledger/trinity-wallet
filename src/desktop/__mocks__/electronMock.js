@@ -6,7 +6,7 @@ module.exports = ({ version }, stateMock) => {
             return 'darwin';
         },
         getOnboardingSeed: () => {
-            return new Array(81).fill(0);
+            return window.onboardingSeed;
         },
         getChecksum: () => {
             return 'ABC';
@@ -15,8 +15,13 @@ module.exports = ({ version }, stateMock) => {
             return version;
         },
         garbageCollect: () => {},
-        setOnboardingSeed: () => {},
-        readKeychain: async () => 'ABC,DEF',
+        setOnboardingSeed: (seed, isGenerated) => {
+            window.onboardingSeed = seed;
+            window.isGenerated = isGenerated;
+        },
+        listKeychain: () => [],
+        setKeychain: () => {},
+        readKeychain: async (target) => (target === 'realm_enc_key' || target.indexOf('-salt') > -1 ? 'ABC,DEF' : null),
         getUuid: async () => '',
         changeLanguage: () => {},
         onEvent: () => {},
@@ -32,7 +37,7 @@ module.exports = ({ version }, stateMock) => {
         getAllStorage: () => window.__STATE_MOCK__,
         getUserDataPath: () => '',
         getStorage: (key) => JSON.stringify(window.__STATE_MOCK__[key.replace('reduxPersist:', '')]),
-        getOnboardingGenerated: () => new Array(81).fill(0),
+        getOnboardingGenerated: () => window.isGenerated,
         getRealm: () =>
             class Realm {
                 constructor() {}
@@ -48,5 +53,6 @@ module.exports = ({ version }, stateMock) => {
             },
         setTray: () => {},
         focus: () => {},
+        argon2: () => new Uint8Array(32).fill(0),
     };
 };
