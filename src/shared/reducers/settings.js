@@ -3,7 +3,7 @@ import union from 'lodash/union';
 import sortBy from 'lodash/sortBy';
 import { ActionTypes } from '../actions/settings';
 import { ActionTypes as MigrationsActionTypes } from '../actions/migrations';
-import { defaultNode as node, nodes } from '../config';
+import { defaultNode as node, nodes, QUORUM_SIZE } from '../config';
 import { availableCurrencies } from '../libs/currency';
 
 const initialState = {
@@ -112,6 +112,19 @@ const initialState = {
      * Determines if deep linking is enabled
      */
     deepLinking: false,
+    /**
+     * Quorum configuration
+     */
+    quorum: {
+        /**
+         * User-defined quorum size
+         */
+        size: QUORUM_SIZE,
+        /**
+         * Determines if quorum is enabled
+         */
+        enabled: true,
+    },
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -272,6 +285,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 deepLinking: !state.deepLinking,
+            };
+        case ActionTypes.UPDATE_QUORUM_CONFIG:
+            return {
+                ...state,
+                quorum: { ...state.quorum, ...action.payload },
             };
     }
 

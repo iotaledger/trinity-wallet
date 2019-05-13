@@ -48,6 +48,7 @@ export const ActionTypes = {
     SET_PROXY: 'SET_PROXY',
     RESET_NODES_LIST: 'IOTA/SETTINGS/RESET_NODES_LIST',
     SET_DEEP_LINKING: 'IOTA/SETTINGS/SET_DEEP_LINKING',
+    UPDATE_QUORUM_CONFIG: 'IOTA/SETTINGS/UPDATE_QUORUM_CONFIG',
 };
 
 /**
@@ -823,3 +824,16 @@ export const reinitialiseNodesList = () => (dispatch) => {
     // Fetch latest nodes
     dispatch(fetchNodeList());
 };
+
+/**
+ * Dispatch to update quorum configuration
+ *
+ * @method updateQuorumConfig
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const updateQuorumConfig = (payload) => ({
+    type: ActionTypes.UPDATE_QUORUM_CONFIG,
+    payload,
+});
