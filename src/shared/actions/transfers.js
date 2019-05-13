@@ -400,7 +400,7 @@ export const forceTransactionPromotion = (
             }
 
             const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-            const newState = syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
+            const newState = syncAccountAfterReattachment(reattachment, existingAccountState);
 
             // Update storage (realm)
             Account.update(accountName, newState);
