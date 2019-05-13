@@ -54,6 +54,15 @@ class Dashboard extends React.PureComponent {
         }
     }
 
+    componentDidMount() {
+        const { marketData } = this.props;
+
+        /**
+         * Send updated marketData to Tray application
+         */
+        Electron.storeUpdate(JSON.stringify({ marketData }));
+    }
+
     updateAccount = async () => {
         const { password, accountName, accountMeta } = this.props;
 
@@ -133,6 +142,7 @@ const mapStateToProps = (state) => ({
     accountMeta: getSelectedAccountMeta(state),
     password: state.wallet.password,
     isDeepLinkActive: state.wallet.deepLinkRequestActive,
+    marketData: state.marketData,
 });
 
 const mapDispatchToProps = {

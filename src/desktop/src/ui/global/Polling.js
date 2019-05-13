@@ -73,6 +73,17 @@ class Polling extends React.PureComponent {
         autoPromoteSkips: 0,
     };
 
+    componentDidUpdate(prevProps) {
+        const { marketData } = this.props;
+
+        /**
+         * Send updated marketData to Tray application
+         */
+        if (prevProps.isPollingMarketData && !this.props.isPollingMarketData) {
+            Electron.storeUpdate(JSON.stringify({ marketData }));
+        }
+    }
+
     componentDidMount() {
         this.onPollTick = this.fetch.bind(this);
         this.interval = setInterval(this.onPollTick, 8000);
@@ -213,6 +224,7 @@ const mapStateToProps = (state) => ({
     isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
     failedBundleHashes: getFailedBundleHashes(state),
     password: state.wallet.password,
+    marketData: state.marketData,
 });
 
 const mapDispatchToProps = {
