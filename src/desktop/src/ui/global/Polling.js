@@ -43,11 +43,15 @@ class Polling extends React.PureComponent {
         /** @ignore */
         allPollingServices: PropTypes.array.isRequired,
         /** @ignore */
+        isPollingMarketData: PropTypes.bool.isRequired,
+        /** @ignore */
         unconfirmedBundleTails: PropTypes.object.isRequired,
         /** @ignore */
         autoPromotion: PropTypes.bool.isRequired,
         /** @ignore */
         setPollFor: PropTypes.func.isRequired,
+        /** @ignore */
+        marketData: PropTypes.object.isRequired,
         /** @ignore */
         fetchMarketData: PropTypes.func.isRequired,
         /** @ignore */
@@ -73,20 +77,20 @@ class Polling extends React.PureComponent {
         autoPromoteSkips: 0,
     };
 
+    componentDidMount() {
+        this.onPollTick = this.fetch.bind(this);
+        this.interval = setInterval(this.onPollTick, 8000);
+    }
+
     componentDidUpdate(prevProps) {
-        const { marketData } = this.props;
+        const { marketData, isPollingMarketData } = this.props;
 
         /**
          * Send updated marketData to Tray application
          */
-        if (prevProps.isPollingMarketData && !this.props.isPollingMarketData) {
+        if (prevProps.isPollingMarketData && !isPollingMarketData) {
             Electron.storeUpdate(JSON.stringify({ marketData }));
         }
-    }
-
-    componentDidMount() {
-        this.onPollTick = this.fetch.bind(this);
-        this.interval = setInterval(this.onPollTick, 8000);
     }
 
     componentWillUnmount() {

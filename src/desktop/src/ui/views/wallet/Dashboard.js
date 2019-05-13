@@ -41,6 +41,8 @@ class Dashboard extends React.PureComponent {
         /** @ignore */
         location: PropTypes.object,
         /** @ignore */
+        marketData: PropTypes.object.isRequired,
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
