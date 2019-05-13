@@ -60,11 +60,13 @@ describe('storage: Node', () => {
                     url: 'https://testnode1.com:443',
                     custom: true,
                     pow: false,
+                    authKey: '',
                 },
                 {
                     url: 'https://testnode2.com:443',
                     custom: true,
                     pow: true,
+                    authKey: '',
                 },
             ];
 
