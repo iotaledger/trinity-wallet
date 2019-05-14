@@ -582,13 +582,13 @@
         "hideSeed": "OCULTAR SEMILLA",
         "notAvailable": "La exportación de la seed no está disponible para el tipo de cuenta {{accountType}}",
         "notAvailableExplanationLedger": "Su ledger usa un elemento utiliza un mecanismo seguro para guardar su seed. La seed es encriptada de forma segura y nunca abandona el dispositivo.",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "accountIndex": "El índice de su cuenta de Ledger",
+        "accountPage": "La página de su cuenta de Ledger"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "¿Hizo una copia de seguridad de la semilla?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "He respaldado mi seed de modo seguro",
+        "reenterSeed": "En el siguiente paso debe reingresar su seed.",
         "reenterSeedWarning": "Si no ha guardado su semilla y su dispositivo falla, usted perderá todas sus IOTA.",
         "pleaseConfirm": "Por favor confirme que ha almacenado correctamente su semilla."
     },
@@ -607,18 +607,18 @@
         "fingerprintAuthFailedExplanation": "Autenticación de huella dactilar errónea. Inténtalo de nuevo.",
         "status": "Estado",
         "fingerprintUnavailable": "Autenticación biométrica no disponible",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "Autentificación desactivada por 30 segundos",
         "fingerprintUnavailableExplanation": "Tu dispositivo no soporta autenticación biométrica o no está configurada en los ajustes del equipo.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "notSupported": "El dispositivo no soporta autenticación biométrica",
+        "notConfigured": "La autenticación biométrica no fue configurada en las configuraciones de dispositivo",
         "buttonInstructionsDisable": "Pulsa el botón que hay a continuación para deshabilitar la autenticación de huella dactilar.",
         "buttonInstructionsEnable": "Pulsa el botón que hay a continuación para habilitar la autenticación de huella dactilar.",
         "buttonInstructionsDisableIPhoneX": "Presione el botón de abajo para desactivar el ID de cara",
         "buttonInstructionsEnableIPhoneX": "Presione el botón de abajo para activar ID de cara",
         "instructionsLogin": "Toque el lector de huella dactilar para iniciar sesión",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
+        "systemCancelledAuth": "La autentificación fue cancelada por su dispositivo",
+        "userCancelledAuth": "Solicitud de autentificación cancelada",
+        "passwordFallback": "Regresar a la autentificación de la contraseña",
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
