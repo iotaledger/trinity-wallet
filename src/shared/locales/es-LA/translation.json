@@ -470,13 +470,13 @@
         "retrying": "Reintentando",
         "yesterday": "Ayer",
         "promotingAnotherBundle": "Promoviendo otro bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "pleaseWait": "Por favor espere, Trinity está promoviendo otro bundle.",
+        "typeHelp": "Escriba !help para ver los comandos disponibles",
+        "searchHelpText": "Buscar por bundle hash o contenido del mensaje",
+        "searchHelpValue": "Buscar transacciones por valor exacto en iota",
+        "searchHelpUnits": "Buscar transacciones de por valor y unidad en iota",
+        "searchHelpMore": "Buscar transacciones con valor mayor que X",
+        "searchHelpLess": "Buscar transacciones con valor menor que X"
     },
     "accountManagement": {
         "viewSeed": "Ver semilla",
@@ -510,7 +510,7 @@
         "autoPromotionExplanation": "La auto-promoción ayuda a confirmar sus transacciones en la Tangle. Habilite esta opción si está experimentando dificultades para conseguir que se confirmen sus transacciones.",
         "autoPromotionPoW": "La auto-promoción solo es posible en los nodos que soportan PoW remota.",
         "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "stateExport": "Exportar estado"
     },
     "advancedThemeCustomisation": {
         "background": "Fondo",
@@ -537,20 +537,20 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "¿Estás seguro que quieres desconectarte?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "Está a punto de desconectarse",
+        "areYouSure": "¿Estás seguro?"
     },
     "qrScanner": {
         "scan": "Escanea tu código QR"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Sistema de Unidades",
         "trillion": "Billón",
         "billion": "Mil millones",
         "million": "Millón",
         "thousand": "Mil",
         "one": "Unidad",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "Los IOTAs son típicamente adquiridos en múltiplos de un millón, pero pueden ser transferidos por unidad."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "¿Por qué no puedo gastar mi saldo total?",
@@ -558,7 +558,7 @@
         "discordInformation": "Por favor diríjase al canal #help en Discord para averiguar lo que puede hacer."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "¿Estás seguro de que deseas borrar tu cuenta?",
         "yourSeedWillBeRemoved": "Tu semilla y tu historial de transacciones serán eliminados.",
         "thisAction": "Esta acción no se puede deshacer",
         "enterPassword": "Escribe tu contraseña para eliminar la cuenta."
@@ -572,7 +572,7 @@
         "syncingYourAccount": "Sincronizando tu cuenta."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Ingrese un nombre de cuenta y una seed",
         "incorrectFormat": "Formato incorrecto de semilla",
         "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
     },
@@ -580,8 +580,8 @@
         "enterPassword": "Introduce la contraseña para ver tu semilla.",
         "viewSeed": "VER SEMILLA",
         "hideSeed": "OCULTAR SEMILLA",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailable": "La exportación de la seed no está disponible para el tipo de cuenta {{accountType}}",
+        "notAvailableExplanationLedger": "Su ledger usa un elemento utiliza un mecanismo seguro para guardar su seed. La seed es encriptada de forma segura y nunca abandona el dispositivo.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
