@@ -145,6 +145,7 @@ class Send extends React.PureComponent {
                         }}
                     />
                     <AddressInput
+                        id="recipient-address"
                         address={fields.address}
                         onChange={(address, message, amount) => {
                             this.updateFields(address, message, amount);
@@ -153,6 +154,7 @@ class Send extends React.PureComponent {
                         closeLabel={t('back')}
                     />
                     <AmountInput
+                        id="send-amount"
                         amount={fields.amount}
                         settings={settings}
                         label={t('send:amount')}
@@ -173,7 +175,7 @@ class Send extends React.PureComponent {
                                     {t('close')}
                                 </Button>
 
-                                <Button type="submit" className="small" variant="primary">
+                                <Button id="send-transaction" type="submit" className="small" variant="primary">
                                     {t('send:send')}
                                 </Button>
                             </React.Fragment>

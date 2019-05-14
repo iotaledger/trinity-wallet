@@ -85,7 +85,7 @@ class Dashboard extends React.PureComponent {
                     <section className={css.balance}>
                         <Balance />
                         <div className={balanceOpen ? css.openMid : null}>
-                            <a onClick={() => history.push('/wallet/receive')}>
+                            <a id="to-receive" onClick={() => history.push('/wallet/receive')}>
                                 <div>
                                     <Icon icon="receive" size={24} />
                                 </div>
@@ -94,7 +94,7 @@ class Dashboard extends React.PureComponent {
                             <div>
                                 <Balance />
                             </div>
-                            <a onClick={() => history.push('/wallet/send')}>
+                            <a id="to-send" onClick={() => history.push('/wallet/send')}>
                                 <div>
                                     <Icon icon="send" size={24} />
                                 </div>

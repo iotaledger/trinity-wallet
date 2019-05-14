@@ -274,7 +274,7 @@
     },
     "wallet": {
         "ready": true,
-        "password": { "0": 0 },
+        "password": [229,34,107,56,71,11,182,241,127,92,0,156,41,105,164,24,93,254,1,51,230,65,153,110,234,31,201,159,59,148,64,161],
         "seedIndex": 0,
         "transitionBalance": 0,
         "transitionAddresses": [],

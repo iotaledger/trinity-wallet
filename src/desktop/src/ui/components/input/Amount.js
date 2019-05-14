@@ -18,6 +18,8 @@ export default class AmountInput extends React.PureComponent {
     static propTypes = {
         /** Current ammount value */
         amount: PropTypes.string.isRequired,
+        /** Element id */
+        id: PropTypes.string,
         /** Max available ammount */
         balance: PropTypes.number.isRequired,
         /** Fiat currency settings
@@ -147,7 +149,7 @@ export default class AmountInput extends React.PureComponent {
     };
 
     render() {
-        const { amount, balance, settings, label, labelMax } = this.props;
+        const { amount, balance, id, settings, label, labelMax } = this.props;
         const { value, unit } = this.state;
 
         return (
@@ -183,7 +185,7 @@ export default class AmountInput extends React.PureComponent {
                         ) : null}
                         {amount > 0 && unit === '$' ? <p>= {formatIotas(amount, false, true)}</p> : null}
                     </a>
-                    <input type="text" value={value} onChange={(e) => this.onChange(e.target.value)} />
+                    <input id={id} type="text" value={value} onChange={(e) => this.onChange(e.target.value)} />
                     <small>{label}</small>
                 </fieldset>
                 {balance > 0 && (

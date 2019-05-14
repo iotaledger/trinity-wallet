@@ -43,7 +43,7 @@ describe('Trinity desktop end-to-end', () => {
 
             expect(selector).toBeTruthy();
         },
-        10000,
+        990000,
     );
 
     test(
@@ -102,6 +102,6 @@ describe('Trinity desktop end-to-end', () => {
 
             expect(selector).toBeTruthy();
         },
-        10000,
+        150000,
     );
 });
