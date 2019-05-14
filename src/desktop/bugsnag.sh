@@ -3,7 +3,7 @@
 set -e
 
 # Add Bugsnag API key to dist/bundle.js
-cat dist/bundle.js | sed -e "s/fakeAPIkey/$BUGSNAG_KEY/" | tee dist/bundle.js
+sed -i".orig" -e "s/fakeAPIkey/$BUGSNAG_KEY/" ./dist/bundle.js && rm ./dist/bundle.js.orig
 
 # Add Bugsnag API key to bugsnag.js
-cat bugsnag.js | sed -e "s/fakeAPIkey/$BUGSNAG_KEY/" | tee bugsnag.js
+sed -i".orig" -e "s/fakeAPIkey/$BUGSNAG_KEY/" ./bugsnag.js && rm ./bugsnag.js.orig
