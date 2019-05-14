@@ -29,7 +29,7 @@ export default class NodesManager {
      * @returns {function(function): function(...[*]): Promise}
      */
     withRetries(failureCallbacks, retryAttempts = DEFAULT_RETRIES) {
-        const { priorityNode, nodes, quorum } = this.config;
+        const { priorityNode, primaryNode, nodeAutoSwitch, nodes, quorum } = this.config;
 
         let attempt = 0;
         let executedCallback = false;
@@ -44,7 +44,7 @@ export default class NodesManager {
                     return Promise.reject(new Error(Errors.NO_NODE_TO_RETRY));
                 }
 
-                return promiseFunc(retryNodes[attempt], quorum)(...args)
+                return promiseFunc(retryNodes[attempt], quorum.enabled)(...args)
                     .then((result) => ({ node: retryNodes[attempt], result }))
                     .catch((err) => {
                         // Abort retries on user cancalled Ledger action
@@ -75,6 +75,11 @@ export default class NodesManager {
                         throw err;
                     });
             };
+
+            // If auto node switching is disabled, just connect to the selected (primary) node
+            if (!nodeAutoSwitch) {
+                return (...args) => promiseFunc(primaryNode, quorum.enabled)(...args);
+            }
 
             return execute;
         };

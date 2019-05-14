@@ -173,10 +173,19 @@ export const nodesConfigurationFactory = (quorum) =>
                 primaryNode: state.node,
                 /** Determines if quorum is enabled/disabled */
                 quorum: state.quorum,
+                /**
+                 * Determines if (primary) node should automatically be auto-switched
+                 */
+                nodeAutoSwitch: state.nodeAutoSwitch,
+                /**
+                 * - When true: pull in nodes from endpoint (config#NODELIST_URL) and include the custom nodes in the quorum selection
+                 * - When false: only use custom nodes in quorum selection
+                 */
+                autoNodeList: true,
             };
 
             if (quorum) {
-                config.quorum = quorum;
+                config.quorum.enabled = quorum;
             }
 
             return config;

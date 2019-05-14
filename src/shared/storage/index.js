@@ -712,7 +712,7 @@ class Wallet {
             realm.write(() =>
                 realm.create('Wallet', {
                     version: Wallet.version,
-                    settings: { notifications: {} },
+                    settings: { notifications: {}, quorum: {} },
                     accountInfoDuringSetup: { meta: {} },
                 }),
             );
