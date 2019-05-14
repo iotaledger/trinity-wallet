@@ -35,7 +35,7 @@ export default (request) => {
                 latestSolidSubtangleMilestone:
                     'ABCDEFGHIJKLMNOPRSTUVXYZABCDEFGHIJKLMNOPRSTUVXYZABCDEFGHIJKLMNOPRSTUVXYZABCDEFGHI',
                 latestSolidSubtangleMilestoneIndex: 426550,
-                time: +new Date(),
+                time: Number(new Date()),
                 features: ['RemotePOW'],
             };
             break;
@@ -48,14 +48,14 @@ export default (request) => {
             body = { balances: Array(postData.addresses.length).fill(0) };
             break;
 
-        case 'getTrytes':
+        case 'getTrytes': {
             const transactionObject = iota.utils.transactionObject('9'.repeat(2673));
             const trytes = iota.utils.transactionTrytes(
                 Object.assign({}, transactionObject, { timestamp: Date.now() }),
             );
             body = { trytes: Array(postData.hashes.length).fill(trytes) };
             break;
-
+        }
         case 'findTransactions':
             body = { trytes: Array(postData.addresses.length).fill('9'.repeat(81)) };
             break;
