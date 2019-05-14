@@ -75,6 +75,7 @@ describe('Reducer: settings', () => {
                     enabled: true,
                 },
                 nodeAutoSwitch: false,
+                autoNodeList: true,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
