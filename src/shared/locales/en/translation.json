@@ -491,6 +491,17 @@
         "addNewAccount": "Add new account",
         "tools": "Tools"
     },
+    "nodeSettings": {
+        "automaticNodeSelection": "Automatic node selection",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use automatic node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the automatic node list."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
         "customNode": "Custom node",
@@ -499,7 +510,8 @@
         "add": "Add",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Please enter a valid URL.",
+        "addAuthKey": "Add auth key"
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
@@ -507,7 +519,6 @@
     },
     "advancedSettings": {
         "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
         "manualSync": "Manual sync",
         "snapshotTransition": "Snapshot transition",
         "pow": "Proof of Work",

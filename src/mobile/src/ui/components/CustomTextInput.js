@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -100,6 +100,10 @@ const styles = StyleSheet.create({
         height: height / 7.4,
         justifyContent: 'flex-start',
     },
+    activityIndicator: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
 
 class CustomTextInput extends Component {
@@ -154,6 +158,8 @@ class CustomTextInput extends Component {
         onValidTextChange: PropTypes.func,
         /** Determines whether to mask text by default */
         secureTextEntry: PropTypes.bool,
+        /** Determines whether to display loading spinner */
+        loading: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -179,6 +185,7 @@ class CustomTextInput extends Component {
         value: '',
         isSeedInput: false,
         isPasswordInput: false,
+        loading: false
     };
 
     constructor(props) {
@@ -459,6 +466,24 @@ class CustomTextInput extends Component {
     }
 
     /**
+     * Renders loading spinner
+     * @return {View}
+     */
+    renderLoadingSpinner() {
+        const { theme } = this.props;
+        return (
+            <View style={styles.widgetContainer}>
+                <ActivityIndicator
+                    animating
+                    style={styles.activityIndicator}
+                    size="small"
+                    color={theme.primary.color}
+                />
+            </View>
+        );
+    }
+
+    /**
      * Renders left hand widget, if two are specificed
      * @return {View}
      */
@@ -476,11 +501,11 @@ class CustomTextInput extends Component {
      */
     renderRightHandWidget() {
         const { theme } = this.props;
-        return (
-            <View style={[styles.widgetContainer, { borderLeftWidth: 0.5, borderLeftColor: theme.input.alt }]}>
-                {this.getWidgetRenderFunction(this.props.widgets[0])}
-            </View>
-        );
+            return (
+                <View style={[styles.widgetContainer, { borderLeftWidth: 0.5, borderLeftColor: theme.input.alt }]}>
+                    {this.getWidgetRenderFunction(this.props.widgets[0])}
+                </View>
+            );
     }
 
     render() {
@@ -501,6 +526,7 @@ class CustomTextInput extends Component {
             isSeedInput,
             secureTextEntry,
             value,
+            loading,
             ...restProps
         } = this.props;
         const { isFocused, isSecretMasked } = this.state;
@@ -540,7 +566,8 @@ class CustomTextInput extends Component {
                         value={this.getValue(value)}
                         {...restProps}
                     />
-                    {widgets.length > 0 && this.renderRightHandWidget()}
+                    {!loading && widgets.length > 0 && this.renderRightHandWidget()}
+                    {loading && this.renderLoadingSpinner()}
                     {currencyConversion && this.renderCurrencyConversion()}
                 </View>
                 {isSeedInput && this.renderChecksumComponent()}

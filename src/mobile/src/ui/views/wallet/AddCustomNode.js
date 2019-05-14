@@ -1,22 +1,26 @@
+import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-    ActivityIndicator,
     View,
     Text,
     StyleSheet,
     TouchableOpacity,
     TouchableWithoutFeedback,
     Keyboard,
+    ScrollView,
+    Animated
 } from 'react-native';
 import withNodeData from 'shared-modules/containers/settings/Node';
 import { withNamespaces } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import CustomTextInput from 'ui/components/CustomTextInput';
+import SettingsSeparator from 'ui/components/SettingsSeparator';
 import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import { isIOS } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import timer from 'react-native-timer';
 
 const styles = StyleSheet.create({
     container: {
@@ -25,13 +29,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     topContainer: {
-        flex: 5,
+        flex: 11,
         justifyContent: 'flex-start',
-    },
-    innerContainer: {
-        flex: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     bottomContainer: {
         flex: 1,
@@ -63,13 +63,28 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: height / 40,
+    infoText: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: Styling.fontSize3,
     },
+    buttonText: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: Styling.fontSize2,
+        paddingLeft: width / 50
+    }
 });
+
+const customNodes = [
+    'https://nodes.iota.org',
+    'https://nodes.thetangle.org:443',
+    'https://iotanode.us:443',
+    'https://pool.trytes.eu',
+    'https://pow.iota.community:443',
+    'https://nodes.mrnodes.org:443',
+    'https://thenodeman.com:443',
+    'https://i.love.nodes',
+    'https://woo.another.node:443',
+];
 
 /**
  * Add Custom Node component
@@ -88,6 +103,8 @@ export class AddCustomNode extends Component {
         setNode: PropTypes.func.isRequired,
         /** @ignore */
         loading: PropTypes.bool.isRequired,
+        /** @ignore */
+        customNodes: PropTypes.array.isRequired,
     };
 
     constructor() {
@@ -95,6 +112,12 @@ export class AddCustomNode extends Component {
 
         this.state = {
             customNode: '',
+            authKey: '',
+            customNodes,
+            textInputFlex: new Animated.Value(2.5),
+            nodeListFlex: new Animated.Value(7),
+            viewAuthKeyButton: true,
+            viewAuthKeyField: false
         };
     }
 
@@ -112,14 +135,49 @@ export class AddCustomNode extends Component {
     }
 
     /**
+     * Updates layout and toggles auth key field visibility
+     *
+     * @method onAuthKeypress
+     */
+    onAuthKeypress() {
+        const { textInputFlex, nodeListFlex, viewAuthKeyButton, viewAuthKeyField } = this.state;
+        this.setState({ viewAuthKeyButton: !viewAuthKeyButton });
+        Animated.parallel([
+            Animated.timing(textInputFlex, {
+                toValue: viewAuthKeyField ? 2.5 : 4.5,
+                duration: 200,
+            }),
+            Animated.timing(nodeListFlex, {
+                toValue: viewAuthKeyField ? 7 : 5,
+                duration: 200,
+            }),
+        ]).start(() => {
+            this.setState({ viewAuthKeyField: !this.state.viewAuthKeyField, authKey: '' });
+        });
+    }
+
+    /**
      * Adds custom node
      *
      * @method addNode
      */
     addNode() {
-        const { customNode } = this.state;
-
-        this.props.setNode(customNode, true);
+        const { customNode, viewAuthKeyButton } = this.state;
+        this.setState({ loading: true });
+        timer.setTimeout('timeout',
+            () => {
+              if (!viewAuthKeyButton) {
+                  this.onAuthKeypress();
+              }
+              this.setState({
+                  loading: false,
+                  customNodes: [...this.state.customNodes, customNode],
+                  customNode: ''
+              });
+            },
+            1000
+        );
+        //this.props.setNode(customNode, true);
     }
 
     renderBackPressOption() {
@@ -154,40 +212,94 @@ export class AddCustomNode extends Component {
         );
     }
 
-    render() {
-        const { t, theme, loading } = this.props;
+    renderCustomNodes() {
+        const { theme } = this.props;
+        const { nodeListHeight } = this.state;
 
+        return (map(this.state.customNodes, (node, index) => {
+            return (
+                <View key={index} style={{ height: nodeListHeight / 7, width, flexDirection: 'row', paddingHorizontal: width / 15, justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Text style={{ fontFamily: 'SourceSansPro-Light', fontSize: Styling.fontSize3, color: theme.body.color }}>
+                        {node}
+                    </Text>
+                    <TouchableOpacity onPress={() => this.setState({ customNodes: this.state.customNodes.filter((value) => value !== node) })}>
+                        <Icon name="cross" size={width / 28} color={theme.body.color} />
+                    </TouchableOpacity>
+                </View>
+            );
+        }));
+    }
+
+    render() {
+        const { t, theme } = this.props;
+        const { nodeListHeight, loading, customNodes, textInputFlex, nodeListFlex, viewAuthKeyButton, viewAuthKeyField } = this.state;
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 1.2 }} />
-                        <CustomTextInput
-                            label={t('customNode')}
-                            onValidTextChange={(customNode) => this.setState({ customNode })}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            enablesReturnKeyAutomatically
-                            returnKeyType="done"
-                            keyboardType={isIOS ? 'url' : 'default'}
-                            onSubmitEditing={() => this.addNode()}
-                            theme={theme}
-                            editable={!loading}
-                            value={this.state.customNode}
-                        />
-                    </View>
-                    {loading ? (
-                        <View style={styles.innerContainer}>
-                            <ActivityIndicator
-                                animating
-                                style={styles.activityIndicator}
-                                size="large"
-                                color={theme.primary.color}
-                            />
+                        <Animated.View style={{ flex: textInputFlex, alignItems: 'flex-start', paddingHorizontal: (width - Styling.contentWidth) / 2 }}>
+                            <View style={{ flex: 2, justifyContent: 'center' }}>
+                                <CustomTextInput
+                                    label={t('advancedSettings:addCustomNode')}
+                                    onValidTextChange={(customNode) => this.setState({ customNode })}
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically
+                                    returnKeyType="done"
+                                    keyboardType={isIOS ? 'url' : 'default'}
+                                    onSubmitEditing={() => this.addNode()}
+                                    theme={theme}
+                                    editable={!loading}
+                                    value={this.state.customNode}
+                                    loading={loading}
+                                />
+                            </View>
+                            { viewAuthKeyField &&
+                            <View style={{ flex: 2, justifyContent: 'center' }}>
+                                <CustomTextInput
+                                    label={t('addAuthKey')}
+                                    onValidTextChange={(authKey) => this.setState({ authKey })}
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically
+                                    returnKeyType="done"
+                                    keyboardType={isIOS ? 'url' : 'default'}
+                                    onSubmitEditing={() => this.addNode()}
+                                    theme={theme}
+                                    editable={!loading}
+                                    value={this.state.authKey}
+                                />
+                            </View>
+                            ||
+                            <TouchableOpacity onPress={() => this.onAuthKeypress()} style={{flex: 1, justifyContent: 'flex-end' }}>
+                                { viewAuthKeyButton &&
+                                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                    <Icon name="plusAlt" size={width / 40} color={theme.body.color} />
+                                    <Text style={[ styles.buttonText, { color: theme.body.color } ]}>Add auth key</Text>
+                                </View>
+                                }
+                            </TouchableOpacity>
+                          }
+                        </Animated.View>
+                        <SettingsSeparator color={theme.body.color}/>
+                        { customNodes.length > 0 &&
+                        <Animated.View style={{ flex: nodeListFlex }}>
+                            <View style={{ flex: 1, width }} onLayout={(e) => !nodeListHeight && this.setState({ nodeListHeight: e.nativeEvent.layout.height }) }>
+                                <ScrollView style={{ width, maxHeight: nodeListHeight }} scrollEnabled>
+                                    <View style={{ flex: 1 }} onStartShouldSetResponder={() => true}>
+                                        {this.renderCustomNodes()}
+                                        {customNodes.length < 7 && <View style={{ height: 7 - customNodes.length / nodeListHeight }} />}
+                                    </View>
+                                </ScrollView>
+                            </View>
+                        </Animated.View>
+                        ||
+                        <View style={{ flex: nodeListFlex.__getValue(), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={[styles.infoText, { color: theme.body.color }]}>No custom nodes added</Text>
                         </View>
-                    ) : (
-                        <View style={styles.innerContainer} />
-                    )}
+                        }
+                        <View style={{ flex: 0.5 }}/>
+                    </View>
                     <View style={styles.bottomContainer}>
                         {!loading && this.renderBackPressOption()}
                         {!loading && this.renderAddCustomNodeOption()}

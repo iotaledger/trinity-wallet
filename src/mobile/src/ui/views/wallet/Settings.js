@@ -37,6 +37,8 @@ class Settings extends Component {
         closeTopBar: PropTypes.func.isRequired,
         /** @ignore */
         navStack: PropTypes.array.isRequired,
+        /** @ignore */
+        customNodes: PropTypes.array.isRequired
     };
 
     constructor(props) {
@@ -90,10 +92,11 @@ class Settings extends Component {
     getChildrenProps(child) {
         const props = {
             nodeSelection: {
-                backPress: () => this.props.setSetting('advancedSettings'),
+                backPress: () => this.props.setSetting('nodeSettings'),
             },
             addCustomNode: {
-                backPress: () => this.props.setSetting('advancedSettings'),
+                backPress: () => this.props.setSetting('nodeSettings'),
+                customNodes: this.props.customNodes
             },
         };
 
@@ -185,6 +188,7 @@ const mapStateToProps = (state) => ({
     currentSetting: state.wallet.currentSetting,
     isSyncing: state.ui.isSyncing,
     navStack: state.wallet.navStack,
+    customNodes: state.settings.customNodes
 });
 
 const mapDispatchToProps = {

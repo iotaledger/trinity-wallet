@@ -1,5 +1,4 @@
 import map from 'lodash/map';
-import some from 'lodash/some';
 import find from 'lodash/find';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -31,7 +30,8 @@ import SecuritySettings from 'ui/views/wallet/SecuritySettings';
 import SeedVaultSettings from 'ui/views/wallet/SeedVaultSettings';
 import StateExportComponent from 'ui/views/wallet/StateExport';
 import About from 'ui/views/wallet/About';
-import Toggle from 'ui/components/Toggle';
+import SettingsRow from 'ui/components/SettingsRow';
+import SettingsSeparator from 'ui/components/SettingsSeparator';
 import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -89,28 +89,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center'
     },
-    titleText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-    },
-    separator: {
-        borderBottomWidth: 0.5,
-        width: width / 1.16,
-        alignSelf: 'center',
-    },
-    separatorContainer: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    settingText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: 5,
-        flex: 1,
-        textAlign: 'right',
-    },
     backText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize3,
@@ -144,59 +122,42 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
     },
 });
 
 export const renderSettingsRows = (rows, theme) => {
-    const { body, primary } = theme;
-
+    const { body } = theme;
+    const dualFooter = find(rows, { name: 'dualFooter' });
+    const backButton = find(rows, { name: 'back' });
     return (
         <View style={{ flex: 1 }}>
             {map(rows, (row, index) => {
                 if (row.name === 'separator') {
                     return (
-                        <View style={[ styles.separatorContainer, row.inactive && { opacity: 0.35 } ]} key={index}>
-                            <View style={[styles.separator, { borderBottomColor: theme.body.color }]} />
-                        </View>
+                        <SettingsSeparator inactive={row.inactive} color={theme.body.color} key={index}/>
                     );
                 } else if (row.name !== 'back' && row.name !== 'dualFooter') {
                     return (
-                        <View style={[ styles.itemContainer, row.inactive && { opacity: 0.35 } ]} key={index}>
-                            <TouchableOpacity
-                                onPress={row.function}
-                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                            >
-                                <View style={styles.item}>
-                                    {row.icon && <Icon name={row.icon} size={width / 22} color={body.color} />}
-                                    <View style={styles.content}>
-                                        <Text style={[styles.titleText, { color: body.color }, row.icon && { marginLeft: width / 25 }]}>{row.name}</Text>
-                                        {row.currentSetting && (
-                                            <Text numberOfLines={1} style={[styles.settingText, { color: body.color }]}>
-                                                {row.currentSetting}
-                                            </Text>
-                                        )}
-                                        {row.toggle !== undefined &&
-                                            <Toggle
-                                                active={row.toggle}
-                                                bodyColor={body.color}
-                                                primaryColor={primary.color}
-                                                scale={1}
-                                            />
-                                        }
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+                        <SettingsRow
+                            theme={theme}
+                            name={row.name}
+                            inactive={row.inactive}
+                            onPress={row.function}
+                            currentSetting={row.currentSetting}
+                            icon={row.icon}
+                            toggle={row.toggle}
+                            dropdownOptions={row.dropdownOptions}
+                            key={index}
+                        />
                     );
                 }
             })}
             {rows.length < 12 && <View style={{ flex: 12 - rows.length }} />}
-            {some(rows, { name: 'back' }) && (
-                <View style={[ styles.itemContainer, find(rows, { name: 'back' }).inactive && { opacity: 0.35 } ]}>
+            {backButton && (
+                <View style={[ styles.itemContainer, backButton.inactive && { opacity: 0.35 } ]}>
                     <TouchableOpacity
-                        onPress={find(rows, { name: 'back' }).function}
+                        onPress={backButton.function}
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.item}>
@@ -206,8 +167,8 @@ export const renderSettingsRows = (rows, theme) => {
                     </TouchableOpacity>
                 </View>
             )}
-            {some(rows, { name: 'dualFooter' }) && (
-                <View style={styles.dualFooterContainer}>
+            {dualFooter && (
+                <View style={[ styles.dualFooterContainer, { justifyContent: dualFooter.hideActionButton ? 'flex-start' : 'space-between'} ]}>
                     <TouchableOpacity
                         onPress={find(rows, { name: 'dualFooter' }).backFunction}
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
@@ -217,15 +178,17 @@ export const renderSettingsRows = (rows, theme) => {
                             <Text style={[styles.footerTextLeft, { color: body.color }]}>{i18next.t('global:back')}</Text>
                         </View>
                     </TouchableOpacity>
+                    { dualFooter.hideActionButton === false &&
                     <TouchableOpacity
-                        onPress={find(rows, { name: 'dualFooter' }).actionFunction}
+                        onPress={dualFooter.actionFunction}
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.footerItemRight}>
-                            <Text style={[styles.footerTextRight, { color: body.color }]}>{find(rows, { name: 'dualFooter' }).actionName}</Text>
+                            <Text style={[styles.footerTextRight, { color: body.color }]}>{dualFooter.actionName}</Text>
                             <Icon name="tick" size={width / 28} color={body.color} />
                         </View>
                     </TouchableOpacity>
+                    }
                 </View>
             )}
         </View>
