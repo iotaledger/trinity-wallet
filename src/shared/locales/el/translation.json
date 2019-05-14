@@ -646,7 +646,7 @@
         "saveToDownloadFolder": "Αποθήκευση σε φάκελο λήψης",
         "importSeedVault": "Εξαγωγή seed",
         "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
+        "dropActive": "Τοποθετήστε το seed ή κάντε κλικ εδώ",
         "enterKeyExplanation": "Πληκτρολογήστε το κλειδί για να ανοίξετε το SeedVault",
         "noSeedFound": "Το SeedVault δεν περιέχει έγκυρο seed",
         "noSeedFoundExplanation": "Το SeedVault είναι είτε άδειο είτε περιέχει seed σε μη έγκυρη μορφή.",
@@ -654,12 +654,12 @@
         "seedFileErrorExplanation": "Παρουσιάστηκε πρόβλημα κατά το άνοιγμα του SeedVault. Αν έχετε επιλέξει το σωστό αρχείο τότε μπορεί να είναι κατεστραμμένο.",
         "invalidSeedFileError": "Μη έγκυρο αρχείο SeedVault",
         "invalidSeedFileErrorExplanation": "Αυτή η μορφή αρχείου δεν υποστηρίζεται. Υποστηρίζονται μόνο αρχεία SeedVault (.kdbx) που έχουν δημιουργηθεί μέσω του Trinity ή ενός διαχειριστή κωδικών πρόσβασης.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key",
+        "seedVaultKeyExplanation": "Πρώτα πρέπει να εξασφαλίσουμε το SeedVault. Επιλέξτε ένα κλειδί για την κρυπτογράφηση του αρχείου. Θα χρησιμοποιήσετε αυτό το κλειδί αν χρειαστεί να επαναφέρετε τον σπόρο σας από το αντίγραφο ασφαλείας του SeedVault.",
+        "retypeKey": "Πληκτρολογήστε ξανά το πλήκτρο",
         "key": "Κλειδί"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "stateExportExplanation": "Η κρατική εξαγωγή θα αποθηκεύσει ένα αρχείο txt στη συσκευή σας με τις πληροφορίες λογαριασμού (συναλλαγές, διευθύνσεις), έκδοση πορτοφολιού και ονόματα αρχείων αποθήκευσης.",
         "exportSuccess": "State exported",
         "exportSuccessExplanation": "Your state file was exported successfully."
     },
