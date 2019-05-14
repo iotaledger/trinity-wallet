@@ -1,3 +1,11 @@
+---
+name: "Bug Report"
+about: Report a bug in Trinity
+title: ''
+labels: 'T - Bug'
+
+---
+
 <!--- Remove text and sections that do not apply -->
 
 The issue tracker is only for reporting bugs. If you need technical assistance for using Trinity Wallet, please consult the Trinity [documentation](https://docs.iota.works/trinity) and [knowledge base](https://iotaledger.atlassian.net/wiki/spaces/trinity/overview). For further assistance, please visit the #help channel on [Discord](https://discord.gg/7Gu2mG5).
@@ -9,13 +17,13 @@ A general description of the bug.
 ### Environment Specs
 What device are you running Trinity on?
 
-- Manufacturer: 
-- Model: 
+- Manufacturer:
+- Model:
 - OS version:
 
 What build of Trinity are you running? Please provide the full version (you can find it in Settings > About Trinity).
 
-- Trinity version: 
+- Trinity version:
 
 ### Steps To Reproduce
 1.

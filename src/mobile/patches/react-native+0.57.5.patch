@@ -54,4 +54,17 @@ index 5534eb6..dba31c9 100644
 +      clientBuilder.connectTimeout(timeout, TimeUnit.MILLISECONDS);
      }
      OkHttpClient client = clientBuilder.build();
- 
+
+diff --git a/node_modules/react-native/local-cli/runIOS/findMatchingSimulator.js b/node_modules/react-native/local-cli/runIOS/findMatchingSimulator.js
+index 1928d6f..82a862d 100644
+--- a/node_modules/react-native/local-cli/runIOS/findMatchingSimulator.js
++++ b/node_modules/react-native/local-cli/runIOS/findMatchingSimulator.js
+@@ -39,7 +39,7 @@ function findMatchingSimulator(simulators, simulatorString) {
+   var match;
+   for (let version in devices) {
+     // Making sure the version of the simulator is an iOS or tvOS (Removes Apple Watch, etc)
+-    if (!version.startsWith('iOS') && !version.startsWith('tvOS')) {
++    if (!version.includes('iOS') && !version.includes('tvOS')) {
+       continue;
+     }
+     if (simulatorVersion && !version.endsWith(simulatorVersion)) {
