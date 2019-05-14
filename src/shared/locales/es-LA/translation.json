@@ -1,10 +1,10 @@
 {
     "global": {
         "send": "ENVIAR",
-        "cancel": "CANCELAR",
-        "continue?": "¿Seguro que quieres continuar?",
+        "cancel": "Cancelar",
+        "continue?": "¿Está seguro de que quiere continuar?",
         "noTransactions": "NO HAY HISTORIAL RECIENTE",
-        "refresh": "ACTUALIZAR",
+        "refresh": "Actualizar",
         "balanceError": "No hay suficiente balance",
         "balanceErrorMessage": "No tiene suficientes IOTA para completar esta transferencia.",
         "totalBalance": "Balance total",
@@ -51,7 +51,7 @@
         "share": "Compartir",
         "proceed": "Avance",
         "qr": "QR",
-        "enterSeed": "Por favor, introduzca su semilla.",
+        "enterSeed": "Por favor, introduzca su seed.",
         "yes": "Sí",
         "no": "No",
         "okay": "De acuerdo",
@@ -826,7 +826,7 @@
         "checkAddressExplanation": "Compruebe que la address coincida con la mostrada en su dispositivo de Ledger.",
         "applicationNotInitialised": "Advertencia no confirmada",
         "applicationNotInitialisedExplanation": "Re abra la aplicación IOTA en su dispositivo Ledger, acepte la advertencia informativa y reintente.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevError": "La comunicación con el dispositivo Ledger no ha sido posible",
+        "udevErrorExplanation": "Trinity no ha podido comunicarse con el dispositivo Ledger. Por favor visita la URL debajo para resolver este inconveniente."
     }
 }
