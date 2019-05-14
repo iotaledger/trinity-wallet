@@ -2,7 +2,6 @@
   "name": "trinity-desktop",
   "productName": "Trinity",
   "version": "0.5.0",
-  "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
   "description": "Desktop wallet for IOTA",
@@ -22,7 +21,7 @@
     "start": "concurrently --kill-others \"npm run devserver\" \"cross-env NODE_ENV=development electron -r @babel/register main.js\"",
     "postinstall": "electron-builder install-app-deps",
     "devserver": "node scripts/webpackServer.js",
-    "build": "rimraf dist && concurrently \"npm run build-main\" \"npm run build-app\"",
+    "build": "rimraf dist && npm run build-main && npm run build-app",
     "build-main": "./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config/config.main.js",
     "build-app": "./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config/config.app.js",
     "compile": "npm run build && npm run compile:linux && npm run compile:mac && npm run compile:win",
@@ -30,8 +29,6 @@
     "compile:mac": "./node_modules/.bin/cross-env electron-builder --mac --x64",
     "compile:win": "./node_modules/.bin/electron-builder --win --x64",
     "auditjs": "./../../node_modules/.bin/auditjs -n -l error -w whitelist.json",
-    "prepare-release": "yarn version && echo Successfully incremented version number! Please remember to run git add ., git commit, git push --tags, and git push",
-    "release": "./node_modules/.bin/cross-env CSC_IDENTITY_AUTO_DISCOVERY=false build -mwl",
     "test": "npm run build-app && jest"
   },
   "devDependencies": {
@@ -52,7 +49,6 @@
     "electron": "3.1.9",
     "electron-builder": "20.40.2",
     "electron-devtools-installer": "2.2.4",
-    "electron-screenshot": "1.0.5",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "enzyme-to-json": "^3.3.5",

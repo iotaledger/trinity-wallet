@@ -6274,12 +6274,6 @@
         }
       }
     },
-    "electron-screenshot": {
-      "version": "1.0.5",
-      "resolved": "https://registry.npmjs.org/electron-screenshot/-/electron-screenshot-1.0.5.tgz",
-      "integrity": "sha512-nTLZZ8urMraLwL0KYb5dz2o76cRPx+6WBQ0sOujqqfcUe1k/alj0UoLPmQpFs8VuIccF4K7ZNpeK95h0ob8p6Q==",
-      "dev": true
-    },
     "electron-settings": {
       "version": "3.2.0",
       "resolved": "https://registry.npmjs.org/electron-settings/-/electron-settings-3.2.0.tgz",
