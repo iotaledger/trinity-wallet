@@ -442,7 +442,7 @@
         "doYouNeedASeed": "Potrebujete novo seme?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
+        "yesINeedASeed": "Ja, imam seme",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
         "loseSeed": "Ampak če izgubite vašo generirano vrednost boste izgubili tudi vaš IOTA.",
         "keepSafe": "Prosimo vas, da imate seed shranjen na varnem."
@@ -457,7 +457,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "noTransactionsFound": "No transactions found",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "Vaša zgodovina transakcij je prazna",
         "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Naslov kopiran",
@@ -605,9 +605,9 @@
         "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
+        "status": "Stanje",
         "fingerprintUnavailable": "Biometric authentication unavailable",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "Avtentikacija onemogočena za 30 sekund",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
@@ -656,7 +656,7 @@
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key",
-        "key": "Key"
+        "key": "Ključ"
     },
     "stateExport": {
         "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
@@ -670,7 +670,7 @@
         "error": "Error fetching chart data"
     },
     "rootDetection": {
-        "warning": "WARNING",
+        "warning": "OPOZORILO",
         "appearsRooted": "Your device appears to be rooted.",
         "securityRisk": "This can pose a significant risk to the security of your wallet.",
         "continueDepsiteRisk": "Do you wish to continue despite this risk?"
@@ -734,7 +734,7 @@
         "errorRetrievingUpdateData": "Error retrieving update data",
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
-        "newVersionAvailable": "New version available",
+        "newVersionAvailable": "Na voljo je nova verzija",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Install update and restart",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
@@ -756,7 +756,7 @@
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
+        "notLoggedIn": "Niste prijavljeni",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
@@ -765,7 +765,7 @@
         "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "Obvestila",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
         "typeConfirmations": "Notify me about confirmations",
         "typeMessages": "Notify me about zero value transactions",
