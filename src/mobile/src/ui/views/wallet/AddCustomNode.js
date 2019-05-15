@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     topContainer: {
         flex: 11,
         justifyContent: 'flex-start',
-        alignItems: 'center'
+        alignItems: 'center',
+        width
     },
     bottomContainer: {
         flex: 1,
@@ -40,6 +41,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+    },
+    fieldsContainer: {
+        justifyContent: 'flex-start',
+        width,
+        paddingHorizontal: (width - Styling.contentWidth) / 2
     },
     itemLeft: {
         flexDirection: 'row',
@@ -144,11 +150,11 @@ export class AddCustomNode extends Component {
         this.setState({ viewAuthKeyButton: !viewAuthKeyButton });
         Animated.parallel([
             Animated.timing(textInputFlex, {
-                toValue: viewAuthKeyField ? 2.5 : 4.5,
+                toValue: viewAuthKeyField ? 2.5 : 4,
                 duration: 200,
             }),
             Animated.timing(nodeListFlex, {
-                toValue: viewAuthKeyField ? 7 : 5,
+                toValue: viewAuthKeyField ? 6.5 : 5,
                 duration: 200,
             }),
         ]).start(() => {
@@ -237,8 +243,9 @@ export class AddCustomNode extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <Animated.View style={{ flex: textInputFlex, alignItems: 'flex-start', paddingHorizontal: (width - Styling.contentWidth) / 2 }}>
-                            <View style={{ flex: 2, justifyContent: 'center' }}>
+                        <Animated.View style={[ styles.fieldsContainer, { flex: textInputFlex } ]}>
+                            <View style={{ flex: 2 }}/>
+                            <View style={{ position: 'absolute', width, alignItems: 'center' }}>
                                 <CustomTextInput
                                     label={t('advancedSettings:addCustomNode')}
                                     onValidTextChange={(customNode) => this.setState({ customNode })}
@@ -255,7 +262,7 @@ export class AddCustomNode extends Component {
                                 />
                             </View>
                             { viewAuthKeyField &&
-                            <View style={{ flex: 2, justifyContent: 'center' }}>
+                            <View style={{ flex: 2, justifyContent: 'flex-start' }}>
                                 <CustomTextInput
                                     label={t('addAuthKey')}
                                     onValidTextChange={(authKey) => this.setState({ authKey })}
