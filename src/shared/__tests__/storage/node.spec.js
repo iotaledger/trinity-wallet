@@ -61,12 +61,14 @@ describe('storage: Node', () => {
                     custom: true,
                     pow: false,
                     authKey: '',
+                    useForQuorum: true,
                 },
                 {
                     url: 'https://testnode2.com:443',
                     custom: true,
                     pow: true,
                     authKey: '',
+                    useForQuorum: true,
                 },
             ];
 

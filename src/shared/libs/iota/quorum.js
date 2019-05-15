@@ -66,7 +66,7 @@ const determineQuorumResult = (validResults, quorumSize) => {
 
     return (method, threshold = QUORUM_THRESHOLD) => {
         // Always calculate percentage out of quorum size i.e., all (responsive + unresponsive) nodes.
-        const percentage = frequency[mostFrequent] / quorumSize * 100;
+        const percentage = (frequency[mostFrequent] / quorumSize) * 100;
 
         if (percentage > threshold) {
             return mostFrequent;
@@ -232,9 +232,8 @@ const prepareQuorumResults = (method, quorumSize, ...requestArgs) => {
                 const [results, ...restArgs] = args;
 
                 const preparedResults = prepare(
-                    map(
-                        results,
-                        (result) => (isUndefined(result) ? undefined : [result.latestSolidSubtangleMilestone]),
+                    map(results, (result) =>
+                        isUndefined(result) ? undefined : [result.latestSolidSubtangleMilestone],
                     ),
                     // #prepare expects a requestPayloadSize argument
                     // Since there is no payload for getNodeInfo endpoint and we're only interested in getting a quorum for latestSolidSubtangleMilestone
@@ -309,7 +308,8 @@ const getQuorum = (quorumSize) => (method, syncedNodes, payload, ...args) => {
  **/
 export default function Quorum(config) {
     const quorumNodes = get(config, 'nodes') || [];
-    const quorumSize = get(config, 'quorumSize') || QUORUM_SIZE;
+
+    let quorumSize = get(config, 'quorumSize') || QUORUM_SIZE;
 
     let nodes = uniq(quorumNodes);
 
@@ -344,6 +344,16 @@ export default function Quorum(config) {
          */
         setNodes(newNodes) {
             nodes = union(nodes, uniq(newNodes));
+        },
+        /**
+         * Sets quorum size.
+         *
+         * @method setSize
+         *
+         * @param {number} size
+         */
+        setSize(size) {
+            quorumSize = size;
         },
         /**
          * Performs a quorum for wereAddressesSpentFrom api endpoint.

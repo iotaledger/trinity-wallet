@@ -41,6 +41,13 @@ export default [
                         type: 'string',
                         default: '',
                     },
+                    /**
+                     * (Optional) Determines if this node should be used for quorum
+                     */
+                    useForQuorum: {
+                        type: 'bool',
+                        default: true,
+                    },
                 },
             });
         } else if (schema.name === 'WalletSettings') {
