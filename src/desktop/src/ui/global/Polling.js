@@ -43,11 +43,15 @@ class Polling extends React.PureComponent {
         /** @ignore */
         allPollingServices: PropTypes.array.isRequired,
         /** @ignore */
+        isPollingMarketData: PropTypes.bool.isRequired,
+        /** @ignore */
         unconfirmedBundleTails: PropTypes.object.isRequired,
         /** @ignore */
         autoPromotion: PropTypes.bool.isRequired,
         /** @ignore */
         setPollFor: PropTypes.func.isRequired,
+        /** @ignore */
+        marketData: PropTypes.object.isRequired,
         /** @ignore */
         fetchMarketData: PropTypes.func.isRequired,
         /** @ignore */
@@ -76,6 +80,17 @@ class Polling extends React.PureComponent {
     componentDidMount() {
         this.onPollTick = this.fetch.bind(this);
         this.interval = setInterval(this.onPollTick, 8000);
+    }
+
+    componentDidUpdate(prevProps) {
+        const { marketData, isPollingMarketData } = this.props;
+
+        /**
+         * Send updated marketData to Tray application
+         */
+        if (prevProps.isPollingMarketData && !isPollingMarketData) {
+            Electron.storeUpdate(JSON.stringify({ marketData }));
+        }
     }
 
     componentWillUnmount() {
@@ -213,6 +228,7 @@ const mapStateToProps = (state) => ({
     isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
     failedBundleHashes: getFailedBundleHashes(state),
     password: state.wallet.password,
+    marketData: state.marketData,
 });
 
 const mapDispatchToProps = {
