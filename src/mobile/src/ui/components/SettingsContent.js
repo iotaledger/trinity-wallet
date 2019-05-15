@@ -2,7 +2,7 @@ import map from 'lodash/map';
 import find from 'lodash/find';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import i18next from 'shared-modules/libs/i18next.js';
 import MainSettingsComponent from 'ui/views/wallet/MainSettings';
 import AdvancedSettingsComponent from 'ui/views/wallet/AdvancedSettings';
@@ -124,10 +124,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    activityIndicator: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
 
 export const renderSettingsRows = (rows, theme) => {
-    const { body } = theme;
+    const { body, primary } = theme;
     const dualFooter = find(rows, { name: 'dualFooter' });
     const backButton = find(rows, { name: 'back' });
     return (
@@ -178,7 +182,7 @@ export const renderSettingsRows = (rows, theme) => {
                             <Text style={[styles.footerTextLeft, { color: body.color }]}>{i18next.t('global:back')}</Text>
                         </View>
                     </TouchableOpacity>
-                    { dualFooter.hideActionButton === false &&
+                    { dualFooter.hideActionButton === false && !dualFooter.actionButtonLoading &&
                     <TouchableOpacity
                         onPress={dualFooter.actionFunction}
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
@@ -188,6 +192,16 @@ export const renderSettingsRows = (rows, theme) => {
                             <Icon name="tick" size={width / 28} color={body.color} />
                         </View>
                     </TouchableOpacity>
+                    }
+                    {dualFooter.actionButtonLoading &&
+                    <View style={styles.footerItemRight}>
+                        <ActivityIndicator
+                            animating
+                            style={styles.activityIndicator}
+                            size="small"
+                            color={primary.color}
+                        />
+                    </View>
                     }
                 </View>
             )}

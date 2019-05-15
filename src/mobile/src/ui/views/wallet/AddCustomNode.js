@@ -20,7 +20,6 @@ import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import { isIOS } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import timer from 'react-native-timer';
 
 const styles = StyleSheet.create({
     container: {
@@ -80,18 +79,6 @@ const styles = StyleSheet.create({
     }
 });
 
-const customNodes = [
-    'https://nodes.iota.org',
-    'https://nodes.thetangle.org:443',
-    'https://iotanode.us:443',
-    'https://pool.trytes.eu',
-    'https://pow.iota.community:443',
-    'https://nodes.mrnodes.org:443',
-    'https://thenodeman.com:443',
-    'https://i.love.nodes',
-    'https://woo.another.node:443',
-];
-
 /**
  * Add Custom Node component
  */
@@ -106,11 +93,13 @@ export class AddCustomNode extends Component {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        setNode: PropTypes.func.isRequired,
-        /** @ignore */
         loading: PropTypes.bool.isRequired,
         /** @ignore */
         customNodes: PropTypes.array.isRequired,
+        /** @ignore */
+        setNode: PropTypes.func.isRequired,
+        /** @ignore */
+        removeCustomNode: PropTypes.func.isRequired
     };
 
     constructor() {
@@ -119,7 +108,6 @@ export class AddCustomNode extends Component {
         this.state = {
             customNode: '',
             authKey: '',
-            customNodes,
             textInputFlex: new Animated.Value(2.5),
             nodeListFlex: new Animated.Value(7),
             viewAuthKeyButton: true,
@@ -162,30 +150,6 @@ export class AddCustomNode extends Component {
         });
     }
 
-    /**
-     * Adds custom node
-     *
-     * @method addNode
-     */
-    addNode() {
-        const { customNode, viewAuthKeyButton } = this.state;
-        this.setState({ loading: true });
-        timer.setTimeout('timeout',
-            () => {
-              if (!viewAuthKeyButton) {
-                  this.onAuthKeypress();
-              }
-              this.setState({
-                  loading: false,
-                  customNodes: [...this.state.customNodes, customNode],
-                  customNode: ''
-              });
-            },
-            1000
-        );
-        //this.props.setNode(customNode, true);
-    }
-
     renderBackPressOption() {
         const { t, theme } = this.props;
 
@@ -207,7 +171,7 @@ export class AddCustomNode extends Component {
 
         return (
             <TouchableOpacity
-                onPress={() => this.addNode()}
+                onPress={() => this.props.setNode(this.state.customNode, true)}
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.itemRight}>
@@ -219,16 +183,16 @@ export class AddCustomNode extends Component {
     }
 
     renderCustomNodes() {
-        const { theme } = this.props;
+        const { theme, customNodes } = this.props;
         const { nodeListHeight } = this.state;
 
-        return (map(this.state.customNodes, (node, index) => {
+        return (map(customNodes, (node, index) => {
             return (
                 <View key={index} style={{ height: nodeListHeight / 7, width, flexDirection: 'row', paddingHorizontal: width / 15, justifyContent: 'space-between', alignItems: 'center' }}>
                     <Text style={{ fontFamily: 'SourceSansPro-Light', fontSize: Styling.fontSize3, color: theme.body.color }}>
                         {node}
                     </Text>
-                    <TouchableOpacity onPress={() => this.setState({ customNodes: this.state.customNodes.filter((value) => value !== node) })}>
+                    <TouchableOpacity onPress={() => this.props.removeCustomNode(node)}>
                         <Icon name="cross" size={width / 28} color={theme.body.color} />
                     </TouchableOpacity>
                 </View>
@@ -237,8 +201,8 @@ export class AddCustomNode extends Component {
     }
 
     render() {
-        const { t, theme } = this.props;
-        const { nodeListHeight, loading, customNodes, textInputFlex, nodeListFlex, viewAuthKeyButton, viewAuthKeyField } = this.state;
+        const { t, theme, customNodes, loading } = this.props;
+        const { nodeListHeight, textInputFlex, nodeListFlex, viewAuthKeyButton, viewAuthKeyField, customNode } = this.state;
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -254,7 +218,7 @@ export class AddCustomNode extends Component {
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"
                                     keyboardType={isIOS ? 'url' : 'default'}
-                                    onSubmitEditing={() => this.addNode()}
+                                    onSubmitEditing={() => this.props.setNode(customNode, true)}
                                     theme={theme}
                                     editable={!loading}
                                     value={this.state.customNode}

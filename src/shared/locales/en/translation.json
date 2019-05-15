@@ -500,7 +500,10 @@
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the automatic node list."
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the automatic node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the automatic node list."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
