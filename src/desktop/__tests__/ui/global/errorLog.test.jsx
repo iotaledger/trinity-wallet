@@ -3,6 +3,9 @@ import { shallow } from 'enzyme';
 
 import { ErrorLogComponent as ErrorLog } from 'ui/global/ErrorLog';
 
+import * as dateLib from 'libs/date';
+dateLib.formatTimeAs = { dayMonthYearHoursMinutes: () => 'DD/MM/YYYY HH:II' };
+
 const props = {
     log: Array(10).fill({
         date: 1548842449,

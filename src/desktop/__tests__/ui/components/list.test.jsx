@@ -3,6 +3,9 @@ import { shallow } from 'enzyme';
 
 import { ListComponent as List } from 'ui/components/List';
 
+import * as dateLib from 'libs/date';
+dateLib.formatTime = () => 'DD/MM/YYYY';
+
 const props = {
     isBusy: false,
     mode: 'Standard',

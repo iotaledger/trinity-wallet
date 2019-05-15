@@ -117,7 +117,7 @@ exports[`List component Render the component 1`] = `
             size={14}
           />
           <span>
-            08/01/2019
+            DD/MM/YYYY
           </span>
           <span>
             sent
@@ -138,7 +138,7 @@ exports[`List component Render the component 1`] = `
             size={14}
           />
           <span>
-            08/01/2019
+            DD/MM/YYYY
           </span>
           <span>
             receiving
@@ -160,7 +160,7 @@ exports[`List component Render the component 1`] = `
             size={14}
           />
           <span>
-            08/01/2019
+            DD/MM/YYYY
           </span>
           <span>
             received
@@ -182,7 +182,7 @@ exports[`List component Render the component 1`] = `
             size={14}
           />
           <span>
-            08/01/2019
+            DD/MM/YYYY
           </span>
           <span>
             sent
@@ -203,7 +203,7 @@ exports[`List component Render the component 1`] = `
             size={14}
           />
           <span>
-            08/01/2019
+            DD/MM/YYYY
           </span>
           <span>
             sending
@@ -225,7 +225,7 @@ exports[`List component Render the component 1`] = `
             size={14}
           />
           <span>
-            08/01/2019
+            DD/MM/YYYY
           </span>
           <span>
             sending
