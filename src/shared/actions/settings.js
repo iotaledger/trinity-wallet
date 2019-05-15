@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
-import { changeIotaNode } from '../libs/iota/index';
+import { changeIotaNode, quorum } from '../libs/iota/index';
 import i18next from '../libs/i18next';
 import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
 import { fetchNodeList } from '../actions/polling';
@@ -48,6 +48,9 @@ export const ActionTypes = {
     SET_PROXY: 'SET_PROXY',
     RESET_NODES_LIST: 'IOTA/SETTINGS/RESET_NODES_LIST',
     SET_DEEP_LINKING: 'IOTA/SETTINGS/SET_DEEP_LINKING',
+    UPDATE_QUORUM_CONFIG: 'IOTA/SETTINGS/UPDATE_QUORUM_CONFIG',
+    UPDATE_NODE_AUTO_SWITCH_SETTING: 'IOTA/SETTINGS/UPDATE_NODE_AUTO_SWITCH_SETTING',
+    UPDATE_AUTO_NODE_LIST_SETTING: 'IOTA/SETTINGS/UPDATE_AUTO_NODE_LIST_SETTING',
 };
 
 /**
@@ -822,4 +825,69 @@ export const reinitialiseNodesList = () => (dispatch) => {
 
     // Fetch latest nodes
     dispatch(fetchNodeList());
+};
+
+/**
+ * Dispatch to update quorum configuration
+ *
+ * @method updateQuorumConfig
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const updateQuorumConfig = (payload) => {
+    // Update quorum configuration in realm
+    Wallet.updateQuorumConfig(payload);
+
+    // Check if this update aims to update quorum size
+    const quorumSize = get(payload, 'size');
+
+    // If this update aims to update quorum size, also update global quorum parameter
+    if (quorumSize) {
+        quorum.setSize(quorumSize);
+    }
+
+    // Finally, update it in redux store
+    return {
+        type: ActionTypes.UPDATE_QUORUM_CONFIG,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to update node auto-switch setting
+ *
+ * @method updateNodeAutoSwitchSetting
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const updateNodeAutoSwitchSetting = (payload) => {
+    // Update auto node switching setting in realm
+    Wallet.updateNodeAutoSwitchSetting(payload);
+
+    // Update auto node switching setting in redux store
+    return {
+        type: ActionTypes.UPDATE_NODE_AUTO_SWITCH_SETTING,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to update autoNodeList setting
+ *
+ * @method updateNodeAutoSwitchSetting
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const updateAutoNodeListSetting = (payload) => {
+    // Update autoNodeList setting in realm
+    Wallet.updateAutoNodeListSetting(payload);
+
+    // Update autoNodeList setting in redux
+    return {
+        type: ActionTypes.UPDATE_AUTO_NODE_LIST_SETTING,
+        payload,
+    };
 };

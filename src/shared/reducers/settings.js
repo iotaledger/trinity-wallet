@@ -3,7 +3,7 @@ import union from 'lodash/union';
 import sortBy from 'lodash/sortBy';
 import { ActionTypes } from '../actions/settings';
 import { ActionTypes as MigrationsActionTypes } from '../actions/migrations';
-import { defaultNode as node, nodes } from '../config';
+import { defaultNode as node, nodes, QUORUM_SIZE } from '../config';
 import { availableCurrencies } from '../libs/currency';
 
 const initialState = {
@@ -112,6 +112,28 @@ const initialState = {
      * Determines if deep linking is enabled
      */
     deepLinking: false,
+    /**
+     * Quorum configuration
+     */
+    quorum: {
+        /**
+         * User-defined quorum size
+         */
+        size: QUORUM_SIZE,
+        /**
+         * Determines if quorum is enabled
+         */
+        enabled: true,
+    },
+    /**
+     * Determines if (primary) node should automatically be auto-switched
+     */
+    nodeAutoSwitch: false,
+    /**
+     * - When true: pull in nodes from endpoint (config#NODELIST_URL) and include the custom nodes in the quorum selection
+     * - When false: only use custom nodes in quorum selection
+     */
+    autoNodeList: true,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -272,6 +294,21 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 deepLinking: !state.deepLinking,
+            };
+        case ActionTypes.UPDATE_QUORUM_CONFIG:
+            return {
+                ...state,
+                quorum: { ...state.quorum, ...action.payload },
+            };
+        case ActionTypes.UPDATE_NODE_AUTO_SWITCH_SETTING:
+            return {
+                ...state,
+                nodeAutoSwitch: action.payload,
+            };
+        case ActionTypes.UPDATE_AUTO_NODE_LIST_SETTING:
+            return {
+                ...state,
+                autoNodeList: action.payload,
             };
     }
 

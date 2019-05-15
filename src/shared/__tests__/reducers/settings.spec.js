@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import reducer from '../../reducers/settings';
 import { ActionTypes } from '../../actions/settings';
-import { defaultNode, nodes } from '../../config';
+import { defaultNode, nodes, QUORUM_SIZE } from '../../config';
 
 describe('Reducer: settings', () => {
     describe('initial state', () => {
@@ -70,6 +70,12 @@ describe('Reducer: settings', () => {
                 completedMigration: false,
                 ignoreProxy: false,
                 deepLinking: false,
+                quorum: {
+                    size: QUORUM_SIZE,
+                    enabled: true,
+                },
+                nodeAutoSwitch: false,
+                autoNodeList: true,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

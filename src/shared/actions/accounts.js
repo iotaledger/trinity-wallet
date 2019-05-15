@@ -9,7 +9,7 @@ import {
     getAccountInfoDuringSetup,
     selectedAccountStateFactory,
 } from '../selectors/accounts';
-import { getNodesFromState, getSelectedNodeFromState } from '../selectors/global';
+import { nodesConfigurationFactory } from '../selectors/global';
 import { syncAccount, getAccountData } from '../libs/iota/accounts';
 import { setSeedIndex } from './wallet';
 import {
@@ -23,10 +23,9 @@ import {
     generateLedgerCancelledAlert,
 } from '../actions/alerts';
 import { changeNode } from '../actions/settings';
-import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import Errors from '../libs/errors';
-import { DEFAULT_RETRIES } from '../config';
 import { Account, Wallet } from '../storage';
+import NodesManager from '../libs/iota/NodesManager';
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -381,14 +380,11 @@ export const getFullAccountInfo = (seedStore, accountName, withQuorum = false) =
     return (dispatch, getState) => {
         dispatch(fullAccountInfoFetchRequest());
 
-        const selectedNode = getSelectedNodeFromState(getState());
         const existingAccountNames = getAccountNamesFromState(getState());
         const usedExistingSeed = getAccountInfoDuringSetup(getState()).usedExistingSeed;
 
-        withRetriesOnDifferentNodes(
-            [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
-            () => dispatch(generateAccountSyncRetryAlert()),
-        )((...args) => getAccountData(...[...args, withQuorum]))(seedStore, accountName)
+        return new NodesManager(nodesConfigurationFactory(withQuorum)(getState()))
+            .withRetries(() => dispatch(generateAccountSyncRetryAlert()))(getAccountData)(seedStore, accountName)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 
@@ -446,13 +442,14 @@ export const manuallySyncAccount = (seedStore, accountName, withQuorum = false) 
     return (dispatch, getState) => {
         dispatch(manualSyncRequest());
 
-        const selectedNode = getSelectedNodeFromState(getState());
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        withRetriesOnDifferentNodes(
-            [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
-            () => dispatch(generateAccountSyncRetryAlert()),
-        )((...args) => getAccountData(...[...args, withQuorum]))(seedStore, accountName, existingAccountState)
+        return new NodesManager(nodesConfigurationFactory(withQuorum)(getState()))
+            .withRetries(() => dispatch(generateAccountSyncRetryAlert()))(getAccountData)(
+                seedStore,
+                accountName,
+                existingAccountState,
+            )
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
                 dispatch(generateSyncingCompleteAlert());
@@ -491,15 +488,18 @@ export const manuallySyncAccount = (seedStore, accountName, withQuorum = false) 
 export const getAccountInfo = (seedStore, accountName, notificationFn, withQuorum = false) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
-        const selectedNode = getSelectedNodeFromState(getState());
-        const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
+        const existingAccountState = selectedAccountStateFactory(accountName)(getState());
         const settings = getState().settings;
 
-        return withRetriesOnDifferentNodes(
-            [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
-            () => dispatch(generateAccountSyncRetryAlert()),
-        )((...args) => syncAccount(...[...args, withQuorum]))(existingAccountState, seedStore, notificationFn, settings)
+        return new NodesManager(nodesConfigurationFactory(withQuorum)(getState()))
+            .withRetries(() => dispatch(generateAccountSyncRetryAlert()))(syncAccount)(
+                existingAccountState,
+                seedStore,
+                notificationFn,
+                settings,
+            )
+
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 
@@ -548,26 +548,23 @@ export const deleteAccount = (accountName) => (dispatch) => {
  * @returns {function(*, *): Promise<object>}
  */
 export const cleanUpAccountState = (seedStore, accountName, withQuorum = true) => (dispatch, getState) => {
-    const selectedNode = getSelectedNodeFromState(getState());
+    return new NodesManager(nodesConfigurationFactory(withQuorum)(getState()))
+        .withRetries(() => dispatch(generateAccountSyncRetryAlert()))(getAccountData)(
+            seedStore,
+            accountName,
+            // Do not pass existing account state
+            // Empty account state will lead to fresh address data & transactions
+        )
+        .then(({ node, result }) => {
+            // Update storage (realm)
+            Account.update(accountName, result);
 
-    return withRetriesOnDifferentNodes(
-        [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
-        () => dispatch(generateAccountSyncRetryAlert()),
-    )((...args) => getAccountData(...[...args, withQuorum]))(
-        seedStore,
-        accountName,
-        // Do not pass existing account state
-        // Empty account state will lead to fresh address data & transactions
-    ).then(({ node, result }) => {
-        // Update storage (realm)
-        Account.update(accountName, result);
+            dispatch(changeNode(node));
+            dispatch(overrideAccountInfo(result));
 
-        dispatch(changeNode(node));
-        dispatch(overrideAccountInfo(result));
-
-        // Resolve new account state
-        return result;
-    });
+            // Resolve new account state
+            return result;
+        });
 };
 
 /**

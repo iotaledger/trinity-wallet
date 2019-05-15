@@ -27,26 +27,30 @@ export const getPollingFromState = (state) => state.polling || {};
  *   @param {object} state
  *   @returns {string}
  **/
-export const shouldPreventAction = createSelector(getUiFromState, getPollingFromState, (uiState, pollingState) => {
-    const {
-        isTransitioning,
-        isSendingTransfer,
-        isGeneratingReceiveAddress,
-        isSyncing,
-        isRetryingFailedTransaction,
-    } = uiState;
+export const shouldPreventAction = createSelector(
+    getUiFromState,
+    getPollingFromState,
+    (uiState, pollingState) => {
+        const {
+            isTransitioning,
+            isSendingTransfer,
+            isGeneratingReceiveAddress,
+            isSyncing,
+            isRetryingFailedTransaction,
+        } = uiState;
 
-    const { isFetchingAccountInfo } = pollingState;
+        const { isFetchingAccountInfo } = pollingState;
 
-    return (
-        isSyncing ||
-        isSendingTransfer ||
-        isGeneratingReceiveAddress ||
-        isTransitioning ||
-        isFetchingAccountInfo ||
-        isRetryingFailedTransaction
-    );
-});
+        return (
+            isSyncing ||
+            isSendingTransfer ||
+            isGeneratingReceiveAddress ||
+            isTransitioning ||
+            isFetchingAccountInfo ||
+            isRetryingFailedTransaction
+        );
+    },
+);
 
 /**
  *   Selects settings prop from state.
@@ -65,7 +69,10 @@ export const getSettingsFromState = (state) => state.settings || {};
  *   @param {object} state
  *   @returns {object}
  **/
-export const getRemotePoWFromState = createSelector(getSettingsFromState, (state) => state.remotePoW);
+export const getRemotePoWFromState = createSelector(
+    getSettingsFromState,
+    (state) => state.remotePoW,
+);
 
 /**
  *   Selects IRI nodes prop from settings reducer state object.
@@ -75,7 +82,10 @@ export const getRemotePoWFromState = createSelector(getSettingsFromState, (state
  *   @param {object} state
  *   @returns {array}
  **/
-export const getNodesFromState = createSelector(getSettingsFromState, (state) => state.nodes || []);
+export const getNodesFromState = createSelector(
+    getSettingsFromState,
+    (state) => state.nodes || [],
+);
 
 /**
  *   Selects selected IRI node prop from settings reducer state object.
@@ -85,7 +95,10 @@ export const getNodesFromState = createSelector(getSettingsFromState, (state) =>
  *   @param {object} state
  *   @returns {array}
  **/
-export const getSelectedNodeFromState = createSelector(getSettingsFromState, (state) => state.node || DEFAULT_IRI_NODE);
+export const getSelectedNodeFromState = createSelector(
+    getSettingsFromState,
+    (state) => state.node || DEFAULT_IRI_NODE,
+);
 
 /**
  *   Selects wallet prop from state.
@@ -104,12 +117,18 @@ export const getWalletFromState = (state) => state.wallet || {};
  *   @param {object} state
  *   @returns {number}
  **/
-export const getSeedIndexFromState = createSelector(getWalletFromState, (state) => state.seedIndex || 0);
+export const getSeedIndexFromState = createSelector(
+    getWalletFromState,
+    (state) => state.seedIndex || 0,
+);
 
 /**
  * Selects active theme name from state.settings
  */
-export const getThemeNameFromState = createSelector(getSettingsFromState, (state) => state.themeName);
+export const getThemeNameFromState = createSelector(
+    getSettingsFromState,
+    (state) => state.themeName,
+);
 
 /**
  * Selects active theme object
@@ -127,4 +146,48 @@ export const getThemeFromState = createSelector(
  *   @param {object} state
  *   @returns {array}
  **/
-export const getCustomNodesFromState = createSelector(getSettingsFromState, (state) => state.customNodes || []);
+export const getCustomNodesFromState = createSelector(
+    getSettingsFromState,
+    (state) => state.customNodes || [],
+);
+
+/**
+ * Gets configuration for node manager from state.
+ *
+ * @method nodesConfigurationFactory
+ *
+ * @param {object} state
+ *
+ * @returns {object}
+ **/
+export const nodesConfigurationFactory = (quorum) =>
+    createSelector(
+        getSettingsFromState,
+        (state) => {
+            const config = {
+                /** Node that should be given priority while connecting. */
+                priorityNode: DEFAULT_IRI_NODE,
+                /** Wallet nodes */
+                nodes: state.nodes,
+                /** Wallet's active node */
+                primaryNode: state.node,
+                /** Determines if quorum is enabled/disabled */
+                quorum: state.quorum,
+                /**
+                 * Determines if (primary) node should automatically be auto-switched
+                 */
+                nodeAutoSwitch: state.nodeAutoSwitch,
+                /**
+                 * - When true: pull in nodes from endpoint (config#NODELIST_URL) and include the custom nodes in the quorum selection
+                 * - When false: only use custom nodes in quorum selection
+                 */
+                autoNodeList: true,
+            };
+
+            if (quorum) {
+                config.quorum.enabled = quorum;
+            }
+
+            return config;
+        },
+    );
