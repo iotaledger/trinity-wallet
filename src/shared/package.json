@@ -67,7 +67,7 @@
     "sinon": "^7.2.7",
     "snyk": "^1.162.0",
     "svg2ttf": "^4.1.0",
-    "svgicons2svgfont": "^9.0.2",
+    "svgicons2svgfont": "^9.0.4",
     "timekeeper": "^2.0.0"
   },
   "resolutions": {

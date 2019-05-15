@@ -1436,12 +1436,12 @@ command-line-args@^4.0.6:
     find-replace "^1.0.3"
     typical "^2.6.1"
 
-commander@2.15.1, commander@^2.12.2:
+commander@2.15.1:
   version "2.15.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.15.1.tgz#df46e867d0fc2aec66a34662b406a9ccafff5b0f"
   integrity sha512-VlfT9F3V0v+jr4yxPc5gg9s62/fIVWsd2Bk2iD435um1NlGMYdVCq+MjcXnhYq2icNOizHr1kK+5TI6H0Hy0ag==
 
-commander@~2.17.1:
+commander@^2.12.2, commander@~2.17.1:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg==
@@ -4668,10 +4668,10 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-svg-pathdata@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/svg-pathdata/-/svg-pathdata-4.0.1.tgz#7d880d05140ef3bda312c72a023db733e9d8ef7a"
-  integrity sha1-fYgNBRQO872jEscqAj23M+nY73o=
+svg-pathdata@^5.0.0:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/svg-pathdata/-/svg-pathdata-5.0.2.tgz#e667b94a6071b60c5b123df04f9d6c9fe2f4850e"
+  integrity sha512-tmfwioGZZaSMZnAGCFiWd30O2sVbA5/wVP/CS8Pcf9s1ptd6J26bZUFwkIRZy+GYmD+uCECdiAP7bPpLszj+1w==
 
 svg2ttf@^4.1.0:
   version "4.1.0"
@@ -4685,10 +4685,10 @@ svg2ttf@^4.1.0:
     svgpath "^2.1.5"
     xmldom "~0.1.22"
 
-svgicons2svgfont@^9.0.2:
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/svgicons2svgfont/-/svgicons2svgfont-9.0.2.tgz#5179427527856dff8f484fcc87181b9cf48919bc"
-  integrity sha512-XyM3lBALo8wsWF2x8rwrA86ZQjy4FSd1Hl6dH3BUa6Yys0e8cFix+jsbZIpO4c1VapqfL05yCO82rmknTIaJYQ==
+svgicons2svgfont@^9.0.4:
+  version "9.0.4"
+  resolved "https://registry.yarnpkg.com/svgicons2svgfont/-/svgicons2svgfont-9.0.4.tgz#0f974f3e01789d22beeecc0077a855587ffe527d"
+  integrity sha512-62C53A8ghSXqwQ/R+rpg4RKreS5Wx/7Jw8Lr8OqIGPnGowbGgYgC7fi35uvNx+Jb8QW8DDIavonL4HKOL9hYZA==
   dependencies:
     commander "^2.12.2"
     geometry-interfaces "^1.1.4"
@@ -4698,7 +4698,7 @@ svgicons2svgfont@^9.0.2:
     sax "^1.2.4"
     string.fromcodepoint "^0.2.1"
     string.prototype.codepointat "^0.2.0"
-    svg-pathdata "^4.0.1"
+    svg-pathdata "^5.0.0"
     transformation-matrix-js "^2.7.1"
 
 svgpath@^2.1.5:
