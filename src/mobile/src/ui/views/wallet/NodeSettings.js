@@ -7,26 +7,26 @@ import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { setFullNode, updateQuorumConfig, updateNodeAutoSwitchSetting, updateAutoNodeListSetting } from 'shared-modules/actions/settings';
+import { setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import MINIMUM_QUORUM_SIZE from 'shared-modules/config';
+import { MINIMUM_QUORUM_SIZE } from 'shared-modules/config';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
+const defaultState = {
+    autoNodeSelection: true,
+    autoNodeList: true,
+    nodeAutoSwitch: true,
+    quorumEnabled: true,
+    quorumSize: '4'
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
 });
-
-const defaultState = {
-    autoNodeSelection: true,
-    autoNodeList: true,
-    nodeAutoSwitch: true,
-    quorum: true,
-    quorumSize: '4'
-};
 
 /**
  * Advanced Settings component
@@ -60,21 +60,25 @@ export class NodeSettings extends PureComponent {
         /** @ignore */
         quorumEnabled: PropTypes.bool.isRequired,
         /** @ignore */
-        quorumSize: PropTypes.number.isRequired,
+        quorumSize: PropTypes.string.isRequired,
         /** @ignore */
         setFullNode: PropTypes.func.isRequired,
         /** @ignore */
         isChangingNode: PropTypes.bool.isRequired,
+        /** @ignore */
+        setLoginRoute: PropTypes.func.isRequired,
+        /** @ignore */
+        loginRoute: PropTypes.string.isRequired,
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            autoNodeSelection: true,
+            autoNodeSelection: props.autoNodeSelection,
             autoNodeList: props.autoNodeList,
             nodeAutoSwitch: props.nodeAutoSwitch,
             quorumEnabled: props.quorumEnabled,
-            quorumSize: props.quorumSize.toString(),
+            quorumSize: props.quorumSize,
             node: props.node
         };
     }
@@ -83,8 +87,8 @@ export class NodeSettings extends PureComponent {
         leaveNavigationBreadcrumb('NodeSettings');
     }
 
-
     onApplyPress() {
+        const { t } = this.props;
         const { autoNodeList, nodeAutoSwitch, quorumEnabled, node } = this.state;
         const quorumSize = parseInt(this.state.quorumSize);
         if (autoNodeList !== this.props.autoNodeList){
@@ -97,8 +101,9 @@ export class NodeSettings extends PureComponent {
             this.props.updateQuorumConfig({ enabled: quorumEnabled, size: quorumSize });
         }
         if (node !== this.props.node){
-            this.props.setFullNode(node);
+            return this.props.setFullNode(node);
         }
+        this.props.generateAlert('success', t('nodeSettings:nodeSettingsUpdatedTitle'), t('nodeSettings:nodeSettingsUpdatedExplanation'));
     }
 
     getQuorumOptions() {
@@ -106,6 +111,11 @@ export class NodeSettings extends PureComponent {
         const { nodes, customNodes } = this.props;
         const nodeList = autoNodeList ? nodes : customNodes;
         return Array(nodeList.length - 1).fill().map((_, idx) => (MINIMUM_QUORUM_SIZE + idx).toString());
+    }
+
+    haveNodeSettingsChanged() {
+        const { autoNodeSelection, autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node } = this.props;
+        return isEqual({ autoNodeSelection, autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node }, this.state);
     }
 
     toggleQuorumEnabled() {
@@ -143,7 +153,7 @@ export class NodeSettings extends PureComponent {
      * @returns {function}
      */
     renderSettingsContent() {
-        const { theme, t, nodes, isChangingNode } = this.props;
+        const { theme, t, nodes, isChangingNode, loginRoute } = this.props;
         const { autoNodeSelection, autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node } = this.state;
         const rows = [
             {
@@ -153,7 +163,7 @@ export class NodeSettings extends PureComponent {
             },
             {
                 name: t('nodeSettings:addCustomNodes'),
-                function: () => this.props.setSetting('addCustomNode'),
+                function: () => loginRoute === 'nodeSettings' ? this.props.setLoginRoute('addCustomNode') : this.props.setSetting('addCustomNode'),
             },
             { name: 'separator' },
             {
@@ -185,15 +195,15 @@ export class NodeSettings extends PureComponent {
             },
             {
                 name: t('nodeSettings:quorumSize'),
-                function: (quorumSize) => quorumSize && this.setState({ quorumSize: quorumSize.toString() }),
+                function: (quorumSize) => quorumSize && this.setState({ quorumSize }),
                 inactive: autoNodeSelection || !quorumEnabled,
                 dropdownOptions: this.getQuorumOptions(),
                 currentSetting: !quorumEnabled && '0' || quorumSize
             },
             {
                 name: 'dualFooter',
-                backFunction: () => this.props.setSetting('advancedSettings'),
-                hideActionButton: isEqual(defaultState, this.state),
+                backFunction: () => loginRoute === 'nodeSettings' ? this.props.setLoginRoute('login') : this.props.setSetting('advancedSettings'),
+                hideActionButton: this.haveNodeSettingsChanged(),
                 actionName: 'Apply',
                 actionFunction: () => this.onApplyPress(),
                 actionButtonLoading: isChangingNode
@@ -212,11 +222,13 @@ const mapStateToProps = (state) => ({
     node: state.settings.node,
     nodes: state.settings.nodes,
     customNodes: state.settings.customNodes,
+    autoNodeSelection: false,
     nodeAutoSwitch: state.settings.nodeAutoSwitch,
     autoNodeList: state.settings.autoNodeList,
-    quorumSize: state.settings.quorum.size,
+    quorumSize: state.settings.quorum.size.toString(),
     quorumEnabled: state.settings.quorum.enabled,
     isChangingNode: state.ui.isChangingNode,
+    loginRoute: state.ui.loginRoute
 });
 
 const mapDispatchToProps = {
@@ -225,7 +237,8 @@ const mapDispatchToProps = {
     updateQuorumConfig,
     updateNodeAutoSwitchSetting,
     updateAutoNodeListSetting,
-    setFullNode
+    setFullNode,
+    setLoginRoute
 };
 
 export default withNamespaces(['advancedSettings', 'nodeSettings', 'settings', 'global'])(

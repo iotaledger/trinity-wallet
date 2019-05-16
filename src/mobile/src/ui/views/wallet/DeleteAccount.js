@@ -1,7 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -14,10 +14,10 @@ import { toggleModalActivity } from 'shared-modules/actions/ui';
 import Fonts from 'ui/theme/fonts';
 import { hash } from 'libs/keychain';
 import SeedStore from 'libs/SeedStore';
-import { width, height } from 'libs/dimensions';
+import { height } from 'libs/dimensions';
 import CustomTextInput from 'ui/components/CustomTextInput';
+import SettingsDualFooter from 'ui/components/SettingsDualFooter';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import InfoBox from 'ui/components/InfoBox';
 
@@ -34,38 +34,10 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     textContainer: {
-        flex: 2.5,
         alignItems: 'center',
         justifyContent: 'space-around',
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    titleTextLeft: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    titleTextRight: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
     },
     infoText: {
         fontFamily: Fonts.secondary,
@@ -204,13 +176,11 @@ class DeleteAccount extends Component {
 
         const primaryColor = theme.primary.color;
         const textColor = { color: theme.body.color };
-        const bodyColor = theme.body.color;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.5 }} />
                         {!this.state.pressedContinue && (
                             <View style={styles.textContainer}>
                                 <InfoBox>
@@ -231,10 +201,11 @@ class DeleteAccount extends Component {
                                 <Text style={[styles.warningText, { color: primaryColor }]}>
                                     {t('thisAction').toUpperCase()}
                                 </Text>
-                                <Text style={[styles.infoText, textColor]}>{t('enterPassword')}</Text>
+                                <Text style={[styles.infoText, textColor, { paddingTop: height / 30 }]}>{t('enterPassword')}</Text>
                                 <CustomTextInput
                                     label={t('global:password')}
                                     onValidTextChange={(password) => this.setState({ password })}
+                                    containerStyle={{ width: Styling.contentWidth, paddingTop: height / 20 }}
                                     autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
@@ -247,29 +218,14 @@ class DeleteAccount extends Component {
                                 />
                             </View>
                         )}
-                        <View style={{ flex: 1.1 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.onBackPress()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.onContinuePress()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, textColor]}>
-                                    {this.state.pressedContinue ? t('delete') : t('global:continue')}
-                                </Text>
-                                <Icon name="tick" size={width / 28} color={bodyColor} />
-                            </View>
-                        </TouchableOpacity>
+                        <SettingsDualFooter
+                            theme={theme}
+                            backFunction={() => this.onBackPress()}
+                            actionFunction={() => this.onContinuePress()}
+                            actionName={this.state.pressedContinue ? t('delete') : t('global:continue')}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>

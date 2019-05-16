@@ -12,10 +12,14 @@ import {
     Animated
 } from 'react-native';
 import withNodeData from 'shared-modules/containers/settings/Node';
+import { setSetting } from 'shared-modules/actions/wallet';
+import { setLoginRoute } from 'shared-modules/actions/ui';
 import { withNamespaces } from 'react-i18next';
-import { width, height } from 'libs/dimensions';
+import { width } from 'libs/dimensions';
+import { connect } from 'react-redux';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import SettingsSeparator from 'ui/components/SettingsSeparator';
+import SettingsDualFooter from 'ui/components/SettingsDualFooter';
 import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import { isIOS } from 'libs/device';
@@ -35,38 +39,11 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     fieldsContainer: {
         justifyContent: 'flex-start',
         width,
         paddingHorizontal: (width - Styling.contentWidth) / 2
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    titleTextLeft: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    titleTextRight: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
@@ -85,11 +62,7 @@ const styles = StyleSheet.create({
 export class AddCustomNode extends Component {
     static propTypes = {
         /** @ignore */
-        node: PropTypes.string.isRequired,
-        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Navigate to previous screen */
-        backPress: PropTypes.func,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -99,12 +72,17 @@ export class AddCustomNode extends Component {
         /** @ignore */
         setNode: PropTypes.func.isRequired,
         /** @ignore */
-        removeCustomNode: PropTypes.func.isRequired
+        removeCustomNode: PropTypes.func.isRequired,
+        /** @ignore */
+        setLoginRoute: PropTypes.func.isRequired,
+        /** @ignore */
+        setSetting: PropTypes.func.isRequired,
+        /** @ignore */
+        loginRoute: PropTypes.string.isRequired,
     };
 
     constructor() {
         super();
-
         this.state = {
             customNode: '',
             authKey: '',
@@ -117,15 +95,6 @@ export class AddCustomNode extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('AddCustomNode');
-    }
-
-    componentWillReceiveProps(newProps) {
-        const { node } = this.props;
-        const hasChangedNode = node !== newProps.node;
-
-        if (hasChangedNode) {
-            this.props.backPress();
-        }
     }
 
     /**
@@ -150,38 +119,6 @@ export class AddCustomNode extends Component {
         });
     }
 
-    renderBackPressOption() {
-        const { t, theme } = this.props;
-
-        return (
-            <TouchableOpacity
-                onPress={() => this.props.backPress()}
-                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-            >
-                <View style={styles.itemLeft}>
-                    <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                    <Text style={[styles.titleTextLeft, { color: theme.body.color }]}>{t('global:back')}</Text>
-                </View>
-            </TouchableOpacity>
-        );
-    }
-
-    renderAddCustomNodeOption() {
-        const { t, theme } = this.props;
-
-        return (
-            <TouchableOpacity
-                onPress={() => this.props.setNode(this.state.customNode, true)}
-                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-            >
-                <View style={styles.itemRight}>
-                    <Text style={[styles.titleTextRight, { color: theme.body.color }]}>{t('add')}</Text>
-                    <Icon name="tick" size={width / 28} color={theme.body.color} />
-                </View>
-            </TouchableOpacity>
-        );
-    }
-
     renderCustomNodes() {
         const { theme, customNodes } = this.props;
         const { nodeListHeight } = this.state;
@@ -201,7 +138,7 @@ export class AddCustomNode extends Component {
     }
 
     render() {
-        const { t, theme, customNodes, loading } = this.props;
+        const { t, theme, customNodes, loading, loginRoute } = this.props;
         const { nodeListHeight, textInputFlex, nodeListFlex, viewAuthKeyButton, viewAuthKeyField, customNode } = this.state;
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -272,8 +209,14 @@ export class AddCustomNode extends Component {
                         <View style={{ flex: 0.5 }}/>
                     </View>
                     <View style={styles.bottomContainer}>
-                        {!loading && this.renderBackPressOption()}
-                        {!loading && this.renderAddCustomNodeOption()}
+                        <SettingsDualFooter
+                            theme={theme}
+                            backFunction={() => loginRoute === 'addCustomNode' ? this.props.setLoginRoute('nodeSettings') : this.props.setSetting('nodeSettings')}
+                            actionFunction={() => this.props.setNode(this.state.customNode, true)}
+                            actionName={t('add')}
+                            actionButtonLoading={loading}
+                            hideActionButton={customNode === ''}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -281,4 +224,15 @@ export class AddCustomNode extends Component {
     }
 }
 
-export default withNamespaces(['addCustomNode', 'global'])(withNodeData(AddCustomNode));
+const mapStateToProps = (state) => ({
+    loginRoute: state.ui.loginRoute
+});
+
+const mapDispatchToProps = {
+    setSetting,
+    setLoginRoute
+};
+
+export default withNamespaces(['addCustomNode', 'global'])(
+    withNodeData(connect(mapStateToProps, mapDispatchToProps)(AddCustomNode)),
+);

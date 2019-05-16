@@ -2,8 +2,7 @@ import map from 'lodash/map';
 import find from 'lodash/find';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
-import i18next from 'shared-modules/libs/i18next.js';
+import { View } from 'react-native';
 import MainSettingsComponent from 'ui/views/wallet/MainSettings';
 import AdvancedSettingsComponent from 'ui/views/wallet/AdvancedSettings';
 import AccountManagement from 'ui/views/wallet/AccountManagement';
@@ -16,7 +15,6 @@ import EditAccountNameComponent from 'ui/views/wallet/EditAccountName';
 import DeleteAccount from 'ui/views/wallet/DeleteAccount';
 import AddNewAccount from 'ui/views/wallet/AddNewAccount';
 import UseExistingSeed from 'ui/views/wallet/UseExistingSeed';
-import NodeSelection from 'ui/views/wallet/NodeSelection';
 import NodeSettingsComponent from 'ui/views/wallet/NodeSettings';
 import AddCustomNodeComponent from 'ui/views/wallet/AddCustomNode';
 import CurrencySelectionComponent from 'ui/views/wallet/CurrencySelection';
@@ -32,9 +30,8 @@ import StateExportComponent from 'ui/views/wallet/StateExport';
 import About from 'ui/views/wallet/About';
 import SettingsRow from 'ui/components/SettingsRow';
 import SettingsSeparator from 'ui/components/SettingsSeparator';
-import { Icon } from 'ui/theme/icons';
-import { width, height } from 'libs/dimensions';
-import { Styling } from 'ui/theme/general';
+import SettingsBackButton from 'ui/components/SettingsBackButton';
+import SettingsDualFooter from 'ui/components/SettingsDualFooter';
 
 const SETTINGS_COMPONENTS = {
     mainSettings: MainSettingsComponent,
@@ -47,7 +44,6 @@ const SETTINGS_COMPONENTS = {
     addNewAccount: AddNewAccount,
     addExistingSeed: UseExistingSeed,
     nodeSettings: NodeSettingsComponent,
-    nodeSelection: NodeSelection,
     addCustomNode: AddCustomNodeComponent,
     currencySelection: CurrencySelectionComponent,
     languageSelection: LanguageSelection,
@@ -71,67 +67,7 @@ const SettingsContent = ({ component, ...props }) => {
     return <EnhancedComponent {...props} />;
 };
 
-const styles = StyleSheet.create({
-    itemContainer: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    item: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        width,
-        paddingHorizontal: width / 15,
-    },
-    content: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    },
-    backText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    footerItemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    footerItemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    footerTextLeft: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    footerTextRight: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
-    },
-    dualFooterContainer: {
-        flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    activityIndicator: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});
-
 export const renderSettingsRows = (rows, theme) => {
-    const { body, primary } = theme;
     const dualFooter = find(rows, { name: 'dualFooter' });
     const backButton = find(rows, { name: 'back' });
     return (
@@ -159,51 +95,21 @@ export const renderSettingsRows = (rows, theme) => {
             })}
             {rows.length < 12 && <View style={{ flex: 12 - rows.length }} />}
             {backButton && (
-                <View style={[ styles.itemContainer, backButton.inactive && { opacity: 0.35 } ]}>
-                    <TouchableOpacity
-                        onPress={backButton.function}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="chevronLeft" size={width / 28} color={body.color} />
-                            <Text style={[styles.backText, { color: body.color }]}>{i18next.t('global:back')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                <SettingsBackButton
+                    theme={theme}
+                    backFunction={backButton.function}
+                    inactive={backButton.inactive}
+                />
             )}
             {dualFooter && (
-                <View style={[ styles.dualFooterContainer, { justifyContent: dualFooter.hideActionButton ? 'flex-start' : 'space-between'} ]}>
-                    <TouchableOpacity
-                        onPress={find(rows, { name: 'dualFooter' }).backFunction}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.footerItemLeft}>
-                            <Icon name="chevronLeft" size={width / 28} color={body.color} />
-                            <Text style={[styles.footerTextLeft, { color: body.color }]}>{i18next.t('global:back')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                    { dualFooter.hideActionButton === false && !dualFooter.actionButtonLoading &&
-                    <TouchableOpacity
-                        onPress={dualFooter.actionFunction}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.footerItemRight}>
-                            <Text style={[styles.footerTextRight, { color: body.color }]}>{dualFooter.actionName}</Text>
-                            <Icon name="tick" size={width / 28} color={body.color} />
-                        </View>
-                    </TouchableOpacity>
-                    }
-                    {dualFooter.actionButtonLoading &&
-                    <View style={styles.footerItemRight}>
-                        <ActivityIndicator
-                            animating
-                            style={styles.activityIndicator}
-                            size="small"
-                            color={primary.color}
-                        />
-                    </View>
-                    }
-                </View>
+                <SettingsDualFooter
+                    theme={theme}
+                    backFunction={dualFooter.backFunction}
+                    hideActionButton={dualFooter.hideActionButton}
+                    actionName={dualFooter.actionName}
+                    actionButtonLoading={dualFooter.actionButtonLoading}
+                    actionFunction={dualFooter.actionFunction}
+                />
             )}
         </View>
     );

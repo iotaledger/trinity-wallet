@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { round } from 'shared-modules/libs/utils';
 import {
     setSetting,
@@ -26,10 +26,10 @@ import ModalButtons from 'ui/components/ModalButtons';
 import { Styling } from 'ui/theme/general';
 import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
 import OldProgressBar from 'ui/components/OldProgressBar';
+import SettingsBackButton from 'ui/components/SettingsBackButton';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -40,11 +40,6 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     topContainer: {
         flex: 11,
@@ -53,17 +48,6 @@ const styles = StyleSheet.create({
     innerContainer: {
         flex: 3,
         justifyContent: 'center',
-    },
-    item: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    titleText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
     },
     innerBottomContainer: {
         flex: 0.7,
@@ -340,21 +324,12 @@ export class SnapshotTransition extends Component {
                         )}
                 </View>
                 <View style={styles.bottomContainer}>
-                    {!isAttachingToTangle && (
-                        <TouchableOpacity
-                            onPress={() =>
-                                isTransitioning ? this.cancel() : this.props.setSetting('advancedSettings')
-                            }
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                                <Text style={[styles.titleText, textColor]}>
-                                    {isTransitioning ? t('global:cancel') : t('global:back')}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
+                    <SettingsBackButton
+                        theme={theme}
+                        backFunction={() => isTransitioning ? this.cancel() : this.props.setSetting('advancedSettings')}
+                        name={isTransitioning ? t('global:cancel') : t('global:back')}
+                        inactive={isAttachingToTangle}
+                    />
                 </View>
             </View>
         );

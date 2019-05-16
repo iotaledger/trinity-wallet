@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
-import { setSetting } from 'shared-modules/actions/wallet';
 import KeepAwake from 'react-native-keep-awake';
 import SettingsContent from 'ui/components/SettingsContent';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
@@ -32,13 +31,9 @@ class Settings extends Component {
         /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
         /** @ignore */
-        setSetting: PropTypes.func.isRequired,
-        /** @ignore */
         closeTopBar: PropTypes.func.isRequired,
         /** @ignore */
         navStack: PropTypes.array.isRequired,
-        /** @ignore */
-        customNodes: PropTypes.array.isRequired
     };
 
     constructor(props) {
@@ -81,26 +76,6 @@ class Settings extends Component {
 
     componentWillUnmount() {
         timer.clearTimeout('delaySettingChange' + this.props.currentSetting);
-    }
-
-    /**
-     * Gets children props for SettingsContent component
-     *
-     * @param {string} child
-     * @returns {object}
-     */
-    getChildrenProps(child) {
-        const props = {
-            nodeSelection: {
-                backPress: () => this.props.setSetting('nodeSettings'),
-            },
-            addCustomNode: {
-                backPress: () => this.props.setSetting('nodeSettings'),
-                customNodes: this.props.customNodes
-            },
-        };
-
-        return props[child] || {};
     }
 
     /**
@@ -159,8 +134,6 @@ class Settings extends Component {
     }
 
     render() {
-        const childrenProps = this.getChildrenProps(this.props.currentSetting);
-
         return (
             <TouchableWithoutFeedback style={styles.container} onPress={() => this.props.closeTopBar()}>
                 <View style={{ flex: 1 }}>
@@ -175,7 +148,7 @@ class Settings extends Component {
                         duration={150}
                         style={styles.settingsContainer}
                     >
-                        <SettingsContent component={this.state.nextSetting} {...childrenProps} />
+                        <SettingsContent component={this.state.nextSetting} />
                     </AnimatedComponent>
                     <View style={{ flex: 1 }} />
                 </View>
@@ -188,11 +161,6 @@ const mapStateToProps = (state) => ({
     currentSetting: state.wallet.currentSetting,
     isSyncing: state.ui.isSyncing,
     navStack: state.wallet.navStack,
-    customNodes: state.settings.customNodes
 });
 
-const mapDispatchToProps = {
-    setSetting,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export default connect(mapStateToProps)(Settings);
