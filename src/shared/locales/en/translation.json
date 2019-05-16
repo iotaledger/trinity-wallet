@@ -492,7 +492,7 @@
         "tools": "Tools"
     },
     "nodeSettings": {
-        "automaticNodeSelection": "Automatic node selection",
+        "automaticNodeManagement": "Automatic node management",
         "addCustomNodes": "Add custom nodes",
         "autoNodeList": "Use automatic node list",
         "nodeAutoswitching": "Primary node autoswitching",

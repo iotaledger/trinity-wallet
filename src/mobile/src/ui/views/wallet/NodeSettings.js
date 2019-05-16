@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+import omit from 'lodash/omit';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 import React, { PureComponent } from 'react';
@@ -15,7 +17,6 @@ import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
 const defaultState = {
-    autoNodeSelection: true,
     autoNodeList: true,
     nodeAutoSwitch: true,
     quorumEnabled: true,
@@ -74,13 +75,13 @@ export class NodeSettings extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            autoNodeSelection: props.autoNodeSelection,
             autoNodeList: props.autoNodeList,
             nodeAutoSwitch: props.nodeAutoSwitch,
             quorumEnabled: props.quorumEnabled,
             quorumSize: props.quorumSize,
-            node: props.node
+            node: props.node,
         };
+        this.state.autoNodeManagement = this.hasDefaultNodeSettings();
     }
 
     componentDidMount() {
@@ -114,8 +115,12 @@ export class NodeSettings extends PureComponent {
     }
 
     haveNodeSettingsChanged() {
-        const { autoNodeSelection, autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node } = this.props;
-        return isEqual({ autoNodeSelection, autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node }, this.state);
+        const { autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node } = this.props;
+        return isEqual({ autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node }, omit(this.state, 'autoNodeManagement'));
+    }
+
+    hasDefaultNodeSettings() {
+        return isEqual(defaultState, omit(this.state, [ 'node', 'autoNodeManagement' ]));
     }
 
     toggleQuorumEnabled() {
@@ -139,11 +144,11 @@ export class NodeSettings extends PureComponent {
         this.setState({ autoNodeList: !autoNodeList });
     }
 
-    toggleAutomaticNodeSelection() {
-        if (!this.state.autoNodeSelection) {
+    toggleAutomaticNodeManagement() {
+        if (!this.hasDefaultNodeSettings()) {
             this.setState(defaultState);
         }
-        this.setState({ autoNodeSelection: !this.state.autoNodeSelection });
+        this.setState({ autoNodeManagement: !this.state.autoNodeManagement });
     }
 
     /**
@@ -154,12 +159,12 @@ export class NodeSettings extends PureComponent {
      */
     renderSettingsContent() {
         const { theme, t, nodes, isChangingNode, loginRoute } = this.props;
-        const { autoNodeSelection, autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node } = this.state;
+        const { autoNodeManagement, autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node } = this.state;
         const rows = [
             {
-                name: t('nodeSettings:automaticNodeSelection'),
-                function: () => this.toggleAutomaticNodeSelection(),
-                toggle: autoNodeSelection
+                name: t('nodeSettings:automaticNodeManagement'),
+                function: () => this.toggleAutomaticNodeManagement(),
+                toggle: autoNodeManagement
             },
             {
                 name: t('nodeSettings:addCustomNodes'),
@@ -168,35 +173,35 @@ export class NodeSettings extends PureComponent {
             { name: 'separator' },
             {
                 name: t('nodeSettings:autoNodeList'),
-                function: () => { !autoNodeSelection && this.toggleAutoNodeList(); },
+                function: () => { !autoNodeManagement && this.toggleAutoNodeList(); },
                 toggle: autoNodeList,
-                inactive: autoNodeSelection
+                inactive: autoNodeManagement
             },
-            { name: 'separator', inactive: autoNodeSelection },
+            { name: 'separator', inactive: autoNodeManagement },
             {
                 name: t('nodeSettings:nodeAutoswitching'),
-                function: () => { !autoNodeSelection && this.setState({ nodeAutoSwitch: !nodeAutoSwitch }); },
+                function: () => { !autoNodeManagement && this.setState({ nodeAutoSwitch: !nodeAutoSwitch }); },
                 toggle: nodeAutoSwitch,
-                inactive: autoNodeSelection
+                inactive: autoNodeManagement
             },
             {
                 name: t('nodeSettings:primaryNode'),
                 function: (node) => this.setState({ node }),
-                inactive: autoNodeSelection || nodeAutoSwitch,
+                inactive: autoNodeManagement || nodeAutoSwitch,
                 currentSetting: node,
-                dropdownOptions: nodes
+                dropdownOptions: map(nodes, (node) => node.url)
             },
-            { name: 'separator', inactive: autoNodeSelection },
+            { name: 'separator', inactive: autoNodeManagement },
             {
                 name: t('nodeSettings:enableQuorum'),
-                function: () => { !autoNodeSelection && this.toggleQuorumEnabled(); },
+                function: () => { !autoNodeManagement && this.toggleQuorumEnabled(); },
                 toggle: quorumEnabled,
-                inactive: autoNodeSelection
+                inactive: autoNodeManagement
             },
             {
                 name: t('nodeSettings:quorumSize'),
                 function: (quorumSize) => quorumSize && this.setState({ quorumSize }),
-                inactive: autoNodeSelection || !quorumEnabled,
+                inactive: autoNodeManagement || !quorumEnabled,
                 dropdownOptions: this.getQuorumOptions(),
                 currentSetting: !quorumEnabled && '0' || quorumSize
             },
@@ -222,7 +227,6 @@ const mapStateToProps = (state) => ({
     node: state.settings.node,
     nodes: state.settings.nodes,
     customNodes: state.settings.customNodes,
-    autoNodeSelection: false,
     nodeAutoSwitch: state.settings.nodeAutoSwitch,
     autoNodeList: state.settings.autoNodeList,
     quorumSize: state.settings.quorum.size.toString(),
