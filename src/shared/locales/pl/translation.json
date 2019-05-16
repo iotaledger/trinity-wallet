@@ -801,7 +801,7 @@
         "proceedWithLedger": "Kontynuuj konfigurację portfela Ledger",
         "accountIndex": "Indeks konta",
         "accountPage": "Strona konta",
-        "actionCancelled": "Dostęp do urządzenia Ledger odwołany",
+        "actionCancelled": "Odmówiono dostępu do urządzenia Ledger",
         "actionCancelledExplanation": "Nie można wykonać akcji bez dostępu do urządzenia Ledger.",
         "chooseAccountIndex": "Wybierz indeks Twojego konta Ledger",
         "accountIndexExplanation": "Twoje urządzenie Ledger może przechowywać wiele kluczy seed. Każdy z kluczy, jest identyfikowany przez unikatowy numer indeksu. Nieużywany indeks został wstępnie wybrany, jednak możesz wybrać swój własny. Upewnij się, że zanotowałeś swój wybrany numer indeksu.",

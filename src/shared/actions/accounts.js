@@ -372,18 +372,18 @@ export const assignAccountIndex = () => ({
  * @method getFullAccountInfo
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
- * @param {boolean} [withQuorum]
+ * @param {boolean} [quorum]
  *
  * @returns {function} dispatch
  */
-export const getFullAccountInfo = (seedStore, accountName, withQuorum = false) => {
+export const getFullAccountInfo = (seedStore, accountName, quorum = false) => {
     return (dispatch, getState) => {
         dispatch(fullAccountInfoFetchRequest());
 
         const existingAccountNames = getAccountNamesFromState(getState());
         const usedExistingSeed = getAccountInfoDuringSetup(getState()).usedExistingSeed;
 
-        return new NodesManager(nodesConfigurationFactory(withQuorum)(getState()))
+        return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
             .withRetries(() => dispatch(generateAccountSyncRetryAlert()))(getAccountData)(seedStore, accountName)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
@@ -434,17 +434,17 @@ export const getFullAccountInfo = (seedStore, accountName, withQuorum = false) =
  * @method manuallySyncAccount
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
- * @param {boolean} [withQuorum]
+ * @param {boolean} [quorum]
  *
  * @returns {function} dispatch
  */
-export const manuallySyncAccount = (seedStore, accountName, withQuorum = false) => {
+export const manuallySyncAccount = (seedStore, accountName, quorum = false) => {
     return (dispatch, getState) => {
         dispatch(manualSyncRequest());
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return new NodesManager(nodesConfigurationFactory(withQuorum)(getState()))
+        return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
             .withRetries(() => dispatch(generateAccountSyncRetryAlert()))(getAccountData)(
                 seedStore,
                 accountName,
@@ -485,21 +485,20 @@ export const manuallySyncAccount = (seedStore, accountName, withQuorum = false) 
  *
  * @returns {function} dispatch
  */
-export const getAccountInfo = (seedStore, accountName, notificationFn, withQuorum = false) => {
+export const getAccountInfo = (seedStore, accountName, notificationFn, quorum = false) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
         const settings = getState().settings;
 
-        return new NodesManager(nodesConfigurationFactory(withQuorum)(getState()))
+        return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
             .withRetries(() => dispatch(generateAccountSyncRetryAlert()))(syncAccount)(
                 existingAccountState,
                 seedStore,
                 notificationFn,
                 settings,
             )
-
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 
@@ -543,12 +542,12 @@ export const deleteAccount = (accountName) => (dispatch) => {
  *
  * @param {object} seedStore
  * @param {string} accountName
- * @param {boolean} withQuorum
+ * @param {boolean} [quorum]
  *
  * @returns {function(*, *): Promise<object>}
  */
-export const cleanUpAccountState = (seedStore, accountName, withQuorum = true) => (dispatch, getState) => {
-    return new NodesManager(nodesConfigurationFactory(withQuorum)(getState()))
+export const cleanUpAccountState = (seedStore, accountName, quorum = true) => (dispatch, getState) => {
+    return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
         .withRetries(() => dispatch(generateAccountSyncRetryAlert()))(getAccountData)(
             seedStore,
             accountName,

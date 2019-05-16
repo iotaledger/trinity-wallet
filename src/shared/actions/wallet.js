@@ -17,12 +17,12 @@ import { accumulateBalance, attachAndFormatAddress, syncAddresses } from '../lib
 import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
-import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import { selectedAccountStateFactory } from '../selectors/accounts';
-import { getSelectedNodeFromState, getNodesFromState, getRemotePoWFromState } from '../selectors/global';
+import { getRemotePoWFromState, nodesConfigurationFactory } from '../selectors/global';
 import { Account } from '../storage';
-import { DEFAULT_SECURITY, DEFAULT_RETRIES } from '../config';
+import { DEFAULT_SECURITY } from '../config';
+import NodesManager from '../libs/iota/NodesManager';
 
 export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
@@ -318,11 +318,12 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
     return (dispatch, getState) => {
         dispatch(generateNewAddressRequest());
 
-        const selectedNode = getSelectedNodeFromState(getState());
-        return withRetriesOnDifferentNodes(
-            [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
-            () => dispatch(generateAddressesSyncRetryAlert()),
-        )(syncAddresses)(seedStore, existingAccountData.addressData, existingAccountData.transactions)
+        return new NodesManager(nodesConfigurationFactory()(getState()))
+            .withRetries(() => dispatch(generateAddressesSyncRetryAlert()))(syncAddresses)(
+                seedStore,
+                existingAccountData.addressData,
+                existingAccountData.transactions,
+            )
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 

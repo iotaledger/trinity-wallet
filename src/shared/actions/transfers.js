@@ -21,9 +21,9 @@ import {
     attachToTangleAsync,
     storeAndBroadcastAsync,
 } from '../libs/iota/extendedApi';
-import { getSelectedNodeFromState, getNodesFromState, getRemotePoWFromState } from '../selectors/global';
+import { getRemotePoWFromState, nodesConfigurationFactory } from '../selectors/global';
 import { selectedAccountStateFactory } from '../selectors/accounts';
-import { withRetriesOnDifferentNodes, fetchRemoteNodes, getRandomNodes, isLastTritZero } from '../libs/iota/utils';
+import { isLastTritZero } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
@@ -62,8 +62,8 @@ import {
 } from './alerts';
 import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
-import { DEFAULT_RETRIES } from '../config';
 import { Account } from '../storage';
+import NodesManager from '../libs/iota/NodesManager';
 
 export const ActionTypes = {
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
@@ -428,11 +428,11 @@ export const forceTransactionPromotion = (
  * @param {number} value
  * @param {string} message
  * @param {string} accountName
- * @param {boolean} [withQuorum]
+ * @param {boolean} [quorum]
  *
  * @returns {function} dispatch
  */
-export const makeTransaction = (seedStore, receiveAddress, value, message, accountName, withQuorum = true) => (
+export const makeTransaction = (seedStore, receiveAddress, value, message, accountName, quorum = true) => (
     dispatch,
     getState,
 ) => {
@@ -469,7 +469,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 maxInputs = maxInputResponse;
 
                 // Make sure that the address a user is about to send to is not already used.
-                return isAnyAddressSpent(undefined, withQuorum)([address]).then((isSpent) => {
+                return isAnyAddressSpent(undefined, quorum)([address]).then((isSpent) => {
                     if (isSpent) {
                         throw new Error(Errors.KEY_REUSE);
                     }
@@ -477,7 +477,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
-                    return syncAccount(undefined, withQuorum)(accountState, seedStore);
+                    return syncAccount(undefined, quorum)(accountState, seedStore);
                 });
             })
             .then((newState) => {
@@ -488,7 +488,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // Progressbar step => (Preparing inputs)
                 dispatch(setNextStepAsActive());
 
-                return getInputs(undefined, withQuorum)(
+                return getInputs(undefined, quorum)(
                     accountState.addressData,
                     accountState.transactions,
                     value,
@@ -510,7 +510,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
-                return getAddressDataUptoRemainder(undefined, withQuorum)(
+                return getAddressDataUptoRemainder(undefined, quorum)(
                     accountState.addressData,
                     accountState.transactions,
                     seedStore,
@@ -620,30 +620,24 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     );
 
                     // Find nodes with proof of work enabled
-                    return fetchRemoteNodes()
-                        .then((remoteNodes) => {
-                            const nodesWithPowEnabled = map(
-                                filter(remoteNodes, (node) => node.pow),
-                                (nodeWithPoWEnabled) => nodeWithPoWEnabled.node,
-                            );
-
-                            return withRetriesOnDifferentNodes(
-                                getRandomNodes(nodesWithPowEnabled, DEFAULT_RETRIES, [
-                                    getSelectedNodeFromState(getState()),
-                                ]),
-                            )((provider) =>
-                                attachToTangleAsync(
-                                    provider,
-                                    extend(
-                                        {
-                                            __proto__: seedStore.__proto__,
-                                        },
-                                        seedStore,
-                                        { offloadPow: true },
-                                    ),
+                    return new NodesManager(
+                        nodesConfigurationFactory({
+                            quorum,
+                            useOnlyPowNodes: true,
+                        })(getState()),
+                    )
+                        .withRetries((provider) =>
+                            attachToTangleAsync(
+                                provider,
+                                extend(
+                                    {
+                                        __proto__: seedStore.__proto__,
+                                    },
+                                    seedStore,
+                                    { offloadPow: true },
                                 ),
-                            )(trunkTransaction, branchTransaction, cached.trytes);
-                        })
+                            ),
+                        )(trunkTransaction, branchTransaction, cached.trytes)
                         .then(({ result }) => result)
                         .catch(() => {
                             // If outsourced proof of work fails on all nodes, fallback to local proof of work.
@@ -673,7 +667,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 const addresses = uniq(map(transactionObjects, (transaction) => transaction.address));
 
-                return isAnyAddressSpent(undefined, withQuorum)(addresses).then((isSpent) => {
+                return isAnyAddressSpent(undefined, quorum)(addresses).then((isSpent) => {
                     if (isSpent) {
                         throw new Error(Errors.KEY_REUSE);
                     }
@@ -690,14 +684,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 // Make an attempt to broadcast transaction on selected node
                 // If it fails, auto retry broadcast on random nodes
-                const selectedNode = getSelectedNodeFromState(getState());
-                const randomNodes = [
-                    selectedNode,
-                    ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode]),
-                ];
-
-                return withRetriesOnDifferentNodes(
-                    randomNodes,
+                return new NodesManager(nodesConfigurationFactory({ quorum })(getState())).withRetries(
                     // Failure callbacks.
                     // Only pass one, as we just want an alert on first broadcast failure
                     () =>
@@ -714,11 +701,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 )(storeAndBroadcastAsync)(cached.trytes);
             })
             .then(() => {
-                return syncAccountAfterSpending(undefined, withQuorum)(
-                    seedStore,
-                    cached.transactionObjects,
-                    accountState,
-                );
+                return syncAccountAfterSpending(undefined, quorum)(seedStore, cached.transactionObjects, accountState);
             })
             .then((newState) => {
                 // Update account in (Realm) storage

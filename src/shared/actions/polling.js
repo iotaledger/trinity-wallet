@@ -10,22 +10,22 @@ import unionBy from 'lodash/unionBy';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { quorum } from '../libs/iota';
 import { setNodeList, setAutoPromotion, changeNode } from './settings';
-import { fetchRemoteNodes, withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
+import { fetchRemoteNodes } from '../libs/iota/utils';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { constructBundlesFromTransactions, findPromotableTail, isFundedBundle } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
-import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState } from '../selectors/global';
+import { nodesConfigurationFactory, getCustomNodesFromState } from '../selectors/global';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
 import {
     nodesWithPowEnabled as defaultNodesWithPowEnabled,
     nodesWithPowDisabled as defaultNodesWithPowDisabled,
-    DEFAULT_RETRIES,
 } from '../config';
 import Errors from '../libs/errors';
 import i18next from '../libs/i18next';
 import { Account } from '../storage';
+import NodesManager from '../libs/iota/NodesManager';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
@@ -349,18 +349,27 @@ export const fetchNodeList = () => {
             .then((remoteNodes) => {
                 if (remoteNodes.length) {
                     const nodes = [
-                        ...map(defaultNodesWithPowEnabled, (url) => ({ url, pow: true })),
-                        ...map(defaultNodesWithPowDisabled, (url) => ({ url, pow: false })),
+                        ...map(defaultNodesWithPowEnabled, (url) => ({ url, pow: true, authKey: '' })),
+                        ...map(defaultNodesWithPowDisabled, (url) => ({ url, pow: false, authKey: '' })),
                     ];
 
                     const unionNodes = unionBy(
                         nodes,
-                        map(remoteNodes, (node) => ({ url: node.node, pow: node.pow })),
+                        map(remoteNodes, (node) => ({
+                            url: node.node,
+                            pow: node.pow,
+                            authKey: '',
+                        })),
                         'url',
                     );
 
                     // Set quorum nodes
-                    quorum.setNodes(union(map(unionNodes, (node) => node.url), getCustomNodesFromState(getState())));
+                    quorum.setNodes(
+                        union(
+                            map(unionNodes, (node) => node.url),
+                            map(getCustomNodesFromState(getState()), (node) => node.url),
+                        ),
+                    );
 
                     dispatch(setNodeList(unionNodes));
                 }
@@ -442,16 +451,13 @@ export const fetchChartData = () => {
  *
  * @param {array} accountNames
  * @param {function} notificationFn - New transaction callback function
- * @param {boolean} withQuorum
+ * @param {boolean} [quorum]
  *
  * @returns {function} dispatch
  **/
-export const getAccountInfoForAllAccounts = (accountNames, notificationFn, withQuorum = true) => {
+export const getAccountInfoForAllAccounts = (accountNames, notificationFn, quorum = true) => {
     return (dispatch, getState) => {
         dispatch(accountInfoForAllAccountsFetchRequest());
-
-        const selectedNode = getSelectedNodeFromState(getState());
-        const randomNodes = getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode]);
 
         const settings = getState().settings;
 
@@ -461,12 +467,12 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn, withQ
                 return promise.then(() => {
                     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-                    return withRetriesOnDifferentNodes([selectedNode, ...randomNodes])((...args) =>
-                        syncAccount(...[...args, withQuorum]),
-                    )(existingAccountState, undefined, notificationFn, settings).then(({ node, result }) => {
-                        dispatch(changeNode(node));
-                        dispatch(syncAccountWhilePolling(result));
-                    });
+                    return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
+                        .withRetries()(syncAccount)(existingAccountState, undefined, notificationFn, settings)
+                        .then(({ node, result }) => {
+                            dispatch(changeNode(node));
+                            dispatch(syncAccountWhilePolling(result));
+                        });
                 });
             },
             Promise.resolve(),
