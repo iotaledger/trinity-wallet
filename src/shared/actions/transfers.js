@@ -871,10 +871,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
  *
  * @returns {function} dispatch
  */
-export const retryFailedTransaction = (accountName, bundleHash, seedStore, withQuorum = true) => (
-    dispatch,
-    getState,
-) => {
+export const retryFailedTransaction = (accountName, bundleHash, seedStore, quorum = true) => (dispatch, getState) => {
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
     const shouldOffloadPow = getRemotePoWFromState(getState());
     const failedTransactionsForThisBundleHash = filter(
@@ -884,66 +881,71 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, withQ
 
     dispatch(retryFailedTransactionRequest());
 
-    return (
-        // First check spent statuses against transaction addresses
-        categoriseAddressesBySpentStatus(undefined, withQuorum)(
-            map(failedTransactionsForThisBundleHash, (tx) => tx.address),
-        )
-            // If any address (input, remainder, receive) is spent, error out
-            .then(({ spent }) => {
-                if (size(spent)) {
-                    throw new Error(`${Errors.ALREADY_SPENT_FROM_ADDRESSES}:${join(spent, ',')}`);
-                }
+    const retryFn = (settings, withQuorum) => {
+        return (
+            // First check spent statuses against transaction addresses
+            categoriseAddressesBySpentStatus(settings, withQuorum)(
+                map(failedTransactionsForThisBundleHash, (tx) => tx.address),
+            )
+                // If any address (input, remainder, receive) is spent, error out
+                .then(({ spent }) => {
+                    if (size(spent)) {
+                        throw new Error(`${Errors.ALREADY_SPENT_FROM_ADDRESSES}:${join(spent, ',')}`);
+                    }
 
-                // If all addresses are still unspent, retry
-                return retry()(
-                    failedTransactionsForThisBundleHash,
-                    // If proof of work configuration is set to remote,
-                    // Extend seedStore object with offloadPow
-                    // This property will lead to perform remote proof-of-work
-                    // See: extendedApi#attachToTangle
-                    shouldOffloadPow
-                        ? extend(
-                              {
-                                  __proto__: seedStore.__proto__,
-                              },
-                              seedStore,
-                              { offloadPow: true },
-                          )
-                        : seedStore,
-                );
-            })
-            .then(({ transactionObjects }) => {
-                // Update state
-                const newState = syncAccountOnSuccessfulRetryAttempt(transactionObjects, existingAccountState);
-
-                // Persist updated state
-                Account.update(accountName, newState);
-
-                // Since this transaction was never sent to the tangle
-                // Generate the same alert we display when a transaction is successfully sent to the tangle
-                const isZeroValue = every(transactionObjects, (tx) => tx.value === 0);
-
-                dispatch(generateTransactionSuccessAlert(isZeroValue));
-
-                return dispatch(retryFailedTransactionSuccess(newState));
-            })
-            .catch((error) => {
-                dispatch(retryFailedTransactionError());
-
-                if (error.message && error.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
-                    dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('global:broadcastError'),
-                            i18next.t('global:addressesAlreadySpentFrom'),
-                            20000,
-                            error,
-                        ),
+                    // If all addresses are still unspent, retry
+                    return retry(settings)(
+                        failedTransactionsForThisBundleHash,
+                        // If proof of work configuration is set to remote,
+                        // Extend seedStore object with offloadPow
+                        // This property will lead to perform remote proof-of-work
+                        // See: extendedApi#attachToTangle
+                        shouldOffloadPow
+                            ? extend(
+                                  {
+                                      __proto__: seedStore.__proto__,
+                                  },
+                                  seedStore,
+                                  { offloadPow: true },
+                              )
+                            : seedStore,
                     );
-                } else {
-                    dispatch(generateTransferErrorAlert(error));
-                }
-            })
-    );
+                })
+                .then(({ transactionObjects }) => {
+                    // Update state
+                    const newState = syncAccountOnSuccessfulRetryAttempt(transactionObjects, existingAccountState);
+
+                    // Persist updated state
+                    Account.update(accountName, newState);
+
+                    // Since this transaction was never sent to the tangle
+                    // Generate the same alert we display when a transaction is successfully sent to the tangle
+                    const isZeroValue = every(transactionObjects, (tx) => tx.value === 0);
+
+                    dispatch(generateTransactionSuccessAlert(isZeroValue));
+
+                    return dispatch(retryFailedTransactionSuccess(newState));
+                })
+        );
+    };
+
+    return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
+        .withRetries()(retryFn)()
+        .catch((error) => {
+            dispatch(retryFailedTransactionError());
+
+            if (error.message && error.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
+                dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('global:broadcastError'),
+                        i18next.t('global:addressesAlreadySpentFrom'),
+                        20000,
+                        error,
+                    ),
+                );
+            } else {
+                dispatch(generateTransferErrorAlert(error));
+            }
+        });
 };
