@@ -1,3 +1,4 @@
+import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isFunction from 'lodash/isFunction';
 import isUndefined from 'lodash/isUndefined';
@@ -38,6 +39,9 @@ export default class NodesManager {
 
         const retryNodes = [priorityNode, ...randomNodes];
 
+        // Abort retries on these errors
+        const cancellationErrors = [Errors.LEDGER_CANCELLED, Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE];
+
         return (promiseFunc) => {
             const execute = (...args) => {
                 if (isUndefined(retryNodes[attempt])) {
@@ -47,10 +51,10 @@ export default class NodesManager {
                 return promiseFunc(retryNodes[attempt], quorum.enabled)(...args)
                     .then((result) => ({ node: retryNodes[attempt], result }))
                     .catch((err) => {
-                        // Abort retries on user cancalled Ledger action
-                        if (err === Errors.LEDGER_CANCELLED) {
-                            throw new Error(Errors.LEDGER_CANCELLED);
+                        if (includes(cancellationErrors, err) || includes(cancellationErrors, err.message)) {
+                            throw err;
                         }
+
                         // If a function is passed as failure callback
                         // Just trigger it once.
                         if (isFunction(failureCallbacks)) {
