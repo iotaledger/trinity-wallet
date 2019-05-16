@@ -5,7 +5,6 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import some from 'lodash/some';
 import reduce from 'lodash/reduce';
-import union from 'lodash/union';
 import unionBy from 'lodash/unionBy';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { quorum } from '../libs/iota';
@@ -18,10 +17,7 @@ import { selectedAccountStateFactory } from '../selectors/accounts';
 import { nodesConfigurationFactory, getCustomNodesFromState } from '../selectors/global';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import {
-    nodesWithPowEnabled as defaultNodesWithPowEnabled,
-    nodesWithPowDisabled as defaultNodesWithPowDisabled,
-} from '../config';
+import { DEFAULT_NODES } from '../config';
 import Errors from '../libs/errors';
 import i18next from '../libs/i18next';
 import { Account } from '../storage';
@@ -348,28 +344,18 @@ export const fetchNodeList = () => {
         fetchRemoteNodes()
             .then((remoteNodes) => {
                 if (remoteNodes.length) {
-                    const nodes = [
-                        ...map(defaultNodesWithPowEnabled, (url) => ({ url, pow: true, authKey: '' })),
-                        ...map(defaultNodesWithPowDisabled, (url) => ({ url, pow: false, authKey: '' })),
-                    ];
-
                     const unionNodes = unionBy(
-                        nodes,
+                        DEFAULT_NODES,
                         map(remoteNodes, (node) => ({
                             url: node.node,
                             pow: node.pow,
-                            authKey: '',
+                            token: '',
                         })),
                         'url',
                     );
 
                     // Set quorum nodes
-                    quorum.setNodes(
-                        union(
-                            map(unionNodes, (node) => node.url),
-                            map(getCustomNodesFromState(getState()), (node) => node.url),
-                        ),
-                    );
+                    quorum.setNodes(unionBy(unionNodes, getCustomNodesFromState(getState()), 'url'));
 
                     dispatch(setNodeList(unionNodes));
                 }

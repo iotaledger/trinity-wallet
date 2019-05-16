@@ -626,9 +626,9 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             useOnlyPowNodes: true,
                         })(getState()),
                     )
-                        .withRetries((provider) =>
+                        .withRetries((settings) =>
                             attachToTangleAsync(
-                                provider,
+                                settings,
                                 extend(
                                     {
                                         __proto__: seedStore.__proto__,

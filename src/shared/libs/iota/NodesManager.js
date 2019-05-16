@@ -34,7 +34,7 @@ export default class NodesManager {
         let attempt = 0;
         let executedCallback = false;
 
-        const randomNodes = getRandomNodes(nodes, retryAttempts, [priorityNode]);
+        const randomNodes = getRandomNodes(nodes, retryAttempts, [primaryNode]);
 
         const retryNodes = [priorityNode, ...randomNodes];
 
