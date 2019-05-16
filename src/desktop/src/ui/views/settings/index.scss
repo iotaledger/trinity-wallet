@@ -186,6 +186,10 @@
                 }
             }
 
+            article {
+                padding: 0px 20px 200px;
+            }
+
             footer {
                 position: absolute;
                 bottom: 0px;
@@ -271,6 +275,59 @@
 
         button {
             min-width: 0px;
+        }
+    }
+}
+
+.nodeCustom {
+    width: 560px;
+    padding: 0 20px;
+    text-align: left;
+
+    ul {
+        height: 400px;
+        position: relative;
+    }
+
+    p {
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    li {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        line-height: 21px;
+        margin-bottom: 10px;
+        width: 100%;
+
+        strong {
+            font-weight: 300;
+        }
+
+        span {
+            cursor: pointer;
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+    }
+
+    > fieldset {
+        min-height: 140px;
+        > a {
+            position: relative;
+            display: block;
+            font-size: 14px;
+            margin-top: -20px;
+            z-index: 2;
+            &:hover {
+                opacity: 0.75;
+            }
         }
     }
 }

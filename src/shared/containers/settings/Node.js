@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
 
-import { setFullNode, removeCustomNode, updateAutoNodeSwitching } from '../../actions/settings';
+import {
+    setFullNode,
+    removeCustomNode,
+    updateQuorumConfig,
+    updateAutoNodeSwitching,
+    updateAutoNodeListSetting,
+} from '../../actions/settings';
 import { generateAlert } from '../../actions/alerts';
 import { isValidUrl, isValidHttpsUrl } from '../../libs/utils';
 
@@ -25,9 +31,13 @@ export default function withNodeData(NodeComponent) {
             setFullNode: PropTypes.func.isRequired,
             removeCustomNode: PropTypes.func.isRequired,
             autoNodeSwitching: PropTypes.bool.isRequired,
+            autoNodeSelection: PropTypes.bool.isRequired,
+            updateQuorumConfig: PropTypes.func.isRequired,
             updateAutoNodeSwitching: PropTypes.func.isRequired,
+            updateAutoNodeListSetting: PropTypes.func.isRequired,
             generateAlert: PropTypes.func.isRequired,
             backPress: PropTypes.func,
+            onClose: PropTypes.func,
             t: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
         };
@@ -78,34 +88,54 @@ export default function withNodeData(NodeComponent) {
             setFullNode(nodeSelected, nodes.indexOf(nodeSelected) < 0);
         };
 
-        changeAutoNodeSwitching = () => {
-            this.props.updateAutoNodeSwitching();
-        };
-
         render() {
             const {
                 node,
                 nodes,
                 customNodes,
+                autoNodeList,
                 removeCustomNode,
                 backPress,
                 isChangingNode,
                 isCheckingCustomNode,
                 theme,
                 autoNodeSwitching,
+                autoNodeSelection,
+                updateQuorumConfig,
+                updateAutoNodeSwitching,
+                quorumEnabled,
+                generateAlert,
+                quorumSize,
+                onClose,
+                updateAutoNodeListSetting,
+                setFullNode,
                 t,
             } = this.props;
 
             const nodeProps = {
-                node,
                 nodes,
                 customNodes,
                 loading: isChangingNode || isCheckingCustomNode,
                 setNode: this.changeNode,
                 removeCustomNode,
-                autoNodeSwitching: autoNodeSwitching,
                 setAutoNodeSwitching: this.changeAutoNodeSwitching,
-                backPress: backPress,
+                settings: {
+                    node,
+                    autoNodeSwitching,
+                    autoNodeSelection,
+                    autoNodeList,
+                    quorumEnabled,
+                    quorumSize,
+                },
+                actions: {
+                    updateAutoNodeListSetting,
+                    updateAutoNodeSwitching,
+                    updateQuorumConfig,
+                    setFullNode,
+                },
+                backPress,
+                generateAlert,
+                onClose,
                 theme,
                 t,
             };
@@ -122,8 +152,12 @@ export default function withNodeData(NodeComponent) {
         customNodes: state.settings.customNodes,
         theme: getThemeFromState(state),
         autoNodeSwitching: state.settings.autoNodeSwitching,
+        autoNodeSelection: false,
         isChangingNode: state.ui.isChangingNode,
         isCheckingCustomNode: state.ui.isCheckingCustomNode,
+        autoNodeList: state.settings.autoNodeList,
+        quorumSize: state.settings.quorum.size,
+        quorumEnabled: state.settings.quorum.enabled,
     });
 
     const mapDispatchToProps = {
@@ -131,6 +165,8 @@ export default function withNodeData(NodeComponent) {
         removeCustomNode,
         generateAlert,
         updateAutoNodeSwitching,
+        updateQuorumConfig,
+        updateAutoNodeListSetting,
     };
 
     return connect(mapStateToProps, mapDispatchToProps)(withI18n()(NodeData));
