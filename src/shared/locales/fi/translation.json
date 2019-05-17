@@ -161,6 +161,7 @@
         "shouldUpdateExplanation": "Uusi päivitys on saatavilla. Suosittelemme päivittämään uusimpaan versioon.",
         "forceUpdate": "Päivitä sovellus jatkaaksesi",
         "forceUpdateExplanation": "Tärkeä päivitys on julkaistu. Ole hyvä ja päivitä sovellus.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
         "missingPermissionExplanation": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan suorittaaksesi tämän toiminnon.",
         "swipeToConfirm": "Pyyhkäise vahvistaaksesi"
@@ -827,6 +828,8 @@
         "checkAddressExplanation": "Tarkista, että osoite vastaa Ledger-laitteessa näkyvää osoitetta.",
         "applicationNotInitialised": "Varoitusta ei ole vahvistettu",
         "applicationNotInitialisedExplanation": "Avaa IOTA-sovellus uudelleen Ledger-laitteessa, hyväksy informatiivinen varoitus ja yritä uudelleen.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
         "udevError": "Ledger-laitteen yhdistäminen epäonnistui",
         "udevErrorExplanation": "Trinity ei voinut yhdistää Ledger-laitteeseen. Vieraile alla olevalla verkkosivulla ratkaistaksesi ongelman."
     }
