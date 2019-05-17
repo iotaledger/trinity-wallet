@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Nodul a returnat un răspuns nevalid în timp ce prelua informaţiile contului dumneavoastră. Dacă problema dumneavoastră persistă, încercați să schimbați nodul sau să dezactivați reprezentantul sistemului dumneavoastră din setările Trinity.",
         "nodeOutOfSync": "Nodul nu este sincronizat",
         "nodeOutOfSyncExplanation": "Nodul selectat nu este sincronizat. Vă rugăm să schimbaţi nodul sau încercaţi din nou.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Versiunea nodului nu este acceptată",
         "experimentalNodeExplanation": "Nodul pe care îl ai selectat rulează pe o versiune experimentală care nu este încă acceptată.Te rog să schimbi nodul sau să încerci din nou.",
         "thisNodeOutOfSync": "Acest nod nu este sincronizat. Vă rugăm să schimbaţi nodul sau încercaţi din nou.",
