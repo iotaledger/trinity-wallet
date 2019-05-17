@@ -161,6 +161,7 @@
         "shouldUpdateExplanation": "به‌روزرسانی جدیدی منتشر شده است. توصیه می‌شود که به آخرین نسخه به‌روز‌رسانی کنید.",
         "forceUpdate": "برای ادامه برنامه را به‌روز‌رسانی کنید",
         "forceUpdateExplanation": "یک به‌روزرسانی بحرانی منتشر شده است. لطفا هم‌اکنون برنامه را به‌روزرسانی کنید.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "نیاز به مجوز سیستم فایل است",
         "missingPermissionExplanation": "به منظور انجام این عمل دسترسی به فایل‌های سیستمی مورد نیاز است.",
         "swipeToConfirm": "Swipe to confirm"
@@ -827,6 +828,8 @@
         "checkAddressExplanation": "بررسی کنید که آدرس با آنچه در دستگاه لدجر شما نشان داده می‌شود همخوانی دارد.",
         "applicationNotInitialised": "هشدار تایید نشده",
         "applicationNotInitialisedExplanation": "برنامه IOTA را در دستگاه لدجر خود مجددا باز کرده، هشدارهای اطلاعاتی را قبول و مجددا تلاش کنید.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
         "udevError": "Could not communicate with Ledger device",
         "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
