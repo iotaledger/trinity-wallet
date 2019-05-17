@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Jeśli problem będzie się powtarzał, spróbuj zmienić serwer lub wyłącz użycie proxy w ustawieniach Trinity.",
         "nodeOutOfSync": "Serwer niezsynchronizowany",
         "nodeOutOfSyncExplanation": "Aktualnie wybrany serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Nieobsługiwana wersja serwera",
         "experimentalNodeExplanation": "Twój aktualnie wybrany serwer działa w wersji eksperymentalnej, która nie jest obsługiwana przez Trinity. Zmień serwer lub spróbuj ponownie.",
         "thisNodeOutOfSync": "Ten serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
