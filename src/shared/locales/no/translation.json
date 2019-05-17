@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Noden returnerte en feil under henting av kontoinformasjonen. Hvis problemet vedvarer, kan du prøve å endre node eller deaktivere proxy i Trinitys innstillinger.",
         "nodeOutOfSync": "Noden er ikke synkronisert",
         "nodeOutOfSyncExplanation": "Din valgte node er ikke synkronisert. Vennligst velg en ny node eller prøv på nytt.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Node-versjonen støttes ikke",
         "experimentalNodeExplanation": "Din valgte node kjører en eksperimentell versjon som ikke støttes. Vennligst endre node eller prøv på nytt.",
         "thisNodeOutOfSync": "Denne noden er ikke synkronisert. Vennligst endre node eller prøv på nytt.",
