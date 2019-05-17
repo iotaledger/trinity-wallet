@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Узел вернул ошибку при получении информации о вашей учетной записи. Если ваша проблема не устранена, попробуйте изменить узел или отключить системный прокси-сервер в настройках Тринити.",
         "nodeOutOfSync": "Узел не синхронизирован",
         "nodeOutOfSyncExplanation": "Выбранный Вами узел не синхронизирован. Пожалуйста, смените узел или попробуйте снова.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Версия узла не поддерживается",
         "experimentalNodeExplanation": "На выбранном вами узле установлена ​​экспериментальная версия, которая не поддерживается. Пожалуйста, измените узел или попробуйте снова.",
         "thisNodeOutOfSync": "Этот узел не синхронизирован. Пожалуйста, смените узел или попробуйте снова.",
