@@ -35,9 +35,16 @@ export default [
             return merge({}, schema, {
                 properties: {
                     /**
-                     * (Optional) authentication key for node
+                     * (Optional) authentication token (username) for node
                      */
                     token: {
+                        type: 'string',
+                        default: '',
+                    },
+                    /**
+                     * (Optional) password for node
+                     */
+                    password: {
                         type: 'string',
                         default: '',
                     },

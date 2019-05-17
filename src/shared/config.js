@@ -8,11 +8,13 @@ export const DEFAULT_NODE = __TEST__
           url: 'http://localhost:14265',
           pow: false,
           token: '',
+          password: '',
       }
     : {
           url: 'https://nodes.iota.org',
           pow: false,
           token: '',
+          password: '',
       };
 
 export const NODES_WITH_POW_DISABLED = [
@@ -22,6 +24,7 @@ export const NODES_WITH_POW_DISABLED = [
     url,
     pow: false,
     token: '',
+    password: '',
 }));
 
 export const NODES_WITH_POW_ENABLED = [
@@ -34,6 +37,7 @@ export const NODES_WITH_POW_ENABLED = [
     url,
     pow: true,
     token: '',
+    password: '',
 }));
 
 export const DEFAULT_NODES = [...NODES_WITH_POW_DISABLED, ...NODES_WITH_POW_ENABLED];
