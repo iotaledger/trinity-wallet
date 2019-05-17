@@ -164,7 +164,8 @@
         "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Permisos de sistema de archivos requeridos",
         "missingPermissionExplanation": "Se requiere acceso al sistema de archivos para realizar esta función.",
-        "swipeToConfirm": "Desliza para confirmar"
+        "swipeToConfirm": "Desliza para confirmar",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -800,13 +801,16 @@
         "notReady": "Si desea usar un dispositivo Ledger, conéctelo y desbloquéelo ahora",
         "indexInUse": "Índice actualmente en uso para la cuenta {{account}}",
         "indexInUseExplanation": "Su índice seleccionado está actualmente en uso en una de sus cuentas. Por favor elija otro número de índice.",
-        "proceedWithLedger": "Proceder con la configuración del Ledger",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Índice de cuenta",
         "accountPage": "Página de cuenta",
         "actionCancelled": "Acceso a Ledger cancelado",
         "actionCancelledExplanation": "No se puede completar la acción sin acceso al Ledger.",
         "chooseAccountIndex": "Elija el índice de cuenta del Ledger",
-        "accountIndexExplanation": "Su Ledger puede almacenar múltiples seeds. Cada seed es identificada por un número de índice único. Se ha preseleccionado uno, pero puede elegir uno propio. Asegúrese de anotar el número de índice elegido.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Algunas billeteras de terceros requieren páginas.",
         "connectionError": "No se puede conectar al ledger",
         "connectionErrorExplanation": "Verifique que su Ledger está conectado y desbloqueado.",
@@ -829,8 +833,10 @@
         "applicationNotInitialised": "Advertencia no confirmada",
         "applicationNotInitialisedExplanation": "Re abra la aplicación IOTA en su dispositivo Ledger, acepte la advertencia informativa y reintente.",
         "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
         "udevError": "La comunicación con el dispositivo Ledger no ha sido posible",
-        "udevErrorExplanation": "Trinity no ha podido comunicarse con el dispositivo Ledger. Por favor visita la URL debajo para resolver este inconveniente."
+        "udevErrorExplanation": "Trinity no ha podido comunicarse con el dispositivo Ledger. Por favor visita la URL debajo para resolver este inconveniente.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }
