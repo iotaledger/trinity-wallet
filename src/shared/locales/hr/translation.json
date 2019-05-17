@@ -161,6 +161,7 @@
         "shouldUpdateExplanation": "Dostupna je nova verzija aplikacije. Preporučuje se ažuriranje aplikacije na najnoviju verziju.",
         "forceUpdate": "Ažurirajte aplikaciju kako bi mogli nastaviti dalje",
         "forceUpdateExplanation": "Kritično ažuriranje je dostupno. Molimo ažurirajte aplikaciju.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Potreban pristup datotečnom sustavu",
         "missingPermissionExplanation": "Potreban je pristup datotečnom sustavu da bi se izvršila ova funkcija.",
         "swipeToConfirm": "Kliznite po ekranu za potvrdu"
@@ -827,6 +828,8 @@
         "checkAddressExplanation": "Provjerite da li adresa odgovara onoj prikazanoj na vašem Ledger uređaju.",
         "applicationNotInitialised": "Upozorenje nije prihvaćeno",
         "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
         "udevError": "Nije bilo moguće uspostaviti komunikaciju s Ledger uređajem",
         "udevErrorExplanation": "Trinity nije mogao uspostaviti komunikaciju s vašim Ledger uređajem. Molimo posjetite URL naveden ispod kako bi riješili ovaj problem."
     }
