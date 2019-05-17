@@ -62,13 +62,6 @@ class Ledger extends React.PureComponent {
         }, 1000);
     }
 
-    componentDidUpdate(_, prevState) {
-        if (prevState.index !== this.state.index && !this.state.displayedIndexInfo && !this.props.restoringLedgerAccount) {
-              const { t, generateAlert } = this.props;
-              generateAlert('error', t('ledger:writtenDownInfoTitle'), t('ledger:writtenDownInfoExplanation'), 10000);
-        }
-    }
-
     /**
      * Check for unused ledger index and set it to state
      * @param {Event} event - Form submit event
@@ -137,6 +130,19 @@ class Ledger extends React.PureComponent {
         }
     };
 
+    /**
+     * Update Ledger index
+     * @param {number} index
+     */
+    updateIndex = (index) => {
+        const { restoringLedgerAccount, t, generateAlert } = this.props;
+        if (!restoringLedgerAccount && !this.state.displayedIndexInfo) {
+            generateAlert('error', t('ledger:writtenDownInfoTitle'), t('ledger:writtenDownInfoExplanation'), 10000);
+            this.setState({ displayedIndexInfo: true });
+        }
+        this.setState({ index});
+    }
+
     showUdevModal = (udevError) => {
         if (udevError) {
             const { t } = this.props;
@@ -177,7 +183,7 @@ class Ledger extends React.PureComponent {
                             value={index}
                             focus
                             label={advancedMode ? t('ledger:accountIndex') : null}
-                            onChange={(value) => this.setState({ index: value })}
+                            onChange={(value) => this.updateIndex(value)}
                         />
                         {advancedMode && (
                             <Number
