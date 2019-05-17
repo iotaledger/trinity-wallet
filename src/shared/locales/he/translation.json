@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "הצומת מחזיר שגיאה בעת שליפת נתונים החשבון, אם הבעיה ממשיכה נסה להחליף צומת או לנטרל את הפרוקסי בהגדרות.",
         "nodeOutOfSync": "הצומת לא מסונכרן",
         "nodeOutOfSyncExplanation": "הצומת לא מכונכרן, נסה להחליף צומת או לנסות שוב.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "גירסת צומת לא נתמכת",
         "experimentalNodeExplanation": "גירסת צומת ניסונית שאינה נתמכת, נסה להחליף צומת או לנסות שוב.",
         "thisNodeOutOfSync": "הצומת לא מסונכרן, נסה להחליף צומת או לנסות שוב.",
