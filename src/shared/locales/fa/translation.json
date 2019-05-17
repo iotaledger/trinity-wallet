@@ -164,7 +164,8 @@
         "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "نیاز به مجوز سیستم فایل است",
         "missingPermissionExplanation": "به منظور انجام این عمل دسترسی به فایل‌های سیستمی مورد نیاز است.",
-        "swipeToConfirm": "Swipe to confirm"
+        "swipeToConfirm": "Swipe to confirm",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "سید ورودی دارای کاراکترهای نامعتبر است",
@@ -800,13 +801,16 @@
         "notReady": "اگر می‌خواهید از یک دستگاه لدجر استفاده کنید، هم‌اکنون آن را متصل و قفل‌گشایی کنید",
         "indexInUse": "اندیس در حال حاضر برای حساب {{account}} استفاده می‌شود",
         "indexInUseExplanation": "اندیس انتخابی شما در حال حاضر برای یکی از حساب‌های شما استفاده می‌شود. لطفا یک عدد اندیس دیگر انتخاب کنید.",
-        "proceedWithLedger": "ادامه با برپایی لدجر",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "اندیس حساب",
         "accountPage": "صفحه حساب",
         "actionCancelled": "Ledger device access cancelled",
         "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "اندیس حساب لدجر خود را انتخاب کنید",
-        "accountIndexExplanation": "لدجر شما می‌تواند چندین سید مختلف را نگه‌داری کند. هر سید با یک شماره اندیس منحصر به فرد معین می‌گردد. یک اندیس استفاده نشده برایتان انتخاب شده ولی در صورت تمایل می‌توانید از اندیس دلخواهتان استفاده کنید. از یادداشت کردن اندیسی که انتخاب کرده‌اید اطمینان حاصل کنید.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "برخی از کیف پول‌های شخص ثالث نیاز به صفحات دارند.",
         "connectionError": "نمی‌توان به لدجر متصل شد",
         "connectionErrorExplanation": "بررسی کنید که لدجر شما متصل شده و قفل آن گشوده شده باشد.",
@@ -829,8 +833,10 @@
         "applicationNotInitialised": "هشدار تایید نشده",
         "applicationNotInitialisedExplanation": "برنامه IOTA را در دستگاه لدجر خود مجددا باز کرده، هشدارهای اطلاعاتی را قبول و مجددا تلاش کنید.",
         "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
         "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }
