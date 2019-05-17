@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 
 import { setPassword } from 'actions/wallet';
 
@@ -102,4 +102,7 @@ const mapDispatchToProps = {
     setPassword,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Idle);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Idle);

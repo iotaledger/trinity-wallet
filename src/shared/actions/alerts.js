@@ -86,8 +86,18 @@ export const generateAccountInfoErrorAlert = (err) => (dispatch) => {
  *
  * @returns {function} dispatch
  */
-export const generateNodeOutOfSyncErrorAlert = () => (dispatch) => {
-    dispatch(generateAlert('error', i18next.t('global:nodeOutOfSync'), i18next.t('global:nodeOutOfSyncExplanation')));
+export const generateNodeOutOfSyncErrorAlert = (err, byTimestamp = false) => (dispatch) => {
+    dispatch(
+        generateAlert(
+            'error',
+            i18next.t('global:nodeOutOfSync'),
+            byTimestamp
+                ? i18next.t('global:nodeOutOfSyncByTimestampExplanation')
+                : i18next.t('global:nodeOutOfSyncExplanation'),
+            9000,
+            err,
+        ),
+    );
 };
 
 /**

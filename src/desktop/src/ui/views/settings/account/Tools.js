@@ -146,7 +146,7 @@ class Tools extends PureComponent {
 
         const currentIndex = wallet.transitionAddresses.length;
 
-        this.props.generateAddressesAndGetBalance(seedStore, currentIndex);
+        this.props.generateAddressesAndGetBalance(seedStore, currentIndex, accountName);
     };
 
     render() {
@@ -256,4 +256,7 @@ const mapDispatchToProps = {
     setBalanceCheckFlag,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Tools));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(Tools));

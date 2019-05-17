@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import assign from 'lodash/assign';
 import some from 'lodash/some';
 import isEmpty from 'lodash/isEmpty';
@@ -414,9 +415,11 @@ export const getFullAccountInfo = (seedStore, accountName, withQuorum = false) =
             })
             .catch((err) => {
                 const dispatchErrors = () => {
-                    if (err.message === Errors.NODE_NOT_SYNCED) {
-                        dispatch(generateNodeOutOfSyncErrorAlert(err));
-                    } else if (err.message === Errors.UNSUPPORTED_NODE) {
+                    if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
+                        dispatch(generateNodeOutOfSyncErrorAlert());
+                    } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
+                        dispatch(generateNodeOutOfSyncErrorAlert(true));
+                    } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
                         dispatch(generateUnsupportedNodeErrorAlert(err));
                     } else {
                         dispatch(generateAccountInfoErrorAlert(err));
@@ -463,11 +466,11 @@ export const manuallySyncAccount = (seedStore, accountName, withQuorum = false) 
                 dispatch(manualSyncSuccess(result));
             })
             .catch((err) => {
-                if (err.message === Errors.LEDGER_CANCELLED) {
+                if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
                     dispatch(generateLedgerCancelledAlert(err));
-                } else if (err.message === Errors.NODE_NOT_SYNCED) {
+                } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert(err));
-                } else if (err.message === Errors.UNSUPPORTED_NODE) {
+                } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
                     dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
                     dispatch(generateSyncingErrorAlert(err));
@@ -510,13 +513,15 @@ export const getAccountInfo = (seedStore, accountName, notificationFn, withQuoru
                 dispatch(accountInfoFetchSuccess(result));
             })
             .catch((err) => {
-                if (err.message === Errors.LEDGER_CANCELLED) {
+                if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
                     dispatch(generateLedgerCancelledAlert(err));
-                } else if (err.message === Errors.LEDGER_INVALID_INDEX) {
+                } else if (get(err, 'message') === Errors.LEDGER_INVALID_INDEX) {
                     dispatch(generateLedgerIncorrectIndexAlert(err));
-                } else if (err.message === Errors.NODE_NOT_SYNCED) {
+                } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert(err));
-                } else if (err.message === Errors.UNSUPPORTED_NODE) {
+                } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err, true));
+                } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
                     dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
                     setTimeout(() => dispatch(generateAccountInfoErrorAlert(err)), 500);

@@ -9,6 +9,7 @@ import orderBy from 'lodash/orderBy';
 import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
 import some from 'lodash/some';
+import get from 'lodash/get';
 import size from 'lodash/size';
 import every from 'lodash/every';
 import includes from 'lodash/includes';
@@ -294,7 +295,7 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, withQuoru
             return dispatch(promoteTransactionSuccess());
         })
         .catch((err) => {
-            if (err.message === Errors.BUNDLE_NO_LONGER_VALID) {
+            if (get(err, 'message') === Errors.BUNDLE_NO_LONGER_VALID) {
                 dispatch(
                     generateAlert(
                         'error',
@@ -313,7 +314,7 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, withQuoru
                         10000,
                     ),
                 );
-            } else if (err.message === Errors.TRANSACTION_ALREADY_CONFIRMED) {
+            } else if (get(err, 'message') === Errors.TRANSACTION_ALREADY_CONFIRMED) {
                 dispatch(
                     generateAlert(
                         'success',
@@ -408,7 +409,7 @@ export const forceTransactionPromotion = (
             }
 
             const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-            const newState = syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
+            const newState = syncAccountAfterReattachment(reattachment, existingAccountState);
 
             // Update storage (realm)
             Account.update(accountName, newState);

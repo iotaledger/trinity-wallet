@@ -3,6 +3,7 @@ import map from 'lodash/map';
 import noop from 'lodash/noop';
 import findLastIndex from 'lodash/findLastIndex';
 import reduce from 'lodash/reduce';
+import get from 'lodash/get';
 import { updateAddressData, updateAccountAfterTransition } from '../actions/accounts';
 import {
     generateAlert,
@@ -19,7 +20,7 @@ import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
 import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import Errors from '../libs/errors';
-import { selectedAccountStateFactory } from '../selectors/accounts';
+import { selectedAccountStateFactory, getSelectedAccountName } from '../selectors/accounts';
 import { getSelectedNodeFromState, getNodesFromState, getRemotePoWFromState } from '../selectors/global';
 import { Account } from '../storage';
 import { DEFAULT_SECURITY, DEFAULT_RETRIES } from '../config';
@@ -475,9 +476,9 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, wi
                 dispatch(resetProgress());
             })
             .catch((err) => {
-                if (err.message === Errors.NODE_NOT_SYNCED) {
+                if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert(err));
-                } else if (err.message === Errors.UNSUPPORTED_NODE) {
+                } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
                     dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
                     dispatch(generateTransitionErrorAlert(err));
@@ -496,23 +497,27 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, wi
  *
  * @param {string | array} seed
  * @param {number} index
- * @param {function} genFn
+ * @param {string} accountName
  *
  * @returns {function}
  */
-export const generateAddressesAndGetBalance = (seedStore, index, seedType = 'keychain') => {
-    return (dispatch) => {
+export const generateAddressesAndGetBalance = (seedStore, index, accountName, seedType = 'keychain') => {
+    return (dispatch, getState) => {
         const options = {
             index,
             security: DEFAULT_SECURITY,
             total: seedType === 'ledger' ? 15 : 60,
         };
 
-        seedStore
+        return seedStore
             .generateAddress(options)
             .then((addresses) => {
-                dispatch(updateTransitionAddresses(addresses));
-                dispatch(getBalanceForCheck(addresses));
+                const latestAccountName = getSelectedAccountName(getState());
+
+                if (latestAccountName === accountName) {
+                    dispatch(updateTransitionAddresses(addresses));
+                    dispatch(getBalanceForCheck(addresses));
+                }
             })
             .catch((error) => {
                 dispatch(snapshotTransitionError());
