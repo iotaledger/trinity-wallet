@@ -165,7 +165,7 @@
         "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików.",
         "swipeToConfirm": "Przesuń, aby potwierdzić",
-        "expert": "Expert"
+        "expert": "Ekspert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -801,16 +801,16 @@
         "notReady": "Jeśli chcesz użyć portfela sprzętowego Ledger, podłącz go teraz, a następnie odblokuj",
         "indexInUse": "Ten indeks jest już używany przez konto {{account}}",
         "indexInUseExplanation": "Indeks, który wybrałeś, jest już używany na jednym z Twoich kont. Wybierz inny numer indeksu.",
-        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
-        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
-        "createNewLedgerAccount": "Create a new Ledger account",
-        "restoreLedgerAccount": "Restore an existing Ledger account",
+        "createNewLedgerAccountInfo": "Upewnij się że zapiszesz oraz zapamiętasz swój numer indeksu.",
+        "restoreLedgerAccountInfo": "Aby przywrócić konto, wpisz jego numer indeksu.",
+        "createNewLedgerAccount": "Utwórz nowe konto Ledger",
+        "restoreLedgerAccount": "Przywróć istniejące konto Ledger",
         "accountIndex": "Indeks konta",
         "accountPage": "Strona konta",
         "actionCancelled": "Odmówiono dostępu do urządzenia Ledger",
         "actionCancelledExplanation": "Nie można wykonać akcji bez dostępu do urządzenia Ledger.",
         "chooseAccountIndex": "Wybierz indeks Twojego konta Ledger",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
+        "accountIndexExplanation": "Twoje urządzenie Ledger może przechowywać wiele kluczy seed. Każdy numer indeksu to indywidualny klucz seed.",
         "accountPageExplanation": "Niektóre portfele firm trzecich, wymagają użycia „stron”.",
         "connectionError": "Nie można połączyć się z portfelem Ledger",
         "connectionErrorExplanation": "Upewnij się, że Twoje urządzenie jest podłączone i odblokowane.",
@@ -833,10 +833,10 @@
         "applicationNotInitialised": "Ostrzeżenie niezaakceptowane",
         "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie.",
         "checkLedger": "Sprawdź swoje urządzenie Ledger",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
+        "acceptWarningExplanation": "Jeśli na Twoim urządzeniu wyświetlane jest ostrzeżenie, musisz je zaakceptować poprzez przewinięcie w dół ekranu oraz naciśnięcie obu przycisków jednocześnie.",
         "udevError": "Brak możliwości połączenia z urządzeniem Ledger",
         "udevErrorExplanation": "Trinity nie może połączyć się z Twoim urządzeniem Ledger. Odwiedź poniższy adres, aby rozwiązać ten problem.",
-        "writtenDownInfoTitle": "Remember your index number",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "writtenDownInfoTitle": "Zapamiętaj swój numer indeksu",
+        "writtenDownInfoExplanation": "Numer indeksu jest wymagany, aby przywrócić Twoje konto w przyszłości. Jeśli utracisz numer indeksu, stracisz swoje środki IOTA. Pamiętaj o tym."
     }
 }
