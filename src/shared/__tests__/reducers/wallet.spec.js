@@ -18,6 +18,7 @@ describe('Reducer: wallet', () => {
                 navStack: [],
                 forceUpdate: false,
                 shouldUpdate: false,
+                displayTestWarning: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

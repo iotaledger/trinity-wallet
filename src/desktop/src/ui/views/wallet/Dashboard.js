@@ -151,4 +151,9 @@ const mapDispatchToProps = {
     getAccountInfo,
 };
 
-export default withI18n()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
+export default withI18n()(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Dashboard),
+);

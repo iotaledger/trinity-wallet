@@ -191,11 +191,13 @@ class SeedVaultExportComponent extends Component {
                     }
                     this.share(path);
                 })
-                .catch(() =>
+                .catch((err) =>
                     this.props.generateAlert(
                         'error',
                         t('global:somethingWentWrong'),
                         t('global:somethingWentWrongTryAgain'),
+                        10000,
+                        err,
                     ),
                 );
         });
@@ -244,11 +246,13 @@ class SeedVaultExportComponent extends Component {
                     300,
                 );
             })
-            .catch(() =>
+            .catch((err) =>
                 this.props.generateAlert(
                     'error',
                     t('global:somethingWentWrong'),
                     t('global:somethingWentWrongTryAgain'),
+                    10000,
+                    err,
                 ),
             );
     }
@@ -469,5 +473,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['seedVault', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(SeedVaultExportComponent),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(SeedVaultExportComponent),
 );

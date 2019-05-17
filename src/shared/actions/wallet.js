@@ -3,6 +3,7 @@ import map from 'lodash/map';
 import noop from 'lodash/noop';
 import findLastIndex from 'lodash/findLastIndex';
 import reduce from 'lodash/reduce';
+import get from 'lodash/get';
 import { updateAddressData, updateAccountAfterTransition } from '../actions/accounts';
 import {
     generateAlert,
@@ -47,6 +48,7 @@ export const ActionTypes = {
     CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
     SHOULD_UPDATE: 'IOTA/APP/WALLET/SHOULD_UPDATE',
     FORCE_UPDATE: 'IOTA/APP/WALLET/FORCE_UPDATE',
+    DISPLAY_TEST_WARNING: 'IOTA/APP/WALLET/DISPLAY_TEST_WARNING',
     INITIATE_DEEP_LINK_REQUEST: 'IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST',
     COMPLETE_DEEP_LINK_REQUEST: 'IOTA/APP/WALLET/COMPLETE_DEEP_LINK_REQUEST',
     MAP_STORAGE_TO_STATE: 'IOTA/SETTINGS/MAP_STORAGE_TO_STATE',
@@ -332,13 +334,14 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
                 dispatch(updateAddressData(accountName, result));
                 dispatch(generateNewAddressSuccess());
             })
-            .catch(() => {
+            .catch((err) => {
                 dispatch(
                     generateAlert(
                         'error',
                         i18next.t('global:somethingWentWrong'),
                         i18next.t('global:somethingWentWrongTryAgain'),
                         10000,
+                        err,
                     ),
                 );
                 dispatch(generateNewAddressError());
@@ -472,13 +475,13 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, wi
 
                 dispatch(resetProgress());
             })
-            .catch((error) => {
-                if (error.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateNodeOutOfSyncErrorAlert());
-                } else if (error.message === Errors.UNSUPPORTED_NODE) {
-                    dispatch(generateUnsupportedNodeErrorAlert());
+            .catch((err) => {
+                if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err));
+                } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
-                    dispatch(generateTransitionErrorAlert(error));
+                    dispatch(generateTransitionErrorAlert(err));
                 }
 
                 dispatch(snapshotTransitionError());
@@ -649,4 +652,15 @@ export const shouldUpdate = () => ({
  */
 export const forceUpdate = () => ({
     type: ActionTypes.FORCE_UPDATE,
+});
+
+/**
+ * Dispatch to display test version warning
+ *
+ * @method displayTestWarning
+ *
+ * @returns {{type: {string} }}
+ */
+export const displayTestWarning = () => ({
+    type: ActionTypes.DISPLAY_TEST_WARNING,
 });

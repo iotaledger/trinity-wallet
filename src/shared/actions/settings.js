@@ -536,12 +536,12 @@ export function setFullNode(node, addingCustomNode = false) {
             .catch((err) => {
                 dispatch(dispatcher.error());
 
-                if (err.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateNodeOutOfSyncErrorAlert());
-                } else if (err.message === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
-                    dispatch(generateNodeOutOfSyncErrorAlert(true));
-                } else if (err.message === Errors.UNSUPPORTED_NODE) {
-                    dispatch(generateUnsupportedNodeErrorAlert());
+                if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err));
+                } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err, true));
+                } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
                     dispatch(dispatcher.alerts.defaultError(err));
                 }
