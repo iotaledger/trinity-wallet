@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Сървърът върна грешка при извличането на информацията за акаунта. Ако проблемът продължава, опитайте друг сървър или изключете настройката за proxy в Тринити.",
         "nodeOutOfSync": "Сървърът не е синхронизиран",
         "nodeOutOfSyncExplanation": "Текущият сървър не е синхронизиран. Моля, изберете друг сървър и опитайте отново.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Версията на сървъра не се поддържа",
         "experimentalNodeExplanation": "Текущият сървър е с експериментална версия, която не се поддържа. Моля, изберете друг сървър или опитайте отново.",
         "thisNodeOutOfSync": "Този сървър не е синхронизиран. Моля, изберете друг сървър или опитайте отново.",
