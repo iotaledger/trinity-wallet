@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "आपके खाते की जानकारी प्राप्त करते समय नोड ने एक त्रुटि लौटा दी। यदि आपकी समस्या बनी रहती है, तो नोड बदलने या ट्रिनिटी सेटिंग्स में अपने सिस्टम प्रॉक्सी को अक्षम करने का प्रयास करें।",
         "nodeOutOfSync": "नोड सिंक से बाहर",
         "nodeOutOfSyncExplanation": "आपका वर्तमान में चयनित नोड सिंक से बाहर है । कृपया नोड बदलें या पुन: प्रयास करें ।",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "नोड संस्करण समर्थित नहीं है",
         "experimentalNodeExplanation": "आपका वर्तमान में चयनित नोड एक प्रयोगात्मक संस्करण चला रहा है जो समर्थित नहीं है। कृपया नोड बदलें या पुनः प्रयास करें।",
         "thisNodeOutOfSync": "आपका वर्तमान में चयनित नोड सिंक से बाहर है । कृपया नोड बदलें या पुन: प्रयास करें ।",
