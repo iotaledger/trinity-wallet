@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "該節點在取得帳號資訊時回傳了錯誤訊息。如果這個這個問題持續發生，請嘗試更換節點或是將 Trinity 中的系統代理停用。",
         "nodeOutOfSync": "節點失去同步",
         "nodeOutOfSyncExplanation": "您目前所選的節點並不同步，請變更節點或再試一次。",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "不支持的 Node 版本",
         "experimentalNodeExplanation": "你現時選用的 node 屬不被支援的測試版本，請選用另一個 node 或再嘗試。",
         "thisNodeOutOfSync": "此節點並不同步，請變更節點或再試一次。",
