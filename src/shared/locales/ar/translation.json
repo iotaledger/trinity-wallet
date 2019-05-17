@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "هناك خطأ اثناء تحميل بياناتك من عقدة التفرع،\nإذا استمرالعطل ، فحاول تغيير العقدة أو توقيف المخدم الفرعي في إعدادات الترينيتي.",
         "nodeOutOfSync": "عقدة غير محدثة",
         "nodeOutOfSyncExplanation": "العقدة المختارة غير محدثة. نرجوكم إختيار عقدة اخرى أو الإعادة في وقت لاحق.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "نسخة عقدة التفرع غير مدعومة",
         "experimentalNodeExplanation": "العقدة المختارة حاليًا تشتغل بإصدار تجريبي غير معتمد. يرجى تغيير العقدة أو المحاولة مرة أخرى.",
         "thisNodeOutOfSync": "العقدة المختارة غير محدثة. المرجو إختيار عقدة اخرى أو الإعادة في وقت لاحق.",
