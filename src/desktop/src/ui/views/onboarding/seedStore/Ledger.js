@@ -32,6 +32,8 @@ class Ledger extends React.PureComponent {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        restoringLedgerAccount: PropTypes.bool.isRequired,
     };
 
     state = {
@@ -40,7 +42,8 @@ class Ledger extends React.PureComponent {
         loading: false,
         advancedMode: false,
         udevError: false,
-        countdown: 5
+        countdown: 5,
+        displayedIndexInfo: false
     };
 
     componentDidMount() {
@@ -57,6 +60,13 @@ class Ledger extends React.PureComponent {
                 countdown: countdown - 1,
             });
         }, 1000);
+    }
+
+    componentDidUpdate(_, prevState) {
+        if (prevState.index !== this.state.index && !this.state.displayedIndexInfo) {
+              const { t, generateAlert } = this.props;
+              generateAlert('error', t('ledger:writtenDownInfoTitle'), t('ledger:writtenDownInfoExplanation'), 10000);
+        }
     }
 
     /**
@@ -152,7 +162,7 @@ class Ledger extends React.PureComponent {
     };
 
     render() {
-        const { t } = this.props;
+        const { t, restoringLedgerAccount } = this.props;
         const { page, index, loading, advancedMode, udevError, countdown } = this.state;
 
         return (
@@ -161,6 +171,7 @@ class Ledger extends React.PureComponent {
                 <section>
                     <h1>{t('ledger:chooseAccountIndex')}</h1>
                     <p>{t('ledger:accountIndexExplanation')}</p>
+                    <p>{restoringLedgerAccount ? t('ledger:restoreLedgerAccountInfo') : t('ledger:createNewLedgerAccountInfo')}</p>
                     <div>
                         <Number
                             value={index}
@@ -180,13 +191,13 @@ class Ledger extends React.PureComponent {
                     <Toggle
                         checked={advancedMode}
                         onChange={() => this.setState({ advancedMode: !advancedMode, page: 0 })}
-                        on={t('modeSelection:advanced')}
+                        on={t('global:expert')}
                         off={t('modeSelection:standard')}
                     />
                     <small>{advancedMode && t('ledger:accountPageExplanation')}</small>
                 </section>
                 <footer>
-                    <Button disabled={!loading} to="/onboarding/seed-intro" className="square" variant="dark">
+                    <Button disabled={loading} to="/onboarding/seed-intro" className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
                     <Button loading={loading} type="submit" className="square" variant="primary" disabled={countdown > 0}>
@@ -201,6 +212,7 @@ class Ledger extends React.PureComponent {
 const mapStateToProps = (state) => ({
     accounts: state.accounts.accountInfo,
     additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
+    restoringLedgerAccount: state.accounts.accountInfoDuringSetup.usedExistingSeed,
 });
 
 const mapDispatchToProps = {
