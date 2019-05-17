@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "El nodo ha devuelto un error intentando acceder a la información de tu cuenta. Si el problema persiste, intenta cambiar de nodo o deshabilitar el proxy desde la Configuración de Trinity.",
         "nodeOutOfSync": "Nodo desincronizado",
         "nodeOutOfSyncExplanation": "Su nodo seleccionado está desincronizado. Por favor cámbielo e intente de nuevo.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "La versión del Nodo no está soportada",
         "experimentalNodeExplanation": "El nodo seleccionado actualmente utiliza una versión experimental no soportada. Por favor cambia de nodo o intenta nuevamente.",
         "thisNodeOutOfSync": "Este nodo no está sincronizado. Por favor, cambie de nodo o pruebe de nuevo.",
