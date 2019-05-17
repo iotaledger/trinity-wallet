@@ -140,7 +140,7 @@ class Ledger extends React.PureComponent {
             generateAlert('error', t('ledger:writtenDownInfoTitle'), t('ledger:writtenDownInfoExplanation'), 10000);
             this.setState({ displayedIndexInfo: true });
         }
-        this.setState({ index});
+        this.setState({ index });
     }
 
     showUdevModal = (udevError) => {
