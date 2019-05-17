@@ -109,6 +109,14 @@ $footer: 70px;
         white-space: pre-wrap;
         word-wrap: break-word;
         user-select: text;
+        max-height: 560px;
+        overflow-y: scroll;
+
+        span {
+            display: block;
+            margin-bottom: 20px;
+            user-select: text;
+        }
     }
 }
 

@@ -25,84 +25,92 @@ import FatalError from 'ui/global/FatalError';
 
 import settings from '../package.json';
 
-export const bugsnagClient = bugsnag({
-    apiKey: 'fakeAPIkey',
-    appVersion: settings.version,
-    interactionBreadcrumbsEnabled: false,
-    collectUserIp: false,
-    user: { id: Electron.getUuid() },
-});
-bugsnagClient.use(bugsnagReact, React);
+const init = () => {
+    if (typeof Electron === 'undefined') {
+        return render(<FatalError error="Failed to load Electron preload script" />, document.getElementById('root'));
+    }
 
-const ErrorBoundary = bugsnagClient.getPlugin('react');
-
-if (Electron.mode === 'tray') {
-    Electron.onEvent('store.update', (payload) => {
-        const data = JSON.parse(payload);
-        store.dispatch(mapStorageToStateAction(data));
+    const bugsnagClient = bugsnag({
+        apiKey: 'fakeAPIkey',
+        appVersion: settings.version,
+        interactionBreadcrumbsEnabled: false,
+        collectUserIp: false,
+        user: { id: Electron.getUuid() },
     });
-} else {
-    initialiseStorage(getEncryptionKey)
-        .then(() => {
-            const oldPersistedData = Electron.getAllStorage();
-            const hasDataToMigrate = !isEmpty(oldPersistedData);
+    bugsnagClient.use(bugsnagReact, React);
 
-            if (hasDataToMigrate) {
-                Object.assign(oldPersistedData.settings, {
-                    completedMigration: false,
-                });
-            }
+    const ErrorBoundary = bugsnagClient.getPlugin('react');
 
-            // Get persisted data from Realm storage
-            const persistedDataFromRealm = mapStorageToState();
-            const data = hasDataToMigrate ? oldPersistedData : persistedDataFromRealm;
-
-            // Change provider on global iota instance
-            const node = get(data, 'settings.node');
-            changeIotaNode(node);
-
-            // Update store with persisted state
+    if (Electron.mode === 'tray') {
+        Electron.onEvent('store.update', (payload) => {
+            const data = JSON.parse(payload);
             store.dispatch(mapStorageToStateAction(data));
-
-            // Assign accountIndex to every account in accountInfo if it is not assigned already
-            store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
-
-            // Proxy realm changes to Tray application
-            realm.addListener('change', () => {
-                const data = mapStorageToState();
-                Electron.storeUpdate(JSON.stringify(data));
-            });
-
-            // Start Tray application if enabled in settings
-            const isTrayEnabled = get(data, 'settings.isTrayEnabled');
-            Electron.setTray(isTrayEnabled);
-
-            // Show Wallet window after inital store update
-            Electron.focus();
-        })
-
-        .catch((err) => {
-            Electron.focus();
-            render(<FatalError error={err.message || err} />, document.getElementById('root'));
         });
-}
+    } else {
+        initialiseStorage(getEncryptionKey)
+            .then(() => {
+                const oldPersistedData = Electron.getAllStorage();
+                const hasDataToMigrate = !isEmpty(oldPersistedData);
 
-render(
-    <ErrorBoundary>
-        <Redux store={store}>
-            <I18nextProvider i18n={i18next}>
-                <Router>
-                    {Electron.mode === 'tray' ? (
-                        <Tray />
-                    ) : (
-                        <React.Fragment>
-                            <Alerts />
-                            <Index />
-                        </React.Fragment>
-                    )}
-                </Router>
-            </I18nextProvider>
-        </Redux>
-    </ErrorBoundary>,
-    document.getElementById('root'),
-);
+                if (hasDataToMigrate) {
+                    Object.assign(oldPersistedData.settings, {
+                        completedMigration: false,
+                    });
+                }
+
+                // Get persisted data from Realm storage
+                const persistedDataFromRealm = mapStorageToState();
+                const data = hasDataToMigrate ? oldPersistedData : persistedDataFromRealm;
+
+                // Change provider on global iota instance
+                const node = get(data, 'settings.node');
+                changeIotaNode(node);
+
+                // Update store with persisted state
+                store.dispatch(mapStorageToStateAction(data));
+
+                // Assign accountIndex to every account in accountInfo if it is not assigned already
+                store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
+
+                // Proxy realm changes to Tray application
+                realm.addListener('change', () => {
+                    const data = mapStorageToState();
+                    Electron.storeUpdate(JSON.stringify(data));
+                });
+
+                // Start Tray application if enabled in settings
+                const isTrayEnabled = get(data, 'settings.isTrayEnabled');
+                Electron.setTray(isTrayEnabled);
+
+                // Show Wallet window after inital store update
+                Electron.focus();
+            })
+
+            .catch((err) => {
+                Electron.focus();
+                render(<FatalError error={err.message || err} />, document.getElementById('root'));
+            });
+    }
+
+    render(
+        <ErrorBoundary>
+            <Redux store={store}>
+                <I18nextProvider i18n={i18next}>
+                    <Router>
+                        {Electron.mode === 'tray' ? (
+                            <Tray />
+                        ) : (
+                            <React.Fragment>
+                                <Alerts />
+                                <Index />
+                            </React.Fragment>
+                        )}
+                    </Router>
+                </I18nextProvider>
+            </Redux>
+        </ErrorBoundary>,
+        document.getElementById('root'),
+    );
+};
+
+init();

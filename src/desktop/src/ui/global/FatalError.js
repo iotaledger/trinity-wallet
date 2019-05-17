@@ -1,5 +1,5 @@
 /* global Electron */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import css from 'ui/views/onboarding/index.scss';
@@ -8,6 +8,18 @@ import css from 'ui/views/onboarding/index.scss';
  * Linux missing dependencies tutorial
  */
 const FatalError = ({ error }) => {
+    const [errors, setErrors] = useState(typeof window.fatalErrors === 'object' ? window.fatalErrors : []);
+
+    useEffect(() => {
+        window.fatalErrors = (msg) => {
+            setErrors(errors.concat(msg));
+        };
+
+        return () => {
+            window.fatalErrors = null;
+        };
+    }, []);
+
     const linuxContent = () => {
         if (typeof error === 'string' && error.indexOf('Unknown or unsupported transport') > -1) {
             return (
@@ -58,7 +70,10 @@ const FatalError = ({ error }) => {
             <form>
                 <h1>Error launching wallet</h1>
                 <p>There was a fatal error launching the wallet.</p>
-                <pre>{error}</pre>
+                <pre>
+                    <span key="error">{error}</span>
+                    {errors.map((err, i) => <span key={i}>{err}</span>)}
+                </pre>
             </form>
         );
     };
@@ -67,7 +82,9 @@ const FatalError = ({ error }) => {
         <main className={css.onboarding}>
             <header />
             <div>
-                <div>{Electron.getOS() === 'linux' ? linuxContent() : generalContent()}</div>
+                <div>
+                    {typeof Electron === 'object' && Electron.getOS() === 'linux' ? linuxContent() : generalContent()}
+                </div>
             </div>
         </main>
     );
