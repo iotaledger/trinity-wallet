@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Jeśli problem będzie się powtarzał, spróbuj zmienić serwer lub wyłącz użycie proxy w ustawieniach Trinity.",
         "nodeOutOfSync": "Serwer niezsynchronizowany",
         "nodeOutOfSyncExplanation": "Aktualnie wybrany serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
-        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "nodeOutOfSyncByTimestampExplanation": "Twój aktualnie wybrany serwer nie jest zsynchronizowany. Zmień serwer lub spróbuj ponownie. Jeśli problem nie ustąpi, upewnij się że data i godzina w Twoim urządzeniu są poprawne.",
         "experimentalNode": "Nieobsługiwana wersja serwera",
         "experimentalNodeExplanation": "Twój aktualnie wybrany serwer działa w wersji eksperymentalnej, która nie jest obsługiwana przez Trinity. Zmień serwer lub spróbuj ponownie.",
         "thisNodeOutOfSync": "Ten serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
@@ -161,7 +161,7 @@
         "shouldUpdateExplanation": "Nowa wersja Trinity jest gotowa do pobrania. Zaleca się aktualizację do najnowszej wersji.",
         "forceUpdate": "Zaktualizuj aplikację, aby kontynuować",
         "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz.",
-        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
+        "testVersionWarning": "Ta wersja powinna być używana jedynie w celach testowych, z małą ilością tokenów.",
         "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików.",
         "swipeToConfirm": "Przesuń, aby potwierdzić"
@@ -828,8 +828,8 @@
         "checkAddressExplanation": "Sprawdź, czy adres jest zgodny z adresem wyświetlanym w Twoim urządzeniu Ledger.",
         "applicationNotInitialised": "Ostrzeżenie niezaakceptowane",
         "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie.",
-        "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
+        "checkLedger": "Sprawdź swoje urządzenie Ledger",
+        "acceptWarningExplanation": "Jeśli na Twoim urządzeniu wyświetlane jest ostrzeżenie, musisz je zaakceptować przed kontynuowaniem.",
         "udevError": "Brak możliwości połączenia z urządzeniem Ledger",
         "udevErrorExplanation": "Trinity nie może połączyć się z Twoim urządzeniem Ledger. Odwiedź poniższy adres, aby rozwiązać ten problem."
     }
