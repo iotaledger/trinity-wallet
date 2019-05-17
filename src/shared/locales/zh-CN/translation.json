@@ -161,6 +161,7 @@
         "shouldUpdateExplanation": "新的更新已发布。建议您更新到最新版本。",
         "forceUpdate": "更新应用以继续",
         "forceUpdateExplanation": "已发布关键更新。请立即更新应用程序。",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "需要文件系统权限",
         "missingPermissionExplanation": "本功能需要具备文件系统访问权限。",
         "swipeToConfirm": "滑动以确认"
@@ -827,6 +828,8 @@
         "checkAddressExplanation": "检查地址是否与Ledger设备上显示的地址匹配。",
         "applicationNotInitialised": "未经确认的警告",
         "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
         "udevError": "无法与Ledger 设备进行通信",
         "udevErrorExplanation": "Trinity 无法与您的Ledger 设备通信。请访问以下网址来解决这个问题。"
     }
