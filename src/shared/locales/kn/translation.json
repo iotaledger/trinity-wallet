@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "ನೋಡ್ ಒಡವಾಗುನಂಟುವಿನಿಂದ ಹೊರಗಿದೆ",
         "nodeOutOfSyncExplanation": "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಆಯ್ಕೆ ಮಾಡಿದ ನೋಡ್ ಒಡವಾಗುನಂಟುವಿನಿಂದ ಹೊರಗಿದೆ. ನೋಡ್ ಅನ್ನು ಬದಲಿಸಿ ಅಥವಾ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Node version not supported",
         "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "ಈ ನೋಡ್ ಒಡವಾಗುನಂಟುವಿನಿಂದ ಹೊರಗಿದೆ. ನೋಡ್ ಅನ್ನು ಬದಲಿಸಿ ಅಥವಾ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
