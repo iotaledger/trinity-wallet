@@ -41,6 +41,8 @@ class Dashboard extends React.PureComponent {
         /** @ignore */
         location: PropTypes.object,
         /** @ignore */
+        marketData: PropTypes.object.isRequired,
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
@@ -52,6 +54,15 @@ class Dashboard extends React.PureComponent {
         if (this.props.isDeepLinkActive) {
             this.props.history.push('/wallet/send');
         }
+    }
+
+    componentDidMount() {
+        const { marketData } = this.props;
+
+        /**
+         * Send updated marketData to Tray application
+         */
+        Electron.storeUpdate(JSON.stringify({ marketData }));
     }
 
     updateAccount = async () => {
@@ -133,6 +144,7 @@ const mapStateToProps = (state) => ({
     accountMeta: getSelectedAccountMeta(state),
     password: state.wallet.password,
     isDeepLinkActive: state.wallet.deepLinkRequestActive,
+    marketData: state.marketData,
 });
 
 const mapDispatchToProps = {

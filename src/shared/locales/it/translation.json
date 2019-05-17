@@ -727,13 +727,13 @@
         "deepLinkingUpdated": "Impostazioni deep link",
         "deepLinkingEnabled": "Hai abilitato l'uso dei deep link.",
         "deepLinkingDisabled": "Hai disabilitato l'uso dei deep link.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoTitle": "I deep link non sono abilitati",
+        "deepLinkingInfoMessage": "Hai cliccato su un deep link iota:// ma i deep link non sono abilitati."
     },
     "updates": {
         "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
         "noUpdatesAvailable": "Nessun aggiornamento disponibile",
-        "noUpdatesAvailableExplanation": "Hai l'ultima versione di Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "Hai l'ultima versione di Trinity!",
         "newVersionAvailable": "Una nuova versione è disponibile",
         "newVersionAvailableExplanation": "È disponibile una nuova versione di Trinity. Vuoi aggiornare ora?",
         "installUpdate": "Installa l'aggiornamento e riavvia",

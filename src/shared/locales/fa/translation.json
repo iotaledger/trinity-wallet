@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "خطا در بازیابی داده های به روزرسانی",
         "noUpdatesAvailable": "بروزرسانی موجود نيست",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "نسخه جدید موجود است",
         "newVersionAvailableExplanation": "یک نسخه‌ی جدید از Trinity در دسترس است. آیا می‌خواهید الان به‌روز‌رسانی کنید؟",
         "installUpdate": "نصب به‌روزرسانی و راه‌اندازی مجدد",

@@ -1,8 +1,8 @@
 {
     "global": {
         "send": "ODESLAT",
-        "cancel": "Zrušit",
-        "continue?": "Opravdu si přejete pokračovat?",
+        "cancel": "Storno",
+        "continue?": "Jste si jistý, že chcete pokračovat?",
         "noTransactions": "ŽÁDNÁ NEDÁVNÁ HISTORIE",
         "refresh": "Obnovit",
         "balanceError": "Nedostatečný zůstatek",
@@ -275,7 +275,7 @@
     "onboardingComplete": {
         "allDone": "Všechno je nastavené!",
         "openYourWallet": "Otevřít Vaši peněženku",
-        "walletReady": "Peněženka je nyní nastavena a připravena k použití. Pokud budete potřebovat něco měnit najdete to v Menu Nastavení."
+        "walletReady": "Peněženka je nyní nastavena a připravena k použití. Pokud budete potřebovat něco změnit najdete to v menu Nastavení."
     },
     "paperWallet": {
         "neverShare": "Nikdy s nikým nesdílejte Váš Seed!",
@@ -289,7 +289,7 @@
     },
     "printBlankTemplate": {
         "printTemplateQuestion": "Chcete vytisknout prázdnou šablonu?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateInfo": "Pro ulehčení si můžete vytisknout prázdnou šablonu k zapsání vašeho seedu.",
         "printTemplateWarning": "Uchovávejte Seed na bezpečném místě a nikomu ho neukazujte.",
         "print": "Ano, tisk"
     },
@@ -510,7 +510,7 @@
         "autoPromotionExplanation": "Automatická podpora Vám pomůže potvrdit Vaši transakci v síti Tangle. Povolte toto nastavení, pokud máte problémy s potvrzováním transakcí.",
         "autoPromotionPoW": "Automatická podpora je možná pouze na Nodech, které podporují vzdálený Proof of Work.",
         "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "stateExport": "Export stavu"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadí",
@@ -546,7 +546,7 @@
     "unitInfoModal": {
         "unitSystem": "Jednotkový systém",
         "trillion": "Bilion",
-        "billion": "Miliard",
+        "billion": "Miliarda",
         "million": "Milion",
         "thousand": "Tisíc",
         "one": "Jedna",
@@ -659,9 +659,9 @@
         "key": "Klíč"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "Export stavu uloží do Vašeho zařízení soubor txt s informacemi o vašem účtě (transakcích, adresách), verzi peněženky a názvy uložených souborů.",
+        "exportSuccess": "Stav byl vyexportován",
+        "exportSuccessExplanation": "Váš stavový soubor byl úspěšně vyexportován."
     },
     "chart": {
         "mcap": "MCAP",
@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Chyba při získávání aktualizačních dat",
         "noUpdatesAvailable": "Nejsou dostupné žádné aktualizace",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "Máte nainstalovanou nejnovější verzi Trinity!",
         "newVersionAvailable": "K dispozici je nová verze",
         "newVersionAvailableExplanation": "K dispozici je nová verze Trinity. Chcete nyní aktualizovat?",
         "installUpdate": "Nainstalujte aktualizaci a restartujte",
