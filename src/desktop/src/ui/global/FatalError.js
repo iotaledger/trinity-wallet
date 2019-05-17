@@ -92,7 +92,6 @@ const FatalError = ({ error }) => {
 
 FatalError.propTypes = {
     error: PropTypes.string,
-    binary: PropTypes.bool,
 };
 
 export default FatalError;
