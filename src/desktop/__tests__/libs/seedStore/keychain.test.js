@@ -91,7 +91,7 @@ describe('Keychain SeedStore class', () => {
         expect(seed).toEqual(seedTrytesMock);
     });
 
-    test('Generate address', async () => {
+    test('Generate address and call garbage collector', async () => {
         const seedVault = await new Keychain(passwordMock, 'Foo');
 
         await seedVault.generateAddress({
