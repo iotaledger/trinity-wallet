@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Düğüm, hesap bilgilerinizi alırken bir hata döndürdü. Sorununuz devam ederse, Trinity Ayarlarında düğümü değiştirmeyi veya sistem proxy'nizi devre dışı bırakmayı deneyin.",
         "nodeOutOfSync": "Ağ senkronize değil",
         "nodeOutOfSyncExplanation": "Seçtiğiniz node senkronize değil. Lütfen node değiştirin veya tekrar deneyin.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Düğüm sürümü desteklenmiyor",
         "experimentalNodeExplanation": "Seçili olan düğümünüz desteklenmeyen deneysel bir sürümü çalıştırıyor. Lütfen düğümü değiştirin veya tekrar deneyin.",
         "thisNodeOutOfSync": "Seçtiğiniz node senkronize değil. Lütfen node değiştirin veya tekrar deneyin.",
