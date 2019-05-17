@@ -161,6 +161,7 @@
         "shouldUpdateExplanation": "Nowa wersja Trinity jest gotowa do pobrania. Zaleca się aktualizację do najnowszej wersji.",
         "forceUpdate": "Zaktualizuj aplikację, aby kontynuować",
         "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików.",
         "swipeToConfirm": "Przesuń, aby potwierdzić"
@@ -827,6 +828,8 @@
         "checkAddressExplanation": "Sprawdź, czy adres jest zgodny z adresem wyświetlanym w Twoim urządzeniu Ledger.",
         "applicationNotInitialised": "Ostrzeżenie niezaakceptowane",
         "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
         "udevError": "Brak możliwości połączenia z urządzeniem Ledger",
         "udevErrorExplanation": "Trinity nie może połączyć się z Twoim urządzeniem Ledger. Odwiedź poniższy adres, aby rozwiązać ten problem."
     }
