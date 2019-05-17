@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "El nodo devolvió un error al intentar obtener información de su cuenta. Si el problema persiste intente cambiar el nodo o deshabilite el proxy en la configuración.",
         "nodeOutOfSync": "Nodo desincronizado",
         "nodeOutOfSyncExplanation": "Su nodo seleccionado se encuentra desincronizado. Por favor cámbielo y pruebe de nuevo.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Versión del nodo no soportada",
         "experimentalNodeExplanation": "Su nodo seleccionado está ejecutando una versión experimental que no está soportada. Por favor cambie el nodo o pruebe de nuevo.",
         "thisNodeOutOfSync": "Este nodo no está sincronizado. Por favor, cambie de nodo o pruebe de nuevo.",
