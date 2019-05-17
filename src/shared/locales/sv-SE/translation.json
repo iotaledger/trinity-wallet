@@ -164,7 +164,8 @@
         "testVersionWarning": "Denna version ska endast användas för teständamål, med mycket små mängder tokens.",
         "missingPermission": "Åtkomst till filsystem krävs",
         "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion.",
-        "swipeToConfirm": "Dra för att bekräfta"
+        "swipeToConfirm": "Dra för att bekräfta",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -800,13 +801,16 @@
         "notReady": "Om du vill använda en Ledger-enhet, anslut och lås upp den nu",
         "indexInUse": "Index redan i bruk för kontot {{account}}",
         "indexInUseExplanation": "Ditt valda index är redan i bruk på ett av dina konto. Vänligen välj ett annat indexnummer.",
-        "proceedWithLedger": "Fortsätt med Ledger-installationen",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Konto-index",
         "accountPage": "Konto-sida",
         "actionCancelled": "Ledger-enhets åtkomst avbruten",
         "actionCancelledExplanation": "Kan inte utföra åtgärden utan Ledger-enhetens åtkomst.",
         "chooseAccountIndex": "Välj ditt Ledger konto-index",
-        "accountIndexExplanation": "Din Ledger kan hantera flera seeds. Varje seed identifieras av ett unikt indexnummer. Ett oanvänt index har blivit förvalt, men välj ett eget om du vill. Se till att anteckna ditt valda indexnummer.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Vissa tredjepartsplånböcker kräver sidor.",
         "connectionError": "Kan inte ansluta till Ledger",
         "connectionErrorExplanation": "Kontrollera att din Ledger är ansluten och upplåst.",
@@ -829,8 +833,10 @@
         "applicationNotInitialised": "Varning obekräftad",
         "applicationNotInitialisedExplanation": "Stäng och öppna på nytt IOTA-appen på din Ledger-enhet, acceptera den informativa varningen och försök igen.",
         "checkLedger": "Kolla din Ledger-enhet",
-        "acceptWarningExplanation": "Om det finns en informationsvarning på din Ledger-enhet måste du acceptera den innan du fortsätter.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
         "udevError": "Kunde inte kommunicera med Ledger-enheten",
-        "udevErrorExplanation": "Trinity kunde inte kommunicera med Ledger-enheten. Besök webbadressen nedan för att lösa problemet."
+        "udevErrorExplanation": "Trinity kunde inte kommunicera med Ledger-enheten. Besök webbadressen nedan för att lösa problemet.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }
