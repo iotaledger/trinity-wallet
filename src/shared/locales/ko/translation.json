@@ -161,6 +161,7 @@
         "shouldUpdateExplanation": "새로운 업데이트가 공개되었습니다. 최신 버전으로 업데이트 하는 것을 권장합니다.",
         "forceUpdate": "계속하기 전에 앱 업데이트 필요",
         "forceUpdateExplanation": "중요한 업데이트가 공개되었습니다. 지금 바로 앱을 업데이트해 주세요.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "파일 시스템 권한 필요",
         "missingPermissionExplanation": "이 기능을 사용하기 위해 파일 시스템 권한이 필요합니다.",
         "swipeToConfirm": "밀어서 확인"
@@ -827,6 +828,8 @@
         "checkAddressExplanation": "받는 주소가 Ledger 장치에 표시된 주소와 일치하는지 확인해 주세요.",
         "applicationNotInitialised": "경고 확인 필요",
         "applicationNotInitialisedExplanation": "Ledger 장치에서 IOTA 앱을 다시 열어 경고를 확인한 후 다시 확인해 주세요.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
         "udevError": "Ledger 장치에 연결할 수 없음",
         "udevErrorExplanation": "트리니티가 Ledger 장치에 연결하지 못했습니다. 아래 URL에 접속해 이 문제에 대해 더 알아볼 수 있습니다."
     }
