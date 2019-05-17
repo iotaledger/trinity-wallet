@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Noden returnerade ett fel när den hämtade din kontoinformation. Om problemet kvarstår, prova att ändra nod eller inaktivera din system-proxy i Trinity inställningar.",
         "nodeOutOfSync": "Nod osynkad",
         "nodeOutOfSyncExplanation": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
-        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "nodeOutOfSyncByTimestampExplanation": "Din nuvarande nod är osynkad. Vänligen ändra nod eller försök igen. Om ditt problem kvarstår, se till att klockan på din enhet är korrekt.",
         "experimentalNode": "Nod-versionen stöds inte",
         "experimentalNodeExplanation": "Din valda nod kör en experimentell version som inte stöds. Vänligen ändra nod eller försök igen.",
         "thisNodeOutOfSync": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
@@ -161,7 +161,7 @@
         "shouldUpdateExplanation": "En ny uppdatering har släppts. Det rekommenderas att du uppdaterar till den senaste versionen.",
         "forceUpdate": "Uppdatera appen att fortsätta",
         "forceUpdateExplanation": "En viktig uppdatering har släppts. Vänligen uppdatera appen nu.",
-        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
+        "testVersionWarning": "Denna version ska endast användas för teständamål, med mycket små mängder tokens.",
         "missingPermission": "Åtkomst till filsystem krävs",
         "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion.",
         "swipeToConfirm": "Dra för att bekräfta"
@@ -828,8 +828,8 @@
         "checkAddressExplanation": "Kontrollera att adressen matchar den som visas på din Ledger-enhet.",
         "applicationNotInitialised": "Varning obekräftad",
         "applicationNotInitialisedExplanation": "Stäng och öppna på nytt IOTA-appen på din Ledger-enhet, acceptera den informativa varningen och försök igen.",
-        "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
+        "checkLedger": "Kolla din Ledger-enhet",
+        "acceptWarningExplanation": "Om det finns en informationsvarning på din Ledger-enhet måste du acceptera den innan du fortsätter.",
         "udevError": "Kunde inte kommunicera med Ledger-enheten",
         "udevErrorExplanation": "Trinity kunde inte kommunicera med Ledger-enheten. Besök webbadressen nedan för att lösa problemet."
     }
