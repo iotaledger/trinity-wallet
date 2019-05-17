@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Sõlm on sünkroonist väljas",
         "nodeOutOfSyncExplanation": "Teie valitud sõlm on sünkroonist väljas. Muutke sõlme või proovige uuesti.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Node version not supported",
         "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "See sõlm on sünkroonist väljas. Muutke sõlme või proovige uuesti.",
