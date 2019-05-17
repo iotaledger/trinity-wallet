@@ -161,6 +161,7 @@
         "shouldUpdateExplanation": "Yeni bir güncelleme yayınlandı. En son sürüme güncellemeniz önerilir.",
         "forceUpdate": "Devam etmek için uygulamayı güncelleyin",
         "forceUpdateExplanation": "Kritik bir güncelleme yayınlandı. Lütfen uygulamayı güncelleyin.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Dosya sistemi izni gerekli",
         "missingPermissionExplanation": "Bu işlevi gerçekleştirmek için dosya sistemine erişim gereklidir.",
         "swipeToConfirm": "Onaylamak için kaydırın"
@@ -827,6 +828,8 @@
         "checkAddressExplanation": "Adresin, Ledger cihazınızda gösterilenle aynı olduğunu kontrol edin.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Ledger cihazınızdaki IOTA uygulamasını yeniden açın, bilgi uyarısını kabul edin ve tekrar deneyin.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
         "udevError": "Ledger cihazı ile iletişim kurulamadı",
         "udevErrorExplanation": "Trinity, Ledger cihazınızla iletişim kuramadı. Bu sorunu çözmek için lütfen aşağıdaki bağlantıyı ziyaret edin."
     }
