@@ -161,6 +161,7 @@
         "shouldUpdateExplanation": "有可用的更新，建議你更新到最新的版本。",
         "forceUpdate": "請更新應用程式並繼續",
         "forceUpdateExplanation": "有重大的版本更新。請立即更新 Trinity 錢包。",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "需要檔案系統權限",
         "missingPermissionExplanation": "這個功能必須擁有訪問檔案系統的權限。",
         "swipeToConfirm": "滑動來確認。"
@@ -827,6 +828,8 @@
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
         "udevError": "Could not communicate with Ledger device",
         "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
