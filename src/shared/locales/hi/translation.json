@@ -161,6 +161,7 @@
         "shouldUpdateExplanation": "नया संकरण उपलब्ध है, नवीनतम संस्करण को उपयोग करना उचित रहेगा",
         "forceUpdate": "उपयोग करने के लिए वॉलेट को अपडेट करे",
         "forceUpdateExplanation": "एक महत्वपूर्ण अपडेट जारी किया गया है। कृपया अब ऐप को अपडेट करें।",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "फाइल सिस्टम की अनुमति आवश्यक",
         "missingPermissionExplanation": "इस फ़ंक्शन को करने के लिए फ़ाइल सिस्टम तक पहुंच आवश्यक है।",
         "swipeToConfirm": "पुष्टि करने के लिए स्वाइप करें"
@@ -827,6 +828,8 @@
         "checkAddressExplanation": "जांचें कि पता आपके लेजर डिवाइस पर प्रदर्शित एक से मेल खाता है।",
         "applicationNotInitialised": "चेतावनी की पुष्टि नहीं हुई",
         "applicationNotInitialisedExplanation": "अपने लेजर डिवाइस पर IOTA ऐप को फिर से खोलें, सूचनात्मक चेतावनी को स्वीकार करें और फिर से प्रयास करें।",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
         "udevError": "लेजर डिवाइस के साथ संवाद नहीं कर सका",
         "udevErrorExplanation": "ट्रिनिटी आपके लेजर डिवाइस के साथ संवाद नहीं कर सका। कृपया इस समस्या को हल करने के लिए नीचे दिए गए URL पर जाएँ"
     }
