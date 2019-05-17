@@ -161,6 +161,7 @@
         "shouldUpdateExplanation": "È stato rilasciato un nuovo aggiornamento. Si consiglia di aggiornare all'ultima versione.",
         "forceUpdate": "Aggiornare l'app per continuare",
         "forceUpdateExplanation": "È stato rilasciato un aggiornamento critico. Si prega di aggiornare l'app ora.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "È richiesto l'accesso al file system",
         "missingPermissionExplanation": "L'accesso al file system è necessario per eseguire questa funzione.",
         "swipeToConfirm": "Scorri per confermare"
@@ -827,6 +828,8 @@
         "checkAddressExplanation": "Verifica che l'indirizzo corrisponda a quello visualizzato sul dispositivo Ledger.",
         "applicationNotInitialised": "Avvertenza non confermato",
         "applicationNotInitialisedExplanation": "Riaprire l'app IOTA sul dispositivo Ledger, accettare l'avviso informativo e riprovare.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
         "udevError": "Impossibile comunicare con il dispositivo Ledger",
         "udevErrorExplanation": "Trinity non ha potuto comunicare con il tuo dispositivo Ledger. Visita l'URL qui sotto per risolvere questo problema."
     }
