@@ -161,6 +161,7 @@
         "shouldUpdateExplanation": "新しいアップデートがリリースされています。最新バージョンに更新することをお勧めします。",
         "forceUpdate": "続けるにはアプリをアップデートしてください",
         "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "ファイルシステム権限が必要です",
         "missingPermissionExplanation": "この機能を実行するには、ファイルシステムへのアクセス権限が必要です。",
         "swipeToConfirm": "スワイプして確認する"
@@ -827,6 +828,8 @@
         "checkAddressExplanation": "アプリのアドレスがLedger端末に表示されているアドレスと一致することを確認してください。",
         "applicationNotInitialised": "未確定に関する警告",
         "applicationNotInitialisedExplanation": "LedgerでIOTAアプリを再度開いて、警告情報に同意してから、もう一度やり直してください。",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
         "udevError": "レッジャー端末と通信できませんでした",
         "udevErrorExplanation": "Trinity はお使いのLedger端末と通信できませんでした。この問題を解決するには下記のURLにアクセスしてください。"
     }
