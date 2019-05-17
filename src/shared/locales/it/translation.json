@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Il nodo ha restituito un errore mentre si reperivano i dati del tuo conto. Se il problema persiste, prova a cambiare il nodo o a disabilitare l'uso del proxy nelle impostazioni di Trinity.",
         "nodeOutOfSync": "Nodo non sincronizzato",
         "nodeOutOfSyncExplanation": "Il nodo attualmente selezionato non è sincronizzato. Si prega di cambiare il nodo o riprovare.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "La versione del nodo non è supportata",
         "experimentalNodeExplanation": "Il nodo attualmente selezionato sta eseguendo una versione sperimentale che non è supportata. Per favore cambia nodo o riprova.",
         "thisNodeOutOfSync": "Questo nodo non è sincronizzato. Si prega di cambiare il nodo o riprovare.",
