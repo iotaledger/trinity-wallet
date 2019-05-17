@@ -164,7 +164,8 @@
         "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
         "missingPermissionExplanation": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan suorittaaksesi tämän toiminnon.",
-        "swipeToConfirm": "Pyyhkäise vahvistaaksesi"
+        "swipeToConfirm": "Pyyhkäise vahvistaaksesi",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -800,13 +801,16 @@
         "notReady": "Mikäli haluat käyttää Ledger-laitetta, yhdistä se nyt ja avaa sen lukitus",
         "indexInUse": "Indeksi on jo käytössä tilille {{account}}",
         "indexInUseExplanation": "Valitsemasi indeksi on jo käytössä toisessa tilissäsi. Valitse toinen indeksinumero.",
-        "proceedWithLedger": "Jatka Ledgerin määrittämistä",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Tili hakemisto",
         "accountPage": "Tili sivu",
         "actionCancelled": "Ledger laitteen käyttö estetty",
         "actionCancelledExplanation": "Ei voida suorittaa toimintoa ilman Ledger laitteen yhteyttä",
         "chooseAccountIndex": "Valitse Ledgerin käyttäjä hakemisto",
-        "accountIndexExplanation": "Ledger pystyy tallentamaan useita Seed-lukuja. Jokainen Seed-luku tunnistetaan yksilöllisellä indeksinumerolla. Käyttämätön indeksi on ennaltavalittu, mutta voit vapaasti valita oman. Varmista, että olet merkinnyt valitun indeksinumeron ylös.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Eräät kolmannen osapuolen lompakot vaativat sivut.",
         "connectionError": "Ledgeriin yhdistäminen ei onnistu",
         "connectionErrorExplanation": "Tarkista, että Ledger-laitteesi on yhdistettu ja lukituksesta avattu.",
@@ -829,8 +833,10 @@
         "applicationNotInitialised": "Varoitusta ei ole vahvistettu",
         "applicationNotInitialisedExplanation": "Avaa IOTA-sovellus uudelleen Ledger-laitteessa, hyväksy informatiivinen varoitus ja yritä uudelleen.",
         "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
         "udevError": "Ledger-laitteen yhdistäminen epäonnistui",
-        "udevErrorExplanation": "Trinity ei voinut yhdistää Ledger-laitteeseen. Vieraile alla olevalla verkkosivulla ratkaistaksesi ongelman."
+        "udevErrorExplanation": "Trinity ei voinut yhdistää Ledger-laitteeseen. Vieraile alla olevalla verkkosivulla ratkaistaksesi ongelman.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }
