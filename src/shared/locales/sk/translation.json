@@ -164,7 +164,8 @@
         "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Je požadované povolenie súborového systému",
         "missingPermissionExplanation": "K potvrdeniu tejto funkcie potrebujete prístup k súborovému systému.",
-        "swipeToConfirm": "Posunutím potvrďte"
+        "swipeToConfirm": "Posunutím potvrďte",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -800,13 +801,16 @@
         "notReady": "Ak si želáte použiť Ledger, tak ho pripojte a odomknite",
         "indexInUse": "Tento index už používa účet {{account}}",
         "indexInUseExplanation": "Váš zvolený index je už používaný na niektorom z Vašich účtov. Vyberte si iné číslo indexu.",
-        "proceedWithLedger": "Pokračovať v nastavovaní Ledgeru",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Index účtu",
         "accountPage": "Stránka účtu",
         "actionCancelled": "Prístup k zariadeniu Ledger bol zrušený",
         "actionCancelledExplanation": "Akcia sa nedá vykonať bez prístupu k zariadeniu Ledger.",
         "chooseAccountIndex": "Vyberte index účtu vo Vašom Ledgeri",
-        "accountIndexExplanation": "Vaše zariadenie Ledger môže ukladať viacero Seedov. Každý Seed je označený jedinečným indexovým číslom. Nepoužitý index bol dopredu vybraný, ale môžete si zvoliť vlastný. Presvedčte sa, že ste si zaznamenali zvolené číslo indexu.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Niektoré peňaženky tretích strán vyžadujú použitie \"stron\".",
         "connectionError": "Nie je možné pripojiť sa k Vašemu Ledgeru",
         "connectionErrorExplanation": "Skontrolujte, či je Váš Ledger pripojený a odomknutý.",
@@ -829,8 +833,10 @@
         "applicationNotInitialised": "Informačné upozornenie nebolo prijaté",
         "applicationNotInitialisedExplanation": "Znovu otvorte aplikáciu IOTA na Vašom zariadení Ledger, prijmite informačné upozornenie a skúste to znova.",
         "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
         "udevError": "Nepodarilo sa komunikovať so zariadením Ledger",
-        "udevErrorExplanation": "Trinity nemohla komunikovať so zariadením Ledger. Ak chcete tento problém vyriešiť, prejdite na nižšie uvedenú URL adresu."
+        "udevErrorExplanation": "Trinity nemohla komunikovať so zariadením Ledger. Ak chcete tento problém vyriešiť, prejdite na nižšie uvedenú URL adresu.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }
