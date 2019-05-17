@@ -16,7 +16,7 @@ describe('Trinity desktop end-to-end', () => {
             await page.waitForSelector('.input__editable > div');
             await page.focus('.input__editable > div');
             await page.keyboard.type(
-                '999999999999999999999999999999999999999999999999999999999999999999999999999999999',
+                '9'.repeat(81),
             );
             await page.click('#seed-verify-next');
 
