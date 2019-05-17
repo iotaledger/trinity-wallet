@@ -40,7 +40,24 @@ class Ledger extends React.PureComponent {
         loading: false,
         advancedMode: false,
         udevError: false,
+        countdown: 5
     };
+
+    componentDidMount() {
+        const { t, generateAlert } = this.props;
+        generateAlert(
+            'info',
+            t('ledger:checkLedger'),
+            t('ledger:acceptWarningExplanation'),
+            10000
+        );
+        this.interval = setInterval(() => {
+            const { countdown } = this.state;
+            this.setState({
+                countdown: countdown - 1,
+            });
+        }, 1000);
+    }
 
     /**
      * Check for unused ledger index and set it to state
@@ -63,7 +80,6 @@ class Ledger extends React.PureComponent {
                 index: 0,
                 security: 1,
             });
-
             this.setState({
                 loading: false,
             });
@@ -137,7 +153,7 @@ class Ledger extends React.PureComponent {
 
     render() {
         const { t } = this.props;
-        const { page, index, loading, advancedMode, udevError } = this.state;
+        const { page, index, loading, advancedMode, udevError, countdown } = this.state;
 
         return (
             <form className={css.ledger} onSubmit={this.setIndex}>
@@ -173,8 +189,8 @@ class Ledger extends React.PureComponent {
                     <Button disabled={!loading} to="/onboarding/seed-intro" className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
-                    <Button loading={loading} type="submit" className="square" variant="primary">
-                        {t('continue')}
+                    <Button loading={loading} type="submit" className="square" variant="primary" disabled={countdown > 0}>
+                        {countdown && countdown > 0 ? countdown : t('continue')}
                     </Button>
                 </footer>
             </form>
