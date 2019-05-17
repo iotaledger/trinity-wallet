@@ -164,7 +164,8 @@
         "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Dosya sistemi izni gerekli",
         "missingPermissionExplanation": "Bu işlevi gerçekleştirmek için dosya sistemine erişim gereklidir.",
-        "swipeToConfirm": "Onaylamak için kaydırın"
+        "swipeToConfirm": "Onaylamak için kaydırın",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
@@ -800,13 +801,16 @@
         "notReady": "Bir Ledger cihazı kullanmak istiyorsanız, şimdi bağlayın ve kilidini açın",
         "indexInUse": "Dizin zaten {{account}} hesabı için kullanımda",
         "indexInUseExplanation": "Seçtiğiniz dizin hesaplarınızdan birinde zaten kullanılıyor. Lütfen başka bir dizin numarası seçin.",
-        "proceedWithLedger": "Ledger kurulumu ile devam et",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Hesap dizini",
         "accountPage": "Hesap sayfası",
         "actionCancelled": "Ledger cihazına erişim iptal edildi",
         "actionCancelledExplanation": "Ledger cihaza erişim olmadan işlem gerçekleştirilemiyor.",
         "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Ledger'iniz birden fazla seed saklayabilir. Her seed benzersiz bir indeks numarası ile tanımlanır. Kullanılmayan bir indeks önceden seçilmiş, ancak kendinizinkini seçmek için çekinmeyin. Seçtiğiniz indeks numarasını not ettiğinizden emin olun.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Bazı üçüncü taraf cüzdanlar sayfa gerektirir.",
         "connectionError": "Ledger'e bağlanılamıyor",
         "connectionErrorExplanation": "Ledger'inizin bağlı ve kilitli olmadığını kontrol edin.",
@@ -829,8 +833,10 @@
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Ledger cihazınızdaki IOTA uygulamasını yeniden açın, bilgi uyarısını kabul edin ve tekrar deneyin.",
         "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
         "udevError": "Ledger cihazı ile iletişim kurulamadı",
-        "udevErrorExplanation": "Trinity, Ledger cihazınızla iletişim kuramadı. Bu sorunu çözmek için lütfen aşağıdaki bağlantıyı ziyaret edin."
+        "udevErrorExplanation": "Trinity, Ledger cihazınızla iletişim kuramadı. Bu sorunu çözmek için lütfen aşağıdaki bağlantıyı ziyaret edin.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }
