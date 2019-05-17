@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Noden returnerade ett fel när den hämtade din kontoinformation. Om problemet kvarstår, prova att ändra nod eller inaktivera din system-proxy i Trinity inställningar.",
         "nodeOutOfSync": "Nod osynkad",
         "nodeOutOfSyncExplanation": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Nod-versionen stöds inte",
         "experimentalNodeExplanation": "Din valda nod kör en experimentell version som inte stöds. Vänligen ändra nod eller försök igen.",
         "thisNodeOutOfSync": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
