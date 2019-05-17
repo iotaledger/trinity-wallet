@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "A csomópont hibát jelzett a számlaadatok betöltése közben. Ha a hiba továbbra is fennáll, próbáljon egy másik csomópontra váltani vagy kapcsolja ki a proxy szerver használatát a beállítások között.",
         "nodeOutOfSync": "A csomópont nincs szinkronban",
         "nodeOutOfSyncExplanation": "A kiválasztott csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Nem támogatott csomópont",
         "experimentalNodeExplanation": "A jelenleg kiválasztott csomópont egy teszt verziójú szoftvert futtat, amely nem támogatott. Kérjük, válasszon másik csomópontot.",
         "thisNodeOutOfSync": "Ez a csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
