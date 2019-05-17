@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Užkraunant jūsų paskyros informaciją įvyko serverio klaida. Jei problema neišsispręs, bandykite pakeisti serverį arba atjunkite savo sistemos tarpinį serverį Trinity nustatymuose.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Serverio versija nepalaikoma",
         "experimentalNodeExplanation": "Jūsų pasirinktas serveris veikia su eksperimentine versija, kuri yra nepalaikoma. Prašome pakeisti serverį ir bandyti dar kartą.",
         "thisNodeOutOfSync": "Šis serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
