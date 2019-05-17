@@ -164,7 +164,8 @@
         "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "파일 시스템 권한 필요",
         "missingPermissionExplanation": "이 기능을 사용하기 위해 파일 시스템 권한이 필요합니다.",
-        "swipeToConfirm": "밀어서 확인"
+        "swipeToConfirm": "밀어서 확인",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -800,13 +801,16 @@
         "notReady": "Ledger 장치를 사용하려면 지금 연결 후 잠금을 해제해 주세요.",
         "indexInUse": "계정 {{account}} 에서 이미 인덱스 사용 중",
         "indexInUseExplanation": "이미 다른 계정에서 사용하고 있는 인덱스입니다. 다른 인덱스 번호를 선택해 주세요.",
-        "proceedWithLedger": "Ledger 설정 계속",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "계정 인덱스",
         "accountPage": "계정 페이지",
         "actionCancelled": "Ledger 장치 접근 취소됨",
         "actionCancelledExplanation": "Ledger 장치 없이 이 작업을 계속할 수 없습니다.",
         "chooseAccountIndex": "Ledger 계정 인덱스를 선택해 주세요",
-        "accountIndexExplanation": "Ledger에는 여러 시드를 저장할 수 있습니다. 각 시드는 고유한 인덱스 번호로 구분됩니다. 기존에 사용되지 않은 인덱스 번호가 자동으로 선택되었지만 원한다면 다른 번호를 선택할 수도 있습니다. 선택한 인덱스 번호는 별도로 기록해 두세요.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "다른 비공식 지갑 중에는 페이지를 사용하는 경우도 있습니다.",
         "connectionError": "Ledger에 연결할 수 없음",
         "connectionErrorExplanation": "Ledger가 연결되었고 잠금이 해제되었는지 확인해 주세요.",
@@ -829,8 +833,10 @@
         "applicationNotInitialised": "경고 확인 필요",
         "applicationNotInitialisedExplanation": "Ledger 장치에서 IOTA 앱을 다시 열어 경고를 확인한 후 다시 확인해 주세요.",
         "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
         "udevError": "Ledger 장치에 연결할 수 없음",
-        "udevErrorExplanation": "트리니티가 Ledger 장치에 연결하지 못했습니다. 아래 URL에 접속해 이 문제에 대해 더 알아볼 수 있습니다."
+        "udevErrorExplanation": "트리니티가 Ledger 장치에 연결하지 못했습니다. 아래 URL에 접속해 이 문제에 대해 더 알아볼 수 있습니다.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }
