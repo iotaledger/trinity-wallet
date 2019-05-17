@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "在获取你的账户信息时，节点出现了一个错误。如果这个问题仍旧存在，请尝试更换节点或者在Trinity 设置中，取消系统代理。",
         "nodeOutOfSync": "节点不同步",
         "nodeOutOfSyncExplanation": "当前选定的节点不同步，请更换节点或重试。",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "不支持的节点版本",
         "experimentalNodeExplanation": "您当前选定的节点正在运行不受支持的实验性版本。请更改节点或重试。",
         "thisNodeOutOfSync": "此节点不同步，请更换节点或重试。",
