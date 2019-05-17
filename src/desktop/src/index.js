@@ -21,6 +21,7 @@ import Index from 'ui/Index';
 import Tray from 'ui/Tray';
 
 import Alerts from 'ui/global/Alerts';
+import FatalError from 'ui/global/FatalError';
 
 import settings from '../package.json';
 
@@ -79,8 +80,11 @@ if (Electron.mode === 'tray') {
             // Show Wallet window after inital store update
             Electron.focus();
         })
-        // eslint-disable-next-line no-console
-        .catch((err) => console.log(err));
+
+        .catch((err) => {
+            Electron.focus();
+            render(<FatalError error={err.message || err} />, document.getElementById('root'));
+        });
 }
 
 render(

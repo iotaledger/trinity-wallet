@@ -7,14 +7,8 @@ import css from 'ui/views/onboarding/index.scss';
 /**
  * Linux missing dependencies tutorial
  */
-class FatalError extends React.PureComponent {
-    static propTypes = {
-        error: PropTypes.string,
-    };
-
-    linuxContent = () => {
-        const { error } = this.props;
-
+const FatalError = ({ error }) => {
+    const linuxContent = () => {
         if (typeof error === 'string' && error.indexOf('Unknown or unsupported transport') > -1) {
             return (
                 <form className={css.tutorial}>
@@ -59,25 +53,29 @@ class FatalError extends React.PureComponent {
         );
     };
 
-    generalContent = () => {
+    const generalContent = () => {
         return (
             <form>
                 <h1>Error launching wallet</h1>
                 <p>There was a fatal error launching the wallet.</p>
+                <pre>{error}</pre>
             </form>
         );
     };
 
-    render() {
-        return (
-            <main className={css.onboarding}>
-                <header />
-                <div>
-                    <div>{Electron.getOS() === 'linux' ? this.linuxContent() : this.generalContent()}</div>
-                </div>
-            </main>
-        );
-    }
-}
+    return (
+        <main className={css.onboarding}>
+            <header />
+            <div>
+                <div>{Electron.getOS() === 'linux' ? linuxContent() : generalContent()}</div>
+            </div>
+        </main>
+    );
+};
+
+FatalError.propTypes = {
+    error: PropTypes.string,
+    binary: PropTypes.bool,
+};
 
 export default FatalError;
