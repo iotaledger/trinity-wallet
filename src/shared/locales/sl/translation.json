@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Vozlišče je vrnilo neveljaven odziv med pridobivanjem podatkov o vašem računu. Če napaka ostaja, poskusite z menjavo vozlišča ali deaktivacijo proxy strežnika v Trinity nastavitvah.",
         "nodeOutOfSync": "Vozlišče ni sinhronizirano",
         "nodeOutOfSyncExplanation": "Trenutno izbrano vozlišče ni sinhronizirano. Poskusite ponovno ali izberite drugega.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Verzija vozlišča ni podprta",
         "experimentalNodeExplanation": "Trenutno izbrano vozlišče deluje na poskusni verziji ki ni podprta. Zamenjajte vozlišče in poskusite ponovno.",
         "thisNodeOutOfSync": "To vozlišče ni sinhronizirano. Poskusite ponovno ali izberite drugega.",
