@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "به هنگام دریافت اطلاعات حساب شما node با خطایی مواجه شد. اگر این مشکل همچنان ادامه دارد، تغییر دادن node یا غیر فعال کردن پروکسی سیستم خود در تنظیمات Trinity را امتحان کنید.",
         "nodeOutOfSync": "Node خارج از همگام سازی",
         "nodeOutOfSyncExplanation": "Node در حال حاضر انتخاب شده شما از همگام نیست. لطفا Node را تغییر دهید یا دوباره تلاش کنید.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "نسخه node پشتیبانی نمی‌شود",
         "experimentalNodeExplanation": "node انتخاب شده فعلی شما در حال اجرای یک نسخه آزمایشی است که پشتیبانی نمی‌شود. لطفا node خود را تغییر دهید یا دوباره تلاش کنید.",
         "thisNodeOutOfSync": "این Node همگام نیست. لطفا Node را تغییر دهید یا دوباره تلاش کنید.",
