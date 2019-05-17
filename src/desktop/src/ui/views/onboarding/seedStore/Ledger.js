@@ -63,7 +63,7 @@ class Ledger extends React.PureComponent {
     }
 
     componentDidUpdate(_, prevState) {
-        if (prevState.index !== this.state.index && !this.state.displayedIndexInfo) {
+        if (prevState.index !== this.state.index && !this.state.displayedIndexInfo && !this.props.restoringLedgerAccount) {
               const { t, generateAlert } = this.props;
               generateAlert('error', t('ledger:writtenDownInfoTitle'), t('ledger:writtenDownInfoExplanation'), 10000);
         }
