@@ -164,7 +164,8 @@
         "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "需要文件系统权限",
         "missingPermissionExplanation": "本功能需要具备文件系统访问权限。",
-        "swipeToConfirm": "滑动以确认"
+        "swipeToConfirm": "滑动以确认",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -800,13 +801,16 @@
         "notReady": "如果您希望使用Ledger设备，请连上并解锁。",
         "indexInUse": "账户 {{account}} 已经使用该索引",
         "indexInUseExplanation": "您所选的索引已经在您其中一个帐户使用过了，请选择其他索引号码。",
-        "proceedWithLedger": "进行Ledger设置",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "账户索引",
         "accountPage": "账户页面",
         "actionCancelled": "Ledger设备访问已取消",
         "actionCancelledExplanation": "不能在无法访问Ledger设备的情况下执行操作。",
         "chooseAccountIndex": "选择您的Ledger账户索引",
-        "accountIndexExplanation": "您的Ledger可以存储多个种子。每个种子都由一个唯一的索引号码。系统已经预先选择未使用的索引，但您也可以随意选择自己的索引。请务必记下您选择的索引号码。",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "一些第三方钱包需要pages。",
         "connectionError": "无法连接至Ledger",
         "connectionErrorExplanation": "检查您的Ledger是否已连接并解锁。",
@@ -829,8 +833,10 @@
         "applicationNotInitialised": "未经确认的警告",
         "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。",
         "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
         "udevError": "无法与Ledger 设备进行通信",
-        "udevErrorExplanation": "Trinity 无法与您的Ledger 设备通信。请访问以下网址来解决这个问题。"
+        "udevErrorExplanation": "Trinity 无法与您的Ledger 设备通信。请访问以下网址来解决这个问题。",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }
