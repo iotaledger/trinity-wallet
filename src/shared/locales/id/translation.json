@@ -161,6 +161,7 @@
         "shouldUpdateExplanation": "Pembaruan baru telah dirilis. Anda disarankan untuk memperbarui ke versi terbaru.",
         "forceUpdate": "Perbarui aplikasi untuk melanjutkan",
         "forceUpdateExplanation": "Pembaruan kritis telah dirilis. Harap perbarui aplikasinya sekarang.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Izin akses File System dibutuhkan",
         "missingPermissionExplanation": "Akses ke sistem file diperlukan untuk menjalankan fungsi ini.",
         "swipeToConfirm": "Geser untuk mengonfirmasi"
@@ -827,6 +828,8 @@
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must accept it before proceeding.",
         "udevError": "Could not communicate with Ledger device",
         "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
