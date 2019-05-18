@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "アカウント情報を取得中にノードがエラーを返しました。問題が解決しない場合は、Trinityの設定でノードを変更するか、システムプロキシを無効にしてみてください。",
         "nodeOutOfSync": "ノードが同期していません。",
         "nodeOutOfSyncExplanation": "現在選択しているノードは同期していません。ノードを変更するか、もう一度お試しください。",
-        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "nodeOutOfSyncByTimestampExplanation": "現在選択されているノードは同期していません。ノードを変更するか、やり直してください。問題が解決しない場合は、デバイスの時刻が正しいことを確認してください。",
         "experimentalNode": "サポートされていないノードのバージョンです",
         "experimentalNodeExplanation": "現在選択されているノードは、サポートされていない実験版を実行しています。ノードを変更するか、もう一度お試しください。",
         "thisNodeOutOfSync": "このノードは同期していません。ノードを変更するか、もう一度お試しください。",
@@ -161,11 +161,11 @@
         "shouldUpdateExplanation": "新しいアップデートがリリースされています。最新バージョンに更新することをお勧めします。",
         "forceUpdate": "続けるにはアプリをアップデートしてください",
         "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。",
-        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
+        "testVersionWarning": "このバージョンは、テスト目的でのみ使用し、ごく少量のトークンで使用してください。",
         "missingPermission": "ファイルシステム権限が必要です",
         "missingPermissionExplanation": "この機能を実行するには、ファイルシステムへのアクセス権限が必要です。",
         "swipeToConfirm": "スワイプして確認する",
-        "expert": "Expert"
+        "expert": "上級者"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -801,8 +801,8 @@
         "notReady": "Ledger端末を使いたい場合、今、接続しロックを解除してください",
         "indexInUse": "アカウント{{account}}で既に使用されているインデックスです",
         "indexInUseExplanation": "選択したインデックスは、いずれかのアカウントですでに使用されています。別のインデックス番号を選択してください。",
-        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
-        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccountInfo": "書き留めてインデックス番号を忘れないようにしてください。",
+        "restoreLedgerAccountInfo": "アカウントを復元するには、保存したインデックス番号を入力してください。",
         "createNewLedgerAccount": "Create a new Ledger account",
         "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "アカウントインデックス",
