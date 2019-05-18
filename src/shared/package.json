@@ -14,7 +14,6 @@
     "posttest": "rimraf realm-object-server",
     "test:watch": "yarn test --watch",
     "test:coverage": "nyc --check-coverage --lines 50 --statements 50 --functions 50 --branches 50 yarn test",
-    "auditjs": "./../../node_modules/.bin/auditjs -n -l error -w whitelist.json",
     "themes:sync": "node themes/sync.js",
     "postinstall": "node debian-rebuild-realm.js",
     "snyk-protect": "snyk protect"
