@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Noden returnerte en feil under henting av kontoinformasjonen. Hvis problemet vedvarer, kan du prøve å endre node eller deaktivere proxy i Trinitys innstillinger.",
         "nodeOutOfSync": "Noden er ikke synkronisert",
         "nodeOutOfSyncExplanation": "Din valgte node er ikke synkronisert. Vennligst velg en ny node eller prøv på nytt.",
-        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "nodeOutOfSyncByTimestampExplanation": "Din valgte node er ikke synkronisert. Vennligst endre node eller prøv igjen. Hvis problemet vedvarer, sørg for at klokken på enheten din er korrekt.",
         "experimentalNode": "Node-versjonen støttes ikke",
         "experimentalNodeExplanation": "Din valgte node kjører en eksperimentell versjon som ikke støttes. Vennligst endre node eller prøv på nytt.",
         "thisNodeOutOfSync": "Denne noden er ikke synkronisert. Vennligst endre node eller prøv på nytt.",
@@ -161,11 +161,11 @@
         "shouldUpdateExplanation": "En ny versjon er lansert. Det anbefales at du oppdaterer til den nyeste versjonen.",
         "forceUpdate": "Oppdater applikasjonen for å fortsette",
         "forceUpdateExplanation": "En kritisk oppdatering er lansert. Oppdater applikasjonen nå.",
-        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
+        "testVersionWarning": "Denne versjonen bør kun brukes til testformål, med svært små mengder tokens.",
         "missingPermission": "Trenger tillatelse til filsystemet",
         "missingPermissionExplanation": "Tilgang til filsystemet kreves for å utføre denne funksjonen.",
         "swipeToConfirm": "Dra for å bekrefte",
-        "expert": "Expert"
+        "expert": "Ekspert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -801,8 +801,8 @@
         "notReady": "Ønsker du å benytte Ledger, koble til og lås den opp nå",
         "indexInUse": "Indeks allerede benyttet på konto {{account}}",
         "indexInUseExplanation": "Din valgte indeks er allerede i bruk på en av dine kontoer. Vennligst benytt et annet indeks-nummer.",
-        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
-        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccountInfo": "Pass på at du skriver ned og husker indeksnummeret ditt.",
+        "restoreLedgerAccountInfo": "Skriv inn det lagrede indeksnummeret ditt for å gjenopprette kontoen din.",
         "createNewLedgerAccount": "Create a new Ledger account",
         "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Kontoindex",
