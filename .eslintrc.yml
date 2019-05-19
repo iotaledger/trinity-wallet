@@ -54,7 +54,7 @@ rules:
     linebreak-style: [0, "unix"]
     no-alert: 2
     no-console: 1
-    no-else-return: 1
+    no-else-return: [1, { "allowElseIf": true }]
     no-empty: [2, { "allowEmptyCatch": true }]
     no-eq-null: 2
     no-eval: 2
