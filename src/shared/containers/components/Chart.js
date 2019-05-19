@@ -29,26 +29,6 @@ export default function withChartData(ChartComponent) {
         currencies = ['USD', 'EUR', 'BTC', 'ETH']; // eslint-disable-line react/sort-comp
         timeframes = ['24h', '7d', '1m', '1h'];
 
-        changeCurrency = () => {
-            const { marketData, setCurrency } = this.props;
-            const nextCurrency = this.currencies[
-                this.currencies.indexOf(marketData.currency) < this.currencies.length - 1
-                    ? this.currencies.indexOf(marketData.currency) + 1
-                    : 0
-            ];
-            setCurrency(nextCurrency);
-        };
-
-        changeTimeframe = () => {
-            const { marketData, setTimeframe } = this.props;
-            const nextTimeframe = this.timeframes[
-                this.timeframes.indexOf(marketData.timeframe) < this.timeframes.length - 1
-                    ? this.timeframes.indexOf(marketData.timeframe) + 1
-                    : 0
-            ];
-            setTimeframe(nextTimeframe);
-        };
-
         getPriceFormat = (x) => {
             const { marketData } = this.props;
             return marketData.currency === 'USD' || marketData.currency === 'EUR'
@@ -87,6 +67,26 @@ export default function withChartData(ChartComponent) {
 
             return Array.from({ length: 6 }, (value, index) => limit.min + range * index * 0.2);
         }
+
+        changeCurrency = () => {
+            const { marketData, setCurrency } = this.props;
+            const nextCurrency = this.currencies[
+                this.currencies.indexOf(marketData.currency) < this.currencies.length - 1
+                    ? this.currencies.indexOf(marketData.currency) + 1
+                    : 0
+            ];
+            setCurrency(nextCurrency);
+        };
+
+        changeTimeframe = () => {
+            const { marketData, setTimeframe } = this.props;
+            const nextTimeframe = this.timeframes[
+                this.timeframes.indexOf(marketData.timeframe) < this.timeframes.length - 1
+                    ? this.timeframes.indexOf(marketData.timeframe) + 1
+                    : 0
+            ];
+            setTimeframe(nextTimeframe);
+        };
 
         render() {
             const { marketData, settings, theme, t } = this.props;
@@ -136,5 +136,8 @@ export default function withChartData(ChartComponent) {
         setTimeframe,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(ChartData));
+    return connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(withI18n()(ChartData));
 }
