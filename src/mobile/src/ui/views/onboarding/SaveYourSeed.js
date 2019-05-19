@@ -206,6 +206,18 @@ class SaveYourSeed extends Component {
         );
     }
 
+    showModal = (modalContent) => {
+        const { theme } = this.props;
+        switch (modalContent) {
+            case 'print':
+                return this.props.toggleModalActivity(modalContent, {
+                    theme,
+                    print: () => this.print(),
+                    hideModal: () => this.props.toggleModalActivity(),
+                });
+        }
+    };
+
     /**
      * Hide navigation bar when returning from print
      * @method componentDidAppear
@@ -223,7 +235,9 @@ class SaveYourSeed extends Component {
      *  @method print
      */
     async print() {
-        const { theme: { body } } = this.props;
+        const {
+            theme: { body },
+        } = this.props;
         this.props.toggleModalActivity();
         const paperWalletHTML = `
         <!DOCTYPE html>
@@ -295,20 +309,11 @@ class SaveYourSeed extends Component {
         }
     }
 
-    showModal = (modalContent) => {
-        const { theme } = this.props;
-        switch (modalContent) {
-            case 'print':
-                return this.props.toggleModalActivity(modalContent, {
-                    theme,
-                    print: () => this.print(),
-                    hideModal: () => this.props.toggleModalActivity(),
-                });
-        }
-    };
-
     render() {
-        const { t, theme: { body, secondary } } = this.props;
+        const {
+            t,
+            theme: { body, secondary },
+        } = this.props;
         const textColor = { color: body.color };
         const lineColor = { borderLeftColor: body.color };
 
@@ -475,4 +480,9 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['saveYourSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SaveYourSeed));
+export default withNamespaces(['saveYourSeed', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(SaveYourSeed),
+);

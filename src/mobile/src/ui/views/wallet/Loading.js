@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     animationLoading: {
         justifyContent: 'center',
         width: width * 1.5,
-        height: width / 1.77 * 1.5,
+        height: (width / 1.77) * 1.5,
     },
     animationNewSeed: {
         justifyContent: 'center',
@@ -229,6 +229,14 @@ class Loading extends Component {
         this.props.getCurrencyData(currency);
     }
 
+    animateElipses = (chars, index, time = 750) => {
+        this.timeout = setTimeout(() => {
+            this.setState({ elipsis: chars[index] });
+            const next = index === chars.length - 1 ? 0 : index + 1;
+            this.animateElipses(chars, next);
+        }, time);
+    };
+
     /**
      * Navigates to home screen
      *
@@ -249,14 +257,6 @@ class Loading extends Component {
         timer.clearTimeout('waitTimeout');
     }
 
-    animateElipses = (chars, index, time = 750) => {
-        this.timeout = setTimeout(() => {
-            this.setState({ elipsis: chars[index] });
-            const next = index === chars.length - 1 ? 0 : index + 1;
-            this.animateElipses(chars, next);
-        }, time);
-    };
-
     /**
      * Redirect to login page
      *
@@ -276,7 +276,11 @@ class Loading extends Component {
     }
 
     render() {
-        const { t, theme: { body, primary }, isThemeDark } = this.props;
+        const {
+            t,
+            theme: { body, primary },
+            isThemeDark,
+        } = this.props;
         const textColor = { color: body.color };
         const loadingAnimationPath = isThemeDark ? whiteLoadingAnimation : blackLoadingAnimation;
 
@@ -370,4 +374,9 @@ const mapDispatchToProps = {
     setLoginRoute,
 };
 
-export default withNamespaces(['loading', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Loading));
+export default withNamespaces(['loading', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Loading),
+);

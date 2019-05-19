@@ -89,6 +89,14 @@ export class Poll extends Component {
         AppState.removeEventListener('change', this.handleAppStateChange);
     }
 
+    handleAppStateChange = (nextAppState) => {
+        if (nextAppState.match(/inactive|background/)) {
+            this.stopBackgroundProcesses();
+        } else if (nextAppState === 'active') {
+            this.startBackgroundProcesses();
+        }
+    };
+
     shouldSkipCycle() {
         const props = this.props;
 
@@ -184,14 +192,6 @@ export class Poll extends Component {
         timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 8000);
     }
 
-    handleAppStateChange = (nextAppState) => {
-        if (nextAppState.match(/inactive|background/)) {
-            this.stopBackgroundProcesses();
-        } else if (nextAppState === 'active') {
-            this.startBackgroundProcesses();
-        }
-    };
-
     stopBackgroundProcesses() {
         timer.clearInterval(this, 'polling');
     }
@@ -265,4 +265,7 @@ const mapDispatchToProps = {
     retryFailedTransaction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Poll);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Poll);

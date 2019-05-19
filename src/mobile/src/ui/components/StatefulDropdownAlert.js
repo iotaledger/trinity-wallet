@@ -81,6 +81,10 @@ class StatefulDropdownAlert extends Component {
         this.props.dismissAlert();
     }
 
+    refFunc = (ref) => {
+        this.dropdown = ref;
+    };
+
     /**
      * Checks for alerts on mount
      *
@@ -88,7 +92,12 @@ class StatefulDropdownAlert extends Component {
      *
      */
     checkForAlerts() {
-        const { alerts: { category, title, message }, hasConnection, shouldUpdate, forceUpdate } = this.props;
+        const {
+            alerts: { category, title, message },
+            hasConnection,
+            shouldUpdate,
+            forceUpdate,
+        } = this.props;
 
         if (this.dropdown && (shouldUpdate || forceUpdate)) {
             return this.dropdown.alertWithType(category, title, message);
@@ -111,13 +120,14 @@ class StatefulDropdownAlert extends Component {
         }
     }
 
-    refFunc = (ref) => {
-        this.dropdown = ref;
-    };
-
     render() {
         const { closeInterval } = this.props.alerts;
-        const { onRef, theme: { positive, negative }, dismissAlert, forceUpdate } = this.props;
+        const {
+            onRef,
+            theme: { positive, negative },
+            dismissAlert,
+            forceUpdate,
+        } = this.props;
         const closeAfter = closeInterval;
         return (
             <DropdownAlert
@@ -180,4 +190,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = { dismissAlert };
 
-export default withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(StatefulDropdownAlert));
+export default withNamespaces(['global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(StatefulDropdownAlert),
+);

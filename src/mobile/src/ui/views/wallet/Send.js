@@ -400,7 +400,7 @@ export class Send extends Component {
         const { amount, usdPrice, conversionRate } = this.props;
         const { currencySymbol } = this.state;
         const convertedValue = round(
-            parseFloat(amount) * usdPrice / 1000000 * this.getUnitMultiplier() * conversionRate,
+            ((parseFloat(amount) * usdPrice) / 1000000) * this.getUnitMultiplier() * conversionRate,
             10,
         );
         let conversionText = '';
@@ -425,6 +425,7 @@ export class Send extends Component {
         });
     }
 
+    // eslint-disable-next-line react/sort-comp
     interuptSendAnimation() {
         this.setState({ shouldInteruptSendAnimation: !this.state.shouldInteruptSendAnimation });
     }
@@ -890,4 +891,9 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
+export default withNamespaces(['send', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Send),
+);

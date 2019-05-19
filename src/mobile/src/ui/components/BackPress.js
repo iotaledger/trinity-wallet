@@ -51,6 +51,33 @@ export default function withBackPress(C) {
         }
 
         /**
+         * Choose appropriate action on back press
+         *
+         * @method handleBackPress
+         */
+        handleBackPress = () => {
+            const { currentSetting, currentRoute, loginRoute } = this.props;
+            switch (currentRoute) {
+                case 'home':
+                    this.withBackPressNavigateSettings(currentSetting);
+                    break;
+                case 'languageSetup':
+                case 'onboardingComplete':
+                case 'login':
+                    if (loginRoute !== 'login') {
+                        this.withBackPressNavigateNodeOptions(loginRoute);
+                        break;
+                    }
+                    this.withBackPressCloseApp();
+                    break;
+                default:
+                    this.withBackPressPopRoute();
+                    break;
+            }
+            return true;
+        };
+
+        /**
          * Remove back handler
          *
          * @method componentDidDisappear
@@ -153,37 +180,13 @@ export default function withBackPress(C) {
             }
         }
 
-        /**
-         * Choose appropriate action on back press
-         *
-         * @method handleBackPress
-         */
-        handleBackPress = () => {
-            const { currentSetting, currentRoute, loginRoute } = this.props;
-            switch (currentRoute) {
-                case 'home':
-                    this.withBackPressNavigateSettings(currentSetting);
-                    break;
-                case 'languageSetup':
-                case 'onboardingComplete':
-                case 'login':
-                    if (loginRoute !== 'login') {
-                        this.withBackPressNavigateNodeOptions(loginRoute);
-                        break;
-                    }
-                    this.withBackPressCloseApp();
-                    break;
-                default:
-                    this.withBackPressPopRoute();
-                    break;
-            }
-            return true;
-        };
-
         render() {
             return <C {...this.props} />;
         }
     }
 
-    return connect(mapStateToProps, mapDispatchToProps)(EnhancedComponent);
+    return connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(EnhancedComponent);
 }

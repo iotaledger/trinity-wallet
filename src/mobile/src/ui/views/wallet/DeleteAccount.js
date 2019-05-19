@@ -170,20 +170,6 @@ class DeleteAccount extends Component {
         );
     }
 
-    /**
-     * Deletes account information from keychain and store
-     *
-     * @method delete
-     */
-    async delete() {
-        const { selectedAccountName, selectedAccountMeta } = this.props;
-        const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
-        try {
-            await seedStore.removeAccount();
-        } catch (err) { }
-        this.props.deleteAccount(selectedAccountName);
-    }
-
     showModal = () => {
         const { t, theme, selectedAccountName } = this.props;
         this.props.toggleModalActivity('deleteAccount', {
@@ -198,6 +184,20 @@ class DeleteAccount extends Component {
     hideModal = () => {
         this.props.toggleModalActivity();
     };
+
+    /**
+     * Deletes account information from keychain and store
+     *
+     * @method delete
+     */
+    async delete() {
+        const { selectedAccountName, selectedAccountMeta } = this.props;
+        const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+        try {
+            await seedStore.removeAccount();
+        } catch (err) {}
+        this.props.deleteAccount(selectedAccountName);
+    }
 
     render() {
         const { t, theme, selectedAccountName } = this.props;
@@ -292,4 +292,9 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['deleteAccount', 'global'])(connect(mapStateToProps, mapDispatchToProps)(DeleteAccount));
+export default withNamespaces(['deleteAccount', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(DeleteAccount),
+);

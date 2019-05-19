@@ -157,6 +157,7 @@ class UseExistingSeed extends Component {
      * Navigates to loading screen
      * @method fetchAccountInfo
      */
+    // eslint-disable-next-line react/sort-comp
     async fetchAccountInfo(seed, accountName) {
         const seedStore = await new SeedStore.keychain(global.passwordHash);
         await seedStore.addAccount(accountName, seed);
@@ -348,5 +349,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['addAdditionalSeed', 'useExistingSeed', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(UseExistingSeed),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(UseExistingSeed),
 );
