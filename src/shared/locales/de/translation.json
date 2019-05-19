@@ -102,7 +102,7 @@
         "promotionErrorExplanation": "Beim Senden der Transaktion ist ein Fehler aufgetreten. Bitte versuche es erneut.",
         "noLongerValid": "Das Bundle, das du promoten möchtest, ist nicht mehr gültig",
         "transactionAlreadyConfirmed": "Transaktion bereits bestätigt",
-        "transactionAlreadyConfirmedExplanation": "Die Transaktion, die Du versuchst zu promoten ist bereits bestätigt.",
+        "transactionAlreadyConfirmedExplanation": "Die Transaktion, die du versuchst zu promoten, ist bereits bestätigt.",
         "cannotSendToOwn": "Senden an Empfangsadresse",
         "cannotSendToOwnExplanation": "Du kannst nicht an diese Adresse senden, da sie als ausgehende Adresse verwendet wird.",
         "pleaseWait": "Bitte warten",
@@ -177,7 +177,7 @@
         "noNickname": "Kein Kontoname eingegeben",
         "noNicknameExplanation": "Bitte gib einen Kontonamen für deinen Seed ein.",
         "seedInUse": "Dieser Seed wird bereits verwendet",
-        "seedInUseExplanation": "Dieser Seed ist bereits mit deinem Wallet verknüpft. Bitte verwende einen anderen."
+        "seedInUseExplanation": "Dieser Seed ist bereits mit deinem Wallet verknüpft. Bitte verwende einen anderen Seed."
     },
     "changePassword": {
         "passwordUpdated": "Passwort aktualisiert",
@@ -275,7 +275,7 @@
     "onboardingComplete": {
         "allDone": "Alles erledigt!",
         "openYourWallet": "Dein Wallet öffnen",
-        "walletReady": "Dein Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen möchtest, verwende das Einstellungsmenü."
+        "walletReady": "Dein Wallet ist jetzt eingerichtet und bereit. Um Änderungen an deinem Wallet vorzunehmen, verwende das Einstellungsmenü."
     },
     "paperWallet": {
         "neverShare": "Teile niemals deinen Seed.",
@@ -554,7 +554,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Warum kann ich nicht mein gesamtes Guthaben ausgeben?",
-        "spentAddressExplanation": "Du hast Guthaben auf einer oder mehreren bereits verwendeten Adressen. Adress-Wiederverwendung ist bei IOTA gefährlich. Daher lässt es die Wallet nicht zu, mehr als einmal von der gleichen Adresse zu senden.",
+        "spentAddressExplanation": "Du hast Guthaben auf einer oder mehreren bereits verwendeten Adressen. Die Wiederverwendung von Adressen ist bei IOTA gefährlich. Daher lässt es die Wallet nicht zu, mehr als einmal von der gleichen Adresse zu senden.",
         "discordInformation": "Bitte besuche den #help Kanal auf Discord um herauszufinden, was du tun kannst."
     },
     "deleteAccount": {
@@ -733,7 +733,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",
         "noUpdatesAvailable": "Keine Updates verfügbar",
-        "noUpdatesAvailableExplanation": "Du hast bereits die neueste Version von Trinity Desktop installiert.",
+        "noUpdatesAvailableExplanation": "Du hast die aktuelle Version von Trinity installiert!",
         "newVersionAvailable": "Neue Version verfügbar",
         "newVersionAvailableExplanation": "Eine neue Trinity Version ist verfügbar. Möchtest du das Update jetzt durchführen?",
         "installUpdate": "Update installieren und Trinity neu starten",
@@ -795,7 +795,7 @@
     },
     "ledger": {
         "ready": "Ledger verbunden und bereit",
-        "notReady": "Wenn du einen Ledger verwenden möchtest verbinde und entsperre das Gerät jetzt",
+        "notReady": "Wenn du einen Ledger verwenden möchtest, verbinde und entsperre das Gerät jetzt.",
         "indexInUse": "Dieser Index wird bereits für das Konto {{account}} verwendet",
         "indexInUseExplanation": "Der gewählte Index ist bereits in Verwendung. Bitte wähle einen anderen Index.",
         "proceedWithLedger": "Mit der Einrichtung von Ledger fortfahren",
@@ -805,7 +805,7 @@
         "actionCancelledExplanation": "Ohne den Zugriff auf deinen Ledger kann der Vorgang nicht ausgeführt werden.",
         "chooseAccountIndex": "Wähle deinen Ledger Konto Index",
         "accountIndexExplanation": "Dein Ledger kann mehrere Seeds speichern. Jeder Seed wird durch einen eindeutigen Index identifiziert. Ein ungenutzter Index wurde bereits ausgewählt aber wenn du möchtest kannst du Diesen ändern. Stelle sicher, dass du deinen Index notierst.",
-        "accountPageExplanation": "Einige Drittanbieter Wallets benötigen Seiten.",
+        "accountPageExplanation": "Einige Drittanbieter-Wallets benötigen Seiten.",
         "connectionError": "Verbindung zu Ledger nicht möglich",
         "connectionErrorExplanation": "Prüfe, ob dein Ledger verbunden und entsperrt ist.",
         "connectionTitle": "Verbinde deinen Ledger",

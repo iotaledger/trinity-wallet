@@ -214,6 +214,7 @@ export const initMenu = (app, getWindowFunc) => {
                             {
                                 label: language.advanced,
                                 click: () => navigate('settings/advanced'),
+                                enabled: state.enabled,
                             },
                         ],
                     },
@@ -357,7 +358,7 @@ export const initMenu = (app, getWindowFunc) => {
                 {
                     label: `${app.getName()} ${language.help}`,
                     click: function() {
-                        shell.openExternal('https://docs.iota.works/trinity/faqs');
+                        shell.openExternal('https://docs.iota.org/docs/trinity/0.1/introduction/overview');
                     },
                 },
             ],

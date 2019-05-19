@@ -1,6 +1,6 @@
 {
   "name": "trinity-mobile",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -69,7 +69,7 @@
     "react-native-navigation": "https://github.com/rajivshah3/react-native-navigation#2.0.255-0.57",
     "react-native-optimized-flatlist": "^1.0.4",
     "react-native-os": "git+https://github.com/laumair/react-native-os.git#527b0ae",
-    "react-native-picker-select": "^6.1.0",
+    "react-native-picker-select": "git+https://github.com/cvarley100/react-native-picker-select#master",
     "react-native-print": "^0.5.0",
     "react-native-progress": "^3.4.0",
     "react-native-qr-generator": "^1.0.3",
@@ -90,7 +90,7 @@
     "redux": "^3.7.2",
     "rn-fetch-blob": "https://github.com/rajivshah3/rn-fetch-blob#10.13-226",
     "shared-modules": "../shared/",
-    "snyk": "^1.124.1",
+    "snyk": "^1.161.1",
     "stream": "0.0.2",
     "stream-browserify": "^1.0.0",
     "text-encoding": "^0.6.4",
@@ -117,6 +117,9 @@
     "react-dom": "^16.2.0",
     "react-test-renderer": "16.6.1",
     "rn-nodeify": "^10.0.1"
+  },
+  "resolutions": {
+    "handlebars": ">=4.1.2"
   },
   "jest": {
     "preset": "react-native",

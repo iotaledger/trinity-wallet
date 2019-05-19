@@ -20,6 +20,7 @@ import {
     ATTACH_TO_TANGLE_REQUEST_TIMEOUT,
     GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
+    MAX_MILESTONE_FALLBEHIND,
 } from '../../config';
 import {
     sortTransactionTrytesArray,
@@ -616,11 +617,10 @@ const isNodeHealthy = (provider) => {
                 if (['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1)) {
                     throw new Error(Errors.UNSUPPORTED_NODE);
                 }
-
                 cached.latestMilestone = latestMilestone;
                 if (
                     (cached.latestMilestone === latestSolidSubtangleMilestone ||
-                        latestMilestoneIndex - 1 === latestSolidSubtangleMilestoneIndex) &&
+                        latestMilestoneIndex - MAX_MILESTONE_FALLBEHIND <= latestSolidSubtangleMilestoneIndex) &&
                     cached.latestMilestone !== EMPTY_HASH_TRYTES
                 ) {
                     return getTrytesAsync(provider)([cached.latestMilestone]);
@@ -632,7 +632,7 @@ const isNodeHealthy = (provider) => {
         .then((trytes) => {
             const { timestamp } = iota.utils.transactionObject(head(trytes), cached.latestMilestone);
 
-            return isWithinMinutes(timestamp * 1000, 5);
+            return isWithinMinutes(timestamp * 1000, 5 * MAX_MILESTONE_FALLBEHIND);
         });
 };
 

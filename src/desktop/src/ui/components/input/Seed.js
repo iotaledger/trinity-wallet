@@ -228,7 +228,13 @@ class SeedInput extends React.PureComponent {
             } else if (error.message === 'SeedNotFound') {
                 generateAlert('error', t('seedVault:noSeedFound'), t('seedVault:noSeedFoundExplanation'));
             } else {
-                generateAlert('error', t('seedVault:seedFileError'), t('seedVault:seedFileErrorExplanation'));
+                generateAlert(
+                    'error',
+                    t('seedVault:seedFileError'),
+                    t('seedVault:seedFileErrorExplanation'),
+                    20000,
+                    error,
+                );
             }
         }
     };
@@ -352,10 +358,10 @@ class SeedInput extends React.PureComponent {
                 {importBuffer && (
                     <Password
                         content={{
-                            title: t('enterPassword'),
-                            message: t('seedVault:enterKeyExplanation'),
+                            title: t('seedVault:enterKeyExplanation'),
                             confirm: t('seedVault:importSeedVault'),
                         }}
+                        isSeedVaultField
                         isOpen
                         onClose={() => this.setState({ importBuffer: null })}
                         onSubmit={(password) => this.decryptFile(password)}

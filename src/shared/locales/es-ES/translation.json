@@ -11,19 +11,19 @@
         "transferError": "Error de transferencia",
         "transferErrorMessage": "Algo salió mal al enviar su transferencia. Por favor, inténtelo de nuevo.",
         "transferSent": "Transferencia enviada",
-        "transferSentMessage": "Su transferencia se ha enviado a la Tangle.",
+        "transferSentMessage": "Tu transferencia se ha enviado al Tangle.",
         "messageSent": "Mensaje enviado",
-        "messageSentMessage": "Su mensaje se ha enviado a la Tangle.",
+        "messageSentMessage": "Su mensaje se ha enviado al Tangle.",
         "keyReuse": "Enviando a dirección usada",
         "keyReuseError": "No puede enviar a una dirección que ya se ha usado.",
         "invalidResponse": "Error de nodo",
         "invalidResponseExplanation": "El nodo devolvió un error. Pruebe cambiando de nodo.",
         "invalidResponseFetchingAccount": "El servidor devolvió un error mientras obtenía la información de su cuenta. Intente cambiar el nodo.",
-        "invalidResponseFetchingAccountDesktop": "Error al intentar obtener información del nodo. Si el problema persiste intente cambiar el nodo o deshabilite el proxy en la configuración.",
+        "invalidResponseFetchingAccountDesktop": "El nodo devolvió un error al intentar obtener información de su cuenta. Si el problema persiste intente cambiar el nodo o deshabilite el proxy en la configuración.",
         "nodeOutOfSync": "Nodo desincronizado",
-        "nodeOutOfSyncExplanation": "Su nodo seleccionado esta desincronizado. Por favor cámbielo y pruebe devuelta.",
+        "nodeOutOfSyncExplanation": "Su nodo seleccionado se encuentra desincronizado. Por favor cámbielo y pruebe de nuevo.",
         "experimentalNode": "Versión del nodo no soportada",
-        "experimentalNodeExplanation": "Su versión actual de nodo está ejecutando una versión experimental que no es soportada. Por favor cambie el nodo o reintente.",
+        "experimentalNodeExplanation": "Su nodo seleccionado está ejecutando una versión experimental que no está soportada. Por favor cambie el nodo o pruebe de nuevo.",
         "thisNodeOutOfSync": "Este nodo no está sincronizado. Por favor, cambie de nodo o pruebe de nuevo.",
         "seed": "Semilla",
         "checksum": "Checksum",
@@ -47,7 +47,7 @@
         "enterPassword": "Introduzca contraseña",
         "paperWallet": "Imprima una copia en papel",
         "addToPasswordManager": "Añadir al administrador de contraseñas",
-        "shareSeed": "Comparta la semilla",
+        "shareSeed": "Compartir semilla",
         "share": "Compartir",
         "proceed": "Continuar",
         "qr": "QR",
@@ -55,7 +55,7 @@
         "yes": "Sí",
         "no": "No",
         "okay": "De acuerdo",
-        "skip": "Skip",
+        "skip": "Omitir",
         "password": "Contraseña",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
@@ -288,10 +288,10 @@
         "printerConfirmation": "No estoy imprimiendo en una impresora publica"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "¿Quieres imprimir una plantilla en blanco?",
+        "printTemplateInfo": "Puede imprimir una plantilla en blanco para ayudarle a escribir su semilla.",
+        "printTemplateWarning": "Asegúrese de que almacena su semilla en un lugar seguro. No lo muestre a nadie.",
+        "print": "Sí, imprimir"
     },
     "receive": {
         "yourAddress": "Su dirección",
@@ -394,7 +394,7 @@
         "changePassword": "Cambiar contraseña",
         "general": "Configuración general",
         "advanced": "Opciones avanzadas",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "Ajustes del nodo",
         "account": "Configuración de cuenta",
         "logout": "Cerrar sesión",
         "reset": "Reiniciar cartera",
@@ -457,7 +457,7 @@
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
         "noTransactionsFound": "No se encontraron transacciones",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "Tu historial de transacciones está vacío",
         "hideZeroBalance": "Esconder balance nulo",
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
@@ -472,11 +472,11 @@
         "promotingAnotherBundle": "Promoviendo otro paquete",
         "pleaseWait": "Por favor espere, Trinity está promoviendo otro paquete.",
         "typeHelp": "Escriba !help para comandos disponibles",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpText": "Búsqueda por bundle hash o contenido de mensaje",
+        "searchHelpValue": "Buscar transacciones de iota por valor exacto",
+        "searchHelpUnits": "Buscar transacciones de iota por valor y unidad",
+        "searchHelpMore": "Buscar transacciones con valor mayor que X",
+        "searchHelpLess": "Buscar transacciones con valor menor que X"
     },
     "accountManagement": {
         "viewSeed": "Ver semilla",
@@ -509,8 +509,8 @@
         "autoPromotion": "Auto-promoción",
         "autoPromotionExplanation": "La auto-promoción ayuda a confirmar sus transacciones en el Tangle. Habilite esta opción si está experimentando dificultades para conseguir que se confirmen sus transacciones.",
         "autoPromotionPoW": "La auto-promoción solo es posible en los nodos que soportan PoW remota.",
-        "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "deepLinking": "Referenciación profunda",
+        "stateExport": "Exportar estado"
     },
     "advancedThemeCustomisation": {
         "background": "Fondo",
@@ -581,7 +581,7 @@
         "viewSeed": "Ver semilla",
         "hideSeed": "Ocultar semilla",
         "notAvailable": "La exportación de la semilla no está disponible para el tipo de cuenta {{accountType}}",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "Su dispositivo contable o ledger usa un elemento seguro para guardar su semilla. La semilla está encriptada de forma segura y nunca abandona el dispositivo.",
         "accountIndex": "Su índice del ledger de la cuenta",
         "accountPage": "Su página de cuenta de ledger"
     },
@@ -652,16 +652,16 @@
         "noSeedFoundExplanation": "El SeedVault se encuentra vacío o contiene una semilla con un formato no válido.",
         "seedFileError": "Fallo al abrir SeedVault",
         "seedFileErrorExplanation": "Hubo un problema al abrir el SeedVault. Si ha seleccionado el archivo correcto entonces puede estar corrompido.",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileError": "Archivo SeedVault inválido",
+        "invalidSeedFileErrorExplanation": "Este formato de archivo no es válido. Solamente son soportados los archivos SeedVault creados en Trinity o en algún gestor de contraseñas (.kdbx).",
         "seedVaultKeyExplanation": "Primero necesitamos asegurar su SeedVault. Por favor elija una clave para encriptar el archivo. Debe usar esta clave si necesita restaurar su semilla desde SeedVault.",
         "retypeKey": "Reingrese la clave",
         "key": "Clave"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "La exportación de estado guardará un archivo txt en su dispositivo junto con su información de cuenta (transacciones, direcciones), versión de la billetera y nombres de los archivos de almacenamiento.",
+        "exportSuccess": "Estado exportado",
+        "exportSuccessExplanation": "Tu archivo de estado ha sido exportado con éxito."
     },
     "chart": {
         "mcap": "MCAP",
@@ -697,11 +697,11 @@
         "gettingTransactionsToApprove": "Obteniendo transacciones para aprobar",
         "proofOfWork": "Completando PoW",
         "broadcasting": "Transmitiendo",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Preparando datos",
+        "migratingSettings": "Configuración de migración",
+        "migratingAccounts": "Migrar cuenta",
+        "cleaningUpOldData": "Borrando datos antiguos",
+        "migrationComplete": "Migración completada",
         "transferComplete": "Transferencia completa"
     },
     "snapshotTransition": {
@@ -722,13 +722,13 @@
     "deepLink": {
         "autofill": "Autocompletado exitoso",
         "autofillExplanation": "Información de la transacción completada por el link.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingOverview": "Los links profundos son links clickeables (iota://...) que completan automáticamente la información de transacción en Trinity.",
+        "deepLinkingWarning": "Cuidado con el phishing. Asegúrate de que el link que vayas a abrir te lleve a la app oficial de Trinity.",
+        "deepLinkingUpdated": "Configuración de referenciación profunda o deep linking",
+        "deepLinkingEnabled": "Has activado deep linking o referenciación profunda.",
+        "deepLinkingDisabled": "Has desactivado deep linking o referenciación profunda.",
+        "deepLinkingInfoTitle": "Referenciación profunda (o deep linking) está desactivado",
+        "deepLinkingInfoMessage": "Has abierto una referencia profunda (o deep link) iota:// pero la referenciación profunda (o deep linking) está desactivada."
     },
     "updates": {
         "errorRetrievingUpdateData": "Error al recuperar los datos de actualización",
@@ -781,17 +781,17 @@
         "sweepError": "Error durante el desbloqueo de los fondos",
         "sweepErrorExplanation": "Algo salió mal al intentar el desbloqueo de sus fondos. Intente otra vez.",
         "warningTitle": "Advertencia: Fondos bloqueados detectados",
-        "explanation": "Trinity Desktop versión 0.3.4 contenía un error que puede bloquear temporalmente los fondos. Esto afecta a un pequeño número de usuarios que realizan transacciones con 0.3.4.",
-        "explanationAccounts": "Fondos bloqueados se han detectado en las cuentas: {{accounts}}. Trinity recuperará ahora sus fondos, moviéndolos a una nueva dirección.",
+        "explanation": "La versión 0.3.4 de Trinity Desktop contenía un error que puede bloquear temporalmente los fondos. Esto afecta a un pequeño número de usuarios que realizan transacciones con 0.3.4.",
+        "explanationAccounts": "Se han detectado fondos bloqueados en las cuentas: {{accounts}}. Trinity recuperará ahora sus fondos automáticamente, moviéndolos a una nueva dirección.",
         "proceed": "Proceder a la recuperación",
         "sweepConfirmation": "Estás a punto de barrer {{amount}} para la dirección {{address}}. Cuenta: {{accountName}}, dirección índice: {{index}}",
         "sweepConfirmationTitle": "Confirmación de barrido"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "dataMigration": "Migración de datos",
+        "dataMigrationExplanation": "Debido a limitaciones de rendimiento y almacenamiento, Trinity está usando una nueva base de datos para almacenar la configuración e información de cuenta. Por favor espera un momento mientras Trinity migra automáticamente tu información existente.",
+        "problemMigratingYourData": "Hubo un problema con la migración de su información. Por favor intente otra vez",
+        "seedMigrationExplanation": "Como parte del continuo esfuerzo para mejorar la seguridad de la billetera, su semilla será migrada a una metodología de almacenamiento mejorada. Por favor espera mientras Trinity migra el almacenamiento de la semilla automáticamente."
     },
     "ledger": {
         "ready": "Dispositivo de ledger conectado y listo",
@@ -801,8 +801,8 @@
         "proceedWithLedger": "Proceder con la configuración del ledger",
         "accountIndex": "Índice de cuenta",
         "accountPage": "Perfil de cuenta",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Acceso al dispositivo contable (o ledger) cancelado",
+        "actionCancelledExplanation": "No se puede completar la acción sin acceso al dispositivo contable (o Ledger).",
         "chooseAccountIndex": "Elija el índice de cuenta del ledger",
         "accountIndexExplanation": "Su ledger puede almacenar múltiples semillas. Cada semilla es identificada por un número de índice único. Se ha preseleccionado uno, pero no dude en elegir uno propio. Asegúrese de anotar el número de índice elegido.",
         "accountPageExplanation": "Algunas billeteras de terceros requieren páginas.",
@@ -826,7 +826,7 @@
         "checkAddressExplanation": "Compruebe que la dirección coincida con la mostrada en su dispositivo de ledger.",
         "applicationNotInitialised": "Advertencia no confirmada",
         "applicationNotInitialisedExplanation": "Re abra la aplicación IOTA en su dispositivo ledger, acepte la advertencia informativa y reintente.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevError": "No ha sido posible la comunicación con el dispositivo contable o Ledger",
+        "udevErrorExplanation": "Trinity no ha podido comunicarse con el dispositivo contable o Ledger. Por favor visita la URL debajo para resolver este inconveniente."
     }
 }
