@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import filter from 'lodash/filter';
 import isArray from 'lodash/isArray';
 import isFunction from 'lodash/isFunction';
@@ -163,6 +164,34 @@ export const formatUnit = (value) => {
             return 'Gi';
         default:
             return 'Ti';
+    }
+};
+
+/**
+ * Converts iota value-unit string to int value
+ *
+ * @method unitStringToValue
+ * @param {string}
+ *
+ * @returns {number}
+ */
+export const unitStringToValue = (str) => {
+    const value = parseInt(str);
+    const unit = str.substr(value.toString().length).toLowerCase();
+
+    switch (unit) {
+        case 'ki':
+            return value * 1000;
+        case 'mi':
+            return value * 1000000;
+        case 'gi':
+            return value * 1000000000;
+        case 'ti':
+            return value * 1000000000000;
+        case 'pi':
+            return value * 1000000000000000;
+        default:
+            return value;
     }
 };
 
@@ -351,8 +380,11 @@ export const withRetriesOnDifferentNodes = (nodes, failureCallbacks) => {
             return promiseFunc(nodes[attempt])(...args)
                 .then((result) => ({ node: nodes[attempt], result }))
                 .catch((err) => {
-                    // Abort retries on user cancalled Ledger action
-                    if (err === Errors.LEDGER_CANCELLED) {
+                    if (get(err, 'message') === Errors.LEDGER_INVALID_INDEX) {
+                        throw new Error(Errors.LEDGER_INVALID_INDEX);
+                    }
+                    // Abort retries on user cancelled Ledger action
+                    if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
                         throw new Error(Errors.LEDGER_CANCELLED);
                     }
                     // If a function is passed as failure callback
@@ -436,7 +468,7 @@ export const getRandomNodes = (nodes, size = 5, blacklisted = []) => {
 export const throwIfNodeNotHealthy = (provider) => {
     return isNodeHealthy(provider).then((isSynced) => {
         if (!isSynced) {
-            throw new Error(Errors.NODE_NOT_SYNCED);
+            throw new Error(Errors.NODE_NOT_SYNCED_BY_TIMESTAMP);
         }
 
         return isSynced;

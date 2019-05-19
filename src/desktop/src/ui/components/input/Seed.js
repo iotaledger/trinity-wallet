@@ -128,6 +128,16 @@ class SeedInput extends React.PureComponent {
             );
         }
 
+        const isValidVault = Electron.validateVault(buffer);
+
+        if (!isValidVault) {
+            return this.props.generateAlert(
+                'error',
+                t('seedVault:invalidSeedFileError'),
+                t('seedVault:invalidSeedFileErrorExplanation'),
+            );
+        }
+
         this.setState({
             importBuffer: buffer,
         });
@@ -218,7 +228,13 @@ class SeedInput extends React.PureComponent {
             } else if (error.message === 'SeedNotFound') {
                 generateAlert('error', t('seedVault:noSeedFound'), t('seedVault:noSeedFoundExplanation'));
             } else {
-                generateAlert('error', t('seedVault:seedFileError'), t('seedVault:seedFileErrorExplanation'));
+                generateAlert(
+                    'error',
+                    t('seedVault:seedFileError'),
+                    t('seedVault:seedFileErrorExplanation'),
+                    20000,
+                    error,
+                );
             }
         }
     };
@@ -286,7 +302,9 @@ class SeedInput extends React.PureComponent {
         const checkSum =
             seed.length < MAX_SEED_LENGTH
                 ? '< 81'
-                : seed.length > MAX_SEED_LENGTH ? '> 81' : Electron.getChecksum(seed);
+                : seed.length > MAX_SEED_LENGTH
+                ? '> 81'
+                : Electron.getChecksum(seed);
 
         return (
             <div className={classNames(css.input, css.seed)}>
@@ -340,10 +358,10 @@ class SeedInput extends React.PureComponent {
                 {importBuffer && (
                     <Password
                         content={{
-                            title: t('enterPassword'),
-                            message: t('seedVault:enterKeyExplanation'),
+                            title: t('seedVault:enterKeyExplanation'),
                             confirm: t('seedVault:importSeedVault'),
                         }}
+                        isSeedVaultField
                         isOpen
                         onClose={() => this.setState({ importBuffer: null })}
                         onSubmit={(password) => this.decryptFile(password)}
@@ -387,4 +405,7 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(null, mapDispatchToProps)(withI18n()(SeedInput));
+export default connect(
+    null,
+    mapDispatchToProps,
+)(withI18n()(SeedInput));

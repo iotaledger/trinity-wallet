@@ -9,6 +9,7 @@ import orderBy from 'lodash/orderBy';
 import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
 import some from 'lodash/some';
+import get from 'lodash/get';
 import size from 'lodash/size';
 import every from 'lodash/every';
 import includes from 'lodash/includes';
@@ -294,8 +295,16 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, withQuoru
             return dispatch(promoteTransactionSuccess());
         })
         .catch((err) => {
-            if (err.message === Errors.BUNDLE_NO_LONGER_VALID) {
-                dispatch(generateAlert('error', i18next.t('global:promotionError'), i18next.t('global:noLongerValid')));
+            if (get(err, 'message') === Errors.BUNDLE_NO_LONGER_VALID) {
+                dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('global:promotionError'),
+                        i18next.t('global:noLongerValid'),
+                        undefined,
+                        err,
+                    ),
+                );
             } else if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
                 dispatch(
                     generateAlert(
@@ -305,7 +314,7 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, withQuoru
                         10000,
                     ),
                 );
-            } else if (err.message === Errors.TRANSACTION_ALREADY_CONFIRMED) {
+            } else if (get(err, 'message') === Errors.TRANSACTION_ALREADY_CONFIRMED) {
                 dispatch(
                     generateAlert(
                         'success',
@@ -400,7 +409,7 @@ export const forceTransactionPromotion = (
             }
 
             const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-            const newState = syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
+            const newState = syncAccountAfterReattachment(reattachment, existingAccountState);
 
             // Update storage (realm)
             Account.update(accountName, newState);
@@ -765,15 +774,16 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             'error',
                             i18next.t('global:rebroadcastError'),
                             i18next.t('global:signedTrytesBroadcastErrorExplanation'),
+                            20000,
                             error,
                         ),
                     );
                 }
 
                 if (message === Errors.NODE_NOT_SYNCED) {
-                    return dispatch(generateNodeOutOfSyncErrorAlert());
+                    return dispatch(generateNodeOutOfSyncErrorAlert(error));
                 } else if (message === Errors.UNSUPPORTED_NODE) {
-                    return dispatch(generateUnsupportedNodeErrorAlert());
+                    return dispatch(generateUnsupportedNodeErrorAlert(error));
                 } else if (message === Errors.INVALID_LAST_TRIT) {
                     return dispatch(
                         generateAlert(
@@ -781,10 +791,18 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             i18next.t('send:invalidAddress'),
                             i18next.t('send:invalidAddressExplanation4'),
                         ),
+                        undefined,
+                        error,
                     );
                 } else if (message === Errors.KEY_REUSE) {
                     return dispatch(
-                        generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
+                        generateAlert(
+                            'error',
+                            i18next.t('global:keyReuse'),
+                            i18next.t('global:keyReuseError'),
+                            undefined,
+                            error,
+                        ),
                     );
                 } else if (message === Errors.INSUFFICIENT_BALANCE) {
                     return dispatch(
@@ -792,7 +810,8 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             'error',
                             i18next.t('global:balanceError'),
                             i18next.t('global:balanceErrorMessage'),
-                            20000,
+                            undefined,
+                            error,
                         ),
                     );
                 } else if (message === Errors.ADDRESS_HAS_PENDING_TRANSFERS) {
@@ -802,6 +821,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             i18next.t('global:pleaseWait'),
                             i18next.t('global:pleaseWaitTransferExplanation'),
                             20000,
+                            error,
                         ),
                     );
                 } else if (message === Errors.FUNDS_AT_SPENT_ADDRESSES) {
@@ -811,6 +831,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             i18next.t('global:spentAddressExplanation'),
                             i18next.t('global:discordInformation'),
                             20000,
+                            error,
                         ),
                     );
                 } else if (message === Errors.INCOMING_TRANSFERS) {
@@ -820,6 +841,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             i18next.t('global:pleaseWait'),
                             i18next.t('global:pleaseWaitIncomingTransferExplanation'),
                             20000,
+                            error,
                         ),
                     );
                 } else if (message === Errors.CANNOT_SEND_TO_OWN_ADDRESS) {
@@ -829,6 +851,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             i18next.t('global:cannotSendToOwn'),
                             i18next.t('global:cannotSendToOwnExplanation'),
                             20000,
+                            error,
                         ),
                     );
                 } else if (message === Errors.LEDGER_ZERO_VALUE) {
@@ -838,6 +861,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             i18next.t('ledger:cannotSendZeroValueTitle'),
                             i18next.t('ledger:cannotSendZeroValueExplanation'),
                             20000,
+                            error,
                         ),
                     );
                 } else if (message === Errors.LEDGER_DISCONNECTED) {
@@ -847,6 +871,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             i18next.t('ledger:ledgerDisconnectedTitle'),
                             i18next.t('ledger:ledgerDisconnectedExplanation'),
                             20000,
+                            error,
                         ),
                     );
                 } else if (message === Errors.LEDGER_DENIED) {
@@ -856,6 +881,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             i18next.t('ledger:ledgerDeniedTitle'),
                             i18next.t('ledger:ledgerDeniedExplanation'),
                             20000,
+                            error,
                         ),
                     );
                 } else if (message === Errors.LEDGER_INVALID_INDEX) {
@@ -864,7 +890,8 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             'error',
                             i18next.t('ledger:ledgerIncorrectIndex'),
                             i18next.t('ledger:ledgerIncorrectIndexExplanation'),
-                            20000,
+                            undefined,
+                            error,
                         ),
                     );
                 } else if (message === Errors.LEDGER_CANCELLED) {

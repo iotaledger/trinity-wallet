@@ -55,7 +55,7 @@
         "yes": "Igen",
         "no": "Nem",
         "okay": "Rendben",
-        "skip": "Skip",
+        "skip": "Kihagy",
         "password": "Jelszó",
         "unrecognisedPassword": "Helytelen jelszó",
         "unrecognisedPasswordExplanation": "Helytelen jelszó. Kérjük, próbálja újra.",
@@ -288,10 +288,10 @@
         "printerConfirmation": "Nem használok mindenki által hozzáférhető nyomtatót"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "Szeretne nyomtatni egy üres formanyomtatványt?",
+        "printTemplateInfo": "Az üres formanyomtatvány segít a mester jelszó helyes feljegyzésében.",
+        "printTemplateWarning": "Bizonyosodjon meg arról, hogy a mester jelszavát biztonságos helyen tárolja. Soha senkinek ne mutassa meg azt!",
+        "print": "Igen, indítsa a nyomtatást"
     },
     "receive": {
         "yourAddress": "Ön címe",
@@ -391,10 +391,10 @@
         "language": "Nyelv",
         "accountManagement": "Számla adatai",
         "addNewSeed": "Új mester jelszó hozzáadása",
-        "twoFA": "Kétlépcsős hitelesítés",
         "changePassword": "Jelszó módosítása",
         "general": "Általános beállítások",
         "advanced": "Haladó beállítások",
+        "nodeSettings": "Csomópont beállításai",
         "account": "Fiók beállításai",
         "logout": "Kijelentkezés",
         "reset": "Tárca gyári állapotának visszaállítása",
@@ -456,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Tranzakciós csomag hash másolva",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Nincs még tranzakció",
+        "emptyHistory": "Nincsenek korábbi tranzakciók",
         "hideZeroBalance": "Nulla egyenleg elrejtése",
         "bundleHashCopiedExplanation": "A tranzakciós csomag hash a vágólapra lett másolva.",
         "addressCopied": "Cím másolva",
@@ -469,7 +470,13 @@
         "retrying": "Újrapróbálkozás",
         "yesterday": "Tegnap",
         "promotingAnotherBundle": "Újabb tranzakciós csomag előrehelyezése",
-        "pleaseWait": "Kérjük várjon. Jelenleg egy másik tranzakciós csomag előbbre helyezése van folyamatban."
+        "pleaseWait": "Kérjük várjon. Jelenleg egy másik tranzakciós csomag előbbre helyezése van folyamatban.",
+        "typeHelp": "Az elérhető parancsok kilistásához gépelje be: !help",
+        "searchHelpText": "Keresés tranzakciós csomag hash vagy üzenet tartalma alapján",
+        "searchHelpValue": "Tranzakciók keresése pontos érték alapján",
+        "searchHelpUnits": "Tranzakciók keresése érték és iota mértékegység alapján",
+        "searchHelpMore": "X-nél nagyobb értékű tranzakciók keresése",
+        "searchHelpLess": "X-nél kisebb értékű tranzakciók keresése"
     },
     "accountManagement": {
         "viewSeed": "Mester jelszó megtekintése",
@@ -502,7 +509,8 @@
         "autoPromotion": "Auto-tranzakció előrehelyezés",
         "autoPromotionExplanation": "Az automatikus tranzakció előrehelyezés segítségével a tranzakciók hamarabb teljesülhetnek. Engedélyezze ezt a beállítást, ha a tranzakciói sokáig nem teljesülnek.",
         "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, amelyek támogatják a kiszabott munka távoli elvégzését.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Automatikus adatkitöltés",
+        "stateExport": "Adatmentés"
     },
     "advancedThemeCustomisation": {
         "background": "Háttér",
@@ -573,6 +581,7 @@
         "viewSeed": "Mester jelszó megtekintése",
         "hideSeed": "Mester jelszó elrejtése",
         "notAvailable": "A mester jelszó {{accountType}} típusú számla esetén nem exportálható",
+        "notAvailableExplanationLedger": "A hardveres tárca kívülről hozzáférhetetlen módon, titkosítva tárolja a mester jelszavát, így az semmilyen körülmények között nem hagyja el az eszközt.",
         "accountIndex": "Számlájának sorszáma",
         "accountPage": "Hardveres tárca számla oldala"
     },
@@ -620,23 +629,6 @@
         "sendingAMessage": "Üzenet küldése",
         "sendingAnEmptyMessage": "Üres üzenet küldése"
     },
-    "twoFA": {
-        "wrongCode": "Hibás kód",
-        "wrongCodeExplanation": "A megadott kód helytelen. Ha a hiba továbbra is fenáll, ellenőrizze, hogy a készülékén megfelelően van-e beállítva a dátum és az idő.",
-        "emptyCode": "Nincs megadva kód",
-        "emptyCodeExplanation": "Kérjük adja meg a kódot és próbálja újra.",
-        "keyCopied": "Kulcs a vágólapra másolva",
-        "keyCopiedExplanation": "A kétlépcsős hitelesítéshez szükséges kulcsa a vágólapra lett másolva.",
-        "addKey": "Adja meg ezt a kulcsot a kétlépcsős hitelesítés alkalmazásban",
-        "key": "Kulcs",
-        "twoFAEnabled": "Kétlépcsős hitelesítés engedélyezve",
-        "twoFAEnabledExplanation": "Sikeresen engedélyezte a kétlépcsős hitelesítést.",
-        "twoFADisabled": "Kétlépcsős hitelesítés letiltva",
-        "twoFADisabledExplanation": "Sikeresen letiltotta a kétlépcsős hitelesítést.",
-        "enterCode": "Üsse be az aktuális kódot a kétlépcsős hitelesítés alkalmazásból",
-        "code": "Kód",
-        "twoFaToken": "2FA token"
-    },
     "seedVault": {
         "exportSeedVault": "SeedVault exportálása",
         "seedVaultExplanation": "A SeedVault egy titkosított fájl a mester jelszavának biztonságos tárolásához. A mester jelszavát egy SeedVault fájlhoz megadott jelszóval titkosítjuk és e jelszó nélkül a titkosított mester jelszó semmilyen módon nem hozzáférhető.",
@@ -660,8 +652,16 @@
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
+        "invalidSeedFileError": "Hibás SeedVault fájl",
+        "invalidSeedFileErrorExplanation": "Ez a fájlformátum nem támogatott. Csak .kdbx kiterjesztésű, a Trinity vagy egy jelszókezelő szoftver által létrehozott SeedVault fájl importálása támogatott.",
         "seedVaultKeyExplanation": "A SeedVault fájl biztonságos tárolásához kérjük válasszon egy titkosító kulcsot. A titkosító kulcsra akkor lehet szüksége, ha a mester jelszavát a titkosított SeedVault biztonsági mentésből szeretné később egy másik, vagy egy újratelepített tárcába betölteni.",
-        "retypeKey": "Titkosító kulcs még egyszer"
+        "retypeKey": "Titkosító kulcs még egyszer",
+        "key": "Kulcs"
+    },
+    "stateExport": {
+        "stateExportExplanation": "Az adatmentés funkció a készülékén egy szöveges fájlban eltárolja a fiókjának (tranzakciók, címek) adatait, a tárca verzióját és a biztonsági mentés fájlok nevét.",
+        "exportSuccess": "Adatmentés sikeres",
+        "exportSuccessExplanation": "Az adatmentés sikeresen befejeződött."
     },
     "chart": {
         "mcap": "Piaci kapitalizáció",
@@ -697,11 +697,11 @@
         "gettingTransactionsToApprove": "Ellenőrizendő tranzakciók lekérése",
         "proofOfWork": "Kiszabott munka elvégzése",
         "broadcasting": "Tranzakció elküldése",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "Adatok előkészítése",
+        "migratingSettings": "Beállítások átmozgatása",
+        "migratingAccounts": "Fiókok átmozgatása",
+        "cleaningUpOldData": "Elavult adatok törlése",
+        "migrationComplete": "Adatok átmozgatása sikeres",
         "transferComplete": "Utalás végrehajtva"
     },
     "snapshotTransition": {
@@ -722,11 +722,13 @@
     "deepLink": {
         "autofill": "Automatikus kitöltés sikeres",
         "autofillExplanation": "Tranzakciós adatok automatikus kitöltése link alapján.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "Az iota:// kezdetű ún. deep linkekre kattintva a Trinity automatikusan kitölti a tranzakció adatait.",
+        "deepLinkingWarning": "Figyelem! Adathalászok próbálkozhatnak az adatainak megszerzésével. Mindig győzödjön meg arról, hogy a linkre kattintva a hivatalos Trinity applikáció nyílt meg.",
+        "deepLinkingUpdated": "Automatikus adatkitöltés beállításai",
+        "deepLinkingEnabled": "Automatikus adatkitöltés engedélyezve.",
+        "deepLinkingDisabled": "Automatikus adatkitöltés letiltva.",
+        "deepLinkingInfoTitle": "Automatikus adatkitöltés letiltva",
+        "deepLinkingInfoMessage": "Egy iota:// deep linket próbált megnyitni, de az automatikus adatkitöltést nem engedélyezte."
     },
     "updates": {
         "errorRetrievingUpdateData": "Frissítés adatletöltési hiba",
@@ -786,10 +788,10 @@
         "sweepConfirmationTitle": "Zárolás feloldás jóváhagyása"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "dataMigration": "Adatok átmozgatása",
+        "dataMigrationExplanation": "A sebesség növelése és a kevesebb tárhely igény érdekében a Trinity új fajta adatbázist használ a beállítások és a fiók adatainak tárolására. Kérjük várjon, amíg a Trinity az adatait átmozgatja az új adatbázisba.",
+        "problemMigratingYourData": "Nem sikerült az adatok átmozgatása. Kérjük próbálja újra.",
+        "seedMigrationExplanation": "A még nagyobb adatbiztonság érdekében a Trinity a mester jelszavát egy új fajta eljárással titkosítva tárolja. Kérjük várjon, amíg a Trinity a mester jelszavát újra titkosítja."
     },
     "ledger": {
         "ready": "Hardveres tárca csatlakoztatva és készen áll",
@@ -799,8 +801,8 @@
         "proceedWithLedger": "Hardveres tárca beállítása",
         "accountIndex": "Számlasorszám",
         "accountPage": "Számla oldal",
-        "actionCancelled": "Ledger device access cancelled",
-        "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
+        "actionCancelled": "Hardveres tárca elérés megszakítva",
+        "actionCancelledExplanation": "A művelet nem hajtható végre a hardveres tárca nélkül.",
         "chooseAccountIndex": "Válassza ki a hardveres tárca számlasorszámát",
         "accountIndexExplanation": "A hardveres tárca több mester jelszót is képes tárolni. Minden mester jelszót egy egyedi számlasorszám azonosít. Egy még használaton kÍvüli számlasorszámot kiválasztottunk, de ha kívánja, nyugodtan megadhat egy szabadon választott számlasorszámot. Kérjük, jegyezze fel a választott számlasorszámot.",
         "accountPageExplanation": "Néhány gyártó tárcája ún. számla oldal megadását igényli.",
@@ -823,6 +825,8 @@
         "checkAddress": "Ellenőrizze a fogadási címet",
         "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik-e a hardveres tárcán megjelenő címmel.",
         "applicationNotInitialised": "Jóváhagyásra váró figyelmeztetés",
-        "applicationNotInitialisedExplanation": "Nyissa meg újra az IOTA alkalmazást a hardveres tárcáján, hagyja jóvá a megjelenő figyelmeztetést, majd próbálja úra."
+        "applicationNotInitialisedExplanation": "Nyissa meg újra az IOTA alkalmazást a hardveres tárcáján, hagyja jóvá a megjelenő figyelmeztetést, majd próbálja úra.",
+        "udevError": "Hardveres tárca nem elérhető",
+        "udevErrorExplanation": "A Trinity nem tudott a hardveres tárcával kapcsolatba lépni. A probléma megoldásával kapcsolatos további információkért kérjük látogassa meg az alábbi linken található oldalt."
     }
 }

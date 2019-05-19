@@ -19,11 +19,11 @@
         "invalidResponse": "Kesalahan pada Node",
         "invalidResponseExplanation": "Node mengembalikan kesalahan. Coba ganti node.",
         "invalidResponseFetchingAccount": "Node mengembalikan kesalahan ketika menarik informasi akun anda. Silahkan coba node yang lain.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "\nNode mengembalikan kesalahan saat mengambil informasi akun Anda. Jika masalah Anda tetap ada, cobalah mengubah simpul atau menonaktifkan proxy sistem Anda di Pengaturan Trinity.",
         "nodeOutOfSync": "Node tidak sinkron",
         "nodeOutOfSyncExplanation": "Node yang anda pilih tidak sinkron. Silahkan ganti Node atau coba lagi.",
-        "experimentalNode": "Node version not supported",
-        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
+        "experimentalNode": "Versi Node tidak didukung\n",
+        "experimentalNodeExplanation": "\nNode yang Anda pilih saat ini menjalankan versi eksperimental yang tidak didukung. Silakan node atau coba lagi.",
         "thisNodeOutOfSync": "Node ini tidak sinkron. Silahkan ganti node atau coba lagi.",
         "seed": "Benih",
         "checksum": "Checksum",
@@ -37,7 +37,7 @@
         "save": "Simpan",
         "close": "Tutup",
         "export": "Ekspor",
-        "help": "Help",
+        "help": "Bantuan",
         "import": "Impor",
         "continue": "Lanjutkan",
         "enable": "Aktif",
@@ -48,20 +48,20 @@
         "paperWallet": "Cetak ke printer",
         "addToPasswordManager": "Tambahkan ke manajer kata sandi",
         "shareSeed": "Membagi Seed",
-        "share": "Share",
+        "share": "Bagikan",
         "proceed": "Lanjut",
         "qr": "QR",
         "enterSeed": "Silakan masukkan Seed Anda.",
         "yes": "Iya",
         "no": "Tidak",
         "okay": "Ok",
-        "skip": "Skip",
+        "skip": "Lewatkan",
         "password": "Kata Sandi",
         "unrecognisedPassword": "Kata sandi tidak dikenali",
         "unrecognisedPasswordExplanation": "Kata sandi tidak dikenali. Silahkan coba kembali.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
+        "unrecognisedAccount": "\nAkun tidak dikenal",
+        "unrecognisedAccountExplanation": "Akun bernama {{accountName}} tidak dikenali. Pertimbangkan mengatur ulang dompet Anda.",
+        "emptyPasswordExplanation": "Anda harus memasukkan kata sandi. Silakan coba lagi.",
         "capsLockIsOn": "Caps Lock aktif",
         "syncInProgress": "Sinkronisasi sedang berlangsung",
         "syncInProgressExplanation": "Silahkan tunggu sampai sinkronisasi selesai.",
@@ -77,8 +77,8 @@
         "wallet": "Dompet",
         "all": "Semua",
         "sent": "Terkirim",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "Anda menerima",
+        "youSent": "\nAnda mengirim",
         "received": "Diterima",
         "sending": "Mengirim",
         "receiving": "Menerima",
@@ -122,7 +122,7 @@
         "nodeDuplicatedExplanation": "Node kustom sudah terdaftar.",
         "nodeAutoChanged": "Node beralih otomatis",
         "nodeAutoChangedExplanation": "Beralih ke node baru {{- nodeAddress}} karena node yang dipilih offline.",
-        "touchSensor": "Touch the fingerprint sensor",
+        "touchSensor": "Sentuh sensor sidik jari",
         "fingerprintOnSend": "Sentuh pemindai sidik jari untuk mensyahkan transfer",
         "masterKey": "IOTA Seed anda adalah kunci utama ke dana anda.",
         "seedThief": "Jika orang lain mempunyai Seed Anda, mereka bisa mencuri IOTA Anda.",
@@ -134,7 +134,7 @@
         "spentAddressExplanation": "PERINGATAN: Dana ada di alamat yang sudah digunakan",
         "discordInformation": "Mengirim dari alamat yang sama lebih dari sekali sangat berbahaya. Silahkan ke Channel #help di Discord untuk mengetahui lebih lanjut.",
         "androidInsecureClipboardWarning": "Android tidak menyediakan Papan Klip yang aman.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "Jangan pernah menyalin / menempelkan seed pada perangkat Android.",
         "willNotCopyPasteSeed": "Saya tidak akan copy/paste Seed saya",
         "mustBeStoredAppropriately": "Ini harus disimpan dengan sebaiknya.",
         "deviceMayBecomeUnresponsive": "Perangkat anda mungkin tidak responsif dalam beberapa saat.",
@@ -150,19 +150,19 @@
         "tryingAgainWithLocalPoW": "Mencoba lagi dengan lokal Proof of Work.",
         "tryingAgainWithDifferentNode": "Coba lagi dengan node yang berbeda.",
         "errorFetchingAccountInformation": "Error ketika mengambil informasi akun.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "errorSyncingAddresses": "Kesalahan menyinkronkan informasi alamat. Mencoba lagi dengan node yang berbeda.",
+        "errorAccessingKeychain": "\nKesalahan Keychain",
+        "errorAccessingKeychainExplanation": "Tidak dapat mengakses keychain yang diperlukan untuk penyimpanan aman.",
         "mainWallet": "AKUN UTAMA",
-        "confirm": "Confirm",
-        "delete": "Delete",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "confirm": "Konfirmasi",
+        "delete": "Hapus",
+        "shouldUpdate": "Pembaruan tersedia",
+        "shouldUpdateExplanation": "Pembaruan baru telah dirilis. Anda disarankan untuk memperbarui ke versi terbaru.",
+        "forceUpdate": "Perbarui aplikasi untuk melanjutkan",
+        "forceUpdateExplanation": "Pembaruan kritis telah dirilis. Harap perbarui aplikasinya sekarang.",
         "missingPermission": "Izin akses File System dibutuhkan",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
-        "swipeToConfirm": "Swipe to confirm"
+        "missingPermissionExplanation": "Akses ke sistem file diperlukan untuk menjalankan fungsi ini.",
+        "swipeToConfirm": "Geser untuk mengonfirmasi"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -216,7 +216,7 @@
         "passwordTooShortExplanation": "Kata sandi harus setidaknya {{minLength}} karakter. Kata Sandi Anda adalah {{currentLength}} karakter. Silahkan coba lagi.",
         "passwordMismatch": "Kata sandi tidak sama",
         "passwordMismatchExplanation": "Kata sandi yang Anda masukkan tidak sama. Silahkan coba lagi.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Ini adalah kata sandi dompet utama Anda. Anda akan menggunakannya untuk masuk.",
         "retypePassword": "Ketik ulang kata sandi"
     },
     "copyToClipboard": {
@@ -250,8 +250,8 @@
         "login": "Masuk",
         "setNode": "Set Node",
         "whyBiometricDisabled": "Kenapa otentikasi sidik jari dimatikan?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "Otentikasi biometrik dinonaktifkan pada pemuatan aplikasi pertama untuk keamanan Anda.",
+        "whyBiometricDisabledExplanationPart2": "Saat menggunakan Trinity Anda akan keluar karena tidak aktif. Anda kemudian dapat masuk kembali dengan otentikasi biometrik."
     },
     "loading": {
         "loadingFirstTime": "Menyiapkan Seed untuk pertama kalinya.",
@@ -266,10 +266,10 @@
         "pressForNewSeed": "Tekan untuk Seed baru",
         "generateSuccess": "Seed berhasil dibuat",
         "individualLetters": "Tekan masing-masing huruf untuk mengacaknya.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount": "Tekan <1><0>{{count}}</0> </1> lebih banyak surat untuk mengacaknya.",
+        "individualLetterCount_plural": "Tekan <1><0>{{count}}</0> </1> lebih banyak surat untuk mengacaknya.",
+        "randomiseCharsToContinue": "Acak karakter <1> {{count}} </1> untuk melanjutkan.",
+        "randomiseCharsToContinue_plural": "Acak karakter <1> {{count}} </1> untuk melanjutkan.",
         "whatIsASeed": "Apakah itu Seed?"
     },
     "onboardingComplete": {
@@ -280,15 +280,15 @@
     "paperWallet": {
         "neverShare": "Jangan pernah memberitahukan Seed Anda dengan siapa pun.",
         "iotaLogo": "Logo IOTA",
-        "print": "Print",
+        "print": "Cetak",
         "paperConvenience": "Mencetak Seed ke kertas adalah cara yang mudah untuk menyimpan.",
         "publicInsecure": "Tetapi mencetak dengan Wifi atau printer publik tidak aman.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Silakan periksa dan konfirmasi sebelum anda mencetak",
+        "wifiConfirmation": "Saya tidak aktif di wifi publik",
+        "printerConfirmation": "Saya tidak mencetak pada printer publik"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateQuestion": "Apakah Anda ingin mencetak template kosong?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
         "print": "Yes, print"
@@ -391,10 +391,10 @@
         "language": "Bahasa",
         "accountManagement": "Pengelolaan akun",
         "addNewSeed": "Tambahkan Seed baru",
-        "twoFA": "Autentikasi dua faktor",
         "changePassword": "Ubah Kata Sandi",
         "general": "General settings",
         "advanced": "Pengaturan Lanjutan",
+        "nodeSettings": "Node settings",
         "account": "Account settings",
         "logout": "Keluar",
         "reset": "Hapus dompet",
@@ -456,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Salin rangkaian hash",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Transaksi tidak ditemukan",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Sembunyikan saldo nol",
         "bundleHashCopiedExplanation": "Rangkaian hash telah disalin ke papan klip.",
         "addressCopied": "Alamat telah disalin",
@@ -469,7 +470,13 @@
         "retrying": "Mencoba lagi",
         "yesterday": "Kemarin",
         "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Lihat seed",
@@ -502,7 +509,8 @@
         "autoPromotion": "Promosi otomatis",
         "autoPromotionExplanation": "Promosi otomatis membantu konfirmasi transaksi di Tangle. Aktifkan aturan ini jika mengalami kesulitan dalam mengkonfirmasi.",
         "autoPromotionPoW": "Promosi otomatis hanya memungkinkan di Node yang mendukung Proof of Work jarak jauh.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Latar belakang",
@@ -573,6 +581,7 @@
         "viewSeed": "Lihat Seed",
         "hideSeed": "Sembunyikan Seed",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
@@ -602,7 +611,7 @@
         "fingerprintUnavailableExplanation": "Perangkat anda tidak mendukung otentikasi biometrik atau belum dikonfigurasi di pengaturan perangkat.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari.",
         "buttonInstructionsEnable": "Tekan tombol dibawah ini untuk mengaktifkan autentikasi sidik jari.",
         "buttonInstructionsDisableIPhoneX": "Tekan tombol di bawah ini untuk mematikan Face ID",
         "buttonInstructionsEnableIPhoneX": "Tekan tombol di bawah ini untuk mengaktifkan Face ID",
@@ -619,23 +628,6 @@
         "toAddress": "To address",
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
-    },
-    "twoFA": {
-        "wrongCode": "Kode salah",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "Kode kosong",
-        "emptyCodeExplanation": "Silakan masukkan kode dan coba lagi.",
-        "keyCopied": "Kunci disalin ke papan klip",
-        "keyCopiedExplanation": "Kunci 2FA Anda telah disalin ke papan klip.",
-        "addKey": "Tambahkan tombol ini ke aplikasi 2FA Anda",
-        "key": "Kunci",
-        "twoFAEnabled": "2FA sekarang aktif",
-        "twoFAEnabledExplanation": "Anda telah berhasil mengaktifkan dua faktor otentikasi.",
-        "twoFADisabled": "2FA sekarang tidak aktif",
-        "twoFADisabledExplanation": "Anda telah berhasil mengnonaktifkan dua faktor otentikasi.",
-        "enterCode": "Masukkan kode dari aplikasi 2FA",
-        "code": "Kode",
-        "twoFaToken": "2FA Token"
     },
     "seedVault": {
         "exportSeedVault": "Ekspor SeedVault",
@@ -660,8 +652,16 @@
         "noSeedFoundExplanation": "SeedVault kosong atau tidak mempunyai format Seed yang valid.",
         "seedFileError": "Gagal membuka SeedVault",
         "seedFileErrorExplanation": "Gagal membuka SeedVault. Jika ini benar, file ini mungkin rusak.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "Kunci"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
@@ -726,12 +726,14 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Gagal dalam mengunduh data pembaruan",
         "noUpdatesAvailable": "Tidak ada pembaruan tersedia",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Versi baru tersedia",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Instal pembaruan dan ulang kembali",
@@ -823,6 +825,8 @@
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }

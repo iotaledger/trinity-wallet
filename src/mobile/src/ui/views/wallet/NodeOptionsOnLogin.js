@@ -66,11 +66,11 @@ class NodeOptionsOnLogin extends Component {
         const textColor = { color: body.color };
         return (
             <View style={{ flex: 1 }}>
-                <View style={{ flex: 0.3 }} />
+                <View style={{ flex: 0.1 }} />
                 {loginRoute === 'nodeOptions' && (
                     <View style={styles.container}>
                         <View style={styles.topContainer}>
-                            <View>
+                            <View style={{ justifyContent: 'center' }}>
                                 <CtaButton
                                     ctaColor={primary.color}
                                     ctaBorderColor={primary.hover}
@@ -79,7 +79,7 @@ class NodeOptionsOnLogin extends Component {
                                     onPress={() => this.props.setLoginRoute('nodeSelection')}
                                     ctaWidth={width / 1.6}
                                 />
-                                <View style={{ flex: 0.4 }} />
+                                <View style={{ flex: 0.3 }} />
                                 <CtaButton
                                     ctaColor={primary.color}
                                     ctaBorderColor={primary.hover}
@@ -114,7 +114,7 @@ class NodeOptionsOnLogin extends Component {
                 {loginRoute === 'customNode' && (
                     <AddCustomNodeComponent backPress={() => this.props.setLoginRoute('nodeOptions')} />
                 )}
-                <View style={{ flex: 0.05 }} />
+                <View style={{ flex: 0.025 }} />
             </View>
         );
     }

@@ -91,7 +91,7 @@ export const migrate = (oldStorageAdapter) => (dispatch) => {
             setTimeout(onComplete, 2000);
         })
         .catch((error) => {
-            if (error.message === Errors.NO_STORED_DATA_FOUND) {
+            if (get(error, 'message') === Errors.NO_STORED_DATA_FOUND) {
                 // If there is not data to migrate, just mark migration as complete
                 onComplete();
             } else {

@@ -134,10 +134,13 @@ export const syncAccount = (provider, withQuorum) => (existingAccountState, seed
         .then((transactions) => {
             if (notificationFn) {
                 // Trigger notification callback with new incoming transactions and confirmed value transactions
-                // TODO: New incoming transactions & confirmed value transactions should be detected within selectors or component update lifecycle methods.
                 const existingNormalisedTransactions = mapNormalisedTransactions(
                     thisStateCopy.transactions,
                     thisStateCopy.addressData,
+                );
+                const latestTimestamp = Object.values(existingNormalisedTransactions).reduce(
+                    (max, tx) => Math.max(max, tx.timestamp),
+                    0,
                 );
 
                 const allNormalisedTransactions = mapNormalisedTransactions(transactions, thisStateCopy.addressData);
@@ -146,7 +149,10 @@ export const syncAccount = (provider, withQuorum) => (existingAccountState, seed
                     thisStateCopy.accountName,
                     filter(
                         allNormalisedTransactions,
-                        (transfer) => transfer.incoming && !existingNormalisedTransactions[transfer.bundle],
+                        (transfer) =>
+                            transfer.incoming &&
+                            !existingNormalisedTransactions[transfer.bundle] &&
+                            transfer.timestamp > latestTimestamp,
                     ),
                     filter(
                         allNormalisedTransactions,

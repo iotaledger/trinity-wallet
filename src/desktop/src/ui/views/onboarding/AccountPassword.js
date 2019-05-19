@@ -10,7 +10,7 @@ import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
 import SeedStore from 'libs/SeedStore';
-import { hash, initKeychain, setTwoFA } from 'libs/crypto';
+import { hash, initKeychain, initVault } from 'libs/crypto';
 import { passwordReasons } from 'libs/password';
 
 import Button from 'ui/components/Button';
@@ -89,13 +89,19 @@ class AccountPassword extends React.PureComponent {
 
         try {
             await initKeychain();
-        } catch (e) {
-            return generateAlert('error', t('errorAccessingKeychain'), t('errorAccessingKeychainExplanation'));
+        } catch (err) {
+            return generateAlert(
+                'error',
+                t('errorAccessingKeychain'),
+                t('errorAccessingKeychainExplanation'),
+                20000,
+                err,
+            );
         }
 
         const passwordHash = await hash(password);
 
-        await setTwoFA(passwordHash, null);
+        await initVault(passwordHash);
         setPassword(passwordHash);
 
         this.props.setAccountInfoDuringSetup({
@@ -175,4 +181,7 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(AccountPassword));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(AccountPassword));

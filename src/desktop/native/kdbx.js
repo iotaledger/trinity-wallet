@@ -69,9 +69,30 @@ const importVault = async (buffer, password) => {
     return seeds;
 };
 
+/**
+ * Check for valid KDBX database format
+ * @param {buffer} Buffer - Encrypted binary KDBX database file content
+ * @returns {boolean}
+ */
+const checkFormat = (buffer) => {
+    const signature = buffer.byteLength < 8 ? null : new Uint32Array(buffer, 0, 2);
+
+    if (!signature || signature[0] !== kdbxweb.Consts.Signatures.FileMagic) {
+        return false;
+    }
+    if (signature[1] === kdbxweb.Consts.Signatures.Sig2Kdb) {
+        return false;
+    }
+    if (signature[1] !== kdbxweb.Consts.Signatures.Sig2Kdbx) {
+        return false;
+    }
+    return true;
+};
+
 const kdbx = {
     exportVault,
     importVault,
+    checkFormat,
 };
 
 export default kdbx;

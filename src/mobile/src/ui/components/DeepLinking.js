@@ -4,7 +4,7 @@ import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { initiateDeepLinkRequest, setSetting } from 'shared-modules/actions/wallet';
-import { parseAddress } from 'shared-modules/libs/iota/utils';
+import { parseAddress, ADDRESS_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
 
@@ -31,8 +31,11 @@ export default () => (C) => {
             const { t, generateAlert, deepLinking } = this.props;
 
             if (!deepLinking) {
-                return this.navigateToSettings();
+                this.props.initiateDeepLinkRequest();
+                this.navigateToSettings();
+                return generateAlert('info', t('deepLink:deepLinkingInfoTitle'), t('deepLink:deepLinkingInfoMessage'));
             }
+            this.props.changeHomeScreenRoute('send');
             const parsedData = parseAddress(data.url);
             if (parsedData) {
                 this.props.initiateDeepLinkRequest(
@@ -40,9 +43,8 @@ export default () => (C) => {
                     parsedData.address,
                     parsedData.message || null,
                 );
-                this.props.changeHomeScreenRoute('send');
             } else {
-                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
             }
         }
 

@@ -21,6 +21,7 @@ import {
     setSeedIndex,
     shouldUpdate,
     forceUpdate,
+    displayTestWarning,
 } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
@@ -89,7 +90,11 @@ class App extends React.Component {
         /** @ignore */
         shouldUpdate: PropTypes.func.isRequired,
         /** @ignore */
+        deepLinking: PropTypes.bool.isRequired,
+        /** @ignore */
         forceUpdate: PropTypes.func.isRequired,
+        /** @ignore */
+        displayTestWarning: PropTypes.func.isRequired,
         /** @ignore */
         setAccountInfoDuringSetup: PropTypes.func.isRequired,
         /** @ignore */
@@ -172,7 +177,12 @@ class App extends React.Component {
      * @param {string} Data - data passed
      */
     setDeepUrl(data) {
-        const { generateAlert, t } = this.props;
+        const { deepLinking, generateAlert, t } = this.props;
+
+        if (!deepLinking) {
+            this.props.history.push('/settings/advanced');
+            return generateAlert('info', t('deepLink:deepLinkingInfoTitle'), t('deepLink:deepLinkingInfoMessage'));
+        }
 
         const parsedData = parseAddress(data);
 
@@ -206,8 +216,9 @@ class App extends React.Component {
     async versionCheck() {
         const data = await fetchVersions();
         const versionId = Electron.getVersion();
-
-        if (data.desktopBlacklist && data.desktopBlacklist.includes(versionId)) {
+        if (versionId.includes('RC')) {
+            this.props.displayTestWarning();
+        } else if (data.desktopBlacklist && data.desktopBlacklist.includes(versionId)) {
             this.props.forceUpdate();
         } else if (data.latestDesktop && versionId !== data.latestDesktop) {
             this.props.shouldUpdate();
@@ -330,6 +341,7 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
     themeName: state.settings.themeName,
     onboardingComplete: state.accounts.onboardingComplete,
+    deepLinking: state.settings.deepLinking,
     isBusy:
         !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
 });
@@ -347,6 +359,12 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
     shouldUpdate,
     forceUpdate,
+    displayTestWarning,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withI18n()(withAutoNodeSwitching(App))));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(withI18n()(withAutoNodeSwitching(App))),
+);

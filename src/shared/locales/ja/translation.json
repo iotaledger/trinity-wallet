@@ -329,7 +329,7 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "あなたのシードを確認してください。",
-        "trinityWillNeverAskToReenter": "Trinity ウォレットは、ウォレットのリセット、またはアプリの削除をしない限りは、決してシードの再入力を求めません。",
+        "trinityWillNeverAskToReenter": "Trinityウォレットは、ウォレットのリセット、またはアプリの削除をしない限りは、決してシードの再入力を求めません。",
         "enterYourSeed": "シードを入力してください。",
         "incorrectSeed": "シードが違います。",
         "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直してください。",
@@ -391,10 +391,10 @@
         "language": "言語",
         "accountManagement": "アカウント設定",
         "addNewSeed": "新しいシードを追加",
-        "twoFA": "二要素認証",
         "changePassword": "パスワード変更",
         "general": "一般設定",
         "advanced": "詳細設定",
+        "nodeSettings": "ノード設定",
         "account": "アカウント設定",
         "logout": "ログアウト",
         "reset": "ウォレットをリセット",
@@ -456,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
-        "noTransactionsFound": "取引履歴はありません",
+        "noTransactionsFound": "取引がありません",
+        "emptyHistory": "取引履歴はありません",
         "hideZeroBalance": "残高0を非表示",
         "bundleHashCopiedExplanation": "バンドルのハッシュ値をクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
@@ -469,7 +470,13 @@
         "retrying": "再試行中",
         "yesterday": "昨日",
         "promotingAnotherBundle": "別のバンドルを促進中",
-        "pleaseWait": "少々お待ちください。Trinityは他のバンドルを促進しています。"
+        "pleaseWait": "少々お待ちください。Trinityは他のバンドルを促進しています。",
+        "typeHelp": "利用可能なコマンドについては !help と入力してください。",
+        "searchHelpText": "バンドルハッシュまたはメッセージコンテンツで検索",
+        "searchHelpValue": "正確なIOTAの値で取引を検索",
+        "searchHelpUnits": "IOTAの値と単位で取引を検索",
+        "searchHelpMore": "Xより大きな値を持つ取引を検索",
+        "searchHelpLess": "Xより小さな値を持つ取引を検索"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -502,7 +509,8 @@
         "autoPromotion": "自動促進",
         "autoPromotionExplanation": "自動促進によってTangleによる取引承認を手助けします。取引承認に時間がかかる場合はこの設定をオンにしてください。",
         "autoPromotionPoW": "自動促進はリモートによるプルーフ・オブ・ワークを許可するノードと接続している場合のみ有効です。",
-        "deepLinking": "Deep linking"
+        "deepLinking": "ディープリンク",
+        "stateExport": "状態ファイル出力"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -573,6 +581,7 @@
         "viewSeed": "シードを表示",
         "hideSeed": "シードを隠す",
         "notAvailable": "シード出力は{{accountType}}のアカウントタイプでは利用できません",
+        "notAvailableExplanationLedger": "Ledger端末は安全な要素を使ってシードを保管します。シードは安全に暗号化されLedger端末の外へは出ません。",
         "accountIndex": "Ledgerのアカウントインデックス",
         "accountPage": "Ledgerのアカウントページ"
     },
@@ -620,23 +629,6 @@
         "sendingAMessage": "メッセージを送信中",
         "sendingAnEmptyMessage": "空のメッセージを送信中"
     },
-    "twoFA": {
-        "wrongCode": "コードが間違っています。",
-        "wrongCodeExplanation": "入力したコードが正しくありません。このエラーが解決しない場合は、デバイスの時刻が正しいかどうか確認してください。",
-        "emptyCode": "コードが入力されていません。",
-        "emptyCodeExplanation": "コードを入力して、もう一度やり直してください。",
-        "keyCopied": "キーをクリップボードにコピーしました。",
-        "keyCopiedExplanation": "二要素認証キーをクリップボードにコピーしました。",
-        "addKey": "二要素認証アプリにキーを追加してください。",
-        "key": "キー",
-        "twoFAEnabled": "二要素認証が有効になりました。",
-        "twoFAEnabledExplanation": "二要素認証を有効にしました。",
-        "twoFADisabled": "二要素認証を無効化",
-        "twoFADisabledExplanation": "二要素認証を無効にしました。",
-        "enterCode": "二要素認証アプリのコードを入力してください。",
-        "code": "コード",
-        "twoFaToken": "二要素認証トークン"
-    },
     "seedVault": {
         "exportSeedVault": "シード金庫へ書き出す",
         "seedVaultExplanation": "シード金庫は、シードをバックアップするための暗号化されたファイルです。シードはシード金庫鍵で暗号化されており、このシード金庫鍵なしではアクセスできません。",
@@ -660,8 +652,16 @@
         "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
         "seedFileError": "イオタ金庫を開けませんでした",
         "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。",
+        "invalidSeedFileError": "無効なシード金庫ファイルです。",
+        "invalidSeedFileErrorExplanation": "このファイル形式はサポートされていません。Trinityまたはパスワード・マネージャーを介して作成されたシード金庫ファイル（.kdbx）のみがサポートされています。",
         "seedVaultKeyExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するための鍵を選んでください。シード金庫からシードを復元する時に、この鍵が必要です。",
-        "retypeKey": "鍵を再入力してください"
+        "retypeKey": "鍵を再入力してください",
+        "key": "キー"
+    },
+    "stateExport": {
+        "stateExportExplanation": "状態ファイル出力はアカウント情報（取引やアドレス）、ウォレットのバージョンおよび保管ファイル名をテキストファイルとしてお使いの端末に保存します。",
+        "exportSuccess": "状態ファイルの出力完了",
+        "exportSuccessExplanation": "状態ファイルは正常に保存されました。"
     },
     "chart": {
         "mcap": "時価総額",
@@ -722,11 +722,13 @@
     "deepLink": {
         "autofill": "自動入力成功",
         "autofillExplanation": "取引データはリンクから自動入力されました。",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "ディープリンクとはTrinityにあるトランザクションデータを自動で取得できるようにするリンク (iota://...) のことです。",
+        "deepLinkingWarning": "フィッシング詐欺にご注意ください。開いたリンク先が公式のTrinityアプリであることをご確認ください。",
+        "deepLinkingUpdated": "ディープリンク設定",
+        "deepLinkingEnabled": "ディープリンクを有効にしました。",
+        "deepLinkingDisabled": "ディープリンクを無効にしました。",
+        "deepLinkingInfoTitle": "ディープリンクが有効になっていません。",
+        "deepLinkingInfoMessage": "iota://ディープリンク名 を開きましたが、ディープリンクが有効になっていません。"
     },
     "updates": {
         "errorRetrievingUpdateData": "更新データの取得エラー",
@@ -779,8 +781,8 @@
         "sweepError": "資金のロック解除エラー",
         "sweepErrorExplanation": "資金のロック解除に失敗しました。もう一度やり直してください。",
         "warningTitle": "警告：ロックされた資金が検出されました",
-        "explanation": "Trinity デスクトップウォレット ver. 0.3.4には、一時的に資金をロックできてしまうバグが含まれていました。これはver. 0.3.4でトランザクションを発行した少数のユーザーに影響します。",
-        "explanationAccounts": "アカウント：{{accounts}} にロックされた資金が検出されました。Trinity ウォレットでは自動的に資金を新しいアドレスに移動させることで、資金を回復します。",
+        "explanation": "Trinityデスクトップウォレット ver. 0.3.4には、一時的に資金をロックできてしまうバグが含まれていました。これはver. 0.3.4でトランザクションを発行した少数のユーザーに影響します。",
+        "explanationAccounts": "アカウント：{{accounts}} にロックされた資金が検出されました。Trinityウォレットでは自動的に資金を新しいアドレスに移動させることで、資金を回復します。",
         "proceed": "資金回復に進む",
         "sweepConfirmation": "アドレス{{address}}（アカウント名：{{accountName}}、アドレスインデックス：{{index}}）に資金{{amount}} を移動させようとしています。",
         "sweepConfirmationTitle": "移動を承認"
@@ -823,6 +825,8 @@
         "checkAddress": "受取用のアドレスを確認してください",
         "checkAddressExplanation": "アプリのアドレスがLedger端末に表示されているアドレスと一致することを確認してください。",
         "applicationNotInitialised": "未確定に関する警告",
-        "applicationNotInitialisedExplanation": "LedgerでIOTAアプリを再度開いて、警告情報に同意してから、もう一度やり直してください。"
+        "applicationNotInitialisedExplanation": "LedgerでIOTAアプリを再度開いて、警告情報に同意してから、もう一度やり直してください。",
+        "udevError": "レッジャー端末と通信できませんでした",
+        "udevErrorExplanation": "Trinity はお使いのLedger端末と通信できませんでした。この問題を解決するには下記のURLにアクセスしてください。"
     }
 }

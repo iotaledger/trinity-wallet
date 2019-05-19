@@ -122,7 +122,7 @@ export const migrateAccounts = (accounts) => {
                 const addressData = map(addresses, (data, address) => assign({}, data, { address }));
                 const index = get(thisAccountInfo, 'index');
 
-                return syncAccount()({
+                return syncAccount(undefined, false)({
                     addressData,
                     // Transactions structure has been changed in the updated Account schema model. See schema/index.js.
                     // Previously, transactions were normalised before they were added to storage

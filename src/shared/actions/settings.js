@@ -36,7 +36,6 @@ export const ActionTypes = {
     SET_LOCK_SCREEN_TIMEOUT: 'IOTA/SETTINGS/SET_LOCK_SCREEN_TIMEOUT',
     SET_VERSIONS: 'IOTA/SETTINGS/WALLET/SET_VERSIONS',
     WALLET_RESET: 'IOTA/SETTINGS/WALLET/RESET',
-    SET_2FA_STATUS: 'IOTA/SETTINGS/SET_2FA_STATUS',
     SET_FINGERPRINT_STATUS: 'IOTA/SETTINGS/SET_FINGERPRINT_STATUS',
     ACCEPT_TERMS: 'IOTA/SETTINGS/ACCEPT_TERMS',
     ACCEPT_PRIVACY: 'IOTA/SETTINGS/ACCEPT_PRIVACY',
@@ -537,10 +536,12 @@ export function setFullNode(node, addingCustomNode = false) {
             .catch((err) => {
                 dispatch(dispatcher.error());
 
-                if (err.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateNodeOutOfSyncErrorAlert());
-                } else if (err.message === Errors.UNSUPPORTED_NODE) {
-                    dispatch(generateUnsupportedNodeErrorAlert());
+                if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err));
+                } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err, true));
+                } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
                     dispatch(dispatcher.alerts.defaultError(err));
                 }
@@ -658,23 +659,6 @@ export function resetWallet() {
         type: ActionTypes.WALLET_RESET,
     };
 }
-
-/**
- * Dispatch to update wallet's two factor authentication configuration
- *
- * @method set2FAStatus
- * @param {boolean} payload
- *
- * @returns {{type: {string}, payload: {boolean} }}
- */
-export const set2FAStatus = (payload) => {
-    Wallet.update2FASetting(payload);
-
-    return {
-        type: ActionTypes.SET_2FA_STATUS,
-        payload,
-    };
-};
 
 /**
  * Dispatch to show/hide empty transactions in transactions history

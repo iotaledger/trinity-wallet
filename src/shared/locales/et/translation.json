@@ -55,12 +55,12 @@
         "yes": "Jah",
         "no": "Ei",
         "okay": "Okei",
-        "skip": "Skip",
+        "skip": "Jäta vahele",
         "password": "Parool",
         "unrecognisedPassword": "Tundmatu parool",
         "unrecognisedPasswordExplanation": "Parool ei ole tunnistatud. Palun proovige uuesti.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccount": "Tundmatu konto",
+        "unrecognisedAccountExplanation": "Ei tuvastanud kontot nimega {{accountName}}. Kaaluge oma rahakoti resettimist.",
         "emptyPasswordExplanation": "Te peate sisestama parooli. Palun proovige uuesti.",
         "capsLockIsOn": "Caps Lock on sisse lülitatud",
         "syncInProgress": "Sünkroonimine on pooleli",
@@ -77,8 +77,8 @@
         "wallet": "Rahakott",
         "all": "Kõik",
         "sent": "Saadetud",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "Te saite",
+        "youSent": "Te saatsite",
         "received": "Laekunud",
         "sending": "Saatmine",
         "receiving": "Saamine",
@@ -122,7 +122,7 @@
         "nodeDuplicatedExplanation": "Kohandatud sõlm on juba leotletud.",
         "nodeAutoChanged": "Sõlm muutus automaatselt",
         "nodeAutoChangedExplanation": "Muudetud uuele sõlmele {{- nodeAddress}} kuna valitud sõlm on ühenduseta.",
-        "touchSensor": "Touch the fingerprint sensor",
+        "touchSensor": "Puuduta sõrmejälje lugejat",
         "fingerprintOnSend": "Ülekande lubamiseks puudutage sõrmejäljelugejat",
         "masterKey": "Teie IOTA seeme on võti teie vahenditele.",
         "seedThief": "Kui kellelgi on teie seeme siis saab ta varastada teie IOTA.",
@@ -134,7 +134,7 @@
         "spentAddressExplanation": "Hoiatus: Vahendid on kasutatud aadressil",
         "discordInformation": "Samalt aadressilt saatmine rohkem kui üks kord on ohtlik. Palun suunduge #help kanalile Discordis, et teada saada, mida saakiste teha.",
         "androidInsecureClipboardWarning": "Android ei paku turvalist lõikepuhvrit.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "Ärge mitte kunagi kopeerige/kleepige seemet Android seadmes.",
         "willNotCopyPasteSeed": "Ma ei kopeeri/kleebi oma seemet",
         "mustBeStoredAppropriately": "Seda tuleb nõuetekohaselt varundada.",
         "deviceMayBecomeUnresponsive": "Teie seade võib mõnda aega mitte vastata.",
@@ -154,15 +154,15 @@
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
         "mainWallet": "PEAMINE KONTO",
-        "confirm": "Confirm",
-        "delete": "Delete",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "confirm": "Kinnita",
+        "delete": "Kustuta",
+        "shouldUpdate": "Uuendus on saadaval",
+        "shouldUpdateExplanation": "Uus uuendus on väljas. Soovitatavalt uuendage uusimale versioonile.",
+        "forceUpdate": "Jätkamiseks uuendage rakendust",
+        "forceUpdateExplanation": "Kriitiline uuendus on väljas. Palun uuendage kohe rakendust.",
         "missingPermission": "Failisüsteemi luba on nõutud",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
-        "swipeToConfirm": "Swipe to confirm"
+        "swipeToConfirm": "Tõmba kinnitamiseks"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seeme sisaldab sobimatuid tähemärke",
@@ -280,18 +280,18 @@
     "paperWallet": {
         "neverShare": "Ärge jagage oma seemet kunagi.",
         "iotaLogo": "IOTA logo",
-        "print": "Print",
+        "print": "Prindi",
         "paperConvenience": "Teie seemne paberkoopia printimine on sovib viis selle varundamiseks.",
         "publicInsecure": "Kuid printimine avalikku WiFit või avalikku printerit kasutades on ohtlik.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Palun kontrollige ja kinnitage enne printimist",
+        "wifiConfirmation": "Ma ei kasuta avalikku WiFit",
+        "printerConfirmation": "Ma ei prindi kasutades avalikku printerit"
     },
     "printBlankTemplate": {
         "printTemplateQuestion": "Would you like to print a blank template?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "print": "Jah, prindi"
     },
     "receive": {
         "yourAddress": "Sinu aadress",
@@ -300,12 +300,12 @@
         "copyAddress": "Kopeeri aadress",
         "addressCopied": "Aadress kopeeritud",
         "addressCopiedExplanation": "Teie aadress on kopeeritud lõikelauale.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Loo aadress",
         "noAddresses": "AADRESSE POLE",
         "spent": "Kulutatud",
         "tag": "Silt",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddress": "Loo aadress",
+        "generateAnAddressTitle": "Loo aadress",
         "generateAnAddressExplanation": "Please generate an address before using this function.",
         "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
@@ -321,7 +321,7 @@
         "letsWriteDownYourSeed": "Kirjutame teie seemne üles",
         "youCanHighlightCharacters": "Korraga saate esile tõsta 9 tähemärki",
         "printBlankWallet": "Prindi tühi rahakott",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Mis on kontrollsumma?",
         "everySeedHasAChecksum": "Igal seemnel on vastav 3-kohaline kontrollsumma.",
         "iHavesavedMySeed": "Ma olen oma seemne salvestanud",
         "checksumExplanation": "Kui lisate oma rahakotile seemne, peate veenduma, et rahakoti loodud kontrollsumma vastab sellele, mille olete endale üles kirjutanud.",
@@ -335,7 +335,7 @@
         "incorrectSeedExplanation": "Sisestatud seeme on vale. Palun proovige uuesti.",
         "ifYouHaveNotSaved": "Kui te pole oma seemet varundanud, siis palun minge tagasi ja tehke seda.",
         "enterSeedBelow": "Sisestage oma äsja loodud seeme allpool, et kinnitada, et olete selle õigesti varundanud",
-        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarning": "HOIATUS: Ei saa seemet kleepida",
         "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
@@ -365,7 +365,7 @@
         "addressPasteDetected": "Aadressi lisamine tuvastatud",
         "addressPasteExplanation": "Tundub, et olete kleepinud aadressi. Veenduge, et aadress vastab sellele, millele soovite saata.",
         "invalid": "SOBIMATU",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Tõmba saatmiseks"
     },
     "setSeedName": {
         "letsAddName": "Lisame nime",
@@ -391,11 +391,11 @@
         "language": "Keel",
         "accountManagement": "Kontohaldus",
         "addNewSeed": "Lisa uus seeme",
-        "twoFA": "Kahefaktoriline autentimine",
         "changePassword": "Muuda parooli",
-        "general": "General settings",
+        "general": "Üldised seaded",
         "advanced": "Täpsemad sätted",
-        "account": "Account settings",
+        "nodeSettings": "Sõlme seaded",
+        "account": "Konto seaded",
         "logout": "Logi välja",
         "reset": "Lähtesta rahakott",
         "syncingComplete": "Sünkroniseeritud",
@@ -456,7 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Kimbu räsi kopeeritud",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Tehinguid ei leitud",
+        "emptyHistory": "Teie tehingute ajalugu on tühi",
         "hideZeroBalance": "Peida nullsaldo",
         "bundleHashCopiedExplanation": "Kimbu räsi on kopeeritud lõikelauale.",
         "addressCopied": "Aadress kopeeritud",
@@ -468,8 +469,14 @@
         "empty": "Tühi",
         "retrying": "Uuesti proovimine",
         "yesterday": "Eile",
-        "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "promotingAnotherBundle": "Edendan teist kimpu",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Vaata seemet",
@@ -502,7 +509,8 @@
         "autoPromotion": "Automaatne edutamine",
         "autoPromotionExplanation": "Automaatne edutamine aitab teil kinnitada oma tehinguid Tangle võrgustikus. Lubage see säte, kui teil on probleeme oma tehingute kinnitamisega.",
         "autoPromotionPoW": "Automaatne edutamine on saadaval ainult sõlmedes, mis toetavad kaugtöö tõendit.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Taustapilt",
@@ -530,13 +538,13 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "Kas soovite kindlasti välja logida?",
         "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "areYouSure": "Olete kindel?"
     },
     "qrScanner": {
         "scan": "Skännige oma QR-koodi"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Ühikusüsteem",
         "trillion": "Triljon",
         "billion": "Miljard",
         "million": "Miljon",
@@ -550,7 +558,7 @@
         "discordInformation": "Palun suunduge #help kanalile Discordis, et teada saada, mida saakiste teha."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Olete kindel, et soovite oma kontot kustutada?",
         "yourSeedWillBeRemoved": "Teie seeme ja tehingute ajalugu eemaldatakse.",
         "thisAction": "Seda tegevust ei saa tagasi võtta",
         "enterPassword": "Konto kustutamiseks sisestage oma parool."
@@ -564,7 +572,7 @@
         "syncingYourAccount": "Sünkroniseerin teie kontot."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Sisestage konto nimi ja seeme",
         "incorrectFormat": "Vale seemne vorming",
         "validSeedExplanation": "Kehtivad seemned peaksid olema 81 tähemärki pikad ja sisaldama ainult A-Z või 9."
     },
@@ -573,6 +581,7 @@
         "viewSeed": "Vaata seemet",
         "hideSeed": "Peida seeme",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
@@ -602,7 +611,7 @@
         "fingerprintUnavailableExplanation": "Teie seade ei toeta biomeetrilist autentimist või pole see seadme seadetes konfigureeritud.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Sõrmejäljega autentimise keelamiseks vajutage allpool olevat nuppu.",
         "buttonInstructionsEnable": "Sõrmejäljega autentimise lubamiseks vajutage allolevat nuppu.",
         "buttonInstructionsDisableIPhoneX": "Face ID keelamiseks vajutage allolevat nuppu",
         "buttonInstructionsEnableIPhoneX": "Face ID lubamiseks vajutage allolevat nuppu",
@@ -616,26 +625,9 @@
         "youAreAbout": "Te olete saatmas {{contents}} aadressile",
         "aMessage": "sõnum",
         "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
-    },
-    "twoFA": {
-        "wrongCode": "Vale kood",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
-        "emptyCode": "Tühi kood",
-        "emptyCodeExplanation": "Palun sisestage kood ja proovige uuesti.",
-        "keyCopied": "Võti kopeeritud lõikelauale",
-        "keyCopiedExplanation": "Teie 2FA võti on kopeeritud lõikelauale.",
-        "addKey": "Lisa see võti oma 2FA rakendusse",
-        "key": "Võti",
-        "twoFAEnabled": "2FA on nüüd sees",
-        "twoFAEnabledExplanation": "Kahefaktoriline autentimine edukalt lubatud.",
-        "twoFADisabled": "2FA on nüüd keelatud",
-        "twoFADisabledExplanation": "Te olete edukalt keelanud kahefaktorilise autentimise.",
-        "enterCode": "Sisestage oma 2FA rakendusest saadud kood",
-        "code": "Kood",
-        "twoFaToken": "2FA kood"
+        "toAddress": "Aadressile",
+        "sendingAMessage": "Sõnumi saatmine",
+        "sendingAnEmptyMessage": "Tühja sõnumi saatmine"
     },
     "seedVault": {
         "exportSeedVault": "Ekspordi seemnehoidla",
@@ -660,8 +652,16 @@
         "noSeedFoundExplanation": "Seemnehoidla on tühi või sisaldab seemet vales vormingus.",
         "seedFileError": "Seemnehoidla avamine nurjus",
         "seedFileErrorExplanation": "Seemnehoidla avamisega oli probleem. Kui valisite õige faili, siis võib see olla rikutud.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Retype key",
+        "key": "Võti"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "TURUKAPITAL",
@@ -697,7 +697,7 @@
         "gettingTransactionsToApprove": "Otsin tehinguid, mida heaks kiita",
         "proofOfWork": "Valmistan töötõendit",
         "broadcasting": "Edastamine",
-        "preparingData": "Preparing data",
+        "preparingData": "Andmete ettevalmistamine",
         "migratingSettings": "Migrating settings",
         "migratingAccounts": "Migrating accounts",
         "cleaningUpOldData": "Cleaning up old data",
@@ -726,17 +726,19 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Uuendamisandmete allalaadimise viga",
         "noUpdatesAvailable": "Ühtegi uuendust pole saadaval",
-        "noUpdatesAvailableExplanation": "Teil on Trinity Desktopi viimane versioon.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Uus versioon saadaval",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Installi värskendus ja taaskäivita",
         "installUpdateExplanation": "Allalaadimine lõpetatud, Trinity taaskäivitub värskenduse installimiseks.",
-        "downloadingUpdate": "Downloading update",
+        "downloadingUpdate": "Uuenduse allalaadimine",
         "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
@@ -823,6 +825,8 @@
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "udevError": "Could not communicate with Ledger device",
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
     }
 }
