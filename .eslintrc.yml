@@ -102,6 +102,7 @@ rules:
     jsx-a11y/no-static-element-interactions: 0
     jsx-a11y/no-noninteractive-element-interactions: 0
     react/default-props-match-prop-types: 0
+    react/destructuring-assignment: 0
     react/forbid-prop-types: 0
     react/jsx-equals-spacing: 2
     react/jsx-filename-extension: [1, { "extensions": [".js", ".jsx"] }]
