@@ -1,0 +1,2 @@
+rules:
+    react/forbid-foreign-prop-types: 0
