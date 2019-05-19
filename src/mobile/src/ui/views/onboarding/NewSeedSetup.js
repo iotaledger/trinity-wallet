@@ -145,6 +145,7 @@ class NewSeedSetup extends Component {
     async onCharPress(sectionID) {
         const { hasGeneratedSeed } = this.state;
         if (hasGeneratedSeed) {
+            // eslint-disable-next-line react/no-access-state-in-setstate
             this.setState({ seed: await randomiseSeedCharacter(this.state.seed, sectionID, generateSecureRandom) });
         }
     }
@@ -176,7 +177,9 @@ class NewSeedSetup extends Component {
     }
 
     renderChequerboard(character, index) {
-        const { theme: { input, primary } } = this.props;
+        const {
+            theme: { input, primary },
+        } = this.props;
 
         const { hasGeneratedSeed } = this.state;
 
@@ -197,7 +200,11 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { t, theme: { primary, secondary, body }, minimised } = this.props;
+        const {
+            t,
+            theme: { primary, secondary, body },
+            minimised,
+        } = this.props;
         const { hasGeneratedSeed } = this.state;
         const viewOpacity = hasGeneratedSeed ? 1 : 0.2;
         const opacity = hasGeneratedSeed ? 1 : 0.4;
@@ -300,5 +307,10 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    withNamespaces(['newSeedSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup)),
+    withNamespaces(['newSeedSetup', 'global'])(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(NewSeedSetup),
+    ),
 );

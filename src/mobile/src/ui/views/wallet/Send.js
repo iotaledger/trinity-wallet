@@ -427,7 +427,7 @@ export class Send extends Component {
 
     // eslint-disable-next-line react/sort-comp
     interuptSendAnimation() {
-        this.setState({ shouldInteruptSendAnimation: !this.state.shouldInteruptSendAnimation });
+        this.setState((prevState) => ({ shouldInteruptSendAnimation: !prevState.shouldInteruptSendAnimation }));
     }
 
     /**

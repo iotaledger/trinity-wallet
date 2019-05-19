@@ -163,7 +163,7 @@ class Slider extends Component {
             duration: 50,
         }).start();
         if (this.props.numberOfSliders > 1) {
-            this.setState({ sliderNumber: this.state.sliderNumber + 1 });
+            this.setState((prevState) => ({ sliderNumber: prevState.sliderNumber + 1 }));
         }
         this.setState({ sliderColor: this.props.postSwipeColor, swipeComplete: true });
         this.sliderAnimation.play();
