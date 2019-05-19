@@ -171,9 +171,9 @@ class SeedInput extends React.PureComponent {
     };
 
     setVisibility = () => {
-        this.setState({
-            hidden: !this.state.hidden,
-        });
+        this.setState((prevState) => ({
+            hidden: !prevState.hidden,
+        }));
     };
 
     closeScanner = () => {

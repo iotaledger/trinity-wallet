@@ -65,9 +65,9 @@ class PasswordInput extends React.PureComponent {
     }
 
     setVisibility = () => {
-        this.setState({
-            hidden: !this.state.hidden,
-        });
+        this.setState((prevState) => ({
+            hidden: !prevState.hidden,
+        }));
     };
 
     setCapsLock = (e) => {

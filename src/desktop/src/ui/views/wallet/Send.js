@@ -79,19 +79,6 @@ class Send extends React.PureComponent {
         });
     };
 
-    updateFields(address, message, amount) {
-        this.props.setSendAddressField(address);
-        if (message) {
-            this.props.setSendMessageField(message);
-        }
-        if (amount) {
-            if (typeof amount === 'number') {
-                amount = amount.toString();
-            }
-            this.props.setSendAmountField(amount);
-        }
-    }
-
     confirmTransfer = async () => {
         const { fields, password, accountName, accountMeta, sendTransfer } = this.props;
 
@@ -109,6 +96,19 @@ class Send extends React.PureComponent {
         sendTransfer(seedStore, fields.address, parseInt(fields.amount) || 0, message);
     };
 
+    updateFields(address, message, amount) {
+        this.props.setSendAddressField(address);
+        if (message) {
+            this.props.setSendMessageField(message);
+        }
+        if (amount) {
+            if (typeof amount === 'number') {
+                amount = amount.toString();
+            }
+            this.props.setSendAmountField(amount);
+        }
+    }
+
     render() {
         const { accountMeta, fields, isSending, availableBalance, settings, progress, t } = this.props;
         const { isTransferModalVisible, isUnitsVisible } = this.state;
@@ -118,7 +118,7 @@ class Send extends React.PureComponent {
                 ? `${formatValue(fields.amount)} ${formatUnit(fields.amount)} (${getCurrencySymbol(
                       settings.currency,
                   )}${(
-                      round(fields.amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
+                      round(((fields.amount * settings.usdPrice) / 1000000) * settings.conversionRate * 100) / 100
                   ).toFixed(2)})`
                 : t('transferConfirmation:aMessage');
 

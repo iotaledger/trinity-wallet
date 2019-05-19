@@ -136,7 +136,7 @@ class Advanced extends PureComponent {
     confirmReset = () => {
         const { wallet } = this.props;
 
-        this.setState({ resetConfirm: !this.state.resetConfirm, resetCountdown: 15 });
+        this.setState((prevState) => ({ resetConfirm: !prevState.resetConfirm, resetCountdown: 15 }));
 
         if (!wallet || !wallet.isOpen) {
             this.interval = setInterval(() => {
@@ -144,9 +144,9 @@ class Advanced extends PureComponent {
                     clearInterval(this.interval);
                 }
 
-                this.setState({
-                    resetCountdown: this.state.resetCountdown - 1,
-                });
+                this.setState((prevState) => ({
+                    resetCountdown: prevState.resetCountdown - 1,
+                }));
             }, 1000);
         }
     };
@@ -351,4 +351,7 @@ const mapDispatchToProps = {
     setProxy,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Advanced));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(Advanced));

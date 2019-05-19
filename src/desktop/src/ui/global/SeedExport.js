@@ -49,14 +49,14 @@ class SeedExport extends PureComponent {
     onBackStep = (e) => {
         e.preventDefault();
         if (this.state.step !== 1) {
-            return this.setState({ step: this.state.step - 1 });
+            return this.setState((prevState) => ({ step: prevState.step - 1 }));
         }
         this.onClose(e);
     };
 
     onStep = (e) => {
         e.preventDefault();
-        this.setState({ step: this.state.step + 1 });
+        this.setState((prevState) => ({ step: prevState.step + 1 }));
     };
 
     /**

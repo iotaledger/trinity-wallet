@@ -97,28 +97,6 @@ class Polling extends React.PureComponent {
         clearInterval(this.interval);
     }
 
-    shouldSkipCycle() {
-        const props = this.props;
-
-        const isAlreadyDoingSomeHeavyLifting =
-            props.isSyncing ||
-            props.isSendingTransfer ||
-            props.isGeneratingReceiveAddress ||
-            props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
-            props.addingAdditionalAccount ||
-            props.isTransitioning ||
-            props.isRetryingFailedTransaction;
-
-        const isAlreadyPollingSomething =
-            props.isPollingPrice ||
-            props.isPollingChartData ||
-            props.isPollingMarketData ||
-            props.isPollingAccountInfo ||
-            props.isAutoPromoting;
-
-        return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
-    }
-
     moveToNextPollService = () => {
         const { allPollingServices, pollFor } = this.props;
 
@@ -201,6 +179,28 @@ class Polling extends React.PureComponent {
 
         return this.moveToNextPollService();
     };
+
+    shouldSkipCycle() {
+        const props = this.props;
+
+        const isAlreadyDoingSomeHeavyLifting =
+            props.isSyncing ||
+            props.isSendingTransfer ||
+            props.isGeneratingReceiveAddress ||
+            props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
+            props.addingAdditionalAccount ||
+            props.isTransitioning ||
+            props.isRetryingFailedTransaction;
+
+        const isAlreadyPollingSomething =
+            props.isPollingPrice ||
+            props.isPollingChartData ||
+            props.isPollingMarketData ||
+            props.isPollingAccountInfo ||
+            props.isAutoPromoting;
+
+        return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
+    }
 
     render() {
         return null;

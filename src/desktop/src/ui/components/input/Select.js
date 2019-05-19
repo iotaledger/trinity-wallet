@@ -44,6 +44,13 @@ export default class Select extends React.PureComponent {
         window.removeEventListener('click', this.onClick);
     }
 
+    choose = (value) => {
+        this.setState({
+            open: false,
+        });
+        this.props.onChange(value);
+    };
+
     clickOutside(e) {
         if (this.state.open) {
             const area = this.select;
@@ -54,13 +61,6 @@ export default class Select extends React.PureComponent {
             }
         }
     }
-
-    choose = (value) => {
-        this.setState({
-            open: false,
-        });
-        this.props.onChange(value);
-    };
 
     render() {
         const { value, valueLabel, options, label, disabled } = this.props;
