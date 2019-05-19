@@ -165,7 +165,7 @@
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
         "missingPermissionExplanation": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan suorittaaksesi tämän toiminnon.",
         "swipeToConfirm": "Pyyhkäise vahvistaaksesi",
-        "expert": "Expert"
+        "expert": "Edistynyt"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
