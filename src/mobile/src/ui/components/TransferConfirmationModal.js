@@ -210,7 +210,7 @@ class TransferConfirmationModal extends Component {
                         ref={(ref) => {
                             this.animation = ref;
                         }}
-                        onAnimationFinish={() => this.animation.play(52, 431)}
+                        onAnimationFinish={() => this.animation.play(89, 624)}
                     />
                 </View>
                 <View style={[styles.itemContainer, { backgroundColor: dark.color }]}>
