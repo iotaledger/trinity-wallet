@@ -117,11 +117,11 @@ class Ledger extends SeedStoreCore {
     /**
      * Prepare transfers
      */
-    prepareTransfers = async (transfers, options = null) => {
+    prepareTransfers = (settings) => async (transfers, options = null) => {
         try {
             // If sending a 0 value transaction, use iota.lib.js
             if (options === null) {
-                return prepareTransfersAsync()(transfers[0].address, transfers);
+                return prepareTransfersAsync(settings)(transfers[0].address, transfers);
             }
 
             const seed = await this.getSeed();

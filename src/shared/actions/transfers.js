@@ -588,7 +588,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // Progressbar step => (Preparing transfers)
                 dispatch(setNextStepAsActive());
 
-                return seedStore.prepareTransfers(transfer, options);
+                return seedStore.prepareTransfers()(transfer, options);
             })
             .then((trytes) => {
                 if (!isZeroValue) {

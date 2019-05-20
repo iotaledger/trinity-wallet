@@ -360,7 +360,7 @@ const sendTransferAsync = (settings) => (
     };
 
     return seedStore
-        .prepareTransfers(transfers, options)
+        .prepareTransfers(settings)(transfers, options)
         .then((trytes) => {
             cached.trytes = trytes;
 
