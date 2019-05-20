@@ -25,6 +25,7 @@ export default {
     isDark: false,
     animations: [
         'body.color',
+        'body.bg',
         'rgb(145,145,145)',
         'primary.color',
         'bar.alt',

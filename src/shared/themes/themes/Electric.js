@@ -25,6 +25,7 @@ export default {
     isDark: true,
     animations: [
         'body.color',
+        'body.bg',
         'input.alt',
         'secondary.color',
         'primary.color',

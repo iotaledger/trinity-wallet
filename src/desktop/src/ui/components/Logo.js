@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import loading from 'animations/loading-white.json';
+import { getAnimation } from 'animations';
 import Icon from 'ui/components/Icon';
 import Lottie from 'ui/components/Lottie';
 
@@ -20,17 +20,24 @@ export default class Logo extends React.PureComponent {
         animate: PropTypes.bool,
         /** Should animation loop */
         loop: PropTypes.bool,
+        /** @ignore */
+        themeName: PropTypes.string,
     };
 
     render() {
-        const { size, loop, animate, onEnd } = this.props;
-
+        const { size, loop, animate, onEnd, themeName } = this.props;
         return (
             <div className={css.logo} style={{ width: size, height: size }}>
                 {!animate ? (
                     <Icon icon="iota" size={size} />
                 ) : (
-                    <Lottie width={size} height={size} loop={loop} data={loading} onEnd={onEnd} />
+                    <Lottie
+                        width={size}
+                        height={size}
+                        loop={loop}
+                        data={getAnimation('loading', themeName)}
+                        onEnd={onEnd}
+                    />
                 )}
             </div>
         );

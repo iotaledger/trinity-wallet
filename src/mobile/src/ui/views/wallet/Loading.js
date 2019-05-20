@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import timer from 'react-native-timer';
-import whiteLoadingAnimation from 'shared-modules/animations/loading-white.json';
-import blackLoadingAnimation from 'shared-modules/animations/loading-black.json';
+import { getAnimation } from 'shared-modules/animations';
 import { navigator } from 'libs/navigation';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -126,7 +125,7 @@ class Loading extends Component {
         /** All stored account names */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
-        isThemeDark: PropTypes.bool.isRequired,
+        themeName: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -278,10 +277,9 @@ class Loading extends Component {
         const {
             t,
             theme: { body, primary },
-            isThemeDark,
+            themeName,
         } = this.props;
         const textColor = { color: body.color };
-        const loadingAnimationPath = isThemeDark ? whiteLoadingAnimation : blackLoadingAnimation;
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -292,7 +290,12 @@ class Loading extends Component {
                         delay={0}
                         style={styles.loadingAnimationContainer}
                     >
-                        <LottieView source={loadingAnimationPath} style={styles.animationNewSeed} loop autoPlay />
+                        <LottieView
+                            source={getAnimation('loading', themeName)}
+                            style={styles.animationNewSeed}
+                            loop
+                            autoPlay
+                        />
                     </AnimatedComponent>
                 </View>
                 <AnimatedComponent
@@ -351,7 +354,7 @@ const mapStateToProps = (state) => ({
     additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
     ready: state.wallet.ready,
     theme: getThemeFromState(state),
-    isThemeDark: getThemeFromState(state).isDark,
+    themeName: state.settings.themeName,
     currency: state.settings.currency,
     deepLinkRequestActive: state.wallet.deepLinkRequestActive,
 });

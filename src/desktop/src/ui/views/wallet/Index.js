@@ -43,6 +43,8 @@ class Wallet extends React.PureComponent {
         }).isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     state = {
@@ -89,7 +91,7 @@ class Wallet extends React.PureComponent {
     };
 
     render() {
-        const { completedByteTritSweep, byteTritInfo, location, history, t } = this.props;
+        const { completedByteTritSweep, byteTritInfo, location, history, t, themeName } = this.props;
         const { isSweeping } = this.state;
 
         if (byteTritInfo) {
@@ -115,7 +117,7 @@ class Wallet extends React.PureComponent {
         }
 
         if (!completedByteTritSweep) {
-            return <Loading loop />;
+            return <Loading loop themeName={themeName} />;
         }
 
         return (
@@ -133,6 +135,7 @@ const mapStateToProps = (state) => ({
     completedByteTritSweep: state.settings.completedByteTritSweep,
     byteTritInfo: state.settings.byteTritInfo,
     password: state.wallet.password,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {
@@ -140,4 +143,11 @@ const mapDispatchToProps = {
     byteTritSweep,
 };
 
-export default withRouter(withI18n()(connect(mapStateToProps, mapDispatchToProps)(Wallet)));
+export default withRouter(
+    withI18n()(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(Wallet),
+    ),
+);

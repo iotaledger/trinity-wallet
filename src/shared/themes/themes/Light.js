@@ -20,6 +20,7 @@ export default {
     isDark: false,
     animations: [
         'body.color',
+        'body.bg',
         'rgb(126,126,126)',
         'negative.color',
         'negative.hover',

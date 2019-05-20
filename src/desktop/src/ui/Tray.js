@@ -33,6 +33,8 @@ class App extends React.Component {
         locale: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -72,11 +74,11 @@ class App extends React.Component {
     }
 
     unauthorised() {
-        const { complete, t } = this.props;
+        const { complete, t, themeName } = this.props;
 
         return (
             <div className={css.intro}>
-                <Logo size={72} animate loop />
+                <Logo size={72} animate loop themeName={themeName} />
                 <h2>{complete ? t('tray:notLoggedIn') : t('tray:setupIncomplete')}</h2>
                 <Button onClick={() => Electron.focus()}>
                     {complete ? t('login:login') : t('tray:completeSetup')}
@@ -138,6 +140,7 @@ const mapStateToProps = (state) => ({
     complete: state.accounts.onboardingComplete,
     locale: state.settings.locale,
     accounts: state.accounts,
+    themeName: state.settings.themeName,
 });
 
 export default withRouter(connect(mapStateToProps)(withI18n()(App)));

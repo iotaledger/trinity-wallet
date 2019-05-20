@@ -156,6 +156,7 @@
     "iota.lib.js": "0.5.1",
     "kdbxweb": "1.2.7",
     "keytar": "4.7.0",
+    "lottie-web": "5.5.2",
     "machine-uuid-sync": "https://github.com/rajivshah3/machine-uuid-sync#a5ffa8e",
     "perfect-scrollbar": "1.4.0",
     "qr.js": "0.0.0",
@@ -169,6 +170,7 @@
     "react-transition-group": "4.0.1",
     "realm": "2.23.0",
     "recharts": "1.6.0",
-    "redux": "4.0.1"
+    "redux": "4.0.1",
+    "usb": "1.5.0"
   }
 }

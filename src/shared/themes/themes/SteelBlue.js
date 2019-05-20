@@ -24,6 +24,7 @@ export default {
     wave: { primary: 'rgba(28, 41, 159, 0.5)', secondary: 'rgb(212, 219, 234)' },
     isDark: false,
     animations: [
+        'body.color',
         'body.bg',
         'input.alt',
         'primary.color',

@@ -5,6 +5,7 @@ import ledger from './ledger.json';
 import onboardingComplete from './onboardingComplete.json';
 import sending from './transactionA.json';
 import logout from './thanks.json';
+import loading from './loading.json';
 
 import themes from '../themes/themes';
 
@@ -15,6 +16,7 @@ export const animations = {
     welcome,
     sending,
     logout,
+    loading,
 };
 
 /**
@@ -53,6 +55,8 @@ const rgbToVector = (color) => {
 };
 
 const defaultTones = [
+    //rgb(240,242,246)
+    [0.941176, 0.949019, 0.964705, 1],
     //rgb(3,41,62)
     [0.011764, 0.160784, 0.243137, 1],
     //rgb(147,168,172)
@@ -85,7 +89,6 @@ const replaceColors = (data, theme) => {
     if (!tones) {
         return data;
     }
-
     let result = JSON.stringify(data);
 
     defaultTones.forEach((defaultTone, index) => {
