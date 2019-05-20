@@ -21,93 +21,111 @@ import Index from 'ui/Index';
 import Tray from 'ui/Tray';
 
 import Alerts from 'ui/global/Alerts';
+import FatalError from 'ui/global/FatalError';
 
 import settings from '../package.json';
 
-import css from './ui/index.scss'; // eslint-disable-line
+import './ui/index.scss';
 
-export const bugsnagClient = bugsnag({
-    apiKey: 'fakeAPIkey',
-    appVersion: settings.version,
-    interactionBreadcrumbsEnabled: false,
-    collectUserIp: false,
-    user: { id: Electron.getUuid() },
-});
-bugsnagClient.use(bugsnagReact, React);
+const init = () => {
+    if (typeof Electron === 'undefined') {
+        return render(<FatalError error="Failed to load Electron preload script" />, document.getElementById('root'));
+    }
 
-const ErrorBoundary = bugsnagClient.getPlugin('react');
+    const bugsnagKey = process.env.BUGSNAG_API_KEY;
+    let ErrorBoundary = React.Fragment;
 
-if (Electron.mode === 'tray') {
-    Electron.onEvent('store.update', (payload) => {
-        const data = JSON.parse(payload);
-        store.dispatch(mapStorageToStateAction(data));
-    });
-} else {
-    initialiseStorage(getEncryptionKey)
-        .then(() => {
-            const oldPersistedData = Electron.getAllStorage();
-            const hasDataToMigrate = !isEmpty(oldPersistedData);
+    if (bugsnagKey.length) {
+        const bugsnagClient = bugsnag({
+            apiKey: bugsnagKey,
+            appVersion: settings.version,
+            interactionBreadcrumbsEnabled: false,
+            collectUserIp: false,
+            user: { id: Electron.getUuid() },
+        });
+        bugsnagClient.use(bugsnagReact, React);
+        ErrorBoundary = bugsnagClient.getPlugin('react');
+    }
 
-            if (hasDataToMigrate) {
-                Object.assign(oldPersistedData.settings, {
-                    completedMigration: false,
-                });
-            }
-
-            // Get persisted data from Realm storage
-            const data = hasDataToMigrate ? oldPersistedData : mapStorageToState();
-
-            // Change provider on global iota instance
-            const node = get(data, 'settings.node');
-            changeIotaNode(node);
-
-            // Update store with persisted state
+    if (Electron.mode === 'tray') {
+        Electron.onEvent('store.update', (payload) => {
+            const data = JSON.parse(payload);
             store.dispatch(mapStorageToStateAction(data));
+        });
+    } else {
+        initialiseStorage(getEncryptionKey)
+            .then(() => {
+                const oldPersistedData = Electron.getAllStorage();
+                const hasDataToMigrate = !isEmpty(oldPersistedData);
 
-            // Assign accountIndex to every account in accountInfo if it is not assigned already
-            store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
+                if (hasDataToMigrate) {
+                    Object.assign(oldPersistedData.settings, {
+                        completedMigration: false,
+                    });
+                }
 
-            // Proxy realm changes to Tray application
-            realm.addListener('change', () => {
-                const data = mapStorageToState();
-                Electron.storeUpdate(JSON.stringify(data));
+                // Get persisted data from Realm storage
+                const persistedDataFromRealm = mapStorageToState();
+                const data = hasDataToMigrate ? oldPersistedData : persistedDataFromRealm;
+
+                // Change provider on global iota instance
+                const node = get(data, 'settings.node');
+                changeIotaNode(node);
+
+                // Update store with persisted state
+                store.dispatch(mapStorageToStateAction(data));
+
+                // Assign accountIndex to every account in accountInfo if it is not assigned already
+                store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
+
+                // Proxy realm changes to Tray application
+                realm.addListener('change', () => {
+                    const data = mapStorageToState();
+                    Electron.storeUpdate(JSON.stringify(data));
+                });
+
+                // Start Tray application if enabled in settings
+                const isTrayEnabled = get(data, 'settings.isTrayEnabled');
+                Electron.setTray(isTrayEnabled);
+
+                // Show Wallet window after inital store update
+                Electron.focus();
+            })
+
+            .catch((err) => {
+                Electron.focus();
+                render(<FatalError error={err.message || err} />, document.getElementById('root'));
+                bugsnagKey && bugsnagClient.notify(err);
             });
+    }
 
-            // Start Tray application if enabled in settings
-            const isTrayEnabled = get(data, 'settings.isTrayEnabled');
-            Electron.setTray(isTrayEnabled);
+    const rootEl = document.createElement('div');
+    rootEl.id = 'root';
+    document.body.appendChild(rootEl);
 
-            // Show Wallet window after inital store update
-            Electron.focus();
-        })
-        // eslint-disable-next-line no-console
-        .catch((err) => console.log(err));
-}
+    const modalEl = document.createElement('div');
+    modalEl.id = 'modal';
+    document.body.appendChild(modalEl);
 
-const rootEl = document.createElement('div');
-rootEl.id = 'root';
-document.body.appendChild(rootEl);
+    render(
+        <ErrorBoundary>
+            <Redux store={store}>
+                <I18nextProvider i18n={i18next}>
+                    <Router>
+                        {Electron.mode === 'tray' ? (
+                            <Tray />
+                        ) : (
+                            <React.Fragment>
+                                <Alerts />
+                                <Index />
+                            </React.Fragment>
+                        )}
+                    </Router>
+                </I18nextProvider>
+            </Redux>
+        </ErrorBoundary>,
+        rootEl,
+    );
+};
 
-const modalEl = document.createElement('div');
-modalEl.id = 'modal';
-document.body.appendChild(modalEl);
-
-render(
-    <ErrorBoundary>
-        <Redux store={store}>
-            <I18nextProvider i18n={i18next}>
-                <Router>
-                    {Electron.mode === 'tray' ? (
-                        <Tray />
-                    ) : (
-                        <React.Fragment>
-                            <Alerts />
-                            <Index />
-                        </React.Fragment>
-                    )}
-                </Router>
-            </I18nextProvider>
-        </Redux>
-    </ErrorBoundary>,
-    rootEl,
-);
+init();

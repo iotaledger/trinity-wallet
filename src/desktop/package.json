@@ -18,7 +18,7 @@
     "url": "git+https://github.com/iotaledger/trinity-wallet.git"
   },
   "scripts": {
-    "start": "concurrently --kill-others \"npm run devserver\" \"cross-env NODE_ENV=development electron -r @babel/register main.js\"",
+    "start": "concurrently --kill-others \"npm run devserver\" \"cross-env NODE_ENV=development electron -r @babel/register native/Index.js\"",
     "postinstall": "electron-builder install-app-deps",
     "devserver": "node scripts/webpackServer.js",
     "build": "rimraf dist && npm run build-main && npm run build-app",
@@ -28,7 +28,6 @@
     "compile:linux": "./node_modules/.bin/electron-builder --linux --x64",
     "compile:mac": "./node_modules/.bin/cross-env electron-builder --mac --x64",
     "compile:win": "./node_modules/.bin/electron-builder --win --x64",
-    "auditjs": "./../../node_modules/.bin/auditjs -n -l error -w whitelist.json",
     "test": "npm run build-app && jest"
   },
   "devDependencies": {
@@ -65,7 +64,6 @@
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
     "url-loader": "1.1.2",
-    "usb": "1.5.0",
     "webpack": "4.32.0",
     "webpack-cli": "3.3.2",
     "webpack-dev-middleware": "3.7.0",
@@ -166,6 +164,7 @@
     "qr.js": "0.0.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
+    "react-hot-loader": "^4.8.7",
     "react-i18next": "9.0.10",
     "react-lottie": "1.2.3",
     "react-markdown": "4.0.8",
@@ -175,7 +174,8 @@
     "react-transition-group": "4.0.1",
     "realm": "2.23.0",
     "recharts": "1.6.1",
-    "redux": "4.0.1"
+    "redux": "4.0.1",
+    "usb": "1.5.0"
   },
   "jest": {
     "runner": "@jest-runner/electron",

@@ -11,10 +11,10 @@ import { byteToTrit, byteToChar } from 'libs/iota/converter';
 import { removeNonAlphaNumeric } from 'libs/utils';
 import { moment } from 'libs/exports';
 
-import kdbx from '../kdbx';
-import Entangled from '../Entangled';
+import kdbx from '../libs/kdbx';
+import Entangled from '../libs/Entangled';
 import ledger from '../hardware/Ledger';
-import Realm from '../Realm';
+import Realm from '../libs/Realm';
 import { version } from '../../package.json';
 
 const capitalize = (string) => {

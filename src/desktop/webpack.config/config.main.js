@@ -6,10 +6,10 @@ module.exports = {
     mode: 'production',
     target: 'electron-main',
     entry: {
-        main: './main.js',
+        main: './native/Index.js',
         preloadDev: './native/preload/development.js',
         preloadProd: './native/preload/production.js',
-        Entangled: './native/Entangled.js',
+        Entangled: './native/libs/Entangled.js',
         preloadTray: './native/preload/tray.js',
     },
     node: {

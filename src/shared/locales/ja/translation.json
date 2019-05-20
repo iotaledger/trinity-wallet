@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "アカウント情報を取得中にノードがエラーを返しました。問題が解決しない場合は、Trinityの設定でノードを変更するか、システムプロキシを無効にしてみてください。",
         "nodeOutOfSync": "ノードが同期していません。",
         "nodeOutOfSyncExplanation": "現在選択しているノードは同期していません。ノードを変更するか、もう一度お試しください。",
+        "nodeOutOfSyncByTimestampExplanation": "現在選択されているノードは同期していません。ノードを変更するか、やり直してください。問題が解決しない場合は、デバイスの時刻が正しいことを確認してください。",
         "experimentalNode": "サポートされていないノードのバージョンです",
         "experimentalNodeExplanation": "現在選択されているノードは、サポートされていない実験版を実行しています。ノードを変更するか、もう一度お試しください。",
         "thisNodeOutOfSync": "このノードは同期していません。ノードを変更するか、もう一度お試しください。",
@@ -160,9 +161,11 @@
         "shouldUpdateExplanation": "新しいアップデートがリリースされています。最新バージョンに更新することをお勧めします。",
         "forceUpdate": "続けるにはアプリをアップデートしてください",
         "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。",
+        "testVersionWarning": "このバージョンは、テスト目的でのみ使用し、ごく少量のトークンを使用してください。",
         "missingPermission": "ファイルシステム権限が必要です",
         "missingPermissionExplanation": "この機能を実行するには、ファイルシステムへのアクセス権限が必要です。",
-        "swipeToConfirm": "スワイプして確認する"
+        "swipeToConfirm": "スワイプして確認する",
+        "expert": "上級者"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -798,13 +801,16 @@
         "notReady": "Ledger端末を使いたい場合、今、接続しロックを解除してください",
         "indexInUse": "アカウント{{account}}で既に使用されているインデックスです",
         "indexInUseExplanation": "選択したインデックスは、いずれかのアカウントですでに使用されています。別のインデックス番号を選択してください。",
-        "proceedWithLedger": "Ledgerのセットアップを続行する",
+        "createNewLedgerAccountInfo": "インデックス番号を書き留めて忘れないようにしてください。",
+        "restoreLedgerAccountInfo": "アカウントを復元するには、保存したインデックス番号を入力してください。",
+        "createNewLedgerAccount": "Ledgerアカウントの新規作成",
+        "restoreLedgerAccount": "既存のLedgerアカウントの復元",
         "accountIndex": "アカウントインデックス",
         "accountPage": "アカウントページ",
         "actionCancelled": "Ledger端末へのアクセスはキャンセルされました。",
         "actionCancelledExplanation": "Ledger端末にアクセスしないと操作を実行できません。",
         "chooseAccountIndex": "Ledgerのアカウントインデックスを選択してください",
-        "accountIndexExplanation": "Ledgerは複数のシードを保存できます。各シードは一意のインデックス番号で識別されます。未使用のインデックスが事前に選択されますが、自分で選択することもできます。自分で選択したインデックス番号は書き留めておいてください。",
+        "accountIndexExplanation": "あなたのLedgerは複数のシードを保存することができます。各シードは一意のインデックス番号によって識別されます。",
         "accountPageExplanation": "一部のサードパーティ製のウォレットではページが必要です。",
         "connectionError": "Ledgerに接続できません",
         "connectionErrorExplanation": "Ledgerがきちんと接続され、ロックが解除されていることをお確かめください。",
@@ -826,7 +832,11 @@
         "checkAddressExplanation": "アプリのアドレスがLedger端末に表示されているアドレスと一致することを確認してください。",
         "applicationNotInitialised": "未確定に関する警告",
         "applicationNotInitialisedExplanation": "LedgerでIOTAアプリを再度開いて、警告情報に同意してから、もう一度やり直してください。",
+        "checkLedger": "Ledger端末を確認してください。",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "レッジャー端末と通信できませんでした",
-        "udevErrorExplanation": "Trinity はお使いのLedger端末と通信できませんでした。この問題を解決するには下記のURLにアクセスしてください。"
+        "udevErrorExplanation": "Trinity はお使いのLedger端末と通信できませんでした。この問題を解決するには下記のURLにアクセスしてください。",
+        "writtenDownInfoTitle": "インデックス番号を保存してください。",
+        "writtenDownInfoExplanation": "将来アカウントを復元する時に、インデックス番号が必要になります。インデックス番号を紛失すると、IOTAを失うことになります。決して紛失しないでください。"
     }
 }

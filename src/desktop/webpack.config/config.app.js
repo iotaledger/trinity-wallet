@@ -87,6 +87,9 @@ const config = {
         new HtmlWebpackPlugin({
             title: 'Trinity',
         }),
+        new webpack.DefinePlugin({
+            'process.env.BUGSNAG_API_KEY': JSON.stringify(process.env.BUGSNAG_API_KEY || ''),
+        }),
     ],
 };
 

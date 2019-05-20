@@ -5,7 +5,7 @@ import path from 'path';
 import URL from 'url';
 import fs from 'fs';
 
-import { initMenu, contextMenu } from './native/Menu.js';
+import { initMenu, contextMenu } from './libs/Menu.js';
 
 /**
  * Expose Garbage Collector flag for manual trigger after seed usage
@@ -60,8 +60,8 @@ app.setAppUserModelId('org.iota.trinity');
 const devMode = process.env.NODE_ENV === 'development';
 
 const paths = {
-    assets: path.resolve(devMode ? __dirname : app.getAppPath(), 'assets'),
-    preload: path.resolve(devMode ? __dirname : app.getAppPath(), 'dist'),
+    assets: path.resolve(devMode ? __dirname : app.getAppPath(), devMode ? '../' : './', 'assets'),
+    preload: path.resolve(devMode ? __dirname : app.getAppPath(), devMode ? '../' : './', 'dist'),
 };
 
 /**
@@ -72,6 +72,8 @@ let deeplinkingUrl = null;
 let tray = null;
 
 let windowSizeTimer = null;
+
+let globalErrorFlag = false;
 
 /**
  * Register iota:// protocol for deep links
@@ -154,6 +156,18 @@ function createWindow() {
         },
     });
 
+    windows.main.webContents.on('console-message', (_e, level, message) => {
+        if (message.indexOf('Unable to load preload script') > -1) {
+            globalErrorFlag = true;
+        }
+        if (globalErrorFlag && level === 2) {
+            const msg = JSON.stringify({ error: message.replace(/['"]+/g, '') });
+            windows.main.webContents.executeJavaScript(
+                `if(typeof window.fatalErrors === "function") { window.fatalErrors('${msg}'); } else { window.fatalErrors = typeof window.fatalErrors === "object" ? window.fatalErrors.concat('${msg}') : ['${msg}'];};`,
+            );
+        }
+    });
+
     if (process.platform === 'darwin') {
         windows.tray = new electron.BrowserWindow({
             width: 300,
@@ -214,22 +228,23 @@ function createWindow() {
      * Enable React and Redux devtools in development mode
      */
 
-    if (devMode) {
+    //if (devMode) {
+    windows.main.webContents.once('dom-ready', () => {
         windows.main.webContents.openDevTools({ mode: 'detach' });
-        if (process.platform === 'darwin') {
-            /* Uncomment to enable Tray applications devtools
+        /* Uncomment to enable Tray app DevTools on macOS
+            if (process.platform === 'darwin') {
                 windows.tray.webContents.openDevTools({ mode: 'detach' });
+            }
             */
-        }
-
         installExtension(REACT_DEVELOPER_TOOLS);
         installExtension(REDUX_DEVTOOLS);
-    }
+    });
+    // }
 
     /**
      * Add right click context menu for input elements
      */
-    windows.main.webContents.on('context-menu', (e, props) => {
+    windows.main.webContents.on('context-menu', (_e, props) => {
         const { isEditable } = props;
         if (isEditable) {
             const InputMenu = contextMenu();
