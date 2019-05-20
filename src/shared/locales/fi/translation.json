@@ -833,7 +833,7 @@
         "applicationNotInitialised": "Varoitusta ei ole vahvistettu",
         "applicationNotInitialisedExplanation": "Avaa IOTA-sovellus uudelleen Ledger-laitteessa, hyväksy informatiivinen varoitus ja yritä uudelleen.",
         "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Ledger-laitteen yhdistäminen epäonnistui",
         "udevErrorExplanation": "Trinity ei voinut yhdistää Ledger-laitteeseen. Vieraile alla olevalla verkkosivulla ratkaistaksesi ongelman.",
         "writtenDownInfoTitle": "Remember your index number",
