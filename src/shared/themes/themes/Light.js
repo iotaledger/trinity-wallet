@@ -25,7 +25,7 @@ export default {
         'negative.color',
         'negative.hover',
         'bar.alt',
-        'rgb(92,2,13)',
+        'rgb(231, 231, 231)',
         'primary.hover',
         'input.border',
         'label.color',
