@@ -72,7 +72,7 @@ class Welcome extends Component {
     /**
      * Returns next navigation route
      * @method getNextRoute
-     * @returns {function}
+     * @returns {string}
      */
     getNextRoute() {
         const { acceptedTerms, acceptedPrivacy } = this.props;
