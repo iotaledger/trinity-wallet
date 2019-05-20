@@ -170,6 +170,7 @@
     "react-transition-group": "4.0.1",
     "realm": "2.23.0",
     "recharts": "1.6.0",
-    "redux": "4.0.1"
+    "redux": "4.0.1",
+    "usb": "1.5.0"
   }
 }
