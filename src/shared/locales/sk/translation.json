@@ -833,7 +833,7 @@
         "applicationNotInitialised": "Informačné upozornenie nebolo prijaté",
         "applicationNotInitialisedExplanation": "Znovu otvorte aplikáciu IOTA na Vašom zariadení Ledger, prijmite informačné upozornenie a skúste to znova.",
         "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Nepodarilo sa komunikovať so zariadením Ledger",
         "udevErrorExplanation": "Trinity nemohla komunikovať so zariadením Ledger. Ak chcete tento problém vyriešiť, prejdite na nižšie uvedenú URL adresu.",
         "writtenDownInfoTitle": "Remember your index number",
