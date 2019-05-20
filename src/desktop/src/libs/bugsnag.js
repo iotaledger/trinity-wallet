@@ -5,7 +5,7 @@ import bugsnagReact from '@bugsnag/plugin-react';
 
 import settings from '../../package.json';
 
-const bugsnagKey = typeof Electron === 'object' ? process.env.BUGSNAG_API_KEY : '';
+const bugsnagKey = process.env.BUGSNAG_API_KEY;
 
 export const bugsnagClient = bugsnagKey.length
     ? bugsnag({
@@ -13,7 +13,7 @@ export const bugsnagClient = bugsnagKey.length
           appVersion: settings.version,
           interactionBreadcrumbsEnabled: false,
           collectUserIp: false,
-          user: { id: Electron.getUuid() },
+          user: { id: typeof Electron === 'object' ? Electron.getUuid() : null },
       })
     : {
           notify: (err) => {

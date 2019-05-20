@@ -13,7 +13,7 @@ import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { mapStorageToState } from 'libs/storageToStateMappers';
 import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode } from 'libs/iota';
-import { bugsnagClient, ErrorBoundary } from 'libs/Bugsnag';
+import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
 import { initialise as initialiseStorage, realm } from 'storage';
 
 import Index from 'ui/Index';
