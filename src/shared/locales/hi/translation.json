@@ -833,7 +833,7 @@
         "applicationNotInitialised": "चेतावनी की पुष्टि नहीं हुई",
         "applicationNotInitialisedExplanation": "अपने लेजर डिवाइस पर IOTA ऐप को फिर से खोलें, सूचनात्मक चेतावनी को स्वीकार करें और फिर से प्रयास करें।",
         "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "लेजर डिवाइस के साथ संवाद नहीं कर सका",
         "udevErrorExplanation": "ट्रिनिटी आपके लेजर डिवाइस के साथ संवाद नहीं कर सका। कृपया इस समस्या को हल करने के लिए नीचे दिए गए URL पर जाएँ",
         "writtenDownInfoTitle": "Remember your index number",
