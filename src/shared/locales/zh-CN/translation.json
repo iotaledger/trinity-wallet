@@ -833,7 +833,7 @@
         "applicationNotInitialised": "未经确认的警告",
         "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。",
         "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "无法与Ledger 设备进行通信",
         "udevErrorExplanation": "Trinity 无法与您的Ledger 设备通信。请访问以下网址来解决这个问题。",
         "writtenDownInfoTitle": "Remember your index number",
