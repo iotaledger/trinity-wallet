@@ -2328,7 +2328,7 @@ describe('libs: iota/addresses', () => {
             accountName = 'TEST';
             seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
-                prepareTransfers: () => Promise.resolve([EMPTY_TRANSACTION_TRYTES]),
+                prepareTransfers: () => () => Promise.resolve([EMPTY_TRANSACTION_TRYTES]),
                 performPow: () =>
                     Promise.resolve({
                         trytes: newZeroValueAttachedTransactionTrytes,

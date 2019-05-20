@@ -1,4 +1,3 @@
-import assign from 'lodash/assign';
 import merge from 'lodash/merge';
 import unionBy from 'lodash/unionBy';
 import sortBy from 'lodash/sortBy';
@@ -15,9 +14,7 @@ const initialState = {
     /**
      * Selected IRI node for wallet
      */
-    node: assign({}, DEFAULT_NODE, {
-        provider: DEFAULT_NODE.url,
-    }),
+    node: DEFAULT_NODE,
     /**
      * List of IRI nodes
      */
@@ -182,9 +179,9 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 nodes: state.customNodes.map((node) => node.url).includes(action.payload)
-                    ? state.nodes.filter((node) => node !== action.payload)
+                    ? state.nodes.filter((node) => node.url !== action.payload)
                     : state.nodes,
-                customNodes: state.customNodes.map((node) => node.url).filter((node) => node !== action.payload),
+                customNodes: state.customNodes.filter((node) => node.url !== action.payload),
             };
         case ActionTypes.SET_NODELIST:
             return {

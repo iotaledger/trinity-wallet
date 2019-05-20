@@ -61,12 +61,14 @@ describe('storage: Node', () => {
                     custom: true,
                     pow: false,
                     token: '',
+                    password: '',
                 },
                 {
                     url: 'https://testnode2.com:443',
                     custom: true,
                     pow: true,
                     token: '',
+                    password: '',
                 },
             ];
 

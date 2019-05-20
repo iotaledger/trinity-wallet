@@ -137,7 +137,9 @@ const findSyncedNodes = (nodes, quorumSize, selectedNodes = [], blacklistedNodes
               sampleSize(whitelistedNodes, quorumSize - numberOfSelectedNodes);
 
     return Promise.all(
-        map(nodesToCheckSyncFor, ({ url, token }) => isNodeHealthy({ url, token }).catch(() => undefined)),
+        map(nodesToCheckSyncFor, ({ url, token, password }) =>
+            isNodeHealthy({ url, token, password }).catch(() => undefined),
+        ),
     ).then((results) => {
         // Categorise synced/unsynced nodes
         const { syncedNodes, unsyncedNodes } = transform(
@@ -273,11 +275,12 @@ const getQuorum = (quorumSize) => (method, syncedNodes, payload, ...args) => {
             Promise.all(
                 map(
                     syncedNodes,
-                    ({ url, token }) =>
+                    ({ url, token, password }) =>
                         new Promise((resolve) => {
                             getIotaInstance(
                                 {
                                     token,
+                                    password,
                                     url,
                                 },
                                 getApiTimeout(iotaApiMethod, payload),
