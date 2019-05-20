@@ -64,6 +64,7 @@ import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 import { Account } from '../storage';
 import NodesManager from '../libs/iota/NodesManager';
+import { changeNode } from './settings';
 
 export const ActionTypes = {
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
@@ -206,7 +207,7 @@ export const completeTransfer = () => {
  *
  * @returns {function} dispatch
  **/
-export const promoteTransaction = (bundleHash, accountName, seedStore, withQuorum = true) => (dispatch, getState) => {
+export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = true) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
     const remotePoW = getRemotePoWFromState(getState());
@@ -225,45 +226,58 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, withQuoru
     const getTailTransactionsForThisBundleHash = (transactions) =>
         filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
 
-    return syncAccount(undefined, withQuorum)(accountState)
-        .then((newAccountState) => {
-            accountState = newAccountState;
+    const executePrePromotionChecks = (settings, withQuorum) => () => {
+        return syncAccount(settings, withQuorum)(accountState)
+            .then((newAccountState) => {
+                accountState = newAccountState;
 
-            Account.update(accountName, accountState);
+                Account.update(accountName, accountState);
 
-            dispatch(syncAccountBeforeManualPromotion(accountState));
+                dispatch(syncAccountBeforeManualPromotion(accountState));
 
-            const transactionsForThisBundleHash = filter(
-                accountState.transactions,
-                (transaction) => transaction.bundle === bundleHash,
-            );
+                const transactionsForThisBundleHash = filter(
+                    accountState.transactions,
+                    (transaction) => transaction.bundle === bundleHash,
+                );
 
-            if (some(transactionsForThisBundleHash, (transaction) => transaction.persistence === true)) {
-                throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
-            }
+                if (some(transactionsForThisBundleHash, (transaction) => transaction.persistence === true)) {
+                    throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
+                }
 
-            const bundles = constructBundlesFromTransactions(
-                filter(accountState.transactions, (transaction) => transaction.bundle === bundleHash),
-            );
+                const bundles = constructBundlesFromTransactions(
+                    filter(accountState.transactions, (transaction) => transaction.bundle === bundleHash),
+                );
 
-            if (isEmpty(filter(bundles, isBundle))) {
-                throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
-            }
+                if (isEmpty(filter(bundles, isBundle))) {
+                    throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
+                }
 
-            return isFundedBundle(undefined, withQuorum)(head(bundles));
-        })
-        .then((isFunded) => {
-            if (!isFunded) {
-                throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
-            }
+                return isFundedBundle(settings, withQuorum)(head(bundles));
+            })
+            .then((isFunded) => {
+                if (!isFunded) {
+                    throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
+                }
 
-            return findPromotableTail()(getTailTransactionsForThisBundleHash(accountState.transactions), 0);
-        })
-        .then((consistentTail) => {
+                return findPromotableTail()(getTailTransactionsForThisBundleHash(accountState.transactions), 0);
+            });
+    };
+
+    // Find nodes with proof of work enabled
+    return new NodesManager(
+        nodesConfigurationFactory({
+            quorum,
+            useOnlyPowNodes: true,
+        })(getState()),
+    )
+        .withRetries()(executePrePromotionChecks)()
+        .then(({ node, result }) => {
+            dispatch(changeNode(node));
+
             return dispatch(
                 forceTransactionPromotion(
                     accountName,
-                    consistentTail,
+                    result,
                     getTailTransactionsForThisBundleHash(accountState.transactions),
                     true,
                     // If proof of work configuration is set to remote,
@@ -347,12 +361,12 @@ export const forceTransactionPromotion = (
     let replayCount = 0;
     let promotionAttempt = 0;
 
-    const promote = (tailTransaction) => {
+    const promote = (settings) => (tailTransaction) => {
         const { hash } = tailTransaction;
 
         promotionAttempt += 1;
 
-        return promoteTransactionAsync(null, seedStore)(hash).catch((error) => {
+        return promoteTransactionAsync(settings, seedStore)(hash).catch((error) => {
             const isTransactionInconsistent = includes(error.message, Errors.TRANSACTION_IS_INCONSISTENT);
 
             if (
@@ -380,14 +394,14 @@ export const forceTransactionPromotion = (
     };
 
     // Reattach a transaction and promote newly reattached transaction
-    const reattachAndPromote = () => {
+    const reattachAndPromote = (settings) => () => {
         // Increment the reattachment's count
         replayCount += 1;
         // Grab first tail transaction hash
         const tailTransaction = head(tailTransactionHashes);
         const hash = tailTransaction.hash;
 
-        return replayBundleAsync(null, seedStore)(hash).then((reattachment) => {
+        return replayBundleAsync(settings, seedStore)(hash).then((reattachment) => {
             if (shouldGenerateAlert) {
                 dispatch(
                     generateAlert(
@@ -413,11 +427,29 @@ export const forceTransactionPromotion = (
         });
     };
 
+    const manager = new NodesManager(
+        nodesConfigurationFactory({
+            useOnlyPowNodes: true,
+        })(getState()),
+    );
+
     if (has(consistentTail, 'hash')) {
-        return promote(consistentTail);
+        return manager
+            .withRetries()(promote)(consistentTail)
+            .then(({ node, result }) => {
+                dispatch(changeNode(node));
+
+                return result;
+            });
     }
 
-    return reattachAndPromote();
+    return manager
+        .withRetries()(reattachAndPromote)()
+        .then(({ node, result }) => {
+            dispatch(changeNode(node));
+
+            return result;
+        });
 };
 
 /**

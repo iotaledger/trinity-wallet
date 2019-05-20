@@ -487,7 +487,7 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn, quoru
  *
  * @returns {function} - dispatch
  **/
-export const promoteTransfer = (bundleHash, accountName, withQuorum = true) => (dispatch, getState) => {
+export const promoteTransfer = (bundleHash, accountName, quorum = true) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
     let accountState = selectedAccountStateFactory(accountName)(getState());
@@ -495,53 +495,65 @@ export const promoteTransfer = (bundleHash, accountName, withQuorum = true) => (
     const getTailTransactionsForThisBundleHash = (transactions) =>
         filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
 
-    return syncAccount(undefined, withQuorum)(accountState)
-        .then((newState) => {
-            accountState = newState;
+    const executePrePromotionChecks = (settings, withQuorum) => () => {
+        return syncAccount(settings, withQuorum)(accountState)
+            .then((newState) => {
+                accountState = newState;
 
-            // Update persistent storage
-            Account.update(accountName, accountState);
+                // Update persistent storage
+                Account.update(accountName, accountState);
 
-            // Update redux storage
-            dispatch(syncAccountBeforeAutoPromotion(accountState));
+                // Update redux storage
+                dispatch(syncAccountBeforeAutoPromotion(accountState));
 
-            const transactionsForThisBundleHash = filter(
-                accountState.transactions,
-                (transaction) => transaction.bundle === bundleHash,
-            );
+                const transactionsForThisBundleHash = filter(
+                    accountState.transactions,
+                    (transaction) => transaction.bundle === bundleHash,
+                );
 
-            if (some(transactionsForThisBundleHash, (transaction) => transaction.persistence === true)) {
-                throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
-            }
+                if (some(transactionsForThisBundleHash, (transaction) => transaction.persistence === true)) {
+                    throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
+                }
 
-            const bundles = constructBundlesFromTransactions(accountState.transactions);
+                const bundles = constructBundlesFromTransactions(accountState.transactions);
 
-            if (isEmpty(bundles)) {
-                throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
-            }
+                if (isEmpty(bundles)) {
+                    throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
+                }
 
-            return isFundedBundle(undefined, withQuorum)(head(bundles));
-        })
-        .then((isFunded) => {
-            if (!isFunded) {
-                throw new Error(Errors.BUNDLE_NO_LONGER_FUNDED);
-            }
+                return isFundedBundle(settings, withQuorum)(head(bundles));
+            })
+            .then((isFunded) => {
+                if (!isFunded) {
+                    throw new Error(Errors.BUNDLE_NO_LONGER_FUNDED);
+                }
 
-            return findPromotableTail()(getTailTransactionsForThisBundleHash(accountState.transactions), 0);
-        })
-        .then((consistentTail) =>
-            dispatch(
+                return findPromotableTail()(getTailTransactionsForThisBundleHash(accountState.transactions), 0);
+            });
+    };
+
+    return new NodesManager(
+        nodesConfigurationFactory({
+            quorum,
+            useOnlyPowNodes: true,
+        })(getState()),
+    )
+        .withRetries()(executePrePromotionChecks)()
+        .then(({ node, result }) => {
+            dispatch(changeNode(node));
+
+            return dispatch(
                 forceTransactionPromotion(
                     accountName,
-                    consistentTail,
+                    result,
                     getTailTransactionsForThisBundleHash(accountState.transactions),
                     false,
                     // Auto promote does not support local proof of work
                     // Pass in null in replacement of seedStore object
                     null,
                 ),
-            ),
-        )
+            );
+        })
         .then(() => dispatch(promoteTransactionSuccess()))
         .catch((err) => {
             if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
