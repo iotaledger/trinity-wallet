@@ -634,7 +634,7 @@
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "a message",
         "fromAccount": "From {{selectedAccountName}}",
         "toAddress": "To address",

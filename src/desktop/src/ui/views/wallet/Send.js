@@ -62,6 +62,8 @@ class Send extends React.PureComponent {
         setSendMessageField: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     state = {
@@ -110,7 +112,7 @@ class Send extends React.PureComponent {
     };
 
     render() {
-        const { accountMeta, fields, isSending, availableBalance, settings, progress, t } = this.props;
+        const { themeName, accountMeta, fields, isSending, availableBalance, settings, progress, t } = this.props;
         const { isTransferModalVisible, isUnitsVisible } = this.state;
 
         const transferContents =
@@ -118,7 +120,7 @@ class Send extends React.PureComponent {
                 ? `${formatValue(fields.amount)} ${formatUnit(fields.amount)} (${getCurrencySymbol(
                       settings.currency,
                   )}${(
-                      round(fields.amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
+                      round(((fields.amount * settings.usdPrice) / 1000000) * settings.conversionRate * 100) / 100
                   ).toFixed(2)})`
                 : t('transferConfirmation:aMessage');
 
@@ -133,15 +135,20 @@ class Send extends React.PureComponent {
                         isOpen={isTransferModalVisible}
                         onCancel={() => this.setState({ isTransferModalVisible: false })}
                         onConfirm={() => this.confirmTransfer()}
+                        themeName={themeName}
                         content={{
                             title: t('transferConfirmation:youAreAbout', { contents: transferContents }),
                             message: (
-                                <span className={css.address}>
-                                    <Checksum address={fields.address} />
-                                </span>
+                                <div>
+                                    <h1>{t('transferConfirmation:toAddress')}</h1>
+                                    <span className={css.address}>
+                                        <Checksum address={fields.address} />
+                                    </span>
+                                </div>
                             ),
                             confirm: t('send'),
                             cancel: t('cancel'),
+                            animation: { name: 'sending', loop: true, segments: [89, 624] },
                         }}
                     />
                     <AddressInput
