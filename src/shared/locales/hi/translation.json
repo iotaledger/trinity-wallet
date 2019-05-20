@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "आपके खाते की जानकारी प्राप्त करते समय नोड ने एक त्रुटि लौटा दी। यदि आपकी समस्या बनी रहती है, तो नोड बदलने या ट्रिनिटी सेटिंग्स में अपने सिस्टम प्रॉक्सी को अक्षम करने का प्रयास करें।",
         "nodeOutOfSync": "नोड सिंक से बाहर",
         "nodeOutOfSyncExplanation": "आपका वर्तमान में चयनित नोड सिंक से बाहर है । कृपया नोड बदलें या पुन: प्रयास करें ।",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "नोड संस्करण समर्थित नहीं है",
         "experimentalNodeExplanation": "आपका वर्तमान में चयनित नोड एक प्रयोगात्मक संस्करण चला रहा है जो समर्थित नहीं है। कृपया नोड बदलें या पुनः प्रयास करें।",
         "thisNodeOutOfSync": "आपका वर्तमान में चयनित नोड सिंक से बाहर है । कृपया नोड बदलें या पुन: प्रयास करें ।",
@@ -160,9 +161,11 @@
         "shouldUpdateExplanation": "नया संकरण उपलब्ध है, नवीनतम संस्करण को उपयोग करना उचित रहेगा",
         "forceUpdate": "उपयोग करने के लिए वॉलेट को अपडेट करे",
         "forceUpdateExplanation": "एक महत्वपूर्ण अपडेट जारी किया गया है। कृपया अब ऐप को अपडेट करें।",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "फाइल सिस्टम की अनुमति आवश्यक",
         "missingPermissionExplanation": "इस फ़ंक्शन को करने के लिए फ़ाइल सिस्टम तक पहुंच आवश्यक है।",
-        "swipeToConfirm": "पुष्टि करने के लिए स्वाइप करें"
+        "swipeToConfirm": "पुष्टि करने के लिए स्वाइप करें",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
@@ -798,13 +801,16 @@
         "notReady": "यदि आप लेजर डिवाइस का उपयोग करना चाहते हैं, तो इसे कनेक्ट और अनलॉक करें",
         "indexInUse": "सूचकांक पहले से ही खाता {{account}} के लिए उपयोग में है",
         "indexInUseExplanation": "आपका चुना हुआ सूचकांक पहले से ही आपके किसी खाते पर उपयोग में है। कृपया कोई अन्य अनुक्रमणिका संख्या चुनें।",
-        "proceedWithLedger": "लेजर सेटअप के साथ आगे बढ़ें",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "खाता सूचकांक",
         "accountPage": "अकाउंट पेज",
         "actionCancelled": "लेजर डिवाइस पहुंच से बाहर",
         "actionCancelledExplanation": "लेजर डिवाइस एक्सेस के बिना एक्शन नहीं कर सकते।",
         "chooseAccountIndex": "अपना लेजर खाता सूचकांक चुनें",
-        "accountIndexExplanation": "आपका लेजर कई सीड्स को स्टोर कर सकता है। प्रत्येक सीड की पहचान एक अद्वितीय सूचकांक संख्या से होती है। एक अप्रयुक्त सूचकांक को पूर्व-चयनित किया गया है, लेकिन अपने स्वयं के चयन के लिए स्वतंत्र महसूस करें। सुनिश्चित करें कि आप अपने चुने हुए इंडेक्स नंबर को नोट कर लें।",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "कुछ थर्ड पार्टी वॉलेट को पेज की आवश्यकता होती है।",
         "connectionError": "लेजर से कनेक्ट नहीं हो पाया",
         "connectionErrorExplanation": "आपका लेजर कनेक्ट है और लॉक नहीं है ये जाँच कर लेवे",
@@ -826,7 +832,11 @@
         "checkAddressExplanation": "जांचें कि पता आपके लेजर डिवाइस पर प्रदर्शित एक से मेल खाता है।",
         "applicationNotInitialised": "चेतावनी की पुष्टि नहीं हुई",
         "applicationNotInitialisedExplanation": "अपने लेजर डिवाइस पर IOTA ऐप को फिर से खोलें, सूचनात्मक चेतावनी को स्वीकार करें और फिर से प्रयास करें।",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "लेजर डिवाइस के साथ संवाद नहीं कर सका",
-        "udevErrorExplanation": "ट्रिनिटी आपके लेजर डिवाइस के साथ संवाद नहीं कर सका। कृपया इस समस्या को हल करने के लिए नीचे दिए गए URL पर जाएँ"
+        "udevErrorExplanation": "ट्रिनिटी आपके लेजर डिवाइस के साथ संवाद नहीं कर सका। कृपया इस समस्या को हल करने के लिए नीचे दिए गए URL पर जाएँ",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }
