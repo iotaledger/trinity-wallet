@@ -102,6 +102,26 @@ $footer: 70px;
             display: none;
         }
     }
+
+    pre {
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 18px;
+        background: var(--box-bg);
+        padding: 20px 10px 20px 20px;
+        max-width: 560px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        user-select: text;
+        max-height: 560px;
+        overflow-y: scroll;
+
+        span {
+            display: block;
+            margin-bottom: 20px;
+            user-select: text;
+        }
+    }
 }
 
 .highlight {
