@@ -833,7 +833,7 @@
         "applicationNotInitialised": "Varning obekräftad",
         "applicationNotInitialisedExplanation": "Stäng och öppna på nytt IOTA-appen på din Ledger-enhet, acceptera den informativa varningen och försök igen.",
         "checkLedger": "Kolla din Ledger-enhet",
-        "acceptWarningExplanation": "Om det finns en informationsvarning på din Ledger-enhet måste du bläddra igenom och acceptera den innan du fortsätter.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Kunde inte kommunicera med Ledger-enheten",
         "udevErrorExplanation": "Trinity kunde inte kommunicera med Ledger-enheten. Besök webbadressen nedan för att lösa problemet.",
         "writtenDownInfoTitle": "Kom ihåg ditt indexnummer",
