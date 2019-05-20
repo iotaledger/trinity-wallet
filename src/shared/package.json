@@ -54,7 +54,7 @@
     "@babel/plugin-syntax-import-meta": "^7.0.0",
     "@babel/plugin-transform-react-jsx": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
-    "@babel/register": "^7.0.0",
+    "@babel/register": "^7.4.4",
     "chai": "^4.1.2",
     "figma-parser": "^0.0.2",
     "mocha": "^5.0.3",
@@ -67,7 +67,7 @@
     "sinon": "^7.2.7",
     "snyk": "^1.162.0",
     "svg2ttf": "^4.1.0",
-    "svgicons2svgfont": "^9.0.2",
+    "svgicons2svgfont": "^9.0.4",
     "timekeeper": "^2.0.0"
   },
   "resolutions": {

@@ -55,7 +55,7 @@ class SeedIntro extends React.PureComponent {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, setAccountInfoDuringSetup } = this.props;
         const { ledger } = this.state;
 
         return (
@@ -108,8 +108,11 @@ class SeedIntro extends React.PureComponent {
                         </Button>
                     </div>
                     <div>
-                        <Button id="to-seed-ledger" to="/onboarding/seed-ledger" className="square" variant="primary">
-                            {t('ledger:proceedWithLedger')}
+                        <Button to="/onboarding/seed-ledger" onClick={() => setAccountInfoDuringSetup({usedExistingSeed: true})} className="square" variant="dark">
+                            {t('ledger:restoreLedgerAccount')}
+                        </Button>
+                        <Button id="to-seed-ledger" to="/onboarding/seed-ledger" onClick={() => setAccountInfoDuringSetup({usedExistingSeed: false})} className="square" variant="primary">
+                            {t('ledger:createNewLedgerAccount')}
                         </Button>
                     </div>
                 </footer>

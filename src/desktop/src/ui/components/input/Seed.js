@@ -234,7 +234,13 @@ export class SeedComponent extends React.PureComponent {
             } else if (error.message === 'SeedNotFound') {
                 generateAlert('error', t('seedVault:noSeedFound'), t('seedVault:noSeedFoundExplanation'));
             } else {
-                generateAlert('error', t('seedVault:seedFileError'), t('seedVault:seedFileErrorExplanation'));
+                generateAlert(
+                    'error',
+                    t('seedVault:seedFileError'),
+                    t('seedVault:seedFileErrorExplanation'),
+                    20000,
+                    error,
+                );
             }
         }
     };
@@ -303,8 +309,8 @@ export class SeedComponent extends React.PureComponent {
             seed.length < MAX_SEED_LENGTH
                 ? '< 81'
                 : seed.length > MAX_SEED_LENGTH
-                    ? '> 81'
-                    : Electron.getChecksum(seed);
+                ? '> 81'
+                : Electron.getChecksum(seed);
 
         return (
             <div className={classNames(css.input, css.seed)}>

@@ -117,7 +117,13 @@ export class SeedExportComponent extends PureComponent {
 
         if (error) {
             if (error !== 'Export cancelled') {
-                return generateAlert('error', t('seedVault:exportFail'), t('seedVault:exportFailExplanation'));
+                return generateAlert(
+                    'error',
+                    t('seedVault:exportFail'),
+                    t('seedVault:exportFailExplanation'),
+                    10000,
+                    error,
+                );
             }
         } else {
             generateAlert('success', t('seedVault:exportSuccess'), t('seedVault:exportSuccessExplanation'));
@@ -199,7 +205,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(
-    null,
-    mapDispatchToProps,
-)(withI18n()(SeedExportComponent));
+export default connect(null, mapDispatchToProps)(withI18n()(SeedExportComponent));

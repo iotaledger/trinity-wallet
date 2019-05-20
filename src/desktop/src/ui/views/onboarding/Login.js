@@ -167,7 +167,7 @@ class Login extends React.Component {
         try {
             passwordHash = await hash(password);
         } catch (err) {
-            generateAlert('error', t('errorAccessingKeychain'), t('errorAccessingKeychainExplanation'));
+            generateAlert('error', t('errorAccessingKeychain'), t('errorAccessingKeychainExplanation'), 20000, err);
         }
 
         try {
@@ -270,4 +270,7 @@ const mapDispatchToProps = {
     getAccountInfo,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Login));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(Login));

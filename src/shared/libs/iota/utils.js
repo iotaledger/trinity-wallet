@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import filter from 'lodash/filter';
 import isArray from 'lodash/isArray';
 import isFunction from 'lodash/isFunction';
@@ -382,8 +383,11 @@ export const withRetriesOnDifferentNodes = (nodes, failureCallbacks) => {
             return promiseFunc(nodes[attempt])(...args)
                 .then((result) => ({ node: nodes[attempt], result }))
                 .catch((err) => {
-                    // Abort retries on user cancalled Ledger action
-                    if (err === Errors.LEDGER_CANCELLED) {
+                    if (get(err, 'message') === Errors.LEDGER_INVALID_INDEX) {
+                        throw new Error(Errors.LEDGER_INVALID_INDEX);
+                    }
+                    // Abort retries on user cancelled Ledger action
+                    if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
                         throw new Error(Errors.LEDGER_CANCELLED);
                     }
                     // If a function is passed as failure callback
@@ -467,7 +471,7 @@ export const getRandomNodes = (nodes, size = 5, blacklisted = []) => {
 export const throwIfNodeNotHealthy = (provider) => {
     return isNodeHealthy(provider).then((isSynced) => {
         if (!isSynced) {
-            throw new Error(Errors.NODE_NOT_SYNCED);
+            throw new Error(Errors.NODE_NOT_SYNCED_BY_TIMESTAMP);
         }
 
         return isSynced;
