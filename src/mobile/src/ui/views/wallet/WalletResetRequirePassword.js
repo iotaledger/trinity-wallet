@@ -141,11 +141,13 @@ class WalletResetRequirePassword extends Component {
                     // FIXME: Temporarily needed for password migration
                     this.props.setCompletedForcedPasswordUpdate();
                 })
-                .catch(() => {
+                .catch((err) => {
                     this.props.generateAlert(
                         'error',
                         t('global:somethingWentWrong'),
                         t('global:somethingWentWrongExplanation'),
+                        10000,
+                        err,
                     );
                 });
         } else {
@@ -238,5 +240,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['resetWalletRequirePassword', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(WalletResetRequirePassword),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(WalletResetRequirePassword),
 );

@@ -16,6 +16,7 @@ export default function withAlertsData(AlertsComponent) {
             alerts: PropTypes.object.isRequired,
             forceUpdate: PropTypes.bool.isRequired,
             shouldUpdate: PropTypes.bool.isRequired,
+            displayTestWarning: PropTypes.bool.isRequired,
         };
 
         render() {
@@ -29,11 +30,15 @@ export default function withAlertsData(AlertsComponent) {
         alerts: state.alerts,
         forceUpdate: state.wallet.forceUpdate,
         shouldUpdate: state.wallet.shouldUpdate,
+        displayTestWarning: state.wallet.displayTestWarning,
     });
 
     const mapDispatchToProps = {
         dismissAlert,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(AlertsData));
+    return connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(withI18n()(AlertsData));
 }
