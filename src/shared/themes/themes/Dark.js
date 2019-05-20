@@ -34,5 +34,6 @@ export default {
         'bar.alt',
         'label.color',
         'dark.hover',
+        'primary.body',
     ],
 };

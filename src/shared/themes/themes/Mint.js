@@ -34,5 +34,6 @@ export default {
         'input.color',
         'rgb(229,229,229)',
         'dark.hover',
+        'primary.body',
     ],
 };

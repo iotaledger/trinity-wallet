@@ -34,5 +34,6 @@ export default {
         'rgb(63,92,98)',
         'rgb(229,229,229)',
         'dark.hover',
+        'primary.body',
     ],
 };

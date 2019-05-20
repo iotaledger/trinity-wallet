@@ -34,5 +34,6 @@ export default {
         'input.alt',
         'dark.hover',
         'label.color',
+        'primary.body',
     ],
 };

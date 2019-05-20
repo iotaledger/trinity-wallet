@@ -683,7 +683,17 @@ export class Send extends Component {
 
     render() {
         const { maxPressed, maxColor, maxText, sending } = this.state;
-        const { t, isSendingTransfer, address, amount, message, denomination, theme, isKeyboardActive } = this.props;
+        const {
+            t,
+            isSendingTransfer,
+            address,
+            amount,
+            message,
+            denomination,
+            theme,
+            isKeyboardActive,
+            themeName,
+        } = this.props;
         const textColor = { color: theme.body.color };
         const opacity = this.getSendMaxOpacity();
         const isSending = sending || isSendingTransfer;
@@ -816,6 +826,7 @@ export class Send extends Component {
                                 interupt={this.state.shouldInteruptSendAnimation}
                                 progressText={this.getProgressBarText()}
                                 staticText={t('swipeToSend')}
+                                themeName={themeName}
                                 onSwipeSuccess={() => {
                                     this.onSendPress();
                                     if (address === '' && amount === '' && message && '') {

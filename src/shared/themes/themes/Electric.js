@@ -34,5 +34,6 @@ export default {
         'bar.alt',
         'rgb(229,229,229)',
         'dark.color',
+        'primary.body',
     ],
 };

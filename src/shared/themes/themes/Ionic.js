@@ -34,5 +34,6 @@ export default {
         'input.alt',
         'rgb(188,189,193)',
         'label.color',
+        'primary.body',
     ],
 };

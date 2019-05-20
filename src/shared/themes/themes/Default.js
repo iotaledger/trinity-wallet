@@ -34,5 +34,6 @@ export default {
         'body.alt',
         'secondary.hover',
         'dark.hover',
+        'primary.body',
     ],
 };

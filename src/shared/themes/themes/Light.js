@@ -29,5 +29,6 @@ export default {
         'primary.hover',
         'input.border',
         'label.color',
+        'primary.body',
     ],
 };

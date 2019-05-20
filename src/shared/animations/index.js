@@ -6,6 +6,8 @@ import onboardingComplete from './onboardingComplete.json';
 import sending from './transactionA.json';
 import logout from './thanks.json';
 import loading from './loading.json';
+import progressLoading from './slider-loader.json';
+import progressSuccess from './slider-success.json';
 
 import themes from '../themes/themes';
 
@@ -17,6 +19,8 @@ export const animations = {
     sending,
     logout,
     loading,
+    progressLoading,
+    progressSuccess,
 };
 
 /**

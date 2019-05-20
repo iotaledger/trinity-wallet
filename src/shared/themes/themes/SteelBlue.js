@@ -34,5 +34,6 @@ export default {
         'body.alt',
         'box.alt',
         'label.color',
+        'primary.body',
     ],
 };
