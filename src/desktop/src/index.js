@@ -89,7 +89,7 @@ const init = () => {
             .catch((err) => {
                 Electron.focus();
                 render(<FatalError error={err.message || err} />, document.getElementById('root'));
-                bugsnagClient.notify(err)
+                bugsnagClient.notify(err);
             });
     }
 
