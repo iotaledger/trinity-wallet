@@ -833,7 +833,7 @@
         "applicationNotInitialised": "Ostrzeżenie niezaakceptowane",
         "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie.",
         "checkLedger": "Sprawdź swoje urządzenie Ledger",
-        "acceptWarningExplanation": "Jeśli na Twoim urządzeniu wyświetlane jest ostrzeżenie, musisz je zaakceptować poprzez przewinięcie w dół ekranu oraz naciśnięcie obu przycisków jednocześnie.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Brak możliwości połączenia z urządzeniem Ledger",
         "udevErrorExplanation": "Trinity nie może połączyć się z Twoim urządzeniem Ledger. Odwiedź poniższy adres, aby rozwiązać ten problem.",
         "writtenDownInfoTitle": "Zapamiętaj swój numer indeksu",
