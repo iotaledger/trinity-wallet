@@ -19,13 +19,13 @@
         "invalidResponse": "节点错误",
         "invalidResponseExplanation": "节点错误，请尝试更换节点。",
         "invalidResponseFetchingAccount": "该节点在获取账户信息时出错，请尝试更换节点。",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "在获取你的账户信息时，节点出现了一个错误。如果这个问题仍旧存在，请尝试更换节点或者在Trinity 设置中，取消系统代理。",
         "nodeOutOfSync": "节点不同步",
         "nodeOutOfSyncExplanation": "当前选定的节点不同步，请更换节点或重试。",
         "experimentalNode": "不支持的节点版本",
         "experimentalNodeExplanation": "您当前选定的节点正在运行不受支持的实验性版本。请更改节点或重试。",
         "thisNodeOutOfSync": "此节点不同步，请更换节点或重试。",
-        "seed": "种子",
+        "seed": "IOTA 种子",
         "checksum": "校验和",
         "back": "返回",
         "goBack": "返回",
@@ -55,7 +55,7 @@
         "yes": "是",
         "no": "否",
         "okay": "好的",
-        "skip": "Skip",
+        "skip": "跳过",
         "password": "密码",
         "unrecognisedPassword": "密码不正确",
         "unrecognisedPasswordExplanation": "密码不正确，请重试。",
@@ -288,10 +288,10 @@
         "printerConfirmation": "我没有在公共打印机上打印"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "您想要打印一个空白的模版页面吗？",
+        "printTemplateInfo": "您可以将空白模版页打印并在上面写下您的钱包种子。",
+        "printTemplateWarning": "请确保将您的钱包种子保存在一个安全的地方。请不要将钱包种子展示给任何人。",
+        "print": "是的，打印。"
     },
     "receive": {
         "yourAddress": "您的地址",
@@ -365,7 +365,7 @@
         "addressPasteDetected": "检测到地址粘贴",
         "addressPasteExplanation": "看起来你已经粘贴了地址。请确保该地址与您想要发送的地址是一致的。",
         "invalid": "无效",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "滑动以发送。"
     },
     "setSeedName": {
         "letsAddName": "让我们加上一个名字",
@@ -394,7 +394,7 @@
         "changePassword": "更改密码",
         "general": "常用设置",
         "advanced": "高级设置",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "节点设置",
         "account": "帐户设置",
         "logout": "登出",
         "reset": "重置钱包",
@@ -457,7 +457,7 @@
     "history": {
         "bundleHashCopied": "交易包哈希值已复制",
         "noTransactionsFound": "没有找到任何交易",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "您的交易记录是空的。",
         "hideZeroBalance": "隐藏零余额",
         "bundleHashCopiedExplanation": "交易包哈希值已复制到剪贴板。",
         "addressCopied": "已复制地址",
@@ -469,14 +469,14 @@
         "empty": "清空",
         "retrying": "重试中",
         "yesterday": "昨天",
-        "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "promotingAnotherBundle": "推广另一个交易组",
+        "pleaseWait": "请等待，Trinity 正在推广另一个交易组。",
+        "typeHelp": "请输入!help 来查找可用的指令。",
+        "searchHelpText": "使用交易组的哈希值或者讯息内容来搜索",
+        "searchHelpValue": "使用准确的IOTA 价值来搜索交易",
+        "searchHelpUnits": "使用IOTA 价值和数量来搜索交易",
+        "searchHelpMore": "搜索价值高于X 的交易",
+        "searchHelpLess": "搜索价值小于X 的交易"
     },
     "accountManagement": {
         "viewSeed": "查看种子",
@@ -509,8 +509,8 @@
         "autoPromotion": "自动促进",
         "autoPromotionExplanation": "自动促进可以帮助确认您在Tangle上的交易。 如果您的交易很难得到确认，请启用此设置。",
         "autoPromotionPoW": "只有支持远程工作量证明的节点才可以进行交易的自动促进。",
-        "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "deepLinking": "深度链接",
+        "stateExport": "状态导出"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -550,7 +550,7 @@
         "million": "百万",
         "thousand": "千",
         "one": "一",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "通常，IOTA 会被以百万计(MIOTA) 来储存, 但是一个IOTA 也是可以被用来交易的。"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "为什么我不能支出全部余额？",
@@ -580,8 +580,8 @@
         "enterPassword": "输入密码查看您的种子。",
         "viewSeed": "查看种子",
         "hideSeed": "隐藏种子",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailable": "钱包种子的导出不适用于{{accountType}} 账户类型。",
+        "notAvailableExplanationLedger": "你的Ledger 设备安全地存储你的钱包种子。你的钱包种子被安全的加密并且不会离开Ledger 设备。",
         "accountIndex": "您的Ledger账户索引",
         "accountPage": "您的Ledger账户页面"
     },
@@ -610,7 +610,7 @@
         "deviceLocked": "禁用身份验证30秒",
         "fingerprintUnavailableExplanation": "您的设备不支持生物识别认证或者尚未在设备设置中对此功能进行配置。",
         "notSupported": "设备不支持生物识别身份验证",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "notConfigured": "生物信息验证没有在设备设置中启用。",
         "buttonInstructionsDisable": "点击下面的按钮禁用指纹身份验证。",
         "buttonInstructionsEnable": "按下方按钮启用指纹认证。",
         "buttonInstructionsDisableIPhoneX": "点击下面的按钮禁用Face ID",
@@ -622,7 +622,7 @@
         "noPassword": "设备上未设置密码"
     },
     "transferConfirmation": {
-        "youAreAbout": "您将发送 {{内容}} 到地址",
+        "youAreAbout": "您将发送 {{contents}} 到地址",
         "aMessage": "一条消息",
         "fromAccount": "来自{{selectedAccountName}}",
         "toAddress": "接受付款地址",
@@ -652,16 +652,16 @@
         "noSeedFoundExplanation": "SeedVault 是空的或包含无效格式的种子。",
         "seedFileError": "打开SeedVault失败",
         "seedFileErrorExplanation": "打开 SeedVault 时遇到问题。如果您选择了正确的文件, 那么它可能已损坏。",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileError": "无效的SeedVault 文件",
+        "invalidSeedFileErrorExplanation": "无法支持此文件类型。 只有在Trinity 生成的SeedVaule 文件(.kdbx)或者密码管理可以被支持。",
         "seedVaultKeyExplanation": "首先，我们需要加密你的种子库。请选择加密文件的密钥。如果需要从SeedVault备份中恢复种子，您将使用此密钥。",
         "retypeKey": "重新输入密钥",
         "key": "密钥"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "在你的设备上将状态导出至一个txt 文件，这个文件包含你的账户信息（交易和地址），钱包版本和存储文件的文件名。",
+        "exportSuccess": "状态已导出。",
+        "exportSuccessExplanation": "您的状态文件已被成功导出。"
     },
     "chart": {
         "mcap": "市值",
@@ -722,13 +722,13 @@
     "deepLink": {
         "autofill": "自动填充成功",
         "autofillExplanation": "从链接中自动填充了交易数据。",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingOverview": "深度链接是可以被点击的链接(iota://...)。深度链接将会在Trinity 自动填充交易信息数据。",
+        "deepLinkingWarning": "请小心钓鱼照片。请确保您打开的链接指向官方的Trinity 应用程序。",
+        "deepLinkingUpdated": "深度链接设置",
+        "deepLinkingEnabled": "您以激活深度链接。",
+        "deepLinkingDisabled": "您已取消深度链接。",
+        "deepLinkingInfoTitle": "深度链接没有被激活。",
+        "deepLinkingInfoMessage": "您点击了深度链接 iota:// ，但深度链接并没有在设置中被激活。"
     },
     "updates": {
         "errorRetrievingUpdateData": "提取更新数据时发生错误",
@@ -776,22 +776,22 @@
         "confirmedOut": "帐户 {{account}} 的 {{value}} 转出交易已确认"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepSucceeded": "资金已成功解锁",
+        "sweepSucceededExplanation": "您的资金已成功解锁并被移动至一个新的地址。推广此交易以帮助其获得确认。",
         "sweepError": "解锁资金时出错",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "sweepErrorExplanation": "在解锁您的资金时出现了一些错误。请重新尝试。",
         "warningTitle": "警告：检测到锁定的资金",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "explanation": "Trinity 桌面版 0.3.4 存在一个可能会将资金暂时锁住的问题。这个问题可能会影响一小部分在0.3.4版本交易的用户。",
+        "explanationAccounts": "发现您的账户：{{accounts}} 存在资金锁住的问题。Trinity 将会自动找到您的资金，并将它们移至新的地址。",
         "proceed": "进行恢复",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepConfirmation": "您即将要把 {{amount}} 转移至地址 {{address}}。账户：{{accountName}}，地址索引：{{index}}",
+        "sweepConfirmationTitle": "滑动确认"
     },
     "migration": {
         "dataMigration": "数据迁移",
         "dataMigrationExplanation": "由于性能和储存限制，Trinity 正在使用一个新的数据库存储设置和帐户数据。请稍候，Trinity 自动迁移您的现有数据。",
         "problemMigratingYourData": "迁移您的数据时出现问题。请重试",
-        "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
+        "seedMigrationExplanation": "作为Trinity 继续努力提升安全性的一部分，您的IOTA 种子将被迁移并以一个更好的存储方式储存。请在Trinity 迁移您的IOTA 种子时耐心等待。"
     },
     "ledger": {
         "ready": "Ledger设备已连接并准备完毕",
@@ -805,7 +805,7 @@
         "actionCancelledExplanation": "不能在无法访问Ledger设备的情况下执行操作。",
         "chooseAccountIndex": "选择您的Ledger账户索引",
         "accountIndexExplanation": "您的Ledger可以存储多个种子。每个种子都由一个唯一的索引号码。系统已经预先选择未使用的索引，但您也可以随意选择自己的索引。请务必记下您选择的索引号码。",
-        "accountPageExplanation": "Some third party wallets require pages.",
+        "accountPageExplanation": "一些第三方钱包需要pages。",
         "connectionError": "无法连接至Ledger",
         "connectionErrorExplanation": "检查您的Ledger是否已连接并解锁。",
         "connectionTitle": "连接您的Ledger",
@@ -826,7 +826,7 @@
         "checkAddressExplanation": "检查地址是否与Ledger设备上显示的地址匹配。",
         "applicationNotInitialised": "未经确认的警告",
         "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevError": "无法与Ledger 设备进行通信",
+        "udevErrorExplanation": "Trinity 无法与您的Ledger 设备通信。请访问以下网址来解决这个问题。"
     }
 }

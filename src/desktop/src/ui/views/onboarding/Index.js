@@ -6,6 +6,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import { setAccountInfoDuringSetup } from 'actions/accounts';
+import { isSettingUpNewAccount } from 'selectors/accounts';
 
 import Icon from 'ui/components/Icon';
 import Waves from 'ui/components/Waves';
@@ -146,7 +147,7 @@ class Onboarding extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    complete: state.accounts.onboardingComplete,
+    complete: state.accounts.onboardingComplete || isSettingUpNewAccount(state),
     isAuthorised: state.wallet.ready,
 });
 
@@ -154,4 +155,9 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Onboarding));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Onboarding),
+);

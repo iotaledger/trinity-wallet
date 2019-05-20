@@ -49,6 +49,8 @@ class Tools extends PureComponent {
         /** @ignore */
         generateAddressesAndGetBalance: PropTypes.func.isRequired,
         /** @ignore */
+        setWalletBusy: PropTypes.func.isRequired,
+        /** @ignore */
         transitionForSnapshot: PropTypes.func.isRequired,
         /** @ignore */
         activeStepIndex: PropTypes.number.isRequired,
@@ -56,12 +58,6 @@ class Tools extends PureComponent {
         activeSteps: PropTypes.array.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** @ignore */
-        isTransitioning: PropTypes.bool.isRequired,
-        /** @ignore */
-        isAttachingToTangle: PropTypes.bool.isRequired,
-        /** @ignore */
-        balanceCheckFlag: PropTypes.bool.isRequired,
     };
 
     static renderProgressChildren(activeStepIndex, sizeOfActiveSteps, t) {
@@ -79,9 +75,9 @@ class Tools extends PureComponent {
         const { wallet, ui } = this.props;
 
         if (
-            prevProps.isTransitioning === ui.isTransitioning &&
-            prevProps.isAttachingToTangle === ui.isAttachingToTangle &&
-            prevProps.balanceCheckFlag === wallet.balanceCheckFlag &&
+            prevProps.ui.isTransitioning === ui.isTransitioning &&
+            prevProps.ui.isAttachingToTangle === ui.isAttachingToTangle &&
+            prevProps.wallet.balanceCheckFlag === wallet.balanceCheckFlag &&
             prevProps.ui.isSyncing === ui.isSyncing
         ) {
             return;
@@ -89,7 +85,9 @@ class Tools extends PureComponent {
 
         if (ui.isSyncing || ui.isTransitioning || ui.isAttachingToTangle || wallet.balanceCheckFlag) {
             Electron.updateMenu('enabled', false);
+            this.props.setWalletBusy(true);
         } else {
+            this.props.setWalletBusy(false);
             Electron.updateMenu('enabled', true);
             Electron.garbageCollect();
         }
@@ -148,7 +146,7 @@ class Tools extends PureComponent {
 
         const currentIndex = wallet.transitionAddresses.length;
 
-        this.props.generateAddressesAndGetBalance(seedStore, currentIndex);
+        this.props.generateAddressesAndGetBalance(seedStore, currentIndex, accountName);
     };
 
     render() {

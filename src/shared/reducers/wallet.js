@@ -56,6 +56,10 @@ const initialState = {
      * Determines whether user is forced to update
      */
     forceUpdate: false,
+    /**
+     * Determines whether to display test version warning
+     */
+    displayTestWarning: false,
 };
 
 export default (state = initialState, action) => {
@@ -198,6 +202,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 forceUpdate: true,
+            };
+        case ActionTypes.DISPLAY_TEST_WARNING:
+            return {
+                ...state,
+                displayTestWarning: true,
             };
         default:
             return state;

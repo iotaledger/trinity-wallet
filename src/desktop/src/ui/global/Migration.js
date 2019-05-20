@@ -114,11 +114,12 @@ class Migration extends React.Component {
             <Modal variant="global" isOpen isForced onClose={() => {}}>
                 <form>
                     <h1>{t('migration:dataMigration')}</h1>
+                    <p>{t('migration:dataMigrationExplanation')}</p>
                     {activeSteps.length > 0 && (
                         <article>
                             <Progress
                                 type="large"
-                                progress={Math.round((activeStepIndex + 1) / activeSteps.length * 100)}
+                                progress={Math.round(((activeStepIndex + 1) / activeSteps.length) * 100)}
                                 subtitle={activeSteps[activeStepIndex]}
                             />
                         </article>
@@ -154,4 +155,7 @@ const mapDispatchToProps = {
     setFullNode,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Migration));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(Migration));

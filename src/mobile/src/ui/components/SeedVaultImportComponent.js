@@ -159,6 +159,8 @@ export class SeedVaultImportComponent extends Component {
                         'error',
                         t('global:somethingWentWrong'),
                         t('global:somethingWentWrongTryAgain'),
+                        10000,
+                        error,
                     );
                 }
                 let path = res.uri;
@@ -229,5 +231,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['seedVault', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(SeedVaultImportComponent),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(SeedVaultImportComponent),
 );
