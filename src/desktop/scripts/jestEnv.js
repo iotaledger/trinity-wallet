@@ -54,7 +54,7 @@ class PuppeteerEnvironment extends ElectronEnvironment {
 
             page.evaluateOnNewDocument(electronMock, settings, stateMock);
 
-            await page.goto(`http://localhost:1074/${route}`, { waitUntil: 'networkidle2' });
+            await page.goto(`http://localhost:1074/${route}`, { waitUntil: 'domcontentloaded' });
 
             return page;
         };

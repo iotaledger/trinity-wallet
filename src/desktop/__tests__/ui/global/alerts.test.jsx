@@ -12,6 +12,7 @@ const props = {
     },
     forceUpdate: false,
     shouldUpdate: false,
+    displayTestWarning: false,
     t: (str) => str,
 };
 

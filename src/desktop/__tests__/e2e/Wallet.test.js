@@ -37,6 +37,8 @@ describe('Trinity desktop end-to-end', () => {
             await page.waitForSelector('#confirm-accept');
             const selector = await page.$('#confirm-accept');
 
+            page.close();
+
             expect(selector).toBeTruthy();
         },
         150000,

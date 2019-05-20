@@ -15,9 +15,7 @@ describe('Trinity desktop end-to-end', () => {
             // Seed input
             await page.waitForSelector('.input__editable > div');
             await page.focus('.input__editable > div');
-            await page.keyboard.type(
-                '9'.repeat(81),
-            );
+            await page.keyboard.type('9'.repeat(81));
             await page.click('#seed-verify-next');
 
             // Account name
@@ -41,9 +39,11 @@ describe('Trinity desktop end-to-end', () => {
             await page.waitForSelector('#done-next');
             const selector = await page.$('#done-next');
 
+            page.close();
+
             expect(selector).toBeTruthy();
         },
-        990000,
+        15000,
     );
 
     test(
@@ -65,6 +65,7 @@ describe('Trinity desktop end-to-end', () => {
                 const selector = `.index__seed button:nth-child(${i})`;
                 await page.waitForSelector(selector);
                 await page.click(selector);
+                await new Promise((resolve) => setTimeout(resolve, 50));
             }
             await page.click('#to-account-name');
 
@@ -80,9 +81,7 @@ describe('Trinity desktop end-to-end', () => {
             // Seed verify
             await page.waitForSelector('.input__editable > div');
             await page.focus('.input__editable > div');
-            await page.keyboard.type(
-                '9'.repeat(81),
-            );
+            await page.keyboard.type('9'.repeat(81));
 
             await page.click('#seed-verify-next');
 
@@ -99,6 +98,8 @@ describe('Trinity desktop end-to-end', () => {
             // Done
             await page.waitForSelector('#done-next');
             const selector = await page.$('#done-next');
+
+            page.close();
 
             expect(selector).toBeTruthy();
         },

@@ -61,5 +61,6 @@ module.exports = ({ version }, stateMock) => {
         setStorage: async () => {},
         setTray: () => {},
         focus: () => {},
+        storeUpdate: () => {},
     };
 };
