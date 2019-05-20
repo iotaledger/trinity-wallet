@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Le serveur a renvoyé une erreur en allant chercher les informations de votre compte. Si le problème persiste, essayez de changer serveur ou désactiver votre proxy dans les paramètres de Trinity.",
         "nodeOutOfSync": "Serveur non synchronisé",
         "nodeOutOfSyncExplanation": "Le serveur actuellement sélectionné est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "La version du serveur n'est pas supportée",
         "experimentalNodeExplanation": "Le serveur sélectionné utilise une version expérimentale qui n'est pas supportée. Veuillez changer de serveur ou réessayer.",
         "thisNodeOutOfSync": "Ce serveur est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
@@ -160,9 +161,11 @@
         "shouldUpdateExplanation": "Une nouvelle mise à jour a été publiée. Il est recommandé que vous mettiez à jour vers la dernière version.",
         "forceUpdate": "Mettez à jour l'application pour continuer",
         "forceUpdateExplanation": "Une mise à jour critique est disponible. Veuillez mettre à jour l’application maintenant.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Autorisation de système de fichiers requise",
         "missingPermissionExplanation": "L'accès au système de fichiers est nécessaire afin de réaliser cette action.",
-        "swipeToConfirm": "Balayer pour confirmer"
+        "swipeToConfirm": "Balayer pour confirmer",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -798,13 +801,16 @@
         "notReady": "Si vous souhaitez utiliser une clé Ledger, connectez la et déverrouillez la maintenant",
         "indexInUse": "Index déjà utilisé pour le compte {{account}}",
         "indexInUseExplanation": "L'index que vous avez choisi est déjà utilisé sur l’un de vos comptes. Veuillez choisir un autre numéro d’index.",
-        "proceedWithLedger": "Paramétrer le Ledger",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Index du compte",
         "accountPage": "Page du compte",
         "actionCancelled": "Accès du Ledger annulé",
         "actionCancelledExplanation": "Impossible d'effectuer cette action sans accès au Ledger.",
         "chooseAccountIndex": "Choisissez l'index du compte Ledger",
-        "accountIndexExplanation": "Votre Ledger peut stocker plusieurs seeds. Chaque seed est identifiée par un numéro d’index unique. Un index inutilisé a été présélectionné, mais n’hésitez pas à choisir par vous même. Assurez-vous de noter le numéro d’index que vous avez choisi.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Certains portefeuilles tiers nécessitent l'utilisation de pages.",
         "connectionError": "Impossible de se connecter au Ledger",
         "connectionErrorExplanation": "Vérifiez que votre Ledger est connecté et déverrouillé.",
@@ -826,7 +832,11 @@
         "checkAddressExplanation": "Vérifiez que les adresses correspondent à celles affichées sur votre Ledger.",
         "applicationNotInitialised": "Avertissements non confirmés",
         "applicationNotInitialisedExplanation": "Rouvrez l’application IOTA sur votre Ledger, acceptez l’avertissement d’information et essayez à nouveau.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Impossible de communiquer avec le dispositif Ledger",
-        "udevErrorExplanation": "Trinity n'a pas pu communiquer avec votre appareil Ledger. Veuillez visiter l'URL ci-dessous pour résoudre ce problème."
+        "udevErrorExplanation": "Trinity n'a pas pu communiquer avec votre appareil Ledger. Veuillez visiter l'URL ci-dessous pour résoudre ce problème.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

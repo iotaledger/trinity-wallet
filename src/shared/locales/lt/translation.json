@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Užkraunant jūsų paskyros informaciją įvyko serverio klaida. Jei problema neišsispręs, bandykite pakeisti serverį arba atjunkite savo sistemos tarpinį serverį Trinity nustatymuose.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Serverio versija nepalaikoma",
         "experimentalNodeExplanation": "Jūsų pasirinktas serveris veikia su eksperimentine versija, kuri yra nepalaikoma. Prašome pakeisti serverį ir bandyti dar kartą.",
         "thisNodeOutOfSync": "Šis serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
@@ -160,9 +161,11 @@
         "shouldUpdateExplanation": "Išleistas naujas atnaujinimas. Rekomenduojama atsisiųsti naujausius atnaujinimus.",
         "forceUpdate": "Atnaujinkite programėlę norėdami tęsti",
         "forceUpdateExplanation": "Išleistas svarbus atnaujinimas. Prašome nedelsiant atsinaujinti programėlę.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Reikalingas failų sistemos leidimas",
         "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norėdami atlikti šią funkciją.",
-        "swipeToConfirm": "Paslinkite norėdami patvirtinti"
+        "swipeToConfirm": "Paslinkite norėdami patvirtinti",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -798,13 +801,16 @@
         "notReady": "Jei norite pasinaudoti Ledger įrenginiu, prijunkite ir atrakinkite jį",
         "indexInUse": "Šis indeksas jau priskirtas paskyrai: {{account}}",
         "indexInUseExplanation": "Pasirinktas indeksas jau priskirtas vienai iš jūsų paskyrų. Pasirinkite kitą indekso numerį.",
-        "proceedWithLedger": "Tęskite su Ledger vedliu",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Paskyros indeksas",
         "accountPage": "Paskyros puslapis",
         "actionCancelled": "Ledger įrenginio prieiga atšaukta",
         "actionCancelledExplanation": "Šio veiksmo negalima atlikti be Ledger prieigos.",
         "chooseAccountIndex": "Pasirinkite Ledger paskyros indeksą",
-        "accountIndexExplanation": "Jūsų Ledger gali talpinti daugybę užraktų. Kiekvienam užraktui priskiriamas unikalus indekso numeris. Jums priskirtas naujas indeksas, bet galite jį pakeisti į kitą. Nepamirškite išsisaugoti pasirinkto indekso numerio.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Kai kurioms trečiosios šalies piniginėms reikalingi puslapiai.",
         "connectionError": "Nepavyksta prisijungti prie Ledger",
         "connectionErrorExplanation": "Patikrinkite ar Ledger prijungtas ir atrakintas.",
@@ -826,7 +832,11 @@
         "checkAddressExplanation": "Patikrinkite ar adresas sutampa su rodomu adresu Ledger įrenginyje.",
         "applicationNotInitialised": "Pranešimas nepatvirtintas",
         "applicationNotInitialisedExplanation": "Iš naujo atidarykite IOTA aplikaciją Ledger įrenginyje, patvirtinkite informacinį pranešimą ir bandykite dar kartą.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }
