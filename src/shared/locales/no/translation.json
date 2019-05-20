@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Noden returnerte en feil under henting av kontoinformasjonen. Hvis problemet vedvarer, kan du prøve å endre node eller deaktivere proxy i Trinitys innstillinger.",
         "nodeOutOfSync": "Noden er ikke synkronisert",
         "nodeOutOfSyncExplanation": "Din valgte node er ikke synkronisert. Vennligst velg en ny node eller prøv på nytt.",
+        "nodeOutOfSyncByTimestampExplanation": "Din valgte node er ikke synkronisert. Vennligst endre node eller prøv igjen. Hvis problemet vedvarer, sørg for at klokken på enheten din er korrekt.",
         "experimentalNode": "Node-versjonen støttes ikke",
         "experimentalNodeExplanation": "Din valgte node kjører en eksperimentell versjon som ikke støttes. Vennligst endre node eller prøv på nytt.",
         "thisNodeOutOfSync": "Denne noden er ikke synkronisert. Vennligst endre node eller prøv på nytt.",
@@ -160,9 +161,11 @@
         "shouldUpdateExplanation": "En ny versjon er lansert. Det anbefales at du oppdaterer til den nyeste versjonen.",
         "forceUpdate": "Oppdater applikasjonen for å fortsette",
         "forceUpdateExplanation": "En kritisk oppdatering er lansert. Oppdater applikasjonen nå.",
+        "testVersionWarning": "Denne versjonen bør kun brukes til testformål, med svært små mengder tokens.",
         "missingPermission": "Trenger tillatelse til filsystemet",
         "missingPermissionExplanation": "Tilgang til filsystemet kreves for å utføre denne funksjonen.",
-        "swipeToConfirm": "Dra for å bekrefte"
+        "swipeToConfirm": "Dra for å bekrefte",
+        "expert": "Ekspert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -795,16 +798,19 @@
     },
     "ledger": {
         "ready": "Ledger tilkoblet og klar",
-        "notReady": "Ønsker du å benytte Ledger, koble til og lås den opp nå",
+        "notReady": "Om du ønsker du å benytte en Ledger-enhet, koble den til og lås den opp nå",
         "indexInUse": "Indeks allerede benyttet på konto {{account}}",
         "indexInUseExplanation": "Din valgte indeks er allerede i bruk på en av dine kontoer. Vennligst benytt et annet indeks-nummer.",
-        "proceedWithLedger": "Fortsett med Ledger installasjonen",
+        "createNewLedgerAccountInfo": "Pass på at du skriver ned og husker indeksnummeret ditt.",
+        "restoreLedgerAccountInfo": "Skriv inn det lagrede indeksnummeret ditt for å gjenopprette kontoen din.",
+        "createNewLedgerAccount": "Opprett en ny Ledger-konto",
+        "restoreLedgerAccount": "Gjenopprett en eksisterende Ledger-konto",
         "accountIndex": "Kontoindex",
         "accountPage": "Kontoside",
         "actionCancelled": "Ledger-enhetstilgang avbrutt",
         "actionCancelledExplanation": "Kan ikke utføre handlingen uten tilgang til Ledger-enheten.",
         "chooseAccountIndex": "Velg din Ledger kontoindeks",
-        "accountIndexExplanation": "Du kan lagre fler hovednøkkler. Hver hovednøkkel er identifisert med et unikt indeks-nummer. Et ubenyttet index-nummer er valgt for deg, men endre dette om du ønsker. Husk å skriv ned ditt valgte index-nummer.",
+        "accountIndexExplanation": "Ledgeren din kan lagre flere hovednøkler. Hver hovednøkkel er identifisert med et unikt indeksnummer.",
         "accountPageExplanation": "Noen tredjeparts lommebøker krever pages.",
         "connectionError": "Kan ikke koble til Ledger",
         "connectionErrorExplanation": "Sjekk at din Ledger er koblet til og låst opp.",
@@ -826,7 +832,11 @@
         "checkAddressExplanation": "Kontroller at adressen er lik den vises på din Ledger.",
         "applicationNotInitialised": "Informasjonsadvarsel ikke godkjent",
         "applicationNotInitialisedExplanation": "Åpne IOTA programmet på din Ledger, godta informasjonen og prøv igjen.",
+        "checkLedger": "Sjekk Ledger-enheten din",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Kunne ikke kommunisere med Ledger-enheten",
-        "udevErrorExplanation": "Trinity kunne ikke kommunisere med din Ledger-enhet. Vennligst besøk nettadressen nedenfor for å løse dette problemet."
+        "udevErrorExplanation": "Trinity kunne ikke kommunisere med din Ledger-enhet. Vennligst besøk nettadressen nedenfor for å løse dette problemet.",
+        "writtenDownInfoTitle": "Husk indeksnummeret ditt",
+        "writtenDownInfoExplanation": "Du trenger indeksnummeret ditt for å gjenopprette kontoen din i fremtiden. Hvis du mister indeksnummeret ditt, mister du dine IOTA. Vennligst husk det."
     }
 }

@@ -89,8 +89,14 @@ class AccountPassword extends React.PureComponent {
 
         try {
             await initKeychain();
-        } catch (e) {
-            return generateAlert('error', t('errorAccessingKeychain'), t('errorAccessingKeychainExplanation'));
+        } catch (err) {
+            return generateAlert(
+                'error',
+                t('errorAccessingKeychain'),
+                t('errorAccessingKeychainExplanation'),
+                20000,
+                err,
+            );
         }
 
         const passwordHash = await hash(password);
@@ -175,4 +181,7 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(AccountPassword));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(AccountPassword));

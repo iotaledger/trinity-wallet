@@ -24,6 +24,8 @@ class Alerts extends React.PureComponent {
         /** @ignore */
         shouldUpdate: PropTypes.bool.isRequired,
         /** @ignore */
+        displayTestWarning: PropTypes.bool.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -49,11 +51,24 @@ class Alerts extends React.PureComponent {
         this.props.dismissAlert();
     }
 
-    render() {
-        const { alerts, dismissAlert, forceUpdate, shouldUpdate, t } = this.props;
-        const { dismissUpdate } = this.state;
-
+    renderFullWidthAlert(title, explanation, dismissable, onClick) {
         const os = Electron.getOS();
+
+        return (
+            <section className={classNames(css.update, os === 'win32' ? css.win : null)}>
+                <strong onClick={onClick}>{title}</strong> {explanation}
+                {dismissable && (
+                    <a onClick={() => this.setState({ dismissUpdate: true })}>
+                        <Icon icon="cross" size={16} />
+                    </a>
+                )}
+            </section>
+        );
+    }
+
+    render() {
+        const { alerts, dismissAlert, forceUpdate, shouldUpdate, displayTestWarning, t } = this.props;
+        const { dismissUpdate } = this.state;
 
         /**
          * Temporarily override account fetch error by adding Proxy setting suggestion
@@ -65,19 +80,19 @@ class Alerts extends React.PureComponent {
 
         return (
             <div className={css.wrapper}>
-                {!dismissUpdate && (forceUpdate || shouldUpdate) ? (
-                    <section className={classNames(css.update, os === 'win32' ? css.win : null)}>
-                        <strong onClick={() => Electron.autoUpdate()}>
-                            {t(`global:${forceUpdate ? 'forceUpdate' : 'shouldUpdate'}`)}
-                        </strong>{' '}
-                        {t(`global:${forceUpdate ? 'forceUpdate' : 'shouldUpdate'}Explanation`)}
-                        {shouldUpdate && (
-                            <a onClick={() => this.setState({ dismissUpdate: true })}>
-                                <Icon icon="cross" size={16} />
-                            </a>
-                        )}
-                    </section>
-                ) : (
+                {!dismissUpdate &&
+                    displayTestWarning &&
+                    this.renderFullWidthAlert(`${t('rootDetection:warning')}:`, t('global:testVersionWarning'), true)}
+                {!dismissUpdate &&
+                    shouldUpdate &&
+                    this.renderFullWidthAlert(t('global:shouldUpdate'), t('global:shouldUpdateExplanation'), true, () =>
+                        Electron.autoUpdate(),
+                    )}
+                {forceUpdate &&
+                    this.renderFullWidthAlert(t('global:forceUpdate'), t('global:forceUpdateExplanation'), false, () =>
+                        Electron.autoUpdate(),
+                    )}
+                {(!dismissUpdate && (forceUpdate || shouldUpdate)) || (
                     <div
                         onClick={() => dismissAlert()}
                         className={classNames(

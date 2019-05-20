@@ -173,8 +173,14 @@ class BiometricAuthentication extends Component {
                         this.onFailure();
                     });
             })
-            .catch(() => {
-                this.props.generateAlert('error', t('fingerprintUnavailable'), t('fingerprintUnavailableExplanation'));
+            .catch((err) => {
+                this.props.generateAlert(
+                    'error',
+                    t('fingerprintUnavailable'),
+                    t('fingerprintUnavailableExplanation'),
+                    10000,
+                    err,
+                );
             });
     }
 
@@ -270,5 +276,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['fingerprintSetup', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(BiometricAuthentication),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(BiometricAuthentication),
 );

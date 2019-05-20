@@ -175,7 +175,7 @@ describe('libs: iota/utils', () => {
                         throw new Error();
                     })
                     .catch((error) => {
-                        expect(error.message).to.equal('Node not synced');
+                        expect(error.message).to.equal('Node not synced by timestamp');
                         stub.restore();
                     });
             });

@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import noop from 'lodash/noop';
 import findLastIndex from 'lodash/findLastIndex';
 import reduce from 'lodash/reduce';
-import { updateAddressData, updateAccountAfterTransition } from '../actions/accounts';
+import { updateAddressData, updateAccountAfterTransition, getSelectedAccountName } from '../actions/accounts';
 import {
     generateAlert,
     generateTransitionErrorAlert,
@@ -47,6 +47,7 @@ export const ActionTypes = {
     CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
     SHOULD_UPDATE: 'IOTA/APP/WALLET/SHOULD_UPDATE',
     FORCE_UPDATE: 'IOTA/APP/WALLET/FORCE_UPDATE',
+    DISPLAY_TEST_WARNING: 'IOTA/APP/WALLET/DISPLAY_TEST_WARNING',
     INITIATE_DEEP_LINK_REQUEST: 'IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST',
     COMPLETE_DEEP_LINK_REQUEST: 'IOTA/APP/WALLET/COMPLETE_DEEP_LINK_REQUEST',
     MAP_STORAGE_TO_STATE: 'IOTA/SETTINGS/MAP_STORAGE_TO_STATE',
@@ -333,13 +334,14 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
                 dispatch(updateAddressData(accountName, result));
                 dispatch(generateNewAddressSuccess());
             })
-            .catch(() => {
+            .catch((err) => {
                 dispatch(
                     generateAlert(
                         'error',
                         i18next.t('global:somethingWentWrong'),
                         i18next.t('global:somethingWentWrongTryAgain'),
                         10000,
+                        err,
                     ),
                 );
                 dispatch(generateNewAddressError());
@@ -504,23 +506,27 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, qu
  *
  * @param {string | array} seed
  * @param {number} index
- * @param {function} genFn
+ * @param {string} accountName
  *
  * @returns {function}
  */
-export const generateAddressesAndGetBalance = (seedStore, index, seedType = 'keychain') => {
-    return (dispatch) => {
+export const generateAddressesAndGetBalance = (seedStore, index, accountName, seedType = 'keychain') => {
+    return (dispatch, getState) => {
         const options = {
             index,
             security: DEFAULT_SECURITY,
             total: seedType === 'ledger' ? 15 : 60,
         };
 
-        seedStore
+        return seedStore
             .generateAddress(options)
             .then((addresses) => {
-                dispatch(updateTransitionAddresses(addresses));
-                dispatch(getBalanceForCheck(addresses));
+                const latestAccountName = getSelectedAccountName(getState());
+
+                if (latestAccountName === accountName) {
+                    dispatch(updateTransitionAddresses(addresses));
+                    dispatch(getBalanceForCheck(addresses));
+                }
             })
             .catch((error) => {
                 dispatch(snapshotTransitionError());
@@ -658,4 +664,15 @@ export const shouldUpdate = () => ({
  */
 export const forceUpdate = () => ({
     type: ActionTypes.FORCE_UPDATE,
+});
+
+/**
+ * Dispatch to display test version warning
+ *
+ * @method displayTestWarning
+ *
+ * @returns {{type: {string} }}
+ */
+export const displayTestWarning = () => ({
+    type: ActionTypes.DISPLAY_TEST_WARNING,
 });
