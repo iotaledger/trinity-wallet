@@ -35,7 +35,7 @@ export default class Confirm extends React.PureComponent {
         return (
             <Modal variant="confirm" onClose={this.props.onCancel} isOpen={isOpen}>
                 {content.title ? <h1 className={category ? css[category] : null}>{content.title}</h1> : null}
-                {content.animation ? (
+                {isOpen && content.animation ? (
                     <Lottie
                         width={content.animation.size || 240}
                         height={content.animation.size || 240}
