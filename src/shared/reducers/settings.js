@@ -1,9 +1,9 @@
 import merge from 'lodash/merge';
-import union from 'lodash/union';
+import unionBy from 'lodash/unionBy';
 import sortBy from 'lodash/sortBy';
 import { ActionTypes } from '../actions/settings';
 import { ActionTypes as MigrationsActionTypes } from '../actions/migrations';
-import { defaultNode as node, nodes, QUORUM_SIZE } from '../config';
+import { DEFAULT_NODE, DEFAULT_NODES, QUORUM_SIZE } from '../config';
 import { availableCurrencies } from '../libs/currency';
 
 const initialState = {
@@ -14,11 +14,11 @@ const initialState = {
     /**
      * Selected IRI node for wallet
      */
-    node,
+    node: DEFAULT_NODE,
     /**
      * List of IRI nodes
      */
-    nodes,
+    nodes: DEFAULT_NODES,
     /**
      * List of custom nodes added by user
      */
@@ -172,23 +172,21 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 node: action.payload,
-                nodes: union(state.nodes, [action.payload]),
-                customNodes: state.nodes.includes(action.payload)
-                    ? state.customNodes
-                    : union(state.customNodes, [action.payload]),
+                nodes: unionBy(state.nodes, [action.payload], 'url'),
+                customNodes: unionBy(state.customNodes, [action.payload], 'url'),
             };
         case ActionTypes.REMOVE_CUSTOM_NODE:
             return {
                 ...state,
-                nodes: state.customNodes.includes(action.payload)
-                    ? state.nodes.filter((node) => node !== action.payload)
+                nodes: state.customNodes.map((node) => node.url).includes(action.payload)
+                    ? state.nodes.filter((node) => node.url !== action.payload)
                     : state.nodes,
-                customNodes: state.customNodes.filter((node) => node !== action.payload),
+                customNodes: state.customNodes.filter((node) => node.url !== action.payload),
             };
         case ActionTypes.SET_NODELIST:
             return {
                 ...state,
-                nodes: union(action.payload, state.customNodes, [state.node]),
+                nodes: unionBy(action.payload, state.customNodes, [state.node], 'url'),
             };
         case ActionTypes.SET_MODE:
             return {

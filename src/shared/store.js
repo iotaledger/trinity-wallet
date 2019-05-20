@@ -26,7 +26,7 @@ const developmentMiddleware = [thunk, networkMiddleware, versionMiddleware, aler
 const productionMiddleware = [thunk, networkMiddleware, versionMiddleware, alertsMiddleware, modalMiddleware];
 
 if (__MOBILE__) {
-    /* developmentMiddleware.unshift(logger); */
+    developmentMiddleware.unshift(logger);
 }
 
 const reducers = combineReducers({
@@ -61,7 +61,9 @@ const store = createStore(
     rootReducer,
     compose(
         applyMiddleware(...middleware),
-        typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f,
+        typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__
+            ? window.__REDUX_DEVTOOLS_EXTENSION__()
+            : (f) => f,
     ),
 );
 

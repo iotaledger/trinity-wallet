@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "該節點在取得帳號資訊時回傳了錯誤訊息。如果這個這個問題持續發生，請嘗試更換節點或是將 Trinity 中的系統代理停用。",
         "nodeOutOfSync": "節點失去同步",
         "nodeOutOfSyncExplanation": "您目前所選的節點並不同步，請變更節點或再試一次。",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "不支持的 Node 版本",
         "experimentalNodeExplanation": "你現時選用的 node 屬不被支援的測試版本，請選用另一個 node 或再嘗試。",
         "thisNodeOutOfSync": "此節點並不同步，請變更節點或再試一次。",
@@ -160,9 +161,11 @@
         "shouldUpdateExplanation": "有可用的更新，建議你更新到最新的版本。",
         "forceUpdate": "請更新應用程式並繼續",
         "forceUpdateExplanation": "有重大的版本更新。請立即更新 Trinity 錢包。",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "需要檔案系統權限",
         "missingPermissionExplanation": "這個功能必須擁有訪問檔案系統的權限。",
-        "swipeToConfirm": "滑動來確認。"
+        "swipeToConfirm": "滑動來確認。",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -550,7 +553,7 @@
         "million": "百萬",
         "thousand": "千",
         "one": "一",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTA通常以一百萬或其倍數為單位獲得，但轉送時亦可以細分為單個IOTA。"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "我為何無法支出所有餘額？",
@@ -572,7 +575,7 @@
         "syncingYourAccount": "同步您的帳戶中。"
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "輸入您帳戶名稱與種子",
         "incorrectFormat": "種子碼格式不符",
         "validSeedExplanation": "有效的種子碼應為 81 個字元而且僅包含 A-Z 或 9。"
     },
@@ -581,14 +584,14 @@
         "viewSeed": "檢視種子碼",
         "hideSeed": "隱藏種子碼",
         "notAvailable": "{{accountType}} 帳戶類型無法匯出種子碼",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "種子(seed) 被放在裝置的安全元件內, 種子(seed) 安全的被加密, 且不會外流給其他裝置",
         "accountIndex": "您的 Ledger 帳戶索引",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "您的帳戶"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "您備份種子碼了嗎？",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "您的種子已經安全的備份",
+        "reenterSeed": "在下一步, 您需要重新輸入您的種子",
         "reenterSeedWarning": "如果您尚未備份您的種子碼然後裝置停止的話，您將失去您所有的 IOTA。",
         "pleaseConfirm": "請確認您已安全地儲存了您的種子碼。"
     },
@@ -607,31 +610,31 @@
         "fingerprintAuthFailedExplanation": "指紋驗證失敗，請再試一次。",
         "status": "狀態",
         "fingerprintUnavailable": "生物識別驗證無法使用",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "暫停身分驗證30秒",
         "fingerprintUnavailableExplanation": "您的裝置不支援生物識別驗證，或者裝置設定中並沒有啟用此權限。",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "notSupported": "裝置並不提供生物識別驗證(指紋, 靜脈...)",
+        "notConfigured": "生物識別驗證無法成功設定",
         "buttonInstructionsDisable": "按下方按鈕停用指紋驗證。",
         "buttonInstructionsEnable": "按下方按鈕啟用指紋驗證。",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "按下下面按鈕關掉臉部辨識",
+        "buttonInstructionsEnableIPhoneX": "按下下面按鈕開啟臉部辨識",
         "instructionsLogin": "觸摸指紋辨識器來登入",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "您的裝置已經關掉身分驗證",
+        "userCancelledAuth": "身分驗證請求已取消",
+        "passwordFallback": "回到輸入密碼",
+        "noPassword": "密碼尚未設定"
     },
     "transferConfirmation": {
         "youAreAbout": "您將轉帳{{contents}} 到地址",
         "aMessage": "訊息",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "由{{selectedAccountName}}",
+        "toAddress": "目的地址",
+        "sendingAMessage": "訊息正在傳送",
+        "sendingAnEmptyMessage": "正在傳送"
     },
     "seedVault": {
         "exportSeedVault": "匯出 SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "種子密碼是用來保護您的種子\n當您需要使用種子時, 請輸入種子密碼解鎖種子",
         "seedVaultWarning": "請確認您有備份檔案在許多不同位置 (像是硬碟、雲端、USB)。如果您遺失此檔案而且沒有在其他地方儲存種子碼的話，您將失去您的 IOTA。",
         "exportFail": "SeedVault 匯出失敗",
         "exportFailExplanation": "匯出 SeedVault 時發生錯誤，請確認您有對應的權限以及足夠的可用空間。",
@@ -798,13 +801,16 @@
         "notReady": "如果您想使用 Ledger 裝置，請立即連接並解鎖它",
         "indexInUse": "帳戶 {{account}} 已使用該索引",
         "indexInUseExplanation": "您所選的索引已經在您其中一個帳戶使用過了，請選擇其他索引號碼。",
-        "proceedWithLedger": "進行 Ledger 設置",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "帳戶索引",
         "accountPage": "帳戶頁面",
         "actionCancelled": "Ledger device access cancelled",
         "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "選擇您的帳戶索引",
-        "accountIndexExplanation": "您的 Ledger 可以儲存數個種子碼，每個種子碼會有相對應的索引號碼。系統已先預先選擇未使用的索引，但您可以隨意選擇自己想要的。請務必記住您所選的索引號碼。",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "有些第三方錢包會用到頁面號碼。",
         "connectionError": "無法連接至 Ledger",
         "connectionErrorExplanation": "請檢查您的 Ledger 已連接並解鎖。",
@@ -826,7 +832,11 @@
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

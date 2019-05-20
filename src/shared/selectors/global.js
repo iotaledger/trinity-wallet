@@ -1,6 +1,8 @@
+import get from 'lodash/get';
+import filter from 'lodash/filter';
 import { createSelector } from 'reselect';
 import Themes from '../themes/themes';
-import { defaultNode as DEFAULT_IRI_NODE } from '../config';
+import { DEFAULT_NODE } from '../config';
 
 /**
  *   Selects ui prop from state.
@@ -79,7 +81,9 @@ export const getRemotePoWFromState = createSelector(
  *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
  *
  *   @method getNodesFromState
+ *
  *   @param {object} state
+ *
  *   @returns {array}
  **/
 export const getNodesFromState = createSelector(
@@ -92,12 +96,14 @@ export const getNodesFromState = createSelector(
  *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
  *
  *   @method getSelectedNodeFromState
+ *
  *   @param {object} state
- *   @returns {array}
+ *
+ *   @returns {object}
  **/
 export const getSelectedNodeFromState = createSelector(
     getSettingsFromState,
-    (state) => state.node || DEFAULT_IRI_NODE,
+    (state) => state.node || DEFAULT_NODE,
 );
 
 /**
@@ -143,7 +149,9 @@ export const getThemeFromState = createSelector(
  *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
  *
  *   @method getCustomNodesFromState
+ *
  *   @param {object} state
+ *
  *   @returns {array}
  **/
 export const getCustomNodesFromState = createSelector(
@@ -156,19 +164,23 @@ export const getCustomNodesFromState = createSelector(
  *
  * @method nodesConfigurationFactory
  *
- * @param {object} state
+ * @param {object} overrides
  *
  * @returns {object}
  **/
-export const nodesConfigurationFactory = (quorum) =>
+export const nodesConfigurationFactory = (overrides) =>
     createSelector(
         getSettingsFromState,
         (state) => {
             const config = {
                 /** Node that should be given priority while connecting. */
-                priorityNode: DEFAULT_IRI_NODE,
-                /** Wallet nodes */
-                nodes: state.nodes,
+                priorityNode: DEFAULT_NODE,
+                /**
+                 * Wallet nodes
+                 * autoNodeList (true) -> choose random nodes from all nodes for auto-retrying
+                 * autoNodeList(false) -> choose random nodes from only custom nodes for auto-retrying
+                 */
+                nodes: state.autoNodeList ? [...state.nodes, ...state.customNodes] : state.customNodes,
                 /** Wallet's active node */
                 primaryNode: state.node,
                 /** Determines if quorum is enabled/disabled */
@@ -181,11 +193,18 @@ export const nodesConfigurationFactory = (quorum) =>
                  * - When true: pull in nodes from endpoint (config#NODELIST_URL) and include the custom nodes in the quorum selection
                  * - When false: only use custom nodes in quorum selection
                  */
-                autoNodeList: true,
+                autoNodeList: state.autoNodeList,
             };
 
-            if (quorum) {
-                config.quorum.enabled = quorum;
+            const quorumOverride = get(overrides, 'quorum');
+            const remoteNodesOverride = get(overrides, 'useOnlyPowNodes');
+
+            if (quorumOverride) {
+                config.quorum.enabled = quorumOverride;
+            }
+
+            if (remoteNodesOverride) {
+                config.nodes = filter(config.nodes, (node) => node.pow === true);
             }
 
             return config;

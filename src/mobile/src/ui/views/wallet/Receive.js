@@ -432,14 +432,6 @@ class Receive extends Component {
         if (isSyncing || isTransitioning) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
-        const error = () => {
-            this.props.getFromKeychainError('receive', 'addressGeneration');
-            return this.props.generateAlert(
-                'error',
-                t('global:somethingWentWrong'),
-                t('global:somethingWentWrongTryAgain'),
-            );
-        };
         this.startLetterScramble();
         this.triggerRefreshAnimations();
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
@@ -452,7 +444,14 @@ class Receive extends Component {
             this.props.getFromKeychainSuccess('receive', 'addressGeneration');
             this.props.generateNewAddress(seedStore, selectedAccountName, selectedAccountData);
         } catch (err) {
-            return error();
+            this.props.getFromKeychainError('receive', 'addressGeneration');
+            return this.props.generateAlert(
+                'error',
+                t('global:somethingWentWrong'),
+                t('global:somethingWentWrongTryAgain'),
+                10000,
+                err,
+            );
         }
     }
 
@@ -624,13 +623,12 @@ class Receive extends Component {
                                         { backgroundColor: '#F2F2F2', paddingBottom: width / 25 },
                                     ]}
                                 >
-                                    {!isGeneratingReceiveAddress &&
-                                        hasSuccessfullyGeneratedAddress && (
-                                            <CustomQrCodeComponent
-                                                value={qrContent}
-                                                size={isAndroid ? width / 2 : width / 3}
-                                            />
-                                        )}
+                                    {!isGeneratingReceiveAddress && hasSuccessfullyGeneratedAddress && (
+                                        <CustomQrCodeComponent
+                                            value={qrContent}
+                                            size={isAndroid ? width / 2 : width / 3}
+                                        />
+                                    )}
                                     {/* FIXME: Overflow: 'visible' is not supported on Android*/}
                                     {isAndroid && (
                                         <TouchableWithoutFeedback onPress={this.generateAddress}>
@@ -819,4 +817,9 @@ const mapDispatchToProps = {
     getFromKeychainError,
 };
 
-export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Receive));
+export default withNamespaces(['receive', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Receive),
+);

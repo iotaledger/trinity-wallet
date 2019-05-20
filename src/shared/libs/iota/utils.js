@@ -1,4 +1,6 @@
+import get from 'lodash/get';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import isArray from 'lodash/isArray';
 import isFunction from 'lodash/isFunction';
 import isUndefined from 'lodash/isUndefined';
@@ -379,8 +381,11 @@ export const withRetriesOnDifferentNodes = (nodes, failureCallbacks) => {
             return promiseFunc(nodes[attempt])(...args)
                 .then((result) => ({ node: nodes[attempt], result }))
                 .catch((err) => {
-                    // Abort retries on user cancalled Ledger action
-                    if (err === Errors.LEDGER_CANCELLED) {
+                    if (get(err, 'message') === Errors.LEDGER_INVALID_INDEX) {
+                        throw new Error(Errors.LEDGER_INVALID_INDEX);
+                    }
+                    // Abort retries on user cancelled Ledger action
+                    if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
                         throw new Error(Errors.LEDGER_CANCELLED);
                     }
                     // If a function is passed as failure callback
@@ -445,26 +450,26 @@ export const fetchRemoteNodes = (
  * @method getRandomNodes
  * @param {array} nodes
  * @param {number} [size]
- * @param {array} [blacklisted]
+ * @param {array} [blacklistedNodes]
  *
  * @returns {Array}
  */
-export const getRandomNodes = (nodes, size = 5, blacklisted = []) => {
-    return sampleSize(filter(nodes, (node) => !includes(blacklisted, node)), size);
+export const getRandomNodes = (nodes, size = 5, blacklistedNodes = []) => {
+    return sampleSize(filter(nodes, (node) => !find(blacklistedNodes, { url: node.url })), size);
 };
 
 /**
  * Throws an error if a node is not synced.
  *
  * @method throwIfNodeNotHealthy
- * @param {string} provider
+ * @param {object} settings
  *
  * @returns {Promise<boolean>}
  */
-export const throwIfNodeNotHealthy = (provider) => {
-    return isNodeHealthy(provider).then((isSynced) => {
+export const throwIfNodeNotHealthy = (settings) => {
+    return isNodeHealthy(settings).then((isSynced) => {
         if (!isSynced) {
-            throw new Error(Errors.NODE_NOT_SYNCED);
+            throw new Error(Errors.NODE_NOT_SYNCED_BY_TIMESTAMP);
         }
 
         return isSynced;

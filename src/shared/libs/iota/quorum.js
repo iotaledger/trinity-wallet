@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
+import find from 'lodash/find';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import keys from 'lodash/keys';
@@ -10,8 +11,8 @@ import transform from 'lodash/transform';
 import size from 'lodash/size';
 import split from 'lodash/split';
 import sampleSize from 'lodash/sampleSize';
-import union from 'lodash/union';
-import uniq from 'lodash/uniq';
+import unionBy from 'lodash/unionBy';
+import uniqBy from 'lodash/uniqBy';
 import { isNodeHealthy, getIotaInstance, getApiTimeout } from './extendedApi';
 import { QUORUM_THRESHOLD, QUORUM_SIZE, QUORUM_SYNC_CHECK_INTERVAL, DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import { EMPTY_HASH_TRYTES } from './utils';
@@ -105,7 +106,7 @@ const fallbackToSafeResult = (method) => {
  *   @method findSyncedNodes
  *   @param {array} nodes
  *   @param {number} quorumSize
- *   @param {array} [syncedNodes = []]
+ *   @param {array} [selectedNodes = []]
  *   @param {array} [blacklistedNodes = []]
  *
  *   @returns {Promise}
@@ -116,7 +117,7 @@ const findSyncedNodes = (nodes, quorumSize, selectedNodes = [], blacklistedNodes
     // Get all nodes that are not blacklisted (i.e. unsynced or unresponsive) and are not already selected
     const whitelistedNodes = filter(
         nodes,
-        (node) => !includes(blacklistedNodes, node) && !includes(selectedNodes, node),
+        (node) => !find(blacklistedNodes, { url: node.url }) && !find(selectedNodes, { url: node.url }),
     );
 
     if (
@@ -135,35 +136,37 @@ const findSyncedNodes = (nodes, quorumSize, selectedNodes = [], blacklistedNodes
             : // Otherwise, randomly choose the remaining nodes
               sampleSize(whitelistedNodes, quorumSize - numberOfSelectedNodes);
 
-    return Promise.all(map(nodesToCheckSyncFor, (provider) => isNodeHealthy(provider).catch(() => undefined))).then(
-        (results) => {
-            // Categorise synced/unsynced nodes
-            const { syncedNodes, unsyncedNodes } = transform(
-                nodesToCheckSyncFor,
-                (acc, node, idx) => (results[idx] ? acc.syncedNodes.push(node) : acc.unsyncedNodes.push(node)),
-                { syncedNodes: [], unsyncedNodes: [] },
-            );
+    return Promise.all(
+        map(nodesToCheckSyncFor, ({ url, token, password }) =>
+            isNodeHealthy({ url, token, password }).catch(() => undefined),
+        ),
+    ).then((results) => {
+        // Categorise synced/unsynced nodes
+        const { syncedNodes, unsyncedNodes } = transform(
+            nodesToCheckSyncFor,
+            (acc, node, idx) => (results[idx] ? acc.syncedNodes.push(node) : acc.unsyncedNodes.push(node)),
+            { syncedNodes: [], unsyncedNodes: [] },
+        );
 
-            // If all nodes are synced, then return these nodes
-            if (size(syncedNodes) === size(nodesToCheckSyncFor)) {
-                return union(selectedNodes, syncedNodes);
-            }
+        // If all nodes are synced, then return these nodes
+        if (size(syncedNodes) === size(nodesToCheckSyncFor)) {
+            return unionBy(selectedNodes, syncedNodes, 'url');
+        }
 
-            // Otherwise, restart this process
-            return findSyncedNodes(
-                nodes,
-                quorumSize,
-                // Update selected nodes
-                union(
-                    // Filter selected nodes that are unsynced
-                    filter(selectedNodes, (node) => !includes(unsyncedNodes, node)),
-                    syncedNodes,
-                ),
-                // Add inactive nodes to blacklisted nodes
-                [...blacklistedNodes, ...unsyncedNodes],
-            );
-        },
-    );
+        // Otherwise, restart this process
+        return findSyncedNodes(
+            nodes,
+            quorumSize,
+            // Update selected nodes
+            unionBy(
+                // Filter selected nodes that are unsynced
+                filter(selectedNodes, (node) => !find(unsyncedNodes, { url: node.url })),
+                syncedNodes,
+            ),
+            // Add inactive nodes to blacklisted nodes
+            [...blacklistedNodes, ...unsyncedNodes],
+        );
+    });
 };
 
 /**
@@ -272,9 +275,16 @@ const getQuorum = (quorumSize) => (method, syncedNodes, payload, ...args) => {
             Promise.all(
                 map(
                     syncedNodes,
-                    (provider) =>
+                    ({ url, token, password }) =>
                         new Promise((resolve) => {
-                            getIotaInstance(provider, getApiTimeout(iotaApiMethod, payload)).api[iotaApiMethod](
+                            getIotaInstance(
+                                {
+                                    token,
+                                    password,
+                                    url,
+                                },
+                                getApiTimeout(iotaApiMethod, payload),
+                            ).api[iotaApiMethod](
                                 ...[
                                     ...requestArgs,
                                     (err, result) =>
@@ -311,7 +321,7 @@ export default function Quorum(config) {
 
     let quorumSize = get(config, 'quorumSize') || QUORUM_SIZE;
 
-    let nodes = uniq(quorumNodes);
+    let nodes = uniqBy(quorumNodes, 'url');
 
     if (size(nodes) < QUORUM_SIZE) {
         throw new Error(Errors.NOT_ENOUGH_QUORUM_NODES);
@@ -343,7 +353,7 @@ export default function Quorum(config) {
          * @param {array} newNodes
          */
         setNodes(newNodes) {
-            nodes = union(nodes, uniq(newNodes));
+            nodes = unionBy(nodes, uniqBy(newNodes, 'url'), 'url');
         },
         /**
          * Sets quorum size.

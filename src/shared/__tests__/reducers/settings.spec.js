@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import reducer from '../../reducers/settings';
 import { ActionTypes } from '../../actions/settings';
-import { defaultNode, nodes, QUORUM_SIZE } from '../../config';
+import { DEFAULT_NODES, DEFAULT_NODE, QUORUM_SIZE } from '../../config';
 
 describe('Reducer: settings', () => {
     describe('initial state', () => {
@@ -9,8 +9,8 @@ describe('Reducer: settings', () => {
             const initialState = {
                 completedByteTritSweep: false,
                 locale: 'en',
-                node: defaultNode,
-                nodes,
+                node: DEFAULT_NODE,
+                nodes: DEFAULT_NODES,
                 customNodes: [],
                 mode: 'Standard',
                 language: 'English (International)',
@@ -232,18 +232,49 @@ describe('Reducer: settings', () => {
         describe('when payload exists in "nodes" state prop', () => {
             it('should return existing state prop "nodes"', () => {
                 const initialState = {
-                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
+                    nodes: [
+                        {
+                            url: 'http://localhost:9000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                        {
+                            url: 'http://localhost:5000',
+                            pow: true,
+                            token: '',
+                            password: '',
+                        },
+                    ],
                     customNodes: [],
                 };
 
                 const action = {
                     type: ActionTypes.ADD_CUSTOM_NODE_SUCCESS,
-                    payload: 'http://localhost:9000',
+                    payload: {
+                        url: 'http://localhost:9000',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
                 };
 
                 const newState = reducer(initialState, action);
                 const expectedState = {
-                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
+                    nodes: [
+                        {
+                            url: 'http://localhost:9000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                        {
+                            url: 'http://localhost:5000',
+                            pow: true,
+                            token: '',
+                            password: '',
+                        },
+                    ],
                     customNodes: [],
                 };
 
@@ -254,19 +285,63 @@ describe('Reducer: settings', () => {
         describe('when payload does not exist in "nodes" state prop', () => {
             it('should add payload to state prop "nodes" and "customNodes"', () => {
                 const initialState = {
-                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
+                    nodes: [
+                        {
+                            url: 'http://localhost:9000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                        {
+                            url: 'http://localhost:5000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                    ],
                     customNodes: [],
                 };
 
                 const action = {
                     type: ActionTypes.ADD_CUSTOM_NODE_SUCCESS,
-                    payload: 'http://localhost:3000',
+                    payload: {
+                        url: 'http://localhost:3000',
+                        pow: true,
+                        token: 'foo',
+                        password: 'baz',
+                    },
                 };
 
                 const newState = reducer(initialState, action);
                 const expectedState = {
-                    nodes: ['http://localhost:9000', 'http://localhost:5000', 'http://localhost:3000'],
-                    customNodes: ['http://localhost:3000'],
+                    nodes: [
+                        {
+                            url: 'http://localhost:9000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                        {
+                            url: 'http://localhost:5000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                        {
+                            url: 'http://localhost:3000',
+                            pow: true,
+                            token: 'foo',
+                            password: 'baz',
+                        },
+                    ],
+                    customNodes: [
+                        {
+                            url: 'http://localhost:3000',
+                            pow: true,
+                            token: 'foo',
+                            password: 'baz',
+                        },
+                    ],
                 };
 
                 expect(newState.nodes).to.eql(expectedState.nodes);
@@ -279,8 +354,28 @@ describe('Reducer: settings', () => {
         describe('when payload exists in "customNodes" state prop', () => {
             it('should remove payload from state prop "customNodes"', () => {
                 const initialState = {
-                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
-                    customNodes: ['http://localhost:5000'],
+                    nodes: [
+                        {
+                            url: 'http://localhost:9000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                        {
+                            url: 'http://localhost:5000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                    ],
+                    customNodes: [
+                        {
+                            url: 'http://localhost:5000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                    ],
                 };
 
                 const action = {
@@ -290,7 +385,14 @@ describe('Reducer: settings', () => {
 
                 const newState = reducer(initialState, action);
                 const expectedState = {
-                    nodes: ['http://localhost:9000'],
+                    nodes: [
+                        {
+                            url: 'http://localhost:9000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                    ],
                     customNodes: [],
                 };
 
@@ -321,8 +423,27 @@ describe('Reducer: settings', () => {
 
     describe(ActionTypes.SET_NODELIST, () => {
         it('should update nodes with a union of action.payload, state.customNodes and state.node', () => {
-            const node = 'http://localhost:9000';
-            const customNodes = ['http://localhost:5000', 'http://localhost:4000'];
+            const node = {
+                url: 'http://localhost:9000',
+                pow: false,
+                token: '',
+                password: '',
+            };
+
+            const customNodes = [
+                {
+                    url: 'http://localhost:5000',
+                    pow: false,
+                    token: '',
+                    password: '',
+                },
+                {
+                    url: 'http://localhost:4000',
+                    pow: false,
+                    token: '',
+                    password: '',
+                },
+            ];
 
             const initialState = {
                 node,
@@ -331,16 +452,29 @@ describe('Reducer: settings', () => {
 
             const action = {
                 type: ActionTypes.SET_NODELIST,
-                payload: ['http://localhost:5000', 'http://localhost:80'],
+                payload: [
+                    {
+                        url: 'http://localhost:5000',
+                        pow: true,
+                        token: '',
+                        password: '',
+                    },
+                    {
+                        url: 'http://localhost:80',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
+                ],
             };
 
             const newState = reducer(initialState, action);
             const expectedState = {
                 nodes: [
-                    'http://localhost:5000',
-                    'http://localhost:80',
-                    'http://localhost:4000',
-                    'http://localhost:9000',
+                    { url: 'http://localhost:5000', pow: true, token: '', password: '' },
+                    { url: 'http://localhost:80', pow: false, token: '', password: '' },
+                    { url: 'http://localhost:4000', pow: false, token: '', password: '' },
+                    { url: 'http://localhost:9000', pow: false, token: '', password: '' },
                 ],
                 node,
                 customNodes,

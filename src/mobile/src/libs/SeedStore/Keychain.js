@@ -121,9 +121,9 @@ class Keychain extends SeedStoreCore {
     /**
      * Prepare transfers
      */
-    prepareTransfers = async (transfers, options = null) => {
+    prepareTransfers = (settings) => async (transfers, options = null) => {
         const seed = await this.getSeed();
-        return prepareTransfersAsync()(seed, transfers, options, getSignatureFn());
+        return prepareTransfersAsync(settings)(seed, transfers, options, getSignatureFn());
     };
 
     /**

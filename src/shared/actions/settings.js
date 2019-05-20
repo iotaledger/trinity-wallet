@@ -1,12 +1,12 @@
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
-import map from 'lodash/map';
 import { changeIotaNode, quorum } from '../libs/iota/index';
 import i18next from '../libs/i18next';
 import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
 import { fetchNodeList } from '../actions/polling';
 import { allowsRemotePow } from '../libs/iota/extendedApi';
-import { getSelectedNodeFromState } from '../selectors/global';
+import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState } from '../selectors/global';
 import { throwIfNodeNotHealthy } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import { Wallet, Node } from '../storage';
@@ -241,7 +241,7 @@ export const setMode = (payload) => {
  * Dispatch to change wallet's active IRI node
  *
  * @method setNode
- * @param {string} payload
+ * @param {object} payload
  *
  * @returns {{type: {string}, payload: {string} }}
  */
@@ -250,7 +250,7 @@ export const setNode = (payload) => {
 
     return {
         type: ActionTypes.SET_NODE,
-        payload,
+        payload: payload,
     };
 };
 
@@ -267,7 +267,7 @@ export const setNodeList = (payload) => {
 
     return {
         type: ActionTypes.SET_NODELIST,
-        payload: map(payload, (node) => node.url),
+        payload,
     };
 };
 
@@ -380,15 +380,18 @@ export function setLocale(locale) {
  * Dispatch to change selected IRI node
  *
  * @method changeNode
- * @param {string} payload
+ *
+ * @param {object} payload
  *
  * @returns {{type: {string}, payload: {string} }}
  */
 export const changeNode = (payload) => (dispatch, getState) => {
-    if (getSelectedNodeFromState(getState()) !== payload) {
+    const selectedNode = getSelectedNodeFromState(getState());
+
+    if (selectedNode.url !== payload.url) {
         dispatch(setNode(payload));
         // Change provider on global iota instance
-        changeIotaNode(payload);
+        changeIotaNode(assign({}, payload, { provider: payload.url }));
     }
 };
 
@@ -468,7 +471,7 @@ export function setLanguage(language) {
  *
  * @method setFullNode
  *
- * @param {string} node
+ * @param {object} node - { url, token }
  * @param {boolean} addingCustomNode
  *
  * @returns {function}
@@ -501,23 +504,27 @@ export function setFullNode(node, addingCustomNode = false) {
         dispatch(dispatcher.request());
 
         throwIfNodeNotHealthy(node)
-            .then(() => allowsRemotePow(node))
+            .then(() => allowsRemotePow(node.url))
             .then((hasRemotePow) => {
                 // Change IOTA provider on the global iota instance
                 changeIotaNode(node);
 
                 // Update node in redux store
-                dispatch(dispatcher.success(node, hasRemotePow));
-
-                // Change IOTA provider on the global iota instance
-                changeIotaNode(node);
+                dispatch(
+                    dispatcher.success(
+                        assign({}, node, {
+                            pow: hasRemotePow,
+                        }),
+                        hasRemotePow,
+                    ),
+                );
 
                 if (hasRemotePow) {
                     dispatch(
                         generateAlert(
                             'success',
                             i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessExplanation', { node }),
+                            i18next.t('settings:nodeChangeSuccessExplanation', { url: node.url }),
                             10000,
                         ),
                     );
@@ -530,7 +537,7 @@ export function setFullNode(node, addingCustomNode = false) {
                         generateAlert(
                             'success',
                             i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { node }),
+                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { url: node.url }),
                             10000,
                         ),
                     );
@@ -539,10 +546,12 @@ export function setFullNode(node, addingCustomNode = false) {
             .catch((err) => {
                 dispatch(dispatcher.error());
 
-                if (err.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateNodeOutOfSyncErrorAlert());
-                } else if (err.message === Errors.UNSUPPORTED_NODE) {
-                    dispatch(generateUnsupportedNodeErrorAlert());
+                if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err));
+                } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err, true));
+                } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
                     dispatch(dispatcher.alerts.defaultError(err));
                 }
@@ -876,7 +885,7 @@ export const updateNodeAutoSwitchSetting = (payload) => {
 /**
  * Dispatch to update autoNodeList setting
  *
- * @method updateNodeAutoSwitchSetting
+ * @method updateAutoNodeListSetting
  * @param {boolean} payload
  *
  * @returns {{type: {string}, payload: {boolean} }}
@@ -890,4 +899,23 @@ export const updateAutoNodeListSetting = (payload) => {
         type: ActionTypes.UPDATE_AUTO_NODE_LIST_SETTING,
         payload,
     };
+};
+
+/**
+ * Dispatch to change autoNodeList setting
+ *
+ * @method changeAutoNodeListSetting
+ *
+ * @param {boolean} payload
+ *
+ * @returns {function} dispatch
+ */
+export const changeAutoNodeListSetting = (payload) => (dispatch, getState) => {
+    dispatch(updateAutoNodeListSetting(payload));
+
+    // `autoNodeList` active -> use all nodes for quorum
+    // `autoNodeList` inactive -> use custom nodes for quorum
+    const nodes = payload ? getNodesFromState(getState()) : getCustomNodesFromState(getState());
+
+    quorum.setNodes(nodes);
 };

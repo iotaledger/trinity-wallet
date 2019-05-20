@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Ο κόμβος επέστρεψε ένα σφάλμα κατά τη λήψη των πληροφοριών του λογαριασμού σας. Εάν το πρόβλημά σας παραμένει, δοκιμάστε να αλλάξετε κόμβο ή να απενεργοποιήσετε τον διακομιστή μεσολάβησης συστήματος στις Ρυθμίσεις Trinity.",
         "nodeOutOfSync": "Κόμβος εκτός συγχρονισμού",
         "nodeOutOfSyncExplanation": "Ο επιλεγμένος κόμβο σας είναι εκτός συγχρονισμού. Παρακαλώ αλλάξτε κόμβο ή προσπαθήστε ξανά.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Η έκδοση κόμβου δεν υποστηρίζεται",
         "experimentalNodeExplanation": "Ο τρέχων επιλεγμένος κόμβος σας διαθέτει μια πειραματική έκδοση που δεν υποστηρίζεται. Αλλάξτε κόμβο ή δοκιμάστε ξανά.",
         "thisNodeOutOfSync": "Αυτός ο κόμβος είναι εκτός συγχρονισμού. Παρακαλώ αλλάξτε κόμβο ή προσπαθήστε ξανά.",
@@ -160,9 +161,11 @@
         "shouldUpdateExplanation": "Έχει κυκλοφορήσει μια νέα ενημερωμένη έκδοση. Συνιστάται να ενημερώσετε την τελευταία έκδοση.",
         "forceUpdate": "Ενημερώστε την εφαρμογή για να συνεχίσετε",
         "forceUpdateExplanation": "Έχει κυκλοφορήσει μια κρίσιμη ενημερωμένη έκδοση. Ενημερώστε τώρα την εφαρμογή.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Απαιτείται άδεια συστήματος αρχείων",
         "missingPermissionExplanation": "Για την εκτέλεση αυτής της λειτουργίας απαιτείται πρόσβαση στο αρχείο συστήματος.",
-        "swipeToConfirm": "Σύρετε για επιβεβαίωση"
+        "swipeToConfirm": "Σύρετε για επιβεβαίωση",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Το seed σας περιέχει μη έγκυρους χαρακτήρες",
@@ -646,7 +649,7 @@
         "saveToDownloadFolder": "Αποθήκευση σε φάκελο λήψης",
         "importSeedVault": "Εξαγωγή seed",
         "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
+        "dropActive": "Τοποθετήστε το seed ή κάντε κλικ εδώ",
         "enterKeyExplanation": "Πληκτρολογήστε το κλειδί για να ανοίξετε το SeedVault",
         "noSeedFound": "Το SeedVault δεν περιέχει έγκυρο seed",
         "noSeedFoundExplanation": "Το SeedVault είναι είτε άδειο είτε περιέχει seed σε μη έγκυρη μορφή.",
@@ -654,12 +657,12 @@
         "seedFileErrorExplanation": "Παρουσιάστηκε πρόβλημα κατά το άνοιγμα του SeedVault. Αν έχετε επιλέξει το σωστό αρχείο τότε μπορεί να είναι κατεστραμμένο.",
         "invalidSeedFileError": "Μη έγκυρο αρχείο SeedVault",
         "invalidSeedFileErrorExplanation": "Αυτή η μορφή αρχείου δεν υποστηρίζεται. Υποστηρίζονται μόνο αρχεία SeedVault (.kdbx) που έχουν δημιουργηθεί μέσω του Trinity ή ενός διαχειριστή κωδικών πρόσβασης.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key",
+        "seedVaultKeyExplanation": "Πρώτα πρέπει να εξασφαλίσουμε το SeedVault. Επιλέξτε ένα κλειδί για την κρυπτογράφηση του αρχείου. Θα χρησιμοποιήσετε αυτό το κλειδί αν χρειαστεί να επαναφέρετε τον σπόρο σας από το αντίγραφο ασφαλείας του SeedVault.",
+        "retypeKey": "Πληκτρολογήστε ξανά το πλήκτρο",
         "key": "Κλειδί"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "stateExportExplanation": "Η κρατική εξαγωγή θα αποθηκεύσει ένα αρχείο txt στη συσκευή σας με τις πληροφορίες λογαριασμού (συναλλαγές, διευθύνσεις), έκδοση πορτοφολιού και ονόματα αρχείων αποθήκευσης.",
         "exportSuccess": "State exported",
         "exportSuccessExplanation": "Your state file was exported successfully."
     },
@@ -798,13 +801,16 @@
         "notReady": "If you wish to use a Ledger device, connect and unlock it now",
         "indexInUse": "Index already in use for account {{account}}",
         "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Account index",
         "accountPage": "Account page",
         "actionCancelled": "Ledger device access cancelled",
         "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Some third party wallets require pages.",
         "connectionError": "Cannot connect to Ledger",
         "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
@@ -826,7 +832,11 @@
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

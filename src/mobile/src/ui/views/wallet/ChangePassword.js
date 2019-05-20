@@ -89,7 +89,9 @@ class ChangePassword extends Component {
                 generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
                 this.props.setSetting('securitySettings');
             })
-            .catch(() => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain')));
+            .catch((err) =>
+                generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain'), 10000, err),
+            );
     }
 
     /**
@@ -149,13 +151,31 @@ class ChangePassword extends Component {
                         <View style={{ flex: 0.2 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <SettingsDualFooter
-                            theme={theme}
-                            hideActionButton={currentPassword === '' || newPassword === '' || newPasswordReentry === ''}
-                            backFunction={() => this.props.setSetting('securitySettings')}
-                            actionFunction={() => this.isPasswordChangeValid()}
-                            actionName={t('global:save')}
-                        />
+                        <TouchableOpacity
+                            onPress={() => this.props.setSetting('securitySettings')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.itemLeft}>
+                                <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
+                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                        {currentPassword !== '' && newPassword !== '' && newPasswordReentry !== '' && (
+                            <TouchableOpacity
+                                onPress={() => this.isPasswordChangeValid()}
+                                hitSlop={{
+                                    top: height / 55,
+                                    bottom: height / 55,
+                                    left: width / 55,
+                                    right: width / 55,
+                                }}
+                            >
+                                <View style={styles.itemRight}>
+                                    <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
+                                    <Icon name="tick" size={width / 28} color={theme.body.color} />
+                                </View>
+                            </TouchableOpacity>
+                        )}
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -173,5 +193,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['changePassword', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(ChangePassword),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ChangePassword),
 );
