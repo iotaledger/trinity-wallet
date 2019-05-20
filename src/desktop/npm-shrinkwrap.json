@@ -2955,6 +2955,39 @@
       "integrity": "sha512-zauLjrfCG+xvoyaqLoV8bLVXXNGC4JqlxFCutSDWA6fJrTo2ZuvLYTqZ7aHBLZSMOopbzwv8f+wZcVzfVTI2Dg==",
       "dev": true
     },
+    "cacache": {
+      "version": "11.3.2",
+      "resolved": "https://registry.npmjs.org/cacache/-/cacache-11.3.2.tgz",
+      "integrity": "sha512-E0zP4EPGDOaT2chM08Als91eYnf8Z+eH1awwwVsngUmgppfM5jjJ8l3z5vO5p5w/I3LsiXawb1sW0VY65pQABg==",
+      "dev": true,
+      "requires": {
+        "bluebird": "^3.5.3",
+        "chownr": "^1.1.1",
+        "figgy-pudding": "^3.5.1",
+        "glob": "^7.1.3",
+        "graceful-fs": "^4.1.15",
+        "lru-cache": "^5.1.1",
+        "mississippi": "^3.0.0",
+        "mkdirp": "^0.5.1",
+        "move-concurrently": "^1.0.1",
+        "promise-inflight": "^1.0.1",
+        "rimraf": "^2.6.2",
+        "ssri": "^6.0.1",
+        "unique-filename": "^1.1.1",
+        "y18n": "^4.0.0"
+      },
+      "dependencies": {
+        "lru-cache": {
+          "version": "5.1.1",
+          "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-5.1.1.tgz",
+          "integrity": "sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==",
+          "dev": true,
+          "requires": {
+            "yallist": "^3.0.2"
+          }
+        }
+      }
+    },
     "cache-base": {
       "version": "1.0.1",
       "resolved": "https://registry.npmjs.org/cache-base/-/cache-base-1.0.1.tgz",
@@ -8979,6 +9012,36 @@
         "minipass": "^2.2.1"
       }
     },
+    "mississippi": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/mississippi/-/mississippi-3.0.0.tgz",
+      "integrity": "sha512-x471SsVjUtBRtcvd4BzKE9kFC+/2TeWgKCgw0bZcw1b9l2X3QX5vCWgF+KaZaYm87Ss//rHnWryupDrgLvmSkA==",
+      "dev": true,
+      "requires": {
+        "concat-stream": "^1.5.0",
+        "duplexify": "^3.4.2",
+        "end-of-stream": "^1.1.0",
+        "flush-write-stream": "^1.0.0",
+        "from2": "^2.1.0",
+        "parallel-transform": "^1.1.0",
+        "pump": "^3.0.0",
+        "pumpify": "^1.3.3",
+        "stream-each": "^1.1.0",
+        "through2": "^2.0.0"
+      },
+      "dependencies": {
+        "pump": {
+          "version": "3.0.0",
+          "resolved": "https://registry.npmjs.org/pump/-/pump-3.0.0.tgz",
+          "integrity": "sha512-LwZy+p3SFs1Pytd/jYct4wpv49HiYCqd9Rlc5ZVdk0V+8Yzv6jR5Blk3TRmPL1ft69TxP0IMZGJ+WPFU2BFhww==",
+          "dev": true,
+          "requires": {
+            "end-of-stream": "^1.1.0",
+            "once": "^1.3.1"
+          }
+        }
+      }
+    },
     "mixin-deep": {
       "version": "1.3.1",
       "resolved": "https://registry.npmjs.org/mixin-deep/-/mixin-deep-1.3.1.tgz",
@@ -11279,9 +11342,9 @@
       }
     },
     "recharts": {
-      "version": "1.6.0",
-      "resolved": "https://registry.npmjs.org/recharts/-/recharts-1.6.0.tgz",
-      "integrity": "sha512-zV48k5GJhNaMN7Lujp/2oh6B29vhpEd5GSV6C4A0jzqZOYC2A2l3K66O7afeUQ2IWG0RSj0D7Ocq6d08tENUng==",
+      "version": "1.6.1",
+      "resolved": "https://registry.npmjs.org/recharts/-/recharts-1.6.1.tgz",
+      "integrity": "sha512-w1rpdE2CCe/0DmtTONaN3wslmGtHsC15aneIMy2GDUqPKldUweEug89Kh9sD/zyq7lGU9zQiXwMPr6dyjQ9JOg==",
       "requires": {
         "classnames": "^2.2.5",
         "core-js": "^2.5.1",
@@ -12358,6 +12421,15 @@
         "tweetnacl": "~0.14.0"
       }
     },
+    "ssri": {
+      "version": "6.0.1",
+      "resolved": "https://registry.npmjs.org/ssri/-/ssri-6.0.1.tgz",
+      "integrity": "sha512-3Wge10hNcT1Kur4PDFwEieXSCMCJs/7WvSACcrMYrNp+b8kDL1/0wJch5Ni2WrtwEa2IO8OsVfeKIciKCDx/QA==",
+      "dev": true,
+      "requires": {
+        "figgy-pudding": "^3.5.1"
+      }
+    },
     "stack-generator": {
       "version": "2.0.3",
       "resolved": "https://registry.npmjs.org/stack-generator/-/stack-generator-2.0.3.tgz",
@@ -12822,86 +12894,6 @@
         "terser": "^3.17.0",
         "webpack-sources": "^1.3.0",
         "worker-farm": "^1.7.0"
-      },
-      "dependencies": {
-        "cacache": {
-          "version": "11.3.2",
-          "resolved": "https://registry.npmjs.org/cacache/-/cacache-11.3.2.tgz",
-          "integrity": "sha512-E0zP4EPGDOaT2chM08Als91eYnf8Z+eH1awwwVsngUmgppfM5jjJ8l3z5vO5p5w/I3LsiXawb1sW0VY65pQABg==",
-          "dev": true,
-          "requires": {
-            "bluebird": "^3.5.3",
-            "chownr": "^1.1.1",
-            "figgy-pudding": "^3.5.1",
-            "glob": "^7.1.3",
-            "graceful-fs": "^4.1.15",
-            "lru-cache": "^5.1.1",
-            "mississippi": "^3.0.0",
-            "mkdirp": "^0.5.1",
-            "move-concurrently": "^1.0.1",
-            "promise-inflight": "^1.0.1",
-            "rimraf": "^2.6.2",
-            "ssri": "^6.0.1",
-            "unique-filename": "^1.1.1",
-            "y18n": "^4.0.0"
-          }
-        },
-        "lru-cache": {
-          "version": "5.1.1",
-          "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-5.1.1.tgz",
-          "integrity": "sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==",
-          "dev": true,
-          "requires": {
-            "yallist": "^3.0.2"
-          }
-        },
-        "mississippi": {
-          "version": "3.0.0",
-          "resolved": "https://registry.npmjs.org/mississippi/-/mississippi-3.0.0.tgz",
-          "integrity": "sha512-x471SsVjUtBRtcvd4BzKE9kFC+/2TeWgKCgw0bZcw1b9l2X3QX5vCWgF+KaZaYm87Ss//rHnWryupDrgLvmSkA==",
-          "dev": true,
-          "requires": {
-            "concat-stream": "^1.5.0",
-            "duplexify": "^3.4.2",
-            "end-of-stream": "^1.1.0",
-            "flush-write-stream": "^1.0.0",
-            "from2": "^2.1.0",
-            "parallel-transform": "^1.1.0",
-            "pump": "^3.0.0",
-            "pumpify": "^1.3.3",
-            "stream-each": "^1.1.0",
-            "through2": "^2.0.0"
-          }
-        },
-        "pump": {
-          "version": "3.0.0",
-          "resolved": "https://registry.npmjs.org/pump/-/pump-3.0.0.tgz",
-          "integrity": "sha512-LwZy+p3SFs1Pytd/jYct4wpv49HiYCqd9Rlc5ZVdk0V+8Yzv6jR5Blk3TRmPL1ft69TxP0IMZGJ+WPFU2BFhww==",
-          "dev": true,
-          "requires": {
-            "end-of-stream": "^1.1.0",
-            "once": "^1.3.1"
-          }
-        },
-        "ssri": {
-          "version": "6.0.1",
-          "resolved": "https://registry.npmjs.org/ssri/-/ssri-6.0.1.tgz",
-          "integrity": "sha512-3Wge10hNcT1Kur4PDFwEieXSCMCJs/7WvSACcrMYrNp+b8kDL1/0wJch5Ni2WrtwEa2IO8OsVfeKIciKCDx/QA==",
-          "dev": true,
-          "requires": {
-            "figgy-pudding": "^3.5.1"
-          }
-        },
-        "through2": {
-          "version": "2.0.5",
-          "resolved": "https://registry.npmjs.org/through2/-/through2-2.0.5.tgz",
-          "integrity": "sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==",
-          "dev": true,
-          "requires": {
-            "readable-stream": "~2.3.6",
-            "xtend": "~4.0.1"
-          }
-        }
       }
     },
     "test-exclude": {
@@ -12999,6 +12991,16 @@
       "version": "2.3.8",
       "resolved": "https://registry.npmjs.org/through/-/through-2.3.8.tgz",
       "integrity": "sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU="
+    },
+    "through2": {
+      "version": "2.0.5",
+      "resolved": "https://registry.npmjs.org/through2/-/through2-2.0.5.tgz",
+      "integrity": "sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==",
+      "dev": true,
+      "requires": {
+        "readable-stream": "~2.3.6",
+        "xtend": "~4.0.1"
+      }
     },
     "timed-out": {
       "version": "4.0.1",
@@ -13772,9 +13774,9 @@
       "dev": true
     },
     "webpack": {
-      "version": "4.31.0",
-      "resolved": "https://registry.npmjs.org/webpack/-/webpack-4.31.0.tgz",
-      "integrity": "sha512-n6RVO3X0LbbipoE62akME9K/JI7qYrwwufs20VvgNNpqUoH4860KkaxJTbGq5bgkVZF9FqyyTG/0WPLH3PVNJA==",
+      "version": "4.32.0",
+      "resolved": "https://registry.npmjs.org/webpack/-/webpack-4.32.0.tgz",
+      "integrity": "sha512-ofFq9jjAn4HRzlmkcZZrjijbRZcqDw+mM9KrjKd0r6lS0qxyZ7jzICzhphGafXL62dGdjP7TgMK9mZeMLUgZgw==",
       "dev": true,
       "requires": {
         "@webassemblyjs/ast": "1.8.5",
