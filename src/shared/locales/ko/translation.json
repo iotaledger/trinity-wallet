@@ -833,7 +833,7 @@
         "applicationNotInitialised": "경고 확인 필요",
         "applicationNotInitialisedExplanation": "Ledger 장치에서 IOTA 앱을 다시 열어 경고를 확인한 후 다시 확인해 주세요.",
         "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it before proceeding.",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Ledger 장치에 연결할 수 없음",
         "udevErrorExplanation": "트리니티가 Ledger 장치에 연결하지 못했습니다. 아래 URL에 접속해 이 문제에 대해 더 알아볼 수 있습니다.",
         "writtenDownInfoTitle": "Remember your index number",
