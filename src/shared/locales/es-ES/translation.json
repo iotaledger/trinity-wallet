@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "El nodo devolvió un error al intentar obtener información de su cuenta. Si el problema persiste intente cambiar el nodo o deshabilite el proxy en la configuración.",
         "nodeOutOfSync": "Nodo desincronizado",
         "nodeOutOfSyncExplanation": "Su nodo seleccionado se encuentra desincronizado. Por favor cámbielo y pruebe de nuevo.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Versión del nodo no soportada",
         "experimentalNodeExplanation": "Su nodo seleccionado está ejecutando una versión experimental que no está soportada. Por favor cambie el nodo o pruebe de nuevo.",
         "thisNodeOutOfSync": "Este nodo no está sincronizado. Por favor, cambie de nodo o pruebe de nuevo.",
@@ -160,9 +161,11 @@
         "shouldUpdateExplanation": "Hay una nueva actualización disponible. Siempre es recomendado actualizar a la ultima version.",
         "forceUpdate": "Actualice la aplicacion para continuar",
         "forceUpdateExplanation": "Una actualización crítica esta disponible. Por favor actualice inmediatamente.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Permisos de sistema de archivos requeridos",
         "missingPermissionExplanation": "Se requiere acceso al sistema de archivos para realizar esta función.",
-        "swipeToConfirm": "Desliza para confirmar"
+        "swipeToConfirm": "Desliza para confirmar",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -798,13 +801,16 @@
         "notReady": "Si desea usar un dispositivo de ledger, conecte y desbloquelo ahora",
         "indexInUse": "Índice actualmente en uso para la cuenta {{account}}",
         "indexInUseExplanation": "Su índice seleccionado está actualmente en uso en una de sus cuentas. Por favor elija otro número de índice.",
-        "proceedWithLedger": "Proceder con la configuración del ledger",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Índice de cuenta",
         "accountPage": "Perfil de cuenta",
         "actionCancelled": "Acceso al dispositivo contable (o ledger) cancelado",
         "actionCancelledExplanation": "No se puede completar la acción sin acceso al dispositivo contable (o Ledger).",
         "chooseAccountIndex": "Elija el índice de cuenta del ledger",
-        "accountIndexExplanation": "Su ledger puede almacenar múltiples semillas. Cada semilla es identificada por un número de índice único. Se ha preseleccionado uno, pero no dude en elegir uno propio. Asegúrese de anotar el número de índice elegido.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Algunas billeteras de terceros requieren páginas.",
         "connectionError": "No se puede conectar al ledger",
         "connectionErrorExplanation": "Revise que su ledger está conectado y desbloqueado.",
@@ -826,7 +832,11 @@
         "checkAddressExplanation": "Compruebe que la dirección coincida con la mostrada en su dispositivo de ledger.",
         "applicationNotInitialised": "Advertencia no confirmada",
         "applicationNotInitialisedExplanation": "Re abra la aplicación IOTA en su dispositivo ledger, acepte la advertencia informativa y reintente.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "No ha sido posible la comunicación con el dispositivo contable o Ledger",
-        "udevErrorExplanation": "Trinity no ha podido comunicarse con el dispositivo contable o Ledger. Por favor visita la URL debajo para resolver este inconveniente."
+        "udevErrorExplanation": "Trinity no ha podido comunicarse con el dispositivo contable o Ledger. Por favor visita la URL debajo para resolver este inconveniente.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

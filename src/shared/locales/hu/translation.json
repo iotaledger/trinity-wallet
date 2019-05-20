@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "A csomópont hibát jelzett a számlaadatok betöltése közben. Ha a hiba továbbra is fennáll, próbáljon egy másik csomópontra váltani vagy kapcsolja ki a proxy szerver használatát a beállítások között.",
         "nodeOutOfSync": "A csomópont nincs szinkronban",
         "nodeOutOfSyncExplanation": "A kiválasztott csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Nem támogatott csomópont",
         "experimentalNodeExplanation": "A jelenleg kiválasztott csomópont egy teszt verziójú szoftvert futtat, amely nem támogatott. Kérjük, válasszon másik csomópontot.",
         "thisNodeOutOfSync": "Ez a csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
@@ -160,9 +161,11 @@
         "shouldUpdateExplanation": "Egy új szoftverfrissítés jelent meg. Ajánlott az alkalmazást a legújabb verzióra frissíteni.",
         "forceUpdate": "Frissítse az alkalmazást a folytatáshoz",
         "forceUpdateExplanation": "Egy kritikus hibát javító frissítés jelent meg. Kérjük, frissítse most az alkalmazást.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Fájl hozzáférési engedély szükséges",
         "missingPermissionExplanation": "A művelet végrehajtásához a fájlrendszerhez való hozzáférési jogosultág szükséges.",
-        "swipeToConfirm": "A megerősítéshez húzza el a csúszkát"
+        "swipeToConfirm": "A megerősítéshez húzza el a csúszkát",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -798,13 +801,16 @@
         "notReady": "Ha hardveres tárcát szeretne használni, most csatlakoztassa majd nyissa ki",
         "indexInUse": "{{account}} számla által már használt számlasorszám",
         "indexInUseExplanation": "A választott számlasorszámot korábban már egy másik számlájához rendelte. Kérjük, válasszon egy másik számlasorszámot.",
-        "proceedWithLedger": "Hardveres tárca beállítása",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Számlasorszám",
         "accountPage": "Számla oldal",
         "actionCancelled": "Hardveres tárca elérés megszakítva",
         "actionCancelledExplanation": "A művelet nem hajtható végre a hardveres tárca nélkül.",
         "chooseAccountIndex": "Válassza ki a hardveres tárca számlasorszámát",
-        "accountIndexExplanation": "A hardveres tárca több mester jelszót is képes tárolni. Minden mester jelszót egy egyedi számlasorszám azonosít. Egy még használaton kÍvüli számlasorszámot kiválasztottunk, de ha kívánja, nyugodtan megadhat egy szabadon választott számlasorszámot. Kérjük, jegyezze fel a választott számlasorszámot.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Néhány gyártó tárcája ún. számla oldal megadását igényli.",
         "connectionError": "Sikertelen kapcsolódás a tárcához",
         "connectionErrorExplanation": "Kérjük ellenőrizze, hogy a tárca csatlakoztatva és nyitva van.",
@@ -826,7 +832,11 @@
         "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik-e a hardveres tárcán megjelenő címmel.",
         "applicationNotInitialised": "Jóváhagyásra váró figyelmeztetés",
         "applicationNotInitialisedExplanation": "Nyissa meg újra az IOTA alkalmazást a hardveres tárcáján, hagyja jóvá a megjelenő figyelmeztetést, majd próbálja úra.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Hardveres tárca nem elérhető",
-        "udevErrorExplanation": "A Trinity nem tudott a hardveres tárcával kapcsolatba lépni. A probléma megoldásával kapcsolatos további információkért kérjük látogassa meg az alábbi linken található oldalt."
+        "udevErrorExplanation": "A Trinity nem tudott a hardveres tárcával kapcsolatba lépni. A probléma megoldásával kapcsolatos további információkért kérjük látogassa meg az alábbi linken található oldalt.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }
