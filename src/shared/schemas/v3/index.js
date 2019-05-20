@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import map from 'lodash/map';
 import v2Schema from '../v2';
-import { QUORUM_SIZE } from '../../config';
+import { QUORUM_SIZE, DEFAULT_NODE } from '../../config';
 
 const migration = (_, newRealm) => {
     const walletData = newRealm.objectForPrimaryKey('Wallet', 2);
@@ -35,24 +35,28 @@ export default [
             return merge({}, schema, {
                 properties: {
                     /**
-                     * (Optional) authentication key for node
+                     * (Optional) authentication token (username) for node
                      */
-                    authKey: {
+                    token: {
                         type: 'string',
                         default: '',
                     },
                     /**
-                     * (Optional) Determines if this node should be used for quorum
+                     * (Optional) password for node
                      */
-                    useForQuorum: {
-                        type: 'bool',
-                        default: true,
+                    password: {
+                        type: 'string',
+                        default: '',
                     },
                 },
             });
         } else if (schema.name === 'WalletSettings') {
             return merge({}, schema, {
                 properties: {
+                    node: {
+                        type: 'Node',
+                        default: DEFAULT_NODE,
+                    },
                     /**
                      * Quorum configuration
                      */

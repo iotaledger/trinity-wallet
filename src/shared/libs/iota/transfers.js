@@ -102,11 +102,11 @@ export const computeTransactionMessage = (bundle) => {
  * Finds a promotable (consistent & above max depth) tail transaction
  *
  * @method findPromotableTail
- * @param {string} [provider]
+ * @param {object} [settings]
  *
  * @returns {function(array, number): Promise<object|boolean>}
  */
-export const findPromotableTail = (provider) => (tails, idx) => {
+export const findPromotableTail = (settings) => (tails, idx) => {
     let tailsAboveMaxDepth = [];
 
     if (idx === 0) {
@@ -121,14 +121,14 @@ export const findPromotableTail = (provider) => (tails, idx) => {
 
     const thisTail = tailsAboveMaxDepth[idx];
 
-    return isPromotable(provider)(get(thisTail, 'hash'))
+    return isPromotable(settings)(get(thisTail, 'hash'))
         .then((state) => {
             if (state === true && isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
                 return thisTail;
             }
 
             idx += 1;
-            return findPromotableTail(provider)(tailsAboveMaxDepth, idx);
+            return findPromotableTail(settings)(tailsAboveMaxDepth, idx);
         })
         .catch(() => false);
 };
@@ -422,15 +422,15 @@ export const normaliseBundle = (bundle, addressData, tailTransactions, persisten
  *   Resolves transfers.
  *
  *   @method syncTransactions
- *   @param {string} provider
+ *   @param {object} [settings]
  *
  *   @returns {function(array, array): Promise<object>}
  **/
-export const syncTransactions = (provider) => (diff, existingTransactions) => {
+export const syncTransactions = (settings) => (diff, existingTransactions) => {
     const pullNewTransactions = (diff) => {
         const bundleHashes = new Set();
 
-        return getTransactionsObjectsAsync(provider)(diff)
+        return getTransactionsObjectsAsync(settings)(diff)
             .then((transactionObjects) => {
                 each(transactionObjects, (transactionObject) => {
                     if (transactionObject.bundle !== EMPTY_HASH_TRYTES) {
@@ -439,7 +439,7 @@ export const syncTransactions = (provider) => (diff, existingTransactions) => {
                 });
 
                 // Find all transaction objects for bundle hashes
-                return findTransactionObjectsAsync(provider)({ bundles: Array.from(bundleHashes) });
+                return findTransactionObjectsAsync(settings)({ bundles: Array.from(bundleHashes) });
             })
             .then((transactionObjects) => {
                 const existingTransactionHashes = map(existingTransactions, (transaction) => transaction.hash);
@@ -494,7 +494,7 @@ export const syncTransactions = (provider) => (diff, existingTransactions) => {
             return [...flatMap(confirmed), ...flatMap(unconfirmed)];
         }
 
-        return assignInclusionStatesToBundles(provider)(unconfirmed).then((bundles) => [
+        return assignInclusionStatesToBundles(settings)(unconfirmed).then((bundles) => [
             ...flatMap(confirmed),
             ...flatMap(bundles),
         ]);
@@ -627,14 +627,15 @@ export const performSequentialPow = (
 };
 
 /**
- *   Retry failed transaction with signed inputs
+ * Retry failed transaction with signed inputs
  *
- *   @method retryFailedTransaction
- *   @param {string} [provider]
+ * @method retryFailedTransaction
  *
- *   @returns {function(array, object): Promise<object>}
+ * @param {object} [settings]
+ *
+ * @returns {function(array, object): Promise<object>}
  **/
-export const retryFailedTransaction = (provider) => (transactionObjects, seedStore) => {
+export const retryFailedTransaction = (settings) => (transactionObjects, seedStore) => {
     const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
 
     const cached = {
@@ -649,19 +650,19 @@ export const retryFailedTransaction = (provider) => (transactionObjects, seedSto
     // Proof of work was not performed correctly if any transaction has invalid hash
     if (some(transactionObjects, isInvalidTransactionHash)) {
         // If proof of work failed, select new tips and retry
-        return getTransactionsToApproveAsync(provider)()
+        return getTransactionsToApproveAsync(settings)()
             .then(({ trunkTransaction, branchTransaction }) => {
-                return attachToTangleAsync(provider, seedStore)(trunkTransaction, branchTransaction, cached.trytes);
+                return attachToTangleAsync(settings, seedStore)(trunkTransaction, branchTransaction, cached.trytes);
             })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;
                 cached.transactionObjects = transactionObjects;
 
-                return storeAndBroadcastAsync(provider)(cached.trytes).then(() => cached);
+                return storeAndBroadcastAsync(settings)(cached.trytes).then(() => cached);
             });
     }
 
-    return storeAndBroadcastAsync(provider)(cached.trytes).then(() => cached);
+    return storeAndBroadcastAsync(settings)(cached.trytes).then(() => cached);
 };
 
 /**
@@ -776,19 +777,19 @@ export const isValidTransfer = (transfer) => {
  *
  * @method isFundedBundle
  *
- * @param {string} provider
+ * @param {object} {settings}
  * @param {boolean} withQuorum
  *
  *
  * @returns {function(array): Promise<boolean>}
  **/
 
-export const isFundedBundle = (provider, withQuorum) => (bundle) => {
+export const isFundedBundle = (settings, withQuorum) => (bundle) => {
     if (isEmpty(bundle)) {
         return Promise.reject(new Error(Errors.EMPTY_BUNDLE_PROVIDED));
     }
 
-    return getBalancesAsync(provider, withQuorum)(
+    return getBalancesAsync(settings, withQuorum)(
         reduce(bundle, (acc, tx) => (tx.value < 0 ? [...acc, tx.address] : acc), []),
     ).then((balances) => {
         return (
@@ -814,12 +815,12 @@ export const filterZeroValueBundles = (bundles) => {
  *
  * @method filterNonFundedBundles
  *
- * @param {string} provider
+ * @param {object} [settings]
  * @param {boolean} withQuorum
  *
  * @returns {function(array): Promise<boolean>}
  **/
-export const filterNonFundedBundles = (provider, withQuorum) => (bundles) => {
+export const filterNonFundedBundles = (settings, withQuorum) => (bundles) => {
     if (isEmpty(bundles)) {
         return Promise.reject(new Error(Errors.EMPTY_BUNDLES_PROVIDED));
     }
@@ -829,7 +830,7 @@ export const filterNonFundedBundles = (provider, withQuorum) => (bundles) => {
         filterZeroValueBundles(bundles),
         (promise, bundle) => {
             return promise.then((result) => {
-                return isFundedBundle(provider, withQuorum)(bundle).then((isFunded) => {
+                return isFundedBundle(settings, withQuorum)(bundle).then((isFunded) => {
                     if (isFunded) {
                         return [...result, bundle];
                     }
@@ -874,12 +875,13 @@ export const categoriseInclusionStatesByBundleHash = (tailTransactions, inclusio
  * Promotes a transaction till it gets confirmed.
  *
  * @method promoteTransactionTilConfirmed
- * @param {string} [provider]
+ *
+ * @param {object} [settings]
  * @param {function} [powFn]
  *
  * @returns {function(array, [number]): Promise<object>}
  */
-export const promoteTransactionTilConfirmed = (provider, seedStore) => (
+export const promoteTransactionTilConfirmed = (settings, seedStore) => (
     tailTransactions,
     promotionsAttemptsLimit = 50,
 ) => {
@@ -894,7 +896,7 @@ export const promoteTransactionTilConfirmed = (provider, seedStore) => (
         }
 
         // Before every promotion, check confirmation state
-        return getLatestInclusionAsync(provider)(map(tailTransactionsClone, (tx) => tx.hash)).then((states) => {
+        return getLatestInclusionAsync(settings)(map(tailTransactionsClone, (tx) => tx.hash)).then((states) => {
             if (some(states, (state) => state === true)) {
                 // If any of the tail is confirmed, return the "confirmed" tail transaction object.
                 return find(tailTransactionsClone, (_, idx) => idx === findIndex(states, (state) => state === true));
@@ -903,7 +905,7 @@ export const promoteTransactionTilConfirmed = (provider, seedStore) => (
             const { hash, attachmentTimestamp } = tailTransaction;
 
             // Promote transaction
-            return promoteTransactionAsync(provider, seedStore)(hash)
+            return promoteTransactionAsync(settings, seedStore)(hash)
                 .then(() => {
                     return _promote(tailTransaction);
                 })
@@ -927,7 +929,7 @@ export const promoteTransactionTilConfirmed = (provider, seedStore) => (
         const tailTransaction = head(tailTransactionsClone);
         const hash = tailTransaction.hash;
 
-        return replayBundleAsync(provider, seedStore)(hash).then((reattachment) => {
+        return replayBundleAsync(settings, seedStore)(hash).then((reattachment) => {
             const tailTransaction = find(reattachment, { currentIndex: 0 });
             // Add newly reattached transaction
             tailTransactionsClone.push(tailTransaction);
@@ -936,7 +938,7 @@ export const promoteTransactionTilConfirmed = (provider, seedStore) => (
         });
     };
 
-    return findPromotableTail(provider)(tailTransactionsClone, 0).then((consistentTail) => {
+    return findPromotableTail(settings)(tailTransactionsClone, 0).then((consistentTail) => {
         if (has(consistentTail, 'hash')) {
             return _promote(consistentTail);
         }
@@ -950,10 +952,10 @@ export const promoteTransactionTilConfirmed = (provider, seedStore) => (
  *
  * @method assignInclusionStatesToBundles
  *
- * @param {string} [provider]
+ * @param {object} [settings]
  * @returns {array}
  */
-export const assignInclusionStatesToBundles = (provider) => (bundles) => {
+export const assignInclusionStatesToBundles = (settings) => (bundles) => {
     if (!isArray(bundles)) {
         return Promise.reject(new Error(Errors.INVALID_BUNDLES_PROVIDED));
     }
@@ -965,7 +967,7 @@ export const assignInclusionStatesToBundles = (provider) => (bundles) => {
     const tailTransactions = map(bundles, (bundle) => find(bundle, { currentIndex: 0 }));
     const tailTransactionsHashes = map(tailTransactions, (transaction) => transaction.hash);
 
-    return getLatestInclusionAsync(provider)(tailTransactionsHashes).then((states) => {
+    return getLatestInclusionAsync(settings)(tailTransactionsHashes).then((states) => {
         return map(tailTransactions, (tailTransaction, idx) => {
             const bundleForThisTailTransaction = find(bundles, (bundle) =>
                 some(bundle, (transaction) => transaction.hash === tailTransaction.hash),
@@ -1051,14 +1053,11 @@ export const constructBundleFromAttachedTrytes = (attachedTrytes, seedStore) => 
  */
 export const isBundleTraversable = (bundle, trunkTransaction, branchTransaction) =>
     !isEmpty(bundle) &&
-    every(
-        orderBy(bundle, ['currentIndex'], ['desc']),
-        (transaction, index, transactions) =>
-            index
-                ? transaction.trunkTransaction === transactions[index - 1].hash &&
-                  transaction.branchTransaction === trunkTransaction
-                : transaction.trunkTransaction === trunkTransaction &&
-                  transaction.branchTransaction === branchTransaction,
+    every(orderBy(bundle, ['currentIndex'], ['desc']), (transaction, index, transactions) =>
+        index
+            ? transaction.trunkTransaction === transactions[index - 1].hash &&
+              transaction.branchTransaction === trunkTransaction
+            : transaction.trunkTransaction === trunkTransaction && transaction.branchTransaction === branchTransaction,
     );
 
 /**

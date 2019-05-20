@@ -29,12 +29,12 @@ import {
  *
  *   @method getAccountData
  *
- *   @param {string} provider
+ *   @param {object} [settings]
  *   @param {boolean} withQuorum
  *
  *   @returns {function(object, string, [object]): Promise<{{accountName: {string}, transactions: {array}, addressData: {array} }}>}
  **/
-export const getAccountData = (provider, withQuorum) => (seedStore, accountName, existingAccountState = {}) => {
+export const getAccountData = (settings, withQuorum) => (seedStore, accountName, existingAccountState = {}) => {
     let data = {
         addresses: [],
         balances: [],
@@ -49,12 +49,12 @@ export const getAccountData = (provider, withQuorum) => (seedStore, accountName,
         (transaction) => transaction.hash,
     );
 
-    return throwIfNodeNotHealthy(provider)
-        .then(() => getFullAddressHistory(provider, withQuorum)(seedStore, existingAccountState))
+    return throwIfNodeNotHealthy(settings)
+        .then(() => getFullAddressHistory(settings, withQuorum)(seedStore, existingAccountState))
         .then((history) => {
             data = { ...data, ...history };
 
-            return syncTransactions(provider)(
+            return syncTransactions(settings)(
                 getTransactionsDiff(existingTransactionsHashes, history.hashes),
                 existingTransactions,
             );
@@ -88,37 +88,37 @@ export const getAccountData = (provider, withQuorum) => (seedStore, accountName,
  *   - Syncs transactions.
  *
  *   @method syncAccount
- *   @param {object} provider
+ *   @param {object} [settings]
  *   @param {boolean} withQuorum
  *
  *   @returns {function(object, object, function, object): Promise<object>}
  **/
-export const syncAccount = (provider, withQuorum) => (existingAccountState, seedStore, notificationFn, settings) => {
+export const syncAccount = (settings, withQuorum) => (
+    existingAccountState,
+    seedStore,
+    notificationFn,
+    stateSettings,
+) => {
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = typeof seedStore === 'object';
 
-    return throwIfNodeNotHealthy(provider)
-        .then(
-            () =>
-                rescanAddresses
-                    ? syncAddresses(provider, withQuorum)(
-                          seedStore,
-                          thisStateCopy.addressData,
-                          thisStateCopy.transactions,
-                      )
-                    : Promise.resolve(thisStateCopy.addressData),
+    return throwIfNodeNotHealthy(settings)
+        .then(() =>
+            rescanAddresses
+                ? syncAddresses(settings, withQuorum)(seedStore, thisStateCopy.addressData, thisStateCopy.transactions)
+                : Promise.resolve(thisStateCopy.addressData),
         )
         .then((addressData) => {
             thisStateCopy.addressData = addressData;
 
-            return findTransactionsAsync(provider)({
+            return findTransactionsAsync(settings)({
                 addresses: map(thisStateCopy.addressData, (addressObject) => addressObject.address),
             });
         })
         .then((newHashes) => {
             const existingAddresses = map(thisStateCopy.addressData, (addressObject) => addressObject.address);
 
-            return syncTransactions(provider)(
+            return syncTransactions(settings)(
                 getTransactionsDiff(
                     map(
                         filter(thisStateCopy.transactions, (transaction) =>
@@ -162,13 +162,13 @@ export const syncAccount = (provider, withQuorum) => (existingAccountState, seed
                             existingNormalisedTransactions[transfer.bundle] &&
                             !existingNormalisedTransactions[transfer.bundle].persistence,
                     ),
-                    settings,
+                    stateSettings,
                 );
             }
 
             thisStateCopy.transactions = transactions;
 
-            return mapLatestAddressData(provider, withQuorum)(thisStateCopy.addressData, thisStateCopy.transactions);
+            return mapLatestAddressData(settings, withQuorum)(thisStateCopy.addressData, thisStateCopy.transactions);
         })
         .then((addressData) => {
             thisStateCopy.addressData = addressData;
@@ -185,13 +185,13 @@ export const syncAccount = (provider, withQuorum) => (existingAccountState, seed
  *   - If value transfer, add it to auto promotion queue.
  *   - Sync transaction hashes.
  *
- *   @method updateAccountAfterSpending
- *   @param {string} [provider]
+ *   @method syncAccountAfterSpending
+ *   @param {object} [settings]
  *   @param {boolean} withQuorum
  *
  *   @returns {function(string, string, array, object, boolean, function): Promise<object>}
  **/
-export const syncAccountAfterSpending = (provider, withQuorum) => (seedStore, newTransactions, accountState) => {
+export const syncAccountAfterSpending = (settings, withQuorum) => (seedStore, newTransactions, accountState) => {
     // Update transactions
     const updatedTransactions = [
         ...accountState.transactions,
@@ -207,9 +207,9 @@ export const syncAccountAfterSpending = (provider, withQuorum) => (seedStore, ne
     const updatedAddressData = markAddressesAsSpentSync([newTransactions], accountState.addressData);
 
     return (
-        syncAddresses(provider, withQuorum)(seedStore, updatedAddressData, updatedTransactions)
+        syncAddresses(settings, withQuorum)(seedStore, updatedAddressData, updatedTransactions)
             // Map latest address data (spend statuses & balances) to addresses
-            .then((latestAddressData) => mapLatestAddressData(provider)(latestAddressData, updatedTransactions))
+            .then((latestAddressData) => mapLatestAddressData(settings)(latestAddressData, updatedTransactions))
             .then((latestAddressData) => ({ addressData: latestAddressData, transactions: updatedTransactions }))
     );
 };

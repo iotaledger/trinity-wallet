@@ -1,4 +1,5 @@
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import isArray from 'lodash/isArray';
 import isFunction from 'lodash/isFunction';
 import isUndefined from 'lodash/isUndefined';
@@ -445,24 +446,24 @@ export const fetchRemoteNodes = (
  * @method getRandomNodes
  * @param {array} nodes
  * @param {number} [size]
- * @param {array} [blacklisted]
+ * @param {array} [blacklistedNodes]
  *
  * @returns {Array}
  */
-export const getRandomNodes = (nodes, size = 5, blacklisted = []) => {
-    return sampleSize(filter(nodes, (node) => !includes(blacklisted, node)), size);
+export const getRandomNodes = (nodes, size = 5, blacklistedNodes = []) => {
+    return sampleSize(filter(nodes, (node) => !find(blacklistedNodes, { url: node.url })), size);
 };
 
 /**
  * Throws an error if a node is not synced.
  *
  * @method throwIfNodeNotHealthy
- * @param {string} provider
+ * @param {object} settings
  *
  * @returns {Promise<boolean>}
  */
-export const throwIfNodeNotHealthy = (provider) => {
-    return isNodeHealthy(provider).then((isSynced) => {
+export const throwIfNodeNotHealthy = (settings) => {
+    return isNodeHealthy(settings).then((isSynced) => {
         if (!isSynced) {
             throw new Error(Errors.NODE_NOT_SYNCED);
         }

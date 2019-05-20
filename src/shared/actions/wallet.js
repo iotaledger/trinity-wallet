@@ -17,12 +17,12 @@ import { accumulateBalance, attachAndFormatAddress, syncAddresses } from '../lib
 import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
-import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import { selectedAccountStateFactory } from '../selectors/accounts';
-import { getSelectedNodeFromState, getNodesFromState, getRemotePoWFromState } from '../selectors/global';
+import { getRemotePoWFromState, nodesConfigurationFactory } from '../selectors/global';
 import { Account } from '../storage';
-import { DEFAULT_SECURITY, DEFAULT_RETRIES } from '../config';
+import { DEFAULT_SECURITY } from '../config';
+import NodesManager from '../libs/iota/NodesManager';
 
 export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
@@ -318,11 +318,12 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
     return (dispatch, getState) => {
         dispatch(generateNewAddressRequest());
 
-        const selectedNode = getSelectedNodeFromState(getState());
-        return withRetriesOnDifferentNodes(
-            [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
-            () => dispatch(generateAddressesSyncRetryAlert()),
-        )(syncAddresses)(seedStore, existingAccountData.addressData, existingAccountData.transactions)
+        return new NodesManager(nodesConfigurationFactory()(getState()))
+            .withRetries(() => dispatch(generateAddressesSyncRetryAlert()))(syncAddresses)(
+                seedStore,
+                existingAccountData.addressData,
+                existingAccountData.transactions,
+            )
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 
@@ -385,7 +386,7 @@ export const transitionForSnapshot = (seedStore, addresses) => {
  *
  * @returns {function}
  */
-export const completeSnapshotTransition = (seedStore, accountName, addresses, withQuorum = true) => {
+export const completeSnapshotTransition = (seedStore, accountName, addresses, quorum = true) => {
     return (dispatch, getState) => {
         dispatch(
             generateAlert(
@@ -397,81 +398,90 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, wi
 
         dispatch(snapshotAttachToTangleRequest());
 
-        getBalancesAsync(undefined, withQuorum)(addresses)
-            // Find balance on all addresses
-            .then((balances) => {
-                const allBalances = map(balances.balances, Number);
-                const totalBalance = accumulateBalance(allBalances);
-                const hasZeroBalance = totalBalance === 0;
+        const snapshotTransitionFn = (settings, withQuorum) => () => {
+            return (
+                getBalancesAsync(settings, withQuorum)(addresses)
+                    // Find balance on all addresses
+                    .then((balances) => {
+                        const allBalances = map(balances.balances, Number);
+                        const totalBalance = accumulateBalance(allBalances);
+                        const hasZeroBalance = totalBalance === 0;
 
-                // If accumulated balance is zero, terminate the snapshot process
-                if (hasZeroBalance) {
-                    throw new Error(Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE);
-                }
+                        // If accumulated balance is zero, terminate the snapshot process
+                        if (hasZeroBalance) {
+                            throw new Error(Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE);
+                        }
 
-                const lastIndexWithBalance = findLastIndex(allBalances, (balance) => balance > 0);
-                const relevantBalances = allBalances.slice(0, lastIndexWithBalance + 1);
-                const relevantAddresses = addresses.slice(0, lastIndexWithBalance + 1);
+                        const lastIndexWithBalance = findLastIndex(allBalances, (balance) => balance > 0);
+                        const relevantBalances = allBalances.slice(0, lastIndexWithBalance + 1);
+                        const relevantAddresses = addresses.slice(0, lastIndexWithBalance + 1);
 
-                dispatch(startTrackingProgress(relevantAddresses));
+                        dispatch(startTrackingProgress(relevantAddresses));
 
-                return reduce(
-                    relevantAddresses,
-                    (promise, address, index) => {
-                        return promise.then((result) => {
-                            dispatch(setActiveStepIndex(index));
+                        return reduce(
+                            relevantAddresses,
+                            (promise, address, index) => {
+                                return promise.then((result) => {
+                                    dispatch(setActiveStepIndex(index));
 
-                            const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+                                    const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-                            return attachAndFormatAddress(undefined, withQuorum)(
-                                address,
-                                index,
-                                relevantBalances[index],
-                                getRemotePoWFromState(getState())
-                                    ? extend(
-                                          {
-                                              __proto__: seedStore.__proto__,
-                                          },
-                                          seedStore,
-                                          { offloadPow: true },
-                                      )
-                                    : seedStore,
-                                existingAccountState,
-                            )
-                                .then(({ attachedAddressObject, attachedTransactions }) => {
-                                    const newState = syncAccountDuringSnapshotTransition(
-                                        attachedTransactions,
-                                        attachedAddressObject,
+                                    return attachAndFormatAddress(settings, withQuorum)(
+                                        address,
+                                        index,
+                                        relevantBalances[index],
+                                        getRemotePoWFromState(getState())
+                                            ? extend(
+                                                  {
+                                                      __proto__: seedStore.__proto__,
+                                                  },
+                                                  seedStore,
+                                                  { offloadPow: true },
+                                              )
+                                            : seedStore,
                                         existingAccountState,
-                                    );
+                                    )
+                                        .then(({ attachedAddressObject, attachedTransactions }) => {
+                                            const newState = syncAccountDuringSnapshotTransition(
+                                                attachedTransactions,
+                                                attachedAddressObject,
+                                                existingAccountState,
+                                            );
 
-                                    // Update storage (realm)
-                                    Account.update(accountName, newState);
-                                    // Update redux store
-                                    dispatch(updateAccountAfterTransition(newState));
+                                            // Update storage (realm)
+                                            Account.update(accountName, newState);
+                                            // Update redux store
+                                            dispatch(updateAccountAfterTransition(newState));
 
-                                    return result;
-                                })
-                                .catch(noop);
-                        });
-                    },
-                    Promise.resolve(),
-                );
-            })
-            .then(() => {
-                dispatch(snapshotTransitionSuccess());
-                dispatch(snapshotAttachToTangleComplete());
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('snapshotTransition:transitionComplete'),
-                        i18next.t('snapshotTransition:transitionCompleteExplanation'),
-                        20000,
-                    ),
-                );
+                                            return result;
+                                        })
+                                        .catch(noop);
+                                });
+                            },
+                            Promise.resolve(),
+                        );
+                    })
+                    .then(({ node }) => {
+                        dispatch(changeNode(node));
 
-                dispatch(resetProgress());
-            })
+                        dispatch(snapshotTransitionSuccess());
+                        dispatch(snapshotAttachToTangleComplete());
+                        dispatch(
+                            generateAlert(
+                                'success',
+                                i18next.t('snapshotTransition:transitionComplete'),
+                                i18next.t('snapshotTransition:transitionCompleteExplanation'),
+                                20000,
+                            ),
+                        );
+
+                        dispatch(resetProgress());
+                    })
+            );
+        };
+
+        return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
+            .withRetries()(snapshotTransitionFn)()
             .catch((error) => {
                 if (error.message === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert());
@@ -529,11 +539,14 @@ export const generateAddressesAndGetBalance = (seedStore, index, seedType = 'key
  *
  * @returns {function}
  */
-export const getBalanceForCheck = (addresses, withQuorum = true) => {
-    return (dispatch) => {
-        getBalancesAsync(undefined, withQuorum)(addresses)
-            .then((balances) => {
-                const balanceOnAddresses = accumulateBalance(map(balances.balances, Number));
+export const getBalanceForCheck = (addresses, quorum = true) => {
+    return (dispatch, getState) => {
+        return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
+            .withRetries()(getBalancesAsync)(addresses)
+            .then(({ node, result }) => {
+                dispatch(changeNode(node));
+
+                const balanceOnAddresses = accumulateBalance(map(result.balances, Number));
 
                 dispatch(updateTransitionBalance(balanceOnAddresses));
                 dispatch(setBalanceCheckFlag(true));

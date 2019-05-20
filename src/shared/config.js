@@ -2,20 +2,45 @@ export const __DEV__ = process.env.NODE_ENV === 'development';
 export const __TEST__ = process.env.NODE_ENV === 'test';
 export const __MOBILE__ = typeof navigator !== 'undefined' && navigator.product === 'ReactNative';
 
-/** Default IRI node */
-export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.iota.org';
+/** Default IRI node object */
+export const DEFAULT_NODE = __TEST__
+    ? {
+          url: 'http://localhost:14265',
+          pow: false,
+          token: '',
+          password: '',
+      }
+    : {
+          url: 'https://nodes.iota.org',
+          pow: false,
+          token: '',
+          password: '',
+      };
 
-export const nodesWithPowDisabled = ['https://trinity.iota-tangle.io:14265', 'https://node.iota-tangle.io:14265'];
+export const NODES_WITH_POW_DISABLED = [
+    'https://trinity.iota-tangle.io:14265',
+    'https://node.iota-tangle.io:14265',
+].map((url) => ({
+    url,
+    pow: false,
+    token: '',
+    password: '',
+}));
 
-export const nodesWithPowEnabled = [
+export const NODES_WITH_POW_ENABLED = [
     'https://nodes.iota.org',
     'https://nodes.thetangle.org:443',
     'https://iotanode.us:443',
     'https://pool.trytes.eu',
     'https://pow.iota.community:443',
-];
+].map((url) => ({
+    url,
+    pow: true,
+    token: '',
+    password: '',
+}));
 
-export const nodes = [...nodesWithPowEnabled, ...nodesWithPowDisabled];
+export const DEFAULT_NODES = [...NODES_WITH_POW_DISABLED, ...NODES_WITH_POW_ENABLED];
 
 export const NODELIST_URL = 'https://nodes.iota.works/api/ssl/live';
 

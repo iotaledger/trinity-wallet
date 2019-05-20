@@ -1,22 +1,39 @@
+import assign from 'lodash/assign';
 import IOTA from 'iota.lib.js';
 import 'proxy-polyfill';
 import Quorum from './quorum';
-import { defaultNode, nodes, DEFAULT_NODE_REQUEST_TIMEOUT, QUORUM_SIZE } from '../../config';
+import { DEFAULT_NODE, DEFAULT_NODES, DEFAULT_NODE_REQUEST_TIMEOUT, QUORUM_SIZE } from '../../config';
 
-const iotaAPI = new IOTA({ provider: defaultNode });
-export const quorum = new Quorum({
-    nodes,
-    quorumSize: QUORUM_SIZE,
-});
+/** Globally defined IOTA instance */
+const iotaAPI = new IOTA(
+    assign({}, DEFAULT_NODE, {
+        provider: DEFAULT_NODE.url,
+    }),
+);
 
 // Set node request timeout
 iotaAPI.api.setApiTimeout(DEFAULT_NODE_REQUEST_TIMEOUT);
 
+/** Globally defined Quorum instance */
+export const quorum = new Quorum({
+    nodes: DEFAULT_NODES,
+    quorumSize: QUORUM_SIZE,
+});
+
 // Later used by the checkNodePatched function
 let unproxiedNodeInfo = iotaAPI.api.getNodeInfo.bind(iotaAPI.api);
 
-export const changeIotaNode = (provider) => {
-    iotaAPI.changeNode({ provider });
+/**
+ * Changes IOTA node
+ *
+ * @method changeIotaNode
+ *
+ * @param {object} settings
+ *
+ * @returns {void}
+ */
+export const changeIotaNode = (settings) => {
+    iotaAPI.changeNode(settings);
     // grab the unproxied version of getNodeInfo
     unproxiedNodeInfo = iotaAPI.api.getNodeInfo.bind(iotaAPI.api);
     // re-inject proxy
@@ -86,7 +103,7 @@ const autoNodeSwitchHandler = {
                     // Switch to another node and then apply function
                     let newNode;
                     for (;;) {
-                        const randomNode = getRandomNode(nodes);
+                        const randomNode = getRandomNode(DEFAULT_NODES);
                         // Check whether same node was chosen
                         if (iotaAPI.provider === randomNode) {
                             continue;

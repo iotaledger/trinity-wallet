@@ -1,5 +1,7 @@
 /* global __DEV__ */
+
 import 'shared-modules/libs/global';
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import merge from 'lodash/merge';
@@ -84,7 +86,9 @@ const getInitialScreen = () => {
         state.settings.versions.version === '0.5.0' && !state.settings.completedForcedPasswordUpdate;
     // Select initial screen
     return state.accounts.onboardingComplete
-        ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
+        ? navigateToForceChangePassword
+            ? 'forceChangePassword'
+            : 'login'
         : 'languageSetup';
 };
 
@@ -141,9 +145,14 @@ const renderInitialScreen = (initialScreen) => {
  **/
 const fetchNodeList = (store) => {
     const { settings } = store.getState();
+    const node = get(settings, 'node');
 
     // Update provider
-    changeIotaNode(get(settings, 'node'));
+    changeIotaNode(
+        assign({}, node, {
+            provider: node.url,
+        }),
+    );
 
     store.dispatch(fetchNodes());
 };
