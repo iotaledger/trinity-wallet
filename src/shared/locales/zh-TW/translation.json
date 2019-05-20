@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "該節點在取得帳號資訊時回傳了錯誤訊息。如果這個這個問題持續發生，請嘗試更換節點或是將 Trinity 中的系統代理停用。",
         "nodeOutOfSync": "節點失去同步",
         "nodeOutOfSyncExplanation": "您目前所選的節點並不同步，請變更節點或再試一次。",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "不支持的 Node 版本",
         "experimentalNodeExplanation": "你現時選用的 node 屬不被支援的測試版本，請選用另一個 node 或再嘗試。",
         "thisNodeOutOfSync": "此節點並不同步，請變更節點或再試一次。",
@@ -160,9 +161,11 @@
         "shouldUpdateExplanation": "有可用的更新，建議你更新到最新的版本。",
         "forceUpdate": "請更新應用程式並繼續",
         "forceUpdateExplanation": "有重大的版本更新。請立即更新 Trinity 錢包。",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "需要檔案系統權限",
         "missingPermissionExplanation": "這個功能必須擁有訪問檔案系統的權限。",
-        "swipeToConfirm": "滑動來確認。"
+        "swipeToConfirm": "滑動來確認。",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -798,13 +801,16 @@
         "notReady": "如果您想使用 Ledger 裝置，請立即連接並解鎖它",
         "indexInUse": "帳戶 {{account}} 已使用該索引",
         "indexInUseExplanation": "您所選的索引已經在您其中一個帳戶使用過了，請選擇其他索引號碼。",
-        "proceedWithLedger": "進行 Ledger 設置",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "帳戶索引",
         "accountPage": "帳戶頁面",
         "actionCancelled": "Ledger device access cancelled",
         "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "選擇您的帳戶索引",
-        "accountIndexExplanation": "您的 Ledger 可以儲存數個種子碼，每個種子碼會有相對應的索引號碼。系統已先預先選擇未使用的索引，但您可以隨意選擇自己想要的。請務必記住您所選的索引號碼。",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "有些第三方錢包會用到頁面號碼。",
         "connectionError": "無法連接至 Ledger",
         "connectionErrorExplanation": "請檢查您的 Ledger 已連接並解鎖。",
@@ -826,7 +832,11 @@
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }
