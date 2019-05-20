@@ -5,7 +5,7 @@ import includes from 'lodash/includes';
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import IOTA from 'iota.lib.js';
-import { createPrepareTransfers } from '@iota/core';
+import { composeAPI } from '@iota/core';
 import { iota, quorum } from './index';
 import Errors from '../errors';
 import { isWithinMinutes } from '../date';
@@ -422,7 +422,9 @@ export const prepareTransfersAsync = (settings) => (seed, transfers, options = n
         args = [...args, { ...options, nativeGenerateSignatureFunction: signatureFn }];
     }
 
-    return createPrepareTransfers(settings)(...args);
+    const api = composeAPI(settings || { ...iota });
+
+    return api.prepareTransfers(...args);
 };
 
 /**

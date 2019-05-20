@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import merge from 'lodash/merge';
 import unionBy from 'lodash/unionBy';
 import sortBy from 'lodash/sortBy';
@@ -14,7 +15,9 @@ const initialState = {
     /**
      * Selected IRI node for wallet
      */
-    node: DEFAULT_NODE,
+    node: assign({}, DEFAULT_NODE, {
+        provider: DEFAULT_NODE.url,
+    }),
     /**
      * List of IRI nodes
      */

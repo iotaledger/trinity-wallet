@@ -391,7 +391,7 @@ export const changeNode = (payload) => (dispatch, getState) => {
     if (selectedNode.url !== payload.url) {
         dispatch(setNode(payload));
         // Change provider on global iota instance
-        changeIotaNode(payload);
+        changeIotaNode(assign({}, payload, { provider: payload.url }));
     }
 };
 
