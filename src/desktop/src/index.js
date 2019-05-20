@@ -10,8 +10,10 @@ import { Provider as Redux } from 'react-redux';
 import { MemoryRouter as Router } from 'react-router';
 import i18next from 'libs/i18next';
 import store from 'store';
+import Themes from 'themes/themes';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';
 import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
+import { updateTheme } from 'actions/settings';
 import { mapStorageToState } from 'libs/storageToStateMappers';
 import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode } from 'libs/iota';
@@ -71,6 +73,11 @@ if (Electron.mode === 'tray') {
                 const data = mapStorageToState();
                 Electron.storeUpdate(JSON.stringify(data));
             });
+
+            // Set theme to default if current theme does not exist
+            if (get(Themes, store.getState().settings.themeName)) {
+                store.dispatch(updateTheme('Default'));
+            }
 
             // Start Tray application if enabled in settings
             const isTrayEnabled = get(data, 'settings.isTrayEnabled');
