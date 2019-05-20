@@ -164,7 +164,6 @@
     "qr.js": "0.0.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-hot-loader": "^4.8.7",
     "react-i18next": "9.0.10",
     "react-lottie": "1.2.3",
     "react-markdown": "4.0.8",

@@ -10,6 +10,7 @@ const webpack = require('webpack');
 const config = require('../webpack.config/config.app');
 
 const compiler = webpack(config);
+const devMode = process.env.NODE_ENV !== 'production';
 
 const webpackDev = webpackDevMiddleware(compiler, {
     noInfo: false,
@@ -20,8 +21,10 @@ const webpackDev = webpackDevMiddleware(compiler, {
 });
 app.use(webpackDev);
 
-const webpackHot = webpackHotMiddleware(compiler);
-app.use(webpackHot);
+if (devMode) {
+    const webpackHot = webpackHotMiddleware(compiler);
+    app.use(webpackHot);
+}
 
 app.use(express.static(compiler.outputPath));
 

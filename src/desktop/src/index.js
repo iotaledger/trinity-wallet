@@ -1,8 +1,6 @@
 /* global Electron */
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
-import bugsnag from '@bugsnag/js';
-import bugsnagReact from '@bugsnag/plugin-react';
 import React from 'react';
 import { render } from 'react-dom';
 import { I18nextProvider } from 'react-i18next';
@@ -15,6 +13,7 @@ import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { mapStorageToState } from 'libs/storageToStateMappers';
 import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode } from 'libs/iota';
+import { bugsnagClient, ErrorBoundary } from 'libs/Bugsnag';
 import { initialise as initialiseStorage, realm } from 'storage';
 
 import Index from 'ui/Index';
@@ -23,28 +22,11 @@ import Tray from 'ui/Tray';
 import Alerts from 'ui/global/Alerts';
 import FatalError from 'ui/global/FatalError';
 
-import settings from '../package.json';
-
 import './ui/index.scss';
 
 const init = () => {
     if (typeof Electron === 'undefined') {
         return render(<FatalError error="Failed to load Electron preload script" />, document.getElementById('root'));
-    }
-
-    const bugsnagKey = process.env.BUGSNAG_API_KEY;
-    let ErrorBoundary = React.Fragment;
-
-    if (bugsnagKey.length) {
-        const bugsnagClient = bugsnag({
-            apiKey: bugsnagKey,
-            appVersion: settings.version,
-            interactionBreadcrumbsEnabled: false,
-            collectUserIp: false,
-            user: { id: Electron.getUuid() },
-        });
-        bugsnagClient.use(bugsnagReact, React);
-        ErrorBoundary = bugsnagClient.getPlugin('react');
     }
 
     if (Electron.mode === 'tray') {
@@ -64,9 +46,8 @@ const init = () => {
                     });
                 }
 
-                // Get persisted data from Realm storage
-                const persistedDataFromRealm = mapStorageToState();
-                const data = hasDataToMigrate ? oldPersistedData : persistedDataFromRealm;
+                // Get persisted data from Realm storage if no old persisted data present
+                const data = hasDataToMigrate ? oldPersistedData : mapStorageToState();
 
                 // Change provider on global iota instance
                 const node = get(data, 'settings.node');
@@ -95,7 +76,7 @@ const init = () => {
             .catch((err) => {
                 Electron.focus();
                 render(<FatalError error={err.message || err} />, document.getElementById('root'));
-                bugsnagKey && bugsnagClient.notify(err);
+                bugsnagClient.notify(err);
             });
     }
 

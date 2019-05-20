@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { hot } from 'react-hot-loader/root';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
 import { withI18n } from 'react-i18next';
@@ -361,4 +360,4 @@ const mapDispatchToProps = {
     displayTestWarning,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withI18n()(withAutoNodeSwitching(hot(App)))));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withI18n()(withAutoNodeSwitching(App))));
