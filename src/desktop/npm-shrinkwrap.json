@@ -1306,7 +1306,7 @@
             "nan": "^2.8.0",
             "node-pre-gyp": "^0.11.0"
           }
-        },
+        }
       }
     },
     "@mrmlnc/readdir-enhanced": {
