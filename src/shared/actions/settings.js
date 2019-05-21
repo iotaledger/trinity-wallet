@@ -507,7 +507,7 @@ export function setFullNode(node, addingCustomNode = false) {
             .then(() => allowsRemotePow(node.url))
             .then((hasRemotePow) => {
                 // Change IOTA provider on the global iota instance
-                changeIotaNode(node);
+                changeIotaNode(assign({}, node, { provider: node.url }));
 
                 // Update node in redux store
                 dispatch(

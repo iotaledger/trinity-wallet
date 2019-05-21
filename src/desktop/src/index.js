@@ -1,4 +1,5 @@
 /* global Electron */
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import bugsnag from '@bugsnag/js';
@@ -64,7 +65,7 @@ const init = () => {
 
                 // Change provider on global iota instance
                 const node = get(data, 'settings.node');
-                changeIotaNode(node);
+                changeIotaNode(assign({}, node, { provider: node.url }));
 
                 // Update store with persisted state
                 store.dispatch(mapStorageToStateAction(data));
