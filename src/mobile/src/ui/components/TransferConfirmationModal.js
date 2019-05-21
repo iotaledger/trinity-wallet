@@ -152,7 +152,7 @@ class TransferConfirmationModal extends Component {
                             ? message.length > 0
                                 ? t('sendingAMessage').toUpperCase()
                                 : t('sendingAnEmptyMessage').toUpperCase()
-                            : t('fromAccount', { selectedAccountName }).toUpperCase()}
+                            : t('fromAccount', { selectedAccountName: `${selectedAccountName.substring(0, 18)}...` }).toUpperCase()}
                     </Text>
                     {isMessage &&
                         message.length > 0 && (
