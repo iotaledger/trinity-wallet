@@ -18,6 +18,7 @@ export const DEFAULT_NODE = __TEST__
       };
 
 export const NODES_WITH_POW_DISABLED = [
+    'https://nodes.iota.org',
     'https://trinity.iota-tangle.io:14265',
     'https://node.iota-tangle.io:14265',
 ].map((url) => ({
@@ -28,7 +29,6 @@ export const NODES_WITH_POW_DISABLED = [
 }));
 
 export const NODES_WITH_POW_ENABLED = [
-    'https://nodes.iota.org',
     'https://nodes.thetangle.org:443',
     'https://iotanode.us:443',
     'https://pool.trytes.eu',
