@@ -15,19 +15,23 @@ import css from './index.scss';
  * Custom node management component
  */
 const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, t }) => {
-    const [address, setAddress] = useState('');
-    const [auth, setAuth] = useState('');
+    const [url, setUrl] = useState('');
+    const [token, setToken] = useState('');
+    const [password, setPassword] = useState('');
     const [authVisible, setAuthVisible] = useState(false);
 
     return (
         <Modal variant="fullscreen" isOpen onClose={onClose}>
             <section className={css.nodeCustom}>
                 <fieldset>
-                    <Text value={address} label={t('addCustomNode:customNode')} onChange={setAddress} />
+                    <Text value={url} label={t('addCustomNode:customNode')} onChange={setUrl} />
                     {authVisible ? (
-                        <Text value={auth} label={t('addCustomNode:addAuthKey')} onChange={setAuth} />
+                        <>
+                            <Text value={token} label={t('addCustomNode:username')} onChange={setToken} />
+                            <Text value={password} label={t('addCustomNode:password')} onChange={setPassword} />
+                        </>
                     ) : (
-                        <a onClick={() => setAuthVisible(true)}>
+                        <a className={css.authLink} onClick={() => setAuthVisible(true)}>
                             <Icon icon="plusAlt" size={10} /> {t('addCustomNode:addAuthKey')}
                         </a>
                     )}
@@ -54,7 +58,12 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
                 <Button onClick={onClose} className="square" variant="dark">
                     {t('back')}
                 </Button>
-                <Button loading={loading} onClick={() => setNode(address, true)} className="square" variant="primary">
+                <Button
+                    loading={loading}
+                    onClick={() => setNode({ url, token, password }, true)}
+                    className="square"
+                    variant="primary"
+                >
                     {t('addCustomNode')}
                 </Button>
             </footer>

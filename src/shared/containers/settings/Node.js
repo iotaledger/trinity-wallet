@@ -23,7 +23,7 @@ import { getThemeFromState } from '../../selectors/global';
 export default function withNodeData(NodeComponent) {
     class NodeData extends React.Component {
         static propTypes = {
-            node: PropTypes.string.isRequired,
+            node: PropTypes.object.isRequired,
             nodes: PropTypes.array.isRequired,
             customNodes: PropTypes.array.isRequired,
             isChangingNode: PropTypes.bool.isRequired,
@@ -48,47 +48,48 @@ export default function withNodeData(NodeComponent) {
         changeNode = (nodeSelected, customNode) => {
             const { nodes, node, setFullNode, generateAlert, t } = this.props;
 
-            if (!nodeSelected) {
+            if (!nodeSelected.url) {
                 generateAlert('error', t('addCustomNode:nodeFieldEmpty'), t('addCustomNode:nodeFieldEmptyExplanation'));
                 return;
             }
 
             // Remove spaces and trailing slash
-            nodeSelected = nodeSelected.replace(/ /g, '').replace(/\/$/, '');
+            nodeSelected.url = nodeSelected.url.replace(/ /g, '').replace(/\/$/, '');
 
             // Check if URL is valid
-            if (!isValidUrl(nodeSelected)) {
+            if (!isValidUrl(nodeSelected.url)) {
                 generateAlert('error', t('addCustomNode:customNodeCouldNotBeAdded'), t('addCustomNode:invalidURL'));
                 return;
             }
 
             // Only allow HTTPS nodes
-            if (!isValidHttpsUrl(nodeSelected)) {
+            if (!isValidHttpsUrl(nodeSelected.url)) {
                 generateAlert('error', t('nodeMustUseHTTPS'), t('nodeMustUseHTTPSExplanation'));
                 return;
             }
 
-            const hasDefaultHttpsPort = endsWith(nodeSelected, ':443');
+            const hasDefaultHttpsPort = endsWith(nodeSelected.url, ':443');
 
             if (hasDefaultHttpsPort) {
-                nodeSelected = nodeSelected.slice(0, -4);
+                nodeSelected.url = nodeSelected.url.slice(0, -4);
             }
 
             // Check whether the node was already added to the list
             if (
                 customNode &&
-                (nodes.includes(nodeSelected) ||
-                    nodes.map((node) => (endsWith(node, ':443') ? node.slice(0, -4) : node)).includes(nodeSelected))
+                nodes
+                    .map(({ address }) => (endsWith(address, ':443') ? address.slice(0, -4) : address))
+                    .includes(nodeSelected)
             ) {
                 generateAlert('error', t('nodeDuplicated'), t('nodeDuplicatedExplanation'));
                 return;
             }
 
-            if (nodeSelected === node) {
+            if (nodeSelected.url === node.url) {
                 return;
             }
 
-            setFullNode(nodeSelected, nodes.indexOf(nodeSelected) < 0);
+            setFullNode(nodeSelected, customNode);
         };
 
         render() {

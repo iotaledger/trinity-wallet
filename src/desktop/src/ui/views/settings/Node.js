@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classNames';
 
 import withNodeData from 'containers/settings/Node';
+
+import { initialState as defaultSettings } from 'reducers/settings';
 
 import Button from 'ui/components/Button';
 import Text from 'ui/components/input/Text';
 import Toggle from 'ui/components/Toggle';
+import Icon from 'ui/components/Icon';
 import Number from 'ui/components/input/Number';
 import Scrollbar from 'ui/components/Scrollbar';
 
@@ -19,10 +23,18 @@ import css from './index.scss';
  * Change IRI API node component
  */
 const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, actions, t }) => {
-    const [autoNodeSelection, setAutoNodeSelection] = useState(settings.autoNodeSelection);
+    const isDefault =
+        defaultSettings.autoNodeList === settings.autoNodeList &&
+        defaultSettings.autoNodeSwitching === settings.autoNodeSwitching &&
+        defaultSettings.quorum.enabled === settings.quorumEnabled &&
+        defaultSettings.quorum.size === settings.quorumSize &&
+        defaultSettings.node.url === settings.node.url;
+
+    const [autoNodeSelection, setAutoNodeSelection] = useState(isDefault);
     const [autoNodeList, setAutoNodeList] = useState(settings.autoNodeList);
     const [autoNodeSwitching, setAutoNodeSwitching] = useState(settings.autoNodeSwitching);
     const [primaryNode, setPrimaryNode] = useState(settings.node);
+    const [authVisible, setAuthVisible] = useState(settings.node.token.length > 0);
     const [quorumEnabled, setQuorumEnabled] = useState(settings.quorumEnabled);
     const [quorumSize, setQuorumSize] = useState(settings.quorumSize);
     const [showCustomNodes, setshowCustomNodes] = useState(false);
@@ -47,6 +59,32 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
         }
     };
 
+    const updateAutoNodeList = () => {
+        if (autoNodeList && customNodes.length < 1) {
+            generateAlert('error', t('nodeSettings:noCustomNodes'), t('nodeSettings:mustAddCustomNodes'));
+        } else if (quorumEnabled && autoNodeList && customNodes.length < MINIMUM_QUORUM_SIZE) {
+            generateAlert(
+                'error',
+                t('nodeSettings:nodeEnoughNodesTitle'),
+                t('nodeSettings:nodeEnoughNodesExplanationCustomNodesQuorum'),
+            );
+        } else {
+            setAutoNodeList(!autoNodeList);
+        }
+    };
+
+    const updateAutoNodeSelection = () => {
+        if (!autoNodeSelection) {
+            setAutoNodeList(defaultSettings.autoNodeList);
+            setAutoNodeSwitching(defaultSettings.autoNodeSwitching);
+            setPrimaryNode(defaultSettings.node);
+            setAuthVisible(false);
+            setQuorumEnabled(defaultSettings.quorum.enabled);
+            setQuorumSize(defaultSettings.quorum.size);
+        }
+        setAutoNodeSelection(!autoNodeSelection);
+    };
+
     const saveSettings = () => {
         if (autoNodeList !== settings.autoNodeList) {
             actions.updateAutoNodeListSetting(autoNodeList);
@@ -57,7 +95,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
         if (quorumEnabled !== settings.quorumEnabled || quorumSize !== settings.quorumSize) {
             actions.updateQuorumConfig({ enabled: quorumEnabled, size: quorumSize });
         }
-        if (primaryNode !== settings.node) {
+        if (primaryNode.url !== settings.node.url || primaryNode.password !== settings.node.password) {
             return actions.setFullNode(primaryNode);
         }
         generateAlert(
@@ -79,7 +117,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                         <Toggle
                             inline={t('nodeSettings:automaticNodeSelection')}
                             checked={autoNodeSelection}
-                            onChange={setAutoNodeSelection}
+                            onChange={updateAutoNodeSelection}
                         />
 
                         <Button onClick={() => setshowCustomNodes(true)} className="small" type="button">
@@ -91,7 +129,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                             disabled={autoNodeSelection}
                             inline={t('nodeSettings:autoNodeList')}
                             checked={autoNodeList}
-                            onChange={setAutoNodeList}
+                            onChange={updateAutoNodeList}
                         />
 
                         <hr />
@@ -101,14 +139,43 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                             checked={autoNodeSwitching}
                             onChange={setAutoNodeSwitching}
                         />
-                        {!autoNodeSwitching &&
-                            !autoNodeSelection && (
+                        {!autoNodeSwitching && (
+                            <>
                                 <Text
-                                    value={primaryNode}
+                                    disabled={autoNodeSelection}
+                                    value={primaryNode.url}
                                     label={t('nodeSettings:primaryNode')}
-                                    onChange={setPrimaryNode}
+                                    onChange={(value) => setPrimaryNode(Object.assign({}, primaryNode, { url: value }))}
                                 />
-                            )}
+                                {authVisible || primaryNode.token.length > 0 ? (
+                                    <>
+                                        <Text
+                                            disabled={autoNodeSelection}
+                                            value={primaryNode.token}
+                                            label={t('addCustomNode:username')}
+                                            onChange={(value) =>
+                                                setPrimaryNode(Object.assign({}, primaryNode, { token: value }))
+                                            }
+                                        />
+                                        <Text
+                                            disabled={autoNodeSelection}
+                                            value={primaryNode.password}
+                                            label={t('password')}
+                                            onChange={(value) =>
+                                                setPrimaryNode(Object.assign({}, primaryNode, { password: value }))
+                                            }
+                                        />
+                                    </>
+                                ) : (
+                                    <a
+                                        className={classNames(css.authLink, autoNodeSelection && css.disabled)}
+                                        onClick={() => setAuthVisible(true)}
+                                    >
+                                        <Icon icon="plusAlt" size={10} /> {t('addCustomNode:addAuthKey')}
+                                    </a>
+                                )}
+                            </>
+                        )}
 
                         <hr />
                         <Toggle
@@ -138,7 +205,10 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                         autoNodeList === settings.autoNodeList &&
                         autoNodeSwitching === settings.autoNodeSwitching &&
                         quorumEnabled === settings.quorumEnabled &&
-                        primaryNode === settings.node
+                        quorumSize === settings.quorumSize &&
+                        primaryNode.url === settings.node.url &&
+                        primaryNode.token === settings.node.token &&
+                        primaryNode.password === settings.node.password
                     }
                     type="submit"
                     onClick={saveSettings}
@@ -159,7 +229,7 @@ NodeSettings.propTypes = {
         autoNodeSwitching: PropTypes.bool.isRequired,
         autoNodeSelection: PropTypes.bool.isRequired,
         autoNodeList: PropTypes.bool.isRequired,
-        node: PropTypes.string.isRequired,
+        node: PropTypes.object.isRequired,
         quorumEnabled: PropTypes.bool.isRequired,
         quorumSize: PropTypes.number.isRequired,
     }),

@@ -199,6 +199,7 @@
                 display: flex;
                 align-items: stretch;
                 overflow: hidden;
+                background: var(--body-bg);
                 * {
                     flex: 1;
                 }
@@ -249,6 +250,21 @@
         margin: 0 auto;
         max-width: 560px;
         padding: 120px 20px;
+    }
+}
+
+.authLink {
+    position: relative;
+    display: block;
+    font-size: 14px;
+    margin-top: -20px;
+    z-index: 2;
+    &:hover {
+        opacity: 0.75;
+    }
+    &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
     }
 }
 
@@ -319,15 +335,5 @@
 
     > fieldset {
         min-height: 140px;
-        > a {
-            position: relative;
-            display: block;
-            font-size: 14px;
-            margin-top: -20px;
-            z-index: 2;
-            &:hover {
-                opacity: 0.75;
-            }
-        }
     }
 }
