@@ -1,5 +1,6 @@
 import map from 'lodash/map';
 import omit from 'lodash/omit';
+import find from 'lodash/find';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 import React, { PureComponent } from 'react';
@@ -39,7 +40,7 @@ export class NodeSettings extends PureComponent {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        node: PropTypes.string.isRequired,
+        node: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -110,7 +111,7 @@ export class NodeSettings extends PureComponent {
     getQuorumOptions() {
         const { autoNodeList } = this.state;
         const { nodes, customNodes } = this.props;
-        const nodeList = autoNodeList ? nodes : customNodes;
+        const nodeList = autoNodeList ? [...nodes, ...customNodes]: customNodes;
         return Array(nodeList.length - 1).fill().map((_, idx) => (MINIMUM_QUORUM_SIZE + idx).toString());
     }
 
@@ -158,8 +159,9 @@ export class NodeSettings extends PureComponent {
      * @returns {function}
      */
     renderSettingsContent() {
-        const { theme, t, nodes, isChangingNode, loginRoute } = this.props;
+        const { theme, t, nodes, customNodes, isChangingNode, loginRoute } = this.props;
         const { autoNodeManagement, autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node } = this.state;
+        const availableNodes = autoNodeList ? [...customNodes, ...nodes] : [...customNodes];
         const rows = [
             {
                 name: t('nodeSettings:automaticNodeManagement'),
@@ -186,10 +188,10 @@ export class NodeSettings extends PureComponent {
             },
             {
                 name: t('nodeSettings:primaryNode'),
-                function: (node) => this.setState({ node }),
+                function: (nodeURL) => this.setState({ node: find(nodes, (node) => { return node.url === nodeURL; })}),
                 inactive: autoNodeManagement || nodeAutoSwitch,
-                currentSetting: node,
-                dropdownOptions: map(nodes, (node) => node.url)
+                currentSetting: node.url,
+                dropdownOptions: map(availableNodes, (node) => node.url)
             },
             { name: 'separator', inactive: autoNodeManagement },
             {

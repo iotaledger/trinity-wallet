@@ -256,12 +256,14 @@ class Node {
      * @method addCustomNode
      * @param {string} url Node URL
      */
-    static addCustomNode(url, pow) {
+    static addCustomNode(node, pow) {
         realm.write(() => {
             realm.create('Node', {
-                url,
+                url: node.url,
                 custom: true,
                 pow,
+                password: node.password,
+                token: node.token
             });
         });
     }

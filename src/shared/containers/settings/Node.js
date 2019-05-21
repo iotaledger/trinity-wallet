@@ -1,4 +1,5 @@
 import endsWith from 'lodash/endsWith';
+import some from 'lodash/some';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -77,9 +78,8 @@ export default function withNodeData(NodeComponent) {
             // Check whether the node was already added to the list
             if (
                 customNode &&
-                nodes
-                    .map(({ address }) => (endsWith(address, ':443') ? address.slice(0, -4) : address))
-                    .includes(nodeSelected)
+                some(nodes, ({ url }) => (endsWith(url, ':443') ? url.slice(0, -4) : url)
+                    .match(nodeSelected.url))
             ) {
                 generateAlert('error', t('nodeDuplicated'), t('nodeDuplicatedExplanation'));
                 return;
@@ -92,13 +92,20 @@ export default function withNodeData(NodeComponent) {
             setFullNode(nodeSelected, customNode);
         };
 
+        removeCustomNode = (nodeUrl) => {
+            const { t, autoNodeList, customNodes, quorumEnabled, quorumSize } = this.props;
+            if (!autoNodeList && quorumEnabled && quorumSize === customNodes.length) {
+                return this.props.generateAlert('error', t('addCustomNode:couldNotRemove'), t('addCustomNode:couldNotRemoveExplanation'), 10000);
+            }
+            this.props.removeCustomNode(nodeUrl);
+        }
+
         render() {
             const {
                 node,
                 nodes,
                 customNodes,
                 autoNodeList,
-                removeCustomNode,
                 backPress,
                 isChangingNode,
                 isCheckingCustomNode,
@@ -121,7 +128,7 @@ export default function withNodeData(NodeComponent) {
                 customNodes,
                 loading: isChangingNode || isCheckingCustomNode,
                 setNode: this.changeNode,
-                removeCustomNode,
+                removeCustomNode: this.removeCustomNode,
                 setAutoNodeSwitching: this.changeAutoNodeSwitching,
                 settings: {
                     node,

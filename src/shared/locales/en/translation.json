@@ -123,6 +123,8 @@
         "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
         "nodeDuplicated": "Duplicated node",
         "nodeDuplicatedExplanation": "The custom node is already listed.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
         "touchSensor": "Touch the fingerprint sensor",
@@ -497,16 +499,16 @@
     "nodeSettings": {
         "automaticNodeManagement": "Automatic node management",
         "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use automatic node list",
+        "autoNodeList": "Use remote node list",
         "nodeAutoswitching": "Primary node autoswitching",
         "primaryNode": "Primary node",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the automatic node list.",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
         "nodeEnoughNodesTitle": "Not enough nodes added",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the automatic node list.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeEnoughNodesExplanationCustomNodesQuorum": "Add more custom nodes or disable quorum.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
         "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
@@ -521,7 +523,10 @@
         "nodeFieldEmptyExplanation": "Please enter a custom node.",
         "invalidURL": "Please enter a valid URL.",
         "addAuthKey": "Add auth key",
-        "username": "Username"
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",

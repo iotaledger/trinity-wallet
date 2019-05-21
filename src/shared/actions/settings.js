@@ -180,15 +180,15 @@ const addCustomNodeRequest = () => ({
  *
  * @returns {{type: {string}, payload: {string} }}
  */
-const addCustomNodeSuccess = (url, remotePow) => {
+const addCustomNodeSuccess = (node, remotePow) => {
     // Add custom node.
-    Node.addCustomNode(url, remotePow);
+    Node.addCustomNode(node, remotePow);
     // Update wallet's active node.
-    Wallet.updateNode(url);
+    Wallet.updateNode(node);
 
     return {
         type: ActionTypes.ADD_CUSTOM_NODE_SUCCESS,
-        payload: url,
+        payload: node,
     };
 };
 
@@ -502,12 +502,13 @@ export function setFullNode(node, addingCustomNode = false) {
 
     return (dispatch) => {
         dispatch(dispatcher.request());
-
         throwIfNodeNotHealthy(node)
-            .then(() => allowsRemotePow(node.url))
+            .then(() => allowsRemotePow(node))
             .then((hasRemotePow) => {
                 // Change IOTA provider on the global iota instance
-                changeIotaNode(assign({}, node, { provider: node.url }));
+                if (!addingCustomNode) {
+                    changeIotaNode(assign({}, node, { provider: node.url }));
+                }
 
                 // Update node in redux store
                 dispatch(
@@ -519,12 +520,23 @@ export function setFullNode(node, addingCustomNode = false) {
                     ),
                 );
 
+                if (addingCustomNode) {
+                    return dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('global:customNodeAdded'),
+                            i18next.t('global:customNodeAddedExplanation', node.url),
+                            10000,
+                        ),
+                    );
+                }
+
                 if (hasRemotePow) {
                     dispatch(
                         generateAlert(
                             'success',
                             i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessExplanation', { url: node.url }),
+                            i18next.t('settings:nodeChangeSuccessExplanation', node.url),
                             10000,
                         ),
                     );
@@ -537,7 +549,7 @@ export function setFullNode(node, addingCustomNode = false) {
                         generateAlert(
                             'success',
                             i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { url: node.url }),
+                            i18next.t('settings:nodeChangeSuccessNoRemotePow', node.url),
                             10000,
                         ),
                     );

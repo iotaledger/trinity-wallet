@@ -171,16 +171,11 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.ADD_CUSTOM_NODE_SUCCESS:
             return {
                 ...state,
-                node: action.payload,
-                nodes: unionBy(state.nodes, [action.payload], 'url'),
                 customNodes: unionBy(state.customNodes, [action.payload], 'url'),
             };
         case ActionTypes.REMOVE_CUSTOM_NODE:
             return {
                 ...state,
-                nodes: state.customNodes.map((node) => node.url).includes(action.payload)
-                    ? state.nodes.filter((node) => node.url !== action.payload)
-                    : state.nodes,
                 customNodes: state.customNodes.filter((node) => node.url !== action.payload),
             };
         case ActionTypes.SET_NODELIST:
