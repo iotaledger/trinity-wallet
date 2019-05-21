@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import filter from 'lodash/filter';
 import { createSelector } from 'reselect';
@@ -200,7 +201,7 @@ export const nodesConfigurationFactory = (overrides) =>
             const remoteNodesOverride = get(overrides, 'useOnlyPowNodes');
 
             if (quorumOverride) {
-                config.quorum.enabled = quorumOverride;
+                config.quorum = assign({}, config.quorum, { enabled: quorumOverride });
             }
 
             if (remoteNodesOverride) {
