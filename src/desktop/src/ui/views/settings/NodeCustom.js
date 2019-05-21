@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import withNodeData from 'containers/settings/Node';
@@ -26,10 +26,10 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
                 <fieldset>
                     <Text value={url} label={t('addCustomNode:customNode')} onChange={setUrl} />
                     {authVisible ? (
-                        <>
+                        <Fragment>
                             <Text value={token} label={t('addCustomNode:username')} onChange={setToken} />
                             <Text value={password} label={t('addCustomNode:password')} onChange={setPassword} />
-                        </>
+                        </Fragment>
                     ) : (
                         <a className={css.authLink} onClick={() => setAuthVisible(true)}>
                             <Icon icon="plusAlt" size={10} /> {t('addCustomNode:addAuthKey')}

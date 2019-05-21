@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classNames';
+import classNames from 'classnames';
 
 import withNodeData from 'containers/settings/Node';
 
@@ -140,7 +140,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                             onChange={setAutoNodeSwitching}
                         />
                         {!autoNodeSwitching && (
-                            <>
+                            <Fragment>
                                 <Text
                                     disabled={autoNodeSelection}
                                     value={primaryNode.url}
@@ -148,7 +148,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                                     onChange={(value) => setPrimaryNode(Object.assign({}, primaryNode, { url: value }))}
                                 />
                                 {authVisible || primaryNode.token.length > 0 ? (
-                                    <>
+                                    <Fragment>
                                         <Text
                                             disabled={autoNodeSelection}
                                             value={primaryNode.token}
@@ -165,7 +165,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                                                 setPrimaryNode(Object.assign({}, primaryNode, { password: value }))
                                             }
                                         />
-                                    </>
+                                    </Fragment>
                                 ) : (
                                     <a
                                         className={classNames(css.authLink, autoNodeSelection && css.disabled)}
@@ -174,7 +174,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                                         <Icon icon="plusAlt" size={10} /> {t('addCustomNode:addAuthKey')}
                                     </a>
                                 )}
-                            </>
+                            </Fragment>
                         )}
 
                         <hr />
