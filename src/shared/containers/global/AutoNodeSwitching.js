@@ -14,7 +14,7 @@ import { setFullNode } from '../../actions/settings';
 export default function withAutoNodeSwitching(AutoNodeSwitchedComponent) {
     class AutoNodeSwitching extends React.Component {
         static propTypes = {
-            node: PropTypes.string.isRequired,
+            node: PropTypes.object.isRequired,
             autoNodeSwitching: PropTypes.bool.isRequired,
             generateAlert: PropTypes.func.isRequired,
             setFullNode: PropTypes.func.isRequired,

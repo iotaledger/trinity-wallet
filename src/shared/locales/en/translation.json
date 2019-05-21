@@ -507,6 +507,7 @@
         "nodeEnoughNodesTitle": "Not enough nodes added",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the automatic node list.",
+        "nodeEnoughNodesExplanationCustomNodesQuorum": "Add more custom nodes or disable quorum.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
         "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
     },
@@ -519,7 +520,8 @@
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node.",
         "invalidURL": "Please enter a valid URL.",
-        "addAuthKey": "Add auth key"
+        "addAuthKey": "Add auth key",
+        "username": "Username"
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",

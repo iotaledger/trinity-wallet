@@ -7,29 +7,37 @@ import css from './toggle.scss';
 /**
  * Toggle component
  */
-export default class Toggle extends React.PureComponent {
-    static propTypes = {
-        /** Checkbox state */
-        checked: PropTypes.bool.isRequired,
-        /** Checked state label */
-        on: PropTypes.string.isRequired,
-        /** Unhecked state label */
-        off: PropTypes.string.isRequired,
-        /**Toggle state event function
-         * @param {Bool} value - Current checkbox state
-         * @returns {Void}
-         */
-        onChange: PropTypes.func.isRequired,
-    };
-
-    render() {
-        const { off, on, checked, onChange } = this.props;
-
-        return (
-            <div className={classNames(css.toggle, checked ? css.on : null)} onClick={() => onChange(!checked)}>
+const Toggle = ({ off, on, inline, disabled, checked, onChange }) => {
+    return (
+        <div
+            className={classNames(css.toggle, inline && css.inline, disabled && css.disabled)}
+            onClick={() => onChange(!checked)}
+        >
+            {inline}
+            <div className={checked ? css.on : null}>
                 <span>{off}</span>
                 <span>{on}</span>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
+
+Toggle.propTypes = {
+    /** Checkbox state */
+    checked: PropTypes.bool.isRequired,
+    /** Is toggle component disabled */
+    disabled: PropTypes.bool,
+    /* Inline style label */
+    inline: PropTypes.string,
+    /** Checked state label */
+    on: PropTypes.string,
+    /** Unhecked state label */
+    off: PropTypes.string,
+    /**Toggle state event function
+     * @param {Bool} value - Current checkbox state
+     * @returns {Void}
+     */
+    onChange: PropTypes.func.isRequired,
+};
+
+export default Toggle;
