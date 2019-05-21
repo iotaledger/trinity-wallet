@@ -324,7 +324,9 @@ export class SnapshotTransition extends Component {
                 <View style={styles.bottomContainer}>
                     <SettingsBackButton
                         theme={theme}
-                        backFunction={() => isTransitioning ? this.cancel() : this.props.setSetting('advancedSettings')}
+                        backFunction={() =>
+                            isTransitioning ? this.cancel() : this.props.setSetting('advancedSettings')
+                        }
                         name={isTransitioning ? t('global:cancel') : t('global:back')}
                         inactive={isAttachingToTangle}
                     />

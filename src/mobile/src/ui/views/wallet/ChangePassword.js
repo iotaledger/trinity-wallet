@@ -151,31 +151,13 @@ class ChangePassword extends Component {
                         <View style={{ flex: 0.2 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('securitySettings')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        {currentPassword !== '' && newPassword !== '' && newPasswordReentry !== '' && (
-                            <TouchableOpacity
-                                onPress={() => this.isPasswordChangeValid()}
-                                hitSlop={{
-                                    top: height / 55,
-                                    bottom: height / 55,
-                                    left: width / 55,
-                                    right: width / 55,
-                                }}
-                            >
-                                <View style={styles.itemRight}>
-                                    <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                    <Icon name="tick" size={width / 28} color={theme.body.color} />
-                                </View>
-                            </TouchableOpacity>
-                        )}
+                        <SettingsDualFooter
+                            theme={theme}
+                            hideActionButton={currentPassword === '' || newPassword === '' || newPasswordReentry === ''}
+                            backFunction={() => this.props.setSetting('securitySettings')}
+                            actionFunction={() => this.isPasswordChangeValid()}
+                            actionName={t('global:save')}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
