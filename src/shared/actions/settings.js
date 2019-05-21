@@ -183,8 +183,6 @@ const addCustomNodeRequest = () => ({
 const addCustomNodeSuccess = (node, remotePow) => {
     // Add custom node.
     Node.addCustomNode(node, remotePow);
-    // Update wallet's active node.
-    Wallet.updateNode(node);
 
     return {
         type: ActionTypes.ADD_CUSTOM_NODE_SUCCESS,

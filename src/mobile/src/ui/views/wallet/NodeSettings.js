@@ -161,7 +161,7 @@ export class NodeSettings extends PureComponent {
     renderSettingsContent() {
         const { theme, t, nodes, customNodes, isChangingNode, loginRoute } = this.props;
         const { autoNodeManagement, autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node } = this.state;
-        const availableNodes = autoNodeList ? [...customNodes, ...nodes] : [...customNodes];
+        const availableNodes = autoNodeList ? [...customNodes, ...nodes] : customNodes;
         const rows = [
             {
                 name: t('nodeSettings:automaticNodeManagement'),
