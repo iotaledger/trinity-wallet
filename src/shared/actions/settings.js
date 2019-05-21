@@ -1,7 +1,6 @@
 import assign from 'lodash/assign';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
-import map from 'lodash/map';
 import { changeIotaNode, quorum } from '../libs/iota/index';
 import i18next from '../libs/i18next';
 import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
@@ -247,13 +246,11 @@ export const setMode = (payload) => {
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setNode = (payload) => {
-    const { url } = payload;
-
-    Wallet.updateNode(url);
+    Wallet.updateNode(payload);
 
     return {
         type: ActionTypes.SET_NODE,
-        payload: url,
+        payload: payload,
     };
 };
 
@@ -383,15 +380,18 @@ export function setLocale(locale) {
  * Dispatch to change selected IRI node
  *
  * @method changeNode
- * @param {string} payload
+ *
+ * @param {object} payload
  *
  * @returns {{type: {string}, payload: {string} }}
  */
 export const changeNode = (payload) => (dispatch, getState) => {
-    if (getSelectedNodeFromState(getState()) !== payload) {
+    const selectedNode = getSelectedNodeFromState(getState());
+
+    if (selectedNode.url !== payload.url) {
         dispatch(setNode(payload));
         // Change provider on global iota instance
-        changeIotaNode(payload);
+        changeIotaNode(assign({}, payload, { provider: payload.url }));
     }
 };
 
@@ -471,12 +471,12 @@ export function setLanguage(language) {
  *
  * @method setFullNode
  *
- * @param {object} nodeData - { url, authKey }
+ * @param {object} node - { url, token }
  * @param {boolean} addingCustomNode
  *
  * @returns {function}
  */
-export function setFullNode(nodeData, addingCustomNode = false) {
+export function setFullNode(node, addingCustomNode = false) {
     const dispatcher = {
         request: addingCustomNode ? addCustomNodeRequest : setNodeRequest,
         success: addingCustomNode ? addCustomNodeSuccess : setNode,
@@ -500,36 +500,31 @@ export function setFullNode(nodeData, addingCustomNode = false) {
         },
     };
 
-    const { url } = nodeData;
-
     return (dispatch) => {
         dispatch(dispatcher.request());
 
-        throwIfNodeNotHealthy(url)
-            .then(() => allowsRemotePow(url))
+        throwIfNodeNotHealthy(node)
+            .then(() => allowsRemotePow(node.url))
             .then((hasRemotePow) => {
                 // Change IOTA provider on the global iota instance
-                changeIotaNode(url);
+                changeIotaNode(node);
 
                 // Update node in redux store
                 dispatch(
                     dispatcher.success(
-                        assign({}, nodeData, {
+                        assign({}, node, {
                             pow: hasRemotePow,
                         }),
                         hasRemotePow,
                     ),
                 );
 
-                // Change IOTA provider on the global iota instance
-                changeIotaNode(url);
-
                 if (hasRemotePow) {
                     dispatch(
                         generateAlert(
                             'success',
                             i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessExplanation', { url }),
+                            i18next.t('settings:nodeChangeSuccessExplanation', { url: node.url }),
                             10000,
                         ),
                     );
@@ -542,7 +537,7 @@ export function setFullNode(nodeData, addingCustomNode = false) {
                         generateAlert(
                             'success',
                             i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { url }),
+                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { url: node.url }),
                             10000,
                         ),
                     );
@@ -551,10 +546,12 @@ export function setFullNode(nodeData, addingCustomNode = false) {
             .catch((err) => {
                 dispatch(dispatcher.error());
 
-                if (err.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateNodeOutOfSyncErrorAlert());
-                } else if (err.message === Errors.UNSUPPORTED_NODE) {
-                    dispatch(generateUnsupportedNodeErrorAlert());
+                if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err));
+                } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err, true));
+                } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
                     dispatch(dispatcher.alerts.defaultError(err));
                 }
@@ -920,5 +917,5 @@ export const changeAutoNodeListSetting = (payload) => (dispatch, getState) => {
     // `autoNodeList` inactive -> use custom nodes for quorum
     const nodes = payload ? getNodesFromState(getState()) : getCustomNodesFromState(getState());
 
-    quorum.setNodes(map(nodes, (node) => node.url));
+    quorum.setNodes(nodes);
 };

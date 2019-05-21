@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import filter from 'lodash/filter';
 import { createSelector } from 'reselect';
 import Themes from '../themes/themes';
-import { defaultNode as DEFAULT_IRI_NODE } from '../config';
+import { DEFAULT_NODE } from '../config';
 
 /**
  *   Selects ui prop from state.
@@ -81,7 +81,9 @@ export const getRemotePoWFromState = createSelector(
  *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
  *
  *   @method getNodesFromState
+ *
  *   @param {object} state
+ *
  *   @returns {array}
  **/
 export const getNodesFromState = createSelector(
@@ -94,12 +96,14 @@ export const getNodesFromState = createSelector(
  *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
  *
  *   @method getSelectedNodeFromState
+ *
  *   @param {object} state
- *   @returns {array}
+ *
+ *   @returns {object}
  **/
 export const getSelectedNodeFromState = createSelector(
     getSettingsFromState,
-    (state) => state.node || DEFAULT_IRI_NODE,
+    (state) => state.node || DEFAULT_NODE,
 );
 
 /**
@@ -145,7 +149,9 @@ export const getThemeFromState = createSelector(
  *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
  *
  *   @method getCustomNodesFromState
+ *
  *   @param {object} state
+ *
  *   @returns {array}
  **/
 export const getCustomNodesFromState = createSelector(
@@ -168,7 +174,7 @@ export const nodesConfigurationFactory = (overrides) =>
         (state) => {
             const config = {
                 /** Node that should be given priority while connecting. */
-                priorityNode: DEFAULT_IRI_NODE,
+                priorityNode: DEFAULT_NODE,
                 /**
                  * Wallet nodes
                  * autoNodeList (true) -> choose random nodes from all nodes for auto-retrying

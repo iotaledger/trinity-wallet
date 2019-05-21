@@ -439,7 +439,8 @@ class Wallet {
      * Updates wallet's node.
      *
      * @method updateNode
-     * @param {string} payload
+     *
+     * @param {object} payload
      */
     static updateNode(payload) {
         realm.write(() => {

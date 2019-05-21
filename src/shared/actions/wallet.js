@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import noop from 'lodash/noop';
 import findLastIndex from 'lodash/findLastIndex';
 import reduce from 'lodash/reduce';
-import { updateAddressData, updateAccountAfterTransition } from '../actions/accounts';
+import { updateAddressData, updateAccountAfterTransition, getSelectedAccountName } from '../actions/accounts';
 import {
     generateAlert,
     generateTransitionErrorAlert,
@@ -47,6 +47,7 @@ export const ActionTypes = {
     CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
     SHOULD_UPDATE: 'IOTA/APP/WALLET/SHOULD_UPDATE',
     FORCE_UPDATE: 'IOTA/APP/WALLET/FORCE_UPDATE',
+    DISPLAY_TEST_WARNING: 'IOTA/APP/WALLET/DISPLAY_TEST_WARNING',
     INITIATE_DEEP_LINK_REQUEST: 'IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST',
     COMPLETE_DEEP_LINK_REQUEST: 'IOTA/APP/WALLET/COMPLETE_DEEP_LINK_REQUEST',
     MAP_STORAGE_TO_STATE: 'IOTA/SETTINGS/MAP_STORAGE_TO_STATE',
@@ -333,13 +334,14 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
                 dispatch(updateAddressData(accountName, result));
                 dispatch(generateNewAddressSuccess());
             })
-            .catch(() => {
+            .catch((err) => {
                 dispatch(
                     generateAlert(
                         'error',
                         i18next.t('global:somethingWentWrong'),
                         i18next.t('global:somethingWentWrongTryAgain'),
                         10000,
+                        err,
                     ),
                 );
                 dispatch(generateNewAddressError());
@@ -386,7 +388,7 @@ export const transitionForSnapshot = (seedStore, addresses) => {
  *
  * @returns {function}
  */
-export const completeSnapshotTransition = (seedStore, accountName, addresses, withQuorum = true) => {
+export const completeSnapshotTransition = (seedStore, accountName, addresses, quorum = true) => {
     return (dispatch, getState) => {
         dispatch(
             generateAlert(
@@ -398,81 +400,90 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, wi
 
         dispatch(snapshotAttachToTangleRequest());
 
-        getBalancesAsync(undefined, withQuorum)(addresses)
-            // Find balance on all addresses
-            .then((balances) => {
-                const allBalances = map(balances.balances, Number);
-                const totalBalance = accumulateBalance(allBalances);
-                const hasZeroBalance = totalBalance === 0;
+        const snapshotTransitionFn = (settings, withQuorum) => () => {
+            return (
+                getBalancesAsync(settings, withQuorum)(addresses)
+                    // Find balance on all addresses
+                    .then((balances) => {
+                        const allBalances = map(balances.balances, Number);
+                        const totalBalance = accumulateBalance(allBalances);
+                        const hasZeroBalance = totalBalance === 0;
 
-                // If accumulated balance is zero, terminate the snapshot process
-                if (hasZeroBalance) {
-                    throw new Error(Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE);
-                }
+                        // If accumulated balance is zero, terminate the snapshot process
+                        if (hasZeroBalance) {
+                            throw new Error(Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE);
+                        }
 
-                const lastIndexWithBalance = findLastIndex(allBalances, (balance) => balance > 0);
-                const relevantBalances = allBalances.slice(0, lastIndexWithBalance + 1);
-                const relevantAddresses = addresses.slice(0, lastIndexWithBalance + 1);
+                        const lastIndexWithBalance = findLastIndex(allBalances, (balance) => balance > 0);
+                        const relevantBalances = allBalances.slice(0, lastIndexWithBalance + 1);
+                        const relevantAddresses = addresses.slice(0, lastIndexWithBalance + 1);
 
-                dispatch(startTrackingProgress(relevantAddresses));
+                        dispatch(startTrackingProgress(relevantAddresses));
 
-                return reduce(
-                    relevantAddresses,
-                    (promise, address, index) => {
-                        return promise.then((result) => {
-                            dispatch(setActiveStepIndex(index));
+                        return reduce(
+                            relevantAddresses,
+                            (promise, address, index) => {
+                                return promise.then((result) => {
+                                    dispatch(setActiveStepIndex(index));
 
-                            const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+                                    const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-                            return attachAndFormatAddress(undefined, withQuorum)(
-                                address,
-                                index,
-                                relevantBalances[index],
-                                getRemotePoWFromState(getState())
-                                    ? extend(
-                                          {
-                                              __proto__: seedStore.__proto__,
-                                          },
-                                          seedStore,
-                                          { offloadPow: true },
-                                      )
-                                    : seedStore,
-                                existingAccountState,
-                            )
-                                .then(({ attachedAddressObject, attachedTransactions }) => {
-                                    const newState = syncAccountDuringSnapshotTransition(
-                                        attachedTransactions,
-                                        attachedAddressObject,
+                                    return attachAndFormatAddress(settings, withQuorum)(
+                                        address,
+                                        index,
+                                        relevantBalances[index],
+                                        getRemotePoWFromState(getState())
+                                            ? extend(
+                                                  {
+                                                      __proto__: seedStore.__proto__,
+                                                  },
+                                                  seedStore,
+                                                  { offloadPow: true },
+                                              )
+                                            : seedStore,
                                         existingAccountState,
-                                    );
+                                    )
+                                        .then(({ attachedAddressObject, attachedTransactions }) => {
+                                            const newState = syncAccountDuringSnapshotTransition(
+                                                attachedTransactions,
+                                                attachedAddressObject,
+                                                existingAccountState,
+                                            );
 
-                                    // Update storage (realm)
-                                    Account.update(accountName, newState);
-                                    // Update redux store
-                                    dispatch(updateAccountAfterTransition(newState));
+                                            // Update storage (realm)
+                                            Account.update(accountName, newState);
+                                            // Update redux store
+                                            dispatch(updateAccountAfterTransition(newState));
 
-                                    return result;
-                                })
-                                .catch(noop);
-                        });
-                    },
-                    Promise.resolve(),
-                );
-            })
-            .then(() => {
-                dispatch(snapshotTransitionSuccess());
-                dispatch(snapshotAttachToTangleComplete());
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('snapshotTransition:transitionComplete'),
-                        i18next.t('snapshotTransition:transitionCompleteExplanation'),
-                        20000,
-                    ),
-                );
+                                            return result;
+                                        })
+                                        .catch(noop);
+                                });
+                            },
+                            Promise.resolve(),
+                        );
+                    })
+                    .then(({ node }) => {
+                        dispatch(changeNode(node));
 
-                dispatch(resetProgress());
-            })
+                        dispatch(snapshotTransitionSuccess());
+                        dispatch(snapshotAttachToTangleComplete());
+                        dispatch(
+                            generateAlert(
+                                'success',
+                                i18next.t('snapshotTransition:transitionComplete'),
+                                i18next.t('snapshotTransition:transitionCompleteExplanation'),
+                                20000,
+                            ),
+                        );
+
+                        dispatch(resetProgress());
+                    })
+            );
+        };
+
+        return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
+            .withRetries()(snapshotTransitionFn)()
             .catch((error) => {
                 if (error.message === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert());
@@ -495,23 +506,27 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, wi
  *
  * @param {string | array} seed
  * @param {number} index
- * @param {function} genFn
+ * @param {string} accountName
  *
  * @returns {function}
  */
-export const generateAddressesAndGetBalance = (seedStore, index, seedType = 'keychain') => {
-    return (dispatch) => {
+export const generateAddressesAndGetBalance = (seedStore, index, accountName, seedType = 'keychain') => {
+    return (dispatch, getState) => {
         const options = {
             index,
             security: DEFAULT_SECURITY,
             total: seedType === 'ledger' ? 15 : 60,
         };
 
-        seedStore
+        return seedStore
             .generateAddress(options)
             .then((addresses) => {
-                dispatch(updateTransitionAddresses(addresses));
-                dispatch(getBalanceForCheck(addresses));
+                const latestAccountName = getSelectedAccountName(getState());
+
+                if (latestAccountName === accountName) {
+                    dispatch(updateTransitionAddresses(addresses));
+                    dispatch(getBalanceForCheck(addresses));
+                }
             })
             .catch((error) => {
                 dispatch(snapshotTransitionError());
@@ -530,11 +545,14 @@ export const generateAddressesAndGetBalance = (seedStore, index, seedType = 'key
  *
  * @returns {function}
  */
-export const getBalanceForCheck = (addresses, withQuorum = true) => {
-    return (dispatch) => {
-        getBalancesAsync(undefined, withQuorum)(addresses)
-            .then((balances) => {
-                const balanceOnAddresses = accumulateBalance(map(balances.balances, Number));
+export const getBalanceForCheck = (addresses, quorum = true) => {
+    return (dispatch, getState) => {
+        return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
+            .withRetries()(getBalancesAsync)(addresses)
+            .then(({ node, result }) => {
+                dispatch(changeNode(node));
+
+                const balanceOnAddresses = accumulateBalance(map(result.balances, Number));
 
                 dispatch(updateTransitionBalance(balanceOnAddresses));
                 dispatch(setBalanceCheckFlag(true));
@@ -646,4 +664,15 @@ export const shouldUpdate = () => ({
  */
 export const forceUpdate = () => ({
     type: ActionTypes.FORCE_UPDATE,
+});
+
+/**
+ * Dispatch to display test version warning
+ *
+ * @method displayTestWarning
+ *
+ * @returns {{type: {string} }}
+ */
+export const displayTestWarning = () => ({
+    type: ActionTypes.DISPLAY_TEST_WARNING,
 });

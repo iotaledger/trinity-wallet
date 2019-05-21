@@ -52,12 +52,13 @@ export const mapStorageToState = () => {
             ),
         },
         settings: assign({}, settings, {
-            nodes: map(nodes, ({ url, pow, authKey }) => ({ url, pow, authKey })),
+            nodes: map(nodes, ({ url, pow, token, password }) => ({ url, pow, token, password })),
             availableCurrencies: map(settings.availableCurrencies, (currency) => currency),
-            customNodes: map(filter(nodes, (node) => node.custom === true), ({ url, pow, authKey }) => ({
+            customNodes: map(filter(nodes, (node) => node.custom === true), ({ url, pow, token, password }) => ({
                 url,
                 pow,
-                authKey,
+                token,
+                password,
             })),
         }),
         alerts: { notificationLog: map(errorLog, (error) => error) },

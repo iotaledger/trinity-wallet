@@ -89,7 +89,9 @@ class ChangePassword extends Component {
                 generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
                 this.props.setSetting('securitySettings');
             })
-            .catch(() => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain')));
+            .catch((err) =>
+                generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain'), 10000, err),
+            );
     }
 
     /**
@@ -173,5 +175,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['changePassword', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(ChangePassword),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ChangePassword),
 );

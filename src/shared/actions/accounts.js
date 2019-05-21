@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import assign from 'lodash/assign';
 import some from 'lodash/some';
 import isEmpty from 'lodash/isEmpty';
@@ -21,6 +22,7 @@ import {
     generateUnsupportedNodeErrorAlert,
     generateAccountSyncRetryAlert,
     generateLedgerCancelledAlert,
+    generateLedgerIncorrectIndexAlert,
 } from '../actions/alerts';
 import { changeNode } from '../actions/settings';
 import Errors from '../libs/errors';
@@ -409,10 +411,12 @@ export const getFullAccountInfo = (seedStore, accountName, quorum = false) => {
             })
             .catch((err) => {
                 const dispatchErrors = () => {
-                    if (err.message === Errors.NODE_NOT_SYNCED) {
+                    if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
                         dispatch(generateNodeOutOfSyncErrorAlert());
-                    } else if (err.message === Errors.UNSUPPORTED_NODE) {
-                        dispatch(generateUnsupportedNodeErrorAlert());
+                    } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
+                        dispatch(generateNodeOutOfSyncErrorAlert(true));
+                    } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
+                        dispatch(generateUnsupportedNodeErrorAlert(err));
                     } else {
                         dispatch(generateAccountInfoErrorAlert(err));
                     }
@@ -459,12 +463,12 @@ export const manuallySyncAccount = (seedStore, accountName, quorum = false) => {
                 dispatch(manualSyncSuccess(result));
             })
             .catch((err) => {
-                if (err.message === Errors.LEDGER_CANCELLED) {
-                    dispatch(generateLedgerCancelledAlert());
-                } else if (err.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateNodeOutOfSyncErrorAlert());
-                } else if (err.message === Errors.UNSUPPORTED_NODE) {
-                    dispatch(generateUnsupportedNodeErrorAlert());
+                if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
+                    dispatch(generateLedgerCancelledAlert(err));
+                } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err));
+                } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
                     dispatch(generateSyncingErrorAlert(err));
                 }
@@ -508,12 +512,16 @@ export const getAccountInfo = (seedStore, accountName, notificationFn, quorum = 
                 dispatch(accountInfoFetchSuccess(result));
             })
             .catch((err) => {
-                if (err.message === Errors.LEDGER_CANCELLED) {
-                    dispatch(generateLedgerCancelledAlert());
-                } else if (err.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateNodeOutOfSyncErrorAlert());
-                } else if (err.message === Errors.UNSUPPORTED_NODE) {
-                    dispatch(generateUnsupportedNodeErrorAlert());
+                if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
+                    dispatch(generateLedgerCancelledAlert(err));
+                } else if (get(err, 'message') === Errors.LEDGER_INVALID_INDEX) {
+                    dispatch(generateLedgerIncorrectIndexAlert(err));
+                } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err));
+                } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
+                    dispatch(generateNodeOutOfSyncErrorAlert(err, true));
+                } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
                     setTimeout(() => dispatch(generateAccountInfoErrorAlert(err)), 500);
                 }
