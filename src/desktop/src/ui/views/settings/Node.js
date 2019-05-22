@@ -55,6 +55,9 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                       )}`,
             );
         } else {
+            if (!quorumEnabled && !autoNodeList && quorumSize > customNodes.length) {
+                setQuorumSize(customNodes.length);
+            }
             setQuorumEnabled(!quorumEnabled);
         }
     };
@@ -62,13 +65,12 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
     const updateAutoNodeList = () => {
         if (autoNodeList && customNodes.length < 1) {
             generateAlert('error', t('nodeSettings:noCustomNodes'), t('nodeSettings:mustAddCustomNodes'));
-        } else if (quorumEnabled && autoNodeList && customNodes.length < MINIMUM_QUORUM_SIZE) {
-            generateAlert(
-                'error',
-                t('nodeSettings:nodeEnoughNodesTitle'),
-                t('nodeSettings:nodeEnoughNodesExplanationCustomNodesQuorum'),
-            );
         } else {
+            if (autoNodeList && customNodes.length < MINIMUM_QUORUM_SIZE) {
+                setQuorumEnabled(false);
+            } else if (autoNodeList && customNodes.length < quorumSize) {
+                setQuorumSize(customNodes.length);
+            }
             setAutoNodeList(!autoNodeList);
         }
     };
