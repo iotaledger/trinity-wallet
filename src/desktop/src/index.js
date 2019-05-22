@@ -68,7 +68,7 @@ const init = () => {
                 changeIotaNode(assign({}, node, { provider: node.url }));
 
                 // Set quorum size
-                quorum.setSize(get(data, 'settings.quorumSize'));
+                quorum.setSize(get(data, 'settings.quorum.size'));
 
                 // Update store with persisted state
                 store.dispatch(mapStorageToStateAction(data));
