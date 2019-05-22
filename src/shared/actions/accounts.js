@@ -27,32 +27,7 @@ import {
 import Errors from '../libs/errors';
 import { Account, Wallet } from '../storage';
 import NodesManager from '../libs/iota/NodesManager';
-
-export const ActionTypes = {
-    UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
-    UPDATE_ACCOUNT_AFTER_REATTACHMENT: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
-    UPDATE_ADDRESS_DATA: 'IOTA/ACCOUNTS/UPDATE_ADDRESS_DATA',
-    CHANGE_ACCOUNT_NAME: 'IOTA/ACCOUNTS/CHANGE_ACCOUNT_NAME',
-    REMOVE_ACCOUNT: 'IOTA/ACCOUNTS/REMOVE_ACCOUNT',
-    SET_ONBOARDING_COMPLETE: 'IOTA/ACCOUNTS/SET_ONBOARDING_COMPLETE',
-    UPDATE_ACCOUNT_AFTER_TRANSITION: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_TRANSITION',
-    FULL_ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_REQUEST',
-    FULL_ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_SUCCESS',
-    FULL_ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_ERROR',
-    MANUAL_SYNC_REQUEST: 'IOTA/ACCOUNTS/MANUAL_SYNC_REQUEST',
-    MANUAL_SYNC_SUCCESS: 'IOTA/ACCOUNTS/MANUAL_SYNC_SUCCESS',
-    MANUAL_SYNC_ERROR: 'IOTA/ACCOUNTS/MANUAL_SYNC_ERROR',
-    ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_REQUEST',
-    ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_SUCCESS',
-    ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_ERROR',
-    SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
-    SET_BASIC_ACCOUNT_INFO: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
-    SET_ACCOUNT_INFO_DURING_SETUP: 'IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP',
-    MARK_TASK_AS_DONE: 'IOTA/ACCOUNTS/MARK_TASK_AS_DONE',
-    SYNC_ACCOUNT_BEFORE_SWEEPING: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_SWEEPING',
-    OVERRIDE_ACCOUNT_INFO: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
-    ASSIGN_ACCOUNT_INDEX: 'IOTA/ACCOUNTS/ASSIGN_ACCOUNT_INDEX',
-};
+import { AccountsActionTypes } from '../types';
 
 /**
  * Dispatch to update account state before manually promoting a transaction
@@ -63,7 +38,7 @@ export const ActionTypes = {
  * @returns {{type: {string}, payload: {object} }}
  */
 export const syncAccountBeforeManualPromotion = (payload) => ({
-    type: ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION,
+    type: AccountsActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION,
     payload,
 });
 
@@ -76,7 +51,7 @@ export const syncAccountBeforeManualPromotion = (payload) => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const updateAccountInfoAfterSpending = (payload) => ({
-    type: ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING,
+    type: AccountsActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING,
     payload,
 });
 
@@ -89,7 +64,7 @@ export const updateAccountInfoAfterSpending = (payload) => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const updateAccountAfterReattachment = (payload) => ({
-    type: ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT,
+    type: AccountsActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT,
     payload,
 });
 
@@ -102,7 +77,7 @@ export const updateAccountAfterReattachment = (payload) => ({
  * @returns {{type: string, accountName: string, addresses: object }}
  */
 export const updateAddressData = (accountName, addressData) => ({
-    type: ActionTypes.UPDATE_ADDRESS_DATA,
+    type: AccountsActionTypes.UPDATE_ADDRESS_DATA,
     accountName,
     addressData,
 });
@@ -120,7 +95,7 @@ export const changeAccountName = (payload) => {
     Account.migrate(oldAccountName, newAccountName);
 
     return {
-        type: ActionTypes.CHANGE_ACCOUNT_NAME,
+        type: AccountsActionTypes.CHANGE_ACCOUNT_NAME,
         payload,
     };
 };
@@ -137,7 +112,7 @@ export const removeAccount = (payload) => {
     Account.delete(payload);
 
     return {
-        type: ActionTypes.REMOVE_ACCOUNT,
+        type: AccountsActionTypes.REMOVE_ACCOUNT,
         payload,
     };
 };
@@ -154,7 +129,7 @@ export const setOnboardingComplete = (payload) => {
     Wallet.setOnboardingComplete();
 
     return {
-        type: ActionTypes.SET_ONBOARDING_COMPLETE,
+        type: AccountsActionTypes.SET_ONBOARDING_COMPLETE,
         payload,
     };
 };
@@ -168,7 +143,7 @@ export const setOnboardingComplete = (payload) => {
  * @returns {{type: {string}, payload: {object} }}
  */
 export const updateAccountAfterTransition = (payload) => ({
-    type: ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION,
+    type: AccountsActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION,
     payload,
 });
 
@@ -180,7 +155,7 @@ export const updateAccountAfterTransition = (payload) => ({
  * @returns {{type: {string} }}
  */
 export const fullAccountInfoFetchRequest = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST,
+    type: AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST,
 });
 
 /**
@@ -192,7 +167,7 @@ export const fullAccountInfoFetchRequest = () => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const fullAccountInfoFetchSuccess = (payload) => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS,
+    type: AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS,
     payload,
 });
 
@@ -204,7 +179,7 @@ export const fullAccountInfoFetchSuccess = (payload) => ({
  * @returns {{type: {string} }}
  */
 export const fullAccountInfoFetchError = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR,
+    type: AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR,
 });
 
 /**
@@ -215,7 +190,7 @@ export const fullAccountInfoFetchError = () => ({
  * @returns {{type: {string} }}
  */
 export const manualSyncRequest = () => ({
-    type: ActionTypes.MANUAL_SYNC_REQUEST,
+    type: AccountsActionTypes.MANUAL_SYNC_REQUEST,
 });
 
 /**
@@ -227,7 +202,7 @@ export const manualSyncRequest = () => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const manualSyncSuccess = (payload) => ({
-    type: ActionTypes.MANUAL_SYNC_SUCCESS,
+    type: AccountsActionTypes.MANUAL_SYNC_SUCCESS,
     payload,
 });
 
@@ -239,7 +214,7 @@ export const manualSyncSuccess = (payload) => ({
  * @returns {{type: {string} }}
  */
 export const manualSyncError = () => ({
-    type: ActionTypes.MANUAL_SYNC_ERROR,
+    type: AccountsActionTypes.MANUAL_SYNC_ERROR,
 });
 
 /**
@@ -250,7 +225,7 @@ export const manualSyncError = () => ({
  * @returns {{type: {string} }}
  */
 export const accountInfoFetchRequest = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
+    type: AccountsActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
 });
 
 /**
@@ -262,7 +237,7 @@ export const accountInfoFetchRequest = () => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const accountInfoFetchSuccess = (payload) => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
+    type: AccountsActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
     payload,
 });
 
@@ -274,7 +249,7 @@ export const accountInfoFetchSuccess = (payload) => ({
  * @returns {{type: {string} }}
  */
 export const accountInfoFetchError = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
+    type: AccountsActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
 /**
@@ -288,7 +263,7 @@ export const accountInfoFetchError = () => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const setBasicAccountInfo = (payload) => ({
-    type: ActionTypes.SET_BASIC_ACCOUNT_INFO,
+    type: AccountsActionTypes.SET_BASIC_ACCOUNT_INFO,
     payload,
 });
 
@@ -304,7 +279,7 @@ export const setAccountInfoDuringSetup = (payload) => {
     Wallet.updateAccountInfoDuringSetup(payload);
 
     return {
-        type: ActionTypes.SET_ACCOUNT_INFO_DURING_SETUP,
+        type: AccountsActionTypes.SET_ACCOUNT_INFO_DURING_SETUP,
         payload,
     };
 };
@@ -325,7 +300,7 @@ export const markTaskAsDone = (payload) => {
     Account.update(accountName, { [task]: true });
 
     return {
-        type: ActionTypes.MARK_TASK_AS_DONE,
+        type: AccountsActionTypes.MARK_TASK_AS_DONE,
         payload,
     };
 };
@@ -339,7 +314,7 @@ export const markTaskAsDone = (payload) => {
  * @returns {{type: {string}, payload: {object} }}
  */
 export const syncAccountBeforeSweeping = (payload) => ({
-    type: ActionTypes.SYNC_ACCOUNT_BEFORE_SWEEPING,
+    type: AccountsActionTypes.SYNC_ACCOUNT_BEFORE_SWEEPING,
     payload,
 });
 
@@ -352,7 +327,7 @@ export const syncAccountBeforeSweeping = (payload) => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const overrideAccountInfo = (payload) => ({
-    type: ActionTypes.OVERRIDE_ACCOUNT_INFO,
+    type: AccountsActionTypes.OVERRIDE_ACCOUNT_INFO,
     payload,
 });
 
@@ -364,7 +339,7 @@ export const overrideAccountInfo = (payload) => ({
  * @returns {{type: {string} }}
  */
 export const assignAccountIndex = () => ({
-    type: ActionTypes.ASSIGN_ACCOUNT_INDEX,
+    type: AccountsActionTypes.ASSIGN_ACCOUNT_INDEX,
 });
 
 /**
