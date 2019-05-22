@@ -8,7 +8,7 @@ import reduce from 'lodash/reduce';
 import unionBy from 'lodash/unionBy';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { quorum } from '../libs/iota';
-import { setNodeList, setAutoPromotion, changeNode } from './settings';
+import { setNodeList, setAutoPromotion } from './settings';
 import { fetchRemoteNodes } from '../libs/iota/utils';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
@@ -455,8 +455,7 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn, quoru
 
                     return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
                         .withRetries()(syncAccount)(existingAccountState, undefined, notificationFn, settings)
-                        .then(({ node, result }) => {
-                            dispatch(changeNode(node));
+                        .then((result) => {
                             dispatch(syncAccountWhilePolling(result));
                         });
                 });
@@ -539,9 +538,7 @@ export const promoteTransfer = (bundleHash, accountName, quorum = true) => (disp
         })(getState()),
     )
         .withRetries()(executePrePromotionChecks)()
-        .then(({ node, result }) => {
-            dispatch(changeNode(node));
-
+        .then((result) => {
             return dispatch(
                 forceTransactionPromotion(
                     accountName,

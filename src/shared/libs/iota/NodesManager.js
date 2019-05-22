@@ -5,6 +5,8 @@ import isUndefined from 'lodash/isUndefined';
 import Errors from '../errors';
 import { getRandomNodes } from './utils';
 import { DEFAULT_RETRIES } from '../../config';
+import { changeNode } from '../../actions/settings';
+import store from '../../store';
 
 export default class NodesManager {
     /**
@@ -49,7 +51,11 @@ export default class NodesManager {
                 }
 
                 return promiseFunc(retryNodes[attempt], quorum.enabled)(...args)
-                    .then((result) => ({ node: retryNodes[attempt], result }))
+                    .then((result) => {
+                        store.dispatch(changeNode(retryNodes[attempt]));
+
+                        return result;
+                    })
                     .catch((err) => {
                         if (includes(cancellationErrors, err) || includes(cancellationErrors, err.message)) {
                             throw err;

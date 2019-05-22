@@ -65,7 +65,6 @@ import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 import { Account } from '../storage';
 import NodesManager from '../libs/iota/NodesManager';
-import { changeNode } from './settings';
 
 export const ActionTypes = {
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
@@ -272,9 +271,7 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
         })(getState()),
     )
         .withRetries()(executePrePromotionChecks)()
-        .then(({ node, result }) => {
-            dispatch(changeNode(node));
-
+        .then((result) => {
             return dispatch(
                 forceTransactionPromotion(
                     accountName,
@@ -445,18 +442,14 @@ export const forceTransactionPromotion = (
     if (has(consistentTail, 'hash')) {
         return manager
             .withRetries()(promote)(consistentTail)
-            .then(({ node, result }) => {
-                dispatch(changeNode(node));
-
+            .then((result) => {
                 return result;
             });
     }
 
     return manager
         .withRetries()(reattachAndPromote)()
-        .then(({ node, result }) => {
-            dispatch(changeNode(node));
-
+        .then((result) => {
             return result;
         });
 };
@@ -679,7 +672,6 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                                 ),
                             ),
                         )(trunkTransaction, branchTransaction, cached.trytes)
-                        .then(({ result }) => result)
                         .catch(() => {
                             // If outsourced proof of work fails on all nodes, fallback to local proof of work.
                             dispatch(
@@ -939,7 +931,7 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, quoru
 
     dispatch(retryFailedTransactionRequest());
 
-    const retryFn = (settings, withQuorum) => {
+    const retryFn = (settings, withQuorum) => () => {
         return (
             // First check spent statuses against transaction addresses
             categoriseAddressesBySpentStatus(settings, withQuorum)(
