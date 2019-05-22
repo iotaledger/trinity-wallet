@@ -2,13 +2,7 @@ import isString from 'lodash/isString';
 import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 import { Wallet } from '../storage';
-
-export const ActionTypes = {
-    SHOW: 'IOTA/ALERTS/SHOW',
-    HIDE: 'IOTA/ALERTS/HIDE',
-    UPDATE_LOG: 'IOTA/ALERTS/UPDATE_LOG',
-    CLEAR_LOG: 'IOTA/ALERTS/CLEAR_LOG',
-};
+import { AlertsActionTypes } from '../types';
 
 /**
  * Dispatch to generate an alert
@@ -23,7 +17,7 @@ export const ActionTypes = {
  * @returns {{ type: {string}, category: {string}, title: {string}, message: {string}, category: {string}, closeInterval: {number} }}
  */
 const generate = (category, title, message, closeInterval = 5500) => ({
-    type: ActionTypes.SHOW,
+    type: AlertsActionTypes.SHOW,
     category,
     title,
     message,
@@ -37,7 +31,7 @@ const generate = (category, title, message, closeInterval = 5500) => ({
  *
  * @returns {{type: {string} }}
  */
-const dismiss = () => ({ type: ActionTypes.HIDE });
+const dismiss = () => ({ type: AlertsActionTypes.HIDE });
 
 /**
  * Generates an alert. If an error string is passed then it also updates notification log in state
@@ -378,7 +372,7 @@ export const updateLog = (logItem) => {
     Wallet.updateErrorLog(logItem);
 
     return {
-        type: ActionTypes.UPDATE_LOG,
+        type: AlertsActionTypes.UPDATE_LOG,
         logItem,
     };
 };
@@ -395,6 +389,6 @@ export const clearLog = () => {
     Wallet.clearErrorLog();
 
     return {
-        type: ActionTypes.CLEAR_LOG,
+        type: AlertsActionTypes.CLEAR_LOG,
     };
 };

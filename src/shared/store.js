@@ -14,8 +14,7 @@ import keychain from './reducers/keychain';
 import polling from './reducers/polling';
 import progress from './reducers/progress';
 import ui from './reducers/ui';
-import { ActionTypes } from './actions/settings';
-import { ActionTypes as WalletActionTypes } from './actions/wallet';
+import { SettingsActionTypes, WalletActionTypes } from './types';
 import networkMiddleware from './middlewares/network';
 import versionMiddleware from './middlewares/version';
 import alertsMiddleware from './middlewares/alerts';
@@ -44,7 +43,7 @@ const reducers = combineReducers({
 
 const rootReducer = (state, action) => {
     /* eslint-disable no-param-reassign */
-    if (action.type === ActionTypes.WALLET_RESET) {
+    if (action.type === SettingsActionTypes.WALLET_RESET) {
         state = undefined;
     }
 

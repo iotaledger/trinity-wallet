@@ -7,9 +7,7 @@ import keys from 'lodash/keys';
 import mapValues from 'lodash/mapValues';
 import omit from 'lodash/omit';
 import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
-import { ActionTypes } from '../actions/accounts';
-import { ActionTypes as PollingActionTypes } from '../actions/polling';
-import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
+import { AccountsActionTypes, PollingActionTypes, TransfersActionTypes } from '../types';
 import { renameKeys } from '../libs/utils';
 
 /**
@@ -147,7 +145,7 @@ const account = (
     action,
 ) => {
     switch (action.type) {
-        case ActionTypes.SET_ACCOUNT_INFO_DURING_SETUP:
+        case AccountsActionTypes.SET_ACCOUNT_INFO_DURING_SETUP:
             return {
                 ...state,
                 accountInfoDuringSetup: {
@@ -155,24 +153,24 @@ const account = (
                     ...action.payload,
                 },
             };
-        case ActionTypes.CHANGE_ACCOUNT_NAME:
+        case AccountsActionTypes.CHANGE_ACCOUNT_NAME:
             return {
                 ...state,
                 ...updateAccountName(state, action.payload),
             };
-        case ActionTypes.REMOVE_ACCOUNT:
+        case AccountsActionTypes.REMOVE_ACCOUNT:
             return {
                 ...state,
                 accountInfo: removeAccountAndReorderIndexes(state.accountInfo, action.payload),
                 tasks: omit(state.tasks, action.payload),
                 setupInfo: omit(state.setupInfo, action.payload),
             };
-        case ActionTypes.SET_ONBOARDING_COMPLETE:
+        case AccountsActionTypes.SET_ONBOARDING_COMPLETE:
             return {
                 ...state,
                 onboardingComplete: action.payload,
             };
-        case ActionTypes.SET_BASIC_ACCOUNT_INFO:
+        case AccountsActionTypes.SET_BASIC_ACCOUNT_INFO:
             return {
                 ...state,
                 setupInfo: {
@@ -188,7 +186,7 @@ const account = (
                     },
                 },
             };
-        case ActionTypes.MARK_TASK_AS_DONE:
+        case AccountsActionTypes.MARK_TASK_AS_DONE:
             return {
                 ...state,
                 tasks: {
@@ -199,7 +197,7 @@ const account = (
                     },
                 },
             };
-        case ActionTypes.UPDATE_ADDRESS_DATA:
+        case AccountsActionTypes.UPDATE_ADDRESS_DATA:
             return {
                 ...state,
                 accountInfo: {
@@ -213,22 +211,22 @@ const account = (
                     },
                 },
             };
-        case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
-        case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
-        case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
-        case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
+        case AccountsActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
+        case AccountsActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
+        case AccountsActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
+        case AccountsActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
         case PollingActionTypes.SYNC_ACCOUNT_WHILE_POLLING:
         case PollingActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION:
-        case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case AccountsActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
         case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
-        case ActionTypes.SYNC_ACCOUNT_BEFORE_SWEEPING:
-        case ActionTypes.MANUAL_SYNC_SUCCESS:
-        case ActionTypes.OVERRIDE_ACCOUNT_INFO:
+        case AccountsActionTypes.SYNC_ACCOUNT_BEFORE_SWEEPING:
+        case AccountsActionTypes.MANUAL_SYNC_SUCCESS:
+        case AccountsActionTypes.OVERRIDE_ACCOUNT_INFO:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
             };
-        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
@@ -238,7 +236,7 @@ const account = (
                     usedExistingSeed: false,
                 },
             };
-        case ActionTypes.ASSIGN_ACCOUNT_INDEX:
+        case AccountsActionTypes.ASSIGN_ACCOUNT_INDEX:
             return {
                 ...state,
                 accountInfo: transform(

@@ -1,23 +1,4 @@
-export const ActionTypes = {
-    SET_SEND_ADDRESS_FIELD: 'IOTA/UI/SET_SEND_ADDRESS_FIELD',
-    SET_SEND_AMOUNT_FIELD: 'IOTA/UI/SET_SEND_AMOUNT_FIELD',
-    SET_SEND_MESSAGE_FIELD: 'IOTA/UI/SET_SEND_MESSAGE_FIELD',
-    CLEAR_SEND_FIELDS: 'IOTA/UI/CLEAR_SEND_FIELDS',
-    SET_SEND_DENOMINATION: 'IOTA/UI/SET_SEND_DENOMINATION',
-    SET_USER_ACTIVITY: 'IOTA/UI/SET_USER_ACTIVITY',
-    SET_DO_NOT_MINIMISE: 'IOTA/UI/SET_DO_NOT_MINIMISE',
-    TOGGLE_MODAL_ACTIVITY: 'IOTA/UI/TOGGLE_MODAL_ACTIVITY',
-    UPDATE_MODAL_PROPS: 'IOTA/UI/UPDATE_MODAL_PROPS',
-    SET_LOGIN_ROUTE: 'IOTA/UI/SET_LOGIN_ROUTE',
-    SET_QR_MESSAGE: 'IOTA/UI/SET_QR_MESSAGE',
-    SET_QR_AMOUNT: 'IOTA/UI/SET_QR_AMOUNT',
-    SET_QR_TAG: 'IOTA/UI/SET_QR_TAG',
-    SET_QR_DENOMINATION: 'IOTA/UI/SET_QR_DENOMINATION',
-    SET_SELECTED_QR_TAB: 'IOTA/UI/SET_SELECTED_QR_TAB',
-    SET_ROUTE: 'IOTA/UI/SET_ROUTE',
-    SET_KEYBOARD_ACTIVITY: 'IOTA/UI/SET_KEYBOARD_ACTIVITY',
-    SET_ANIMATE_CHART_ON_MOUNT: 'IOTA/UI/SET_ANIMATE_CHART_ON_MOUNT',
-};
+import { UiActionTypes } from '../types';
 
 /**
  * Dispatch to set QR message in state
@@ -28,7 +9,7 @@ export const ActionTypes = {
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setQrMessage = (payload) => ({
-    type: ActionTypes.SET_QR_MESSAGE,
+    type: UiActionTypes.SET_QR_MESSAGE,
     payload,
 });
 
@@ -41,7 +22,7 @@ export const setQrMessage = (payload) => ({
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setQrAmount = (payload) => ({
-    type: ActionTypes.SET_QR_AMOUNT,
+    type: UiActionTypes.SET_QR_AMOUNT,
     payload,
 });
 
@@ -54,7 +35,7 @@ export const setQrAmount = (payload) => ({
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setQrTag = (payload) => ({
-    type: ActionTypes.SET_QR_TAG,
+    type: UiActionTypes.SET_QR_TAG,
     payload,
 });
 
@@ -67,7 +48,7 @@ export const setQrTag = (payload) => ({
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setQrDenomination = (payload) => ({
-    type: ActionTypes.SET_QR_DENOMINATION,
+    type: UiActionTypes.SET_QR_DENOMINATION,
     payload,
 });
 
@@ -80,7 +61,7 @@ export const setQrDenomination = (payload) => ({
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setSelectedQrTab = (payload) => ({
-    type: ActionTypes.SET_SELECTED_QR_TAB,
+    type: UiActionTypes.SET_SELECTED_QR_TAB,
     payload,
 });
 
@@ -92,7 +73,7 @@ export const setSelectedQrTab = (payload) => ({
  * @returns {{type: {string} }}
  */
 export const setSendAddressField = (payload) => ({
-    type: ActionTypes.SET_SEND_ADDRESS_FIELD,
+    type: UiActionTypes.SET_SEND_ADDRESS_FIELD,
     payload,
 });
 
@@ -105,7 +86,7 @@ export const setSendAddressField = (payload) => ({
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setSendAmountField = (payload) => ({
-    type: ActionTypes.SET_SEND_AMOUNT_FIELD,
+    type: UiActionTypes.SET_SEND_AMOUNT_FIELD,
     payload,
 });
 
@@ -118,7 +99,7 @@ export const setSendAmountField = (payload) => ({
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setSendMessageField = (payload) => ({
-    type: ActionTypes.SET_SEND_MESSAGE_FIELD,
+    type: UiActionTypes.SET_SEND_MESSAGE_FIELD,
     payload,
 });
 
@@ -130,7 +111,7 @@ export const setSendMessageField = (payload) => ({
  * @returns {{type: {string} }}
  */
 export const clearSendFields = () => ({
-    type: ActionTypes.CLEAR_SEND_FIELDS,
+    type: UiActionTypes.CLEAR_SEND_FIELDS,
 });
 
 /**
@@ -143,7 +124,7 @@ export const clearSendFields = () => ({
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setSendDenomination = (payload) => ({
-    type: ActionTypes.SET_SEND_DENOMINATION,
+    type: UiActionTypes.SET_SEND_DENOMINATION,
     payload,
 });
 
@@ -156,7 +137,7 @@ export const setSendDenomination = (payload) => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const setUserActivity = (payload) => ({
-    type: ActionTypes.SET_USER_ACTIVITY,
+    type: UiActionTypes.SET_USER_ACTIVITY,
     payload,
 });
 
@@ -170,7 +151,7 @@ export const setUserActivity = (payload) => ({
  */
 export const setDoNotMinimise = (payload) => {
     return {
-        type: ActionTypes.SET_DO_NOT_MINIMISE,
+        type: UiActionTypes.SET_DO_NOT_MINIMISE,
         payload,
     };
 };
@@ -184,7 +165,7 @@ export const setDoNotMinimise = (payload) => {
  */
 export const toggleModalActivity = (modalContent, modalProps) => {
     return {
-        type: ActionTypes.TOGGLE_MODAL_ACTIVITY,
+        type: UiActionTypes.TOGGLE_MODAL_ACTIVITY,
         modalContent,
         modalProps,
     };
@@ -199,7 +180,7 @@ export const toggleModalActivity = (modalContent, modalProps) => {
  */
 export const updateModalProps = (payload) => {
     return {
-        type: ActionTypes.UPDATE_MODAL_PROPS,
+        type: UiActionTypes.UPDATE_MODAL_PROPS,
         payload,
     };
 };
@@ -214,7 +195,7 @@ export const updateModalProps = (payload) => {
  */
 export const setLoginRoute = (payload) => {
     return {
-        type: ActionTypes.SET_LOGIN_ROUTE,
+        type: UiActionTypes.SET_LOGIN_ROUTE,
         payload,
     };
 };
@@ -229,7 +210,7 @@ export const setLoginRoute = (payload) => {
  */
 export const setKeyboardActivity = (payload) => {
     return {
-        type: ActionTypes.SET_KEYBOARD_ACTIVITY,
+        type: UiActionTypes.SET_KEYBOARD_ACTIVITY,
         payload,
     };
 };
@@ -244,7 +225,7 @@ export const setKeyboardActivity = (payload) => {
  */
 export const setAnimateChartOnMount = (payload) => {
     return {
-        type: ActionTypes.SET_ANIMATE_CHART_ON_MOUNT,
+        type: UiActionTypes.SET_ANIMATE_CHART_ON_MOUNT,
         payload,
     };
 };
