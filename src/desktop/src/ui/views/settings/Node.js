@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import unionBy from 'lodash/unionBy';
 
@@ -39,7 +39,9 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
 
     useEffect(
         () => {
-            if (!loading && settings.node.url !== primaryNode.url) setPrimaryNode(settings.node);
+            if (!loading && settings.node.url !== primaryNode.url) {
+                setPrimaryNode(settings.node);
+            }
         },
         [settings],
     );
