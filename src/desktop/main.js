@@ -144,10 +144,6 @@ function createWindow() {
         show: false,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
-        icon: path.resolve(
-            paths.assets,
-            `icon.${process.platform === 'win32' ? 'ico' : process.platform === 'darwin' ? 'icns' : 'png'}`,
-        ),
         webPreferences: {
             nodeIntegration: false,
             preload: path.resolve(paths.preload, devMode ? 'preloadDev.js' : 'preloadProd.js'),
