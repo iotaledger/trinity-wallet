@@ -81,8 +81,15 @@ const storeLocalStorage = (store) => (next) => (action) => {
 const store = createStore(
     rootReducer,
     compose(
+<<<<<<< HEAD
         applyMiddleware(...middleware, storeLocalStorage),
         typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f,
+=======
+        applyMiddleware(...middleware),
+        typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__
+            ? window.__REDUX_DEVTOOLS_EXTENSION__()
+            : (f) => f,
+>>>>>>> develop
     ),
 );
 

@@ -1,5 +1,5 @@
 /* global Electron */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import css from 'ui/views/onboarding/index.scss';
@@ -7,14 +7,20 @@ import css from 'ui/views/onboarding/index.scss';
 /**
  * Linux missing dependencies tutorial
  */
-class FatalError extends React.PureComponent {
-    static propTypes = {
-        error: PropTypes.string,
-    };
+const FatalError = ({ error }) => {
+    const [errors, setErrors] = useState(typeof window.fatalErrors === 'object' ? window.fatalErrors : []);
 
-    linuxContent = () => {
-        const { error } = this.props;
+    useEffect(() => {
+        window.fatalErrors = (msg) => {
+            setErrors(errors.concat(msg));
+        };
 
+        return () => {
+            window.fatalErrors = null;
+        };
+    }, []);
+
+    const linuxContent = () => {
         if (typeof error === 'string' && error.indexOf('Unknown or unsupported transport') > -1) {
             return (
                 <form className={css.tutorial}>
@@ -59,48 +65,33 @@ class FatalError extends React.PureComponent {
         );
     };
 
-    generalContent = () => {
-        const { error } = this.props;
-
+    const generalContent = () => {
         return (
             <form>
                 <h1>Error launching wallet</h1>
-                <p>There was a fatal error launching the wallet. {error}</p>
+                <p>There was a fatal error launching the wallet.</p>
+                <pre>
+                    <span key="error">{error}</span>
+                    {errors.map((err, i) => <span key={i}>{err}</span>)}
+                </pre>
             </form>
         );
     };
 
-    render() {
-        const { error } = this.props;
-
-        if (error === 'Found old data') {
-            return (
-                <main className={css.onboarding}>
-                    <header />
-                    <div>
-                        <form className={css.tutorial}>
-                            <h1>Pre 0.5.0 version data found</h1>
-                            <p>
-                                Trinity desktop wallet Windows 7 release 0.5.0 version is not compatible with older
-                                Trinity desktop versions. Backup your seeds using version{' '}
-                                <a href="https://github.com/iotaledger/trinity-wallet/releases/tag/0.4.6">0.4.6.</a> and
-                                reset the wallet.
-                            </p>
-                        </form>
-                    </div>
-                </main>
-            );
-        }
-
-        return (
-            <main className={css.onboarding}>
-                <header />
+    return (
+        <main className={css.onboarding}>
+            <header />
+            <div>
                 <div>
-                    <div>{Electron.getOS() === 'linux' ? this.linuxContent() : this.generalContent()}</div>
+                    {typeof Electron === 'object' && Electron.getOS() === 'linux' ? linuxContent() : generalContent()}
                 </div>
-            </main>
-        );
-    }
-}
+            </div>
+        </main>
+    );
+};
+
+FatalError.propTypes = {
+    error: PropTypes.string,
+};
 
 export default FatalError;

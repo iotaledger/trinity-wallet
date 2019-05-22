@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "De node geeft een foutmelding bij het ophalen van je gegevens. Als het probleem zich blijft voordoen kan je de node aanpassen of je systeem proxy uitschakelen in je Trinity instellingen.",
         "nodeOutOfSync": "Node gedesynchroniseerd",
         "nodeOutOfSyncExplanation": "Uw huidige node is gedesynchroniseerd. Verander uw node of probeer opnieuw.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Node versie wordt niet ondersteund",
         "experimentalNodeExplanation": "De geselecteerde node draait op een experimentele versie dat niet wordt ondersteund. Pas a.u.b. de node aan of probeer het nog een keer.",
         "thisNodeOutOfSync": "De node is niet gesynchroniseerd. Verander uw node of probeer opnieuw.",
@@ -160,9 +161,11 @@
         "shouldUpdateExplanation": "Er is een nieuwe update vrijgegeven. Het wordt aanbevolen dat u naar de laatste versie update.",
         "forceUpdate": "Update de app om door te gaan",
         "forceUpdateExplanation": "Er is een kritische update vrijgegeven. Update de app nu alsjeblieft.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Toegang tot bestandsysteem vereist",
         "missingPermissionExplanation": "Toegang tot het bestandssysteem is vereist om deze functie uit te voeren.",
-        "swipeToConfirm": "Veeg om te bevestigen"
+        "swipeToConfirm": "Veeg om te bevestigen",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -798,13 +801,16 @@
         "notReady": "Indien je een Ledger apparaat wil gebruiken dien je deze nu aan te sluiten en te ontgrendelen",
         "indexInUse": "Index is al in gebruik voor account {{account}}",
         "indexInUseExplanation": "Uw gekozen index is al in gebruik op een van uw accounts. Kies een ander index nummer.",
-        "proceedWithLedger": "Ga verder met Ledger installatie",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Account index",
         "accountPage": "Account pagina",
         "actionCancelled": "Ledger apparaat toegang geannuleerd",
         "actionCancelledExplanation": "Kan de actie niet uitvoeren zonder toegang tot het Ledger apparaat.",
         "chooseAccountIndex": "Kies uw Ledger account index",
-        "accountIndexExplanation": "Uw Ledger kan meerdere seeds opslaan. Elk seed wordt geïdentificeerd middels een uniek index nummer. Een ongebruikte index is vooraf geselecteerd, maar u kunt ook zelf kiezen. Zorg ervoor dat u uw gekozen index nummer noteert.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Sommige wallets van een derde partij vereisen pagina's.",
         "connectionError": "Kan geen verbinding maken met Ledger",
         "connectionErrorExplanation": "Controleer of uw Ledger is verbonden en ontgrendeld.",
@@ -826,7 +832,11 @@
         "checkAddressExplanation": "Controleer of het adres overeenkomt met het adres dat wordt weergegeven op uw Ledger apparaat.",
         "applicationNotInitialised": "Waarschuwing niet bevestigd",
         "applicationNotInitialisedExplanation": "Heropen de IOTA app op uw Ledger apparaat, accepteer de informatieve waarschuwing en probeer het opnieuw.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Kan niet communiceren met Ledger apparaat",
-        "udevErrorExplanation": "Trinity kon niet communiceren met uw Ledger-apparaat. Bezoek de onderstaande URL om dit probleem op te lossen."
+        "udevErrorExplanation": "Trinity kon niet communiceren met uw Ledger-apparaat. Bezoek de onderstaande URL om dit probleem op te lossen.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

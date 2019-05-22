@@ -32,6 +32,8 @@ class Ledger extends React.PureComponent {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        restoringLedgerAccount: PropTypes.bool.isRequired,
     };
 
     state = {
@@ -40,7 +42,25 @@ class Ledger extends React.PureComponent {
         loading: false,
         advancedMode: false,
         udevError: false,
+        countdown: 5,
+        displayedIndexInfo: false
     };
+
+    componentDidMount() {
+        const { t, generateAlert } = this.props;
+        generateAlert(
+            'info',
+            t('ledger:checkLedger'),
+            t('ledger:acceptWarningExplanation'),
+            10000
+        );
+        this.interval = setInterval(() => {
+            const { countdown } = this.state;
+            this.setState({
+                countdown: countdown - 1,
+            });
+        }, 1000);
+    }
 
     /**
      * Check for unused ledger index and set it to state
@@ -63,7 +83,6 @@ class Ledger extends React.PureComponent {
                 index: 0,
                 security: 1,
             });
-
             this.setState({
                 loading: false,
             });
@@ -111,6 +130,19 @@ class Ledger extends React.PureComponent {
         }
     };
 
+    /**
+     * Update Ledger index
+     * @param {number} index
+     */
+    updateIndex = (index) => {
+        const { restoringLedgerAccount, t, generateAlert } = this.props;
+        if (!restoringLedgerAccount && !this.state.displayedIndexInfo) {
+            generateAlert('error', t('ledger:writtenDownInfoTitle'), t('ledger:writtenDownInfoExplanation'), 10000);
+            this.setState({ displayedIndexInfo: true });
+        }
+        this.setState({ index });
+    }
+
     showUdevModal = (udevError) => {
         if (udevError) {
             const { t } = this.props;
@@ -136,8 +168,8 @@ class Ledger extends React.PureComponent {
     };
 
     render() {
-        const { t } = this.props;
-        const { page, index, loading, advancedMode, udevError } = this.state;
+        const { t, restoringLedgerAccount } = this.props;
+        const { page, index, loading, advancedMode, udevError, countdown } = this.state;
 
         return (
             <form className={css.ledger} onSubmit={this.setIndex}>
@@ -145,12 +177,13 @@ class Ledger extends React.PureComponent {
                 <section>
                     <h1>{t('ledger:chooseAccountIndex')}</h1>
                     <p>{t('ledger:accountIndexExplanation')}</p>
+                    <p>{restoringLedgerAccount ? t('ledger:restoreLedgerAccountInfo') : t('ledger:createNewLedgerAccountInfo')}</p>
                     <div>
                         <Number
                             value={index}
                             focus
                             label={advancedMode ? t('ledger:accountIndex') : null}
-                            onChange={(value) => this.setState({ index: value })}
+                            onChange={(value) => this.updateIndex(value)}
                         />
                         {advancedMode && (
                             <Number
@@ -164,17 +197,17 @@ class Ledger extends React.PureComponent {
                     <Toggle
                         checked={advancedMode}
                         onChange={() => this.setState({ advancedMode: !advancedMode, page: 0 })}
-                        on={t('modeSelection:advanced')}
+                        on={t('global:expert')}
                         off={t('modeSelection:standard')}
                     />
                     <small>{advancedMode && t('ledger:accountPageExplanation')}</small>
                 </section>
                 <footer>
-                    <Button disabled={!loading} to="/onboarding/seed-intro" className="square" variant="dark">
+                    <Button disabled={loading} to="/onboarding/seed-intro" className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
-                    <Button loading={loading} type="submit" className="square" variant="primary">
-                        {t('continue')}
+                    <Button loading={loading} type="submit" className="square" variant="primary" disabled={countdown > 0}>
+                        {countdown && countdown > 0 ? countdown : t('continue')}
                     </Button>
                 </footer>
             </form>
@@ -185,6 +218,7 @@ class Ledger extends React.PureComponent {
 const mapStateToProps = (state) => ({
     accounts: state.accounts.accountInfo,
     additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
+    restoringLedgerAccount: state.accounts.accountInfoDuringSetup.usedExistingSeed,
 });
 
 const mapDispatchToProps = {

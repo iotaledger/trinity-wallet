@@ -20,76 +20,88 @@ import Index from 'ui/Index';
 import Tray from 'ui/Tray';
 
 import Alerts from 'ui/global/Alerts';
+import FatalError from 'ui/global/FatalError';
 
 import settings from '../package.json';
 import { decrypt } from './libs/crypto.js';
 
-export const bugsnagClient = bugsnag({
-    apiKey: 'fakeAPIkey',
-    appVersion: settings.version,
-    interactionBreadcrumbsEnabled: false,
-    collectUserIp: false,
-    user: { id: Electron.getUuid() },
-});
-bugsnagClient.use(bugsnagReact, React);
+const init = () => {
+    if (typeof Electron === 'undefined') {
+        return render(<FatalError error="Failed to load Electron preload script" />, document.getElementById('root'));
+    }
 
-const ErrorBoundary = bugsnagClient.getPlugin('react');
-
-if (Electron.mode === 'tray') {
-    Electron.onEvent('store.update', (payload) => {
-        const data = JSON.parse(payload);
-        store.dispatch(mapStorageToStateAction(data));
+    const bugsnagClient = bugsnag({
+        apiKey: 'fakeAPIkey',
+        appVersion: settings.version,
+        interactionBreadcrumbsEnabled: false,
+        collectUserIp: false,
+        user: { id: Electron.getUuid() },
     });
-} else {
-    initialiseStorage(getEncryptionKey)
-        .then(async (key) => {
-            const persistedData = Electron.getStorage('__STATE__');
+    bugsnagClient.use(bugsnagReact, React);
 
-            if (!persistedData) {
-                return null;
-            }
+    const ErrorBoundary = bugsnagClient.getPlugin('react');
 
-            const data = await decrypt(persistedData, key);
-
-            return JSON.parse(data);
-        })
-        .then((data) => {
-            if (!isEmpty(data)) {
-                // Change provider on global iota instance
-                const node = get(data, 'settings.node');
-                changeIotaNode(node);
-
-                // Update store with persisted state
-                store.dispatch(mapStorageToStateAction(data));
-
-                // Assign accountIndex to every account in accountInfo if it is not assigned already
-                store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
-            }
-
-            // Show Wallet window after inital store update
-            Electron.focus();
-        })
-        .catch((err) => {
-            Electron.focus();
+    if (Electron.mode === 'tray') {
+        Electron.onEvent('store.update', (payload) => {
+            const data = JSON.parse(payload);
+            store.dispatch(mapStorageToStateAction(data));
         });
-}
+    } else {
+        initialiseStorage(getEncryptionKey)
+            .then(async (key) => {
+                const persistedData = Electron.getStorage('__STATE__');
 
-render(
-    <ErrorBoundary>
-        <Redux store={store}>
-            <I18nextProvider i18n={i18next}>
-                <Router>
-                    {Electron.mode === 'tray' ? (
-                        <Tray />
-                    ) : (
-                        <React.Fragment>
-                            <Alerts />
-                            <Index />
-                        </React.Fragment>
-                    )}
-                </Router>
-            </I18nextProvider>
-        </Redux>
-    </ErrorBoundary>,
-    document.getElementById('root'),
-);
+                if (!persistedData) {
+                    return null;
+                }
+
+                const data = await decrypt(persistedData, key);
+
+                return JSON.parse(data);
+            })
+            .then((data) => {
+                if (!isEmpty(data)) {
+                    // Change provider on global iota instance
+                    const node = get(data, 'settings.node');
+                    changeIotaNode(node);
+
+                    // Update store with persisted state
+                    store.dispatch(mapStorageToStateAction(data));
+
+                    // Assign accountIndex to every account in accountInfo if it is not assigned already
+                    store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
+                }
+
+                // Show Wallet window after inital store update
+                Electron.focus();
+            })
+
+            .catch((err) => {
+                Electron.focus();
+                render(<FatalError error={err.message || err} />, document.getElementById('root'));
+                bugsnagClient.notify(err);
+            });
+    }
+
+    render(
+        <ErrorBoundary>
+            <Redux store={store}>
+                <I18nextProvider i18n={i18next}>
+                    <Router>
+                        {Electron.mode === 'tray' ? (
+                            <Tray />
+                        ) : (
+                            <React.Fragment>
+                                <Alerts />
+                                <Index />
+                            </React.Fragment>
+                        )}
+                    </Router>
+                </I18nextProvider>
+            </Redux>
+        </ErrorBoundary>,
+        document.getElementById('root'),
+    );
+};
+
+init();

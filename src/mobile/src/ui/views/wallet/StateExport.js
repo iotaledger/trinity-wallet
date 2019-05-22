@@ -143,9 +143,9 @@ export class StateExport extends Component {
                     generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
                 })
                 .catch(() => fs.unlink(path));
-        } catch (error) {
+        } catch (err) {
             fs.unlink(path);
-            generateAlert('error', t('global:somethingWentWrong'), t('global:somethingWentWrongTryAgain'));
+            generateAlert('error', t('global:somethingWentWrong'), t('global:somethingWentWrongTryAgain'), 10000, err);
         }
     }
 
@@ -216,4 +216,9 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withNamespaces(['stateExport', 'global'])(connect(mapStateToProps, mapDispatchToProps)(StateExport));
+export default withNamespaces(['stateExport', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(StateExport),
+);

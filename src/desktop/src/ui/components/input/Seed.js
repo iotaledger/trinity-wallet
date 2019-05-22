@@ -228,7 +228,13 @@ class SeedInput extends React.PureComponent {
             } else if (error.message === 'SeedNotFound') {
                 generateAlert('error', t('seedVault:noSeedFound'), t('seedVault:noSeedFoundExplanation'));
             } else {
-                generateAlert('error', t('seedVault:seedFileError'), t('seedVault:seedFileErrorExplanation'));
+                generateAlert(
+                    'error',
+                    t('seedVault:seedFileError'),
+                    t('seedVault:seedFileErrorExplanation'),
+                    20000,
+                    error,
+                );
             }
         }
     };
