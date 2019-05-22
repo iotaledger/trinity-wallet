@@ -5,7 +5,7 @@ import { withI18n, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
-import { getEncryptionKey, ALIAS_REALM } from 'libs/realm';
+import { ALIAS_REALM } from 'libs/realm';
 
 import {
     changePowSettings,
@@ -18,8 +18,6 @@ import {
 } from 'actions/settings';
 
 import { generateAlert } from 'actions/alerts';
-
-import { reinitialise as reinitialiseStorage } from 'storage';
 
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
@@ -44,10 +42,6 @@ class Advanced extends PureComponent {
         setTray: PropTypes.func.isRequired,
         /** @ignore */
         setProxy: PropTypes.func.isRequired,
-        /** @ignore */
-        history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
-        }).isRequired,
         /** @ignore */
         setNotifications: PropTypes.func.isRequired,
         /** @ignore */
@@ -102,16 +96,13 @@ class Advanced extends PureComponent {
      * @returns {undefined}
      */
     resetWallet = async () => {
-        const { t, generateAlert, history } = this.props;
+        const { t, generateAlert } = this.props;
 
         try {
-            history.push('/');
-
             await clearVault(ALIAS_REALM);
             localStorage.clear();
             Electron.clearStorage();
 
-            await reinitialiseStorage(getEncryptionKey);
             location.reload();
         } catch (_err) {
             generateAlert(
