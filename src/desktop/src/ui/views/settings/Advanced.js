@@ -5,7 +5,7 @@ import { withI18n, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
-import { getEncryptionKey, ALIAS_REALM } from 'libs/realm';
+import { ALIAS_REALM } from 'libs/realm';
 
 import {
     changePowSettings,
@@ -42,10 +42,6 @@ class Advanced extends PureComponent {
         setTray: PropTypes.func.isRequired,
         /** @ignore */
         setProxy: PropTypes.func.isRequired,
-        /** @ignore */
-        history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
-        }).isRequired,
         /** @ignore */
         setNotifications: PropTypes.func.isRequired,
         /** @ignore */
@@ -100,7 +96,7 @@ class Advanced extends PureComponent {
      * @returns {undefined}
      */
     resetWallet = async () => {
-        const { t, generateAlert, history } = this.props;
+        const { t, generateAlert } = this.props;
 
         try {
             await clearVault(ALIAS_REALM);
