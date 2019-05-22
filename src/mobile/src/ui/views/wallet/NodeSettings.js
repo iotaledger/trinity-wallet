@@ -19,7 +19,7 @@ import {
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { DEFAULT_NODE, MINIMUM_QUORUM_SIZE, MAXIMUM_QUORUM_SIZE } from 'shared-modules/config';
+import { DEFAULT_NODE, MINIMUM_QUORUM_SIZE, MAXIMUM_QUORUM_SIZE, QUORUM_SIZE } from 'shared-modules/config';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
@@ -184,7 +184,7 @@ export class NodeSettings extends PureComponent {
      */
     toggleQuorumEnabled() {
         const { t, customNodes, nodes } = this.props;
-        const { quorumEnabled, autoNodeList, quorumSize } = this.state;
+        const { quorumEnabled, autoNodeList } = this.state;
         if (
             !quorumEnabled &&
             ((autoNodeList && nodes.length < MINIMUM_QUORUM_SIZE) ||
@@ -200,8 +200,9 @@ export class NodeSettings extends PureComponent {
                       )}`,
             );
         }
-        if (!quorumEnabled && !autoNodeList && quorumSize > customNodes.length) {
-            this.setState({ quorumSize: customNodes.length.toString() });
+
+        if (!quorumEnabled) {
+            this.setState({ quorumSize: Math.min(this.getAvailableNodes().length, QUORUM_SIZE).toString() });
         }
         this.setState({ quorumEnabled: !quorumEnabled });
     }
