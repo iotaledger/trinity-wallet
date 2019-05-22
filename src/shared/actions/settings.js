@@ -523,7 +523,7 @@ export function setFullNode(node, addingCustomNode = false) {
                         generateAlert(
                             'success',
                             i18next.t('global:customNodeAdded'),
-                            i18next.t('global:customNodeAddedExplanation', node.url),
+                            i18next.t('global:customNodeAddedExplanation', { node: node.url }),
                             10000,
                         ),
                     );
@@ -534,7 +534,7 @@ export function setFullNode(node, addingCustomNode = false) {
                         generateAlert(
                             'success',
                             i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessExplanation', node.url),
+                            i18next.t('settings:nodeChangeSuccessExplanation', { node: node.url }),
                             10000,
                         ),
                     );
@@ -547,7 +547,7 @@ export function setFullNode(node, addingCustomNode = false) {
                         generateAlert(
                             'success',
                             i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessNoRemotePow', node.url),
+                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { node: node.url }),
                             10000,
                         ),
                     );
