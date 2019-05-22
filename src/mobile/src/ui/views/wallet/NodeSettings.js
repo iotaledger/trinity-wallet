@@ -18,7 +18,7 @@ import {
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { MINIMUM_QUORUM_SIZE } from 'shared-modules/config';
+import { MINIMUM_QUORUM_SIZE, MAXIMUM_QUORUM_SIZE } from 'shared-modules/config';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
@@ -94,9 +94,16 @@ export class NodeSettings extends PureComponent {
         leaveNavigationBreadcrumb('NodeSettings');
     }
 
+    componentWillReceiveProps(newProps) {
+        if (isEqual(this.state.node && this.props.node) && !isEqual(this.props.node, newProps.node)) {
+            this.setState({ node: newProps.node });
+        }
+    }
+
     onApplyPress() {
         const { t } = this.props;
         const { quorumSize, autoNodeList, nodeAutoSwitch, quorumEnabled, node } = this.state;
+
         if (autoNodeList !== this.props.autoNodeList) {
             this.props.updateAutoNodeListSetting(autoNodeList);
         }
@@ -120,7 +127,7 @@ export class NodeSettings extends PureComponent {
         const { autoNodeList } = this.state;
         const { nodes, customNodes } = this.props;
         const nodeList = autoNodeList ? [...nodes, ...customNodes] : customNodes;
-        return Array(nodeList.length - 1)
+        return Array(Math.min(nodeList.length, MAXIMUM_QUORUM_SIZE))
             .fill()
             .map((_, idx) => (MINIMUM_QUORUM_SIZE + idx).toString());
     }
@@ -131,6 +138,8 @@ export class NodeSettings extends PureComponent {
             { autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node: omit(node, 'custom') },
             omit(omit(this.state, 'node.custom'), 'autoNodeManagement'),
         );
+
+
     }
 
     hasDefaultNodeSettings() {
@@ -139,7 +148,7 @@ export class NodeSettings extends PureComponent {
 
     toggleQuorumEnabled() {
         const { t, customNodes, nodes } = this.props;
-        const { quorumEnabled, autoNodeList } = this.state;
+        const { quorumEnabled, autoNodeList, quorumSize } = this.state;
         if (
             !quorumEnabled &&
             ((autoNodeList && nodes.length < MINIMUM_QUORUM_SIZE) ||
@@ -155,12 +164,15 @@ export class NodeSettings extends PureComponent {
                       )}`,
             );
         }
+        if (!quorumEnabled && !autoNodeList && quorumSize > customNodes.length) {
+            this.setState({ quorumSize: customNodes.length.toString() });
+        }
         this.setState({ quorumEnabled: !quorumEnabled });
     }
 
     toggleAutoNodeList() {
         const { autoNodeList } = this.state;
-        const { t, customNodes } = this.props;
+        const { t, customNodes, quorumSize } = this.props;
         if (autoNodeList && isEmpty(customNodes)) {
             return this.props.generateAlert(
                 'error',
@@ -170,6 +182,8 @@ export class NodeSettings extends PureComponent {
         }
         if (autoNodeList && customNodes.length < MINIMUM_QUORUM_SIZE) {
             this.setState({ quorumEnabled: false });
+        } else if (autoNodeList && customNodes.length < quorumSize) {
+            this.setState({ quorumSize: customNodes.length.toString() });
         }
         this.setState({ autoNodeList: !autoNodeList });
     }
