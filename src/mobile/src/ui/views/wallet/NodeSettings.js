@@ -91,8 +91,7 @@ export class NodeSettings extends PureComponent {
 
     onApplyPress() {
         const { t } = this.props;
-        const { autoNodeList, nodeAutoSwitch, quorumEnabled, node } = this.state;
-        const quorumSize = parseInt(this.state.quorumSize);
+        const { quorumSize, autoNodeList, nodeAutoSwitch, quorumEnabled, node } = this.state;
         if (autoNodeList !== this.props.autoNodeList){
             this.props.updateAutoNodeListSetting(autoNodeList);
         }
@@ -100,9 +99,12 @@ export class NodeSettings extends PureComponent {
             this.props.updateNodeAutoSwitchSetting(nodeAutoSwitch);
         }
         if (quorumEnabled !== this.props.quorumEnabled || quorumSize !== this.props.quorumSize){
-            this.props.updateQuorumConfig({ enabled: quorumEnabled, size: quorumSize });
+            this.props.updateQuorumConfig({ enabled: quorumEnabled, size: parseInt(quorumSize) });
         }
-        if (node !== this.props.node){
+        if (!isEqual(omit(node, 'custom'), omit(this.props.node, 'custom'))){
+            console.log('not here')
+            console.log(omit(node, 'custom'))
+            console.log(omit(this.props.node, 'custom'))
             return this.props.setFullNode(node);
         }
         this.props.generateAlert('success', t('nodeSettings:nodeSettingsUpdatedTitle'), t('nodeSettings:nodeSettingsUpdatedExplanation'));
@@ -117,7 +119,7 @@ export class NodeSettings extends PureComponent {
 
     haveNodeSettingsChanged() {
         const { autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node } = this.props;
-        return isEqual({ autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node }, omit(this.state, 'autoNodeManagement'));
+        return isEqual({ autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node: omit(node, 'custom') }, omit(omit(this.state, 'node.custom'), 'autoNodeManagement'));
     }
 
     hasDefaultNodeSettings() {
@@ -202,7 +204,7 @@ export class NodeSettings extends PureComponent {
             },
             {
                 name: t('nodeSettings:quorumSize'),
-                function: (quorumSize) => quorumSize && this.setState({ quorumSize }),
+                function: (quorumSize) => { quorumSize && this.setState({ quorumSize })},
                 inactive: autoNodeManagement || !quorumEnabled,
                 dropdownOptions: this.getQuorumOptions(),
                 currentSetting: !quorumEnabled && '0' || quorumSize
