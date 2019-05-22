@@ -18,7 +18,7 @@ import {
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { MINIMUM_QUORUM_SIZE } from 'shared-modules/config';
+import { MINIMUM_QUORUM_SIZE, MAXIMUM_QUORUM_SIZE } from 'shared-modules/config';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
@@ -94,9 +94,17 @@ export class NodeSettings extends PureComponent {
         leaveNavigationBreadcrumb('NodeSettings');
     }
 
+    componentWillReceiveProps(newProps) {
+        // Update node in state if node in props is autoswitched, and user isn't in the process of changing node
+        if (isEqual(this.state.node && this.props.node) && !isEqual(this.props.node, newProps.node)) {
+            this.setState({ node: newProps.node });
+        }
+    }
+
     onApplyPress() {
         const { t } = this.props;
         const { quorumSize, autoNodeList, nodeAutoSwitch, quorumEnabled, node } = this.state;
+
         if (autoNodeList !== this.props.autoNodeList) {
             this.props.updateAutoNodeListSetting(autoNodeList);
         }
@@ -116,15 +124,38 @@ export class NodeSettings extends PureComponent {
         );
     }
 
-    getQuorumOptions() {
-        const { autoNodeList } = this.state;
+    /**
+     * Returns active node list
+     *
+     * @method getAvailableNodes
+     *
+     * @returns {array}
+     */
+    getAvailableNodes() {
         const { nodes, customNodes } = this.props;
-        const nodeList = autoNodeList ? [...nodes, ...customNodes] : customNodes;
-        return Array(nodeList.length - 1)
+        return this.state.autoNodeList ? [...nodes, ...customNodes] : customNodes;
+    }
+
+    /**
+     * Returns possible quorum size values depending on current settings
+     *
+     * @method getQuorumSizeOptions
+     *
+     * @returns {array}
+     */
+    getQuorumSizeOptions() {
+        return Array(Math.min(this.getAvailableNodes().length, MAXIMUM_QUORUM_SIZE))
             .fill()
             .map((_, idx) => (MINIMUM_QUORUM_SIZE + idx).toString());
     }
 
+    /**
+     * Determines whether the user has adjusted the node settings from their initial state
+     *
+     * @method haveNodeSettingsChanged
+     *
+     * @returns {bool}
+     */
     haveNodeSettingsChanged() {
         const { autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node } = this.props;
         return isEqual(
@@ -133,13 +164,25 @@ export class NodeSettings extends PureComponent {
         );
     }
 
+    /**
+     * Determines whether the node settings in state match the default values (i.e. the values when automatic node management is on)
+     *
+     * @method hasDefaultNodeSettings
+     *
+     * @returns {bool}
+     */
     hasDefaultNodeSettings() {
         return isEqual(defaultState, omit(this.state, ['node', 'autoNodeManagement']));
     }
 
+    /**
+     * Toggles quorum activity, adjusting quorum size if necessary
+     *
+     * @method toggleQuorumEnabled
+     */
     toggleQuorumEnabled() {
         const { t, customNodes, nodes } = this.props;
-        const { quorumEnabled, autoNodeList } = this.state;
+        const { quorumEnabled, autoNodeList, quorumSize } = this.state;
         if (
             !quorumEnabled &&
             ((autoNodeList && nodes.length < MINIMUM_QUORUM_SIZE) ||
@@ -155,12 +198,20 @@ export class NodeSettings extends PureComponent {
                       )}`,
             );
         }
+        if (!quorumEnabled && !autoNodeList && quorumSize > customNodes.length) {
+            this.setState({ quorumSize: customNodes.length.toString() });
+        }
         this.setState({ quorumEnabled: !quorumEnabled });
     }
 
+    /**
+     * Toggles auto node list and adjusts quorum settings if there aren't enough quorum nodes
+     *
+     * @method toggleAutoNodeList
+     */
     toggleAutoNodeList() {
         const { autoNodeList } = this.state;
-        const { t, customNodes } = this.props;
+        const { t, customNodes, quorumSize } = this.props;
         if (autoNodeList && isEmpty(customNodes)) {
             return this.props.generateAlert(
                 'error',
@@ -170,10 +221,17 @@ export class NodeSettings extends PureComponent {
         }
         if (autoNodeList && customNodes.length < MINIMUM_QUORUM_SIZE) {
             this.setState({ quorumEnabled: false });
+        } else if (autoNodeList && customNodes.length < quorumSize) {
+            this.setState({ quorumSize: customNodes.length.toString() });
         }
         this.setState({ autoNodeList: !autoNodeList });
     }
 
+    /**
+     * Toggles automatic node management i.e. resets to default settings when turned on
+     *
+     * @method toggleAutomaticNodeManagement
+     */
     toggleAutomaticNodeManagement() {
         if (!this.hasDefaultNodeSettings()) {
             this.setState(defaultState);
@@ -188,9 +246,8 @@ export class NodeSettings extends PureComponent {
      * @returns {function}
      */
     renderSettingsContent() {
-        const { theme, t, nodes, customNodes, isChangingNode, loginRoute } = this.props;
+        const { theme, t, nodes, isChangingNode, loginRoute } = this.props;
         const { autoNodeManagement, autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node } = this.state;
-        const availableNodes = autoNodeList ? [...customNodes, ...nodes] : customNodes;
         const rows = [
             {
                 name: t('nodeSettings:automaticNodeManagement'),
@@ -232,7 +289,7 @@ export class NodeSettings extends PureComponent {
                     }),
                 inactive: autoNodeManagement || nodeAutoSwitch,
                 currentSetting: node.url,
-                dropdownOptions: map(availableNodes, (node) => node.url),
+                dropdownOptions: map(this.getAvailableNodes(), (node) => node.url),
             },
             { name: 'separator', inactive: autoNodeManagement },
             {
@@ -249,7 +306,7 @@ export class NodeSettings extends PureComponent {
                     quorumSize && this.setState({ quorumSize });
                 },
                 inactive: autoNodeManagement || !quorumEnabled,
-                dropdownOptions: this.getQuorumOptions(),
+                dropdownOptions: this.getQuorumSizeOptions(),
                 currentSetting: (!quorumEnabled && '0') || quorumSize,
             },
             {
@@ -296,8 +353,5 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['advancedSettings', 'nodeSettings', 'settings', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(NodeSettings),
+    connect(mapStateToProps, mapDispatchToProps)(NodeSettings),
 );
