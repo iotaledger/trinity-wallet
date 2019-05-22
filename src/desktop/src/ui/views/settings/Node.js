@@ -15,7 +15,7 @@ import Scrollbar from 'ui/components/Scrollbar';
 
 import NodeCustom from './NodeCustom';
 
-import { MINIMUM_QUORUM_SIZE } from '../../../../../shared/config';
+import { MINIMUM_QUORUM_SIZE, MAXIMUM_QUORUM_SIZE } from '../../../../../shared/config';
 
 import css from './index.scss';
 
@@ -190,7 +190,10 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                             disabled={autoNodeSelection || !quorumEnabled}
                             inline
                             min={MINIMUM_QUORUM_SIZE}
-                            max={autoNodeList ? nodes.length : customNodes.length}
+                            max={Math.min(
+                                autoNodeList ? nodes.length + customNodes.length : customNodes.length,
+                                MAXIMUM_QUORUM_SIZE,
+                            )}
                             value={quorumSize}
                             label={t('nodeSettings:quorumSize')}
                             onChange={setQuorumSize}
