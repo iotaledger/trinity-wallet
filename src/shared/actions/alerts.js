@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import isString from 'lodash/isString';
 import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
@@ -59,6 +60,34 @@ export const generateAlert = (category, title, message, closeInterval, err) => (
     }
 };
 
+
+/**
+ * Generates relevant node error alert
+ *
+ * @method generateNodeError
+ * @param {func} generateDefaultAlert
+ * @param {object} err
+ *
+ * @returns {function} dispatch
+ */
+export const generateNodeError = (generateDefaultAlert, err) => (dispatch) => {
+    if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
+        dispatch(generateLedgerCancelledAlert(err));
+    } else if (get(err, 'message') === Errors.LEDGER_INVALID_INDEX) {
+        dispatch(generateLedgerIncorrectIndexAlert(err));
+    } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
+        dispatch(generateNodeOutOfSyncErrorAlert(err));
+    } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
+        dispatch(generateNodeOutOfSyncErrorAlert(err, true));
+    } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
+        dispatch(generateUnsupportedNodeErrorAlert(err));
+    } else if (get(err, 'message') === Errors.NOT_ENOUGH_SYNCED_NODES) {
+        dispatch(generateNotEnoughSyncedNodes(err));
+    } else {
+        dispatch(generateDefaultAlert(err));
+    }
+};
+
 /**
  * Generates an error alert when an account info network call fails
  *
@@ -113,6 +142,25 @@ export const generateUnsupportedNodeErrorAlert = (err) => (dispatch) => {
             'error',
             i18next.t('global:experimentalNode'),
             i18next.t('global:experimentalNodeExplanation'),
+            10000,
+            err,
+        ),
+    );
+};
+
+/**
+ * Generates an error alert if there are insufficient synced nodes for quorum
+ *
+ * @method generateNotEnoughSyncedNodes
+ *
+ * @returns {function} dispatch
+ */
+export const generateNotEnoughSyncedNodes = (err) => (dispatch) => {
+    dispatch(
+        generateAlert(
+            'error',
+            i18next.t('global:notEnoughSyncedNodes'),
+            i18next.t('global:notEnoughSyncedNodesExplanation'),
             10000,
             err,
         ),

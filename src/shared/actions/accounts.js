@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import assign from 'lodash/assign';
 import some from 'lodash/some';
 import isEmpty from 'lodash/isEmpty';
@@ -18,13 +17,9 @@ import {
     generateSyncingCompleteAlert,
     generateSyncingErrorAlert,
     generateAccountDeletedAlert,
-    generateNodeOutOfSyncErrorAlert,
-    generateUnsupportedNodeErrorAlert,
     generateAccountSyncRetryAlert,
-    generateLedgerCancelledAlert,
-    generateLedgerIncorrectIndexAlert,
+    generateNodeError,
 } from '../actions/alerts';
-import Errors from '../libs/errors';
 import { Account, Wallet } from '../storage';
 import NodesManager from '../libs/iota/NodesManager';
 
@@ -407,17 +402,7 @@ export const getFullAccountInfo = (seedStore, accountName, quorum = false) => {
                 dispatch(fullAccountInfoFetchSuccess(resultWithAccountMeta));
             })
             .catch((err) => {
-                const dispatchErrors = () => {
-                    if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
-                        dispatch(generateNodeOutOfSyncErrorAlert());
-                    } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
-                        dispatch(generateNodeOutOfSyncErrorAlert(true));
-                    } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
-                        dispatch(generateUnsupportedNodeErrorAlert(err));
-                    } else {
-                        dispatch(generateAccountInfoErrorAlert(err));
-                    }
-                };
+                const dispatchErrors = () => dispatch(generateNodeError(generateAccountInfoErrorAlert, err));
                 dispatch(fullAccountInfoFetchError());
                 if (existingAccountNames.length === 0) {
                     setTimeout(dispatchErrors, 500);
@@ -459,16 +444,7 @@ export const manuallySyncAccount = (seedStore, accountName, quorum = false) => {
                 dispatch(manualSyncSuccess(result));
             })
             .catch((err) => {
-                if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
-                    dispatch(generateLedgerCancelledAlert(err));
-                } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateNodeOutOfSyncErrorAlert(err));
-                } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
-                    dispatch(generateUnsupportedNodeErrorAlert(err));
-                } else {
-                    dispatch(generateSyncingErrorAlert(err));
-                }
-
+                dispatch(generateNodeError(generateSyncingErrorAlert, err));
                 dispatch(manualSyncError());
             });
     };
@@ -506,19 +482,7 @@ export const getAccountInfo = (seedStore, accountName, notificationFn, quorum = 
                 dispatch(accountInfoFetchSuccess(result));
             })
             .catch((err) => {
-                if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
-                    dispatch(generateLedgerCancelledAlert(err));
-                } else if (get(err, 'message') === Errors.LEDGER_INVALID_INDEX) {
-                    dispatch(generateLedgerIncorrectIndexAlert(err));
-                } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateNodeOutOfSyncErrorAlert(err));
-                } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
-                    dispatch(generateNodeOutOfSyncErrorAlert(err, true));
-                } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
-                    dispatch(generateUnsupportedNodeErrorAlert(err));
-                } else {
-                    setTimeout(() => dispatch(generateAccountInfoErrorAlert(err)), 500);
-                }
+                dispatch(generateNodeError(generateAccountInfoErrorAlert, err));
                 dispatch(accountInfoFetchError());
             });
     };
