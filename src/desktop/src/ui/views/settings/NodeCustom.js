@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import withNodeData from 'containers/settings/Node';
@@ -20,6 +20,13 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
     const [password, setPassword] = useState('');
     const [authVisible, setAuthVisible] = useState(false);
 
+    useEffect(
+        () => {
+            setUrl('')
+        },
+        [customNodes],
+    );
+
     return (
         <Modal variant="fullscreen" isOpen onClose={onClose}>
             <section className={css.nodeCustom}>
@@ -40,10 +47,10 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
                 {customNodes.length ? (
                     <ul>
                         <Scrollbar>
-                            {customNodes.map((node) => (
-                                <li key={node}>
-                                    <strong>{node}</strong>
-                                    <a onClick={() => removeCustomNode(node)}>
+                            {customNodes.map(({ url }) => (
+                                <li key={url}>
+                                    <strong>{url}</strong>
+                                    <a onClick={() => removeCustomNode(url)}>
                                         <Icon icon="cross" size={16} />
                                     </a>
                                 </li>
