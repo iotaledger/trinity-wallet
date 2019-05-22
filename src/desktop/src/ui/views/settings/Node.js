@@ -1,21 +1,20 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import unionBy from 'lodash/unionBy';
 
 import withNodeData from 'containers/settings/Node';
 
 import { initialState as defaultSettings } from 'reducers/settings';
 
 import Button from 'ui/components/Button';
-import Text from 'ui/components/input/Text';
 import Toggle from 'ui/components/Toggle';
-import Icon from 'ui/components/Icon';
 import Number from 'ui/components/input/Number';
+import Select from 'ui/components/input/Select';
 import Scrollbar from 'ui/components/Scrollbar';
 
 import NodeCustom from './NodeCustom';
 
-import { MINIMUM_QUORUM_SIZE, MAXIMUM_QUORUM_SIZE } from '../../../../../shared/config';
+import { DEFAULT_NODE, MINIMUM_QUORUM_SIZE, MAXIMUM_QUORUM_SIZE } from '../../../../../shared/config';
 
 import css from './index.scss';
 
@@ -34,14 +33,13 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
     const [autoNodeList, setAutoNodeList] = useState(settings.autoNodeList);
     const [autoNodeSwitching, setAutoNodeSwitching] = useState(settings.autoNodeSwitching);
     const [primaryNode, setPrimaryNode] = useState(settings.node);
-    const [authVisible, setAuthVisible] = useState(settings.node.token.length > 0);
     const [quorumEnabled, setQuorumEnabled] = useState(settings.quorumEnabled);
     const [quorumSize, setQuorumSize] = useState(settings.quorumSize);
     const [showCustomNodes, setshowCustomNodes] = useState(false);
 
     useEffect(
         () => {
-            if (settings.node.url !== primaryNode.url) setPrimaryNode(settings.node);
+            if (!loading && settings.node.url !== primaryNode.url) setPrimaryNode(settings.node);
         },
         [settings],
     );
@@ -87,7 +85,6 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
             setAutoNodeList(defaultSettings.autoNodeList);
             setAutoNodeSwitching(defaultSettings.autoNodeSwitching);
             setPrimaryNode(defaultSettings.node);
-            setAuthVisible(false);
             setQuorumEnabled(defaultSettings.quorum.enabled);
             setQuorumSize(defaultSettings.quorum.size);
         }
@@ -117,6 +114,8 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
     if (showCustomNodes) {
         return <NodeCustom onClose={() => setshowCustomNodes(false)} />;
     }
+
+    const availableNodes = unionBy(customNodes, autoNodeList && nodes, autoNodeSwitching && [DEFAULT_NODE], 'url');
 
     return (
         <form>
@@ -149,41 +148,15 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                             onChange={setAutoNodeSwitching}
                         />
                         {!autoNodeSwitching && (
-                            <Fragment>
-                                <Text
-                                    disabled={autoNodeSelection}
-                                    value={primaryNode.url}
-                                    label={t('nodeSettings:primaryNode')}
-                                    onChange={(value) => setPrimaryNode(Object.assign({}, primaryNode, { url: value }))}
-                                />
-                                {authVisible || primaryNode.token.length > 0 ? (
-                                    <Fragment>
-                                        <Text
-                                            disabled={autoNodeSelection}
-                                            value={primaryNode.token}
-                                            label={t('addCustomNode:username')}
-                                            onChange={(value) =>
-                                                setPrimaryNode(Object.assign({}, primaryNode, { token: value }))
-                                            }
-                                        />
-                                        <Text
-                                            disabled={autoNodeSelection}
-                                            value={primaryNode.password}
-                                            label={t('password')}
-                                            onChange={(value) =>
-                                                setPrimaryNode(Object.assign({}, primaryNode, { password: value }))
-                                            }
-                                        />
-                                    </Fragment>
-                                ) : (
-                                    <a
-                                        className={classNames(css.authLink, autoNodeSelection && css.disabled)}
-                                        onClick={() => setAuthVisible(true)}
-                                    >
-                                        <Icon icon="plusAlt" size={10} /> {t('addCustomNode:addAuthKey')}
-                                    </a>
-                                )}
-                            </Fragment>
+                            <Select
+                                label={t('nodeSettings:primaryNode')}
+                                disabled={autoNodeSelection}
+                                value={primaryNode.url}
+                                onChange={(url) => setPrimaryNode(availableNodes.find((node) => node.url === url))}
+                                options={availableNodes.map(({ url }) => {
+                                    return { value: url };
+                                })}
+                            />
                         )}
 
                         <hr />
@@ -197,10 +170,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                             disabled={autoNodeSelection || !quorumEnabled}
                             inline
                             min={MINIMUM_QUORUM_SIZE}
-                            max={Math.min(
-                                autoNodeList ? nodes.length + customNodes.length : customNodes.length,
-                                MAXIMUM_QUORUM_SIZE,
-                            )}
+                            max={Math.min(availableNodes.length, MAXIMUM_QUORUM_SIZE)}
                             value={quorumSize}
                             label={t('nodeSettings:quorumSize')}
                             onChange={setQuorumSize}
