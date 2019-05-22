@@ -325,9 +325,7 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
                 existingAccountData.addressData,
                 existingAccountData.transactions,
             )
-            .then(({ node, result }) => {
-                dispatch(changeNode(node));
-
+            .then((result) => {
                 // Update address data in storage (realm)
                 Account.update(accountName, { addressData: result });
 
@@ -549,9 +547,7 @@ export const getBalanceForCheck = (addresses, quorum = true) => {
     return (dispatch, getState) => {
         return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
             .withRetries()(getBalancesAsync)(addresses)
-            .then(({ node, result }) => {
-                dispatch(changeNode(node));
-
+            .then((result) => {
                 const balanceOnAddresses = accumulateBalance(map(result.balances, Number));
 
                 dispatch(updateTransitionBalance(balanceOnAddresses));

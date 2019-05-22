@@ -24,7 +24,6 @@ import {
     generateLedgerCancelledAlert,
     generateLedgerIncorrectIndexAlert,
 } from '../actions/alerts';
-import { changeNode } from '../actions/settings';
 import Errors from '../libs/errors';
 import { Account, Wallet } from '../storage';
 import NodesManager from '../libs/iota/NodesManager';
@@ -387,9 +386,7 @@ export const getFullAccountInfo = (seedStore, accountName, quorum = false) => {
 
         return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
             .withRetries(() => dispatch(generateAccountSyncRetryAlert()))(getAccountData)(seedStore, accountName)
-            .then(({ node, result }) => {
-                dispatch(changeNode(node));
-
+            .then((result) => {
                 const seedIndex = existingAccountNames.length;
 
                 dispatch(setSeedIndex(seedIndex));
@@ -454,8 +451,7 @@ export const manuallySyncAccount = (seedStore, accountName, quorum = false) => {
                 accountName,
                 existingAccountState,
             )
-            .then(({ node, result }) => {
-                dispatch(changeNode(node));
+            .then((result) => {
                 dispatch(generateSyncingCompleteAlert());
 
                 // Update account in storage (realm)
@@ -503,9 +499,7 @@ export const getAccountInfo = (seedStore, accountName, notificationFn, quorum = 
                 notificationFn,
                 settings,
             )
-            .then(({ node, result }) => {
-                dispatch(changeNode(node));
-
+            .then((result) => {
                 // Update account in storage (realm)
                 Account.update(accountName, result);
 
@@ -562,11 +556,10 @@ export const cleanUpAccountState = (seedStore, accountName, quorum = true) => (d
             // Do not pass existing account state
             // Empty account state will lead to fresh address data & transactions
         )
-        .then(({ node, result }) => {
+        .then((result) => {
             // Update storage (realm)
             Account.update(accountName, result);
 
-            dispatch(changeNode(node));
             dispatch(overrideAccountInfo(result));
 
             // Resolve new account state
