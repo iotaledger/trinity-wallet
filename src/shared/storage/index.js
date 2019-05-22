@@ -658,9 +658,8 @@ class Wallet {
      */
     static updateQuorumConfig(payload) {
         const existingConfig = Wallet.latestSettings.quorum;
-
         realm.write(() => {
-            Wallet.latestSettings.quorum = { ...existingConfig, ...payload };
+            Wallet.latestSettings.quorum = assign({}, existingConfig, payload);
         });
     }
 
