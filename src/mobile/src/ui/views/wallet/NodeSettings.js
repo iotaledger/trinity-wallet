@@ -96,8 +96,7 @@ export class NodeSettings extends PureComponent {
     }
 
     componentWillReceiveProps(newProps) {
-        // Update node in state if node in props is autoswitched, and user isn't in the process of changing node
-        if (isEqual(this.state.node && this.props.node) && !isEqual(this.props.node, newProps.node)) {
+        if (!isEqual(this.props.node, newProps.node)) {
             this.setState({ node: newProps.node });
         }
     }
@@ -115,7 +114,7 @@ export class NodeSettings extends PureComponent {
         if (quorumEnabled !== this.props.quorumEnabled || quorumSize !== this.props.quorumSize) {
             this.props.updateQuorumConfig({ enabled: quorumEnabled, size: parseInt(quorumSize) });
         }
-        if (!isEqual(omit(node, 'custom'), omit(this.props.node, 'custom'))) {
+        if (!isEqual(node, this.props.node)) {
             return this.props.setFullNode(node);
         }
         this.props.generateAlert(
@@ -162,8 +161,8 @@ export class NodeSettings extends PureComponent {
     haveNodeSettingsChanged() {
         const { autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node } = this.props;
         return isEqual(
-            { autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node: omit(node, 'custom') },
-            omit(omit(this.state, 'node.custom'), 'autoNodeManagement'),
+            { autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node },
+            omit(this.state, 'autoNodeManagement'),
         );
     }
 
@@ -334,8 +333,8 @@ export class NodeSettings extends PureComponent {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
-    node: state.settings.node,
-    nodes: state.settings.nodes,
+    node: omit(state.settings.node, 'custom'),
+    nodes: map(state.settings.nodes, (node) => omit(node, 'custom')),
     customNodes: state.settings.customNodes,
     nodeAutoSwitch: state.settings.nodeAutoSwitch,
     autoNodeList: state.settings.autoNodeList,
