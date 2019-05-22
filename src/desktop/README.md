@@ -1,8 +1,8 @@
 # IOTA Trinity Desktop Wallet
 
-Testing: [![Build Status](https://badge.buildkite.com/7116f57245f08626a7ef985f3805bfc836f1d1402224012e6a.svg)](https://buildkite.com/iota-foundation/trinity-desktop-primary)
+Testing: [![Build Status](https://badge.buildkite.com/7116f57245f08626a7ef985f3805bfc836f1d1402224012e6a.svg?branch=develop)](https://buildkite.com/iota-foundation/trinity-desktop-prs)
 
-Deployment: [![Build Status](https://badge.buildkite.com/2c9f4392dc33c7d5f164c5e59da78bf11219086a6756362d11.svg)](https://buildkite.com/iota-foundation/trinity-desktop-deployment)
+Deployment: [![Build Status](https://badge.buildkite.com/2c9f4392dc33c7d5f164c5e59da78bf11219086a6756362d11.svg?branch=develop)](https://buildkite.com/iota-foundation/trinity-desktop-deploy)
 
 This is the repository for the IOTA Trinity Desktop Wallet. The application is based on [React](https://reactjs.org) and built on [Electron](https://electronjs.org/).
 
@@ -15,7 +15,7 @@ This is the repository for the IOTA Trinity Desktop Wallet. The application is b
 On **Windows** platforms you'll need to install build tools to succesfully compile native modules:
 
 ```
-# Windows Vista / 7 only 
+# Windows Vista / 7 only
 Install .NET Framework 4.5.1 (https://www.microsoft.com/en-us/download/details.aspx?id=40773)
 # Install Visual C++ Build Tools and Python 2.7
 npm install --global windows-build-tools
