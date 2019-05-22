@@ -229,10 +229,10 @@ describe('Reducer: settings', () => {
     });
 
     describe(SettingsActionTypes.ADD_CUSTOM_NODE_SUCCESS, () => {
-        describe('when payload exists in "nodes" state prop', () => {
-            it('should return existing state prop "nodes"', () => {
+        describe('when payload.url exists in "customNodes" state prop', () => {
+            it('should return existing state prop "customNodes"', () => {
                 const initialState = {
-                    nodes: [
+                    customNodes: [
                         {
                             url: 'http://localhost:9000',
                             pow: false,
@@ -246,7 +246,6 @@ describe('Reducer: settings', () => {
                             password: '',
                         },
                     ],
-                    customNodes: [],
                 };
 
                 const action = {
@@ -261,7 +260,7 @@ describe('Reducer: settings', () => {
 
                 const newState = reducer(initialState, action);
                 const expectedState = {
-                    nodes: [
+                    customNodes: [
                         {
                             url: 'http://localhost:9000',
                             pow: false,
@@ -275,17 +274,16 @@ describe('Reducer: settings', () => {
                             password: '',
                         },
                     ],
-                    customNodes: [],
                 };
 
-                expect(newState.nodes).to.eql(expectedState.nodes);
+                expect(newState).to.eql(expectedState);
             });
         });
 
-        describe('when payload does not exist in "nodes" state prop', () => {
-            it('should add payload to state prop "nodes" and "customNodes"', () => {
+        describe('when payload.url does not exist in "customNodes" state prop', () => {
+            it('should return concat payload to state prop "customNodes"', () => {
                 const initialState = {
-                    nodes: [
+                    customNodes: [
                         {
                             url: 'http://localhost:9000',
                             pow: false,
@@ -294,27 +292,26 @@ describe('Reducer: settings', () => {
                         },
                         {
                             url: 'http://localhost:5000',
-                            pow: false,
+                            pow: true,
                             token: '',
                             password: '',
                         },
                     ],
-                    customNodes: [],
                 };
 
                 const action = {
                     type: SettingsActionTypes.ADD_CUSTOM_NODE_SUCCESS,
                     payload: {
                         url: 'http://localhost:3000',
-                        pow: true,
-                        token: 'foo',
-                        password: 'baz',
+                        pow: false,
+                        token: '',
+                        password: '',
                     },
                 };
 
                 const newState = reducer(initialState, action);
                 const expectedState = {
-                    nodes: [
+                    customNodes: [
                         {
                             url: 'http://localhost:9000',
                             pow: false,
@@ -323,101 +320,61 @@ describe('Reducer: settings', () => {
                         },
                         {
                             url: 'http://localhost:5000',
-                            pow: false,
+                            pow: true,
                             token: '',
                             password: '',
                         },
                         {
                             url: 'http://localhost:3000',
-                            pow: true,
-                            token: 'foo',
-                            password: 'baz',
-                        },
-                    ],
-                    customNodes: [
-                        {
-                            url: 'http://localhost:3000',
-                            pow: true,
-                            token: 'foo',
-                            password: 'baz',
+                            pow: false,
+                            token: '',
+                            password: '',
                         },
                     ],
                 };
 
                 expect(newState.nodes).to.eql(expectedState.nodes);
-                expect(newState.customNodes).to.eql(expectedState.customNodes);
             });
         });
     });
 
     describe(SettingsActionTypes.REMOVE_CUSTOM_NODE, () => {
-        describe('when payload exists in "customNodes" state prop', () => {
-            it('should remove payload from state prop "customNodes"', () => {
-                const initialState = {
-                    nodes: [
-                        {
-                            url: 'http://localhost:9000',
-                            pow: false,
-                            token: '',
-                            password: '',
-                        },
-                        {
-                            url: 'http://localhost:5000',
-                            pow: false,
-                            token: '',
-                            password: '',
-                        },
-                    ],
-                    customNodes: [
-                        {
-                            url: 'http://localhost:5000',
-                            pow: false,
-                            token: '',
-                            password: '',
-                        },
-                    ],
-                };
+        it('should remove node object in customNodes with "url === payload"', () => {
+            const initialState = {
+                customNodes: [
+                    {
+                        url: 'http://localhost:9000',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
+                    {
+                        url: 'http://localhost:5000',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
+                ],
+            };
 
-                const action = {
-                    type: SettingsActionTypes.REMOVE_CUSTOM_NODE,
-                    payload: 'http://localhost:5000',
-                };
+            const action = {
+                type: SettingsActionTypes.REMOVE_CUSTOM_NODE,
+                payload: 'http://localhost:5000',
+            };
 
-                const newState = reducer(initialState, action);
-                const expectedState = {
-                    nodes: [
-                        {
-                            url: 'http://localhost:9000',
-                            pow: false,
-                            token: '',
-                            password: '',
-                        },
-                    ],
-                    customNodes: [],
-                };
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                customNodes: [
+                    {
+                        url: 'http://localhost:9000',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
+                ],
+            };
 
-                expect(newState.nodes).to.eql(expectedState.nodes);
-                expect(newState.customNodes).to.eql(expectedState.customNodes);
-            });
-        });
-
-        describe('when payload does not exist in "customNodes" state prop', () => {
-            it('should not change "customNodes" state prop', () => {
-                const initialState = {
-                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
-                    customNodes: ['http://localhost:4000'],
-                };
-
-                const action = {
-                    type: SettingsActionTypes.REMOVE_CUSTOM_NODE,
-                    payload: 'http://localhost:5000',
-                };
-
-                const newState = reducer(initialState, action);
-
-                expect(newState.nodes).to.eql(initialState.nodes);
-                expect(newState.customNodes).to.eql(initialState.customNodes);
-            });
+            expect(newState).to.eql(expectedState);
         });
     });
 
