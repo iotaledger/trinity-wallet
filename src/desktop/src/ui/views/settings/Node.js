@@ -39,6 +39,13 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
     const [quorumSize, setQuorumSize] = useState(settings.quorumSize);
     const [showCustomNodes, setshowCustomNodes] = useState(false);
 
+    useEffect(
+        () => {
+            if (settings.node.url !== primaryNode.url) setPrimaryNode(settings.node);
+        },
+        [settings],
+    );
+
     const updateQuorumEnabled = () => {
         if (
             !quorumEnabled &&
