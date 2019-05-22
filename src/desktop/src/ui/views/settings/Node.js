@@ -201,7 +201,6 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                     className="square"
                     loading={loading}
                     disabled={
-                        autoNodeSelection === settings.autoNodeSelection &&
                         autoNodeList === settings.autoNodeList &&
                         autoNodeSwitching === settings.autoNodeSwitching &&
                         quorumEnabled === settings.quorumEnabled &&
@@ -227,7 +226,6 @@ NodeSettings.propTypes = {
     generateAlert: PropTypes.func.isRequired,
     settings: PropTypes.shape({
         autoNodeSwitching: PropTypes.bool.isRequired,
-        autoNodeSelection: PropTypes.bool.isRequired,
         autoNodeList: PropTypes.bool.isRequired,
         node: PropTypes.object.isRequired,
         quorumEnabled: PropTypes.bool.isRequired,
