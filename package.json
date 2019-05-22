@@ -22,6 +22,7 @@
     "deps:shared": "cd src/shared && yarn && cd ../..",
     "deps:mobile": "cd src/mobile && yarn && cd ../..",
     "deps:desktop": "cd src/desktop && npm install && cd ../..",
+    "deps-ci:desktop": "cd src/desktop && npm ci && cd ../..",
     "start:desktop": "cd src/desktop && yarn start",
     "start:mobile": "cd src/mobile && yarn start",
     "start:styleguide": "cd src/desktop && yarn run styleguide",

@@ -15,7 +15,7 @@ This is the repository for the IOTA Trinity Desktop Wallet. The application is b
 On **Windows** platforms you'll need to install build tools to succesfully compile native modules:
 
 ```
-# Windows Vista / 7 only 
+# Windows Vista / 7 only
 Install .NET Framework 4.5.1 (https://www.microsoft.com/en-us/download/details.aspx?id=40773)
 # Install Visual C++ Build Tools and Python 2.7
 npm install --global windows-build-tools
@@ -40,7 +40,7 @@ yum install libusbx-devel
 After installing the [shared dependencies](https://github.com/iotaledger/trinity-wallet#instructions), install the desktop dependencies:
 
 ```
-npm run deps:desktop
+npm run deps-ci:desktop
 ```
 
 Then, navigate to this directory:
@@ -49,7 +49,7 @@ Then, navigate to this directory:
 cd src/desktop
 ```
 
-### 2. Prepare Trinity desktop appplication
+### 2. Prepare Trinity desktop application
 
 When the npm install is done you can prepare the wallet application for compilation by running:
 
