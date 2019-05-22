@@ -95,7 +95,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
 
     const saveSettings = () => {
         if (autoNodeList !== settings.autoNodeList) {
-            actions.updateAutoNodeListSetting(autoNodeList);
+            actions.changeAutoNodeListSetting(autoNodeList);
         }
         if (nodeAutoSwitch !== settings.nodeAutoSwitch) {
             actions.updateNodeAutoSwitchSetting(nodeAutoSwitch);
@@ -216,7 +216,7 @@ NodeSettings.propTypes = {
         quorumSize: PropTypes.number.isRequired,
     }),
     actions: PropTypes.shape({
-        updateAutoNodeListSetting: PropTypes.func.isRequired,
+        changeAutoNodeListSetting: PropTypes.func.isRequired,
         updateNodeAutoSwitchSetting: PropTypes.func.isRequired,
         updateQuorumConfig: PropTypes.func.isRequired,
         setFullNode: PropTypes.func.isRequired,
