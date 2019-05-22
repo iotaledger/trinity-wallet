@@ -3,6 +3,7 @@ import omit from 'lodash/omit';
 import find from 'lodash/find';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
+import unionBy from 'lodash/unionBy';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
@@ -18,7 +19,7 @@ import {
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { MINIMUM_QUORUM_SIZE, MAXIMUM_QUORUM_SIZE } from 'shared-modules/config';
+import { DEFAULT_NODE, MINIMUM_QUORUM_SIZE, MAXIMUM_QUORUM_SIZE } from 'shared-modules/config';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
@@ -133,7 +134,8 @@ export class NodeSettings extends PureComponent {
      */
     getAvailableNodes() {
         const { nodes, customNodes } = this.props;
-        return this.state.autoNodeList ? [...nodes, ...customNodes] : customNodes;
+        const { autoNodeList, nodeAutoSwitch } = this.state;
+        return unionBy(customNodes, autoNodeList && nodes, nodeAutoSwitch && [DEFAULT_NODE], 'url');
     }
 
     /**
@@ -144,7 +146,8 @@ export class NodeSettings extends PureComponent {
      * @returns {array}
      */
     getQuorumSizeOptions() {
-        return Array(Math.min(this.getAvailableNodes().length, MAXIMUM_QUORUM_SIZE))
+        const maxQuorumSize = Math.min(this.getAvailableNodes().length, MAXIMUM_QUORUM_SIZE);
+        return Array(maxQuorumSize - MINIMUM_QUORUM_SIZE + 1)
             .fill()
             .map((_, idx) => (MINIMUM_QUORUM_SIZE + idx).toString());
     }
