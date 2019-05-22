@@ -11,7 +11,7 @@ import { withNamespaces } from 'react-i18next';
 import Realm from 'realm';
 import { Text, TextInput, NetInfo, YellowBox } from 'react-native';
 import { Provider } from 'react-redux';
-import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
+import { changeIotaNode, SwitchingConfig, quorum } from 'shared-modules/libs/iota';
 import reduxStore from 'shared-modules/store';
 import { assignAccountIndexIfNecessary } from 'shared-modules/actions/accounts';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
@@ -153,6 +153,8 @@ const fetchNodeList = (store) => {
             provider: node.url,
         }),
     );
+    // Set quorum size
+    quorum.setSize(settings.quorumSize);
 
     store.dispatch(fetchNodes());
 };
@@ -265,6 +267,7 @@ onAppStart()
 
             // Fetch remote nodes list
             fetchNodeList(reduxStore);
+
             // Listener callback for connection change event
             startListeningToConnectivityChanges(reduxStore);
 

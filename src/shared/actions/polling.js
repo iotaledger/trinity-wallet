@@ -353,9 +353,8 @@ export const fetchNodeList = () => {
                         })),
                         'url',
                     );
-
                     // Set quorum nodes
-                    quorum.setNodes(unionBy(unionNodes, getCustomNodesFromState(getState()), 'url'));
+                    quorum.setNodes(unionBy(getCustomNodesFromState(getState()), getState().settings.autoNodeList && unionNodes, 'url'));
 
                     dispatch(setNodeList(unionNodes));
                 }

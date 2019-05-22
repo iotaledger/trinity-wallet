@@ -14,7 +14,7 @@ import {
     setFullNode,
     updateQuorumConfig,
     updateNodeAutoSwitchSetting,
-    updateAutoNodeListSetting,
+    changeAutoNodeListSetting,
 } from 'shared-modules/actions/settings';
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -60,7 +60,7 @@ export class NodeSettings extends PureComponent {
         /** @ignore */
         updateNodeAutoSwitchSetting: PropTypes.func.isRequired,
         /** @ignore */
-        updateAutoNodeListSetting: PropTypes.func.isRequired,
+        changeAutoNodeListSetting: PropTypes.func.isRequired,
         /** @ignore */
         autoNodeList: PropTypes.bool.isRequired,
         /** @ignore */
@@ -107,7 +107,7 @@ export class NodeSettings extends PureComponent {
         const { quorumSize, autoNodeList, nodeAutoSwitch, quorumEnabled, node } = this.state;
 
         if (autoNodeList !== this.props.autoNodeList) {
-            this.props.updateAutoNodeListSetting(autoNodeList);
+            this.props.changeAutoNodeListSetting(autoNodeList);
         }
         if (nodeAutoSwitch !== this.props.nodeAutoSwitch) {
             this.props.updateNodeAutoSwitchSetting(nodeAutoSwitch);
@@ -350,7 +350,7 @@ const mapDispatchToProps = {
     generateAlert,
     updateQuorumConfig,
     updateNodeAutoSwitchSetting,
-    updateAutoNodeListSetting,
+    changeAutoNodeListSetting,
     setFullNode,
     setLoginRoute,
 };

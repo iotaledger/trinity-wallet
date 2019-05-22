@@ -181,7 +181,7 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.SET_NODELIST:
             return {
                 ...state,
-                nodes: unionBy(action.payload, state.customNodes, [state.node], 'url'),
+                nodes: action.payload,
             };
         case ActionTypes.SET_MODE:
             return {

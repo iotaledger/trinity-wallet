@@ -15,7 +15,7 @@ import { assignAccountIndexIfNecessary } from 'actions/accounts';
 import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { mapStorageToState } from 'libs/storageToStateMappers';
 import { getEncryptionKey } from 'libs/realm';
-import { changeIotaNode } from 'libs/iota';
+import { changeIotaNode, quorum } from 'libs/iota';
 import { initialise as initialiseStorage, realm } from 'storage';
 
 import Index from 'ui/Index';
@@ -66,6 +66,9 @@ const init = () => {
                 // Change provider on global iota instance
                 const node = get(data, 'settings.node');
                 changeIotaNode(assign({}, node, { provider: node.url }));
+
+                // Set quorum size
+                quorum.setSize(get(data, 'settings.quorumSize'));
 
                 // Update store with persisted state
                 store.dispatch(mapStorageToStateAction(data));

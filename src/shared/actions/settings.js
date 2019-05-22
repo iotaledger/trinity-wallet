@@ -1,3 +1,4 @@
+import unionBy from 'lodash/unionBy';
 import assign from 'lodash/assign';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
@@ -925,7 +926,9 @@ export const changeAutoNodeListSetting = (payload) => (dispatch, getState) => {
 
     // `autoNodeList` active -> use all nodes for quorum
     // `autoNodeList` inactive -> use custom nodes for quorum
-    const nodes = payload ? getNodesFromState(getState()) : getCustomNodesFromState(getState());
+    const remoteNodes = getNodesFromState(getState());
+    const customNodes = getCustomNodesFromState(getState());
+    const nodes = payload ? unionBy(remoteNodes, customNodes, 'url') : customNodes;
 
     quorum.setNodes(nodes);
 };
