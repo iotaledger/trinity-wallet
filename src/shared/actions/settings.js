@@ -321,23 +321,6 @@ export const setAutoPromotion = (payload) => {
 };
 
 /**
- * Dispatch to update auto node switching configuration for wallet
- *
- * @method updateAutoNodeSwitching
- * @param {boolean} payload
- *
- * @returns {{type: {string}, payload: {boolean} }}
- */
-export const updateAutoNodeSwitching = (payload) => {
-    Wallet.updateAutoNodeSwitchingSetting(payload);
-
-    return {
-        type: ActionTypes.UPDATE_AUTO_NODE_SWITCHING,
-        payload,
-    };
-};
-
-/**
  * Dispatch to set lock screen time for wallet
  *
  * @method setLockScreenTimeout

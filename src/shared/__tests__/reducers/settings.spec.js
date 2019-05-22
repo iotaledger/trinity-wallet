@@ -15,7 +15,6 @@ describe('Reducer: settings', () => {
                 mode: 'Standard',
                 language: 'English (International)',
                 currency: 'USD',
-                autoNodeSwitching: false,
                 availableCurrencies: [
                     'USD',
                     'GBP',
@@ -145,22 +144,22 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.UPDATE_AUTO_NODE_SWITCHING, () => {
+    describe(ActionTypes.UPDATE_NODE_AUTO_SWITCH_SETTING, () => {
         describe('when action.payload is defined', () => {
-            it('should set autoNodeSwitching to action.payload', () => {
+            it('should set nodeAutoSwitch to action.payload', () => {
                 const initialState = {
-                    autoNodeSwitching: false,
+                    nodeAutoSwitch: false,
                 };
 
                 const action = {
-                    type: ActionTypes.UPDATE_AUTO_NODE_SWITCHING,
+                    type: ActionTypes.UPDATE_NODE_AUTO_SWITCH_SETTING,
                     payload: true,
                 };
 
                 const newState = reducer(initialState, action);
 
                 const expectedState = {
-                    autoNodeSwitching: true,
+                    nodeAutoSwitch: true,
                 };
 
                 expect(newState).to.eql(expectedState);
@@ -168,19 +167,19 @@ describe('Reducer: settings', () => {
         });
 
         describe('when action.payload in undefined', () => {
-            it('should invert state.autoNodeSwitching', () => {
+            it('should invert state.nodeAutoSwitch', () => {
                 const initialState = {
-                    autoNodeSwitching: false,
+                    nodeAutoSwitch: false,
                 };
 
                 const action = {
-                    type: ActionTypes.UPDATE_AUTO_NODE_SWITCHING,
+                    type: ActionTypes.UPDATE_NODE_AUTO_SWITCH_SETTING,
                 };
 
                 const newState = reducer(initialState, action);
 
                 const expectedState = {
-                    autoNodeSwitching: true,
+                    nodeAutoSwitch: true,
                 };
 
                 expect(newState).to.eql(expectedState);

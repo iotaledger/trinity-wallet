@@ -24,14 +24,14 @@ import css from './index.scss';
 const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, actions, t }) => {
     const isDefault =
         defaultSettings.autoNodeList === settings.autoNodeList &&
-        defaultSettings.autoNodeSwitching === settings.autoNodeSwitching &&
+        defaultSettings.nodeAutoSwitch === settings.nodeAutoSwitch &&
         defaultSettings.quorum.enabled === settings.quorumEnabled &&
         defaultSettings.quorum.size === settings.quorumSize &&
         defaultSettings.node.url === settings.node.url;
 
     const [autoNodeSelection, setAutoNodeSelection] = useState(isDefault);
     const [autoNodeList, setAutoNodeList] = useState(settings.autoNodeList);
-    const [autoNodeSwitching, setAutoNodeSwitching] = useState(settings.autoNodeSwitching);
+    const [nodeAutoSwitch, setNodeAutoSwitch] = useState(settings.nodeAutoSwitch);
     const [primaryNode, setPrimaryNode] = useState(settings.node);
     const [quorumEnabled, setQuorumEnabled] = useState(settings.quorumEnabled);
     const [quorumSize, setQuorumSize] = useState(settings.quorumSize);
@@ -83,7 +83,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
     const updateAutoNodeSelection = () => {
         if (!autoNodeSelection) {
             setAutoNodeList(defaultSettings.autoNodeList);
-            setAutoNodeSwitching(defaultSettings.autoNodeSwitching);
+            setNodeAutoSwitch(defaultSettings.nodeAutoSwitch);
             setPrimaryNode(defaultSettings.node);
             setQuorumEnabled(defaultSettings.quorum.enabled);
             setQuorumSize(defaultSettings.quorum.size);
@@ -95,8 +95,8 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
         if (autoNodeList !== settings.autoNodeList) {
             actions.updateAutoNodeListSetting(autoNodeList);
         }
-        if (autoNodeSwitching !== settings.autoNodeSwitching) {
-            actions.updateAutoNodeSwitching(autoNodeSwitching);
+        if (nodeAutoSwitch !== settings.nodeAutoSwitch) {
+            actions.updateNodeAutoSwitchSetting(nodeAutoSwitch);
         }
         if (quorumEnabled !== settings.quorumEnabled || quorumSize !== settings.quorumSize) {
             actions.updateQuorumConfig({ enabled: quorumEnabled, size: quorumSize });
@@ -115,7 +115,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
         return <NodeCustom onClose={() => setshowCustomNodes(false)} />;
     }
 
-    const availableNodes = unionBy(customNodes, autoNodeList && nodes, autoNodeSwitching && [DEFAULT_NODE], 'url');
+    const availableNodes = unionBy(customNodes, autoNodeList && nodes, nodeAutoSwitch && [DEFAULT_NODE], 'url');
 
     return (
         <form>
@@ -144,10 +144,10 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                         <Toggle
                             disabled={autoNodeSelection}
                             inline={t('nodeSettings:nodeAutoswitching')}
-                            checked={autoNodeSwitching}
-                            onChange={setAutoNodeSwitching}
+                            checked={nodeAutoSwitch}
+                            onChange={setNodeAutoSwitch}
                         />
-                        {!autoNodeSwitching && (
+                        {!nodeAutoSwitch && (
                             <Select
                                 label={t('nodeSettings:primaryNode')}
                                 disabled={autoNodeSelection}
@@ -184,7 +184,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                     loading={loading}
                     disabled={
                         autoNodeList === settings.autoNodeList &&
-                        autoNodeSwitching === settings.autoNodeSwitching &&
+                        nodeAutoSwitch === settings.nodeAutoSwitch &&
                         quorumEnabled === settings.quorumEnabled &&
                         quorumSize === settings.quorumSize &&
                         primaryNode.url === settings.node.url &&
@@ -207,7 +207,7 @@ NodeSettings.propTypes = {
     loading: PropTypes.bool.isRequired,
     generateAlert: PropTypes.func.isRequired,
     settings: PropTypes.shape({
-        autoNodeSwitching: PropTypes.bool.isRequired,
+        nodeAutoSwitch: PropTypes.bool.isRequired,
         autoNodeList: PropTypes.bool.isRequired,
         node: PropTypes.object.isRequired,
         quorumEnabled: PropTypes.bool.isRequired,
@@ -215,7 +215,7 @@ NodeSettings.propTypes = {
     }),
     actions: PropTypes.shape({
         updateAutoNodeListSetting: PropTypes.func.isRequired,
-        updateAutoNodeSwitching: PropTypes.func.isRequired,
+        updateNodeAutoSwitchSetting: PropTypes.func.isRequired,
         updateQuorumConfig: PropTypes.func.isRequired,
         setFullNode: PropTypes.func.isRequired,
     }),

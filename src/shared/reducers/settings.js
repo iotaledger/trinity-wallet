@@ -61,10 +61,6 @@ export const initialState = {
      */
     lockScreenTimeout: 3,
     /**
-     * Determines if wallet should automatically switch to a healthy node in case of errors
-     */
-    autoNodeSwitching: false,
-    /**
      * Keeps track of wallet's version information.
      */
     versions: {},
@@ -152,11 +148,6 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 autoPromotion: action.payload,
-            };
-        case ActionTypes.UPDATE_AUTO_NODE_SWITCHING:
-            return {
-                ...state,
-                autoNodeSwitching: action.payload === undefined ? !state.autoNodeSwitching : action.payload,
             };
         case ActionTypes.SET_LOCALE:
             return {
