@@ -248,8 +248,9 @@ export class NodeSettings extends PureComponent {
      * @returns {function}
      */
     renderSettingsContent() {
-        const { theme, t, nodes, isChangingNode, loginRoute } = this.props;
+        const { theme, t, isChangingNode, loginRoute } = this.props;
         const { autoNodeManagement, autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node } = this.state;
+
         const rows = [
             {
                 name: t('nodeSettings:automaticNodeManagement'),
@@ -284,13 +285,13 @@ export class NodeSettings extends PureComponent {
             {
                 name: t('nodeSettings:primaryNode'),
                 function: (nodeURL) =>
-                    this.setState({
-                        node: find(nodes, (node) => {
-                            return node.url === nodeURL;
-                        }),
-                    }),
-                inactive: autoNodeManagement || nodeAutoSwitch,
+                  this.setState({
+                      node: find(this.getAvailableNodes(), (node) => {
+                          return node.url === nodeURL;
+                      }),
+                }),
                 currentSetting: node.url,
+                inactive: autoNodeManagement || nodeAutoSwitch,
                 dropdownOptions: map(this.getAvailableNodes(), (node) => node.url),
             },
             { name: 'separator', inactive: autoNodeManagement },
