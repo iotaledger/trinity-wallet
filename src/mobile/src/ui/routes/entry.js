@@ -17,7 +17,8 @@ import { assignAccountIndexIfNecessary } from 'shared-modules/actions/accounts';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate, setAppVersions } from 'shared-modules/actions/settings';
 import Themes from 'shared-modules/themes/themes';
-import { ActionTypes, mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
+import { mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
+import { WalletActionTypes } from 'shared-modules/types';
 import { setRealmMigrationStatus } from 'shared-modules/actions/migrations';
 import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
@@ -131,7 +132,7 @@ const renderInitialScreen = (initialScreen) => {
         },
     });
 
-    reduxStore.dispatch({ type: ActionTypes.RESET_ROUTE, payload: initialScreen });
+    reduxStore.dispatch({ type: WalletActionTypes.RESET_ROUTE, payload: initialScreen });
 };
 
 /**
@@ -165,7 +166,7 @@ const fetchNodeList = (store) => {
 const startListeningToConnectivityChanges = (store) => {
     const checkConnection = (isConnected) => {
         store.dispatch({
-            type: ActionTypes.CONNECTION_CHANGED,
+            type: WalletActionTypes.CONNECTION_CHANGED,
             payload: { isConnected },
         });
     };
@@ -258,7 +259,7 @@ onAppStart()
     .then(() => {
         const initialize = (isConnected) => {
             reduxStore.dispatch({
-                type: ActionTypes.CONNECTION_CHANGED,
+                type: WalletActionTypes.CONNECTION_CHANGED,
                 payload: { isConnected },
             });
 

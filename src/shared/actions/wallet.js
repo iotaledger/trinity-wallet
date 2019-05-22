@@ -23,41 +23,7 @@ import { getRemotePoWFromState, nodesConfigurationFactory } from '../selectors/g
 import { Account } from '../storage';
 import { DEFAULT_SECURITY } from '../config';
 import NodesManager from '../libs/iota/NodesManager';
-
-export const ActionTypes = {
-    GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
-    GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS',
-    GENERATE_NEW_ADDRESS_ERROR: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_ERROR',
-    SET_ACCOUNT_NAME: 'IOTA/WALLET/SET_ACCOUNT_NAME',
-    SET_RECEIVE_ADDRESS: 'IOTA/WALLET/SET_RECEIVE_ADDRESS',
-    SET_PASSWORD: 'IOTA/WALLET/SET_PASSWORD',
-    CLEAR_WALLET_DATA: 'IOTA/WALLET/CLEAR_WALLET_DATA',
-    SET_SEED_INDEX: 'IOTA/WALLET/SET_SEED_INDEX',
-    SET_READY: 'IOTA/WALLET/SET_READY',
-    SET_SETTING: 'IOTA/WALLET/SET_SETTING',
-    SNAPSHOT_TRANSITION_REQUEST: 'IOTA/WALLET/SNAPSHOT_TRANSITION_REQUEST',
-    SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/WALLET/SNAPSHOT_TRANSITION_SUCCESS',
-    SNAPSHOT_TRANSITION_ERROR: 'IOTA/WALLET/SNAPSHOT_TRANSITION_ERROR',
-    SNAPSHOT_ATTACH_TO_TANGLE_REQUEST: 'IOTA/WALLET/SNAPSHOT_ATTACH_TO_TANGLE_REQUEST',
-    SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE: 'IOTA/WALLET/SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE',
-    UPDATE_TRANSITION_BALANCE: 'IOTA/WALLET/UPDATE_TRANSITION_BALANCE',
-    UPDATE_TRANSITION_ADDRESSES: 'IOTA/WALLET/UPDATE_TRANSITION_ADDRESSES',
-    SET_BALANCE_CHECK_FLAG: 'IOTA/WALLET/SET_BALANCE_CHECK_FLAG',
-    CANCEL_SNAPSHOT_TRANSITION: 'IOTA/WALLET/CANCEL_SNAPSHOT_TRANSITION',
-    CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
-    SHOULD_UPDATE: 'IOTA/APP/WALLET/SHOULD_UPDATE',
-    FORCE_UPDATE: 'IOTA/APP/WALLET/FORCE_UPDATE',
-    DISPLAY_TEST_WARNING: 'IOTA/APP/WALLET/DISPLAY_TEST_WARNING',
-    INITIATE_DEEP_LINK_REQUEST: 'IOTA/APP/WALLET/INITIATE_DEEP_LINK_REQUEST',
-    COMPLETE_DEEP_LINK_REQUEST: 'IOTA/APP/WALLET/COMPLETE_DEEP_LINK_REQUEST',
-    MAP_STORAGE_TO_STATE: 'IOTA/SETTINGS/MAP_STORAGE_TO_STATE',
-    ADDRESS_VALIDATION_REQUEST: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_REQUEST',
-    ADDRESS_VALIDATION_SUCCESS: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_SUCCESS',
-    PUSH_ROUTE: 'IOTA/APP/WALLET/PUSH_ROUTE',
-    POP_ROUTE: 'IOTA/APP/WALLET/POP_ROUTE',
-    POP_TO_ROUTE: 'IOTA/APP/WALLET/POP_TO_ROUTE',
-    RESET_ROUTE: 'IOTA/APP/WALLET/RESET_ROUTE',
-};
+import { WalletActionTypes } from '../types';
 
 /**
  * Dispatch when new addresses are about to be generated
@@ -67,7 +33,7 @@ export const ActionTypes = {
  * @returns {{type: {string} }}
  */
 export const generateNewAddressRequest = () => ({
-    type: ActionTypes.GENERATE_NEW_ADDRESS_REQUEST,
+    type: WalletActionTypes.GENERATE_NEW_ADDRESS_REQUEST,
 });
 
 /**
@@ -78,7 +44,7 @@ export const generateNewAddressRequest = () => ({
  * @returns {{type: {string} }}
  */
 export const generateNewAddressSuccess = () => ({
-    type: ActionTypes.GENERATE_NEW_ADDRESS_SUCCESS,
+    type: WalletActionTypes.GENERATE_NEW_ADDRESS_SUCCESS,
 });
 
 /**
@@ -89,7 +55,7 @@ export const generateNewAddressSuccess = () => ({
  * @returns {{type: {string} }}
  */
 export const generateNewAddressError = () => ({
-    type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
+    type: WalletActionTypes.GENERATE_NEW_ADDRESS_ERROR,
 });
 
 /**
@@ -101,7 +67,7 @@ export const generateNewAddressError = () => ({
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setPassword = (payload) => ({
-    type: ActionTypes.SET_PASSWORD,
+    type: WalletActionTypes.SET_PASSWORD,
     payload,
 });
 
@@ -113,7 +79,7 @@ export const setPassword = (payload) => ({
  * @returns {{type: {string} }}
  */
 export const clearWalletData = () => ({
-    type: ActionTypes.CLEAR_WALLET_DATA,
+    type: WalletActionTypes.CLEAR_WALLET_DATA,
 });
 
 /**
@@ -125,7 +91,7 @@ export const clearWalletData = () => ({
  * @returns {{type: {string}, payload: {number} }}
  */
 export const setSeedIndex = (payload) => ({
-    type: ActionTypes.SET_SEED_INDEX,
+    type: WalletActionTypes.SET_SEED_INDEX,
     payload,
 });
 
@@ -137,7 +103,7 @@ export const setSeedIndex = (payload) => ({
  * @returns {{type: {string}, payload: {boolean} }}
  */
 export const setReady = () => ({
-    type: ActionTypes.SET_READY,
+    type: WalletActionTypes.SET_READY,
     payload: true,
 });
 
@@ -150,7 +116,7 @@ export const setReady = () => ({
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setSetting = (payload) => ({
-    type: ActionTypes.SET_SETTING,
+    type: WalletActionTypes.SET_SETTING,
     payload,
 });
 
@@ -162,7 +128,7 @@ export const setSetting = (payload) => ({
  * @returns {{type: {string} }}
  */
 export const snapshotTransitionRequest = () => ({
-    type: ActionTypes.SNAPSHOT_TRANSITION_REQUEST,
+    type: WalletActionTypes.SNAPSHOT_TRANSITION_REQUEST,
 });
 
 /**
@@ -173,7 +139,7 @@ export const snapshotTransitionRequest = () => ({
  * @returns {{type: {string} }}
  */
 export const snapshotTransitionSuccess = () => ({
-    type: ActionTypes.SNAPSHOT_TRANSITION_SUCCESS,
+    type: WalletActionTypes.SNAPSHOT_TRANSITION_SUCCESS,
 });
 
 /**
@@ -184,7 +150,7 @@ export const snapshotTransitionSuccess = () => ({
  * @returns {{type: {string} }}
  */
 export const snapshotTransitionError = () => ({
-    type: ActionTypes.SNAPSHOT_TRANSITION_ERROR,
+    type: WalletActionTypes.SNAPSHOT_TRANSITION_ERROR,
 });
 
 /**
@@ -195,7 +161,7 @@ export const snapshotTransitionError = () => ({
  * @returns {{type: {string} }}
  */
 export const cancelSnapshotTransition = () => ({
-    type: ActionTypes.CANCEL_SNAPSHOT_TRANSITION,
+    type: WalletActionTypes.CANCEL_SNAPSHOT_TRANSITION,
 });
 
 /**
@@ -206,7 +172,7 @@ export const cancelSnapshotTransition = () => ({
  * @returns {{type: {string} }}
  */
 export const snapshotAttachToTangleRequest = () => ({
-    type: ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_REQUEST,
+    type: WalletActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_REQUEST,
 });
 
 /**
@@ -217,7 +183,7 @@ export const snapshotAttachToTangleRequest = () => ({
  * @returns {{type: {string} }}
  */
 export const snapshotAttachToTangleComplete = () => ({
-    type: ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE,
+    type: WalletActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE,
 });
 
 /**
@@ -229,7 +195,7 @@ export const snapshotAttachToTangleComplete = () => ({
  * @returns {{type: {string}, payload: {number} }}
  */
 export const updateTransitionBalance = (payload) => ({
-    type: ActionTypes.UPDATE_TRANSITION_BALANCE,
+    type: WalletActionTypes.UPDATE_TRANSITION_BALANCE,
     payload,
 });
 
@@ -242,7 +208,7 @@ export const updateTransitionBalance = (payload) => ({
  * @returns {{type: {string}, payload: {array} }}
  */
 export const updateTransitionAddresses = (payload) => ({
-    type: ActionTypes.UPDATE_TRANSITION_ADDRESSES,
+    type: WalletActionTypes.UPDATE_TRANSITION_ADDRESSES,
     payload,
 });
 
@@ -255,7 +221,7 @@ export const updateTransitionAddresses = (payload) => ({
  * @returns {{type: {string}, payload: {boolean} }}
  */
 export const setBalanceCheckFlag = (payload) => ({
-    type: ActionTypes.SET_BALANCE_CHECK_FLAG,
+    type: WalletActionTypes.SET_BALANCE_CHECK_FLAG,
     payload,
 });
 
@@ -271,7 +237,7 @@ export const setBalanceCheckFlag = (payload) => ({
  */
 export const initiateDeepLinkRequest = (amount, address, message) => {
     return {
-        type: ActionTypes.INITIATE_DEEP_LINK_REQUEST,
+        type: WalletActionTypes.INITIATE_DEEP_LINK_REQUEST,
         amount,
         address,
         message,
@@ -287,7 +253,7 @@ export const initiateDeepLinkRequest = (amount, address, message) => {
  */
 export const completeDeepLinkRequest = () => {
     return {
-        type: ActionTypes.COMPLETE_DEEP_LINK_REQUEST,
+        type: WalletActionTypes.COMPLETE_DEEP_LINK_REQUEST,
     };
 };
 
@@ -300,7 +266,7 @@ export const completeDeepLinkRequest = () => {
  * @returns {{type: {string}, payload: {object} }}
  */
 export const mapStorageToState = (payload) => ({
-    type: ActionTypes.MAP_STORAGE_TO_STATE,
+    type: WalletActionTypes.MAP_STORAGE_TO_STATE,
     payload,
 });
 
@@ -568,7 +534,7 @@ export const getBalanceForCheck = (addresses, quorum = true) => {
  * @returns {{type: {string} }}
  */
 export const addressValidationRequest = () => ({
-    type: ActionTypes.ADDRESS_VALIDATION_REQUEST,
+    type: WalletActionTypes.ADDRESS_VALIDATION_REQUEST,
 });
 
 /**
@@ -579,7 +545,7 @@ export const addressValidationRequest = () => ({
  * @returns {{type: {string} }}
  */
 export const addressValidationSuccess = () => ({
-    type: ActionTypes.ADDRESS_VALIDATION_SUCCESS,
+    type: WalletActionTypes.ADDRESS_VALIDATION_SUCCESS,
 });
 
 /**
@@ -592,7 +558,7 @@ export const addressValidationSuccess = () => ({
  */
 export const pushRoute = (payload) => {
     return {
-        type: ActionTypes.PUSH_ROUTE,
+        type: WalletActionTypes.PUSH_ROUTE,
         payload,
     };
 };
@@ -606,7 +572,7 @@ export const pushRoute = (payload) => {
  */
 export const popRoute = () => {
     return {
-        type: ActionTypes.POP_ROUTE,
+        type: WalletActionTypes.POP_ROUTE,
     };
 };
 
@@ -620,7 +586,7 @@ export const popRoute = () => {
  */
 export const popToRoute = (payload) => {
     return {
-        type: ActionTypes.POP_TO_ROUTE,
+        type: WalletActionTypes.POP_TO_ROUTE,
         payload,
     };
 };
@@ -635,7 +601,7 @@ export const popToRoute = (payload) => {
  */
 export const resetRoute = (payload) => {
     return {
-        type: ActionTypes.RESET_ROUTE,
+        type: WalletActionTypes.RESET_ROUTE,
         payload,
     };
 };
@@ -648,7 +614,7 @@ export const resetRoute = (payload) => {
  * @returns {{type: {string} }}
  */
 export const shouldUpdate = () => ({
-    type: ActionTypes.SHOULD_UPDATE,
+    type: WalletActionTypes.SHOULD_UPDATE,
 });
 
 /**
@@ -659,7 +625,7 @@ export const shouldUpdate = () => ({
  * @returns {{type: {string} }}
  */
 export const forceUpdate = () => ({
-    type: ActionTypes.FORCE_UPDATE,
+    type: WalletActionTypes.FORCE_UPDATE,
 });
 
 /**
@@ -670,5 +636,5 @@ export const forceUpdate = () => ({
  * @returns {{type: {string} }}
  */
 export const displayTestWarning = () => ({
-    type: ActionTypes.DISPLAY_TEST_WARNING,
+    type: WalletActionTypes.DISPLAY_TEST_WARNING,
 });

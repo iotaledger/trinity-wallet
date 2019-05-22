@@ -64,19 +64,8 @@ import {
 import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 import { Account } from '../storage';
+import { TransfersActionTypes } from '../types';
 import NodesManager from '../libs/iota/NodesManager';
-
-export const ActionTypes = {
-    PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
-    PROMOTE_TRANSACTION_SUCCESS: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS',
-    PROMOTE_TRANSACTION_ERROR: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR',
-    SEND_TRANSFER_REQUEST: 'IOTA/TRANSFERS/SEND_TRANSFER_REQUEST',
-    SEND_TRANSFER_SUCCESS: 'IOTA/TRANSFERS/SEND_TRANSFER_SUCCESS',
-    SEND_TRANSFER_ERROR: 'IOTA/TRANSFERS/SEND_TRANSFER_ERROR',
-    RETRY_FAILED_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_REQUEST',
-    RETRY_FAILED_TRANSACTION_SUCCESS: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_SUCCESS',
-    RETRY_FAILED_TRANSACTION_ERROR: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_ERROR',
-};
 
 /**
  * Dispatch when a transaction is about to be manually promoted
@@ -87,7 +76,7 @@ export const ActionTypes = {
  * @returns {{type: {string}, payload: {string} }}
  */
 const promoteTransactionRequest = (payload) => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
+    type: TransfersActionTypes.PROMOTE_TRANSACTION_REQUEST,
     payload,
 });
 
@@ -99,7 +88,7 @@ const promoteTransactionRequest = (payload) => ({
  * @returns {{type: {string} }}
  */
 const promoteTransactionSuccess = () => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS,
+    type: TransfersActionTypes.PROMOTE_TRANSACTION_SUCCESS,
 });
 
 /**
@@ -110,7 +99,7 @@ const promoteTransactionSuccess = () => ({
  * @returns {{type: {string} }}
  */
 const promoteTransactionError = () => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_ERROR,
+    type: TransfersActionTypes.PROMOTE_TRANSACTION_ERROR,
 });
 
 /**
@@ -121,7 +110,7 @@ const promoteTransactionError = () => ({
  * @returns {{type: {string} }}
  */
 export const sendTransferRequest = () => ({
-    type: ActionTypes.SEND_TRANSFER_REQUEST,
+    type: TransfersActionTypes.SEND_TRANSFER_REQUEST,
 });
 
 /**
@@ -132,7 +121,7 @@ export const sendTransferRequest = () => ({
  * @returns {{type: {string} }}
  */
 export const sendTransferSuccess = () => ({
-    type: ActionTypes.SEND_TRANSFER_SUCCESS,
+    type: TransfersActionTypes.SEND_TRANSFER_SUCCESS,
 });
 
 /**
@@ -143,7 +132,7 @@ export const sendTransferSuccess = () => ({
  * @returns {{type: {string} }}
  */
 export const sendTransferError = () => ({
-    type: ActionTypes.SEND_TRANSFER_ERROR,
+    type: TransfersActionTypes.SEND_TRANSFER_ERROR,
 });
 
 /**
@@ -154,7 +143,7 @@ export const sendTransferError = () => ({
  * @returns {{type: {string} }}
  */
 export const retryFailedTransactionRequest = () => ({
-    type: ActionTypes.RETRY_FAILED_TRANSACTION_REQUEST,
+    type: TransfersActionTypes.RETRY_FAILED_TRANSACTION_REQUEST,
 });
 
 /**
@@ -166,7 +155,7 @@ export const retryFailedTransactionRequest = () => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const retryFailedTransactionSuccess = (payload) => ({
-    type: ActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS,
+    type: TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS,
     payload,
 });
 
@@ -178,7 +167,7 @@ export const retryFailedTransactionSuccess = (payload) => ({
  * @returns {{type: {string} }}
  */
 export const retryFailedTransactionError = () => ({
-    type: ActionTypes.RETRY_FAILED_TRANSACTION_ERROR,
+    type: TransfersActionTypes.RETRY_FAILED_TRANSACTION_ERROR,
 });
 
 /**

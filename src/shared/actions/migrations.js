@@ -9,13 +9,7 @@ import { mapStorageToState } from '../libs/storageToStateMappers';
 import { Wallet } from '../storage';
 import Errors from '../libs/errors';
 import i18next from '../libs/i18next.js';
-
-/**
- * Migration action types
- */
-export const ActionTypes = {
-    SET_REALM_MIGRATION_STATUS: 'IOTA/SETTINGS/SET_REALM_MIGRATION_STATUS',
-};
+import { MigrationsActionTypes } from '../types';
 
 /**
  * Migrates persisted data from old storage to new storage (Realm)
@@ -121,7 +115,7 @@ export const setRealmMigrationStatus = (payload) => {
     Wallet.setRealmMigrationStatus(payload);
 
     return {
-        type: ActionTypes.SET_REALM_MIGRATION_STATUS,
+        type: MigrationsActionTypes.SET_REALM_MIGRATION_STATUS,
         payload,
     };
 };

@@ -21,31 +21,8 @@ import { DEFAULT_NODES } from '../config';
 import Errors from '../libs/errors';
 import i18next from '../libs/i18next';
 import { Account } from '../storage';
+import { PollingActionTypes } from '../types';
 import NodesManager from '../libs/iota/NodesManager';
-
-export const ActionTypes = {
-    SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
-    FETCH_PRICE_REQUEST: 'IOTA/POLLING/FETCH_PRICE_REQUEST',
-    FETCH_PRICE_SUCCESS: 'IOTA/POLLING/FETCH_PRICE_SUCCESS',
-    FETCH_PRICE_ERROR: 'IOTA/POLLING/FETCH_PRICE_ERROR',
-    FETCH_NODELIST_REQUEST: 'IOTA/POLLING/FETCH_NODELIST_REQUEST',
-    FETCH_NODELIST_SUCCESS: 'IOTA/POLLING/FETCH_NODELIST_SUCCESS',
-    FETCH_NODELIST_ERROR: 'IOTA/POLLING/FETCH_NODELIST_ERROR',
-    FETCH_CHART_DATA_REQUEST: 'IOTA/POLLING/FETCH_CHART_DATA_REQUEST',
-    FETCH_CHART_DATA_SUCCESS: 'IOTA/POLLING/FETCH_CHART_DATA_SUCCESS',
-    FETCH_CHART_DATA_ERROR: 'IOTA/POLLING/FETCH_CHART_DATA_ERROR',
-    FETCH_MARKET_DATA_REQUEST: 'IOTA/POLLING/FETCH_MARKET_DATA_REQUEST',
-    FETCH_MARKET_DATA_SUCCESS: 'IOTA/POLLING/FETCH_MARKET_DATA_SUCCESS',
-    FETCH_MARKET_DATA_ERROR: 'IOTA/POLLING/FETCH_MARKET_DATA_ERROR',
-    ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST: 'IOTA/POLLING/ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST',
-    ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS: 'IOTA/POLLING/ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS',
-    ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR: 'IOTA/POLLING/ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR',
-    PROMOTE_TRANSACTION_REQUEST: 'IOTA/POLLING/PROMOTE_TRANSACTION_REQUEST',
-    PROMOTE_TRANSACTION_SUCCESS: 'IOTA/POLLING/PROMOTE_TRANSACTION_SUCCESS',
-    PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR',
-    SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION: 'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION',
-    SYNC_ACCOUNT_WHILE_POLLING: 'IOTA/POLLING/SYNC_ACCOUNT_WHILE_POLLING',
-};
 
 /**
  * Dispatch when IOTA price information is about to be fetched
@@ -55,7 +32,7 @@ export const ActionTypes = {
  * @returns {{type: {string} }}
  */
 const fetchPriceRequest = () => ({
-    type: ActionTypes.FETCH_PRICE_REQUEST,
+    type: PollingActionTypes.FETCH_PRICE_REQUEST,
 });
 
 /**
@@ -66,7 +43,7 @@ const fetchPriceRequest = () => ({
  * @returns {{type: {string} }}
  */
 const fetchPriceSuccess = () => ({
-    type: ActionTypes.FETCH_PRICE_SUCCESS,
+    type: PollingActionTypes.FETCH_PRICE_SUCCESS,
 });
 
 /**
@@ -77,7 +54,7 @@ const fetchPriceSuccess = () => ({
  * @returns {{type: {string} }}
  */
 const fetchPriceError = () => ({
-    type: ActionTypes.FETCH_PRICE_ERROR,
+    type: PollingActionTypes.FETCH_PRICE_ERROR,
 });
 
 /**
@@ -88,7 +65,7 @@ const fetchPriceError = () => ({
  * @returns {{type: {string} }}
  */
 const fetchNodeListRequest = () => ({
-    type: ActionTypes.FETCH_NODELIST_REQUEST,
+    type: PollingActionTypes.FETCH_NODELIST_REQUEST,
 });
 
 /**
@@ -99,7 +76,7 @@ const fetchNodeListRequest = () => ({
  * @returns {{type: {string} }}
  */
 const fetchNodeListSuccess = () => ({
-    type: ActionTypes.FETCH_NODELIST_SUCCESS,
+    type: PollingActionTypes.FETCH_NODELIST_SUCCESS,
 });
 
 /**
@@ -110,7 +87,7 @@ const fetchNodeListSuccess = () => ({
  * @returns {{type: {string} }}
  */
 const fetchNodeListError = () => ({
-    type: ActionTypes.FETCH_NODELIST_ERROR,
+    type: PollingActionTypes.FETCH_NODELIST_ERROR,
 });
 
 /**
@@ -121,7 +98,7 @@ const fetchNodeListError = () => ({
  * @returns {{type: {string} }}
  */
 const fetchChartDataRequest = () => ({
-    type: ActionTypes.FETCH_CHART_DATA_REQUEST,
+    type: PollingActionTypes.FETCH_CHART_DATA_REQUEST,
 });
 
 /**
@@ -132,7 +109,7 @@ const fetchChartDataRequest = () => ({
  * @returns {{type: {string} }}
  */
 const fetchChartDataSuccess = () => ({
-    type: ActionTypes.FETCH_CHART_DATA_SUCCESS,
+    type: PollingActionTypes.FETCH_CHART_DATA_SUCCESS,
 });
 
 /**
@@ -143,7 +120,7 @@ const fetchChartDataSuccess = () => ({
  * @returns {{type: {string} }}
  */
 const fetchChartDataError = () => ({
-    type: ActionTypes.FETCH_CHART_DATA_ERROR,
+    type: PollingActionTypes.FETCH_CHART_DATA_ERROR,
 });
 
 /**
@@ -154,7 +131,7 @@ const fetchChartDataError = () => ({
  * @returns {{type: {string} }}
  */
 const fetchMarketDataRequest = () => ({
-    type: ActionTypes.FETCH_MARKET_DATA_REQUEST,
+    type: PollingActionTypes.FETCH_MARKET_DATA_REQUEST,
 });
 
 /**
@@ -165,7 +142,7 @@ const fetchMarketDataRequest = () => ({
  * @returns {{type: {string} }}
  */
 const fetchMarketDataSuccess = () => ({
-    type: ActionTypes.FETCH_MARKET_DATA_SUCCESS,
+    type: PollingActionTypes.FETCH_MARKET_DATA_SUCCESS,
 });
 
 /**
@@ -176,7 +153,7 @@ const fetchMarketDataSuccess = () => ({
  * @returns {{type: {string} }}
  */
 const fetchMarketDataError = () => ({
-    type: ActionTypes.FETCH_MARKET_DATA_ERROR,
+    type: PollingActionTypes.FETCH_MARKET_DATA_ERROR,
 });
 
 /**
@@ -187,7 +164,7 @@ const fetchMarketDataError = () => ({
  * @returns {{type: {string} }}
  */
 const accountInfoForAllAccountsFetchRequest = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST,
+    type: PollingActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST,
 });
 
 /**
@@ -199,7 +176,7 @@ const accountInfoForAllAccountsFetchRequest = () => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 const accountInfoForAllAccountsFetchSuccess = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS,
+    type: PollingActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS,
 });
 
 /**
@@ -210,7 +187,7 @@ const accountInfoForAllAccountsFetchSuccess = () => ({
  * @returns {{type: {string} }}
  */
 const accountInfoForAllAccountsFetchError = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR,
+    type: PollingActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR,
 });
 
 /**
@@ -222,7 +199,7 @@ const accountInfoForAllAccountsFetchError = () => ({
  * @returns {{type: {string}, payload: {string} }}
  */
 const promoteTransactionRequest = (payload) => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
+    type: PollingActionTypes.PROMOTE_TRANSACTION_REQUEST,
     payload,
 });
 
@@ -234,7 +211,7 @@ const promoteTransactionRequest = (payload) => ({
  * @returns {{type: {string} }}
  */
 const promoteTransactionSuccess = () => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS,
+    type: PollingActionTypes.PROMOTE_TRANSACTION_SUCCESS,
 });
 
 /**
@@ -245,7 +222,7 @@ const promoteTransactionSuccess = () => ({
  * @returns {{type: {string} }}
  */
 const promoteTransactionError = () => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_ERROR,
+    type: PollingActionTypes.PROMOTE_TRANSACTION_ERROR,
 });
 
 /**
@@ -257,7 +234,7 @@ const promoteTransactionError = () => ({
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setPollFor = (payload) => ({
-    type: ActionTypes.SET_POLL_FOR,
+    type: PollingActionTypes.SET_POLL_FOR,
     payload,
 });
 
@@ -270,7 +247,7 @@ export const setPollFor = (payload) => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const syncAccountBeforeAutoPromotion = (payload) => ({
-    type: ActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION,
+    type: PollingActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION,
     payload,
 });
 
@@ -283,7 +260,7 @@ export const syncAccountBeforeAutoPromotion = (payload) => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const syncAccountWhilePolling = (payload) => ({
-    type: ActionTypes.SYNC_ACCOUNT_WHILE_POLLING,
+    type: PollingActionTypes.SYNC_ACCOUNT_WHILE_POLLING,
     payload,
 });
 
