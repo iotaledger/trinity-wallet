@@ -165,7 +165,6 @@ export class NodeSettings extends PureComponent {
             { autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node: omit(node, 'custom') },
             omit(omit(this.state, 'node.custom'), 'autoNodeManagement'),
         );
-
     }
 
     /**
@@ -357,8 +356,5 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['advancedSettings', 'nodeSettings', 'settings', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(NodeSettings),
+    connect(mapStateToProps, mapDispatchToProps)(NodeSettings),
 );
