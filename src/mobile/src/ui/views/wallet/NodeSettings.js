@@ -137,7 +137,7 @@ export class NodeSettings extends PureComponent {
     }
 
     /**
-     * Returns possible quorum size values depending on current settings
+     * Returns possible quorum sizes in accordance with current settings
      *
      * @method getQuorumSizeOptions
      *
@@ -166,7 +166,7 @@ export class NodeSettings extends PureComponent {
     }
 
     /**
-     * Determines whether the node settings in state match the default values (i.e. the values when automatic node management is on)
+     * Determines whether the node settings in state match the default values (i.e. those values when automatic node management is on)
      *
      * @method hasDefaultNodeSettings
      *
