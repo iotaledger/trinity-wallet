@@ -1374,39 +1374,52 @@
       "integrity": "sha512-JI56D3ZhXGjH5UqeSTltdxVTPjMpfNI/Vd5XP0V/gBAJb6CeILX3hLe5G1VmxxZciVNEfG5724YKgadqp6/uWg=="
     },
     "@ledgerhq/devices": {
-      "version": "4.58.0",
-      "resolved": "https://registry.npmjs.org/@ledgerhq/devices/-/devices-4.58.0.tgz",
-      "integrity": "sha512-FStBwP4Rr2oC89Kqyqd5FLAVhW8gnVVcQEGi8+wEc9txImdMCDQNZ4qULYKLL6Haskz4xp9jLuuPhMGta3bfOw==",
+      "version": "4.60.0",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/devices/-/devices-4.60.0.tgz",
+      "integrity": "sha512-vYQuBbGRPAdMVdvB/6au5jt9VgtagTswiKUxf1cWq3X4ay93X7iqZ12vv91FpGvu3u31QXg3LZDMkxyigGRFlw==",
       "requires": {
-        "@ledgerhq/errors": "^4.58.0"
+        "@ledgerhq/errors": "^4.60.0",
+        "@ledgerhq/logs": "^4.60.0",
+        "rxjs": "^6.5.2"
+      },
+      "dependencies": {
+        "rxjs": {
+          "version": "6.5.2",
+          "resolved": "https://registry.npmjs.org/rxjs/-/rxjs-6.5.2.tgz",
+          "integrity": "sha512-HUb7j3kvb7p7eCUHE3FqjoDsC1xfZQ4AHFWfTKSpZ+sAhhz5X1WX0ZuUqWbzB2QhSLp3DoLUG+hMdEDKqWo2Zg==",
+          "requires": {
+            "tslib": "^1.9.0"
+          }
+        }
       }
     },
     "@ledgerhq/errors": {
-      "version": "4.58.0",
-      "resolved": "https://registry.npmjs.org/@ledgerhq/errors/-/errors-4.58.0.tgz",
-      "integrity": "sha512-qPSMRNqxvdl3WMi+jucFs2luNf33TtJD+KAMRyRolVKujVCeOrx3LjMTYgPtXxNB8l5keZsJMUDQR0qIAzo+vQ=="
+      "version": "4.60.0",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/errors/-/errors-4.60.0.tgz",
+      "integrity": "sha512-jGbDAuNw1KNB23osgK9RDa6jXNoz3QaSeaiJZjwYpCWSTH6v0vW5y5LPe9lomg5BcW2r65kNe1feLfZ4wJuu5A=="
     },
     "@ledgerhq/hw-transport": {
-      "version": "4.58.0",
-      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport/-/hw-transport-4.58.0.tgz",
-      "integrity": "sha512-8khnFj0JAjX6QFyyPa77qFJ+6QFJaQW/ZaK7NQgYw0NYZcxaNdATX/4geci8CejOcHFaipTcPDB2KMoPeXAocw==",
+      "version": "4.60.0",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport/-/hw-transport-4.60.0.tgz",
+      "integrity": "sha512-vjwZXg844qy4xxTlSOQRZeoppr0ZnN8+meAsmuFoBtY+hSaqAsqWeQEKYU2fs8iANtVH8Ho6gL+sbYF6KsGPWQ==",
       "requires": {
-        "@ledgerhq/devices": "^4.58.0",
-        "@ledgerhq/errors": "^4.58.0",
+        "@ledgerhq/devices": "^4.60.0",
+        "@ledgerhq/errors": "^4.60.0",
         "events": "^3.0.0"
       }
     },
     "@ledgerhq/hw-transport-node-hid": {
-      "version": "4.58.0",
-      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport-node-hid/-/hw-transport-node-hid-4.58.0.tgz",
-      "integrity": "sha512-9x1M0J+JpaNptm9w0fnn1oCDIxkZEcFlUEbXMNrrOnaBRNJwZAiHCq7UjZZhZECYQHcym40U513cExodkrM6Vg==",
+      "version": "4.60.0",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport-node-hid/-/hw-transport-node-hid-4.60.0.tgz",
+      "integrity": "sha512-zQSKPQZL4EDiQqEKU28b++c1dB5ubT4lRa1K6CmWgAChXrhmdF47/UfBQVql/gg2vEsqO2wCQxWLoepHqRSgTw==",
       "requires": {
-        "@ledgerhq/devices": "^4.58.0",
-        "@ledgerhq/errors": "^4.58.0",
-        "@ledgerhq/hw-transport": "^4.58.0",
+        "@ledgerhq/devices": "^4.60.0",
+        "@ledgerhq/errors": "^4.60.0",
+        "@ledgerhq/hw-transport": "^4.60.0",
+        "@ledgerhq/logs": "^4.60.0",
         "lodash": "^4.17.11",
         "node-hid": "^0.7.8",
-        "usb": "^1.6.0"
+        "usb": "^1.5.0"
       },
       "dependencies": {
         "nan": {
@@ -1424,6 +1437,11 @@
           }
         }
       }
+    },
+    "@ledgerhq/logs": {
+      "version": "4.60.0",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/logs/-/logs-4.60.0.tgz",
+      "integrity": "sha512-sFaulGGP6NLT6IimQ+sPfx0DcSaQjzZyEKGNI/+kDAHNDEfl0Bbls6e6INCl5vW9mELmv7804CJrDZpHDOezVQ=="
     },
     "@mrmlnc/readdir-enhanced": {
       "version": "2.2.1",
@@ -15063,8 +15081,7 @@
     "tslib": {
       "version": "1.9.3",
       "resolved": "https://registry.npmjs.org/tslib/-/tslib-1.9.3.tgz",
-      "integrity": "sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==",
-      "dev": true
+      "integrity": "sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ=="
     },
     "tty-browserify": {
       "version": "0.0.0",
