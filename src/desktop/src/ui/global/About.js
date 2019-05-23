@@ -62,11 +62,13 @@ class About extends React.PureComponent {
                             <h5>0.5.1</h5>
                             <ul>
                                 <li>Fix: Display fatal errors on preload and initialisation</li>
+                                <li>Fix: Missing Linux application icon</li>
                                 <li>Fix: Windows 7 not deleting files on wallet reset</li>
                                 <li>
                                     Fix: Windows 10 wallet failing to start if Windows 7 build was installed
                                     previously, and vice versa
                                 </li>
+                                <li>Fix: macOS tray application not displaying fiat value</li>
                                 <li>Fix: Changing account during Snapshot transition corrupting state</li>
                                 <li>Update: Improve user experience when adding Ledger accounts</li>
                                 <li>Update: Add device time suggestion to out of sync errors</li>
