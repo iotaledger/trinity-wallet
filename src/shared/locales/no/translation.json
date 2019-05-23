@@ -833,7 +833,7 @@
         "applicationNotInitialised": "Informasjonsadvarsel ikke godkjent",
         "applicationNotInitialisedExplanation": "Åpne IOTA programmet på din Ledger, godta informasjonen og prøv igjen.",
         "checkLedger": "Sjekk Ledger-enheten din",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "acceptWarningExplanation": "Hvis det er et informasjonsvarsel på Ledger-enheten din, må du bla gjennom og godta den ved å trykke på begge knappene.",
         "udevError": "Kunne ikke kommunisere med Ledger-enheten",
         "udevErrorExplanation": "Trinity kunne ikke kommunisere med din Ledger-enhet. Vennligst besøk nettadressen nedenfor for å løse dette problemet.",
         "writtenDownInfoTitle": "Husk indeksnummeret ditt",
