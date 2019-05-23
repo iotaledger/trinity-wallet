@@ -833,7 +833,7 @@
         "applicationNotInitialised": "Unbestätigte Warnung",
         "applicationNotInitialisedExplanation": "Öffne die IOTA-App auf deinem Ledger, akzeptiere die Hinweise und versuche es erneut.",
         "checkLedger": "Überprüfe deinen Ledger",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "acceptWarningExplanation": "Falls auf deinem Ledger eine Hinweismeldung erscheint, blättere durch die Meldung und bestätige sie.",
         "udevError": "Kommunikation mit Ledger fehlgeschlagen",
         "udevErrorExplanation": "Trinity konnte nicht mit deinem Ledger kommunizieren. Bitte besuche folgende Website um das Problem zu beheben.",
         "writtenDownInfoTitle": "Index notieren",
