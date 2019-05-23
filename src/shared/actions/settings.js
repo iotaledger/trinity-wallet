@@ -204,11 +204,11 @@ export const setMode = (payload) => {
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setNode = (payload) => {
-    Wallet.updateNode(payload);
+    Wallet.updateNode(payload.url);
 
     return {
         type: SettingsActionTypes.SET_NODE,
-        payload: payload,
+        payload,
     };
 };
 

@@ -1,14 +1,22 @@
+import each from 'lodash/each';
 import merge from 'lodash/merge';
 import map from 'lodash/map';
 import v2Schema from '../v2';
-import { QUORUM_SIZE, DEFAULT_NODE } from '../../config';
+import { QUORUM_SIZE } from '../../config';
 
-const migration = (_, newRealm) => {
+const migration = (oldRealm, newRealm) => {
     const walletData = newRealm.objectForPrimaryKey('Wallet', 2);
+    const newWalletSettings = newRealm.objects('WalletSettings');
 
     // Bump wallet version.
     walletData.version = 3;
-    walletData.settings.quorum = {};
+
+    each(newWalletSettings, (settings) => {
+        settings.quorum = {
+            enabled: true,
+            size: QUORUM_SIZE,
+        };
+    });
 };
 
 /**
@@ -53,10 +61,6 @@ export default [
         } else if (schema.name === 'WalletSettings') {
             return merge({}, schema, {
                 properties: {
-                    node: {
-                        type: 'Node',
-                        default: DEFAULT_NODE,
-                    },
                     /**
                      * Quorum configuration
                      */
