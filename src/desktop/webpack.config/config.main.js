@@ -12,6 +12,9 @@ module.exports = {
         Entangled: './native/Entangled.js',
         preloadTray: './native/preload/tray.js',
     },
+    optimization: {
+        minimize: false,
+    },
     node: {
         __dirname: false,
     },
