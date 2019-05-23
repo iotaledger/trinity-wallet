@@ -59,9 +59,26 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.5.1</h5>
+                            <ul>
+                                <li>Fix: Wallet starts, but does not display GUI</li>
+                                <li>Fix: Linux release missing application icon</li>
+                                <li>Fix: Windows 7 release wallet reset broken</li>
+                                <li>
+                                    Fix: Windows 10 release wallet does not start, if Windows 7 release installed
+                                    previously and vice versa
+                                </li>
+                                <li>Fix: macOS tray application does not show fiat value</li>
+                                <li>Fix: Snapshot transition leads to duplicate addresses</li>
+                                <li>Update: Ledger onboarding warning updates (#1550</li>
+                                <li>Update: Add device time suggestion to out of sync errors</li>
+                            </ul>
                             <h5>0.5.0</h5>
                             <ul>
-                                <li>- Add: Node quorum - Trinity will query multiple nodes on particular API calls and only accept a result with 67% consensus, otherwise fallback to a safe result</li>
+                                <li>
+                                    - Add: Node quorum - Trinity will query multiple nodes on particular API calls and
+                                    only accept a result with 67% consensus, otherwise fallback to a safe result
+                                </li>
                                 <li>- Add: Replace local storage with encrypted Realm database </li>
                                 <li>- Add: Deep link support</li>
                                 <li>- Update: Remove 2FA</li>
