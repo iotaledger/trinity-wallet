@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "O nó retornou um erro ao buscar as informações da sua conta. Se o problema persistir, tente alterar o nó ou desabilitar o proxy do sistema em Configurações de Trinity.",
         "nodeOutOfSync": "Nó fora de sincronização",
         "nodeOutOfSyncExplanation": "O nó selecionado está sem sincronização. Por favor, altere o nó ou tente novamente.",
-        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "nodeOutOfSyncByTimestampExplanation": "O nó selecionado está sem sincronização. Por favor, altere o nó ou tente novamente. Se o problema persistir, certifique-se de que o tempo do dispositivo está correto.",
         "experimentalNode": "Versão do nó não suportada",
         "experimentalNodeExplanation": "O nó selecionado está a executar uma versão experimental que não é suportada. Por favor, altere o nó ou tente novamente.",
         "thisNodeOutOfSync": "Este nó está fora de sincronização. Por favor, altere o nó ou tente novamente.",
@@ -161,11 +161,11 @@
         "shouldUpdateExplanation": "Uma nova atualização foi lançada. É recomendável que você atualize para a versão mais recente.",
         "forceUpdate": "Atualize a app para continuar",
         "forceUpdateExplanation": "Uma atualização crítica foi lançada. Por favor, atualize a app agora.",
-        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
+        "testVersionWarning": "Esta versão deve ser usada apenas para fins de teste, com quantidades muito pequenas de tokens.",
         "missingPermission": "Permissões do sistema de arquivo necessárias",
         "missingPermissionExplanation": "O acesso ao sistema de arquivos é necessário para executar esta função.",
         "swipeToConfirm": "Deslize para confirmar",
-        "expert": "Expert"
+        "expert": "Avançado"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -210,16 +210,16 @@
         "reasonTop10": "Esta é uma das 10 passwords mais comuns.",
         "reasonTop100": "Esta é uma das 100 passwords mais comuns.",
         "reasonCommon": "Esta é uma password muito comum.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonSimilar": "Isto é semelhante a uma palavra-passe utilizada.",
+        "reasonWord": "Uma única palavra é fácil de adivinhar."
     },
     "setPassword": {
-        "choosePassword": "Choose a new password",
+        "choosePassword": "Escolha uma nova palavra-chave",
         "passwordTooShort": "A palavra-passe é demasiado curta",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "A sua palavra-passe deve ter pelo menos {{minLength}} caracteres. Atualmente ela possui {{currentLength}} caracteres. Por favor, tente novamente.",
         "passwordMismatch": "As palavras-passe não coincidem",
         "passwordMismatchExplanation": "As palavras-passe que inseriu não coincidem. Por favor tente de novo.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Esta é a sua palavra-passe principal da sua carteira. Você vai usá-la para fazer login.",
         "retypePassword": "Digite de novo a password"
     },
     "copyToClipboard": {
@@ -230,7 +230,7 @@
         "invalidCharacters": "A Seed contém caracteres inválidos",
         "invalidCharactersExplanation": "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é demasiado curta",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "A seed é demasiado longo",
         "seedTooShortExplanation": "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente de novo.",
         "seedExplanation": "As Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Não pode utilizar Seeds com mais de {{maxLength}} caracteres.",
         "neverShare": "NUNCA PARTILHE A SUA SEED COM NINGUÉM"
@@ -244,48 +244,48 @@
     },
     "languageSetup": {
         "language": "Idioma",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "Vamos começar"
     },
     "login": {
         "emptyPassword": "Palavra-passe vazia",
         "emptyPasswordExplanation": "Deve inserir uma palavra-passe para iniciar a sessão, Por favor, tente de novo.",
         "enterPassword": "Por favor insira a sua palavra-passe.",
-        "login": "Log In",
-        "setNode": "Set Node",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "login": "Iniciar sessão",
+        "setNode": "Definir nó",
+        "whyBiometricDisabled": "Por que razão está a autenticação biométrica desativada?",
+        "whyBiometricDisabledExplanationPart1": "A autenticação biométrica está desativada na primeira execução do aplicação para sua segurança.",
+        "whyBiometricDisabledExplanationPart2": "Ao usar a Trinity, você será desconectado por inatividade. Você pode iniciar a sessão novamente com autenticação biométrica."
     },
     "loading": {
         "loadingFirstTime": "A carregar a Seed pela primeira vez.",
         "thisMayTake": "Isto pode demorar um pouco.",
-        "doNotMinimise": "Do not minimise or close the app.",
-        "takingAWhile": "This seems to be taking a while"
+        "doNotMinimise": "Não minimize ou feche a aplicação.",
+        "takingAWhile": "Isto parece estar a levar algum tempo"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "Seed gerada",
         "seedNotGenerated": "Não foi gerada a Seed",
         "seedNotGeneratedExplanation": "Por favor pressione o botão \"Gerar Nova Seed\".",
-        "pressForNewSeed": "Press for New Seed",
-        "generateSuccess": "Seed generated successfully",
+        "pressForNewSeed": "Pressione para Nova Seed",
+        "generateSuccess": "Seed gerada com sucesso",
         "individualLetters": "Digite letras individuais para tornar o processo mais aleatório.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
-        "whatIsASeed": "What is a seed?"
+        "individualLetterCount": "Selecione mais <1><0>{{count}}</0></1> letras para tornar-se aleatório.",
+        "individualLetterCount_plural": "Selecione mais <1><0>{{count}}</0></1> letras para tornar-se aleatório.",
+        "randomiseCharsToContinue": "Torne <1>{{count}}</1> caracter aleatório para continuar.",
+        "randomiseCharsToContinue_plural": "Torne <1>{{count}}</1> caracteres aleatórios para continuar.",
+        "whatIsASeed": "O que é uma seed?"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
+        "allDone": "Tudo concluído!",
+        "openYourWallet": "Abra a sua carteira",
         "walletReady": "A carteira está configurada e pronta para ser utilizada. Se posteriormente necessitar de efetuar alterações, utilize o menu \"Configurações\"."
     },
     "paperWallet": {
         "neverShare": "Nunca partilhe a sua Seed com ninguém.",
         "iotaLogo": "Logótipo IOTA",
-        "print": "Print",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "print": "Imprimir",
+        "paperConvenience": "Imprimir uma cópia da sua seed é uma forma conveniente de armazená-la.",
+        "publicInsecure": "Mas imprimir em wifi público ou numa impressora pública é inseguro.",
         "pleaseCheck": "Please check and confirm before you print",
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
