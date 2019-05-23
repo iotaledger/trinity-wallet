@@ -583,7 +583,7 @@
         "enterPassword": "Wprowadź hasło, aby wyświetlić swój seed.",
         "viewSeed": "Pokaż seed",
         "hideSeed": "Ukryj seed",
-        "notAvailable": "Eksport klucza seed nie jest dostępny dla tego rodzaju konta: {{accountType}}",
+        "notAvailable": "Eksport klucza seed nie jest możliwy dla konta {{accountType}}",
         "notAvailableExplanationLedger": "Twój portfel Ledger używa sprzętowego zabezpieczenia do przechowywania Twojego klucza seed. Seed jest bezpiecznie zaszyfrowany i nigdy nie opuszcza Twojego urządzenia Ledger.",
         "accountIndex": "Indeks Twojego konta Ledger",
         "accountPage": "Strona Twojego konta Ledger"
