@@ -650,7 +650,7 @@
         "importSeedVault": "Importuj SeedVault",
         "dropInstructions": "Upuść tutaj plik SeedVault lub tekst <1></1>\n(kliknij, aby wyszukać plik ręcznie)",
         "dropActive": "Upuść tutaj plik SeedVault lub tekst",
-        "enterKeyExplanation": "Wprowadź swój klucz do pliku SeedVault, aby go otworzyć",
+        "enterKeyExplanation": "Wprowadź swój klucz do tego pliku SeedVault, aby go otworzyć",
         "noSeedFound": "SeedVault nie zawiera poprawnego klucza seed",
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
