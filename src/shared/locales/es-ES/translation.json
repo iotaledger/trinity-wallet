@@ -810,7 +810,7 @@
         "actionCancelled": "Acceso al dispositivo contable (o ledger) cancelado",
         "actionCancelledExplanation": "No se puede completar la acción sin acceso al dispositivo contable (o Ledger).",
         "chooseAccountIndex": "Elija el índice de cuenta del ledger",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
+        "accountIndexExplanation": "Tu Ledger puede almacenar varias semillas. Cada semilla es identificada por un número de índice único.",
         "accountPageExplanation": "Algunas billeteras de terceros requieren páginas.",
         "connectionError": "No se puede conectar al ledger",
         "connectionErrorExplanation": "Revise que su ledger está conectado y desbloqueado.",
@@ -832,11 +832,11 @@
         "checkAddressExplanation": "Compruebe que la dirección coincida con la mostrada en su dispositivo de ledger.",
         "applicationNotInitialised": "Advertencia no confirmada",
         "applicationNotInitialisedExplanation": "Re abra la aplicación IOTA en su dispositivo ledger, acepte la advertencia informativa y reintente.",
-        "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "checkLedger": "Comprueba tu dispositivo Ledger",
+        "acceptWarningExplanation": "Si hay una advertencia informativa en su dispositivo Ledger, debe desplazarse y aceptarla pulsando ambos botones.",
         "udevError": "No ha sido posible la comunicación con el dispositivo contable o Ledger",
         "udevErrorExplanation": "Trinity no ha podido comunicarse con el dispositivo contable o Ledger. Por favor visita la URL debajo para resolver este inconveniente.",
-        "writtenDownInfoTitle": "Remember your index number",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "writtenDownInfoTitle": "Recuerde su número de índice",
+        "writtenDownInfoExplanation": "Necesitas tu número de índice para restaurar tu cuenta en el futuro. Si pierdes tu número de índice, perderás tus IOTA. Por favor, recuerdelo."
     }
 }
