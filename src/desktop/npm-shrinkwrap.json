@@ -1,6 +1,6 @@
 {
   "name": "trinity-desktop",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -7025,9 +7025,9 @@
       "dev": true
     },
     "iota.lib.js": {
-      "version": "0.5.1",
-      "resolved": "https://registry.npmjs.org/iota.lib.js/-/iota.lib.js-0.5.1.tgz",
-      "integrity": "sha512-4DHieyh24o8TJGSj/j1aINrLtYO2Pj9NZa3kqY1lKT0kZcIOkFMJoOsPiLPqVFpAC0RRONoBxni+d48gRyH5SQ==",
+      "version": "0.5.2",
+      "resolved": "https://registry.npmjs.org/iota.lib.js/-/iota.lib.js-0.5.2.tgz",
+      "integrity": "sha512-2+4D8kFAxPjkBS4oDmnoNxoYSAYnl23C5OTLoc2ZtSrFmFsPRb5rOjmEX4WEn2RocFMiV3Ndjfqk5ct469Ayjw==",
       "requires": {
         "async": "^2.5.0",
         "bignumber.js": "^4.1.0",
