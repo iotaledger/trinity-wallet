@@ -11,6 +11,7 @@ import {
     getAddressesForSelectedAccount,
     getBalanceForSelectedAccount,
     getSelectedAccountName,
+    getSelectedAccountMeta,
     getSetupInfoFromAccounts,
     getTasksFromAccounts,
     getSetupInfoForSelectedAccount,
@@ -85,6 +86,30 @@ describe('selectors: accounts', () => {
 
         it('should return account name for seed index', () => {
             expect(getSelectedAccountName(state)).to.equal('TEST');
+        });
+    });
+
+    describe('#getSelectedAccountMeta', () => {
+        it('should return account meta for seed index', () => {
+            const state = {
+                accounts,
+                wallet: {
+                    seedIndex: 0,
+                },
+            };
+            expect(getSelectedAccountMeta(state)).to.eql({ type: 'ledger' });
+        });
+
+        it('should return undefined if no accounts present', () => {
+            const state = {
+                accounts: {
+                    accountInfo: {},
+                },
+                wallet: {
+                    seedIndex: 0,
+                },
+            };
+            expect(getSelectedAccountMeta(state)).to.be.undefined;
         });
     });
 
