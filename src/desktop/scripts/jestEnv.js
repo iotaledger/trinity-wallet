@@ -1,3 +1,10 @@
+require('@babel/register')({
+    babelrc: false,
+    presets: ['@babel/env'],
+    only: [__dirname + '/../../'],
+    ignore: [__dirname + '/../../**/node_modules'],
+});
+
 const ElectronEnvironment = require('@jest-runner/electron/environment');
 const fs = require('fs');
 const path = require('path');
