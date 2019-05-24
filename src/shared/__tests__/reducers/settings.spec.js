@@ -379,32 +379,16 @@ describe('Reducer: settings', () => {
     });
 
     describe(SettingsActionTypes.SET_NODELIST, () => {
-        it('should update nodes with a union of action.payload, state.customNodes and state.node', () => {
-            const node = {
-                url: 'http://localhost:9000',
-                pow: false,
-                token: '',
-                password: '',
-            };
-
-            const customNodes = [
-                {
-                    url: 'http://localhost:5000',
-                    pow: false,
-                    token: '',
-                    password: '',
-                },
-                {
-                    url: 'http://localhost:4000',
-                    pow: false,
-                    token: '',
-                    password: '',
-                },
-            ];
-
+        it('should set nodes to action.payload', () => {
             const initialState = {
-                node,
-                customNodes,
+                nodes: [
+                    {
+                        url: 'http://localhost:4000',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
+                ],
             };
 
             const action = {
@@ -428,16 +412,22 @@ describe('Reducer: settings', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 nodes: [
-                    { url: 'http://localhost:5000', pow: true, token: '', password: '' },
-                    { url: 'http://localhost:80', pow: false, token: '', password: '' },
-                    { url: 'http://localhost:4000', pow: false, token: '', password: '' },
-                    { url: 'http://localhost:9000', pow: false, token: '', password: '' },
+                    {
+                        url: 'http://localhost:5000',
+                        pow: true,
+                        token: '',
+                        password: '',
+                    },
+                    {
+                        url: 'http://localhost:80',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
                 ],
-                node,
-                customNodes,
             };
 
-            expect(newState.nodes).to.eql(expectedState.nodes);
+            expect(newState).to.eql(expectedState);
         });
     });
 

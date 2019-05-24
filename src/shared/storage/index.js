@@ -263,7 +263,7 @@ class Node {
                 custom: true,
                 pow,
                 password: node.password,
-                token: node.token
+                token: node.token,
             });
         });
     }
@@ -442,7 +442,7 @@ class Wallet {
      *
      * @method updateNode
      *
-     * @param {object} payload
+     * @param {string} payload
      */
     static updateNode(payload) {
         realm.write(() => {
@@ -909,7 +909,6 @@ const initialise = (getEncryptionKeyPromise) => {
 
         while (nextSchemaIndex < schemasSize) {
             const migratedRealm = new Realm(assign({}, schemas[nextSchemaIndex++], { encryptionKey }));
-
             migratedRealm.close();
         }
 

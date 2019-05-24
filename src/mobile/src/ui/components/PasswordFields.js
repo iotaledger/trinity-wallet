@@ -55,7 +55,7 @@ class PasswordFields extends Component {
     constructor() {
         super();
         this.state = {
-            score: 0,
+            zxcvbn: {},
         };
     }
 
@@ -74,7 +74,9 @@ class PasswordFields extends Component {
      */
     checkPassword() {
         const { t, password, reentry } = this.props;
-        const { score: { score } } = this.state;
+        const {
+            zxcvbn: { score },
+        } = this.state;
         if (isEmpty(password)) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         } else if (size(password) >= MIN_PASSWORD_LENGTH && isEqual(password, reentry) && score === 4) {
@@ -91,7 +93,9 @@ class PasswordFields extends Component {
                 }),
             );
         } else if (score < 4) {
-            const { feedback: { warning } } = this.state;
+            const {
+                feedback: { warning },
+            } = this.state.zxcvbn;
             const reason = warning
                 ? t(`changePassword:${passwordReasons[warning]}`)
                 : t('changePassword:passwordTooWeakReason');
@@ -101,7 +105,9 @@ class PasswordFields extends Component {
 
     render() {
         const { t, theme, password, reentry, passwordLabel, reentryLabel } = this.props;
-        const { score: { score } } = this.state;
+        const {
+            zxcvbn: { score },
+        } = this.state;
         const isValid = score === 4;
 
         return (
@@ -113,7 +119,7 @@ class PasswordFields extends Component {
                     label={passwordLabel || t('global:password')}
                     onValidTextChange={(password) => {
                         this.props.setPassword(password);
-                        this.setState({ score: zxcvbn(password ? UInt8ToString(password) : '') });
+                        this.setState({ zxcvbn: zxcvbn(password ? UInt8ToString(password) : '') });
                     }}
                     containerStyle={{ width: Styling.contentWidth }}
                     autoCapitalize="none"
@@ -174,4 +180,9 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['setPassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(PasswordFields));
+export default withNamespaces(['setPassword', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(PasswordFields),
+);
