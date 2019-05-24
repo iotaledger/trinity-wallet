@@ -1,6 +1,6 @@
 # IOTA Trinity Mobile Wallet
 
-Testing: [![Build Status](https://badge.buildkite.com/c780f148417af9e785db5143d4d46dde1e57408a07f212aff3.svg)](https://buildkite.com/iota-foundation/trinity-mobile-primary)
+Testing: [![Build Status](https://badge.buildkite.com/c780f148417af9e785db5143d4d46dde1e57408a07f212aff3.svg?branch=develop)](https://buildkite.com/iota-foundation/trinity-mobile-prs)
 
 Deployment: [![Build Status](https://app.bitrise.io/app/e1c71066b5c75521/status.svg?token=NytmjW1aEHEu-1kNaMRuiQ&branch=develop)](https://app.bitrise.io/app/e1c71066b5c75521)
 
