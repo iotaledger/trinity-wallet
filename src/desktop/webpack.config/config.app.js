@@ -15,6 +15,9 @@ const config = {
         globalObject: 'this',
         publicPath: '/',
     },
+    optimization: {
+        minimize: false,
+    },
     devtool: devMode ? 'eval-source-map' : 'source-map',
     module: {
         rules: [
