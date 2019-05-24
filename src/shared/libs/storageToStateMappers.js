@@ -1,5 +1,6 @@
 import assign from 'lodash/assign';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import map from 'lodash/map';
 import transform from 'lodash/transform';
 import { Account, Node, Wallet } from '../storage';
@@ -52,6 +53,7 @@ export const mapStorageToState = () => {
             ),
         },
         settings: assign({}, settings, {
+            node: find(nodes, { url: settings.node }),
             nodes: map(nodes, ({ url, pow, token, password }) => ({ url, pow, token, password })),
             availableCurrencies: map(settings.availableCurrencies, (currency) => currency),
             customNodes: map(filter(nodes, (node) => node.custom === true), ({ url, pow, token, password }) => ({

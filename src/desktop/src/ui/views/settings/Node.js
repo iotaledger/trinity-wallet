@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import unionBy from 'lodash/unionBy';
 
@@ -37,12 +37,11 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
     const [quorumSize, setQuorumSize] = useState(settings.quorumSize);
     const [showCustomNodes, setshowCustomNodes] = useState(false);
 
-    useEffect(
-        () => {
-            if (!loading && settings.node.url !== primaryNode.url) setPrimaryNode(settings.node);
-        },
-        [settings],
-    );
+    useEffect(() => {
+        if (!loading && settings.node.url !== primaryNode.url) {
+            setPrimaryNode(settings.node);
+        }
+    }, [settings]);
 
     const updateQuorumEnabled = () => {
         if (
