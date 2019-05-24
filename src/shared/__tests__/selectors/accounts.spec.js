@@ -109,7 +109,7 @@ describe('selectors: accounts', () => {
                     seedIndex: 0,
                 },
             };
-            expect(getSelectedAccountMeta(state)).to.be.undefined;
+            expect(getSelectedAccountMeta(state)).to.equal(undefined);
         });
     });
 
