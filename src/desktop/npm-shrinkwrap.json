@@ -13360,26 +13360,26 @@
       }
     },
     "realm": {
-      "version": "2.23.0",
-      "resolved": "https://registry.npmjs.org/realm/-/realm-2.23.0.tgz",
-      "integrity": "sha512-ChCuhoRJR9yefXuC0MTKS6og6NTP9Wyyyubsk3GSXiYhgCf/IJ7E1Jtsoo6/bbpaSe3Q++5YFMnV4hX+KYP2Cg==",
+      "version": "2.27.0",
+      "resolved": "https://registry.npmjs.org/realm/-/realm-2.27.0.tgz",
+      "integrity": "sha512-ZjBu1Wk2LcvA7miaAH8DRXp7iRpCnp79DJEIol3Qu5aMEj3E8ltomugkkLFw/OT31EBcwOeuet3q+QmlotKLAg==",
       "requires": {
         "command-line-args": "^4.0.6",
         "decompress": "^4.2.0",
         "deepmerge": "2.1.0",
-        "fs-extra": "^4.0.2",
+        "fs-extra": "^4.0.3",
         "https-proxy-agent": "^2.2.1",
-        "ini": "^1.3.4",
-        "nan": "^2.10.0",
-        "node-fetch": "^1.6.3",
+        "ini": "^1.3.5",
+        "nan": "^2.12.1",
+        "node-fetch": "^1.7.3",
         "node-machine-id": "^1.1.10",
         "node-pre-gyp": "^0.11.0",
-        "progress": "^2.0.0",
-        "prop-types": "^15.5.10",
+        "progress": "^2.0.3",
+        "prop-types": "^15.6.2",
         "request": "^2.88.0",
         "stream-counter": "^1.0.0",
         "sync-request": "^3.0.1",
-        "url-parse": "^1.2.0"
+        "url-parse": "^1.4.4"
       },
       "dependencies": {
         "fs-extra": {

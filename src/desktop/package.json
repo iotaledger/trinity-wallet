@@ -141,9 +141,9 @@
   },
   "dependencies": {
     "@babel/register": "7.4.4",
-    "@ledgerhq/hw-transport-node-hid": "4.60.0",
     "@bugsnag/js": "^6.2.0",
     "@bugsnag/plugin-react": "^6.2.0",
+    "@ledgerhq/hw-transport-node-hid": "4.60.0",
     "argon2": "rihardsgravis/node-argon2#ae1a860",
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",
@@ -167,7 +167,7 @@
     "react-redux": "5.1.1",
     "react-router-dom": "5.0.0",
     "react-transition-group": "4.0.1",
-    "realm": "2.23.0",
+    "realm": "2.27.0",
     "recharts": "1.6.1",
     "redux": "4.0.1",
     "usb": "1.5.0"
