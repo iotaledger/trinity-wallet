@@ -390,18 +390,6 @@ class Wallet {
     }
 
     /**
-     * Updates auto node switching configuration.
-     *
-     * @method updateAutoNodeSwitchingSetting
-     * @param {boolean} payload
-     */
-    static updateAutoNodeSwitchingSetting(payload) {
-        realm.write(() => {
-            Wallet.latestSettings.autoNodeSwitching = payload;
-        });
-    }
-
-    /**
      * Updates lock screen timeout.
      *
      * @method updateLockScreenTimeout

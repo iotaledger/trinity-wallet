@@ -9,7 +9,7 @@ import {
     setFullNode,
     removeCustomNode,
     updateQuorumConfig,
-    updateAutoNodeSwitching,
+    updateNodeAutoSwitchSetting,
     changeAutoNodeListSetting,
 } from '../../actions/settings';
 import { generateAlert } from '../../actions/alerts';
@@ -31,10 +31,10 @@ export default function withNodeData(NodeComponent) {
             isCheckingCustomNode: PropTypes.bool.isRequired,
             setFullNode: PropTypes.func.isRequired,
             removeCustomNode: PropTypes.func.isRequired,
-            autoNodeSwitching: PropTypes.bool.isRequired,
+            nodeAutoSwitch: PropTypes.bool.isRequired,
             autoNodeSelection: PropTypes.bool.isRequired,
             updateQuorumConfig: PropTypes.func.isRequired,
-            updateAutoNodeSwitching: PropTypes.func.isRequired,
+            updateNodeAutoSwitchSetting: PropTypes.func.isRequired,
             changeAutoNodeListSetting: PropTypes.func.isRequired,
             generateAlert: PropTypes.func.isRequired,
             quorumEnabled: PropTypes.bool.isRequired,
@@ -78,8 +78,7 @@ export default function withNodeData(NodeComponent) {
             // Check whether the node was already added to the list
             if (
                 customNode &&
-                some(nodes, ({ url }) => (endsWith(url, ':443') ? url.slice(0, -4) : url)
-                    .match(nodeSelected.url))
+                some(nodes, ({ url }) => (endsWith(url, ':443') ? url.slice(0, -4) : url).match(nodeSelected.url))
             ) {
                 generateAlert('error', t('nodeDuplicated'), t('nodeDuplicatedExplanation'));
                 return;
@@ -95,10 +94,15 @@ export default function withNodeData(NodeComponent) {
         removeCustomNode = (nodeUrl) => {
             const { t, autoNodeList, customNodes, quorumEnabled, quorumSize } = this.props;
             if (!autoNodeList && quorumEnabled && quorumSize === customNodes.length) {
-                return this.props.generateAlert('error', t('addCustomNode:couldNotRemove'), t('addCustomNode:couldNotRemoveExplanation'), 10000);
+                return this.props.generateAlert(
+                    'error',
+                    t('addCustomNode:couldNotRemove'),
+                    t('addCustomNode:couldNotRemoveExplanation'),
+                    10000,
+                );
             }
             this.props.removeCustomNode(nodeUrl);
-        }
+        };
 
         render() {
             const {
@@ -110,10 +114,10 @@ export default function withNodeData(NodeComponent) {
                 isChangingNode,
                 isCheckingCustomNode,
                 theme,
-                autoNodeSwitching,
+                nodeAutoSwitch,
                 autoNodeSelection,
                 updateQuorumConfig,
-                updateAutoNodeSwitching,
+                updateNodeAutoSwitchSetting,
                 quorumEnabled,
                 generateAlert,
                 quorumSize,
@@ -129,10 +133,9 @@ export default function withNodeData(NodeComponent) {
                 loading: isChangingNode || isCheckingCustomNode,
                 setNode: this.changeNode,
                 removeCustomNode: this.removeCustomNode,
-                setAutoNodeSwitching: this.changeAutoNodeSwitching,
                 settings: {
                     node,
-                    autoNodeSwitching,
+                    nodeAutoSwitch,
                     autoNodeSelection,
                     autoNodeList,
                     quorumEnabled,
@@ -140,7 +143,7 @@ export default function withNodeData(NodeComponent) {
                 },
                 actions: {
                     changeAutoNodeListSetting,
-                    updateAutoNodeSwitching,
+                    updateNodeAutoSwitchSetting,
                     updateQuorumConfig,
                     setFullNode,
                 },
@@ -162,7 +165,7 @@ export default function withNodeData(NodeComponent) {
         nodes: state.settings.nodes,
         customNodes: state.settings.customNodes,
         theme: getThemeFromState(state),
-        autoNodeSwitching: state.settings.autoNodeSwitching,
+        nodeAutoSwitch: state.settings.nodeAutoSwitch,
         autoNodeSelection: false,
         isChangingNode: state.ui.isChangingNode,
         isCheckingCustomNode: state.ui.isCheckingCustomNode,
@@ -175,10 +178,13 @@ export default function withNodeData(NodeComponent) {
         setFullNode,
         removeCustomNode,
         generateAlert,
-        updateAutoNodeSwitching,
+        updateNodeAutoSwitchSetting,
         updateQuorumConfig,
         changeAutoNodeListSetting,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(NodeData));
+    return connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(withI18n()(NodeData));
 }

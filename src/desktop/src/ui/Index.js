@@ -42,8 +42,6 @@ import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Ledger from 'ui/global/seedStore/Ledger';
 
-import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
-
 import css from './index.scss';
 
 /**
@@ -366,5 +364,5 @@ export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(withI18n()(withAutoNodeSwitching(App))),
+    )(withI18n()(App)),
 );
