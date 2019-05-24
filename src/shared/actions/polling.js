@@ -274,7 +274,7 @@ export const syncAccountWhilePolling = (payload) => ({
 export const fetchMarketData = () => {
     return (dispatch) => {
         dispatch(fetchMarketDataRequest());
-        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD')
+        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=MIOTA&tsyms=USD')
             .then(
                 (response) => response.json(),
                 () => {
@@ -298,7 +298,7 @@ export const fetchMarketData = () => {
 export const fetchPrice = () => {
     return (dispatch) => {
         dispatch(fetchPriceRequest());
-        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD,EUR,BTC,ETH')
+        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=MIOTA&tsyms=USD,EUR,BTC,ETH')
             .then((response) => response.json(), () => dispatch(fetchPriceError()))
             .then((json) => {
                 dispatch(setPrice(json));
@@ -331,7 +331,13 @@ export const fetchNodeList = () => {
                         'url',
                     );
                     // Set quorum nodes
-                    quorum.setNodes(unionBy(getCustomNodesFromState(getState()), getState().settings.autoNodeList && unionNodes, 'url'));
+                    quorum.setNodes(
+                        unionBy(
+                            getCustomNodesFromState(getState()),
+                            getState().settings.autoNodeList && unionNodes,
+                            'url',
+                        ),
+                    );
 
                     dispatch(setNodeList(unionNodes));
                 }
@@ -374,7 +380,7 @@ export const fetchChartData = () => {
         each(arrayCurrenciesTimeFrames, (currencyTimeFrameArrayItem) => {
             const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
                 currencyTimeFrameArrayItem.timeFrame,
-            )}?fsym=IOT&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat(
+            )}?fsym=MIOTA&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat(
                 currencyTimeFrameArrayItem.timeFrame,
             )}`;
 
