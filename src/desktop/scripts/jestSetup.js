@@ -11,6 +11,9 @@ module.exports = async function() {
     const browser = await puppeteer.launch({
       headless: true,
       devtools: false,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      ignoreHTTPSErrors: true,
+      dumpio: false,
     });
 
     const app = express();
