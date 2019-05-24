@@ -62,15 +62,15 @@ export const generateAlert = (category, title, message, closeInterval, err) => (
 
 
 /**
- * Generates relevant node error alert
+ * Generates relevant error alert
  *
- * @method generateNodeError
+ * @method generateErrorAlert
  * @param {func} generateDefaultAlert
  * @param {object} err
  *
  * @returns {function} dispatch
  */
-export const generateNodeError = (generateDefaultAlert, err) => (dispatch) => {
+export const generateErrorAlert = (generateDefaultAlert, err) => (dispatch) => {
     if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
         dispatch(generateLedgerCancelledAlert(err));
     } else if (get(err, 'message') === Errors.LEDGER_INVALID_INDEX) {

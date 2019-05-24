@@ -8,9 +8,7 @@ import {
     generateAlert,
     generateTransitionErrorAlert,
     generateAddressesSyncRetryAlert,
-    generateNodeOutOfSyncErrorAlert,
-    generateUnsupportedNodeErrorAlert,
-    generateNodeError
+    generateErrorAlert
 } from '../actions/alerts';
 import { setActiveStepIndex, startTrackingProgress, reset as resetProgress } from '../actions/progress';
 import { changeNode } from '../actions/settings';
@@ -484,7 +482,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, qu
         return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
             .withRetries()(snapshotTransitionFn)()
             .catch((err) => {
-                dispatch(generateNodeError(generateTransitionErrorAlert, err));
+                dispatch(generateErrorAlert(generateTransitionErrorAlert, err));
                 dispatch(snapshotTransitionError());
                 dispatch(snapshotAttachToTangleComplete());
             });

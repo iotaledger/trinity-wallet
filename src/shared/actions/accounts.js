@@ -18,7 +18,7 @@ import {
     generateSyncingErrorAlert,
     generateAccountDeletedAlert,
     generateAccountSyncRetryAlert,
-    generateNodeError,
+    generateErrorAlert,
 } from '../actions/alerts';
 import { Account, Wallet } from '../storage';
 import NodesManager from '../libs/iota/NodesManager';
@@ -402,7 +402,7 @@ export const getFullAccountInfo = (seedStore, accountName, quorum = false) => {
                 dispatch(fullAccountInfoFetchSuccess(resultWithAccountMeta));
             })
             .catch((err) => {
-                const dispatchErrors = () => dispatch(generateNodeError(generateAccountInfoErrorAlert, err));
+                const dispatchErrors = () => dispatch(generateErrorAlert(generateAccountInfoErrorAlert, err));
                 dispatch(fullAccountInfoFetchError());
                 if (existingAccountNames.length === 0) {
                     setTimeout(dispatchErrors, 500);
@@ -444,7 +444,7 @@ export const manuallySyncAccount = (seedStore, accountName, quorum = false) => {
                 dispatch(manualSyncSuccess(result));
             })
             .catch((err) => {
-                dispatch(generateNodeError(generateSyncingErrorAlert, err));
+                dispatch(generateErrorAlert(generateSyncingErrorAlert, err));
                 dispatch(manualSyncError());
             });
     };
@@ -482,7 +482,7 @@ export const getAccountInfo = (seedStore, accountName, notificationFn, quorum = 
                 dispatch(accountInfoFetchSuccess(result));
             })
             .catch((err) => {
-                dispatch(generateNodeError(generateAccountInfoErrorAlert, err));
+                dispatch(generateErrorAlert(generateAccountInfoErrorAlert, err));
                 dispatch(accountInfoFetchError());
             });
     };
