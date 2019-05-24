@@ -9,7 +9,7 @@ import * as addressesUtils from '../../libs/iota/addresses';
 import * as transferUtils from '../../libs/iota/transfers';
 import * as accountsUtils from '../../libs/iota/accounts';
 import * as inputUtils from '../../libs/iota/inputs';
-import { iota, quorum, SwitchingConfig } from '../../libs/iota';
+import { iota, quorum } from '../../libs/iota';
 import { realm, Account, Node, Wallet, getRealm, initialise } from '../../storage';
 import accounts from '../__samples__/accounts';
 import { addressData, latestAddressObject } from '../__samples__/addresses';
@@ -23,14 +23,6 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe('actions: transfers', () => {
-    before(() => {
-        SwitchingConfig.autoSwitch = false;
-    });
-
-    after(() => {
-        SwitchingConfig.autoSwitch = true;
-    });
-
     describe('#promoteTransaction', () => {
         let seedStore;
 

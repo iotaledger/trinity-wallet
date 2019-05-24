@@ -36,19 +36,11 @@ import {
     newZeroValueAttachedTransactionTrytes,
 } from '../../__samples__/trytes';
 import mockAccounts from '../../__samples__/accounts';
-import { iota, quorum, SwitchingConfig } from '../../../libs/iota/index';
+import { iota, quorum } from '../../../libs/iota/index';
 import { IRI_API_VERSION } from '../../../config';
 import { EMPTY_TRANSACTION_TRYTES, EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
 
 describe('libs: iota/addresses', () => {
-    before(() => {
-        SwitchingConfig.autoSwitch = false;
-    });
-
-    after(() => {
-        SwitchingConfig.autoSwitch = true;
-    });
-
     describe('#preserveAddressLocalSpendStatus', () => {
         it('it should preserve local spend status of existing addresses', () => {
             const existingAddressData = [
