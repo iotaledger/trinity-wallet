@@ -1,4 +1,5 @@
 import map from 'lodash/map';
+import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -153,6 +154,7 @@ export class AddCustomNode extends Component {
     render() {
         const { t, theme, customNodes, loading, loginRoute } = this.props;
         const { nodeListHeight, textInputFlex, nodeListFlex, viewAuthKeyButton, viewAuthKeyFields, customNode } = this.state;
+
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -176,8 +178,8 @@ export class AddCustomNode extends Component {
                                     value={customNode.url}
                                     loading={loading}
                                     onSubmitEditing={() => {
-                                        if (this.username) {
-                                            this.url.blur();
+                                        this.url.blur();
+                                        if (get(this.username, 'focus')) {
                                             return this.username.focus();
                                         }
                                         this.addCustomNode();
