@@ -11,14 +11,14 @@ import { IRI_API_VERSION, MAX_MILESTONE_FALLBEHIND } from '../../../config';
 
 describe('libs: iota/extendedApi', () => {
     describe('#getIotaInstance', () => {
-        describe('when "provider" is passed as an argument', () => {
+        describe('when settings object { url, token?, password? } is passed as an argument', () => {
             it('should not return global iota instance', () => {
-                const instance = getIotaInstance('provider');
+                const instance = getIotaInstance({ url: 'http://foo.baz' });
                 expect(isEqual(instance, iota)).to.equal(false);
             });
         });
 
-        describe('when "provider" is not passed as an argument', () => {
+        describe('when settings object { url, token?, password? } is not passed as an argument', () => {
             it('should return global iota instance', () => {
                 const instance = getIotaInstance();
                 expect(isEqual(instance, iota)).to.equal(true);
