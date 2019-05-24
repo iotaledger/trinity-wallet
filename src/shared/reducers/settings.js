@@ -123,7 +123,7 @@ export const initialState = {
     /**
      * Determines if (primary) node should automatically be auto-switched
      */
-    nodeAutoSwitch: false,
+    nodeAutoSwitch: true,
     /**
      * - When true: pull in nodes from endpoint (config#NODELIST_URL) and include the custom nodes in the quorum selection
      * - When false: only use custom nodes in quorum selection

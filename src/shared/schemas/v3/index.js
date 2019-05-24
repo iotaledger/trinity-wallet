@@ -16,6 +16,8 @@ const migration = (oldRealm, newRealm) => {
             enabled: true,
             size: QUORUM_SIZE,
         };
+        settings.autoNodeList = true;
+        settings.nodeAutoSwitch = true;
     });
 };
 
