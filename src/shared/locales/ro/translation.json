@@ -315,9 +315,9 @@
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
         "seedCleared": "Seed cleared",
-        "mostSecure": "Most Secure",
-        "recommended": "Recommended",
-        "leastSecure": "Least Secure",
+        "mostSecure": "Cel mai sigur",
+        "recommended": "Recomandat",
+        "leastSecure": "Cel mai putin sigur",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Write your seed down",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
