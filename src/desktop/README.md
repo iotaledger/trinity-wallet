@@ -13,9 +13,6 @@ This is the repository for the IOTA Trinity Desktop Wallet. The application is b
 On **Windows** platforms you'll need to install build tools to compile native modules:
 
 ```
-# Windows Vista / 7 only
-Install .NET Framework 4.5.1 (https://www.microsoft.com/en-us/download/details.aspx?id=40773)
-
 # Install Visual C++ Build Tools and Python 2.7
 npm install --global windows-build-tools
 
@@ -25,6 +22,7 @@ cd C:\src\vcpkg
 .\bootstrap-vcpkg.bat
 .\vcpkg install openssl:x64-windows-static
 ```
+Additionally on **Windows 7** install [.NET Framework 4.5.1](https://www.microsoft.com/en-us/download/details.aspx?id=40773)
 
 On **Linux** platforms you'll need to install additional packages to compile native modules:
 
