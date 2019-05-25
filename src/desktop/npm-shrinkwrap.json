@@ -1374,12 +1374,12 @@
       "integrity": "sha512-JI56D3ZhXGjH5UqeSTltdxVTPjMpfNI/Vd5XP0V/gBAJb6CeILX3hLe5G1VmxxZciVNEfG5724YKgadqp6/uWg=="
     },
     "@ledgerhq/devices": {
-      "version": "4.60.0",
-      "resolved": "https://registry.npmjs.org/@ledgerhq/devices/-/devices-4.60.0.tgz",
-      "integrity": "sha512-vYQuBbGRPAdMVdvB/6au5jt9VgtagTswiKUxf1cWq3X4ay93X7iqZ12vv91FpGvu3u31QXg3LZDMkxyigGRFlw==",
+      "version": "4.60.2",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/devices/-/devices-4.60.2.tgz",
+      "integrity": "sha512-taHh6DpnqmI0u9TqK5AtHMoIcLCTuEKT4sk/77f7wdhoBBjgbX6qX807h2qxO6vS/AM6td+HXaOC//eZLkhkSQ==",
       "requires": {
         "@ledgerhq/errors": "^4.60.0",
-        "@ledgerhq/logs": "^4.60.0",
+        "@ledgerhq/logs": "^4.60.2",
         "rxjs": "^6.5.2"
       },
       "dependencies": {
@@ -1399,27 +1399,27 @@
       "integrity": "sha512-jGbDAuNw1KNB23osgK9RDa6jXNoz3QaSeaiJZjwYpCWSTH6v0vW5y5LPe9lomg5BcW2r65kNe1feLfZ4wJuu5A=="
     },
     "@ledgerhq/hw-transport": {
-      "version": "4.60.0",
-      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport/-/hw-transport-4.60.0.tgz",
-      "integrity": "sha512-vjwZXg844qy4xxTlSOQRZeoppr0ZnN8+meAsmuFoBtY+hSaqAsqWeQEKYU2fs8iANtVH8Ho6gL+sbYF6KsGPWQ==",
+      "version": "4.60.2",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport/-/hw-transport-4.60.2.tgz",
+      "integrity": "sha512-JSMtKeMtqyDlggXgBjyFM+Qj/eosE29Be+WZzXoO4ltjmF/z6D3XkTVSf6wJgeRoxE6+W5BmCwaFJWejlgqCxg==",
       "requires": {
-        "@ledgerhq/devices": "^4.60.0",
+        "@ledgerhq/devices": "^4.60.2",
         "@ledgerhq/errors": "^4.60.0",
         "events": "^3.0.0"
       }
     },
     "@ledgerhq/hw-transport-node-hid": {
-      "version": "4.60.0",
-      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport-node-hid/-/hw-transport-node-hid-4.60.0.tgz",
-      "integrity": "sha512-zQSKPQZL4EDiQqEKU28b++c1dB5ubT4lRa1K6CmWgAChXrhmdF47/UfBQVql/gg2vEsqO2wCQxWLoepHqRSgTw==",
+      "version": "4.60.2",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport-node-hid/-/hw-transport-node-hid-4.60.2.tgz",
+      "integrity": "sha512-djLhAaFhQx6abkPGMmwdXFl+h9Rmtg2Moo9XrW2N7caRYcRgUYS3ygl5tzpkVMtjwmPbBhNfjSHb+gsAv2C/vQ==",
       "requires": {
-        "@ledgerhq/devices": "^4.60.0",
+        "@ledgerhq/devices": "^4.60.2",
         "@ledgerhq/errors": "^4.60.0",
-        "@ledgerhq/hw-transport": "^4.60.0",
-        "@ledgerhq/logs": "^4.60.0",
+        "@ledgerhq/hw-transport": "^4.60.2",
+        "@ledgerhq/logs": "^4.60.2",
         "lodash": "^4.17.11",
         "node-hid": "^0.7.8",
-        "usb": "^1.5.0"
+        "usb": "^1.6.0"
       },
       "dependencies": {
         "nan": {
@@ -1428,20 +1428,21 @@
           "integrity": "sha512-TghvYc72wlMGMVMluVo9WRJc0mB8KxxF/gZ4YYFy7V2ZQX9l7rgbPg7vjS9mt6U5HXODVFVI2bOduCzwOMv/lw=="
         },
         "usb": {
-          "version": "1.5.0",
-          "resolved": "https://registry.npmjs.org/usb/-/usb-1.5.0.tgz",
-          "integrity": "sha512-/0stiQEmweuO2BKv2avzQQ8ypDUjo4Osz5sSEi+d0F4Rc+ddX1xED3uf4Tkelc1eADlfn0JQZYHP0bI7CNDA0Q==",
+          "version": "1.6.0",
+          "resolved": "https://registry.npmjs.org/usb/-/usb-1.6.0.tgz",
+          "integrity": "sha512-52DyWlCk9K+iw3LnvY95WXSnpHjxJoI++aGkV8HiMNPc4zmvDQlYvWAzrkbJ2JH3oUcx26XfU5sZcG4RAcVkMg==",
           "requires": {
-            "nan": "^2.8.0",
-            "node-pre-gyp": "^0.11.0"
+            "bindings": "^1.4.0",
+            "nan": "2.13.2",
+            "prebuild-install": "^5.2.4"
           }
         }
       }
     },
     "@ledgerhq/logs": {
-      "version": "4.60.0",
-      "resolved": "https://registry.npmjs.org/@ledgerhq/logs/-/logs-4.60.0.tgz",
-      "integrity": "sha512-sFaulGGP6NLT6IimQ+sPfx0DcSaQjzZyEKGNI/+kDAHNDEfl0Bbls6e6INCl5vW9mELmv7804CJrDZpHDOezVQ=="
+      "version": "4.60.2",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/logs/-/logs-4.60.2.tgz",
+      "integrity": "sha512-+gMbjDIjQghwoFH/IF3j86knsHuUFO3kdYxdh9iIJAFyz3OPyHcQIjQDGL0AmnG6LU7CIMYdHcJ5NEiQyunUfg=="
     },
     "@mrmlnc/readdir-enhanced": {
       "version": "2.2.1",
