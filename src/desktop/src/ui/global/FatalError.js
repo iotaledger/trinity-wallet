@@ -1,5 +1,5 @@
 /* global Electron */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import css from 'ui/views/onboarding/index.scss';
@@ -7,14 +7,20 @@ import css from 'ui/views/onboarding/index.scss';
 /**
  * Linux missing dependencies tutorial
  */
-class FatalError extends React.PureComponent {
-    static propTypes = {
-        error: PropTypes.string,
-    };
+const FatalError = ({ error }) => {
+    const [errors, setErrors] = useState(typeof window.fatalErrors === 'object' ? window.fatalErrors : []);
 
-    linuxContent = () => {
-        const { error } = this.props;
+    useEffect(() => {
+        window.fatalErrors = (msg) => {
+            setErrors(errors.concat(msg));
+        };
 
+        return () => {
+            window.fatalErrors = null;
+        };
+    }, []);
+
+    const linuxContent = () => {
         if (typeof error === 'string' && error.indexOf('Unknown or unsupported transport') > -1) {
             return (
                 <form className={css.tutorial}>
@@ -59,25 +65,33 @@ class FatalError extends React.PureComponent {
         );
     };
 
-    generalContent = () => {
+    const generalContent = () => {
         return (
             <form>
                 <h1>Error launching wallet</h1>
                 <p>There was a fatal error launching the wallet.</p>
+                <pre>
+                    <span key="error">{error}</span>
+                    {errors.map((err, i) => <span key={i}>{err}</span>)}
+                </pre>
             </form>
         );
     };
 
-    render() {
-        return (
-            <main className={css.onboarding}>
-                <header />
+    return (
+        <main className={css.onboarding}>
+            <header />
+            <div>
                 <div>
-                    <div>{Electron.getOS() === 'linux' ? this.linuxContent() : this.generalContent()}</div>
+                    {typeof Electron === 'object' && Electron.getOS() === 'linux' ? linuxContent() : generalContent()}
                 </div>
-            </main>
-        );
-    }
-}
+            </div>
+        </main>
+    );
+};
+
+FatalError.propTypes = {
+    error: PropTypes.string,
+};
 
 export default FatalError;

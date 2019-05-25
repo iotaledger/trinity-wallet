@@ -1,6 +1,6 @@
 {
   "name": "trinity-mobile",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -23,7 +23,6 @@
     "nodejs-deps": "yarn --cwd nodejs-assets/nodejs-project",
     "postinstall": "./node_modules/.bin/rn-nodeify --install crypto,http,os,path,stream,vm --hack --yarn && yarn nodejs-deps && patch-package && npm run fix-modal",
     "prepare-release": "yarn version && cd ios && bundle exec fastlane release && cd ../android && bundle exec fastlane release && cd .. && echo Successfully incremented version and build numbers! Please remember to run git add ., git commit, git push --tags, and git push",
-    "auditjs": "./../../node_modules/.bin/auditjs -n -l error -w whitelist.json",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect",
     "fix-modal": "node node_modules/react-native-modal-translucent/scripts/translucent-modal.js"

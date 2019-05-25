@@ -73,6 +73,8 @@ let tray = null;
 
 let windowSizeTimer = null;
 
+let globalErrorFlag = false;
+
 /**
  * Register iota:// protocol for deep links
  * Set Trinity as the default handler for iota:// protocol
@@ -142,16 +144,24 @@ function createWindow() {
         show: false,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
-        icon: path.resolve(
-            paths.assets,
-            `icon.${process.platform === 'win32' ? 'ico' : process.platform === 'darwin' ? 'icns' : 'png'}`,
-        ),
         webPreferences: {
             nodeIntegration: false,
             preload: path.resolve(paths.preload, devMode ? 'preloadDev.js' : 'preloadProd.js'),
             disableBlinkFeatures: 'Auxclick',
             webviewTag: false,
         },
+    });
+
+    windows.main.webContents.on('console-message', (_e, level, message) => {
+        if (message.indexOf('Unable to load preload script') > -1) {
+            globalErrorFlag = true;
+        }
+        if (globalErrorFlag && level === 2) {
+            const msg = JSON.stringify({ error: message.replace(/['"]+/g, '') });
+            windows.main.webContents.executeJavaScript(
+                `if(typeof window.fatalErrors === "function") { window.fatalErrors('${msg}'); } else { window.fatalErrors = typeof window.fatalErrors === "object" ? window.fatalErrors.concat('${msg}') : ['${msg}'];};`,
+            );
+        }
     });
 
     if (process.platform === 'darwin') {
@@ -216,9 +226,11 @@ function createWindow() {
 
     if (devMode) {
         windows.main.webContents.openDevTools({ mode: 'detach' });
+        /* Uncomment to enable Tray app DevTools on macOS
         if (process.platform === 'darwin') {
             windows.tray.webContents.openDevTools({ mode: 'detach' });
         }
+        */
 
         installExtension(REACT_DEVELOPER_TOOLS);
         installExtension(REDUX_DEVTOOLS);

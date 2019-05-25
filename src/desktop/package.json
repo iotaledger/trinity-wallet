@@ -1,7 +1,7 @@
 {
   "name": "trinity-desktop",
   "productName": "Trinity",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -23,14 +23,13 @@
     "postinstall": "electron-builder install-app-deps",
     "devserver": "node server.js",
     "style:shots": "node scripts/puppeteer.js",
-    "build": "rimraf dist && concurrently \"npm run build-main\" \"npm run build-app\"",
+    "build": "rimraf dist && npm run build-main && npm run build-app",
     "build-main": "./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config/config.main.js",
     "build-app": "./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config/config.app.js",
     "compile": "npm run build && npm run compile:linux && npm run compile:mac && npm run compile:win",
     "compile:linux": "./node_modules/.bin/electron-builder --linux --x64",
     "compile:mac": "./node_modules/.bin/cross-env electron-builder --mac --x64",
     "compile:win": "./node_modules/.bin/electron-builder --win --x64",
-    "auditjs": "./../../node_modules/.bin/auditjs -n -l error -w whitelist.json",
     "prepare-release": "yarn version && echo Successfully incremented version number! Please remember to run git add ., git commit, git push --tags, and git push",
     "release": "./node_modules/.bin/cross-env CSC_IDENTITY_AUTO_DISCOVERY=false build -mwl"
   },
@@ -61,7 +60,7 @@
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
     "url-loader": "1.1.2",
-    "webpack": "4.31.0",
+    "webpack": "4.32.0",
     "webpack-cli": "3.3.2",
     "webpack-dev-middleware": "3.7.0",
     "webpack-hot-middleware": "2.25.0"
@@ -142,7 +141,7 @@
   },
   "dependencies": {
     "@babel/register": "7.4.4",
-    "@ledgerhq/hw-transport-node-hid": "4.56.0",
+    "@ledgerhq/hw-transport-node-hid": "4.60.0",
     "@bugsnag/js": "^6.2.0",
     "@bugsnag/plugin-react": "^6.2.0",
     "argon2": "rihardsgravis/node-argon2#ae1a860",
@@ -152,8 +151,8 @@
     "electron-updater": "4.0.6",
     "entangled-node": "rihardsgravis/entangled-node#73ccd5e",
     "hw-app-iota": "0.6.1",
-    "i18next": "15.1.1",
-    "iota.lib.js": "0.5.1",
+    "i18next": "15.1.2",
+    "iota.lib.js": "0.5.2",
     "kdbxweb": "1.2.7",
     "keytar": "4.7.0",
     "machine-uuid-sync": "https://github.com/rajivshah3/machine-uuid-sync#a5ffa8e",
@@ -169,7 +168,8 @@
     "react-router-dom": "5.0.0",
     "react-transition-group": "4.0.1",
     "realm": "2.23.0",
-    "recharts": "1.6.0",
-    "redux": "4.0.1"
+    "recharts": "1.6.1",
+    "redux": "4.0.1",
+    "usb": "1.5.0"
   }
 }
