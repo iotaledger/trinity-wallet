@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Noden returnerade ett fel när den hämtade din kontoinformation. Om problemet kvarstår, prova att ändra nod eller inaktivera din system-proxy i Trinity inställningar.",
         "nodeOutOfSync": "Nod osynkad",
         "nodeOutOfSyncExplanation": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
+        "nodeOutOfSyncByTimestampExplanation": "Din nuvarande nod är osynkad. Vänligen ändra nod eller försök igen. Om ditt problem kvarstår, se till att klockan på din enhet är korrekt.",
         "experimentalNode": "Nod-versionen stöds inte",
         "experimentalNodeExplanation": "Din valda nod kör en experimentell version som inte stöds. Vänligen ändra nod eller försök igen.",
         "thisNodeOutOfSync": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
@@ -160,9 +161,11 @@
         "shouldUpdateExplanation": "En ny uppdatering har släppts. Det rekommenderas att du uppdaterar till den senaste versionen.",
         "forceUpdate": "Uppdatera appen att fortsätta",
         "forceUpdateExplanation": "En viktig uppdatering har släppts. Vänligen uppdatera appen nu.",
+        "testVersionWarning": "Denna version ska endast användas för teständamål, med mycket små mängder tokens.",
         "missingPermission": "Åtkomst till filsystem krävs",
         "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion.",
-        "swipeToConfirm": "Dra för att bekräfta"
+        "swipeToConfirm": "Dra för att bekräfta",
+        "expert": "Avancerat"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -733,7 +736,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Fel vid hämtning av uppdateringsdata",
         "noUpdatesAvailable": "Inga uppdateringar tillgängliga",
-        "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity.",
+        "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity!",
         "newVersionAvailable": "Ny version tillgänglig",
         "newVersionAvailableExplanation": "Det finns en ny Trinity-version. Vill du uppdatera nu?",
         "installUpdate": "Installera uppdateringen och starta om",
@@ -798,13 +801,16 @@
         "notReady": "Om du vill använda en Ledger-enhet, anslut och lås upp den nu",
         "indexInUse": "Index redan i bruk för kontot {{account}}",
         "indexInUseExplanation": "Ditt valda index är redan i bruk på ett av dina konto. Vänligen välj ett annat indexnummer.",
-        "proceedWithLedger": "Fortsätt med Ledger-installationen",
+        "createNewLedgerAccountInfo": "Se till att du skriver ner och kommer ihåg ditt indexnummer.",
+        "restoreLedgerAccountInfo": "Ange ditt sparade indexnummer för att återställa ditt konto.",
+        "createNewLedgerAccount": "Skapa ett nytt Ledger-konto",
+        "restoreLedgerAccount": "Återställ ett befintligt Ledger-konto",
         "accountIndex": "Konto-index",
         "accountPage": "Konto-sida",
         "actionCancelled": "Ledger-enhets åtkomst avbruten",
         "actionCancelledExplanation": "Kan inte utföra åtgärden utan Ledger-enhetens åtkomst.",
         "chooseAccountIndex": "Välj ditt Ledger konto-index",
-        "accountIndexExplanation": "Din Ledger kan hantera flera seeds. Varje seed identifieras av ett unikt indexnummer. Ett oanvänt index har blivit förvalt, men välj ett eget om du vill. Se till att anteckna ditt valda indexnummer.",
+        "accountIndexExplanation": "Din Ledger kan lagra flera seeds. Varje seed identifieras med ett unikt indexnummer.",
         "accountPageExplanation": "Vissa tredjepartsplånböcker kräver sidor.",
         "connectionError": "Kan inte ansluta till Ledger",
         "connectionErrorExplanation": "Kontrollera att din Ledger är ansluten och upplåst.",
@@ -826,7 +832,11 @@
         "checkAddressExplanation": "Kontrollera att adressen matchar den som visas på din Ledger-enhet.",
         "applicationNotInitialised": "Varning obekräftad",
         "applicationNotInitialisedExplanation": "Stäng och öppna på nytt IOTA-appen på din Ledger-enhet, acceptera den informativa varningen och försök igen.",
+        "checkLedger": "Kolla din Ledger-enhet",
+        "acceptWarningExplanation": "Om det finns en informationsvarning på din Ledger-enhet måste du bläddra igenom och acceptera den genom att trycka på båda knapparna.",
         "udevError": "Kunde inte kommunicera med Ledger-enheten",
-        "udevErrorExplanation": "Trinity kunde inte kommunicera med Ledger-enheten. Besök webbadressen nedan för att lösa problemet."
+        "udevErrorExplanation": "Trinity kunde inte kommunicera med Ledger-enheten. Besök webbadressen nedan för att lösa problemet.",
+        "writtenDownInfoTitle": "Kom ihåg ditt indexnummer",
+        "writtenDownInfoExplanation": "Du behöver ditt indexnummer för att återställa ditt konto i framtiden. Om du förlorar ditt indexnummer kommer du att förlora åtkomsten till dina IOTA. Vänligen kom ihåg det."
     }
 }

@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "O servidor retornou um erro durante a busca de informações de sua conta. Se o problema persistir, tente alterar o servidor ou desative o proxy do sistema em configurações da Trinity.",
         "nodeOutOfSync": "Servidor não sincronizado",
         "nodeOutOfSyncExplanation": "O servidor selecionado não está sincronizado. Por favor, altere o servidor e tente novamente.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Versão do servidor não suportado",
         "experimentalNodeExplanation": "Seu servidor selecionado está executando uma versão experimental que não é suportada. Por favor, altere o servidor ou tente novamente.",
         "thisNodeOutOfSync": "O servidor selecionado não está sincronizado. Por favor, altere o servidor e tente novamente.",
@@ -160,9 +161,11 @@
         "shouldUpdateExplanation": "Uma nova atualização foi lançada. É recomendável você atualizar para a versão mais recente.",
         "forceUpdate": "Atualize o aplicativo para continuar",
         "forceUpdateExplanation": "Foi lançada uma atualização importante. Por favor, atualize o aplicativo agora.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Permissões do sistema de arquivo necessárias",
         "missingPermissionExplanation": "O acesso ao sistema de arquivos é necessário para executar esta função.",
-        "swipeToConfirm": "Deslize para confirmar"
+        "swipeToConfirm": "Deslize para confirmar",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -394,7 +397,7 @@
         "changePassword": "Alterar Senha",
         "general": "Configurações gerais",
         "advanced": "Opções Avançadas",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "Opções do servidor",
         "account": "Configurações de conta",
         "logout": "Desconectar",
         "reset": "Redefinir a carteira",
@@ -471,12 +474,12 @@
         "yesterday": "Ontem",
         "promotingAnotherBundle": "Promover outro pacote",
         "pleaseWait": "Por favor aguarde, Trinity está promovendo outro pacote.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "typeHelp": "Digite !help para acessar os comandos disponíveis",
+        "searchHelpText": "Pesquisar por bundle hash ou conteúdo da mensagem",
+        "searchHelpValue": "Pesquisar transações por valor exato em iota",
+        "searchHelpUnits": "Pesquisar transações por valor de iota e unidade",
+        "searchHelpMore": "Pesquisar transações com o valor acima de X",
+        "searchHelpLess": "Pesquisar transações com o valor abaixo de X"
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
@@ -510,7 +513,7 @@
         "autoPromotionExplanation": "Autopromoção ajuda a confirmar suas transações no Tangle. Habilite essa configuração se você está tendo dificuldade em confirmar suas transações.",
         "autoPromotionPoW": "Autopromoção só é possível em servidores que suportam prova de trabalho remoto.",
         "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "stateExport": "Exportar estado"
     },
     "advancedThemeCustomisation": {
         "background": "Plano de Fundo",
@@ -581,7 +584,7 @@
         "viewSeed": "Ver Seed",
         "hideSeed": "Esconder Seed",
         "notAvailable": "Exportação da Seed não está disponível para o tipo de conta {{accountType}}",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "O seu dispositivo Ledger utiliza um elemento seguro para armazenar a sua seed. A seed é criptografada com segurança e não sai do dispositivo.",
         "accountIndex": "Seu índice de conta Ledger",
         "accountPage": "Página de sua conta Ledger"
     },
@@ -652,16 +655,16 @@
         "noSeedFoundExplanation": "O SeedVault está vazio ou contém uma Seed com um formato inválido.",
         "seedFileError": "Falha ao abrir o SeedVault",
         "seedFileErrorExplanation": "Houve um problema ao abrir o SeedVault. Se você selecionou o arquivo correto então o mesmo pode estar corrompido.",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileError": "Arquivo de SeedVault inválido",
+        "invalidSeedFileErrorExplanation": "Este formato de arquivo não é suportado. Apenas arquivos SeedVault (.kdbx) criados através da Trinity ou gerenciador de senhas são suportados.",
         "seedVaultKeyExplanation": "Primeiro precisamos proteger seu SeedVault. Por favor, escolha uma chave para criptografar o arquivo. Você usará esta chave se caso precisar restaurar sua Seed do SeedVault.",
         "retypeKey": "Redigite a chave",
         "key": "Chave"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "Exportação de Estado armazenará um arquivo de txt no seu dispositivo com informações de sua conta (transações, endereços) versão da carteira e nomes de arquivos armazenados.",
+        "exportSuccess": "Estado exportado",
+        "exportSuccessExplanation": "Seu arquivo de Estado foi exportado com sucesso."
     },
     "chart": {
         "mcap": "MCAP",
@@ -723,17 +726,17 @@
         "autofill": "Sucesso no preenchimento automático",
         "autofillExplanation": "Dados da transação preenchida automaticamente através do link.",
         "deepLinkingOverview": "Deep links são links clicáveis (iota://...) que preenchem automaticamente os dados de transação na Trinity.",
-        "deepLinkingWarning": "Cuidado com fraudes de phishing. Certifique-se de que o link que você abrir navegue para o aplicativo oficial de Trinity.",
+        "deepLinkingWarning": "Cuidado com fraudes de phishing. Certifique-se de que o link que você abrir navegue para o aplicativo oficial da Trinity.",
         "deepLinkingUpdated": "Configurações de deep linking",
         "deepLinkingEnabled": "Você ativou o deep linking.",
         "deepLinkingDisabled": "Você desativou o deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoTitle": "Deep linking não está habilitado",
+        "deepLinkingInfoMessage": "Você abriu um deep link iota:// mas a função deep linking não está habilitada."
     },
     "updates": {
         "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",
         "noUpdatesAvailable": "Nenhuma atualização disponível",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Nova versão disponível",
         "newVersionAvailableExplanation": "Uma nova versão da Trinity está disponível. Deseja atualizar agora?",
         "installUpdate": "Instale a atualização e reinicie",
@@ -798,13 +801,16 @@
         "notReady": "Se você deseja usar um dispositivo de Ledger, conecte e desbloqueie agora",
         "indexInUse": "Índice já em uso para conta {{account}}",
         "indexInUseExplanation": "Índice escolhido já está em uso em uma das suas contas. Por favor escolha outro número de índice.",
-        "proceedWithLedger": "Continuar com a configuração de Ledger",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Índice de conta",
         "accountPage": "Página da conta",
         "actionCancelled": "Acesso de dispositivo Ledger cancelado",
         "actionCancelledExplanation": "Não é possível executar a ação sem acesso ao dispositivo Ledger.",
         "chooseAccountIndex": "Escolha o seu índice da conta Ledger",
-        "accountIndexExplanation": "Seu Ledger pode armazenar varias Seeds. Cada Seed é identificada por um número de índice único. Um índice ainda não usado foi pre-selecionado, mas sinta-se a vontade de escolher o seu próprio. Certifique-se de anotar o número do índice escolhido.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Algumas carteiras de terceiros exigem páginas.",
         "connectionError": "Não foi possível conectar-se ao Ledger",
         "connectionErrorExplanation": "Verifique se seu Ledger está conectado e desbloqueado.",
@@ -826,7 +832,11 @@
         "checkAddressExplanation": "Verifique se o endereço é igual ao endereço no dispositivo Ledger.",
         "applicationNotInitialised": "Aviso não confirmado",
         "applicationNotInitialisedExplanation": "Reabra o aplicativo IOTA no seu dispositivo Ledger, aceite o aviso e tente novamente.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "udevError": "Falha ao comunicar com o dispositivo Ledger",
+        "udevErrorExplanation": "A Trinity não pôde se comunicar com o seu dispositivo Ledger. Por favor, visite o link abaixo para resolver este problema.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

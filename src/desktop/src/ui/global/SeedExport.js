@@ -6,6 +6,7 @@ import { withI18n } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
+import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
 import { passwordReasons } from 'libs/password';
 
@@ -89,6 +90,14 @@ class SeedExport extends PureComponent {
             );
         }
 
+        if (seed.length !== MAX_SEED_LENGTH) {
+            return this.props.generateAlert(
+                'error',
+                t('global:somethingWentWrong'),
+                t('global:somethingWentWrongTryAgain'),
+            );
+        }
+
         const error = await Electron.exportSeeds(
             [
                 {
@@ -107,7 +116,13 @@ class SeedExport extends PureComponent {
 
         if (error) {
             if (error !== 'Export cancelled') {
-                return generateAlert('error', t('seedVault:exportFail'), t('seedVault:exportFailExplanation'));
+                return generateAlert(
+                    'error',
+                    t('seedVault:exportFail'),
+                    t('seedVault:exportFailExplanation'),
+                    10000,
+                    error,
+                );
             }
         } else {
             generateAlert('success', t('seedVault:exportSuccess'), t('seedVault:exportSuccessExplanation'));

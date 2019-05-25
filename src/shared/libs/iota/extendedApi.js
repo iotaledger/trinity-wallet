@@ -617,7 +617,6 @@ const isNodeHealthy = (provider) => {
                 if (['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1)) {
                     throw new Error(Errors.UNSUPPORTED_NODE);
                 }
-
                 cached.latestMilestone = latestMilestone;
                 if (
                     (cached.latestMilestone === latestSolidSubtangleMilestone ||
@@ -633,7 +632,7 @@ const isNodeHealthy = (provider) => {
         .then((trytes) => {
             const { timestamp } = iota.utils.transactionObject(head(trytes), cached.latestMilestone);
 
-            return isWithinMinutes(timestamp * 1000, 5);
+            return isWithinMinutes(timestamp * 1000, 5 * MAX_MILESTONE_FALLBEHIND);
         });
 };
 

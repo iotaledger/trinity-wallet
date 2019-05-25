@@ -117,7 +117,9 @@ class ChangePassword extends Component {
                 generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
                 this.props.setSetting('securitySettings');
             })
-            .catch(() => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain')));
+            .catch((err) =>
+                generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain'), 10000, err),
+            );
     }
 
     /**
@@ -186,24 +188,22 @@ class ChangePassword extends Component {
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
-                        {currentPassword !== '' &&
-                            newPassword !== '' &&
-                            newPasswordReentry !== '' && (
-                                <TouchableOpacity
-                                    onPress={() => this.isPasswordChangeValid()}
-                                    hitSlop={{
-                                        top: height / 55,
-                                        bottom: height / 55,
-                                        left: width / 55,
-                                        right: width / 55,
-                                    }}
-                                >
-                                    <View style={styles.itemRight}>
-                                        <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                        <Icon name="tick" size={width / 28} color={theme.body.color} />
-                                    </View>
-                                </TouchableOpacity>
-                            )}
+                        {currentPassword !== '' && newPassword !== '' && newPasswordReentry !== '' && (
+                            <TouchableOpacity
+                                onPress={() => this.isPasswordChangeValid()}
+                                hitSlop={{
+                                    top: height / 55,
+                                    bottom: height / 55,
+                                    left: width / 55,
+                                    right: width / 55,
+                                }}
+                            >
+                                <View style={styles.itemRight}>
+                                    <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
+                                    <Icon name="tick" size={width / 28} color={theme.body.color} />
+                                </View>
+                            </TouchableOpacity>
+                        )}
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -221,5 +221,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['changePassword', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(ChangePassword),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ChangePassword),
 );

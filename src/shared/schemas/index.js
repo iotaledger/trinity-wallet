@@ -5,7 +5,9 @@ import v2Schema, { migration as v2Migration } from './v2';
 import { __MOBILE__, __TEST__, __DEV__ } from '../config';
 
 const STORAGE_PATH =
-    __MOBILE__ || __TEST__ ? 'trinity.realm' : `${Electron.getUserDataPath()}/trinity${__DEV__ ? '-dev' : ''}.realm`;
+    __MOBILE__ || __TEST__
+        ? 'trinity.realm'
+        : `${typeof Electron === 'object' ? Electron.getUserDataPath() : ''}/trinity${__DEV__ ? '-dev' : ''}.realm`;
 
 /**
  * Gets deprecated realm storage path

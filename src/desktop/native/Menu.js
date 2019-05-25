@@ -214,6 +214,7 @@ export const initMenu = (app, getWindowFunc) => {
                             {
                                 label: language.advanced,
                                 click: () => navigate('settings/advanced'),
+                                enabled: state.enabled,
                             },
                         ],
                     },
