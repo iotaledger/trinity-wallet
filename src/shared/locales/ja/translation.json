@@ -833,7 +833,7 @@
         "applicationNotInitialised": "未確定に関する警告",
         "applicationNotInitialisedExplanation": "LedgerでIOTAアプリを再度開いて、警告情報に同意してから、もう一度やり直してください。",
         "checkLedger": "Ledger端末を確認してください。",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "acceptWarningExplanation": "Ledger端末に警告が出る場合は、スクロールして2つのボタンを押して同意する必要があります。",
         "udevError": "レッジャー端末と通信できませんでした",
         "udevErrorExplanation": "Trinity はお使いのLedger端末と通信できませんでした。この問題を解決するには下記のURLにアクセスしてください。",
         "writtenDownInfoTitle": "インデックス番号を保存してください。",
