@@ -99,7 +99,7 @@ export const selectLatestAddressFromAccountFactory = (withChecksum = true) =>
  **/
 export const getSelectedAccountMeta = createSelector(
     selectAccountInfo,
-    (account) => account.meta || { type: 'keychain' },
+    (account) => get(account, 'meta'),
 );
 
 /**
