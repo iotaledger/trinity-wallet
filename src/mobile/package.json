@@ -137,6 +137,11 @@
     },
     "transformIgnorePatterns": [
       "node_modules/?!(react-native|shared-modules)/"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/ios/build/",
+      "<rootDir>/android/build/",
+      "<rootDir>/nodejs-assets/"
     ]
   },
   "react-native": {
