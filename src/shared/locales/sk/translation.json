@@ -810,7 +810,7 @@
         "actionCancelled": "Prístup k zariadeniu Ledger bol zrušený",
         "actionCancelledExplanation": "Akcia sa nedá vykonať bez prístupu k zariadeniu Ledger.",
         "chooseAccountIndex": "Vyberte index účtu vo Vašom Ledgeri",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
+        "accountIndexExplanation": "Váš Ledger vám umožňuje použiť viacero seedov. Každý seed je identifikovateľný unikátnym číslom indexu.",
         "accountPageExplanation": "Niektoré peňaženky tretích strán vyžadujú použitie \"stron\".",
         "connectionError": "Nie je možné pripojiť sa k Vašemu Ledgeru",
         "connectionErrorExplanation": "Skontrolujte, či je Váš Ledger pripojený a odomknutý.",
@@ -832,11 +832,11 @@
         "checkAddressExplanation": "Skontrolujte, či adresa odpovedá adrese zobrazenej na Vašom zariadení Ledger.",
         "applicationNotInitialised": "Informačné upozornenie nebolo prijaté",
         "applicationNotInitialisedExplanation": "Znovu otvorte aplikáciu IOTA na Vašom zariadení Ledger, prijmite informačné upozornenie a skúste to znova.",
-        "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "checkLedger": "Skontrolujte váš Ledger",
+        "acceptWarningExplanation": "V prípade, že sa na vašom Ledger zariadení objaví informačné upozornenie, je nutné ho zobraziť a akceptovať prostredníctvom stlačenia oboch tlačidiel.",
         "udevError": "Nepodarilo sa komunikovať so zariadením Ledger",
         "udevErrorExplanation": "Trinity nemohla komunikovať so zariadením Ledger. Ak chcete tento problém vyriešiť, prejdite na nižšie uvedenú URL adresu.",
-        "writtenDownInfoTitle": "Remember your index number",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "writtenDownInfoTitle": "Zapamätajte si číslo vášho indexu",
+        "writtenDownInfoExplanation": "Číslo vášho indexu je dôležité pri prípadnej potrebe obnovenia vášho účtu v budúcnosti. V prípade straty tohto čísla, prídete o vašu IOTU. Prosím zapamätajte si ho."
     }
 }
