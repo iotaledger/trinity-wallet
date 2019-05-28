@@ -51,7 +51,7 @@ module.exports = ({ version }, stateMock) => {
         getUserDataPath: () => '',
         getUuid: async () => '',
         listKeychain: () => [],
-        setKeychain: () => {},
+        setKeychain: () => Promise.resolve(),
         changeLanguage: () => {},
         onEvent: () => {},
         removeEvent: () => {},
