@@ -17,7 +17,7 @@ export const bugsnagClient = bugsnagKey.length
       })
     : {
           notify: (err) => {
-              console.error(err);
+              console.error(err); /* eslint-disable-line no-console */
           },
       };
 
