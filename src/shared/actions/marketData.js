@@ -35,9 +35,9 @@ export function setTimeframe(timeframe) {
  * @returns {{type: {string}, usdPrice: {number}, mcap: {number}, volume: {number}, change24h: {string} }}
  */
 export function setMarketData(data) {
-    const usdPrice = get(data, 'RAW.IOT.USD.PRICE') || 0;
-    const volume24Hours = get(data, 'RAW.IOT.USD.TOTALVOLUME24HTO') || 0;
-    const changePct24Hours = get(data, 'RAW.IOT.USD.CHANGEPCT24HOUR') || 0;
+    const usdPrice = get(data, 'RAW.MIOTA.USD.PRICE') || 0;
+    const volume24Hours = get(data, 'RAW.MIOTA.USD.TOTALVOLUME24HTO') || 0;
+    const changePct24Hours = get(data, 'RAW.MIOTA.USD.CHANGEPCT24HOUR') || 0;
     const mcap = Math.round(usdPrice * 2779530283);
     const volume = Math.round(volume24Hours);
     const change24h = parseFloat(Math.round(changePct24Hours * 100) / 100).toFixed(2);
@@ -75,7 +75,7 @@ export function setCurrency(currency) {
  * @returns {{type: {string}, usd: {number}, eur: {number}, btc: {number}, eth: {number} }}
  */
 export function setPrice(data) {
-    const priceData = get(data, 'RAW.IOT');
+    const priceData = get(data, 'RAW.MIOTA');
     const usdPrice = get(priceData, 'USD.PRICE') || 0;
     const eurPrice = get(priceData, 'EUR.PRICE') || 0;
     const btcPrice = get(priceData, 'BTC.PRICE') || 0;
@@ -99,7 +99,7 @@ export function setPrice(data) {
  */
 export function getPrice() {
     return (dispatch) => {
-        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD,EUR,BTC,ETH')
+        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=MIOTA&tsyms=USD,EUR,BTC,ETH')
             .then((response) => response.json(), () => {})
             .then((json) => dispatch(setPrice(json)));
     };
@@ -133,7 +133,7 @@ export function getChartData() {
         each(arrayCurrenciesTimeFrames, (currencyTimeFrameArrayItem) => {
             const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
                 currencyTimeFrameArrayItem.timeFrame,
-            )}?fsym=IOT&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat(
+            )}?fsym=MIOTA&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat(
                 currencyTimeFrameArrayItem.timeFrame,
             )}`;
 
@@ -190,7 +190,7 @@ export function setChartData(chartData) {
  */
 export function getMarketData() {
     return (dispatch) =>
-        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD')
+        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=MIOTA&tsyms=USD')
             .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error)) // eslint-disable-line no-console
             .then((json) => dispatch(setMarketData(json)));
 }

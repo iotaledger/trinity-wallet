@@ -170,7 +170,7 @@ class Polling extends React.PureComponent {
     retryFailedTransaction = async () => {
         const { failedBundleHashes, password } = this.props;
 
-        if (!isEmpty(failedBundleHashes)) {
+        if (!isEmpty(failedBundleHashes) && !isEmpty(password)) {
             const bundleHashes = keys(failedBundleHashes);
             const bundleForRetry = head(bundleHashes);
             const { name, type } = failedBundleHashes[bundleForRetry];
@@ -246,7 +246,4 @@ const mapDispatchToProps = {
     retryFailedTransaction,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Polling);
+export default connect(mapStateToProps, mapDispatchToProps)(Polling);

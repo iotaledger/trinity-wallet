@@ -31,10 +31,10 @@
     "test": "npm run build-app && jest"
   },
   "devDependencies": {
-    "@babel/core": "7.4.4",
+    "@babel/core": "7.4.5",
     "@babel/plugin-proposal-class-properties": "7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "7.4.4",
-    "@babel/preset-env": "7.4.4",
+    "@babel/preset-env": "7.4.5",
     "@babel/preset-react": "7.0.0",
     "@jest-runner/electron": "^1.1.1",
     "babel-core": "^7.0.0-bridge.0",
@@ -156,7 +156,7 @@
     "entangled-node": "rihardsgravis/entangled-node#73ccd5e",
     "hw-app-iota": "0.6.1",
     "i18next": "15.1.2",
-    "iota.lib.js": "0.5.1",
+    "iota.lib.js": "0.5.2",
     "kdbxweb": "1.2.7",
     "keytar": "4.7.0",
     "machine-uuid-sync": "https://github.com/rajivshah3/machine-uuid-sync#a5ffa8e",
