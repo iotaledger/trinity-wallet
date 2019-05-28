@@ -73,7 +73,7 @@ describe('Reducer: settings', () => {
                     size: QUORUM_SIZE,
                     enabled: true,
                 },
-                nodeAutoSwitch: false,
+                nodeAutoSwitch: true,
                 autoNodeList: true,
             };
 
