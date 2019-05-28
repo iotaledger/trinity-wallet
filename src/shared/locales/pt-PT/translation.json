@@ -528,43 +528,43 @@
         "contemporary": "Contemporâneo",
         "dark": "Escuro",
         "default": "Padrão",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "electric": "Elétrico",
+        "ionic": "Iónico",
+        "light": "Luz",
+        "lucky": "Sorte",
+        "mint": "Menta",
+        "steelblue": "Azul aço"
     },
     "currencySelection": {
         "currency": "Moeda"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "logoutConfirmation": "Tem certeza de que deseja encerrar a sessão?",
+        "aboutToLogOut": "Você está prestes a sair",
+        "areYouSure": "Tem a certeza?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Ler código QR"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
+        "unitSystem": "Sistema de Unidade",
+        "trillion": "Trilião",
+        "billion": "Mil milhões",
+        "million": "Milhões",
+        "thousand": "Mil",
         "one": "Um",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "As IOTAs são tipicamente adquiridos em múltiplos de um milhão, mas pode ser transferido uma única IOTA."
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "cantSpendFullBalanceQuestion": "Por que não posso gastar o meu saldo completo?",
+        "spentAddressExplanation": "Você tem fundos num ou mais endereços gastos. A reutilização de endereços é perigosa na IOTA, então esta carteira não permite que você envie do mesmo endereço mais que uma vez.",
+        "discordInformation": "Por favor, vá até o canal de #help no Discord para descobrir o que poderá fazer."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "areYouSure": "Tem a certeza que quer eliminar a sua conta?",
+        "yourSeedWillBeRemoved": "A sua seed e o seu histórico de transações serão removidas.",
         "thisAction": "Esta ação não pode ser anulada",
-        "enterPassword": "Enter your password to delete this account."
+        "enterPassword": "Insira a sua palavra-passe para eliminar esta conta."
     },
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
