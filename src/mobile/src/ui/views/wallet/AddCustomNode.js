@@ -160,8 +160,7 @@ export class AddCustomNode extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <Animated.View style={[ styles.fieldsContainer, { flex: textInputFlex } ]}>
-                            <View style={{ flex: 2 }}/>
-                            <View style={{ position: 'absolute', width, alignItems: 'center' }}>
+                            <View style={{ flex: 2, alignItems: 'center' }}>
                                 <CustomTextInput
                                     onRef={(c) => {
                                         this.url = c;
@@ -188,7 +187,7 @@ export class AddCustomNode extends Component {
                             </View>
                             { viewAuthKeyFields &&
                             <View style={{ flex: 4 }}>
-                                <View style={{ flex: 1, justifyContent: 'flex-start' }}>
+                                <View style={{ flex: 2, justifyContent: 'flex-start' }}>
                                     <CustomTextInput
                                         onRef={(c) => {
                                             this.username = c;
@@ -208,7 +207,7 @@ export class AddCustomNode extends Component {
                                         }}
                                     />
                                 </View>
-                                <View style={{ flex: 1, justifyContent: 'flex-start' }}>
+                                <View style={{ flex: 2, justifyContent: 'flex-start' }}>
                                     <CustomTextInput
                                         onRef={(c) => {
                                             this.password = c;
