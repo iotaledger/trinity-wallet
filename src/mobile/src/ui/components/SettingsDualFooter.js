@@ -81,7 +81,7 @@ class SettingsDualFooter extends PureComponent {
         } = this.props;
 
         return (
-            <View style={[ styles.dualFooterContainer, { justifyContent: hideActionButton ? 'flex-start' : 'space-between'} ]}>
+            <View style={[ styles.dualFooterContainer, { justifyContent: hideActionButton && !actionButtonLoading ? 'flex-start' : 'space-between'} ]}>
                 <TouchableOpacity
                     onPress={backFunction}
                     hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
