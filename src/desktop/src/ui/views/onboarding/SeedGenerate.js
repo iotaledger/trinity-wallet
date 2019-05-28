@@ -183,6 +183,7 @@ class GenerateSeed extends React.PureComponent {
                                         key={`${index}${letter}`}
                                         value={index}
                                         style={{ opacity: 1 - offset / 255 }}
+                                        disabled={offset > 0}
                                     >
                                         {letter}
                                     </button>

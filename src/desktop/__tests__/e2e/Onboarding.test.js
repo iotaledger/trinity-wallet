@@ -60,12 +60,10 @@ describe('Trinity desktop end-to-end', () => {
             await page.click('#to-seed-generate');
 
             // Seed generate
-            await new Promise((resolve) => setTimeout(resolve, 200));
             for (let i = 1; i <= 10; i++) {
-                const selector = `.index__seed button:nth-child(${i})`;
+                const selector = `.index__seed button:enabled:nth-child(${i})`;
                 await page.waitForSelector(selector);
                 await page.click(selector);
-                await new Promise((resolve) => setTimeout(resolve, 50));
             }
             await page.click('#to-account-name');
 
