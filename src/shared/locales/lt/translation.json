@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "Ar jūsų balansas teisingas?",
         "ifYourBalanceIsNotCorrect": "Jeigu jūsų balansas neteisingas, tikriausiai jūsų naudojamas užraktas nėra perkeltas įvykus viso tinklo duomenų perkėlimui.",
         "headToAdvancedSettingsForTransition": "Eikite į išplėstinius parametrus ir atlikite tinklo duomenų perkėlimą.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Trinity naudojimas su Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Įvyko tinklo klaida transliuojant jūsų pavedimą.",
         "broadcastError": "Pavedimo ištransliuoti nepavyko",
