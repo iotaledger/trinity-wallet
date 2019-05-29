@@ -463,6 +463,7 @@ export const syncTransactions = (settings) => (diff, existingTransactions) => {
                         // Temporarily assign persistence false
                         // In the next step, communicate with the ledger to get correct inclusion state (persistence) and assign those
                         persistence: false,
+                        fatalErrorOnRetry: false,
                     })),
                 );
 

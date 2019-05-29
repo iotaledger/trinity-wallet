@@ -201,6 +201,7 @@ export const syncAccountAfterSpending = (settings, withQuorum) => (seedStore, ne
             persistence: false,
             // Since these transactions were successfully broadcasted, assign broadcast status as true
             broadcasted: true,
+            fatalErrorOnRetry: false,
         })),
     ];
     // Update address data
@@ -231,7 +232,12 @@ export const syncAccountAfterReattachment = (reattachment, accountState) => ({
     ...accountState,
     transactions: [
         ...accountState.transactions,
-        ...map(reattachment, (transaction) => ({ ...transaction, persistence: false, broadcasted: true })),
+        ...map(reattachment, (transaction) => ({
+            ...transaction,
+            persistence: false,
+            broadcasted: true,
+            fatalErrorOnRetry: false,
+        })),
     ],
 });
 
@@ -249,6 +255,7 @@ export const syncAccountOnValueTransactionFailure = (newTransactionObjects, acco
         ...transaction,
         persistence: false,
         broadcasted: false,
+        fatalErrorOnRetry: false,
     }));
     const addressData = markAddressesAsSpentSync([failedTransactions], accountState.addressData);
 
@@ -349,6 +356,7 @@ export const syncAccountDuringSnapshotTransition = (attachedTransactions, attach
                 ...transaction,
                 persistence: false,
                 broadcasted: true,
+                fatalErrorOnRetry: false,
             })),
         ],
     };
