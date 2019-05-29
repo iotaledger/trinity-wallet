@@ -34,11 +34,11 @@ const FatalError = ({ error }) => {
 
         if (
             typeof error === 'string' &&
-            [
+            ([
                 'The name org.freedesktop.secrets was not provided by any .service files',
                 'Cannot create an item in a locked collection',
-                'Unknown or unsupported transport \'disabled\' for address \'disabled:\'',
-            ].indexOf(error) > -1
+            ].indexOf(error) > -1 ||
+                /disabled(.*)disabled:/g.test(error))
         ) {
             return (
                 <form className={css.tutorial}>
