@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "آیا موجودی شما درست است؟",
         "ifYourBalanceIsNotCorrect": "اگر موجودی شما درست نیست، احتمال دارد که از سید از پیش ساخته شده استفاده می کنید.",
         "headToAdvancedSettingsForTransition": "به تنظیمات پیشرفته بروید و یک انتقال عکس فوری بگیرید.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "استفاده از کیف پول Trinity با Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "خطایی در شبکه هنگام پخش تراکنش شما وجود داشت.",
         "broadcastError": "عدم موفقیت در انتشار انتقال",
