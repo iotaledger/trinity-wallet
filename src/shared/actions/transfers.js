@@ -370,7 +370,7 @@ export const forceTransactionPromotion = (
                 promotionAttempt < maxPromotionAttempts
             ) {
                 // Retry promotion on same reference (hash)
-                return promote(tailTransaction);
+                return promote(settings)(tailTransaction);
             } else if (
                 isTransactionInconsistent &&
                 promotionAttempt === maxPromotionAttempts &&
@@ -381,7 +381,7 @@ export const forceTransactionPromotion = (
                 promotionAttempt = 0;
 
                 // Reattach and try to promote with a newly reattached reference (hash)
-                return reattachAndPromote();
+                return reattachAndPromote(settings)();
             }
 
             throw error;
@@ -418,7 +418,7 @@ export const forceTransactionPromotion = (
             dispatch(updateAccountAfterReattachment(newState));
             const tailTransaction = find(reattachment, { currentIndex: 0 });
 
-            return promote(tailTransaction);
+            return promote(settings)(tailTransaction);
         });
     };
 
