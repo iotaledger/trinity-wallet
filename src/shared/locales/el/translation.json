@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "Είναι το υπόλοιπο σου σωστό;",
         "ifYourBalanceIsNotCorrect": "Έαν το υπόλοιπο σας δεν είναι σωστό, είναι πιθανό ότι χρησιμοποιείτε seed προ-στιγμιότυπου.",
         "headToAdvancedSettingsForTransition": "Προχωρήστε στις Ρυθμίσεις για προχωρημένους και πραγματοποιήστε μια μετάβαση Στιγμιότυπου.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Χρησιμοποιώντας το πορτοφόλι Trinity με το Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Παρουσιάστηκε σφάλμα δικτύου κατά την εκπομπή της συναλλαγής σας.",
         "broadcastError": "Δεν ήταν δυνατή η μετάδοση μεταφοράς",
