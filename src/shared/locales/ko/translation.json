@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "이 잔액이 옳습니까?",
         "ifYourBalanceIsNotCorrect": "잔액이 옳지 않다면 스냅샷 전의 시드를 사용중일 수 있습니다.",
         "headToAdvancedSettingsForTransition": "고급 설정에서 스냅샷 이전을 수행해 주세요.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "트리니티 지갑과 Keepass2Android 같이 사용하기",
         "signedTrytesBroadcastErrorExplanation": "트랜잭션 송출 중 네트워크 오류가 발생했습니다.",
         "broadcastError": "전송을 송출할 수 없음",
