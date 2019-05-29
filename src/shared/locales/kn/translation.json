@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "ನಿಮ್ಮ ಖಾತೆಯ ಉಳಿದ ಹಣವು ಸರಿಯಾಗಿದೆಯೇ?",
         "ifYourBalanceIsNotCorrect": "ನಿಮ್ಮ ಖಾತೆಯ ಉಳಿದ ಹಣವು ಸರಿಯಾಗಿಲ್ಲವಾದರೆ, ನೀವು ಪೂರ್ವ-ಸ್ನ್ಯಾಪ್ಶಾಟ್ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಬಳಸುತ್ತಿರುವಿರಿ.",
         "headToAdvancedSettingsForTransition": "ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್ಗಳಿಗೆ ಹೋಗಿ ಮತ್ತು ಸ್ನ್ಯಾಪ್ಶಾಟ್ ಪರಿವರ್ತನೆಯನ್ನು ನಿರ್ವಹಿಸಿ.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Keepass2Android ನೊಂದಿಗೆ ಟ್ರಿನಿಟಿ ವಾಲೆಟ್ ಬಳಸಿ",
         "signedTrytesBroadcastErrorExplanation": "ನಿಮ್ಮ ವ್ಯವಹಾರವನ್ನು ಪ್ರಕಟಿಸುವಾಗ ನೆಟ್ವರ್ಕ್ ದೋಷ ಕಂಡುಬಂದಿದೆ.",
         "broadcastError": "ವರ್ಗಾವಣೆಯನ್ನು ಪ್ರಕಟಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
