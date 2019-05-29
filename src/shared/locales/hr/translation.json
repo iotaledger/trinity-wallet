@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "Da li je vaš saldo ispravan?",
         "ifYourBalanceIsNotCorrect": "Ako vaš saldo nije ispravan, vjerojatno koristite pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Otvorite Napredne Postavke i izvršite Snapshot tranziciju.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Korištenje Trinity novčanika s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Došlo je do greške u vezi prilikom emitiranja vaše transakcije.",
         "broadcastError": "Nije bilo moguće emitirati transakciju",
