@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "O seu saldo está correto?",
         "ifYourBalanceIsNotCorrect": "Se o seu saldo não estiver correto, é provável que você esteja usando uma semente de um pré-snapshot.",
         "headToAdvancedSettingsForTransition": "Vá a Configurações Avançadas e execute uma Transição de Snapshot.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "A usar Carteira Trinity com Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Houve um erro de rede ao transmitir a sua transação.",
         "broadcastError": "Não foi foi possível transmitir a transação",
