@@ -19,6 +19,7 @@ import RNFetchBlob from 'rn-fetch-blob';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import { moment } from 'shared-modules/libs/exports';
 import { serialise } from 'shared-modules/libs/utils';
+import { iota, quorum } from 'shared-modules/libs/iota';
 
 const styles = StyleSheet.create({
     container: {
@@ -98,10 +99,15 @@ export class StateExport extends Component {
                 path,
                 serialise(
                     {
-                        accounts: pick(accounts, ['onboardingComplete', 'accountInfo']),
-                        settings: pick(settings, ['versions']),
                         notificationLog,
+                        settings,
+                        accounts: pick(accounts, ['onboardingComplete', 'accountInfo']),
                         storageFiles: filter(flatMap(files), (name) => includes(name, 'realm')),
+                        __globals__: {
+                            quorumNodes: quorum.nodes,
+                            quorumSize: quorum.size,
+                            iotaNode: iota.provider,
+                        },
                     },
                     null,
                     4,
