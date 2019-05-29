@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "Klopt uw saldo?",
         "ifYourBalanceIsNotCorrect": "Als uw saldo niet correct is, gebruikt u waarschijnlijk een pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Ga naar Geavanceerde instellingen en voer een Snapshot transitie uit.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Trinity Wallet gebruiken met Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Er was een netwerk fout tijdens het versturen van uw transactie.",
         "broadcastError": "Kon transactie niet verzenden",
