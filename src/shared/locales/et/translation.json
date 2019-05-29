@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "On teie kontojääk õige?",
         "ifYourBalanceIsNotCorrect": "Kui teie kontojääk pole õige, on tõenäoline, et kasutate enne hetkvõtte aegset seemet.",
         "headToAdvancedSettingsForTransition": "Suunduge Täpsematesse sätetesse ning sooritage hetkvõtte üleminek.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Trinity Walleti kasutamine Keepass2Androidiga",
         "signedTrytesBroadcastErrorExplanation": "Teie tehingu edastamisel tekkis viga.",
         "broadcastError": "Tehingu edastamine ebaõnnestus",
