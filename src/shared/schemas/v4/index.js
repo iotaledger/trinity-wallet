@@ -14,7 +14,7 @@ export default map(v3Schema, (schema) => {
         return merge({}, schema, {
             properties: {
                 /**
-                 * (Optional) authentication token (username) for node
+                 * Total transaction autoretry attempts
                  */
                 autoRetryAttempts: {
                     type: 'int',

@@ -1071,3 +1071,27 @@ export const isBundleTraversable = (bundle, trunkTransaction, branchTransaction)
  * @returns {boolean}
  */
 export const isBundle = (bundle) => iota.utils.isBundle(orderBy(bundle, ['currentIndex'], ['asc']));
+
+/**
+ * Determines if a transaction error should be considere fatal
+ *
+ * @method isFatalTransactionError
+ *
+ * @param {object} err
+ *
+ * @returns {boolean}
+ */
+export const isFatalTransactionError = (err) => {
+    const fatalTransferErrors = [
+        Errors.BUNDLE_NO_LONGER_FUNDED,
+        Errors.DETECTED_INPUT_WITH_ZERO_BALANCE,
+        Errors.INVALID_TRANSFER,
+        Errors.TRANSACTION_IS_INCONSISTENT,
+        Errors.ALREADY_SPENT_FROM_ADDRESSES,
+        Errors.INVALID_BUNDLE,
+        Errors.BUNDLE_NO_LONGER_VALID,
+        Errors.FUNDS_AT_SPENT_ADDRESSES,
+        Errors.KEY_REUSE,
+    ];
+    return some(fatalTransferErrors, (error) => err.message && err.message.includes(error));
+};

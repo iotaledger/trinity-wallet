@@ -34,6 +34,7 @@ import {
     constructBundlesFromTransactions,
     isFundedBundle,
     isBundle,
+    isFatalTransactionError,
 } from '../libs/iota/transfers';
 import {
     syncAccountAfterReattachment,
@@ -41,7 +42,7 @@ import {
     syncAccountAfterSpending,
     syncAccountOnValueTransactionFailure,
     syncAccountOnSuccessfulRetryAttempt,
-    syncAccountOnUnSuccessfulAutoRetryAttempt,
+    syncAccountOnUnsuccessfulAutoRetryAttempt,
 } from '../libs/iota/accounts';
 import {
     updateAccountAfterReattachment,
@@ -913,10 +914,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
  *
  * @returns {function} dispatch
  */
-export const retryFailedTransaction = (accountName, bundleHash, seedStore, isAutoRetrying = false, quorum = true) => (
-    dispatch,
-    getState,
-) => {
+export const retryFailedTransaction = (accountName, bundleHash, seedStore, quorum = true) => (dispatch, getState) => {
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
     const shouldOffloadPow = getRemotePoWFromState(getState());
     const failedTransactionsForThisBundleHash = filter(
@@ -976,10 +974,10 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, isAut
 
     return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
         .withRetries()(retryFn)()
-        .catch((error) => {
-            if (isAutoRetrying) {
+        .catch((err) => {
+            if (isFatalTransactionError(err)) {
                 // Update state
-                const newState = syncAccountOnUnSuccessfulAutoRetryAttempt(existingAccountState, bundleHash);
+                const newState = syncAccountOnUnsuccessfulAutoRetryAttempt(existingAccountState, bundleHash);
 
                 // Persist updated state
                 Account.update(accountName, newState);
@@ -989,18 +987,18 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, isAut
                 dispatch(retryFailedTransactionError());
             }
 
-            if (error.message && error.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
+            if (err.message && err.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
                 dispatch(
                     generateAlert(
                         'error',
                         i18next.t('global:broadcastError'),
                         i18next.t('global:addressesAlreadySpentFrom'),
                         20000,
-                        error,
+                        err,
                     ),
                 );
             } else {
-                dispatch(generateTransferErrorAlert(error));
+                dispatch(generateTransferErrorAlert(err));
             }
         });
 };

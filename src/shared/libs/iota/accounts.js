@@ -292,14 +292,14 @@ export const syncAccountOnSuccessfulRetryAttempt = (newTransactionObjects, accou
 /**
  *  Syncs account when auto-retry attempt (to broadcast) a failed transaction was unsuccessful
  *
- * @method syncAccountOnUnSuccessfulAutoRetryAttempt
+ * @method syncAccountOnUnsuccessfulAutoRetryAttempt
  *
  * @param {object} accountState
  * @param {string} bundleHash
  *
  * @returns {object} accountState
  **/
-export const syncAccountOnUnSuccessfulAutoRetryAttempt = (accountState, bundleHash) => {
+export const syncAccountOnUnsuccessfulAutoRetryAttempt = (accountState, bundleHash) => {
     const updatedTransactions = map(accountState.transactions, (transaction) => {
         if (transaction.bundle === bundleHash) {
             return assign({}, transaction, {
