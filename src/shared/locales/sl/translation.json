@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "Je vaš saldo pravilen?",
         "ifYourBalanceIsNotCorrect": "Če je vaš saldo nepravilen, je mogoče da uporabljate Seed, ki potrebuje Snapshot-obnovitev.",
         "headToAdvancedSettingsForTransition": "Prosim odprite Napredne-nastavitve in izvedite Snapshot-obnovitev.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Uporabljanje Trinity denarnice z Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Pri transakciji je prišlo do omrežne napake.",
         "broadcastError": "Transakcije ni bilo možno prenesti",
