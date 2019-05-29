@@ -347,6 +347,18 @@ export default function Quorum(config) {
 
     return {
         /**
+         * Returns (selected) quorum nodes
+         */
+        get nodes() {
+            return selectedNodes;
+        },
+        /**
+         * Returns (active) quorum size
+         */
+        get size() {
+            return quorumSize;
+        },
+        /**
          * Set quorum nodes.
          *
          * @method setNodes
