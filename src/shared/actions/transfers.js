@@ -41,6 +41,7 @@ import {
     syncAccountAfterSpending,
     syncAccountOnValueTransactionFailure,
     syncAccountOnSuccessfulRetryAttempt,
+    syncAccountOnUnSuccessfulAutoRetryAttempt,
 } from '../libs/iota/accounts';
 import {
     updateAccountAfterReattachment,
@@ -164,10 +165,11 @@ export const retryFailedTransactionSuccess = (payload) => ({
  *
  * @method retryFailedTransactionSuccess
  *
- * @returns {{type: {string} }}
+ * @returns {{type: {string}, payload ?: {object} }}
  */
-export const retryFailedTransactionError = () => ({
+export const retryFailedTransactionError = (payload) => ({
     type: TransfersActionTypes.RETRY_FAILED_TRANSACTION_ERROR,
+    payload,
 });
 
 /**
@@ -906,11 +908,15 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
  * @param {string} accountName
  * @param {string} bundleHash
  * @param {object} seedStore
+ * @param {boolean} [isAutoRetrying]
  * @param {boolean} [withQuorum]
  *
  * @returns {function} dispatch
  */
-export const retryFailedTransaction = (accountName, bundleHash, seedStore, quorum = true) => (dispatch, getState) => {
+export const retryFailedTransaction = (accountName, bundleHash, seedStore, isAutoRetrying = false, quorum = true) => (
+    dispatch,
+    getState,
+) => {
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
     const shouldOffloadPow = getRemotePoWFromState(getState());
     const failedTransactionsForThisBundleHash = filter(
@@ -971,7 +977,17 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, quoru
     return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
         .withRetries()(retryFn)()
         .catch((error) => {
-            dispatch(retryFailedTransactionError());
+            if (isAutoRetrying) {
+                // Update state
+                const newState = syncAccountOnUnSuccessfulAutoRetryAttempt(existingAccountState, bundleHash);
+
+                // Persist updated state
+                Account.update(accountName, newState);
+
+                dispatch(retryFailedTransactionError(newState));
+            } else {
+                dispatch(retryFailedTransactionError());
+            }
 
             if (error.message && error.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
                 dispatch(

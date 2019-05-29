@@ -226,6 +226,13 @@ const account = (
                 ...state,
                 ...updateAccountInfo(state, action.payload),
             };
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_ERROR:
+            return action.payload
+                ? {
+                      ...state,
+                      ...updateAccountInfo(state, action.payload),
+                  }
+                : state;
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,

@@ -174,7 +174,13 @@ export class Poll extends Component {
 
             const seedStore = await new SeedStore[type](password, name);
 
-            this.props.retryFailedTransaction(name, bundleForRetry, seedStore);
+            this.props.retryFailedTransaction(
+                name,
+                bundleForRetry,
+                seedStore,
+                // isAutoRetrying --> true
+                true,
+            );
         } else {
             this.moveToNextPollService();
         }
@@ -265,4 +271,7 @@ const mapDispatchToProps = {
     retryFailedTransaction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Poll);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Poll);

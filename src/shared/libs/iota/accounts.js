@@ -290,6 +290,33 @@ export const syncAccountOnSuccessfulRetryAttempt = (newTransactionObjects, accou
 };
 
 /**
+ *  Syncs account when auto-retry attempt (to broadcast) a failed transaction was unsuccessful
+ *
+ * @method syncAccountOnUnSuccessfulAutoRetryAttempt
+ *
+ * @param {object} accountState
+ * @param {string} bundleHash
+ *
+ * @returns {object} accountState
+ **/
+export const syncAccountOnUnSuccessfulAutoRetryAttempt = (accountState, bundleHash) => {
+    const updatedTransactions = map(accountState.transactions, (transaction) => {
+        if (transaction.bundle === bundleHash) {
+            return assign({}, transaction, {
+                autoRetryAttempts: transaction.autoRetryAttempts + 1,
+            });
+        }
+
+        return transaction;
+    });
+
+    return {
+        ...accountState,
+        transactions: updatedTransactions,
+    };
+};
+
+/**
  *  Sync local account in case signed inputs were exposed to the network (and the network call failed)
  *
  *   @method syncAccountOnValueTransactionFailure

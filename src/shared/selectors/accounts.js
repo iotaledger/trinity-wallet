@@ -12,6 +12,7 @@ import { createSelector } from 'reselect';
 import { getSeedIndexFromState } from './global';
 import { accumulateBalance, getLatestAddress } from '../libs/iota/addresses';
 import { categoriseInclusionStatesByBundleHash, mapNormalisedTransactions } from '../libs/iota/transfers';
+import { MAX_AUTO_RETRY_ATTEMPTS } from '../config';
 
 /**
  *   Selects accounts prop from state.
@@ -397,7 +398,8 @@ export const getFailedBundleHashes = createSelector(
             (acc, info, accountName) => {
                 const failedTransactions = filter(
                     info.transactions,
-                    (transaction) => transaction.broadcasted === false,
+                    (transaction) =>
+                        transaction.broadcasted === false && transaction.autoRetryAttempts < MAX_AUTO_RETRY_ATTEMPTS,
                 );
 
                 each(failedTransactions, (transaction) => {
