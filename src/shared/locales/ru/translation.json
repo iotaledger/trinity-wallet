@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "Верен ли Ваш баланс?",
         "ifYourBalanceIsNotCorrect": "Если Ваш баланс не верен, то, скорее всего, Вы используете ключ, который не был актувлизирован после снимка сети.",
         "headToAdvancedSettingsForTransition": "Перейдите в Дополнительные Настройки и выполните Snapshot переход.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Произошла ошибка при отправке транзакции.",
         "broadcastError": "Не удалось ретранслировать транзакцию",
