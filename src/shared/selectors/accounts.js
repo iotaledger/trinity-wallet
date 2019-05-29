@@ -397,7 +397,8 @@ export const getFailedBundleHashes = createSelector(
             (acc, info, accountName) => {
                 const failedTransactions = filter(
                     info.transactions,
-                    (transaction) => transaction.broadcasted === false,
+                    (transaction) =>
+                        transaction.broadcasted === false && !transaction.fatalErrorOnRetry,
                 );
 
                 each(failedTransactions, (transaction) => {

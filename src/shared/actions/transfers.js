@@ -34,6 +34,7 @@ import {
     constructBundlesFromTransactions,
     isFundedBundle,
     isBundle,
+    isFatalTransactionError,
 } from '../libs/iota/transfers';
 import {
     syncAccountAfterReattachment,
@@ -41,6 +42,7 @@ import {
     syncAccountAfterSpending,
     syncAccountOnValueTransactionFailure,
     syncAccountOnSuccessfulRetryAttempt,
+    syncAccountOnUnsuccessfulAutoRetryAttempt,
 } from '../libs/iota/accounts';
 import {
     updateAccountAfterReattachment,
@@ -164,10 +166,11 @@ export const retryFailedTransactionSuccess = (payload) => ({
  *
  * @method retryFailedTransactionSuccess
  *
- * @returns {{type: {string} }}
+ * @returns {{type: {string}, payload ?: {object} }}
  */
-export const retryFailedTransactionError = () => ({
+export const retryFailedTransactionError = (payload) => ({
     type: TransfersActionTypes.RETRY_FAILED_TRANSACTION_ERROR,
+    payload,
 });
 
 /**
@@ -906,6 +909,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
  * @param {string} accountName
  * @param {string} bundleHash
  * @param {object} seedStore
+ * @param {boolean} [isAutoRetrying]
  * @param {boolean} [withQuorum]
  *
  * @returns {function} dispatch
@@ -970,21 +974,31 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, quoru
 
     return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
         .withRetries()(retryFn)()
-        .catch((error) => {
-            dispatch(retryFailedTransactionError());
+        .catch((err) => {
+            if (isFatalTransactionError(err)) {
+                // Update state
+                const newState = syncAccountOnUnsuccessfulAutoRetryAttempt(existingAccountState, bundleHash);
 
-            if (error.message && error.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
+                // Persist updated state
+                Account.update(accountName, newState);
+
+                dispatch(retryFailedTransactionError(newState));
+            } else {
+                dispatch(retryFailedTransactionError());
+            }
+
+            if (err.message && err.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
                 dispatch(
                     generateAlert(
                         'error',
                         i18next.t('global:broadcastError'),
                         i18next.t('global:addressesAlreadySpentFrom'),
                         20000,
-                        error,
+                        err,
                     ),
                 );
             } else {
-                dispatch(generateTransferErrorAlert(error));
+                dispatch(generateTransferErrorAlert(err));
             }
         });
 };
