@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "Je Váš zůstatek v pořádku?",
         "ifYourBalanceIsNotCorrect": "Pokud Váš zůstatek není správný, je pravděpodobné, že používáte Seed z doby před snapshotem.",
         "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Během transakce došlo k chybě sítě.",
         "broadcastError": "Nezdařilo se odeslat transakci",
