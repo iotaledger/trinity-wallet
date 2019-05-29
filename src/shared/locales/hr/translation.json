@@ -142,7 +142,7 @@
         "isYourBalanceCorrect": "Da li je vaš saldo ispravan?",
         "ifYourBalanceIsNotCorrect": "Ako vaš saldo nije ispravan, vjerojatno koristite pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Otvorite Napredne Postavke i izvršite Snapshot tranziciju.",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "headToAccountTools": "Idite na Alati za račune i napravite prijelaz na snimku.",
         "openAccountTools": "Otvorite račun Alati",
         "usingTrinityWalletWithKeePass": "Korištenje Trinity novčanika s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Došlo je do greške u vezi prilikom emitiranja vaše transakcije.",
@@ -835,10 +835,10 @@
         "applicationNotInitialised": "Upozorenje nije prihvaćeno",
         "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno.",
         "checkLedger": "Provjerite svoj Ledger uređaj",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "acceptWarningExplanation": "Ako postoji upozorenje na uređaju knjige, morate se pomicati i prihvatiti ga pritiskom na oba gumba.",
         "udevError": "Nije bilo moguće uspostaviti komunikaciju s Ledger uređajem",
         "udevErrorExplanation": "Trinity nije mogao uspostaviti komunikaciju s vašim Ledger uređajem. Molimo posjetite URL naveden ispod kako bi riješili ovaj problem.",
-        "writtenDownInfoTitle": "Remember your index number",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "writtenDownInfoTitle": "Zapamtite svoj indeksni broj",
+        "writtenDownInfoExplanation": "Da biste ubuduće obnovili račun, potreban vam je indeksni broj. Ako izgubite indeksni broj, izgubit ćete svoj IOTA. Zapamtite to."
     }
 }
