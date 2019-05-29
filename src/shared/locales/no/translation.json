@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "Er din balanse riktig?",
         "ifYourBalanceIsNotCorrect": "Hvis balansen din ikke er riktig, er det sannsynlig at du benytter en hovednøkkel fra før snapshot.",
         "headToAdvancedSettingsForTransition": "Gå til avanserte innstillinger og utfør en Snapshot overgang.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Bruker Trinity med Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Det oppstod en nettverksfeil under kringkastingen av transaksjonen.",
         "broadcastError": "Kunne ikke kringkaste transaksjonen",
