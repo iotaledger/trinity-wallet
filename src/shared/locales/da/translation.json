@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "Er din saldo korrekt?",
         "ifYourBalanceIsNotCorrect": "Hvis din saldo ikke er korrekt, skyldes det muligvis, at din seed endnu ikke er blevet gendannet efter seneste snapshot.",
         "headToAdvancedSettingsForTransition": "Gå til avancerede indstillinger og udfør en Snapshot transition.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Benytter Trinity Wallet med Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "En netværksfejl opstod under afsendelse af din transaktion.",
         "broadcastError": "Kunne ikke udsende transaktion",
