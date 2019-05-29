@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "您的餘額正確嗎？",
         "ifYourBalanceIsNotCorrect": "如果您的餘額不正確的話，有可能您最後一次使用種子碼是在快照發生之前。",
         "headToAdvancedSettingsForTransition": "前往進階設定然後執行快照轉換。",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "在 Trinity 錢包使用 Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "廣播您的交易時發生網路錯誤。",
         "broadcastError": "無法廣播交易",
