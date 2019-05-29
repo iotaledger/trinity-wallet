@@ -76,6 +76,3 @@ export const MAXIMUM_QUORUM_SIZE = 7;
 
 /** Maximum milestone fallbehind threshold for node sync checks */
 export const MAX_MILESTONE_FALLBEHIND = 2;
-
-/** Maximum auto-retry limit for failed transactions */
-export const MAX_AUTO_RETRY_ATTEMPTS = 5;

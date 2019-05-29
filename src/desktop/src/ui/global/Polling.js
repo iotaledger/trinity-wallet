@@ -177,8 +177,6 @@ class Polling extends React.PureComponent {
                   name,
                   bundleForRetry,
                   seedStore,
-                  // isAutoRetrying --> true
-                  true
             );
         } else {
             this.moveToNextPollService();

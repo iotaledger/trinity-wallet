@@ -14,11 +14,11 @@ export default map(v3Schema, (schema) => {
         return merge({}, schema, {
             properties: {
                 /**
-                 * Total transaction autoretry attempts
+                 * Determines if tx had fatal error on retry
                  */
-                autoRetryAttempts: {
-                    type: 'int',
-                    default: 0,
+                fatalErrorOnRetry: {
+                    type: 'bool',
+                    default: false,
                 },
             },
         });

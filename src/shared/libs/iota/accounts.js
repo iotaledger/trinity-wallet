@@ -303,7 +303,7 @@ export const syncAccountOnUnsuccessfulAutoRetryAttempt = (accountState, bundleHa
     const updatedTransactions = map(accountState.transactions, (transaction) => {
         if (transaction.bundle === bundleHash) {
             return assign({}, transaction, {
-                autoRetryAttempts: transaction.autoRetryAttempts + 1,
+                fatalErrorOnRetry: true,
             });
         }
 

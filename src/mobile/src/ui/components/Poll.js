@@ -178,8 +178,6 @@ export class Poll extends Component {
                 name,
                 bundleForRetry,
                 seedStore,
-                // isAutoRetrying --> true
-                true,
             );
         } else {
             this.moveToNextPollService();
