@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "您的余额是正确的吗？",
         "ifYourBalanceIsNotCorrect": "如果余额不正确，很可能是因为您使用了快照前的种子。",
         "headToAdvancedSettingsForTransition": "请前往高级设置并执行快照转换。",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "结合Keepass2Android使用Trinity钱包",
         "signedTrytesBroadcastErrorExplanation": "广播您的交易时出现网络错误。",
         "broadcastError": "无法广播交易",
