@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "Da li je vaš saldo tačan?",
         "ifYourBalanceIsNotCorrect": "Ako vaš saldo nije tačan, razlog je verovatno to što koristite seed pre izvršenog snimanja stanja (snapshot).",
         "headToAdvancedSettingsForTransition": "Otvorite Napredne postavke i izvršite Snapshot tranziciju.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Upotreba Trinity novčanika s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Došlo je do mrežne greške tokom emitovanja transakcije.",
         "broadcastError": "Nije moguće emitovati transfer",
