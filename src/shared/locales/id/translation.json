@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "Apakah saldo anda benar?",
         "ifYourBalanceIsNotCorrect": "Jika saldo anda tidak benar, kemungkinan anda menggunakan Pre-Snapshot Seed.",
         "headToAdvancedSettingsForTransition": "Buka Aturan Lanjutan dan lakukan Transisi Snapshot.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Gunakan Dompet Trinity dengan Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Ada kesalahan jaringan ketika menyiarkan transaksi Anda.",
         "broadcastError": "Tidak bisa menyiarkan transaksi",
