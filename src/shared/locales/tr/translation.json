@@ -142,6 +142,8 @@
         "isYourBalanceCorrect": "Bakiyeniz doğru mu?",
         "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Trinity cüzdanını Keepass2Android ile kullan",
         "signedTrytesBroadcastErrorExplanation": "İşleminizi yayınlarken bir ağ hatası oluştu.",
         "broadcastError": "Transfer yayınlanamadı",
