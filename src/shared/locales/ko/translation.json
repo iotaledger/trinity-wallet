@@ -837,6 +837,6 @@
         "udevError": "Ledger 기기에 연결할 수 없음",
         "udevErrorExplanation": "트리니티가 Ledger 기기에 연결하지 못했습니다. 아래 URL에 접속해 이 문제에 대해 더 알아볼 수 있습니다.",
         "writtenDownInfoTitle": "인덱스 번호를 기억하세요",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "writtenDownInfoExplanation": "만일 계정을 복구해야 할 경우 인덱스 번호가 필요하게 됩니다. 인덱스 번호를 잊게 되면 IOTA를 잃어버리게 되니 기억해 주세요."
     }
 }
