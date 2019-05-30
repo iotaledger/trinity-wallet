@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toggle component Render the component 1`] = `
+<div
+  className="toggle"
+  onClick={[Function]}
+>
+  <span>
+    Off
+  </span>
+  <span>
+    On
+  </span>
+</div>
+`;

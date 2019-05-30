@@ -1,13 +1,11 @@
 /* global Electron */
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
-import bugsnag from '@bugsnag/js';
-import bugsnagReact from '@bugsnag/plugin-react';
 import React from 'react';
 import { render } from 'react-dom';
 import { I18nextProvider } from 'react-i18next';
 import { Provider as Redux } from 'react-redux';
-import { MemoryRouter as Router } from 'react-router';
+import { BrowserRouter as Router } from 'react-router-dom';
 import i18next from 'libs/i18next';
 import store from 'store';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';
@@ -15,6 +13,7 @@ import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode } from 'libs/iota';
 import { initialise as initialiseStorage } from 'storage';
+import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
 
 import Index from 'ui/Index';
 import Tray from 'ui/Tray';
@@ -22,24 +21,13 @@ import Tray from 'ui/Tray';
 import Alerts from 'ui/global/Alerts';
 import FatalError from 'ui/global/FatalError';
 
-import settings from '../package.json';
 import { decrypt } from './libs/crypto.js';
+import './ui/index.scss';
 
 const init = () => {
     if (typeof Electron === 'undefined') {
         return render(<FatalError error="Failed to load Electron preload script" />, document.getElementById('root'));
     }
-
-    const bugsnagClient = bugsnag({
-        apiKey: 'fakeAPIkey',
-        appVersion: settings.version,
-        interactionBreadcrumbsEnabled: false,
-        collectUserIp: false,
-        user: { id: Electron.getUuid() },
-    });
-    bugsnagClient.use(bugsnagReact, React);
-
-    const ErrorBoundary = bugsnagClient.getPlugin('react');
 
     if (Electron.mode === 'tray') {
         Electron.onEvent('store.update', (payload) => {
@@ -83,6 +71,14 @@ const init = () => {
             });
     }
 
+    const rootEl = document.createElement('div');
+    rootEl.id = 'root';
+    document.body.appendChild(rootEl);
+
+    const modalEl = document.createElement('div');
+    modalEl.id = 'modal';
+    document.body.appendChild(modalEl);
+
     render(
         <ErrorBoundary>
             <Redux store={store}>
@@ -100,7 +96,7 @@ const init = () => {
                 </I18nextProvider>
             </Redux>
         </ErrorBoundary>,
-        document.getElementById('root'),
+        rootEl,
     );
 };
 

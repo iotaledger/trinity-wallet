@@ -9,7 +9,7 @@ import Progress from 'ui/components/Progress';
 /**
  * Auto update progress window
  */
-class UpdateProgress extends React.PureComponent {
+export class UpdateProgressComponent extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -64,4 +64,4 @@ class UpdateProgress extends React.PureComponent {
     }
 }
 
-export default withI18n()(UpdateProgress);
+export default withI18n()(UpdateProgressComponent);
