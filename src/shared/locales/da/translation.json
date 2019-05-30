@@ -121,7 +121,7 @@
         "nodeMustUseHTTPSExplanation": "Kun tilpassede noder, som benytter HTTPS er tilladt.",
         "nodeDuplicated": "Duplikeret node",
         "nodeDuplicatedExplanation": "Den tilpassede node er allerede opført.",
-        "customNodeAdded": "Custom node added",
+        "customNodeAdded": "Brugerdefineret node tilføjet",
         "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Auto-skiftet node",
         "nodeAutoChangedExplanation": "Skiftet til ny node {{- nodeAddress}} da den valgte node er offline.",
