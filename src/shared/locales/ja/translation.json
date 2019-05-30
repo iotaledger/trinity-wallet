@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "HTTPSを使用するカスタムノードだけがご使用になれます。",
         "nodeDuplicated": "重複したノード",
         "nodeDuplicatedExplanation": "このカスタムノードは既にリストにあります。",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "ノードの自動切り替え",
         "nodeAutoChangedExplanation": "選択したノードがオフラインであるため、新しいノード {{- nodeAddress}} に切り替えました。",
         "touchSensor": "指紋センサーに触れてください",
@@ -431,7 +433,6 @@
         "redo": "やり直す",
         "aboutTrinity": "Trinityについて",
         "lockScreenTimeout": "ロック画面までの時間(分)",
-        "autoNodeSwitching": "選択したノードが接続不能になると自動的にノードを切り替える。",
         "nodeChangeSuccess": "ノード変更成功",
         "nodeChangeSuccessNoRemotePow": "ノードを{{node}}に変更しました。このノードはリモートによるプルーフ・オブ・ワークをサポートしていません。",
         "nodeChangeSuccessExplanation": "ノードを{{node}}に変更しました。",
@@ -491,6 +492,22 @@
         "addNewAccount": "新しいアカウントを追加",
         "tools": "ツール"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "カスタムノード追加不可",
         "customNode": "カスタムノード",
@@ -499,7 +516,11 @@
         "add": "追加",
         "nodeFieldEmpty": "テキスト欄が空です。",
         "nodeFieldEmptyExplanation": "カスタムノードを入力してください。",
-        "invalidURL": "有効なURLを入力してください。"
+        "invalidURL": "有効なURLを入力してください。",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "既存のシードを使用",
