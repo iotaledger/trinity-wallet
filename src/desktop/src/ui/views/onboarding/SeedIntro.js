@@ -46,9 +46,10 @@ class SeedIntro extends React.PureComponent {
         });
     }
 
-    stepForward(route) {
+    stepForward(route, existingSeed) {
         this.props.setAccountInfoDuringSetup({
             meta: { type: 'keychain' },
+            usedExistingSeed: existingSeed,
         });
 
         this.props.history.push(`/onboarding/${route}`);
@@ -92,7 +93,7 @@ class SeedIntro extends React.PureComponent {
                     <div>
                         <Button
                             id="to-seed-verify"
-                            onClick={() => this.stepForward('seed-verify')}
+                            onClick={() => this.stepForward('seed-verify', true)}
                             className="square"
                             variant="dark"
                         >
@@ -100,7 +101,7 @@ class SeedIntro extends React.PureComponent {
                         </Button>
                         <Button
                             id="to-seed-generate"
-                            onClick={() => this.stepForward('seed-generate')}
+                            onClick={() => this.stepForward('seed-generate', false)}
                             className="square"
                             variant="primary"
                         >
@@ -108,10 +109,21 @@ class SeedIntro extends React.PureComponent {
                         </Button>
                     </div>
                     <div>
-                        <Button to="/onboarding/seed-ledger" onClick={() => setAccountInfoDuringSetup({usedExistingSeed: true})} className="square" variant="dark">
+                        <Button
+                            to="/onboarding/seed-ledger"
+                            onClick={() => setAccountInfoDuringSetup({ usedExistingSeed: true })}
+                            className="square"
+                            variant="dark"
+                        >
                             {t('ledger:restoreLedgerAccount')}
                         </Button>
-                        <Button id="to-seed-ledger" to="/onboarding/seed-ledger" onClick={() => setAccountInfoDuringSetup({usedExistingSeed: false})} className="square" variant="primary">
+                        <Button
+                            id="to-seed-ledger"
+                            to="/onboarding/seed-ledger"
+                            onClick={() => setAccountInfoDuringSetup({ usedExistingSeed: false })}
+                            className="square"
+                            variant="primary"
+                        >
                             {t('ledger:createNewLedgerAccount')}
                         </Button>
                     </div>

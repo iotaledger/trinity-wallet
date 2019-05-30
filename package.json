@@ -49,7 +49,7 @@
     "prettier": "^1.17.1"
   },
   "dependencies": {
-    "snyk": "^1.167.2"
+    "snyk": "^1.169.2"
   },
   "resolutions": {
     "request": ">=2.88.0",
