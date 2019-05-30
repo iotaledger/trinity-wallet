@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import noop from 'lodash/noop';
 import findLastIndex from 'lodash/findLastIndex';
 import reduce from 'lodash/reduce';
-import { updateAddressData, updateAccountAfterTransition, getSelectedAccountName } from '../actions/accounts';
+import { updateAddressData, updateAccountAfterTransition } from '../actions/accounts';
 import {
     generateAlert,
     generateTransitionErrorAlert,
@@ -17,7 +17,7 @@ import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
 import Errors from '../libs/errors';
-import { selectedAccountStateFactory } from '../selectors/accounts';
+import { selectedAccountStateFactory, getSelectedAccountName } from '../selectors/accounts';
 import { getRemotePoWFromState, nodesConfigurationFactory } from '../selectors/global';
 import { Account } from '../storage';
 import { DEFAULT_SECURITY } from '../config';

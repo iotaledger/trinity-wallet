@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Balance component Render the component 1`] = `
+<div
+  className="balance"
+>
+  <h3>
+    foo
+  </h3>
+  <h1
+    onClick={[Function]}
+  >
+    5.5
+    <small>
+      Mi
+    </small>
+  </h1>
+  <h2>
+    $ 5.50
+  </h2>
+</div>
+`;

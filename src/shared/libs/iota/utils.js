@@ -14,6 +14,7 @@ import { iota } from './index';
 import { isNodeHealthy } from './extendedApi';
 import { NODELIST_URL, MAX_REQUEST_TIMEOUT } from '../../config';
 import Errors from '../errors';
+import { roundDown } from '../utils';
 
 export const MAX_SEED_LENGTH = 81;
 
@@ -197,19 +198,21 @@ export const unitStringToValue = (str) => {
 };
 
 /**
- * Formats IOTA value and assigns appropriate unit
- *
- * @method formatIota
- * @param {number} value
+ * Format iotas to human readable format
+ * @param {number} iotas - Input value in iotas
+ * @param {boolean} showShort - Should output short format
+ * @param {boolean} showUnit - Should output unit
  *
  * @returns {string}
  */
-export function formatIota(value) {
-    const iota = formatValue(value);
-    const unit = formatUnit(value);
+export const formatIotas = (iotas, showShort, showUnit) => {
+    const formattedValue = formatValue(iotas);
+    const outputValue = !showShort
+        ? formattedValue
+        : roundDown(formattedValue, 1) + (iotas < 1000 || (iotas / formattedValue) % 10 === 0 ? '' : '+');
 
-    return `${iota} ${unit}`;
-}
+    return `${outputValue}${showUnit ? ' ' + formatUnit(iotas) : ''}`;
+};
 
 /**
  * Checks if provided server address is valid

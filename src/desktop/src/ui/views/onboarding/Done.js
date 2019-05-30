@@ -56,7 +56,7 @@ class Done extends React.PureComponent {
                     </svg>
                 </section>
                 <footer>
-                    <Button onClick={this.setComplete} className="square" variant="primary">
+                    <Button id="done-next" onClick={this.setComplete} className="square" variant="primary">
                         {t('onboardingComplete:openYourWallet')}
                     </Button>
                 </footer>

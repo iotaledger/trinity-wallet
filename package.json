@@ -18,7 +18,7 @@
     "lint:shared": "./node_modules/.bin/eslint src/shared/",
     "lint:desktop": "./node_modules/.bin/eslint src/desktop/",
     "format": "prettier --write \"**/*.{js,json,css}\"",
-    "test:all": "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../",
+    "test:all": "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../desktop/ && yarn test && cd ../",
     "deps:shared": "cd src/shared && yarn && cd ../..",
     "deps:mobile": "cd src/mobile && yarn && cd ../..",
     "deps:desktop": "cd src/desktop && npm install && cd ../..",
@@ -49,7 +49,7 @@
     "prettier": "^1.17.1"
   },
   "dependencies": {
-    "snyk": "^1.168.0"
+    "snyk": "^1.169.2"
   },
   "resolutions": {
     "request": ">=2.88.0",

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox component Render the component 1`] = `
+<div
+  className="checkbox undefined"
+  onClick={[Function]}
+>
+  Foo
+</div>
+`;

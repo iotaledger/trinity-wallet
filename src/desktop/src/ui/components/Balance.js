@@ -5,10 +5,9 @@ import { withI18n } from 'react-i18next';
 
 import { getAccountNamesFromState } from 'selectors/accounts';
 
-import { formatValue, formatUnit } from 'libs/iota/utils';
 import { accumulateBalance } from 'libs/iota/addresses';
-import { round, roundDown } from 'libs/utils';
-import { getCurrencySymbol } from 'libs/currency';
+import { formatUnit, formatIotas } from 'libs/iota/utils';
+import { formatMonetaryValue } from 'libs/currency';
 
 import Icon from 'ui/components/Icon';
 
@@ -17,7 +16,7 @@ import css from './balance.scss';
 /**
  * Current account total balance display component
  */
-class Balance extends React.PureComponent {
+export class BalanceComponent extends React.PureComponent {
     static propTypes = {
         /** Should component show overall balance by default */
         summary: PropTypes.bool,
@@ -51,17 +50,6 @@ class Balance extends React.PureComponent {
         }
     }
 
-    getDecimalPlaces(n) {
-        const s = `+${n}`;
-        const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec(s);
-
-        if (!match) {
-            return 0;
-        }
-
-        return Math.max(0, (match[1] === '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
-    }
-
     render() {
         const {
             summary,
@@ -89,15 +77,11 @@ class Balance extends React.PureComponent {
 
         const accountBalance = accumulateBalance(balances);
 
-        const currencySymbol = getCurrencySymbol(settings.currency);
-        const fiatBalance = round(accountBalance * marketData.usdPrice / 1000000 * settings.conversionRate, 2).toFixed(
-            2,
+        const fiatBalance = formatMonetaryValue(
+            accountBalance,
+            marketData.usdPrice * settings.conversionRate,
+            settings.currency,
         );
-
-        const balance = !balanceIsShort
-            ? formatValue(accountBalance)
-            : roundDown(formatValue(accountBalance), 1) +
-              (accountBalance < 1000 || this.getDecimalPlaces(formatValue(accountBalance)) <= 1 ? '' : '+');
 
         return (
             <div className={css.balance}>
@@ -114,10 +98,10 @@ class Balance extends React.PureComponent {
                     </React.Fragment>
                 )}
                 <h1 onClick={() => this.setState({ balanceIsShort: !balanceIsShort })}>
-                    {`${balance}`}
+                    {formatIotas(accountBalance, balanceIsShort)}
                     <small>{`${formatUnit(accountBalance)}`}</small>
                 </h1>
-                <h2>{`${currencySymbol} ${fiatBalance}`}</h2>
+                <h2>{fiatBalance}</h2>
             </div>
         );
     }
@@ -131,4 +115,4 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
 });
 
-export default connect(mapStateToProps)(withI18n()(Balance));
+export default connect(mapStateToProps)(withI18n()(BalanceComponent));

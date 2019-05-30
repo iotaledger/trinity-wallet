@@ -105,7 +105,7 @@
     "babel-preset-stage-0": "^7.0.0-beta",
     "cross-env": "^5.2.0",
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme-adapter-react-16": "^1.13.2",
     "jest": "24.8.0",
     "jest-serializer-enzyme": "^1.0.0",
     "metro-react-native-babel-preset": "^0.45.0",
@@ -120,15 +120,11 @@
   },
   "jest": {
     "preset": "react-native",
-    "roots": [
-      "../"
-    ],
     "setupFilesAfterEnv": [
       "./testConfig.js"
     ],
     "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/shared/"
+      "/node_modules/"
     ],
     "transform": {
       "^.+\\.js$": "./node_modules/react-native/jest/preprocessor.js"
