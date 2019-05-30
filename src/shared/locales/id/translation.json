@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "\nNode mengembalikan kesalahan saat mengambil informasi akun Anda. Jika masalah Anda tetap ada, cobalah mengubah simpul atau menonaktifkan proxy sistem Anda di Pengaturan Trinity.",
         "nodeOutOfSync": "Node tidak sinkron",
         "nodeOutOfSyncExplanation": "Node yang anda pilih tidak sinkron. Silahkan ganti Node atau coba lagi.",
-        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "nodeOutOfSyncByTimestampExplanation": "Node yang anda pilih tidak sinkron, silahkan ganti Node atau coba lagi. Jika masalah berlanjut, pastikan waktu perangkat akurat.",
         "experimentalNode": "Versi Node tidak didukung\n",
         "experimentalNodeExplanation": "\nNode yang Anda pilih saat ini menjalankan versi eksperimental yang tidak didukung. Silakan node atau coba lagi.",
         "thisNodeOutOfSync": "Node ini tidak sinkron. Silahkan ganti node atau coba lagi.",
@@ -142,8 +142,8 @@
         "isYourBalanceCorrect": "Apakah saldo anda benar?",
         "ifYourBalanceIsNotCorrect": "Jika saldo anda tidak benar, kemungkinan anda menggunakan Pre-Snapshot Seed.",
         "headToAdvancedSettingsForTransition": "Buka Aturan Lanjutan dan lakukan Transisi Snapshot.",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
+        "headToAccountTools": "Menuju ke Akun Perkakas dan lakukan Transisi Snapshot.",
+        "openAccountTools": "Buka Akun Perkakas",
         "usingTrinityWalletWithKeePass": "Gunakan Dompet Trinity dengan Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Ada kesalahan jaringan ketika menyiarkan transaksi Anda.",
         "broadcastError": "Tidak bisa menyiarkan transaksi",
@@ -163,11 +163,11 @@
         "shouldUpdateExplanation": "Pembaruan baru telah dirilis. Anda disarankan untuk memperbarui ke versi terbaru.",
         "forceUpdate": "Perbarui aplikasi untuk melanjutkan",
         "forceUpdateExplanation": "Pembaruan kritis telah dirilis. Harap perbarui aplikasinya sekarang.",
-        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
+        "testVersionWarning": "Versi ini hanya untuk uji coba saja, dengan minimum nilai token.",
         "missingPermission": "Izin akses File System dibutuhkan",
         "missingPermissionExplanation": "Akses ke sistem file diperlukan untuk menjalankan fungsi ini.",
         "swipeToConfirm": "Geser untuk mengonfirmasi",
-        "expert": "Expert"
+        "expert": "Ahli"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -489,7 +489,7 @@
         "editAccountName": "Ubah nama akun",
         "deleteAccount": "Hapus akun",
         "addNewAccount": "Tambahkan akun baru",
-        "tools": "Peralatan"
+        "tools": "Perkakas"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node kustom tidak dapat ditambah",
