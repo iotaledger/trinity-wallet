@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Clipboard component Render the component 1`] = `
+<span
+  className="clipboard"
+  onClick={[Function]}
+>
+  Lorem ipsum
+</span>
+`;

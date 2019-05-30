@@ -11,7 +11,7 @@ import css from './alerts.scss';
 /**
  * Alerts UI helper component
  */
-class Alerts extends React.PureComponent {
+export class AlertsComponent extends React.PureComponent {
     static timeout = null;
 
     static propTypes = {
@@ -112,4 +112,4 @@ class Alerts extends React.PureComponent {
     }
 }
 
-export default withAlertsData(Alerts);
+export default withAlertsData(AlertsComponent);

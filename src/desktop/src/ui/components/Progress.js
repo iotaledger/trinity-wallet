@@ -25,7 +25,7 @@ export default class Progress extends React.PureComponent {
             <div className={classNames(css.progress, type ? css[type] : null)}>
                 {title && <p>{title}</p>}
                 <div>
-                    <div style={{ width: `${Math.min(progress, 100)}%` }} />
+                    <div className={css.bar} style={{ width: `${Math.min(progress, 100)}%` }} />
                 </div>
                 {subtitle && <small>{subtitle}</small>}
             </div>
