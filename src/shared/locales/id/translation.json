@@ -502,7 +502,7 @@
         "quorumSize": "Ukuran Quorum",
         "noCustomNodes": "Tidak ada Node kostum",
         "mustAddCustomNodes": "Anda harus tambah satu Node kostum sebelum menonaktifkan list node jarak jauh.",
-        "nodeEnoughNodesTitle": "Kurang Node telah ditambah",
+        "nodeEnoughNodesTitle": "Tidak ada Node untuk ditambah",
         "nodeEnoughNodesExplanation": "Tidak cukup Node untuk mengaktifkan Quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Tambah Node kostum atau aktifkan List Node jarak jauh.",
         "nodeSettingsUpdatedTitle": "Aturan Node diperbarui",
