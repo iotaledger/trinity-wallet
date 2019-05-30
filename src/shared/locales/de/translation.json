@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Benutzerdefinierte Nodes müssen HTTPS verwenden.",
         "nodeDuplicated": "Doppelter Node",
         "nodeDuplicatedExplanation": "Dieser Node ist bereits vorhanden.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Node automatisch gewechselt",
         "nodeAutoChangedExplanation": "Auf Node {{- nodeAddress}} gewechselt, da der ausgewählte Node offline ist.",
         "touchSensor": "Berühre den Fingerabdrucksensor",
@@ -431,7 +433,6 @@
         "redo": "Wiederholen",
         "aboutTrinity": "Über Trinity",
         "lockScreenTimeout": "Sperrbildschirm Auszeit (Minuten)",
-        "autoNodeSwitching": "Node automatisch wechseln, falls der gewählte Node nicht erreichbar ist",
         "nodeChangeSuccess": "Node wurde erfolgreich geändert",
         "nodeChangeSuccessNoRemotePow": "Der Node wurde auf {{node}} geändert. Dieser Node Unterstützt keinen Proof of Work.",
         "nodeChangeSuccessExplanation": "Der Node wurde auf {{node}} geändert.",
@@ -491,6 +492,22 @@
         "addNewAccount": "Konto hinzufügen",
         "tools": "Werkzeuge"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Benutzerdefinierter Node konnte nicht hinzugefügt werden",
         "customNode": "Benutzerdefinierter Node",
@@ -499,7 +516,11 @@
         "add": "Hinzufügen",
         "nodeFieldEmpty": "Textfeld ist leer",
         "nodeFieldEmptyExplanation": "Bitte einen benutzerdefinierten Node hinzufügen.",
-        "invalidURL": "Bitte gib eine gültige Adresse ein."
+        "invalidURL": "Bitte gib eine gültige Adresse ein.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Vorhandenen Seed verwenden",
