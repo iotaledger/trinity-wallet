@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Povolené sú iba vlastné Nody s protokolom HTTPS.",
         "nodeDuplicated": "Duplicitný Node",
         "nodeDuplicatedExplanation": "Tento vlastný Node je už v zozname.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Automatické prepnutie Nodu",
         "nodeAutoChangedExplanation": "Prepnuté na nový Node {{- nodeAddress}} keďže predtým vybraný je offline.",
         "touchSensor": "Dotknite sa snímača otisku prstov",
@@ -431,7 +433,6 @@
         "redo": "Znova",
         "aboutTrinity": "O Trinity",
         "lockScreenTimeout": "Zámok obrazovky po (minúty)",
-        "autoNodeSwitching": "Automaticky prepnúť na iný Node, pokiaľ vybraný nie je dostupný",
         "nodeChangeSuccess": "Node bol úspešne zmenený",
         "nodeChangeSuccessNoRemotePow": "Node bol zmenený na {{node}}. Tento Node nepodporuje vzdialený Proof of Work.",
         "nodeChangeSuccessExplanation": "Node bol zmenený na {{node}}.",
@@ -491,6 +492,22 @@
         "addNewAccount": "Pridať nový účet",
         "tools": "Nástroje"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nedá sa pridať vlastný Node",
         "customNode": "Vlastný Node",
@@ -499,7 +516,11 @@
         "add": "Pridať",
         "nodeFieldEmpty": "Textové pole je prázdne",
         "nodeFieldEmptyExplanation": "Prosím, vložte vlastný Node.",
-        "invalidURL": "Prosím, zadajte platnú adresu URL."
+        "invalidURL": "Prosím, zadajte platnú adresu URL.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Použiť existujúci Seed",
