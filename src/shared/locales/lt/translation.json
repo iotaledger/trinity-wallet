@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Vartotojo serveriai galimi tik naudojantys HTTPS.",
         "nodeDuplicated": "Dubliuotas serveris",
         "nodeDuplicatedExplanation": "Toks vartotojo serveris jau yra įvestas.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Automatiškai pakeistas serveris",
         "nodeAutoChangedExplanation": "Pakeista į naują serverį {{- nodeAddress}}, nes pasirinktas serveris nepasiekiamas.",
         "touchSensor": "Palieskite piršto antspaudo jutiklį",
@@ -431,7 +433,6 @@
         "redo": "Atstatyti",
         "aboutTrinity": "Apie Trinity",
         "lockScreenTimeout": "Ekrano užrakinimas (minutės)",
-        "autoNodeSwitching": "Automatiškai pakeisti serverį, kai pasirinktas yra nepasiekiamas",
         "nodeChangeSuccess": "Serveris sėkmingai pakeistas",
         "nodeChangeSuccessNoRemotePow": "Serveris pakeistas į {{node}}, Šis serveris nepalaiko nuotolinio skaičiavimo.",
         "nodeChangeSuccessExplanation": "Serveris pakeistas į {{node}}.",
@@ -491,6 +492,22 @@
         "addNewAccount": "Pridėti naują paskyrą",
         "tools": "Įrankiai"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",
         "customNode": "Vartotojo serveris",
@@ -499,7 +516,11 @@
         "add": "Pridėti",
         "nodeFieldEmpty": "Teksto laukas tuščias",
         "nodeFieldEmptyExplanation": "Įveskite vartotojo serverį.",
-        "invalidURL": "Įveskite teisingą URL adresą."
+        "invalidURL": "Įveskite teisingą URL adresą.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Naudoti seną užraktą",
