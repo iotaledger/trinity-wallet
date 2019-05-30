@@ -44,8 +44,6 @@ import Ledger from 'ui/global/seedStore/Ledger';
 
 import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
 
-import css from './index.scss';
-
 /**
  * Wallet wrapper component
  **/
@@ -302,7 +300,7 @@ class App extends React.Component {
 
         if (fatalError) {
             return (
-                <div className={css.trintiy}>
+                <div>
                     <Theme history={history} />
                     <Titlebar path={currentKey} />
                     <FatalError error={fatalError} />
@@ -311,7 +309,7 @@ class App extends React.Component {
         }
 
         return (
-            <div className={css.trintiy}>
+            <div>
                 <Titlebar path={currentKey} />
                 <About />
                 <ErrorLog />

@@ -132,10 +132,15 @@ class SeedVerify extends React.PureComponent {
                     />
                 </section>
                 <footer>
-                    <Button to={`/onboarding/seed-${isGenerated ? 'save' : 'intro'}`} className="square" variant="dark">
+                    <Button
+                        id="seed-verify-prev"
+                        to={`/onboarding/seed-${isGenerated ? 'save' : 'intro'}`}
+                        className="square"
+                        variant="dark"
+                    >
                         {t('goBackStep')}
                     </Button>
-                    <Button onClick={this.setSeed} className="square" variant="primary">
+                    <Button id="seed-verify-next" onClick={this.setSeed} className="square" variant="primary">
                         {t('continue')}
                     </Button>
                 </footer>
@@ -154,4 +159,7 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(SeedVerify));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(SeedVerify));

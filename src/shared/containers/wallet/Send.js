@@ -41,7 +41,6 @@ export default function withSendData(SendComponent) {
             theme: PropTypes.object.isRequired,
             themeName: PropTypes.string.isRequired,
             t: PropTypes.func.isRequired,
-            deepLinkActive: PropTypes.bool.isRequired,
             setSendAddressField: PropTypes.func.isRequired,
             setSendAmountField: PropTypes.func.isRequired,
             setSendMessageField: PropTypes.func.isRequired,

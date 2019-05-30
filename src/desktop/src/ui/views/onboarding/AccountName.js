@@ -133,10 +133,10 @@ class AccountName extends React.PureComponent {
                     />
                 </section>
                 <footer>
-                    <Button onClick={this.stepBack} className="square" variant="dark">
+                    <Button id="account-name-prev" onClick={this.stepBack} className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
-                    <Button type="submit" className="square" variant="primary">
+                    <Button id="account-name-next" type="submit" className="square" variant="primary">
                         {t('continue')}
                     </Button>
                 </footer>
@@ -157,4 +157,7 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(AccountName));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(AccountName));

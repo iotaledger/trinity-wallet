@@ -44,7 +44,7 @@ class Done extends React.PureComponent {
                     <Lottie width={340} height={340} data={getAnimation('onboardingComplete', themeName)} />
                 </section>
                 <footer>
-                    <Button onClick={this.setComplete} className="square" variant="primary">
+                    <Button id="done-next" onClick={this.setComplete} className="square" variant="primary">
                         {t('onboardingComplete:openYourWallet')}
                     </Button>
                 </footer>

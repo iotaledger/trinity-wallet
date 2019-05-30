@@ -4,14 +4,18 @@ import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 
-import { acceptTerms, acceptPrivacy } from 'actions/settings';
+import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'libs/i18n';
+import i18next from 'libs/i18next';
+
+import { acceptTerms, acceptPrivacy, setLocale } from 'actions/settings';
+
+import Select from 'ui/components/input/Select';
 
 import { getAnimation } from 'animations';
 
 import { enTermsAndConditionsIOS, deTermsAndConditionsIOS, enPrivacyPolicyIOS, dePrivacyPolicyIOS } from 'markdown';
 
 import Button from 'ui/components/Button';
-import Language from 'ui/components/input/Language';
 import Lottie from 'ui/components/Lottie';
 import Scrollbar from 'ui/components/Scrollbar';
 
@@ -40,6 +44,8 @@ class Welcome extends React.PureComponent {
         acceptTerms: PropTypes.func.isRequired,
         /** @ignore */
         acceptPrivacy: PropTypes.func.isRequired,
+        /** @ignore */
+        setLocale: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -82,6 +88,11 @@ class Welcome extends React.PureComponent {
         }
     };
 
+    changeLanguage = (language) => {
+        this.props.setLocale(language);
+        i18next.changeLanguage(language);
+    };
+
     render() {
         const { forceUpdate, language, themeName, t } = this.props;
         const { step, scrollEnd } = this.state;
@@ -110,8 +121,14 @@ class Welcome extends React.PureComponent {
                         </React.Fragment>
                     ) : step === 'language' ? (
                         <React.Fragment>
-                            <h1>{t('welcome:welcome')}</h1>
-                            <Language />
+                            <Select
+                                label={t('languageSetup:language')}
+                                value={I18N_LOCALE_LABELS[I18N_LOCALES.indexOf(language)]}
+                                onChange={this.changeLanguage}
+                                options={I18N_LOCALES.map((item, index) => {
+                                    return { value: item, label: I18N_LOCALE_LABELS[index] };
+                                })}
+                            />
                             <div className={css.language}>
                                 <Lottie
                                     width={240}
@@ -141,12 +158,15 @@ class Welcome extends React.PureComponent {
                         onClick={this.onNextClick}
                         className="square"
                         variant="primary"
+                        id="to-seed-intro"
                     >
                         {step === 'intro'
                             ? t('languageSetup:letsGetStarted')
                             : step === 'language'
-                                ? t('continue')
-                                : !scrollEnd ? t('terms:readAllToContinue') : t('terms:accept')}
+                            ? t('continue')
+                            : !scrollEnd
+                            ? t('terms:readAllToContinue')
+                            : t('terms:accept')}
                     </Button>
                 </footer>
             </form>
@@ -165,6 +185,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     acceptTerms,
     acceptPrivacy,
+    setLocale,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Welcome));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(Welcome));

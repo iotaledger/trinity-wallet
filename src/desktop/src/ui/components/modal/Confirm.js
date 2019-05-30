@@ -45,10 +45,11 @@ export default class Confirm extends React.PureComponent {
                 ) : null}
                 {content.message ? <div>{content.message}</div> : null}
                 <footer>
-                    <Button onClick={this.props.onCancel} variant="dark">
+                    <Button id="confirm-cancel" onClick={this.props.onCancel} variant="dark">
                         {content.cancel}
                     </Button>
                     <Button
+                        id="confirm-accept"
                         disabled={countdown > 0}
                         onClick={this.props.onConfirm}
                         variant={category ? category : 'primary'}

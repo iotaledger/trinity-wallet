@@ -5,7 +5,7 @@ export const __MOBILE__ = typeof navigator !== 'undefined' && navigator.product 
 /** Default IRI node */
 export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.iota.org';
 
-export const nodesWithPowDisabled = ['https://trinity.iota-tangle.io:14265', 'https://node.iota-tangle.io:14265'];
+export const nodesWithPowDisabled = [];
 
 export const nodesWithPowEnabled = [
     'https://nodes.iota.org',

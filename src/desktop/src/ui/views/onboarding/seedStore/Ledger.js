@@ -113,10 +113,12 @@ class Ledger extends React.PureComponent {
 
             // Handle udev errors
             // See https://github.com/LedgerHQ/ledger-live-desktop/issues/1057 and https://github.com/iotaledger/trinity-wallet/issues/589
-            if (error.message.includes('cannot open device with path')) {
+            if (typeof error.message === 'string' && error.message.includes('cannot open device with path')) {
                 this.setState({
                     udevError: true,
                 });
+            } else {
+                generateAlert('error', t('ledger:connectionError'), t('ledger:connectionErrorExplanation'));
             }
 
             this.setState({

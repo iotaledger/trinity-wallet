@@ -50,9 +50,10 @@ class SeedIntro extends React.PureComponent {
         });
     }
 
-    stepForward(route) {
+    stepForward(route, existingSeed) {
         this.props.setAccountInfoDuringSetup({
             meta: { type: 'keychain' },
+            usedExistingSeed: existingSeed,
         });
 
         this.props.history.push(`/onboarding/${route}`);
@@ -85,10 +86,20 @@ class SeedIntro extends React.PureComponent {
                 </section>
                 <footer className={!ledger ? css.choiceDefault : css.choiceLedger}>
                     <div>
-                        <Button onClick={() => this.stepForward('seed-verify')} className="square" variant="dark">
+                        <Button
+                            id="to-seed-verify"
+                            onClick={() => this.stepForward('seed-verify', true)}
+                            className="square"
+                            variant="dark"
+                        >
                             {t('walletSetup:noIHaveOne')}
                         </Button>
-                        <Button onClick={() => this.stepForward('seed-generate')} className="square" variant="primary">
+                        <Button
+                            id="to-seed-generate"
+                            onClick={() => this.stepForward('seed-generate', false)}
+                            className="square"
+                            variant="primary"
+                        >
                             {t('walletSetup:yesINeedASeed')}
                         </Button>
                     </div>
@@ -102,6 +113,7 @@ class SeedIntro extends React.PureComponent {
                             {t('ledger:restoreLedgerAccount')}
                         </Button>
                         <Button
+                            id="to-seed-ledger"
                             to="/onboarding/seed-ledger"
                             onClick={() => setAccountInfoDuringSetup({ usedExistingSeed: false })}
                             className="square"

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checksum component Render the component 1`] = `
+<Fragment>
+  ABCDEFGHIJKLMOPRSTUCXYZ9ABCDEFGHIJKLMOPRSTUCXYZ9ABCDEFGHIJKLMOPRSTUCXYZ9ABCDEFGHI
+  <mark>
+    JKLMOPRST
+  </mark>
+</Fragment>
+`;

@@ -30,7 +30,10 @@ export const getAccountsFromState = (state) => state.accounts || {};
  *   @param {object} state
  *   @returns {object}
  **/
-export const getAccountInfoFromState = createSelector(getAccountsFromState, (state) => state.accountInfo || {});
+export const getAccountInfoFromState = createSelector(
+    getAccountsFromState,
+    (state) => state.accountInfo || {},
+);
 
 /**
  *   Selects accountNames prop from accounts reducer state object.
@@ -40,14 +43,17 @@ export const getAccountInfoFromState = createSelector(getAccountsFromState, (sta
  *   @param {object} state
  *   @returns {array}
  **/
-export const getAccountNamesFromState = createSelector(getAccountsFromState, (state) => {
-    // Get [{ index, name }] for all accounts
-    const accountNames = map(state.accountInfo, ({ index }, name) => ({ index, name }));
+export const getAccountNamesFromState = createSelector(
+    getAccountsFromState,
+    (state) => {
+        // Get [{ index, name }] for all accounts
+        const accountNames = map(state.accountInfo, ({ index }, name) => ({ index, name }));
 
-    // Order them by (account) index
-    const getAccountName = ({ name }) => name;
-    return map(orderBy(accountNames, ['index']), getAccountName);
-});
+        // Order them by (account) index
+        const getAccountName = ({ name }) => name;
+        return map(orderBy(accountNames, ['index']), getAccountName);
+    },
+);
 
 /**
  *   Selects account name for currently selected account.
@@ -88,7 +94,10 @@ export const selectAccountInfo = createSelector(
  *   @returns {string}
  **/
 export const selectLatestAddressFromAccountFactory = (withChecksum = true) =>
-    createSelector(selectAccountInfo, (state) => getLatestAddress(state.addressData, withChecksum));
+    createSelector(
+        selectAccountInfo,
+        (state) => getLatestAddress(state.addressData, withChecksum),
+    );
 
 /**
  *   Selects account meta from account info state partial.
@@ -99,7 +108,7 @@ export const selectLatestAddressFromAccountFactory = (withChecksum = true) =>
  **/
 export const getSelectedAccountMeta = createSelector(
     selectAccountInfo,
-    (account) => account.meta || { type: 'keychain' },
+    (account) => get(account, 'meta'),
 );
 
 /**
@@ -121,8 +130,9 @@ export const getSelectedAccountType = createSelector(
  *   @param {object} state
  *   @returns {array}
  **/
-export const getTransactionsForSelectedAccount = createSelector(selectAccountInfo, ({ transactions, addressData }) =>
-    mapNormalisedTransactions(transactions, addressData),
+export const getTransactionsForSelectedAccount = createSelector(
+    selectAccountInfo,
+    ({ transactions, addressData }) => mapNormalisedTransactions(transactions, addressData),
 );
 
 /**
@@ -132,8 +142,9 @@ export const getTransactionsForSelectedAccount = createSelector(selectAccountInf
  *   @param {object} state
  *   @returns {array}
  **/
-export const getAddressesForSelectedAccount = createSelector(selectAccountInfo, (account) =>
-    map(account.addressData, (addressObject) => addressObject.address),
+export const getAddressesForSelectedAccount = createSelector(
+    selectAccountInfo,
+    (account) => map(account.addressData, (addressObject) => addressObject.address),
 );
 
 /**
@@ -143,8 +154,9 @@ export const getAddressesForSelectedAccount = createSelector(selectAccountInfo, 
  *   @param {object} state
  *   @returns {number}
  **/
-export const getBalanceForSelectedAccount = createSelector(selectAccountInfo, (account) =>
-    accumulateBalance(map(account.addressData, (addressObject) => addressObject.balance)),
+export const getBalanceForSelectedAccount = createSelector(
+    selectAccountInfo,
+    (account) => accumulateBalance(map(account.addressData, (addressObject) => addressObject.balance)),
 );
 
 /**
@@ -154,10 +166,13 @@ export const getBalanceForSelectedAccount = createSelector(selectAccountInfo, (a
  *   @param {object} state
  *   @returns {number}
  **/
-export const getAvailableBalanceForSelectedAccount = createSelector(selectAccountInfo, (account) => {
-    const unspentAddresses = filter(account.addressData, { spent: { local: false } });
-    return reduce(unspentAddresses, (res, item) => res + item.balance, 0);
-});
+export const getAvailableBalanceForSelectedAccount = createSelector(
+    selectAccountInfo,
+    (account) => {
+        const unspentAddresses = filter(account.addressData, { spent: { local: false } });
+        return reduce(unspentAddresses, (res, item) => res + item.balance, 0);
+    },
+);
 
 /**
  *   Selects getSetupInfoFromAccounts prop from accounts reducer state object.
@@ -167,7 +182,10 @@ export const getAvailableBalanceForSelectedAccount = createSelector(selectAccoun
  *   @param {object} state
  *   @returns {object}
  **/
-export const getSetupInfoFromAccounts = createSelector(getAccountsFromState, (state) => state.setupInfo || {});
+export const getSetupInfoFromAccounts = createSelector(
+    getAccountsFromState,
+    (state) => state.setupInfo || {},
+);
 
 /**
  *   Selects getAccountInfoDuringSetup prop from accounts reducer state object.
@@ -189,7 +207,10 @@ export const getAccountInfoDuringSetup = createSelector(
  *   @param {object} state
  *   @returns {object}
  **/
-export const getTasksFromAccounts = createSelector(getAccountsFromState, (state) => state.tasks || {});
+export const getTasksFromAccounts = createSelector(
+    getAccountsFromState,
+    (state) => state.tasks || {},
+);
 
 /**
  *   Selects tasks for selected account
@@ -227,7 +248,10 @@ export const getSetupInfoForSelectedAccount = createSelector(
  * @returns {function}
  */
 export const selectedAccountTasksFactory = (accountName) => {
-    return createSelector(getTasksFromAccounts, (tasks) => tasks[accountName] || {});
+    return createSelector(
+        getTasksFromAccounts,
+        (tasks) => tasks[accountName] || {},
+    );
 };
 
 /**
@@ -238,7 +262,10 @@ export const selectedAccountTasksFactory = (accountName) => {
  * @returns {function}
  */
 export const selectedAccountSetupInfoFactory = (accountName) => {
-    return createSelector(getSetupInfoFromAccounts, (setupInfo) => setupInfo[accountName] || {});
+    return createSelector(
+        getSetupInfoFromAccounts,
+        (setupInfo) => setupInfo[accountName] || {},
+    );
 };
 
 /**
@@ -265,11 +292,14 @@ export const shouldTransitionForSnapshot = createSelector(
  *   @param {object} state
  *   @returns {string}
  **/
-export const hasDisplayedSnapshotTransitionGuide = createSelector(getTasksForSelectedAccount, (tasks) => {
-    const hasDisplayedTransitionGuide = get(tasks, 'displayedSnapshotTransitionGuide');
+export const hasDisplayedSnapshotTransitionGuide = createSelector(
+    getTasksForSelectedAccount,
+    (tasks) => {
+        const hasDisplayedTransitionGuide = get(tasks, 'displayedSnapshotTransitionGuide');
 
-    return isUndefined(hasDisplayedTransitionGuide) ? true : hasDisplayedTransitionGuide;
-});
+        return isUndefined(hasDisplayedTransitionGuide) ? true : hasDisplayedTransitionGuide;
+    },
+);
 
 /**
  *   Selects promotable (unconfirmed & value) bundles from accounts reducer state object.
@@ -325,13 +355,16 @@ export const getPromotableBundlesFromState = createSelector(
  *   @returns {function}
  **/
 export const selectedAccountStateFactory = (accountName) => {
-    return createSelector(getAccountInfoFromState, (accountInfo) => {
-        if (accountName in accountInfo) {
-            return { ...accountInfo[accountName], accountName };
-        }
+    return createSelector(
+        getAccountInfoFromState,
+        (accountInfo) => {
+            if (accountName in accountInfo) {
+                return { ...accountInfo[accountName], accountName };
+            }
 
-        return {};
-    });
+            return {};
+        },
+    );
 };
 
 /**
@@ -356,19 +389,24 @@ export const isSettingUpNewAccount = createSelector(
  *   @param {object} state
  *   @returns {object}
  **/
-export const getFailedBundleHashes = createSelector(getAccountInfoFromState, (accountInfo) =>
-    transform(
-        accountInfo,
-        (acc, info, accountName) => {
-            const failedTransactions = filter(info.transactions, (transaction) => transaction.broadcasted === false);
+export const getFailedBundleHashes = createSelector(
+    getAccountInfoFromState,
+    (accountInfo) =>
+        transform(
+            accountInfo,
+            (acc, info, accountName) => {
+                const failedTransactions = filter(
+                    info.transactions,
+                    (transaction) => transaction.broadcasted === false,
+                );
 
-            each(failedTransactions, (transaction) => {
-                acc[transaction.bundle] = {
-                    name: accountName,
-                    type: info.meta.type,
-                };
-            });
-        },
-        {},
-    ),
+                each(failedTransactions, (transaction) => {
+                    acc[transaction.bundle] = {
+                        name: accountName,
+                        type: info.meta.type,
+                    };
+                });
+            },
+            {},
+        ),
 );

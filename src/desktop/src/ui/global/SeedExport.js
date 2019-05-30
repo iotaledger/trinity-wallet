@@ -1,5 +1,6 @@
 /* global Electron */
 import React, { PureComponent } from 'react';
+import classNames from 'classnames';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withI18n } from 'react-i18next';
@@ -19,7 +20,7 @@ import css from './seedExport.scss';
 /**
  * SeedVault export component
  */
-class SeedExport extends PureComponent {
+export class SeedExportComponent extends PureComponent {
     static propTypes = {
         /** Target Seed */
         seed: PropTypes.array.isRequired,
@@ -139,7 +140,7 @@ class SeedExport extends PureComponent {
 
         if (step < 4) {
             return (
-                <form className={css.seedExport} onSubmit={this.onStep}>
+                <form className={classNames(css.seedExport, css.step1)} onSubmit={this.onStep}>
                     <section>
                         <h1>
                             <Icon icon="seedVault" size={120} />
@@ -164,8 +165,8 @@ class SeedExport extends PureComponent {
         const score = zxcvbn(this.state.password);
 
         return (
-            <form className={css.seedExport} onSubmit={this.exportSeed}>
-                <section className={css.fieldSection}>
+            <form className={classNames(css.seedExport, css.step2)} onSubmit={this.exportSeed}>
+                <section>
                     <h1>
                         <Icon icon="seedVault" size={120} />
                         {t('seedVault:exportSeedVault')}
@@ -207,4 +208,4 @@ const mapDispatchToProps = {
 export default connect(
     null,
     mapDispatchToProps,
-)(withI18n()(SeedExport));
+)(withI18n()(SeedExportComponent));

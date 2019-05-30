@@ -15,7 +15,7 @@ import css from './about.scss';
 /**
  * About window component
  */
-class About extends React.PureComponent {
+export class AboutComponent extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -59,6 +59,24 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.5.1</h5>
+                            <ul>
+                                <li>Fix: Display fatal errors on preload and initialisation</li>
+                                <li>Fix: Missing Linux application icon</li>
+                                <li>Fix: Windows 7 not deleting files on wallet reset</li>
+                                <li>
+                                    Fix: Windows 10 wallet failing to start if Windows 7 build was installed previously,
+                                    and vice versa
+                                </li>
+                                <li>Fix: macOS tray application not displaying fiat value</li>
+                                <li>Fix: Changing account during Snapshot transition corrupting state</li>
+                                <li>Update: Improve user experience when adding Ledger accounts</li>
+                                <li>Update: Add device time suggestion to out of sync errors</li>
+                                <li>Update: Ensure the error log is always updated</li>
+                                <li>Update: Other minor alert improvements</li>
+                                <li>Fix: Extra parameter causing node error when reattaching and promoting</li>
+                                <li>Update: New translations</li>
+                            </ul>
                             <h5>0.5.0</h5>
                             <ul>
                                 <li>
@@ -371,4 +389,4 @@ class About extends React.PureComponent {
     }
 }
 
-export default withI18n()(About);
+export default withI18n()(AboutComponent);

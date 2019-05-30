@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "HTTPS ಅನ್ನು ಬಳಸುವ ಕಸ್ಟಮ್ ನೋಡ್ ಗಳನ್ನೂ ಮಾತ್ರ ಅನುಮತಿಸಲಾಗಿದೆ.",
         "nodeDuplicated": "ನಕಲಿ ನೋಡ್",
         "nodeDuplicatedExplanation": "ಈ ಕಸ್ಟಮ್ ನೋಡ್ ಈಗಾಗಲೇ ಪಟ್ಟಿಮಾಡಲಾಗಿದೆ.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "ನೋಡ್ ಸ್ವಯಂ ಬದಲಾವಣೆಗೊಂಡಿದೆ",
         "nodeAutoChangedExplanation": "ಆಯ್ದ ನೋಡ್ ಆಫ್ಲೈನ್ ಇರುವುದರಿಂದ ಹೊಸ ನೋಡ್ ಗೆ {{- nodeAddress}} ಗೆ ಬದಲಾಯಿಸಲಾಗಿದೆ.",
         "touchSensor": "Touch the fingerprint sensor",
@@ -142,6 +144,8 @@
         "isYourBalanceCorrect": "ನಿಮ್ಮ ಖಾತೆಯ ಉಳಿದ ಹಣವು ಸರಿಯಾಗಿದೆಯೇ?",
         "ifYourBalanceIsNotCorrect": "ನಿಮ್ಮ ಖಾತೆಯ ಉಳಿದ ಹಣವು ಸರಿಯಾಗಿಲ್ಲವಾದರೆ, ನೀವು ಪೂರ್ವ-ಸ್ನ್ಯಾಪ್ಶಾಟ್ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಬಳಸುತ್ತಿರುವಿರಿ.",
         "headToAdvancedSettingsForTransition": "ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್ಗಳಿಗೆ ಹೋಗಿ ಮತ್ತು ಸ್ನ್ಯಾಪ್ಶಾಟ್ ಪರಿವರ್ತನೆಯನ್ನು ನಿರ್ವಹಿಸಿ.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Keepass2Android ನೊಂದಿಗೆ ಟ್ರಿನಿಟಿ ವಾಲೆಟ್ ಬಳಸಿ",
         "signedTrytesBroadcastErrorExplanation": "ನಿಮ್ಮ ವ್ಯವಹಾರವನ್ನು ಪ್ರಕಟಿಸುವಾಗ ನೆಟ್ವರ್ಕ್ ದೋಷ ಕಂಡುಬಂದಿದೆ.",
         "broadcastError": "ವರ್ಗಾವಣೆಯನ್ನು ಪ್ರಕಟಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
@@ -429,7 +433,6 @@
         "redo": "ಮತ್ತೆಮಾಡಿ",
         "aboutTrinity": "ಟ್ರಿನಿಟಿ ಯ ಬಗ್ಗೆ",
         "lockScreenTimeout": "ಲಾಕ್ ಸ್ಕ್ರೀನ್ ಸಮಯ ಮೀರಿದೆ (ನಿಮಿಷಗಳು)",
-        "autoNodeSwitching": "ಆಯ್ಕೆ ಮಾಡದಿದ್ದಲ್ಲಿ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನೋಡ್ ಅನ್ನು ಬದಲಾಯಿಸಿ",
         "nodeChangeSuccess": "ನೋಡ್ ಯಶಸ್ವಿಯಾಗಿ ಬದಲಾಗಿದೆ",
         "nodeChangeSuccessNoRemotePow": "ನೋಡ್ {{node}} ಎಂದು ಬದಲಾಯಿಸಲಾಯಿತು. ಈ ನೋಡ್ ದೂರ ಕೆಲಸದ ಪುರಾವೆಯನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ.",
         "nodeChangeSuccessExplanation": "ನೋಡ್ {{node}} ಎಂದು ಬದಲಾಯಿಸಲಾಯಿತು.",
@@ -489,6 +492,22 @@
         "addNewAccount": "ಹೊಸ ಖಾತೆಯನ್ನು ಸೇರಿಸಿ",
         "tools": "ಉಪಕರಣಗಳು"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "ಕಸ್ಟಮ್ ನೋಡ್ ಅನ್ನು ಸೇರಿಸಲಾಗಲಿಲ್ಲ",
         "customNode": "ಕಸ್ಟಮ್ ನೋಡ್",
@@ -497,7 +516,11 @@
         "add": "ಸೇರಿಸಿ",
         "nodeFieldEmpty": "ಪಠ್ಯ ಕ್ಷೇತ್ರ ಖಾಲಿಯಾಗಿದೆ",
         "nodeFieldEmptyExplanation": "ದಯವಿಟ್ಟು ಕಸ್ಟಮ್ ನೋಡ್ ಅನ್ನು ನಮೂದಿಸಿ.",
-        "invalidURL": "ದಯವಿಟ್ಟು ಮಾನ್ಯವಾದ URL ಅನ್ನು ನಮೂದಿಸಿ."
+        "invalidURL": "ದಯವಿಟ್ಟು ಮಾನ್ಯವಾದ URL ಅನ್ನು ನಮೂದಿಸಿ.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಬಳಸಿ",

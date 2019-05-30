@@ -6,7 +6,7 @@ import { withI18n } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
 import { shorten, capitalize } from 'libs/iota/converter';
-import { formatIota } from 'libs/iota/utils';
+import { formatIotas } from 'libs/iota/utils';
 import { accumulateBalance } from 'libs/iota/addresses';
 
 import { clearWalletData, setSeedIndex } from 'actions/wallet';
@@ -105,7 +105,7 @@ class Sidebar extends React.PureComponent {
                                         >
                                             <strong>{shorten(account, 16)}</strong>
                                             <small>
-                                                {formatIota(
+                                                {formatIotas(
                                                     accumulateBalance(
                                                         accounts.accountInfo[account].addressData.map(
                                                             (addressData) => addressData.balance,

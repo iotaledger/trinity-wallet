@@ -71,10 +71,10 @@ class SeedSave extends PureComponent {
                     </nav>
                 </section>
                 <footer>
-                    <Button to="/onboarding/account-name" className="square" variant="dark">
+                    <Button id="to-account-name" to="/onboarding/account-name" className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
-                    <Button to="/onboarding/seed-verify" className="square" variant="primary">
+                    <Button id="to-seed-verify" to="/onboarding/seed-verify" className="square" variant="primary">
                         {t('saveYourSeed:iHavesavedMySeed')}
                     </Button>
                 </footer>
