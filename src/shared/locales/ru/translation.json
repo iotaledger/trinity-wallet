@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Допускаются только пользовательские узлы с помощью HTTPS.",
         "nodeDuplicated": "Дублированный узел",
         "nodeDuplicatedExplanation": "Пользовательский узел уже указан.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Авто-переключаемый узел",
         "nodeAutoChangedExplanation": "Подключено к новому узлу {{- nodeAddress}}, так как выбранный Вами узел сейчас оффлайн.",
         "touchSensor": "Коснитесь датчика отпечатков пальцев",
@@ -431,7 +433,6 @@
         "redo": "Вернуть",
         "aboutTrinity": "О Тринити",
         "lockScreenTimeout": "Время ожидания блокировки экрана (минут)",
-        "autoNodeSwitching": "Автоматически менять узел, если выбранный недоступен",
         "nodeChangeSuccess": "Узел успешно изменен",
         "nodeChangeSuccessNoRemotePow": "Узел был изменён на {{node}}. Данный узел не поддерживает удаленное проведение Proof of Work.",
         "nodeChangeSuccessExplanation": "Узел был изменен на {{node}}.",
@@ -491,6 +492,22 @@
         "addNewAccount": "Добавить новый счёт",
         "tools": "Инструменты"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Не удалось добавить пользовательский узел",
         "customNode": "Пользовательский узел",
@@ -499,7 +516,11 @@
         "add": "Добавить",
         "nodeFieldEmpty": "Текстовое поле пусто",
         "nodeFieldEmptyExplanation": "Пожалуйста, введите пользовательский узел.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Please enter a valid URL.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Использовать существующий ключ",
