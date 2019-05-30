@@ -122,7 +122,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                 <Scrollbar>
                     <article>
                         <Toggle
-                            inline={t('nodeSettings:automaticNodeSelection')}
+                            inline={t('nodeSettings:automaticNodeManagement')}
                             checked={autoNodeSelection}
                             onChange={updateAutoNodeSelection}
                         />
