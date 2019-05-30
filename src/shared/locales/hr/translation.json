@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Dopušteni su samo prilagođeni node-ovi koji koriste HTTPS.",
         "nodeDuplicated": "Duplicirani node",
         "nodeDuplicatedExplanation": "Prilagođeni node se već nalazi na listi.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Node automatski promijenjen",
         "nodeAutoChangedExplanation": "Promijenjeno na novi node {{- nodeAddress}} pošto je trenutno odabrani offline.",
         "touchSensor": "Dodirnite čitač otiska prstiju",
@@ -431,7 +433,6 @@
         "redo": "Ponovi",
         "aboutTrinity": "O Trinity",
         "lockScreenTimeout": "Vremenski period neaktivnosti prije zaključavanja zaslona (u minutama)",
-        "autoNodeSwitching": "Automatski promijeni node kada je odabrani nedostupan",
         "nodeChangeSuccess": "Uspješno promijenjen node",
         "nodeChangeSuccessNoRemotePow": "Node je promijenjen u {{node}}. Ovaj node ne podržava udaljeni PoW.",
         "nodeChangeSuccessExplanation": "Node je promijenjen u {{node}}.",
@@ -491,6 +492,22 @@
         "addNewAccount": "Dodaj novi račun",
         "tools": "Alati"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nije bilo moguće dodati prilagođeni node",
         "customNode": "Prilagođeni node",
@@ -499,7 +516,11 @@
         "add": "Dodaj",
         "nodeFieldEmpty": "Tekstualno polje je prazno",
         "nodeFieldEmptyExplanation": "Molimo unesite prilagođeni node.",
-        "invalidURL": "Molimo unesite valjani URL."
+        "invalidURL": "Molimo unesite valjani URL.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Koristi postojeći seed",
