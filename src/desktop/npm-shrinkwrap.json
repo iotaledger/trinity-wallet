@@ -1335,12 +1335,13 @@
           "integrity": "sha512-TghvYc72wlMGMVMluVo9WRJc0mB8KxxF/gZ4YYFy7V2ZQX9l7rgbPg7vjS9mt6U5HXODVFVI2bOduCzwOMv/lw=="
         },
         "usb": {
-          "version": "1.5.0",
-          "resolved": "https://registry.npmjs.org/usb/-/usb-1.5.0.tgz",
-          "integrity": "sha512-/0stiQEmweuO2BKv2avzQQ8ypDUjo4Osz5sSEi+d0F4Rc+ddX1xED3uf4Tkelc1eADlfn0JQZYHP0bI7CNDA0Q==",
+          "version": "1.6.0",
+          "resolved": "https://registry.npmjs.org/usb/-/usb-1.6.0.tgz",
+          "integrity": "sha512-52DyWlCk9K+iw3LnvY95WXSnpHjxJoI++aGkV8HiMNPc4zmvDQlYvWAzrkbJ2JH3oUcx26XfU5sZcG4RAcVkMg==",
           "requires": {
-            "nan": "^2.8.0",
-            "node-pre-gyp": "^0.11.0"
+            "bindings": "^1.4.0",
+            "nan": "2.13.2",
+            "prebuild-install": "^5.2.4"
           }
         }
       }
@@ -10296,6 +10297,14 @@
         "base64-js": "^1.2.3",
         "xmlbuilder": "^9.0.7",
         "xmldom": "0.1.x"
+      },
+      "dependencies": {
+        "xmldom": {
+          "version": "0.1.27",
+          "resolved": "https://registry.npmjs.org/xmldom/-/xmldom-0.1.27.tgz",
+          "integrity": "sha1-1QH5ezvbQDr4757MIFcxh6rawOk=",
+          "dev": true
+        }
       }
     },
     "pn": {
@@ -11202,9 +11211,9 @@
       }
     },
     "recharts": {
-      "version": "1.6.1",
-      "resolved": "https://registry.npmjs.org/recharts/-/recharts-1.6.1.tgz",
-      "integrity": "sha512-w1rpdE2CCe/0DmtTONaN3wslmGtHsC15aneIMy2GDUqPKldUweEug89Kh9sD/zyq7lGU9zQiXwMPr6dyjQ9JOg==",
+      "version": "1.6.2",
+      "resolved": "https://registry.npmjs.org/recharts/-/recharts-1.6.2.tgz",
+      "integrity": "sha512-NqVN8Hq5wrrBthTxQB+iCnZjup1dc+AYRIB6Q9ck9UjdSJTt4PbLepGpudQEYJEN5iIpP/I2vThC4uiTJa7xUQ==",
       "requires": {
         "classnames": "^2.2.5",
         "core-js": "^2.5.1",
@@ -11220,9 +11229,9 @@
       },
       "dependencies": {
         "core-js": {
-          "version": "2.6.7",
-          "resolved": "https://registry.npmjs.org/core-js/-/core-js-2.6.7.tgz",
-          "integrity": "sha512-ydmsQxDVH7lDpYoirXft8S83ddKKfdsrsmWhtyj7xafXVLbLhKOyfD7kAi2ueFfeP7m9rNavjW59O3hLLzzC5A=="
+          "version": "2.6.9",
+          "resolved": "https://registry.npmjs.org/core-js/-/core-js-2.6.9.tgz",
+          "integrity": "sha512-HOpZf6eXmnl7la+cUdMnLvUxKNqLUzJvgIziQ0DiF3JwSImNphIqdGqzj6hIKyX04MmV0poclQ7+wjWvxQyR2A=="
         }
       }
     },
