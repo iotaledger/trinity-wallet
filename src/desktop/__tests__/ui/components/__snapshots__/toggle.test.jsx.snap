@@ -5,11 +5,15 @@ exports[`Toggle component Render the component 1`] = `
   className="toggle"
   onClick={[Function]}
 >
-  <span>
-    Off
-  </span>
-  <span>
-    On
-  </span>
+  <div
+    className="active"
+  >
+    <span>
+      Off
+    </span>
+    <span>
+      On
+    </span>
+  </div>
 </div>
 `;
