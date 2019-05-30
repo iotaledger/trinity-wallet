@@ -121,8 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Hanya Node kustom yang menggunakan HTTPS diperbolehkan.",
         "nodeDuplicated": "Node diduplikasi",
         "nodeDuplicatedExplanation": "Node kustom sudah terdaftar.",
-        "customNodeAdded": "Custom node added",
-        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
+        "customNodeAdded": "Node kustom ditambahkan",
+        "customNodeAddedExplanation": "Anda telah menambah {{nodeAddress}} sebagai Node kostum.",
         "nodeAutoChanged": "Node beralih otomatis",
         "nodeAutoChangedExplanation": "Beralih ke node baru {{- nodeAddress}} karena node yang dipilih offline.",
         "touchSensor": "Sentuh sensor sidik jari",
@@ -187,8 +187,8 @@
         "seedInUseExplanation": "Seed ini sudah terhubung ke dompet anda. Silahkan coba yang lain."
     },
     "changePassword": {
-        "passwordUpdated": "Kata sandi sudah diperbaharui",
-        "passwordUpdatedExplanation": "Kata sandi anda telah sukses diperbaharui.",
+        "passwordUpdated": "Kata sandi sudah diperbarui",
+        "passwordUpdatedExplanation": "Kata sandi anda telah sukses diperbarui.",
         "incorrectPassword": "Kata sandi salah",
         "incorrectPasswordExplanation": "Kata sandi anda salah. Silahkan coba lagi.",
         "passwordsDoNotMatch": "Kata sandi tidak sama",
@@ -384,7 +384,7 @@
         "standard": "Standar",
         "advancedModeExplanation": "Mode lanjutan akan menampilkan informasi teknis lebih rinci.",
         "modesExplanation": "Hanya aktifkan mode ahli jika Anda berpengalaman. Bila tidak ini dapat membingungkan Anda.",
-        "modeUpdated": "Mode diperbaharui",
+        "modeUpdated": "Mode diperbarui",
         "modeUpdatedExplanation": "Anda harus mengganti ke mode {{mode}}"
     },
     "settings": {
@@ -493,20 +493,20 @@
         "tools": "Perkakas"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "automaticNodeManagement": "Node Manajemen Otomatis",
+        "addCustomNodes": "Tambah Node kostum",
+        "autoNodeList": "Gunakan list Node jarak jauh",
+        "nodeAutoswitching": "Node utama ganti otomatis",
+        "primaryNode": "Node Utama",
+        "enableQuorum": "Aktifkan Quorum",
+        "quorumSize": "Ukuran Quorum",
+        "noCustomNodes": "Tidak ada Node kostum",
+        "mustAddCustomNodes": "Anda harus tambah satu Node kostum sebelum menonaktifkan list node jarak jauh.",
+        "nodeEnoughNodesTitle": "Kurang Node telah ditambah",
+        "nodeEnoughNodesExplanation": "Tidak cukup Node untuk mengaktifkan Quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Tambah Node kostum atau aktifkan List Node jarak jauh.",
+        "nodeSettingsUpdatedTitle": "Aturan Node diperbarui",
+        "nodeSettingsUpdatedExplanation": "Anda telah berhasil memperbarui aturan Node."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node kustom tidak dapat ditambah",
@@ -517,10 +517,10 @@
         "nodeFieldEmpty": "Teks kosong",
         "nodeFieldEmptyExplanation": "Silahkan masukan Node kustom.",
         "invalidURL": "Silakan masukkan URL yang valid.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "addAuthKey": "Tambah Auth Key",
+        "username": "Nama pengguna",
+        "couldNotRemove": "Tidak dapat menghapus Node kostum",
+        "couldNotRemoveExplanation": "Harus punya cukup Node untuk Quorum. Kurangi ukuran Quorum atau aktifkan list Node jarak jauh."
     },
     "addNewAccount": {
         "useExistingSeed": "Gunakan seed yang ada saat ini",
@@ -608,13 +608,13 @@
         "hideSeed": "Sembunyikan Seed",
         "notAvailable": "Export Seed tidak tersedia untuk tipe akun {{accountType}}",
         "notAvailableExplanationLedger": "Perangkat Ledger anda menggunakan elemen aman untuk menyimpan Seed. Seed anda disimpan dengan enkripsi dan tidak pindah dari perangkat.",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "accountIndex": "Ledger index akun Anda",
+        "accountPage": "Ledger Akun halaman Anda"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Apa Anda telah menyimpan Seed?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Saya telah menyimpan Seed saya",
+        "reenterSeed": "Dilangkah selanjutnya anda harus memasukan kembali Seed Anda.",
         "reenterSeedWarning": "Jika anda belum menyimpan Seed dan perangkat rusak, Anda akan kehilangan IOTA.",
         "pleaseConfirm": "Silahkan konfirmasi bahwa Seed sudah Anda simpan dengan aman."
     },
@@ -633,18 +633,18 @@
         "fingerprintAuthFailedExplanation": "Otentikasi sidik jari gagal. Silahkan coba lagi.",
         "status": "Status",
         "fingerprintUnavailable": "Otentikasi biometrik tidak tersedia",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "Otentikasi di nonaktifkan selama 30 detik",
         "fingerprintUnavailableExplanation": "Perangkat anda tidak mendukung otentikasi biometrik atau belum dikonfigurasi di pengaturan perangkat.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "notSupported": "Perangkat tidak mendukung otentikasi biometrik",
+        "notConfigured": "Otentikasi Biometrik belum disiapkan di aturan perangkat",
         "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari.",
         "buttonInstructionsEnable": "Tekan tombol dibawah ini untuk mengaktifkan autentikasi sidik jari.",
         "buttonInstructionsDisableIPhoneX": "Tekan tombol di bawah ini untuk mematikan Face ID",
         "buttonInstructionsEnableIPhoneX": "Tekan tombol di bawah ini untuk mengaktifkan Face ID",
         "instructionsLogin": "Tekan pemindai sidik jari untuk masuk",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
+        "systemCancelledAuth": "Otentikasi dibatalkan oleh perangkat Anda",
+        "userCancelledAuth": "Permintaan Otentikasi dibatalkan",
+        "passwordFallback": "Kembali ke Otentikasi Kata Sandi",
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
@@ -711,7 +711,7 @@
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Aturan Promosi otomatis",
-        "autoPromotionUpdatedExplanation": "Konfigurasi Promosi otomatis telah diperbaharui."
+        "autoPromotionUpdatedExplanation": "Konfigurasi Promosi otomatis telah diperbarui."
     },
     "progressSteps": {
         "checkingNodeHealth": "Mengcek kesehatan Node",
@@ -759,9 +759,9 @@
     "updates": {
         "errorRetrievingUpdateData": "Gagal dalam mengunduh data pembaruan",
         "noUpdatesAvailable": "Tidak ada pembaruan tersedia",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "Anda mempunyai versi Trinity terbaru!",
         "newVersionAvailable": "Versi baru tersedia",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "Versi Trinity terbaru tersedia. Anda ingin perbarui sekarang?",
         "installUpdate": "Instal pembaruan dan ulang kembali",
         "installUpdateExplanation": "Unduh selesai, Trinity akan mengulang kembali untuk menginstal pembaruan.",
         "downloadingUpdate": "Mengunduh pembaruan",
@@ -852,14 +852,14 @@
         "ledgerIncorrectIndex": "Perangkat Ledger tidak sama",
         "ledgerIncorrectIndexExplanation": "Ledger yang tersambung tidak dikenali oleh akun yang disimpan atau frase Recovery sudah diganti.",
         "checkAddress": "Cek Alamat penerima",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
-        "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue.",
-        "writtenDownInfoTitle": "Remember your index number",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "checkAddressExplanation": "Cek alamat sama dengan yang tersedia di perangkat Ledger Anda.",
+        "applicationNotInitialised": "Peringatan tidak dikonfirmasi",
+        "applicationNotInitialisedExplanation": "Buka kembali aplikasi IOTA di perangkat Ledger, setuju dengan peringatan dan coba lagi.",
+        "checkLedger": "Cek perangkat Ledger",
+        "acceptWarningExplanation": "Jika ada peringatan di perangkat Ledger, Anda harus menggulung halaman dan setuju dengan menekan 2 tombol disana.",
+        "udevError": "Tidak dapat berkomunikasi dengan perangkat Ledger",
+        "udevErrorExplanation": "Trinity tidak dapat berkomunikasi denga perangkat Ledger. Cek URL dibawah untuk solusi.",
+        "writtenDownInfoTitle": "Ingat nomer Index anda",
+        "writtenDownInfoExplanation": "Anda butuh nomer Index untuk mengembalikan akun di kedepannya. Jika hilang, Anda akan kehilangan IOTA. Jadi, harus ingat."
     }
 }
