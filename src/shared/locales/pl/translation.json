@@ -501,10 +501,10 @@
         "enableQuorum": "Włącz kworum",
         "quorumSize": "Wielkość kworum",
         "noCustomNodes": "Nie dodano serwerów niestandardowych",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "mustAddCustomNodes": "Musisz dodać co najmniej jeden niestandardowy serwer przed wyłączeniem zdalnej listy serwerów.",
         "nodeEnoughNodesTitle": "Dodano zbyt mało serwerów",
         "nodeEnoughNodesExplanation": "Brak wystarczającej liczby serwerów, aby włączyć kworum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeEnoughNodesExplanationCustomNodes": "Dodaj więcej niestandardowych serwerów lub włącz zdalną listę serwerów.",
         "nodeSettingsUpdatedTitle": "Zaktualizowano ustawienia serwera",
         "nodeSettingsUpdatedExplanation": "Pomyślnie zaktualizowałeś swoje ustawienia serwera."
     },
