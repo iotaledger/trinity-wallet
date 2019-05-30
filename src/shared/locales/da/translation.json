@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Kun tilpassede noder, som benytter HTTPS er tilladt.",
         "nodeDuplicated": "Duplikeret node",
         "nodeDuplicatedExplanation": "Den tilpassede node er allerede opført.",
+        "customNodeAdded": "Brugerdefineret node tilføjet",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Auto-skiftet node",
         "nodeAutoChangedExplanation": "Skiftet til ny node {{- nodeAddress}} da den valgte node er offline.",
         "touchSensor": "Touch the fingerprint sensor",
@@ -142,6 +144,8 @@
         "isYourBalanceCorrect": "Er din saldo korrekt?",
         "ifYourBalanceIsNotCorrect": "Hvis din saldo ikke er korrekt, skyldes det muligvis, at din seed endnu ikke er blevet gendannet efter seneste snapshot.",
         "headToAdvancedSettingsForTransition": "Gå til avancerede indstillinger og udfør en Snapshot transition.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Benytter Trinity Wallet med Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "En netværksfejl opstod under afsendelse af din transaktion.",
         "broadcastError": "Kunne ikke udsende transaktion",
@@ -429,7 +433,6 @@
         "redo": "Gendan",
         "aboutTrinity": "Om Trinity",
         "lockScreenTimeout": "Skærmlås timeout (minutter)",
-        "autoNodeSwitching": "Skift automatisk node når den valgte node er utilgængelig",
         "nodeChangeSuccess": "Node ændret",
         "nodeChangeSuccessNoRemotePow": "Noden blev ændret til {{node}}. Denne node understøtter ikke ekstern netværksvalidering.",
         "nodeChangeSuccessExplanation": "Noden blev ændret til {{node}}.",
@@ -489,6 +492,22 @@
         "addNewAccount": "Tilføj ny konto",
         "tools": "Værktøjer"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Brugerdefineret node kunne ikke tilføjes",
         "customNode": "Brugerdefinerede node",
@@ -497,7 +516,11 @@
         "add": "Tilføj",
         "nodeFieldEmpty": "Tekstfeltet er tomt",
         "nodeFieldEmptyExplanation": "Angiv venligst en brugerdefineret node.",
-        "invalidURL": "Angiv en gyldig URL."
+        "invalidURL": "Angiv en gyldig URL.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Brug eksisterende hovednøgle",
