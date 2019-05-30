@@ -72,7 +72,7 @@
         "node": "Node",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
         "cannotPerformActionExplanation": "Öffne die erweiterten Einstellungen, um das Wallet zurückzusetzen.",
-        "attachToTangleUnavailable": "Proof of Work auf diesem Node nicht verfügbar",
+        "attachToTangleUnavailable": "Proof of Work ist auf diesem Node nicht verfügbar",
         "attachToTangleUnavailableExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Ändere den Node oder aktiviere lokales Proof of Work in den erweiterten Einstellungen.",
         "attachToTangleUnavailableExplanationShort": "Proof of Work ist auf dem gewählten Node nicht verfügbar.",
         "wallet": "Wallet",
@@ -504,7 +504,7 @@
         "mustAddCustomNodes": "Du musst mindestens einen benutzerdefinierten Node hinzugefügt haben, bevor du die offizielle Node-Liste deaktivieren kannst.",
         "nodeEnoughNodesTitle": "Nicht genug Nodes hinzugefügt",
         "nodeEnoughNodesExplanation": "Es sind nicht genug Nodes vorhanden um die Node-Gruppe zu aktivieren.",
-        "nodeEnoughNodesExplanationCustomNodes": "Füge weitere benutzerdefinierten Nodes hinzu oder verwende die offizielle Node-Liste.",
+        "nodeEnoughNodesExplanationCustomNodes": "Füge weitere benutzerdefinierte Nodes hinzu oder verwende die offizielle Node-Liste.",
         "nodeSettingsUpdatedTitle": "Node-Einstellungen aktualisiert",
         "nodeSettingsUpdatedExplanation": "Die Node-Einstellungen wurden erfolgreich gespeichert."
     },
