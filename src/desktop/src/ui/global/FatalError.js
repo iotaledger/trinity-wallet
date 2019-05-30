@@ -44,7 +44,7 @@ const FatalError = ({ error }) => {
                     <h1>Cannot start wallet</h1>
                     <p>
                         The database Trinity uses (Realm) is currently incompatible with Windows OS usernames that
-                        contain special characters. We are working on a fix.
+                        contain non-Latin characters. We are working on a fix.
                     </p>
                 </form>
             );
