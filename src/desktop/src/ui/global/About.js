@@ -67,7 +67,7 @@ export class AboutComponent extends React.PureComponent {
                                 <li>Fix: Linux wallet incorrectl reports &quot;Missing security dependencies&quot;</li>
                                 <li>
                                     Update: Add Snapshot Transition reminder warning for new accounts that use existing
-                                    seed
+                                    seeds
                                 </li>
                             </ul>
                             <h5>0.5.1</h5>
