@@ -64,7 +64,7 @@ export class AboutComponent extends React.PureComponent {
                                 <li>Fix: Chart and price API calls</li>
                                 <li>Fix: Skip retry failed transactions when password is not available </li>
                                 <li>Fix: Ledger onboarding loads forever without reporting an error</li>
-                                <li>Fix: Linux wallet incorrectl reports &quot;Missing security dependencies&quot;</li>
+                                <li>Fix: Linux wallet incorrectly reports &quot;Missing security dependencies&quot;</li>
                                 <li>
                                     Update: Add Snapshot Transition reminder warning for new accounts that use existing
                                     seeds
