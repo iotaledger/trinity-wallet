@@ -118,7 +118,6 @@ exports[`Chart component Render the component 1`] = `
           cursorStyle={Object {}}
           filterNull={true}
           isAnimationActive={true}
-          itemSorter={[Function]}
           itemStyle={Object {}}
           labelStyle={Object {}}
           maxItems={1}
