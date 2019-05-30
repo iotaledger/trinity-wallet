@@ -59,14 +59,25 @@ export class AboutComponent extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.5.2</h5>
+                            <ul>
+                                <li>Fix: Chart and price API calls</li>
+                                <li>Fix: Skip retry failed transactions when password is not available </li>
+                                <li>Fix: Ledger onboarding loads forever without reporting an error</li>
+                                <li>Fix: Linux wallet incorrectl reports "Missing security dependencies"</li>
+                                <li>
+                                    Update: Add Snapshot Transition reminder warning for new accounts that use existing
+                                    seed
+                                </li>
+                            </ul>
                             <h5>0.5.1</h5>
                             <ul>
                                 <li>Fix: Display fatal errors on preload and initialisation</li>
                                 <li>Fix: Missing Linux application icon</li>
                                 <li>Fix: Windows 7 not deleting files on wallet reset</li>
                                 <li>
-                                    Fix: Windows 10 wallet failing to start if Windows 7 build was installed
-                                    previously, and vice versa
+                                    Fix: Windows 10 wallet failing to start if Windows 7 build was installed previously,
+                                    and vice versa
                                 </li>
                                 <li>Fix: macOS tray application not displaying fiat value</li>
                                 <li>Fix: Changing account during Snapshot transition corrupting state</li>
