@@ -12211,9 +12211,9 @@
       }
     },
     "node-machine-id": {
-      "version": "1.1.10",
-      "resolved": "https://registry.npmjs.org/node-machine-id/-/node-machine-id-1.1.10.tgz",
-      "integrity": "sha512-6SVxo3Ic2Qc09z1rCJh3No7ubizPLszImsMQnZZWfzeOC6SYU4orN214++c3ikB8uaP/A6dwSlO88A3ohI5oNA=="
+      "version": "1.1.12",
+      "resolved": "https://registry.npmjs.org/node-machine-id/-/node-machine-id-1.1.12.tgz",
+      "integrity": "sha512-QNABxbrPa3qEIfrE6GOJ7BYIuignnJw7iQ2YPbc3Nla1HzRJjXzZOiikfF8m7eAMfichLt3M4VgLOetqgDmgGQ=="
     },
     "node-modules-regexp": {
       "version": "1.0.0",
@@ -14150,26 +14150,26 @@
       }
     },
     "realm": {
-      "version": "2.23.0",
-      "resolved": "https://registry.npmjs.org/realm/-/realm-2.23.0.tgz",
-      "integrity": "sha512-ChCuhoRJR9yefXuC0MTKS6og6NTP9Wyyyubsk3GSXiYhgCf/IJ7E1Jtsoo6/bbpaSe3Q++5YFMnV4hX+KYP2Cg==",
+      "version": "2.28.0",
+      "resolved": "https://registry.npmjs.org/realm/-/realm-2.28.0.tgz",
+      "integrity": "sha512-WvZ497qxQlUAiOxTVPI5/YL1zRlcpvjX26J9NeSs0O4Q5qNEGEP8MnAdrCSOC6zg2GH5vazeW4vla69swEncWA==",
       "requires": {
         "command-line-args": "^4.0.6",
         "decompress": "^4.2.0",
         "deepmerge": "2.1.0",
-        "fs-extra": "^4.0.2",
+        "fs-extra": "^4.0.3",
         "https-proxy-agent": "^2.2.1",
-        "ini": "^1.3.4",
-        "nan": "^2.10.0",
-        "node-fetch": "^1.6.3",
+        "ini": "^1.3.5",
+        "nan": "^2.12.1",
+        "node-fetch": "^1.7.3",
         "node-machine-id": "^1.1.10",
         "node-pre-gyp": "^0.11.0",
-        "progress": "^2.0.0",
-        "prop-types": "^15.5.10",
+        "progress": "^2.0.3",
+        "prop-types": "^15.6.2",
         "request": "^2.88.0",
         "stream-counter": "^1.0.0",
         "sync-request": "^3.0.1",
-        "url-parse": "^1.2.0"
+        "url-parse": "^1.4.4"
       },
       "dependencies": {
         "fs-extra": {
