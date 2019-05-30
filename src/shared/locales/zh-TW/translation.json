@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "僅允許使用 HTTPS 的自訂節點。",
         "nodeDuplicated": "重複節點",
         "nodeDuplicatedExplanation": "自訂節點已在列表中。",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "自動切換節點",
         "nodeAutoChangedExplanation": "當選擇的節點斷線時切換到新的節點 {{- nodeAddress}}。",
         "touchSensor": "請輕觸指紋感應",
@@ -431,7 +433,6 @@
         "redo": "重做",
         "aboutTrinity": "關於 Trinity",
         "lockScreenTimeout": "逾時鎖定螢幕 (分鐘)",
-        "autoNodeSwitching": "當無法連上所選節點時自動切換節點。",
         "nodeChangeSuccess": "成功變更節點",
         "nodeChangeSuccessNoRemotePow": "節點已變更為 {{node}}，不過此節點並不支援遠端工作量證明。",
         "nodeChangeSuccessExplanation": "節點已變更為 {{node}}。",
@@ -491,6 +492,22 @@
         "addNewAccount": "新增帳戶",
         "tools": "工具"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "自訂節點無法加入",
         "customNode": "自訂節點",
@@ -499,7 +516,11 @@
         "add": "新增",
         "nodeFieldEmpty": "文字欄為空",
         "nodeFieldEmptyExplanation": "請輸入自訂節點。",
-        "invalidURL": "請輸入有效的 URL。"
+        "invalidURL": "請輸入有效的 URL。",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "使用現有的種子碼",
@@ -660,7 +681,7 @@
         "invalidSeedFileError": "Invalid SeedVault file",
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key",
+        "retypeKey": "重新键入密钥",
         "key": "密鑰"
     },
     "stateExport": {
@@ -702,7 +723,7 @@
         "gettingTransactionsToApprove": "取得交易確認",
         "proofOfWork": "完成工作量證明",
         "broadcasting": "廣播中",
-        "preparingData": "Preparing data",
+        "preparingData": "準備數據",
         "migratingSettings": "Migrating settings",
         "migratingAccounts": "Migrating accounts",
         "cleaningUpOldData": "Cleaning up old data",
