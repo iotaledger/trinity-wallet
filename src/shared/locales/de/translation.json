@@ -143,7 +143,7 @@
         "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
         "headToAdvancedSettingsForTransition": "Wechsle zu den erweiterten Einstellungen und führe eine Snapshot-Wiederherstellung aus.",
         "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Öffnen Sie die Konto-Tools",
+        "openAccountTools": "Öffne die Konto-Werkzeuge",
         "usingTrinityWalletWithKeePass": "Trinity Brieftasche mit Keepass2Android verwenden",
         "signedTrytesBroadcastErrorExplanation": "Während der Transkation ist ein Netzwerkfehler aufgetreten.",
         "broadcastError": "Transaktion konnte nicht gebroadcastet werden",
@@ -489,7 +489,7 @@
         "editAccountName": "Kontoname ändern",
         "deleteAccount": "Konto löschen",
         "addNewAccount": "Konto hinzufügen",
-        "tools": "Tools"
+        "tools": "Werkzeuge"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Benutzerdefinierter Node konnte nicht hinzugefügt werden",
