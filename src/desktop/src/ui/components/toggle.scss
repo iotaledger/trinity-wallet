@@ -59,14 +59,18 @@
                 }
             }
         }
+        &.active {
+            span:first-child:before {
+                background: var(--primary);
+                border: 1px solid var(--primary);
+            }
+        }
         &.on {
             span {
                 color: var(--primary);
                 &:first-child {
                     color: var(--body);
                     &:before {
-                        background: var(--primary);
-                        border: 1px solid var(--primary);
                         right: 12px;
                     }
                 }

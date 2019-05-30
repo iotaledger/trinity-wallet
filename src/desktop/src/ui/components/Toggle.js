@@ -14,7 +14,7 @@ const Toggle = ({ off, on, inline, disabled, checked, onChange }) => {
             onClick={() => onChange(!checked)}
         >
             {inline}
-            <div className={checked ? css.on : null}>
+            <div className={classNames(checked && css.on, (!inline || checked) && css.active)}>
                 <span>{off}</span>
                 <span>{on}</span>
             </div>

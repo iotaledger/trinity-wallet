@@ -184,8 +184,6 @@ class Receive extends React.PureComponent {
         const { t, receiveAddress, isGeneratingReceiveAddress, hadErrorGeneratingNewAddress } = this.props;
         const { message, scramble, hasSyncedAddress } = this.state;
 
-        console.log('ZZZ', receiveAddress, hadErrorGeneratingNewAddress, hasSyncedAddress)
-
         return (
             <div className={classNames(css.receive, receiveAddress.length < 2 ? css.empty : css.full)}>
                 {!hadErrorGeneratingNewAddress && hasSyncedAddress ? (
