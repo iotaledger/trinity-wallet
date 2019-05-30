@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "HTTPS를 사용하는 커스텀 노드만 사용 가능합니다.",
         "nodeDuplicated": "중복된 노드",
         "nodeDuplicatedExplanation": "해당 노드는 이미 등록되어 있습니다.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "노드 자동 변경됨",
         "nodeAutoChangedExplanation": "선택한 노드에 연결할 수 없어 새로운 노드인 {{- nodeAddress}}에 연결합니다.",
         "touchSensor": "지문 센서에 손가락을 올려 주세요",
@@ -431,7 +433,6 @@
         "redo": "다시 실행",
         "aboutTrinity": "Trinity 정보",
         "lockScreenTimeout": "자동 잠금 시간 (분)",
-        "autoNodeSwitching": "노드에 연결이 불가능할 경우 자동으로 다른 노드에 연결 시도",
         "nodeChangeSuccess": "노드 변경 완료",
         "nodeChangeSuccessNoRemotePow": "{{node}} 로 노드를 변경했습니다. 이 노드는 원격 작업증명을 지원하지 않습니다.",
         "nodeChangeSuccessExplanation": "{{node}} 로 노드를 변경했습니다.",
@@ -491,6 +492,22 @@
         "addNewAccount": "새 계정 추가",
         "tools": "도구"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "커스텀 노드를 추가할 수 없습니다.",
         "customNode": "커스텀 노드",
@@ -499,7 +516,11 @@
         "add": "추가",
         "nodeFieldEmpty": "입력한 텍스트가 없습니다.",
         "nodeFieldEmptyExplanation": "커스텀 노드를 입력해 주세요.",
-        "invalidURL": "유효한 URL을 입력하십시오."
+        "invalidURL": "유효한 URL을 입력하십시오.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "기존 시드 사용",
