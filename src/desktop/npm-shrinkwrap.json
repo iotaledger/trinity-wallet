@@ -1419,7 +1419,7 @@
         "@ledgerhq/logs": "^4.60.2",
         "lodash": "^4.17.11",
         "node-hid": "^0.7.8",
-        "usb": "^1.5.0"
+        "usb": "1.5.0"
       },
       "dependencies": {
         "nan": {
