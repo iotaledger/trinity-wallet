@@ -235,7 +235,7 @@
         "invalidCharactersExplanation": "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
         "seedTooShort": "Seed terlalu singkat",
         "seedTooLong": "Seed terlalu panjang",
-        "seedTooShortExplanation": "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{currentLength}} karakter. Silahkan coba lagi.",
+        "seedTooShortExplanation": "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{currentLength}} karakter. Silakan coba lagi.",
         "seedExplanation": "Seed harus {{maxLength}} karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan Seed lebih dari {{maxLength}} karakter.",
         "neverShare": "JANGAN PERNAH MEMBERITAHUKAN SEED ANDA DENGAN SIAPAPUN"
     },
@@ -335,12 +335,12 @@
         "mustSaveYourSeed": "<0><0>Anda harus menyimpang Seed dengan </0><1>setidaknya</1><2> salah satu opsi dibawah ini.</2></0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Silahkan konfirmasi Seed Anda",
+        "pleaseConfirmYourSeed": "Silakan konfirmasi Seed Anda",
         "trinityWillNeverAskToReenter": "Trinity tidak pernah meminta memasukkan Seed kembali kecuali Anda reset dompet atau hapus app.",
         "enterYourSeed": "Masukan Seed Anda",
         "incorrectSeed": "Seed salah",
         "incorrectSeedExplanation": "Seed yang Anda masukkan salah. Silahkan coba lagi.",
-        "ifYouHaveNotSaved": "Jika Anda belum menyimpan Seed Anda, silahkan mengulang kembali.",
+        "ifYouHaveNotSaved": "Jika Anda belum menyimpan Seed Anda, silakan mengulang kembali.",
         "enterSeedBelow": "Masukan Seed yang baru dibuat dibawah ini untuk mengkonfirmasi salinan anda",
         "clipboardWarning": "WASPADA: Tidak bisa salin Seed",
         "clipboardWarningExplanation": "Salin tidak aktif untuk keamanan Anda. Tetapi Anda dapat drag and drop Seed anda dari file text."
@@ -437,7 +437,7 @@
         "nodeChangeSuccessNoRemotePow": "Node diganti ke {{node}}. Node ini tidak mendukung Proof of Work jarak jauh.",
         "nodeChangeSuccessExplanation": "Node diganti ke {{node}}.",
         "nodeChangeError": "Kesalahan dalam mengganti Node",
-        "nodeChangeErrorExplanation": "Terjadi kesalahan pada saat mengganti Node. Silahkan coba lagi."
+        "nodeChangeErrorExplanation": "Terjadi kesalahan pada saat mengganti Node. Silakan coba lagi."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Masukan kata sandi anda untuk mengatur ulang dompet anda.",
@@ -630,7 +630,7 @@
         "fingerprintAuthDisabled": "Otentikasi biometrik dinonaktifkan",
         "fingerprintAuthDisabledExplanation": "Anda telah berhasil mematikan otentikasi biometrik.",
         "fingerprintAuthFailed": "Otentikasi biometrik gagal",
-        "fingerprintAuthFailedExplanation": "Otentikasi sidik jari gagal. Silahkan coba lagi.",
+        "fingerprintAuthFailedExplanation": "Otentikasi sidik jari gagal. Silakan coba lagi.",
         "status": "Status",
         "fingerprintUnavailable": "Otentikasi biometrik tidak tersedia",
         "deviceLocked": "Otentikasi di nonaktifkan selama 30 detik",
@@ -664,24 +664,24 @@
         "exportSuccess": "Telah mengekspor SeedVault",
         "exportSuccessExplanation": "File terenkripsi sudah diekspor.",
         "unrecognisedKey": "Kunci SeedVault tidak dikenal",
-        "unrecognisedKeyExplanation": "Kunci tidak dikenal. Coba lagi.",
+        "unrecognisedKeyExplanation": "Kunci tidak dikenal. Silakan coba lagi.",
         "emptyKey": "Tidak ada kunci SeedVault",
-        "emptyKeyExplanation": "Anda harus masukan kunci. Silahkan coba lagi.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "emptyKeyExplanation": "Anda harus memasukan kunci. Silakan coba lagi.",
+        "importSuccess": "Seed telah diimpor",
+        "importSuccessExplanation": "Seed Anda telah diimpor.",
+        "saveToDownloadFolder": "Simpan ke Folder Download",
         "importSeedVault": "Impor SeedVault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "dropInstructions": "Taruh SeedVault atau text disini <1></1> atau klik untuk melihat",
+        "dropActive": "Taruh SeedVault atau Text disini",
+        "enterKeyExplanation": "Masukan kunci anda untuk membuka SeedVault",
         "noSeedFound": "SeedVault tidak mengandung Seed",
         "noSeedFoundExplanation": "SeedVault kosong atau tidak mempunyai format Seed yang valid.",
         "seedFileError": "Gagal membuka SeedVault",
         "seedFileErrorExplanation": "Gagal membuka SeedVault. Jika ini benar, file ini mungkin rusak.",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key",
+        "invalidSeedFileError": "File SeedVault tidak valid",
+        "invalidSeedFileErrorExplanation": "Format file ini tidak didukung. Hanya file SeedVault (.kdbx) dibuat dari Trinity atau Password Manajer yang didukung.",
+        "seedVaultKeyExplanation": "Untuk menyimpan SeedVault Anda dengan aman. Silakan pilih kunci untuk menenkripsi file. Anda dapat menggunakan kunci ini untuk mengembalikan Seed Anda dari SeedVault.",
+        "retypeKey": "Ketik kunci kembali",
         "key": "Kunci"
     },
     "stateExport": {
@@ -816,7 +816,7 @@
     "migration": {
         "dataMigration": "Migrasi Data",
         "dataMigrationExplanation": "Berhubung dengan performan dan limitasi penyimpanan, Trinity akan menggunakan database baru untuk menyimpan aturan dan data akun. Silahkan tunggu sampai Trinity selesai migrasi data anda.",
-        "problemMigratingYourData": "Ada masalah migrasi data anda. Coba lagi",
+        "problemMigratingYourData": "Ada masalah migrasikan data anda. Silakan coba lagi",
         "seedMigrationExplanation": "Sehubung dengan usaha Trinity untuk membuat dompet anda lebih aman, Seed anda akan dimigrasi ke metodologi penyimpanan yang lebih canggih. Silahkan tunggu sampai Trinity selesai migrasi Seed."
     },
     "ledger": {
@@ -846,7 +846,7 @@
         "cannotSendZeroValueTitle": "Tidak bisa mengirim value kosong",
         "cannotSendZeroValueExplanation": "Tidak bisa mengirim value kosong dengan perangkat Ledger.",
         "ledgerDisconnectedTitle": "Perangkat Ledger dicabut",
-        "ledgerDisconnectedExplanation": "Perangkat Ledger dicabut. Silahkan sambung dan coba lagi.",
+        "ledgerDisconnectedExplanation": "Perangkat Ledger dicabut. Silakan sambung dan coba lagi.",
         "ledgerDeniedTitle": "Transaksi dilarang",
         "ledgerDeniedExplanation": "Transaksi dilarang oleh perangkat Ledger.",
         "ledgerIncorrectIndex": "Perangkat Ledger tidak sama",
