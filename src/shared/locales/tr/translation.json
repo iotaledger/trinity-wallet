@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Sadece HTTPS kullanan özel ağlar geçerlidir.",
         "nodeDuplicated": "Yineleyen ağ",
         "nodeDuplicatedExplanation": "Özel ağ zaten listelenmiş.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Ağ otomatik olarak değiştirildi",
         "nodeAutoChangedExplanation": "Seçilen ağ çevrimdışı olduğu için yeni ağa {{- nodeAddress}} geçildi.",
         "touchSensor": "Parmak izi sensörüne dokunun",
@@ -142,6 +144,8 @@
         "isYourBalanceCorrect": "Bakiyeniz doğru mu?",
         "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Trinity cüzdanını Keepass2Android ile kullan",
         "signedTrytesBroadcastErrorExplanation": "İşleminizi yayınlarken bir ağ hatası oluştu.",
         "broadcastError": "Transfer yayınlanamadı",
@@ -429,7 +433,6 @@
         "redo": "Tekrarla",
         "aboutTrinity": "Trinity hakkında",
         "lockScreenTimeout": "Kilit Ekranı Zaman Aşımı (Dakika)",
-        "autoNodeSwitching": "Seçili ağa ulaşılamazsa otomatik olarak ağ değiştir",
         "nodeChangeSuccess": "Ağ başaıyla değiştirildi",
         "nodeChangeSuccessNoRemotePow": "Node {{node}} olarak değiştirildi. Bu node İş Kanıtını desteklemiyor.",
         "nodeChangeSuccessExplanation": "Ağ {{node}} olarak değiştirildi.",
@@ -489,6 +492,22 @@
         "addNewAccount": "Yeni hesap ekle",
         "tools": "Araçlar"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Özel ağ eklenemedi",
         "customNode": "Özel düğüm",
@@ -497,7 +516,11 @@
         "add": "Ekle",
         "nodeFieldEmpty": "Bu alan boş",
         "nodeFieldEmptyExplanation": "Lütfen özel ağınızı girin.",
-        "invalidURL": "Lütfen geçerli bir URL giriniz."
+        "invalidURL": "Lütfen geçerli bir URL giriniz.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Mevcut kaynağı kullan",
