@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Solo se permiten nodos que usen HTTPS.",
         "nodeDuplicated": "Nodo duplicado",
         "nodeDuplicatedExplanation": "El nodo personalizado ya está enlistado.",
+        "customNodeAdded": "Nodo personalizado agregado",
+        "customNodeAddedExplanation": "Has añadido con éxito {{nodeAddress}} como un nodo personalizado.",
         "nodeAutoChanged": "Auto-cambiar nodo",
         "nodeAutoChangedExplanation": "Cambio a un nuevo nodo {{- nodeAddress}} el nodo seleccionado está desconectado.",
         "touchSensor": "Toca el lector de huellas",
@@ -142,8 +144,8 @@
         "isYourBalanceCorrect": "¿Su saldo es correcto?",
         "ifYourBalanceIsNotCorrect": "Si su saldo no es correcto, es probable que esté usando una semilla previa al snapshot.",
         "headToAdvancedSettingsForTransition": "Diríjase a Configuración Avanzada y realice una Snapshot Transition.",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
+        "headToAccountTools": "Dirígete a Configuración Avanzada y realiza una transición de Snapshot.",
+        "openAccountTools": "Ingresa a Configuración Avanzada",
         "usingTrinityWalletWithKeePass": "Usando cartera Trinity con Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Hubo un error mientras se estaba transmitiendo su transacción.",
         "broadcastError": "No se pudo transmitir la transacción",
@@ -431,7 +433,6 @@
         "redo": "Rehacer",
         "aboutTrinity": "Acerca de Trinity",
         "lockScreenTimeout": "Hibernar cuenta en (minutos)",
-        "autoNodeSwitching": "Cambiar automáticamente de nodo cuando el seleccionado no está disponible",
         "nodeChangeSuccess": "Nodo modificado exitosamente",
         "nodeChangeSuccessNoRemotePow": "El nodo fue cambiado a {{node}}. Este nodo no soporta PoW remoto.",
         "nodeChangeSuccessExplanation": "El nodo fue cambiado a {{node}}.",
@@ -491,6 +492,22 @@
         "addNewAccount": "Añadir nueva cuenta",
         "tools": "Herramientas"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Gestión automática de nodos",
+        "addCustomNodes": "Agregar un nodo personalizado",
+        "autoNodeList": "Usar lista remota de nodos",
+        "nodeAutoswitching": "Autowitching de nodo principal",
+        "primaryNode": "Nodo principal",
+        "enableQuorum": "Habilitar quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "No se pudo añadir el nodo personalizado",
         "customNode": "Nodo personalizado",
@@ -499,7 +516,11 @@
         "add": "Añadir",
         "nodeFieldEmpty": "El campo de texto esta vacio",
         "nodeFieldEmptyExplanation": "Por favor ingrese un nodo personalizado.",
-        "invalidURL": "Por favor, ingrese una URL válida."
+        "invalidURL": "Por favor, ingrese una URL válida.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Usar semilla existente",
