@@ -687,7 +687,7 @@
     "stateExport": {
         "stateExportExplanation": "Expor status akan menyimpan text file ke perangkat anda dengan akun informasi (transaksi, alamat), versi dompet, dan nama penyimpanan.",
         "exportSuccess": "Status telah diexpor",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "exportSuccessExplanation": "File status anda sudah diexpor."
     },
     "chart": {
         "mcap": "MCAP",
@@ -716,19 +716,19 @@
     "progressSteps": {
         "checkingNodeHealth": "Mengcek kesehatan Node",
         "validatingReceiveAddress": "Mengesahkan alamat penerima",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "Validasi transaksi alamat",
         "syncingAccount": "Sinkronisasi akun",
         "preparingInputs": "Mempersiapkan masukan",
         "preparingTransfers": "Menyiapkan transfer",
         "gettingTransactionsToApprove": "Menyiapkan transaksi untuk disetujui",
         "proofOfWork": "Menyelesaikan Proof of Work",
         "broadcasting": "Menyiarkan",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "preparingData": "Menyiapkan data",
+        "migratingSettings": "Migrasi aturan",
+        "migratingAccounts": "Migrasi Akun",
+        "cleaningUpOldData": "Menghapus data lama",
+        "migrationComplete": "Migrasi selesai",
+        "transferComplete": "Transfer selesai"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Tidak dapat menyelesaikan transisi snapshot",
@@ -743,18 +743,18 @@
         "transitioning": "Transisi untuk Snapshot.",
         "generatingAndDetecting": "Menghasilkan alamat dan mendeteksi saldo.",
         "attaching": "Melampirkan alamat-alamat ke Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Menyambung {{currentAddress}} dari {{totalAddresses}} alamat"
     },
     "deepLink": {
         "autofill": "Isi otomatis sukses",
         "autofillExplanation": "Data transaksi isi otomatis dari link.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingOverview": "Deep Link adalah url (iota://...) yang otomatis mengisi data transaksi di Trinity.",
+        "deepLinkingWarning": "Waspada oleh alamat palsu. Pastikan link yang anda tekan membuka aplikasi Trinity.",
+        "deepLinkingUpdated": "Aturan Deep Linking",
+        "deepLinkingEnabled": "Anda telah mengaktifkan Deep Linking.",
+        "deepLinkingDisabled": "Anda telah menonaktifkan Deep Linking.",
+        "deepLinkingInfoTitle": "Deep Linking tidak aktif",
+        "deepLinkingInfoMessage": "Anda membuka iota:// Deep Link tapi Deep Linking tidak aktif."
     },
     "updates": {
         "errorRetrievingUpdateData": "Gagal dalam mengunduh data pembaruan",
