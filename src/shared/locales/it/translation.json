@@ -169,7 +169,7 @@
         "missingPermission": "È richiesto l'accesso al file system",
         "missingPermissionExplanation": "L'accesso al file system è necessario per eseguire questa funzione.",
         "swipeToConfirm": "Scorri per confermare",
-        "expert": "Expert"
+        "expert": "Esperto"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -493,18 +493,18 @@
         "tools": "Strumenti"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "automaticNodeManagement": "Gestione automatica del nodo",
+        "addCustomNodes": "Aggiungi nodi personalizzati",
+        "autoNodeList": "Usa la lista dei nodi remoti",
+        "nodeAutoswitching": "Cambio automatico del nodo primario",
+        "primaryNode": "Nodo primario",
+        "enableQuorum": "Abilita quorum",
+        "quorumSize": "Dimensione Quorum",
+        "noCustomNodes": "Nessun nodo personalizzato",
+        "mustAddCustomNodes": "Devi aggiungere almeno un nodo personalizzato prima di disabilitare la lista dei nodi remoti.",
+        "nodeEnoughNodesTitle": "Non sono stati aggiunti abbastanza nodi",
+        "nodeEnoughNodesExplanation": "Non ci sono abbastanza nodi per consentire il quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Aggiungi più nodi personalizzati o attiva la lista dei nodi remoti.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
         "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
     },
@@ -859,7 +859,7 @@
         "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Impossibile comunicare con il dispositivo Ledger",
         "udevErrorExplanation": "Trinity non ha potuto comunicare con il tuo dispositivo Ledger. Visita l'URL qui sotto per risolvere questo problema.",
-        "writtenDownInfoTitle": "Remember your index number",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "writtenDownInfoTitle": "Ricorda il tuo numero di indice",
+        "writtenDownInfoExplanation": "Avrai bisogno del tuo numero di indice per ripristinare il tuo account in futuro. Se perdi il numero di indice, perderai i tuoi IOTA. Ricordalo."
     }
 }
