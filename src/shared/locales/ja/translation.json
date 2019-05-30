@@ -493,20 +493,20 @@
         "tools": "ツール"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "自動でノード管理",
+        "automaticNodeManagement": "自動でノード管理を行う",
         "addCustomNodes": "カスタムノードの追加",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "autoNodeList": "リモートノードリストを使う",
+        "nodeAutoswitching": "主要ノードの自動切換え",
+        "primaryNode": "主要ノード",
+        "enableQuorum": "定足数を有効化",
+        "quorumSize": "定足数サイズ",
+        "noCustomNodes": "カスタムノードがありません",
+        "mustAddCustomNodes": "リモートノードリストを無効にする前に最低1つのカスタムノードを追加する必要があります。",
+        "nodeEnoughNodesTitle": "追加されたノードが足りません",
+        "nodeEnoughNodesExplanation": "定足数を有効にするための十分なノードがありません。",
+        "nodeEnoughNodesExplanationCustomNodes": "カスタムノードが追加するか、リモートノードリストを有効化してください。",
+        "nodeSettingsUpdatedTitle": "ノード設定更新完了",
+        "nodeSettingsUpdatedExplanation": "ノード設定が正常に更新されました。"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "カスタムノード追加不可",
@@ -517,10 +517,10 @@
         "nodeFieldEmpty": "テキスト欄が空です。",
         "nodeFieldEmptyExplanation": "カスタムノードを入力してください。",
         "invalidURL": "有効なURLを入力してください。",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "addAuthKey": "承認キーを追加",
+        "username": "ユーザー名",
+        "couldNotRemove": "カスタムノードを削除できませんでした",
+        "couldNotRemoveExplanation": "定足数には十分なノードが必要です。定足数を減らすかリモートノードリストを有効にしてください。"
     },
     "addNewAccount": {
         "useExistingSeed": "既存のシードを使用",
