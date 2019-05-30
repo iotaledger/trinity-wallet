@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Endast anpassade noder som använder HTTPS är tillåtna.",
         "nodeDuplicated": "Duplicerad nod",
         "nodeDuplicatedExplanation": "Den anpassade noden finns redan.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Bytte automatiskt nod",
         "nodeAutoChangedExplanation": "Bytte till ny nod {{- nodeAddress}} då din valda nod är offline.",
         "touchSensor": "Håll fingret på fingeravtrycksläsaren",
@@ -431,7 +433,6 @@
         "redo": "Upprepa",
         "aboutTrinity": "Om Trinity",
         "lockScreenTimeout": "Inaktivitetslås (minuter)",
-        "autoNodeSwitching": "Byt nod automatiskt när vald nod är onåbar",
         "nodeChangeSuccess": "Bytte nod framgångsrikt",
         "nodeChangeSuccessNoRemotePow": "Noden har ändrats till {{node}}. Denna nod stöder inte fjärr PoW.",
         "nodeChangeSuccessExplanation": "Noden har ändrats till {{node}}.",
@@ -491,6 +492,22 @@
         "addNewAccount": "Lägg till konto",
         "tools": "Verktyg"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Anpassad nod kunde inte bli tillagd",
         "customNode": "Anpassad nod",
@@ -499,7 +516,11 @@
         "add": "Lägg till",
         "nodeFieldEmpty": "Textfältet är tomt",
         "nodeFieldEmptyExplanation": "Ange en anpassad nod.",
-        "invalidURL": "Ange en giltig URL."
+        "invalidURL": "Ange en giltig URL.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Använd befintlig seed",
