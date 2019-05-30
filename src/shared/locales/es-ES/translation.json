@@ -498,15 +498,15 @@
         "autoNodeList": "Usar lista remota de nodos",
         "nodeAutoswitching": "Autowitching de nodo principal",
         "primaryNode": "Nodo principal",
-        "enableQuorum": "Habilitar quorum",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "enableQuorum": "Habilitar quórum",
+        "quorumSize": "Tamaño del quórum",
+        "noCustomNodes": "Sin nodos personalizados",
+        "mustAddCustomNodes": "Debe añadir al menos un nodo personalizado antes de desactivar la lista de nodos remotos.",
+        "nodeEnoughNodesTitle": "No hay suficientes nodos añadidos",
+        "nodeEnoughNodesExplanation": "No hay suficientes nodos para habilitar el quórum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Añadir más nodos personalizados o activar la lista de nodos remotos.",
+        "nodeSettingsUpdatedTitle": "Configuración del nodo actualizada",
+        "nodeSettingsUpdatedExplanation": "Has actualizado con éxito la configuración de tu nodo."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "No se pudo añadir el nodo personalizado",
@@ -517,10 +517,10 @@
         "nodeFieldEmpty": "El campo de texto esta vacio",
         "nodeFieldEmptyExplanation": "Por favor ingrese un nodo personalizado.",
         "invalidURL": "Por favor, ingrese una URL válida.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "addAuthKey": "Añadir auth key",
+        "username": "Nombre de usuario",
+        "couldNotRemove": "No se pudo remover el nodo personalizado",
+        "couldNotRemoveExplanation": "Debe haber suficientes nodos para el quórum. Reduce el tamaño del quórum o habilita la lista de nodos remotos."
     },
     "addNewAccount": {
         "useExistingSeed": "Usar semilla existente",
