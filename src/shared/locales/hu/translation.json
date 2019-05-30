@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Csak HTTPS protokollt használó csomópontok használata megengedett.",
         "nodeDuplicated": "Duplikált csomópont",
         "nodeDuplicatedExplanation": "A csomópont már szerepel a választható csomópontok között.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Csomópont automatikusan újraválasztva",
         "nodeAutoChangedExplanation": "A választott csomópont nem elérhető, ezért a {{- nodeAddress}} csomópont lett kiválasztva.",
         "touchSensor": "Érintse meg az ujjlenyomat leolvasót",
@@ -431,7 +433,6 @@
         "redo": "Mégis",
         "aboutTrinity": "A Trinity-ről",
         "lockScreenTimeout": "Automatikus kijelentkezés időkorlátja (perc)",
-        "autoNodeSwitching": "Automatikus csomópont újraválasztás ha a kiválasztott nem elérhető",
         "nodeChangeSuccess": "Sikeres csomópont módosítás",
         "nodeChangeSuccessNoRemotePow": "A csomópont a következőre változott: {{node}}. Ez a csomópont a kiszabott munka távoli elvégzését nem támogatja.",
         "nodeChangeSuccessExplanation": "A csomópont a következőre változott: {{node}}.",
@@ -491,6 +492,22 @@
         "addNewAccount": "Új számla hozzáadása",
         "tools": "Eszközök"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Saját csomópont hozzáadása sikertelen",
         "customNode": "Saját csomópont",
@@ -499,7 +516,11 @@
         "add": "Hozzáad",
         "nodeFieldEmpty": "Üres szövegmező",
         "nodeFieldEmptyExplanation": "Kérjük adjon meg egy saját csomópontot.",
-        "invalidURL": "Kérjük adjon meg egy helyes URL-t."
+        "invalidURL": "Kérjük adjon meg egy helyes URL-t.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Meglévő mester jelszó használata",
