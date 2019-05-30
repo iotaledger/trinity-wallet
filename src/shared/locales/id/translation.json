@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Hanya Node kustom yang menggunakan HTTPS diperbolehkan.",
         "nodeDuplicated": "Node diduplikasi",
         "nodeDuplicatedExplanation": "Node kustom sudah terdaftar.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Node beralih otomatis",
         "nodeAutoChangedExplanation": "Beralih ke node baru {{- nodeAddress}} karena node yang dipilih offline.",
         "touchSensor": "Sentuh sensor sidik jari",
@@ -431,7 +433,6 @@
         "redo": "Ulangi",
         "aboutTrinity": "Tentang Trinity",
         "lockScreenTimeout": "Waktu habis kunci layar (Menit)",
-        "autoNodeSwitching": "Otomatis beralih Node ketika Node terpilih tidak terjangkau",
         "nodeChangeSuccess": "Berhasil berubah Node",
         "nodeChangeSuccessNoRemotePow": "Node diganti ke {{node}}. Node ini tidak mendukung Proof of Work jarak jauh.",
         "nodeChangeSuccessExplanation": "Node diganti ke {{node}}.",
@@ -478,10 +479,10 @@
         "pleaseWait": "Silahkan tunggu, Trinity sedang promosi Bundle lain.",
         "typeHelp": "Ketik !help untuk mengecek perintah lain",
         "searchHelpText": "Cari dari Hash Bundle atau isi pesan",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpValue": "Cari transaksi dengan nilai IOTA",
+        "searchHelpUnits": "Cari transaksi dari nilai dan unit IOTA",
+        "searchHelpMore": "Cari transaksi dengan nilai lebih dari X",
+        "searchHelpLess": "Cari transaksi dengan kurang dari X"
     },
     "accountManagement": {
         "viewSeed": "Lihat seed",
@@ -491,6 +492,22 @@
         "addNewAccount": "Tambahkan akun baru",
         "tools": "Perkakas"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node kustom tidak dapat ditambah",
         "customNode": "Node kustom",
@@ -499,7 +516,11 @@
         "add": "Tambahkan",
         "nodeFieldEmpty": "Teks kosong",
         "nodeFieldEmptyExplanation": "Silahkan masukan Node kustom.",
-        "invalidURL": "Silakan masukkan URL yang valid."
+        "invalidURL": "Silakan masukkan URL yang valid.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Gunakan seed yang ada saat ini",
@@ -515,7 +536,7 @@
         "autoPromotionExplanation": "Promosi otomatis membantu konfirmasi transaksi di Tangle. Aktifkan aturan ini jika mengalami kesulitan dalam mengkonfirmasi.",
         "autoPromotionPoW": "Promosi otomatis hanya memungkinkan di Node yang mendukung Proof of Work jarak jauh.",
         "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "stateExport": "Export status"
     },
     "advancedThemeCustomisation": {
         "background": "Latar belakang",
@@ -526,13 +547,13 @@
         "mockup": "Contoh"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
+        "classic": "Klasik",
+        "contemporary": "Kontemporer",
+        "dark": "Gelap",
+        "default": "Standar",
+        "electric": "Elektrik",
         "ionic": "Ionic",
-        "light": "Light",
+        "light": "Terang",
         "lucky": "Lucky",
         "mint": "Mint",
         "steelblue": "Steel Blue"
@@ -542,20 +563,20 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Yakin ingin keluar?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "Anda mau keluar",
+        "areYouSure": "Anda yakin?"
     },
     "qrScanner": {
         "scan": "Memindai kode QR"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Sistem unit",
         "trillion": "Trilyun",
         "billion": "Miliar",
         "million": "Juta",
         "thousand": "Ribu",
         "one": "Salah satu",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTA biasanya di ambil dengan ukuran 1 juta, tapi anda bisa mengirim 1 IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Mengapa saya tidak bisa menghabiskan saldo saya?",
@@ -563,7 +584,7 @@
         "discordInformation": "Silahkan menuju ke #help pada Discord untuk mengetahui apa yang dapat Anda lakukan."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Yakin Anda ingin menghapus akun?",
         "yourSeedWillBeRemoved": "Riwayat transaksi dan benih akan dihapus.",
         "thisAction": "Tindakan ini tidak dapat diulang",
         "enterPassword": "Masukan kata sandi anda untuk mengatur ulang dompet anda."
@@ -577,7 +598,7 @@
         "syncingYourAccount": "Sinkronkan akun Anda."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Masukan nama akun dan Seed",
         "incorrectFormat": "Salah format Seed",
         "validSeedExplanation": "Seed valid harus 81 karakter terdiri dari A-Z atau 9."
     },
@@ -585,8 +606,8 @@
         "enterPassword": "Masukkan kata sandi untuk menghapus dompet anda.",
         "viewSeed": "Lihat Seed",
         "hideSeed": "Sembunyikan Seed",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailable": "Export Seed tidak tersedia untuk tipe akun {{accountType}}",
+        "notAvailableExplanationLedger": "Perangkat Ledger anda menggunakan elemen aman untuk menyimpan Seed. Seed anda disimpan dengan enkripsi dan tidak pindah dari perangkat.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
@@ -743,8 +764,8 @@
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Instal pembaruan dan ulang kembali",
         "installUpdateExplanation": "Unduh selesai, Trinity akan mengulang kembali untuk menginstal pembaruan.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Mengunduh pembaruan",
+        "downloadProgress": "telah unduh {{transferred}} dari {{total}}"
     },
     "notificationLog": {
         "errorLog": "Error Log"
@@ -766,8 +787,8 @@
         "completeSetup": "Persiapan selesai"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxy": "Gunakan Proxy Sistem",
+        "proxyExplanation": "Cek dan gunakan aturan Sistem jaringan Proxy. Tutup dan buka kembali dompet setelah mengganti aturan."
     },
     "notifications": {
         "notifications": "Notifikasi",
@@ -781,13 +802,13 @@
         "confirmedOut": "Dana keluar {{value}} dari {{account}} telah dikonfirmasi"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "sweepSucceeded": "Dana telah dibuka",
+        "sweepSucceededExplanation": "Dana anda telah dibuka dan dipindah ke alamat baru. Promote transaksi untuk membantu konfirmasi.",
+        "sweepError": "Kesalahan dalam membuka dana",
+        "sweepErrorExplanation": "Terjadi masalah saat membuka dana anda. Coba lagi.",
+        "warningTitle": "Waspada: Terdeteksi dana yang terkunci",
+        "explanation": "Trinity Desktop versi 0.3.4 mengandung error yang dapat mengunci dana sementara. Ini terjadi ke segilintir pengguna yang mengirim dana dengan 0.3.4.",
+        "explanationAccounts": "Dana yang terkunci terdeteksi di akun: {{accounts}}. Trinity akan mencoba mengembalikan dana anda dengan mengirim ke alamat baru.",
         "proceed": "Proceed to Recovery",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
