@@ -34,6 +34,24 @@ const FatalError = ({ error }) => {
 
         if (
             typeof error === 'string' &&
+            typeof Electron === 'object' &&
+            Electron.getOS() === 'win32' &&
+            error.indexOf('Unable to open a realm at path') > -1 &&
+            error.indexOf('No such file or directory Path') > -1
+        ) {
+            return (
+                <form>
+                    <h1>Cannot start wallet</h1>
+                    <p>
+                        The database Trinity uses (Realm) is currently incompatible with Windows OS usernames that
+                        contain special characters. We are working on a fix.
+                    </p>
+                </form>
+            );
+        }
+
+        if (
+            typeof error === 'string' &&
             ([
                 'The name org.freedesktop.secrets was not provided by any .service files',
                 'Cannot create an item in a locked collection',
