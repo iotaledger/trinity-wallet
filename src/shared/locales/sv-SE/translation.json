@@ -495,18 +495,18 @@
     "nodeSettings": {
         "automaticNodeManagement": "Automatisk nodhantering",
         "addCustomNodes": "Lägg till anpassad nod",
-        "autoNodeList": "Use remote node list",
+        "autoNodeList": "Använd fjärrnodslistan",
         "nodeAutoswitching": "Automatisk växling för primär nod",
         "primaryNode": "Primär nod",
         "enableQuorum": "Aktivera kvorum",
         "quorumSize": "Kvorumstorlek",
         "noCustomNodes": "Inga anpassade noder",
-        "mustAddCustomNodes": "Du måste lägga till minst en anpassad nod innan du avaktiverar listan över fjärr-noder.",
+        "mustAddCustomNodes": "Du måste lägga till minst en anpassad nod innan du avaktiverar fjärrnodslistan.",
         "nodeEnoughNodesTitle": "Inte tillräckligt många noder tillagda",
         "nodeEnoughNodesExplanation": "Det finns inte tillräckligt med noder för att möjliggöra kvorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeEnoughNodesExplanationCustomNodes": "Lägg till fler anpassade noder eller aktivera fjärrnodslistan.",
+        "nodeSettingsUpdatedTitle": "Nod-inställningar uppdaterade",
+        "nodeSettingsUpdatedExplanation": "Du har uppdaterat dina nod-inställningar."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Anpassad nod kunde inte bli tillagd",
@@ -517,10 +517,10 @@
         "nodeFieldEmpty": "Textfältet är tomt",
         "nodeFieldEmptyExplanation": "Ange en anpassad nod.",
         "invalidURL": "Ange en giltig URL.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "addAuthKey": "Lägg till auth-nyckel",
+        "username": "Användarnamn",
+        "couldNotRemove": "Det gick inte att ta bort anpassad nod",
+        "couldNotRemoveExplanation": "Det måste finnas tillräckligt med noder för kvorum. Minska den valda kvorumstorleken eller aktivera fjärrnodslistan."
     },
     "addNewAccount": {
         "useExistingSeed": "Använd befintlig seed",
