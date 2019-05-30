@@ -827,7 +827,7 @@
   resolved "https://registry.yarnpkg.com/@iota/converter/-/converter-1.0.0-beta.11.tgz#64c661d60729e7877a72b248ef916c9de89971e0"
   integrity sha512-euKqd0z3So/c0dz0obOcfXhJfB1riZd2nal5oM/R7uW63e4MZUP0A0libbPzGe4iHGX9XqkfAV6j2bhMdzkCFQ==
 
-"@iota/core@^1.0.0-beta.11":
+"@iota/core@1.0.0-beta.11":
   version "1.0.0-beta.11"
   resolved "https://registry.yarnpkg.com/@iota/core/-/core-1.0.0-beta.11.tgz#bcb3fbe8b7c38271491ff4a26aa7687923c3bd00"
   integrity sha512-9HARB/wLPmimc9p0Nd2DWOZwFOIML3AB+7dwoS58beZ2XC0ERvfYid5vPTOahWaUfBdDZOGaDYmcISnhfBJXoA==
@@ -2476,9 +2476,10 @@ invert-kv@^2.0.0:
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-2.0.0.tgz#7393f5afa59ec9ff5f67a27620d11c226e3eec02"
   integrity sha512-wPVv/y/QQ/Uiirj/vh3oP+1Ww+AWehmi1g5fFWGPF6IpCBCDVrhgHRMvrLfdYcwDh3QJbGXDW4JAuzxElLSqKA==
 
-"iota.lib.js@git+https://git@github.com/iotaledger/iota.js#develop":
-  version "0.5.1"
-  resolved "git+https://git@github.com/iotaledger/iota.js#eb27c183284e24fb28a2a67f6da7a6cee5c61ae4"
+iota.lib.js@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.5.2.tgz#7fed8940cb7f0dd6de4cb458280a0cfa3ca65f34"
+  integrity sha512-2+4D8kFAxPjkBS4oDmnoNxoYSAYnl23C5OTLoc2ZtSrFmFsPRb5rOjmEX4WEn2RocFMiV3Ndjfqk5ct469Ayjw==
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"
