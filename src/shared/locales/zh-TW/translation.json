@@ -169,7 +169,7 @@
         "missingPermission": "需要檔案系統權限",
         "missingPermissionExplanation": "這個功能必須擁有訪問檔案系統的權限。",
         "swipeToConfirm": "滑動來確認。",
-        "expert": "Expert"
+        "expert": "專家"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -686,7 +686,7 @@
     },
     "stateExport": {
         "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
+        "exportSuccess": "輸出狀態",
         "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
@@ -716,7 +716,7 @@
     "progressSteps": {
         "checkingNodeHealth": "檢查節點運行狀況",
         "validatingReceiveAddress": "驗證收款地址",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "驗證交易地址",
         "syncingAccount": "同步帳戶中",
         "preparingInputs": "準備交易輸入",
         "preparingTransfers": "準備交易資訊",
@@ -727,8 +727,8 @@
         "migratingSettings": "Migrating settings",
         "migratingAccounts": "Migrating accounts",
         "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "migrationComplete": "移植完成",
+        "transferComplete": "交易完成"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "無法完成快照轉換",
@@ -759,7 +759,7 @@
     "updates": {
         "errorRetrievingUpdateData": "取得更新資料時發生錯誤",
         "noUpdatesAvailable": "尚無更新",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "你有最新版的Trinity！",
         "newVersionAvailable": "有新版本可用",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "安裝更新並重啟",
@@ -824,9 +824,9 @@
         "notReady": "如果您想使用 Ledger 裝置，請立即連接並解鎖它",
         "indexInUse": "帳戶 {{account}} 已使用該索引",
         "indexInUseExplanation": "您所選的索引已經在您其中一個帳戶使用過了，請選擇其他索引號碼。",
-        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
-        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
-        "createNewLedgerAccount": "Create a new Ledger account",
+        "createNewLedgerAccountInfo": "確保記下並記住您的索引號",
+        "restoreLedgerAccountInfo": "輸入已保存的索引號以恢復您的帳戶",
+        "createNewLedgerAccount": "創建一個新的Ledger帳戶",
         "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "帳戶索引",
         "accountPage": "帳戶頁面",
@@ -853,7 +853,7 @@
         "ledgerIncorrectIndexExplanation": "連接的 Ledger 裝置與此帳戶不相符，或者回復字組已被更改。",
         "checkAddress": "檢查接收地址",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialised": "警告 未經證實",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
         "checkLedger": "Check your Ledger device",
         "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
