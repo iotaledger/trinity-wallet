@@ -153,7 +153,8 @@ export class AddCustomNode extends Component {
 
     render() {
         const { t, theme, customNodes, loading, loginRoute } = this.props;
-        const { nodeListHeight, textInputFlex, nodeListFlex, viewAuthKeyButton, viewAuthKeyFields, customNode } = this.state;
+        const { nodeListHeight, textInputFlex, nodeListFlex, customNode } = this.state;
+        // viewAuthKeyButton, viewAuthKeyFields
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -185,7 +186,7 @@ export class AddCustomNode extends Component {
                                     }}
                                 />
                             </View>
-                            { viewAuthKeyFields &&
+                            {/* viewAuthKeyFields &&
                             <View style={{ flex: 4 }}>
                                 <View style={{ flex: 2, justifyContent: 'flex-start' }}>
                                     <CustomTextInput
@@ -234,7 +235,7 @@ export class AddCustomNode extends Component {
                                 </View>
                                 }
                             </TouchableOpacity>
-                          }
+                          */}
                         </Animated.View>
                         <SettingsSeparator color={theme.body.color}/>
                         { customNodes.length > 0 &&
