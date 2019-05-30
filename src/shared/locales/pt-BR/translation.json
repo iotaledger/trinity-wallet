@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Somente servidores com HTTPS são permitidos.",
         "nodeDuplicated": "Servidor duplicado",
         "nodeDuplicatedExplanation": "Servidor personalizado já existe.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Troca automática de servidor",
         "nodeAutoChangedExplanation": "Substituição para o novo servidor {{- nodeAddress}} sendo que o servidor selecionado está offline.",
         "touchSensor": "Toque no sensor de impressão digital",
@@ -431,7 +433,6 @@
         "redo": "Refazer",
         "aboutTrinity": "Sobre a Trinity",
         "lockScreenTimeout": "Tempo para o Bloqueio da Tela (minutos)",
-        "autoNodeSwitching": "Mudar de servidor automaticamente quando o servidor selecionado estiver inacessível",
         "nodeChangeSuccess": "Servidor alterado com sucesso",
         "nodeChangeSuccessNoRemotePow": "O servidor foi alterado para {{node}}. Este servidor não oferece suporte de prova de trabalho remoto.",
         "nodeChangeSuccessExplanation": "O servidor foi alterado para {{node}}.",
@@ -491,6 +492,22 @@
         "addNewAccount": "Adicionar nova Conta",
         "tools": "Ferramentas"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Servidor personalizado não pôde ser adicionado",
         "customNode": "Servidor personalizado",
@@ -499,7 +516,11 @@
         "add": "Adicionar",
         "nodeFieldEmpty": "O campo de texto está vazio",
         "nodeFieldEmptyExplanation": "Por favor, insira um servidor personalizado.",
-        "invalidURL": "Por favor, insira uma URL válida."
+        "invalidURL": "Por favor, insira uma URL válida.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Usar Seed existente",
