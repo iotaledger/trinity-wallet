@@ -122,7 +122,7 @@
         "nodeDuplicated": "Doppelter Node",
         "nodeDuplicatedExplanation": "Dieser Node ist bereits vorhanden.",
         "customNodeAdded": "Benutzerdefinierte Node hinzugefügt",
-        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
+        "customNodeAddedExplanation": "Du hast {{nodeAddress}} als benutzerdefinierte Node hinzugefügt.",
         "nodeAutoChanged": "Node automatisch gewechselt",
         "nodeAutoChangedExplanation": "Auf Node {{- nodeAddress}} gewechselt, da der ausgewählte Node offline ist.",
         "touchSensor": "Berühre den Fingerabdrucksensor",
@@ -493,20 +493,20 @@
         "tools": "Werkzeuge"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "automaticNodeManagement": "Automatische Node-Verwaltung",
+        "addCustomNodes": "Benutzerdefinierte Nodes hinzufügen",
+        "autoNodeList": "Offizielle Node-Liste verwenden",
+        "nodeAutoswitching": "Aut. die primäre Node wechseln",
+        "primaryNode": "Primärer Node",
+        "enableQuorum": "Node-Gruppe aktivieren",
+        "quorumSize": "Anzahl der Nodes in der Node-Gruppe",
+        "noCustomNodes": "Keine benutzerdefinierten Nodes vorhanden",
+        "mustAddCustomNodes": "Du musst mindestens einen benutzerdefinierten Node hinzugefügt haben, bevor du die offizielle Node-Liste deaktivieren kannst.",
+        "nodeEnoughNodesTitle": "Nicht genug Nodes hinzugefügt",
+        "nodeEnoughNodesExplanation": "Es sind nicht genug Nodes vorhanden um die Node-Gruppe zu aktivieren.",
+        "nodeEnoughNodesExplanationCustomNodes": "Füge weitere benutzerdefinierten Nodes hinzu oder verwende die offizielle Node-Liste.",
+        "nodeSettingsUpdatedTitle": "Node-Einstellungen aktualisiert",
+        "nodeSettingsUpdatedExplanation": "Die Node-Einstellungen wurden erfolgreich gespeichert."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Benutzerdefinierter Node konnte nicht hinzugefügt werden",
@@ -517,10 +517,10 @@
         "nodeFieldEmpty": "Textfeld ist leer",
         "nodeFieldEmptyExplanation": "Bitte einen benutzerdefinierten Node hinzufügen.",
         "invalidURL": "Bitte gib eine gültige Adresse ein.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "addAuthKey": "Authentifizierung hinzufügen",
+        "username": "Benutzername",
+        "couldNotRemove": "Konnte benutzerdefinierten Node nicht entfernen",
+        "couldNotRemoveExplanation": "Für die Node-Gruppe müssen genug Nodes vorhanden sein. Du kannst die Anzahl der Nodes in der Node-Gruppe verringern oder die Verwendung der offiziellen Node-Liste aktivieren."
     },
     "addNewAccount": {
         "useExistingSeed": "Vorhandenen Seed verwenden",
