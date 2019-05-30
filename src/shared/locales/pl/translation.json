@@ -502,11 +502,11 @@
         "quorumSize": "Wielkość kworum",
         "noCustomNodes": "Nie dodano serwerów niestandardowych",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesTitle": "Dodano zbyt mało serwerów",
+        "nodeEnoughNodesExplanation": "Brak wystarczającej liczby serwerów, aby włączyć kworum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeSettingsUpdatedTitle": "Zaktualizowano ustawienia serwera",
+        "nodeSettingsUpdatedExplanation": "Pomyślnie zaktualizowałeś swoje ustawienia serwera."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nie można dodać serwera",
@@ -517,10 +517,10 @@
         "nodeFieldEmpty": "Pole adresu puste",
         "nodeFieldEmptyExplanation": "Proszę wpisać adres niestandardowego serwera.",
         "invalidURL": "Wprowadź prawidłowy adres URL.",
-        "addAuthKey": "Add auth key",
+        "addAuthKey": "Dodaj klucz autoryzacji",
         "username": "Nazwa użytkownika",
         "couldNotRemove": "Nie można usunąć serwera niestandardowego",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "Musisz posiadać wystarczająca liczbę serwerów do kworum. Zmniejsz wielkość kworum lub włącz zdalną listę serwerów."
     },
     "addNewAccount": {
         "useExistingSeed": "Użyj istniejącego klucza seed",
