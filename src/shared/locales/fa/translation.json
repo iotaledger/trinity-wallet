@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "فقط Node های سفارشی با استفاده از HTTPS مجاز می باشند.",
         "nodeDuplicated": "Node تکراری",
         "nodeDuplicatedExplanation": "Node سفارشی قبلا در لیست موجود میباشد.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "تعویض اتوماتیک Node",
         "nodeAutoChangedExplanation": "اتصال به Node جدید {{- nodeAddress}} به عنوان Node انتخاب شده.",
         "touchSensor": "Touch the fingerprint sensor",
@@ -431,7 +433,6 @@
         "redo": "انجام دوباره",
         "aboutTrinity": "درباره Trinity",
         "lockScreenTimeout": "زمان قفل کردن صفحه (دقیقه)",
-        "autoNodeSwitching": "وقتی Node در دسترس نباشد، Node را به صورت خودکار انتخاب بکن",
         "nodeChangeSuccess": "Node با موفقیت تغییر کرده است",
         "nodeChangeSuccessNoRemotePow": "Node به {{node}} تغییر یافت. این Node از اثبات کار از راه دور پشتیبانی نمی کند.",
         "nodeChangeSuccessExplanation": "Node به {{node}} تغییر یافت.",
@@ -491,6 +492,22 @@
         "addNewAccount": "اضافه کردن حساب جدید",
         "tools": "ابزارها"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node سفارشی نمیتوان اضافه کرد",
         "customNode": "Node سفارشی",
@@ -499,7 +516,11 @@
         "add": "اضافه کردن",
         "nodeFieldEmpty": "فیلد متن خالی است",
         "nodeFieldEmptyExplanation": "لطفا Node سفارشی خود را وارد کنید.",
-        "invalidURL": "لطفا یک URL معتبر وارد کنید."
+        "invalidURL": "لطفا یک URL معتبر وارد کنید.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "استفاده از سیدهای موجود",
