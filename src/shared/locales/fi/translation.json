@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Voit lisätä vain palvelimia jotka tukevat HTTPS yhteyttä.",
         "nodeDuplicated": "Palvelin on jo olemassa",
         "nodeDuplicatedExplanation": "Omavalintainen palvelin on jo lisätty.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Palvelinta vaihdettu automaattisesti",
         "nodeAutoChangedExplanation": "Yhteys siirretty palvelimeen {{- nodeAddress}} koska alkuperäinen palvelin ei vastaa.",
         "touchSensor": "Kosketa sormenjälkitunnistinta",
@@ -431,7 +433,6 @@
         "redo": "Toista",
         "aboutTrinity": "Lisätietoja sovelluksesta",
         "lockScreenTimeout": "Näytön aikalukitus (minuuttia)",
-        "autoNodeSwitching": "Vaihda palvelinta automaattisesti jos nykyinen palvelin ei vastaa",
         "nodeChangeSuccess": "Palvelin vaihdettiin onnistuneesti",
         "nodeChangeSuccessNoRemotePow": "Uusi palvelin on {{node}}. Tämä palvelin ei tue laskentatyöntekoa (PoW).",
         "nodeChangeSuccessExplanation": "Uusi palvelin on {{node}}.",
@@ -491,6 +492,22 @@
         "addNewAccount": "Lisää uusi tili",
         "tools": "Työkalut"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Palvelinta ei voitu lisätä",
         "customNode": "Omavalintainen palvelin",
@@ -499,7 +516,11 @@
         "add": "Lisää",
         "nodeFieldEmpty": "Tekstikenttä on tyhjä",
         "nodeFieldEmptyExplanation": "Anna omavalintaisen palvelin osoite.",
-        "invalidURL": "Syötä kelvollinen URL-osoite."
+        "invalidURL": "Syötä kelvollinen URL-osoite.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Käytä olemassaolevaa seed-lukua",
