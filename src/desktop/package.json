@@ -57,7 +57,7 @@
     "jest": "^24.8.0",
     "jest-image-snapshot": "^2.8.2",
     "mini-css-extract-plugin": "0.6.0",
-    "puppeteer": "1.16.0",
+    "puppeteer": "1.17.0",
     "react-dev-utils": "9.0.1",
     "regenerator-runtime": "^0.13.2",
     "rimraf": "2.6.3",
