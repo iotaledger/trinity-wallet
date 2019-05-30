@@ -294,9 +294,9 @@
     },
     "printBlankTemplate": {
         "printTemplateQuestion": "Apakah Anda ingin mencetak template kosong?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateInfo": "Anda dapat mencetak template kosong untuk membantu menulis Seed anda.",
+        "printTemplateWarning": "Pastikan Anda menyimpan Seed di tempat yang aman. Jangan ditunjukan ke siapapun.",
+        "print": "Iya, cetak"
     },
     "receive": {
         "yourAddress": "Alamat Anda",
@@ -305,14 +305,14 @@
         "copyAddress": "Salin alamat",
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat Anda telah disalin ke papan klip.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Buat Alamat",
         "noAddresses": "TIDAK ADA ALAMAT",
         "spent": "Dihabiskan",
         "tag": "Label",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAnAddress": "Buat Alamat",
+        "generateAnAddressTitle": "Buat sebuah Alamat",
+        "generateAnAddressExplanation": "Silahkan buat Alamat sebelum menggunakan fungsi ini.",
+        "generateAddressInformation": "Buat sebuah Alamat deposit baru setiap kali anda menerima IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Simpang Seed anda",
@@ -326,7 +326,7 @@
         "letsWriteDownYourSeed": "Mari tulis Seed Anda",
         "youCanHighlightCharacters": "Ada dapat menyoroti 9 karakter dalam satu waktu",
         "printBlankWallet": "Cetak dompet kosong",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Apa itu Checksum?",
         "everySeedHasAChecksum": "Setiap Seed terdiri dari 3 karakter Checksum.",
         "iHavesavedMySeed": "Saya telah menyimpan Seed",
         "checksumExplanation": "Ketika menambah Seed ke dompet, pastikan checksum dari dompet sama dengan yang anda tulis.",
@@ -334,21 +334,21 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Silahkan konfirmasi Seed Anda",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity tidak pernah meminta memasukkan Seed kembali kecuali Anda reset dompet atau hapus app.",
         "enterYourSeed": "Masukan Seed Anda",
         "incorrectSeed": "Seed salah",
         "incorrectSeedExplanation": "Seed yang Anda masukkan salah. Silahkan coba lagi.",
         "ifYouHaveNotSaved": "Jika Anda belum menyimpan Seed Anda, silahkan mengulang kembali.",
         "enterSeedBelow": "Masukan Seed yang baru dibuat dibawah ini untuk mengkonfirmasi salinan anda",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "WASPADA: Tidak bisa salin Seed",
+        "clipboardWarningExplanation": "Salin tidak aktif untuk keamanan Anda. Tetapi Anda dapat drag and drop Seed anda dari file text."
     },
     "send": {
         "invalidAddress": "Alamat salah",
         "invalidAddressExplanation1": "Alamat harus {{maxLength}} karakter dan memiliki cek jumlah.",
         "invalidAddressExplanation2": "Seed berisi karakter yang tidak valid.",
         "invalidAddressExplanation3": "Alamat memiliki cek jumlah yang salah.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "Cek bahwa anda telah memasukan Alamat dengan benar.",
         "invalidAddressExplanationGeneric": "Alamat yang valid harus 90 karakter dan mengandung hanya A-Z atau 9.",
         "notEnoughFunds": "Dana tidak mencukupi",
         "notEnoughFundsExplanation": "Anda tidak memiliki IOTA yang mencukupi untuk menyelesaikan transfer ini.",
@@ -370,7 +370,7 @@
         "addressPasteDetected": "Terdeteksi alamat hasil salinan",
         "addressPasteExplanation": "Sepertinya Anda telah menyalin alamat. Pastikan alamat sama dengan yang ingin Anda kirim.",
         "invalid": "SALAH",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Gesek untuk mengirim"
     },
     "setSeedName": {
         "letsAddName": "Mari tambahkan nama",
@@ -382,8 +382,8 @@
         "standard": "Standar",
         "advancedModeExplanation": "Mode lanjutan akan menampilkan informasi teknis lebih rinci.",
         "modesExplanation": "Hanya aktifkan mode ahli jika Anda berpengalaman. Bila tidak ini dapat membingungkan Anda.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "Mode diperbaharui",
+        "modeUpdatedExplanation": "Anda harus mengganti ke mode {{mode}}"
     },
     "settings": {
         "transferSending": "Sedang mentransfer",
@@ -397,10 +397,10 @@
         "accountManagement": "Pengelolaan akun",
         "addNewSeed": "Tambahkan Seed baru",
         "changePassword": "Ubah Kata Sandi",
-        "general": "General settings",
+        "general": "Pengaturan umum",
         "advanced": "Pengaturan Lanjutan",
-        "nodeSettings": "Node settings",
-        "account": "Account settings",
+        "nodeSettings": "Pengaturan Node",
+        "account": "Pengaturan akun",
         "logout": "Keluar",
         "reset": "Hapus dompet",
         "syncingComplete": "Sinkronisasi selesai",
@@ -462,7 +462,7 @@
     "history": {
         "bundleHashCopied": "Salin rangkaian hash",
         "noTransactionsFound": "Transaksi tidak ditemukan",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "Sejarah transaksi kosong",
         "hideZeroBalance": "Sembunyikan saldo nol",
         "bundleHashCopiedExplanation": "Rangkaian hash telah disalin ke papan klip.",
         "addressCopied": "Alamat telah disalin",
@@ -474,10 +474,10 @@
         "empty": "Kosong",
         "retrying": "Mencoba lagi",
         "yesterday": "Kemarin",
-        "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
+        "promotingAnotherBundle": "Promosi Bundle lain",
+        "pleaseWait": "Silahkan tunggu, Trinity sedang promosi Bundle lain.",
+        "typeHelp": "Ketik !help untuk mengecek perintah lain",
+        "searchHelpText": "Cari dari Hash Bundle atau isi pesan",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "Find transactions with a value greater than X",
