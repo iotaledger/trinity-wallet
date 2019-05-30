@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tooltip component Render the component 1`] = `
+<div
+  className="tooltip"
+>
+  <Icon
+    icon="info"
+    size={21}
+  />
+  <div>
+    <strong>
+      Dolor sit amet
+    </strong>
+    <em>
+      Lorem ipsum
+    </em>
+  </div>
+</div>
+`;

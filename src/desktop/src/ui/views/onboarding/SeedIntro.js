@@ -91,10 +91,16 @@ class SeedIntro extends React.PureComponent {
                 </section>
                 <footer className={!ledger ? css.choiceDefault : css.choiceLedger}>
                     <div>
-                        <Button onClick={() => this.stepForward('seed-verify', true)} className="square" variant="dark">
+                        <Button
+                            id="to-seed-verify"
+                            onClick={() => this.stepForward('seed-verify', true)}
+                            className="square"
+                            variant="dark"
+                        >
                             {t('walletSetup:noIHaveOne')}
                         </Button>
                         <Button
+                            id="to-seed-generate"
                             onClick={() => this.stepForward('seed-generate', false)}
                             className="square"
                             variant="primary"
@@ -112,6 +118,7 @@ class SeedIntro extends React.PureComponent {
                             {t('ledger:restoreLedgerAccount')}
                         </Button>
                         <Button
+                            id="to-seed-ledger"
                             to="/onboarding/seed-ledger"
                             onClick={() => setAccountInfoDuringSetup({ usedExistingSeed: false })}
                             className="square"

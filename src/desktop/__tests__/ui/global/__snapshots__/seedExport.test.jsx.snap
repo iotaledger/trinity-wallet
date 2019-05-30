@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SeedExport component Render the component 1`] = `
+<form
+  className="seedExport step1"
+  onSubmit={[Function]}
+>
+  <section>
+    <h1>
+      <Icon
+        icon="seedVault"
+        size={120}
+      />
+      seedVault:exportSeedVault
+    </h1>
+    <p>
+      seedVault:seedVaultExplanation
+    </p>
+  </section>
+  <footer>
+    <Button
+      className="square"
+      onClick={[Function]}
+      variant="dark"
+    >
+      goBack
+    </Button>
+    <Button
+      className="square"
+      type="submit"
+      variant="primary"
+    >
+      continue
+    </Button>
+  </footer>
+</form>
+`;

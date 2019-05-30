@@ -97,10 +97,7 @@ export const selectLatestAddressFromAccountFactory = (withChecksum = true) =>
  *   @param {object} state
  *   @returns {object}
  **/
-export const getSelectedAccountMeta = createSelector(
-    selectAccountInfo,
-    (account) => get(account, 'meta'),
-);
+export const getSelectedAccountMeta = createSelector(selectAccountInfo, (account) => get(account, 'meta'));
 
 /**
  *   Selects account name for currently selected account.

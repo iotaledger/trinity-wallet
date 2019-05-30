@@ -43,17 +43,12 @@ class Ledger extends React.PureComponent {
         advancedMode: false,
         udevError: false,
         countdown: 5,
-        displayedIndexInfo: false
+        displayedIndexInfo: false,
     };
 
     componentDidMount() {
         const { t, generateAlert } = this.props;
-        generateAlert(
-            'info',
-            t('ledger:checkLedger'),
-            t('ledger:acceptWarningExplanation'),
-            10000
-        );
+        generateAlert('info', t('ledger:checkLedger'), t('ledger:acceptWarningExplanation'), 10000);
         this.interval = setInterval(() => {
             const { countdown } = this.state;
             this.setState({
@@ -143,7 +138,7 @@ class Ledger extends React.PureComponent {
             this.setState({ displayedIndexInfo: true });
         }
         this.setState({ index });
-    }
+    };
 
     showUdevModal = (udevError) => {
         if (udevError) {
@@ -159,7 +154,7 @@ class Ledger extends React.PureComponent {
                         </a>
                     </p>
                     <footer>
-                        <Button to="/onboarding/seed-intro" className="square"variant="dark">
+                        <Button to="/onboarding/seed-intro" className="square" variant="dark">
                             {t('goBackStep')}
                         </Button>
                     </footer>
@@ -179,7 +174,11 @@ class Ledger extends React.PureComponent {
                 <section>
                     <h1>{t('ledger:chooseAccountIndex')}</h1>
                     <p>{t('ledger:accountIndexExplanation')}</p>
-                    <p>{restoringLedgerAccount ? t('ledger:restoreLedgerAccountInfo') : t('ledger:createNewLedgerAccountInfo')}</p>
+                    <p>
+                        {restoringLedgerAccount
+                            ? t('ledger:restoreLedgerAccountInfo')
+                            : t('ledger:createNewLedgerAccountInfo')}
+                    </p>
                     <div>
                         <Number
                             value={index}
@@ -208,7 +207,13 @@ class Ledger extends React.PureComponent {
                     <Button disabled={loading} to="/onboarding/seed-intro" className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
-                    <Button loading={loading} type="submit" className="square" variant="primary" disabled={countdown > 0}>
+                    <Button
+                        loading={loading}
+                        type="submit"
+                        className="square"
+                        variant="primary"
+                        disabled={countdown > 0}
+                    >
                         {countdown && countdown > 0 ? countdown : t('continue')}
                     </Button>
                 </footer>

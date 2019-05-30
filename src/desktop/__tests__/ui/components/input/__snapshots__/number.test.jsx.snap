@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TeNumberxt component Render the component 1`] = `
+<div
+  className="input number"
+>
+  <fieldset>
+    <div>
+      <small>
+        Foo
+      </small>
+      <span
+        onClick={[Function]}
+      >
+        <Icon
+          icon="chevronLeft"
+          size={12}
+        />
+      </span>
+      <input
+        min="0"
+        onChange={[Function]}
+        type="number"
+        value={10}
+      />
+      <span
+        onClick={[Function]}
+      >
+        <Icon
+          icon="chevronRight"
+          size={12}
+        />
+      </span>
+    </div>
+  </fieldset>
+</div>
+`;

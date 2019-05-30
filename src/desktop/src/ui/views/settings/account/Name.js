@@ -96,7 +96,7 @@ class AccountName extends PureComponent {
             >
                 <fieldset>
                     <Text
-                        value={newAccountName}
+                        value={newAccountName || ''}
                         label={t('accountManagement:editAccountName')}
                         onChange={(value) => this.setState({ newAccountName: value })}
                     />
@@ -104,7 +104,7 @@ class AccountName extends PureComponent {
                 <footer>
                     <Button
                         className="square"
-                        disabled={newAccountName.replace(/^\s+|\s+$/g, '') === account.accountName}
+                        disabled={newAccountName && newAccountName.replace(/^\s+|\s+$/g, '') === account.accountName}
                         type="submit"
                     >
                         {t('save')}

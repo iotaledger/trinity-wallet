@@ -118,6 +118,7 @@ class Wallet extends React.PureComponent {
 
     render() {
         const {
+            password,
             completedByteTritSweep,
             byteTritInfo,
             location,
@@ -126,6 +127,10 @@ class Wallet extends React.PureComponent {
             t,
         } = this.props;
         const { isSweeping } = this.state;
+
+        if (Object.entries(password).length === 0) {
+            return null;
+        }
 
         if (byteTritInfo) {
             const accounts = byteTritInfo.map((account) => account.accountName).join(', ');

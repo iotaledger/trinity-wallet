@@ -116,11 +116,11 @@ class Onboarding extends React.PureComponent {
                 <header>
                     {!isAuthorised && currentKey !== 'login' ? (
                         this.steps(currentKey)
-                    ) : (
+                    ) : isAuthorised ? (
                         <a onClick={() => history.push('/wallet/')}>
                             <Icon icon="cross" size={24} />
                         </a>
-                    )}
+                    ) : null}
                 </header>
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="slide" timeout={1000} mountOnEnter unmountOnExit>
