@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Μόνο προσαρμοσμένοι κόμβοι που χρησιμοποιούν HTTPS επιτρέπονται.",
         "nodeDuplicated": "Διπλότυπος κόμβος",
         "nodeDuplicatedExplanation": "Ο προσαρμοσμένος κόμβος είναι ήδη καταχωρημένος.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Αυτόματος κόμβος",
         "nodeAutoChangedExplanation": "Μετάβαση στον νέο κόμβο ως επιλεγμένος κόμβος είναι εκτός σύνδεσης.",
         "touchSensor": "Αγγίξτε τον αισθητήρα δακτυλικών αποτυπωμάτων",
@@ -431,7 +433,6 @@
         "redo": "Επανάληψη",
         "aboutTrinity": "Σχετικά με το Trinity",
         "lockScreenTimeout": "Οθόνη κλειδώματος Εκτός χρόνου (λεπτά)",
-        "autoNodeSwitching": "Αυτόματη εναλλαγή κόμβου όταν η επιλέγει δεν είναι προσβάσιμη",
         "nodeChangeSuccess": "Ο κόμβος άλλαξε με επιτυχία",
         "nodeChangeSuccessNoRemotePow": "Ο κόμβος άλλαξε σε κόμβο. Αυτός ο κόμβος δεν υποστηρίζει απομακρυσμένη απόδειξη εργασίας.",
         "nodeChangeSuccessExplanation": "Ο κόμβος άλλαξε σε κόμβο.",
@@ -491,6 +492,22 @@
         "addNewAccount": "Προσθήκη νέου λογαριασμού",
         "tools": "Εργαλεία"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Δεν ήταν δυνατή η προσθήκη προσαρμοσμένου κόμβου",
         "customNode": "Προσαρμοσμένος κόμβος",
@@ -499,7 +516,11 @@
         "add": "Προσθήκη",
         "nodeFieldEmpty": "Το πεδίο κειμένου είναι άδειο",
         "nodeFieldEmptyExplanation": "Εισαγάγετε έναν προσαρμοσμένο κόμβο.",
-        "invalidURL": "Εισαγάγετε μια έγκυρη διεύθυνση URL."
+        "invalidURL": "Εισαγάγετε μια έγκυρη διεύθυνση URL.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Χρήση υπάρχοντος σπόρου",
