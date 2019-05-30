@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "केवल HTTPS का उपयोग कर कस्टम नोड्स की अनुमति है ।",
         "nodeDuplicated": "डुप्लिकेट नोड",
         "nodeDuplicatedExplanation": "कस्टम नोड पहले से ही सूचीबद्ध है ।",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "स्वत:-स्विच नोड",
         "nodeAutoChangedExplanation": "नए नोड चुने, {{- nodeAddress}} चयनित नोड ऑफ़लाइन है ।",
         "touchSensor": "फिंगरप्रिंट सेंसर को टच करें",
@@ -142,8 +144,8 @@
         "isYourBalanceCorrect": "क्या आपका बैलेंस सही है?",
         "ifYourBalanceIsNotCorrect": "यदि आपका बैलेंस सही नहीं है, तो संभव है कि आप पूर्व-स्नैपशॉट सीड का उपयोग कर रहे हों ।",
         "headToAdvancedSettingsForTransition": "एडवांस सेटिंग के लिए आगे बढ़े और स्नैपशॉट ट्रांजिट करे",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
+        "headToAccountTools": "एडवांस सेटिंग के लिए आगे बढ़े और स्नैपशॉट ट्रांजिट करे",
+        "openAccountTools": "खाता टूल्स खोलें",
         "usingTrinityWalletWithKeePass": "आप ट्रिनिटी वॉलेट को Keepass2Android के साथ यूज़ करे",
         "signedTrytesBroadcastErrorExplanation": "आपके लेनदेन को प्रसारित करते समय एक नेटवर्क त्रुटि हुई थी",
         "broadcastError": "प्रसारण प्रसारित नहीं किया जा सका",
@@ -431,7 +433,6 @@
         "redo": "फिर से करें",
         "aboutTrinity": "ट्रिनिटी के बारे में",
         "lockScreenTimeout": "लॉक स्क्रीन टाइमआउट (मिनट)",
-        "autoNodeSwitching": "चयनित न होने पर नोड स्वचालित रूप से स्विच करें",
         "nodeChangeSuccess": "नोड सफलतापूर्वक परिवर्तित",
         "nodeChangeSuccessNoRemotePow": "नोड को {{node}} में बदल दिया गया था। यह नोड कार्य के रिमोट सबूत का समर्थन नहीं करता है।",
         "nodeChangeSuccessExplanation": "नोड को {{node}} में बदल दिया गया था।",
@@ -491,6 +492,22 @@
         "addNewAccount": "नया खाता जोड़ें",
         "tools": "टूल्स"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "कस्टम नोड जोड़ा नहीं जा सका",
         "customNode": "कस्टम नोड",
@@ -499,7 +516,11 @@
         "add": "जोड़ें",
         "nodeFieldEmpty": "यह फील्ड रिक्त है।",
         "nodeFieldEmptyExplanation": "कृपया कोई कस्टम नोड दर्ज करें ।",
-        "invalidURL": "मान्य URL दर्ज करे"
+        "invalidURL": "मान्य URL दर्ज करे",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "मौजूदा सीड का उपयोग करें",
