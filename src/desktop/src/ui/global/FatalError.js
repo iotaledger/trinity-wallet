@@ -1,3 +1,4 @@
+/* global Electron */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
@@ -27,6 +28,24 @@ const FatalError = ({ error }) => {
                     <p>
                         Please check that you are not running Trinity as <strong>root</strong> user
                         <br /> and the <strong>gnome-keyring-daemon</strong> process is running.
+                    </p>
+                </form>
+            );
+        }
+
+        if (
+            typeof error === 'string' &&
+            typeof Electron === 'object' &&
+            Electron.getOS() === 'win32' &&
+            error.indexOf('Unable to open a realm at path') > -1 &&
+            error.indexOf('No such file or directory Path') > -1
+        ) {
+            return (
+                <form>
+                    <h1>Cannot start wallet</h1>
+                    <p>
+                        The database Trinity uses (Realm) is currently incompatible with Windows OS usernames that
+                        contain non-Latin characters. We are working on a fix.
                     </p>
                 </form>
             );
