@@ -1,4 +1,5 @@
 /* global Electron */
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import React from 'react';
@@ -11,7 +12,7 @@ import store from 'store';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';
 import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { getEncryptionKey } from 'libs/realm';
-import { changeIotaNode } from 'libs/iota';
+import { changeIotaNode, quorum } from 'libs/iota';
 import { initialise as initialiseStorage } from 'storage';
 import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
 
@@ -25,8 +26,16 @@ import { decrypt } from './libs/crypto.js';
 import './ui/index.scss';
 
 const init = () => {
+    const rootEl = document.createElement('div');
+    rootEl.id = 'root';
+    document.body.appendChild(rootEl);
+
+    const modalEl = document.createElement('div');
+    modalEl.id = 'modal';
+    document.body.appendChild(modalEl);
+
     if (typeof Electron === 'undefined') {
-        return render(<FatalError error="Failed to load Electron preload script" />, document.getElementById('root'));
+        return render(<FatalError error="Failed to load Electron preload script" />, rootEl);
     }
 
     if (Electron.mode === 'tray') {
@@ -51,7 +60,10 @@ const init = () => {
                 if (!isEmpty(data)) {
                     // Change provider on global iota instance
                     const node = get(data, 'settings.node');
-                    changeIotaNode(node);
+                    changeIotaNode(assign({}, node, { provider: node.url }));
+
+                    // Set quorum size
+                    quorum.setSize(get(data, 'settings.quorum.size'));
 
                     // Update store with persisted state
                     store.dispatch(mapStorageToStateAction(data));
@@ -60,44 +72,36 @@ const init = () => {
                     store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
                 }
 
+                render(
+                    <ErrorBoundary>
+                        <Redux store={store}>
+                            <I18nextProvider i18n={i18next}>
+                                <Router>
+                                    {Electron.mode === 'tray' ? (
+                                        <Tray />
+                                    ) : (
+                                        <React.Fragment>
+                                            <Alerts />
+                                            <Index />
+                                        </React.Fragment>
+                                    )}
+                                </Router>
+                            </I18nextProvider>
+                        </Redux>
+                    </ErrorBoundary>,
+                    rootEl,
+                );
+
                 // Show Wallet window after inital store update
                 Electron.focus();
             })
 
             .catch((err) => {
                 Electron.focus();
-                render(<FatalError error={err.message || err} />, document.getElementById('root'));
+                render(<FatalError error={err.message || err} />, rootEl);
                 bugsnagClient.notify(err);
             });
     }
-
-    const rootEl = document.createElement('div');
-    rootEl.id = 'root';
-    document.body.appendChild(rootEl);
-
-    const modalEl = document.createElement('div');
-    modalEl.id = 'modal';
-    document.body.appendChild(modalEl);
-
-    render(
-        <ErrorBoundary>
-            <Redux store={store}>
-                <I18nextProvider i18n={i18next}>
-                    <Router>
-                        {Electron.mode === 'tray' ? (
-                            <Tray />
-                        ) : (
-                            <React.Fragment>
-                                <Alerts />
-                                <Index />
-                            </React.Fragment>
-                        )}
-                    </Router>
-                </I18nextProvider>
-            </Redux>
-        </ErrorBoundary>,
-        rootEl,
-    );
 };
 
 init();

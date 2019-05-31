@@ -59,15 +59,23 @@ export class AboutComponent extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.6.0-RC1</h5>
+                            <ul>
+                                <li>
+                                    Update: New automatic node management and lots of configurability for advanced users
+                                </li>
+                            </ul>
                             <h5>0.5.2</h5>
                             <ul>
                                 <li>Fix: Chart and price API calls</li>
                                 <li>Fix: Skip retry failed transactions when password is not available </li>
-                                <li>Fix: Ledger onboarding loads forever without reporting an error</li>
-                                <li>Fix: Linux wallet incorrectly reports &quot;Missing security dependencies&quot;</li>
+                                <li>Fix: Fix: Ledger onboarding loading forever without reporting an error</li>
                                 <li>
-                                    Update: Add Snapshot Transition reminder warning for new accounts that use existing
-                                    seeds
+                                    Fix: Linux wallet incorrectly reporting &quot;Missing security dependencies&quot;
+                                </li>
+                                <li>
+                                    Update: Add Snapshot Transition reminder when an existing seed is added with 0
+                                    balance
                                 </li>
                             </ul>
                             <h5>0.5.1</h5>

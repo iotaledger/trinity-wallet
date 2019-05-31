@@ -153,7 +153,11 @@ const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
     accounts: state.accounts,
     seedIndex: state.wallet.seedIndex,
-    isBusy: state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress || state.ui.isFetchingAccountInfo,
+    isBusy:
+        state.ui.isSyncing ||
+        state.ui.isSendingTransfer ||
+        state.ui.isGeneratingReceiveAddress ||
+        state.ui.isFetchingAccountInfo,
 });
 
 const mapDispatchToProps = {

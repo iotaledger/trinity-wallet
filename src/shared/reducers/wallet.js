@@ -1,7 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import union from 'lodash/union';
-import { ActionTypes } from '../actions/wallet';
-import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
+import { AccountsActionTypes, WalletActionTypes } from '../types';
 
 const initialState = {
     /**
@@ -69,22 +68,22 @@ export default (state = initialState, action) => {
                 ...state,
                 seed: !isEmpty(action.payload.seed) ? action.payload.seed : state.seed,
             };
-        case ActionTypes.SET_PASSWORD:
+        case WalletActionTypes.SET_PASSWORD:
             return {
                 ...state,
                 password: action.payload,
             };
-        case ActionTypes.SET_READY:
+        case WalletActionTypes.SET_READY:
             return {
                 ...state,
                 ready: action.payload,
             };
-        case ActionTypes.SET_SEED_INDEX:
+        case WalletActionTypes.SET_SEED_INDEX:
             return {
                 ...state,
                 seedIndex: action.payload,
             };
-        case ActionTypes.CLEAR_WALLET_DATA:
+        case WalletActionTypes.CLEAR_WALLET_DATA:
             return {
                 ...state,
                 ready: false,
@@ -93,7 +92,7 @@ export default (state = initialState, action) => {
                 currentSetting: 'mainSettings',
                 deepLinkRequestActive: false,
             };
-        case ActionTypes.SET_SETTING:
+        case WalletActionTypes.SET_SETTING:
             return {
                 ...state,
                 currentSetting: action.payload,
@@ -124,86 +123,86 @@ export default (state = initialState, action) => {
                 seedIndex: 0,
                 currentSetting: 'accountManagement',
             };
-        case ActionTypes.CANCEL_SNAPSHOT_TRANSITION:
-        case ActionTypes.SNAPSHOT_TRANSITION_SUCCESS:
-        case ActionTypes.SNAPSHOT_TRANSITION_ERROR:
+        case WalletActionTypes.CANCEL_SNAPSHOT_TRANSITION:
+        case WalletActionTypes.SNAPSHOT_TRANSITION_SUCCESS:
+        case WalletActionTypes.SNAPSHOT_TRANSITION_ERROR:
             return {
                 ...state,
                 transitionBalance: 0,
                 transitionAddresses: [],
                 displayBalanceCheck: false,
             };
-        case ActionTypes.SET_BALANCE_CHECK_FLAG:
+        case WalletActionTypes.SET_BALANCE_CHECK_FLAG:
             return {
                 ...state,
                 balanceCheckFlag: action.payload,
             };
-        case ActionTypes.UPDATE_TRANSITION_BALANCE:
+        case WalletActionTypes.UPDATE_TRANSITION_BALANCE:
             return {
                 ...state,
                 transitionBalance: state.transitionBalance + action.payload,
             };
-        case ActionTypes.UPDATE_TRANSITION_ADDRESSES:
+        case WalletActionTypes.UPDATE_TRANSITION_ADDRESSES:
             return {
                 ...state,
                 transitionAddresses: union(state.transitionAddresses, action.payload),
             };
-        case ActionTypes.INITIATE_DEEP_LINK_REQUEST:
+        case WalletActionTypes.INITIATE_DEEP_LINK_REQUEST:
             return {
                 ...state,
                 deepLinkRequestActive: true,
             };
-        case ActionTypes.COMPLETE_DEEP_LINK_REQUEST:
+        case WalletActionTypes.COMPLETE_DEEP_LINK_REQUEST:
             return {
                 ...state,
                 deepLinkRequestActive: false,
             };
-        case ActionTypes.CONNECTION_CHANGED:
+        case WalletActionTypes.CONNECTION_CHANGED:
             return {
                 ...state,
                 hasConnection: action.payload.isConnected,
             };
-        case ActionTypes.ADDRESS_VALIDATION_REQUEST:
+        case WalletActionTypes.ADDRESS_VALIDATION_REQUEST:
             return {
                 ...state,
                 isValidatingAddress: true,
             };
-        case ActionTypes.ADDRESS_VALIDATION_SUCCESS:
+        case WalletActionTypes.ADDRESS_VALIDATION_SUCCESS:
             return {
                 ...state,
                 isValidatingAddress: false,
             };
-        case ActionTypes.PUSH_ROUTE:
+        case WalletActionTypes.PUSH_ROUTE:
             return {
                 ...state,
                 navStack: state.navStack.slice().concat(action.payload),
             };
-        case ActionTypes.POP_ROUTE:
+        case WalletActionTypes.POP_ROUTE:
             return {
                 ...state,
                 navStack: state.navStack.slice(0, state.navStack.length - 1),
             };
-        case ActionTypes.POP_TO_ROUTE:
+        case WalletActionTypes.POP_TO_ROUTE:
             return {
                 ...state,
                 navStack: state.navStack.slice(0, state.navStack.indexOf(action.payload) - 1),
             };
-        case ActionTypes.RESET_ROUTE:
+        case WalletActionTypes.RESET_ROUTE:
             return {
                 ...state,
                 navStack: [action.payload],
             };
-        case ActionTypes.SHOULD_UPDATE:
+        case WalletActionTypes.SHOULD_UPDATE:
             return {
                 ...state,
                 shouldUpdate: true,
             };
-        case ActionTypes.FORCE_UPDATE:
+        case WalletActionTypes.FORCE_UPDATE:
             return {
                 ...state,
                 forceUpdate: true,
             };
-        case ActionTypes.DISPLAY_TEST_WARNING:
+        case WalletActionTypes.DISPLAY_TEST_WARNING:
             return {
                 ...state,
                 displayTestWarning: true,

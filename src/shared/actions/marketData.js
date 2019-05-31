@@ -2,14 +2,7 @@ import get from 'lodash/get';
 import each from 'lodash/each';
 import map from 'lodash/map';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/utils';
-
-export const ActionTypes = {
-    SET_TIMEFRAME: 'IOTA/MARKET_DATA/SET_TIMEFRAME',
-    SET_CHART_DATA: 'IOTA/MARKET_DATA/SET_CHART_DATA',
-    SET_STATISTICS: 'IOTA/MARKET_DATA/SET_STATISTICS',
-    SET_CURRENCY: 'IOTA/MARKET_DATA/SET_CURRENCY',
-    SET_PRICE: 'IOTA/MARKET_DATA/SET_PRICE',
-};
+import { MarketDataActionTypes } from '../types';
 
 /**
  * Dispatch to set timeframe for IOTA time series price information
@@ -21,7 +14,7 @@ export const ActionTypes = {
  */
 export function setTimeframe(timeframe) {
     return {
-        type: ActionTypes.SET_TIMEFRAME,
+        type: MarketDataActionTypes.SET_TIMEFRAME,
         payload: timeframe,
     };
 }
@@ -43,7 +36,7 @@ export function setMarketData(data) {
     const change24h = parseFloat(Math.round(changePct24Hours * 100) / 100).toFixed(2);
 
     return {
-        type: ActionTypes.SET_STATISTICS,
+        type: MarketDataActionTypes.SET_STATISTICS,
         usdPrice,
         mcap,
         volume,
@@ -61,7 +54,7 @@ export function setMarketData(data) {
  */
 export function setCurrency(currency) {
     return {
-        type: ActionTypes.SET_CURRENCY,
+        type: MarketDataActionTypes.SET_CURRENCY,
         payload: currency,
     };
 }
@@ -82,7 +75,7 @@ export function setPrice(data) {
     const ethPrice = get(priceData, 'ETH.PRICE') || 0;
 
     return {
-        type: ActionTypes.SET_PRICE,
+        type: MarketDataActionTypes.SET_PRICE,
         usd: usdPrice,
         eur: eurPrice,
         btc: btcPrice,
@@ -176,7 +169,7 @@ export function getChartData() {
  */
 export function setChartData(chartData) {
     return {
-        type: ActionTypes.SET_CHART_DATA,
+        type: MarketDataActionTypes.SET_CHART_DATA,
         chartData,
     };
 }

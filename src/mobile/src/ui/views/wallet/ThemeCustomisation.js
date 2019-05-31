@@ -2,16 +2,16 @@ import cloneDeep from 'lodash/cloneDeep';
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { updateTheme } from 'shared-modules/actions/settings';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import THEMES from 'shared-modules/themes/themes';
-import Dropdown from 'ui/components/Dropdown'; // eslint-disable-line import/no-named-as-default
+import DropdownComponent from 'ui/components/Dropdown';
+import SettingsDualFooter from 'ui/components/SettingsDualFooter';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -34,38 +34,11 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     topContainer: {
         flex: 11,
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    titleTextLeft: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    titleTextRight: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
     },
     frameBar: {
         width: width / 1.5,
@@ -182,8 +155,7 @@ class ThemeCustomisation extends Component {
     render() {
         const { themeName } = this.state;
         const { body, bar, secondary, primary, positive, negative } = this.state.theme;
-        const { t } = this.props;
-        const bodyColor = this.props.theme.body.color;
+        const { t, theme } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -196,7 +168,7 @@ class ThemeCustomisation extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ zIndex: 2 }}>
-                            <Dropdown
+                            <DropdownComponent
                                 onRef={(c) => {
                                     this.dropdown = c;
                                 }}
@@ -274,24 +246,12 @@ class ThemeCustomisation extends Component {
                         </View>
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('mainSettings')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                                <Text style={[styles.titleTextLeft, { color: bodyColor }]}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.onApplyPress(themeName)}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, { color: bodyColor }]}>{t('global:apply')}</Text>
-                                <Icon name="tick" size={width / 28} color={bodyColor} />
-                            </View>
-                        </TouchableOpacity>
+                        <SettingsDualFooter
+                            theme={theme}
+                            backFunction={() => this.props.setSetting('mainSettings')}
+                            actionFunction={() => this.onApplyPress(themeName)}
+                            actionName={t('global:apply')}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>

@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Podporovány jsou pouze Nody podporující protokol HTTPS.",
         "nodeDuplicated": "Duplicitní Node",
         "nodeDuplicatedExplanation": "Tento vlastní Node je již v seznamu.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Automatické přepnutí Nodu",
         "nodeAutoChangedExplanation": "Přepnuto na nový Node {{- nodeAddress}} jelikož dříve vybraný je offline.",
         "touchSensor": "Dotkněte se snímače otisků prstů",
@@ -142,6 +144,8 @@
         "isYourBalanceCorrect": "Je Váš zůstatek v pořádku?",
         "ifYourBalanceIsNotCorrect": "Pokud Váš zůstatek není správný, je pravděpodobné, že používáte Seed z doby před snapshotem.",
         "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Během transakce došlo k chybě sítě.",
         "broadcastError": "Nezdařilo se odeslat transakci",
@@ -429,7 +433,6 @@
         "redo": "Znovu",
         "aboutTrinity": "O Trinity",
         "lockScreenTimeout": "Zámek obrazovky časový limit (minuty)",
-        "autoNodeSwitching": "Automaticky přepnout na jiný Node, pokud vybraný není dostupný",
         "nodeChangeSuccess": "Node úspěšně změněn",
         "nodeChangeSuccessNoRemotePow": "Node byl změněn na {{node}}. Tento Node nepodporuje režim vzdálený Proof of Work.",
         "nodeChangeSuccessExplanation": "Node byl změněn na {{node}}.",
@@ -489,6 +492,22 @@
         "addNewAccount": "Přidat nový účet",
         "tools": "Nástroje"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nelze přidat vlastní Node",
         "customNode": "Vlastní Node",
@@ -497,7 +516,11 @@
         "add": "Přidat",
         "nodeFieldEmpty": "Textové pole je prázdné",
         "nodeFieldEmptyExplanation": "Prosím vložte Vlastní Node.",
-        "invalidURL": "Zadejte prosím platnou adresu URL."
+        "invalidURL": "Zadejte prosím platnou adresu URL.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Použít stávající Seed",

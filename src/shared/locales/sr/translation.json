@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Dozvoljeni su samo prilagođeni node-ovi koji koriste HTPPS protokol.",
         "nodeDuplicated": "Duplirani node",
         "nodeDuplicatedExplanation": "Prilagođeni node je već na listi.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Automatski promenjen node",
         "nodeAutoChangedExplanation": "Prebacivanje na novi node {{- nodeAddress}} jer je izabrani node van mreže.",
         "touchSensor": "Touch the fingerprint sensor",
@@ -142,6 +144,8 @@
         "isYourBalanceCorrect": "Da li je vaš saldo tačan?",
         "ifYourBalanceIsNotCorrect": "Ako vaš saldo nije tačan, razlog je verovatno to što koristite seed pre izvršenog snimanja stanja (snapshot).",
         "headToAdvancedSettingsForTransition": "Otvorite Napredne postavke i izvršite Snapshot tranziciju.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Upotreba Trinity novčanika s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Došlo je do mrežne greške tokom emitovanja transakcije.",
         "broadcastError": "Nije moguće emitovati transfer",
@@ -429,7 +433,6 @@
         "redo": "Ponovi",
         "aboutTrinity": "O Trinity novčaniku",
         "lockScreenTimeout": "Period neaktivnosti pre zaključavanja ekrana (minuti)",
-        "autoNodeSwitching": "Automatski promeni node kada je izabrani node nedostupan",
         "nodeChangeSuccess": "Uspešno promenjen node",
         "nodeChangeSuccessNoRemotePow": "Node je promenjen u {{node}}. Ovaj node ne podržava udaljeni PoW.",
         "nodeChangeSuccessExplanation": "Node je promenjen u {{node}}.",
@@ -489,6 +492,22 @@
         "addNewAccount": "Dodaj novi račun",
         "tools": "Alati"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nije bilo moguće dodati prilagođeni node",
         "customNode": "Prilagođeni node",
@@ -497,7 +516,11 @@
         "add": "Dodaj",
         "nodeFieldEmpty": "Tekstualno polje je prazno",
         "nodeFieldEmptyExplanation": "Molimo unesite prilagođeni node.",
-        "invalidURL": "Molimo unesite ispravni URL."
+        "invalidURL": "Molimo unesite ispravni URL.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Upotrebi postojeći seed",

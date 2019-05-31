@@ -55,7 +55,7 @@ class Migration extends React.Component {
         /** @ignore */
         notificationLog: PropTypes.array.isRequired,
         /** @ignore */
-        node: PropTypes.string.isRequired,
+        node: PropTypes.object.isRequired,
         /** @ignore */
         nodes: PropTypes.array.isRequired,
         /** @ignore */
