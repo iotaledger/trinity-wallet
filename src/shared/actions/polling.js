@@ -317,12 +317,16 @@ export const fetchPrice = () => {
 export const fetchNodeList = () => {
     return (dispatch, getState) => {
         dispatch(fetchNodeListRequest());
-
+        let nodes = unionBy(
+            DEFAULT_NODES,
+            getState().settings.nodes,
+            'url'
+        );
         fetchRemoteNodes()
             .then((remoteNodes) => {
                 if (remoteNodes.length) {
-                    const unionNodes = unionBy(
-                        DEFAULT_NODES,
+                    nodes = unionBy(
+                        nodes,
                         map(remoteNodes, (node) => ({
                             url: node.node,
                             pow: node.pow,
@@ -330,21 +334,20 @@ export const fetchNodeList = () => {
                         })),
                         'url',
                     );
-                    // Set quorum nodes
-                    quorum.setNodes(
-                        unionBy(
-                            getCustomNodesFromState(getState()),
-                            getState().settings.autoNodeList && unionNodes,
-                            'url',
-                        ),
-                    );
-
-                    dispatch(setNodeList(unionNodes));
                 }
-
+                // Set quorum nodes
+                quorum.setNodes(
+                    unionBy(
+                        getCustomNodesFromState(getState()),
+                        getState().settings.autoNodeList && nodes,
+                        'url',
+                    ),
+                );
+                dispatch(setNodeList(nodes));
                 dispatch(fetchNodeListSuccess());
             })
             .catch(() => {
+                dispatch(setNodeList(nodes));
                 dispatch(fetchNodeListError());
             });
     };
