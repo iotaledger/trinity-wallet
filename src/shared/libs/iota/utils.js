@@ -454,11 +454,16 @@ export const fetchRemoteNodes = (
  * @param {array} nodes
  * @param {number} [size]
  * @param {array} [blacklistedNodes]
+ * @param {bool} Remote PoW
  *
  * @returns {Array}
  */
-export const getRandomNodes = (nodes, size = 5, blacklistedNodes = []) => {
-    return sampleSize(filter(nodes, (node) => !find(blacklistedNodes, { url: node.url })), size);
+export const getRandomNodes = (nodes, size = 5, blacklistedNodes = [], PoW = false) => {
+    let nodesToSample = nodes;
+    if (PoW) {
+        nodesToSample = filter(nodes, (node) => node.pow === true);
+    }
+    return sampleSize(filter(nodesToSample, (node) => !find(blacklistedNodes, { url: node.url })), size);
 };
 
 /**
