@@ -1,6 +1,7 @@
 import map from 'lodash/map';
 import omit from 'lodash/omit';
 import find from 'lodash/find';
+import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 import unionBy from 'lodash/unionBy';
@@ -133,8 +134,8 @@ export class NodeSettings extends PureComponent {
      */
     getAvailableNodes() {
         const { nodes, customNodes } = this.props;
-        const { autoNodeList, nodeAutoSwitch } = this.state;
-        return unionBy(customNodes, autoNodeList && nodes, nodeAutoSwitch && [DEFAULT_NODE], 'url');
+        const { autoNodeList } = this.state;
+        return unionBy(customNodes, autoNodeList && nodes, [DEFAULT_NODE], 'url');
     }
 
     /**
@@ -146,9 +147,11 @@ export class NodeSettings extends PureComponent {
      */
     getQuorumSizeOptions() {
         const maxQuorumSize = Math.min(this.getAvailableNodes().length, MAXIMUM_QUORUM_SIZE);
-        return Array(maxQuorumSize - MINIMUM_QUORUM_SIZE + 1)
-            .fill()
-            .map((_, idx) => (MINIMUM_QUORUM_SIZE + idx).toString());
+        return this.getAvailableNodes().length < MINIMUM_QUORUM_SIZE ?
+            [] :
+            Array(maxQuorumSize - MINIMUM_QUORUM_SIZE + 1)
+                .fill()
+                .map((_, idx) => (MINIMUM_QUORUM_SIZE + idx).toString());
     }
 
     /**
@@ -288,28 +291,24 @@ export class NodeSettings extends PureComponent {
                 function: (nodeURL) =>
                   this.setState({
                       node: find(this.getAvailableNodes(), (node) => {
-                          return node.url === nodeURL;
+                          return get(node, 'url') === nodeURL;
                       }),
                 }),
-                currentSetting: node.url,
+                currentSetting: get(node, 'url'),
                 inactive: autoNodeManagement || nodeAutoSwitch,
                 dropdownOptions: map(this.getAvailableNodes(), (node) => node.url),
             },
             { name: 'separator', inactive: autoNodeManagement },
             {
                 name: t('nodeSettings:enableQuorum'),
-                function: () => {
-                    !autoNodeManagement && this.toggleQuorumEnabled();
-                },
+                function: () => !autoNodeManagement ? this.toggleQuorumEnabled() : {},
                 toggle: quorumEnabled,
                 inactive: autoNodeManagement,
             },
             {
                 name: t('nodeSettings:quorumSize'),
-                function: (quorumSize) => {
-                    quorumSize && this.setState({ quorumSize });
-                },
-                inactive: autoNodeManagement || !quorumEnabled,
+                function: (quorumSize) => quorumSize ? this.setState({ quorumSize }) : {},
+                inactive: this.getAvailableNodes().length < quorumSize || autoNodeManagement || !quorumEnabled,
                 dropdownOptions: this.getQuorumSizeOptions(),
                 currentSetting: (!quorumEnabled && '0') || quorumSize,
             },
