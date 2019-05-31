@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import withNodeData from 'containers/settings/Node';
@@ -16,20 +16,25 @@ import css from './index.scss';
  */
 const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, t }) => {
     const [url, setUrl] = useState('');
-    const [token, setToken] = useState('');
-    const [password, setPassword] = useState('');
-    const [authVisible, setAuthVisible] = useState(false);
+    // const [token, setToken] = useState('');
+    // const [password, setPassword] = useState('');
+    // const [authVisible, setAuthVisible] = useState(false);
 
-    useEffect(() => {
-        setUrl('');
-    }, [customNodes]);
+    useEffect(
+        () => {
+            setUrl('');
+        },
+        [customNodes],
+    );
 
     return (
         <Modal variant="fullscreen" isOpen onClose={onClose}>
             <section className={css.nodeCustom}>
                 <fieldset>
                     <Text value={url} label={t('addCustomNode:customNode')} onChange={setUrl} />
-                    {authVisible ? (
+                    {/*
+                    // Temporary disable authorisation entry #https://github.com/iotaledger/trinity-wallet/pull/1654
+                    authVisible ? (
                         <Fragment>
                             <Text value={token} label={t('addCustomNode:username')} onChange={setToken} />
                             <Text value={password} label={t('addCustomNode:password')} onChange={setPassword} />
@@ -38,7 +43,7 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
                         <a className={css.authLink} onClick={() => setAuthVisible(true)}>
                             <Icon icon="plusAlt" size={10} /> {t('addCustomNode:addAuthKey')}
                         </a>
-                    )}
+                    )*/}
                 </fieldset>
                 <hr />
                 {customNodes.length ? (
@@ -64,7 +69,7 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
                 </Button>
                 <Button
                     loading={loading}
-                    onClick={() => setNode({ url, token, password }, true)}
+                    onClick={() => setNode({ url, token: '', password: '' }, true)}
                     className="square"
                     variant="primary"
                 >
