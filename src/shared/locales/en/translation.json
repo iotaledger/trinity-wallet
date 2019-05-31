@@ -509,6 +509,8 @@
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
         "nodeEnoughNodesTitle": "Not enough nodes added",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
         "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
