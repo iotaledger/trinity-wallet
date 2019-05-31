@@ -29,7 +29,9 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
             <section className={css.nodeCustom}>
                 <fieldset>
                     <Text value={url} label={t('addCustomNode:customNode')} onChange={setUrl} />
-                    {authVisible ? (
+                    {/*
+                    // Temporary disable authorisation entry #https://github.com/iotaledger/trinity-wallet/pull/1654
+                    authVisible ? (
                         <Fragment>
                             <Text value={token} label={t('addCustomNode:username')} onChange={setToken} />
                             <Text value={password} label={t('addCustomNode:password')} onChange={setPassword} />
@@ -38,7 +40,7 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
                         <a className={css.authLink} onClick={() => setAuthVisible(true)}>
                             <Icon icon="plusAlt" size={10} /> {t('addCustomNode:addAuthKey')}
                         </a>
-                    )}
+                    )*/}
                 </fieldset>
                 <hr />
                 {customNodes.length ? (
