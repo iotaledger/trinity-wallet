@@ -322,16 +322,6 @@ export const fetchNodeList = () => {
             getState().settings.nodes,
             'url'
         );
-        const setNodes = (nodes) => {
-            quorum.setNodes(
-                unionBy(
-                    getCustomNodesFromState(getState()),
-                    getState().settings.autoNodeList && nodes,
-                    'url',
-                ),
-            );
-            dispatch(setNodeList(nodes));
-        };
         fetchRemoteNodes()
             .then((remoteNodes) => {
                 if (remoteNodes.length) {
@@ -345,7 +335,14 @@ export const fetchNodeList = () => {
                         'url',
                     );
                 }
-                setNodes(nodes);
+                quorum.setNodes(
+                    unionBy(
+                        getCustomNodesFromState(getState()),
+                        getState().settings.autoNodeList && nodes,
+                        'url',
+                    ),
+                );
+                dispatch(setNodeList(nodes));
                 dispatch(fetchNodeListSuccess());
             })
             .catch(() => {
