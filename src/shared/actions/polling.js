@@ -349,7 +349,6 @@ export const fetchNodeList = () => {
                 dispatch(fetchNodeListSuccess());
             })
             .catch(() => {
-                setNodes(nodes);
                 dispatch(fetchNodeListError());
             });
     };
