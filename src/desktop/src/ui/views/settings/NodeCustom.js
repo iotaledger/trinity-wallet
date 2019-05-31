@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import withNodeData from 'containers/settings/Node';
@@ -16,13 +16,16 @@ import css from './index.scss';
  */
 const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, t }) => {
     const [url, setUrl] = useState('');
-    const [token, setToken] = useState('');
-    const [password, setPassword] = useState('');
-    const [authVisible, setAuthVisible] = useState(false);
+    // const [token, setToken] = useState('');
+    // const [password, setPassword] = useState('');
+    // const [authVisible, setAuthVisible] = useState(false);
 
-    useEffect(() => {
-        setUrl('');
-    }, [customNodes]);
+    useEffect(
+        () => {
+            setUrl('');
+        },
+        [customNodes],
+    );
 
     return (
         <Modal variant="fullscreen" isOpen onClose={onClose}>
@@ -66,7 +69,7 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
                 </Button>
                 <Button
                     loading={loading}
-                    onClick={() => setNode({ url, token, password }, true)}
+                    onClick={() => setNode({ url, token: '', password: '' }, true)}
                     className="square"
                     variant="primary"
                 >
