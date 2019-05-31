@@ -8,6 +8,7 @@ import includes from 'lodash/includes';
 import isNull from 'lodash/isNull';
 import sampleSize from 'lodash/sampleSize';
 import size from 'lodash/size';
+import cloneDeep from 'lodash/cloneDeep';
 import URL from 'url-parse';
 import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
@@ -459,7 +460,7 @@ export const fetchRemoteNodes = (
  * @returns {Array}
  */
 export const getRandomNodes = (nodes, size = 5, blacklistedNodes = [], PoW = false) => {
-    let nodesToSample = nodes;
+    let nodesToSample = cloneDeep(nodes);
     if (PoW) {
         nodesToSample = filter(nodes, (node) => node.pow === true);
     }
