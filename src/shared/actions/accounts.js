@@ -377,14 +377,11 @@ export const getFullAccountInfo = (seedStore, accountName, quorum = false) => {
                 dispatch(fullAccountInfoFetchSuccess(resultWithAccountMeta));
             })
             .catch((err) => {
-                const dispatchErrors = () => dispatch(generateErrorAlert(generateAccountInfoErrorAlert, err));
                 dispatch(fullAccountInfoFetchError());
-                if (existingAccountNames.length === 0) {
-                    setTimeout(dispatchErrors, 500);
-                } else {
-                    dispatchErrors();
+                if (existingAccountNames.length !== 0) {
                     seedStore.removeAccount(accountName);
                 }
+                setTimeout(() => dispatch(generateErrorAlert(generateAccountInfoErrorAlert, err)), 500);
             });
     };
 };
@@ -457,7 +454,7 @@ export const getAccountInfo = (seedStore, accountName, notificationFn, quorum = 
                 dispatch(accountInfoFetchSuccess(result));
             })
             .catch((err) => {
-                dispatch(generateErrorAlert(generateAccountInfoErrorAlert, err));
+                setTimeout(() => dispatch(generateErrorAlert(generateAccountInfoErrorAlert, err)), 500);
                 dispatch(accountInfoFetchError());
             });
     };
