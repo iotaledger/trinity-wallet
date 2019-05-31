@@ -173,7 +173,7 @@
         "swipeToConfirm": "Swipe to confirm",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again.",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
