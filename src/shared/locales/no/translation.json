@@ -519,7 +519,7 @@
         "invalidURL": "Angi en gyldig URL-adresse.",
         "addAuthKey": "Legg til auth-nøkkel",
         "username": "Brukernavn",
-        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemove": "Kunne ikke fjerne egendefinert node",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
