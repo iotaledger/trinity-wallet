@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withI18n, Trans } from 'react-i18next';
-import { createRandomSeed, randomBytes } from 'libs/crypto';
+import { randomBytes } from 'libs/crypto';
 import { capitalize, byteToChar } from 'libs/iota/converter';
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
@@ -25,7 +25,7 @@ class GenerateSeed extends React.PureComponent {
     };
 
     state = {
-        seed: Electron.getOnboardingSeed() || createRandomSeed(),
+        seed: Electron.getOnboardingSeed() || randomBytes(MAX_SEED_LENGTH, 27),
         scramble: Electron.getOnboardingSeed() ? new Array(MAX_SEED_LENGTH).fill(0) : randomBytes(MAX_SEED_LENGTH, 27),
         existingSeed: Electron.getOnboardingSeed(),
         clicks: [],
@@ -69,6 +69,10 @@ class GenerateSeed extends React.PureComponent {
      * @returns {undefined}
      */
     updateLetter = (e) => {
+        if (e) {
+            e.preventDefault();
+        }
+
         const { seed, clicks, scramble } = this.state;
 
         const position = e.target.value;
@@ -76,7 +80,7 @@ class GenerateSeed extends React.PureComponent {
         const newClicks = clicks.indexOf(position) < 0 ? clicks.concat([position]) : clicks;
 
         const newSeed = seed.slice(0);
-        newSeed[position] = createRandomSeed(1)[0];
+        newSeed[position] = randomBytes(1, 27)[0];
 
         scramble[position] = 64;
 
@@ -94,7 +98,7 @@ class GenerateSeed extends React.PureComponent {
      * @returns {undefined}
      */
     generateNewSeed = () => {
-        const newSeed = createRandomSeed();
+        const newSeed = randomBytes(MAX_SEED_LENGTH, 27);
         Electron.setOnboardingSeed(null);
 
         this.setState(() => ({
@@ -179,6 +183,7 @@ class GenerateSeed extends React.PureComponent {
                                         key={`${index}${letter}`}
                                         value={index}
                                         style={{ opacity: 1 - offset / 255 }}
+                                        disabled={offset > 0}
                                     >
                                         {letter}
                                     </button>
@@ -192,10 +197,11 @@ class GenerateSeed extends React.PureComponent {
                     </Button>
                 </section>
                 <footer>
-                    <Button onClick={this.onRequestPrevious} className="square" variant="dark">
+                    <Button id="to-seed-intro" onClick={this.onRequestPrevious} className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
                     <Button
+                        id="to-account-name"
                         disabled={!existingSeed && clicksLeft > 0}
                         onClick={this.onRequestNext}
                         className="square"

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { formatIota, TOTAL_IOTA_SUPPLY } from 'libs/iota/utils';
+import { formatIotas, TOTAL_IOTA_SUPPLY } from 'libs/iota/utils';
 import { round } from 'libs/utils';
-import { getCurrencySymbol } from 'libs/currency';
+import { getCurrencySymbol, formatMonetaryValue } from 'libs/currency';
 
 import Icon from 'ui/components/Icon';
 import css from './input.scss';
@@ -18,6 +18,8 @@ export default class AmountInput extends React.PureComponent {
     static propTypes = {
         /** Current ammount value */
         amount: PropTypes.string.isRequired,
+        /** Element id */
+        id: PropTypes.string,
         /** Max available ammount */
         balance: PropTypes.number.isRequired,
         /** Fiat currency settings
@@ -147,7 +149,7 @@ export default class AmountInput extends React.PureComponent {
     };
 
     render() {
-        const { amount, balance, settings, label, labelMax } = this.props;
+        const { amount, balance, id, settings, label, labelMax } = this.props;
         const { value, unit } = this.state;
 
         return (
@@ -173,15 +175,17 @@ export default class AmountInput extends React.PureComponent {
                         </strong>
                         {amount > 0 && unit !== '$' ? (
                             <p>
-                                = {getCurrencySymbol(settings.currency)}{' '}
-                                {(
-                                    round(amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
-                                ).toFixed(2)}
+                                ={' '}
+                                {formatMonetaryValue(
+                                    amount,
+                                    settings.usdPrice * settings.conversionRate,
+                                    settings.currency,
+                                )}
                             </p>
                         ) : null}
-                        {amount > 0 && unit === '$' ? <p>= {formatIota(amount)}</p> : null}
+                        {amount > 0 && unit === '$' ? <p>= {formatIotas(amount, false, true)}</p> : null}
                     </a>
-                    <input type="text" value={value} onChange={(e) => this.onChange(e.target.value)} />
+                    <input id={id} type="text" value={value} onChange={(e) => this.onChange(e.target.value)} />
                     <small>{label}</small>
                 </fieldset>
                 {balance > 0 && (

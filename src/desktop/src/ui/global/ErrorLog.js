@@ -16,7 +16,7 @@ import css from './about.scss';
 /**
  * Error log window component
  */
-class ErrorLog extends React.PureComponent {
+export class ErrorLogComponent extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         log: PropTypes.array.isRequired,
@@ -102,4 +102,7 @@ const mapDispatchToProps = {
     clearLog,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(ErrorLog));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(ErrorLogComponent));
