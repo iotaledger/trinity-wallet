@@ -12,7 +12,7 @@ import css from './chart.scss';
 /**
  * Chart component to display historical IOTA price charts
  */
-class Chart extends PureComponent {
+export class ChartComponent extends PureComponent {
     static propTypes = {
         /** Current price data for selected currency */
         priceData: PropTypes.shape({
@@ -28,7 +28,7 @@ class Chart extends PureComponent {
             data: PropTypes.array.isRequired,
             timeframe: PropTypes.string.isRequired,
             yAxis: PropTypes.shape({
-                ticks: PropTypes.array.isRequired,
+                ticks: PropTypes.array,
             }),
         }).isRequired,
         /** Change chart currency */
@@ -89,7 +89,7 @@ class Chart extends PureComponent {
                                     dataKey="y"
                                     stroke={theme.chart.color}
                                     dot={false}
-                                    animationDuration={750}
+                                    isAnimationActive={false}
                                 />
                                 <YAxis
                                     strokeWidth={0}
@@ -144,4 +144,4 @@ class Chart extends PureComponent {
     }
 }
 
-export default withChartData(Chart);
+export default withChartData(ChartComponent);

@@ -1,0 +1,196 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chart component Render the component 1`] = `
+<div
+  className="chart"
+>
+  <h3>
+    USD
+    /MIOTA
+  </h3>
+  <div>
+    <ResponsiveContainer
+      debounce={0}
+      height="100%"
+      width="100%"
+    >
+      <LineChart
+        barCategoryGap="10%"
+        barGap={4}
+        data={
+          Array [
+            Object {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+            },
+          ]
+        }
+        layout="horizontal"
+        margin={
+          Object {
+            "bottom": 5,
+            "left": 5,
+            "right": 5,
+            "top": 5,
+          }
+        }
+        reverseStackOrder={false}
+        stackOffset="none"
+      >
+        <Line
+          activeDot={true}
+          animateNewValues={true}
+          animationBegin={0}
+          animationDuration={1500}
+          animationEasing="ease"
+          connectNulls={false}
+          dataKey="y"
+          dot={false}
+          fill="#fff"
+          hide={false}
+          isAnimationActive={false}
+          legendType="line"
+          onAnimationEnd={[Function]}
+          onAnimationStart={[Function]}
+          points={Array []}
+          stroke="rgb(65, 220, 243)"
+          strokeWidth={2}
+          type="natural"
+          xAxisId={0}
+          yAxisId={0}
+        />
+        <YAxis
+          allowDataOverflow={false}
+          allowDecimals={true}
+          allowDuplicatedCategory={true}
+          domain={
+            Array [
+              "dataMin",
+              "dataMax",
+            ]
+          }
+          height={0}
+          hide={false}
+          interval={0}
+          mirror={false}
+          orientation="left"
+          padding={
+            Object {
+              "bottom": 0,
+              "top": 0,
+            }
+          }
+          reversed={false}
+          scale="auto"
+          strokeWidth={0}
+          tick={
+            Object {
+              "dx": -56,
+              "fill": "rgb(240, 242, 246)",
+              "textAnchor": "start",
+            }
+          }
+          tickCount={6}
+          tickFormatter={[Function]}
+          ticks={
+            Array [
+              0,
+            ]
+          }
+          type="number"
+          width={80}
+          yAxisId={0}
+        />
+        <Tooltip
+          active={false}
+          animationDuration={400}
+          animationEasing="ease"
+          content={[Function]}
+          contentStyle={Object {}}
+          coordinate={
+            Object {
+              "x": 0,
+              "y": 0,
+            }
+          }
+          cursor={true}
+          cursorStyle={Object {}}
+          filterNull={true}
+          isAnimationActive={true}
+          itemStyle={Object {}}
+          labelStyle={Object {}}
+          maxItems={1}
+          offset={10}
+          separator=" : "
+          symbol="$"
+          timeframe="24h"
+          useTranslate3d={false}
+          viewBox={
+            Object {
+              "x1": 0,
+              "x2": 0,
+              "y1": 0,
+              "y2": 0,
+            }
+          }
+          wrapperStyle={Object {}}
+        />
+      </LineChart>
+    </ResponsiveContainer>
+  </div>
+  <footer>
+    <nav>
+      <Button
+        className="outline"
+        onClick={[Function]}
+        variant="secondary"
+      >
+        USD
+      </Button>
+      <p>
+        $
+         
+        USD
+         / Mi
+      </p>
+      <Button
+        className="outline"
+        onClick={[Function]}
+        variant="secondary"
+      >
+        24h
+      </Button>
+    </nav>
+    <ul>
+      <li>
+        <strong>
+          chart:mcap
+          : 
+        </strong>
+        $
+         
+        1000000
+      </li>
+      <li>
+        <strong>
+          chart:change
+          :
+        </strong>
+         
+        3
+        %
+      </li>
+      <li>
+        <strong>
+          chart:volume
+          : 
+        </strong>
+        $
+         
+        100
+      </li>
+    </ul>
+  </footer>
+</div>
+`;

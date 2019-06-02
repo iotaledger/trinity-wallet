@@ -7,11 +7,11 @@ import SeedStoreCore from './SeedStoreCore';
 class Ledger extends SeedStoreCore {
     /**
      * Init the vault
-     * @param {array} key - Account decryption key (unused)
-     * @param {string} accountId - Account identifier (unused)
+     * @param {array} _key - Account decryption key (unused)
+     * @param {string} _accountId - Account identifier (unused)
      * @param {object} accountMeta -  Account meta data
      */
-    constructor(key, accountId, accountMeta) {
+    constructor(_key, _accountId, accountMeta) {
         super();
 
         if (accountMeta && typeof accountMeta.index === 'number') {

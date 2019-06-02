@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Alleen aangepaste nodes met HTTPS zijn toegestaan.",
         "nodeDuplicated": "Node geduplificeerd",
         "nodeDuplicatedExplanation": "De aangepaste node wordt al vermeld.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Automatisch van node gewisseld",
         "nodeAutoChangedExplanation": "Gewisseld naar node {{- nodeAddress}} omdat de geselecteerde node offline is.",
         "touchSensor": "Raak de vingerafdruk sensor aan",
@@ -142,6 +144,8 @@
         "isYourBalanceCorrect": "Klopt uw saldo?",
         "ifYourBalanceIsNotCorrect": "Als uw saldo niet correct is, gebruikt u waarschijnlijk een pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Ga naar Geavanceerde instellingen en voer een Snapshot transitie uit.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Trinity Wallet gebruiken met Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Er was een netwerk fout tijdens het versturen van uw transactie.",
         "broadcastError": "Kon transactie niet verzenden",
@@ -429,7 +433,6 @@
         "redo": "Opnieuw",
         "aboutTrinity": "Over Trinity",
         "lockScreenTimeout": "Vergrendelscherm Time-out (Minuten)",
-        "autoNodeSwitching": "Wissel automatisch van node als de geselecteerde node onbereikbaar is",
         "nodeChangeSuccess": "Succesvol van node veranderd",
         "nodeChangeSuccessNoRemotePow": "De node was gewijzigd naar {{node}}. Deze node ondersteunt geen extern Bewijs van Inspanning.",
         "nodeChangeSuccessExplanation": "De node was gewijzigd naar {{node}}.",
@@ -489,6 +492,22 @@
         "addNewAccount": "Nieuw account toevoegen",
         "tools": "Hulpmiddelen"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Aangepaste node kon niet worden toegevoegd",
         "customNode": "Aangepaste node",
@@ -497,7 +516,11 @@
         "add": "Toevoegen",
         "nodeFieldEmpty": "Tekst veld is leeg",
         "nodeFieldEmptyExplanation": "Voer a.u.b. een aangepaste node in.",
-        "invalidURL": "Voer een geldige URL in."
+        "invalidURL": "Voer een geldige URL in.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Bestaande seed gebruiken",

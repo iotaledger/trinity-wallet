@@ -121,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "僅允許使用 HTTPS 的自訂節點。",
         "nodeDuplicated": "重複節點",
         "nodeDuplicatedExplanation": "自訂節點已在列表中。",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "自動切換節點",
         "nodeAutoChangedExplanation": "當選擇的節點斷線時切換到新的節點 {{- nodeAddress}}。",
         "touchSensor": "請輕觸指紋感應",
@@ -142,6 +144,8 @@
         "isYourBalanceCorrect": "您的餘額正確嗎？",
         "ifYourBalanceIsNotCorrect": "如果您的餘額不正確的話，有可能您最後一次使用種子碼是在快照發生之前。",
         "headToAdvancedSettingsForTransition": "前往進階設定然後執行快照轉換。",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "在 Trinity 錢包使用 Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "廣播您的交易時發生網路錯誤。",
         "broadcastError": "無法廣播交易",
@@ -165,7 +169,7 @@
         "missingPermission": "需要檔案系統權限",
         "missingPermissionExplanation": "這個功能必須擁有訪問檔案系統的權限。",
         "swipeToConfirm": "滑動來確認。",
-        "expert": "Expert"
+        "expert": "專家"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -429,7 +433,6 @@
         "redo": "重做",
         "aboutTrinity": "關於 Trinity",
         "lockScreenTimeout": "逾時鎖定螢幕 (分鐘)",
-        "autoNodeSwitching": "當無法連上所選節點時自動切換節點。",
         "nodeChangeSuccess": "成功變更節點",
         "nodeChangeSuccessNoRemotePow": "節點已變更為 {{node}}，不過此節點並不支援遠端工作量證明。",
         "nodeChangeSuccessExplanation": "節點已變更為 {{node}}。",
@@ -489,6 +492,22 @@
         "addNewAccount": "新增帳戶",
         "tools": "工具"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "自訂節點無法加入",
         "customNode": "自訂節點",
@@ -497,7 +516,11 @@
         "add": "新增",
         "nodeFieldEmpty": "文字欄為空",
         "nodeFieldEmptyExplanation": "請輸入自訂節點。",
-        "invalidURL": "請輸入有效的 URL。"
+        "invalidURL": "請輸入有效的 URL。",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "使用現有的種子碼",
@@ -658,12 +681,12 @@
         "invalidSeedFileError": "Invalid SeedVault file",
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key",
+        "retypeKey": "重新键入密钥",
         "key": "密鑰"
     },
     "stateExport": {
         "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
+        "exportSuccess": "輸出狀態",
         "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
@@ -693,19 +716,19 @@
     "progressSteps": {
         "checkingNodeHealth": "檢查節點運行狀況",
         "validatingReceiveAddress": "驗證收款地址",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "驗證交易地址",
         "syncingAccount": "同步帳戶中",
         "preparingInputs": "準備交易輸入",
         "preparingTransfers": "準備交易資訊",
         "gettingTransactionsToApprove": "取得交易確認",
         "proofOfWork": "完成工作量證明",
         "broadcasting": "廣播中",
-        "preparingData": "Preparing data",
+        "preparingData": "準備數據",
         "migratingSettings": "Migrating settings",
         "migratingAccounts": "Migrating accounts",
         "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "migrationComplete": "移植完成",
+        "transferComplete": "交易完成"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "無法完成快照轉換",
@@ -736,7 +759,7 @@
     "updates": {
         "errorRetrievingUpdateData": "取得更新資料時發生錯誤",
         "noUpdatesAvailable": "尚無更新",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "你有最新版的Trinity！",
         "newVersionAvailable": "有新版本可用",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "安裝更新並重啟",
@@ -801,9 +824,9 @@
         "notReady": "如果您想使用 Ledger 裝置，請立即連接並解鎖它",
         "indexInUse": "帳戶 {{account}} 已使用該索引",
         "indexInUseExplanation": "您所選的索引已經在您其中一個帳戶使用過了，請選擇其他索引號碼。",
-        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
-        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
-        "createNewLedgerAccount": "Create a new Ledger account",
+        "createNewLedgerAccountInfo": "確保記下並記住您的索引號",
+        "restoreLedgerAccountInfo": "輸入已保存的索引號以恢復您的帳戶",
+        "createNewLedgerAccount": "創建一個新的Ledger帳戶",
         "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "帳戶索引",
         "accountPage": "帳戶頁面",
@@ -830,13 +853,13 @@
         "ledgerIncorrectIndexExplanation": "連接的 Ledger 裝置與此帳戶不相符，或者回復字組已被更改。",
         "checkAddress": "檢查接收地址",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialised": "警告 未經證實",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
         "checkLedger": "Check your Ledger device",
         "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Could not communicate with Ledger device",
         "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue.",
-        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoTitle": "記住您的索引號",
         "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

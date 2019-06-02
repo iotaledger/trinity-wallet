@@ -116,6 +116,9 @@ const trytesToTrits = (input) => {
  * @returns {string} Output string
  */
 const tritsToChars = (trits) => {
+    if (!trits || !trits.length) {
+        return null;
+    }
     let chars = '';
     for (let i = 0; i < trits.length; i += 3) {
         const trit = trits.slice(i, i + 3).toString();

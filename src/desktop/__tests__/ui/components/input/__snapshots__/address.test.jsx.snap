@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Address component Render the component 1`] = `
+<div
+  className="input"
+>
+  <fieldset>
+    <a
+      onClick={[Function]}
+    >
+      <Icon
+        icon="camera"
+        size={16}
+      />
+    </a>
+    <input
+      data-tip="ABC"
+      maxLength={90}
+      onChange={[Function]}
+      type="text"
+      value="ABC"
+    />
+    <small>
+      Foo
+    </small>
+    <p
+      className="addressHidden"
+    >
+      ABC
+    </p>
+  </fieldset>
+</div>
+`;

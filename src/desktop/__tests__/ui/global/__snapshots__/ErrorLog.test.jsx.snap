@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorLog component Render the component 1`] = `
+<Modal
+  isOpen={false}
+  onClose={[Function]}
+  variant="global"
+>
+  <section
+    className="about"
+  >
+    <h5>
+      notificationLog:errorLog
+    </h5>
+    <article>
+      <Scrollbar>
+        <ul
+          className="log"
+        >
+          <li
+            key="log-0"
+          >
+            <strong>
+              DD/MM/YYYY HH:II
+            </strong>
+             
+            Foo
+          </li>
+          <li
+            key="log-1"
+          >
+            <strong>
+              DD/MM/YYYY HH:II
+            </strong>
+             
+            Foo
+          </li>
+          <li
+            key="log-2"
+          >
+            <strong>
+              DD/MM/YYYY HH:II
+            </strong>
+             
+            Foo
+          </li>
+          <li
+            key="log-3"
+          >
+            <strong>
+              DD/MM/YYYY HH:II
+            </strong>
+             
+            Foo
+          </li>
+          <li
+            key="log-4"
+          >
+            <strong>
+              DD/MM/YYYY HH:II
+            </strong>
+             
+            Foo
+          </li>
+          <li
+            key="log-5"
+          >
+            <strong>
+              DD/MM/YYYY HH:II
+            </strong>
+             
+            Foo
+          </li>
+          <li
+            key="log-6"
+          >
+            <strong>
+              DD/MM/YYYY HH:II
+            </strong>
+             
+            Foo
+          </li>
+          <li
+            key="log-7"
+          >
+            <strong>
+              DD/MM/YYYY HH:II
+            </strong>
+             
+            Foo
+          </li>
+          <li
+            key="log-8"
+          >
+            <strong>
+              DD/MM/YYYY HH:II
+            </strong>
+             
+            Foo
+          </li>
+          <li
+            key="log-9"
+          >
+            <strong>
+              DD/MM/YYYY HH:II
+            </strong>
+             
+            Foo
+          </li>
+        </ul>
+      </Scrollbar>
+    </article>
+    <footer>
+      <Button
+        onClick={[Function]}
+        variant="dark"
+      >
+        clear
+      </Button>
+      <Button
+        onClick={[Function]}
+        variant="dark"
+      >
+        close
+      </Button>
+    </footer>
+  </section>
+</Modal>
+`;

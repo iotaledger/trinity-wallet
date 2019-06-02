@@ -4,8 +4,11 @@ import map from 'lodash/map';
 import values from 'lodash/values';
 import omit from 'lodash/omit';
 import cloneDeep from 'lodash/cloneDeep';
+import size from 'lodash/size';
 import { createAndStoreBoxInKeychain, getSecretBoxFromKeychainAndOpenIt, keychain, ALIAS_SEEDS } from 'libs/keychain';
 import { sha256 } from 'libs/crypto';
+import { MAX_SEED_TRITS } from 'shared-modules/libs/iota/utils';
+import Errors from 'shared-modules/libs/errors';
 import { prepareTransfersAsync } from 'shared-modules/libs/iota/extendedApi';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
 import { getAddressGenFn, getMultiAddressGenFn, getSignatureFn } from 'libs/nativeModules';
@@ -108,11 +111,18 @@ class Keychain extends SeedStoreCore {
      */
     generateAddress = async (options) => {
         const seed = values(await this.getSeed());
+
+        if (seed instanceof Array === false || size(seed) !== MAX_SEED_TRITS) {
+            throw new Error(Errors.FOUND_INVALID_SEED_IN_KEYCHAIN);
+        }
+
         if (options.total && options.total > 1) {
             const genFn = getMultiAddressGenFn();
             const addressesTrits = await genFn(seed, options.index, options.security, options.total);
+
             return map(addressesTrits, (addressTrits) => tritsToChars(addressTrits));
         }
+
         const genFn = getAddressGenFn();
         const addressTrits = await genFn(seed, options.index, options.security);
         return tritsToChars(addressTrits);
