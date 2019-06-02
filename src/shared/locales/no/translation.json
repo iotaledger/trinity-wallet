@@ -495,16 +495,16 @@
     "nodeSettings": {
         "automaticNodeManagement": "Automatisk nodehåndtering",
         "addCustomNodes": "Legg til egendefinerte noder",
-        "autoNodeList": "Bruk ekstern liste over noder",
+        "autoNodeList": "Bruk liste med eksterne noder",
         "nodeAutoswitching": "Automatisk endring av primærnode",
         "primaryNode": "Primærnode",
         "enableQuorum": "Aktiver quorum",
         "quorumSize": "Quorum-størrelse",
         "noCustomNodes": "Ingen egendefinerte noder",
-        "mustAddCustomNodes": "Du må legge til minst en egendefinert node før du deaktiverer den eksterne listen over noder.",
+        "mustAddCustomNodes": "Du må legge til minst en egendefinert node før du deaktiverer listen med eksterne noder.",
         "nodeEnoughNodesTitle": "Det er ikke lagt til nok noder",
         "nodeEnoughNodesExplanation": "Det er ikke nok noder for å aktivere quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Legg til flere egendefinerte noder eller aktiver den eksterne listen over noder.",
+        "nodeEnoughNodesExplanationCustomNodes": "Legg til flere egendefinerte noder eller aktiver listen med eksterne noder.",
         "nodeSettingsUpdatedTitle": "Node-innstillinger oppdatert",
         "nodeSettingsUpdatedExplanation": "Du har oppdatert node-innstillingene dine."
     },
@@ -520,7 +520,7 @@
         "addAuthKey": "Legg til auth-nøkkel",
         "username": "Brukernavn",
         "couldNotRemove": "Kunne ikke fjerne egendefinert node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "Det må være nok noder for quorum. Reduser quorum-størrelsen eller aktiver listen med eksterne noder."
     },
     "addNewAccount": {
         "useExistingSeed": "Bruk eksisterende hovednøkkel",
