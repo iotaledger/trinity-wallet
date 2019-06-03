@@ -44,7 +44,7 @@
     "concurrently": "4.1.0",
     "cross-env": "5.2.0",
     "css-loader": "2.1.1",
-    "dart-sass": "1.20.1",
+    "dart-sass": "1.20.3",
     "electron": "3.1.9",
     "electron-builder": "20.41.0",
     "electron-devtools-installer": "2.2.4",
