@@ -515,7 +515,7 @@
         "invalidNodeResponse": "Der Node hat eine ungültige Antwort zurückgegeben",
         "add": "Hinzufügen",
         "nodeFieldEmpty": "Textfeld ist leer",
-        "nodeFieldEmptyExplanation": "Bitte einen benutzerdefinierten Node eintragen.",
+        "nodeFieldEmptyExplanation": "Trage die Adresse eines Nodes in das Textfeld ein.",
         "invalidURL": "Bitte gib eine gültige Adresse ein.",
         "addAuthKey": "Authentifizierung hinzufügen",
         "username": "Benutzername",
