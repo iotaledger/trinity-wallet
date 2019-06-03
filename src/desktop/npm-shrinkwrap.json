@@ -4911,9 +4911,9 @@
       "dev": true
     },
     "electron": {
-      "version": "3.1.9",
-      "resolved": "https://registry.npmjs.org/electron/-/electron-3.1.9.tgz",
-      "integrity": "sha512-F9AoMjY9zuQBdxmjZz644wHnJehNlYD+WQK2kBMXKoRKrzkYgD5k6QU6mqZuT5OGARpYp9zFOJ8uuJVcAB+TbQ==",
+      "version": "3.1.10",
+      "resolved": "https://registry.npmjs.org/electron/-/electron-3.1.10.tgz",
+      "integrity": "sha512-IORdmdD5gWHmp3ffa+ZRD9kESJwdmQz8carDTeza6+W76dG447AUn7GmKk4cun31bLYTKb56D8pPhxa9S7kOZQ==",
       "dev": true,
       "requires": {
         "@types/node": "^8.0.24",
