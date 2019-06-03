@@ -496,7 +496,7 @@
         "automaticNodeManagement": "Automatický výběr Nodu",
         "addCustomNodes": "Přidat vlastní Nody",
         "autoNodeList": "Použít vzdálený seznam Nodů",
-        "nodeAutoswitching": "Primary node autoswitching",
+        "nodeAutoswitching": "Automatické přepínání primárního Nodu",
         "primaryNode": "Primární Node",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
