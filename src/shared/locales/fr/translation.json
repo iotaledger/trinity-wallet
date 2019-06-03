@@ -859,7 +859,7 @@
         "acceptWarningExplanation": "Si vous avez un avertissement sur votre Ledger, vous devez le faire défiler et l'accepter en appuyant sur les deux boutons.",
         "udevError": "Impossible de communiquer avec le Ledger",
         "udevErrorExplanation": "Trinity n'a pas pu communiquer avec votre Ledger. Veuillez visiter l'URL ci-dessous pour résoudre ce problème.",
-        "writtenDownInfoTitle": "Remember your index number",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "writtenDownInfoTitle": "Souvenez-vous de votre numéro d'index",
+        "writtenDownInfoExplanation": "Vous avez besoin de votre numéro d'index pour restaurer votre compte à l'avenir. Si vous perdez votre numéro d'index, vous perdrez vos IOTA. Veuillez vous en souvenir."
     }
 }
