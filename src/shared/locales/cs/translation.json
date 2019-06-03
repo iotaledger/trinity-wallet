@@ -504,7 +504,7 @@
         "mustAddCustomNodes": "Před vypnutím seznamu vzdálených Nodů musíte přidat alespoň jeden vlastní Node.",
         "nodeEnoughNodesTitle": "Bylo přidáno příliš málo Nodů",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeEnoughNodesExplanationCustomNodes": "Přidejte další vlastní Nody, nebo povolte vzdálený seznam Nodů.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
         "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
     },
