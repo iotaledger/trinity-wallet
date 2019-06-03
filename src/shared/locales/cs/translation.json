@@ -517,9 +517,9 @@
         "nodeFieldEmpty": "Textové pole je prázdné",
         "nodeFieldEmptyExplanation": "Prosím vložte Vlastní Node.",
         "invalidURL": "Zadejte prosím platnou adresu URL.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
+        "addAuthKey": "Přidat autorizační klíč",
+        "username": "Uživatelské jméno",
+        "couldNotRemove": "Nelze odebrat vlastní Node",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
