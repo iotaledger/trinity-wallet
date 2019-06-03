@@ -144,7 +144,7 @@
         "isYourBalanceCorrect": "Votre solde est-il correct ?",
         "ifYourBalanceIsNotCorrect": "Si votre solde n’est pas correct, il est probable que vous utilisiez une seed antérieure à un snapshot.",
         "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuez une Transition de snapshot.",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "headToAccountTools": "Accédez aux outils de compte et effectuez une Transition du Snapshot.",
         "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Utilisation de Trinity avec Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Une erreur réseau est survenue lors de la retransmission de votre transaction.",
