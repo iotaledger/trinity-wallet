@@ -15,6 +15,7 @@ import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode, quorum } from 'libs/iota';
 import { initialise as initialiseStorage } from 'storage';
 import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
+import updateSchema from 'libs/updateSchema';
 
 import Index from 'ui/Index';
 import Tray from 'ui/Tray';
@@ -56,8 +57,10 @@ const init = () => {
 
                 return JSON.parse(data);
             })
-            .then((data) => {
-                if (!isEmpty(data)) {
+            .then((persistedData) => {
+                if (!isEmpty(persistedData)) {
+                    const data = updateSchema(persistedData);
+
                     // Change provider on global iota instance
                     const node = get(data, 'settings.node');
                     changeIotaNode(assign({}, node, { provider: node.url }));
