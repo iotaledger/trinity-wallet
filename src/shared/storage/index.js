@@ -647,6 +647,18 @@ class Wallet {
     }
 
     /**
+     * Updates system proxy settings.
+     *
+     * @method updateIgnoreProxySetting
+     * @param {object} payload
+     */
+    static updateIgnoreProxySetting(enabled) {
+        realm.write(() => {
+            Wallet.latestSettings.ignoreProxy = enabled;
+        });
+    }
+
+    /**
      * Updates error log.
      *
      * @method updateErrorLog

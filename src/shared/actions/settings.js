@@ -759,10 +759,14 @@ export const setNotifications = (payload) => {
  *
  * @returns {{type: {string}, payload: {boolean} }}
  */
-export const setProxy = (payload) => ({
-    type: ActionTypes.SET_PROXY,
-    payload,
-});
+export const setProxy = (payload) => {
+    Wallet.updateIgnoreProxySetting(payload);
+
+    return {
+        type: ActionTypes.SET_PROXY,
+        payload,
+    };
+};
 
 /**
  * Changes deep linking setting and generates alert
