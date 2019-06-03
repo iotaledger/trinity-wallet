@@ -517,10 +517,10 @@
         "nodeFieldEmpty": "यह फील्ड रिक्त है।",
         "nodeFieldEmptyExplanation": "कृपया कोई कस्टम नोड दर्ज करें ।",
         "invalidURL": "मान्य URL दर्ज करे",
-        "addAuthKey": "Add auth key",
+        "addAuthKey": "Auth key जोड़े",
         "username": "उपयोगकर्ता का नाम",
         "couldNotRemove": "कस्टम नोड को हटाया नहीं जा सका",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "कोरम के लिए पर्याप्त नोड होना चाहिए। कोरम का आकार कम करें या दूरस्थ नोड सूची को सक्षम करें"
     },
     "addNewAccount": {
         "useExistingSeed": "मौजूदा सीड का उपयोग करें",
