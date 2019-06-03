@@ -1,9 +1,9 @@
 import { initialState as settingsState } from 'reducers/settings';
 
 /**
- * Update state object schema
- * @param {object} input - Schema object to update
- * @returns {object} - Update schema object
+ * Update state object schema to current wallet version
+ * @param {object} input - target state object
+ * @returns {object} - updated state object
  */
 const updateSchema = (input) => {
     const state = Object.assign({}, input);
