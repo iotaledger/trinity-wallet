@@ -121,7 +121,7 @@
         "nodeMustUseHTTPSExplanation": "Podporovány jsou pouze Nody podporující protokol HTTPS.",
         "nodeDuplicated": "Duplicitní Node",
         "nodeDuplicatedExplanation": "Tento vlastní Node je již v seznamu.",
-        "customNodeAdded": "Custom node added",
+        "customNodeAdded": "Vlastní Node přidán",
         "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Automatické přepnutí Nodu",
         "nodeAutoChangedExplanation": "Přepnuto na nový Node {{- nodeAddress}} jelikož dříve vybraný je offline.",
@@ -493,11 +493,11 @@
         "tools": "Nástroje"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
+        "automaticNodeManagement": "Automatický výběr Nodu",
         "addCustomNodes": "Přidat vlastní Nody",
         "autoNodeList": "Použít vzdálený seznam Nodů",
         "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
+        "primaryNode": "Primární Node",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
