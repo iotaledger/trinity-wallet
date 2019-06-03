@@ -495,7 +495,7 @@
     "nodeSettings": {
         "automaticNodeManagement": "Gestion automatique des serveurs",
         "addCustomNodes": "Ajouter un serveur personnalisé",
-        "autoNodeList": "Utiliser une liste de serveurs distants",
+        "autoNodeList": "Utiliser la liste de serveurs distants",
         "nodeAutoswitching": "Changement automatique de serveur primaire",
         "primaryNode": "Serveur primaire",
         "enableQuorum": "Activer le mécanisme de quorum",
@@ -503,10 +503,10 @@
         "noCustomNodes": "Aucun serveur personnalisé",
         "mustAddCustomNodes": "Vous devez ajouter au moins un serveur personnalisé avant de désactiver la liste des serveurs distants.",
         "nodeEnoughNodesTitle": "Pas assez de serveurs ajoutés",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeEnoughNodesExplanation": "Il n'y a pas assez de serveurs pour activer le mécanisme de quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Ajoutez plus de serveurs personnalisés ou activez la liste des serveurs distants.",
+        "nodeSettingsUpdatedTitle": "Paramètres du serveur mis à jour",
+        "nodeSettingsUpdatedExplanation": "Vous avez mis à jour vos paramètres de serveur avec succès."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Le serveur personnalisé n'a pas pu être ajouté",
@@ -517,10 +517,10 @@
         "nodeFieldEmpty": "Le champ texte est vide",
         "nodeFieldEmptyExplanation": "Veuillez entrer un serveur personnalisé.",
         "invalidURL": "Veuillez saisir une URL valide.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "addAuthKey": "Ajouter une \"auth key\" (clé d'identification)",
+        "username": "Nom d'utilisateur",
+        "couldNotRemove": "Impossible de supprimer le serveur personnalisé",
+        "couldNotRemoveExplanation": "Il doit y avoir assez de serveurs pour le mécanisme de quorum. Réduisez la taille du quorum ou activez la liste des serveurs distants."
     },
     "addNewAccount": {
         "useExistingSeed": "Utiliser une seed existante",
@@ -825,7 +825,7 @@
         "indexInUse": "Index déjà utilisé pour le compte {{account}}",
         "indexInUseExplanation": "L'index que vous avez choisi est déjà utilisé sur l’un de vos comptes. Veuillez choisir un autre numéro d’index.",
         "createNewLedgerAccountInfo": "Assurez-vous de noter et de vous souvenir de votre numéro d'index.",
-        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "restoreLedgerAccountInfo": "Entrez votre numéro d'index enregistré pour restaurer votre compte.",
         "createNewLedgerAccount": "Create a new Ledger account",
         "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Index du compte",
