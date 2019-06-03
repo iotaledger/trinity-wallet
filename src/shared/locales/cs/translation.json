@@ -494,8 +494,8 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
+        "addCustomNodes": "Přidat vlastní Nody",
+        "autoNodeList": "Použít vzdálený seznam Nodů",
         "nodeAutoswitching": "Primary node autoswitching",
         "primaryNode": "Primary node",
         "enableQuorum": "Enable quorum",
