@@ -496,7 +496,7 @@
         "automaticNodeManagement": "Automatic node management",
         "addCustomNodes": "Ajouter un serveur personnalisé",
         "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
+        "nodeAutoswitching": "Changement automatique de serveur primaire",
         "primaryNode": "Serveur primaire",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
