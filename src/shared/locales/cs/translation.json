@@ -505,7 +505,7 @@
         "nodeEnoughNodesTitle": "Bylo přidáno příliš málo Nodů",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Přidejte další vlastní Nody, nebo povolte vzdálený oficiální seznam Nodů.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedTitle": "Nastavení Nodu bylo aktualizováno",
         "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
     },
     "addCustomNode": {
