@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 
 import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'libs/i18n';
@@ -153,4 +153,4 @@ const mapDispatchToProps = {
     setLocale,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Welcome));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Welcome));
