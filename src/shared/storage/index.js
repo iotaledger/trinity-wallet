@@ -873,6 +873,8 @@ const initialise = (getEncryptionKeyPromise) => {
         realm = new Realm(assign({}, schemas[schemasSize - 1], { encryptionKey }));
 
         initialiseSync();
+
+        return Promise.resolve();
     });
 };
 
