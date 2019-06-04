@@ -46,6 +46,7 @@ let language = {
     no: 'No',
     updates: {
         errorRetrievingUpdateData: 'Error retrieving update data',
+        errorRetrievingUpdateDataExplanation: 'Could not retrieve update. Please check your internet connection and try again.',
         noUpdatesAvailable: 'No updates available',
         noUpdatesAvailableExplanation: 'You have the latest version of Trinity!',
         newVersionAvailable: 'New version available',
@@ -70,7 +71,7 @@ autoUpdater.on('error', (error) => {
     }
     dialog.showErrorBox(
         language.updates.errorRetrievingUpdateData,
-        error === null ? 'unknown' : (error.stack || error).toString(),
+        language.updates.errorRetrievingUpdateDataExplanation,
     );
 });
 
