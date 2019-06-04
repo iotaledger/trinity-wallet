@@ -122,7 +122,7 @@
         "nodeDuplicated": "Serveur dupliqué",
         "nodeDuplicatedExplanation": "Le serveur personnalisé est déjà répertorié.",
         "customNodeAdded": "Serveur personnalisé ajouté",
-        "customNodeAddedExplanation": "Vous avez ajouté {{nodeAddress}} avec succès en tant que nœud personnalisé.",
+        "customNodeAddedExplanation": "Vous avez ajouté {{nodeAddress}} en tant que serveur personnalisé avec succès.",
         "nodeAutoChanged": "Changement automatique de serveur",
         "nodeAutoChangedExplanation": "Passage au nouveau serveur {{- nodeAddress}} car le serveur sélectionné est hors ligne.",
         "touchSensor": "Veuillez toucher le capteur d'empreinte digitale",
@@ -144,8 +144,8 @@
         "isYourBalanceCorrect": "Votre solde est-il correct ?",
         "ifYourBalanceIsNotCorrect": "Si votre solde n’est pas correct, il est probable que vous utilisiez une seed antérieure à un snapshot.",
         "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuez une Transition de snapshot.",
-        "headToAccountTools": "Accédez aux outils de compte et effectuez une Transition du Snapshot.",
-        "openAccountTools": "Ouvrez les outils de compte",
+        "headToAccountTools": "Rendez-vous sur les Outils de Compte et effectuez une Transition du Snapshot.",
+        "openAccountTools": "Ouvrez les Outils de Compte",
         "usingTrinityWalletWithKeePass": "Utilisation de Trinity avec Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Une erreur réseau est survenue lors de la retransmission de votre transaction.",
         "broadcastError": "Impossible de transmettre la transaction",
@@ -505,7 +505,7 @@
         "nodeEnoughNodesTitle": "Pas assez de serveurs ajoutés",
         "nodeEnoughNodesExplanation": "Il n'y a pas assez de serveurs pour activer le mécanisme de quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Ajoutez plus de serveurs personnalisés ou activez la liste des serveurs distants.",
-        "nodeSettingsUpdatedTitle": "Paramètres du serveur mis à jour",
+        "nodeSettingsUpdatedTitle": "Paramètres de serveur mis à jour",
         "nodeSettingsUpdatedExplanation": "Vous avez mis à jour vos paramètres de serveur avec succès."
     },
     "addCustomNode": {
@@ -517,7 +517,7 @@
         "nodeFieldEmpty": "Le champ texte est vide",
         "nodeFieldEmptyExplanation": "Veuillez entrer un serveur personnalisé.",
         "invalidURL": "Veuillez saisir une URL valide.",
-        "addAuthKey": "Ajouter une \"auth key\" (clé d'identification)",
+        "addAuthKey": "Ajouter une clé d'identification",
         "username": "Nom d'utilisateur",
         "couldNotRemove": "Impossible de supprimer le serveur personnalisé",
         "couldNotRemoveExplanation": "Il doit y avoir assez de serveurs pour le mécanisme de quorum. Réduisez la taille du quorum ou activez la liste des serveurs distants."
@@ -658,7 +658,7 @@
     "seedVault": {
         "exportSeedVault": "Exporter SeedVault",
         "seedVaultExplanation": "Un SeedVault est un fichier crypté pour stocker votre seed en toute sécurité. La seed est encryptée à l'aide d'une clé SeedVault et n'est pas accessible sans ce mot de passe.",
-        "seedVaultWarning": "Assurez-bous de conserver le fichier en plusieurs endroits (par ex. disque dur, cloud, USB). Si vous perdez ce fichier et que vous n'avez pas stocké votre seed ailleurs, vous perdrez vos IOTA.",
+        "seedVaultWarning": "Assurez-vous de conserver le fichier en plusieurs endroits (par ex. disque dur, cloud, USB). Si vous perdez ce fichier et que vous n'avez pas stocké votre seed ailleurs, vous perdrez vos IOTA.",
         "exportFail": "Échec de l'exportation de SeedVault",
         "exportFailExplanation": "Il y a eu un problème lors de l'exportation de SeedVault. Veuillez vous assurer que vous avez les autorisations requises et suffisamment d'espace libre.",
         "exportSuccess": "SeedVault exporté",
