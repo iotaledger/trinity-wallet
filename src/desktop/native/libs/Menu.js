@@ -46,7 +46,8 @@ let language = {
     no: 'No',
     updates: {
         errorRetrievingUpdateData: 'Error retrieving update data',
-        errorRetrievingUpdateDataExplanation: 'Could not retrieve update. Please check your internet connection and try again.',
+        errorRetrievingUpdateDataExplanation:
+            'Could not retrieve update. Please check your internet connection and try again.',
         noUpdatesAvailable: 'No updates available',
         noUpdatesAvailableExplanation: 'You have the latest version of Trinity!',
         newVersionAvailable: 'New version available',
@@ -64,7 +65,7 @@ autoUpdater.autoDownload = false;
 /**
  * On update error event callback
  */
-autoUpdater.on('error', (error) => {
+autoUpdater.on('error', () => {
     const mainWindow = getWindow('main');
     if (mainWindow) {
         mainWindow.webContents.send('update.progress', false);

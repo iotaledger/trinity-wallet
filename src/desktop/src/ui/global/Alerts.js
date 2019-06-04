@@ -24,8 +24,6 @@ export class AlertsComponent extends React.PureComponent {
         /** @ignore */
         shouldUpdate: PropTypes.bool.isRequired,
         /** @ignore */
-        isUpdating: PropTypes.bool.isRequired,
-        /** @ignore */
         displayTestWarning: PropTypes.bool.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -33,15 +31,12 @@ export class AlertsComponent extends React.PureComponent {
 
     state = {
         dismissUpdate: false,
+        isUpdating: false,
     };
 
     componentDidMount() {
         this.onStatusChange = this.statusChange.bind(this);
         Electron.onEvent('update.progress', this.onStatusChange);
-    }
-
-    componentWillUnmount() {
-        Electron.removeEvent('update.progress', this.onStatusChange);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -55,11 +50,25 @@ export class AlertsComponent extends React.PureComponent {
         }
     }
 
+    componentWillUnmount() {
+        Electron.removeEvent('update.progress', this.onStatusChange);
+    }
+
     closeAlert() {
         if (this.timeout) {
             clearTimeout(this.timeout);
         }
         this.props.dismissAlert();
+    }
+
+    /**
+     * Update update in progress state
+     * @param {object} progress - Current update progress percent
+     */
+    statusChange(progress) {
+        this.setState({
+            isUpdating: typeof progress === 'object',
+        });
     }
 
     renderFullWidthAlert(title, explanation, dismissable, onClick) {
@@ -75,16 +84,6 @@ export class AlertsComponent extends React.PureComponent {
                 )}
             </section>
         );
-    }
-
-    /**
-     * Update update in progress state
-     * @param {object} progress - Current update progress percent
-     */
-    statusChange(progress) {
-        this.setState({
-            isUpdating: typeof progress === 'object',
-        });
     }
 
     render() {
@@ -104,12 +103,14 @@ export class AlertsComponent extends React.PureComponent {
                 {!dismissUpdate &&
                     displayTestWarning &&
                     this.renderFullWidthAlert(`${t('rootDetection:warning')}:`, t('global:testVersionWarning'), true)}
-                {!isUpdating && !dismissUpdate &&
+                {!isUpdating &&
+                    !dismissUpdate &&
                     shouldUpdate &&
                     this.renderFullWidthAlert(t('global:shouldUpdate'), t('global:shouldUpdateExplanation'), true, () =>
                         Electron.autoUpdate(),
                     )}
-                {!isUpdating && forceUpdate &&
+                {!isUpdating &&
+                    forceUpdate &&
                     this.renderFullWidthAlert(t('global:forceUpdate'), t('global:forceUpdateExplanation'), false, () =>
                         Electron.autoUpdate(),
                     )}
