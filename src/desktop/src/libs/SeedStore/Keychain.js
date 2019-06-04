@@ -1,6 +1,6 @@
 /* global Electron */
 import { ACC_MAIN, sha256, encrypt, decrypt } from 'libs/crypto';
-import { ALIAS_REALM } from 'libs/realm';
+import { ALIAS_REALM } from 'libs/constants';
 import { tritsToChars, byteToTrit } from 'libs/iota/converter';
 import { prepareTransfersAsync } from 'libs/iota/extendedApi';
 

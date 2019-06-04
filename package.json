@@ -18,7 +18,7 @@
     "lint:shared": "./node_modules/.bin/eslint src/shared/",
     "lint:desktop": "./node_modules/.bin/eslint src/desktop/",
     "format": "prettier --write \"**/*.{js,json,css}\"",
-    "test:all": "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../",
+    "test:all": "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../desktop/ && yarn test && cd ../",
     "deps:shared": "cd src/shared && yarn && cd ../..",
     "deps:mobile": "cd src/mobile && yarn && cd ../..",
     "deps:desktop": "cd src/desktop && npm install && cd ../..",
@@ -35,13 +35,12 @@
     ]
   },
   "devDependencies": {
-    "auditjs": "^3.1.1",
     "babel-eslint": "^10.0.1",
     "eslint": "^4.18.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-native": "^3.7.0",
@@ -50,7 +49,7 @@
     "prettier": "^1.17.1"
   },
   "dependencies": {
-    "snyk": "^1.165.0"
+    "snyk": "^1.171.1"
   },
   "resolutions": {
     "request": ">=2.88.0",

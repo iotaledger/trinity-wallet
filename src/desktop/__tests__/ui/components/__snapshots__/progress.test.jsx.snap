@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Progress component Render the component 1`] = `
+<div
+  className="progress large"
+>
+  <p>
+    Dolor sit amet
+  </p>
+  <div>
+    <div
+      className="bar"
+      style={
+        Object {
+          "width": "45%",
+        }
+      }
+    />
+  </div>
+  <small>
+    Lorem ipsum
+  </small>
+</div>
+`;

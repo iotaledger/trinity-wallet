@@ -59,4 +59,5 @@ export default {
     LEDGER_DENIED: 'Ledger transaction denied by user',
     LEDGER_INVALID_INDEX: 'Incorrect Ledger device or changed mnemonic',
     REQUEST_TIMED_OUT: 'Request timed out',
+    FOUND_INVALID_SEED_IN_KEYCHAIN: 'Found invalid seed in keychain',
 };

@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Node nije sinhronizovan",
         "nodeOutOfSyncExplanation": "Trenutno izabrani node nije sinhronizovan. Promenite node ili pokušajte ponovo.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Node version not supported",
         "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Ovaj node nije sinhronizovan. Promenite node ili pokušajte ponovo.",
@@ -120,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Dozvoljeni su samo prilagođeni node-ovi koji koriste HTPPS protokol.",
         "nodeDuplicated": "Duplirani node",
         "nodeDuplicatedExplanation": "Prilagođeni node je već na listi.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Automatski promenjen node",
         "nodeAutoChangedExplanation": "Prebacivanje na novi node {{- nodeAddress}} jer je izabrani node van mreže.",
         "touchSensor": "Touch the fingerprint sensor",
@@ -141,6 +144,8 @@
         "isYourBalanceCorrect": "Da li je vaš saldo tačan?",
         "ifYourBalanceIsNotCorrect": "Ako vaš saldo nije tačan, razlog je verovatno to što koristite seed pre izvršenog snimanja stanja (snapshot).",
         "headToAdvancedSettingsForTransition": "Otvorite Napredne postavke i izvršite Snapshot tranziciju.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Upotreba Trinity novčanika s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Došlo je do mrežne greške tokom emitovanja transakcije.",
         "broadcastError": "Nije moguće emitovati transfer",
@@ -160,9 +165,11 @@
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Potrebna dozvola za pristup sistemu datoteka",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
-        "swipeToConfirm": "Swipe to confirm"
+        "swipeToConfirm": "Swipe to confirm",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedozvoljene znakove",
@@ -426,7 +433,6 @@
         "redo": "Ponovi",
         "aboutTrinity": "O Trinity novčaniku",
         "lockScreenTimeout": "Period neaktivnosti pre zaključavanja ekrana (minuti)",
-        "autoNodeSwitching": "Automatski promeni node kada je izabrani node nedostupan",
         "nodeChangeSuccess": "Uspešno promenjen node",
         "nodeChangeSuccessNoRemotePow": "Node je promenjen u {{node}}. Ovaj node ne podržava udaljeni PoW.",
         "nodeChangeSuccessExplanation": "Node je promenjen u {{node}}.",
@@ -486,6 +492,22 @@
         "addNewAccount": "Dodaj novi račun",
         "tools": "Alati"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nije bilo moguće dodati prilagođeni node",
         "customNode": "Prilagođeni node",
@@ -494,7 +516,11 @@
         "add": "Dodaj",
         "nodeFieldEmpty": "Tekstualno polje je prazno",
         "nodeFieldEmptyExplanation": "Molimo unesite prilagođeni node.",
-        "invalidURL": "Molimo unesite ispravni URL."
+        "invalidURL": "Molimo unesite ispravni URL.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Upotrebi postojeći seed",
@@ -798,13 +824,16 @@
         "notReady": "Ako želite da koristite Ledge, povežite ga i otklljučajte",
         "indexInUse": "Indeks se već koristi za račun {{account}}",
         "indexInUseExplanation": "Vaš izabrani indeks se već koristi na jednom od vaših računa. Izaberite drugi indeks.",
-        "proceedWithLedger": "Nastavite sa postavkom Ledger novčanika",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Indeks računa",
         "accountPage": "Strana računa",
         "actionCancelled": "Ledger device access cancelled",
         "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Izaberite indeks Ledger računa",
-        "accountIndexExplanation": "Vaš Ledger može sačuvati višestruke seed-ove. Svaki seed se identifikuje jedinstvenim brojem indeksa. Nekorišćeni indeks je unapred odabran, ali slobodni ste da izaberete drugi. Obavezno zapišite odabrani broj indeksa.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Neki novčanici trećih strana zahtevaju strane.",
         "connectionError": "Nije moguće povezivanje sa Ledger novčanikom",
         "connectionErrorExplanation": "Proverite da li je Ledger povezan i otključan.",
@@ -826,7 +855,11 @@
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Palvelin ei onnistunut noutamaan tilisi tietojasi. Mikäli ongelma jatkuu koita vaihtaa noodi tai ottaa järjestelmäsi välityspalvelin pois käytöstä Trinityn asetuksista.",
         "nodeOutOfSync": "Palvelin ei ole ajantasalla",
         "nodeOutOfSyncExplanation": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen tai yritä uudestaan.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Palvelin versiota ei tueta",
         "experimentalNodeExplanation": "Valitsemasi palvelin toimii testiversiossa mitä ei tueta. Ole hyvä ja vaihda palvelin tai yritä uudestaan.",
         "thisNodeOutOfSync": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen.",
@@ -120,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Voit lisätä vain palvelimia jotka tukevat HTTPS yhteyttä.",
         "nodeDuplicated": "Palvelin on jo olemassa",
         "nodeDuplicatedExplanation": "Omavalintainen palvelin on jo lisätty.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Palvelinta vaihdettu automaattisesti",
         "nodeAutoChangedExplanation": "Yhteys siirretty palvelimeen {{- nodeAddress}} koska alkuperäinen palvelin ei vastaa.",
         "touchSensor": "Kosketa sormenjälkitunnistinta",
@@ -141,6 +144,8 @@
         "isYourBalanceCorrect": "Näkyykö saldosi oikein?",
         "ifYourBalanceIsNotCorrect": "Jos saldosi ei näy oikein, seed-lukusi ei ole ajantasalla.",
         "headToAdvancedSettingsForTransition": "Voin korjata tämän valitsemalla Lisäasetukset ja Snapshot-avustaja.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Trinity lompakon käyttö Keepas2Android sovelluksen kanssa",
         "signedTrytesBroadcastErrorExplanation": "Verkkovirhe tapahtuman päivityksessä.",
         "broadcastError": "Siirtoa ei voitu edistää",
@@ -160,9 +165,11 @@
         "shouldUpdateExplanation": "Uusi päivitys on saatavilla. Suosittelemme päivittämään uusimpaan versioon.",
         "forceUpdate": "Päivitä sovellus jatkaaksesi",
         "forceUpdateExplanation": "Tärkeä päivitys on julkaistu. Ole hyvä ja päivitä sovellus.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
         "missingPermissionExplanation": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan suorittaaksesi tämän toiminnon.",
-        "swipeToConfirm": "Pyyhkäise vahvistaaksesi"
+        "swipeToConfirm": "Pyyhkäise vahvistaaksesi",
+        "expert": "Edistynyt"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -426,7 +433,6 @@
         "redo": "Toista",
         "aboutTrinity": "Lisätietoja sovelluksesta",
         "lockScreenTimeout": "Näytön aikalukitus (minuuttia)",
-        "autoNodeSwitching": "Vaihda palvelinta automaattisesti jos nykyinen palvelin ei vastaa",
         "nodeChangeSuccess": "Palvelin vaihdettiin onnistuneesti",
         "nodeChangeSuccessNoRemotePow": "Uusi palvelin on {{node}}. Tämä palvelin ei tue laskentatyöntekoa (PoW).",
         "nodeChangeSuccessExplanation": "Uusi palvelin on {{node}}.",
@@ -486,6 +492,22 @@
         "addNewAccount": "Lisää uusi tili",
         "tools": "Työkalut"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Palvelinta ei voitu lisätä",
         "customNode": "Omavalintainen palvelin",
@@ -494,7 +516,11 @@
         "add": "Lisää",
         "nodeFieldEmpty": "Tekstikenttä on tyhjä",
         "nodeFieldEmptyExplanation": "Anna omavalintaisen palvelin osoite.",
-        "invalidURL": "Syötä kelvollinen URL-osoite."
+        "invalidURL": "Syötä kelvollinen URL-osoite.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Käytä olemassaolevaa seed-lukua",
@@ -798,13 +824,16 @@
         "notReady": "Mikäli haluat käyttää Ledger-laitetta, yhdistä se nyt ja avaa sen lukitus",
         "indexInUse": "Indeksi on jo käytössä tilille {{account}}",
         "indexInUseExplanation": "Valitsemasi indeksi on jo käytössä toisessa tilissäsi. Valitse toinen indeksinumero.",
-        "proceedWithLedger": "Jatka Ledgerin määrittämistä",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Tili hakemisto",
         "accountPage": "Tili sivu",
         "actionCancelled": "Ledger laitteen käyttö estetty",
         "actionCancelledExplanation": "Ei voida suorittaa toimintoa ilman Ledger laitteen yhteyttä",
         "chooseAccountIndex": "Valitse Ledgerin käyttäjä hakemisto",
-        "accountIndexExplanation": "Ledger pystyy tallentamaan useita Seed-lukuja. Jokainen Seed-luku tunnistetaan yksilöllisellä indeksinumerolla. Käyttämätön indeksi on ennaltavalittu, mutta voit vapaasti valita oman. Varmista, että olet merkinnyt valitun indeksinumeron ylös.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Eräät kolmannen osapuolen lompakot vaativat sivut.",
         "connectionError": "Ledgeriin yhdistäminen ei onnistu",
         "connectionErrorExplanation": "Tarkista, että Ledger-laitteesi on yhdistettu ja lukituksesta avattu.",
@@ -826,7 +855,11 @@
         "checkAddressExplanation": "Tarkista, että osoite vastaa Ledger-laitteessa näkyvää osoitetta.",
         "applicationNotInitialised": "Varoitusta ei ole vahvistettu",
         "applicationNotInitialisedExplanation": "Avaa IOTA-sovellus uudelleen Ledger-laitteessa, hyväksy informatiivinen varoitus ja yritä uudelleen.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Ledger-laitteen yhdistäminen epäonnistui",
-        "udevErrorExplanation": "Trinity ei voinut yhdistää Ledger-laitteeseen. Vieraile alla olevalla verkkosivulla ratkaistaksesi ongelman."
+        "udevErrorExplanation": "Trinity ei voinut yhdistää Ledger-laitteeseen. Vieraile alla olevalla verkkosivulla ratkaistaksesi ongelman.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

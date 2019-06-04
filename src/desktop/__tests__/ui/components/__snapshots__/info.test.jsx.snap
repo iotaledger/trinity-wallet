@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Info component Render the component 1`] = `
+<div
+  className="wrapper"
+>
+  <Icon
+    icon="info"
+    size={28}
+  />
+  Lorem ipsum
+</div>
+`;

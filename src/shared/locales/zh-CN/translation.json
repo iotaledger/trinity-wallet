@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "在获取你的账户信息时，节点出现了一个错误。如果这个问题仍旧存在，请尝试更换节点或者在Trinity 设置中，取消系统代理。",
         "nodeOutOfSync": "节点不同步",
         "nodeOutOfSyncExplanation": "当前选定的节点不同步，请更换节点或重试。",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "不支持的节点版本",
         "experimentalNodeExplanation": "您当前选定的节点正在运行不受支持的实验性版本。请更改节点或重试。",
         "thisNodeOutOfSync": "此节点不同步，请更换节点或重试。",
@@ -120,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "仅允许使用HTTPS的自定义节点。",
         "nodeDuplicated": "重复节点",
         "nodeDuplicatedExplanation": "该自定义节点已经存在于内置节点列表中。",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "自动切换节点",
         "nodeAutoChangedExplanation": "当选定的节点离线时切换到新节点{{- nodeAddress}}",
         "touchSensor": "触摸指纹传感器",
@@ -141,6 +144,8 @@
         "isYourBalanceCorrect": "您的余额是正确的吗？",
         "ifYourBalanceIsNotCorrect": "如果余额不正确，很可能是因为您使用了快照前的种子。",
         "headToAdvancedSettingsForTransition": "请前往高级设置并执行快照转换。",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "结合Keepass2Android使用Trinity钱包",
         "signedTrytesBroadcastErrorExplanation": "广播您的交易时出现网络错误。",
         "broadcastError": "无法广播交易",
@@ -160,9 +165,11 @@
         "shouldUpdateExplanation": "新的更新已发布。建议您更新到最新版本。",
         "forceUpdate": "更新应用以继续",
         "forceUpdateExplanation": "已发布关键更新。请立即更新应用程序。",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "需要文件系统权限",
         "missingPermissionExplanation": "本功能需要具备文件系统访问权限。",
-        "swipeToConfirm": "滑动以确认"
+        "swipeToConfirm": "滑动以确认",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -426,7 +433,6 @@
         "redo": "重做",
         "aboutTrinity": "关于 Trinity",
         "lockScreenTimeout": "锁定屏幕超时(分钟)",
-        "autoNodeSwitching": "当选定的节点不可访问时自动切换节点。",
         "nodeChangeSuccess": "成功更改了节点",
         "nodeChangeSuccessNoRemotePow": "节点已经更改为{{node}}。此节点不支持远程工作量证明。",
         "nodeChangeSuccessExplanation": "该节点已经更改为{{node}}。",
@@ -486,6 +492,22 @@
         "addNewAccount": "添加新帐户",
         "tools": "工具"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "无法添加自定义节点",
         "customNode": "自定义节点",
@@ -494,7 +516,11 @@
         "add": "新增",
         "nodeFieldEmpty": "文本字段为空",
         "nodeFieldEmptyExplanation": "请输入自定义节点。",
-        "invalidURL": "请输入有效的URL"
+        "invalidURL": "请输入有效的URL",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "使用现有种子",
@@ -798,13 +824,16 @@
         "notReady": "如果您希望使用Ledger设备，请连上并解锁。",
         "indexInUse": "账户 {{account}} 已经使用该索引",
         "indexInUseExplanation": "您所选的索引已经在您其中一个帐户使用过了，请选择其他索引号码。",
-        "proceedWithLedger": "进行Ledger设置",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "账户索引",
         "accountPage": "账户页面",
         "actionCancelled": "Ledger设备访问已取消",
         "actionCancelledExplanation": "不能在无法访问Ledger设备的情况下执行操作。",
         "chooseAccountIndex": "选择您的Ledger账户索引",
-        "accountIndexExplanation": "您的Ledger可以存储多个种子。每个种子都由一个唯一的索引号码。系统已经预先选择未使用的索引，但您也可以随意选择自己的索引。请务必记下您选择的索引号码。",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "一些第三方钱包需要pages。",
         "connectionError": "无法连接至Ledger",
         "connectionErrorExplanation": "检查您的Ledger是否已连接并解锁。",
@@ -826,7 +855,11 @@
         "checkAddressExplanation": "检查地址是否与Ledger设备上显示的地址匹配。",
         "applicationNotInitialised": "未经确认的警告",
         "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "无法与Ledger 设备进行通信",
-        "udevErrorExplanation": "Trinity 无法与您的Ledger 设备通信。请访问以下网址来解决这个问题。"
+        "udevErrorExplanation": "Trinity 无法与您的Ledger 设备通信。请访问以下网址来解决这个问题。",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

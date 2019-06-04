@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "O servidor retornou um erro durante a busca de informações de sua conta. Se o problema persistir, tente alterar o servidor ou desative o proxy do sistema em configurações da Trinity.",
         "nodeOutOfSync": "Servidor não sincronizado",
         "nodeOutOfSyncExplanation": "O servidor selecionado não está sincronizado. Por favor, altere o servidor e tente novamente.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Versão do servidor não suportado",
         "experimentalNodeExplanation": "Seu servidor selecionado está executando uma versão experimental que não é suportada. Por favor, altere o servidor ou tente novamente.",
         "thisNodeOutOfSync": "O servidor selecionado não está sincronizado. Por favor, altere o servidor e tente novamente.",
@@ -120,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Somente servidores com HTTPS são permitidos.",
         "nodeDuplicated": "Servidor duplicado",
         "nodeDuplicatedExplanation": "Servidor personalizado já existe.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Troca automática de servidor",
         "nodeAutoChangedExplanation": "Substituição para o novo servidor {{- nodeAddress}} sendo que o servidor selecionado está offline.",
         "touchSensor": "Toque no sensor de impressão digital",
@@ -141,6 +144,8 @@
         "isYourBalanceCorrect": "Seu saldo está correto?",
         "ifYourBalanceIsNotCorrect": "Se seu saldo estiver incorreto, é provável que você esteja usando uma seed criada antes do último snapshot.",
         "headToAdvancedSettingsForTransition": "Vá até as Opções Avançadas e realize uma Transição de Snapshot.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Usando a carteira Trinity com Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Houve um erro ao processar sua transação.",
         "broadcastError": "Não foi possível enviar transação",
@@ -160,9 +165,11 @@
         "shouldUpdateExplanation": "Uma nova atualização foi lançada. É recomendável você atualizar para a versão mais recente.",
         "forceUpdate": "Atualize o aplicativo para continuar",
         "forceUpdateExplanation": "Foi lançada uma atualização importante. Por favor, atualize o aplicativo agora.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Permissões do sistema de arquivo necessárias",
         "missingPermissionExplanation": "O acesso ao sistema de arquivos é necessário para executar esta função.",
-        "swipeToConfirm": "Deslize para confirmar"
+        "swipeToConfirm": "Deslize para confirmar",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -426,7 +433,6 @@
         "redo": "Refazer",
         "aboutTrinity": "Sobre a Trinity",
         "lockScreenTimeout": "Tempo para o Bloqueio da Tela (minutos)",
-        "autoNodeSwitching": "Mudar de servidor automaticamente quando o servidor selecionado estiver inacessível",
         "nodeChangeSuccess": "Servidor alterado com sucesso",
         "nodeChangeSuccessNoRemotePow": "O servidor foi alterado para {{node}}. Este servidor não oferece suporte de prova de trabalho remoto.",
         "nodeChangeSuccessExplanation": "O servidor foi alterado para {{node}}.",
@@ -486,6 +492,22 @@
         "addNewAccount": "Adicionar nova Conta",
         "tools": "Ferramentas"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Servidor personalizado não pôde ser adicionado",
         "customNode": "Servidor personalizado",
@@ -494,7 +516,11 @@
         "add": "Adicionar",
         "nodeFieldEmpty": "O campo de texto está vazio",
         "nodeFieldEmptyExplanation": "Por favor, insira um servidor personalizado.",
-        "invalidURL": "Por favor, insira uma URL válida."
+        "invalidURL": "Por favor, insira uma URL válida.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Usar Seed existente",
@@ -798,13 +824,16 @@
         "notReady": "Se você deseja usar um dispositivo de Ledger, conecte e desbloqueie agora",
         "indexInUse": "Índice já em uso para conta {{account}}",
         "indexInUseExplanation": "Índice escolhido já está em uso em uma das suas contas. Por favor escolha outro número de índice.",
-        "proceedWithLedger": "Continuar com a configuração de Ledger",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Índice de conta",
         "accountPage": "Página da conta",
         "actionCancelled": "Acesso de dispositivo Ledger cancelado",
         "actionCancelledExplanation": "Não é possível executar a ação sem acesso ao dispositivo Ledger.",
         "chooseAccountIndex": "Escolha o seu índice da conta Ledger",
-        "accountIndexExplanation": "Seu Ledger pode armazenar varias Seeds. Cada Seed é identificada por um número de índice único. Um índice ainda não usado foi pre-selecionado, mas sinta-se a vontade de escolher o seu próprio. Certifique-se de anotar o número do índice escolhido.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Algumas carteiras de terceiros exigem páginas.",
         "connectionError": "Não foi possível conectar-se ao Ledger",
         "connectionErrorExplanation": "Verifique se seu Ledger está conectado e desbloqueado.",
@@ -826,7 +855,11 @@
         "checkAddressExplanation": "Verifique se o endereço é igual ao endereço no dispositivo Ledger.",
         "applicationNotInitialised": "Aviso não confirmado",
         "applicationNotInitialisedExplanation": "Reabra o aplicativo IOTA no seu dispositivo Ledger, aceite o aviso e tente novamente.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Falha ao comunicar com o dispositivo Ledger",
-        "udevErrorExplanation": "A Trinity não pôde se comunicar com o seu dispositivo Ledger. Por favor, visite o link abaixo para resolver este problema."
+        "udevErrorExplanation": "A Trinity não pôde se comunicar com o seu dispositivo Ledger. Por favor, visite o link abaixo para resolver este problema.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Düğüm, hesap bilgilerinizi alırken bir hata döndürdü. Sorununuz devam ederse, Trinity Ayarlarında düğümü değiştirmeyi veya sistem proxy'nizi devre dışı bırakmayı deneyin.",
         "nodeOutOfSync": "Ağ senkronize değil",
         "nodeOutOfSyncExplanation": "Seçtiğiniz node senkronize değil. Lütfen node değiştirin veya tekrar deneyin.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Düğüm sürümü desteklenmiyor",
         "experimentalNodeExplanation": "Seçili olan düğümünüz desteklenmeyen deneysel bir sürümü çalıştırıyor. Lütfen düğümü değiştirin veya tekrar deneyin.",
         "thisNodeOutOfSync": "Seçtiğiniz node senkronize değil. Lütfen node değiştirin veya tekrar deneyin.",
@@ -120,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Sadece HTTPS kullanan özel ağlar geçerlidir.",
         "nodeDuplicated": "Yineleyen ağ",
         "nodeDuplicatedExplanation": "Özel ağ zaten listelenmiş.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Ağ otomatik olarak değiştirildi",
         "nodeAutoChangedExplanation": "Seçilen ağ çevrimdışı olduğu için yeni ağa {{- nodeAddress}} geçildi.",
         "touchSensor": "Parmak izi sensörüne dokunun",
@@ -141,6 +144,8 @@
         "isYourBalanceCorrect": "Bakiyeniz doğru mu?",
         "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Trinity cüzdanını Keepass2Android ile kullan",
         "signedTrytesBroadcastErrorExplanation": "İşleminizi yayınlarken bir ağ hatası oluştu.",
         "broadcastError": "Transfer yayınlanamadı",
@@ -160,9 +165,11 @@
         "shouldUpdateExplanation": "Yeni bir güncelleme yayınlandı. En son sürüme güncellemeniz önerilir.",
         "forceUpdate": "Devam etmek için uygulamayı güncelleyin",
         "forceUpdateExplanation": "Kritik bir güncelleme yayınlandı. Lütfen uygulamayı güncelleyin.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Dosya sistemi izni gerekli",
         "missingPermissionExplanation": "Bu işlevi gerçekleştirmek için dosya sistemine erişim gereklidir.",
-        "swipeToConfirm": "Onaylamak için kaydırın"
+        "swipeToConfirm": "Onaylamak için kaydırın",
+        "expert": "Expert"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
@@ -426,7 +433,6 @@
         "redo": "Tekrarla",
         "aboutTrinity": "Trinity hakkında",
         "lockScreenTimeout": "Kilit Ekranı Zaman Aşımı (Dakika)",
-        "autoNodeSwitching": "Seçili ağa ulaşılamazsa otomatik olarak ağ değiştir",
         "nodeChangeSuccess": "Ağ başaıyla değiştirildi",
         "nodeChangeSuccessNoRemotePow": "Node {{node}} olarak değiştirildi. Bu node İş Kanıtını desteklemiyor.",
         "nodeChangeSuccessExplanation": "Ağ {{node}} olarak değiştirildi.",
@@ -486,6 +492,22 @@
         "addNewAccount": "Yeni hesap ekle",
         "tools": "Araçlar"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Özel ağ eklenemedi",
         "customNode": "Özel düğüm",
@@ -494,7 +516,11 @@
         "add": "Ekle",
         "nodeFieldEmpty": "Bu alan boş",
         "nodeFieldEmptyExplanation": "Lütfen özel ağınızı girin.",
-        "invalidURL": "Lütfen geçerli bir URL giriniz."
+        "invalidURL": "Lütfen geçerli bir URL giriniz.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Mevcut kaynağı kullan",
@@ -798,13 +824,16 @@
         "notReady": "Bir Ledger cihazı kullanmak istiyorsanız, şimdi bağlayın ve kilidini açın",
         "indexInUse": "Dizin zaten {{account}} hesabı için kullanımda",
         "indexInUseExplanation": "Seçtiğiniz dizin hesaplarınızdan birinde zaten kullanılıyor. Lütfen başka bir dizin numarası seçin.",
-        "proceedWithLedger": "Ledger kurulumu ile devam et",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Hesap dizini",
         "accountPage": "Hesap sayfası",
         "actionCancelled": "Ledger cihazına erişim iptal edildi",
         "actionCancelledExplanation": "Ledger cihaza erişim olmadan işlem gerçekleştirilemiyor.",
         "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Ledger'iniz birden fazla seed saklayabilir. Her seed benzersiz bir indeks numarası ile tanımlanır. Kullanılmayan bir indeks önceden seçilmiş, ancak kendinizinkini seçmek için çekinmeyin. Seçtiğiniz indeks numarasını not ettiğinizden emin olun.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Bazı üçüncü taraf cüzdanlar sayfa gerektirir.",
         "connectionError": "Ledger'e bağlanılamıyor",
         "connectionErrorExplanation": "Ledger'inizin bağlı ve kilitli olmadığını kontrol edin.",
@@ -826,7 +855,11 @@
         "checkAddressExplanation": "Adresin, Ledger cihazınızda gösterilenle aynı olduğunu kontrol edin.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Ledger cihazınızdaki IOTA uygulamasını yeniden açın, bilgi uyarısını kabul edin ve tekrar deneyin.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Ledger cihazı ile iletişim kurulamadı",
-        "udevErrorExplanation": "Trinity, Ledger cihazınızla iletişim kuramadı. Bu sorunu çözmek için lütfen aşağıdaki bağlantıyı ziyaret edin."
+        "udevErrorExplanation": "Trinity, Ledger cihazınızla iletişim kuramadı. Bu sorunu çözmek için lütfen aşağıdaki bağlantıyı ziyaret edin.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

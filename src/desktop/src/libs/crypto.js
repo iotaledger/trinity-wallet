@@ -1,6 +1,5 @@
 /* global Electron */
-import { MAX_SEED_LENGTH } from 'libs/iota/utils';
-import { ALIAS_REALM } from 'libs/realm';
+import { ALIAS_REALM } from 'libs/constants';
 
 export const ACC_MAIN = 'Trinity';
 // Maximum allowed account title
@@ -28,15 +27,6 @@ export const randomBytes = (size, max = 256) => {
     }
 
     return Array.from(bytes);
-};
-
-/**
- * Create random seed
- * @param {number} length - Random seed length
- * @returns {array} Random byte array seed
- */
-export const createRandomSeed = (length = MAX_SEED_LENGTH) => {
-    return randomBytes(length, 27);
 };
 
 /**
@@ -211,15 +201,13 @@ export const hash = async (inputPlain) => {
  * @returns {string} Output string
  */
 const bufferToHex = (buffer) => {
-    const hexCodes = [];
-    const view = new DataView(buffer);
-    for (let i = 0; i < view.byteLength; i += 4) {
-        const value = view.getUint32(i);
-        const stringValue = value.toString(16);
-        const padding = '00000000';
-        const paddedValue = (padding + stringValue).slice(-padding.length);
-        hexCodes.push(paddedValue);
+    const view = new Uint8Array(buffer);
+    let result = '';
+
+    for (let i = 0; i < view.length; i++) {
+        const value = view[i].toString(16);
+        result += value.length === 1 ? '0' + value : value;
     }
 
-    return hexCodes.join('');
+    return result;
 };

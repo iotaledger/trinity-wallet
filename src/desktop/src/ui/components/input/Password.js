@@ -12,7 +12,7 @@ import css from './input.scss';
 /**
  * Password input component
  */
-class PasswordInput extends React.PureComponent {
+export class PasswordComponent extends React.PureComponent {
     static propTypes = {
         /** Current password value */
         value: PropTypes.string.isRequired,
@@ -136,4 +136,4 @@ class PasswordInput extends React.PureComponent {
     }
 }
 
-export default withI18n()(PasswordInput);
+export default withI18n()(PasswordComponent);

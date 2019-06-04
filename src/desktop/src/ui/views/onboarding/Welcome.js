@@ -4,12 +4,15 @@ import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 
-import { acceptTerms, acceptPrivacy } from 'actions/settings';
+import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'libs/i18n';
+import i18next from 'libs/i18next';
+
+import { acceptTerms, acceptPrivacy, setLocale } from 'actions/settings';
 
 import { enTermsAndConditionsIOS, deTermsAndConditionsIOS, enPrivacyPolicyIOS, dePrivacyPolicyIOS } from 'markdown';
 
 import Button from 'ui/components/Button';
-import Language from 'ui/components/input/Language';
+import Select from 'ui/components/input/Select';
 import Scrollbar from 'ui/components/Scrollbar';
 
 import css from './welcome.scss';
@@ -35,6 +38,8 @@ class Welcome extends React.PureComponent {
         acceptTerms: PropTypes.func.isRequired,
         /** @ignore */
         acceptPrivacy: PropTypes.func.isRequired,
+        /** @ignore */
+        setLocale: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -72,6 +77,11 @@ class Welcome extends React.PureComponent {
         }
     };
 
+    changeLanguage = (language) => {
+        this.props.setLocale(language);
+        i18next.changeLanguage(language);
+    };
+
     render() {
         const { forceUpdate, language, t } = this.props;
         const { step, scrollEnd } = this.state;
@@ -90,7 +100,14 @@ class Welcome extends React.PureComponent {
                     {step === 'language' ? (
                         <React.Fragment>
                             <h1>{t('welcome:thankYou')}</h1>
-                            <Language />
+                            <Select
+                                label={t('languageSetup:language')}
+                                value={I18N_LOCALE_LABELS[I18N_LOCALES.indexOf(language)]}
+                                onChange={this.changeLanguage}
+                                options={I18N_LOCALES.map((item, index) => {
+                                    return { value: item, label: I18N_LOCALE_LABELS[index] };
+                                })}
+                            />
                         </React.Fragment>
                     ) : (
                         <React.Fragment>
@@ -111,6 +128,7 @@ class Welcome extends React.PureComponent {
                         onClick={this.onNextClick}
                         className="square"
                         variant="primary"
+                        id="to-seed-intro"
                     >
                         {step === 'language'
                             ? t('continue')
@@ -132,6 +150,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     acceptTerms,
     acceptPrivacy,
+    setLocale,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Welcome));

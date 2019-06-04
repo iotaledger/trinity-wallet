@@ -25,7 +25,7 @@ import css from './input.scss';
 /**
  * Seed input component
  */
-class SeedInput extends React.PureComponent {
+export class SeedComponent extends React.PureComponent {
     static propTypes = {
         /** Current seed value */
         seed: PropTypes.array.isRequired,
@@ -155,7 +155,13 @@ class SeedInput extends React.PureComponent {
     };
 
     getCursor = (element) => {
-        const range = document.getSelection().getRangeAt(0);
+        const selection = document.getSelection();
+
+        if (!selection || selection.rangeCount < 1) {
+            return [this.props.seed.length, this.props.seed.length];
+        }
+
+        const range = selection.getRangeAt(0);
 
         const preCaretRange = range.cloneRange();
         preCaretRange.selectNodeContents(element);
@@ -408,4 +414,4 @@ const mapDispatchToProps = {
 export default connect(
     null,
     mapDispatchToProps,
-)(withI18n()(SeedInput));
+)(withI18n()(SeedComponent));

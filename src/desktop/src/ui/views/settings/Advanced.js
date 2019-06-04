@@ -5,7 +5,8 @@ import { withI18n, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
-import { getEncryptionKey, ALIAS_REALM } from 'libs/realm';
+import { getEncryptionKey } from 'libs/realm';
+import { ALIAS_REALM } from 'libs/constants';
 
 import {
     changePowSettings,
@@ -351,7 +352,4 @@ const mapDispatchToProps = {
     setProxy,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withI18n()(Advanced));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Advanced));
