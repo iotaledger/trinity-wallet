@@ -120,12 +120,12 @@ autoUpdater.on('update-downloaded', () => {
             message: language.updates.installUpdateExplanation,
         },
         () => {
-            setImmediate(() => {
+            setTimeout(() => {
                 const mainWindow = getWindow('main');
                 mainWindow.removeAllListeners('close');
                 app.removeAllListeners('window-all-closed');
                 autoUpdater.quitAndInstall();
-            });
+            }, 0);
         },
     );
 });
