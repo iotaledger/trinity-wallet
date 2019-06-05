@@ -169,7 +169,7 @@
     "react-markdown": "4.0.8",
     "react-qr-reader": "2.2.1",
     "react-redux": "5.1.1",
-    "react-router-dom": "5.0.0",
+    "react-router-dom": "5.0.1",
     "react-transition-group": "4.1.0",
     "realm": "2.23.0",
     "recharts": "1.6.2",
