@@ -309,6 +309,14 @@ const Electron = {
     },
 
     /**
+     * Reload Wallet window to initial location
+     * @returns {undefined}
+     */
+    reload: () => {
+        remote.getCurrentWindow().webContents.goToIndex(0);
+    },
+
+    /**
      * Focus main wallet window
      * @param {string} view - optional view to navigate to
      */

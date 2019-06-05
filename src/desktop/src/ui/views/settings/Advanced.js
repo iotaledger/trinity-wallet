@@ -45,10 +45,6 @@ class Advanced extends PureComponent {
         /** @ignore */
         setProxy: PropTypes.func.isRequired,
         /** @ignore */
-        history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
-        }).isRequired,
-        /** @ignore */
         setNotifications: PropTypes.func.isRequired,
         /** @ignore */
         changePowSettings: PropTypes.func.isRequired,
@@ -102,17 +98,16 @@ class Advanced extends PureComponent {
      * @returns {undefined}
      */
     resetWallet = async () => {
-        const { t, generateAlert, history } = this.props;
+        const { t, generateAlert } = this.props;
 
         try {
-            history.push('/');
-
             await clearVault(ALIAS_REALM);
             localStorage.clear();
             Electron.clearStorage();
 
             await reinitialiseStorage(getEncryptionKey);
-            location.reload();
+
+            Electron.reload();
         } catch (_err) {
             generateAlert(
                 'error',
