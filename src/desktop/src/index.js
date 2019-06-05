@@ -65,6 +65,9 @@ const init = () => {
                     Electron.storeUpdate(JSON.stringify(data));
                 });
 
+                // Update language to initial setting
+                i18next.changeLanguage(data.settings.locale);
+
                 // Start Tray application if enabled in settings
                 const isTrayEnabled = get(data, 'settings.isTrayEnabled');
                 Electron.setTray(isTrayEnabled);
