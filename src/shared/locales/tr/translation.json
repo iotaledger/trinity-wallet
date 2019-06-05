@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Güncelleme bilgisi alınırken hata oluştu",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Kullanılabilir güncelleme yok",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Yeni versiyon mevcut",
