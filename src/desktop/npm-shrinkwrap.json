@@ -7553,9 +7553,9 @@
       }
     },
     "i18next": {
-      "version": "17.0.0",
-      "resolved": "https://registry.npmjs.org/i18next/-/i18next-17.0.0.tgz",
-      "integrity": "sha512-Qnkaq9MZl+xKuCjyqD2qN+Pz4sLe2PqGrPsCi2qLFXAiDyq0xntK1e2JhKSR9RXqU/dlD3bEs86S56adj8AyzA==",
+      "version": "17.0.1",
+      "resolved": "https://registry.npmjs.org/i18next/-/i18next-17.0.1.tgz",
+      "integrity": "sha512-pg+RxJWoqEt4JtueOkoxXshivtmsf8u0SuTYQTSB5cUTNWUyw/Py3zF//A/vd5FEUaiooyPCNNJ94leQ8J4JEQ==",
       "requires": {
         "@babel/runtime": "^7.3.1"
       }
