@@ -18,7 +18,7 @@ exports[`About component Render the component 1`] = `
     </h1>
     <h2>
       v
-      0.5.1
+      0.5.2
        
       <small>
         BETA
@@ -26,6 +26,26 @@ exports[`About component Render the component 1`] = `
     </h2>
     <article>
       <Scrollbar>
+        <h5>
+          0.5.2
+        </h5>
+        <ul>
+          <li>
+            Fix: Chart and price API calls
+          </li>
+          <li>
+            Fix: Skip retry failed transactions when password is not available 
+          </li>
+          <li>
+            Fix: Fix: Ledger onboarding loading forever without reporting an error
+          </li>
+          <li>
+            Fix: Linux wallet incorrectly reporting "Missing security dependencies"
+          </li>
+          <li>
+            Update: Add Snapshot Transition reminder when an existing seed is added with 0 balance
+          </li>
+        </ul>
         <h5>
           0.5.1
         </h5>

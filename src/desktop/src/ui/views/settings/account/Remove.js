@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { generateAlert } from 'actions/alerts';
@@ -124,4 +124,4 @@ const mapDispatchToProps = {
     deleteAccount,
 };
 
-export default connect(null, mapDispatchToProps)(withI18n()(Remove));
+export default connect(null, mapDispatchToProps)(withTranslation()(Remove));
