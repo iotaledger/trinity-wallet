@@ -90,7 +90,7 @@ class Login extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (!prevProps.completedMigration && this.props.completedMigration) {
+        if (this.state.shouldMigrate && !prevProps.completedMigration && this.props.completedMigration) {
             this.setupAccount();
         }
     }
