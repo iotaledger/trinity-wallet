@@ -572,6 +572,7 @@ const Electron = {
             no: t('no'),
             updates: {
                 errorRetrievingUpdateData: t('updates:errorRetrievingUpdateData'),
+                errorRetrievingUpdateDataExplanation: t('updates:errorRetrievingUpdateDataExplanation'),
                 noUpdatesAvailable: t('updates:noUpdatesAvailable'),
                 noUpdatesAvailableExplanation: t('updates:noUpdatesAvailableExplanation'),
                 newVersionAvailable: t('updates:newVersionAvailable'),
