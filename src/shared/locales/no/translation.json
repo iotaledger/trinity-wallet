@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Feil under henting av oppdaterte data",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Ingen tilgjengelige oppdateringer",
         "noUpdatesAvailableExplanation": "Du har den nyeste versjonen av Trinity!",
         "newVersionAvailable": "Ny versjon tilgjengelig",
