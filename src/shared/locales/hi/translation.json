@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "अपडेट डेटा पुनर्प्राप्त करने में त्रुटि",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "कोई अपडेट उपलब्ध नहीं",
         "noUpdatesAvailableExplanation": "आपके पास ट्रिनिटी का नवीनतम संस्करण है!",
         "newVersionAvailable": "नया संस्करण उपलब्ध है",
