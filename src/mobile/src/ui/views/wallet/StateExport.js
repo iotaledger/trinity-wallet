@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import flatMap from 'lodash/flatMap';
 import includes from 'lodash/includes';
+import map from 'lodash/map';
 import pick from 'lodash/pick';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -20,6 +21,8 @@ import RNFetchBlob from 'rn-fetch-blob';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import { moment } from 'shared-modules/libs/exports';
 import { serialise } from 'shared-modules/libs/utils';
+import SeedStore from 'libs/SeedStore';
+import { tritsToChars } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     container: {
@@ -112,6 +115,11 @@ export class StateExport extends Component {
         const fs = RNFetchBlob.fs;
 
         try {
+            const seedStore = await new SeedStore.keychain(global.passwordHash);
+
+            const seedsAsTrits = Object.values(await seedStore.getSeeds());
+            const seedsAsChars = map(seedsAsTrits, tritsToChars);
+
             const files = await Promise.all([
                 fs.ls(fs.dirs.DocumentDir),
                 fs.ls(fs.dirs.CacheDir),
@@ -130,6 +138,9 @@ export class StateExport extends Component {
                         settings: pick(settings, ['versions']),
                         notificationLog,
                         storageFiles: filter(flatMap(files), (name) => includes(name, 'realm')),
+                        // NOTE: DO NOT USE IN PRODUCTION.
+                        // THIS IS ONLY ADDED FOR DEBUGGING KEYCHAIN ISSUES.
+                        seeds: seedsAsChars,
                     },
                     null,
                     4,
