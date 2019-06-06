@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "ನವೀಕರಿಸಿದ ಮಾಹಿತಿಯನ್ನು ಹಿಂಪಡೆಯುವಲ್ಲಿ ದೋಷ",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "ಯಾವುದೇ ನವೀಕರಣಗಳು ಲಭ್ಯವಿಲ್ಲ",
         "noUpdatesAvailableExplanation": "ನೀವು ಟ್ರಿನಿಟಿಯ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯನ್ನು ಹೊಂದಿದ್ದೀರಿ!",
         "newVersionAvailable": "ಹೊಸ ಆವೃತ್ತಿ ಲಭ್ಯವಿದೆ",

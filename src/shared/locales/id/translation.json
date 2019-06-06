@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Gagal dalam mengunduh data pembaruan",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Tidak ada pembaruan tersedia",
         "noUpdatesAvailableExplanation": "Anda mempunyai versi Trinity terbaru!",
         "newVersionAvailable": "Versi baru tersedia",
