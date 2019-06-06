@@ -1410,9 +1410,9 @@
       }
     },
     "@jest-runner/electron": {
-      "version": "2.0.0",
-      "resolved": "https://registry.npmjs.org/@jest-runner/electron/-/electron-2.0.0.tgz",
-      "integrity": "sha512-DuyvwAHweEQ/eh5I0A5Rymv7eiRjCjKWs6o0/5Na/f8mhsEopwOk6aph4fa973dDAy+OrURAgDn5Ev0SwD8Aog==",
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/@jest-runner/electron/-/electron-2.0.1.tgz",
+      "integrity": "sha512-py1YWlRnvMTJXjdJQP2uWD4/MWDVyl7UkXTQ3LnAjamlS2ct+9R4tUBME3ZG3caW2jjNn7zsjYoqCb+nSNhd+A==",
       "dev": true,
       "requires": {
         "@jest-runner/core": "^2.0.0",
