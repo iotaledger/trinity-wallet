@@ -501,12 +501,12 @@
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
         "noCustomNodes": "Vartotojo serverių nėra",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "mustAddCustomNodes": "Jūs privalote pridėti bent vieną vartotojo serverį prieš išjungiant nuotolinį serverių sąrašą.",
+        "nodeEnoughNodesTitle": "Pridėta nepakankamai serverių",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeSettingsUpdatedTitle": "Serverio nustatymai atnaujinti",
+        "nodeSettingsUpdatedExplanation": "Jūs sėkmingai atnaujinote serverio nustatymus."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",
