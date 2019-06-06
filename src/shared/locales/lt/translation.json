@@ -479,10 +479,10 @@
         "pleaseWait": "Prašome palaukti, Trinity iškelia kitą paketą.",
         "typeHelp": "Rašykite !help norėdami sužinoti galimas komandas",
         "searchHelpText": "Ieškoti pagal paketo šifrą arba žinutės turinį",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpValue": "Rasti pavedimus pagal tikslią iota vertę",
+        "searchHelpUnits": "Rasti pavedimus pagal iota vertę ir vienetą",
+        "searchHelpMore": "Rasti pavedimus su verte didesne nei X",
+        "searchHelpLess": "Rasti pavedimus su verte mažesne nei X"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -493,14 +493,14 @@
         "tools": "Įrankiai"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
+        "automaticNodeManagement": "Automatinis serverio valdymas",
+        "addCustomNodes": "Pridėti vartotojo serverius",
+        "autoNodeList": "Naudotis nuotoliniu serverių sąrašu",
         "nodeAutoswitching": "Primary node autoswitching",
         "primaryNode": "Primary node",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
+        "noCustomNodes": "Vartotojo serverių nėra",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
         "nodeEnoughNodesTitle": "Not enough nodes added",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
