@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba pri získavaní aktualizačných dát",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Nie sú dostupné žiadne aktualizácie",
         "noUpdatesAvailableExplanation": "Používate aktuálnu verziu Trinity!",
         "newVersionAvailable": "K dispozícií je nová verzia",

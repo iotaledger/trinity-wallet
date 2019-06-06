@@ -1,7 +1,7 @@
 /* global Electron */
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 import { byteToChar, capitalize } from 'libs/iota/converter';
@@ -187,4 +187,4 @@ class Seed extends PureComponent {
     }
 }
 
-export default withI18n()(Seed);
+export default withTranslation()(Seed);

@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -210,4 +210,4 @@ const mapDispatchToProps = {
     markTaskAsDone,
 };
 
-export default withRouter(withI18n()(connect(mapStateToProps, mapDispatchToProps)(Wallet)));
+export default withRouter(withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Wallet)));

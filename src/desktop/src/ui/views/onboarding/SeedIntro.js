@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { withI18n, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 
 import { setAccountInfoDuringSetup } from 'actions/accounts';
 
@@ -137,7 +137,4 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(
-    null,
-    mapDispatchToProps,
-)(withI18n()(SeedIntro));
+export default connect(null, mapDispatchToProps)(withTranslation()(SeedIntro));
