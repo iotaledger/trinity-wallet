@@ -169,7 +169,9 @@
         "missingPermission": "ファイルシステム権限が必要です",
         "missingPermissionExplanation": "この機能を実行するには、ファイルシステムへのアクセス権限が必要です。",
         "swipeToConfirm": "スワイプして確認する",
-        "expert": "上級者"
+        "expert": "上級者",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -502,7 +504,7 @@
         "quorumSize": "定足数サイズ",
         "noCustomNodes": "カスタムノードがありません",
         "mustAddCustomNodes": "リモートノードリストを無効にする前に最低1つのカスタムノードを追加する必要があります。",
-        "nodeEnoughNodesTitle": "追加されたノードが足りません",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "定足数を有効にするための十分なノードがありません。",
         "nodeEnoughNodesExplanationCustomNodes": "カスタムノードが追加するか、リモートノードリストを有効化してください。",
         "nodeSettingsUpdatedTitle": "ノード設定更新完了",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "ノード選択",
-        "addCustomNode": "カスタムノードの追加",
         "manualSync": "手動同期",
         "snapshotTransition": "スナップショットの移行",
         "pow": "プルーフ・オブ・ワーク",
