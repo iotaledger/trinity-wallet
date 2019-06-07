@@ -368,5 +368,5 @@ export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(withTranslation()(withAutoNodeSwitching(App))),
+    )(withTranslation()(App)),
 );
