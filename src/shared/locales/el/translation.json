@@ -169,7 +169,9 @@
         "missingPermission": "Απαιτείται άδεια συστήματος αρχείων",
         "missingPermissionExplanation": "Για την εκτέλεση αυτής της λειτουργίας απαιτείται πρόσβαση στο αρχείο συστήματος.",
         "swipeToConfirm": "Σύρετε για επιβεβαίωση",
-        "expert": "Expert"
+        "expert": "Expert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Το seed σας περιέχει μη έγκυρους χαρακτήρες",
@@ -502,7 +504,7 @@
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Επιλέξτε κόμβο",
-        "addCustomNode": "Προσθήκη προσαρμοσμένου κόμβου",
         "manualSync": "Χειροκίνητος συγχρονισμός",
         "snapshotTransition": "Στιγμιότυπο μετάβασης",
         "pow": "Απόδειξη της εργασίας",
