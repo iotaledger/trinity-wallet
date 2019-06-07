@@ -169,7 +169,9 @@
         "missingPermission": "Izin akses File System dibutuhkan",
         "missingPermissionExplanation": "Akses ke sistem file diperlukan untuk menjalankan fungsi ini.",
         "swipeToConfirm": "Geser untuk mengonfirmasi",
-        "expert": "Ahli"
+        "expert": "Ahli",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -502,7 +504,7 @@
         "quorumSize": "Ukuran Quorum",
         "noCustomNodes": "Tidak ada Node kostum",
         "mustAddCustomNodes": "Anda harus tambah satu Node kostum sebelum menonaktifkan list node jarak jauh.",
-        "nodeEnoughNodesTitle": "Tidak ada Node untuk ditambah",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "Tidak cukup Node untuk mengaktifkan Quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Tambah Node kostum atau aktifkan List Node jarak jauh.",
         "nodeSettingsUpdatedTitle": "Aturan Node diperbarui",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Pilih node",
-        "addCustomNode": "Menambahkan node kustom",
         "manualSync": "Sync manual",
         "snapshotTransition": "Transisi Snapshot",
         "pow": "Proof of Work",
