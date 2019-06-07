@@ -1,4 +1,4 @@
-import { defaultNode } from '../config';
+import { DEFAULT_NODE } from '../config';
 import { availableCurrencies } from '../libs/currency';
 
 /**
@@ -277,7 +277,7 @@ export const WalletSettingsSchema = {
          */
         node: {
             type: 'string',
-            default: defaultNode,
+            default: DEFAULT_NODE.url,
         },
         /**
          * Determines the status of AsyncStorage to realm migration

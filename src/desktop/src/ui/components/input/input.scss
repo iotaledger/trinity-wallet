@@ -546,6 +546,34 @@
             cursor: pointer;
         }
     }
+
+    &.inline {
+        padding-top: 0px;
+        fieldset {
+            small {
+                top: 12px;
+                width: 200px;
+            }
+
+            div {
+                justify-content: flex-end;
+                input {
+                    width: 36px;
+                    line-height: 24px;
+                    font-size: 16px;
+                    text-align: center;
+                    padding: 8px 0;
+                }
+            }
+        }
+        div > span {
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            font-size: 12px;
+            margin: 0 12px;
+        }
+    }
 }
 
 .tooltip {

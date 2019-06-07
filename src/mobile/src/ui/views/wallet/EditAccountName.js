@@ -2,7 +2,7 @@ import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { View, StyleSheet, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { withNamespaces } from 'react-i18next';
 import {
     getAccountNamesFromState,
@@ -15,9 +15,8 @@ import { changeAccountName } from 'shared-modules/actions/accounts';
 import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import SeedStore from 'libs/SeedStore';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
-import { Styling } from 'ui/theme/general';
+import SettingsDualFooter from 'ui/components/SettingsDualFooter';
+import { height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -33,37 +32,10 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     topContainer: {
         flex: 11,
         justifyContent: 'space-around',
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    titleTextLeft: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    titleTextRight: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
     },
 });
 
@@ -165,9 +137,7 @@ export class EditAccountName extends Component {
     }
 
     render() {
-        const { t, theme } = this.props;
-        const textColor = { color: theme.body.color };
-        const bodyColor = theme.body.color;
+        const { t, theme, selectedAccountName } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -190,24 +160,13 @@ export class EditAccountName extends Component {
                         <View style={{ flex: 0.1 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('accountManagement')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.save(trim(this.state.accountName))}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                <Icon name="tick" size={width / 28} color={bodyColor} />
-                            </View>
-                        </TouchableOpacity>
+                        <SettingsDualFooter
+                            hideActionButton={this.state.accountName === selectedAccountName}
+                            theme={theme}
+                            backFunction={() => this.props.setSetting('accountManagement')}
+                            actionFunction={() => this.save(trim(this.state.accountName))}
+                            actionName={t('global:save')}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>

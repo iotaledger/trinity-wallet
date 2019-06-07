@@ -6,7 +6,8 @@ describe('Onboarding ledger view', () => {
 
             expect(snapshot).toMatchImageSnapshot({
                 customSnapshotsDir: `${__dirname}/__snapshots__/`,
-                customDiffConfig: { threshold: 1 },
+            failureThreshold: '0.05',
+            failureThresholdType: 'percent',
                 customSnapshotIdentifier: 'ledger.test.jsx',
             });
         },

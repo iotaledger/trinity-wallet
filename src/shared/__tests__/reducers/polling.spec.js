@@ -1,7 +1,7 @@
 import assign from 'lodash/assign';
 import { expect } from 'chai';
 import reducer, { setNextPollIfSuccessful, setNextPollIfUnsuccessful } from '../../reducers/polling';
-import { ActionTypes } from '../../actions/polling';
+import { PollingActionTypes } from '../../types';
 
 describe('Reducer: polling', () => {
     it('should have an initial state', () => {
@@ -34,7 +34,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.FETCH_PRICE_REQUEST,
+            type: PollingActionTypes.FETCH_PRICE_REQUEST,
         };
 
         const newState = reducer(initialState, action);
@@ -52,7 +52,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.FETCH_PRICE_SUCCESS,
+            type: PollingActionTypes.FETCH_PRICE_SUCCESS,
         };
 
         const newState = reducer(initialState, action);
@@ -70,7 +70,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.FETCH_PRICE_ERROR,
+            type: PollingActionTypes.FETCH_PRICE_ERROR,
         };
 
         const newState = reducer(initialState, action);
@@ -87,7 +87,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.FETCH_NODELIST_REQUEST,
+            type: PollingActionTypes.FETCH_NODELIST_REQUEST,
         };
 
         const newState = reducer(initialState, action);
@@ -105,7 +105,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.FETCH_NODELIST_SUCCESS,
+            type: PollingActionTypes.FETCH_NODELIST_SUCCESS,
         };
 
         const newState = reducer(initialState, action);
@@ -123,7 +123,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.FETCH_NODELIST_ERROR,
+            type: PollingActionTypes.FETCH_NODELIST_ERROR,
         };
 
         const newState = reducer(initialState, action);
@@ -140,7 +140,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.FETCH_CHART_DATA_REQUEST,
+            type: PollingActionTypes.FETCH_CHART_DATA_REQUEST,
         };
 
         const newState = reducer(initialState, action);
@@ -158,7 +158,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.FETCH_CHART_DATA_SUCCESS,
+            type: PollingActionTypes.FETCH_CHART_DATA_SUCCESS,
         };
 
         const newState = reducer(initialState, action);
@@ -176,7 +176,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.FETCH_CHART_DATA_ERROR,
+            type: PollingActionTypes.FETCH_CHART_DATA_ERROR,
         };
 
         const newState = reducer(initialState, action);
@@ -193,7 +193,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.FETCH_MARKET_DATA_REQUEST,
+            type: PollingActionTypes.FETCH_MARKET_DATA_REQUEST,
         };
 
         const newState = reducer(initialState, action);
@@ -211,7 +211,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.FETCH_MARKET_DATA_SUCCESS,
+            type: PollingActionTypes.FETCH_MARKET_DATA_SUCCESS,
         };
 
         const newState = reducer(initialState, action);
@@ -229,7 +229,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.FETCH_MARKET_DATA_ERROR,
+            type: PollingActionTypes.FETCH_MARKET_DATA_ERROR,
         };
 
         const newState = reducer(initialState, action);
@@ -246,7 +246,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST,
+            type: PollingActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST,
         };
 
         const newState = reducer(initialState, action);
@@ -264,7 +264,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS,
+            type: PollingActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS,
         };
 
         const newState = reducer(initialState, action);
@@ -282,7 +282,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR,
+            type: PollingActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR,
         };
 
         const newState = reducer(initialState, action);
@@ -299,7 +299,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
+            type: PollingActionTypes.PROMOTE_TRANSACTION_REQUEST,
         };
 
         const newState = reducer(initialState, action);
@@ -317,7 +317,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS,
+            type: PollingActionTypes.PROMOTE_TRANSACTION_SUCCESS,
         };
 
         const newState = reducer(initialState, action);
@@ -335,7 +335,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.PROMOTE_TRANSACTION_ERROR,
+            type: PollingActionTypes.PROMOTE_TRANSACTION_ERROR,
         };
 
         const newState = reducer(initialState, action);
@@ -352,7 +352,7 @@ describe('Reducer: polling', () => {
         };
 
         const action = {
-            type: ActionTypes.SET_POLL_FOR,
+            type: PollingActionTypes.SET_POLL_FOR,
             payload: 'baz',
         };
 

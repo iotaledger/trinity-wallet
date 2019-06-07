@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import reducer, { removeAccountAndReorderIndexes } from '../../reducers/accounts';
-import { ActionTypes } from '../../actions/accounts';
+import { AccountsActionTypes } from '../../types';
 
 describe('Reducer: accounts', () => {
     describe('initial state', () => {
@@ -22,7 +22,7 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe(ActionTypes.SET_ACCOUNT_INFO_DURING_SETUP, () => {
+    describe(AccountsActionTypes.SET_ACCOUNT_INFO_DURING_SETUP, () => {
         it('should assign payload to accountInfoDuringSetup prop in state', () => {
             const initialState = {
                 accountInfoDuringSetup: {
@@ -33,7 +33,7 @@ describe('Reducer: accounts', () => {
             };
 
             const action = {
-                type: ActionTypes.SET_ACCOUNT_INFO_DURING_SETUP,
+                type: AccountsActionTypes.SET_ACCOUNT_INFO_DURING_SETUP,
                 payload: {
                     name: 'bar',
                     meta: { foo: '' },
@@ -56,7 +56,7 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe(ActionTypes.CHANGE_ACCOUNT_NAME, () => {
+    describe(AccountsActionTypes.CHANGE_ACCOUNT_NAME, () => {
         it('should update account name in "accountInfo" state prop', () => {
             const initialState = {
                 accountInfo: {
@@ -66,7 +66,7 @@ describe('Reducer: accounts', () => {
             };
 
             const action = {
-                type: ActionTypes.CHANGE_ACCOUNT_NAME,
+                type: AccountsActionTypes.CHANGE_ACCOUNT_NAME,
                 payload: {
                     oldAccountName: 'foo',
                     newAccountName: 'bar',
@@ -93,7 +93,7 @@ describe('Reducer: accounts', () => {
             };
 
             const action = {
-                type: ActionTypes.CHANGE_ACCOUNT_NAME,
+                type: AccountsActionTypes.CHANGE_ACCOUNT_NAME,
                 payload: {
                     oldAccountName: 'foo',
                     newAccountName: 'bar',
@@ -120,7 +120,7 @@ describe('Reducer: accounts', () => {
             };
 
             const action = {
-                type: ActionTypes.CHANGE_ACCOUNT_NAME,
+                type: AccountsActionTypes.CHANGE_ACCOUNT_NAME,
                 payload: {
                     oldAccountName: 'foo',
                     newAccountName: 'bar',
@@ -139,14 +139,14 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe(ActionTypes.REMOVE_ACCOUNT, () => {
+    describe(AccountsActionTypes.REMOVE_ACCOUNT, () => {
         it('should remove account data from "accountInfo"', () => {
             const initialState = {
                 accountInfo: { foo: {} },
             };
 
             const action = {
-                type: ActionTypes.REMOVE_ACCOUNT,
+                type: AccountsActionTypes.REMOVE_ACCOUNT,
                 payload: 'foo',
             };
 
@@ -164,7 +164,7 @@ describe('Reducer: accounts', () => {
             };
 
             const action = {
-                type: ActionTypes.REMOVE_ACCOUNT,
+                type: AccountsActionTypes.REMOVE_ACCOUNT,
                 payload: 'foo',
             };
 
@@ -182,7 +182,7 @@ describe('Reducer: accounts', () => {
             };
 
             const action = {
-                type: ActionTypes.REMOVE_ACCOUNT,
+                type: AccountsActionTypes.REMOVE_ACCOUNT,
                 payload: 'foo',
             };
 
@@ -195,14 +195,14 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe(ActionTypes.SET_ONBOARDING_COMPLETE, () => {
+    describe(AccountsActionTypes.SET_ONBOARDING_COMPLETE, () => {
         it('should set onboardingComplete to payload', () => {
             const initialState = {
                 onboardingComplete: false,
             };
 
             const action = {
-                type: ActionTypes.SET_ONBOARDING_COMPLETE,
+                type: AccountsActionTypes.SET_ONBOARDING_COMPLETE,
                 payload: true,
             };
 
@@ -215,14 +215,14 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe(ActionTypes.SET_BASIC_ACCOUNT_INFO, () => {
+    describe(AccountsActionTypes.SET_BASIC_ACCOUNT_INFO, () => {
         it('should assign "accountName" to "setupInfo" prop in state', () => {
             const initialState = {
                 setupInfo: {},
             };
 
             const action = {
-                type: ActionTypes.SET_BASIC_ACCOUNT_INFO,
+                type: AccountsActionTypes.SET_BASIC_ACCOUNT_INFO,
                 payload: { accountName: 'foo', usedExistingSeed: false },
             };
 
@@ -240,7 +240,7 @@ describe('Reducer: accounts', () => {
             };
 
             const action = {
-                type: ActionTypes.SET_BASIC_ACCOUNT_INFO,
+                type: AccountsActionTypes.SET_BASIC_ACCOUNT_INFO,
                 payload: { accountName: 'foo' },
             };
 
@@ -253,7 +253,7 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe(ActionTypes.MARK_TASK_AS_DONE, () => {
+    describe(AccountsActionTypes.MARK_TASK_AS_DONE, () => {
         it('should mark "task" in payload for "accountName" as true', () => {
             const initialState = {
                 tasks: {
@@ -263,7 +263,7 @@ describe('Reducer: accounts', () => {
             };
 
             const action = {
-                type: ActionTypes.MARK_TASK_AS_DONE,
+                type: AccountsActionTypes.MARK_TASK_AS_DONE,
                 payload: {
                     accountName: 'foo',
                     task: 'taskOne',

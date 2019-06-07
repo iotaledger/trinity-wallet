@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { changeDeepLinkingSettings } from 'shared-modules/actions/settings';
 import { setSetting, completeDeepLinkRequest } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import Fonts from 'ui/theme/fonts';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
+import SettingsBackButton from 'ui/components/SettingsBackButton';
 import InfoBox from 'ui/components/InfoBox';
 import Toggle from 'ui/components/Toggle';
 import { Styling } from 'ui/theme/general';
@@ -22,11 +23,6 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     topContainer: {
         flex: 11,
@@ -50,18 +46,6 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: height / 70,
-        justifyContent: 'flex-start',
-    },
-    titleTextLeft: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
     },
     toggleText: {
         fontFamily: Fonts.secondary,
@@ -118,8 +102,8 @@ class DeepLinking extends Component {
     }
 
     render() {
-        const { t, deepLinking, theme: { body, primary } } = this.props;
-        const textColor = { color: body.color };
+        const { t, deepLinking, theme } = this.props;
+        const textColor = { color: theme.body.color };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -134,7 +118,7 @@ class DeepLinking extends Component {
                                     paddingBottom: height / 22,
                                 }}
                             >
-                                <Icon name="attention" size={width / 10} color={body.color} style={styles.icon} />
+                                <Icon name="attention" size={width / 10} color={theme.body.color} style={styles.icon} />
                             </View>
                             <Text style={[styles.infoText, textColor]}>{t('deepLinkingOverview')}</Text>
                             <Text style={{ paddingTop: height / 30 }}>
@@ -157,9 +141,9 @@ class DeepLinking extends Component {
                                 </View>
                                 <Toggle
                                     active={deepLinking}
-                                    bodyColor={body.color}
-                                    primaryColor={primary.color}
-                                    scale={1.3}
+                                    bodyColor={theme.body.color}
+                                    primaryColor={theme.primary.color}
+                                    scale={1.31}
                                 />
                                 <View style={styles.toggleTextContainer}>
                                     <Text style={[styles.toggleText, textColor, { marginLeft: width / 45 }]}>
@@ -171,15 +155,10 @@ class DeepLinking extends Component {
                         <View style={{ flex: 1.5 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('advancedSettings')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <SettingsBackButton
+                            theme={theme}
+                            backFunction={() => this.props.setSetting('advancedSettings')}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>

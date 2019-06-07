@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import reducer from '../../reducers/settings';
-import { ActionTypes } from '../../actions/settings';
-import { defaultNode, nodes } from '../../config';
+import { SettingsActionTypes } from '../../types';
+import { DEFAULT_NODES, DEFAULT_NODE, QUORUM_SIZE } from '../../config';
 
 describe('Reducer: settings', () => {
     describe('initial state', () => {
@@ -9,13 +9,12 @@ describe('Reducer: settings', () => {
             const initialState = {
                 completedByteTritSweep: false,
                 locale: 'en',
-                node: defaultNode,
-                nodes,
+                node: DEFAULT_NODE,
+                nodes: DEFAULT_NODES,
                 customNodes: [],
                 mode: 'Standard',
                 language: 'English (International)',
                 currency: 'USD',
-                autoNodeSwitching: false,
                 availableCurrencies: [
                     'USD',
                     'GBP',
@@ -53,7 +52,6 @@ describe('Reducer: settings', () => {
                 ],
                 conversionRate: 1,
                 themeName: 'Default',
-                hasRandomizedNode: false,
                 remotePoW: false,
                 lockScreenTimeout: 3,
                 versions: {},
@@ -71,20 +69,26 @@ describe('Reducer: settings', () => {
                 completedMigration: false,
                 ignoreProxy: false,
                 deepLinking: false,
+                quorum: {
+                    size: QUORUM_SIZE,
+                    enabled: true,
+                },
+                nodeAutoSwitch: true,
+                autoNodeList: true,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
         });
     });
 
-    describe(ActionTypes.SET_LOCK_SCREEN_TIMEOUT, () => {
+    describe(SettingsActionTypes.SET_LOCK_SCREEN_TIMEOUT, () => {
         it('should set lockScreenTimeout to payload', () => {
             const initialState = {
                 lockScreenTimeout: 0,
             };
 
             const action = {
-                type: ActionTypes.SET_LOCK_SCREEN_TIMEOUT,
+                type: SettingsActionTypes.SET_LOCK_SCREEN_TIMEOUT,
                 payload: 100,
             };
 
@@ -98,14 +102,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_REMOTE_POW, () => {
+    describe(SettingsActionTypes.SET_REMOTE_POW, () => {
         it('should update remotePoW in state', () => {
             const initialState = {
                 remotePoW: false,
             };
 
             const action = {
-                type: ActionTypes.SET_REMOTE_POW,
+                type: SettingsActionTypes.SET_REMOTE_POW,
                 payload: true,
             };
 
@@ -119,14 +123,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_AUTO_PROMOTION, () => {
+    describe(SettingsActionTypes.SET_AUTO_PROMOTION, () => {
         it('should update autoPromotion in state', () => {
             const initialState = {
                 autoPromotion: false,
             };
 
             const action = {
-                type: ActionTypes.SET_AUTO_PROMOTION,
+                type: SettingsActionTypes.SET_AUTO_PROMOTION,
                 payload: true,
             };
 
@@ -140,42 +144,22 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.UPDATE_AUTO_NODE_SWITCHING, () => {
+    describe(SettingsActionTypes.UPDATE_NODE_AUTO_SWITCH_SETTING, () => {
         describe('when action.payload is defined', () => {
-            it('should set autoNodeSwitching to action.payload', () => {
+            it('should set nodeAutoSwitch to action.payload', () => {
                 const initialState = {
-                    autoNodeSwitching: false,
+                    nodeAutoSwitch: false,
                 };
 
                 const action = {
-                    type: ActionTypes.UPDATE_AUTO_NODE_SWITCHING,
+                    type: SettingsActionTypes.UPDATE_NODE_AUTO_SWITCH_SETTING,
                     payload: true,
                 };
 
                 const newState = reducer(initialState, action);
 
                 const expectedState = {
-                    autoNodeSwitching: true,
-                };
-
-                expect(newState).to.eql(expectedState);
-            });
-        });
-
-        describe('when action.payload in undefined', () => {
-            it('should invert state.autoNodeSwitching', () => {
-                const initialState = {
-                    autoNodeSwitching: false,
-                };
-
-                const action = {
-                    type: ActionTypes.UPDATE_AUTO_NODE_SWITCHING,
-                };
-
-                const newState = reducer(initialState, action);
-
-                const expectedState = {
-                    autoNodeSwitching: true,
+                    nodeAutoSwitch: true,
                 };
 
                 expect(newState).to.eql(expectedState);
@@ -183,14 +167,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_LOCALE, () => {
+    describe(SettingsActionTypes.SET_LOCALE, () => {
         it('should set locale to payload', () => {
             const initialState = {
                 locale: 'en',
             };
 
             const action = {
-                type: ActionTypes.SET_LOCALE,
+                type: SettingsActionTypes.SET_LOCALE,
                 payload: 'foo',
             };
 
@@ -203,14 +187,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_NODE, () => {
+    describe(SettingsActionTypes.SET_NODE, () => {
         it('should set node to action.payload', () => {
             const initialState = {
                 node: 'http://localhost:9000',
             };
 
             const action = {
-                type: ActionTypes.SET_NODE,
+                type: SettingsActionTypes.SET_NODE,
                 payload: 'http://localhost:8000',
             };
 
@@ -223,136 +207,217 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.ADD_CUSTOM_NODE_SUCCESS, () => {
-        describe('when payload exists in "nodes" state prop', () => {
-            it('should return existing state prop "nodes"', () => {
+    describe(SettingsActionTypes.ADD_CUSTOM_NODE_SUCCESS, () => {
+        describe('when payload.url exists in "customNodes" state prop', () => {
+            it('should return existing state prop "customNodes"', () => {
                 const initialState = {
-                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
-                    customNodes: [],
+                    customNodes: [
+                        {
+                            url: 'http://localhost:9000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                        {
+                            url: 'http://localhost:5000',
+                            pow: true,
+                            token: '',
+                            password: '',
+                        },
+                    ],
                 };
 
                 const action = {
-                    type: ActionTypes.ADD_CUSTOM_NODE_SUCCESS,
-                    payload: 'http://localhost:9000',
+                    type: SettingsActionTypes.ADD_CUSTOM_NODE_SUCCESS,
+                    payload: {
+                        url: 'http://localhost:9000',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
                 };
 
                 const newState = reducer(initialState, action);
                 const expectedState = {
-                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
-                    customNodes: [],
+                    customNodes: [
+                        {
+                            url: 'http://localhost:9000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                        {
+                            url: 'http://localhost:5000',
+                            pow: true,
+                            token: '',
+                            password: '',
+                        },
+                    ],
                 };
 
-                expect(newState.nodes).to.eql(expectedState.nodes);
+                expect(newState).to.eql(expectedState);
             });
         });
 
-        describe('when payload does not exist in "nodes" state prop', () => {
-            it('should add payload to state prop "nodes" and "customNodes"', () => {
+        describe('when payload.url does not exist in "customNodes" state prop', () => {
+            it('should return concat payload to state prop "customNodes"', () => {
                 const initialState = {
-                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
-                    customNodes: [],
+                    customNodes: [
+                        {
+                            url: 'http://localhost:9000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                        {
+                            url: 'http://localhost:5000',
+                            pow: true,
+                            token: '',
+                            password: '',
+                        },
+                    ],
                 };
 
                 const action = {
-                    type: ActionTypes.ADD_CUSTOM_NODE_SUCCESS,
-                    payload: 'http://localhost:3000',
+                    type: SettingsActionTypes.ADD_CUSTOM_NODE_SUCCESS,
+                    payload: {
+                        url: 'http://localhost:3000',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
                 };
 
                 const newState = reducer(initialState, action);
                 const expectedState = {
-                    nodes: ['http://localhost:9000', 'http://localhost:5000', 'http://localhost:3000'],
-                    customNodes: ['http://localhost:3000'],
+                    customNodes: [
+                        {
+                            url: 'http://localhost:9000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                        {
+                            url: 'http://localhost:5000',
+                            pow: true,
+                            token: '',
+                            password: '',
+                        },
+                        {
+                            url: 'http://localhost:3000',
+                            pow: false,
+                            token: '',
+                            password: '',
+                        },
+                    ],
                 };
 
                 expect(newState.nodes).to.eql(expectedState.nodes);
-                expect(newState.customNodes).to.eql(expectedState.customNodes);
             });
         });
     });
 
-    describe(ActionTypes.REMOVE_CUSTOM_NODE, () => {
-        describe('when payload exists in "customNodes" state prop', () => {
-            it('should remove payload from state prop "customNodes"', () => {
-                const initialState = {
-                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
-                    customNodes: ['http://localhost:5000'],
-                };
-
-                const action = {
-                    type: ActionTypes.REMOVE_CUSTOM_NODE,
-                    payload: 'http://localhost:5000',
-                };
-
-                const newState = reducer(initialState, action);
-                const expectedState = {
-                    nodes: ['http://localhost:9000'],
-                    customNodes: [],
-                };
-
-                expect(newState.nodes).to.eql(expectedState.nodes);
-                expect(newState.customNodes).to.eql(expectedState.customNodes);
-            });
-        });
-
-        describe('when payload does not exist in "customNodes" state prop', () => {
-            it('should not change "customNodes" state prop', () => {
-                const initialState = {
-                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
-                    customNodes: ['http://localhost:4000'],
-                };
-
-                const action = {
-                    type: ActionTypes.REMOVE_CUSTOM_NODE,
-                    payload: 'http://localhost:5000',
-                };
-
-                const newState = reducer(initialState, action);
-
-                expect(newState.nodes).to.eql(initialState.nodes);
-                expect(newState.customNodes).to.eql(initialState.customNodes);
-            });
-        });
-    });
-
-    describe(ActionTypes.SET_NODELIST, () => {
-        it('should update nodes with a union of action.payload, state.customNodes and state.node', () => {
-            const node = 'http://localhost:9000';
-            const customNodes = ['http://localhost:5000', 'http://localhost:4000'];
-
+    describe(SettingsActionTypes.REMOVE_CUSTOM_NODE, () => {
+        it('should remove node object in customNodes with "url === payload"', () => {
             const initialState = {
-                node,
-                customNodes,
+                customNodes: [
+                    {
+                        url: 'http://localhost:9000',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
+                    {
+                        url: 'http://localhost:5000',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
+                ],
             };
 
             const action = {
-                type: ActionTypes.SET_NODELIST,
-                payload: ['http://localhost:5000', 'http://localhost:80'],
+                type: SettingsActionTypes.REMOVE_CUSTOM_NODE,
+                payload: 'http://localhost:5000',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                customNodes: [
+                    {
+                        url: 'http://localhost:9000',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
+                ],
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe(SettingsActionTypes.SET_NODELIST, () => {
+        it('should set nodes to action.payload', () => {
+            const initialState = {
+                nodes: [
+                    {
+                        url: 'http://localhost:4000',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
+                ],
+            };
+
+            const action = {
+                type: SettingsActionTypes.SET_NODELIST,
+                payload: [
+                    {
+                        url: 'http://localhost:5000',
+                        pow: true,
+                        token: '',
+                        password: '',
+                    },
+                    {
+                        url: 'http://localhost:80',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
+                ],
             };
 
             const newState = reducer(initialState, action);
             const expectedState = {
                 nodes: [
-                    'http://localhost:5000',
-                    'http://localhost:80',
-                    'http://localhost:4000',
-                    'http://localhost:9000',
+                    {
+                        url: 'http://localhost:5000',
+                        pow: true,
+                        token: '',
+                        password: '',
+                    },
+                    {
+                        url: 'http://localhost:80',
+                        pow: false,
+                        token: '',
+                        password: '',
+                    },
                 ],
-                node,
-                customNodes,
             };
 
-            expect(newState.nodes).to.eql(expectedState.nodes);
+            expect(newState).to.eql(expectedState);
         });
     });
 
-    describe(ActionTypes.SET_MODE, () => {
+    describe(SettingsActionTypes.SET_MODE, () => {
         it('should set mode to payload', () => {
             const initialState = {
                 mode: 'Expert',
             };
 
             const action = {
-                type: ActionTypes.SET_MODE,
+                type: SettingsActionTypes.SET_MODE,
                 payload: 'Standard',
             };
 
@@ -365,14 +430,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_LANGUAGE, () => {
+    describe(SettingsActionTypes.SET_LANGUAGE, () => {
         it('should set language to payload', () => {
             const initialState = {
                 language: 'English (International)',
             };
 
             const action = {
-                type: ActionTypes.SET_LANGUAGE,
+                type: SettingsActionTypes.SET_LANGUAGE,
                 payload: 'Urdu',
             };
 
@@ -385,14 +450,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.CURRENCY_DATA_FETCH_SUCCESS, () => {
+    describe(SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS, () => {
         it('should set currency to action.payload.currency', () => {
             const initialState = {
                 currency: 'USD',
             };
 
             const action = {
-                type: ActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
+                type: SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
                 payload: {
                     currency: 'EUR',
                     availableCurrencies: [],
@@ -413,7 +478,7 @@ describe('Reducer: settings', () => {
             };
 
             const action = {
-                type: ActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
+                type: SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
                 payload: {
                     conversionRate: 2,
                     availableCurrencies: [],
@@ -429,14 +494,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.UPDATE_THEME, () => {
+    describe(SettingsActionTypes.UPDATE_THEME, () => {
         it('should set themeName to payload', () => {
             const initialState = {
                 themeName: 'Default',
             };
 
             const action = {
-                type: ActionTypes.UPDATE_THEME,
+                type: SettingsActionTypes.UPDATE_THEME,
                 payload: 'foo',
             };
 
@@ -449,14 +514,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_RANDOMLY_SELECTED_NODE, () => {
+    describe(SettingsActionTypes.SET_RANDOMLY_SELECTED_NODE, () => {
         it('should set node to payload', () => {
             const initialState = {
                 node: 'http://localhost:9000',
             };
 
             const action = {
-                type: ActionTypes.SET_RANDOMLY_SELECTED_NODE,
+                type: SettingsActionTypes.SET_RANDOMLY_SELECTED_NODE,
                 payload: 'http://localhost:5000',
             };
 
@@ -474,7 +539,7 @@ describe('Reducer: settings', () => {
             };
 
             const action = {
-                type: ActionTypes.SET_RANDOMLY_SELECTED_NODE,
+                type: SettingsActionTypes.SET_RANDOMLY_SELECTED_NODE,
                 payload: 'http://localhost:5000',
             };
 
@@ -487,14 +552,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_FINGERPRINT_STATUS, () => {
+    describe(SettingsActionTypes.SET_FINGERPRINT_STATUS, () => {
         it('should set isFingerprintEnabled to payload', () => {
             const initialState = {
                 isFingerprintEnabled: false,
             };
 
             const action = {
-                type: ActionTypes.SET_FINGERPRINT_STATUS,
+                type: SettingsActionTypes.SET_FINGERPRINT_STATUS,
                 payload: true,
             };
 
@@ -507,14 +572,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_VERSIONS, () => {
+    describe(SettingsActionTypes.SET_VERSIONS, () => {
         it('should merge payload in "versions" state prop', () => {
             const initialState = {
                 versions: {},
             };
 
             const action = {
-                type: ActionTypes.SET_VERSIONS,
+                type: SettingsActionTypes.SET_VERSIONS,
                 payload: { build: '3.4.4' },
             };
 
@@ -527,14 +592,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.ACCEPT_TERMS, () => {
+    describe(SettingsActionTypes.ACCEPT_TERMS, () => {
         it('should set acceptedTerms to true', () => {
             const initialState = {
                 acceptedTerms: false,
             };
 
             const action = {
-                type: ActionTypes.ACCEPT_TERMS,
+                type: SettingsActionTypes.ACCEPT_TERMS,
             };
 
             const newState = reducer(initialState, action);
@@ -546,14 +611,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.ACCEPT_PRIVACY, () => {
+    describe(SettingsActionTypes.ACCEPT_PRIVACY, () => {
         it('should set acceptedPrivacy to true', () => {
             const initialState = {
                 acceptedPrivacy: false,
             };
 
             const action = {
-                type: ActionTypes.ACCEPT_PRIVACY,
+                type: SettingsActionTypes.ACCEPT_PRIVACY,
             };
 
             const newState = reducer(initialState, action);
@@ -565,14 +630,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_DEEP_LINKING, () => {
+    describe(SettingsActionTypes.SET_DEEP_LINKING, () => {
         it('should set deepLinking to true', () => {
             const initialState = {
                 deepLinking: false,
             };
 
             const action = {
-                type: ActionTypes.SET_DEEP_LINKING,
+                type: SettingsActionTypes.SET_DEEP_LINKING,
             };
 
             const newState = reducer(initialState, action);
@@ -584,14 +649,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.TOGGLE_EMPTY_TRANSACTIONS, () => {
+    describe(SettingsActionTypes.TOGGLE_EMPTY_TRANSACTIONS, () => {
         it('should invert state.hideEmptyTransactions', () => {
             const initialState = {
                 hideEmptyTransactions: false,
             };
 
             const action = {
-                type: ActionTypes.TOGGLE_EMPTY_TRANSACTIONS,
+                type: SettingsActionTypes.TOGGLE_EMPTY_TRANSACTIONS,
             };
 
             const newState = reducer(initialState, action);
@@ -603,14 +668,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE, () => {
+    describe(SettingsActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE, () => {
         it('should set completedForcedPasswordUpdate to true', () => {
             const initialState = {
                 completedForcedPasswordUpdate: false,
             };
 
             const action = {
-                type: ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE,
+                type: SettingsActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE,
             };
 
             const newState = reducer(initialState, action);
@@ -622,14 +687,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_BYTETRIT_STATUS, () => {
+    describe(SettingsActionTypes.SET_BYTETRIT_STATUS, () => {
         it('should set completedByteTritSweep to action.payload', () => {
             const initialState = {
                 completedByteTritSweep: false,
             };
 
             const action = {
-                type: ActionTypes.SET_BYTETRIT_STATUS,
+                type: SettingsActionTypes.SET_BYTETRIT_STATUS,
                 payload: true,
             };
 
@@ -642,14 +707,14 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_TRAY, () => {
+    describe(SettingsActionTypes.SET_TRAY, () => {
         it('should set isTrayEnabled to payload', () => {
             const initialState = {
                 isTrayEnabled: true,
             };
 
             const action = {
-                type: ActionTypes.SET_TRAY,
+                type: SettingsActionTypes.SET_TRAY,
                 payload: false,
             };
 
@@ -662,7 +727,7 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(ActionTypes.SET_NOTIFICATIONS, () => {
+    describe(SettingsActionTypes.SET_NOTIFICATIONS, () => {
         it('should set notifications.general to payload', () => {
             const initialState = {
                 notifications: {
@@ -673,7 +738,7 @@ describe('Reducer: settings', () => {
             };
 
             const action = {
-                type: ActionTypes.SET_NOTIFICATIONS,
+                type: SettingsActionTypes.SET_NOTIFICATIONS,
                 payload: { type: 'general', enabled: false },
             };
 
@@ -697,7 +762,7 @@ describe('Reducer: settings', () => {
             };
 
             const action = {
-                type: ActionTypes.SET_PROXY,
+                type: SettingsActionTypes.SET_PROXY,
                 payload: true,
             };
 
@@ -717,7 +782,7 @@ describe('Reducer: settings', () => {
             };
 
             const action = {
-                type: ActionTypes.RESET_NODES_LIST,
+                type: SettingsActionTypes.RESET_NODES_LIST,
             };
 
             const newState = reducer(initialState, action);

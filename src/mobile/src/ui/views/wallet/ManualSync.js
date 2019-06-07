@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -10,7 +10,7 @@ import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/s
 import { manuallySyncAccount } from 'shared-modules/actions/accounts';
 import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import SettingsBackButton from 'ui/components/SettingsBackButton';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
 import { Styling } from 'ui/theme/general';
@@ -24,11 +24,6 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     topContainer: {
         flex: 11,
@@ -37,17 +32,6 @@ const styles = StyleSheet.create({
     innerContainer: {
         flex: 4,
         justifyContent: 'center',
-    },
-    item: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    titleText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
     },
     syncButtonContainer: {
         flex: 0.7,
@@ -107,8 +91,8 @@ export class ManualSync extends Component {
     }
 
     render() {
-        const { isSyncing, theme: { body, primary }, t } = this.props;
-        const textColor = { color: body.color };
+        const { isSyncing, theme, t } = this.props;
+        const textColor = { color: theme.body.color };
 
         return (
             <View style={styles.container}>
@@ -124,8 +108,8 @@ export class ManualSync extends Component {
                             </InfoBox>
                             <View style={styles.syncButtonContainer}>
                                 <CtaButton
-                                    ctaColor={primary.color}
-                                    secondaryCtaColor={primary.body}
+                                    ctaColor={theme.primary.color}
+                                    secondaryCtaColor={theme.primary.body}
                                     text={t('manualSync:syncAccount')}
                                     onPress={() => this.sync()}
                                     ctaWidth={width / 2}
@@ -149,23 +133,17 @@ export class ManualSync extends Component {
                                 animating={isSyncing}
                                 style={styles.activityIndicator}
                                 size="large"
-                                color={primary.color}
+                                color={theme.primary.color}
                             />
                         </View>
                     )}
                 </View>
                 <View style={styles.bottomContainer}>
-                    {!isSyncing && (
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('advancedSettings')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
-                                <Text style={[styles.titleText, textColor]}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
+                    <SettingsBackButton
+                        theme={theme}
+                        backFunction={() => this.props.setSetting('advancedSettings')}
+                        inactive={isSyncing}
+                    />
                 </View>
             </View>
         );

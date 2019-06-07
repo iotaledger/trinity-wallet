@@ -36,12 +36,12 @@ import { accumulateBalance } from './addresses';
  *
  * @method sweep
  *
- * @param {string} provider
+ * @param {object} {settings}
  * @param {boolean} seedStore
  *
  * @returns {function(object, string, object, object): Promise<object>}
  **/
-export const sweep = (provider, withQuorum) => (seedStore, seed, input, transfer) => {
+export const sweep = (settings, withQuorum) => (seedStore, seed, input, transfer) => {
     if (!isValidInput(input)) {
         return Promise.reject(new Error(Errors.INVALID_INPUT));
     }
@@ -65,13 +65,13 @@ export const sweep = (provider, withQuorum) => (seedStore, seed, input, transfer
     // Before proceeding make sure:
     //  - Latest balance hasn't changed
     //  - We don't require a remainder transaction
-    return getBalancesAsync(provider, withQuorum)([validInput.address])
+    return getBalancesAsync(settings, withQuorum)([validInput.address])
         .then((balances) => {
             const latestBalance = accumulateBalance(map(balances.balances, Number));
 
             if (latestBalance === validInput.balance && latestBalance === validTransfer.value) {
                 // Check if there are any transactions for both input & recipient address
-                return findTransactionObjectsAsync(provider)({
+                return findTransactionObjectsAsync(settings)({
                     addresses: [validInput.address, validTransfer.address],
                 });
             }
@@ -85,14 +85,14 @@ export const sweep = (provider, withQuorum) => (seedStore, seed, input, transfer
             // if there are no value transactions, validate spend statuses
             if (isEmpty(valueTransactions)) {
                 // Check both recipient & input addresses
-                return wereAddressesSpentFromAsync(provider, withQuorum)([validInput.address, validTransfer.address]);
+                return wereAddressesSpentFromAsync(settings, withQuorum)([validInput.address, validTransfer.address]);
             }
 
             // If there are value transactions:
             //  - Construct bundles
             //  - Validate bundles
             //  - Check if any transaction (from valid bundles) is still pending
-            return findTransactionObjectsAsync(provider)({
+            return findTransactionObjectsAsync(settings)({
                 bundles: map(uniqBy(valueTransactions, 'bundle'), (tx) => tx.bundle),
             }).then((transactionsFromBundles) => {
                 // Also keep reattachments
@@ -105,7 +105,7 @@ export const sweep = (provider, withQuorum) => (seedStore, seed, input, transfer
 
                 if (isEmpty(validBundles)) {
                     // Check both recipient & input addresses
-                    return wereAddressesSpentFromAsync(provider, withQuorum)([
+                    return wereAddressesSpentFromAsync(settings, withQuorum)([
                         validInput.address,
                         validTransfer.address,
                     ]);
@@ -115,7 +115,7 @@ export const sweep = (provider, withQuorum) => (seedStore, seed, input, transfer
                     validBundles,
                     (promise, bundle) => {
                         return promise.then((result) => {
-                            return isFundedBundle(provider, withQuorum)(bundle).then((isFunded) => {
+                            return isFundedBundle(settings, withQuorum)(bundle).then((isFunded) => {
                                 if (isFunded) {
                                     return [...result, bundle];
                                 }
@@ -129,7 +129,7 @@ export const sweep = (provider, withQuorum) => (seedStore, seed, input, transfer
                     const transactions = flatMap(fundedBundles, (bundle) => bundle);
                     // Check both recipient & input addresses
                     const checkSpendStatuses = () =>
-                        wereAddressesSpentFromAsync(provider, withQuorum)([validInput.address, validTransfer.address]);
+                        wereAddressesSpentFromAsync(settings, withQuorum)([validInput.address, validTransfer.address]);
 
                     if (isEmpty(transactions)) {
                         return checkSpendStatuses();
@@ -150,7 +150,7 @@ export const sweep = (provider, withQuorum) => (seedStore, seed, input, transfer
                     const tailTransactions = filter(transactions, (tx) => tx.currentIndex === 0);
 
                     // Check confirmation states
-                    return getLatestInclusionAsync(provider)(map(tailTransactions, (tx) => tx.hash)).then((states) => {
+                    return getLatestInclusionAsync(settings)(map(tailTransactions, (tx) => tx.hash)).then((states) => {
                         const statesByBundleHash = categoriseInclusionStatesByBundleHash(tailTransactions, states);
 
                         // Check if there is no pending transaction on input or recipient address
@@ -167,7 +167,7 @@ export const sweep = (provider, withQuorum) => (seedStore, seed, input, transfer
                                 filter(tailTransactions, (tx) => tx.bundle === bundleHash),
                             ),
                             (promise, txs) => {
-                                return promise.then(() => promoteTransactionTilConfirmed(provider, seedStore)(txs));
+                                return promise.then(() => promoteTransactionTilConfirmed(settings, seedStore)(txs));
                             },
                             Promise.resolve({}),
                         ).then(() => checkSpendStatuses());
@@ -179,7 +179,7 @@ export const sweep = (provider, withQuorum) => (seedStore, seed, input, transfer
             // Check if both input & receive address are unspent
             if (!isEmpty(spendStatuses) && every(spendStatuses, (status) => status === false)) {
                 // Prepare bundle, sign inputs
-                return prepareTransfersAsync(provider)(seed, [validTransfer], { inputs: [validInput] });
+                return prepareTransfersAsync(settings)(seed, [validTransfer], { inputs: [validInput] });
             }
 
             throw new Error(Errors.ALREADY_SPENT_FROM_ADDRESSES);
@@ -192,19 +192,19 @@ export const sweep = (provider, withQuorum) => (seedStore, seed, input, transfer
 
             // Check if prepared bundle is valid, especially if its signed correctly.
             if (isBundle(cached.transactionObjects)) {
-                return getTransactionsToApproveAsync(provider)();
+                return getTransactionsToApproveAsync(settings)();
             }
 
             throw new Error(Errors.INVALID_BUNDLE);
         })
         .then(({ trunkTransaction, branchTransaction }) => {
-            return attachToTangleAsync(provider, seedStore)(trunkTransaction, branchTransaction, cached.trytes);
+            return attachToTangleAsync(settings, seedStore)(trunkTransaction, branchTransaction, cached.trytes);
         })
         .then(({ trytes, transactionObjects }) => {
             cached.trytes = trytes;
             cached.transactionObjects = transactionObjects;
 
-            return storeAndBroadcastAsync(provider)(cached.trytes);
+            return storeAndBroadcastAsync(settings)(cached.trytes);
         })
         .then(() => cached);
 };
