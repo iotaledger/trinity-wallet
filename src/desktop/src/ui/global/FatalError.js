@@ -6,6 +6,8 @@ import Button from 'ui/components/Button';
 
 import css from 'ui/views/onboarding/index.scss';
 
+import settings from '../../../package.json';
+
 /**
  * Desktop fatal error display component
  */
@@ -102,9 +104,10 @@ const FatalError = ({ error }) => {
                 <form className={css.tutorial}>
                     <h1>Newer Trinity version data found</h1>
                     <p>
-                        Trinity found data installed by a newer version of Trinity which is incompatible your older
-                        versions. <a href="https://trinity.iota.org/#download">Download the latest version</a> or update
-                        Trinity now.
+                        Trinity found data installed by a newer version of Trinity which is incompatible with version{' '}
+                        <strong>{settings.version}</strong>.{' '}
+                        <a href="https://trinity.iota.org/#download">Download the latest version</a> or update Trinity
+                        now.
                     </p>
                     <Button type="button" variant="primary" onClick={() => Electron.autoUpdate()}>
                         Update Trinity now
