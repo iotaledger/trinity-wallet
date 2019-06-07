@@ -2477,8 +2477,9 @@ invert-kv@^2.0.0:
   integrity sha512-wPVv/y/QQ/Uiirj/vh3oP+1Ww+AWehmi1g5fFWGPF6IpCBCDVrhgHRMvrLfdYcwDh3QJbGXDW4JAuzxElLSqKA==
 
 "iota.lib.js@git+https://git@github.com/iotaledger/iota.js#develop":
-  version "0.5.1"
-  resolved "git+https://git@github.com/iotaledger/iota.js#eb27c183284e24fb28a2a67f6da7a6cee5c61ae4"
+  version "0.5.2"
+  uid e31e8988247ce67eb52e140984f9794956f9ea4b
+  resolved "git+https://git@github.com/iotaledger/iota.js#e31e8988247ce67eb52e140984f9794956f9ea4b"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"
