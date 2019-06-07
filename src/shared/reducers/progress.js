@@ -1,4 +1,4 @@
-import { ActionTypes } from '../actions/progress';
+import { ProgressActionTypes } from '../types';
 
 // The setup for state assumes that there would only be one active progress at a time.
 const initialState = {
@@ -22,12 +22,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case ActionTypes.SET_ACTIVE_STEP_INDEX:
+        case ProgressActionTypes.SET_ACTIVE_STEP_INDEX:
             return {
                 ...state,
                 activeStepIndex: action.payload,
             };
-        case ActionTypes.SET_NEXT_STEP_AS_ACTIVE:
+        case ProgressActionTypes.SET_NEXT_STEP_AS_ACTIVE:
             return {
                 ...state,
                 activeStepIndex: state.activeStepIndex + 1,
@@ -37,7 +37,7 @@ export default (state = initialState, action) => {
                     ((Date.now() - state.lastStepInitializationTime) / 1000).toFixed(1),
                 ],
             };
-        case ActionTypes.START_TRACKING_PROGRESS:
+        case ProgressActionTypes.START_TRACKING_PROGRESS:
             return {
                 ...state,
                 activeStepIndex: -1,
@@ -45,7 +45,7 @@ export default (state = initialState, action) => {
                 lastStepInitializationTime: Date.now(),
                 activeSteps: action.payload,
             };
-        case ActionTypes.RESET:
+        case ProgressActionTypes.RESET:
             return initialState;
         default:
             return state;

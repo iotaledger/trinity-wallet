@@ -1,10 +1,8 @@
 import map from 'lodash/map';
-import some from 'lodash/some';
 import find from 'lodash/find';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import i18next from 'shared-modules/libs/i18next.js';
+import { View } from 'react-native';
 import MainSettingsComponent from 'ui/views/wallet/MainSettings';
 import AdvancedSettingsComponent from 'ui/views/wallet/AdvancedSettings';
 import AccountManagement from 'ui/views/wallet/AccountManagement';
@@ -17,7 +15,6 @@ import EditAccountNameComponent from 'ui/views/wallet/EditAccountName';
 import DeleteAccount from 'ui/views/wallet/DeleteAccount';
 import AddNewAccount from 'ui/views/wallet/AddNewAccount';
 import UseExistingSeed from 'ui/views/wallet/UseExistingSeed';
-import NodeSelection from 'ui/views/wallet/NodeSelection';
 import NodeSettingsComponent from 'ui/views/wallet/NodeSettings';
 import AddCustomNodeComponent from 'ui/views/wallet/AddCustomNode';
 import CurrencySelectionComponent from 'ui/views/wallet/CurrencySelection';
@@ -31,9 +28,10 @@ import SecuritySettings from 'ui/views/wallet/SecuritySettings';
 import SeedVaultSettings from 'ui/views/wallet/SeedVaultSettings';
 import StateExportComponent from 'ui/views/wallet/StateExport';
 import About from 'ui/views/wallet/About';
-import { Icon } from 'ui/theme/icons';
-import { width, height } from 'libs/dimensions';
-import { Styling } from 'ui/theme/general';
+import SettingsRow from 'ui/components/SettingsRow';
+import SettingsSeparator from 'ui/components/SettingsSeparator';
+import SettingsBackButton from 'ui/components/SettingsBackButton';
+import SettingsDualFooter from 'ui/components/SettingsDualFooter';
 
 const SETTINGS_COMPONENTS = {
     mainSettings: MainSettingsComponent,
@@ -46,7 +44,6 @@ const SETTINGS_COMPONENTS = {
     addNewAccount: AddNewAccount,
     addExistingSeed: UseExistingSeed,
     nodeSettings: NodeSettingsComponent,
-    nodeSelection: NodeSelection,
     addCustomNode: AddCustomNodeComponent,
     currencySelection: CurrencySelectionComponent,
     languageSelection: LanguageSelection,
@@ -70,103 +67,49 @@ const SettingsContent = ({ component, ...props }) => {
     return <EnhancedComponent {...props} />;
 };
 
-const styles = StyleSheet.create({
-    itemContainer: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    item: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        width,
-        paddingHorizontal: width / 15,
-    },
-    content: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    titleText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 25,
-    },
-    separator: {
-        borderBottomWidth: 0.5,
-        width: width / 1.16,
-        alignSelf: 'center',
-    },
-    separatorContainer: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    settingText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: 5,
-        flex: 1,
-        textAlign: 'right',
-    },
-    backText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-});
-
 export const renderSettingsRows = (rows, theme) => {
-    const textColor = { color: theme.body.color };
-    const bodyColor = theme.body.color;
-    const borderBottomColor = { borderBottomColor: theme.body.color };
+    const dualFooter = find(rows, { name: 'dualFooter' });
+    const backButton = find(rows, { name: 'back' });
     return (
         <View style={{ flex: 1 }}>
             {map(rows, (row, index) => {
                 if (row.name === 'separator') {
                     return (
-                        <View style={styles.separatorContainer} key={index}>
-                            <View style={[styles.separator, borderBottomColor]} />
-                        </View>
+                        <SettingsSeparator inactive={row.inactive} color={theme.body.color} key={index}/>
                     );
-                } else if (row.name !== 'back') {
+                } else if (row.name !== 'back' && row.name !== 'dualFooter') {
                     return (
-                        <View style={styles.itemContainer} key={index}>
-                            <TouchableOpacity
-                                onPress={row.function}
-                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                            >
-                                <View style={styles.item}>
-                                    <Icon name={row.icon} size={width / 22} color={bodyColor} />
-                                    <View style={styles.content}>
-                                        <Text style={[styles.titleText, textColor]}>{row.name}</Text>
-                                        {row.currentSetting && (
-                                            <Text numberOfLines={1} style={[styles.settingText, textColor]}>
-                                                {row.currentSetting}
-                                            </Text>
-                                        )}
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+                        <SettingsRow
+                            theme={theme}
+                            name={row.name}
+                            inactive={row.inactive}
+                            onPress={row.function}
+                            currentSetting={row.currentSetting}
+                            icon={row.icon}
+                            toggle={row.toggle}
+                            dropdownOptions={row.dropdownOptions}
+                            key={index}
+                        />
                     );
                 }
             })}
             {rows.length < 12 && <View style={{ flex: 12 - rows.length }} />}
-            {some(rows, { name: 'back' }) && (
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={find(rows, { name: 'back' }).function}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                            <Text style={[styles.backText, textColor]}>{i18next.t('global:back')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+            {backButton && (
+                <SettingsBackButton
+                    theme={theme}
+                    backFunction={backButton.function}
+                    inactive={backButton.inactive}
+                />
+            )}
+            {dualFooter && (
+                <SettingsDualFooter
+                    theme={theme}
+                    backFunction={dualFooter.backFunction}
+                    hideActionButton={dualFooter.hideActionButton}
+                    actionName={dualFooter.actionName}
+                    actionButtonLoading={dualFooter.actionButtonLoading}
+                    actionFunction={dualFooter.actionFunction}
+                />
             )}
         </View>
     );

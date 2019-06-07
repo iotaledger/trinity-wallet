@@ -1,10 +1,12 @@
 import merge from 'lodash/merge';
-import { ActionTypes as SettingsActionTypes } from '../actions/settings';
-import { ActionTypes as UiActionTypes } from '../actions/ui';
-import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
-import { ActionTypes as WalletActionTypes } from '../actions/wallet';
-import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
-import { ActionTypes as PollingActionTypes } from '../actions/polling';
+import {
+    AccountsActionTypes,
+    PollingActionTypes,
+    SettingsActionTypes,
+    TransfersActionTypes,
+    UiActionTypes,
+    WalletActionTypes,
+} from '../types';
 
 const initialState = {
     /**

@@ -28,7 +28,7 @@ import {
     isBundle,
 } from '../../../libs/iota/transfers';
 import { confirmedValueBundles, unconfirmedValueBundles, confirmedZeroValueBundles } from '../../__samples__/bundles';
-import { iota, SwitchingConfig } from '../../../libs/iota';
+import { iota } from '../../../libs/iota';
 import {
     newValueTransactionTrytes,
     newValueAttachedTransactionTrytes,
@@ -52,14 +52,6 @@ import { EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_TRYTES, EMPTY_TRANSACTION_MESSAGE 
 import { IRI_API_VERSION } from '../../../config';
 
 describe('libs: iota/transfers', () => {
-    before(() => {
-        SwitchingConfig.autoSwitch = false;
-    });
-
-    after(() => {
-        SwitchingConfig.autoSwitch = true;
-    });
-
     describe('#getTransferValue', () => {
         let ownAddresses;
 
@@ -685,14 +677,18 @@ describe('libs: iota/transfers', () => {
 
             describe('when outputs size is greater than outputs threshold', () => {
                 it('should filter outputs with unknown addresses', () => {
-                    const { valueTransactionsWithNoRemainder: { bundle } } = bundlesMap;
+                    const {
+                        valueTransactionsWithNoRemainder: { bundle },
+                    } = bundlesMap;
                     const result = categoriseBundleByInputsOutputs(bundle, [], 0);
 
                     expect(result.outputs).to.eql([]);
                 });
 
                 it('should not filter remainder outputs', () => {
-                    const { valueTransactionsWithRemainder: { bundle } } = bundlesMap;
+                    const {
+                        valueTransactionsWithRemainder: { bundle },
+                    } = bundlesMap;
                     const result = categoriseBundleByInputsOutputs(bundle, [], 0);
 
                     expect(result.outputs).to.eql([
@@ -919,9 +915,8 @@ describe('libs: iota/transfers', () => {
                 });
 
                 return retryFailedTransaction()(
-                    map(
-                        failedTransactionsWithCorrectTransactionHashes,
-                        (tx, idx) => (idx % 2 === 0 ? tx : Object.assign({}, tx, { hash: EMPTY_HASH_TRYTES })),
+                    map(failedTransactionsWithCorrectTransactionHashes, (tx, idx) =>
+                        idx % 2 === 0 ? tx : Object.assign({}, tx, { hash: EMPTY_HASH_TRYTES }),
                     ),
                     seedStore,
                 ).then(() => {
@@ -1277,15 +1272,13 @@ describe('libs: iota/transfers', () => {
         it('should return false for bundle with incorrect trunk/branch assignment', () => {
             expect(
                 isBundleTraversable(
-                    map(
-                        newValueAttachedTransaction,
-                        (transaction, index) =>
-                            index % 2 === 0
-                                ? {
-                                      ...transaction,
-                                      trunkTransaction: '9'.repeat(81),
-                                  }
-                                : transaction,
+                    map(newValueAttachedTransaction, (transaction, index) =>
+                        index % 2 === 0
+                            ? {
+                                  ...transaction,
+                                  trunkTransaction: '9'.repeat(81),
+                              }
+                            : transaction,
                     ),
                 ),
             ).to.equal(false);

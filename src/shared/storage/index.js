@@ -256,12 +256,14 @@ class Node {
      * @method addCustomNode
      * @param {string} url Node URL
      */
-    static addCustomNode(url, pow) {
+    static addCustomNode(node, pow) {
         realm.write(() => {
             realm.create('Node', {
-                url,
+                url: node.url,
                 custom: true,
                 pow,
+                password: node.password,
+                token: node.token,
             });
         });
     }
@@ -388,18 +390,6 @@ class Wallet {
     }
 
     /**
-     * Updates auto node switching configuration.
-     *
-     * @method updateAutoNodeSwitchingSetting
-     * @param {boolean} payload
-     */
-    static updateAutoNodeSwitchingSetting(payload) {
-        realm.write(() => {
-            Wallet.latestSettings.autoNodeSwitching = payload;
-        });
-    }
-
-    /**
      * Updates lock screen timeout.
      *
      * @method updateLockScreenTimeout
@@ -439,6 +429,7 @@ class Wallet {
      * Updates wallet's node.
      *
      * @method updateNode
+     *
      * @param {string} payload
      */
     static updateNode(payload) {
@@ -647,6 +638,46 @@ class Wallet {
     }
 
     /**
+     * Updates quorum configuration.
+     *
+     * @method updateQuorumConfig
+     *
+     * @param {object} payload
+     */
+    static updateQuorumConfig(payload) {
+        const existingConfig = Wallet.latestSettings.quorum;
+        realm.write(() => {
+            Wallet.latestSettings.quorum = assign({}, existingConfig, payload);
+        });
+    }
+
+    /**
+     * Updates node auto-switch setting
+     *
+     * @method updateNodeAutoSwitchSetting
+     *
+     * @param {boolean} payload
+     */
+    static updateNodeAutoSwitchSetting(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.nodeAutoSwitch = payload;
+        });
+    }
+
+    /**
+     * Updates autoNodeList setting
+     *
+     * @method updateAutoNodeListSetting
+     *
+     * @param {boolean} payload
+     */
+    static updateAutoNodeListSetting(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.autoNodeList = payload;
+        });
+    }
+
+    /**
      * Updates error log.
      *
      * @method updateErrorLog
@@ -712,7 +743,7 @@ class Wallet {
             realm.write(() =>
                 realm.create('Wallet', {
                     version: Wallet.version,
-                    settings: { notifications: {} },
+                    settings: { notifications: {}, quorum: {} },
                     accountInfoDuringSetup: { meta: {} },
                 }),
             );
@@ -866,7 +897,6 @@ const initialise = (getEncryptionKeyPromise) => {
 
         while (nextSchemaIndex < schemasSize) {
             const migratedRealm = new Realm(assign({}, schemas[nextSchemaIndex++], { encryptionKey }));
-
             migratedRealm.close();
         }
 
