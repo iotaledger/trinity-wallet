@@ -17,7 +17,9 @@ export const DEFAULT_NODE = __TEST__
           password: '',
       };
 
-export const NODES_WITH_POW_DISABLED = ['https://nodes.iota.org'].map((url) => ({
+export const NODES_WITH_POW_DISABLED = [
+    'https://nodes.iota.org',
+].map((url) => ({
     url,
     pow: false,
     token: '',

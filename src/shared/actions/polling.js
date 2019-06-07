@@ -317,7 +317,11 @@ export const fetchPrice = () => {
 export const fetchNodeList = () => {
     return (dispatch, getState) => {
         dispatch(fetchNodeListRequest());
-        let nodes = unionBy(DEFAULT_NODES, getState().settings.nodes, 'url');
+        let nodes = unionBy(
+            DEFAULT_NODES,
+            getState().settings.nodes,
+            'url'
+        );
         fetchRemoteNodes()
             .then((remoteNodes) => {
                 if (remoteNodes.length) {
@@ -332,7 +336,11 @@ export const fetchNodeList = () => {
                     );
                 }
                 quorum.setNodes(
-                    unionBy(getCustomNodesFromState(getState()), getState().settings.autoNodeList && nodes, 'url'),
+                    unionBy(
+                        getCustomNodesFromState(getState()),
+                        getState().settings.autoNodeList && nodes,
+                        'url',
+                    ),
                 );
                 dispatch(setNodeList(nodes));
                 dispatch(fetchNodeListSuccess());

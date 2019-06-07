@@ -152,7 +152,7 @@ class DeleteAccount extends Component {
         const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
         try {
             await seedStore.removeAccount();
-        } catch (err) {}
+        } catch (err) { }
         this.props.deleteAccount(selectedAccountName);
     }
 
@@ -201,9 +201,7 @@ class DeleteAccount extends Component {
                                 <Text style={[styles.warningText, { color: primaryColor }]}>
                                     {t('thisAction').toUpperCase()}
                                 </Text>
-                                <Text style={[styles.infoText, textColor, { paddingTop: height / 30 }]}>
-                                    {t('enterPassword')}
-                                </Text>
+                                <Text style={[styles.infoText, textColor, { paddingTop: height / 30 }]}>{t('enterPassword')}</Text>
                                 <CustomTextInput
                                     label={t('global:password')}
                                     onValidTextChange={(password) => this.setState({ password })}
@@ -250,9 +248,4 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['deleteAccount', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(DeleteAccount),
-);
+export default withNamespaces(['deleteAccount', 'global'])(connect(mapStateToProps, mapDispatchToProps)(DeleteAccount));

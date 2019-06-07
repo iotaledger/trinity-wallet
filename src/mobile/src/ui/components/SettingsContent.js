@@ -74,7 +74,9 @@ export const renderSettingsRows = (rows, theme) => {
         <View style={{ flex: 1 }}>
             {map(rows, (row, index) => {
                 if (row.name === 'separator') {
-                    return <SettingsSeparator inactive={row.inactive} color={theme.body.color} key={index} />;
+                    return (
+                        <SettingsSeparator inactive={row.inactive} color={theme.body.color} key={index}/>
+                    );
                 } else if (row.name !== 'back' && row.name !== 'dualFooter') {
                     return (
                         <SettingsRow
@@ -93,7 +95,11 @@ export const renderSettingsRows = (rows, theme) => {
             })}
             {rows.length < 12 && <View style={{ flex: 12 - rows.length }} />}
             {backButton && (
-                <SettingsBackButton theme={theme} backFunction={backButton.function} inactive={backButton.inactive} />
+                <SettingsBackButton
+                    theme={theme}
+                    backFunction={backButton.function}
+                    inactive={backButton.inactive}
+                />
             )}
             {dualFooter && (
                 <SettingsDualFooter

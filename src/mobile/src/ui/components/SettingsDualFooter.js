@@ -59,13 +59,13 @@ class SettingsDualFooter extends PureComponent {
         /** Sets action button icon */
         actionIcon: PropTypes.string,
         /** Allows custom component in place of action button */
-        customActionView: PropTypes.object,
+        customActionView: PropTypes.object
     };
 
     static defaultProps = {
         hideActionButton: false,
         actionButtonLoading: false,
-        actionIcon: 'tick',
+        actionIcon: 'tick'
     };
 
     render() {
@@ -77,16 +77,11 @@ class SettingsDualFooter extends PureComponent {
             actionButtonLoading,
             actionFunction,
             actionIcon,
-            customActionView,
+            customActionView
         } = this.props;
 
         return (
-            <View
-                style={[
-                    styles.dualFooterContainer,
-                    { justifyContent: hideActionButton && !actionButtonLoading ? 'flex-start' : 'space-between' },
-                ]}
-            >
+            <View style={[ styles.dualFooterContainer, { justifyContent: hideActionButton && !actionButtonLoading ? 'flex-start' : 'space-between'} ]}>
                 <TouchableOpacity
                     onPress={backFunction}
                     hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
@@ -96,27 +91,27 @@ class SettingsDualFooter extends PureComponent {
                         <Text style={[styles.footerTextLeft, { color: body.color }]}>{i18next.t('global:back')}</Text>
                     </View>
                 </TouchableOpacity>
-                {!customActionView && hideActionButton === false && !actionButtonLoading && (
-                    <TouchableOpacity
-                        onPress={actionFunction}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.footerItemRight}>
-                            <Text style={[styles.footerTextRight, { color: body.color }]}>{actionName}</Text>
-                            <Icon name={actionIcon} size={width / 28} color={body.color} />
-                        </View>
-                    </TouchableOpacity>
-                )}
-                {actionButtonLoading && (
+                { !customActionView && hideActionButton === false && !actionButtonLoading &&
+                <TouchableOpacity
+                    onPress={actionFunction}
+                    hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                >
                     <View style={styles.footerItemRight}>
-                        <ActivityIndicator
-                            animating
-                            style={styles.activityIndicator}
-                            size="small"
-                            color={primary.color}
-                        />
+                        <Text style={[styles.footerTextRight, { color: body.color }]}>{actionName}</Text>
+                        <Icon name={actionIcon} size={width / 28} color={body.color} />
                     </View>
-                )}
+                </TouchableOpacity>
+                }
+                {actionButtonLoading &&
+                <View style={styles.footerItemRight}>
+                    <ActivityIndicator
+                        animating
+                        style={styles.activityIndicator}
+                        size="small"
+                        color={primary.color}
+                    />
+                </View>
+                }
                 {customActionView}
             </View>
         );

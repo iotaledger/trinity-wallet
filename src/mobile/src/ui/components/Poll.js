@@ -174,7 +174,11 @@ export class Poll extends Component {
 
             const seedStore = await new SeedStore[type](password, name);
 
-            this.props.retryFailedTransaction(name, bundleForRetry, seedStore);
+            this.props.retryFailedTransaction(
+                name,
+                bundleForRetry,
+                seedStore,
+            );
         } else {
             this.moveToNextPollService();
         }

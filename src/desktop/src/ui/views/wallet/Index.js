@@ -210,11 +210,4 @@ const mapDispatchToProps = {
     markTaskAsDone,
 };
 
-export default withRouter(
-    withTranslation()(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(Wallet),
-    ),
-);
+export default withRouter(withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Wallet)));

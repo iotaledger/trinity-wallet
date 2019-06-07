@@ -64,7 +64,7 @@ export class CurrencySelection extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currency: props.currency,
+            currency: props.currency
         };
     }
 
@@ -105,9 +105,7 @@ export class CurrencySelection extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <DropdownComponent
-                            onRef={(c) => {
-                                this.dropdown = c;
-                            }}
+                            onRef={(c) => { this.dropdown = c; }}
                             title={t('currency')}
                             options={availableCurrencies}
                             value={currency}
@@ -150,8 +148,5 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['currencySelection', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(CurrencySelection),
+    connect(mapStateToProps, mapDispatchToProps)(CurrencySelection),
 );

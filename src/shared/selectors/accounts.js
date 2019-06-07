@@ -106,10 +106,7 @@ export const selectLatestAddressFromAccountFactory = (withChecksum = true) =>
  *   @param {object} state
  *   @returns {object}
  **/
-export const getSelectedAccountMeta = createSelector(
-    selectAccountInfo,
-    (account) => get(account, 'meta'),
-);
+export const getSelectedAccountMeta = createSelector(selectAccountInfo, (account) => get(account, 'meta'));
 
 /**
  *   Selects account name for currently selected account.
@@ -397,7 +394,8 @@ export const getFailedBundleHashes = createSelector(
             (acc, info, accountName) => {
                 const failedTransactions = filter(
                     info.transactions,
-                    (transaction) => transaction.broadcasted === false && !transaction.fatalErrorOnRetry,
+                    (transaction) =>
+                        transaction.broadcasted === false && !transaction.fatalErrorOnRetry,
                 );
 
                 each(failedTransactions, (transaction) => {

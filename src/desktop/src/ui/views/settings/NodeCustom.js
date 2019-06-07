@@ -20,9 +20,12 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
     // const [password, setPassword] = useState('');
     // const [authVisible, setAuthVisible] = useState(false);
 
-    useEffect(() => {
-        setUrl('');
-    }, [customNodes]);
+    useEffect(
+        () => {
+            setUrl('');
+        },
+        [customNodes],
+    );
 
     const addNode = (e) => {
         if (e) {

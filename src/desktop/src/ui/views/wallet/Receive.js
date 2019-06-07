@@ -285,7 +285,4 @@ const mapDispatchToProps = {
     addressValidationSuccess,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Receive));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Receive));

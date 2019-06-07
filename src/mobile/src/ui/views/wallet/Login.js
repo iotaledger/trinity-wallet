@@ -203,14 +203,18 @@ class Login extends Component {
                         isFingerprintEnabled={isFingerprintEnabled}
                     />
                 )}
-                {nextLoginRoute !== 'login' && (
-                    <View style={{ flex: 1 }}>
-                        <View style={{ flex: 0.15 }} />
-                        {nextLoginRoute === 'nodeSettings' && <NodeSettingsComponent login />}
-                        {nextLoginRoute === 'addCustomNode' && <AddCustomNodeComponent login />}
-                        <View style={{ flex: 0.05 }} />
-                    </View>
-                )}
+                {nextLoginRoute !== 'login' &&
+                <View style={{ flex: 1 }}>
+                    <View style={{ flex: 0.15 }}/>
+                    {nextLoginRoute === 'nodeSettings' &&
+                        <NodeSettingsComponent login />
+                    }
+                    {nextLoginRoute === 'addCustomNode' &&
+                        <AddCustomNodeComponent login />
+                    }
+                    <View style={{ flex: 0.05 }}/>
+                </View>
+                }
             </AnimatedComponent>
         );
     }

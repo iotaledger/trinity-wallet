@@ -71,7 +71,7 @@ export class Dropdown extends Component {
         /** Dropdown width */
         dropdownWidth: PropTypes.object,
         /** Custom dropdown button */
-        customView: PropTypes.object,
+        customView: PropTypes.object
     };
 
     static defaultProps = {
@@ -82,7 +82,7 @@ export class Dropdown extends Component {
         saveSelection: () => {},
         title: '',
         dropdownWidth: { width: isIPhoneX ? width / 1.3 : width / 1.5 },
-        customView: undefined,
+        customView: undefined
     };
 
     constructor(props) {
@@ -172,20 +172,16 @@ export class Dropdown extends Component {
                     Icon={() => {}}
                     pickerProps={{ itemStyle: [styles.pickerItem] }}
                 >
-                    {(customView && customView) || (
+                    {customView &&
+                        customView
+                        ||
                         <View>
                             <Text
-                                style={[
-                                    styles.dropdownTitle,
-                                    { color: theme.primary.color },
-                                    isAndroid ? null : dropdownWidth,
-                                ]}
+                                style={[styles.dropdownTitle, { color: theme.primary.color }, isAndroid ? null : dropdownWidth]}
                             >
                                 {title}
                             </Text>
-                            <View
-                                style={[styles.dropdownButton, dropdownWidth, { borderBottomColor: theme.body.color }]}
-                            >
+                            <View style={[styles.dropdownButton, dropdownWidth, { borderBottomColor: theme.body.color }]}>
                                 <Text numberOfLines={1} style={[styles.selected, { color: theme.body.color }]}>
                                     {selectedOption.label}
                                 </Text>
@@ -198,7 +194,7 @@ export class Dropdown extends Component {
                                 />
                             </View>
                         </View>
-                    )}
+                    }
                 </RNPickerSelect>
             </View>
         );

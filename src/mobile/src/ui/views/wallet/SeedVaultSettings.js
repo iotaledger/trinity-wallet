@@ -93,13 +93,9 @@ class SeedVaultSettings extends Component {
                             theme={theme}
                             backFunction={() => this.SeedVaultExportComponent.onBackPress()}
                             actionFunction={() => this.onRightButtonPress()}
-                            actionName={
-                                step === 'isExporting' && !isAndroid
-                                    ? t('global:export')
-                                    : step === 'isSelectingSaveMethodAndroid'
-                                    ? t('global:done')
-                                    : t('global:next')
-                            }
+                            actionName={step === 'isExporting' && !isAndroid
+                                ? t('global:export')
+                                : step === 'isSelectingSaveMethodAndroid' ? t('global:done') : t('global:next')}
                         />
                     </View>
                 </View>
@@ -116,9 +112,4 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withNamespaces(['seedVault', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(SeedVaultSettings),
-);
+export default withNamespaces(['seedVault', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SeedVaultSettings));

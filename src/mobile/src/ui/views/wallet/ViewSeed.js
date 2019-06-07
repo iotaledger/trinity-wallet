@@ -3,7 +3,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
-import { View, Text, StyleSheet, Keyboard, TouchableWithoutFeedback, AppState, Animated, Easing } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    Keyboard,
+    TouchableWithoutFeedback,
+    AppState,
+    Animated,
+    Easing,
+} from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
@@ -286,7 +295,10 @@ class ViewSeed extends Component {
                         </View>
                     </Animated.View>
                     <View style={styles.bottomContainer}>
-                        <SettingsBackButton theme={theme} backFunction={this.onBackPress} />
+                        <SettingsBackButton
+                            theme={theme}
+                            backFunction={this.onBackPress}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -306,9 +318,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['viewSeed', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(ViewSeed),
-);
+export default withNamespaces(['viewSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewSeed));

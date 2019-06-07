@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -65,57 +65,60 @@ class SettingsRow extends PureComponent {
     };
 
     renderSettingsRow() {
-        const {
-            theme: { body, primary },
-            name,
-            inactive,
-            onPress,
-            icon,
-            currentSetting,
-            toggle,
-        } = this.props;
+      const {
+          theme: { body, primary },
+          name,
+          inactive,
+          onPress,
+          icon,
+          currentSetting,
+          toggle
+      } = this.props;
 
-        return (
-            <TouchableOpacity
-                onPress={onPress}
-                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                disabled={inactive}
-            >
-                <View style={styles.item}>
-                    {icon && <Icon name={icon} size={width / 22} color={body.color} />}
-                    <View style={styles.content}>
-                        <Text style={[styles.titleText, { color: body.color }, icon && { marginLeft: width / 25 }]}>
-                            {name}
-                        </Text>
-                        {currentSetting && (
-                            <Text numberOfLines={1} style={[styles.settingText, { color: body.color }]}>
-                                {currentSetting}
-                            </Text>
-                        )}
-                        {toggle !== undefined && (
-                            <Toggle active={toggle} bodyColor={body.color} primaryColor={primary.color} scale={1} />
-                        )}
-                    </View>
-                </View>
-            </TouchableOpacity>
-        );
+      return (
+          <TouchableOpacity
+              onPress={onPress}
+              hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+              disabled={inactive}
+          >
+              <View style={styles.item}>
+                  {icon && <Icon name={icon} size={width / 22} color={body.color} />}
+                  <View style={styles.content}>
+                      <Text style={[ styles.titleText, { color: body.color }, icon && { marginLeft: width / 25 } ]}>{name}</Text>
+                      {currentSetting &&
+                          <Text numberOfLines={1} style={[ styles.settingText, { color: body.color } ]}>
+                              {currentSetting}
+                          </Text>
+                      }
+                      {toggle !== undefined &&
+                          <Toggle
+                              active={toggle}
+                              bodyColor={body.color}
+                              primaryColor={primary.color}
+                              scale={1}
+                          />
+                      }
+                  </View>
+              </View>
+          </TouchableOpacity>
+      );
     }
 
     render() {
         const { currentSetting, inactive, dropdownOptions, onPress } = this.props;
         return (
-            <View style={[styles.itemContainer, inactive && { opacity: 0.35 }]}>
-                {(dropdownOptions && (
-                    <DropdownComponent
-                        value={currentSetting}
-                        options={dropdownOptions}
-                        saveSelection={(item) => onPress(item)}
-                        customView={this.renderSettingsRow()}
-                        disableWhen={inactive}
-                        dropdownWidth={{ width }}
-                    />
-                )) ||
-                    this.renderSettingsRow()}
+            <View style={[ styles.itemContainer, inactive && { opacity: 0.35 } ]}>
+                {dropdownOptions &&
+                <DropdownComponent
+                    value={currentSetting}
+                    options={dropdownOptions}
+                    saveSelection={(item) => onPress(item)}
+                    customView={this.renderSettingsRow()}
+                    disableWhen={inactive}
+                    dropdownWidth={{width}}
+                />
+                ||
+                this.renderSettingsRow()}
             </View>
         );
     }
