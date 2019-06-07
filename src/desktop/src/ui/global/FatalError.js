@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import Button from 'ui/components/Button';
+
 import css from 'ui/views/onboarding/index.scss';
 
 /**
@@ -91,13 +93,35 @@ const FatalError = ({ error }) => {
             );
         }
 
+        if (
+            typeof error === 'string' &&
+            error.indexOf('Provided schema version') > -1 &&
+            error.indexOf('is less than last set version') > -1
+        ) {
+            return (
+                <form className={css.tutorial}>
+                    <h1>Newer Trinity version data found</h1>
+                    <p>
+                        Trinity found data installed by a newer version of Trinity which is incompatible your older
+                        versions. <a href="https://trinity.iota.org/#download">Download the latest version</a> or update
+                        Trinity now.
+                    </p>
+                    <Button type="button" variant="primary" onClick={() => Electron.autoUpdate()}>
+                        Update Trinity now
+                    </Button>
+                </form>
+            );
+        }
+
         return (
             <form>
                 <h1>Error launching wallet</h1>
                 <p>There was a fatal error launching the wallet.</p>
                 <pre>
                     <span key="error">{error}</span>
-                    {errors.map((err, i) => <span key={i}>{err}</span>)}
+                    {errors.map((err, i) => (
+                        <span key={i}>{err}</span>
+                    ))}
                 </pre>
             </form>
         );
