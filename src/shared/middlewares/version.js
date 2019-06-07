@@ -1,9 +1,8 @@
-import { ActionTypes } from '../actions/wallet';
-import { ActionTypes as AlertsActionTypes } from '../actions/alerts';
+import { WalletActionTypes, AlertsActionTypes } from '../types';
 import i18next from '../libs/i18next.js';
 
 const versionMiddleware = () => (next) => (action) => {
-    if (action.type === ActionTypes.FORCE_UPDATE) {
+    if (action.type === WalletActionTypes.FORCE_UPDATE) {
         next({
             type: AlertsActionTypes.SHOW,
             category: 'error',
@@ -12,7 +11,7 @@ const versionMiddleware = () => (next) => (action) => {
             closeInterval: 3600000,
         });
         next(action);
-    } else if (action.type === ActionTypes.SHOULD_UPDATE) {
+    } else if (action.type === WalletActionTypes.SHOULD_UPDATE) {
         next({
             type: AlertsActionTypes.SHOW,
             category: 'error',

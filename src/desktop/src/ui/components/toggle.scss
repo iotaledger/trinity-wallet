@@ -1,51 +1,78 @@
 .toggle {
-    display: block;
-    margin: 32px 0;
-    font-size: 14px;
-    line-height: 14px;
-    text-transform: uppercase;
-    width: 100%;
-    text-align: center;
-    span {
-        text-transform: capitalize;
-        width: 100px;
+    &.inline {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        line-height: 14px;
+        margin: 32px 0;
         cursor: pointer;
-        color: var(--body);
-        &:first-child {
-            padding-right: 70px;
-            position: relative;
-            color: var(--primary);
-            &:after {
-                content: '';
-                width: 50px;
-                height: 20px;
-                position: absolute;
-                top: 0px;
-                right: 10px;
-                border-radius: 15px;
-                border: 1px solid var(--body);
-            }
-            &:before {
-                content: '';
-                width: 16px;
-                height: 16px;
-                position: absolute;
-                top: 2px;
-                right: 42px;
-                border-radius: 9px;
-                border: 1px solid var(--primary);
-                background: var(--primary);
-                transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
-            }
+
+        > div {
+            margin: 0px;
+            width: auto;
         }
     }
-    &.on {
+
+    &.disabled {
+        opacity: 0.25;
+        pointer-events: none;
+    }
+
+    > div {
+        display: block;
+        margin: 32px 0;
+        font-size: 14px;
+        line-height: 14px;
+        text-transform: uppercase;
+        width: 100%;
+        text-align: center;
         span {
-            color: var(--primary);
+            text-transform: capitalize;
+            width: 100px;
+            cursor: pointer;
+            color: var(--body);
             &:first-child {
-                color: var(--body);
+                padding-right: 70px;
+                position: relative;
+                color: var(--primary);
+                &:after {
+                    content: '';
+                    width: 50px;
+                    height: 20px;
+                    position: absolute;
+                    top: 0px;
+                    right: 10px;
+                    border-radius: 15px;
+                    border: 1px solid var(--body);
+                }
                 &:before {
-                    right: 12px;
+                    content: '';
+                    width: 16px;
+                    height: 16px;
+                    position: absolute;
+                    top: 2px;
+                    right: 42px;
+                    border-radius: 9px;
+                    border: 1px solid var(--body);
+                    background: none;
+                    transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+                }
+            }
+        }
+        &.active {
+            span:first-child:before {
+                background: var(--primary);
+                border: 1px solid var(--primary);
+            }
+        }
+        &.on {
+            span {
+                color: var(--primary);
+                &:first-child {
+                    color: var(--body);
+                    &:before {
+                        right: 12px;
+                    }
                 }
             }
         }

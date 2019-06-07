@@ -97,7 +97,9 @@ const FatalError = ({ error }) => {
                 <p>There was a fatal error launching the wallet.</p>
                 <pre>
                     <span key="error">{error}</span>
-                    {errors.map((err, i) => <span key={i}>{err}</span>)}
+                    {errors.map((err, i) => (
+                        <span key={i}>{err}</span>
+                    ))}
                 </pre>
             </form>
         );

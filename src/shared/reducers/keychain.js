@@ -1,5 +1,5 @@
 import merge from 'lodash/merge';
-import { ActionTypes } from '../actions/keychain';
+import { KeychainActionTypes } from '../types';
 
 const initialState = {
     /**
@@ -17,7 +17,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case ActionTypes.IS_GETTING_SENSITIVE_INFO_REQUEST:
+        case KeychainActionTypes.IS_GETTING_SENSITIVE_INFO_REQUEST:
             return {
                 ...state,
                 isGettingSensitiveInfo: merge({}, state.isGettingSensitiveInfo, {
@@ -26,8 +26,8 @@ export default (state = initialState, action) => {
                     },
                 }),
             };
-        case ActionTypes.IS_GETTING_SENSITIVE_INFO_SUCCESS:
-        case ActionTypes.IS_GETTING_SENSITIVE_INFO_ERROR:
+        case KeychainActionTypes.IS_GETTING_SENSITIVE_INFO_SUCCESS:
+        case KeychainActionTypes.IS_GETTING_SENSITIVE_INFO_ERROR:
             return {
                 ...state,
                 isGettingSensitiveInfo: merge({}, state.isGettingSensitiveInfo, {

@@ -4,7 +4,8 @@ describe('Onboarding seed generate view', () => {
 
         expect(snapshot).toMatchImageSnapshot({
             customSnapshotsDir: `${__dirname}/__snapshots__/`,
-                customDiffConfig: { threshold: 1 },
+            failureThreshold: '0.5',
+           failureThresholdType: 'percent',
             customSnapshotIdentifier: 'seedGenerate.test.jsx',
         });
     }, 10000);
