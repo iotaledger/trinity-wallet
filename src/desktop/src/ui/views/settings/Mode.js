@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { setMode } from 'actions/settings';
 
 import Toggle from 'ui/components/Toggle';
@@ -51,4 +51,7 @@ const mapDispatchToProps = {
     setMode,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Mode));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(Mode));

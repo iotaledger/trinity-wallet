@@ -8,7 +8,7 @@ import {
     getCustomNodesFromState,
 } from '../../selectors/global';
 import Themes from '../../themes/themes';
-import { defaultNode as DEFAULT_NODE } from '../../config';
+import { DEFAULT_NODE } from '../../config';
 
 describe('selectors: global', () => {
     describe('#getNodesFromState', () => {
@@ -54,7 +54,7 @@ describe('selectors: global', () => {
 
         describe('when "nodes" prop is undefined in settings reducer', () => {
             it('should return wallet default node', () => {
-                expect(getSelectedNodeFromState({ settings: {} })).to.equal(DEFAULT_NODE);
+                expect(getSelectedNodeFromState({ settings: {} })).to.eql(DEFAULT_NODE);
             });
         });
     });

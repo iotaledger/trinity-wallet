@@ -13,7 +13,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import SettingsDualFooter from 'ui/components/SettingsDualFooter';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -43,11 +43,6 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     addressText: {
         backgroundColor: 'transparent',
@@ -192,26 +187,22 @@ export class ViewAddresses extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.listView}>
-                    <View style={{ height: height / 2.5 + height / 60 * 9 }}>{listOfAddresses}</View>
+                    <View style={{ height: height / 2.5 + (height / 60) * 9 }}>{listOfAddresses}</View>
                 </View>
                 <View style={{ flex: 0.2 }} />
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.setSetting('accountManagement')}
-                        style={{ flex: 1 }}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.itemLeft}>
-                            <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                            <Text style={[styles.titleText, textColor]}>{t('global:back')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                    {addresses.length > 0 && (
-                        <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
-                            <Text style={styles.spentText}>ABC</Text>
-                            <Text style={[styles.balanceText, textColor]}> = {t('spent')}</Text>
-                        </View>
-                    )}
+                    <SettingsDualFooter
+                        theme={theme}
+                        backFunction={() => this.props.setSetting('accountManagement')}
+                        customActionView={
+                            addresses.length > 0 && (
+                                <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+                                    <Text style={styles.spentText}>ABC</Text>
+                                    <Text style={[styles.balanceText, textColor]}> = {t('spent')}</Text>
+                                </View>
+                            )
+                        }
+                    />
                 </View>
             </View>
         );
@@ -228,4 +219,9 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
 });
 
-export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewAddresses));
+export default withNamespaces(['receive', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ViewAddresses),
+);

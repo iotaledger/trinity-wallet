@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
 import SplashScreen from 'react-native-splash-screen';
 import { navigator } from 'libs/navigation';
-import { Linking, StyleSheet } from 'react-native';
+import { Linking, StyleSheet, View } from 'react-native';
 import timer from 'react-native-timer';
 import { setFullNode } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -15,7 +15,8 @@ import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import WithDeepLinking from 'ui/components/DeepLinking';
-import NodeOptionsOnLogin from 'ui/views/wallet/NodeOptionsOnLogin';
+import NodeSettingsComponent from 'ui/views/wallet/NodeSettings';
+import AddCustomNodeComponent from 'ui/views/wallet/AddCustomNode';
 import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import SeedStore from 'libs/SeedStore';
@@ -146,7 +147,7 @@ class Login extends Component {
      * @returns {object}
      */
     getAnimation(currentLoginRoute, nextLoginRoute, animationIn = true) {
-        const routes = ['login', 'nodeOptions', 'customNode', 'nodeSelection'];
+        const routes = ['login', 'nodeSettings', 'addCustomNode'];
         if (routes.indexOf(currentLoginRoute) < routes.indexOf(nextLoginRoute)) {
             if (animationIn) {
                 return ['slideInRightSmall', 'fadeIn'];
@@ -184,6 +185,7 @@ class Login extends Component {
         return (
             <AnimatedComponent
                 animateOnMount={false}
+                animateOnNavigation={false}
                 animationInType={this.animationInType}
                 animationOutType={this.animationOutType}
                 animateInTrigger={this.state.nextLoginRoute}
@@ -195,13 +197,20 @@ class Login extends Component {
                     <EnterPasswordOnLoginComponent
                         theme={theme}
                         onLoginPress={this.onLoginPress}
-                        navigateToNodeOptions={() => this.props.setLoginRoute('nodeOptions')}
+                        navigateToNodeOptions={() => this.props.setLoginRoute('nodeSettings')}
                         setLoginPasswordField={(password) => this.setState({ password })}
                         password={this.state.password}
                         isFingerprintEnabled={isFingerprintEnabled}
                     />
                 )}
-                {nextLoginRoute !== 'login' && <NodeOptionsOnLogin loginRoute={nextLoginRoute} />}
+                {nextLoginRoute !== 'login' && (
+                    <View style={{ flex: 1 }}>
+                        <View style={{ flex: 0.15 }} />
+                        {nextLoginRoute === 'nodeSettings' && <NodeSettingsComponent login />}
+                        {nextLoginRoute === 'addCustomNode' && <AddCustomNodeComponent login />}
+                        <View style={{ flex: 0.05 }} />
+                    </View>
+                )}
             </AnimatedComponent>
         );
     }

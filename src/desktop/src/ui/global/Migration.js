@@ -1,7 +1,7 @@
 /*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { startTrackingProgress } from 'actions/progress';
@@ -55,7 +55,7 @@ class Migration extends React.Component {
         /** @ignore */
         notificationLog: PropTypes.array.isRequired,
         /** @ignore */
-        node: PropTypes.string.isRequired,
+        node: PropTypes.object.isRequired,
         /** @ignore */
         nodes: PropTypes.array.isRequired,
         /** @ignore */
@@ -119,7 +119,7 @@ class Migration extends React.Component {
                         <article>
                             <Progress
                                 type="large"
-                                progress={Math.round((activeStepIndex + 1) / activeSteps.length * 100)}
+                                progress={Math.round(((activeStepIndex + 1) / activeSteps.length) * 100)}
                                 subtitle={activeSteps[activeStepIndex]}
                             />
                         </article>
@@ -155,4 +155,7 @@ const mapDispatchToProps = {
     setFullNode,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Migration));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(Migration));

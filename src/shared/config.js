@@ -2,20 +2,41 @@ export const __DEV__ = process.env.NODE_ENV === 'development';
 export const __TEST__ = process.env.NODE_ENV === 'test';
 export const __MOBILE__ = typeof navigator !== 'undefined' && navigator.product === 'ReactNative';
 
-/** Default IRI node */
-export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.iota.org';
+/** Default IRI node object */
+export const DEFAULT_NODE = __TEST__
+    ? {
+          url: 'http://localhost:14265',
+          pow: false,
+          token: '',
+          password: '',
+      }
+    : {
+          url: 'https://nodes.iota.org',
+          pow: false,
+          token: '',
+          password: '',
+      };
 
-export const nodesWithPowDisabled = [];
+export const NODES_WITH_POW_DISABLED = ['https://nodes.iota.org'].map((url) => ({
+    url,
+    pow: false,
+    token: '',
+    password: '',
+}));
 
-export const nodesWithPowEnabled = [
-    'https://nodes.iota.org',
+export const NODES_WITH_POW_ENABLED = [
     'https://nodes.thetangle.org:443',
     'https://iotanode.us:443',
     'https://pool.trytes.eu',
     'https://pow.iota.community:443',
-];
+].map((url) => ({
+    url,
+    pow: true,
+    token: '',
+    password: '',
+}));
 
-export const nodes = [...nodesWithPowEnabled, ...nodesWithPowDisabled];
+export const DEFAULT_NODES = [...NODES_WITH_POW_DISABLED, ...NODES_WITH_POW_ENABLED];
 
 export const NODELIST_URL = 'https://nodes.iota.works/api/ssl/live';
 
@@ -46,6 +67,8 @@ export const IRI_API_VERSION = '1';
 export const QUORUM_THRESHOLD = 67;
 export const QUORUM_SIZE = 4;
 export const QUORUM_SYNC_CHECK_INTERVAL = 120;
+export const MINIMUM_QUORUM_SIZE = 2;
+export const MAXIMUM_QUORUM_SIZE = 7;
 
 /** Maximum milestone fallbehind threshold for node sync checks */
 export const MAX_MILESTONE_FALLBEHIND = 2;

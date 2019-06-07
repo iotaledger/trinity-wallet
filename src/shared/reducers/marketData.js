@@ -1,4 +1,4 @@
-import { ActionTypes } from '../actions/marketData';
+import { MarketDataActionTypes } from '../types';
 
 const initialState = {
     /**
@@ -45,17 +45,17 @@ const initialState = {
 
 const marketData = (state = initialState, action) => {
     switch (action.type) {
-        case ActionTypes.SET_CURRENCY:
+        case MarketDataActionTypes.SET_CURRENCY:
             return {
                 ...state,
                 currency: action.payload,
             };
-        case ActionTypes.SET_TIMEFRAME:
+        case MarketDataActionTypes.SET_TIMEFRAME:
             return {
                 ...state,
                 timeframe: action.payload,
             };
-        case ActionTypes.SET_PRICE:
+        case MarketDataActionTypes.SET_PRICE:
             return {
                 ...state,
                 usdPrice: action.usd,
@@ -63,7 +63,7 @@ const marketData = (state = initialState, action) => {
                 btcPrice: action.btc,
                 ethPrice: action.eth,
             };
-        case ActionTypes.SET_STATISTICS:
+        case MarketDataActionTypes.SET_STATISTICS:
             return {
                 ...state,
                 usdPrice: action.usdPrice,
@@ -71,7 +71,7 @@ const marketData = (state = initialState, action) => {
                 volume: action.volume,
                 change24h: action.change24h,
             };
-        case ActionTypes.SET_CHART_DATA:
+        case MarketDataActionTypes.SET_CHART_DATA:
             return {
                 ...state,
                 chartData: action.chartData,

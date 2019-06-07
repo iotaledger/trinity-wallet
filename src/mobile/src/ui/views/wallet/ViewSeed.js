@@ -3,17 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
-import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Keyboard,
-    TouchableWithoutFeedback,
-    AppState,
-    Animated,
-    Easing,
-} from 'react-native';
+import { View, Text, StyleSheet, Keyboard, TouchableWithoutFeedback, AppState, Animated, Easing } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
@@ -24,10 +14,10 @@ import SeedPicker from 'ui/components/SeedPicker';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
+import SettingsBackButton from 'ui/components/SettingsBackButton';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
@@ -54,7 +44,6 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        justifyContent: 'center',
     },
     item: {
         flexDirection: 'row',
@@ -297,15 +286,7 @@ class ViewSeed extends Component {
                         </View>
                     </Animated.View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={this.onBackPress}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                                <Text style={[styles.titleText, { color: theme.body.color }]}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <SettingsBackButton theme={theme} backFunction={this.onBackPress} />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -325,4 +306,9 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['viewSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewSeed));
+export default withNamespaces(['viewSeed', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ViewSeed),
+);

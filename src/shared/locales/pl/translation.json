@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Błąd podczas pobierania danych aktualizacji",
+        "errorRetrievingUpdateDataExplanation": "Nie można pobrać danych aktualizacji. Sprawdź swoje połączenie internetowe i spróbuj ponownie.",
         "noUpdatesAvailable": "Brak dostępnych aktualizacji",
         "noUpdatesAvailableExplanation": "Posiadasz zainstalowaną najnowszą wersję portfela Trinity!",
         "newVersionAvailable": "Nowa wersja dostępna",

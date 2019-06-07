@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Frissítés adatletöltési hiba",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Nincs elérhető frissítés",
         "noUpdatesAvailableExplanation": "Nem érhető el újabb Trinity verzió!",
         "newVersionAvailable": "Új verzió elérhető",
