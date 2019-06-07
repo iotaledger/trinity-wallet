@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { MAX_SEED_TRITS, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
@@ -17,8 +17,8 @@ import timer from 'react-native-timer';
 import SeedStore from 'libs/SeedStore';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import SettingsDualFooter from 'ui/components/SettingsDualFooter';
+import { width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { trytesToTrits } from 'shared-modules/libs/iota/converter';
@@ -30,10 +30,6 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     topContainer: {
         flex: 11,
@@ -305,26 +301,12 @@ class UseExistingSeed extends Component {
                         <View style={{ flex: 0.5 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('addNewAccount')}
-                            style={{ flex: 1 }}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.addExistingSeed(seed, trim(accountName))}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                            style={{ flex: 1 }}
-                        >
-                            <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, textColor]}>{t('global:done')}</Text>
-                                <Icon name="chevronRight" size={width / 28} color={theme.body.color} />
-                            </View>
-                        </TouchableOpacity>
+                        <SettingsDualFooter
+                            theme={theme}
+                            backFunction={() => this.props.setSetting('addNewAccount')}
+                            actionFunction={() => this.addExistingSeed(seed, trim(accountName))}
+                            actionName={t('global:done')}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -348,5 +330,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['addAdditionalSeed', 'useExistingSeed', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(UseExistingSeed),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(UseExistingSeed),
 );

@@ -4,7 +4,8 @@ describe('Settings two-factor authentication view', () => {
 
         expect(snapshot).toMatchImageSnapshot({
             customSnapshotsDir: `${__dirname}/__snapshots__/`,
-                customDiffConfig: { threshold: 1 },
+            failureThreshold: '0.05',
+            failureThresholdType: 'percent',
             customSnapshotIdentifier: 'twoFa.test.jsx',
         });
     }, 10000);

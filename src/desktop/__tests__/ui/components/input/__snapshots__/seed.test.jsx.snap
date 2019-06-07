@@ -59,7 +59,7 @@ exports[`Seed input component Render the component 1`] = `
       Foo
     </small>
   </fieldset>
-  <Connect(WithMergedOptions(Dropzone))
+  <Connect(withI18nextTranslation(Dropzone))
     onDrop={[Function]}
     onTextDrop={[Function]}
   />

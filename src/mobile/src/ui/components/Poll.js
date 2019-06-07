@@ -265,4 +265,7 @@ const mapDispatchToProps = {
     retryFailedTransaction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Poll);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Poll);

@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Virhe haettaessa päivityksiä",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Ei uusia päivityksiä",
         "noUpdatesAvailableExplanation": "Sinulla on uusin Trinity-versio!",
         "newVersionAvailable": "Uusi versio saatavilla",

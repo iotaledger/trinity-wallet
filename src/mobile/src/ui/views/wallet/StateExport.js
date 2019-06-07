@@ -4,22 +4,22 @@ import includes from 'lodash/includes';
 import pick from 'lodash/pick';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import Share from 'react-native-share';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { withNamespaces } from 'react-i18next';
-import { width, height } from 'libs/dimensions';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import SettingsDualFooter from 'ui/components/SettingsDualFooter';
 import InfoBox from 'ui/components/InfoBox';
 import RNFetchBlob from 'rn-fetch-blob';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import { moment } from 'shared-modules/libs/exports';
 import { serialise } from 'shared-modules/libs/utils';
+import { iota, quorum } from 'shared-modules/libs/iota';
 
 const styles = StyleSheet.create({
     container: {
@@ -29,37 +29,10 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     topContainer: {
         flex: 10,
         justifyContent: 'flex-start',
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    titleTextLeft: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    titleTextRight: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -126,10 +99,15 @@ export class StateExport extends Component {
                 path,
                 serialise(
                     {
-                        accounts: pick(accounts, ['onboardingComplete', 'accountInfo']),
-                        settings: pick(settings, ['versions']),
                         notificationLog,
+                        settings,
+                        accounts: pick(accounts, ['onboardingComplete', 'accountInfo']),
                         storageFiles: filter(flatMap(files), (name) => includes(name, 'realm')),
+                        __globals__: {
+                            quorumNodes: quorum.nodes,
+                            quorumSize: quorum.size,
+                            iotaNode: iota.provider,
+                        },
                     },
                     null,
                     4,
@@ -149,38 +127,6 @@ export class StateExport extends Component {
         }
     }
 
-    renderBackOption() {
-        const { theme, t } = this.props;
-
-        return (
-            <TouchableOpacity
-                onPress={() => this.props.setSetting('advancedSettings')}
-                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-            >
-                <View style={styles.itemLeft}>
-                    <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                    <Text style={[styles.titleTextLeft, { color: theme.body.color }]}>{t('global:back')}</Text>
-                </View>
-            </TouchableOpacity>
-        );
-    }
-
-    renderExportOption() {
-        const { t, theme } = this.props;
-
-        return (
-            <TouchableOpacity
-                onPress={() => this.exportStateFile()}
-                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-            >
-                <View style={styles.itemRight}>
-                    <Text style={[styles.titleTextRight, { color: theme.body.color }]}>{t('export')}</Text>
-                    <Icon name="tick" size={width / 28} color={theme.body.color} />
-                </View>
-            </TouchableOpacity>
-        );
-    }
-
     render() {
         const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
@@ -195,8 +141,12 @@ export class StateExport extends Component {
                         </InfoBox>
                     </View>
                     <View style={styles.bottomContainer}>
-                        {this.renderBackOption()}
-                        {this.renderExportOption()}
+                        <SettingsDualFooter
+                            theme={theme}
+                            backFunction={() => this.props.setSetting('advancedSettings')}
+                            actionFunction={() => this.exportStateFile()}
+                            actionName={t('export')}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>

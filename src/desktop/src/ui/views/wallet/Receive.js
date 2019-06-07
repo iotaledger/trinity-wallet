@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import {
@@ -285,4 +285,7 @@ const mapDispatchToProps = {
     addressValidationSuccess,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Receive));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(Receive));

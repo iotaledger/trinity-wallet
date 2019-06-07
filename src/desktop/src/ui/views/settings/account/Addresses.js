@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { formatValue, formatUnit } from 'libs/iota/utils';
 
 import Scrollbar from 'ui/components/Scrollbar';
@@ -61,4 +61,4 @@ class Addresses extends PureComponent {
     }
 }
 
-export default withI18n()(Addresses);
+export default withTranslation()(Addresses);

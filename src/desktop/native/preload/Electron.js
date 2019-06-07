@@ -309,6 +309,14 @@ const Electron = {
     },
 
     /**
+     * Reload Wallet window to initial location
+     * @returns {undefined}
+     */
+    reload: () => {
+        remote.getCurrentWindow().webContents.goToIndex(0);
+    },
+
+    /**
      * Focus main wallet window
      * @param {string} view - optional view to navigate to
      */
@@ -564,6 +572,7 @@ const Electron = {
             no: t('no'),
             updates: {
                 errorRetrievingUpdateData: t('updates:errorRetrievingUpdateData'),
+                errorRetrievingUpdateDataExplanation: t('updates:errorRetrievingUpdateDataExplanation'),
                 noUpdatesAvailable: t('updates:noUpdatesAvailable'),
                 noUpdatesAvailableExplanation: t('updates:noUpdatesAvailableExplanation'),
                 newVersionAvailable: t('updates:newVersionAvailable'),
