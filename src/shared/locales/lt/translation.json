@@ -758,9 +758,9 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Klaida siunčiant atnaujinimus",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Nepavyko atsiųsti atnaujinimų. Patikrinkite savo interneto ryšį ir bandykite dar kartą.",
         "noUpdatesAvailable": "Atnaujinimų nėra",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "Jūs turite naujausią Trinity versiją!",
         "newVersionAvailable": "Galima nauja versija",
         "newVersionAvailableExplanation": "Galima nauja Trinity versija. Ar norite atlikti atnaujinimus?",
         "installUpdate": "Atnaujinimų įdiegimas ir paleidimas iš naujo",
