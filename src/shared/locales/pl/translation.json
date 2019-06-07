@@ -169,7 +169,9 @@
         "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików.",
         "swipeToConfirm": "Przesuń, aby potwierdzić",
-        "expert": "Ekspert"
+        "expert": "Ekspert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -502,7 +504,7 @@
         "quorumSize": "Wielkość kworum",
         "noCustomNodes": "Nie dodano serwerów niestandardowych",
         "mustAddCustomNodes": "Musisz dodać co najmniej jeden niestandardowy serwer przed wyłączeniem zdalnej listy serwerów.",
-        "nodeEnoughNodesTitle": "Dodano zbyt mało serwerów",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "Brak wystarczającej liczby serwerów, aby włączyć kworum.",
         "nodeEnoughNodesExplanationCustomNodes": "Dodaj więcej niestandardowych serwerów lub włącz zdalną listę serwerów.",
         "nodeSettingsUpdatedTitle": "Zaktualizowano ustawienia serwera",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Wybierz serwer",
-        "addCustomNode": "Dodaj serwer",
         "manualSync": "Ręczna synchronizacja",
         "snapshotTransition": "Snapshot asystent",
         "pow": "Konfiguracja Proof of Work",
