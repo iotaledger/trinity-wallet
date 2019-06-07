@@ -59,10 +59,19 @@ export class AboutComponent extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
-                            <h5>0.6.0-RC1</h5>
+                            <h5>0.6.0-RC2</h5>
                             <ul>
                                 <li>
-                                    Update: New automatic node management and lots of configurability for advanced users
+                                    <li>
+                                        New: Automatic node management and lots of configurability for advanced users
+                                    </li>
+                                    <li>Update: Auto updates functionality improvements</li>
+                                    <li>Update: Add several wallet initialisation error explanations</li>
+                                    <li>Fix: Wallet language resets to English</li>
+                                    <li>
+                                        Fix: Allow Windows installation to change directory and remove appData on
+                                        uninstall
+                                    </li>
                                 </li>
                             </ul>
                             <h5>0.5.2</h5>
