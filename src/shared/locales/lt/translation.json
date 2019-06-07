@@ -169,7 +169,9 @@
         "missingPermission": "Reikalingas failų sistemos leidimas",
         "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norėdami atlikti šią funkciją.",
         "swipeToConfirm": "Paslinkite norėdami patvirtinti",
-        "expert": "Expert"
+        "expert": "Expert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -502,7 +504,7 @@
         "quorumSize": "Quorum size",
         "noCustomNodes": "Vartotojo serverių nėra",
         "mustAddCustomNodes": "Jūs privalote pridėti bent vieną vartotojo serverį prieš išjungiant nuotolinį serverių sąrašą.",
-        "nodeEnoughNodesTitle": "Pridėta nepakankamai serverių",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Serverio nustatymai atnaujinti",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Pasirinkti serverį",
-        "addCustomNode": "Pridėti vartotojo serverį",
         "manualSync": "Rankinė sinchronizacija",
         "snapshotTransition": "Tinklo duomenų perkėlimas",
         "pow": "Skaičiavimų įrodymas",
