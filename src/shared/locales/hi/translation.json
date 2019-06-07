@@ -169,7 +169,9 @@
         "missingPermission": "फाइल सिस्टम की अनुमति आवश्यक",
         "missingPermissionExplanation": "इस फ़ंक्शन को करने के लिए फ़ाइल सिस्टम तक पहुंच आवश्यक है।",
         "swipeToConfirm": "पुष्टि करने के लिए स्वाइप करें",
-        "expert": "एक्स्पर्ट"
+        "expert": "एक्स्पर्ट",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
@@ -502,7 +504,7 @@
         "quorumSize": "कोरम का आकार",
         "noCustomNodes": "कोई कस्टम नोड्स नहीं",
         "mustAddCustomNodes": "दूरस्थ नोड सूची को अक्षम करने से पहले आपको कम से कम एक कस्टम नोड जोड़ना होगा।",
-        "nodeEnoughNodesTitle": "पर्याप्त नोड्स नहीं जोड़े गए",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "कोरम को सक्षम करने के लिए पर्याप्त नोड नहीं हैं।",
         "nodeEnoughNodesExplanationCustomNodes": "अधिक कस्टम नोड जोड़ें या दूरस्थ नोड सूची को सक्षम करें",
         "nodeSettingsUpdatedTitle": "नोड सेटिंग अपडेट की गईं",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "नोड चुने",
-        "addCustomNode": "कस्टम नोड जोड़ें",
         "manualSync": "मैन्युअल सिंक",
         "snapshotTransition": "स्नैपशॉट",
         "pow": "Proof of Work",
