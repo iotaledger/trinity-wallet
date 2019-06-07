@@ -1,7 +1,7 @@
 /* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withI18n, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
@@ -103,7 +103,7 @@ class Advanced extends PureComponent {
             localStorage.clear();
             Electron.clearStorage();
 
-            location.reload();
+            Electron.reload();
         } catch (_err) {
             generateAlert(
                 'error',
@@ -342,4 +342,4 @@ const mapDispatchToProps = {
     setProxy,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Advanced));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Advanced));

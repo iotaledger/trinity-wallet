@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Fout bij het ophalen van de update data",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Geen updates beschikbaar",
         "noUpdatesAvailableExplanation": "Je hebt de nieuwste versie van Trinity!",
         "newVersionAvailable": "Nieuwe versie beschikbaar",

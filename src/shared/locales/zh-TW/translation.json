@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "取得更新資料時發生錯誤",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "尚無更新",
         "noUpdatesAvailableExplanation": "你有最新版的Trinity！",
         "newVersionAvailable": "有新版本可用",

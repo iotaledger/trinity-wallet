@@ -71,6 +71,9 @@ const init = () => {
                     // Update store with persisted state
                     store.dispatch(mapStorageToStateAction(data));
 
+                    // Update language to initial setting
+                    i18next.changeLanguage(data.settings.locale);
+
                     // Assign accountIndex to every account in accountInfo if it is not assigned already
                     store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
                 }
