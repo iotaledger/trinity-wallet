@@ -27,12 +27,20 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
         [customNodes],
     );
 
+    const addNode = (e) => {
+        if (e) {
+            e.preventDefault();
+        }
+        setNode({ url, token: '', password: '' }, true);
+    };
+
     return (
         <Modal variant="fullscreen" isOpen onClose={onClose}>
             <section className={css.nodeCustom}>
-                <fieldset>
-                    <Text value={url} label={t('addCustomNode:customNode')} onChange={setUrl} />
-                    {/*
+                <form onSubmit={addNode}>
+                    <fieldset>
+                        <Text value={url} disabled={loading} label={t('addCustomNode:customNode')} onChange={setUrl} />
+                        {/*
                     // Temporary disable authorisation entry #https://github.com/iotaledger/trinity-wallet/pull/1654
                     authVisible ? (
                         <Fragment>
@@ -44,35 +52,31 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
                             <Icon icon="plusAlt" size={10} /> {t('addCustomNode:addAuthKey')}
                         </a>
                     )*/}
-                </fieldset>
-                <hr />
-                {customNodes.length ? (
-                    <ul>
-                        <Scrollbar>
-                            {customNodes.map(({ url }) => (
-                                <li key={url}>
-                                    <strong>{url}</strong>
-                                    <a onClick={() => removeCustomNode(url)}>
-                                        <Icon icon="cross" size={16} />
-                                    </a>
-                                </li>
-                            ))}
-                        </Scrollbar>
-                    </ul>
-                ) : (
-                    <p>{t('nodeSettings:noCustomNodes')}</p>
-                )}
+                    </fieldset>
+                    <hr />
+                    {customNodes.length ? (
+                        <ul>
+                            <Scrollbar>
+                                {customNodes.map(({ url }) => (
+                                    <li key={url}>
+                                        <strong>{url}</strong>
+                                        <a onClick={() => removeCustomNode(url)}>
+                                            <Icon icon="cross" size={16} />
+                                        </a>
+                                    </li>
+                                ))}
+                            </Scrollbar>
+                        </ul>
+                    ) : (
+                        <p>{t('nodeSettings:noCustomNodes')}</p>
+                    )}
+                </form>
             </section>
             <footer>
                 <Button onClick={onClose} className="square" variant="dark">
                     {t('back')}
                 </Button>
-                <Button
-                    loading={loading}
-                    onClick={() => setNode({ url, token: '', password: '' }, true)}
-                    className="square"
-                    variant="primary"
-                >
+                <Button loading={loading} onClick={addNode} className="square" variant="primary">
                     {t('addCustomNode')}
                 </Button>
             </footer>
