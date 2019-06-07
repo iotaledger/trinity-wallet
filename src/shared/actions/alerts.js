@@ -54,7 +54,6 @@ export const generateAlert = (category, title, message, closeInterval, err) => (
     }
 };
 
-
 /**
  * Generates relevant error alert
  *

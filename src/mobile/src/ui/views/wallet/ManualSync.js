@@ -164,4 +164,9 @@ const mapDispatchToProps = {
     manuallySyncAccount,
 };
 
-export default withNamespaces(['manualSync', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ManualSync));
+export default withNamespaces(['manualSync', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ManualSync),
+);

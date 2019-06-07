@@ -137,4 +137,9 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withNamespaces(['pow', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Pow));
+export default withNamespaces(['pow', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Pow),
+);

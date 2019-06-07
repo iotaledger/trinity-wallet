@@ -270,5 +270,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['themeCustomisation', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(ThemeCustomisation),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ThemeCustomisation),
 );
