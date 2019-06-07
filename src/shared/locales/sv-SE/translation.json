@@ -758,7 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Fel vid hämtning av uppdateringsdata",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Kunde inte hämta uppdatering. Vänligen kontrollera din internetuppkoppling och försök igen.",
         "noUpdatesAvailable": "Inga uppdateringar tillgängliga",
         "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity!",
         "newVersionAvailable": "Ny version tillgänglig",
