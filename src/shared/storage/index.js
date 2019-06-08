@@ -96,7 +96,7 @@ class Account {
         if (some(orderedAccounts, (account, index) => index !== account.index)) {
             realm.write(() => {
                 each(orderedAccounts, (account, index) => {
-                    realm.create('Account', assign({}, account, { index }), true);
+                    realm.create('Account', assign({}, account, { index }), 'modified');
                 });
             });
         }
@@ -160,7 +160,7 @@ class Account {
                       ),
             });
 
-            realm.create('Account', updatedData, true);
+            realm.create('Account', updatedData, 'modified');
         });
     }
 
@@ -187,7 +187,7 @@ class Account {
                         assign({}, account, {
                             index: account.index > deletedAccountIndex ? account.index - 1 : account.index,
                         }),
-                        true,
+                        'modified',
                     );
                 });
             }
@@ -291,7 +291,7 @@ class Node {
                 each(nodes, (node) => {
                     // If it's an existing node, just update properties.
                     if (includes(existingUrls, node.url)) {
-                        realm.create('Node', node, true);
+                        realm.create('Node', node, 'modified');
                     } else {
                         realm.create('Node', node);
                     }
@@ -733,7 +733,7 @@ class Wallet {
                     version: Wallet.version,
                     ...merge({}, Wallet.latestData, data),
                 },
-                true,
+                'modified',
             ),
         );
     }
