@@ -20,14 +20,14 @@ describe('Toggle component', () => {
     test('Off state', () => {
         const wrapper = shallow(<Toggle {...props} />);
 
-        expect(wrapper.hasClass('on')).toBeFalsy();
+        expect(wrapper.find('div div').hasClass('on')).toBeFalsy();
     });
 
     test('On state', () => {
         const mockProps = Object.assign({}, props, { checked: true });
         const wrapper = shallow(<Toggle {...mockProps} />);
 
-        expect(wrapper.hasClass('on')).toBeTruthy();
+        expect(wrapper.find('div div').hasClass('on')).toBeTruthy();
     });
 
     test('Toggle event', () => {

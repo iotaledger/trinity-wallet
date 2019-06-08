@@ -15,10 +15,14 @@ const getProps = (overrides) =>
         {
             node: 'https://foo.baz',
             theme: { body: {} },
-            backPress: noop,
             t: () => '',
             setNode: noop,
             loading: false,
+            customNodes: [],
+            removeCustomNode: noop,
+            setLoginRoute: noop,
+            setSetting: noop,
+            loginRoute: 'foo',
         },
         overrides,
     );
@@ -35,7 +39,7 @@ describe('Testing AddCustomNode component', () => {
 
     describe('instance methods', () => {
         describe('when called', () => {
-            describe('#addNode', () => {
+            describe('#addCustomNode', () => {
                 it('should call prop method "setNode" with state.customNode and true', () => {
                     const props = getProps({
                         setNode: jest.fn(),
@@ -45,7 +49,7 @@ describe('Testing AddCustomNode component', () => {
                     const instance = wrapper.instance();
 
                     wrapper.setState({ customNode: 'foo' });
-                    instance.addNode();
+                    instance.addCustomNode();
 
                     expect(props.setNode).toHaveBeenCalledWith(...['foo', true]);
                 });

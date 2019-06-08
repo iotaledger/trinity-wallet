@@ -215,7 +215,7 @@ class Loading extends Component {
     }
 
     onChangeNodePress() {
-        this.props.setLoginRoute('nodeSelection');
+        this.props.setLoginRoute('nodeSettings');
         this.redirectToLogin();
     }
 

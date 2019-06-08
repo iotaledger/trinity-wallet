@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -215,7 +215,7 @@ const mapDispatchToProps = {
 };
 
 export default withRouter(
-    withI18n()(
+    withTranslation()(
         connect(
             mapStateToProps,
             mapDispatchToProps,

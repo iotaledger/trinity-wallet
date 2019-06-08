@@ -1,4 +1,5 @@
 /* global Electron */
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import React from 'react';
@@ -14,7 +15,7 @@ import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { mapStorageToState } from 'libs/storageToStateMappers';
 import { getEncryptionKey } from 'libs/realm';
-import { changeIotaNode } from 'libs/iota';
+import { changeIotaNode, quorum } from 'libs/iota';
 import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
 import { initialise as initialiseStorage, realm } from 'storage';
 
@@ -27,8 +28,16 @@ import FatalError from 'ui/global/FatalError';
 import './ui/index.scss';
 
 const init = () => {
+    const rootEl = document.createElement('div');
+    rootEl.id = 'root';
+    document.body.appendChild(rootEl);
+
+    const modalEl = document.createElement('div');
+    modalEl.id = 'modal';
+    document.body.appendChild(modalEl);
+
     if (typeof Electron === 'undefined') {
-        return render(<FatalError error="Failed to load Electron preload script" />, document.getElementById('root'));
+        return render(<FatalError error="Failed to load Electron preload script" />, rootEl);
     }
 
     if (Electron.mode === 'tray') {
@@ -53,7 +62,10 @@ const init = () => {
 
                 // Change provider on global iota instance
                 const node = get(data, 'settings.node');
-                changeIotaNode(node);
+                changeIotaNode(assign({}, node, { provider: node.url }));
+
+                // Set quorum size
+                quorum.setSize(get(data, 'settings.quorum.size'));
 
                 // Update store with persisted state
                 store.dispatch(mapStorageToStateAction(data));
@@ -72,9 +84,32 @@ const init = () => {
                     store.dispatch(updateTheme('Default'));
                 }
 
+                // Update language to initial setting
+                i18next.changeLanguage(data.settings.locale);
+
                 // Start Tray application if enabled in settings
                 const isTrayEnabled = get(data, 'settings.isTrayEnabled');
                 Electron.setTray(isTrayEnabled);
+
+                render(
+                    <ErrorBoundary>
+                        <Redux store={store}>
+                            <I18nextProvider i18n={i18next}>
+                                <Router>
+                                    {Electron.mode === 'tray' ? (
+                                        <Tray />
+                                    ) : (
+                                        <React.Fragment>
+                                            <Alerts />
+                                            <Index />
+                                        </React.Fragment>
+                                    )}
+                                </Router>
+                            </I18nextProvider>
+                        </Redux>
+                    </ErrorBoundary>,
+                    rootEl,
+                );
 
                 // Show Wallet window after inital store update
                 Electron.focus();
@@ -82,38 +117,10 @@ const init = () => {
 
             .catch((err) => {
                 Electron.focus();
-                render(<FatalError error={err.message || err} />, document.getElementById('root'));
+                render(<FatalError error={err.message || err} />, rootEl);
                 bugsnagClient.notify(err);
             });
     }
-
-    const rootEl = document.createElement('div');
-    rootEl.id = 'root';
-    document.body.appendChild(rootEl);
-
-    const modalEl = document.createElement('div');
-    modalEl.id = 'modal';
-    document.body.appendChild(modalEl);
-
-    render(
-        <ErrorBoundary>
-            <Redux store={store}>
-                <I18nextProvider i18n={i18next}>
-                    <Router>
-                        {Electron.mode === 'tray' ? (
-                            <Tray />
-                        ) : (
-                            <React.Fragment>
-                                <Alerts />
-                                <Index />
-                            </React.Fragment>
-                        )}
-                    </Router>
-                </I18nextProvider>
-            </Redux>
-        </ErrorBoundary>,
-        rootEl,
-    );
 };
 
 init();

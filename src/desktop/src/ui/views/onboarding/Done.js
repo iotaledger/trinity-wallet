@@ -2,8 +2,8 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
 
 import { getAnimation } from 'animations';
 import Button from 'ui/components/Button';
@@ -57,4 +57,4 @@ const mapStateToProps = (state) => ({
     themeName: state.settings.themeName,
 });
 
-export default connect(mapStateToProps)(withI18n()(Done));
+export default connect(mapStateToProps)(withTranslation()(Done));

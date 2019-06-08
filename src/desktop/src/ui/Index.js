@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
@@ -42,8 +42,6 @@ import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Ledger from 'ui/global/seedStore/Ledger';
 
-import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
-
 /**
  * Wallet wrapper component
  **/
@@ -59,6 +57,8 @@ class App extends React.Component {
         location: PropTypes.object,
         /** @ignore */
         onboardingComplete: PropTypes.bool.isRequired,
+        /** @ignore */
+        hasErrorFetchingFullAccountInfo: PropTypes.bool.isRequired,
         /** @ignore */
         setOnboardingComplete: PropTypes.func.isRequired,
         /** @ignore */
@@ -135,17 +135,20 @@ class App extends React.Component {
 
         const currentKey = this.props.location.pathname.split('/')[1] || '/';
 
-        /* On Login */
-        if (!this.props.wallet.ready && nextProps.wallet.ready && currentKey === 'onboarding') {
-            Electron.updateMenu('authorised', true);
-
-            // If there was an error adding additional seed, go back to onboarding
-            if (nextProps.addingAdditionalAccount) {
-                if (nextProps.accountNames.length > 0) {
-                    return this.props.history.push('/onboarding/account-name');
-                }
-                return this.props.history.push('/onboarding/login');
+        if (nextProps.hasErrorFetchingFullAccountInfo && !this.props.hasErrorFetchingFullAccountInfo) {
+            if (nextProps.accountNames.length === 0) {
+                // Reset state password on unsuccessful first account info fetch
+                this.props.setPassword({});
+            } else {
+                // Mark Onboarding as incomplete on unsuccessful additional account info fetch
+                this.props.setAccountInfoDuringSetup({
+                    completed: false,
+                });
+                this.props.history.push('/onboarding/account-name');
             }
+        } else if (!this.props.wallet.ready && nextProps.wallet.ready && currentKey === 'onboarding') {
+            /* On Login */
+            Electron.updateMenu('authorised', true);
 
             Electron.setOnboardingSeed(null);
 
@@ -328,7 +331,7 @@ class App extends React.Component {
                                 />
                                 <Route path="/wallet" component={Wallet} />
                                 <Route path="/onboarding" component={Onboarding} />
-                                <Route exact path="/" loop={false} component={this.Init} />
+                                <Route loop={false} component={this.Init} />
                             </Switch>
                         </div>
                     </CSSTransition>
@@ -346,6 +349,7 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
     themeName: state.settings.themeName,
     onboardingComplete: state.accounts.onboardingComplete,
+    hasErrorFetchingFullAccountInfo: state.ui.hasErrorFetchingFullAccountInfo,
     deepLinking: state.settings.deepLinking,
     isBusy:
         !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
@@ -371,5 +375,5 @@ export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(withI18n()(withAutoNodeSwitching(App))),
+    )(withTranslation()(App)),
 );

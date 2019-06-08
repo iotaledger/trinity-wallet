@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
@@ -208,4 +208,4 @@ const mapDispatchToProps = {
 export default connect(
     null,
     mapDispatchToProps,
-)(withI18n()(SeedExportComponent));
+)(withTranslation()(SeedExportComponent));

@@ -192,7 +192,7 @@ function createWindow() {
     /**
      * Load wallet url depending on build environment
      */
-    const url = devMode ? 'http://localhost:1074/' : 'iota://dist/index.html';
+    const url = devMode ? 'http://localhost:1074/index.html' : 'iota://dist/index.html';
     windows.main.loadURL(url);
 
     /**
@@ -224,18 +224,18 @@ function createWindow() {
      * Enable React and Redux devtools in development mode
      */
 
-    //if (devMode) {
-    windows.main.webContents.once('dom-ready', () => {
-        windows.main.webContents.openDevTools({ mode: 'detach' });
-        /* Uncomment to enable Tray app DevTools on macOS
+    if (devMode) {
+        windows.main.webContents.once('dom-ready', () => {
+            windows.main.webContents.openDevTools({ mode: 'detach' });
+            /* Uncomment to enable Tray app DevTools on macOS
             if (process.platform === 'darwin') {
                 windows.tray.webContents.openDevTools({ mode: 'detach' });
             }
             */
-        installExtension(REACT_DEVELOPER_TOOLS);
-        installExtension(REDUX_DEVTOOLS);
-    });
-    // }
+            installExtension(REACT_DEVELOPER_TOOLS);
+            installExtension(REDUX_DEVTOOLS);
+        });
+    }
 
     /**
      * Add right click context menu for input elements

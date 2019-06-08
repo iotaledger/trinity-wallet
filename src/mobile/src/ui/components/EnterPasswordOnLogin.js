@@ -117,7 +117,7 @@ export class EnterPasswordOnLogin extends Component {
                         <DualFooterButtons
                             onLeftButtonPress={this.changeNode}
                             onRightButtonPress={this.handleLogin}
-                            leftButtonText={t('setNode')}
+                            leftButtonText={t('settings:nodeSettings')}
                             rightButtonText={t('login')}
                         />
                     </View>

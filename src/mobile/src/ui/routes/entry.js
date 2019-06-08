@@ -1,5 +1,7 @@
 /* global __DEV__ */
+
 import 'shared-modules/libs/global';
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 import isEmpty from 'lodash/isEmpty';
@@ -10,13 +12,14 @@ import { withNamespaces } from 'react-i18next';
 import Realm from 'realm';
 import { Text, TextInput, NetInfo, YellowBox } from 'react-native';
 import { Provider } from 'react-redux';
-import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
+import { changeIotaNode, quorum } from 'shared-modules/libs/iota';
 import reduxStore from 'shared-modules/store';
 import { assignAccountIndexIfNecessary } from 'shared-modules/actions/accounts';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate, setAppVersions, updateTheme } from 'shared-modules/actions/settings';
 import Themes from 'shared-modules/themes/themes';
-import { ActionTypes, mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
+import { mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
+import { WalletActionTypes } from 'shared-modules/types';
 import { setRealmMigrationStatus } from 'shared-modules/actions/migrations';
 import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
@@ -35,9 +38,6 @@ global.Realm = Realm;
 let firstLaunch = true;
 
 const launch = () => {
-    // Disable auto node switching.
-    SwitchingConfig.autoSwitch = false;
-
     // Disable accessibility fonts
     Text.defaultProps = {};
     Text.defaultProps.allowFontScaling = false;
@@ -137,7 +137,7 @@ const renderInitialScreen = (initialScreen) => {
         },
     });
 
-    reduxStore.dispatch({ type: ActionTypes.RESET_ROUTE, payload: initialScreen });
+    reduxStore.dispatch({ type: WalletActionTypes.RESET_ROUTE, payload: initialScreen });
 };
 
 /**
@@ -148,12 +148,18 @@ const renderInitialScreen = (initialScreen) => {
  **/
 const fetchNodeList = (store) => {
     const { settings } = store.getState();
-    const hasAlreadyRandomized = get(settings, 'hasRandomizedNode');
+    const node = get(settings, 'node');
 
     // Update provider
-    changeIotaNode(get(settings, 'node'));
+    changeIotaNode(
+        assign({}, node, {
+            provider: node.url,
+        }),
+    );
+    // Set quorum size
+    quorum.setSize(get(settings, 'quorum.size'));
 
-    store.dispatch(fetchNodes(!hasAlreadyRandomized));
+    store.dispatch(fetchNodes());
 };
 
 /**
@@ -165,7 +171,7 @@ const fetchNodeList = (store) => {
 const startListeningToConnectivityChanges = (store) => {
     const checkConnection = (isConnected) => {
         store.dispatch({
-            type: ActionTypes.CONNECTION_CHANGED,
+            type: WalletActionTypes.CONNECTION_CHANGED,
             payload: { isConnected },
         });
     };
@@ -258,7 +264,7 @@ onAppStart()
     .then(() => {
         const initialize = (isConnected) => {
             reduxStore.dispatch({
-                type: ActionTypes.CONNECTION_CHANGED,
+                type: WalletActionTypes.CONNECTION_CHANGED,
                 payload: { isConnected },
             });
 

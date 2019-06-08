@@ -1,12 +1,11 @@
 import merge from 'lodash/merge';
-import union from 'lodash/union';
+import unionBy from 'lodash/unionBy';
 import sortBy from 'lodash/sortBy';
-import { ActionTypes } from '../actions/settings';
-import { ActionTypes as MigrationsActionTypes } from '../actions/migrations';
-import { defaultNode as node, nodes } from '../config';
+import { SettingsActionTypes, MigrationsActionTypes } from '../types';
+import { DEFAULT_NODE, DEFAULT_NODES, QUORUM_SIZE } from '../config';
 import { availableCurrencies } from '../libs/currency';
 
-const initialState = {
+export const initialState = {
     /**
      * Selected locale for wallet
      */
@@ -14,11 +13,11 @@ const initialState = {
     /**
      * Selected IRI node for wallet
      */
-    node,
+    node: DEFAULT_NODE,
     /**
      * List of IRI nodes
      */
-    nodes,
+    nodes: DEFAULT_NODES,
     /**
      * List of custom nodes added by user
      */
@@ -49,10 +48,6 @@ const initialState = {
      */
     themeName: 'Default',
     /**
-     * Determines if the wallet has randomised node on initial setup.
-     */
-    hasRandomizedNode: false,
-    /**
      * Determines if proof of work should be offloaded to the selected IRI node
      */
     remotePoW: false,
@@ -64,10 +59,6 @@ const initialState = {
      * Determines the time for locking user out of dashboard screens to lock/login screen
      */
     lockScreenTimeout: 3,
-    /**
-     * Determines if wallet should automatically switch to a healthy node in case of errors
-     */
-    autoNodeSwitching: false,
     /**
      * Keeps track of wallet's version information.
      */
@@ -116,73 +107,83 @@ const initialState = {
      * Determines if deep linking is enabled
      */
     deepLinking: false,
+    /**
+     * Quorum configuration
+     */
+    quorum: {
+        /**
+         * User-defined quorum size
+         */
+        size: QUORUM_SIZE,
+        /**
+         * Determines if quorum is enabled
+         */
+        enabled: true,
+    },
+    /**
+     * Determines if (primary) node should automatically be auto-switched
+     */
+    nodeAutoSwitch: true,
+    /**
+     * - When true: pull in nodes from endpoint (config#NODELIST_URL) and include the custom nodes in the quorum selection
+     * - When false: only use custom nodes in quorum selection
+     */
+    autoNodeList: true,
 };
 
 const settingsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ActionTypes.SET_LOCK_SCREEN_TIMEOUT:
+        case SettingsActionTypes.SET_LOCK_SCREEN_TIMEOUT:
             return {
                 ...state,
                 lockScreenTimeout: action.payload,
             };
-        case ActionTypes.SET_REMOTE_POW:
+        case SettingsActionTypes.SET_REMOTE_POW:
             return {
                 ...state,
                 remotePoW: action.payload,
             };
-        case ActionTypes.SET_AUTO_PROMOTION:
+        case SettingsActionTypes.SET_AUTO_PROMOTION:
             return {
                 ...state,
                 autoPromotion: action.payload,
             };
-        case ActionTypes.UPDATE_AUTO_NODE_SWITCHING:
-            return {
-                ...state,
-                autoNodeSwitching: action.payload === undefined ? !state.autoNodeSwitching : action.payload,
-            };
-        case ActionTypes.SET_LOCALE:
+        case SettingsActionTypes.SET_LOCALE:
             return {
                 ...state,
                 locale: action.payload,
             };
-        case ActionTypes.SET_NODE:
+        case SettingsActionTypes.SET_NODE:
             return {
                 ...state,
                 node: action.payload,
             };
-        case ActionTypes.ADD_CUSTOM_NODE_SUCCESS:
+        case SettingsActionTypes.ADD_CUSTOM_NODE_SUCCESS:
             return {
                 ...state,
-                node: action.payload,
-                nodes: union(state.nodes, [action.payload]),
-                customNodes: state.nodes.includes(action.payload)
-                    ? state.customNodes
-                    : union(state.customNodes, [action.payload]),
+                customNodes: unionBy(state.customNodes, [action.payload], 'url'),
             };
-        case ActionTypes.REMOVE_CUSTOM_NODE:
+        case SettingsActionTypes.REMOVE_CUSTOM_NODE:
             return {
                 ...state,
-                nodes: state.customNodes.includes(action.payload)
-                    ? state.nodes.filter((node) => node !== action.payload)
-                    : state.nodes,
-                customNodes: state.customNodes.filter((node) => node !== action.payload),
+                customNodes: state.customNodes.filter((node) => node.url !== action.payload),
             };
-        case ActionTypes.SET_NODELIST:
+        case SettingsActionTypes.SET_NODELIST:
             return {
                 ...state,
-                nodes: union(action.payload, state.customNodes, [state.node]),
+                nodes: action.payload,
             };
-        case ActionTypes.SET_MODE:
+        case SettingsActionTypes.SET_MODE:
             return {
                 ...state,
                 mode: action.payload,
             };
-        case ActionTypes.SET_LANGUAGE:
+        case SettingsActionTypes.SET_LANGUAGE:
             return {
                 ...state,
                 language: action.payload,
             };
-        case ActionTypes.CURRENCY_DATA_FETCH_SUCCESS:
+        case SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS:
             return {
                 ...state,
                 currency: action.payload.currency,
@@ -192,64 +193,64 @@ const settingsReducer = (state = initialState, action) => {
                         ? sortBy(action.payload.availableCurrencies, ['desc'])
                         : state.availableCurrencies,
             };
-        case ActionTypes.UPDATE_THEME:
+        case SettingsActionTypes.UPDATE_THEME:
             return {
                 ...state,
                 themeName: action.payload,
             };
-        case ActionTypes.SET_RANDOMLY_SELECTED_NODE:
+        case SettingsActionTypes.SET_RANDOMLY_SELECTED_NODE:
             return {
                 ...state,
                 node: action.payload,
                 hasRandomizedNode: true,
             };
-        case ActionTypes.SET_FINGERPRINT_STATUS:
+        case SettingsActionTypes.SET_FINGERPRINT_STATUS:
             return {
                 ...state,
                 isFingerprintEnabled: action.payload,
             };
-        case ActionTypes.SET_VERSIONS:
+        case SettingsActionTypes.SET_VERSIONS:
             return merge({}, state, {
                 versions: action.payload,
             });
-        case ActionTypes.ACCEPT_TERMS:
+        case SettingsActionTypes.ACCEPT_TERMS:
             return {
                 ...state,
                 acceptedTerms: true,
             };
-        case ActionTypes.ACCEPT_PRIVACY:
+        case SettingsActionTypes.ACCEPT_PRIVACY:
             return {
                 ...state,
                 acceptedPrivacy: true,
             };
-        case ActionTypes.TOGGLE_EMPTY_TRANSACTIONS:
+        case SettingsActionTypes.TOGGLE_EMPTY_TRANSACTIONS:
             return {
                 ...state,
                 hideEmptyTransactions: !state.hideEmptyTransactions,
             };
         // FIXME: Temporarily needed for password migration
-        case ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE:
+        case SettingsActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE:
             return {
                 ...state,
                 completedForcedPasswordUpdate: true,
             };
-        case ActionTypes.SET_BYTETRIT_STATUS:
+        case SettingsActionTypes.SET_BYTETRIT_STATUS:
             return {
                 ...state,
                 completedByteTritSweep: action.payload,
             };
-        case ActionTypes.SET_BYTETRIT_INFO:
+        case SettingsActionTypes.SET_BYTETRIT_INFO:
             return {
                 ...state,
                 // FIXME: byteTritInfo not defined in initial state.
                 byteTritInfo: action.payload,
             };
-        case ActionTypes.SET_TRAY:
+        case SettingsActionTypes.SET_TRAY:
             return {
                 ...state,
                 isTrayEnabled: action.payload,
             };
-        case ActionTypes.SET_NOTIFICATIONS:
+        case SettingsActionTypes.SET_NOTIFICATIONS:
             return {
                 ...state,
                 notifications: {
@@ -262,20 +263,35 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 completedMigration: action.payload,
             };
-        case ActionTypes.SET_PROXY:
+        case SettingsActionTypes.SET_PROXY:
             return {
                 ...state,
                 ignoreProxy: action.payload,
             };
-        case ActionTypes.RESET_NODES_LIST:
+        case SettingsActionTypes.RESET_NODES_LIST:
             return {
                 ...state,
                 nodes: [],
             };
-        case ActionTypes.SET_DEEP_LINKING:
+        case SettingsActionTypes.SET_DEEP_LINKING:
             return {
                 ...state,
                 deepLinking: !state.deepLinking,
+            };
+        case SettingsActionTypes.UPDATE_QUORUM_CONFIG:
+            return {
+                ...state,
+                quorum: { ...state.quorum, ...action.payload },
+            };
+        case SettingsActionTypes.UPDATE_NODE_AUTO_SWITCH_SETTING:
+            return {
+                ...state,
+                nodeAutoSwitch: action.payload,
+            };
+        case SettingsActionTypes.UPDATE_AUTO_NODE_LIST_SETTING:
+            return {
+                ...state,
+                autoNodeList: action.payload,
             };
     }
 

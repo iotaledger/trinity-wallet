@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { zxcvbn } from 'libs/exports';
 
@@ -146,4 +146,7 @@ const mapDispatchToProps = {
     setPassword,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(PasswordSettings));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(PasswordSettings));

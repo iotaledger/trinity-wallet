@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Nema dostupnih ažuriranja",
         "noUpdatesAvailableExplanation": "Trenutno koristite najnoviju verziju Trinity novčanika!",
         "newVersionAvailable": "Dostupna je nova verzija",

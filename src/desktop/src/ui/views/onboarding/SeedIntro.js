@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { withI18n, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 
 import { getAnimation } from 'animations';
 
@@ -137,6 +137,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps,
-)(withI18n()(SeedIntro));
+)(withTranslation()(SeedIntro));

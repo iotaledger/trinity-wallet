@@ -1,14 +1,9 @@
+import get from 'lodash/get';
 import isString from 'lodash/isString';
 import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 import { Wallet } from '../storage';
-
-export const ActionTypes = {
-    SHOW: 'IOTA/ALERTS/SHOW',
-    HIDE: 'IOTA/ALERTS/HIDE',
-    UPDATE_LOG: 'IOTA/ALERTS/UPDATE_LOG',
-    CLEAR_LOG: 'IOTA/ALERTS/CLEAR_LOG',
-};
+import { AlertsActionTypes } from '../types';
 
 /**
  * Dispatch to generate an alert
@@ -23,7 +18,7 @@ export const ActionTypes = {
  * @returns {{ type: {string}, category: {string}, title: {string}, message: {string}, category: {string}, closeInterval: {number} }}
  */
 const generate = (category, title, message, closeInterval = 5500) => ({
-    type: ActionTypes.SHOW,
+    type: AlertsActionTypes.SHOW,
     category,
     title,
     message,
@@ -37,7 +32,7 @@ const generate = (category, title, message, closeInterval = 5500) => ({
  *
  * @returns {{type: {string} }}
  */
-const dismiss = () => ({ type: ActionTypes.HIDE });
+const dismiss = () => ({ type: AlertsActionTypes.HIDE });
 
 /**
  * Generates an alert. If an error string is passed then it also updates notification log in state
@@ -56,6 +51,33 @@ export const generateAlert = (category, title, message, closeInterval, err) => (
     dispatch(generate(category, title, message, closeInterval));
     if (err) {
         dispatch(prepareLogUpdate(err));
+    }
+};
+
+/**
+ * Generates relevant error alert
+ *
+ * @method generateErrorAlert
+ * @param {func} generateDefaultAlert
+ * @param {object} err
+ *
+ * @returns {function} dispatch
+ */
+export const generateErrorAlert = (generateDefaultAlert, err) => (dispatch) => {
+    if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
+        dispatch(generateLedgerCancelledAlert(err));
+    } else if (get(err, 'message') === Errors.LEDGER_INVALID_INDEX) {
+        dispatch(generateLedgerIncorrectIndexAlert(err));
+    } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
+        dispatch(generateNodeOutOfSyncErrorAlert(err));
+    } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
+        dispatch(generateNodeOutOfSyncErrorAlert(err, true));
+    } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
+        dispatch(generateUnsupportedNodeErrorAlert(err));
+    } else if (get(err, 'message') === Errors.NOT_ENOUGH_SYNCED_NODES) {
+        dispatch(generateNotEnoughSyncedNodes(err));
+    } else {
+        dispatch(generateDefaultAlert(err));
     }
 };
 
@@ -113,6 +135,25 @@ export const generateUnsupportedNodeErrorAlert = (err) => (dispatch) => {
             'error',
             i18next.t('global:experimentalNode'),
             i18next.t('global:experimentalNodeExplanation'),
+            10000,
+            err,
+        ),
+    );
+};
+
+/**
+ * Generates an error alert if there are insufficient synced nodes for quorum
+ *
+ * @method generateNotEnoughSyncedNodes
+ *
+ * @returns {function} dispatch
+ */
+export const generateNotEnoughSyncedNodes = (err) => (dispatch) => {
+    dispatch(
+        generateAlert(
+            'error',
+            i18next.t('global:notEnoughSyncedNodes'),
+            i18next.t('global:notEnoughSyncedNodesExplanation'),
             10000,
             err,
         ),
@@ -378,7 +419,7 @@ export const updateLog = (logItem) => {
     Wallet.updateErrorLog(logItem);
 
     return {
-        type: ActionTypes.UPDATE_LOG,
+        type: AlertsActionTypes.UPDATE_LOG,
         logItem,
     };
 };
@@ -395,6 +436,6 @@ export const clearLog = () => {
     Wallet.clearErrorLog();
 
     return {
-        type: ActionTypes.CLEAR_LOG,
+        type: AlertsActionTypes.CLEAR_LOG,
     };
 };

@@ -1,6 +1,6 @@
 {
   "name": "trinity-mobile",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@tradle/react-native-http": "^2.0.0",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "bugsnag-react-native": "^2.11.0",
     "events": "^1.1.1",
     "hoist-non-react-statics": "^2.3.1",

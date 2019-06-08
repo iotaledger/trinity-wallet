@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import isArray from 'lodash/isArray';
 import isFunction from 'lodash/isFunction';
 import isUndefined from 'lodash/isUndefined';
@@ -7,6 +8,7 @@ import includes from 'lodash/includes';
 import isNull from 'lodash/isNull';
 import sampleSize from 'lodash/sampleSize';
 import size from 'lodash/size';
+import cloneDeep from 'lodash/cloneDeep';
 import URL from 'url-parse';
 import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
@@ -452,24 +454,29 @@ export const fetchRemoteNodes = (
  * @method getRandomNodes
  * @param {array} nodes
  * @param {number} [size]
- * @param {array} [blacklisted]
+ * @param {array} [blacklistedNodes]
+ * @param {bool} Remote PoW
  *
  * @returns {Array}
  */
-export const getRandomNodes = (nodes, size = 5, blacklisted = []) => {
-    return sampleSize(filter(nodes, (node) => !includes(blacklisted, node)), size);
+export const getRandomNodes = (nodes, size = 5, blacklistedNodes = [], PoW = false) => {
+    let nodesToSample = cloneDeep(nodes);
+    if (PoW) {
+        nodesToSample = filter(nodes, (node) => node.pow === true);
+    }
+    return sampleSize(filter(nodesToSample, (node) => !find(blacklistedNodes, { url: node.url })), size);
 };
 
 /**
  * Throws an error if a node is not synced.
  *
  * @method throwIfNodeNotHealthy
- * @param {string} provider
+ * @param {object} settings
  *
  * @returns {Promise<boolean>}
  */
-export const throwIfNodeNotHealthy = (provider) => {
-    return isNodeHealthy(provider).then((isSynced) => {
+export const throwIfNodeNotHealthy = (settings) => {
+    return isNodeHealthy(settings).then((isSynced) => {
         if (!isSynced) {
             throw new Error(Errors.NODE_NOT_SYNCED_BY_TIMESTAMP);
         }

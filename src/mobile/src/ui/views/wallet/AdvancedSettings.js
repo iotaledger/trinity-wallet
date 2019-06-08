@@ -33,6 +33,10 @@ export class AdvancedSettings extends PureComponent {
         remotePoW: PropTypes.bool.isRequired,
         /** @ignore */
         deepLinking: PropTypes.bool.isRequired,
+        /** @ignore */
+        generateAlert: PropTypes.func.isRequired,
+        /** @ignore */
+        isSendingTransfer: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -54,15 +58,39 @@ export class AdvancedSettings extends PureComponent {
     }
 
     /**
+     * Generates an alert if a user tries to navigate to change node or add custom node screen when a transaction is in progress
+     *
+     * @method generateChangeNodeAlert
+     */
+    generateChangeNodeAlert() {
+        this.props.generateAlert(
+            'error',
+            this.props.t('settings:cannotChangeNode'),
+            `${this.props.t('settings:cannotChangeNodeWhileSending')} ${this.props.t(
+                'settings:transferSendingExplanation',
+            )}`,
+        );
+    }
+
+    /**
      * Render setting rows
      *
      * @method renderSettingsContent
      * @returns {function}
      */
     renderSettingsContent() {
-        const { theme, t, autoPromotion, remotePoW, deepLinking } = this.props;
+        const { theme, t, autoPromotion, remotePoW, deepLinking, isSendingTransfer } = this.props;
         const rows = [
-            { name: t('settings:nodeSettings'), icon: 'node', function: () => this.props.setSetting('nodeSettings') },
+            {
+                name: t('settings:nodeSettings'),
+                icon: 'node',
+                function: () => {
+                    if (isSendingTransfer) {
+                        return this.generateChangeNodeAlert();
+                    }
+                    return this.props.setSetting('nodeSettings');
+                },
+            },
             {
                 name: t('pow'),
                 icon: 'pow',
@@ -119,5 +147,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['advancedSettings', 'settings', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(AdvancedSettings),
 );

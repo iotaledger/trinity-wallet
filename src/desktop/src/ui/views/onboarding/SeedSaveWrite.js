@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import { byteToChar } from 'libs/iota/converter';
 
@@ -104,4 +104,4 @@ class SeedSave extends PureComponent {
     }
 }
 
-export default withI18n()(SeedSave);
+export default withTranslation()(SeedSave);

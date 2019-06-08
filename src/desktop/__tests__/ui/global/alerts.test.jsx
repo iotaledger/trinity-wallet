@@ -18,6 +18,11 @@ const props = {
 
 global.Electron = {
     getOS: () => {},
+    onEvent: function(_event, e) {
+        this.updateEvent = e;
+    },
+    removeEvent: () => {},
+    updateEvent: null,
 };
 
 describe('Alerts component', () => {
@@ -60,5 +65,14 @@ describe('Alerts component', () => {
 
         expect(wrapper.find('.update')).toHaveLength(1);
         expect(wrapper.find('strong').text()).toEqual('global:shouldUpdate');
+    });
+
+    test('Hide update banner if update in progress', () => {
+        const mockProps = Object.assign({}, props, { forceUpdate: true, shouldUpdate: true });
+        const wrapper = shallow(<Alerts {...mockProps} />);
+
+        Electron.updateEvent({ percent: 99 });
+
+        expect(wrapper.find('.update')).toHaveLength(0);
     });
 });
