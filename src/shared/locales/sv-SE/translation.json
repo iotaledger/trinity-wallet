@@ -504,7 +504,7 @@
         "quorumSize": "Kvorumstorlek",
         "noCustomNodes": "Inga anpassade noder",
         "mustAddCustomNodes": "Du måste lägga till minst en anpassad nod innan du avaktiverar fjärrnodslistan.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesTitle": "Inte tillräckligt med noder",
         "nodeEnoughNodesExplanation": "Det finns inte tillräckligt med noder för att möjliggöra kvorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Lägg till fler anpassade noder eller aktivera fjärrnodslistan.",
         "nodeSettingsUpdatedTitle": "Nod-inställningar uppdaterade",
