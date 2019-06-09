@@ -170,8 +170,8 @@
         "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion.",
         "swipeToConfirm": "Dra för att bekräfta",
         "expert": "Avancerat",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodes": "För få noder synkade",
+        "notEnoughSyncedNodesExplanation": "Ett kvorum kunde inte nås. Stäng av kvorum eller försök igen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
