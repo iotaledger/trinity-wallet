@@ -111,7 +111,7 @@
     "metro-react-native-babel-preset": "^0.45.0",
     "patch-package": "^6.1.2",
     "react-addons-test-utils": "^15.6.2",
-    "react-dom": "^16.2.0",
+    "react-dom": "^16.8.6",
     "react-test-renderer": "16.6.1",
     "rn-nodeify": "^10.0.1"
   },
