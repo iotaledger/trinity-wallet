@@ -170,8 +170,8 @@
         "missingPermissionExplanation": "इस फ़ंक्शन को करने के लिए फ़ाइल सिस्टम तक पहुंच आवश्यक है।",
         "swipeToConfirm": "पुष्टि करने के लिए स्वाइप करें",
         "expert": "एक्स्पर्ट",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodes": "सिंक में बहुत कम नोड्स",
+        "notEnoughSyncedNodesExplanation": "कोरम तक नहीं पहुँचा जा सका। कोरम बंद करें या फिर से प्रयास करें।"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
@@ -504,7 +504,7 @@
         "quorumSize": "कोरम का आकार",
         "noCustomNodes": "कोई कस्टम नोड्स नहीं",
         "mustAddCustomNodes": "दूरस्थ नोड सूची को अक्षम करने से पहले आपको कम से कम एक कस्टम नोड जोड़ना होगा।",
-        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesTitle": "पर्याप्त नोड्स नहीं जोड़े गए",
         "nodeEnoughNodesExplanation": "कोरम को सक्षम करने के लिए पर्याप्त नोड नहीं हैं।",
         "nodeEnoughNodesExplanationCustomNodes": "अधिक कस्टम नोड जोड़ें या दूरस्थ नोड सूची को सक्षम करें",
         "nodeSettingsUpdatedTitle": "नोड सेटिंग अपडेट की गईं",
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "अपडेट डेटा पुनर्प्राप्त करने में त्रुटि",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "अपडेट के लिए जाँच नहीं हो सकती। कृपया इंटरनेट संयोजन की जाँच कर पुन: प्रयास करें।",
         "noUpdatesAvailable": "कोई अपडेट उपलब्ध नहीं",
         "noUpdatesAvailableExplanation": "आपके पास ट्रिनिटी का नवीनतम संस्करण है!",
         "newVersionAvailable": "नया संस्करण उपलब्ध है",
