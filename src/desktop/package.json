@@ -116,8 +116,6 @@
       ]
     },
     "nsis": {
-      "oneClick": false, 
-      "allowToChangeInstallationDirectory": true,
       "deleteAppDataOnUninstall": true
     },
     "win": {
