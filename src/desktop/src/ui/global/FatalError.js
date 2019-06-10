@@ -2,12 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import Button from 'ui/components/Button';
+
 import css from 'ui/views/onboarding/index.scss';
+
+import settings from '../../../package.json';
 
 /**
  * Desktop fatal error display component
  */
-const FatalError = ({ error }) => {
+const FatalError = ({ error, history }) => {
     const [errors, setErrors] = useState(typeof window.fatalErrors === 'object' ? window.fatalErrors : []);
 
     useEffect(() => {
@@ -91,6 +95,42 @@ const FatalError = ({ error }) => {
             );
         }
 
+        if (
+            typeof error === 'string' &&
+            error.indexOf('Provided schema version') > -1 &&
+            error.indexOf('is less than last set version') > -1
+        ) {
+            return (
+                <form className={css.tutorial}>
+                    <h1>Newer Trinity version data found</h1>
+                    <p>
+                        Trinity found data installed by a newer version of Trinity which is incompatible with version{' '}
+                        <strong>{settings.version}</strong>.{' '}
+                        <a href="https://trinity.iota.org/#download">Download the latest version</a> or update Trinity
+                        now.
+                    </p>
+                    <Button type="button" variant="primary" onClick={() => Electron.autoUpdate()}>
+                        Update Trinity now
+                    </Button>
+                </form>
+            );
+        }
+
+        if (error === 'Found old data') {
+            return (
+                <form className={css.tutorial}>
+                    <h1>Windows 7 incompatible Trinity data found</h1>
+                    <p>
+                        Incompatible wallet data was found used by the wallet version <strong>0.4.6</strong> or older.
+                    </p>
+                    <p>Make sure you have a backup of your seeds and reset the wallet in Advanced settings.</p>
+                    <Button type="button" variant="primary" onClick={() => history.push('/settings/advanced')}>
+                        Go to Advanced settings
+                    </Button>
+                </form>
+            );
+        }
+
         return (
             <form>
                 <h1>Error launching wallet</h1>
@@ -117,6 +157,7 @@ const FatalError = ({ error }) => {
 
 FatalError.propTypes = {
     error: PropTypes.string,
+    history: PropTypes.object.isRequired,
 };
 
 export default FatalError;

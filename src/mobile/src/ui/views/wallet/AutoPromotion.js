@@ -145,5 +145,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['advancedSettings', 'autoPromotion', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(AutoPromotion),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(AutoPromotion),
 );

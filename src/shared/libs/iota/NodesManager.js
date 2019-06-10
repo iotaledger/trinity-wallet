@@ -2,6 +2,7 @@ import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isFunction from 'lodash/isFunction';
 import isUndefined from 'lodash/isUndefined';
+import unionBy from 'lodash/unionBy';
 import Errors from '../errors';
 import { getRandomNodes } from './utils';
 import { DEFAULT_RETRIES } from '../../config';
@@ -33,14 +34,11 @@ export default class NodesManager {
      */
     withRetries(failureCallbacks, retryAttempts = DEFAULT_RETRIES) {
         const { priorityNode, primaryNode, nodeAutoSwitch, nodes, quorum } = this.config;
-
         let attempt = 0;
         let executedCallback = false;
-
-        const randomNodes = getRandomNodes(nodes, retryAttempts, [primaryNode]);
-
-        const retryNodes = [priorityNode, ...randomNodes];
-
+        const remotePoW = store.getState().settings.remotePoW;
+        const randomNodes = getRandomNodes(nodes, retryAttempts, [primaryNode], remotePoW);
+        const retryNodes = unionBy(remotePoW === priorityNode.pow && [priorityNode], randomNodes, 'url');
         // Abort retries on these errors
         const cancellationErrors = [Errors.LEDGER_CANCELLED, Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE];
 
