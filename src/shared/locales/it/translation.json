@@ -169,7 +169,9 @@
         "missingPermission": "È richiesto l'accesso al file system",
         "missingPermissionExplanation": "L'accesso al file system è necessario per eseguire questa funzione.",
         "swipeToConfirm": "Scorri per confermare",
-        "expert": "Esperto"
+        "expert": "Esperto",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -502,7 +504,7 @@
         "quorumSize": "Dimensione Quorum",
         "noCustomNodes": "Nessun nodo personalizzato",
         "mustAddCustomNodes": "Devi aggiungere almeno un nodo personalizzato prima di disabilitare la lista dei nodi remoti.",
-        "nodeEnoughNodesTitle": "Non sono stati aggiunti abbastanza nodi",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "Non ci sono abbastanza nodi per consentire il quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Aggiungi più nodi personalizzati o attiva la lista dei nodi remoti.",
         "nodeSettingsUpdatedTitle": "Impostazioni nodo aggiornate",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Seleziona un nodo",
-        "addCustomNode": "Aggiungi un nodo personalizzato",
         "manualSync": "Sincronizzazione manuale",
         "snapshotTransition": "Passaggio dopo uno snapshot",
         "pow": "Prova di lavoro",

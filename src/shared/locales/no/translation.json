@@ -169,7 +169,9 @@
         "missingPermission": "Trenger tillatelse til filsystemet",
         "missingPermissionExplanation": "Tilgang til filsystemet kreves for å utføre denne funksjonen.",
         "swipeToConfirm": "Dra for å bekrefte",
-        "expert": "Ekspert"
+        "expert": "Ekspert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -502,7 +504,7 @@
         "quorumSize": "Quorum-størrelse",
         "noCustomNodes": "Ingen egendefinerte noder",
         "mustAddCustomNodes": "Du må legge til minst en egendefinert node før du deaktiverer listen med eksterne noder.",
-        "nodeEnoughNodesTitle": "Det er ikke lagt til nok noder",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "Det er ikke nok noder for å aktivere quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Legg til flere egendefinerte noder eller aktiver listen med eksterne noder.",
         "nodeSettingsUpdatedTitle": "Node-innstillinger oppdatert",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Velg node",
-        "addCustomNode": "Legg til egendefinert node",
         "manualSync": "Manuell synkronisering",
         "snapshotTransition": "Snapshot synkronisering",
         "pow": "PoW (Proof of Work)",

@@ -169,7 +169,9 @@
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
         "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen.",
         "swipeToConfirm": "Wischen um zu bestätigen",
-        "expert": "Experte"
+        "expert": "Experte",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -502,7 +504,7 @@
         "quorumSize": "Anzahl der Nodes in der Node-Gruppe",
         "noCustomNodes": "Keine benutzerdefinierten Nodes vorhanden",
         "mustAddCustomNodes": "Du musst mindestens einen benutzerdefinierten Node hinzugefügt haben, bevor du die offizielle Node-Liste deaktivieren kannst.",
-        "nodeEnoughNodesTitle": "Nicht genug Nodes hinzugefügt",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "Es sind nicht genug Nodes vorhanden um die Node-Gruppe zu aktivieren.",
         "nodeEnoughNodesExplanationCustomNodes": "Füge weitere benutzerdefinierte Nodes hinzu oder verwende die offizielle Node-Liste.",
         "nodeSettingsUpdatedTitle": "Node-Einstellungen aktualisiert",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Node auswählen",
-        "addCustomNode": "Benutzerdefinierten Node hinzufügen",
         "manualSync": "Manuell synchronisieren",
         "snapshotTransition": "Snapshot-Wiederherstellung",
         "pow": "Proof of Work",
@@ -758,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Das Update konnte nicht heruntergeladen werden. Überprüfe deine Internetverbindung und versuche es erneut.",
         "noUpdatesAvailable": "Keine Updates verfügbar",
         "noUpdatesAvailableExplanation": "Du hast die aktuelle Version von Trinity installiert!",
         "newVersionAvailable": "Neue Version verfügbar",

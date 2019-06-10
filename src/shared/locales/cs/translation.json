@@ -169,7 +169,9 @@
         "missingPermission": "Požadovaný přístup k souborovému systému",
         "missingPermissionExplanation": "K provedení této funkce potřebujete přístup k souborovému systému.",
         "swipeToConfirm": "Posunutím potvrďte",
-        "expert": "Expert"
+        "expert": "Expert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -502,7 +504,7 @@
         "quorumSize": "Quorum size",
         "noCustomNodes": "Nebyly přidány žádné vlastní Nody",
         "mustAddCustomNodes": "Před vypnutím vzdáleného oficiálního seznamu Nodů musíte přidat alespoň jeden vlastní Node.",
-        "nodeEnoughNodesTitle": "Bylo přidáno příliš málo Nodů",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Přidejte další vlastní Nody, nebo povolte vzdálený oficiální seznam Nodů.",
         "nodeSettingsUpdatedTitle": "Nastavení Nodu bylo aktualizováno",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Vybrat Node",
-        "addCustomNode": "Přidat vlastní Node",
         "manualSync": "Manuální synchronizace",
         "snapshotTransition": "Aktualizace údajů po Snapshotu",
         "pow": "Proof of Work",
