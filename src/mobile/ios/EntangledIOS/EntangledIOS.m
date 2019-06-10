@@ -42,7 +42,7 @@ RCT_EXPORT_METHOD(bundlePow:(NSArray *)trytes trunk:(NSString*)trunk branch:(NSS
 // Single address generation
 RCT_EXPORT_METHOD(generateAddress:(NSArray<NSNumber*>*)seed index:(int)index security:(int)security resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  int seed_size = [seed count];
+  NSUInteger seed_size = [seed count];
   
   if (seed_size == 243) {
     int8_t* seedTrits_ptr = NULL;
@@ -61,9 +61,11 @@ RCT_EXPORT_METHOD(generateAddress:(NSArray<NSNumber*>*)seed index:(int)index sec
     
     resolve(addressTrits);
   } else {
-    NSString *domain = @"iota.entangled.ios";
-    NSString *desc = NSLocalizedString(@"Incorrect seed.", @"");
-    NSError *error = [NSError errorWithDomain:domain code:-400 userInfo:nil];
+    NSString *domain = @"org.iota.entangled.ios";
+    NSDictionary* userInfo = @{
+                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Incorrect seed.", nil)
+                               };
+    NSError *error = [NSError errorWithDomain:domain code:-400 userInfo:userInfo];
     
     reject(@"Error", @"Address generation failed.", error);
   }
@@ -72,10 +74,10 @@ RCT_EXPORT_METHOD(generateAddress:(NSArray<NSNumber*>*)seed index:(int)index sec
 // Multi address generation
 RCT_EXPORT_METHOD(generateAddresses:(NSArray<NSNumber*>*)seed index:(int)index security:(int)security total:(int)total resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    int seed_size = [seed count];
-
-    if (seed_size == 243) {
+  NSUInteger seed_size = [seed count];
+  
+  if (seed_size == 243) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
       NSMutableArray<NSMutableArray*>* addresses = [NSMutableArray array];
       int i = 0;
       int addressIndex = index;
@@ -100,14 +102,16 @@ RCT_EXPORT_METHOD(generateAddresses:(NSArray<NSNumber*>*)seed index:(int)index s
       memset_s(seedTrits_ptr, 243, 0, 243);
       free(seedTrits_ptr);
       resolve(addresses);
-    } else {
-      NSString *domain = @"iota.entangled.ios";
-      NSString *desc = NSLocalizedString(@"Incorrect seed.", @"");
-      NSError *error = [NSError errorWithDomain:domain code:-400 userInfo:nil];
-      
-      reject(@"Error", @"Address generation failed.", error);
-    }
-  });
+    });
+  } else {
+    NSString *domain = @"org.iota.entangled.ios";
+    NSDictionary* userInfo = @{
+                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Incorrect seed.", nil)
+                               };
+    NSError *error = [NSError errorWithDomain:domain code:-400 userInfo:userInfo];
+    
+    reject(@"Error", @"Address generation failed.", error);
+  }
 }
 
 // Signature generation
