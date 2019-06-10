@@ -1,7 +1,7 @@
 import includes from 'lodash/includes';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ActivityIndicator, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setQrDenomination, setSendDenomination } from 'shared-modules/actions/ui';
@@ -9,10 +9,9 @@ import { IOTA_DENOMINATIONS } from 'shared-modules/libs/iota/utils';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { withNamespaces } from 'react-i18next';
-import { width, height } from 'libs/dimensions';
+import { width } from 'libs/dimensions';
 import DropdownComponent from 'ui/components/Dropdown';
-import { Icon } from 'ui/theme/icons';
-import { Styling } from 'ui/theme/general';
+import SettingsDualFooter from 'ui/components/SettingsDualFooter';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -23,11 +22,6 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     innerContainer: {
         flex: 6,
@@ -36,35 +30,7 @@ const styles = StyleSheet.create({
     },
     topContainer: {
         flex: 5,
-        justifyContent: 'flex-start',
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    titleTextLeft: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    activityIndicator: {
-        flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: height / 40,
-    },
-    titleTextRight: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
     },
 });
 
@@ -95,6 +61,13 @@ export class CurrencySelection extends Component {
         setSendDenomination: PropTypes.func.isRequired,
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            currency: props.currency,
+        };
+    }
+
     componentDidMount() {
         leaveNavigationBreadcrumb('CurrencySelection');
     }
@@ -119,38 +92,6 @@ export class CurrencySelection extends Component {
         }
     }
 
-    renderBackOption() {
-        const { theme, t } = this.props;
-
-        return (
-            <TouchableOpacity
-                onPress={() => this.props.setSetting('mainSettings')}
-                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-            >
-                <View style={styles.itemLeft}>
-                    <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                    <Text style={[styles.titleTextLeft, { color: theme.body.color }]}>{t('global:back')}</Text>
-                </View>
-            </TouchableOpacity>
-        );
-    }
-
-    renderSaveOption() {
-        const { t, theme } = this.props;
-
-        return (
-            <TouchableOpacity
-                onPress={() => this.props.getCurrencyData(this.dropdown.getSelectedItem(), true)}
-                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-            >
-                <View style={styles.itemRight}>
-                    <Text style={[styles.titleTextRight, { color: theme.body.color }]}>{t('global:save')}</Text>
-                    <Icon name="tick" size={width / 28} color={theme.body.color} />
-                </View>
-            </TouchableOpacity>
-        );
-    }
-
     render() {
         const { currency, availableCurrencies, t, theme, isFetchingCurrencyData } = this.props;
         return (
@@ -163,7 +104,6 @@ export class CurrencySelection extends Component {
             >
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 1.2 }} />
                         <DropdownComponent
                             onRef={(c) => {
                                 this.dropdown = c;
@@ -173,21 +113,18 @@ export class CurrencySelection extends Component {
                             value={currency}
                             dropdownWidth={{ width: width / 2 }}
                             disableWhen={isFetchingCurrencyData}
+                            saveSelection={(currency) => this.setState({ currency })}
                         />
                     </View>
-                    {(isFetchingCurrencyData && (
-                        <View style={styles.innerContainer}>
-                            <ActivityIndicator
-                                animating
-                                style={styles.activityIndicator}
-                                size="large"
-                                color={theme.primary.color}
-                            />
-                        </View>
-                    )) || <View style={styles.innerContainer} />}
                     <View style={styles.bottomContainer}>
-                        {!isFetchingCurrencyData && this.renderBackOption()}
-                        {!isFetchingCurrencyData && this.renderSaveOption()}
+                        <SettingsDualFooter
+                            theme={theme}
+                            hideActionButton={this.state.currency === currency}
+                            backFunction={() => this.props.setSetting('mainSettings')}
+                            actionFunction={() => this.props.getCurrencyData(this.state.currency, true)}
+                            actionName={t('global:save')}
+                            actionButtonLoading={isFetchingCurrencyData}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -213,5 +150,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['currencySelection', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(CurrencySelection),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(CurrencySelection),
 );

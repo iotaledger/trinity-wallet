@@ -22,6 +22,7 @@ const confirmedZeroValueTransactions = [
         nonce: 'OIDFG9999999999999999999999',
         persistence: true,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
 ];
 
@@ -46,6 +47,7 @@ const confirmedValueTransactions = [
         nonce: 'GIJIDMPJFIDJKHBCPOLVNWMAOGI',
         persistence: true,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'OAAMETLECXOVQNTTAKCNWPZSQALUYEGTO9QGEQL9ST9RFJ9JPNBHTOABJQTCIHKMNUMHEKZJSFYT99999',
@@ -67,6 +69,7 @@ const confirmedValueTransactions = [
         nonce: 'KGFTPYLNJCEUZAFHXNWKVWRYKJL',
         persistence: true,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'GL9TUTOTURKGADPQUJAGOCMFGVBJ9M9EHMQABNFS9OSWEGJEOSJRHCJUWPRRJOPMQSDZEJZVXBSIA9999',
@@ -88,6 +91,7 @@ const confirmedValueTransactions = [
         nonce: 'XAGXZKARSLXSMXUSIBAJJIPLHGJ',
         persistence: true,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'MKELFERILDLTMIFD9FG9GZDJPOB9YHUWENQNTADWDKWLPOYD9R9JJUKJQLFTHZRYVDYNJWWDSP9O99999',
@@ -109,6 +113,7 @@ const confirmedValueTransactions = [
         nonce: 'GCFKXOAZCXG9BSJQAKAY9QGMYFH',
         persistence: true,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'FQVZNSOUKKSQPCFWCBJCSMAZNAGGVFROELHOOZGFXUVZUWL9TXIQGSUZORIUXJSBKKSUCWNPPWFGA9999',
@@ -130,6 +135,7 @@ const confirmedValueTransactions = [
         nonce: 'XMEIM9999999999999999999999',
         persistence: true,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'ZBQPKYDP9UXYGMTGDMSVUHKVJLLPTXVQDEAKPJCDBLAVPSMZEGTBPMWLOESS9UPGGBL9ASBFGLSX99999',
@@ -151,6 +157,7 @@ const confirmedValueTransactions = [
         nonce: 'TCXS9A999999999999999999999',
         persistence: true,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'ACY9SX9YYF9YZEYDPXNLWXZVGEYEAMBZMHV9LJDNCXJNERWJHB9CWXNBRWERCDKDFRBLCIZODZBWA9999',
@@ -172,6 +179,7 @@ const confirmedValueTransactions = [
         nonce: 'ARPIG9999999999999999999999',
         persistence: true,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'FYTFJUVSACOSQBSPLCBCBFGWYJTGZOYEPLCBK9QMZTYMZOFNNQRMTMQVUR9NMEYAGWYPNHBXKINW99999',
@@ -193,6 +201,7 @@ const confirmedValueTransactions = [
         nonce: 'Z9EBD9999999999999999999999',
         persistence: true,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'GERAGOPQB9ULOVZJWJWQQ9ONFRNAIECCAHCMIGDOWSLJOKKDFGBFYZYGMU9UVEW9DOMKDE9VPSLJZ9999',
@@ -214,6 +223,7 @@ const confirmedValueTransactions = [
         nonce: 'YSAHPA999999999999999999999',
         persistence: true,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'RRSOMOBUMCCAVMBRLCHACRKNMSHWIIP9TNXHJQNLANULTWRCIFTQT9BGNZIDGWWO9BZTNGC9MKZHA9999',
@@ -235,6 +245,7 @@ const confirmedValueTransactions = [
         nonce: 'WPPQB9999999999999999999999',
         persistence: true,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'EYKEEUQVDCSBXIB9FTLIOWEELKLQHVPWEXBGTWLQMMTVFRVLHBPZZEH9FLCXCJFOEUDUSJNSZWGA99999',
@@ -256,6 +267,7 @@ const confirmedValueTransactions = [
         nonce: 'PDPINA999999999999999999999',
         persistence: true,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
 ];
 
@@ -280,6 +292,7 @@ const unconfirmedValueTransactions = [
         nonce: 'TRRNG9999999999999999999999',
         persistence: false,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'IYXZVXTAIKDZQLPIKOBALADCLKIISONLMZYVZAUKHCMJR9BGHTVRWZZTTP9BUQLLUINLPXCWSZ9HZ9999',
@@ -301,6 +314,7 @@ const unconfirmedValueTransactions = [
         nonce: 'EVHIC9999999999999999999999',
         persistence: false,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'AD9JXNOMIQNGCEPQJELKOOOBOVXXQKWOROGZHMYMEFEPXEAXHZMJHFPRPTJETFGQNGYTIORJ9NGFZ9999',
@@ -322,6 +336,7 @@ const unconfirmedValueTransactions = [
         nonce: 'APCAK9999999999999999999999',
         persistence: false,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'WWCQCQ9RCYIBGLDXTCFN9OTOIWNFKSVTJQEDHKYQRSPZHPFOYWMZKMPOWUVKBRQNSZVMCSDGNVSDA9999',
@@ -343,6 +358,7 @@ const unconfirmedValueTransactions = [
         nonce: 'GABYI9999999999999999999999',
         persistence: false,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'IXZUUKVWLWPWWTJWGSAO9GUVVDCEYOUNJRTPPDQVAJQKGTLSZHDHUPGBNJJPZHZADJENZQ9MGQVR99999',
@@ -364,6 +380,7 @@ const unconfirmedValueTransactions = [
         nonce: '9HFRB9999999999999999999999',
         persistence: false,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'PWNCXLVGCRURP9HMSDRHZAYPUJTWPTVSIHORMROEBHATFR9LVEPGDBWGIAHUQMYMZWALZG9XGVBKA9999',
@@ -385,6 +402,7 @@ const unconfirmedValueTransactions = [
         nonce: 'FFWOE9999999999999999999999',
         persistence: false,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'MOJVWYLRIETUURNWIWOZLFKTLYBRRXNSOBXRZIIYQWCYUIHFOGGDGUJVMIK9TFVHSUARVJSN9MOQA9999',
@@ -406,6 +424,7 @@ const unconfirmedValueTransactions = [
         nonce: 'NRFFD9999999999999999999999',
         persistence: false,
         broadcasted: true,
+        fatalErrorOnRetry: false,
     },
 ];
 
@@ -430,6 +449,7 @@ const failedTransactionsWithCorrectTransactionHashes = [
         nonce: 'DPLDK9999999999999999999999',
         persistence: false,
         broadcasted: false,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'DEAFXJMCUPKWPBIYTZGHYDBKWYBNLHZSEACJGNWGEDNDRDQSGVOEXZAYRUIHNYPGRXBOFILFYJTPA9999',
@@ -451,6 +471,7 @@ const failedTransactionsWithCorrectTransactionHashes = [
         nonce: 'N9LWB9999999999999999999999',
         persistence: false,
         broadcasted: false,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'NNVRU9KMIWAZJ9JHSCNDEKJFACRXICFOESLWFDWVZJPSINHEYLRUKQDRAESZMHRKOAFSKPHVOGBY99999',
@@ -472,6 +493,7 @@ const failedTransactionsWithCorrectTransactionHashes = [
         nonce: 'YSLDI9999999999999999999999',
         persistence: false,
         broadcasted: false,
+        fatalErrorOnRetry: false,
     },
 ];
 
@@ -496,6 +518,7 @@ const failedTransactionsWithIncorrectTransactionHashes = [
         nonce: '999999999999999999999999999',
         persistence: false,
         broadcasted: false,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'OA9XIZCOTXWORJWFUVPFAWPCHZUMWQHUI9OEJXABFGOCXHETWXUU9YUHQ9QBJKPOCPXSWOJWYXUMNLFKO',
@@ -517,6 +540,7 @@ const failedTransactionsWithIncorrectTransactionHashes = [
         nonce: '999999999999999999999999999',
         persistence: false,
         broadcasted: false,
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'EEQUTO9HOJB9NBEYUFMSENPKZJZRJRU9BIMX9UPFFRNUJNGSPYNCRNWYWE9YHUMIZCDDJGRIKUV9VSHJW',
@@ -538,6 +562,7 @@ const failedTransactionsWithIncorrectTransactionHashes = [
         nonce: '999999999999999999999999999',
         persistence: false,
         broadcasted: false,
+        fatalErrorOnRetry: false,
     },
 ];
 
@@ -884,6 +909,7 @@ const newZeroValueTransaction = [
         attachmentTimestampLowerBound: 0,
         attachmentTimestampUpperBound: 0,
         nonce: '999999999999999999999999999',
+        fatalErrorOnRetry: false,
     },
 ];
 
@@ -910,6 +936,7 @@ const newZeroValueAttachedTransaction = [
         attachmentTimestampLowerBound: 0,
         attachmentTimestampUpperBound: 3812798742493,
         nonce: 'VCDRNVOSEBJRBWUICWHVJLZKRER',
+        fatalErrorOnRetry: false,
     },
 ];
 
@@ -932,6 +959,7 @@ const newValueTransaction = [
         attachmentTimestampLowerBound: 0,
         attachmentTimestampUpperBound: 0,
         nonce: '999999999999999999999999999',
+        fatalErrorOnRetry: false,
     },
     {
         hash: '9IZLAYLKLHAABKLLCCMRGHXPVTRFEGBBADADVTNYEMHOQ9BJGK9CMPQTCLDLOEDYUOCXPBXENQD9BNPKX',
@@ -951,6 +979,7 @@ const newValueTransaction = [
         attachmentTimestampLowerBound: 0,
         attachmentTimestampUpperBound: 0,
         nonce: '999999999999999999999999999',
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'SDMDX9VWXNQNVXKLKQJFCTPILYNOLIGDLOWLNIMNDICFGMDMOZCYVT9ASDPBGHPWJBIKNAOEXA9N9MMNR',
@@ -970,6 +999,7 @@ const newValueTransaction = [
         attachmentTimestampLowerBound: 0,
         attachmentTimestampUpperBound: 0,
         nonce: '999999999999999999999999999',
+        fatalErrorOnRetry: false,
     },
 ];
 
@@ -997,6 +1027,7 @@ const newValueAttachedTransaction = [
         attachmentTimestampLowerBound: 0,
         attachmentTimestampUpperBound: 3812798742493,
         nonce: 'WRCKILEZJDXQOWXJ99LHBTAILOI',
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'AACJTULPORZYLSJV9YUYXFBSJGUAHIIHDLYCUBISNSINMGAMNHHWCYCCQJIBASEIWYUUQRVXTRJPA9999',
@@ -1016,6 +1047,7 @@ const newValueAttachedTransaction = [
         attachmentTimestampLowerBound: 0,
         attachmentTimestampUpperBound: 3812798742493,
         nonce: '9JFAIRPUGIAIYPFGGYEBGPCINQP',
+        fatalErrorOnRetry: false,
     },
     {
         hash: 'FVA9VKHYQ9VNKIUMCGVUYQIGZGBXSATPUZU9KRTTQQPEGFZIAU9FOGBQFBBJVLGVMWBVLIEOHOTVA9999',
@@ -1035,6 +1067,7 @@ const newValueAttachedTransaction = [
         attachmentTimestampLowerBound: 0,
         attachmentTimestampUpperBound: 3812798742493,
         nonce: '9EEPIJPWUPBTIMYCWREJECGJCPM',
+        fatalErrorOnRetry: false,
     },
 ];
 

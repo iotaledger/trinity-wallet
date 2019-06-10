@@ -42,8 +42,6 @@ import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Ledger from 'ui/global/seedStore/Ledger';
 
-import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
-
 /**
  * Wallet wrapper component
  **/
@@ -296,12 +294,12 @@ class App extends React.Component {
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
-        if (fatalError) {
+        if (fatalError && (fatalError === 'Found old data' && currentKey !== 'settings')) {
             return (
                 <div>
                     <Theme history={history} />
                     <Titlebar path={currentKey} />
-                    <FatalError error={fatalError} />
+                    <FatalError error={fatalError} history={history} />
                 </div>
             );
         }
@@ -366,4 +364,9 @@ const mapDispatchToProps = {
     displayTestWarning,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(withAutoNodeSwitching(App))));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(withTranslation()(App)),
+);

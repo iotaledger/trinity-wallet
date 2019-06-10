@@ -55,7 +55,7 @@ class Migration extends React.Component {
         /** @ignore */
         notificationLog: PropTypes.array.isRequired,
         /** @ignore */
-        node: PropTypes.string.isRequired,
+        node: PropTypes.object.isRequired,
         /** @ignore */
         nodes: PropTypes.array.isRequired,
         /** @ignore */
@@ -119,7 +119,7 @@ class Migration extends React.Component {
                         <article>
                             <Progress
                                 type="large"
-                                progress={Math.round((activeStepIndex + 1) / activeSteps.length * 100)}
+                                progress={Math.round(((activeStepIndex + 1) / activeSteps.length) * 100)}
                                 subtitle={activeSteps[activeStepIndex]}
                             />
                         </article>
@@ -155,4 +155,7 @@ const mapDispatchToProps = {
     setFullNode,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Migration));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(Migration));

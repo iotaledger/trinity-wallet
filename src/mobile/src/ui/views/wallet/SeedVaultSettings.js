@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Keyboard } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { withNamespaces } from 'react-i18next';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
-import { Icon } from 'ui/theme/icons';
-import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { isAndroid } from 'libs/device';
-
-const { width } = Dimensions.get('window');
-const { height } = global;
+import SettingsDualFooter from 'ui/components/SettingsDualFooter';
+import { width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -23,37 +20,10 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     topContainer: {
         flex: 11,
         justifyContent: 'center',
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    titleTextLeft: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    titleTextRight: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
     },
 });
 
@@ -102,9 +72,6 @@ class SeedVaultSettings extends Component {
     render() {
         const { t, theme } = this.props;
         const { step, isAuthenticated } = this.state;
-        const textColor = { color: theme.body.color };
-        const bodyColor = theme.body.color;
-
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -122,28 +89,18 @@ class SeedVaultSettings extends Component {
                         <View style={{ flex: 0.2 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.SeedVaultExportComponent.onBackPress()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.onRightButtonPress()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, textColor]}>
-                                    {step === 'isExporting' && !isAndroid
-                                        ? t('global:export')
-                                        : step === 'isSelectingSaveMethodAndroid' ? t('global:done') : t('global:next')}
-                                </Text>
-                                <Icon name="tick" size={width / 28} color={bodyColor} />
-                            </View>
-                        </TouchableOpacity>
+                        <SettingsDualFooter
+                            theme={theme}
+                            backFunction={() => this.SeedVaultExportComponent.onBackPress()}
+                            actionFunction={() => this.onRightButtonPress()}
+                            actionName={
+                                step === 'isExporting' && !isAndroid
+                                    ? t('global:export')
+                                    : step === 'isSelectingSaveMethodAndroid'
+                                    ? t('global:done')
+                                    : t('global:next')
+                            }
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -159,4 +116,9 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withNamespaces(['seedVault', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SeedVaultSettings));
+export default withNamespaces(['seedVault', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(SeedVaultSettings),
+);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setMode } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -9,7 +9,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import Fonts from 'ui/theme/fonts';
 import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import SettingsBackButton from 'ui/components/SettingsBackButton';
 import InfoBox from 'ui/components/InfoBox';
 import Toggle from 'ui/components/Toggle';
 import { Styling } from 'ui/theme/general';
@@ -23,11 +23,6 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     topContainer: {
         flex: 11,
@@ -39,17 +34,6 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         textAlign: 'center',
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    titleTextLeft: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
     },
     toggleText: {
         fontFamily: Fonts.secondary,
@@ -99,9 +83,9 @@ class ModeSelection extends Component {
     }
 
     render() {
-        const { t, mode, theme: { body, primary } } = this.props;
+        const { t, mode, theme } = this.props;
 
-        const textColor = { color: body.color };
+        const textColor = { color: theme.body.color };
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -126,8 +110,8 @@ class ModeSelection extends Component {
                                 </View>
                                 <Toggle
                                     active={mode === 'Advanced'}
-                                    bodyColor={body.color}
-                                    primaryColor={primary.color}
+                                    bodyColor={theme.body.color}
+                                    primaryColor={theme.primary.color}
                                     scale={1.3}
                                 />
                                 <View style={styles.toggleTextContainer}>
@@ -140,15 +124,7 @@ class ModeSelection extends Component {
                         <View style={{ flex: 1.5 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('mainSettings')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <SettingsBackButton theme={theme} backFunction={() => this.props.setSetting('mainSettings')} />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -167,4 +143,9 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['modeSelection', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ModeSelection));
+export default withNamespaces(['modeSelection', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ModeSelection),
+);

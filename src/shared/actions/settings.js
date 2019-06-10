@@ -1,54 +1,17 @@
+import unionBy from 'lodash/unionBy';
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
-import map from 'lodash/map';
-import { changeIotaNode } from '../libs/iota/index';
+import { changeIotaNode, quorum } from '../libs/iota/index';
 import i18next from '../libs/i18next';
 import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
 import { fetchNodeList } from '../actions/polling';
 import { allowsRemotePow } from '../libs/iota/extendedApi';
-import { getSelectedNodeFromState } from '../selectors/global';
+import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState } from '../selectors/global';
 import { throwIfNodeNotHealthy } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import { Wallet, Node } from '../storage';
-
-export const ActionTypes = {
-    SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
-    SET_NODE: 'IOTA/SETTINGS/FULLNODE',
-    SET_NODE_REQUEST: 'IOTA/SETTINGS/SET_NODE_REQUEST',
-    SET_NODE_ERROR: 'IOTA/SETTINGS/SET_NODE_ERROR',
-    ADD_CUSTOM_NODE_REQUEST: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_REQUEST',
-    ADD_CUSTOM_NODE_SUCCESS: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_SUCCESS',
-    ADD_CUSTOM_NODE_ERROR: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_ERROR',
-    REMOVE_CUSTOM_NODE: 'IOTA/SETTINGS/REMOVE_CUSTOM_NODE',
-    SET_MODE: 'IOTA/SETTINGS/SET_MODE',
-    SET_THEME: 'IOTA/SETTINGS/SET_THEME',
-    SET_LANGUAGE: 'IOTA/SETTINGS/SET_LANGUAGE',
-    SET_CURRENCY_DATA: 'IOTA/SETTINGS/SET_CURRENCY',
-    UPDATE_THEME: 'IOTA/SETTINGS/UPDATE_THEME',
-    CURRENCY_DATA_FETCH_REQUEST: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_REQUEST',
-    CURRENCY_DATA_FETCH_SUCCESS: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_SUCCESS',
-    CURRENCY_DATA_FETCH_ERROR: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_ERROR',
-    SET_RANDOMLY_SELECTED_NODE: 'IOTA/SETTINGS/SET_RANDOMLY_SELECTED_NODE',
-    SET_NODELIST: 'IOTA/SETTINGS/SET_NODELIST',
-    SET_REMOTE_POW: 'IOTA/SETTINGS/SET_REMOTE_POW',
-    SET_AUTO_PROMOTION: 'IOTA/SETTINGS/SET_AUTO_PROMOTION',
-    UPDATE_AUTO_NODE_SWITCHING: 'IOTA/SETTINGS/UPDATE_AUTO_NODE_SWITCHING',
-    SET_LOCK_SCREEN_TIMEOUT: 'IOTA/SETTINGS/SET_LOCK_SCREEN_TIMEOUT',
-    SET_VERSIONS: 'IOTA/SETTINGS/WALLET/SET_VERSIONS',
-    WALLET_RESET: 'IOTA/SETTINGS/WALLET/RESET',
-    SET_FINGERPRINT_STATUS: 'IOTA/SETTINGS/SET_FINGERPRINT_STATUS',
-    ACCEPT_TERMS: 'IOTA/SETTINGS/ACCEPT_TERMS',
-    ACCEPT_PRIVACY: 'IOTA/SETTINGS/ACCEPT_PRIVACY',
-    TOGGLE_EMPTY_TRANSACTIONS: 'IOTA/SETTINGS/TOGGLE_EMPTY_TRANSACTIONS',
-    SET_COMPLETED_FORCED_PASSWORD_UPDATE: 'IOTA/SETTINGS/SET_COMPLETED_FORCED_PASSWORD_UPDATE',
-    SET_BYTETRIT_STATUS: 'IOTA/SETTINGS/SET_BYTETRIT_STATUS',
-    SET_BYTETRIT_INFO: 'IOTA/SETTINGS/SET_BYTETRIT_INFO',
-    SET_TRAY: 'IOTA/SETTINGS/SET_TRAY',
-    SET_NOTIFICATIONS: 'IOTA/SETTINGS/SET_NOTIFICATIONS',
-    SET_PROXY: 'SET_PROXY',
-    RESET_NODES_LIST: 'IOTA/SETTINGS/RESET_NODES_LIST',
-    SET_DEEP_LINKING: 'IOTA/SETTINGS/SET_DEEP_LINKING',
-};
+import { SettingsActionTypes } from '../types';
 
 /**
  * Dispatch to set latest app versions in state
@@ -62,7 +25,7 @@ export const setAppVersions = (payload) => {
     Wallet.setVersions(payload);
 
     return {
-        type: ActionTypes.SET_VERSIONS,
+        type: SettingsActionTypes.SET_VERSIONS,
         payload,
     };
 };
@@ -78,7 +41,7 @@ export const acceptTerms = () => {
     Wallet.acceptTerms();
 
     return {
-        type: ActionTypes.ACCEPT_TERMS,
+        type: SettingsActionTypes.ACCEPT_TERMS,
     };
 };
 
@@ -93,7 +56,7 @@ export const acceptPrivacy = () => {
     Wallet.acceptPrivacyPolicy();
 
     return {
-        type: ActionTypes.ACCEPT_PRIVACY,
+        type: SettingsActionTypes.ACCEPT_PRIVACY,
     };
 };
 
@@ -105,7 +68,7 @@ export const acceptPrivacy = () => {
  * @returns {{type: {string} }}
  */
 const currencyDataFetchRequest = () => ({
-    type: ActionTypes.CURRENCY_DATA_FETCH_REQUEST,
+    type: SettingsActionTypes.CURRENCY_DATA_FETCH_REQUEST,
 });
 
 /**
@@ -120,7 +83,7 @@ export const currencyDataFetchSuccess = (payload) => {
     Wallet.updateCurrencyData(payload);
 
     return {
-        type: ActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
+        type: SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
         payload,
     };
 };
@@ -133,7 +96,7 @@ export const currencyDataFetchSuccess = (payload) => {
  * @returns {{type: {string} }}
  */
 const currencyDataFetchError = () => ({
-    type: ActionTypes.CURRENCY_DATA_FETCH_ERROR,
+    type: SettingsActionTypes.CURRENCY_DATA_FETCH_ERROR,
 });
 
 /**
@@ -144,7 +107,7 @@ const currencyDataFetchError = () => ({
  * @returns {{type: {string} }}
  */
 const setNodeRequest = () => ({
-    type: ActionTypes.SET_NODE_REQUEST,
+    type: SettingsActionTypes.SET_NODE_REQUEST,
 });
 
 /**
@@ -155,7 +118,7 @@ const setNodeRequest = () => ({
  * @returns {{type: {string} }}
  */
 const setNodeError = () => ({
-    type: ActionTypes.SET_NODE_ERROR,
+    type: SettingsActionTypes.SET_NODE_ERROR,
 });
 
 /**
@@ -166,7 +129,7 @@ const setNodeError = () => ({
  * @returns {{type: {string} }}
  */
 const addCustomNodeRequest = () => ({
-    type: ActionTypes.ADD_CUSTOM_NODE_REQUEST,
+    type: SettingsActionTypes.ADD_CUSTOM_NODE_REQUEST,
 });
 
 /**
@@ -177,15 +140,13 @@ const addCustomNodeRequest = () => ({
  *
  * @returns {{type: {string}, payload: {string} }}
  */
-const addCustomNodeSuccess = (url, remotePow) => {
+const addCustomNodeSuccess = (node, remotePow) => {
     // Add custom node.
-    Node.addCustomNode(url, remotePow);
-    // Update wallet's active node.
-    Wallet.updateNode(url);
+    Node.addCustomNode(node, remotePow);
 
     return {
-        type: ActionTypes.ADD_CUSTOM_NODE_SUCCESS,
-        payload: url,
+        type: SettingsActionTypes.ADD_CUSTOM_NODE_SUCCESS,
+        payload: node,
     };
 };
 
@@ -197,7 +158,7 @@ const addCustomNodeSuccess = (url, remotePow) => {
  * @returns {{type: {string} }}
  */
 const addCustomNodeError = () => ({
-    type: ActionTypes.ADD_CUSTOM_NODE_ERROR,
+    type: SettingsActionTypes.ADD_CUSTOM_NODE_ERROR,
 });
 
 /**
@@ -212,7 +173,7 @@ export const setRandomlySelectedNode = (payload) => {
     Wallet.setRandomlySelectedNode(payload);
 
     return {
-        type: ActionTypes.SET_RANDOMLY_SELECTED_NODE,
+        type: SettingsActionTypes.SET_RANDOMLY_SELECTED_NODE,
         payload,
     };
 };
@@ -229,7 +190,7 @@ export const setMode = (payload) => {
     Wallet.updateMode(payload);
 
     return {
-        type: ActionTypes.SET_MODE,
+        type: SettingsActionTypes.SET_MODE,
         payload,
     };
 };
@@ -238,15 +199,15 @@ export const setMode = (payload) => {
  * Dispatch to change wallet's active IRI node
  *
  * @method setNode
- * @param {string} payload
+ * @param {object} payload
  *
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setNode = (payload) => {
-    Wallet.updateNode(payload);
+    Wallet.updateNode(payload.url);
 
     return {
-        type: ActionTypes.SET_NODE,
+        type: SettingsActionTypes.SET_NODE,
         payload,
     };
 };
@@ -263,8 +224,8 @@ export const setNodeList = (payload) => {
     Node.addNodes(payload);
 
     return {
-        type: ActionTypes.SET_NODELIST,
-        payload: map(payload, (node) => node.url),
+        type: SettingsActionTypes.SET_NODELIST,
+        payload,
     };
 };
 
@@ -280,7 +241,7 @@ export const removeCustomNode = (payload) => {
     Node.delete(payload);
 
     return {
-        type: ActionTypes.REMOVE_CUSTOM_NODE,
+        type: SettingsActionTypes.REMOVE_CUSTOM_NODE,
         payload,
     };
 };
@@ -297,7 +258,7 @@ export const setRemotePoW = (payload) => {
     Wallet.updateRemotePowSetting(payload);
 
     return {
-        type: ActionTypes.SET_REMOTE_POW,
+        type: SettingsActionTypes.SET_REMOTE_POW,
         payload,
     };
 };
@@ -314,24 +275,7 @@ export const setAutoPromotion = (payload) => {
     Wallet.updateAutoPromotionSetting(payload);
 
     return {
-        type: ActionTypes.SET_AUTO_PROMOTION,
-        payload,
-    };
-};
-
-/**
- * Dispatch to update auto node switching configuration for wallet
- *
- * @method updateAutoNodeSwitching
- * @param {boolean} payload
- *
- * @returns {{type: {string}, payload: {boolean} }}
- */
-export const updateAutoNodeSwitching = (payload) => {
-    Wallet.updateAutoNodeSwitchingSetting(payload);
-
-    return {
-        type: ActionTypes.UPDATE_AUTO_NODE_SWITCHING,
+        type: SettingsActionTypes.SET_AUTO_PROMOTION,
         payload,
     };
 };
@@ -348,7 +292,7 @@ export const setLockScreenTimeout = (payload) => {
     Wallet.updateLockScreenTimeout(payload);
 
     return {
-        type: ActionTypes.SET_LOCK_SCREEN_TIMEOUT,
+        type: SettingsActionTypes.SET_LOCK_SCREEN_TIMEOUT,
         payload,
     };
 };
@@ -367,7 +311,7 @@ export function setLocale(locale) {
         Wallet.updateLocale(locale);
 
         return dispatch({
-            type: ActionTypes.SET_LOCALE,
+            type: SettingsActionTypes.SET_LOCALE,
             payload: locale,
         });
     };
@@ -377,15 +321,18 @@ export function setLocale(locale) {
  * Dispatch to change selected IRI node
  *
  * @method changeNode
- * @param {string} payload
+ *
+ * @param {object} payload
  *
  * @returns {{type: {string}, payload: {string} }}
  */
 export const changeNode = (payload) => (dispatch, getState) => {
-    if (getSelectedNodeFromState(getState()) !== payload) {
+    const selectedNode = getSelectedNodeFromState(getState());
+
+    if (selectedNode.url !== payload.url) {
         dispatch(setNode(payload));
         // Change provider on global iota instance
-        changeIotaNode(payload);
+        changeIotaNode(assign({}, payload, { provider: payload.url }));
     }
 };
 
@@ -455,7 +402,7 @@ export function setLanguage(language) {
     Wallet.updateLanguage(language);
 
     return {
-        type: ActionTypes.SET_LANGUAGE,
+        type: SettingsActionTypes.SET_LANGUAGE,
         payload: language,
     };
 }
@@ -465,7 +412,7 @@ export function setLanguage(language) {
  *
  * @method setFullNode
  *
- * @param {string} node
+ * @param {object} node - { url, token }
  * @param {boolean} addingCustomNode
  *
  * @returns {function}
@@ -496,25 +443,41 @@ export function setFullNode(node, addingCustomNode = false) {
 
     return (dispatch) => {
         dispatch(dispatcher.request());
-
         throwIfNodeNotHealthy(node)
             .then(() => allowsRemotePow(node))
             .then((hasRemotePow) => {
                 // Change IOTA provider on the global iota instance
-                changeIotaNode(node);
+                if (!addingCustomNode) {
+                    changeIotaNode(assign({}, node, { provider: node.url }));
+                }
 
                 // Update node in redux store
-                dispatch(dispatcher.success(node, hasRemotePow));
+                dispatch(
+                    dispatcher.success(
+                        assign({}, node, {
+                            pow: hasRemotePow,
+                        }),
+                        hasRemotePow,
+                    ),
+                );
 
-                // Change IOTA provider on the global iota instance
-                changeIotaNode(node);
+                if (addingCustomNode) {
+                    return dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('global:customNodeAdded'),
+                            i18next.t('global:customNodeAddedExplanation', { node: node.url }),
+                            10000,
+                        ),
+                    );
+                }
 
                 if (hasRemotePow) {
                     dispatch(
                         generateAlert(
                             'success',
                             i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessExplanation', { node }),
+                            i18next.t('settings:nodeChangeSuccessExplanation', { node: node.url }),
                             10000,
                         ),
                     );
@@ -527,7 +490,7 @@ export function setFullNode(node, addingCustomNode = false) {
                         generateAlert(
                             'success',
                             i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { node }),
+                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { node: node.url }),
                             10000,
                         ),
                     );
@@ -563,7 +526,7 @@ export function updateTheme(payload) {
 
     return (dispatch) => {
         dispatch({
-            type: ActionTypes.UPDATE_THEME,
+            type: SettingsActionTypes.UPDATE_THEME,
             payload,
         });
     };
@@ -656,7 +619,7 @@ export function changeAutoPromotionSettings() {
  */
 export function resetWallet() {
     return {
-        type: ActionTypes.WALLET_RESET,
+        type: SettingsActionTypes.WALLET_RESET,
     };
 }
 
@@ -671,7 +634,7 @@ export const toggleEmptyTransactions = () => {
     Wallet.toggleEmptyTransactionsDisplay();
 
     return {
-        type: ActionTypes.TOGGLE_EMPTY_TRANSACTIONS,
+        type: SettingsActionTypes.TOGGLE_EMPTY_TRANSACTIONS,
     };
 };
 
@@ -687,7 +650,7 @@ export const setFingerprintStatus = (payload) => {
     Wallet.updateFingerprintAuthenticationSetting(payload);
 
     return {
-        type: ActionTypes.SET_FINGERPRINT_STATUS,
+        type: SettingsActionTypes.SET_FINGERPRINT_STATUS,
         payload,
     };
 };
@@ -697,7 +660,7 @@ export const setCompletedForcedPasswordUpdate = () => {
     Wallet.completeForcedPasswordUpdate();
 
     return {
-        type: ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE,
+        type: SettingsActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE,
     };
 };
 
@@ -706,14 +669,14 @@ export const setCompletedByteTritSweep = (payload) => {
     Wallet.updateByteTritSweepSetting(payload);
 
     return {
-        type: ActionTypes.SET_BYTETRIT_STATUS,
+        type: SettingsActionTypes.SET_BYTETRIT_STATUS,
         payload,
     };
 };
 
 // FIXME: Temporarily needed for byte-trit check
 export const setByteTritSweepInfo = (payload) => ({
-    type: ActionTypes.SET_BYTETRIT_INFO,
+    type: SettingsActionTypes.SET_BYTETRIT_INFO,
     payload,
 });
 
@@ -729,7 +692,7 @@ export const setTray = (payload) => {
     Wallet.updateTraySetting(payload);
 
     return {
-        type: ActionTypes.SET_TRAY,
+        type: SettingsActionTypes.SET_TRAY,
         payload,
     };
 };
@@ -746,7 +709,7 @@ export const setNotifications = (payload) => {
     Wallet.updateNotificationsSetting(payload);
 
     return {
-        type: ActionTypes.SET_NOTIFICATIONS,
+        type: SettingsActionTypes.SET_NOTIFICATIONS,
         payload,
     };
 };
@@ -759,10 +722,14 @@ export const setNotifications = (payload) => {
  *
  * @returns {{type: {string}, payload: {boolean} }}
  */
-export const setProxy = (payload) => ({
-    type: ActionTypes.SET_PROXY,
-    payload,
-});
+export const setProxy = (payload) => {
+    Wallet.updateIgnoreProxySetting(payload);
+
+    return {
+        type: SettingsActionTypes.SET_PROXY,
+        payload,
+    };
+};
 
 /**
  * Changes deep linking setting and generates alert
@@ -796,7 +763,7 @@ export const changeDeepLinkingSettings = () => {
 export const setDeepLinking = () => {
     Wallet.updateDeepLinkingSetting();
     return {
-        type: ActionTypes.SET_DEEP_LINKING,
+        type: SettingsActionTypes.SET_DEEP_LINKING,
     };
 };
 
@@ -808,7 +775,7 @@ export const setDeepLinking = () => {
  * @returns {{type: {string} }}
  */
 export const resetNodesList = () => ({
-    type: ActionTypes.RESET_NODES_LIST,
+    type: SettingsActionTypes.RESET_NODES_LIST,
 });
 
 /**
@@ -824,4 +791,90 @@ export const reinitialiseNodesList = () => (dispatch) => {
 
     // Fetch latest nodes
     dispatch(fetchNodeList());
+};
+
+/**
+ * Dispatch to update quorum configuration
+ *
+ * @method updateQuorumConfig
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const updateQuorumConfig = (payload) => {
+    // Update quorum configuration in realm
+    Wallet.updateQuorumConfig(payload);
+
+    // Check if this update aims to update quorum size
+    const quorumSize = get(payload, 'size');
+
+    // If this update aims to update quorum size, also update global quorum parameter
+    if (quorumSize) {
+        quorum.setSize(quorumSize);
+    }
+
+    // Finally, update it in redux store
+    return {
+        type: SettingsActionTypes.UPDATE_QUORUM_CONFIG,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to update node auto-switch setting
+ *
+ * @method updateNodeAutoSwitchSetting
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const updateNodeAutoSwitchSetting = (payload) => {
+    // Update auto node switching setting in realm
+    Wallet.updateNodeAutoSwitchSetting(payload);
+
+    // Update auto node switching setting in redux store
+    return {
+        type: SettingsActionTypes.UPDATE_NODE_AUTO_SWITCH_SETTING,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to update autoNodeList setting
+ *
+ * @method updateAutoNodeListSetting
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const updateAutoNodeListSetting = (payload) => {
+    // Update autoNodeList setting in realm
+    Wallet.updateAutoNodeListSetting(payload);
+
+    // Update autoNodeList setting in redux
+    return {
+        type: SettingsActionTypes.UPDATE_AUTO_NODE_LIST_SETTING,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to change autoNodeList setting
+ *
+ * @method changeAutoNodeListSetting
+ *
+ * @param {boolean} payload
+ *
+ * @returns {function} dispatch
+ */
+export const changeAutoNodeListSetting = (payload) => (dispatch, getState) => {
+    dispatch(updateAutoNodeListSetting(payload));
+
+    // `autoNodeList` active -> use all nodes for quorum
+    // `autoNodeList` inactive -> use custom nodes for quorum
+    const remoteNodes = getNodesFromState(getState());
+    const customNodes = getCustomNodesFromState(getState());
+    const nodes = payload ? unionBy(remoteNodes, customNodes, 'url') : customNodes;
+
+    quorum.setNodes(nodes);
 };
