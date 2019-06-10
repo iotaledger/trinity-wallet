@@ -4975,14 +4975,22 @@
       "dev": true
     },
     "electron": {
-      "version": "3.1.11",
-      "resolved": "https://registry.npmjs.org/electron/-/electron-3.1.11.tgz",
-      "integrity": "sha512-ejLO4Ac/jkvcP2SoMJ9CRmbaSBPOdp9fDngGsXI6rK318ndq8gmHJK+g8YXWGvKm6Wj9rCqhsLCG46gUWUWlZw==",
+      "version": "4.2.3",
+      "resolved": "https://registry.npmjs.org/electron/-/electron-4.2.3.tgz",
+      "integrity": "sha512-nx+jHxj2eNhaYHXFGdzr7zgSphpVHEU9WAu6qqEUsQ936X3c6bQ5Bdg08KbHZj+cyRRQ06JMu6/ILh5pWrDZaA==",
       "dev": true,
       "requires": {
-        "@types/node": "^8.0.24",
+        "@types/node": "^10.12.18",
         "electron-download": "^4.1.0",
         "extract-zip": "^1.0.3"
+      },
+      "dependencies": {
+        "@types/node": {
+          "version": "10.14.8",
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-10.14.8.tgz",
+          "integrity": "sha512-I4+DbJEhLEg4/vIy/2gkWDvXBOOtPKV9EnLhYjMoqxcRW+TTZtUftkHktz/a8suoD5mUL7m6ReLrkPvSsCQQmw==",
+          "dev": true
+        }
       }
     },
     "electron-builder": {
@@ -5499,11 +5507,46 @@
       }
     },
     "entangled-node": {
-      "version": "github:rihardsgravis/entangled-node#73ccd5e893f92a2efef8d44d06085f8ecdb84b47",
-      "from": "github:rihardsgravis/entangled-node#73ccd5e",
+      "version": "github:rihardsgravis/entangled-node#a39bfbfb34e1a03e5e9c0854a3e8a0f6eea1ac84",
+      "from": "github:rihardsgravis/entangled-node#a39bfbf",
       "requires": {
-        "nan": "^2.12.1",
-        "prebuild-install": "^5.2.4"
+        "nan": "^2.14.0",
+        "prebuild-install": "^5.3.0"
+      },
+      "dependencies": {
+        "minimist": {
+          "version": "1.2.0",
+          "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz",
+          "integrity": "sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ="
+        },
+        "nan": {
+          "version": "2.14.0",
+          "resolved": "https://registry.npmjs.org/nan/-/nan-2.14.0.tgz",
+          "integrity": "sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg=="
+        },
+        "prebuild-install": {
+          "version": "5.3.0",
+          "resolved": "https://registry.npmjs.org/prebuild-install/-/prebuild-install-5.3.0.tgz",
+          "integrity": "sha512-aaLVANlj4HgZweKttFNUVNRxDukytuIuxeK2boIMHjagNJCiVKWFsKF4tCE3ql3GbrD2tExPQ7/pwtEJcHNZeg==",
+          "requires": {
+            "detect-libc": "^1.0.3",
+            "expand-template": "^2.0.3",
+            "github-from-package": "0.0.0",
+            "minimist": "^1.2.0",
+            "mkdirp": "^0.5.1",
+            "napi-build-utils": "^1.0.1",
+            "node-abi": "^2.7.0",
+            "noop-logger": "^0.1.1",
+            "npmlog": "^4.0.1",
+            "os-homedir": "^1.0.1",
+            "pump": "^2.0.1",
+            "rc": "^1.2.7",
+            "simple-get": "^2.7.0",
+            "tar-fs": "^1.13.0",
+            "tunnel-agent": "^0.6.0",
+            "which-pm-runs": "^1.0.0"
+          }
+        }
       }
     },
     "entities": {
