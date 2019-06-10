@@ -96,7 +96,6 @@ class DeepLinking extends Component {
         }
     }
 
-
     onChange() {
         this.props.changeDeepLinkingSettings();
     }
@@ -175,7 +174,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     changeDeepLinkingSettings,
     setSetting,
-    completeDeepLinkRequest
+    completeDeepLinkRequest,
 };
 
-export default withNamespaces(['deepLink', 'global'])(connect(mapStateToProps, mapDispatchToProps)(DeepLinking));
+export default withNamespaces(['deepLink', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(DeepLinking),
+);

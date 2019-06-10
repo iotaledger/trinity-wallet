@@ -190,5 +190,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['addAdditionalSeed', 'global', 'settings'])(
-    connect(mapStateToProps, mapDispatchToProps)(EditAccountName),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(EditAccountName),
 );

@@ -330,5 +330,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['addAdditionalSeed', 'useExistingSeed', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(UseExistingSeed),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(UseExistingSeed),
 );
