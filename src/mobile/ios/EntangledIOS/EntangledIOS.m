@@ -43,22 +43,22 @@ RCT_EXPORT_METHOD(bundlePow:(NSArray *)trytes trunk:(NSString*)trunk branch:(NSS
 RCT_EXPORT_METHOD(generateAddress:(NSArray<NSNumber*>*)seed index:(int)index security:(int)security resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
   NSUInteger seed_size = [seed count];
-  
+
   if (seed_size == 243) {
     int8_t* seedTrits_ptr = NULL;
     int8_t * address = NULL;
-    
+
     seedTrits_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:seed]];
-    
+
     address = [EntangledIOSBindings iota_ios_sign_address_gen_trits:seedTrits_ptr index:index security:security];
-    
+
     memset_s(seedTrits_ptr, 243, 0, 243);
     free(seedTrits_ptr);
-    
+
     NSMutableArray<NSNumber*>* addressTrits = [EntangledIOSUtils Int8TritsToNSMutableArray:address count:243];
-    
+
     free(address);
-    
+
     resolve(addressTrits);
   } else {
     NSString *domain = @"org.iota.entangled.ios";
@@ -66,7 +66,7 @@ RCT_EXPORT_METHOD(generateAddress:(NSArray<NSNumber*>*)seed index:(int)index sec
                                NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Incorrect seed.", nil)
                                };
     NSError *error = [NSError errorWithDomain:domain code:-400 userInfo:userInfo];
-    
+
     reject(@"Error", @"Address generation failed.", error);
   }
 }
@@ -75,30 +75,30 @@ RCT_EXPORT_METHOD(generateAddress:(NSArray<NSNumber*>*)seed index:(int)index sec
 RCT_EXPORT_METHOD(generateAddresses:(NSArray<NSNumber*>*)seed index:(int)index security:(int)security total:(int)total resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
   NSUInteger seed_size = [seed count];
-  
+
   if (seed_size == 243) {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
       NSMutableArray<NSMutableArray*>* addresses = [NSMutableArray array];
       int i = 0;
       int addressIndex = index;
-      
+
       int8_t* seedTrits_ptr = NULL;
       int8_t* address = NULL;
-      
+
       seedTrits_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:seed]];
-      
+
       do {
         address = [EntangledIOSBindings iota_ios_sign_address_gen_trits:seedTrits_ptr index:addressIndex security:security];
-        
+
         NSMutableArray<NSNumber*>* addressTrits = [EntangledIOSUtils Int8TritsToNSMutableArray:address count:243];
         [addresses addObject:addressTrits];
-        
+
         free(address);
         address = NULL;
         i++;
         addressIndex++;
       } while (i < total);
-      
+
       memset_s(seedTrits_ptr, 243, 0, 243);
       free(seedTrits_ptr);
       resolve(addresses);
@@ -109,7 +109,7 @@ RCT_EXPORT_METHOD(generateAddresses:(NSArray<NSNumber*>*)seed index:(int)index s
                                NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Incorrect seed.", nil)
                                };
     NSError *error = [NSError errorWithDomain:domain code:-400 userInfo:userInfo];
-    
+
     reject(@"Error", @"Address generation failed.", error);
   }
 }
@@ -117,23 +117,35 @@ RCT_EXPORT_METHOD(generateAddresses:(NSArray<NSNumber*>*)seed index:(int)index s
 // Signature generation
 RCT_EXPORT_METHOD(generateSignature:(NSArray *)seed index:(int)index security:(int)security bundleHash:(NSArray *)bundleHash resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  int8_t* seedTrits_ptr = NULL;
-  int8_t* bundleHash_ptr = NULL;
-  NSMutableArray * signatureTrits = [NSMutableArray array];
+  NSUInteger seed_size = [seed count];
   
-  seedTrits_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:seed]];
-  bundleHash_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:bundleHash]];
-  
-  int8_t * signature = [EntangledIOSBindings iota_ios_sign_signature_gen_trits:seedTrits_ptr index:index security:security bundleHash:bundleHash_ptr];
-  
-  memset_s(seedTrits_ptr, 243, 0, 243);
-  free(seedTrits_ptr);
-  free(bundleHash_ptr);
-  
-  signatureTrits = [EntangledIOSUtils Int8TritsToNSMutableArray:signature count:6561 * security];
-  free(signature);
-  
-  resolve(signatureTrits);
+  if (seed_size == 243) {
+    int8_t* seedTrits_ptr = NULL;
+    int8_t* bundleHash_ptr = NULL;
+    NSMutableArray * signatureTrits = [NSMutableArray array];
+    
+    seedTrits_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:seed]];
+    bundleHash_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:bundleHash]];
+    
+    int8_t * signature = [EntangledIOSBindings iota_ios_sign_signature_gen_trits:seedTrits_ptr index:index security:security bundleHash:bundleHash_ptr];
+    
+    memset_s(seedTrits_ptr, 243, 0, 243);
+    free(seedTrits_ptr);
+    free(bundleHash_ptr);
+    
+    signatureTrits = [EntangledIOSUtils Int8TritsToNSMutableArray:signature count:6561 * security];
+    free(signature);
+    
+    resolve(signatureTrits);
+  } else {
+    NSString *domain = @"org.iota.entangled.ios";
+    NSDictionary* userInfo = @{
+                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Incorrect seed.", nil)
+                               };
+    NSError *error = [NSError errorWithDomain:domain code:-400 userInfo:userInfo];
+    
+    reject(@"Error", @"Signature generation failed.", error);
+  }
 }
 
 @end
