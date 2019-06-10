@@ -128,12 +128,11 @@ class Ledger extends React.PureComponent {
                                 <strong>{sendAddressFieldText.substring(60, 90)}</strong>
                             </p>
                         )}
-                        {view !== 'transaction' &&
-                            !addingAdditionalAccount && (
-                                <Button variant="secondary" className="outlineSmall" onClick={this.onCancel}>
-                                    {t('cancel')}
-                                </Button>
-                            )}
+                        {view !== 'transaction' && !addingAdditionalAccount && (
+                            <Button variant="secondary" className="outlineSmall" onClick={this.onCancel}>
+                                {t('cancel')}
+                            </Button>
+                        )}
                     </div>
                 )}
             </div>

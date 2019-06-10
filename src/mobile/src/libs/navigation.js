@@ -2,7 +2,7 @@ import last from 'lodash/last';
 import merge from 'lodash/merge';
 import { Navigation } from 'react-native-navigation';
 import timer from 'react-native-timer';
-import { ActionTypes } from 'shared-modules/actions/wallet';
+import { WalletActionTypes } from 'shared-modules/types';
 import { getBackgroundColor } from 'ui/theme/general';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import store from '../../../shared/store';
@@ -30,7 +30,7 @@ const getDefaultOptions = (nextScreen) => {
 export const navigator = {
     push: (nextScreen, options = {}, delay = 300) => {
         const currentScreen = last(store.getState().wallet.navStack);
-        store.dispatch({ type: ActionTypes.PUSH_ROUTE, payload: nextScreen });
+        store.dispatch({ type: WalletActionTypes.PUSH_ROUTE, payload: nextScreen });
         return timer.setTimeout(
             currentScreen,
             () =>
@@ -46,17 +46,17 @@ export const navigator = {
     },
     pop: (componentId, delay = 300) => {
         const currentScreen = last(store.getState().wallet.navStack);
-        store.dispatch({ type: ActionTypes.POP_ROUTE });
+        store.dispatch({ type: WalletActionTypes.POP_ROUTE });
         return timer.setTimeout(currentScreen, () => Navigation.pop(componentId), delay);
     },
     popTo: (componentId, delay = 300) => {
         const currentScreen = last(store.getState().wallet.navStack);
-        store.dispatch({ type: ActionTypes.POP_TO_ROUTE });
+        store.dispatch({ type: WalletActionTypes.POP_TO_ROUTE });
         return timer.setTimeout(currentScreen, () => Navigation.popTo(componentId), delay);
     },
     setStackRoot: (nextScreen, options = {}, delay = 300) => {
         const currentScreen = last(store.getState().wallet.navStack);
-        store.dispatch({ type: ActionTypes.RESET_ROUTE, payload: nextScreen });
+        store.dispatch({ type: WalletActionTypes.RESET_ROUTE, payload: nextScreen });
         return timer.setTimeout(
             currentScreen,
             () =>

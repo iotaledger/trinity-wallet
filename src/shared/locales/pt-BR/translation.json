@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Nenhuma atualização disponível",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Nova versão disponível",

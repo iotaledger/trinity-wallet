@@ -9,8 +9,8 @@ import * as addressesUtils from '../../libs/iota/addresses';
 import * as transferUtils from '../../libs/iota/transfers';
 import * as accountsUtils from '../../libs/iota/accounts';
 import * as inputUtils from '../../libs/iota/inputs';
-import { iota, quorum, SwitchingConfig } from '../../libs/iota';
-import { realm, Account, Wallet, getRealm, initialise } from '../../storage';
+import { iota, quorum } from '../../libs/iota';
+import { realm, Account, Node, Wallet, getRealm, initialise } from '../../storage';
 import accounts from '../__samples__/accounts';
 import { addressData, latestAddressObject } from '../__samples__/addresses';
 import { newZeroValueTransactionTrytes, newValueTransactionTrytes } from '../__samples__/trytes';
@@ -23,14 +23,6 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe('actions: transfers', () => {
-    before(() => {
-        SwitchingConfig.autoSwitch = false;
-    });
-
-    after(() => {
-        SwitchingConfig.autoSwitch = true;
-    });
-
     describe('#promoteTransaction', () => {
         let seedStore;
 
@@ -56,6 +48,7 @@ describe('actions: transfers', () => {
             realm.write(() => {
                 realm.delete(Account.data);
                 realm.delete(Wallet.data);
+                realm.delete(Node.data);
             });
         });
 
@@ -77,7 +70,7 @@ describe('actions: transfers', () => {
             });
 
             it('should create an action of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST', () => {
-                const store = mockStore({ accounts, settings: { remotePoW: false } });
+                const store = mockStore({ accounts, settings: { remotePoW: false, quorum: {} } });
 
                 return store
                     .dispatch(actions.promoteTransaction('9'.repeat(81), 'TEST', seedStore))
@@ -89,7 +82,7 @@ describe('actions: transfers', () => {
             });
 
             it('should sync account', () => {
-                const store = mockStore({ accounts, settings: { remotePoW: false } });
+                const store = mockStore({ accounts, settings: { remotePoW: false, quorum: {} } });
 
                 return store
                     .dispatch(actions.promoteTransaction('9'.repeat(81), 'TEST', seedStore))
@@ -98,7 +91,7 @@ describe('actions: transfers', () => {
 
             describe('when remotePoW in settings is false', () => {
                 it('should create an action of type IOTA/ALERTS/SHOW with message "Your device may become unresponsive for a while."', () => {
-                    const store = mockStore({ accounts, settings: { remotePoW: false } });
+                    const store = mockStore({ accounts, settings: { remotePoW: false, quorum: {} } });
 
                     return store.dispatch(actions.promoteTransaction('9'.repeat(81), 'TEST', seedStore)).then(() => {
                         const expectedAction = {
@@ -124,7 +117,7 @@ describe('actions: transfers', () => {
 
             describe('when remotePoW in settings is true', () => {
                 it('should not create an action of type IOTA/ALERTS/SHOW with message "Your device may become unresponsive for a while."', () => {
-                    const store = mockStore({ accounts, settings: { remotePoW: true } });
+                    const store = mockStore({ accounts, settings: { remotePoW: true, quorum: {} } });
 
                     return store.dispatch(actions.promoteTransaction('9'.repeat(81), 'TEST', seedStore)).then(() => {
                         const expectedAction = {
@@ -152,7 +145,7 @@ describe('actions: transfers', () => {
 
         describe('when successfully syncs account', () => {
             it('should dispatch an action of type "IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION" with updated account state', () => {
-                const store = mockStore({ accounts, settings: { remotePoW: false } });
+                const store = mockStore({ accounts, settings: { remotePoW: false, quorum: {} } });
                 const syncAccount = sinon.stub(accountsUtils, 'syncAccount').returns(
                     // Updated account state
                     () => Promise.resolve({ addressData, transactions }),
@@ -180,7 +173,7 @@ describe('actions: transfers', () => {
 
         describe('when account syncing fails', () => {
             it('should dispatch an action of type "IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION" with updated account state', () => {
-                const store = mockStore({ accounts, settings: { remotePoW: false } });
+                const store = mockStore({ accounts, settings: { remotePoW: false, quorum: {} } });
                 const syncAccount = sinon.stub(accountsUtils, 'syncAccount').returns(
                     // Reject account syncing
                     () => Promise.reject(new Error()),
@@ -210,7 +203,7 @@ describe('actions: transfers', () => {
 
         describe('when transaction is already confirmed', () => {
             it('should create an action of type "IOTA/ALERTS/SHOW" with message "The transaction you are trying to promote is already confirmed."', () => {
-                const store = mockStore({ accounts, settings: { remotePoW: false } });
+                const store = mockStore({ accounts, settings: { remotePoW: false, quorum: {} } });
                 const syncAccount = sinon.stub(accountsUtils, 'syncAccount').returns(
                     // Updated account state
                     () => Promise.resolve({ addressData, transactions }),
@@ -260,7 +253,7 @@ describe('actions: transfers', () => {
             });
 
             it('should create an action of type IOTA/ALERTS/SHOW with message "The bundle you are trying to promote is no longer valid"', () => {
-                const store = mockStore({ accounts, settings: { remotePoW: false } });
+                const store = mockStore({ accounts, settings: { remotePoW: false, quorum: {} } });
 
                 // Bundle hash for unconfirmed value transactions. See __samples__/transactions.
                 const bundleHash = 'VGPSTOJHLLXGCOIQJPFIGGPYLISUNBBHDLQUINNKNRKEDQZLBTKCT9KJELDEXSQNPSQDSPHWQICTJFLCB';
@@ -298,7 +291,7 @@ describe('actions: transfers', () => {
             initialise(() => Promise.resolve(new Int8Array(64)));
             seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
-                prepareTransfers: () => Promise.resolve(newZeroValueTransactionTrytes),
+                prepareTransfers: () => () => Promise.resolve(newZeroValueTransactionTrytes),
                 performPow: (trytes) =>
                     Promise.resolve({
                         trytes,
@@ -337,6 +330,7 @@ describe('actions: transfers', () => {
             realm.write(() => {
                 realm.delete(Account.data);
                 realm.delete(Wallet.data);
+                realm.delete(Node.data);
             });
 
             nock.cleanAll();
@@ -348,7 +342,7 @@ describe('actions: transfers', () => {
 
         describe('zero value transactions', () => {
             it('should call prepareTransfers method on seedStore', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { quorum: {} } });
                 sinon.spy(seedStore, 'prepareTransfers');
                 sinon
                     .stub(accountsUtils, 'syncAccountAfterSpending')
@@ -364,7 +358,7 @@ describe('actions: transfers', () => {
             });
 
             it('should create an action of type IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING with updated account state', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { quorum: {} } });
                 const updatedTransactions = [
                     ...transactions,
                     ...map(newZeroValueTransaction, (transaction) => ({
@@ -409,7 +403,7 @@ describe('actions: transfers', () => {
         describe('value transactions', () => {
             describe('when receive address is used', () => {
                 it('should create an action of type IOTA/ALERTS/SHOW with message "You cannot send to an address that has already been spent from."', () => {
-                    const store = mockStore({ accounts });
+                    const store = mockStore({ accounts, settings: { quorum: {} } });
                     const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([true]);
 
                     return store
@@ -440,7 +434,7 @@ describe('actions: transfers', () => {
 
             describe('when receive address is one of the input addresses', () => {
                 it('should create an action of type IOTA/ALERTS/SHOW with message "You cannot send to an address that is being used as an input in the transaction."', () => {
-                    const store = mockStore({ accounts });
+                    const store = mockStore({ accounts, settings: { quorum: {} } });
 
                     // Stub syncAccount implementation and return mocked transactions and address data
                     const syncAccount = sinon.stub(accountsUtils, 'syncAccount').returns(() =>
@@ -507,17 +501,19 @@ describe('actions: transfers', () => {
 
             describe('when constructs invalid bundle', () => {
                 it('should create an action of type IOTA/ALERTS/SHOW with message "Something went wrong while sending your transfer. Please try again."', () => {
-                    const store = mockStore({ accounts });
+                    const store = mockStore({ accounts, settings: { quorum: {} } });
                     const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
 
                     // Stub prepareTransfers implementation and return invalid trytes.
                     // Invalid trytes should lead to invalid bundle construction
-                    const prepareTransfers = sinon.stub(seedStore, 'prepareTransfers').resolves(
-                        map(
-                            newValueTransactionTrytes,
-                            (tryteString) =>
-                                // Replace signature message fragments with all nines
-                                `${'9'.repeat(2187)}${tryteString.slice(2187)}`,
+                    const prepareTransfers = sinon.stub(seedStore, 'prepareTransfers').returns(() =>
+                        Promise.resolve(
+                            map(
+                                newValueTransactionTrytes,
+                                (tryteString) =>
+                                    // Replace signature message fragments with all nines
+                                    `${'9'.repeat(2187)}${tryteString.slice(2187)}`,
+                            ),
                         ),
                     );
 
@@ -589,7 +585,7 @@ describe('actions: transfers', () => {
 
             describe('when successfully broadcasts', () => {
                 it('should create an action of type IOTA/ALERTS/SHOW with message "Something went wrong while sending your transfer. Please try again."', () => {
-                    const store = mockStore({ accounts });
+                    const store = mockStore({ accounts, settings: { quorum: {} } });
 
                     const updatedTransactions = [
                         ...transactions,

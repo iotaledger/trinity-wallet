@@ -4,7 +4,8 @@ describe('Onboarding seed save view', () => {
 
         expect(snapshot).toMatchImageSnapshot({
             customSnapshotsDir: `${__dirname}/__snapshots__/`,
-                customDiffConfig: { threshold: 1 },
+            failureThreshold: '0.05',
+            failureThresholdType: 'percent',
             customSnapshotIdentifier: 'seedSave.test.jsx',
         });
     }, 10000);

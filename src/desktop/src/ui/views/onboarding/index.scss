@@ -488,6 +488,10 @@ $footer: 70px;
     p {
         max-width: 580px;
         text-align: center;
+        a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
     }
     ul {
         list-style: none;
@@ -510,7 +514,8 @@ $footer: 70px;
         }
     }
 
-    ul + p {
+    ul + p,
+    p + button {
         margin-top: 20px;
     }
 }

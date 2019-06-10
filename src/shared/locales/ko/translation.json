@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "업데이트를 받아오는 중 오류 발생",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "사용 가능한 업데이트 없음",
         "noUpdatesAvailableExplanation": "최신 버전의 트리니티를 사용하고 계시네요!",
         "newVersionAvailable": "새 버전 이용 가능",

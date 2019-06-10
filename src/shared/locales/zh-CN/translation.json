@@ -758,6 +758,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "提取更新数据时发生错误",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "没有可用的更新",
         "noUpdatesAvailableExplanation": "您正在使用最新版本的 Trinity 钱包。",
         "newVersionAvailable": "新版本可用",

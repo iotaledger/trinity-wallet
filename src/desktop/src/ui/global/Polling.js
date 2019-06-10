@@ -177,7 +177,11 @@ class Polling extends React.PureComponent {
 
             const seedStore = await new SeedStore[type](password, name);
 
-            this.props.retryFailedTransaction(name, bundleForRetry, seedStore);
+            this.props.retryFailedTransaction(
+                  name,
+                  bundleForRetry,
+                  seedStore,
+            );
         } else {
             this.moveToNextPollService();
         }
@@ -246,4 +250,7 @@ const mapDispatchToProps = {
     retryFailedTransaction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Polling);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Polling);
