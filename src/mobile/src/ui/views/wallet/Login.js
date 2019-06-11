@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import size from 'lodash/size';
 import { withNamespaces } from 'react-i18next';
 import React, { Component } from 'react';
@@ -122,7 +123,10 @@ class Login extends Component {
             const pwdHash = await hash(this.state.password);
             try {
                 await authorize(pwdHash);
-                const seedStore = await new SeedStore[selectedAccountMeta.type](pwdHash, selectedAccountName);
+                const seedStore = await new SeedStore[(get(selectedAccountMeta, 'type', 'keychain'))](
+                    pwdHash,
+                    selectedAccountName,
+                );
                 // FIXME: To be deprecated
                 const completedSeedMigration = typeof (await seedStore.getSeeds())[selectedAccountName] !== 'string';
                 global.passwordHash = pwdHash;
@@ -203,18 +207,14 @@ class Login extends Component {
                         isFingerprintEnabled={isFingerprintEnabled}
                     />
                 )}
-                {nextLoginRoute !== 'login' &&
-                <View style={{ flex: 1 }}>
-                    <View style={{ flex: 0.15 }}/>
-                    {nextLoginRoute === 'nodeSettings' &&
-                        <NodeSettingsComponent login />
-                    }
-                    {nextLoginRoute === 'addCustomNode' &&
-                        <AddCustomNodeComponent login />
-                    }
-                    <View style={{ flex: 0.05 }}/>
-                </View>
-                }
+                {nextLoginRoute !== 'login' && (
+                    <View style={{ flex: 1 }}>
+                        <View style={{ flex: 0.15 }} />
+                        {nextLoginRoute === 'nodeSettings' && <NodeSettingsComponent login />}
+                        {nextLoginRoute === 'addCustomNode' && <AddCustomNodeComponent login />}
+                        <View style={{ flex: 0.05 }} />
+                    </View>
+                )}
             </AnimatedComponent>
         );
     }
