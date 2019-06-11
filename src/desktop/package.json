@@ -115,7 +115,8 @@
           "y": 250,
           "type": "file"
         }
-      ]
+      ],
+      "sign": false
     },
     "nsis": {
       "deleteAppDataOnUninstall": true
@@ -141,7 +142,8 @@
         "zip"
       ],
       "entitlements": "./entitlements.mac.plist",
-      "hardenedRuntime": true
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false
     },
     "publish": {
       "provider": "generic",
