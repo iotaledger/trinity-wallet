@@ -170,8 +170,8 @@
         "missingPermissionExplanation": "L'accesso al file system è necessario per eseguire questa funzione.",
         "swipeToConfirm": "Scorri per confermare",
         "expert": "Esperto",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodes": "Numero insufficiente di nodi sincronizzati",
+        "notEnoughSyncedNodesExplanation": "Non è stato possibile raggiungere il quorum. Disattiva il quorum o riprova."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -504,7 +504,7 @@
         "quorumSize": "Dimensione Quorum",
         "noCustomNodes": "Nessun nodo personalizzato",
         "mustAddCustomNodes": "Devi aggiungere almeno un nodo personalizzato prima di disabilitare la lista dei nodi remoti.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesTitle": "Nodi insufficienti",
         "nodeEnoughNodesExplanation": "Non ci sono abbastanza nodi per consentire il quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Aggiungi più nodi personalizzati o attiva la lista dei nodi remoti.",
         "nodeSettingsUpdatedTitle": "Impostazioni nodo aggiornate",
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Impossibile recuperare l'aggiornamento. Controlla la connessione Internet e riprova.",
         "noUpdatesAvailable": "Nessun aggiornamento disponibile",
         "noUpdatesAvailableExplanation": "Hai l'ultima versione di Trinity!",
         "newVersionAvailable": "Una nuova versione è disponibile",
