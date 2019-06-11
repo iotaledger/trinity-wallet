@@ -139,7 +139,8 @@
         "dmg",
         "zip"
       ],
-      "entitlements": "./entitlements.mac.plist"
+      "entitlements": "./entitlements.mac.plist",
+      "hardenedRuntime": true
     },
     "publish": {
       "provider": "generic",
