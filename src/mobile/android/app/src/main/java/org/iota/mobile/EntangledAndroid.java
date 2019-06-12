@@ -30,43 +30,35 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void generateAddress(ReadableArray seed, int index, int security, Promise promise) {
-        if (seed.size() == 243) {
-            byte[] seedByteArr = readableArrayToByteArray(seed);
-            byte[] addressByteArr = Interface.iota_sign_address_gen_trits(seedByteArr, index, security);
-            WritableArray addressWritableArr = byteArrayToWritableArray(addressByteArr);
-            promise.resolve(addressWritableArr);
-        } else {
-            promise.reject("Error: Address generation failed.");
-        }
+        byte[] seedByteArr = readableArrayToByteArray(seed);
+        byte[] addressByteArr = Interface.iota_sign_address_gen_trits(seedByteArr, index, security);
+        WritableArray addressWritableArr = byteArrayToWritableArray(addressByteArr);
+        promise.resolve(addressWritableArr);
     }
 
     @ReactMethod
     public void generateAddresses(final ReadableArray seed, final int index, final int security, final int total, final Promise promise) {
-        if (seed.size() == 243) {
-            byte[] seedByteArr = readableArrayToByteArray(seed);
-            new GuardedResultAsyncTask<ReadableNativeArray>(mContext) {
-                @Override
-                protected ReadableNativeArray doInBackgroundGuarded() {
-                    WritableNativeArray addresses = new WritableNativeArray();
-                    int i = 0;
-                    int addressIndex = index;
-                    do {
-                        byte[] address = Interface.iota_sign_address_gen_trits(seedByteArr, addressIndex, security);
-                        addresses.pushArray(byteArrayToWritableArray(address));
-                        i++;
-                        addressIndex++;
-                    } while (i < total);
-                    return addresses;
-                }
+        byte[] seedByteArr = readableArrayToByteArray(seed);
+        new GuardedResultAsyncTask<ReadableNativeArray>(mContext) {
+            @Override
+            protected ReadableNativeArray doInBackgroundGuarded() {
+                WritableNativeArray addresses = new WritableNativeArray();
+                int i = 0;
+                int addressIndex = index;
+                do {
+                    byte[] address = Interface.iota_sign_address_gen_trits(seedByteArr, addressIndex, security);
+                    addresses.pushArray(byteArrayToWritableArray(address));
+                    i++;
+                    addressIndex++;
+                } while (i < total);
+                return addresses;
+            }
 
-                @Override
-                protected void onPostExecuteGuarded(ReadableNativeArray result) {
-                    promise.resolve(result);
-                }
-            }.execute();
-        } else {
-            promise.reject("Error: Address generation failed.");
-        }
+            @Override
+            protected void onPostExecuteGuarded(ReadableNativeArray result) {
+                promise.resolve(result);
+            }
+        }.execute();
     }
 
     @ReactMethod

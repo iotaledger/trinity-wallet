@@ -42,76 +42,52 @@ RCT_EXPORT_METHOD(bundlePow:(NSArray *)trytes trunk:(NSString*)trunk branch:(NSS
 // Single address generation
 RCT_EXPORT_METHOD(generateAddress:(NSArray<NSNumber*>*)seed index:(int)index security:(int)security resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  NSUInteger seed_size = [seed count];
-
-  if (seed_size == 243) {
-    int8_t* seedTrits_ptr = NULL;
-    int8_t * address = NULL;
-
-    seedTrits_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:seed]];
-
-    address = [EntangledIOSBindings iota_ios_sign_address_gen_trits:seedTrits_ptr index:index security:security];
-
-    memset_s(seedTrits_ptr, 243, 0, 243);
-    free(seedTrits_ptr);
-
-    NSMutableArray<NSNumber*>* addressTrits = [EntangledIOSUtils Int8TritsToNSMutableArray:address count:243];
-
-    free(address);
-
-    resolve(addressTrits);
-  } else {
-    NSString *domain = @"org.iota.entangled.ios";
-    NSDictionary* userInfo = @{
-                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Incorrect seed.", nil)
-                               };
-    NSError *error = [NSError errorWithDomain:domain code:-400 userInfo:userInfo];
-
-    reject(@"Error", @"Address generation failed.", error);
-  }
+  int8_t* seedTrits_ptr = NULL;
+  int8_t * address = NULL;
+  
+  seedTrits_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:seed]];
+  
+  address = [EntangledIOSBindings iota_ios_sign_address_gen_trits:seedTrits_ptr index:index security:security];
+  
+  memset_s(seedTrits_ptr, 243, 0, 243);
+  free(seedTrits_ptr);
+  
+  NSMutableArray<NSNumber*>* addressTrits = [EntangledIOSUtils Int8TritsToNSMutableArray:address count:243];
+  
+  free(address);
+  
+  resolve(addressTrits);
 }
 
 // Multi address generation
 RCT_EXPORT_METHOD(generateAddresses:(NSArray<NSNumber*>*)seed index:(int)index security:(int)security total:(int)total resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  NSUInteger seed_size = [seed count];
-
-  if (seed_size == 243) {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-      NSMutableArray<NSMutableArray*>* addresses = [NSMutableArray array];
-      int i = 0;
-      int addressIndex = index;
-
-      int8_t* seedTrits_ptr = NULL;
-      int8_t* address = NULL;
-
-      seedTrits_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:seed]];
-
-      do {
-        address = [EntangledIOSBindings iota_ios_sign_address_gen_trits:seedTrits_ptr index:addressIndex security:security];
-
-        NSMutableArray<NSNumber*>* addressTrits = [EntangledIOSUtils Int8TritsToNSMutableArray:address count:243];
-        [addresses addObject:addressTrits];
-
-        free(address);
-        address = NULL;
-        i++;
-        addressIndex++;
-      } while (i < total);
-
-      memset_s(seedTrits_ptr, 243, 0, 243);
-      free(seedTrits_ptr);
-      resolve(addresses);
-    });
-  } else {
-    NSString *domain = @"org.iota.entangled.ios";
-    NSDictionary* userInfo = @{
-                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Incorrect seed.", nil)
-                               };
-    NSError *error = [NSError errorWithDomain:domain code:-400 userInfo:userInfo];
-
-    reject(@"Error", @"Address generation failed.", error);
-  }
+   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    NSMutableArray<NSMutableArray*>* addresses = [NSMutableArray array];
+    int i = 0;
+    int addressIndex = index;
+    
+    int8_t* seedTrits_ptr = NULL;
+    int8_t* address = NULL;
+    
+    seedTrits_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:seed]];
+    
+    do {
+      address = [EntangledIOSBindings iota_ios_sign_address_gen_trits:seedTrits_ptr index:addressIndex security:security];
+      
+      NSMutableArray<NSNumber*>* addressTrits = [EntangledIOSUtils Int8TritsToNSMutableArray:address count:243];
+      [addresses addObject:addressTrits];
+      
+      free(address);
+      address = NULL;
+      i++;
+      addressIndex++;
+    } while (i < total);
+    
+    memset_s(seedTrits_ptr, 243, 0, 243);
+    free(seedTrits_ptr);
+    resolve(addresses);
+  });
 }
 
 // Signature generation
