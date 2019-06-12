@@ -194,7 +194,10 @@ export class AddCustomNode extends Component {
                                     value={customNode.url}
                                     loading={loading}
                                     onSubmitEditing={() => {
-                                        this.url.blur();
+                                        if (get(this.url, 'blur')) {
+                                            this.url.blur();
+                                        }
+
                                         if (get(this.username, 'focus')) {
                                             return this.username.focus();
                                         }
