@@ -169,7 +169,9 @@
         "missingPermission": "Åtkomst till filsystem krävs",
         "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion.",
         "swipeToConfirm": "Dra för att bekräfta",
-        "expert": "Avancerat"
+        "expert": "Avancerat",
+        "notEnoughSyncedNodes": "För få noder synkade",
+        "notEnoughSyncedNodesExplanation": "Ett kvorum kunde inte nås. Stäng av kvorum eller försök igen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -502,7 +504,7 @@
         "quorumSize": "Kvorumstorlek",
         "noCustomNodes": "Inga anpassade noder",
         "mustAddCustomNodes": "Du måste lägga till minst en anpassad nod innan du avaktiverar fjärrnodslistan.",
-        "nodeEnoughNodesTitle": "Inte tillräckligt många noder tillagda",
+        "nodeEnoughNodesTitle": "Inte tillräckligt med noder",
         "nodeEnoughNodesExplanation": "Det finns inte tillräckligt med noder för att möjliggöra kvorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Lägg till fler anpassade noder eller aktivera fjärrnodslistan.",
         "nodeSettingsUpdatedTitle": "Nod-inställningar uppdaterade",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Välj nod",
-        "addCustomNode": "Lägg till anpassad nod",
         "manualSync": "Synka manuellt",
         "snapshotTransition": "Snapshot-övergång",
         "pow": "PoW",
@@ -758,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Fel vid hämtning av uppdateringsdata",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Kunde inte hämta uppdatering. Vänligen kontrollera din internetuppkoppling och försök igen.",
         "noUpdatesAvailable": "Inga uppdateringar tillgängliga",
         "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity!",
         "newVersionAvailable": "Ny version tillgänglig",
