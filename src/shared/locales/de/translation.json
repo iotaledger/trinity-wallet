@@ -498,7 +498,7 @@
         "automaticNodeManagement": "Automatische Node-Verwaltung",
         "addCustomNodes": "Benutzerdefinierte Nodes hinzufügen",
         "autoNodeList": "Offizielle Node-Liste verwenden",
-        "nodeAutoswitching": "Automatisch primären Node wechseln",
+        "nodeAutoswitching": "Automatisch den primären Node wechseln",
         "primaryNode": "Primärer Node",
         "enableQuorum": "Node-Gruppe aktivieren",
         "quorumSize": "Anzahl der Nodes in der Node-Gruppe",
