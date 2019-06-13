@@ -117,10 +117,23 @@ describe('Testing keychain', () => {
                 });
         });
 
-        it('should call decodeBase64 with keychain item', () => {
+        it('should call decodeBase64 with keychain item if a non-null value is returned from keychain', () => {
             return hash('alias_one', new Uint8Array()).then(() => {
                 expect(decodeBase64).toHaveBeenCalledWith('salt_item');
             });
+        });
+
+        it('should throw if a null value is returned from keychain', () => {
+            // Resolve a null value to mimic the scenario of missing salt from keychain
+            ReactNativeKeychain.getInternetCredentials.mockReturnValueOnce(Promise.resolve(null));
+
+            return hash('alias_one', new Uint8Array())
+                .then(() => {
+                    throw new Error();
+                })
+                .catch((error) => {
+                    expect(error.message).toEqual('Missing salt from keychain.');
+                });
         });
     });
 
