@@ -1,3 +1,4 @@
+import merge from 'lodash/merge';
 import { expect } from 'chai';
 import {
     getNodesFromState,
@@ -6,6 +7,7 @@ import {
     getThemeNameFromState,
     getThemeFromState,
     getCustomNodesFromState,
+    nodesConfigurationFactory,
 } from '../../selectors/global';
 import Themes from '../../themes/themes';
 import { DEFAULT_NODE } from '../../config';
@@ -117,6 +119,136 @@ describe('selectors: global', () => {
         describe('when "customNodes" prop is undefined in settings reducer', () => {
             it('should return an empty array', () => {
                 expect(getCustomNodesFromState({ settings: {} })).to.eql([]);
+            });
+        });
+    });
+
+    describe('#nodesConfigurationFactory', () => {
+        let state;
+
+        beforeEach(() => {
+            state = {
+                settings: {
+                    customNodes: [
+                        {
+                            url: 'https://custom-01',
+                            pow: false,
+                        },
+                        {
+                            url: 'https://custom-02',
+                            pow: false,
+                        },
+                    ],
+                    nodes: [
+                        {
+                            url: 'https://node-01',
+                            pow: true,
+                        },
+                        {
+                            url: 'https://node-02',
+                            pow: false,
+                        },
+                    ],
+                    autoNodeList: false,
+                    node: 'https://node-01',
+                    nodeAutoSwitch: false,
+                    quorum: {
+                        size: 4,
+                        enabled: false,
+                    },
+                },
+            };
+        });
+
+        describe('when "overrides" param is undefined', () => {
+            describe('when settings.autoNodeList is false', () => {
+                it('should return a config object with prop "nodes" containing only custom nodes', () => {
+                    const config = nodesConfigurationFactory()(state);
+
+                    const expectedNodes = [
+                        {
+                            url: 'https://custom-01',
+                            pow: false,
+                        },
+                        {
+                            url: 'https://custom-02',
+                            pow: false,
+                        },
+                    ];
+
+                    expect(config.nodes).to.eql(expectedNodes);
+                });
+            });
+
+            describe('when settings.autoNodeList is true', () => {
+                it('should return a config object with prop "nodes" containing both nodes & custom nodes', () => {
+                    const config = nodesConfigurationFactory()(
+                        merge({}, state, {
+                            settings: {
+                                autoNodeList: true,
+                            },
+                        }),
+                    );
+
+                    const expectedNodes = [
+                        {
+                            url: 'https://node-01',
+                            pow: true,
+                        },
+                        {
+                            url: 'https://node-02',
+                            pow: false,
+                        },
+                        {
+                            url: 'https://custom-01',
+                            pow: false,
+                        },
+                        {
+                            url: 'https://custom-02',
+                            pow: false,
+                        },
+                    ];
+
+                    expect(config.nodes).to.eql(expectedNodes);
+                });
+            });
+        });
+
+        describe('when "overrides" param is defined', () => {
+            describe('when override.quorum exists', () => {
+                describe('when state.settings.quorum.enabled is true', () => {
+                    it('should override quorum config', () => {
+                        const config = nodesConfigurationFactory({ quorum: false })(
+                            merge({}, state, {
+                                settings: {
+                                    quorum: {
+                                        enabled: true,
+                                    },
+                                },
+                            }),
+                        );
+
+                        const expectedQuorumConfig = {
+                            enabled: false,
+                            size: 4,
+                        };
+
+                        expect(config.quorum).to.eql(expectedQuorumConfig);
+                    });
+                });
+
+                describe('when state.settings.quorum.enabled is false', () => {
+                    it('should not override quorum config', () => {
+                        const config = nodesConfigurationFactory({ quorum: true })(state);
+
+                        const expectedQuorumConfig = {
+                            enabled: false,
+                            size: 4,
+                        };
+
+                        expect(config.quorum).to.eql(expectedQuorumConfig);
+                    });
+                });
             });
         });
     });
