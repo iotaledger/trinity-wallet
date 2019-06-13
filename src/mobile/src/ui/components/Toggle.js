@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 import { width } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
@@ -24,7 +24,9 @@ class Toggle extends PureComponent {
         bodyColor: PropTypes.string.isRequired,
         /** @ignore */
         primaryColor: PropTypes.string.isRequired,
+        /** Toggle scale multiplier */
         scale: PropTypes.number,
+        /** Toggle opacity */
         opacity: PropTypes.number,
     };
 
@@ -33,8 +35,49 @@ class Toggle extends PureComponent {
         opacity: 1,
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            togglePosition: new Animated.Value(this.getTogglePosition(props.active)),
+            toggleStyle: this.getToggleStyle()
+        };
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (this.props.active !== newProps.active) {
+            Animated.timing(this.state.togglePosition, {
+                toValue: this.getTogglePosition(!this.props.active),
+                duration: 80
+            }).start(() => this.setState({ toggleStyle: this.getToggleStyle() }));
+        }
+    }
+
+    /**
+     * Gets toggle style depending on whether it is active
+     *
+     * @returns {object}
+     */
+    getToggleStyle() {
+        const { active, scale, primaryColor, bodyColor } = this.props;
+        if (active) {
+            return { backgroundColor: primaryColor, borderWidth: 0 };
+        }
+        return { backgroundColor: 'transparent', borderWidth: scale * 1.5, borderColor: bodyColor };
+    }
+
+    /**
+     * Gets toggle position depending on the given condition
+     *
+     * @param {bool} condition
+     * @returns {object}
+     */
+    getTogglePosition(condition) {
+        const size = width * this.props.scale;
+        return condition ? (size / 12 - size / 33) - 5 : 1.5;
+    }
+
     render() {
-        const { active, primaryColor, bodyColor, scale, opacity } = this.props;
+        const { bodyColor, scale, opacity } = this.props;
         const size = width * scale;
         return (
             <View style={[styles.toggleContainer, { width: size / 12, height: size / 12 }]}>
@@ -42,25 +85,25 @@ class Toggle extends PureComponent {
                     style={[
                         styles.toggle,
                         {
-                            alignItems: active ? 'flex-end' : 'flex-start',
                             borderColor: bodyColor,
                             width: size / 12,
                             height: size / 22,
                             borderRadius: size / 24,
-                            paddingHorizontal: size / 300,
                             opacity: isAndroid ? opacity * 2 : 1,
                         },
                     ]}
                 >
-                    <View
+                    <Animated.View
                         style={[
                             styles.toggleCircle,
                             {
-                                backgroundColor: primaryColor,
                                 width: size / 33,
                                 height: size / 33,
                                 borderRadius: size / 33,
+                                position: 'absolute',
+                                left: this.state.togglePosition
                             },
+                            this.state.toggleStyle
                         ]}
                     />
                 </View>

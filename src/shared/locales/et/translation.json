@@ -169,7 +169,9 @@
         "missingPermission": "Failisüsteemi luba on nõutud",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
         "swipeToConfirm": "Tõmba kinnitamiseks",
-        "expert": "Expert"
+        "expert": "Expert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seeme sisaldab sobimatuid tähemärke",
@@ -502,7 +504,7 @@
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Vali sõlm",
-        "addCustomNode": "Lisa kohandatud sõlm",
         "manualSync": "Käsitsi sünkroonimine",
         "snapshotTransition": "Hetkvõtte üleminek",
         "pow": "Töötõend",
@@ -758,6 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Uuendamisandmete allalaadimise viga",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Ühtegi uuendust pole saadaval",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Uus versioon saadaval",

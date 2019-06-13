@@ -169,7 +169,9 @@
         "missingPermission": "Dosya sistemi izni gerekli",
         "missingPermissionExplanation": "Bu işlevi gerçekleştirmek için dosya sistemine erişim gereklidir.",
         "swipeToConfirm": "Onaylamak için kaydırın",
-        "expert": "Expert"
+        "expert": "Expert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
@@ -502,7 +504,7 @@
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Düğümü Seçin",
-        "addCustomNode": "Özel düğüm Ekle",
         "manualSync": "Manuel Senkronizasyon",
         "snapshotTransition": "Anlık görüntü geçişi",
         "pow": "İş kanıtı",
@@ -758,6 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Güncelleme bilgisi alınırken hata oluştu",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Kullanılabilir güncelleme yok",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Yeni versiyon mevcut",

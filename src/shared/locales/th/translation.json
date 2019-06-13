@@ -169,7 +169,9 @@
         "missingPermission": "File system permission required",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
         "swipeToConfirm": "Swipe to confirm",
-        "expert": "Expert"
+        "expert": "Expert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed (เลขที่บัญชี) ประกอบด้วยอักขระที่ไม่ถูกต้อง",
@@ -502,7 +504,7 @@
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "เลือก Node",
-        "addCustomNode": "Add custom node",
         "manualSync": "ซิงค์ด้วยตนเอง",
         "snapshotTransition": "รายการ Snapshot",
         "pow": "Proof of Work",
@@ -758,6 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "New version available",

@@ -169,7 +169,9 @@
         "missingPermission": "نیاز به مجوز سیستم فایل است",
         "missingPermissionExplanation": "به منظور انجام این عمل دسترسی به فایل‌های سیستمی مورد نیاز است.",
         "swipeToConfirm": "Swipe to confirm",
-        "expert": "Expert"
+        "expert": "Expert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "سید ورودی دارای کاراکترهای نامعتبر است",
@@ -502,7 +504,7 @@
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "انتخاب Node",
-        "addCustomNode": "Node سفارشی را اضافه کنید",
         "manualSync": "همگام سازی دستی",
         "snapshotTransition": "انتقال عکس فوری",
         "pow": "اثبات کار",
@@ -758,6 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "خطا در بازیابی داده های به روزرسانی",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "بروزرسانی موجود نيست",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "نسخه جدید موجود است",

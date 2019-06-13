@@ -169,7 +169,9 @@
         "missingPermission": "Potreban pristup datotečnom sustavu",
         "missingPermissionExplanation": "Potreban je pristup datotečnom sustavu da bi se izvršila ova funkcija.",
         "swipeToConfirm": "Kliznite po ekranu za potvrdu",
-        "expert": "Stručnjak"
+        "expert": "Stručnjak",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedopuštene znakove",
@@ -502,7 +504,7 @@
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Odaberi node",
-        "addCustomNode": "Dodaj prilagođeni node",
         "manualSync": "Ručna sinkronizacija",
         "snapshotTransition": "Snapshot tranzicija",
         "pow": "PoW",
@@ -758,6 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Nema dostupnih ažuriranja",
         "noUpdatesAvailableExplanation": "Trenutno koristite najnoviju verziju Trinity novčanika!",
         "newVersionAvailable": "Dostupna je nova verzija",

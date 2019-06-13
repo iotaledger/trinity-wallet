@@ -78,40 +78,6 @@ describe('Testing MainSettings component', () => {
                 const wrapper = shallow(<MainSettings {...props} />);
                 expect(wrapper.childAt(0).name()).toBe('View');
             });
-
-            it('should return nine TouchableOpacity components', () => {
-                const props = getProps();
-                const wrapper = shallow(<MainSettings {...props} />);
-                expect(wrapper.find('TouchableOpacity').length).toBe(9);
-            });
-        });
-
-        [
-            { func: 'setSetting', calledWith: 'modeSelection' },
-            { func: 'setSetting', calledWith: 'themeCustomisation' },
-            { func: 'setSetting', calledWith: 'currencySelection' },
-            { func: 'setSetting', calledWith: 'languageSelection' },
-            { func: 'setSetting', calledWith: 'accountManagement' },
-            { func: 'setSetting', calledWith: 'securitySettings' },
-            { func: 'setSetting', calledWith: 'advancedSettings' },
-            { func: 'setSetting', calledWith: 'about' },
-        ].forEach((item, idx) => {
-            describe(`when TouchableOpacity component prop onPress on index ${idx + 1} is triggered`, () => {
-                it(`should call prop method ${item.func}`, () => {
-                    const props = getProps({
-                        [item.func]: jest.fn(),
-                    });
-
-                    const wrapper = shallow(<MainSettings {...props} />);
-                    wrapper
-                        .find('TouchableOpacity')
-                        .at(idx)
-                        .props()
-                        .onPress();
-
-                    expect(props[item.func]).toHaveBeenCalledWith(item.calledWith);
-                });
-            });
         });
     });
 });

@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
 import { shorten, capitalize } from 'libs/iota/converter';
@@ -153,7 +153,11 @@ const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
     accounts: state.accounts,
     seedIndex: state.wallet.seedIndex,
-    isBusy: state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress || state.ui.isFetchingAccountInfo,
+    isBusy:
+        state.ui.isSyncing ||
+        state.ui.isSendingTransfer ||
+        state.ui.isGeneratingReceiveAddress ||
+        state.ui.isFetchingAccountInfo,
 });
 
 const mapDispatchToProps = {
@@ -164,4 +168,4 @@ const mapDispatchToProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(withI18n()(Sidebar));
+)(withTranslation()(Sidebar));

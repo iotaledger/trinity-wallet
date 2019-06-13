@@ -45,10 +45,11 @@ const config = {
                     {
                         loader: 'css-loader',
                         options: {
-                            camelCase: true,
-                            modules: true,
+                            localsConvention: 'camelCase',
+                            modules: {
+                                localIdentName: '[name]__[local]',
+                            },
                             importLoaders: 1,
-                            localIdentName: '[name]__[local]',
                         },
                     },
                     {

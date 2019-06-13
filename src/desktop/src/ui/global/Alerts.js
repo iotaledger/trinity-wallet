@@ -31,7 +31,13 @@ export class AlertsComponent extends React.PureComponent {
 
     state = {
         dismissUpdate: false,
+        isUpdating: false,
     };
+
+    componentDidMount() {
+        this.onStatusChange = this.statusChange.bind(this);
+        Electron.onEvent('update.progress', this.onStatusChange);
+    }
 
     componentWillReceiveProps(nextProps) {
         if (this.timeout) {
@@ -44,11 +50,25 @@ export class AlertsComponent extends React.PureComponent {
         }
     }
 
+    componentWillUnmount() {
+        Electron.removeEvent('update.progress', this.onStatusChange);
+    }
+
     closeAlert() {
         if (this.timeout) {
             clearTimeout(this.timeout);
         }
         this.props.dismissAlert();
+    }
+
+    /**
+     * Update update in progress state
+     * @param {object} progress - Current update progress percent
+     */
+    statusChange(progress) {
+        this.setState({
+            isUpdating: typeof progress === 'object',
+        });
     }
 
     renderFullWidthAlert(title, explanation, dismissable, onClick) {
@@ -68,7 +88,7 @@ export class AlertsComponent extends React.PureComponent {
 
     render() {
         const { alerts, dismissAlert, forceUpdate, shouldUpdate, displayTestWarning, t } = this.props;
-        const { dismissUpdate } = this.state;
+        const { isUpdating, dismissUpdate } = this.state;
 
         /**
          * Temporarily override account fetch error by adding Proxy setting suggestion
@@ -83,12 +103,14 @@ export class AlertsComponent extends React.PureComponent {
                 {!dismissUpdate &&
                     displayTestWarning &&
                     this.renderFullWidthAlert(`${t('rootDetection:warning')}:`, t('global:testVersionWarning'), true)}
-                {!dismissUpdate &&
+                {!isUpdating &&
+                    !dismissUpdate &&
                     shouldUpdate &&
                     this.renderFullWidthAlert(t('global:shouldUpdate'), t('global:shouldUpdateExplanation'), true, () =>
                         Electron.autoUpdate(),
                     )}
-                {forceUpdate &&
+                {!isUpdating &&
+                    forceUpdate &&
                     this.renderFullWidthAlert(t('global:forceUpdate'), t('global:forceUpdateExplanation'), false, () =>
                         Electron.autoUpdate(),
                     )}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import { getAccountNamesFromState } from 'selectors/accounts';
 
@@ -115,4 +115,4 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
 });
 
-export default connect(mapStateToProps)(withI18n()(BalanceComponent));
+export default connect(mapStateToProps)(withTranslation()(BalanceComponent));

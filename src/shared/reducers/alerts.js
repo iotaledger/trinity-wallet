@@ -1,4 +1,4 @@
-import { ActionTypes } from '../actions/alerts';
+import { AlertsActionTypes } from '../types';
 
 const initialState = {
     /**
@@ -25,7 +25,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case ActionTypes.SHOW:
+        case AlertsActionTypes.SHOW:
             return {
                 ...state,
                 category: action.category,
@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
                 message: action.message,
                 closeInterval: action.closeInterval,
             };
-        case ActionTypes.HIDE:
+        case AlertsActionTypes.HIDE:
             return {
                 ...state,
                 category: '',
@@ -41,12 +41,12 @@ export default (state = initialState, action) => {
                 message: '',
                 closeInterval: 5500,
             };
-        case ActionTypes.UPDATE_LOG:
+        case AlertsActionTypes.UPDATE_LOG:
             return {
                 ...state,
                 notificationLog: [...state.notificationLog, action.logItem],
             };
-        case ActionTypes.CLEAR_LOG:
+        case AlertsActionTypes.CLEAR_LOG:
             return {
                 ...state,
                 notificationLog: [],

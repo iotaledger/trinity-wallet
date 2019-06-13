@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { generateAlert } from 'actions/alerts';
@@ -90,7 +90,7 @@ class Login extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (!prevProps.completedMigration && this.props.completedMigration) {
+        if (this.state.shouldMigrate && !prevProps.completedMigration && this.props.completedMigration) {
             this.setupAccount();
         }
     }
@@ -273,4 +273,4 @@ const mapDispatchToProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(withI18n()(Login));
+)(withTranslation()(Login));

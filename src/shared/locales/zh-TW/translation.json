@@ -169,7 +169,9 @@
         "missingPermission": "需要檔案系統權限",
         "missingPermissionExplanation": "這個功能必須擁有訪問檔案系統的權限。",
         "swipeToConfirm": "滑動來確認。",
-        "expert": "專家"
+        "expert": "專家",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -502,7 +504,7 @@
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "選擇節點",
-        "addCustomNode": "新增自訂節點",
         "manualSync": "手動同步",
         "snapshotTransition": "快照轉換",
         "pow": "工作量證明",
@@ -758,6 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "取得更新資料時發生錯誤",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "尚無更新",
         "noUpdatesAvailableExplanation": "你有最新版的Trinity！",
         "newVersionAvailable": "有新版本可用",
