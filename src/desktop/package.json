@@ -123,7 +123,8 @@
     },
     "win": {
       "publisherName": "IOTA Stiftung",
-      "target": "nsis"
+      "target": "nsis",
+      "timeStampServer": "http://timestamp.digicert.com"
     },
     "linux": {
       "target": [
