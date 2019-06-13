@@ -111,6 +111,8 @@ class Sidebar extends React.PureComponent {
                                                             (addressData) => addressData.balance,
                                                         ),
                                                     ),
+                                                    false,
+                                                    true,
                                                 )}
                                             </small>
                                             <div onClick={(e) => this.accountSettings(e, index)}>
