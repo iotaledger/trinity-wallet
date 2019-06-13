@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getAccountNamesFromState } from 'selectors/accounts';
 
@@ -96,7 +96,7 @@ class AccountName extends PureComponent {
             >
                 <fieldset>
                     <Text
-                        value={newAccountName}
+                        value={newAccountName || ''}
                         label={t('accountManagement:editAccountName')}
                         onChange={(value) => this.setState({ newAccountName: value })}
                     />
@@ -104,7 +104,7 @@ class AccountName extends PureComponent {
                 <footer>
                     <Button
                         className="square"
-                        disabled={newAccountName.replace(/^\s+|\s+$/g, '') === account.accountName}
+                        disabled={newAccountName && newAccountName.replace(/^\s+|\s+$/g, '') === account.accountName}
                         type="submit"
                     >
                         {t('save')}
@@ -125,4 +125,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(AccountName));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AccountName));

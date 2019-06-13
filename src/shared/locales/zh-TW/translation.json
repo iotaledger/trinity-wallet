@@ -19,11 +19,12 @@
         "invalidResponse": "節點錯誤",
         "invalidResponseExplanation": "節點回傳錯誤，請嘗試更換節點。",
         "invalidResponseFetchingAccount": "節點在取得您的帳戶訊息時點回傳錯誤，請嘗試更換節點。",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "該節點在取得帳號資訊時回傳了錯誤訊息。如果這個這個問題持續發生，請嘗試更換節點或是將 Trinity 中的系統代理停用。",
         "nodeOutOfSync": "節點失去同步",
         "nodeOutOfSyncExplanation": "您目前所選的節點並不同步，請變更節點或再試一次。",
-        "experimentalNode": "Node version not supported",
-        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "experimentalNode": "不支持的 Node 版本",
+        "experimentalNodeExplanation": "你現時選用的 node 屬不被支援的測試版本，請選用另一個 node 或再嘗試。",
         "thisNodeOutOfSync": "此節點並不同步，請變更節點或再試一次。",
         "seed": "種子碼",
         "checksum": "檢查碼",
@@ -55,7 +56,7 @@
         "yes": "是",
         "no": "否",
         "okay": "確定",
-        "skip": "Skip",
+        "skip": "略過",
         "password": "密碼",
         "unrecognisedPassword": "密碼不符",
         "unrecognisedPasswordExplanation": "密碼不符，請再試一次。",
@@ -77,8 +78,8 @@
         "wallet": "錢包",
         "all": "全部",
         "sent": "已支出",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "你收到了",
+        "youSent": "你送出了",
         "received": "已接收",
         "sending": "轉帳中",
         "receiving": "收款中",
@@ -120,9 +121,11 @@
         "nodeMustUseHTTPSExplanation": "僅允許使用 HTTPS 的自訂節點。",
         "nodeDuplicated": "重複節點",
         "nodeDuplicatedExplanation": "自訂節點已在列表中。",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "自動切換節點",
         "nodeAutoChangedExplanation": "當選擇的節點斷線時切換到新的節點 {{- nodeAddress}}。",
-        "touchSensor": "Touch the fingerprint sensor",
+        "touchSensor": "請輕觸指紋感應",
         "fingerprintOnSend": "觸摸指紋辨識器來驗證交易",
         "masterKey": "IOTA 種子碼就是您的資金的主要金鑰。",
         "seedThief": "如果有人取得您的種子碼，代表他們就可以偷走您的 IOTA。",
@@ -134,13 +137,15 @@
         "spentAddressExplanation": "警告：資金位於已支出的地址",
         "discordInformation": "用相同的地址重複轉帳是非常危險的，請前往 Discord #help 頻道尋求協助。",
         "androidInsecureClipboardWarning": "Android 提供的剪貼簿並不安全。",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "請勿在 Android 裝置上複製/貼上你的seed。",
         "willNotCopyPasteSeed": "我絕不會複製/貼上我的種子碼",
         "mustBeStoredAppropriately": "種子碼必須妥善保存。",
         "deviceMayBecomeUnresponsive": "您的裝置可能會在一段時間內無法回應。",
         "isYourBalanceCorrect": "您的餘額正確嗎？",
         "ifYourBalanceIsNotCorrect": "如果您的餘額不正確的話，有可能您最後一次使用種子碼是在快照發生之前。",
         "headToAdvancedSettingsForTransition": "前往進階設定然後執行快照轉換。",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "在 Trinity 錢包使用 Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "廣播您的交易時發生網路錯誤。",
         "broadcastError": "無法廣播交易",
@@ -150,19 +155,23 @@
         "tryingAgainWithLocalPoW": "請改為本地端工作量證明再試一次。",
         "tryingAgainWithDifferentNode": "請使用不同節點再試一次。",
         "errorFetchingAccountInformation": "取得帳戶資訊時發生錯誤。",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "同步地址資訊時發生錯誤。請更換節點並再次嘗試。",
         "errorAccessingKeychain": "鑰匙串錯誤",
         "errorAccessingKeychainExplanation": "無法訪問安全儲存所需的鑰匙串。",
         "mainWallet": "主帳戶",
-        "confirm": "Confirm",
-        "delete": "Delete",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "confirm": "確認",
+        "delete": "刪除",
+        "shouldUpdate": "有可用的更新",
+        "shouldUpdateExplanation": "有可用的更新，建議你更新到最新的版本。",
+        "forceUpdate": "請更新應用程式並繼續",
+        "forceUpdateExplanation": "有重大的版本更新。請立即更新 Trinity 錢包。",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "需要檔案系統權限",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
-        "swipeToConfirm": "Swipe to confirm"
+        "missingPermissionExplanation": "這個功能必須擁有訪問檔案系統的權限。",
+        "swipeToConfirm": "滑動來確認。",
+        "expert": "專家",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -216,7 +225,7 @@
         "passwordTooShortExplanation": "您的密碼必須至少為 {{minLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
         "passwordMismatch": "密碼不符",
         "passwordMismatchExplanation": "您輸入的密碼不符，請再試一次。",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "這是您的主錢包密碼。您將會使用它用以登入。",
         "retypePassword": "重新輸入密碼"
     },
     "copyToClipboard": {
@@ -250,8 +259,8 @@
         "login": "登入",
         "setNode": "設置節點",
         "whyBiometricDisabled": "為何生物識別驗證是停用的？",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "為了您的錢包安全，首次載入錢包時，生物辨識技術將會被停用。",
+        "whyBiometricDisabledExplanationPart2": "Trinity 錢包會在閒置時將您登出，您可以使用生物辨識技術再次登入。"
     },
     "loading": {
         "loadingFirstTime": "首次讀取種子碼。",
@@ -280,18 +289,18 @@
     "paperWallet": {
         "neverShare": "千萬別和任何人分享您的種子碼。",
         "iotaLogo": "IOTA 標誌",
-        "print": "Print",
+        "print": "列印",
         "paperConvenience": "將您的種子碼列列印成紙本是最簡便的儲存方式。",
         "publicInsecure": "但請注意使用公共 wifi 或公共印表機列印的話可能會不安全。",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "請在列印前再次檢查以及確認。",
+        "wifiConfirmation": "我沒有使用公共的 WIFI。",
+        "printerConfirmation": "我不會使用公共的印表機來列印。"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "您會想要列印一個空白的模板嗎？",
+        "printTemplateInfo": "您可以列印一個空白的模板，幫助自己記錄下種子碼。",
+        "printTemplateWarning": "請確認您將種子碼儲存在一個安全的地方，並且切勿向他人洩露。",
+        "print": "是的，列印。"
     },
     "receive": {
         "yourAddress": "您的地址",
@@ -300,14 +309,14 @@
         "copyAddress": "複製地址",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "產生新地址",
         "noAddresses": "無地址",
         "spent": "已支出",
         "tag": "標籤",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAnAddress": "產生新地址",
+        "generateAnAddressTitle": "產生新地址",
+        "generateAnAddressExplanation": "請在使用此功能前產生一個新的地址。",
+        "generateAddressInformation": "每次接收 IOTA 時都要產生一個新的收款地址。"
     },
     "saveYourSeed": {
         "saveYourSeed": "備份您的種子碼",
@@ -321,7 +330,7 @@
         "letsWriteDownYourSeed": "請寫下您的種子碼",
         "youCanHighlightCharacters": "您可以一次顯示 9 個字元",
         "printBlankWallet": "印出空白錢包",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "什麼是檢查碼？",
         "everySeedHasAChecksum": "每個種子碼會有相對應 3 字元的檢查碼.",
         "iHavesavedMySeed": "我已儲存我的種子碼",
         "checksumExplanation": "每當您新增種子碼到錢包時，請確認錢包顯示的檢查碼和您當時寫下的相符。",
@@ -329,21 +338,21 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "請確認您的種子碼",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity 錢包絕不會要求您重新輸入種子碼，除非您重置了錢包或是移除了錢包。",
         "enterYourSeed": "輸入您的種子碼",
         "incorrectSeed": "錯誤種子",
         "incorrectSeedExplanation": "您輸入的種子碼錯誤，請再試一次。",
         "ifYouHaveNotSaved": "假如你尚未儲存您的種子碼，請返回並儲存。",
         "enterSeedBelow": "請在下面輸入您剛產生的種子碼來確認您已經妥善備份了",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "警告：您無法貼上種子碼。",
+        "clipboardWarningExplanation": "為了您的錢包安全，貼上功能已被停用。您可以將種子碼改從文字檔案中拖曳至此。"
     },
     "send": {
         "invalidAddress": "地址無效",
         "invalidAddressExplanation1": "地址應該為 {{maxLength}} 個字元且應有一個檢查碼。",
         "invalidAddressExplanation2": "地址包含無效的字元。",
         "invalidAddressExplanation3": "地址包含一個無效檢查碼。",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "請檢查您輸入的地址是否正確？",
         "invalidAddressExplanationGeneric": "有效地址應為 90 個字元而且僅包含 A-Z 或 9。",
         "notEnoughFunds": "餘額不足",
         "notEnoughFundsExplanation": "您沒有足夠的 IOTA 完成本次交易。",
@@ -365,7 +374,7 @@
         "addressPasteDetected": "檢測到地址貼上",
         "addressPasteExplanation": "看起來您已貼上地址，請確認貼上的地址與您想送出去的相符。",
         "invalid": "無效",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "滑動來發送"
     },
     "setSeedName": {
         "letsAddName": "請輸入名稱",
@@ -392,10 +401,10 @@
         "accountManagement": "帳戶管理",
         "addNewSeed": "增加新的種子碼",
         "changePassword": "修改密碼",
-        "general": "General settings",
+        "general": "一般設定",
         "advanced": "進階設定",
-        "nodeSettings": "Node settings",
-        "account": "Account settings",
+        "nodeSettings": "節點設定",
+        "account": "帳號設定",
         "logout": "登出",
         "reset": "重設錢包",
         "syncingComplete": "同步完成",
@@ -426,7 +435,6 @@
         "redo": "重做",
         "aboutTrinity": "關於 Trinity",
         "lockScreenTimeout": "逾時鎖定螢幕 (分鐘)",
-        "autoNodeSwitching": "當無法連上所選節點時自動切換節點。",
         "nodeChangeSuccess": "成功變更節點",
         "nodeChangeSuccessNoRemotePow": "節點已變更為 {{node}}，不過此節點並不支援遠端工作量證明。",
         "nodeChangeSuccessExplanation": "節點已變更為 {{node}}。",
@@ -457,7 +465,7 @@
     "history": {
         "bundleHashCopied": "交易組雜湊值已複製",
         "noTransactionsFound": "找不到交易紀錄",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "您沒有任何交易紀錄",
         "hideZeroBalance": "隱藏零元紀錄",
         "bundleHashCopiedExplanation": "交易組的雜湊值已複製到剪貼簿。",
         "addressCopied": "地址已複製",
@@ -470,13 +478,13 @@
         "retrying": "重試中",
         "yesterday": "昨日",
         "promotingAnotherBundle": "正在促進另一組交易中",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "pleaseWait": "請稍候，Trinit 錢包正在促進其他交易捆。",
+        "typeHelp": "輸入 !help 來查看可用的指令",
+        "searchHelpText": "使用交易捆的雜湊值或是訊息內容來搜尋",
+        "searchHelpValue": "使用明確的 IOTA 價值來搜尋交易",
+        "searchHelpUnits": "使用明確的 IOTA 價值和單位來搜尋交易",
+        "searchHelpMore": "搜尋價值高於 X 的交易",
+        "searchHelpLess": "搜尋價值低於 X 的交易"
     },
     "accountManagement": {
         "viewSeed": "檢視種子",
@@ -486,6 +494,22 @@
         "addNewAccount": "新增帳戶",
         "tools": "工具"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "自訂節點無法加入",
         "customNode": "自訂節點",
@@ -494,7 +518,11 @@
         "add": "新增",
         "nodeFieldEmpty": "文字欄為空",
         "nodeFieldEmptyExplanation": "請輸入自訂節點。",
-        "invalidURL": "請輸入有效的 URL。"
+        "invalidURL": "請輸入有效的 URL。",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "使用現有的種子碼",
@@ -502,15 +530,14 @@
     },
     "advancedSettings": {
         "selectNode": "選擇節點",
-        "addCustomNode": "新增自訂節點",
         "manualSync": "手動同步",
         "snapshotTransition": "快照轉換",
         "pow": "工作量證明",
         "autoPromotion": "自動促進",
         "autoPromotionExplanation": "自動促進會協助確認您在 Tangle 上的交易。如果您在確認交易時遇到困難的話，請啟用此設定。",
         "autoPromotionPoW": "自動促進僅能支援遠端工作量證明的節點上使用。",
-        "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "deepLinking": "深度連結",
+        "stateExport": "輸出狀態"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -537,20 +564,20 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "您確定要登出？",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "您即將登出",
         "areYouSure": "是否確定？"
     },
     "qrScanner": {
         "scan": "掃描 QR 碼"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "單位系統",
         "trillion": "兆",
         "billion": "十億",
         "million": "百萬",
         "thousand": "千",
         "one": "一",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTA通常以一百萬或其倍數為單位獲得，但轉送時亦可以細分為單個IOTA。"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "我為何無法支出所有餘額？",
@@ -572,7 +599,7 @@
         "syncingYourAccount": "同步您的帳戶中。"
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "輸入您帳戶名稱與種子",
         "incorrectFormat": "種子碼格式不符",
         "validSeedExplanation": "有效的種子碼應為 81 個字元而且僅包含 A-Z 或 9。"
     },
@@ -581,14 +608,14 @@
         "viewSeed": "檢視種子碼",
         "hideSeed": "隱藏種子碼",
         "notAvailable": "{{accountType}} 帳戶類型無法匯出種子碼",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "種子(seed) 被放在裝置的安全元件內, 種子(seed) 安全的被加密, 且不會外流給其他裝置",
         "accountIndex": "您的 Ledger 帳戶索引",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "您的帳戶"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "您備份種子碼了嗎？",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "您的種子已經安全的備份",
+        "reenterSeed": "在下一步, 您需要重新輸入您的種子",
         "reenterSeedWarning": "如果您尚未備份您的種子碼然後裝置停止的話，您將失去您所有的 IOTA。",
         "pleaseConfirm": "請確認您已安全地儲存了您的種子碼。"
     },
@@ -607,31 +634,31 @@
         "fingerprintAuthFailedExplanation": "指紋驗證失敗，請再試一次。",
         "status": "狀態",
         "fingerprintUnavailable": "生物識別驗證無法使用",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "暫停身分驗證30秒",
         "fingerprintUnavailableExplanation": "您的裝置不支援生物識別驗證，或者裝置設定中並沒有啟用此權限。",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "notSupported": "裝置並不提供生物識別驗證(指紋, 靜脈...)",
+        "notConfigured": "生物識別驗證無法成功設定",
         "buttonInstructionsDisable": "按下方按鈕停用指紋驗證。",
         "buttonInstructionsEnable": "按下方按鈕啟用指紋驗證。",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "按下下面按鈕關掉臉部辨識",
+        "buttonInstructionsEnableIPhoneX": "按下下面按鈕開啟臉部辨識",
         "instructionsLogin": "觸摸指紋辨識器來登入",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "您的裝置已經關掉身分驗證",
+        "userCancelledAuth": "身分驗證請求已取消",
+        "passwordFallback": "回到輸入密碼",
+        "noPassword": "密碼尚未設定"
     },
     "transferConfirmation": {
         "youAreAbout": "您將轉帳{{contents}} 到地址",
         "aMessage": "訊息",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "由{{selectedAccountName}}",
+        "toAddress": "目的地址",
+        "sendingAMessage": "訊息正在傳送",
+        "sendingAnEmptyMessage": "正在傳送"
     },
     "seedVault": {
         "exportSeedVault": "匯出 SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "種子密碼是用來保護您的種子\n當您需要使用種子時, 請輸入種子密碼解鎖種子",
         "seedVaultWarning": "請確認您有備份檔案在許多不同位置 (像是硬碟、雲端、USB)。如果您遺失此檔案而且沒有在其他地方儲存種子碼的話，您將失去您的 IOTA。",
         "exportFail": "SeedVault 匯出失敗",
         "exportFailExplanation": "匯出 SeedVault 時發生錯誤，請確認您有對應的權限以及足夠的可用空間。",
@@ -655,12 +682,12 @@
         "invalidSeedFileError": "Invalid SeedVault file",
         "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key",
+        "retypeKey": "重新键入密钥",
         "key": "密鑰"
     },
     "stateExport": {
         "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
+        "exportSuccess": "輸出狀態",
         "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
@@ -690,19 +717,19 @@
     "progressSteps": {
         "checkingNodeHealth": "檢查節點運行狀況",
         "validatingReceiveAddress": "驗證收款地址",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "驗證交易地址",
         "syncingAccount": "同步帳戶中",
         "preparingInputs": "準備交易輸入",
         "preparingTransfers": "準備交易資訊",
         "gettingTransactionsToApprove": "取得交易確認",
         "proofOfWork": "完成工作量證明",
         "broadcasting": "廣播中",
-        "preparingData": "Preparing data",
+        "preparingData": "準備數據",
         "migratingSettings": "Migrating settings",
         "migratingAccounts": "Migrating accounts",
         "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "migrationComplete": "移植完成",
+        "transferComplete": "交易完成"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "無法完成快照轉換",
@@ -732,8 +759,9 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "取得更新資料時發生錯誤",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "尚無更新",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "你有最新版的Trinity！",
         "newVersionAvailable": "有新版本可用",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "安裝更新並重啟",
@@ -798,13 +826,16 @@
         "notReady": "如果您想使用 Ledger 裝置，請立即連接並解鎖它",
         "indexInUse": "帳戶 {{account}} 已使用該索引",
         "indexInUseExplanation": "您所選的索引已經在您其中一個帳戶使用過了，請選擇其他索引號碼。",
-        "proceedWithLedger": "進行 Ledger 設置",
+        "createNewLedgerAccountInfo": "確保記下並記住您的索引號",
+        "restoreLedgerAccountInfo": "輸入已保存的索引號以恢復您的帳戶",
+        "createNewLedgerAccount": "創建一個新的Ledger帳戶",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "帳戶索引",
         "accountPage": "帳戶頁面",
         "actionCancelled": "Ledger device access cancelled",
         "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "選擇您的帳戶索引",
-        "accountIndexExplanation": "您的 Ledger 可以儲存數個種子碼，每個種子碼會有相對應的索引號碼。系統已先預先選擇未使用的索引，但您可以隨意選擇自己想要的。請務必記住您所選的索引號碼。",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "有些第三方錢包會用到頁面號碼。",
         "connectionError": "無法連接至 Ledger",
         "connectionErrorExplanation": "請檢查您的 Ledger 已連接並解鎖。",
@@ -824,9 +855,13 @@
         "ledgerIncorrectIndexExplanation": "連接的 Ledger 裝置與此帳戶不相符，或者回復字組已被更改。",
         "checkAddress": "檢查接收地址",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialised": "警告 未經證實",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue.",
+        "writtenDownInfoTitle": "記住您的索引號",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Il nodo ha restituito un errore mentre si reperivano i dati del tuo conto. Se il problema persiste, prova a cambiare il nodo o a disabilitare l'uso del proxy nelle impostazioni di Trinity.",
         "nodeOutOfSync": "Nodo non sincronizzato",
         "nodeOutOfSyncExplanation": "Il nodo attualmente selezionato non è sincronizzato. Si prega di cambiare il nodo o riprovare.",
+        "nodeOutOfSyncByTimestampExplanation": "Il nodo attualmente selezionato è fuori sincronizzazione. Si prega di cambiare nodo o riprovare. Se il problema persiste, assicurati che l'orario del dispositivo sia corretto.",
         "experimentalNode": "La versione del nodo non è supportata",
         "experimentalNodeExplanation": "Il nodo attualmente selezionato sta eseguendo una versione sperimentale che non è supportata. Per favore cambia nodo o riprova.",
         "thisNodeOutOfSync": "Questo nodo non è sincronizzato. Si prega di cambiare il nodo o riprovare.",
@@ -120,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Sono ammessi solo nodi personalizzati che usano HTTPS.",
         "nodeDuplicated": "Nodo duplicato",
         "nodeDuplicatedExplanation": "Il nodo personalizzato è già elencato.",
+        "customNodeAdded": "Aggiunto nodo personalizzato",
+        "customNodeAddedExplanation": "Hai aggiunto con successo {{nodeAddress}} come nodo personalizzato.",
         "nodeAutoChanged": "Nodo cambiato automaticamente",
         "nodeAutoChangedExplanation": "Passati al nuovo nodo {{- nodeAddress}} siccome il nodo selezionato non è in linea.",
         "touchSensor": "Tocca il sensore di impronte digitali",
@@ -141,6 +144,8 @@
         "isYourBalanceCorrect": "Il tuo saldo è corretto?",
         "ifYourBalanceIsNotCorrect": "Se il saldo non è corretto, è probabile che si sta utilizzando un seme pre-snapshot.",
         "headToAdvancedSettingsForTransition": "Vai su Impostazioni Avanzate ed esegui Passaggio dopo uno snapshot.",
+        "headToAccountTools": "Vai su Gestione conti, Strumenti ed esegui Passaggio dopo uno snapshot.",
+        "openAccountTools": "Apri Gestione conti, Strumenti",
         "usingTrinityWalletWithKeePass": "Uso del portafoglio Trinity con Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "C'è stato un errore di rete durante la trasmissione della transazione.",
         "broadcastError": "Non è stato possibile trasmettere la transazione",
@@ -160,9 +165,13 @@
         "shouldUpdateExplanation": "È stato rilasciato un nuovo aggiornamento. Si consiglia di aggiornare all'ultima versione.",
         "forceUpdate": "Aggiornare l'app per continuare",
         "forceUpdateExplanation": "È stato rilasciato un aggiornamento critico. Si prega di aggiornare l'app ora.",
+        "testVersionWarning": "Questa versione dovrebbe essere utilizzata solo per scopi di test, con importi molto esigui di token.",
         "missingPermission": "È richiesto l'accesso al file system",
         "missingPermissionExplanation": "L'accesso al file system è necessario per eseguire questa funzione.",
-        "swipeToConfirm": "Scorri per confermare"
+        "swipeToConfirm": "Scorri per confermare",
+        "expert": "Esperto",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -426,7 +435,6 @@
         "redo": "Ripeti",
         "aboutTrinity": "Info su Trinity",
         "lockScreenTimeout": "Tempo di attivazione del blocco dello schermo (minuti)",
-        "autoNodeSwitching": "Cambiare il nodo automaticamente quando quello selezionato non è in linea",
         "nodeChangeSuccess": "Nodo modificato con successo",
         "nodeChangeSuccessNoRemotePow": "Il nodo è stato cambiato a {{node}}. Questo nodo non supporta la prova di lavoro remota.",
         "nodeChangeSuccessExplanation": "Il nodo è stato cambiato a {{node}}.",
@@ -486,6 +494,22 @@
         "addNewAccount": "Aggiungi nuovo conto",
         "tools": "Strumenti"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Gestione automatica del nodo",
+        "addCustomNodes": "Aggiungi nodi personalizzati",
+        "autoNodeList": "Usa la lista dei nodi remoti",
+        "nodeAutoswitching": "Cambio automatico del nodo primario",
+        "primaryNode": "Nodo primario",
+        "enableQuorum": "Abilita quorum",
+        "quorumSize": "Dimensione Quorum",
+        "noCustomNodes": "Nessun nodo personalizzato",
+        "mustAddCustomNodes": "Devi aggiungere almeno un nodo personalizzato prima di disabilitare la lista dei nodi remoti.",
+        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesExplanation": "Non ci sono abbastanza nodi per consentire il quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Aggiungi più nodi personalizzati o attiva la lista dei nodi remoti.",
+        "nodeSettingsUpdatedTitle": "Impostazioni nodo aggiornate",
+        "nodeSettingsUpdatedExplanation": "Hai aggiornato con successo le impostazioni del nodo."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Impossibile aggiungere il nodo personalizzato",
         "customNode": "Nodo personalizzato",
@@ -494,7 +518,11 @@
         "add": "Aggiungi",
         "nodeFieldEmpty": "Questo campo è vuoto",
         "nodeFieldEmptyExplanation": "Si prega di inserire un nodo personalizzato.",
-        "invalidURL": "Per favore, inserisci un URL valido."
+        "invalidURL": "Per favore, inserisci un URL valido.",
+        "addAuthKey": "Aggiungi chiave di autorizzazione",
+        "username": "Nome utente",
+        "couldNotRemove": "Impossibile rimuovere nodo personalizzato",
+        "couldNotRemoveExplanation": "Ci devono essere abbastanza nodi per il quorum. Riduci la dimensione del quorum o abilita la lista dei nodi remoti."
     },
     "addNewAccount": {
         "useExistingSeed": "Usa un seme esistente",
@@ -502,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Seleziona un nodo",
-        "addCustomNode": "Aggiungi un nodo personalizzato",
         "manualSync": "Sincronizzazione manuale",
         "snapshotTransition": "Passaggio dopo uno snapshot",
         "pow": "Prova di lavoro",
@@ -727,13 +754,14 @@
         "deepLinkingUpdated": "Impostazioni deep link",
         "deepLinkingEnabled": "Hai abilitato l'uso dei deep link.",
         "deepLinkingDisabled": "Hai disabilitato l'uso dei deep link.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoTitle": "I deep link non sono abilitati",
+        "deepLinkingInfoMessage": "Hai cliccato su un deep link iota:// ma i deep link non sono abilitati."
     },
     "updates": {
         "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Nessun aggiornamento disponibile",
-        "noUpdatesAvailableExplanation": "Hai l'ultima versione di Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "Hai l'ultima versione di Trinity!",
         "newVersionAvailable": "Una nuova versione è disponibile",
         "newVersionAvailableExplanation": "È disponibile una nuova versione di Trinity. Vuoi aggiornare ora?",
         "installUpdate": "Installa l'aggiornamento e riavvia",
@@ -798,13 +826,16 @@
         "notReady": "Se desideri utilizzare un dispositivo Ledger, collegalo e sbloccalo adesso",
         "indexInUse": "Indice già in uso per il conto {{account}}",
         "indexInUseExplanation": "L'indice selezionato è già in uso su uno dei tuoi conti. Si prega di scegliere un altro numero di indice.",
-        "proceedWithLedger": "Procedi con la configurazione di Ledger",
+        "createNewLedgerAccountInfo": "Assicurati di scrivere e ricordare il numero di indice.",
+        "restoreLedgerAccountInfo": "Inserisci il tuo numero di indice per ripristinare il tuo account.",
+        "createNewLedgerAccount": "Crea un nuovo conto su Ledger",
+        "restoreLedgerAccount": "Ripristina un conto esistente su Ledger",
         "accountIndex": "Indice di conto",
         "accountPage": "Pagina del conto",
         "actionCancelled": "Accesso al dispositivo Ledger annullato",
         "actionCancelledExplanation": "Impossibile eseguire l'azione senza accesso al dispositivo Ledger.",
         "chooseAccountIndex": "Scegli il tuo indice di conto su Ledger",
-        "accountIndexExplanation": "Il tuo Ledger può memorizzare più semi. Ogni seme è identificato da un numero di indice univoco. È stato pre-selezionato un indice inutilizzato, ma puoi sceglierne un altro. Assicurati di aver annotato il numero di indice scelto.",
+        "accountIndexExplanation": "Il tuo Ledger può salvare più semi. Ogni seme è identificato da un numero di indice univoco.",
         "accountPageExplanation": "Alcuni portafogli di terze parti richiedono pagine.",
         "connectionError": "Impossibile connettersi al Ledger",
         "connectionErrorExplanation": "Verifica che il Ledger sia collegato e sbloccato.",
@@ -826,7 +857,11 @@
         "checkAddressExplanation": "Verifica che l'indirizzo corrisponda a quello visualizzato sul dispositivo Ledger.",
         "applicationNotInitialised": "Avvertenza non confermato",
         "applicationNotInitialisedExplanation": "Riaprire l'app IOTA sul dispositivo Ledger, accettare l'avviso informativo e riprovare.",
+        "checkLedger": "Controlla il tuo dispositivo Ledger",
+        "acceptWarningExplanation": "Se c'è un avviso informativo sul tuo dispositivo Ledger, devi scorrere e accettare premendo entrambi i pulsanti.",
         "udevError": "Impossibile comunicare con il dispositivo Ledger",
-        "udevErrorExplanation": "Trinity non ha potuto comunicare con il tuo dispositivo Ledger. Visita l'URL qui sotto per risolvere questo problema."
+        "udevErrorExplanation": "Trinity non ha potuto comunicare con il tuo dispositivo Ledger. Visita l'URL qui sotto per risolvere questo problema.",
+        "writtenDownInfoTitle": "Ricorda il tuo numero di indice",
+        "writtenDownInfoExplanation": "Avrai bisogno del tuo numero di indice per ripristinare il tuo account in futuro. Se perdi il numero di indice, perderai i tuoi IOTA. Ricordalo."
     }
 }

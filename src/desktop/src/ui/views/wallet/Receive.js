@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import {
@@ -189,43 +189,51 @@ class Receive extends React.PureComponent {
                 {!hadErrorGeneratingNewAddress && hasSyncedAddress ? (
                     <div className={isGeneratingReceiveAddress ? css.loading : null}>
                         <QR data={JSON.stringify({ address: receiveAddress, message: message })} />
-                        <Clipboard
-                            text={receiveAddress}
-                            title={t('receive:addressCopied')}
-                            success={t('receive:addressCopiedExplanation')}
-                        >
-                            <p>
-                                {receiveAddress
-                                    .substring(0, 81)
-                                    .split('')
-                                    .map((char, index) => {
-                                        const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
-                                        return (
-                                            <React.Fragment key={`char-${index}`}>
-                                                {scrambleChar || char}
-                                            </React.Fragment>
-                                        );
-                                    })}
-                                <span>
+                        {receiveAddress && (
+                            <Clipboard
+                                text={receiveAddress}
+                                title={t('receive:addressCopied')}
+                                success={t('receive:addressCopiedExplanation')}
+                            >
+                                <p id="receive-address">
                                     {receiveAddress
-                                        .substring(81, 90)
+                                        .substring(0, 81)
                                         .split('')
                                         .map((char, index) => {
                                             const scrambleChar =
-                                                scramble[index + 81] > 0 ? byteToChar(scramble[index + 81]) : null;
+                                                scramble[index] > 0 ? byteToChar(scramble[index]) : null;
                                             return (
                                                 <React.Fragment key={`char-${index}`}>
                                                     {scrambleChar || char}
                                                 </React.Fragment>
                                             );
                                         })}
-                                </span>
-                            </p>
-                        </Clipboard>
+                                    <span>
+                                        {receiveAddress
+                                            .substring(81, 90)
+                                            .split('')
+                                            .map((char, index) => {
+                                                const scrambleChar =
+                                                    scramble[index + 81] > 0 ? byteToChar(scramble[index + 81]) : null;
+                                                return (
+                                                    <React.Fragment key={`char-${index}`}>
+                                                        {scrambleChar || char}
+                                                    </React.Fragment>
+                                                );
+                                            })}
+                                    </span>
+                                </p>
+                            </Clipboard>
+                        )}
                     </div>
                 ) : (
                     <div>
-                        <Button className="icon" loading={isGeneratingReceiveAddress} onClick={this.onGeneratePress}>
+                        <Button
+                            id="generate-address"
+                            className="icon"
+                            loading={isGeneratingReceiveAddress}
+                            onClick={this.onGeneratePress}
+                        >
                             <Icon icon="sync" size={32} />
                             {t('receive:generateNewAddress')}
                         </Button>
@@ -238,7 +246,7 @@ class Receive extends React.PureComponent {
                         onChange={(value) => this.setState({ message: value })}
                     />
                     <footer>
-                        <Button to="/wallet/" variant="secondary" className="outlineSmall">
+                        <Button id="to-wallet" to="/wallet/" variant="secondary" className="outlineSmall">
                             {t('close')}
                         </Button>
                         <Clipboard
@@ -277,4 +285,4 @@ const mapDispatchToProps = {
     addressValidationSuccess,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Receive));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Receive));

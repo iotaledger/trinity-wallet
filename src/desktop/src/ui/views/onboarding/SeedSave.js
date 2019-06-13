@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -71,10 +71,10 @@ class SeedSave extends PureComponent {
                     </nav>
                 </section>
                 <footer>
-                    <Button to="/onboarding/account-name" className="square" variant="dark">
+                    <Button id="to-account-name" to="/onboarding/account-name" className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
-                    <Button to="/onboarding/seed-verify" className="square" variant="primary">
+                    <Button id="to-seed-verify" to="/onboarding/seed-verify" className="square" variant="primary">
                         {t('saveYourSeed:iHavesavedMySeed')}
                     </Button>
                 </footer>
@@ -107,4 +107,4 @@ const mapStateToProps = (state) => ({
     onboardingName: state.accounts.accountInfoDuringSetup.name,
 });
 
-export default connect(mapStateToProps)(withI18n()(SeedSave));
+export default connect(mapStateToProps)(withTranslation()(SeedSave));

@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { setAccountInfoDuringSetup } from 'actions/accounts';
@@ -89,8 +89,14 @@ class AccountPassword extends React.PureComponent {
 
         try {
             await initKeychain();
-        } catch (e) {
-            return generateAlert('error', t('errorAccessingKeychain'), t('errorAccessingKeychainExplanation'));
+        } catch (err) {
+            return generateAlert(
+                'error',
+                t('errorAccessingKeychain'),
+                t('errorAccessingKeychainExplanation'),
+                20000,
+                err,
+            );
         }
 
         const passwordHash = await hash(password);
@@ -152,10 +158,10 @@ class AccountPassword extends React.PureComponent {
                     />
                 </section>
                 <footer>
-                    <Button onClick={this.stepBack} className="square" variant="dark">
+                    <Button id="account-password-prev" onClick={this.stepBack} className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
-                    <Button type="submit" className="square" variant="primary">
+                    <Button id="account-password-next" type="submit" className="square" variant="primary">
                         {t('continue')}
                     </Button>
                 </footer>
@@ -175,4 +181,7 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(AccountPassword));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(AccountPassword));

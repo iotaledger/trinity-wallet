@@ -11,10 +11,10 @@ import { byteToTrit, byteToChar } from 'libs/iota/converter';
 import { removeNonAlphaNumeric } from 'libs/utils';
 import { moment } from 'libs/exports';
 
-import kdbx from '../kdbx';
-import Entangled from '../Entangled';
+import kdbx from '../libs/kdbx';
+import Entangled from '../libs/Entangled';
 import ledger from '../hardware/Ledger';
-import Realm from '../Realm';
+import Realm from '../libs/Realm';
 import { version } from '../../package.json';
 
 const capitalize = (string) => {
@@ -88,7 +88,7 @@ const Electron = {
 
     /**
      * Generate address
-     * @param {string | array} seed - Input seed
+     * @param {array} seed - Input seed
      * @param {number} index - Address index
      * @param {number} security - Address generation security level
      * @param {total} total - Amount of addresses to generate
@@ -261,7 +261,7 @@ const Electron = {
     /**
      * Hash input using argon2
      * @param {Uint8Array} input - Input data
-     * @param {Uint8Array} salt - Salt used fro hashing
+     * @param {Uint8Array} salt - Salt used for hashing
      * @returns {Uint8Array} Raw Argon2 hash
      */
     argon2: (input, salt) => {
@@ -306,6 +306,14 @@ const Electron = {
         } else {
             window.maximize();
         }
+    },
+
+    /**
+     * Reload Wallet window to initial location
+     * @returns {undefined}
+     */
+    reload: () => {
+        remote.getCurrentWindow().webContents.goToIndex(0);
     },
 
     /**
@@ -564,6 +572,7 @@ const Electron = {
             no: t('no'),
             updates: {
                 errorRetrievingUpdateData: t('updates:errorRetrievingUpdateData'),
+                errorRetrievingUpdateDataExplanation: t('updates:errorRetrievingUpdateDataExplanation'),
                 noUpdatesAvailable: t('updates:noUpdatesAvailable'),
                 noUpdatesAvailableExplanation: t('updates:noUpdatesAvailableExplanation'),
                 newVersionAvailable: t('updates:newVersionAvailable'),

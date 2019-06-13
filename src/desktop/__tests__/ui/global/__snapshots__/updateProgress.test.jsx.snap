@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UpdateProgress component Render the component 1`] = `
+<Modal
+  isOpen={false}
+  onClose={[Function]}
+  variant="global"
+>
+  <form>
+    <h1>
+      updates:downloadingUpdate
+    </h1>
+    <article />
+  </form>
+</Modal>
+`;

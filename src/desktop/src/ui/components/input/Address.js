@@ -16,6 +16,8 @@ export default class Address extends React.PureComponent {
     static propTypes = {
         /** Current address value */
         address: PropTypes.string.isRequired,
+        /** Element id */
+        id: PropTypes.string,
         /** Address input label */
         label: PropTypes.string.isRequired,
         /** Should input focus when changed to true */
@@ -80,7 +82,7 @@ export default class Address extends React.PureComponent {
     };
 
     render() {
-        const { address, label, closeLabel } = this.props;
+        const { address, id, label, closeLabel } = this.props;
         const { showScanner } = this.state;
 
         return (
@@ -91,6 +93,7 @@ export default class Address extends React.PureComponent {
                     </a>
                     <input
                         type="text"
+                        id={id}
                         ref={(input) => {
                             this.input = input;
                         }}

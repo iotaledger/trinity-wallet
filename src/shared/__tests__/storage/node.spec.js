@@ -60,11 +60,15 @@ describe('storage: Node', () => {
                     url: 'https://testnode1.com:443',
                     custom: true,
                     pow: false,
+                    token: '',
+                    password: '',
                 },
                 {
                     url: 'https://testnode2.com:443',
                     custom: true,
                     pow: true,
+                    token: '',
+                    password: '',
                 },
             ];
 
@@ -74,19 +78,25 @@ describe('storage: Node', () => {
 
     describe('#addCustomNode', () => {
         it('should create a new custom node', () => {
-            const url = 'https://example.com:443';
+            const node = {
+                url: 'https://example.com:443',
+                password: 'foo',
+                token: 'baz@@',
+            };
 
             // Assert that a node with this url does not exist
-            expect(Node.getObjectForId(url)).to.equal(undefined);
+            expect(Node.getObjectForId(node.url)).to.equal(undefined);
 
             // Add new node
-            Node.addCustomNode(url, true);
+            Node.addCustomNode(node, true);
 
-            const customNode = Node.getObjectForId(url);
+            const customNode = Node.getObjectForId(node.url);
 
-            expect(customNode.url).to.equal(url);
+            expect(customNode.url).to.equal(node.url);
             expect(customNode.pow).to.equal(true);
             expect(customNode.custom).to.equal(true);
+            expect(customNode.password).to.equal(node.password);
+            expect(customNode.token).to.equal(node.token);
         });
     });
 

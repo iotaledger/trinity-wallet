@@ -11,6 +11,7 @@ import merge from 'lodash/merge';
 import orderBy from 'lodash/orderBy';
 import size from 'lodash/size';
 import some from 'lodash/some';
+import { serialise, parse } from '../libs/utils';
 import schemas, { getDeprecatedStoragePath, STORAGE_PATH as latestStoragePath, v0Schema, v1Schema } from '../schemas';
 import { __MOBILE__, __TEST__ } from '../config';
 import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
@@ -75,9 +76,9 @@ class Account {
 
         return map(accounts, (account) =>
             assign({}, account, {
-                addressData: map(account.addressData, (data) => assign({}, data)),
-                transactions: map(account.transactions, (transaction) => assign({}, transaction)),
-                meta: assign({}, account.meta),
+                addressData: map(account.addressData, (data) => parse(serialise(data))),
+                transactions: map(account.transactions, (transaction) => parse(serialise(transaction))),
+                meta: parse(serialise(account.meta)),
             }),
         );
     }
@@ -246,7 +247,7 @@ class Node {
      * @return {array}
      */
     static getDataAsArray() {
-        return map(Node.data, (node) => assign({}, node));
+        return map(Node.data, (node) => parse(serialise(node)));
     }
 
     /**
@@ -255,12 +256,14 @@ class Node {
      * @method addCustomNode
      * @param {string} url Node URL
      */
-    static addCustomNode(url, pow) {
+    static addCustomNode(node, pow) {
         realm.write(() => {
             realm.create('Node', {
-                url,
+                url: node.url,
                 custom: true,
                 pow,
+                password: node.password,
+                token: node.token,
             });
         });
     }
@@ -337,6 +340,15 @@ class Wallet {
     }
 
     /**
+     * Wallet data (as plain object) for most recent version.
+     */
+    static get latestDataAsPlainObject() {
+        const data = Wallet.latestData;
+
+        return parse(serialise(data));
+    }
+
+    /**
      * Wallet data for most recent version.
      */
     static get latestData() {
@@ -374,18 +386,6 @@ class Wallet {
     static updateAutoPromotionSetting(payload) {
         realm.write(() => {
             Wallet.latestSettings.autoPromotion = payload;
-        });
-    }
-
-    /**
-     * Updates auto node switching configuration.
-     *
-     * @method updateAutoNodeSwitchingSetting
-     * @param {boolean} payload
-     */
-    static updateAutoNodeSwitchingSetting(payload) {
-        realm.write(() => {
-            Wallet.latestSettings.autoNodeSwitching = payload;
         });
     }
 
@@ -429,6 +429,7 @@ class Wallet {
      * Updates wallet's node.
      *
      * @method updateNode
+     *
      * @param {string} payload
      */
     static updateNode(payload) {
@@ -637,6 +638,58 @@ class Wallet {
     }
 
     /**
+     * Updates system proxy settings.
+     *
+     * @method updateIgnoreProxySetting
+     * @param {object} payload
+     */
+    static updateIgnoreProxySetting(enabled) {
+        realm.write(() => {
+            Wallet.latestSettings.ignoreProxy = enabled;
+        });
+    }
+
+    /*
+     * Updates quorum configuration.
+     *
+     * @method updateQuorumConfig
+     *
+     * @param {object} payload
+     */
+    static updateQuorumConfig(payload) {
+        const existingConfig = Wallet.latestSettings.quorum;
+        realm.write(() => {
+            Wallet.latestSettings.quorum = assign({}, existingConfig, payload);
+        });
+    }
+
+    /**
+     * Updates node auto-switch setting
+     *
+     * @method updateNodeAutoSwitchSetting
+     *
+     * @param {boolean} payload
+     */
+    static updateNodeAutoSwitchSetting(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.nodeAutoSwitch = payload;
+        });
+    }
+
+    /**
+     * Updates autoNodeList setting
+     *
+     * @method updateAutoNodeListSetting
+     *
+     * @param {boolean} payload
+     */
+    static updateAutoNodeListSetting(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.autoNodeList = payload;
+        });
+    }
+
+    /**
      * Updates error log.
      *
      * @method updateErrorLog
@@ -702,7 +755,7 @@ class Wallet {
             realm.write(() =>
                 realm.create('Wallet', {
                     version: Wallet.version,
-                    settings: { notifications: {} },
+                    settings: { notifications: {}, quorum: {} },
                     accountInfoDuringSetup: { meta: {} },
                 }),
             );
@@ -783,8 +836,6 @@ const migrateToNewStoragePath = (config) => {
     });
 
     oldRealm.write(() => oldRealm.deleteAll());
-
-    Realm.deleteFile(config);
 };
 
 /**
@@ -858,7 +909,6 @@ const initialise = (getEncryptionKeyPromise) => {
 
         while (nextSchemaIndex < schemasSize) {
             const migratedRealm = new Realm(assign({}, schemas[nextSchemaIndex++], { encryptionKey }));
-
             migratedRealm.close();
         }
 

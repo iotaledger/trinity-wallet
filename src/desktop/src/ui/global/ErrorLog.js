@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { formatTimeAs, detectedTimezone } from 'libs/date';
 
 import { clearLog } from 'actions/alerts';
@@ -16,7 +16,7 @@ import css from './about.scss';
 /**
  * Error log window component
  */
-class ErrorLog extends React.PureComponent {
+export class ErrorLogComponent extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         log: PropTypes.array.isRequired,
@@ -102,4 +102,7 @@ const mapDispatchToProps = {
     clearLog,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(ErrorLog));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(ErrorLogComponent));

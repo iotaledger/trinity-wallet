@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { passwordReasons } from 'libs/password';
@@ -12,7 +12,7 @@ import css from './input.scss';
 /**
  * Password input component
  */
-class PasswordInput extends React.PureComponent {
+export class PasswordComponent extends React.PureComponent {
     static propTypes = {
         /** Current password value */
         value: PropTypes.string.isRequired,
@@ -136,4 +136,4 @@ class PasswordInput extends React.PureComponent {
     }
 }
 
-export default withI18n()(PasswordInput);
+export default withTranslation()(PasswordComponent);

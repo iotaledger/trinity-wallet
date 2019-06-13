@@ -1,7 +1,4 @@
-export const ActionTypes = {
-    CHANGE_HOME_SCREEN_CHILD_ROUTE: 'IOTA/HOME/ROUTE/CHANGE',
-    TOGGLE_TOP_BAR_DISPLAY: 'IOTA/HOME/TOP_BAR/TOGGLE',
-};
+import { HomeActionTypes } from '../types';
 
 /**
  * Dispatch to set active home screen route for mobile
@@ -12,7 +9,7 @@ export const ActionTypes = {
  * @returns {{type: {string}, payload: {string} }}
  */
 export const changeHomeScreenRoute = (payload) => ({
-    type: ActionTypes.CHANGE_HOME_SCREEN_CHILD_ROUTE,
+    type: HomeActionTypes.CHANGE_HOME_SCREEN_CHILD_ROUTE,
     payload,
 });
 
@@ -24,5 +21,5 @@ export const changeHomeScreenRoute = (payload) => ({
  * @returns {{type: {string} }}
  */
 export const toggleTopBarDisplay = () => ({
-    type: ActionTypes.TOGGLE_TOP_BAR_DISPLAY,
+    type: HomeActionTypes.TOGGLE_TOP_BAR_DISPLAY,
 });

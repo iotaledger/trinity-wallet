@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import Modal from 'ui/components/modal/Modal';
 import Progress from 'ui/components/Progress';
@@ -9,7 +9,7 @@ import Progress from 'ui/components/Progress';
 /**
  * Auto update progress window
  */
-class UpdateProgress extends React.PureComponent {
+export class UpdateProgressComponent extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -64,4 +64,4 @@ class UpdateProgress extends React.PureComponent {
     }
 }
 
-export default withI18n()(UpdateProgress);
+export default withTranslation()(UpdateProgressComponent);

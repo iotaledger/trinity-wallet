@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Seed input component Render the component 1`] = `
+<div
+  className="input seed"
+>
+  <fieldset>
+    <a
+      className="strike"
+      onClick={[Function]}
+    >
+      <Icon
+        icon="eye"
+        size={16}
+      />
+    </a>
+    <a
+      className="right"
+      onClick={[Function]}
+    >
+      <Icon
+        icon="camera"
+        size={16}
+      />
+    </a>
+    <div
+      className="editable"
+    >
+      <div
+        contentEditable={true}
+        onKeyDown={[Function]}
+        onPaste={[Function]}
+        suppressContentEditableWarning={true}
+      >
+        <span
+          className="letter"
+          data-letter="•"
+          key="0-0"
+        >
+           
+        </span>
+        <span
+          className="letter"
+          data-letter="•"
+          key="1-1"
+        >
+           
+        </span>
+        <span
+          className="letter"
+          data-letter="•"
+          key="2-2"
+        >
+           
+        </span>
+      </div>
+    </div>
+    <small>
+      Foo
+    </small>
+  </fieldset>
+  <Connect(withI18nextTranslation(Dropzone))
+    onDrop={[Function]}
+    onTextDrop={[Function]}
+  />
+  <span
+    className="info"
+  >
+    &lt; 81
+  </span>
+</div>
+`;

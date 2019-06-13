@@ -2,10 +2,15 @@
 import v0Schema from './v0';
 import v1Schema, { migration as v1Migration } from './v1';
 import v2Schema, { migration as v2Migration } from './v2';
+import v3Schema, { migration as v3Migration } from './v3';
+import v4Schema, { migration as v4Migration } from './v4';
+import v5Schema, { migration as v5Migration } from './v5';
 import { __MOBILE__, __TEST__, __DEV__ } from '../config';
 
 const STORAGE_PATH =
-    __MOBILE__ || __TEST__ ? 'trinity.realm' : `${Electron.getUserDataPath()}/trinity${__DEV__ ? '-dev' : ''}.realm`;
+    __MOBILE__ || __TEST__
+        ? 'trinity.realm'
+        : `${typeof Electron === 'object' ? Electron.getUserDataPath() : ''}/trinity${__DEV__ ? '-dev' : ''}.realm`;
 
 /**
  * Gets deprecated realm storage path
@@ -38,6 +43,24 @@ export default [
         schemaVersion: 2,
         path: STORAGE_PATH,
         migration: v2Migration,
+    },
+    {
+        schema: v3Schema,
+        schemaVersion: 3,
+        path: STORAGE_PATH,
+        migration: v3Migration,
+    },
+    {
+        schema: v4Schema,
+        schemaVersion: 4,
+        path: STORAGE_PATH,
+        migration: v4Migration,
+    },
+    {
+        schema: v5Schema,
+        schemaVersion: 5,
+        path: STORAGE_PATH,
+        migration: v5Migration,
     },
 ];
 

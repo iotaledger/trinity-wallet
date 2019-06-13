@@ -30,35 +30,43 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void generateAddress(ReadableArray seed, int index, int security, Promise promise) {
-        byte[] seedByteArr = readableArrayToByteArray(seed);
-        byte[] addressByteArr = Interface.iota_sign_address_gen_trits(seedByteArr, index, security);
-        WritableArray addressWritableArr = byteArrayToWritableArray(addressByteArr);
-        promise.resolve(addressWritableArr);
+        if (seed.size() == 243) {
+            byte[] seedByteArr = readableArrayToByteArray(seed);
+            byte[] addressByteArr = Interface.iota_sign_address_gen_trits(seedByteArr, index, security);
+            WritableArray addressWritableArr = byteArrayToWritableArray(addressByteArr);
+            promise.resolve(addressWritableArr);
+        } else {
+            promise.reject("Error: Address generation failed.");
+        }
     }
 
     @ReactMethod
     public void generateAddresses(final ReadableArray seed, final int index, final int security, final int total, final Promise promise) {
-        byte[] seedByteArr = readableArrayToByteArray(seed);
-        new GuardedResultAsyncTask<ReadableNativeArray>(mContext) {
-            @Override
-            protected ReadableNativeArray doInBackgroundGuarded() {
-                WritableNativeArray addresses = new WritableNativeArray();
-                int i = 0;
-                int addressIndex = index;
-                do {
-                    byte[] address = Interface.iota_sign_address_gen_trits(seedByteArr, addressIndex, security);
-                    addresses.pushArray(byteArrayToWritableArray(address));
-                    i++;
-                    addressIndex++;
-                } while (i < total);
-                return addresses;
-            }
+        if (seed.size() == 243) {
+            byte[] seedByteArr = readableArrayToByteArray(seed);
+            new GuardedResultAsyncTask<ReadableNativeArray>(mContext) {
+                @Override
+                protected ReadableNativeArray doInBackgroundGuarded() {
+                    WritableNativeArray addresses = new WritableNativeArray();
+                    int i = 0;
+                    int addressIndex = index;
+                    do {
+                        byte[] address = Interface.iota_sign_address_gen_trits(seedByteArr, addressIndex, security);
+                        addresses.pushArray(byteArrayToWritableArray(address));
+                        i++;
+                        addressIndex++;
+                    } while (i < total);
+                    return addresses;
+                }
 
-            @Override
-            protected void onPostExecuteGuarded(ReadableNativeArray result) {
-                promise.resolve(result);
-            }
-        }.execute();
+                @Override
+                protected void onPostExecuteGuarded(ReadableNativeArray result) {
+                    promise.resolve(result);
+                }
+            }.execute();
+        } else {
+            promise.reject("Error: Address generation failed.");
+        }
     }
 
     @ReactMethod
@@ -69,11 +77,15 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void generateSignature(ReadableArray seed, int index, int security, ReadableArray bundleHash, Promise promise) {
-        byte[] seedByteArr = readableArrayToByteArray(seed);
-        byte[] bundleHashByteArr = readableArrayToByteArray(bundleHash);
-        byte[] signatureByteArr = Interface.iota_sign_signature_gen_trits(seedByteArr, index, security, bundleHashByteArr);
-        WritableArray signatureWritableArr = byteArrayToWritableArray(signatureByteArr);
-        promise.resolve(signatureWritableArr);
+        if (seed.size() == 243) {
+           byte[] seedByteArr = readableArrayToByteArray(seed);
+           byte[] bundleHashByteArr = readableArrayToByteArray(bundleHash);
+           byte[] signatureByteArr = Interface.iota_sign_signature_gen_trits(seedByteArr, index, security, bundleHashByteArr);
+           WritableArray signatureWritableArr = byteArrayToWritableArray(signatureByteArr);
+           promise.resolve(signatureWritableArr);
+        } else {
+           promise.reject("Error: Signature generation failed.");
+        }
     }
 
     @ReactMethod
@@ -110,7 +122,7 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
                 }
 
                 String[] attachedTrytes = Interface.iota_pow_bundle(trytesBeforePow, trunk, branch, mwm);
-                                
+
                 return attachedTrytes;
             }
 

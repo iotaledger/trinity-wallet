@@ -1,8 +1,8 @@
 {
     "global": {
         "send": "ODESLAT",
-        "cancel": "Zrušit",
-        "continue?": "Opravdu si přejete pokračovat?",
+        "cancel": "Storno",
+        "continue?": "Jste si jistý, že chcete pokračovat?",
         "noTransactions": "ŽÁDNÁ NEDÁVNÁ HISTORIE",
         "refresh": "Obnovit",
         "balanceError": "Nedostatečný zůstatek",
@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Při načítání informací o Vašem účtu došlo k chybě. Pokud problém přetrvává, zkuste změnit Node nebo zakázat proxy server v nastavení Trinity.",
         "nodeOutOfSync": "Váš Node není synchronizovaný",
         "nodeOutOfSyncExplanation": "Vámi zvolený Node není synchronizovaný. Prosím změňte Node nebo akci opakujte.",
+        "nodeOutOfSyncByTimestampExplanation": "Váš aktuálně vybraný Node není synchronizovaný. Prosím změňte Node nebo to zkuste znovu. Pokud problém přetrvává, ujistěte se, že datum a čas ve Vašem zařízení jsou správné.",
         "experimentalNode": "Nepodporovaná verze Nodu",
         "experimentalNodeExplanation": "Váš aktuálně vybraný Node pracuje v experimentální verzi kterou Trinity nepodporuje. Prosím změňte Node nebo akci opakujte.",
         "thisNodeOutOfSync": "Tento Node není synchronizovaný. Prosím změňte Node nebo akci opakujte.",
@@ -55,7 +56,7 @@
         "yes": "Ano",
         "no": "Ne",
         "okay": "OK",
-        "skip": "Skip",
+        "skip": "Přeskočit",
         "password": "Heslo",
         "unrecognisedPassword": "Neznámé heslo",
         "unrecognisedPasswordExplanation": "Nesprávné heslo. Prosím zkuste to znovu.",
@@ -120,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Podporovány jsou pouze Nody podporující protokol HTTPS.",
         "nodeDuplicated": "Duplicitní Node",
         "nodeDuplicatedExplanation": "Tento vlastní Node je již v seznamu.",
+        "customNodeAdded": "Vlastní Node přidán",
+        "customNodeAddedExplanation": "Úspěšně jste přidali {{nodeAddress}} jako vlastní Node.",
         "nodeAutoChanged": "Automatické přepnutí Nodu",
         "nodeAutoChangedExplanation": "Přepnuto na nový Node {{- nodeAddress}} jelikož dříve vybraný je offline.",
         "touchSensor": "Dotkněte se snímače otisků prstů",
@@ -141,6 +144,8 @@
         "isYourBalanceCorrect": "Je Váš zůstatek v pořádku?",
         "ifYourBalanceIsNotCorrect": "Pokud Váš zůstatek není správný, je pravděpodobné, že používáte Seed z doby před snapshotem.",
         "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Během transakce došlo k chybě sítě.",
         "broadcastError": "Nezdařilo se odeslat transakci",
@@ -160,9 +165,13 @@
         "shouldUpdateExplanation": "Byla vydána nová aktualizace. Doporučujeme aktualizovat na nejnovější verzi.",
         "forceUpdate": "Chcete-li pokračovat, aktualizujte aplikaci",
         "forceUpdateExplanation": "Byla vydána kritická aktualizace. Aktualizujte aplikaci nyní.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Požadovaný přístup k souborovému systému",
         "missingPermissionExplanation": "K provedení této funkce potřebujete přístup k souborovému systému.",
-        "swipeToConfirm": "Posunutím potvrďte"
+        "swipeToConfirm": "Posunutím potvrďte",
+        "expert": "Expert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -275,7 +284,7 @@
     "onboardingComplete": {
         "allDone": "Všechno je nastavené!",
         "openYourWallet": "Otevřít Vaši peněženku",
-        "walletReady": "Peněženka je nyní nastavena a připravena k použití. Pokud budete potřebovat něco měnit najdete to v Menu Nastavení."
+        "walletReady": "Peněženka je nyní nastavena a připravena k použití. Pokud budete potřebovat něco změnit najdete to v menu Nastavení."
     },
     "paperWallet": {
         "neverShare": "Nikdy s nikým nesdílejte Váš Seed!",
@@ -288,10 +297,10 @@
         "printerConfirmation": "Netisknu na veřejné tiskárně"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "Chcete vytisknout prázdnou šablonu?",
+        "printTemplateInfo": "Pro ulehčení si můžete vytisknout prázdnou šablonu k zapsání vašeho seedu.",
+        "printTemplateWarning": "Uchovávejte Seed na bezpečném místě a nikomu ho neukazujte.",
+        "print": "Ano, tisk"
     },
     "receive": {
         "yourAddress": "Vaše adresa",
@@ -394,7 +403,7 @@
         "changePassword": "Změnit heslo",
         "general": "Obecná nastavení",
         "advanced": "Pokročilé nastavení",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "Nastavení Nodu",
         "account": "Nastavení účtu",
         "logout": "Odhlásit",
         "reset": "Obnovit peněženku",
@@ -426,7 +435,6 @@
         "redo": "Znovu",
         "aboutTrinity": "O Trinity",
         "lockScreenTimeout": "Zámek obrazovky časový limit (minuty)",
-        "autoNodeSwitching": "Automaticky přepnout na jiný Node, pokud vybraný není dostupný",
         "nodeChangeSuccess": "Node úspěšně změněn",
         "nodeChangeSuccessNoRemotePow": "Node byl změněn na {{node}}. Tento Node nepodporuje režim vzdálený Proof of Work.",
         "nodeChangeSuccessExplanation": "Node byl změněn na {{node}}.",
@@ -457,7 +465,7 @@
     "history": {
         "bundleHashCopied": "Balíček hash zkopírován",
         "noTransactionsFound": "Nebyly nalezeny žádné transakce",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "Vaše historie transakcí je prázdná",
         "hideZeroBalance": "Skrýt nulový zůstatek",
         "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
         "addressCopied": "Adresa zkopírována",
@@ -471,12 +479,12 @@
         "yesterday": "Včera",
         "promotingAnotherBundle": "Podpora dalšího balíčku",
         "pleaseWait": "Prosím počkejte, Trinity podporuje další balíček.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "typeHelp": "Zadejte příkaz !help a dozvíte se o dostupných příkazech",
+        "searchHelpText": "Vyhledávání podle hash balíčků nebo obsahu zprávy",
+        "searchHelpValue": "Vyhledat transakce na základě přesné IOTA hodnoty",
+        "searchHelpUnits": "Vyhledat transakce na základě IOTA hodnoty a jednotky",
+        "searchHelpMore": "Vyhledat transakce s hodnotou větší než X",
+        "searchHelpLess": "Vyhledat transakce s hodnotou menší než X"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
@@ -486,6 +494,22 @@
         "addNewAccount": "Přidat nový účet",
         "tools": "Nástroje"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatický výběr Nodu",
+        "addCustomNodes": "Přidat vlastní Nody",
+        "autoNodeList": "Použít vzdálený oficiální seznam Nodů",
+        "nodeAutoswitching": "Automatické přepínání primárního Nodu",
+        "primaryNode": "Primární Node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "Nebyly přidány žádné vlastní Nody",
+        "mustAddCustomNodes": "Před vypnutím vzdáleného oficiálního seznamu Nodů musíte přidat alespoň jeden vlastní Node.",
+        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Přidejte další vlastní Nody, nebo povolte vzdálený oficiální seznam Nodů.",
+        "nodeSettingsUpdatedTitle": "Nastavení Nodu bylo aktualizováno",
+        "nodeSettingsUpdatedExplanation": "Úspěšně jste aktualizovali nastavení Nodu."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nelze přidat vlastní Node",
         "customNode": "Vlastní Node",
@@ -494,7 +518,11 @@
         "add": "Přidat",
         "nodeFieldEmpty": "Textové pole je prázdné",
         "nodeFieldEmptyExplanation": "Prosím vložte Vlastní Node.",
-        "invalidURL": "Zadejte prosím platnou adresu URL."
+        "invalidURL": "Zadejte prosím platnou adresu URL.",
+        "addAuthKey": "Přidat autorizační klíč",
+        "username": "Uživatelské jméno",
+        "couldNotRemove": "Nelze odebrat vlastní Node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Použít stávající Seed",
@@ -502,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Vybrat Node",
-        "addCustomNode": "Přidat vlastní Node",
         "manualSync": "Manuální synchronizace",
         "snapshotTransition": "Aktualizace údajů po Snapshotu",
         "pow": "Proof of Work",
@@ -510,7 +537,7 @@
         "autoPromotionExplanation": "Automatická podpora Vám pomůže potvrdit Vaši transakci v síti Tangle. Povolte toto nastavení, pokud máte problémy s potvrzováním transakcí.",
         "autoPromotionPoW": "Automatická podpora je možná pouze na Nodech, které podporují vzdálený Proof of Work.",
         "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "stateExport": "Export stavu"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadí",
@@ -546,7 +573,7 @@
     "unitInfoModal": {
         "unitSystem": "Jednotkový systém",
         "trillion": "Bilion",
-        "billion": "Miliard",
+        "billion": "Miliarda",
         "million": "Milion",
         "thousand": "Tisíc",
         "one": "Jedna",
@@ -581,7 +608,7 @@
         "viewSeed": "Zobrazit Seed",
         "hideSeed": "Skrýt Seed",
         "notAvailable": "Seed export není k dispozici pro typ účtu {{accountType}}",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "Zařízení Ledger používá hardwarové zabezpečení pro uložení Vašeho Seedu. Seed je bezpečně zašifrován a nikdy neopouští váš Ledger.",
         "accountIndex": "Index účtu ve Vašem Ledgeru",
         "accountPage": "Stránka účtu ve Vašem Ledgeru"
     },
@@ -652,16 +679,16 @@
         "noSeedFoundExplanation": "SeedVault je buď prázdný, nebo obsahuje Seed v neplatném formátu.",
         "seedFileError": "Otevření SeedVault se nezdařilo",
         "seedFileErrorExplanation": "Během otevírání SeedVault nastal problém. Jestliže jste zvolili správný soubor, je možné, že je poškozený.",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileError": "Neplatný SeedVault soubor",
+        "invalidSeedFileErrorExplanation": "Tento formát souboru není podporován. Podporovány jsou pouze soubory SeedVault (.kdbx) vytvořené programem Trinity nebo správcem hesel.",
         "seedVaultKeyExplanation": "Nejprve potřebujeme zabezpečit Váš SeedVault. Vyberte si prosím heslo k zašifrování souboru. Toto heslo použijete, pokud budete potřebovat obnovit Váš Seed ze zálohy SeedVault.",
         "retypeKey": "Zadejte znovu heslo",
         "key": "Klíč"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "Export stavu uloží do Vašeho zařízení soubor txt s informacemi o vašem účtě (transakcích, adresách), verzi peněženky a názvy uložených souborů.",
+        "exportSuccess": "Stav byl vyexportován",
+        "exportSuccessExplanation": "Váš stavový soubor byl úspěšně vyexportován."
     },
     "chart": {
         "mcap": "MCAP",
@@ -722,18 +749,19 @@
     "deepLink": {
         "autofill": "Automatické vyplňování úspěšné",
         "autofillExplanation": "Údaje o transakci byly automaticky doplněny z odkazu.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingOverview": "Hluboké odkazy jsou klikací odkazy (iota://...), které automaticky vyplňují údaje o transakci v Trinity.",
+        "deepLinkingWarning": "Dejte si pozor na podvody typu phishing. Ujistěte se, že odkaz který otevřete přejde na oficiální aplikaci Trinity.",
+        "deepLinkingUpdated": "Nastavení hlubokých odkazů",
+        "deepLinkingEnabled": "Povolili jste hluboké odkazy.",
+        "deepLinkingDisabled": "Zakázali jste hluboké odkazy.",
+        "deepLinkingInfoTitle": "Hluboké odkazy nejsou zapnuté",
+        "deepLinkingInfoMessage": "Otevřeli jste hluboký odkaz iota://, ale hluboké odkazy nejsou zapnuté."
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba při získávání aktualizačních dat",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Nejsou dostupné žádné aktualizace",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "Máte nainstalovanou nejnovější verzi Trinity!",
         "newVersionAvailable": "K dispozici je nová verze",
         "newVersionAvailableExplanation": "K dispozici je nová verze Trinity. Chcete nyní aktualizovat?",
         "installUpdate": "Nainstalujte aktualizaci a restartujte",
@@ -798,13 +826,16 @@
         "notReady": "Pokud si přejete použít zařízení Ledger, připojte je nyní a odemkněte",
         "indexInUse": "Tento index již používá účet {{account}}",
         "indexInUseExplanation": "Váš zvolený index je již používán na jednom z Vašich účtů. Vyberte si prosím jiné číslo indexu.",
-        "proceedWithLedger": "Pokračovat v nastavení zařízení Ledger",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Index účtu",
         "accountPage": "Stránka účtu",
         "actionCancelled": "Přístup k zařízení Ledger byl zrušen",
         "actionCancelledExplanation": "Akci nelze provést bez přístupu k zařízení Ledger.",
         "chooseAccountIndex": "Vyberte Index účtu ve Vašem Ledgeru",
-        "accountIndexExplanation": "Vaše zařízení Ledger může ukládat více Seedů. Každý Seed je označen jedinečným indexovým číslem. Nepoužitý index byl předem vybrán, ale můžete si zvolit vlastní. Ujistěte se, že jste si poznamenali zvolené číslo indexu.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Některé peněženky třetích stran vyžadují použití \"stron\".",
         "connectionError": "Nelze se připojit k Vašemu Ledgeru",
         "connectionErrorExplanation": "Zkontrolujte, zda je Váš Ledger připojen a odemknut.",
@@ -826,7 +857,11 @@
         "checkAddressExplanation": "Zkontrolujte, zda adresa odpovídá adrese zobrazené na Vašem zařízení Ledger.",
         "applicationNotInitialised": "Informační upozornění, nebylo přijato",
         "applicationNotInitialisedExplanation": "Znovu otevřete aplikaci IOTA na Vašem zařízení Ledger, přijměte informační upozornění a zkuste to znovu.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "udevError": "Nelze komunikovat se zařízením Ledger",
+        "udevErrorExplanation": "Trinity nemohla komunikovat s Vaším zařízením Ledger. Tento problém vyřešíte na adrese uvedené níže.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

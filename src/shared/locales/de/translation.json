@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Der Node hat einen Fehler gemeldet während deine Kontoinformationen abgerufen wurden. Verwende einen anderen Node oder deaktiviere die Verwendung der systemweiten Proxyeinstellungen falls das Problem weiterhin besteht.",
         "nodeOutOfSync": "Node nicht synchronisiert",
         "nodeOutOfSyncExplanation": "Dein gewählter Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es erneut.",
+        "nodeOutOfSyncByTimestampExplanation": "Der aktuell gewählte Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es später erneut und stelle sicher dass die Uhrzeit auf deinem Gerät korrekt ist.",
         "experimentalNode": "Node nicht verwendbar",
         "experimentalNodeExplanation": "Der gewählte Node verwendet eine experimentelle Software und kann daher nicht verwendet werden. Bitte verwende einen anderen Node.",
         "thisNodeOutOfSync": "Dieser Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es erneut.",
@@ -71,7 +72,7 @@
         "node": "Node",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
         "cannotPerformActionExplanation": "Öffne die erweiterten Einstellungen, um das Wallet zurückzusetzen.",
-        "attachToTangleUnavailable": "Proof of Work auf diesem Node nicht verfügbar",
+        "attachToTangleUnavailable": "Proof of Work ist auf diesem Node nicht verfügbar",
         "attachToTangleUnavailableExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Ändere den Node oder aktiviere lokales Proof of Work in den erweiterten Einstellungen.",
         "attachToTangleUnavailableExplanationShort": "Proof of Work ist auf dem gewählten Node nicht verfügbar.",
         "wallet": "Wallet",
@@ -87,22 +88,22 @@
         "bundleHash": "Bundle-Hash",
         "addresses": "Adressen",
         "reattach": "REATTACH",
-        "promote": "PROMOTEN",
+        "promote": "WIEDERHOLEN",
         "retry": "Wiederholen",
         "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden",
         "reattached": "Transaktion erneut angehangen",
         "reattachedExplanation": "Erneut angehangen mit Hash {{hash}}",
-        "promotingTransaction": "Transaktion wird promotet",
+        "promotingTransaction": "Transaktion wird wiederholt",
         "rebroadcastError": "Transaktion konnte nicht erneut übertragen werden",
-        "promoted": "Transaktion erfolgreich promoted",
-        "promotedExplanation": "Promoten der Transaktion {{hash}} erfolgreich",
-        "autopromotionError": "Die Transaktion konnte nicht promotet werden",
+        "promoted": "Transaktion erfolgreich wiederholt",
+        "promotedExplanation": "Wiederholen der Transaktion {{hash}} erfolgreich",
+        "autopromotionError": "Transaktion konnte nicht wiederholt werden",
         "autopromotionErrorExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Bitte ändere den Node und reaktiviere Auto-Promotion.",
-        "promotionError": "Die Transaktion konnte nicht promotet werden",
+        "promotionError": "Transaktion konnte nicht wiederholt werden",
         "promotionErrorExplanation": "Beim Senden der Transaktion ist ein Fehler aufgetreten. Bitte versuche es erneut.",
-        "noLongerValid": "Das Bundle, das du promoten möchtest, ist nicht mehr gültig",
+        "noLongerValid": "Das Bundle, das du wiederholen möchtest, ist nicht mehr gültig",
         "transactionAlreadyConfirmed": "Transaktion bereits bestätigt",
-        "transactionAlreadyConfirmedExplanation": "Die Transaktion, die Du versuchst zu promoten ist bereits bestätigt.",
+        "transactionAlreadyConfirmedExplanation": "Die Transaktion, die du versuchst zu wiederholen, ist bereits bestätigt.",
         "cannotSendToOwn": "Senden an Empfangsadresse",
         "cannotSendToOwnExplanation": "Du kannst nicht an diese Adresse senden, da sie als ausgehende Adresse verwendet wird.",
         "pleaseWait": "Bitte warten",
@@ -116,10 +117,12 @@
         "account": "Konto",
         "changeNode": "Node wechseln",
         "addCustomNode": "Benutzerdefinierten Node hinzufügen",
-        "nodeMustUseHTTPS": "Ungültiger Node (kein HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Benutzerdefinierte Nodes müssen HTTPS verwenden.",
+        "nodeMustUseHTTPS": "Ungültiger Node (fehlende Verschlüsselung)",
+        "nodeMustUseHTTPSExplanation": "Benutzerdefinierte Nodes müssen eine Verschlüsselung verwenden (HTTPS).",
         "nodeDuplicated": "Doppelter Node",
         "nodeDuplicatedExplanation": "Dieser Node ist bereits vorhanden.",
+        "customNodeAdded": "Benutzerdefinierter Node hinzugefügt",
+        "customNodeAddedExplanation": "Du hast {{nodeAddress}} als benutzerdefinierten Node hinzugefügt.",
         "nodeAutoChanged": "Node automatisch gewechselt",
         "nodeAutoChangedExplanation": "Auf Node {{- nodeAddress}} gewechselt, da der ausgewählte Node offline ist.",
         "touchSensor": "Berühre den Fingerabdrucksensor",
@@ -141,6 +144,8 @@
         "isYourBalanceCorrect": "Stimmt dein Guthaben?",
         "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
         "headToAdvancedSettingsForTransition": "Wechsle zu den erweiterten Einstellungen und führe eine Snapshot-Wiederherstellung aus.",
+        "headToAccountTools": "Öffne die Konto-Werkzeuge und führe die Snapshot-Wiederherstellung durch.",
+        "openAccountTools": "Öffne die Konto-Werkzeuge",
         "usingTrinityWalletWithKeePass": "Trinity Brieftasche mit Keepass2Android verwenden",
         "signedTrytesBroadcastErrorExplanation": "Während der Transkation ist ein Netzwerkfehler aufgetreten.",
         "broadcastError": "Transaktion konnte nicht gebroadcastet werden",
@@ -160,9 +165,13 @@
         "shouldUpdateExplanation": "Es wird empfohlen, dass du die neueste Version installierst.",
         "forceUpdate": "Aktualisiere Trinity um fortzufahren",
         "forceUpdateExplanation": "Ein kritisches Update wurde veröffentlicht. Bitte aktualisiere Trinity jetzt.",
+        "testVersionWarning": "Diese Version sollte nur für Testzwecke mit sehr geringem Kontostand verwendet werden.",
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
         "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen.",
-        "swipeToConfirm": "Wischen um zu bestätigen"
+        "swipeToConfirm": "Wischen um zu bestätigen",
+        "expert": "Experte",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -177,7 +186,7 @@
         "noNickname": "Kein Kontoname eingegeben",
         "noNicknameExplanation": "Bitte gib einen Kontonamen für deinen Seed ein.",
         "seedInUse": "Dieser Seed wird bereits verwendet",
-        "seedInUseExplanation": "Dieser Seed ist bereits mit deinem Wallet verknüpft. Bitte verwende einen anderen."
+        "seedInUseExplanation": "Dieser Seed ist bereits mit deinem Wallet verknüpft. Bitte verwende einen anderen Seed."
     },
     "changePassword": {
         "passwordUpdated": "Passwort aktualisiert",
@@ -275,7 +284,7 @@
     "onboardingComplete": {
         "allDone": "Alles erledigt!",
         "openYourWallet": "Dein Wallet öffnen",
-        "walletReady": "Dein Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen möchtest, verwende das Einstellungsmenü."
+        "walletReady": "Dein Wallet ist jetzt eingerichtet und bereit. Um Änderungen an deinem Wallet vorzunehmen, verwende das Einstellungsmenü."
     },
     "paperWallet": {
         "neverShare": "Teile niemals deinen Seed.",
@@ -376,7 +385,7 @@
         "advanced": "Erweitert",
         "standard": "Standard",
         "advancedModeExplanation": "Der erweiterte Modus zeigt detaillierte technische Informationen.",
-        "modesExplanation": "Aktiviere den Experten-Modus nur, wenn du ein erfahrener Tangle-Benutzer bist.",
+        "modesExplanation": "Aktiviere den erweiterten Modus nur, wenn du ein erfahrener Tangle-Benutzer bist.",
         "modeUpdated": "Modus aktualisiert",
         "modeUpdatedExplanation": "Du hast den Modus zu {{mode}} geändert"
     },
@@ -426,7 +435,6 @@
         "redo": "Wiederholen",
         "aboutTrinity": "Über Trinity",
         "lockScreenTimeout": "Sperrbildschirm Auszeit (Minuten)",
-        "autoNodeSwitching": "Node automatisch wechseln, falls der gewählte Node nicht erreichbar ist",
         "nodeChangeSuccess": "Node wurde erfolgreich geändert",
         "nodeChangeSuccessNoRemotePow": "Der Node wurde auf {{node}} geändert. Dieser Node Unterstützt keinen Proof of Work.",
         "nodeChangeSuccessExplanation": "Der Node wurde auf {{node}} geändert.",
@@ -469,8 +477,8 @@
         "empty": "Keine",
         "retrying": "Erneuter Versuch",
         "yesterday": "Gestern",
-        "promotingAnotherBundle": "Promote anderes Bundle",
-        "pleaseWait": "Bitte warten. Trinity promotet ein anderes Bundle.",
+        "promotingAnotherBundle": "Ein anderes Bundle wird gerade wiederholt",
+        "pleaseWait": "Bitte warte einen Moment. Trinity wiederholt derzeit ein anderes Bundle.",
         "typeHelp": "Gib !help ein, um eine Liste mit Befehlen angezeigt zu bekommen",
         "searchHelpText": "Suche anhand von Bundle-Hash oder Nachricht",
         "searchHelpValue": "Finde Transaktionen anhand vom exakten Iota-Wert",
@@ -484,7 +492,23 @@
         "editAccountName": "Kontoname ändern",
         "deleteAccount": "Konto löschen",
         "addNewAccount": "Konto hinzufügen",
-        "tools": "Tools"
+        "tools": "Werkzeuge"
+    },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatische Node-Verwaltung",
+        "addCustomNodes": "Benutzerdefinierte Nodes hinzufügen",
+        "autoNodeList": "Offizielle Node-Liste verwenden",
+        "nodeAutoswitching": "Automatisch primären Node wechseln",
+        "primaryNode": "Primärer Node",
+        "enableQuorum": "Node-Gruppe aktivieren",
+        "quorumSize": "Anzahl der Nodes in der Node-Gruppe",
+        "noCustomNodes": "Keine benutzerdefinierten Nodes vorhanden",
+        "mustAddCustomNodes": "Du musst mindestens einen benutzerdefinierten Node hinzugefügt haben, bevor du die offizielle Node-Liste deaktivieren kannst.",
+        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesExplanation": "Es sind nicht genug Nodes vorhanden um die Node-Gruppe zu aktivieren.",
+        "nodeEnoughNodesExplanationCustomNodes": "Füge weitere benutzerdefinierte Nodes hinzu oder verwende die offizielle Node-Liste.",
+        "nodeSettingsUpdatedTitle": "Node-Einstellungen aktualisiert",
+        "nodeSettingsUpdatedExplanation": "Die Node-Einstellungen wurden erfolgreich gespeichert."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Benutzerdefinierter Node konnte nicht hinzugefügt werden",
@@ -493,8 +517,12 @@
         "invalidNodeResponse": "Der Node hat eine ungültige Antwort zurückgegeben",
         "add": "Hinzufügen",
         "nodeFieldEmpty": "Textfeld ist leer",
-        "nodeFieldEmptyExplanation": "Bitte einen benutzerdefinierten Node hinzufügen.",
-        "invalidURL": "Bitte gib eine gültige Adresse ein."
+        "nodeFieldEmptyExplanation": "Trage die Adresse eines Nodes in das Textfeld ein.",
+        "invalidURL": "Bitte gib eine gültige Adresse ein.",
+        "addAuthKey": "Authentifizierung hinzufügen",
+        "username": "Benutzername",
+        "couldNotRemove": "Konnte benutzerdefinierten Node nicht entfernen",
+        "couldNotRemoveExplanation": "Für die Node-Gruppe müssen genug Nodes vorhanden sein. Du kannst die Anzahl der Nodes in der Node-Gruppe verringern oder die Verwendung der offiziellen Node-Liste aktivieren."
     },
     "addNewAccount": {
         "useExistingSeed": "Vorhandenen Seed verwenden",
@@ -502,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Node auswählen",
-        "addCustomNode": "Benutzerdefinierten Node hinzufügen",
         "manualSync": "Manuell synchronisieren",
         "snapshotTransition": "Snapshot-Wiederherstellung",
         "pow": "Proof of Work",
@@ -554,7 +581,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Warum kann ich nicht mein gesamtes Guthaben ausgeben?",
-        "spentAddressExplanation": "Du hast Guthaben auf einer oder mehreren bereits verwendeten Adressen. Adress-Wiederverwendung ist bei IOTA gefährlich. Daher lässt es die Wallet nicht zu, mehr als einmal von der gleichen Adresse zu senden.",
+        "spentAddressExplanation": "Du hast Guthaben auf einer oder mehreren bereits verwendeten Adressen. Die Wiederverwendung von Adressen ist bei IOTA gefährlich. Daher lässt es die Wallet nicht zu, mehr als einmal von der gleichen Adresse zu senden.",
         "discordInformation": "Bitte besuche den #help Kanal auf Discord um herauszufinden, was du tun kannst."
     },
     "deleteAccount": {
@@ -732,8 +759,9 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",
+        "errorRetrievingUpdateDataExplanation": "Das Update konnte nicht heruntergeladen werden. Überprüfe deine Internetverbindung und versuche es erneut.",
         "noUpdatesAvailable": "Keine Updates verfügbar",
-        "noUpdatesAvailableExplanation": "Du hast bereits die neueste Version von Trinity Desktop installiert.",
+        "noUpdatesAvailableExplanation": "Du hast die aktuelle Version von Trinity installiert!",
         "newVersionAvailable": "Neue Version verfügbar",
         "newVersionAvailableExplanation": "Eine neue Trinity Version ist verfügbar. Möchtest du das Update jetzt durchführen?",
         "installUpdate": "Update installieren und Trinity neu starten",
@@ -777,7 +805,7 @@
     },
     "bytetrit": {
         "sweepSucceeded": "Guthaben erfolgreich entsperrt",
-        "sweepSucceededExplanation": "Dein Guthaben wurde erfolgreich entsperrt und auf eine neue Adresse verschoben. Promote die Transaktion um sie bei der Bestätigung zu unterstützen.",
+        "sweepSucceededExplanation": "Dein Guthaben wurde erfolgreich entsperrt und auf eine neue Adresse verschoben. Um die Bestätigung der Transaktion zu beschleunigen, kannst du die Transaktion wiederholen.",
         "sweepError": "Fehler beim Entsperren des Guthabens",
         "sweepErrorExplanation": "Beim Entsperren deines Guthabens ist ein Fehler aufgetreten. Es wird erneut versucht.",
         "warningTitle": "Warnung: Gesperrtes Guthaben erkannt",
@@ -795,17 +823,20 @@
     },
     "ledger": {
         "ready": "Ledger verbunden und bereit",
-        "notReady": "Wenn du einen Ledger verwenden möchtest verbinde und entsperre das Gerät jetzt",
+        "notReady": "Wenn du einen Ledger verwenden möchtest, verbinde und entsperre das Gerät jetzt.",
         "indexInUse": "Dieser Index wird bereits für das Konto {{account}} verwendet",
         "indexInUseExplanation": "Der gewählte Index ist bereits in Verwendung. Bitte wähle einen anderen Index.",
-        "proceedWithLedger": "Mit der Einrichtung von Ledger fortfahren",
+        "createNewLedgerAccountInfo": "Stellen Sie sicher, dass du deinen Index korrekt notiert hast.",
+        "restoreLedgerAccountInfo": "Gib den Index ein, um dein Konto wiederherzustellen.",
+        "createNewLedgerAccount": "Neues Ledger-Konto erstellen",
+        "restoreLedgerAccount": "Ledger-Konto wiederherstellen",
         "accountIndex": "Konto Index",
         "accountPage": "Konto Seite",
         "actionCancelled": "Ledger-Gerätezugriff abgebrochen",
         "actionCancelledExplanation": "Ohne den Zugriff auf deinen Ledger kann der Vorgang nicht ausgeführt werden.",
         "chooseAccountIndex": "Wähle deinen Ledger Konto Index",
-        "accountIndexExplanation": "Dein Ledger kann mehrere Seeds speichern. Jeder Seed wird durch einen eindeutigen Index identifiziert. Ein ungenutzter Index wurde bereits ausgewählt aber wenn du möchtest kannst du Diesen ändern. Stelle sicher, dass du deinen Index notierst.",
-        "accountPageExplanation": "Einige Drittanbieter Wallets benötigen Seiten.",
+        "accountIndexExplanation": "Dein Ledger kann mehrere Seeds verwalten. Jeder Seed wird anhand eines eindeutigen Index identifiziert.",
+        "accountPageExplanation": "Einige Drittanbieter-Wallets benötigen Seiten.",
         "connectionError": "Verbindung zu Ledger nicht möglich",
         "connectionErrorExplanation": "Prüfe, ob dein Ledger verbunden und entsperrt ist.",
         "connectionTitle": "Verbinde deinen Ledger",
@@ -826,7 +857,11 @@
         "checkAddressExplanation": "Stelle sicher dass die hier angezeigte Adresse mit der Anzeige auf deinem Ledger übereinstimmt.",
         "applicationNotInitialised": "Unbestätigte Warnung",
         "applicationNotInitialisedExplanation": "Öffne die IOTA-App auf deinem Ledger, akzeptiere die Hinweise und versuche es erneut.",
+        "checkLedger": "Überprüfe deinen Ledger",
+        "acceptWarningExplanation": "Falls auf deinem Ledger eine Hinweismeldung erscheint, blättere durch die Meldung und bestätige sie.",
         "udevError": "Kommunikation mit Ledger fehlgeschlagen",
-        "udevErrorExplanation": "Trinity konnte nicht mit deinem Ledger kommunizieren. Bitte besuche folgende Website um das Problem zu beheben."
+        "udevErrorExplanation": "Trinity konnte nicht mit deinem Ledger kommunizieren. Bitte besuche folgende Website um das Problem zu beheben.",
+        "writtenDownInfoTitle": "Index notieren",
+        "writtenDownInfoExplanation": "Du benötigst deine Indexnummer, um dein Konto in Zukunft wiederherstellen zu können. Wenn du deine Indexnummer verlierst, sind auch deine IOTA verloren. Bitte notiere deinen Index."
     }
 }

@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import { manuallySyncAccount } from 'actions/accounts';
 
@@ -49,6 +49,8 @@ class Tools extends PureComponent {
         /** @ignore */
         generateAddressesAndGetBalance: PropTypes.func.isRequired,
         /** @ignore */
+        setWalletBusy: PropTypes.func.isRequired,
+        /** @ignore */
         transitionForSnapshot: PropTypes.func.isRequired,
         /** @ignore */
         activeStepIndex: PropTypes.number.isRequired,
@@ -73,9 +75,9 @@ class Tools extends PureComponent {
         const { wallet, ui } = this.props;
 
         if (
-            prevProps.isTransitioning === ui.isTransitioning &&
-            prevProps.isAttachingToTangle === ui.isAttachingToTangle &&
-            prevProps.balanceCheckFlag === wallet.balanceCheckFlag &&
+            prevProps.ui.isTransitioning === ui.isTransitioning &&
+            prevProps.ui.isAttachingToTangle === ui.isAttachingToTangle &&
+            prevProps.wallet.balanceCheckFlag === wallet.balanceCheckFlag &&
             prevProps.ui.isSyncing === ui.isSyncing
         ) {
             return;
@@ -83,7 +85,9 @@ class Tools extends PureComponent {
 
         if (ui.isSyncing || ui.isTransitioning || ui.isAttachingToTangle || wallet.balanceCheckFlag) {
             Electron.updateMenu('enabled', false);
+            this.props.setWalletBusy(true);
         } else {
+            this.props.setWalletBusy(false);
             Electron.updateMenu('enabled', true);
             Electron.garbageCollect();
         }
@@ -112,7 +116,7 @@ class Tools extends PureComponent {
 
         const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
-        this.props.transitionForSnapshot(seedStore, addresses);
+        this.props.transitionForSnapshot(seedStore, addresses, meta.type);
     };
 
     /**
@@ -142,7 +146,7 @@ class Tools extends PureComponent {
 
         const currentIndex = wallet.transitionAddresses.length;
 
-        this.props.generateAddressesAndGetBalance(seedStore, currentIndex);
+        this.props.generateAddressesAndGetBalance(seedStore, currentIndex, accountName);
     };
 
     render() {
@@ -252,4 +256,7 @@ const mapDispatchToProps = {
     setBalanceCheckFlag,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Tools));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(Tools));

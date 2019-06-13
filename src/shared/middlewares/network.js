@@ -1,9 +1,8 @@
-import { ActionTypes } from '../actions/wallet';
-import { ActionTypes as AlertsActionTypes } from '../actions/alerts';
+import { WalletActionTypes, AlertsActionTypes } from '../types';
 import i18next from '../libs/i18next.js';
 
 const networkMiddleware = (store) => (next) => (action) => {
-    if (action.type === ActionTypes.CONNECTION_CHANGED && !action.payload.isConnected) {
+    if (action.type === WalletActionTypes.CONNECTION_CHANGED && !action.payload.isConnected) {
         next({
             type: AlertsActionTypes.SHOW,
             category: 'error',
@@ -14,7 +13,7 @@ const networkMiddleware = (store) => (next) => (action) => {
         next(action);
     } else if (
         !store.getState().wallet.hasConnection &&
-        action.type === ActionTypes.CONNECTION_CHANGED &&
+        action.type === WalletActionTypes.CONNECTION_CHANGED &&
         action.payload.isConnected
     ) {
         next(action);

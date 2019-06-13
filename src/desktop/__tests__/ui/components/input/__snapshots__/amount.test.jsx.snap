@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Amount input component Render the component 1`] = `
+<div
+  className="input"
+>
+  <fieldset>
+    <a>
+      <strong>
+        Mi
+        <Icon
+          icon="chevronDown"
+          size={8}
+        />
+        <ul
+          className="dropdown"
+        >
+          <li
+            className={null}
+            key="i"
+            onClick={[Function]}
+          >
+            i
+          </li>
+          <li
+            className={null}
+            key="Ki"
+            onClick={[Function]}
+          >
+            Ki
+          </li>
+          <li
+            className="selected"
+            key="Mi"
+            onClick={[Function]}
+          >
+            Mi
+          </li>
+          <li
+            className={null}
+            key="Gi"
+            onClick={[Function]}
+          >
+            Gi
+          </li>
+          <li
+            className={null}
+            key="Ti"
+            onClick={[Function]}
+          >
+            Ti
+          </li>
+          <li
+            className={null}
+            key="$"
+            onClick={[Function]}
+          >
+            $
+          </li>
+        </ul>
+      </strong>
+      <p>
+        =
+         
+        $ 1.50
+      </p>
+    </a>
+    <input
+      onChange={[Function]}
+      type="text"
+      value={1.5}
+    />
+    <small>
+      Foo
+    </small>
+  </fieldset>
+  <a
+    className="checkbox off"
+    onClick={[Function]}
+  >
+    Bar
+  </a>
+</div>
+`;

@@ -7,11 +7,11 @@ import SeedStoreCore from './SeedStoreCore';
 class Ledger extends SeedStoreCore {
     /**
      * Init the vault
-     * @param {array} key - Account decryption key (unused)
-     * @param {string} accountId - Account identifier (unused)
+     * @param {array} _key - Account decryption key (unused)
+     * @param {string} _accountId - Account identifier (unused)
      * @param {object} accountMeta -  Account meta data
      */
-    constructor(key, accountId, accountMeta) {
+    constructor(_key, _accountId, accountMeta) {
         super();
 
         if (accountMeta && typeof accountMeta.index === 'number') {
@@ -117,11 +117,11 @@ class Ledger extends SeedStoreCore {
     /**
      * Prepare transfers
      */
-    prepareTransfers = async (transfers, options = null) => {
+    prepareTransfers = (settings) => async (transfers, options = null) => {
         try {
             // If sending a 0 value transaction, use iota.lib.js
             if (options === null) {
-                return prepareTransfersAsync()(transfers[0].address, transfers);
+                return prepareTransfersAsync(settings)(transfers[0].address, transfers);
             }
 
             const seed = await this.getSeed();
