@@ -63,7 +63,7 @@ export class AboutComponent extends React.PureComponent {
                             <ul>
                                 <li>
                                     <li>Fix: Wallet does not work on Windows when username has special characters</li>
-                                    <li>Fix: Do not perform quorum when it's explicitly turned off</li>
+                                    <li>Fix: Do not perform quorum when explicitly turned off</li>
                                 </li>
                             </ul>
                             <h5>0.6.0-RC2</h5>
