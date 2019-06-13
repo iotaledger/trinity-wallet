@@ -115,8 +115,7 @@
           "y": 250,
           "type": "file"
         }
-      ],
-      "sign": false
+      ]
     },
     "nsis": {
       "deleteAppDataOnUninstall": true
