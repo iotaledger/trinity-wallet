@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "concurrently --kill-others \"npm run devserver\" \"cross-env NODE_ENV=development electron -r @babel/register native/Index.js\"",
-    "postinstall": "node scripts/win-realm-patch.js && patch-package && electron-builder install-app-deps",
+    "postinstall": "patch-package && electron-builder install-app-deps",
     "devserver": "node scripts/webpackServer.js",
     "build": "rimraf dist && npm run build-main && npm run build-app",
     "build-main": "./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config/config.main.js",
