@@ -169,7 +169,9 @@
         "missingPermission": "파일 시스템 권한 필요",
         "missingPermissionExplanation": "이 기능을 사용하기 위해 파일 시스템 권한이 필요합니다.",
         "swipeToConfirm": "밀어서 확인",
-        "expert": "전문가"
+        "expert": "전문가",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -502,7 +504,7 @@
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "노드 선택",
-        "addCustomNode": "커스텀 노드 추가",
         "manualSync": "수동 동기화",
         "snapshotTransition": "스냅샷 이전",
         "pow": "작업증명",

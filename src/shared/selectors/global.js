@@ -1,5 +1,5 @@
 import assign from 'lodash/assign';
-import get from 'lodash/get';
+import has from 'lodash/has';
 import filter from 'lodash/filter';
 import { createSelector } from 'reselect';
 import Themes from '../themes/themes';
@@ -197,14 +197,19 @@ export const nodesConfigurationFactory = (overrides) =>
                 autoNodeList: state.autoNodeList,
             };
 
-            const quorumOverride = get(overrides, 'quorum');
-            const remoteNodesOverride = get(overrides, 'useOnlyPowNodes');
+            const shouldOverrideQuorumConfig = has(overrides, 'quorum');
+            const shouldUseOnlyPowNodes = has(overrides, 'useOnlyPowNodes');
 
-            if (quorumOverride) {
-                config.quorum = assign({}, config.quorum, { enabled: quorumOverride });
+            if (
+                shouldOverrideQuorumConfig &&
+                // Only allow quorum override if user has explicitly turned on quorum (or if it is turned off as default)
+                // If a user has disabled quorum, then no quorum should be executed at any place in the application
+                config.quorum.enabled === true
+            ) {
+                config.quorum = assign({}, config.quorum, { enabled: overrides.quorum });
             }
 
-            if (remoteNodesOverride) {
+            if (shouldUseOnlyPowNodes) {
                 config.nodes = filter(config.nodes, (node) => node.pow === true);
             }
 
