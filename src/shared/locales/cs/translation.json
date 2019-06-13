@@ -858,10 +858,10 @@
         "applicationNotInitialised": "Informační upozornění, nebylo přijato",
         "applicationNotInitialisedExplanation": "Znovu otevřete aplikaci IOTA na Vašem zařízení Ledger, přijměte informační upozornění a zkuste to znovu.",
         "checkLedger": "Zkontrolujte Váš Ledger",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "acceptWarningExplanation": "V případě, že se na Vašem Ledger zařízení objeví informační upozornění, je nutné ho zobrazit a akceptovat prostřednictvím stisknutí obou tlačítek.",
         "udevError": "Nelze komunikovat se zařízením Ledger",
         "udevErrorExplanation": "Trinity nemohla komunikovat s Vaším zařízením Ledger. Tento problém vyřešíte na adrese uvedené níže.",
-        "writtenDownInfoTitle": "Remember your index number",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "writtenDownInfoTitle": "Zapamatujte si číslo Vašeho indexu",
+        "writtenDownInfoExplanation": "Číslo Vašeho indexu je důležité při případné potřebě obnovení vašeho účtu v budoucnosti. V případě ztráty tohoto čísla, přijdete o Vaší IOTU. Prosím zapište si ho."
     }
 }
