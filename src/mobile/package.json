@@ -86,7 +86,7 @@
     "react-native-view-shot": "git+https://github.com/cvarley100/react-native-view-shot#master",
     "react-redux": "^5.0.6",
     "readable-stream": "^1.0.33",
-    "realm": "^2.26.1",
+    "realm": "^2.21.0",
     "redux": "^3.7.2",
     "rn-fetch-blob": "https://github.com/rajivshah3/rn-fetch-blob#10.13-226",
     "shared-modules": "../shared/",
@@ -99,7 +99,8 @@
     "tweetnacl-util": "^0.15.0",
     "util": "^0.10.3",
     "victory-native": "^30.3.0",
-    "vm-browserify": "0.0.4"
+    "vm-browserify": "0.0.4",
+    "@tradle/react-native-http": "^2.0.0"
   },
   "devDependencies": {
     "babel-jest": "24.0.0",
