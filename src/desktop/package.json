@@ -1,7 +1,7 @@
 {
   "name": "trinity-desktop",
   "productName": "Trinity",
-  "version": "0.6.0-RC2",
+  "version": "0.6.0-RC3",
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
   "description": "Desktop wallet for IOTA",
@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "concurrently --kill-others \"npm run devserver\" \"cross-env NODE_ENV=development electron -r @babel/register native/Index.js\"",
-    "postinstall": "electron-builder install-app-deps",
+    "postinstall": "node scripts/win-realm-patch.js && patch-package && electron-builder install-app-deps",
     "devserver": "node scripts/webpackServer.js",
     "build": "rimraf dist && npm run build-main && npm run build-app",
     "build-main": "./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config/config.main.js",
@@ -43,11 +43,12 @@
     "bugsnag-build-reporter": "1.0.2",
     "concurrently": "4.1.0",
     "cross-env": "5.2.0",
-    "css-loader": "2.1.1",
+    "css-loader": "3.0.0",
     "dart-sass": "1.21.0",
-    "electron": "4.2.3",
+    "electron": "4.2.4",
     "electron-builder": "20.43.0",
     "electron-devtools-installer": "2.2.4",
+    "electron-notarize": "0.1.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",
@@ -57,6 +58,7 @@
     "jest": "^24.8.0",
     "jest-image-snapshot": "^2.8.2",
     "mini-css-extract-plugin": "0.7.0",
+    "patch-package": "6.1.2",
     "puppeteer": "1.17.0",
     "react-dev-utils": "9.0.1",
     "regenerator-runtime": "^0.13.2",
@@ -64,8 +66,8 @@
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
     "url-loader": "2.0.0",
-    "webpack": "4.33.0",
-    "webpack-cli": "3.3.3",
+    "webpack": "4.34.0",
+    "webpack-cli": "3.3.4",
     "webpack-dev-middleware": "3.7.0",
     "webpack-hot-middleware": "2.25.0"
   },
@@ -120,7 +122,8 @@
     },
     "win": {
       "publisherName": "IOTA Stiftung",
-      "target": "nsis"
+      "target": "nsis",
+      "timeStampServer": "http://timestamp.digicert.com"
     },
     "linux": {
       "target": [
@@ -137,7 +140,11 @@
       "target": [
         "dmg",
         "zip"
-      ]
+      ],
+      "entitlements": "./entitlements.mac.plist",
+      "entitlementsInherit": "./entitlements.mac.plist",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false
     },
     "publish": {
       "provider": "generic",
@@ -173,7 +180,7 @@
     "react-qr-reader": "2.2.1",
     "react-redux": "5.1.1",
     "react-router-dom": "5.0.1",
-    "react-transition-group": "4.1.0",
+    "react-transition-group": "4.1.1",
     "realm": "2.23.0",
     "recharts": "1.6.2",
     "redux": "4.0.1",

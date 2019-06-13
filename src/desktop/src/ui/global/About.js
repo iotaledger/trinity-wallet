@@ -59,6 +59,13 @@ export class AboutComponent extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.6.0-RC3</h5>
+                            <ul>
+                                <li>
+                                    <li>Fix: Wallet does not work on Windows when username has special characters</li>
+                                    <li>Fix: Do not perform quorum when explicitly turned off</li>
+                                </li>
+                            </ul>
                             <h5>0.6.0-RC2</h5>
                             <ul>
                                 <li>

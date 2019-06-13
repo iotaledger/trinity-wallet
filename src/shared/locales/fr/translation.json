@@ -169,7 +169,9 @@
         "missingPermission": "Autorisation de système de fichiers requise",
         "missingPermissionExplanation": "L'accès au système de fichiers est nécessaire afin de réaliser cette action.",
         "swipeToConfirm": "Balayer pour confirmer",
-        "expert": "Expert"
+        "expert": "Expert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -502,7 +504,7 @@
         "quorumSize": "Taille du Quorum",
         "noCustomNodes": "Aucun serveur personnalisé",
         "mustAddCustomNodes": "Vous devez ajouter au moins un serveur personnalisé avant de désactiver la liste des serveurs distants.",
-        "nodeEnoughNodesTitle": "Pas assez de serveurs ajoutés",
+        "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "Il n'y a pas assez de serveurs pour activer le mécanisme de quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Ajoutez plus de serveurs personnalisés ou activez la liste des serveurs distants.",
         "nodeSettingsUpdatedTitle": "Paramètres de serveur mis à jour",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Sélectionner un serveur",
-        "addCustomNode": "Ajouter un serveur personnalisé",
         "manualSync": "Synchro manuelle",
         "snapshotTransition": "Transition du Snapshot",
         "pow": "Preuve de Travail",
