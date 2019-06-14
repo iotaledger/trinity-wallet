@@ -180,6 +180,7 @@ export default function withSendData(SendComponent) {
                 marketData,
                 wallet,
                 ui,
+                themeName,
                 theme,
                 t,
                 setSendAddressField,
@@ -227,6 +228,7 @@ export default function withSendData(SendComponent) {
                 balance,
                 availableBalance,
                 theme,
+                themeName,
                 t,
             };
 
