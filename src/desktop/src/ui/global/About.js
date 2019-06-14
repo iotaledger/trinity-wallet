@@ -69,8 +69,11 @@ export class AboutComponent extends React.PureComponent {
                                     <li>Update: Auto update functionality improvements</li>
                                     <li>Update: Add various wallet initialisation error explanations</li>
                                     <li>Fix: Do not perform quorum when it is explicitly turned off</li>
+                                    <li>Update: Enable Hardened Runtime on MacOS</li>
                                     <li>Fix: Wallet language resets to English</li>
                                     <li>Fix: Windows installation should remove appData on uninstall</li>
+                                    <li>Fix: Allow changing install directory</li>
+                                    <li>Update: New translations</li>
                                 </li>
                             </ul>
                             <h5>0.5.2</h5>
