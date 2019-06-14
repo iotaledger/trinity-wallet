@@ -137,6 +137,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
 )(withTranslation()(SeedIntro));
