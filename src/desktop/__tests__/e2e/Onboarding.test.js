@@ -6,6 +6,10 @@ describe('Trinity desktop end-to-end', () => {
         await page.waitForSelector('#to-seed-intro');
         await page.click('#to-seed-intro');
 
+        // Language selection
+        await page.waitForSelector('#to-seed-intro');
+        await page.click('#to-seed-intro');
+
         // Seed intro
         await page.waitForSelector('#to-seed-verify');
         await page.click('#to-seed-verify');
@@ -46,6 +50,10 @@ describe('Trinity desktop end-to-end', () => {
         const page = await global.__getBrowserPage('onboarding', false);
 
         // Welcome
+        await page.waitForSelector('#to-seed-intro');
+        await page.click('#to-seed-intro');
+
+        // Language selection
         await page.waitForSelector('#to-seed-intro');
         await page.click('#to-seed-intro');
 
