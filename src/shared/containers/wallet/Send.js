@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
 import { generateAlert } from '../../actions/alerts';
-
-import { setDeepLinkInactive } from '../../actions/wallet';
+import { completeDeepLinkRequest } from '../../actions/wallet';
 import { makeTransaction } from '../../actions/transfers';
 import { setSendAddressField, setSendAmountField, setSendMessageField } from '../../actions/ui';
 import { reset as resetProgress, startTrackingProgress } from '../../actions/progress';
@@ -41,12 +40,12 @@ export default function withSendData(SendComponent) {
             makeTransaction: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
             t: PropTypes.func.isRequired,
-            setDeepLinkInactive: PropTypes.func.isRequired,
-            deepLinkActive: PropTypes.bool.isRequired,
             setSendAddressField: PropTypes.func.isRequired,
             setSendAmountField: PropTypes.func.isRequired,
             setSendMessageField: PropTypes.func.isRequired,
+            deepLinkRequestActive: PropTypes.bool.isRequired,
             startTrackingProgress: PropTypes.func.isRequired,
+            completeDeepLinkRequest: PropTypes.func.isRequired,
             resetProgress: PropTypes.func.isRequired,
         };
 
@@ -92,13 +91,13 @@ export default function withSendData(SendComponent) {
         }
 
         checkDeepLink = (props) => {
-            if (props.deepLinkActive) {
+            if (props.deepLinkRequestActive) {
                 this.props.generateAlert(
                     'success',
                     this.props.t('deepLink:autofill'),
                     this.props.t('deepLink:autofillExplanation'),
                 );
-                this.props.setDeepLinkInactive();
+                this.props.completeDeepLinkRequest();
             }
         };
 
@@ -248,13 +247,13 @@ export default function withSendData(SendComponent) {
         theme: getThemeFromState(state),
         progress: state.progress,
         ui: state.ui,
-        deepLinkActive: state.wallet.deepLinkActive,
+        deepLinkRequestActive: state.wallet.deepLinkRequestActive,
     });
 
     const mapDispatchToProps = {
+        completeDeepLinkRequest,
         generateAlert,
         makeTransaction,
-        setDeepLinkInactive,
         setSendAddressField,
         setSendAmountField,
         setSendMessageField,

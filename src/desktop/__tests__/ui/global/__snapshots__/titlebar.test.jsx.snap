@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Titlebar component Render the component 1`] = `
+<div
+  className="titlebar"
+>
+  <nav
+    className="windows"
+  >
+    <a
+      className="light"
+      onClick={[Function]}
+    >
+      <svg
+        height="15"
+        viewBox="0 0 15 15"
+        width="15"
+      >
+        <path
+          d="M0 1h15v1h-15z"
+          fill="#000"
+        />
+        <path
+          d="M0 7h15v1h-15z"
+          fill="#000"
+        />
+        <path
+          d="M0 13h15v1h-15z"
+          fill="#000"
+        />
+      </svg>
+    </a>
+    <a
+      onClick={[Function]}
+    >
+      <svg
+        height="15"
+        viewBox="0 0 15 15"
+        width="15"
+      >
+        <path
+          d="M0 12h15v1h-15z"
+          fill="#000"
+        />
+      </svg>
+    </a>
+    <a
+      onClick={[Function]}
+    >
+      <svg
+        height="15"
+        viewBox="0 0 15 15"
+        width="15"
+      >
+        <path
+          d="M1 1v13h13v-13h-13zm-1-1h15v15h-15v-15z"
+        />
+      </svg>
+    </a>
+    <a
+      onClick={[Function]}
+    >
+      <svg
+        height="15"
+        viewBox="0 0 15 15"
+        width="15"
+      >
+        <path
+          d="M7.425 6.718l6.718-6.718.707.707-6.718 6.718 6.718 6.718-.707.707-6.718-6.718-6.718 6.718-.707-.707 6.718-6.718-6.718-6.718.707-.707 6.718 6.718z"
+        />
+      </svg>
+    </a>
+  </nav>
+</div>
+`;

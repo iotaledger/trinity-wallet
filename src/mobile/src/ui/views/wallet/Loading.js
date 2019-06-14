@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     animationLoading: {
         justifyContent: 'center',
         width: width * 1.5,
-        height: width / 1.77 * 1.5,
+        height: (width / 1.77) * 1.5,
     },
     animationNewSeed: {
         justifyContent: 'center',
@@ -163,9 +163,9 @@ class Loading extends Component {
         } else {
             timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 15000);
         }
-        this.props.setSetting('mainSettings');
         this.getWalletData();
         if (!deepLinkRequestActive) {
+            this.props.setSetting('mainSettings');
             this.props.changeHomeScreenRoute('balance');
         }
         if (addingAdditionalAccount) {
@@ -217,7 +217,7 @@ class Loading extends Component {
     }
 
     onChangeNodePress() {
-        this.props.setLoginRoute('nodeSelection');
+        this.props.setLoginRoute('nodeSettings');
         this.redirectToLogin();
     }
 
@@ -276,7 +276,11 @@ class Loading extends Component {
     }
 
     render() {
-        const { t, theme: { body, primary }, isThemeDark } = this.props;
+        const {
+            t,
+            theme: { body, primary },
+            isThemeDark,
+        } = this.props;
         const textColor = { color: body.color };
         const loadingAnimationPath = isThemeDark ? whiteLoadingAnimation : blackLoadingAnimation;
 
@@ -370,4 +374,9 @@ const mapDispatchToProps = {
     setLoginRoute,
 };
 
-export default withNamespaces(['loading', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Loading));
+export default withNamespaces(['loading', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Loading),
+);

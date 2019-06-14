@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Noden returnerede en fejl under hentning af dine kontooplysninger. Hvis problemet vedvarer, kan du prøve at skifte node eller deaktivere din systemproxy i Trinity Indstillinger.",
         "nodeOutOfSync": "Node er ude af synkronisering",
         "nodeOutOfSyncExplanation": "Din valgte node er ude af synkronisering. Skift node eller forsøg igen.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "Node-version uunderstøttet",
         "experimentalNodeExplanation": "Din aktuelt valgte node kører en eksperimentel version, som ikke understøttes. Skift derfor node eller forsøg igen.",
         "thisNodeOutOfSync": "Denne node er ude af synkronisering. Skift node eller forsøg igen.",
@@ -120,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Kun tilpassede noder, som benytter HTTPS er tilladt.",
         "nodeDuplicated": "Duplikeret node",
         "nodeDuplicatedExplanation": "Den tilpassede node er allerede opført.",
+        "customNodeAdded": "Brugerdefineret node tilføjet",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Auto-skiftet node",
         "nodeAutoChangedExplanation": "Skiftet til ny node {{- nodeAddress}} da den valgte node er offline.",
         "touchSensor": "Touch the fingerprint sensor",
@@ -141,6 +144,8 @@
         "isYourBalanceCorrect": "Er din saldo korrekt?",
         "ifYourBalanceIsNotCorrect": "Hvis din saldo ikke er korrekt, skyldes det muligvis, at din seed endnu ikke er blevet gendannet efter seneste snapshot.",
         "headToAdvancedSettingsForTransition": "Gå til avancerede indstillinger og udfør en Snapshot transition.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "Benytter Trinity Wallet med Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "En netværksfejl opstod under afsendelse af din transaktion.",
         "broadcastError": "Kunne ikke udsende transaktion",
@@ -160,9 +165,13 @@
         "shouldUpdateExplanation": "En ny opdatering er frigivet. Det anbefales at opdatere til den seneste version.",
         "forceUpdate": "Opdatér app'en for at fortsætte",
         "forceUpdateExplanation": "En kritisk opdatering er frigivet. Opdatér venligst app'en nu.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "Filsystemrettighed kræves",
         "missingPermissionExplanation": "Adgang til filsystemet er nødvendig for at udføre denne funktion.",
-        "swipeToConfirm": "Swipe to confirm"
+        "swipeToConfirm": "Swipe to confirm",
+        "expert": "Expert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøglen indeholder ugyldige tegn",
@@ -394,6 +403,7 @@
         "changePassword": "Skift adgangskode",
         "general": "Generelle indstillinger",
         "advanced": "Avancerede indstillinger",
+        "nodeSettings": "Node settings",
         "account": "Kontoindstillinger",
         "logout": "Log ud",
         "reset": "Nulstil tegnebog",
@@ -425,7 +435,6 @@
         "redo": "Gendan",
         "aboutTrinity": "Om Trinity",
         "lockScreenTimeout": "Skærmlås timeout (minutter)",
-        "autoNodeSwitching": "Skift automatisk node når den valgte node er utilgængelig",
         "nodeChangeSuccess": "Node ændret",
         "nodeChangeSuccessNoRemotePow": "Noden blev ændret til {{node}}. Denne node understøtter ikke ekstern netværksvalidering.",
         "nodeChangeSuccessExplanation": "Noden blev ændret til {{node}}.",
@@ -455,7 +464,8 @@
     },
     "history": {
         "bundleHashCopied": "Bundt-hash kopieret",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "Ingen transaktioner fundet",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Skjul nulsaldo",
         "bundleHashCopiedExplanation": "Den gruppérede hash er blevet kopiret til udklipsholderen.",
         "addressCopied": "Adresse kopieret",
@@ -468,7 +478,13 @@
         "retrying": "Forsøger igen",
         "yesterday": "I går",
         "promotingAnotherBundle": "Promovering en anden pakke",
-        "pleaseWait": "Vent venligst, Trinity promoverer en anden pakke."
+        "pleaseWait": "Vent venligst, Trinity promoverer en anden pakke.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "Se hovednøgle",
@@ -478,6 +494,22 @@
         "addNewAccount": "Tilføj ny konto",
         "tools": "Værktøjer"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Brugerdefineret node kunne ikke tilføjes",
         "customNode": "Brugerdefinerede node",
@@ -486,7 +518,11 @@
         "add": "Tilføj",
         "nodeFieldEmpty": "Tekstfeltet er tomt",
         "nodeFieldEmptyExplanation": "Angiv venligst en brugerdefineret node.",
-        "invalidURL": "Angiv en gyldig URL."
+        "invalidURL": "Angiv en gyldig URL.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "Brug eksisterende hovednøgle",
@@ -494,14 +530,14 @@
     },
     "advancedSettings": {
         "selectNode": "Vælg node",
-        "addCustomNode": "Tilføj tilpasset node",
         "manualSync": "Manuel synkronisering",
         "snapshotTransition": "Snapshot synkronisering",
         "pow": "Netværksvalidering",
         "autoPromotion": "Auto-promovering",
         "autoPromotionExplanation": "Auto-promovering hjælper med at bekræfte dine transaktioner på netværket. Aktivér denne indstilling, hvis du oplever problemer med at få dine transaktioner bekræftet.",
         "autoPromotionPoW": "Auto-promovering er kun muligt på noder, som understøtter ekstern netværksgodkendelse.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Baggrund",
@@ -572,6 +608,7 @@
         "viewSeed": "Se hovednøgle",
         "hideSeed": "Skjul hovednøgle",
         "notAvailable": "Hovednøgleeksport er ikke tilgængelig for {{accountType}}-kontotypen",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Dit hovedkontoindeks",
         "accountPage": "Din hovedkontoside"
     },
@@ -601,7 +638,7 @@
         "fingerprintUnavailableExplanation": "Din enhed understøtter ikke biometrisk godkendelse, eller også er dette ikke konfigureret under indstillingerne på din enhed.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Tryk på knappen nedenfor for at deaktivere godkendelse med fingeraftryk.",
         "buttonInstructionsEnable": "Tryk på knappen nedenfor for at aktivere godkendelse med fingeraftryk.",
         "buttonInstructionsDisableIPhoneX": "Tryk på knappen herunder for at deaktivere ansigtsgenkendelse",
         "buttonInstructionsEnableIPhoneX": "Tryk på knappen herunder for at aktivere ansigtsgenkendelse",
@@ -642,9 +679,16 @@
         "noSeedFoundExplanation": "SeedVault er enten tom eller indeholder en hovednøgle i et ugyldigt format.",
         "seedFileError": "Kunne ikke åbne SeedVault",
         "seedFileErrorExplanation": "Der var problemer med at åbne af SeedVault. Har du valgt den korrekte fil, kan denne være beskadiget.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Først skal din SeedVault sikres. Vælg en nøgle til at kryptere filen. Du vil skulle benytte denne nøgle for at genoprette din hovednøgle fra SeedVault-sikkerhedskopien.",
         "retypeKey": "Angiv nøgle igen",
-        "key": "Key"
+        "key": "Nøgle"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
@@ -709,12 +753,15 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fejl under indhentning af opdateringsdata",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Ingen tilgængelige opdateringer",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Ny version tilgængelig",
         "newVersionAvailableExplanation": "En ny Trinity-version er tilgængelig. Vil du opdatere nu?",
         "installUpdate": "Installér opdatering og genstart",
@@ -779,13 +826,16 @@
         "notReady": "Ønsker du at benytte en Bogføringsenheden, så tilslut og oplås den nu",
         "indexInUse": "Indeks benyttes alerede i kontoen {{account}}",
         "indexInUseExplanation": "Dit valgte indeks benyttes allerede i én af dine konti. Vælg et andet indeksnummer.",
-        "proceedWithLedger": "Fortsæt med Bogføringsopsætning",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Kontoindeks",
         "accountPage": "Kontoside",
         "actionCancelled": "Ledger device access cancelled",
         "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Vælg din Bogføringskontoindeks",
-        "accountIndexExplanation": "Din Hovedkonto kan gemme flere hovednøgler. Hver hovednøgle er identificeret af et entydigt indeksnummer. Et ubrugt indeks er blevet forudvalgt, men du er velkommen til at vælge din eget. Sørg for at du registrerer dit valgte indeksnummer.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Visse tredjepartstegnebøger kræver sider.",
         "connectionError": "Kan ikke oprette forbindelse til Hovedkonto",
         "connectionErrorExplanation": "Tjek at din Hovedkonto er tilsluttet og oplåst.",
@@ -807,7 +857,11 @@
         "checkAddressExplanation": "Tjek at adressen matcher dén, der vises på din Bogføringsenhed.",
         "applicationNotInitialised": "Advarsel, ubekræftet",
         "applicationNotInitialisedExplanation": "Genåbn IOTA-app'en på din Bogføringsenhed, acceptér oplysningsadvarslen og forsøg igen.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

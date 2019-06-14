@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SeedPrint component Render the component 1`] = `
+<div
+  className="print"
+  onClick={[Function]}
+>
+  <img
+    height="100vh"
+    src={Object {}}
+    width="auto"
+  />
+</div>
+`;

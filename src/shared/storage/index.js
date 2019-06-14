@@ -1,13 +1,17 @@
 /* global Electron */
 import assign from 'lodash/assign';
 import each from 'lodash/each';
+import find from 'lodash/find';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import isUndefined from 'lodash/isUndefined';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
+import orderBy from 'lodash/orderBy';
 import size from 'lodash/size';
+import some from 'lodash/some';
+import { serialise, parse } from '../libs/utils';
 import schemas, { getDeprecatedStoragePath, STORAGE_PATH as latestStoragePath, v0Schema, v1Schema } from '../schemas';
 import { __MOBILE__, __TEST__ } from '../config';
 import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
@@ -72,11 +76,30 @@ class Account {
 
         return map(accounts, (account) =>
             assign({}, account, {
-                addressData: map(account.addressData, (data) => assign({}, data)),
-                transactions: map(account.transactions, (transaction) => assign({}, transaction)),
-                meta: assign({}, account.meta),
+                addressData: map(account.addressData, (data) => parse(serialise(data))),
+                transactions: map(account.transactions, (transaction) => parse(serialise(transaction))),
+                meta: parse(serialise(account.meta)),
             }),
         );
+    }
+
+    /**
+     * Orders accounts by indexes
+     *
+     * @method orderAccountsByIndex
+     *
+     * @returns {void}
+     */
+    static orderAccountsByIndex() {
+        const orderedAccounts = orderBy(Account.getDataAsArray(), ['index']);
+
+        if (some(orderedAccounts, (account, index) => index !== account.index)) {
+            realm.write(() => {
+                each(orderedAccounts, (account, index) => {
+                    realm.create('Account', assign({}, account, { index }), true);
+                });
+            });
+        }
     }
 
     /**
@@ -148,7 +171,27 @@ class Account {
      * @param {string} name
      */
     static delete(name) {
-        realm.write(() => realm.delete(Account.getObjectForId(name)));
+        realm.write(() => {
+            const accountsBeforeDeletion = Account.getDataAsArray();
+            const accountForDeletion = find(accountsBeforeDeletion, { name });
+
+            if (accountForDeletion) {
+                realm.delete(Account.getObjectForId(name));
+
+                const accountsAfterDeletion = Account.getDataAsArray();
+                const deletedAccountIndex = accountForDeletion.index;
+
+                each(accountsAfterDeletion, (account) => {
+                    realm.create(
+                        'Account',
+                        assign({}, account, {
+                            index: account.index > deletedAccountIndex ? account.index - 1 : account.index,
+                        }),
+                        true,
+                    );
+                });
+            }
+        });
     }
 
     /**
@@ -204,7 +247,7 @@ class Node {
      * @return {array}
      */
     static getDataAsArray() {
-        return map(Node.data, (node) => assign({}, node));
+        return map(Node.data, (node) => parse(serialise(node)));
     }
 
     /**
@@ -213,12 +256,14 @@ class Node {
      * @method addCustomNode
      * @param {string} url Node URL
      */
-    static addCustomNode(url, pow) {
+    static addCustomNode(node, pow) {
         realm.write(() => {
             realm.create('Node', {
-                url,
+                url: node.url,
                 custom: true,
                 pow,
+                password: node.password,
+                token: node.token,
             });
         });
     }
@@ -295,6 +340,15 @@ class Wallet {
     }
 
     /**
+     * Wallet data (as plain object) for most recent version.
+     */
+    static get latestDataAsPlainObject() {
+        const data = Wallet.latestData;
+
+        return parse(serialise(data));
+    }
+
+    /**
      * Wallet data for most recent version.
      */
     static get latestData() {
@@ -332,18 +386,6 @@ class Wallet {
     static updateAutoPromotionSetting(payload) {
         realm.write(() => {
             Wallet.latestSettings.autoPromotion = payload;
-        });
-    }
-
-    /**
-     * Updates auto node switching configuration.
-     *
-     * @method updateAutoNodeSwitchingSetting
-     * @param {boolean} payload
-     */
-    static updateAutoNodeSwitchingSetting(payload) {
-        realm.write(() => {
-            Wallet.latestSettings.autoNodeSwitching = payload;
         });
     }
 
@@ -387,6 +429,7 @@ class Wallet {
      * Updates wallet's node.
      *
      * @method updateNode
+     *
      * @param {string} payload
      */
     static updateNode(payload) {
@@ -595,6 +638,58 @@ class Wallet {
     }
 
     /**
+     * Updates system proxy settings.
+     *
+     * @method updateIgnoreProxySetting
+     * @param {object} payload
+     */
+    static updateIgnoreProxySetting(enabled) {
+        realm.write(() => {
+            Wallet.latestSettings.ignoreProxy = enabled;
+        });
+    }
+
+    /*
+     * Updates quorum configuration.
+     *
+     * @method updateQuorumConfig
+     *
+     * @param {object} payload
+     */
+    static updateQuorumConfig(payload) {
+        const existingConfig = Wallet.latestSettings.quorum;
+        realm.write(() => {
+            Wallet.latestSettings.quorum = assign({}, existingConfig, payload);
+        });
+    }
+
+    /**
+     * Updates node auto-switch setting
+     *
+     * @method updateNodeAutoSwitchSetting
+     *
+     * @param {boolean} payload
+     */
+    static updateNodeAutoSwitchSetting(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.nodeAutoSwitch = payload;
+        });
+    }
+
+    /**
+     * Updates autoNodeList setting
+     *
+     * @method updateAutoNodeListSetting
+     *
+     * @param {boolean} payload
+     */
+    static updateAutoNodeListSetting(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.autoNodeList = payload;
+        });
+    }
+
+    /**
      * Updates error log.
      *
      * @method updateErrorLog
@@ -660,7 +755,7 @@ class Wallet {
             realm.write(() =>
                 realm.create('Wallet', {
                     version: Wallet.version,
-                    settings: { notifications: {} },
+                    settings: { notifications: {}, quorum: {} },
                     accountInfoDuringSetup: { meta: {} },
                 }),
             );
@@ -741,8 +836,6 @@ const migrateToNewStoragePath = (config) => {
     });
 
     oldRealm.write(() => oldRealm.deleteAll());
-
-    Realm.deleteFile(config);
 };
 
 /**
@@ -769,25 +862,42 @@ const initialise = (getEncryptionKeyPromise) => {
             hasVersionOneRealmAtDeprecatedPath = Realm.schemaVersion(getDeprecatedStoragePath(1), encryptionKey) !== -1;
         } catch (error) {}
 
-        if (hasVersionZeroRealmAtDeprecatedPath) {
-            const config = {
-                encryptionKey,
-                schemaVersion: 0,
-                path: getDeprecatedStoragePath(0),
-                schema: v0Schema,
-            };
+        const versionZeroConfig = {
+            encryptionKey,
+            schemaVersion: 0,
+            path: getDeprecatedStoragePath(0),
+            schema: v0Schema,
+        };
 
-            migrateToNewStoragePath(config);
-        } else if (hasVersionOneRealmAtDeprecatedPath) {
-            const config = {
-                encryptionKey,
-                schemaVersion: 1,
-                path: getDeprecatedStoragePath(1),
-                schema: v1Schema,
-            };
+        const versionOneConfig = {
+            encryptionKey,
+            schemaVersion: 1,
+            path: getDeprecatedStoragePath(1),
+            schema: v1Schema,
+        };
 
-            migrateToNewStoragePath(config);
+        if (
+            hasVersionZeroRealmAtDeprecatedPath &&
+            // Make sure version one realm file doesn't exist
+            // If both version zero and version one files exist,
+            // that probably means that a user already migrated to version one schema but version zero file wasn't removed
+            !hasVersionOneRealmAtDeprecatedPath
+        ) {
+            migrateToNewStoragePath(versionZeroConfig);
         }
+
+        if (hasVersionOneRealmAtDeprecatedPath) {
+            migrateToNewStoragePath(versionOneConfig);
+        }
+
+        // Realm.schemaVersion(path) creates unnecessary files at provided path
+        try {
+            Realm.deleteFile(versionZeroConfig);
+        } catch (error) {}
+
+        try {
+            Realm.deleteFile(versionOneConfig);
+        } catch (error) {}
 
         const schemasSize = size(schemas);
         let nextSchemaIndex = 0;
@@ -799,7 +909,6 @@ const initialise = (getEncryptionKeyPromise) => {
 
         while (nextSchemaIndex < schemasSize) {
             const migratedRealm = new Realm(assign({}, schemas[nextSchemaIndex++], { encryptionKey }));
-
             migratedRealm.close();
         }
 

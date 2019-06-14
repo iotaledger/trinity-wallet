@@ -1,5 +1,7 @@
 /* global __DEV__ */
+
 import 'shared-modules/libs/global';
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import merge from 'lodash/merge';
@@ -9,13 +11,14 @@ import { withNamespaces } from 'react-i18next';
 import Realm from 'realm';
 import { Text, TextInput, NetInfo, YellowBox } from 'react-native';
 import { Provider } from 'react-redux';
-import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
+import { changeIotaNode, quorum } from 'shared-modules/libs/iota';
 import reduxStore from 'shared-modules/store';
 import { assignAccountIndexIfNecessary } from 'shared-modules/actions/accounts';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate, setAppVersions } from 'shared-modules/actions/settings';
 import Themes from 'shared-modules/themes/themes';
-import { ActionTypes, mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
+import { mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
+import { WalletActionTypes } from 'shared-modules/types';
 import { setRealmMigrationStatus } from 'shared-modules/actions/migrations';
 import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
@@ -31,10 +34,9 @@ import { mapStorageToState } from 'shared-modules/libs/storageToStateMappers';
 // Assign Realm to global RN variable
 global.Realm = Realm;
 
-const launch = () => {
-    // Disable auto node switching.
-    SwitchingConfig.autoSwitch = false;
+let firstLaunch = true;
 
+const launch = () => {
     // Disable accessibility fonts
     Text.defaultProps = {};
     Text.defaultProps.allowFontScaling = false;
@@ -57,26 +59,39 @@ const launch = () => {
     // Set default language
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
 
-    // FIXME: Temporarily needed for password migration
-    const updatedState = reduxStore.getState();
-
-    const navigateToForceChangePassword =
-        updatedState.settings.versions.version === '0.5.0' && !updatedState.settings.completedForcedPasswordUpdate;
-
-    // Select initial screen
-    const initialScreen = state.accounts.onboardingComplete
-        ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
-        : 'languageSetup';
-
-    renderInitialScreen(initialScreen, state);
+    renderInitialScreen(getInitialScreen());
 };
 
 const onAppStart = () => {
     registerScreens(reduxStore, Provider);
-    return new Promise((resolve) => Navigation.events().registerAppLaunchedListener(resolve));
+    return new Promise((resolve) => {
+        Navigation.events().registerAppLaunchedListener(() => {
+            if (firstLaunch) {
+                firstLaunch = false;
+                return;
+            }
+            delete global.passwordHash;
+            return renderInitialScreen(getInitialScreen());
+        });
+        resolve();
+    });
 };
 
-const renderInitialScreen = (initialScreen, state) => {
+const getInitialScreen = () => {
+    const state = reduxStore.getState();
+    // FIXME: Temporarily needed for password migration
+    const navigateToForceChangePassword =
+        state.settings.versions.version === '0.5.0' && !state.settings.completedForcedPasswordUpdate;
+    // Select initial screen
+    return state.accounts.onboardingComplete
+        ? navigateToForceChangePassword
+            ? 'forceChangePassword'
+            : 'login'
+        : 'languageSetup';
+};
+
+const renderInitialScreen = (initialScreen) => {
+    const state = reduxStore.getState();
     const theme = Themes[state.settings.themeName] || Themes.Default;
 
     const options = {
@@ -117,7 +132,7 @@ const renderInitialScreen = (initialScreen, state) => {
         },
     });
 
-    reduxStore.dispatch({ type: ActionTypes.RESET_ROUTE, payload: initialScreen });
+    reduxStore.dispatch({ type: WalletActionTypes.RESET_ROUTE, payload: initialScreen });
 };
 
 /**
@@ -128,12 +143,18 @@ const renderInitialScreen = (initialScreen, state) => {
  **/
 const fetchNodeList = (store) => {
     const { settings } = store.getState();
-    const hasAlreadyRandomized = get(settings, 'hasRandomizedNode');
+    const node = get(settings, 'node');
 
     // Update provider
-    changeIotaNode(get(settings, 'node'));
+    changeIotaNode(
+        assign({}, node, {
+            provider: node.url,
+        }),
+    );
+    // Set quorum size
+    quorum.setSize(get(settings, 'quorum.size'));
 
-    store.dispatch(fetchNodes(!hasAlreadyRandomized));
+    store.dispatch(fetchNodes());
 };
 
 /**
@@ -145,7 +166,7 @@ const fetchNodeList = (store) => {
 const startListeningToConnectivityChanges = (store) => {
     const checkConnection = (isConnected) => {
         store.dispatch({
-            type: ActionTypes.CONNECTION_CHANGED,
+            type: WalletActionTypes.CONNECTION_CHANGED,
             payload: { isConnected },
         });
     };
@@ -197,13 +218,13 @@ onAppStart()
             version: getVersion(),
             buildNumber: Number(getBuildNumber()),
         };
-
         // Get persisted data in AsyncStorage
         return reduxPersistStorageAdapter.get().then((storedData) => {
             const buildNumber = get(storedData, 'settings.versions.buildNumber');
             const completedMigration = get(storedData, 'settings.completedMigration', false);
+
             if (
-                buildNumber < 43 &&
+                buildNumber < 58 &&
                 !completedMigration &&
                 // Also check if there is persisted data in AsyncStorage that needs to be migrated
                 // If this check is omitted, the condition will be satisfied on a fresh install.
@@ -238,7 +259,7 @@ onAppStart()
     .then(() => {
         const initialize = (isConnected) => {
             reduxStore.dispatch({
-                type: ActionTypes.CONNECTION_CHANGED,
+                type: WalletActionTypes.CONNECTION_CHANGED,
                 payload: { isConnected },
             });
 

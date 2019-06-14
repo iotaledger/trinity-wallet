@@ -1,15 +1,16 @@
 /* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withI18n, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
-import { getEncryptionKey, ALIAS_REALM } from 'libs/realm';
+import { ALIAS_REALM } from 'libs/realm';
 
 import {
     changePowSettings,
     changeAutoPromotionSettings,
+    changeDeepLinkingSettings,
     setLockScreenTimeout,
     setTray,
     setNotifications,
@@ -17,8 +18,6 @@ import {
 } from 'actions/settings';
 
 import { generateAlert } from 'actions/alerts';
-
-import { reinitialise as reinitialiseStorage } from 'storage';
 
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
@@ -44,15 +43,13 @@ class Advanced extends PureComponent {
         /** @ignore */
         setProxy: PropTypes.func.isRequired,
         /** @ignore */
-        history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
-        }).isRequired,
-        /** @ignore */
         setNotifications: PropTypes.func.isRequired,
         /** @ignore */
         changePowSettings: PropTypes.func.isRequired,
         /** @ignore */
         changeAutoPromotionSettings: PropTypes.func.isRequired,
+        /** @ignore */
+        changeDeepLinkingSettings: PropTypes.func.isRequired,
         /** @ignore */
         setLockScreenTimeout: PropTypes.func.isRequired,
         /** @ignore */
@@ -99,17 +96,14 @@ class Advanced extends PureComponent {
      * @returns {undefined}
      */
     resetWallet = async () => {
-        const { t, generateAlert, history } = this.props;
+        const { t, generateAlert } = this.props;
 
         try {
-            history.push('/');
-
             await clearVault(ALIAS_REALM);
             localStorage.clear();
             Electron.clearStorage();
 
-            await reinitialiseStorage(getEncryptionKey);
-            location.reload();
+            Electron.reload();
         } catch (_err) {
             generateAlert(
                 'error',
@@ -154,6 +148,7 @@ class Advanced extends PureComponent {
             wallet,
             changePowSettings,
             changeAutoPromotionSettings,
+            changeDeepLinkingSettings,
             lockScreenTimeout,
             setNotifications,
             t,
@@ -165,6 +160,19 @@ class Advanced extends PureComponent {
             <div className={css.scroll}>
                 <Scrollbar>
                     <article>
+                        <React.Fragment>
+                            <h3>{t('advancedSettings:deepLinking')}</h3>
+                            <Toggle
+                                checked={settings.deepLinking}
+                                onChange={() => changeDeepLinkingSettings()}
+                                on={t('enabled')}
+                                off={t('disabled')}
+                            />
+                            <p>{t('deepLink:deepLinkingOverview')}</p>
+                            <p>{t('deepLink:deepLinkingWarning')}</p>
+                            <hr />
+                        </React.Fragment>
+
                         {wallet && wallet.ready ? (
                             <React.Fragment>
                                 <h3>{t('pow:powUpdated')}</h3>
@@ -327,10 +335,11 @@ const mapDispatchToProps = {
     generateAlert,
     changePowSettings,
     changeAutoPromotionSettings,
+    changeDeepLinkingSettings,
     setLockScreenTimeout,
     setTray,
     setNotifications,
     setProxy,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Advanced));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Advanced));

@@ -67,7 +67,7 @@
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <note>Privacy - Face ID Usage Description</note>
-        <target state="translated">Trinity wymaga dostępu do Face ID, aby aktywować uwierzytelnianie biometryczne.</target>
+        <target state="translated">Trinity wymaga dostępu do Face ID, aby aktywować autoryzację biometryczną.</target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>

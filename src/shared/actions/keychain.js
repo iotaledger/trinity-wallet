@@ -1,8 +1,4 @@
-export const ActionTypes = {
-    IS_GETTING_SENSITIVE_INFO_REQUEST: 'IOTA/KEYCHAIN/IS_GETTING_SENSITIVE_INFO_REQUEST',
-    IS_GETTING_SENSITIVE_INFO_SUCCESS: 'IOTA/KEYCHAIN/IS_GETTING_SENSITIVE_INFO_SUCCESS',
-    IS_GETTING_SENSITIVE_INFO_ERROR: 'IOTA/KEYCHAIN/IS_GETTING_SENSITIVE_INFO_ERROR',
-};
+import { KeychainActionTypes } from '../types';
 
 /**
  * Dispatch when a request to access keychain is about to be made on mobile
@@ -14,7 +10,7 @@ export const ActionTypes = {
  * @returns {{type: {string}, screen: {string}, purpose: {string} }}
  */
 export const getFromKeychainRequest = (screen, purpose) => ({
-    type: ActionTypes.IS_GETTING_SENSITIVE_INFO_REQUEST,
+    type: KeychainActionTypes.IS_GETTING_SENSITIVE_INFO_REQUEST,
     screen,
     purpose,
 });
@@ -29,7 +25,7 @@ export const getFromKeychainRequest = (screen, purpose) => ({
  * @returns {{type: {string}, screen: {string}, purpose: {string} }}
  */
 export const getFromKeychainSuccess = (screen, purpose) => ({
-    type: ActionTypes.IS_GETTING_SENSITIVE_INFO_SUCCESS,
+    type: KeychainActionTypes.IS_GETTING_SENSITIVE_INFO_SUCCESS,
     screen,
     purpose,
 });
@@ -44,7 +40,7 @@ export const getFromKeychainSuccess = (screen, purpose) => ({
  * @returns {{type: {string}, screen: {string}, purpose: {string} }}
  */
 export const getFromKeychainError = (screen, purpose) => ({
-    type: ActionTypes.IS_GETTING_SENSITIVE_INFO_ERROR,
+    type: KeychainActionTypes.IS_GETTING_SENSITIVE_INFO_ERROR,
     screen,
     purpose,
 });

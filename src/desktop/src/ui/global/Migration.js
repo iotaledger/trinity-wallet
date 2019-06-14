@@ -1,7 +1,7 @@
 /*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { startTrackingProgress } from 'actions/progress';
@@ -16,7 +16,7 @@ const electronStorage = {
     get: () => {
         return new Promise((resolve, reject) => {
             try {
-                const data = Electron.getAllStorage();
+                const data = Electron.getOldStorage();
                 resolve(data);
             } catch (err) {
                 reject(err);
@@ -55,7 +55,7 @@ class Migration extends React.Component {
         /** @ignore */
         notificationLog: PropTypes.array.isRequired,
         /** @ignore */
-        node: PropTypes.string.isRequired,
+        node: PropTypes.object.isRequired,
         /** @ignore */
         nodes: PropTypes.array.isRequired,
         /** @ignore */
@@ -114,6 +114,7 @@ class Migration extends React.Component {
             <Modal variant="global" isOpen isForced onClose={() => {}}>
                 <form>
                     <h1>{t('migration:dataMigration')}</h1>
+                    <p>{t('migration:dataMigrationExplanation')}</p>
                     {activeSteps.length > 0 && (
                         <article>
                             <Progress
@@ -154,4 +155,4 @@ const mapDispatchToProps = {
     setFullNode,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Migration));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Migration));

@@ -6,9 +6,10 @@
             margin: 0 auto;
         }
         p + p {
-            margin-top: -42px;
+            margin-top: -15px;
+            font-weight: 600;
+            color: var(--primary);
         }
-
         small {
             display: block;
             height: 18px;

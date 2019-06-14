@@ -91,12 +91,6 @@ describe('Testing EditAccountName component', () => {
                 const wrapper = shallow(<EditAccountName {...props} />);
                 expect(wrapper.name()).toBe('TouchableWithoutFeedback');
             });
-
-            it('should return two TouchableOpacity components', () => {
-                const props = getProps();
-                const wrapper = shallow(<EditAccountName {...props} />);
-                expect(wrapper.find('TouchableOpacity').length).toBe(2);
-            });
         });
     });
 

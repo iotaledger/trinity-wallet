@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Užkraunant jūsų paskyros informaciją įvyko serverio klaida. Jei problema neišsispręs, bandykite pakeisti serverį arba atjunkite savo sistemos tarpinį serverį Trinity nustatymuose.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
+        "nodeOutOfSyncByTimestampExplanation": "Jūsų pasirinktas serveris yra nesinchronizuotas. Prašome pakeisti serverį ir bandyti dar kartą. Jeigu problema tęsis, įsitikinkite, kad jūsų įrenginio data ir laikas yra teisingi.",
         "experimentalNode": "Serverio versija nepalaikoma",
         "experimentalNodeExplanation": "Jūsų pasirinktas serveris veikia su eksperimentine versija, kuri yra nepalaikoma. Prašome pakeisti serverį ir bandyti dar kartą.",
         "thisNodeOutOfSync": "Šis serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
@@ -120,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Vartotojo serveriai galimi tik naudojantys HTTPS.",
         "nodeDuplicated": "Dubliuotas serveris",
         "nodeDuplicatedExplanation": "Toks vartotojo serveris jau yra įvestas.",
+        "customNodeAdded": "Vartotojo serveris pridėtas",
+        "customNodeAddedExplanation": "Jūs sėkmingai pridėjote {{nodeAddress}} kaip vartotojo serverį.",
         "nodeAutoChanged": "Automatiškai pakeistas serveris",
         "nodeAutoChangedExplanation": "Pakeista į naują serverį {{- nodeAddress}}, nes pasirinktas serveris nepasiekiamas.",
         "touchSensor": "Palieskite piršto antspaudo jutiklį",
@@ -141,6 +144,8 @@
         "isYourBalanceCorrect": "Ar jūsų balansas teisingas?",
         "ifYourBalanceIsNotCorrect": "Jeigu jūsų balansas neteisingas, tikriausiai jūsų naudojamas užraktas nėra perkeltas įvykus viso tinklo duomenų perkėlimui.",
         "headToAdvancedSettingsForTransition": "Eikite į išplėstinius parametrus ir atlikite tinklo duomenų perkėlimą.",
+        "headToAccountTools": "Eikite į paskyros įrankių skiltį ir atlikite tinklo duomenų perkėlimą.",
+        "openAccountTools": "Atidaryti paskyros įrankius",
         "usingTrinityWalletWithKeePass": "Trinity naudojimas su Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Įvyko tinklo klaida transliuojant jūsų pavedimą.",
         "broadcastError": "Pavedimo ištransliuoti nepavyko",
@@ -160,9 +165,13 @@
         "shouldUpdateExplanation": "Išleistas naujas atnaujinimas. Rekomenduojama atsisiųsti naujausius atnaujinimus.",
         "forceUpdate": "Atnaujinkite programėlę norėdami tęsti",
         "forceUpdateExplanation": "Išleistas svarbus atnaujinimas. Prašome nedelsiant atsinaujinti programėlę.",
+        "testVersionWarning": "Ši versija turėtų būti naudojama tik testavimo tikslams, su labai mažu žetonų kiekiu.",
         "missingPermission": "Reikalingas failų sistemos leidimas",
         "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norėdami atlikti šią funkciją.",
-        "swipeToConfirm": "Paslinkite norėdami patvirtinti"
+        "swipeToConfirm": "Paslinkite norėdami patvirtinti",
+        "expert": "Expert",
+        "notEnoughSyncedNodes": "Per mažai sinchronizuotų serverių",
+        "notEnoughSyncedNodesExplanation": "Kvorumas nepasiekiamas. Išjunkite kvorumą ir bandykite dar kartą."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -394,6 +403,7 @@
         "changePassword": "Keisti slaptažodį",
         "general": "Bendri nustatymai",
         "advanced": "Išplėstiniai parametrai",
+        "nodeSettings": "Serverio nustatymai",
         "account": "Paskyros nustatymai",
         "logout": "Atsijungti",
         "reset": "Iš naujo nustatyti piniginę",
@@ -425,7 +435,6 @@
         "redo": "Atstatyti",
         "aboutTrinity": "Apie Trinity",
         "lockScreenTimeout": "Ekrano užrakinimas (minutės)",
-        "autoNodeSwitching": "Automatiškai pakeisti serverį, kai pasirinktas yra nepasiekiamas",
         "nodeChangeSuccess": "Serveris sėkmingai pakeistas",
         "nodeChangeSuccessNoRemotePow": "Serveris pakeistas į {{node}}, Šis serveris nepalaiko nuotolinio skaičiavimo.",
         "nodeChangeSuccessExplanation": "Serveris pakeistas į {{node}}.",
@@ -455,7 +464,8 @@
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
-        "noTransactionsFound": "Jūsų pavedimų istorija tuščia",
+        "noTransactionsFound": "Pavedimų nėra",
+        "emptyHistory": "Jūsų pavedimų istorija tuščia",
         "hideZeroBalance": "Slėpti nulinius pavedimus",
         "bundleHashCopiedExplanation": "Paketo šifras nukopijuotas į iškarpinę.",
         "addressCopied": "Adresas nukopijuotas",
@@ -468,7 +478,13 @@
         "retrying": "Kraunama",
         "yesterday": "Vakar",
         "promotingAnotherBundle": "Iškeliamas kitas paketas",
-        "pleaseWait": "Prašome palaukti, Trinity iškelia kitą paketą."
+        "pleaseWait": "Prašome palaukti, Trinity iškelia kitą paketą.",
+        "typeHelp": "Rašykite !help norėdami sužinoti galimas komandas",
+        "searchHelpText": "Ieškoti pagal paketo šifrą arba žinutės turinį",
+        "searchHelpValue": "Rasti pavedimus pagal tikslią iota vertę",
+        "searchHelpUnits": "Rasti pavedimus pagal iota vertę ir vienetą",
+        "searchHelpMore": "Rasti pavedimus su verte didesne nei X",
+        "searchHelpLess": "Rasti pavedimus su verte mažesne nei X"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -478,6 +494,22 @@
         "addNewAccount": "Pridėti naują paskyrą",
         "tools": "Įrankiai"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatinis serverio valdymas",
+        "addCustomNodes": "Pridėti vartotojo serverius",
+        "autoNodeList": "Naudotis nuotoliniu serverių sąrašu",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Įjungti kvorumą",
+        "quorumSize": "Kvorumo dydis",
+        "noCustomNodes": "Vartotojo serverių nėra",
+        "mustAddCustomNodes": "Jūs privalote pridėti bent vieną vartotojo serverį prieš išjungiant nuotolinį serverių sąrašą.",
+        "nodeEnoughNodesTitle": "Nepakankamai serverių",
+        "nodeEnoughNodesExplanation": "Serverių yra nepakankamai norint įjungti kvorumą.",
+        "nodeEnoughNodesExplanationCustomNodes": "Pridėkite daugiau vartotojo serverių arba įjunkite nuotolinį serverių sąrašą.",
+        "nodeSettingsUpdatedTitle": "Serverio nustatymai atnaujinti",
+        "nodeSettingsUpdatedExplanation": "Jūs sėkmingai atnaujinote serverio nustatymus."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",
         "customNode": "Vartotojo serveris",
@@ -486,7 +518,11 @@
         "add": "Pridėti",
         "nodeFieldEmpty": "Teksto laukas tuščias",
         "nodeFieldEmptyExplanation": "Įveskite vartotojo serverį.",
-        "invalidURL": "Įveskite teisingą URL adresą."
+        "invalidURL": "Įveskite teisingą URL adresą.",
+        "addAuthKey": "Add auth key",
+        "username": "Vartotojo vardas",
+        "couldNotRemove": "Pašalinti varototojo serverio nepavyksta",
+        "couldNotRemoveExplanation": "Kvorumui reikalingas pakankamas serverių skaičius. Sumažinkite kvorumo dydį arba įjunkite nuotolinį serverių sąrašą."
     },
     "addNewAccount": {
         "useExistingSeed": "Naudoti seną užraktą",
@@ -494,14 +530,14 @@
     },
     "advancedSettings": {
         "selectNode": "Pasirinkti serverį",
-        "addCustomNode": "Pridėti vartotojo serverį",
         "manualSync": "Rankinė sinchronizacija",
         "snapshotTransition": "Tinklo duomenų perkėlimas",
         "pow": "Skaičiavimų įrodymas",
         "autoPromotion": "Automatinis iškėlimas",
         "autoPromotionExplanation": "Automatinis iškėlimas padeda greičiau patvirtinti jūsų pavedimus. Įjunkite šią funkciją, jeigu jūsų pavedimai ilgai nėra patvirtinami.",
         "autoPromotionPoW": "Automatinis iškėlimas įmanomas tik tuose serveriuose, kurie palaiko nuotolinį skaičiavimą.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "Fonas",
@@ -572,6 +608,7 @@
         "viewSeed": "Rodyti užraktą",
         "hideSeed": "Slėpti užraktą",
         "notAvailable": "Užrakto iškėlimas yra negalimas {{accountType}} paskyros tipui",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Jūsų Ledger paskyros indeksas",
         "accountPage": "Jūsų Ledger paskyros puslapis"
     },
@@ -642,9 +679,16 @@
         "noSeedFoundExplanation": "SeedVault yra tuščias arba turi netinkamo formato užraktą.",
         "seedFileError": "Atidaryti SeedVault nepavyko",
         "seedFileErrorExplanation": "Įvyko klaida atidarant SeedVault. Jeigu pasirinkote teisingą failą, gali būti, kad jis yra pažeistas.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "Pirmiausia, jums reikia apsaugoti SeedVault. Sukurkite slaptažodį norėdami užšifruoti failą. Šio slaptažodžio jums prireiks, norint atkurti užraktą iš SeedVault failo.",
         "retypeKey": "Pakartokite slaptažodį",
-        "key": "Key"
+        "key": "Kodas"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
@@ -709,12 +753,15 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "Klaida siunčiant atnaujinimus",
+        "errorRetrievingUpdateDataExplanation": "Nepavyko atsiųsti atnaujinimų. Patikrinkite savo interneto ryšį ir bandykite dar kartą.",
         "noUpdatesAvailable": "Atnaujinimų nėra",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "Jūs turite naujausią Trinity versiją!",
         "newVersionAvailable": "Galima nauja versija",
         "newVersionAvailableExplanation": "Galima nauja Trinity versija. Ar norite atlikti atnaujinimus?",
         "installUpdate": "Atnaujinimų įdiegimas ir paleidimas iš naujo",
@@ -779,13 +826,16 @@
         "notReady": "Jei norite pasinaudoti Ledger įrenginiu, prijunkite ir atrakinkite jį",
         "indexInUse": "Šis indeksas jau priskirtas paskyrai: {{account}}",
         "indexInUseExplanation": "Pasirinktas indeksas jau priskirtas vienai iš jūsų paskyrų. Pasirinkite kitą indekso numerį.",
-        "proceedWithLedger": "Tęskite su Ledger vedliu",
+        "createNewLedgerAccountInfo": "Įsitikinkite, kad teisingai nusirašėte ir įsidėmėjote savo indekso numerį.",
+        "restoreLedgerAccountInfo": "Įveskite savo indekso numerį, norėdami susigrąžinti paskyrą.",
+        "createNewLedgerAccount": "Sukurti naują Ledger paskyrą",
+        "restoreLedgerAccount": "Susigrąžinti seną Ledger paskyrą",
         "accountIndex": "Paskyros indeksas",
         "accountPage": "Paskyros puslapis",
         "actionCancelled": "Ledger įrenginio prieiga atšaukta",
         "actionCancelledExplanation": "Šio veiksmo negalima atlikti be Ledger prieigos.",
         "chooseAccountIndex": "Pasirinkite Ledger paskyros indeksą",
-        "accountIndexExplanation": "Jūsų Ledger gali talpinti daugybę užraktų. Kiekvienam užraktui priskiriamas unikalus indekso numeris. Jums priskirtas naujas indeksas, bet galite jį pakeisti į kitą. Nepamirškite išsisaugoti pasirinkto indekso numerio.",
+        "accountIndexExplanation": "Jūsų Ledger gali saugoti daugybę užraktų. Kiekvienas užraktas identifikuojamas unikaliu indekso numeriu.",
         "accountPageExplanation": "Kai kurioms trečiosios šalies piniginėms reikalingi puslapiai.",
         "connectionError": "Nepavyksta prisijungti prie Ledger",
         "connectionErrorExplanation": "Patikrinkite ar Ledger prijungtas ir atrakintas.",
@@ -807,7 +857,11 @@
         "checkAddressExplanation": "Patikrinkite ar adresas sutampa su rodomu adresu Ledger įrenginyje.",
         "applicationNotInitialised": "Pranešimas nepatvirtintas",
         "applicationNotInitialisedExplanation": "Iš naujo atidarykite IOTA aplikaciją Ledger įrenginyje, patvirtinkite informacinį pranešimą ir bandykite dar kartą.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "checkLedger": "Patikrinkite savo Ledger įrenginį",
+        "acceptWarningExplanation": "Jeigu jūsų Ledger įrenginyje atsirado informacinis pranešimas, privalote jį perskaityti ir sutikti spausdami abu mygtukus.",
+        "udevError": "Nepavyksta susisiekti su Ledger įrenginiu",
+        "udevErrorExplanation": "Trinity nepavyksta susisiekti su jūsų Ledger įrenginiu. Apsilankykite URL adresu esančiu žemiau, norėdami išspręsti šią problemą.",
+        "writtenDownInfoTitle": "Įsidėmėkite savo indekso numerį",
+        "writtenDownInfoExplanation": "Jums reiks indekso numerio norint susigrąžinti savo paskyrą ateityje. Jei pamesite savo indekso numerį, prarasite savo IOTA. Prašome jį įsidėmėti."
     }
 }

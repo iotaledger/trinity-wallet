@@ -1,7 +1,7 @@
 import findIndex from 'lodash/findIndex';
 import isNumber from 'lodash/isNumber';
 import size from 'lodash/size';
-import { ActionTypes } from '../actions/polling';
+import { PollingActionTypes, TransfersActionTypes } from '../types';
 
 export const setNextPollIfSuccessful = (state) => {
     const { allPollingServices, pollFor } = state;
@@ -81,109 +81,119 @@ const polling = (
     action,
 ) => {
     switch (action.type) {
-        case ActionTypes.FETCH_PRICE_REQUEST:
+        case PollingActionTypes.FETCH_PRICE_REQUEST:
             return {
                 ...state,
                 isFetchingPrice: true,
             };
-        case ActionTypes.FETCH_PRICE_SUCCESS:
+        case PollingActionTypes.FETCH_PRICE_SUCCESS:
             return {
                 ...state,
                 isFetchingPrice: false,
                 ...setNextPollIfSuccessful(state),
             };
-        case ActionTypes.FETCH_PRICE_ERROR:
+        case PollingActionTypes.FETCH_PRICE_ERROR:
             return {
                 ...state,
                 isFetchingPrice: false,
                 ...setNextPollIfUnsuccessful(state),
             };
-        case ActionTypes.FETCH_NODELIST_REQUEST:
+        case PollingActionTypes.FETCH_NODELIST_REQUEST:
             return {
                 ...state,
                 isFetchingNodeList: true,
             };
-        case ActionTypes.FETCH_NODELIST_SUCCESS:
+        case PollingActionTypes.FETCH_NODELIST_SUCCESS:
             return {
                 ...state,
                 isFetchingNodeList: false,
                 ...setNextPollIfSuccessful(state),
             };
-        case ActionTypes.FETCH_NODELIST_ERROR:
+        case PollingActionTypes.FETCH_NODELIST_ERROR:
             return {
                 ...state,
                 isFetchingNodeList: false,
                 ...setNextPollIfUnsuccessful(state),
             };
-        case ActionTypes.FETCH_CHART_DATA_REQUEST:
+        case PollingActionTypes.FETCH_CHART_DATA_REQUEST:
             return {
                 ...state,
                 isFetchingChartData: true,
             };
-        case ActionTypes.FETCH_CHART_DATA_SUCCESS:
+        case PollingActionTypes.FETCH_CHART_DATA_SUCCESS:
             return {
                 ...state,
                 isFetchingChartData: false,
                 ...setNextPollIfSuccessful(state),
             };
-        case ActionTypes.FETCH_CHART_DATA_ERROR:
+        case PollingActionTypes.FETCH_CHART_DATA_ERROR:
             return {
                 ...state,
                 isFetchingChartData: false,
                 ...setNextPollIfUnsuccessful(state),
             };
-        case ActionTypes.FETCH_MARKET_DATA_REQUEST:
+        case PollingActionTypes.FETCH_MARKET_DATA_REQUEST:
             return {
                 ...state,
                 isFetchingMarketData: true,
             };
-        case ActionTypes.FETCH_MARKET_DATA_SUCCESS:
+        case PollingActionTypes.FETCH_MARKET_DATA_SUCCESS:
             return {
                 ...state,
                 isFetchingMarketData: false,
                 ...setNextPollIfSuccessful(state),
             };
-        case ActionTypes.FETCH_MARKET_DATA_ERROR:
+        case PollingActionTypes.FETCH_MARKET_DATA_ERROR:
             return {
                 ...state,
                 isFetchingMarketData: false,
                 ...setNextPollIfUnsuccessful(state),
             };
-        case ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST:
+        case PollingActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST:
             return {
                 ...state,
                 isFetchingAccountInfo: true,
             };
-        case ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS:
+        case PollingActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS:
             return {
                 ...state,
                 isFetchingAccountInfo: false,
                 ...setNextPollIfSuccessful(state),
             };
-        case ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR:
+        case PollingActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR:
             return {
                 ...state,
                 isFetchingAccountInfo: false,
                 ...setNextPollIfUnsuccessful(state),
             };
-        case ActionTypes.PROMOTE_TRANSACTION_REQUEST:
+        case PollingActionTypes.PROMOTE_TRANSACTION_REQUEST:
             return {
                 ...state,
                 isAutoPromoting: true,
             };
-        case ActionTypes.PROMOTE_TRANSACTION_SUCCESS:
+        case PollingActionTypes.PROMOTE_TRANSACTION_SUCCESS:
             return {
                 ...state,
                 isAutoPromoting: false,
                 ...setNextPollIfSuccessful(state),
             };
-        case ActionTypes.PROMOTE_TRANSACTION_ERROR:
+        case PollingActionTypes.PROMOTE_TRANSACTION_ERROR:
             return {
                 ...state,
                 isAutoPromoting: false,
                 ...setNextPollIfUnsuccessful(state),
             };
-        case ActionTypes.SET_POLL_FOR:
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
+            return {
+                ...state,
+                ...setNextPollIfSuccessful(state),
+            };
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_ERROR:
+            return {
+                ...state,
+                ...setNextPollIfUnsuccessful(state),
+            };
+        case PollingActionTypes.SET_POLL_FOR:
             return {
                 ...state,
                 pollFor: action.payload,

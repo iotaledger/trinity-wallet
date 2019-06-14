@@ -82,7 +82,6 @@ export default class Select extends React.PureComponent {
                         className={css.selectable}
                     >
                         {valueLabel || value}
-                        <small>&shy;</small>
                     </div>
                     {open && (
                         <ul>
@@ -93,7 +92,7 @@ export default class Select extends React.PureComponent {
                                         key={option.value}
                                         onClick={() => this.choose(option.value)}
                                     >
-                                        {option.label}
+                                        {option.label || option.value}
                                     </li>
                                 ))}
                             </Scrollbar>

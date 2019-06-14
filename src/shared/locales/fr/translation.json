@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Le serveur a renvoyé une erreur en allant chercher les informations de votre compte. Si le problème persiste, essayez de changer serveur ou désactiver votre proxy dans les paramètres de Trinity.",
         "nodeOutOfSync": "Serveur non synchronisé",
         "nodeOutOfSyncExplanation": "Le serveur actuellement sélectionné est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
+        "nodeOutOfSyncByTimestampExplanation": "Le serveur actuellement sélectionné est désynchronisé. Veuillez changer le serveur ou essayer à nouveau. Si le problème persiste, assurez-vous que l'heure de votre périphérique est correcte.",
         "experimentalNode": "La version du serveur n'est pas supportée",
         "experimentalNodeExplanation": "Le serveur sélectionné utilise une version expérimentale qui n'est pas supportée. Veuillez changer de serveur ou réessayer.",
         "thisNodeOutOfSync": "Ce serveur est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
@@ -120,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Seuls les serveurs personnalisés utilisant HTTPS sont autorisés.",
         "nodeDuplicated": "Serveur dupliqué",
         "nodeDuplicatedExplanation": "Le serveur personnalisé est déjà répertorié.",
+        "customNodeAdded": "Serveur personnalisé ajouté",
+        "customNodeAddedExplanation": "Vous avez ajouté {{nodeAddress}} en tant que serveur personnalisé avec succès.",
         "nodeAutoChanged": "Changement automatique de serveur",
         "nodeAutoChangedExplanation": "Passage au nouveau serveur {{- nodeAddress}} car le serveur sélectionné est hors ligne.",
         "touchSensor": "Veuillez toucher le capteur d'empreinte digitale",
@@ -141,6 +144,8 @@
         "isYourBalanceCorrect": "Votre solde est-il correct ?",
         "ifYourBalanceIsNotCorrect": "Si votre solde n’est pas correct, il est probable que vous utilisiez une seed antérieure à un snapshot.",
         "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuez une Transition de snapshot.",
+        "headToAccountTools": "Rendez-vous sur les Outils de Compte et effectuez une Transition du Snapshot.",
+        "openAccountTools": "Ouvrez les Outils de Compte",
         "usingTrinityWalletWithKeePass": "Utilisation de Trinity avec Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Une erreur réseau est survenue lors de la retransmission de votre transaction.",
         "broadcastError": "Impossible de transmettre la transaction",
@@ -160,9 +165,13 @@
         "shouldUpdateExplanation": "Une nouvelle mise à jour a été publiée. Il est recommandé que vous mettiez à jour vers la dernière version.",
         "forceUpdate": "Mettez à jour l'application pour continuer",
         "forceUpdateExplanation": "Une mise à jour critique est disponible. Veuillez mettre à jour l’application maintenant.",
+        "testVersionWarning": "Cette version ne devrait être utilisée qu'à des fins de test, avec de très petites quantités de jetons.",
         "missingPermission": "Autorisation de système de fichiers requise",
         "missingPermissionExplanation": "L'accès au système de fichiers est nécessaire afin de réaliser cette action.",
-        "swipeToConfirm": "Balayer pour confirmer"
+        "swipeToConfirm": "Balayer pour confirmer",
+        "expert": "Expert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -394,6 +403,7 @@
         "changePassword": "Modifier le mot de passe",
         "general": "Paramètres généraux",
         "advanced": "Réglages avancés",
+        "nodeSettings": "Paramètres du serveur",
         "account": "Paramètres du compte",
         "logout": "Déconnexion",
         "reset": "Réinitialiser le portefeuille",
@@ -425,7 +435,6 @@
         "redo": "Rétablir",
         "aboutTrinity": "À propos de Trinity",
         "lockScreenTimeout": "Délai pour le verrouillage de l'écran (Minutes)",
-        "autoNodeSwitching": "Changer automatiquement de serveur quand celui sélectionné est inaccessible",
         "nodeChangeSuccess": "Serveur changé avec succès",
         "nodeChangeSuccessNoRemotePow": "Le serveur a été changé pour {{node}}. Ce serveur ne supporte pas la preuve du travail à distance.",
         "nodeChangeSuccessExplanation": "Le serveur a été changé pour {{node}}.",
@@ -455,7 +464,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash du paquet copié",
-        "noTransactionsFound": "Votre historique de transaction est vide",
+        "noTransactionsFound": "Aucune transaction trouvée",
+        "emptyHistory": "Votre historique de transaction est vide",
         "hideZeroBalance": "Masquer un solde nul",
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papier.",
         "addressCopied": "Adressée copiée",
@@ -468,7 +478,13 @@
         "retrying": "Nouvelle tentative",
         "yesterday": "Hier",
         "promotingAnotherBundle": "Promotion d'un autre bundle en cours",
-        "pleaseWait": "Veuillez patienter, Trinity est en train de promouvoir un autre bundle."
+        "pleaseWait": "Veuillez patienter, Trinity est en train de promouvoir un autre bundle.",
+        "typeHelp": "Tapez !help pour les commandes disponibles",
+        "searchHelpText": "Rechercher par hash ou par message",
+        "searchHelpValue": "Trouver des transactions avec une valeur iota exacte",
+        "searchHelpUnits": "Trouver des transactions par valeur et unité iota",
+        "searchHelpMore": "Trouver des transactions avec une valeur supérieure à X",
+        "searchHelpLess": "Trouver des transactions avec une valeur inférieure à X"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -478,6 +494,22 @@
         "addNewAccount": "Ajouter un nouveau compte",
         "tools": "Outils"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Gestion automatique des serveurs",
+        "addCustomNodes": "Ajouter un serveur personnalisé",
+        "autoNodeList": "Utiliser la liste de serveurs distants",
+        "nodeAutoswitching": "Changement automatique de serveur primaire",
+        "primaryNode": "Serveur primaire",
+        "enableQuorum": "Activer le mécanisme de quorum",
+        "quorumSize": "Taille du Quorum",
+        "noCustomNodes": "Aucun serveur personnalisé",
+        "mustAddCustomNodes": "Vous devez ajouter au moins un serveur personnalisé avant de désactiver la liste des serveurs distants.",
+        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesExplanation": "Il n'y a pas assez de serveurs pour activer le mécanisme de quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Ajoutez plus de serveurs personnalisés ou activez la liste des serveurs distants.",
+        "nodeSettingsUpdatedTitle": "Paramètres de serveur mis à jour",
+        "nodeSettingsUpdatedExplanation": "Vous avez mis à jour vos paramètres de serveur avec succès."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Le serveur personnalisé n'a pas pu être ajouté",
         "customNode": "Serveur personnalisé",
@@ -486,7 +518,11 @@
         "add": "Ajouter",
         "nodeFieldEmpty": "Le champ texte est vide",
         "nodeFieldEmptyExplanation": "Veuillez entrer un serveur personnalisé.",
-        "invalidURL": "Veuillez saisir une URL valide."
+        "invalidURL": "Veuillez saisir une URL valide.",
+        "addAuthKey": "Ajouter une clé d'identification",
+        "username": "Nom d'utilisateur",
+        "couldNotRemove": "Impossible de supprimer le serveur personnalisé",
+        "couldNotRemoveExplanation": "Il doit y avoir assez de serveurs pour le mécanisme de quorum. Réduisez la taille du quorum ou activez la liste des serveurs distants."
     },
     "addNewAccount": {
         "useExistingSeed": "Utiliser une seed existante",
@@ -494,14 +530,14 @@
     },
     "advancedSettings": {
         "selectNode": "Sélectionner un serveur",
-        "addCustomNode": "Ajouter un serveur personnalisé",
         "manualSync": "Synchro manuelle",
         "snapshotTransition": "Transition du Snapshot",
         "pow": "Preuve de Travail",
         "autoPromotion": "Promotion automatique",
         "autoPromotionExplanation": "La promotion automatique aide à confirmer vos transactions sur le Tangle. Activez ce paramètre si vous rencontrez des difficultés à confirmer vos transactions.",
         "autoPromotionPoW": "La promotion automatique n’est possible que sur les serveurs qui prennent en charge la preuve de travail à distance.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Liens profonds",
+        "stateExport": "Exportation de l'état"
     },
     "advancedThemeCustomisation": {
         "background": "Arrière-plan",
@@ -572,6 +608,7 @@
         "viewSeed": "Afficher la seed",
         "hideSeed": "Masquer la seed",
         "notAvailable": "L'exportation de la seed n’est pas disponible pour le compte {{accountType}}",
+        "notAvailableExplanationLedger": "Votre Ledger utilise un élément sécurisé pour stocker votre seed. La seed est cryptée en toute sécurité et ne sort jamais de l'appareil.",
         "accountIndex": "L'index de votre compte Ledger",
         "accountPage": "Numéro de page du compte de votre Ledger"
     },
@@ -622,7 +659,7 @@
     "seedVault": {
         "exportSeedVault": "Exporter SeedVault",
         "seedVaultExplanation": "Un SeedVault est un fichier crypté pour stocker votre seed en toute sécurité. La seed est encryptée à l'aide d'une clé SeedVault et n'est pas accessible sans ce mot de passe.",
-        "seedVaultWarning": "Assurez-bous de conserver le fichier en plusieurs endroits (par ex. disque dur, cloud, USB). Si vous perdez ce fichier et que vous n'avez pas stocké votre seed ailleurs, vous perdrez vos IOTA.",
+        "seedVaultWarning": "Assurez-vous de conserver le fichier en plusieurs endroits (par ex. disque dur, cloud, USB). Si vous perdez ce fichier et que vous n'avez pas stocké votre seed ailleurs, vous perdrez vos IOTA.",
         "exportFail": "Échec de l'exportation de SeedVault",
         "exportFailExplanation": "Il y a eu un problème lors de l'exportation de SeedVault. Veuillez vous assurer que vous avez les autorisations requises et suffisamment d'espace libre.",
         "exportSuccess": "SeedVault exporté",
@@ -642,9 +679,16 @@
         "noSeedFoundExplanation": "Le SeedVault est vide ou contient une seed dans un format non valide.",
         "seedFileError": "Échec de l'ouverture du SeedVaulet",
         "seedFileErrorExplanation": "Il y a eu un problème lors de l'ouverture du SeedVault. Si vous avez sélectionné le bon fichier, il est peut-être endommagé.",
+        "invalidSeedFileError": "Fichier SeedVault invalide",
+        "invalidSeedFileErrorExplanation": "Ce format de fichier n'est pas pris en charge. Seuls les fichiers SeedVault (.kdbx) créés via Trinity ou un gestionnaire de mot de passe sont pris en charge.",
         "seedVaultKeyExplanation": "Tout d’abord, nous devons sécuriser votre SeedVault. Veuillez choisir une clé pour chiffrer le fichier. Vous utiliserez cette clé si vous devez restaurer votre seed à partir du fichier SeedVault.",
         "retypeKey": "Veuillez ré-entrer la clé",
-        "key": "Key"
+        "key": "Clé"
+    },
+    "stateExport": {
+        "stateExportExplanation": "L'exportation de l'état stockera un fichier txt sur votre appareil avec les informations de votre compte (transactions, adresses), la version du portefeuille et les noms des fichiers de stockage.",
+        "exportSuccess": "État exporté",
+        "exportSuccessExplanation": "Votre fichier d'état a été exporté avec succès."
     },
     "chart": {
         "mcap": "MCAP",
@@ -705,14 +749,17 @@
     "deepLink": {
         "autofill": "Succès du remplissage automatique",
         "autofillExplanation": "Remplissage automatique des transactions depuis les liens.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingOverview": "Les liens profonds sont des liens cliquables (iota://...) qui remplissent automatiquement les données de transaction dans Trinity.",
+        "deepLinkingWarning": "Soyez conscient des arnaques de hameçonnage. Assurez-vous que le lien que vous ouvrez navigue vers l'application officielle Trinity.",
+        "deepLinkingUpdated": "Paramètres des liens profonds",
+        "deepLinkingEnabled": "Vous avez activé les liens profonds.",
+        "deepLinkingDisabled": "Vous avez désactivé les liens profonds.",
+        "deepLinkingInfoTitle": "Les liens profonds ne sont pas activés",
+        "deepLinkingInfoMessage": "Vous avez ouvert un lien profond iota:// mais les liens profonds ne sont pas activés."
     },
     "updates": {
         "errorRetrievingUpdateData": "Erreur lors de la récupération des données de mise à jour",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Aucune mise à jour disponible",
         "noUpdatesAvailableExplanation": "Vous avez la dernière version de Trinity !",
         "newVersionAvailable": "Une nouvelle version est disponible",
@@ -779,13 +826,16 @@
         "notReady": "Si vous souhaitez utiliser une clé Ledger, connectez la et déverrouillez la maintenant",
         "indexInUse": "Index déjà utilisé pour le compte {{account}}",
         "indexInUseExplanation": "L'index que vous avez choisi est déjà utilisé sur l’un de vos comptes. Veuillez choisir un autre numéro d’index.",
-        "proceedWithLedger": "Paramétrer le Ledger",
+        "createNewLedgerAccountInfo": "Assurez-vous de noter et de vous souvenir de votre numéro d'index.",
+        "restoreLedgerAccountInfo": "Entrez votre numéro d'index enregistré pour restaurer votre compte.",
+        "createNewLedgerAccount": "Créer un nouveau compte Ledger",
+        "restoreLedgerAccount": "Restaurer un compte Ledger existant",
         "accountIndex": "Index du compte",
         "accountPage": "Page du compte",
         "actionCancelled": "Accès du Ledger annulé",
         "actionCancelledExplanation": "Impossible d'effectuer cette action sans accès au Ledger.",
         "chooseAccountIndex": "Choisissez l'index du compte Ledger",
-        "accountIndexExplanation": "Votre Ledger peut stocker plusieurs seeds. Chaque seed est identifiée par un numéro d’index unique. Un index inutilisé a été présélectionné, mais n’hésitez pas à choisir par vous même. Assurez-vous de noter le numéro d’index que vous avez choisi.",
+        "accountIndexExplanation": "Votre Ledger peut stocker plusieurs seeds. Chaque seed est identifiée par un numéro d'index unique.",
         "accountPageExplanation": "Certains portefeuilles tiers nécessitent l'utilisation de pages.",
         "connectionError": "Impossible de se connecter au Ledger",
         "connectionErrorExplanation": "Vérifiez que votre Ledger est connecté et déverrouillé.",
@@ -806,8 +856,12 @@
         "checkAddress": "Vérifiez l’adresse de réception",
         "checkAddressExplanation": "Vérifiez que les adresses correspondent à celles affichées sur votre Ledger.",
         "applicationNotInitialised": "Avertissements non confirmés",
-        "applicationNotInitialisedExplanation": "Rouvrez l’application IOTA sur votre Ledger, acceptez l’avertissement d’information et essayez à nouveau.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "applicationNotInitialisedExplanation": "Réouvrez l’application IOTA sur votre Ledger, acceptez l’avertissement et essayez à nouveau.",
+        "checkLedger": "Vérifiez votre Ledger",
+        "acceptWarningExplanation": "Si vous avez un avertissement sur votre Ledger, vous devez le faire défiler et l'accepter en appuyant sur les deux boutons.",
+        "udevError": "Impossible de communiquer avec le Ledger",
+        "udevErrorExplanation": "Trinity n'a pas pu communiquer avec votre Ledger. Veuillez visiter l'URL ci-dessous pour résoudre ce problème.",
+        "writtenDownInfoTitle": "Souvenez-vous de votre numéro d'index",
+        "writtenDownInfoExplanation": "Vous avez besoin de votre numéro d'index pour restaurer votre compte à l'avenir. Si vous perdez votre numéro d'index, vous perdrez vos IOTA. Veuillez vous en souvenir."
     }
 }

@@ -4,7 +4,7 @@ import QrReader from 'react-qr-reader';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
 import { MAX_ACC_LENGTH } from 'libs/crypto';
@@ -25,7 +25,7 @@ import css from './input.scss';
 /**
  * Seed input component
  */
-class SeedInput extends React.PureComponent {
+export class SeedComponent extends React.PureComponent {
     static propTypes = {
         /** Current seed value */
         seed: PropTypes.array.isRequired,
@@ -155,7 +155,13 @@ class SeedInput extends React.PureComponent {
     };
 
     getCursor = (element) => {
-        const range = document.getSelection().getRangeAt(0);
+        const selection = document.getSelection();
+
+        if (!selection || selection.rangeCount < 1) {
+            return [this.props.seed.length, this.props.seed.length];
+        }
+
+        const range = selection.getRangeAt(0);
 
         const preCaretRange = range.cloneRange();
         preCaretRange.selectNodeContents(element);
@@ -228,7 +234,13 @@ class SeedInput extends React.PureComponent {
             } else if (error.message === 'SeedNotFound') {
                 generateAlert('error', t('seedVault:noSeedFound'), t('seedVault:noSeedFoundExplanation'));
             } else {
-                generateAlert('error', t('seedVault:seedFileError'), t('seedVault:seedFileErrorExplanation'));
+                generateAlert(
+                    'error',
+                    t('seedVault:seedFileError'),
+                    t('seedVault:seedFileErrorExplanation'),
+                    20000,
+                    error,
+                );
             }
         }
     };
@@ -352,10 +364,10 @@ class SeedInput extends React.PureComponent {
                 {importBuffer && (
                     <Password
                         content={{
-                            title: t('enterPassword'),
-                            message: t('seedVault:enterKeyExplanation'),
+                            title: t('seedVault:enterKeyExplanation'),
                             confirm: t('seedVault:importSeedVault'),
                         }}
+                        isSeedVaultField
                         isOpen
                         onClose={() => this.setState({ importBuffer: null })}
                         onSubmit={(password) => this.decryptFile(password)}
@@ -402,4 +414,4 @@ const mapDispatchToProps = {
 export default connect(
     null,
     mapDispatchToProps,
-)(withI18n()(SeedInput));
+)(withTranslation()(SeedComponent));

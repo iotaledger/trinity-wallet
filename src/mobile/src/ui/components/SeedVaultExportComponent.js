@@ -21,6 +21,7 @@ import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import { removeNonAlphaNumeric, serialise } from 'shared-modules/libs/utils';
 import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/constants';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
+import { MAX_SEED_TRITS } from 'shared-modules/libs/iota/utils';
 import { moment } from 'shared-modules/libs/exports';
 import { UInt8ToString } from 'libs/crypto';
 import InfoBox from './InfoBox';
@@ -190,11 +191,13 @@ class SeedVaultExportComponent extends Component {
                     }
                     this.share(path);
                 })
-                .catch(() =>
+                .catch((err) =>
                     this.props.generateAlert(
                         'error',
                         t('global:somethingWentWrong'),
                         t('global:somethingWentWrongTryAgain'),
+                        10000,
+                        err,
                     ),
                 );
         });
@@ -243,11 +246,13 @@ class SeedVaultExportComponent extends Component {
                     300,
                 );
             })
-            .catch(() =>
+            .catch((err) =>
                 this.props.generateAlert(
                     'error',
                     t('global:somethingWentWrong'),
                     t('global:somethingWentWrongTryAgain'),
+                    10000,
+                    err,
                 ),
             );
     }
@@ -258,7 +263,14 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
-        const { selectedAccountName } = this.props;
+        const { t, selectedAccountName } = this.props;
+        if (this.state.seed.length !== MAX_SEED_TRITS) {
+            return this.props.generateAlert(
+                'error',
+                t('global:somethingWentWrong'),
+                t('global:somethingWentWrongTryAgain'),
+            );
+        }
         // FIXME: Password should be UInt8, not string
         return nodejs.channel.send(
             'export~' +
@@ -461,5 +473,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['seedVault', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(SeedVaultExportComponent),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(SeedVaultExportComponent),
 );

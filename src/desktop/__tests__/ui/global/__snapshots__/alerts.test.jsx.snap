@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alerts component Render the component 1`] = `
+<div
+  className="wrapper"
+>
+  <div
+    className="visible Baz"
+    onClick={[Function]}
+  >
+    <span>
+      <Icon
+        icon="cross"
+        size={14}
+      />
+    </span>
+    <h2>
+      Foo
+    </h2>
+    <p>
+      Bar
+    </p>
+  </div>
+</div>
+`;

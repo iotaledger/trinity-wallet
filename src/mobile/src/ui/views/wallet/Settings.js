@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
-import { setSetting } from 'shared-modules/actions/wallet';
 import KeepAwake from 'react-native-keep-awake';
 import SettingsContent from 'ui/components/SettingsContent';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
@@ -31,8 +30,6 @@ class Settings extends Component {
         currentSetting: PropTypes.string.isRequired,
         /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
-        /** @ignore */
-        setSetting: PropTypes.func.isRequired,
         /** @ignore */
         closeTopBar: PropTypes.func.isRequired,
         /** @ignore */
@@ -82,25 +79,6 @@ class Settings extends Component {
     }
 
     /**
-     * Gets children props for SettingsContent component
-     *
-     * @param {string} child
-     * @returns {object}
-     */
-    getChildrenProps(child) {
-        const props = {
-            nodeSelection: {
-                backPress: () => this.props.setSetting('advancedSettings'),
-            },
-            addCustomNode: {
-                backPress: () => this.props.setSetting('advancedSettings'),
-            },
-        };
-
-        return props[child] || {};
-    }
-
-    /**
      * Gets settings animation according to current and next menu tier
      * 0 = main settings menu, 1 = first tier settings menu, 2 = second tier settings menu, 3 = final tier settings menu
      *
@@ -127,14 +105,16 @@ class Settings extends Component {
             viewSeed: 3,
             exportSeedVault: 3,
             changePassword: 3,
-            nodeSelection: 3,
-            addCustomNode: 3,
+            nodeSettings: 3,
             pow: 3,
             autoPromotion: 3,
             snapshotTransition: 3,
             manualSync: 3,
+            stateExport: 3,
             about: 3,
             deepLinking: 3,
+            nodeSelection: 4,
+            addCustomNode: 4,
         };
 
         if (animationIn) {
@@ -154,8 +134,6 @@ class Settings extends Component {
     }
 
     render() {
-        const childrenProps = this.getChildrenProps(this.props.currentSetting);
-
         return (
             <TouchableWithoutFeedback style={styles.container} onPress={() => this.props.closeTopBar()}>
                 <View style={{ flex: 1 }}>
@@ -170,7 +148,7 @@ class Settings extends Component {
                         duration={150}
                         style={styles.settingsContainer}
                     >
-                        <SettingsContent component={this.state.nextSetting} {...childrenProps} />
+                        <SettingsContent component={this.state.nextSetting} />
                     </AnimatedComponent>
                     <View style={{ flex: 1 }} />
                 </View>
@@ -185,8 +163,4 @@ const mapStateToProps = (state) => ({
     navStack: state.wallet.navStack,
 });
 
-const mapDispatchToProps = {
-    setSetting,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export default connect(mapStateToProps)(Settings);

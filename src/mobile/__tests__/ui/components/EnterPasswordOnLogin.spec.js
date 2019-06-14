@@ -52,6 +52,10 @@ describe('Testing EnterPasswordOnLogin component', () => {
         it('should require a t function as a prop', () => {
             expect(EnterPasswordOnLogin.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
+
+        it('should require an isFingerprintEnabled boolean as a prop', () => {
+            expect(EnterPasswordOnLogin.propTypes.isFingerprintEnabled).toEqual(PropTypes.bool.isRequired);
+        });
     });
 
     describe('when renders', () => {
@@ -68,6 +72,34 @@ describe('Testing EnterPasswordOnLogin component', () => {
             const wrapper = shallow(<EnterPasswordOnLogin {...props} />);
 
             expect(wrapper.find('CustomTextInput').length).toEqual(1);
+        });
+
+        it('should not pass "fingerprintDisabled" in the widget prop if isFingerprintEnabled is false', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<EnterPasswordOnLogin {...props} />);
+
+            expect(
+                wrapper
+                    .find('CustomTextInput')
+                    .prop('widgets')
+                    .indexOf('fingerprintDisabled'),
+            ).toEqual(-1);
+        });
+
+        it('should pass "fingerprintDisabled" in the widget prop if isFingerprintEnabled is true', () => {
+            const props = getProps({
+                isFingerprintEnabled: true,
+            });
+
+            const wrapper = shallow(<EnterPasswordOnLogin {...props} />);
+
+            expect(
+                wrapper
+                    .find('CustomTextInput')
+                    .prop('widgets')
+                    .indexOf('fingerprintDisabled'),
+            ).toBeGreaterThan(-1);
         });
     });
 

@@ -1,9 +1,4 @@
-export const ActionTypes = {
-    SET_NEXT_STEP_AS_ACTIVE: 'IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE',
-    SET_ACTIVE_STEP_INDEX: 'IOTA/PROGRESS/SET_ACTIVE_STEP_INDEX',
-    RESET: 'IOTA/PROGRESS/RESET',
-    START_TRACKING_PROGRESS: 'IOTA/PROGRESS/START_TRACKING_PROGRESS',
-};
+import { ProgressActionTypes } from '../types';
 
 /**
  * Dispatch to set active progress bar step as completed
@@ -13,7 +8,7 @@ export const ActionTypes = {
  * @returns {{type: {string} }}
  */
 export const setNextStepAsActive = () => ({
-    type: ActionTypes.SET_NEXT_STEP_AS_ACTIVE,
+    type: ProgressActionTypes.SET_NEXT_STEP_AS_ACTIVE,
 });
 
 /**
@@ -25,7 +20,7 @@ export const setNextStepAsActive = () => ({
  * @returns {{type: {string}, payload: {number} }}
  */
 export const setActiveStepIndex = (payload) => ({
-    type: ActionTypes.SET_ACTIVE_STEP_INDEX,
+    type: ProgressActionTypes.SET_ACTIVE_STEP_INDEX,
     payload,
 });
 
@@ -37,7 +32,7 @@ export const setActiveStepIndex = (payload) => ({
  * @returns {{type: {string} }}
  */
 export const reset = () => ({
-    type: ActionTypes.RESET,
+    type: ProgressActionTypes.RESET,
 });
 
 /**
@@ -49,6 +44,6 @@ export const reset = () => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const startTrackingProgress = (payload) => ({
-    type: ActionTypes.START_TRACKING_PROGRESS,
+    type: ProgressActionTypes.START_TRACKING_PROGRESS,
     payload,
 });

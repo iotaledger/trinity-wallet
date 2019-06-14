@@ -3,17 +3,16 @@ import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { changePassword, hash } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
-import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import { Icon } from 'ui/theme/icons';
+import SettingsDualFooter from 'ui/components/SettingsDualFooter';
 import InfoBox from 'ui/components/InfoBox';
 import PasswordFields from 'ui/components/PasswordFields';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -26,11 +25,6 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     topContainer: {
         flex: 11,
@@ -42,28 +36,6 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    titleTextLeft: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    titleTextRight: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
     },
 });
 
@@ -117,7 +89,9 @@ class ChangePassword extends Component {
                 generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
                 this.props.setSetting('securitySettings');
             })
-            .catch(() => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain')));
+            .catch((err) =>
+                generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain'), 10000, err),
+            );
     }
 
     /**
@@ -177,33 +151,13 @@ class ChangePassword extends Component {
                         <View style={{ flex: 0.2 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('securitySettings')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        {currentPassword !== '' &&
-                            newPassword !== '' &&
-                            newPasswordReentry !== '' && (
-                                <TouchableOpacity
-                                    onPress={() => this.isPasswordChangeValid()}
-                                    hitSlop={{
-                                        top: height / 55,
-                                        bottom: height / 55,
-                                        left: width / 55,
-                                        right: width / 55,
-                                    }}
-                                >
-                                    <View style={styles.itemRight}>
-                                        <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                        <Icon name="tick" size={width / 28} color={theme.body.color} />
-                                    </View>
-                                </TouchableOpacity>
-                            )}
+                        <SettingsDualFooter
+                            theme={theme}
+                            hideActionButton={currentPassword === '' || newPassword === '' || newPasswordReentry === ''}
+                            backFunction={() => this.props.setSetting('securitySettings')}
+                            actionFunction={() => this.isPasswordChangeValid()}
+                            actionName={t('global:save')}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -221,5 +175,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['changePassword', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(ChangePassword),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ChangePassword),
 );

@@ -107,7 +107,7 @@ export class EnterPasswordOnLogin extends Component {
                             onSubmitEditing={this.handleLogin}
                             theme={theme}
                             value={password}
-                            widgets={['fingerprintDisabled']}
+                            widgets={isFingerprintEnabled ? ['fingerprintDisabled'] : []}
                             fingerprintAuthentication={isFingerprintEnabled}
                             onFingerprintPress={this.openModal}
                             isPasswordInput
@@ -117,7 +117,7 @@ export class EnterPasswordOnLogin extends Component {
                         <DualFooterButtons
                             onLeftButtonPress={this.changeNode}
                             onRightButtonPress={this.handleLogin}
-                            leftButtonText={t('setNode')}
+                            leftButtonText={t('settings:nodeSettings')}
                             rightButtonText={t('login')}
                         />
                     </View>
@@ -131,4 +131,9 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['login', 'global'])(connect(null, mapDispatchToProps)(EnterPasswordOnLogin));
+export default withNamespaces(['login', 'global'])(
+    connect(
+        null,
+        mapDispatchToProps,
+    )(EnterPasswordOnLogin),
+);

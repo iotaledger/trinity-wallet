@@ -1,5 +1,4 @@
 /* global Electron */
-import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 import { ALIAS_REALM } from 'libs/realm';
 
 export const ACC_MAIN = 'Trinity';
@@ -22,21 +21,12 @@ export const randomBytes = (size, max = 256) => {
     const bytes = global.crypto.getRandomValues(rawBytes);
 
     for (let i = 0; i < bytes.length; i++) {
-        while (bytes[i] >= 256 - 256 % max) {
+        while (bytes[i] >= 256 - (256 % max)) {
             bytes[i] = randomBytes(1, max)[0];
         }
     }
 
     return Array.from(bytes);
-};
-
-/**
- * Create random seed
- * @param {number} length - Random seed length
- * @returns {array} Random byte array seed
- */
-export const createRandomSeed = (length = MAX_SEED_LENGTH) => {
-    return randomBytes(length, 27);
 };
 
 /**
@@ -211,15 +201,13 @@ export const hash = async (inputPlain) => {
  * @returns {string} Output string
  */
 const bufferToHex = (buffer) => {
-    const hexCodes = [];
-    const view = new DataView(buffer);
-    for (let i = 0; i < view.byteLength; i += 4) {
-        const value = view.getUint32(i);
-        const stringValue = value.toString(16);
-        const padding = '00000000';
-        const paddedValue = (padding + stringValue).slice(-padding.length);
-        hexCodes.push(paddedValue);
+    const view = new Uint8Array(buffer);
+    let result = '';
+
+    for (let i = 0; i < view.length; i++) {
+        const value = view[i].toString(16);
+        result += value.length === 1 ? '0' + value : value;
     }
 
-    return hexCodes.join('');
+    return result;
 };

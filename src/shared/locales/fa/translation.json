@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "به هنگام دریافت اطلاعات حساب شما node با خطایی مواجه شد. اگر این مشکل همچنان ادامه دارد، تغییر دادن node یا غیر فعال کردن پروکسی سیستم خود در تنظیمات Trinity را امتحان کنید.",
         "nodeOutOfSync": "Node خارج از همگام سازی",
         "nodeOutOfSyncExplanation": "Node در حال حاضر انتخاب شده شما از همگام نیست. لطفا Node را تغییر دهید یا دوباره تلاش کنید.",
+        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
         "experimentalNode": "نسخه node پشتیبانی نمی‌شود",
         "experimentalNodeExplanation": "node انتخاب شده فعلی شما در حال اجرای یک نسخه آزمایشی است که پشتیبانی نمی‌شود. لطفا node خود را تغییر دهید یا دوباره تلاش کنید.",
         "thisNodeOutOfSync": "این Node همگام نیست. لطفا Node را تغییر دهید یا دوباره تلاش کنید.",
@@ -120,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "فقط Node های سفارشی با استفاده از HTTPS مجاز می باشند.",
         "nodeDuplicated": "Node تکراری",
         "nodeDuplicatedExplanation": "Node سفارشی قبلا در لیست موجود میباشد.",
+        "customNodeAdded": "Custom node added",
+        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "تعویض اتوماتیک Node",
         "nodeAutoChangedExplanation": "اتصال به Node جدید {{- nodeAddress}} به عنوان Node انتخاب شده.",
         "touchSensor": "Touch the fingerprint sensor",
@@ -141,6 +144,8 @@
         "isYourBalanceCorrect": "آیا موجودی شما درست است؟",
         "ifYourBalanceIsNotCorrect": "اگر موجودی شما درست نیست، احتمال دارد که از سید از پیش ساخته شده استفاده می کنید.",
         "headToAdvancedSettingsForTransition": "به تنظیمات پیشرفته بروید و یک انتقال عکس فوری بگیرید.",
+        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "استفاده از کیف پول Trinity با Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "خطایی در شبکه هنگام پخش تراکنش شما وجود داشت.",
         "broadcastError": "عدم موفقیت در انتشار انتقال",
@@ -160,9 +165,13 @@
         "shouldUpdateExplanation": "به‌روزرسانی جدیدی منتشر شده است. توصیه می‌شود که به آخرین نسخه به‌روز‌رسانی کنید.",
         "forceUpdate": "برای ادامه برنامه را به‌روز‌رسانی کنید",
         "forceUpdateExplanation": "یک به‌روزرسانی بحرانی منتشر شده است. لطفا هم‌اکنون برنامه را به‌روزرسانی کنید.",
+        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
         "missingPermission": "نیاز به مجوز سیستم فایل است",
         "missingPermissionExplanation": "به منظور انجام این عمل دسترسی به فایل‌های سیستمی مورد نیاز است.",
-        "swipeToConfirm": "Swipe to confirm"
+        "swipeToConfirm": "Swipe to confirm",
+        "expert": "Expert",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "سید ورودی دارای کاراکترهای نامعتبر است",
@@ -394,6 +403,7 @@
         "changePassword": "تغییر گذرواژه",
         "general": "تنظیمات عمومی",
         "advanced": "تنظیمات پیشرفته",
+        "nodeSettings": "Node settings",
         "account": "تنظیمات حساب",
         "logout": "خروج",
         "reset": "بازنشانی کیف پول",
@@ -425,7 +435,6 @@
         "redo": "انجام دوباره",
         "aboutTrinity": "درباره Trinity",
         "lockScreenTimeout": "زمان قفل کردن صفحه (دقیقه)",
-        "autoNodeSwitching": "وقتی Node در دسترس نباشد، Node را به صورت خودکار انتخاب بکن",
         "nodeChangeSuccess": "Node با موفقیت تغییر کرده است",
         "nodeChangeSuccessNoRemotePow": "Node به {{node}} تغییر یافت. این Node از اثبات کار از راه دور پشتیبانی نمی کند.",
         "nodeChangeSuccessExplanation": "Node به {{node}} تغییر یافت.",
@@ -455,7 +464,8 @@
     },
     "history": {
         "bundleHashCopied": "بسته نرم افزاری هش کپی شد",
-        "noTransactionsFound": "Your transaction history is empty",
+        "noTransactionsFound": "هیچ تراکنشی یافت نشد",
+        "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "پنهان کردن موجودی صفر",
         "bundleHashCopiedExplanation": "هش بسته نرم افزاری به کلیپ بورد کپی شد.",
         "addressCopied": "آدرس کپی شد",
@@ -468,7 +478,13 @@
         "retrying": "درحال تلاش دوباره",
         "yesterday": "دیروز",
         "promotingAnotherBundle": "در حال ارتقای یک بسته تراکنش دیگر",
-        "pleaseWait": "لطفا صبر کنید، Trinity در حال ارتقای یک بسته تراکنش دیگر است."
+        "pleaseWait": "لطفا صبر کنید، Trinity در حال ارتقای یک بسته تراکنش دیگر است.",
+        "typeHelp": "Type !help for available commands",
+        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpValue": "Find transactions by exact iota value",
+        "searchHelpUnits": "Find transactions by iota value and unit",
+        "searchHelpMore": "Find transactions with a value greater than X",
+        "searchHelpLess": "Find transactions with a value less than X"
     },
     "accountManagement": {
         "viewSeed": "مشاهده سید",
@@ -478,6 +494,22 @@
         "addNewAccount": "اضافه کردن حساب جدید",
         "tools": "ابزارها"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatic node management",
+        "addCustomNodes": "Add custom nodes",
+        "autoNodeList": "Use remote node list",
+        "nodeAutoswitching": "Primary node autoswitching",
+        "primaryNode": "Primary node",
+        "enableQuorum": "Enable quorum",
+        "quorumSize": "Quorum size",
+        "noCustomNodes": "No custom nodes",
+        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node سفارشی نمیتوان اضافه کرد",
         "customNode": "Node سفارشی",
@@ -486,7 +518,11 @@
         "add": "اضافه کردن",
         "nodeFieldEmpty": "فیلد متن خالی است",
         "nodeFieldEmptyExplanation": "لطفا Node سفارشی خود را وارد کنید.",
-        "invalidURL": "لطفا یک URL معتبر وارد کنید."
+        "invalidURL": "لطفا یک URL معتبر وارد کنید.",
+        "addAuthKey": "Add auth key",
+        "username": "Username",
+        "couldNotRemove": "Could not remove custom node",
+        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
         "useExistingSeed": "استفاده از سیدهای موجود",
@@ -494,14 +530,14 @@
     },
     "advancedSettings": {
         "selectNode": "انتخاب Node",
-        "addCustomNode": "Node سفارشی را اضافه کنید",
         "manualSync": "همگام سازی دستی",
         "snapshotTransition": "انتقال عکس فوری",
         "pow": "اثبات کار",
         "autoPromotion": "ارتقا خودکار",
         "autoPromotionExplanation": "ارتقا خودکار کمک می کند تا معاملات خود را در Tangle تایید کنید. اگر شما دچار تردید در دریافت معاملات خود هستید این تنظیم را فعال کنید.",
         "autoPromotionPoW": "ارتقا خودکار تنها در Node هایی است که از اثبات کار از راه دور پشتیبانی می کند.",
-        "deepLinking": "Deep linking"
+        "deepLinking": "Deep linking",
+        "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
         "background": "پس زمینه",
@@ -572,6 +608,7 @@
         "viewSeed": "مشاهده سید",
         "hideSeed": "پنهان کردن سید",
         "notAvailable": "برون‌ریزی سید برای نوع حساب {{accountType}} در دسترس نمی‌باشد",
+        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "اندیس حساب لدجر شما",
         "accountPage": "صفحه حساب لدجر شما"
     },
@@ -601,7 +638,7 @@
         "fingerprintUnavailableExplanation": "دستگاه شما از تاییدیه بیومتریک پشتیبانی نمیکند یا در تنظیمات دستگاه پیکربندی نشده است.",
         "notSupported": "Device does not support biometric authentication",
         "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "برای غیرفعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید.",
         "buttonInstructionsEnable": "برای فعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید.",
         "buttonInstructionsDisableIPhoneX": "برای غیرفعال کردن Face ID، دکمه زیر را فشار دهید",
         "buttonInstructionsEnableIPhoneX": "برای فعال کردن Face ID، دکمه زیر را فشار دهید",
@@ -642,9 +679,16 @@
         "noSeedFoundExplanation": "سید Vault یا خالی است یا حاوی یک سید در قالب نامعتبر است.",
         "seedFileError": "باز کردن فایل سید Vault ناموفق بود",
         "seedFileErrorExplanation": "در باز کردن سید Vault با مشکل مواجه شد. اگر فایل درست را انتخاب کردید، ممکن است خراب شده باشد.",
+        "invalidSeedFileError": "Invalid SeedVault file",
+        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
         "seedVaultKeyExplanation": "ما ابتدا نیاز داریم که SeedVault شما را امن کنیم. لطفا یک کلید برای رمزنگاری فایل انتخاب کنید. شما زمانی که نیاز به بازیابی سید خود از پشتیبان‌گیری SeedVault داشته باشید، از این کلید استفاده خواهید کرد.",
         "retypeKey": "کلید را دوباره وارد کنید",
-        "key": "Key"
+        "key": "کلید"
+    },
+    "stateExport": {
+        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "exportSuccess": "State exported",
+        "exportSuccessExplanation": "Your state file was exported successfully."
     },
     "chart": {
         "mcap": "MCAP",
@@ -709,12 +753,15 @@
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking."
+        "deepLinkingDisabled": "You have disabled deep linking.",
+        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
         "errorRetrievingUpdateData": "خطا در بازیابی داده های به روزرسانی",
+        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "بروزرسانی موجود نيست",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "نسخه جدید موجود است",
         "newVersionAvailableExplanation": "یک نسخه‌ی جدید از Trinity در دسترس است. آیا می‌خواهید الان به‌روز‌رسانی کنید؟",
         "installUpdate": "نصب به‌روزرسانی و راه‌اندازی مجدد",
@@ -779,13 +826,16 @@
         "notReady": "اگر می‌خواهید از یک دستگاه لدجر استفاده کنید، هم‌اکنون آن را متصل و قفل‌گشایی کنید",
         "indexInUse": "اندیس در حال حاضر برای حساب {{account}} استفاده می‌شود",
         "indexInUseExplanation": "اندیس انتخابی شما در حال حاضر برای یکی از حساب‌های شما استفاده می‌شود. لطفا یک عدد اندیس دیگر انتخاب کنید.",
-        "proceedWithLedger": "ادامه با برپایی لدجر",
+        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccount": "Create a new Ledger account",
+        "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "اندیس حساب",
         "accountPage": "صفحه حساب",
         "actionCancelled": "Ledger device access cancelled",
         "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "اندیس حساب لدجر خود را انتخاب کنید",
-        "accountIndexExplanation": "لدجر شما می‌تواند چندین سید مختلف را نگه‌داری کند. هر سید با یک شماره اندیس منحصر به فرد معین می‌گردد. یک اندیس استفاده نشده برایتان انتخاب شده ولی در صورت تمایل می‌توانید از اندیس دلخواهتان استفاده کنید. از یادداشت کردن اندیسی که انتخاب کرده‌اید اطمینان حاصل کنید.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "برخی از کیف پول‌های شخص ثالث نیاز به صفحات دارند.",
         "connectionError": "نمی‌توان به لدجر متصل شد",
         "connectionErrorExplanation": "بررسی کنید که لدجر شما متصل شده و قفل آن گشوده شده باشد.",
@@ -807,7 +857,11 @@
         "checkAddressExplanation": "بررسی کنید که آدرس با آنچه در دستگاه لدجر شما نشان داده می‌شود همخوانی دارد.",
         "applicationNotInitialised": "هشدار تایید نشده",
         "applicationNotInitialisedExplanation": "برنامه IOTA را در دستگاه لدجر خود مجددا باز کرده، هشدارهای اطلاعاتی را قبول و مجددا تلاش کنید.",
+        "checkLedger": "Check your Ledger device",
+        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue.",
+        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

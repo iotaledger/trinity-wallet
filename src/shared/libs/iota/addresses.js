@@ -131,7 +131,11 @@ export const isAddressUsedSync = (addressObject, transactions) => {
     }
 
     const transactionAddresses = map(transactions, (tx) => tx.address);
-    const { address, spent: { local }, balance } = addressObject;
+    const {
+        address,
+        spent: { local },
+        balance,
+    } = addressObject;
 
     return local === true || balance > 0 || includes(transactionAddresses, address);
 };
@@ -141,29 +145,29 @@ export const isAddressUsedSync = (addressObject, transactions) => {
  *
  * @method isAddressUsedAsync
  *
- * @param {string} provider
+ * @param {object} [settings]
  * @param {boolean} withQuorum
  *
  * @returns {function(string, object, array): Promise<boolean>}
  **/
-export const isAddressUsedAsync = (provider, withQuorum) => (addressObject) => {
+export const isAddressUsedAsync = (settings, withQuorum) => (addressObject) => {
     if (!isValidAddressObject(addressObject)) {
         return Promise.reject(new Error(Errors.INVALID_ADDRESS_DATA));
     }
 
     const { address } = addressObject;
 
-    return wereAddressesSpentFromAsync(provider, withQuorum)([address]).then((spent) => {
+    return wereAddressesSpentFromAsync(settings, withQuorum)([address]).then((spent) => {
         const isSpent = head(spent) === true;
 
         return (
             isSpent ||
-            findTransactionsAsync(provider)({ addresses: [address] }).then((hashes) => {
+            findTransactionsAsync(settings)({ addresses: [address] }).then((hashes) => {
                 const hasAssociatedHashes = size(hashes) > 0;
 
                 return (
                     hasAssociatedHashes ||
-                    getBalancesAsync(provider, withQuorum)([address]).then((balances) => {
+                    getBalancesAsync(settings, withQuorum)([address]).then((balances) => {
                         return accumulateBalance(map(balances.balances, Number)) > 0;
                     })
                 );
@@ -177,16 +181,16 @@ export const isAddressUsedAsync = (provider, withQuorum) => (addressObject) => {
  *
  * @method getAddressDataUptoLatestUnusedAddress
  *
- * @param {string} provider
+ * @param {object} settings
  * @param {boolean} withQuorum
  *
  * @returns {function(object, array, object): Promise<array>}
  **/
-export const getAddressDataUptoLatestUnusedAddress = (provider, withQuorum) => (seedStore, transactions, options) => {
+export const getAddressDataUptoLatestUnusedAddress = (settings, withQuorum) => (seedStore, transactions, options) => {
     const generateAddressData = (currentKeyIndex, generatedAddressData) => {
         return seedStore
             .generateAddress({ index: currentKeyIndex, security })
-            .then((address) => findAddressesData(provider, withQuorum)([address], transactions))
+            .then((address) => findAddressesData(settings, withQuorum)([address], transactions))
             .then(({ hashes, balances, wereSpent, addresses }) => {
                 const updatedAddressData = [
                     ...generatedAddressData,
@@ -224,12 +228,12 @@ export const getAddressDataUptoLatestUnusedAddress = (provider, withQuorum) => (
  *
  * @method mapLatestAddressData
  *
- * @param {string} provider
+ * @param {object} [settings]
  * @param {boolean} withQuorum
  *
  * @returns {function(array, array): Promise<object>}
  **/
-export const mapLatestAddressData = (provider, withQuorum) => (addressData, transactions) => {
+export const mapLatestAddressData = (settings, withQuorum) => (addressData, transactions) => {
     const cached = {
         balances: [],
         wereSpent: [],
@@ -241,11 +245,11 @@ export const mapLatestAddressData = (provider, withQuorum) => (addressData, tran
         return Promise.resolve([]);
     }
 
-    return getBalancesAsync(provider, withQuorum)(addresses)
+    return getBalancesAsync(settings, withQuorum)(addresses)
         .then((balances) => {
             cached.balances = map(balances.balances, Number);
 
-            return wereAddressesSpentFromAsync(provider, withQuorum)(addresses);
+            return wereAddressesSpentFromAsync(settings, withQuorum)(addresses);
         })
         .then((wereSpent) => {
             // Get spend statuses of addresses from transactions
@@ -273,12 +277,12 @@ export const mapLatestAddressData = (provider, withQuorum) => (addressData, tran
  *  Returns all associated addresses with history for a seed
  *
  *  @method getFullAddressHistory
- *  @param {string} provider
+ *  @param {object} [settings]
  *  @param {boolean} withQuorum
  *
  *  @returns {function(object, object): Promise<object>}
  */
-export const getFullAddressHistory = (provider, withQuorum) => (seedStore, existingAccountState = {}) => {
+export const getFullAddressHistory = (settings, withQuorum) => (seedStore, existingAccountState = {}) => {
     let generatedAddresses = [];
     const addressData = { hashes: [], balances: [], wereSpent: [] };
     const { transactions } = existingAccountState;
@@ -286,7 +290,7 @@ export const getFullAddressHistory = (provider, withQuorum) => (seedStore, exist
     const generateAndStoreAddressesInBatch = (currentOptions) => {
         return seedStore
             .generateAddress(currentOptions)
-            .then((addresses) => findAddressesData(provider, withQuorum)(addresses, transactions || []))
+            .then((addresses) => findAddressesData(settings, withQuorum)(addresses, transactions || []))
             .then(({ hashes, balances, wereSpent, addresses }) => {
                 const shouldGenerateNextBatch =
                     size(hashes) ||
@@ -312,7 +316,7 @@ export const getFullAddressHistory = (provider, withQuorum) => (seedStore, exist
                 // Set the first address from the newly fetched addresses as the latest address.
                 const latestAddress = head(addresses);
 
-                return removeUnusedAddresses(provider, withQuorum)(
+                return removeUnusedAddresses(settings, withQuorum)(
                     lastAddressIndex,
                     latestAddress,
                     generatedAddresses.slice(),
@@ -344,16 +348,16 @@ export const getFullAddressHistory = (provider, withQuorum) => (seedStore, exist
  *  Finds hashes, balances and spent statuses for an address
  *
  *  @method findAddressesData
- *  @param {string} provider
+ *  @param {object} [settings]
  *  @param {boolean} withQuorum
  *
  *  @returns {function(array, [array]): Promise<{object}>
  */
-const findAddressesData = (provider, withQuorum) => (addresses, transactions = []) => {
+const findAddressesData = (settings, withQuorum) => (addresses, transactions = []) => {
     return Promise.all([
-        findTransactionsAsync(provider)({ addresses }),
-        getBalancesAsync(provider, withQuorum)(addresses),
-        wereAddressesSpentFromAsync(provider, withQuorum)(addresses),
+        findTransactionsAsync(settings)({ addresses }),
+        getBalancesAsync(settings, withQuorum)(addresses),
+        wereAddressesSpentFromAsync(settings, withQuorum)(addresses),
     ]).then((data) => {
         const [hashes, balances, wereSpent] = data;
         const spendStatusesFromTransactions = findSpendStatusesFromTransactions(addresses, transactions);
@@ -374,12 +378,12 @@ const findAddressesData = (provider, withQuorum) => (addresses, transactions = [
  *  Basically just removes the unused addresses
  *
  *  @method removeUnusedAddresses
- *  @param {string} provider
+ *  @param {object} [settings]
  *  @param {boolean} withQuorum
  *
  *  @returns {function(number, string, array, object): Promise<array>}
  */
-export const removeUnusedAddresses = (provider, withQuorum) => (
+export const removeUnusedAddresses = (settings, withQuorum) => (
     index,
     latestUnusedAddress,
     finalAddresses,
@@ -391,14 +395,14 @@ export const removeUnusedAddresses = (provider, withQuorum) => (
 
     const { transactions } = existingAccountState;
 
-    return findAddressesData(provider, withQuorum)([finalAddresses[index]], transactions || []).then(
+    return findAddressesData(settings, withQuorum)([finalAddresses[index]], transactions || []).then(
         ({ hashes, balances, wereSpent }) => {
             if (
                 size(hashes) === 0 &&
                 some(balances, (balance) => balance === 0) &&
                 some(wereSpent, (status) => status.remote === false && status.local === false)
             ) {
-                return removeUnusedAddresses(provider, withQuorum)(
+                return removeUnusedAddresses(settings, withQuorum)(
                     index - 1,
                     finalAddresses[index],
                     finalAddresses.slice(0, index),
@@ -676,12 +680,12 @@ export const getAddressDataUptoRemainder = (provider, withQuorum) => (
  *
  * @method syncAddresses
  *
- * @param {string} provider
+ * @param {object} [settings]
  * @param {boolean} withQuorum
  *
  * @returns {function(string, array, array): Promise<object>}
  **/
-export const syncAddresses = (provider, withQuorum) => (seedStore, addressData, transactions) => {
+export const syncAddresses = (settings, withQuorum) => (seedStore, addressData, transactions) => {
     // Find the address object with highest index from existing address data
     const latestAddressObject = getLatestAddressObject(addressData);
 
@@ -689,14 +693,14 @@ export const syncAddresses = (provider, withQuorum) => (seedStore, addressData, 
         // Start index should be (highest index in existing address data + 1)
         const startIndex = latestAddressObject.index + 1;
 
-        return getAddressDataUptoLatestUnusedAddress(provider, withQuorum)(seedStore, transactions, {
+        return getAddressDataUptoLatestUnusedAddress(settings, withQuorum)(seedStore, transactions, {
             index: startIndex,
             security: DEFAULT_SECURITY,
         }).then((newAddressObjects) => [...addressData, ...newAddressObjects]);
     };
 
     // Check if there are any transactions associated with the latest address or if the address is spent
-    return isAddressUsedAsync(provider, withQuorum)(latestAddressObject).then((isUsed) => {
+    return isAddressUsedAsync(settings, withQuorum)(latestAddressObject).then((isUsed) => {
         if (!isUsed && !isAddressUsedSync(latestAddressObject, transactions)) {
             return addressData;
         }

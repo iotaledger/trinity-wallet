@@ -22,6 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Noden returnerade ett fel när den hämtade din kontoinformation. Om problemet kvarstår, prova att ändra nod eller inaktivera din system-proxy i Trinity inställningar.",
         "nodeOutOfSync": "Nod osynkad",
         "nodeOutOfSyncExplanation": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
+        "nodeOutOfSyncByTimestampExplanation": "Din nuvarande nod är osynkad. Vänligen ändra nod eller försök igen. Om ditt problem kvarstår, se till att klockan på din enhet är korrekt.",
         "experimentalNode": "Nod-versionen stöds inte",
         "experimentalNodeExplanation": "Din valda nod kör en experimentell version som inte stöds. Vänligen ändra nod eller försök igen.",
         "thisNodeOutOfSync": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
@@ -120,6 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Endast anpassade noder som använder HTTPS är tillåtna.",
         "nodeDuplicated": "Duplicerad nod",
         "nodeDuplicatedExplanation": "Den anpassade noden finns redan.",
+        "customNodeAdded": "Anpassad nod tillagd",
+        "customNodeAddedExplanation": "Du har lagt till {{nodeAddress}} som en anpassad nod.",
         "nodeAutoChanged": "Bytte automatiskt nod",
         "nodeAutoChangedExplanation": "Bytte till ny nod {{- nodeAddress}} då din valda nod är offline.",
         "touchSensor": "Håll fingret på fingeravtrycksläsaren",
@@ -141,6 +144,8 @@
         "isYourBalanceCorrect": "Stämmer ditt saldo?",
         "ifYourBalanceIsNotCorrect": "Om ditt saldo inte är korrekt, är det troligt att du använder en seed från tidigare än snapshot.",
         "headToAdvancedSettingsForTransition": "Gå till avancerade inställningar och utför en snapshot-övergång.",
+        "headToAccountTools": "Gå till kontoverktyg och utför en snapshot-övergång.",
+        "openAccountTools": "Öppna Kontoverktyg",
         "usingTrinityWalletWithKeePass": "Använder Trinity med Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Ett nätverksfel uppstod under sändning av din transaktion.",
         "broadcastError": "Kunde inte sända transaktionen",
@@ -160,9 +165,13 @@
         "shouldUpdateExplanation": "En ny uppdatering har släppts. Det rekommenderas att du uppdaterar till den senaste versionen.",
         "forceUpdate": "Uppdatera appen att fortsätta",
         "forceUpdateExplanation": "En viktig uppdatering har släppts. Vänligen uppdatera appen nu.",
+        "testVersionWarning": "Denna version ska endast användas för teständamål, med mycket små mängder tokens.",
         "missingPermission": "Åtkomst till filsystem krävs",
         "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion.",
-        "swipeToConfirm": "Dra för att bekräfta"
+        "swipeToConfirm": "Dra för att bekräfta",
+        "expert": "Avancerat",
+        "notEnoughSyncedNodes": "För få noder synkade",
+        "notEnoughSyncedNodesExplanation": "Ett kvorum kunde inte nås. Stäng av kvorum eller försök igen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -394,6 +403,7 @@
         "changePassword": "Ändra lösenord",
         "general": "Allmänna inställningar",
         "advanced": "Avancerade inställningar",
+        "nodeSettings": "Nod-inställningar",
         "account": "Kontoinställningar",
         "logout": "Logga ut",
         "reset": "Återställ plånbok",
@@ -425,7 +435,6 @@
         "redo": "Upprepa",
         "aboutTrinity": "Om Trinity",
         "lockScreenTimeout": "Inaktivitetslås (minuter)",
-        "autoNodeSwitching": "Byt nod automatiskt när vald nod är onåbar",
         "nodeChangeSuccess": "Bytte nod framgångsrikt",
         "nodeChangeSuccessNoRemotePow": "Noden har ändrats till {{node}}. Denna nod stöder inte fjärr PoW.",
         "nodeChangeSuccessExplanation": "Noden har ändrats till {{node}}.",
@@ -455,7 +464,8 @@
     },
     "history": {
         "bundleHashCopied": "Hashbunt kopierad",
-        "noTransactionsFound": "Din transaktionshistorik är tom",
+        "noTransactionsFound": "Inga transaktioner hittade",
+        "emptyHistory": "Din transaktionshistorik är tom",
         "hideZeroBalance": "Dölj nollvärden",
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
@@ -468,7 +478,13 @@
         "retrying": "Försöker igen",
         "yesterday": "Igår",
         "promotingAnotherBundle": "Främjar en annan transaktionsbunt",
-        "pleaseWait": "Vänta vänligen, Trinity är upptagen med att befordra en annan transaktionsbunt."
+        "pleaseWait": "Vänta vänligen, Trinity är upptagen med att befordra en annan transaktionsbunt.",
+        "typeHelp": "Skriv !help för tillgängliga kommandon",
+        "searchHelpText": "Sök på hashbunt eller meddelandets innehåll",
+        "searchHelpValue": "Hitta transaktioner med exakta IOTA-värdet",
+        "searchHelpUnits": "Hitta transaktioner med IOTA-värdet och enhet",
+        "searchHelpMore": "Hitta transaktioner med ett värde större än X",
+        "searchHelpLess": "Hitta transaktioner med ett värde mindre än X"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
@@ -478,6 +494,22 @@
         "addNewAccount": "Lägg till konto",
         "tools": "Verktyg"
     },
+    "nodeSettings": {
+        "automaticNodeManagement": "Automatisk nodhantering",
+        "addCustomNodes": "Lägg till anpassad nod",
+        "autoNodeList": "Använd fjärrnodslistan",
+        "nodeAutoswitching": "Automatisk växling för primär nod",
+        "primaryNode": "Primär nod",
+        "enableQuorum": "Aktivera kvorum",
+        "quorumSize": "Kvorumstorlek",
+        "noCustomNodes": "Inga anpassade noder",
+        "mustAddCustomNodes": "Du måste lägga till minst en anpassad nod innan du avaktiverar fjärrnodslistan.",
+        "nodeEnoughNodesTitle": "Inte tillräckligt med noder",
+        "nodeEnoughNodesExplanation": "Det finns inte tillräckligt med noder för att möjliggöra kvorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Lägg till fler anpassade noder eller aktivera fjärrnodslistan.",
+        "nodeSettingsUpdatedTitle": "Nod-inställningar uppdaterade",
+        "nodeSettingsUpdatedExplanation": "Du har uppdaterat dina nod-inställningar."
+    },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Anpassad nod kunde inte bli tillagd",
         "customNode": "Anpassad nod",
@@ -486,7 +518,11 @@
         "add": "Lägg till",
         "nodeFieldEmpty": "Textfältet är tomt",
         "nodeFieldEmptyExplanation": "Ange en anpassad nod.",
-        "invalidURL": "Ange en giltig URL."
+        "invalidURL": "Ange en giltig URL.",
+        "addAuthKey": "Lägg till auth-nyckel",
+        "username": "Användarnamn",
+        "couldNotRemove": "Det gick inte att ta bort anpassad nod",
+        "couldNotRemoveExplanation": "Det måste finnas tillräckligt med noder för kvorum. Minska den valda kvorumstorleken eller aktivera fjärrnodslistan."
     },
     "addNewAccount": {
         "useExistingSeed": "Använd befintlig seed",
@@ -494,14 +530,14 @@
     },
     "advancedSettings": {
         "selectNode": "Välj nod",
-        "addCustomNode": "Lägg till anpassad nod",
         "manualSync": "Synka manuellt",
         "snapshotTransition": "Snapshot-övergång",
         "pow": "PoW",
         "autoPromotion": "Automatisk befordran",
         "autoPromotionExplanation": "Automatisk befordran hjälper till att bekräfta dina transaktioner på Tangle. Aktivera den här inställningen om du har svårt att få dina transaktioner bekräftade.",
         "autoPromotionPoW": "Automatisk befordran är endast tillgänglig på noder som stöder fjärr PoW.",
-        "deepLinking": "Hyperlänkar"
+        "deepLinking": "Hyperlänkar",
+        "stateExport": "Tillstånds-exportering"
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrund",
@@ -572,6 +608,7 @@
         "viewSeed": "Visa seed",
         "hideSeed": "Dölj seed",
         "notAvailable": "Seed export inte tillgänglig för {{accountType}} kontotyp",
+        "notAvailableExplanationLedger": "Ledger-enheten använder ett säkert element för att lagra din seed. Din seed är krypterad på ett säkert sätt och lämnar inte enheten.",
         "accountIndex": "Ditt Ledger konto-index",
         "accountPage": "Din Ledger-kontosida"
     },
@@ -642,9 +679,16 @@
         "noSeedFoundExplanation": "Din SeedVault är antingen tom eller innehåller en seed i ett ogiltigt format.",
         "seedFileError": "Det gick inte att öppna din SeedVault",
         "seedFileErrorExplanation": "Ett problem uppstod vid öppning av SeedVault. Om du har valt den korrekta filen kan den vara skadad.",
+        "invalidSeedFileError": "Ogiltig SeedVault-fil",
+        "invalidSeedFileErrorExplanation": "Detta filformat stöds inte. Endast SeedVault-filer (.kdbx) skapade via Trinity eller en lösenordshanterare stöds.",
         "seedVaultKeyExplanation": "Först måste vi säkra din SeedVault. Vänligen välj en nyckel för att kryptera filen. Du kommer att använda denna nyckel om du behöver återställa din seed från din SeedVault-säkerhetskopia.",
         "retypeKey": "Skriv nyckeln igen",
-        "key": "Key"
+        "key": "Nyckel"
+    },
+    "stateExport": {
+        "stateExportExplanation": "Tillstånds-exportering kommer att lagra en txt-fil på din enhet med kontoinformation (transaktioner, adresser), plånboksversion och namnen på lagringsfilerna.",
+        "exportSuccess": "Tillstånd exporterat",
+        "exportSuccessExplanation": "Din tillstånds-fil exporterades framgångsrikt."
     },
     "chart": {
         "mcap": "MCAP",
@@ -709,12 +753,15 @@
         "deepLinkingWarning": "Var medveten om phishing-bedrägerier. Kontrollera att länken du öppnar navigerar till den officiella Trinity-appen.",
         "deepLinkingUpdated": "Hyperlänk-inställningar",
         "deepLinkingEnabled": "Du har aktiverat hyperlänkar.",
-        "deepLinkingDisabled": "Du har avaktiverat hyperlänkar."
+        "deepLinkingDisabled": "Du har avaktiverat hyperlänkar.",
+        "deepLinkingInfoTitle": "Hyperlänkar är inte aktiverat",
+        "deepLinkingInfoMessage": "Du öppnade en iota:// hyperlänk men hyperlänkar är inte aktiverat."
     },
     "updates": {
         "errorRetrievingUpdateData": "Fel vid hämtning av uppdateringsdata",
+        "errorRetrievingUpdateDataExplanation": "Kunde inte hämta uppdatering. Vänligen kontrollera din internetuppkoppling och försök igen.",
         "noUpdatesAvailable": "Inga uppdateringar tillgängliga",
-        "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity.",
+        "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity!",
         "newVersionAvailable": "Ny version tillgänglig",
         "newVersionAvailableExplanation": "Det finns en ny Trinity-version. Vill du uppdatera nu?",
         "installUpdate": "Installera uppdateringen och starta om",
@@ -779,13 +826,16 @@
         "notReady": "Om du vill använda en Ledger-enhet, anslut och lås upp den nu",
         "indexInUse": "Index redan i bruk för kontot {{account}}",
         "indexInUseExplanation": "Ditt valda index är redan i bruk på ett av dina konto. Vänligen välj ett annat indexnummer.",
-        "proceedWithLedger": "Fortsätt med Ledger-installationen",
+        "createNewLedgerAccountInfo": "Se till att du skriver ner och kommer ihåg ditt indexnummer.",
+        "restoreLedgerAccountInfo": "Ange ditt sparade indexnummer för att återställa ditt konto.",
+        "createNewLedgerAccount": "Skapa ett nytt Ledger-konto",
+        "restoreLedgerAccount": "Återställ ett befintligt Ledger-konto",
         "accountIndex": "Konto-index",
         "accountPage": "Konto-sida",
         "actionCancelled": "Ledger-enhets åtkomst avbruten",
         "actionCancelledExplanation": "Kan inte utföra åtgärden utan Ledger-enhetens åtkomst.",
         "chooseAccountIndex": "Välj ditt Ledger konto-index",
-        "accountIndexExplanation": "Din Ledger kan hantera flera seeds. Varje seed identifieras av ett unikt indexnummer. Ett oanvänt index har blivit förvalt, men välj ett eget om du vill. Se till att anteckna ditt valda indexnummer.",
+        "accountIndexExplanation": "Din Ledger kan lagra flera seeds. Varje seed identifieras med ett unikt indexnummer.",
         "accountPageExplanation": "Vissa tredjepartsplånböcker kräver sidor.",
         "connectionError": "Kan inte ansluta till Ledger",
         "connectionErrorExplanation": "Kontrollera att din Ledger är ansluten och upplåst.",
@@ -807,7 +857,11 @@
         "checkAddressExplanation": "Kontrollera att adressen matchar den som visas på din Ledger-enhet.",
         "applicationNotInitialised": "Varning obekräftad",
         "applicationNotInitialisedExplanation": "Stäng och öppna på nytt IOTA-appen på din Ledger-enhet, acceptera den informativa varningen och försök igen.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue."
+        "checkLedger": "Kolla din Ledger-enhet",
+        "acceptWarningExplanation": "Om det finns en informationsvarning på din Ledger-enhet måste du bläddra igenom och acceptera den genom att trycka på båda knapparna.",
+        "udevError": "Kunde inte kommunicera med Ledger-enheten",
+        "udevErrorExplanation": "Trinity kunde inte kommunicera med Ledger-enheten. Besök webbadressen nedan för att lösa problemet.",
+        "writtenDownInfoTitle": "Kom ihåg ditt indexnummer",
+        "writtenDownInfoExplanation": "Du behöver ditt indexnummer för att återställa ditt konto i framtiden. Om du förlorar ditt indexnummer kommer du att förlora åtkomsten till dina IOTA. Vänligen kom ihåg det."
     }
 }

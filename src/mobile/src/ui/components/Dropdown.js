@@ -12,9 +12,6 @@ import { Styling } from 'ui/theme/general';
 import RNPickerSelect from 'react-native-picker-select';
 
 const styles = StyleSheet.create({
-    container: {
-        paddingTop: height / 35,
-    },
     dropdownTitle: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize2,
@@ -52,6 +49,8 @@ const styles = StyleSheet.create({
 export class Dropdown extends Component {
     static propTypes = {
         /** @ignore */
+        theme: PropTypes.object.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Callback function returning dropdown component instance as an argument */
         /** @param {object} instance - dropdown instance
@@ -71,8 +70,8 @@ export class Dropdown extends Component {
         title: PropTypes.string,
         /** Dropdown width */
         dropdownWidth: PropTypes.object,
-        /** @ignore */
-        theme: PropTypes.object.isRequired,
+        /** Custom dropdown button */
+        customView: PropTypes.object
     };
 
     static defaultProps = {
@@ -83,6 +82,7 @@ export class Dropdown extends Component {
         saveSelection: () => {},
         title: '',
         dropdownWidth: { width: isIPhoneX ? width / 1.3 : width / 1.5 },
+        customView: undefined
     };
 
     constructor(props) {
@@ -146,13 +146,13 @@ export class Dropdown extends Component {
     }
 
     render() {
-        const { t, options, title, dropdownWidth, disableWhen, theme } = this.props;
+        const { t, options, title, dropdownWidth, disableWhen, theme, customView } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
         const formattedOptions = this.formatOptions(options);
 
         return (
-            <View style={[styles.container, dropdownWidth]}>
+            <View style={[!customView && { paddingTop: height / 35 }, dropdownWidth]}>
                 <RNPickerSelect
                     ref={(ref) => {
                         this.dropdown = ref;
@@ -172,23 +172,29 @@ export class Dropdown extends Component {
                     Icon={() => {}}
                     pickerProps={{ itemStyle: [styles.pickerItem] }}
                 >
-                    <Text
-                        style={[styles.dropdownTitle, { color: theme.primary.color }, isAndroid ? null : dropdownWidth]}
-                    >
-                        {title}
-                    </Text>
-                    <View style={[styles.dropdownButton, dropdownWidth, { borderBottomColor: theme.body.color }]}>
-                        <Text numberOfLines={1} style={[styles.selected, { color: theme.body.color }]}>
-                            {selectedOption.label}
-                        </Text>
-                        <Triangle
-                            width={width / 40}
-                            height={width / 40}
-                            color={theme.body.color}
-                            direction={triangleDirection}
-                            style={styles.triangle}
-                        />
-                    </View>
+                    {customView &&
+                        customView
+                        ||
+                        <View>
+                            <Text
+                                style={[styles.dropdownTitle, { color: theme.primary.color }, isAndroid ? null : dropdownWidth]}
+                            >
+                                {title}
+                            </Text>
+                            <View style={[styles.dropdownButton, dropdownWidth, { borderBottomColor: theme.body.color }]}>
+                                <Text numberOfLines={1} style={[styles.selected, { color: theme.body.color }]}>
+                                    {selectedOption.label}
+                                </Text>
+                                <Triangle
+                                    width={width / 40}
+                                    height={width / 40}
+                                    color={theme.body.color}
+                                    direction={triangleDirection}
+                                    style={styles.triangle}
+                                />
+                            </View>
+                        </View>
+                    }
                 </RNPickerSelect>
             </View>
         );

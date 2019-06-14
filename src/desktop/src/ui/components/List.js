@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
 
-import { formatValue, formatUnit } from 'libs/iota/utils';
-import { round } from 'libs/utils';
+import { formatIotas, unitStringToValue } from 'libs/iota/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate, detectedTimezone } from 'libs/date';
 import SeedStore from 'libs/SeedStore';
 
@@ -20,7 +19,7 @@ import css from './list.scss';
 /**
  * Transaction history list component
  */
-class List extends React.PureComponent {
+export class ListComponent extends React.PureComponent {
     static propTypes = {
         /** Can history be updated */
         isBusy: PropTypes.bool.isRequired,
@@ -110,10 +109,7 @@ class List extends React.PureComponent {
                                         <mark>{input.checksum}</mark>
                                     </Clipboard>
                                 </span>
-                                <em>
-                                    {round(formatValue(input.value), 1)}
-                                    {formatUnit(input.value)}
-                                </em>
+                                <em>{formatIotas(input.value, true, true)}</em>
                             </p>
                         );
                     })}
@@ -178,7 +174,9 @@ class List extends React.PureComponent {
                 search.length &&
                 transaction.message.toLowerCase().indexOf(search.toLowerCase()) < 0 &&
                 transaction.bundle.toLowerCase().indexOf(search.toLowerCase()) !== 0 &&
-                (!/^\+?\d+$/.test(search) || transaction.transferValue < parseInt(search))
+                !(search[0] === '>' && unitStringToValue(search.substr(1)) < transaction.transferValue) &&
+                !(search[0] === '<' && unitStringToValue(search.substr(1)) > transaction.transferValue) &&
+                transaction.transferValue !== unitStringToValue(search)
             ) {
                 return false;
             }
@@ -247,22 +245,38 @@ class List extends React.PureComponent {
                         <input
                             className={search.length > 0 ? css.filled : null}
                             value={search}
+                            placeholder={t('history:typeHelp')}
                             onChange={(e) => this.setState({ search: e.target.value })}
                         />
-                        <Icon icon="search" size={20} />
-                    </div>
-                    {updateAccount && (
-                        <a
-                            onClick={() => updateAccount()}
-                            className={classNames(
-                                css.refresh,
-                                isBusy ? css.busy : null,
-                                isLoading ? css.loading : null,
+                        <div onClick={() => this.setState({ search: '' })}>
+                            <Icon icon={search.length > 0 ? 'cross' : 'search'} size={search.length > 0 ? 16 : 20} />
+                            {search === '!help' && (
+                                <ul className={css.tooltip}>
+                                    <li>
+                                        <strong>XYZ</strong> {t('history:searchHelpText')}
+                                    </li>
+                                    <li>
+                                        <strong>100</strong> {t('history:searchHelpValue')}
+                                    </li>
+                                    <li>
+                                        <strong>100Mi</strong> {t('history:searchHelpUnits')}
+                                    </li>
+                                    <li>
+                                        <strong>&gt;100 </strong> {t('history:searchHelpMore')}
+                                    </li>
+                                    <li>
+                                        <strong>&lt;100i</strong> {t('history:searchHelpLess')}
+                                    </li>
+                                </ul>
                             )}
-                        >
-                            <Icon icon="sync" size={24} />
-                        </a>
-                    )}
+                        </div>
+                    </div>
+                    <a
+                        onClick={() => updateAccount()}
+                        className={classNames(css.refresh, isBusy ? css.busy : null, isLoading ? css.loading : null)}
+                    >
+                        <Icon icon="sync" size={24} />
+                    </a>
                 </nav>
                 <hr />
                 <div className={css.list}>
@@ -296,13 +310,16 @@ class List extends React.PureComponent {
                                             </span>
                                             <span>
                                                 {!isConfirmed
-                                                    ? isReceived ? t('receiving') : t('sending')
-                                                    : isReceived ? t('received') : t('sent')}
+                                                    ? isReceived
+                                                        ? t('receiving')
+                                                        : t('sending')
+                                                    : isReceived
+                                                        ? t('received')
+                                                        : t('sent')}
                                             </span>
                                             <span>
                                                 {transaction.transferValue === 0 ? '' : isReceived ? '+' : '-'}
-                                                {round(formatValue(transaction.transferValue), 1)}{' '}
-                                                {formatUnit(transaction.transferValue)}
+                                                {formatIotas(transaction.transferValue, true, true)}
                                             </span>
                                         </div>
                                     </a>
@@ -328,8 +345,7 @@ class List extends React.PureComponent {
                                     <strong>
                                         {activeTx.incoming ? t('history:receive') : t('history:send')}{' '}
                                         <span>
-                                            {round(formatValue(activeTx.transferValue), 1)}{' '}
-                                            {formatUnit(activeTx.transferValue)}
+                                            {formatIotas(activeTx.transferValue, false, true)}
                                         </span>
                                     </strong>
                                     <small>
@@ -395,4 +411,4 @@ class List extends React.PureComponent {
     }
 }
 
-export default withListData(List);
+export default withListData(ListComponent);

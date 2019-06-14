@@ -1,7 +1,7 @@
 /* global Electron */
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 import { byteToChar, capitalize } from 'libs/iota/converter';
@@ -72,22 +72,29 @@ class Seed extends PureComponent {
         const { meta, accountName } = this.props.account;
         const { seed, action } = this.state;
 
-        if (!SeedStore[meta.type].isSeedAvailable) {
+        if (meta && !SeedStore[meta.type].isSeedAvailable) {
             return (
                 <div className={cssIndex.scroll}>
                     <article>
                         <h3>{t('viewSeed:notAvailable', { accountType: capitalize(meta.type) })}</h3>
+                        <p>{t(`viewSeed:notAvailableExplanation${capitalize(meta.type)}`)}</p>
                         {typeof meta.index === 'number' && (
-                            <p>
-                                {t('viewSeed:accountIndex')}: <strong>{meta.index}</strong>
-                            </p>
-                        )}
-                        {typeof meta.page === 'number' &&
-                            meta.page > 0 && (
+                            <Fragment>
+                                <hr />
                                 <p>
+                                    {t('viewSeed:accountIndex')}: <strong>{meta.index}</strong>
+                                </p>
+                            </Fragment>
+                        )}
+                        {typeof meta.page === 'number' && meta.page > 0 && (
+                            <Fragment>
+                                <hr />
+                                <p>
+                                    <hr />
                                     {t('viewSeed:accountPage')}: <strong>{meta.page}</strong>
                                 </p>
-                            )}
+                            </Fragment>
+                        )}
                     </article>
                 </div>
             );
@@ -106,7 +113,9 @@ class Seed extends PureComponent {
                         confirm:
                             action === 'view'
                                 ? t('accountManagement:viewSeed')
-                                : action === 'export' ? t('seedVault:exportSeedVault') : t('paperWallet'),
+                                : action === 'export'
+                                ? t('seedVault:exportSeedVault')
+                                : t('paperWallet'),
                     }}
                 />
             );
@@ -136,12 +145,11 @@ class Seed extends PureComponent {
                                       })
                                     : new Array(MAX_SEED_LENGTH / 3).join('... ')}
                             </span>
-                            {seed &&
-                                action === 'view' && (
-                                    <small>
-                                        {t('checksum')}: <strong>{checksum}</strong>
-                                    </small>
-                                )}
+                            {seed && action === 'view' && (
+                                <small>
+                                    {t('checksum')}: <strong>{checksum}</strong>
+                                </small>
+                            )}
                         </p>
                     </fieldset>
                     <fieldset>
@@ -179,4 +187,4 @@ class Seed extends PureComponent {
     }
 }
 
-export default withI18n()(Seed);
+export default withTranslation()(Seed);

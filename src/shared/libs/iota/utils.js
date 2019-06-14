@@ -1,4 +1,6 @@
+import get from 'lodash/get';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import isArray from 'lodash/isArray';
 import isFunction from 'lodash/isFunction';
 import isUndefined from 'lodash/isUndefined';
@@ -6,12 +8,14 @@ import includes from 'lodash/includes';
 import isNull from 'lodash/isNull';
 import sampleSize from 'lodash/sampleSize';
 import size from 'lodash/size';
+import cloneDeep from 'lodash/cloneDeep';
 import URL from 'url-parse';
 import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
 import { isNodeHealthy } from './extendedApi';
 import { NODELIST_URL, MAX_REQUEST_TIMEOUT } from '../../config';
 import Errors from '../errors';
+import { roundDown } from '../utils';
 
 export const MAX_SEED_LENGTH = 81;
 
@@ -167,19 +171,49 @@ export const formatUnit = (value) => {
 };
 
 /**
- * Formats IOTA value and assigns appropriate unit
+ * Converts iota value-unit string to int value
  *
- * @method formatIota
- * @param {number} value
+ * @method unitStringToValue
+ * @param {string}
+ *
+ * @returns {number}
+ */
+export const unitStringToValue = (str) => {
+    const value = parseInt(str);
+    const unit = str.substr(value.toString().length).toLowerCase();
+
+    switch (unit) {
+        case 'ki':
+            return value * 1000;
+        case 'mi':
+            return value * 1000000;
+        case 'gi':
+            return value * 1000000000;
+        case 'ti':
+            return value * 1000000000000;
+        case 'pi':
+            return value * 1000000000000000;
+        default:
+            return value;
+    }
+};
+
+/**
+ * Format iotas to human readable format
+ * @param {number} iotas - Input value in iotas
+ * @param {boolean} showShort - Should output short format
+ * @param {boolean} showUnit - Should output unit
  *
  * @returns {string}
  */
-export function formatIota(value) {
-    const iota = formatValue(value);
-    const unit = formatUnit(value);
+export const formatIotas = (iotas, showShort, showUnit) => {
+    const formattedValue = formatValue(iotas);
+    const outputValue = !showShort
+        ? formattedValue
+        : roundDown(formattedValue, 1) + (iotas < 1000 || (iotas / formattedValue) % 10 === 0 ? '' : '+');
 
-    return `${iota} ${unit}`;
-}
+    return `${outputValue}${showUnit ? ' ' + formatUnit(iotas) : ''}`;
+};
 
 /**
  * Checks if provided server address is valid
@@ -351,8 +385,11 @@ export const withRetriesOnDifferentNodes = (nodes, failureCallbacks) => {
             return promiseFunc(nodes[attempt])(...args)
                 .then((result) => ({ node: nodes[attempt], result }))
                 .catch((err) => {
-                    // Abort retries on user cancalled Ledger action
-                    if (err === Errors.LEDGER_CANCELLED) {
+                    if (get(err, 'message') === Errors.LEDGER_INVALID_INDEX) {
+                        throw new Error(Errors.LEDGER_INVALID_INDEX);
+                    }
+                    // Abort retries on user cancelled Ledger action
+                    if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
                         throw new Error(Errors.LEDGER_CANCELLED);
                     }
                     // If a function is passed as failure callback
@@ -417,26 +454,31 @@ export const fetchRemoteNodes = (
  * @method getRandomNodes
  * @param {array} nodes
  * @param {number} [size]
- * @param {array} [blacklisted]
+ * @param {array} [blacklistedNodes]
+ * @param {bool} Remote PoW
  *
  * @returns {Array}
  */
-export const getRandomNodes = (nodes, size = 5, blacklisted = []) => {
-    return sampleSize(filter(nodes, (node) => !includes(blacklisted, node)), size);
+export const getRandomNodes = (nodes, size = 5, blacklistedNodes = [], PoW = false) => {
+    let nodesToSample = cloneDeep(nodes);
+    if (PoW) {
+        nodesToSample = filter(nodes, (node) => node.pow === true);
+    }
+    return sampleSize(filter(nodesToSample, (node) => !find(blacklistedNodes, { url: node.url })), size);
 };
 
 /**
  * Throws an error if a node is not synced.
  *
  * @method throwIfNodeNotHealthy
- * @param {string} provider
+ * @param {object} settings
  *
  * @returns {Promise<boolean>}
  */
-export const throwIfNodeNotHealthy = (provider) => {
-    return isNodeHealthy(provider).then((isSynced) => {
+export const throwIfNodeNotHealthy = (settings) => {
+    return isNodeHealthy(settings).then((isSynced) => {
         if (!isSynced) {
-            throw new Error(Errors.NODE_NOT_SYNCED);
+            throw new Error(Errors.NODE_NOT_SYNCED_BY_TIMESTAMP);
         }
 
         return isSynced;

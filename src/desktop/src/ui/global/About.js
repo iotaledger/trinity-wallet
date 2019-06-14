@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -15,7 +15,7 @@ import css from './about.scss';
 /**
  * About window component
  */
-class About extends React.PureComponent {
+export class AboutComponent extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -59,6 +59,95 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.6.0-RC3</h5>
+                            <ul>
+                                <li>
+                                    <li>Fix: Wallet does not work on Windows when username has special characters</li>
+                                    <li>Fix: Do not perform quorum when explicitly turned off</li>
+                                </li>
+                            </ul>
+                            <h5>0.6.0-RC2</h5>
+                            <ul>
+                                <li>
+                                    <li>Update: Auto updates functionality improvements</li>
+                                    <li>Update: Add several wallet initialisation error explanations</li>
+                                    <li>Fix: Wallet language resets to English</li>
+                                    <li>Fix: Windows installation should remove appData on uninstall</li>
+                                </li>
+                            </ul>
+                            <h5>0.6.0-RC1</h5>
+                            <ul>
+                                <li>
+                                    <li>
+                                        New: Automatic node management and lots of configurability for advanced users
+                                    </li>
+                                </li>
+                            </ul>
+                            <h5>0.5.2</h5>
+                            <ul>
+                                <li>Fix: Chart and price API calls</li>
+                                <li>Fix: Skip retry failed transactions when password is not available </li>
+                                <li>Fix: Fix: Ledger onboarding loading forever without reporting an error</li>
+                                <li>
+                                    Fix: Linux wallet incorrectly reporting &quot;Missing security dependencies&quot;
+                                </li>
+                                <li>
+                                    Update: Add Snapshot Transition reminder when an existing seed is added with 0
+                                    balance
+                                </li>
+                            </ul>
+                            <h5>0.5.1</h5>
+                            <ul>
+                                <li>Fix: Display fatal errors on preload and initialisation</li>
+                                <li>Fix: Missing Linux application icon</li>
+                                <li>Fix: Windows 7 not deleting files on wallet reset</li>
+                                <li>
+                                    Fix: Windows 10 wallet failing to start if Windows 7 build was installed previously,
+                                    and vice versa
+                                </li>
+                                <li>Fix: macOS tray application not displaying fiat value</li>
+                                <li>Fix: Changing account during Snapshot transition corrupting state</li>
+                                <li>Update: Improve user experience when adding Ledger accounts</li>
+                                <li>Update: Add device time suggestion to out of sync errors</li>
+                                <li>Update: Ensure the error log is always updated</li>
+                                <li>Update: Other minor alert improvements</li>
+                                <li>Fix: Extra parameter causing node error when reattaching and promoting</li>
+                                <li>Update: New translations</li>
+                            </ul>
+                            <h5>0.5.0</h5>
+                            <ul>
+                                <li>
+                                    - Add: Node quorum - Trinity will query multiple nodes on particular API calls and
+                                    only accept a result with 67% consensus, otherwise fallback to a safe result
+                                </li>
+                                <li>- Add: Replace local storage with encrypted Realm database </li>
+                                <li>- Add: Deep link support</li>
+                                <li>- Update: Remove 2FA</li>
+                                <li>- Fix: Use local time for SeedVault export file</li>
+                                <li>- Update: Add polling service for automatically retrying failed transactions</li>
+                                <li>- Update: Update dependencies</li>
+                                <li>- Fix: Bugs related to local PoW</li>
+                                <li>- Fix: Minor bugs in Realm and polling</li>
+                                <li>- Fix: Snapshot transition showing 0 balance</li>
+                                <li>- Fix: Add missing domains to external link whitelist</li>
+                                <li>- Fix: Increase timeout for getTransactionsToApprove requests</li>
+                                <li>- Fix: Improve performance by not reconstructing bundles unnecessarily</li>
+                                <li>- Update: Show modal for Ledger errors related to udev</li>
+                                <li>- Fix: Linux app icon</li>
+                                <li>- Fix: Only trigger notifications for new transactions</li>
+                                <li>- Update: Validate SeedVault before attempting to import</li>
+                                <li>- Update: Add seed export unavailable explanation</li>
+                                <li>- Update: Transaction history search feature</li>
+                                <li>- Fix: Use less strict threshold for out-of-sync checks</li>
+                                <li>- Fix: Align Entangled trunk/branch assignment with IRI</li>
+                                <li>- Update: Add iota.org node cluster</li>
+                                <li>- Update: Additional SeedVault export validation check</li>
+                                <li>- Fix: Onboarding unique seed check raises error</li>
+                                <li>- Fix: Additional account onboarding freezes after first unsuccessful try</li>
+                                <li>- Fix: Unable to cancel history refresh without Ledger device</li>
+                                <li>- Fix: Receive closes automatically on Ledger account</li>
+                                <li>- Fix: Various other bug fixes, changes and improvements</li>
+                            </ul>
                             <h5>0.4.6</h5>
                             <ul>
                                 <li>- Fix: Unexpected wallet behaviour with account names starting with a number</li>
@@ -337,4 +426,4 @@ class About extends React.PureComponent {
     }
 }
 
-export default withI18n()(About);
+export default withTranslation()(AboutComponent);

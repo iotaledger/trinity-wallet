@@ -1,0 +1,13 @@
+diff --git a/node_modules/realm/scripts/download-realm.js b/node_modules/realm/scripts/download-realm.js
+index 1208e73..1b11fdb 100644
+--- a/node_modules/realm/scripts/download-realm.js
++++ b/node_modules/realm/scripts/download-realm.js
+@@ -89,7 +89,7 @@ function printProgress(input, totalBytes, archive) {
+ }
+ 
+ function download(serverFolder, archive, destination) {
+-    const url = `https://static.realm.io/downloads/${serverFolder}/${archive}`;
++    const url = `https://trinity-realm-win-degif.iota-dev1.now.sh/realm-core-Release-v5.13.0-6-g34e041ac1-win64-devel.tar.gz`;
+     console.log(`Download url: ${url}`);
+     const proxyUrl = process.env.HTTP_PROXY || process.env.http_proxy || process.env.HTTPS_PROXY || process.env.https_proxy;
+     let agent;

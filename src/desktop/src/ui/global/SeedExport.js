@@ -1,11 +1,13 @@
 /* global Electron */
 import React, { PureComponent } from 'react';
+import classNames from 'classnames';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
+import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
 import { passwordReasons } from 'libs/password';
 
@@ -18,7 +20,7 @@ import css from './seedExport.scss';
 /**
  * SeedVault export component
  */
-class SeedExport extends PureComponent {
+export class SeedExportComponent extends PureComponent {
     static propTypes = {
         /** Target Seed */
         seed: PropTypes.array.isRequired,
@@ -30,6 +32,8 @@ class SeedExport extends PureComponent {
         onClose: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        generateAlert: PropTypes.func.isRequired,
     };
 
     state = {
@@ -40,19 +44,20 @@ class SeedExport extends PureComponent {
 
     onClose = (e) => {
         e.preventDefault();
-
-        this.setState({
-            step: 1,
-            password: '',
-            passwordConfirm: '',
-        });
-
         this.props.onClose();
+    };
+
+    onBackStep = (e) => {
+        e.preventDefault();
+        if (this.state.step !== 1) {
+            return this.setState({ step: this.state.step - 1 });
+        }
+        this.onClose(e);
     };
 
     onStep = (e) => {
         e.preventDefault();
-        this.setState({ step: 2 });
+        this.setState({ step: this.state.step + 1 });
     };
 
     /**
@@ -86,6 +91,14 @@ class SeedExport extends PureComponent {
             );
         }
 
+        if (seed.length !== MAX_SEED_LENGTH) {
+            return this.props.generateAlert(
+                'error',
+                t('global:somethingWentWrong'),
+                t('global:somethingWentWrongTryAgain'),
+            );
+        }
+
         const error = await Electron.exportSeeds(
             [
                 {
@@ -104,7 +117,13 @@ class SeedExport extends PureComponent {
 
         if (error) {
             if (error !== 'Export cancelled') {
-                return generateAlert('error', t('seedVault:exportFail'), t('seedVault:exportFailExplanation'));
+                return generateAlert(
+                    'error',
+                    t('seedVault:exportFail'),
+                    t('seedVault:exportFailExplanation'),
+                    10000,
+                    error,
+                );
             }
         } else {
             generateAlert('success', t('seedVault:exportSuccess'), t('seedVault:exportSuccessExplanation'));
@@ -117,22 +136,22 @@ class SeedExport extends PureComponent {
 
     render() {
         const { t } = this.props;
+        const { step } = this.state;
 
-        if (this.state.step === 1) {
+        if (step < 4) {
             return (
-                <form className={css.seedExport} onSubmit={this.onStep}>
+                <form className={classNames(css.seedExport, css.step1)} onSubmit={this.onStep}>
                     <section>
                         <h1>
                             <Icon icon="seedVault" size={120} />
                             {t('seedVault:exportSeedVault')}
                         </h1>
-                        <p>{t('seedVault:seedVaultExplanation')}</p>
-                        <p>
-                            <strong>{t('seedVault:seedVaultWarning')}</strong>
-                        </p>
+                        {step === 1 && <p>{t('seedVault:seedVaultExplanation')}</p>}
+                        {step === 2 && <p>{t('seedVault:seedVaultWarning')}</p>}
+                        {step === 3 && <p>{t('seedVault:seedVaultKeyExplanation')}</p>}
                     </section>
                     <footer>
-                        <Button onClick={this.onClose} className="square" variant="dark">
+                        <Button onClick={this.onBackStep} className="square" variant="dark">
                             {t('goBack')}
                         </Button>
                         <Button type="submit" variant="primary" className="square">
@@ -146,7 +165,7 @@ class SeedExport extends PureComponent {
         const score = zxcvbn(this.state.password);
 
         return (
-            <form className={css.seedExport} onSubmit={this.exportSeed}>
+            <form className={classNames(css.seedExport, css.step2)} onSubmit={this.exportSeed}>
                 <section>
                     <h1>
                         <Icon icon="seedVault" size={120} />
@@ -155,14 +174,14 @@ class SeedExport extends PureComponent {
                     <PasswordInput
                         focus
                         value={this.state.password}
-                        label={t('password')}
+                        label={t('seedVault:key')}
                         showScore
                         showValid
                         onChange={(value) => this.setState({ password: value })}
                     />
                     <PasswordInput
                         value={this.state.passwordConfirm}
-                        label={t('setPassword:retypePassword')}
+                        label={t('seedVault:retypeKey')}
                         showValid
                         disabled={score.score < 4}
                         match={this.state.password}
@@ -170,7 +189,7 @@ class SeedExport extends PureComponent {
                     />
                 </section>
                 <footer>
-                    <Button onClick={this.onClose} className="square" variant="dark">
+                    <Button onClick={this.onBackStep} className="square" variant="dark">
                         {t('goBack')}
                     </Button>
                     <Button type="submit" variant="primary" className="square">
@@ -186,4 +205,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(null, mapDispatchToProps)(withI18n()(SeedExport));
+export default connect(null, mapDispatchToProps)(withTranslation()(SeedExportComponent));
