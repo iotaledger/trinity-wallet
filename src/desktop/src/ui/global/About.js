@@ -59,28 +59,18 @@ export class AboutComponent extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
-                            <h5>0.6.0-RC3</h5>
-                            <ul>
-                                <li>
-                                    <li>Fix: Wallet does not work on Windows when username has special characters</li>
-                                    <li>Fix: Do not perform quorum when explicitly turned off</li>
-                                </li>
-                            </ul>
-                            <h5>0.6.0-RC2</h5>
-                            <ul>
-                                <li>
-                                    <li>Update: Auto updates functionality improvements</li>
-                                    <li>Update: Add several wallet initialisation error explanations</li>
-                                    <li>Fix: Wallet language resets to English</li>
-                                    <li>Fix: Windows installation should remove appData on uninstall</li>
-                                </li>
-                            </ul>
-                            <h5>0.6.0-RC1</h5>
+                            <h5>0.6.0</h5>
                             <ul>
                                 <li>
                                     <li>
-                                        New: Automatic node management and lots of configurability for advanced users
+                                        New: Automatic node management, with lots of configurability for advanced users
                                     </li>
+                                    <li>Fix: Wallet not working on Windows when username has special characters</li>
+                                    <li>Update: Auto update functionality improvements</li>
+                                    <li>Update: Add various wallet initialisation error explanations</li>
+                                    <li>Fix: Do not perform quorum when it is explicitly turned off</li>
+                                    <li>Fix: Wallet language resets to English</li>
+                                    <li>Fix: Windows installation should remove appData on uninstall</li>
                                 </li>
                             </ul>
                             <h5>0.5.2</h5>
