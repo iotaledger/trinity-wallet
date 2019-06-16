@@ -170,8 +170,8 @@
         "missingPermissionExplanation": "Za izvajanje te funkcije je potreben dostop do datotečnega sistema.",
         "swipeToConfirm": "Povlecite za potrditev",
         "expert": "Strokovnjak",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodes": "Ni dovolj sinkronisiranih Node-ov",
+        "notEnoughSyncedNodesExplanation": "V skupini uporabljenih Node-ov ni bilo mogoče določiti enotnega statusa. Onemogočite skupino Node-ov in poskusite znova."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
@@ -186,7 +186,7 @@
         "noNickname": "Niste vnesli imena računa",
         "noNicknameExplanation": "Prosimo vnesite ime računa za pridobitev generirane vrednosti.",
         "seedInUse": "Seme je že v uporabi",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUseExplanation": "Ta Seed je že povezano z vašo denarnico. Prosim uporabite drugega."
     },
     "changePassword": {
         "passwordUpdated": "Geslo posodobljeno",
@@ -196,7 +196,7 @@
         "passwordsDoNotMatch": "Gesli se ne ujemata",
         "passwordsDoNotMatchExplanation": "Gesli se ne ujemata. Prosimo poskusite ponovno.",
         "passwordTooShort": "Geslo je prekratko",
-        "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
+        "passwordTooShortExplanation": "Vaše geslo mora vsebovati vsaj 11 znakov. Prosim poskusite ponovno.",
         "oldPassword": "Ni mogoče nastavite starega gesla",
         "oldPasswordExplanation": "Nemorete uporabljati prejšnjega gesla kot vaše novo geslo. Prosimo poskusite ponovno z novim geslom.",
         "ensureStrongPassword": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 11 znakov.",
@@ -204,7 +204,7 @@
         "newPassword": "Novo Geslo",
         "confirmPassword": "Potrdite Novo Geslo",
         "passwordTooWeak": "Prešibko geslo",
-        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates.",
+        "passwordTooWeakReason": "Vaše geslo je prešibko. Prosim uporabite kombinacijo besed in se izogibajte pogostim stavkom, imenam ali datumom.",
         "reasonRow": "Straight rows of keys are easy to guess.",
         "reasonPattern": "Short patterns of keys are easy to guess.",
         "reasonNames": "Pogosta imena in priimke je preprosto uganiti.",
