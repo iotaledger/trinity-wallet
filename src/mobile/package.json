@@ -85,7 +85,7 @@
     "react-native-view-shot": "git+https://github.com/cvarley100/react-native-view-shot#master",
     "react-redux": "^5.0.6",
     "readable-stream": "^1.0.33",
-    "realm": "2.27.0",
+    "realm": "2.28.1",
     "redux": "^3.7.2",
     "rn-fetch-blob": "https://github.com/rajivshah3/rn-fetch-blob#10.13-226",
     "shared-modules": "../shared/",

@@ -8073,10 +8073,10 @@ readable-stream@~2.0.6:
     string_decoder "~0.10.x"
     util-deprecate "~1.0.1"
 
-realm@2.27.0:
-  version "2.27.0"
-  resolved "https://registry.yarnpkg.com/realm/-/realm-2.27.0.tgz#26e43ea5a27a81ddfab55ae935900a8f25f8ab43"
-  integrity sha512-ZjBu1Wk2LcvA7miaAH8DRXp7iRpCnp79DJEIol3Qu5aMEj3E8ltomugkkLFw/OT31EBcwOeuet3q+QmlotKLAg==
+realm@2.28.1:
+  version "2.28.1"
+  resolved "https://registry.yarnpkg.com/realm/-/realm-2.28.1.tgz#4482eea65708e38a2935850d569ff7c34001369d"
+  integrity sha512-2p/KMpqGXkcLopXyiAGyLUd8SyrBRwjjcy1gjI6KbD+/FaW8AaONaeOiF9c/kYc5kQ7xM2tJEOw1iBtoUihHXA==
   dependencies:
     command-line-args "^4.0.6"
     decompress "^4.2.0"

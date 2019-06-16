@@ -14492,9 +14492,9 @@
       }
     },
     "realm": {
-      "version": "2.27.0",
-      "resolved": "https://registry.npmjs.org/realm/-/realm-2.27.0.tgz",
-      "integrity": "sha512-ZjBu1Wk2LcvA7miaAH8DRXp7iRpCnp79DJEIol3Qu5aMEj3E8ltomugkkLFw/OT31EBcwOeuet3q+QmlotKLAg==",
+      "version": "2.28.1",
+      "resolved": "https://registry.npmjs.org/realm/-/realm-2.28.1.tgz",
+      "integrity": "sha512-2p/KMpqGXkcLopXyiAGyLUd8SyrBRwjjcy1gjI6KbD+/FaW8AaONaeOiF9c/kYc5kQ7xM2tJEOw1iBtoUihHXA==",
       "requires": {
         "command-line-args": "^4.0.6",
         "decompress": "^4.2.0",
