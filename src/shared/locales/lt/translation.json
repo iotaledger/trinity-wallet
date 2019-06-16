@@ -750,12 +750,12 @@
         "autofill": "Automatinis įkėlimas sėkmingas",
         "autofillExplanation": "Pavedimo duomenys automatiškai įkelti iš nuorodos.",
         "deepLinkingOverview": "Gilieji saitai yra nuorodos (iota://...), kurios automatiškai užpildo pavedimo duomenis Trinity piniginėje.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingWarning": "Saugokitės apgaulingų nuorodų. Įsitikinkite, kad nuoroda nukreipia jus į oficialią Trinity programėlę.",
+        "deepLinkingUpdated": "Giliųjų saitų nustatymai",
+        "deepLinkingEnabled": "Jūs įjungėte giliuosius saitus.",
+        "deepLinkingDisabled": "Jūs išjungėte giliuosius saitus.",
+        "deepLinkingInfoTitle": "Gilieji saitai neįjungti",
+        "deepLinkingInfoMessage": "Jūs paspaudėte iota:// gilųjį saitą, bet gilieji saitai nėra įjungti."
     },
     "updates": {
         "errorRetrievingUpdateData": "Klaida siunčiant atnaujinimus",
