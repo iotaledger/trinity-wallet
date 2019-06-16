@@ -537,7 +537,7 @@
         "autoPromotionExplanation": "Automatinis iškėlimas padeda greičiau patvirtinti jūsų pavedimus. Įjunkite šią funkciją, jeigu jūsų pavedimai ilgai nėra patvirtinami.",
         "autoPromotionPoW": "Automatinis iškėlimas įmanomas tik tuose serveriuose, kurie palaiko nuotolinį skaičiavimą.",
         "deepLinking": "Gilusis saitas",
-        "stateExport": "State export"
+        "stateExport": "Iškelti būseną"
     },
     "advancedThemeCustomisation": {
         "background": "Fonas",
@@ -686,7 +686,7 @@
         "key": "Kodas"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "stateExportExplanation": "Būsėnos iškėlimas jūsų įrenginyje sukurs teksto formato failą su jūsų paskyros (pavedimų, adresų) informacija, piniginės versijos ir saugyklų vardų failus.",
         "exportSuccess": "State exported",
         "exportSuccessExplanation": "Your state file was exported successfully."
     },
