@@ -269,15 +269,15 @@
         "takingAWhile": "To lahko traja, nekaj trenutkov"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "Ustvarite Seed",
         "seedNotGenerated": "Generirana vrednost ni bila ustvarjena",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Prosim ustvarite nov Seed.",
         "pressForNewSeed": "Kliknite za novo seme",
         "generateSuccess": "Seme je bilo uspešno generirano",
         "individualLetters": "Pritisnite posamezne znake za jih ponaključit.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "individualLetterCount": "Pritisnite <1><0>{{count}}</0></1> znakov, da postane bolj naključen Seed.",
+        "individualLetterCount_plural": "Pritisnite <1><0>{{count}}</0></1> znakov, da postane bolj naključen Seed.",
+        "randomiseCharsToContinue": "Izberite <1>{{count}}</1> znakov, da lahko nadaljujete.",
         "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Kaj je seme?"
     },
