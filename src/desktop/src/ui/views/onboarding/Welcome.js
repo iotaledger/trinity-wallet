@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 
-import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'libs/i18n';
+import { I18N_LOCALE_LABELS, I18N_LOCALES, detectLocale } from 'libs/i18n';
 import i18next from 'libs/i18next';
 
 import { acceptTerms, acceptPrivacy, setLocale } from 'actions/settings';
@@ -48,6 +48,10 @@ class Welcome extends React.PureComponent {
         step: 'language',
         scrollEnd: false,
     };
+
+    componentDidMount() {
+        this.changeLanguage(detectLocale(navigator.language));
+    }
 
     onNextClick = () => {
         const { history, acceptedTerms, acceptedPrivacy, acceptTerms, acceptPrivacy } = this.props;
@@ -132,7 +136,9 @@ class Welcome extends React.PureComponent {
                     >
                         {step === 'language'
                             ? t('continue')
-                            : !scrollEnd ? t('terms:readAllToContinue') : t('terms:accept')}
+                            : !scrollEnd
+                            ? t('terms:readAllToContinue')
+                            : t('terms:accept')}
                     </Button>
                 </footer>
             </form>
@@ -153,4 +159,7 @@ const mapDispatchToProps = {
     setLocale,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Welcome));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(Welcome));
