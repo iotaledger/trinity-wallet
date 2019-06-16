@@ -519,7 +519,7 @@
         "nodeFieldEmpty": "Teksto laukas tuščias",
         "nodeFieldEmptyExplanation": "Įveskite vartotojo serverį.",
         "invalidURL": "Įveskite teisingą URL adresą.",
-        "addAuthKey": "Add auth key",
+        "addAuthKey": "Pridėti autentifikavimo raktą",
         "username": "Vartotojo vardas",
         "couldNotRemove": "Pašalinti varototojo serverio nepavyksta",
         "couldNotRemoveExplanation": "Kvorumui reikalingas pakankamas serverių skaičius. Sumažinkite kvorumo dydį arba įjunkite nuotolinį serverių sąrašą."
@@ -608,7 +608,7 @@
         "viewSeed": "Rodyti užraktą",
         "hideSeed": "Slėpti užraktą",
         "notAvailable": "Užrakto iškėlimas yra negalimas {{accountType}} paskyros tipui",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "Jūsų ledger įrenginys naudoja tam tikrus saugumo elementus jūsų užraktui saugoti. Užraktas yra užšifruojamas ir neiškeliauja už įrenginio ribų.",
         "accountIndex": "Jūsų Ledger paskyros indeksas",
         "accountPage": "Jūsų Ledger paskyros puslapis"
     },
@@ -679,16 +679,16 @@
         "noSeedFoundExplanation": "SeedVault yra tuščias arba turi netinkamo formato užraktą.",
         "seedFileError": "Atidaryti SeedVault nepavyko",
         "seedFileErrorExplanation": "Įvyko klaida atidarant SeedVault. Jeigu pasirinkote teisingą failą, gali būti, kad jis yra pažeistas.",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileError": "Neatpažintas SeedVault failas",
+        "invalidSeedFileErrorExplanation": "Šis failas nepalaikomas. Palaikomi tik SeedVault failai (.kdbx) sukurti per Trinity arba slaptažodžių tvarkyklę.",
         "seedVaultKeyExplanation": "Pirmiausia, jums reikia apsaugoti SeedVault. Sukurkite slaptažodį norėdami užšifruoti failą. Šio slaptažodžio jums prireiks, norint atkurti užraktą iš SeedVault failo.",
         "retypeKey": "Pakartokite slaptažodį",
         "key": "Kodas"
     },
     "stateExport": {
         "stateExportExplanation": "Būsėnos iškėlimas jūsų įrenginyje sukurs teksto formato failą su jūsų paskyros (pavedimų, adresų) informacija, piniginės versijos ir saugyklų vardų failus.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "exportSuccess": "Būsena iškelta",
+        "exportSuccessExplanation": "Jūsų būsenos failas iškeltas sėkmingai."
     },
     "chart": {
         "mcap": "MCAP",
