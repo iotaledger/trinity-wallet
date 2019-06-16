@@ -278,7 +278,7 @@
         "individualLetterCount": "Pritisnite <1><0>{{count}}</0></1> znakov, da postane bolj naključen Seed.",
         "individualLetterCount_plural": "Pritisnite <1><0>{{count}}</0></1> znakov, da postane bolj naključen Seed.",
         "randomiseCharsToContinue": "Izberite <1>{{count}}</1> znakov, da lahko nadaljujete.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "randomiseCharsToContinue_plural": "Izberite <1>{{count}}</1> znakov, da lahko nadaljujete.",
         "whatIsASeed": "Kaj je seme?"
     },
     "onboardingComplete": {
@@ -290,16 +290,16 @@
         "neverShare": "Nikoli z nikomer ne delite svojega seeda.",
         "iotaLogo": "IOTA logotip",
         "print": "Natisni",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "pleaseCheck": "Please check and confirm before you print",
+        "paperConvenience": "Tiskanje papirne kopije Seeda je priročen način za shranjevanje.",
+        "publicInsecure": "Upoštevajte, da tiskanje v javnih omrežjih, Wifi-jih ali prek javnih tiskalnikov ni varno.",
+        "pleaseCheck": "Pred tiskanjem preverite in potrdite",
         "wifiConfirmation": "Nisem na javnem WiFi omrežju",
-        "printerConfirmation": "I am not printing on a public printer"
+        "printerConfirmation": "Ne tiskam na javnem tiskalniku"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "printTemplateQuestion": "Želite natisniti prazno predlogo?",
+        "printTemplateInfo": "Lahko natisnete prazno predlogo, ki vam pomaga zapisati Seed.",
+        "printTemplateWarning": "Poskrbite, da boste Seed shranili na varnem mestu. Ne pokažite ga nikomur.",
         "print": "Ja, natisni"
     },
     "receive": {
