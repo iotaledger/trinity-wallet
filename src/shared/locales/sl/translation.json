@@ -225,7 +225,7 @@
         "passwordTooShortExplanation": "Vaše geslo mora biti vsaj {{minLength}} znakov dolgo. Vaše trenutno geslo je {{currentLength}} znakov dolgo. Prosimo poskusite ponovno.",
         "passwordMismatch": "Gesli se ne ujemata",
         "passwordMismatchExplanation": "Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "To je vaše glavno geslo za denarnico. Uporabili ga boste za prijavo.",
         "retypePassword": "Ponovno vnesite geslo"
     },
     "copyToClipboard": {
@@ -250,23 +250,23 @@
     },
     "languageSetup": {
         "language": "Jezik",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "Pa začnimo"
     },
     "login": {
         "emptyPassword": "Prazno geslo",
         "emptyPasswordExplanation": "Za prijavo morate vnesti geslo. Prosimo poskusite ponovno.",
         "enterPassword": "Prosimo vnesite vaše geslo.",
         "login": "Prijava",
-        "setNode": "Set Node",
+        "setNode": "Izberi Node",
         "whyBiometricDisabled": "Zakaj je biometrična avtentikacija onemogočena?",
         "whyBiometricDisabledExplanationPart1": "Biometrična avtentikacija je zaradi varnosti onemogočena ob prvem zagonu aplikacije.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart2": "Trinity vas odjavi ob neaktivnosti. Potem se lahko z Biometrično-autentifikacijo ponovno prijavite."
     },
     "loading": {
         "loadingFirstTime": "Nalaganje generirane vrednosti prvič.",
         "thisMayTake": "To lahko traja nekaj časa.",
-        "doNotMinimise": "Do not minimise or close the app.",
-        "takingAWhile": "This seems to be taking a while"
+        "doNotMinimise": "Ne minimirajte ali zapirajte aplikacije.",
+        "takingAWhile": "To lahko traja, nekaj trenutkov"
     },
     "newSeedSetup": {
         "generatedSeed": "Generated seed",
