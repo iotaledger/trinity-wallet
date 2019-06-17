@@ -43,6 +43,19 @@ const init = () => {
             const data = JSON.parse(payload);
             store.dispatch(mapStorageToStateAction(data));
         });
+
+        render(
+            <ErrorBoundary>
+                <Redux store={store}>
+                    <I18nextProvider i18n={i18next}>
+                        <Router>
+                            <Tray />
+                        </Router>
+                    </I18nextProvider>
+                </Redux>
+            </ErrorBoundary>,
+            rootEl,
+        );
     } else {
         initialiseStorage(getEncryptionKey)
             .then(() => {
@@ -89,14 +102,10 @@ const init = () => {
                         <Redux store={store}>
                             <I18nextProvider i18n={i18next}>
                                 <Router>
-                                    {Electron.mode === 'tray' ? (
-                                        <Tray />
-                                    ) : (
-                                        <React.Fragment>
-                                            <Alerts />
-                                            <Index />
-                                        </React.Fragment>
-                                    )}
+                                    <React.Fragment>
+                                        <Alerts />
+                                        <Index />
+                                    </React.Fragment>
                                 </Router>
                             </I18nextProvider>
                         </Redux>
