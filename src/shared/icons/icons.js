@@ -2,6 +2,7 @@ module.exports = {
     iota: '💥',
     wallet: '💰',
     camera: '📷',
+    cameraFlip: '📸',
     eye: '👁',
     eyeSlash: '😑',
     arrowUp: '⬆',

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Text, View, StyleSheet, PermissionsAndroid } from 'react-native';
+import { Text, View, StyleSheet, PermissionsAndroid, TouchableOpacity } from 'react-native';
 import { QRscanner } from 'react-native-qr-scanner';
 import { withNamespaces } from 'react-i18next';
 import { Styling } from 'ui/theme/general';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { height, width } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
 import ModalView from './ModalView';
 
 const styles = StyleSheet.create({
@@ -50,6 +51,13 @@ export class QRScanner extends Component {
         displayTopBar: false,
     };
 
+    constructor() {
+        super();
+        this.state = {
+            cameraType: 'back',
+        };
+    }
+
     componentDidMount() {
         leaveNavigationBreadcrumb('QRScanner');
         if (this.props.onMount) {
@@ -67,8 +75,16 @@ export class QRScanner extends Component {
         }
     }
 
+    changeCamera() {
+        this.setState({ cameraType: this.state.cameraType === 'front' ? 'back' : 'front' });
+    }
+
     render() {
-        const { t, theme: { body, primary }, displayTopBar } = this.props;
+        const {
+            t,
+            theme: { body, primary },
+            displayTopBar,
+        } = this.props;
         return (
             <ModalView
                 displayTopBar={displayTopBar}
@@ -81,7 +97,7 @@ export class QRScanner extends Component {
                         rectHeight={width * 0.75}
                         rectWidth={width * 0.75}
                         hintText=""
-                        zoom={0.2}
+                        zoom={isAndroid ? 0.05 : 0.2}
                         hintTextPosition={isAndroid ? width * 1.25 : width - width / 9}
                         topViewStyle={{ height: isAndroid ? width / 4 : 0 }}
                         bottomViewStyle={{ height: isAndroid ? width / 4 : 0 }}
@@ -90,7 +106,18 @@ export class QRScanner extends Component {
                         bottomHeight={0}
                         cornerColor={primary.color}
                         scanBarColor={primary.color}
+                        cameraType={this.state.cameraType}
                     />
+                </View>
+                <View
+                    style={[
+                        { width, alignItems: 'center' },
+                        isAndroid ? { position: 'absolute', bottom: height / 6 } : { marginTop: height / 20 },
+                    ]}
+                >
+                    <TouchableOpacity onPress={() => this.changeCamera()}>
+                        <Icon name="cameraFlip" size={width / 10} color={body.color} />
+                    </TouchableOpacity>
                 </View>
                 <Text
                     style={[
