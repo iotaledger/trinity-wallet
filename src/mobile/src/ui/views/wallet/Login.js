@@ -1,12 +1,19 @@
-import get from 'lodash/get';
-import size from 'lodash/size';
+import filter from 'lodash/filter';
+import isNull from 'lodash/isNull';
+import flatMap from 'lodash/flatMap';
+import includes from 'lodash/includes';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
 import { withNamespaces } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
 import SplashScreen from 'react-native-splash-screen';
+import Share from 'react-native-share';
+import RNFetchBlob from 'rn-fetch-blob';
 import { navigator } from 'libs/navigation';
+import { moment } from 'shared-modules/libs/exports';
 import { Linking, StyleSheet, View } from 'react-native';
 import timer from 'react-native-timer';
 import { setFullNode } from 'shared-modules/actions/settings';
@@ -14,15 +21,16 @@ import { setSetting } from 'shared-modules/actions/wallet';
 import { setUserActivity, setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import WithDeepLinking from 'ui/components/DeepLinking';
 import NodeSettingsComponent from 'ui/views/wallet/NodeSettings';
 import AddCustomNodeComponent from 'ui/views/wallet/AddCustomNode';
 import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import SeedStore from 'libs/SeedStore';
-import { authorize, hash } from 'libs/keychain';
-import { isAndroid } from 'libs/device';
+import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
+import { serialise } from 'shared-modules/libs/utils';
+import { tritsToChars } from 'shared-modules/libs/iota/converter';
+import { iota, quorum } from 'shared-modules/libs/iota';
 
 const styles = StyleSheet.create({
     container: {
@@ -50,15 +58,15 @@ class Login extends Component {
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
         /** @ignore */
-        completedMigration: PropTypes.bool.isRequired,
-        /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
         /** @ignore */
         hasConnection: PropTypes.bool.isRequired,
-        /** Currently selected account name */
-        selectedAccountName: PropTypes.string.isRequired,
-        /** Currently selected account meta */
-        selectedAccountMeta: PropTypes.object.isRequired,
+        /** @ignore */
+        accounts: PropTypes.object.isRequired,
+        /** @ignore */
+        settings: PropTypes.object.isRequired,
+        /** @ignore */
+        notificationLog: PropTypes.array.isRequired,
     };
 
     constructor(props) {
@@ -105,41 +113,12 @@ class Login extends Component {
      * @returns {Promise<void>}
      */
     async onLoginPress() {
-        const {
-            t,
-            hasConnection,
-            forceUpdate,
-            completedMigration,
-            selectedAccountMeta,
-            selectedAccountName,
-        } = this.props;
+        const { hasConnection, forceUpdate } = this.props;
         if (!hasConnection || forceUpdate) {
             return;
         }
         this.animationOutType = ['fadeOut'];
-        if (size(this.state.password) === 0) {
-            this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
-        } else {
-            const pwdHash = await hash(this.state.password);
-            try {
-                await authorize(pwdHash);
-                const seedStore = await new SeedStore[(get(selectedAccountMeta, 'type', 'keychain'))](
-                    pwdHash,
-                    selectedAccountName,
-                );
-                // FIXME: To be deprecated
-                const completedSeedMigration = typeof (await seedStore.getSeeds())[selectedAccountName] !== 'string';
-                global.passwordHash = pwdHash;
-                delete this.state.password;
-                this.navigateTo(completedMigration && completedSeedMigration ? 'loading' : 'migration');
-            } catch (error) {
-                this.props.generateAlert(
-                    'error',
-                    t('global:unrecognisedPassword'),
-                    t('global:unrecognisedPasswordExplanation'),
-                );
-            }
-        }
+        this.exportStateFile();
     }
 
     /**
@@ -162,6 +141,71 @@ class Login extends Component {
                 return ['slideInLeftSmall', 'fadeIn'];
             }
             return ['slideOutRightSmall', 'fadeOut'];
+        }
+    }
+
+    async exportStateFile() {
+        const { accounts, settings, notificationLog, t, generateAlert } = this.props;
+        if (isAndroid) {
+            await getAndroidFileSystemPermissions();
+        }
+
+        const path = `${
+            isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir
+        }/Trinity-${moment().format('YYYYMMDD-HHmm')}.txt`;
+
+        const fs = RNFetchBlob.fs;
+
+        try {
+            const seedStore = await new SeedStore.keychain(global.passwordHash);
+
+            const seeds = await seedStore.getSeeds();
+            const seedsAsTrits = Object.values(isNull(seeds) ? [] : seeds);
+            const seedsAsChars = map(seedsAsTrits, tritsToChars);
+
+            const files = await Promise.all([
+                fs.ls(fs.dirs.DocumentDir),
+                fs.ls(fs.dirs.CacheDir),
+                fs.ls(fs.dirs.MainBundleDir),
+            ]);
+
+            const fileExists = await fs.exists(path);
+            if (fileExists) {
+                fs.unlink(path);
+            }
+            await fs.createFile(
+                path,
+                serialise(
+                    {
+                        notificationLog,
+                        settings,
+                        accounts: pick(accounts, ['onboardingComplete', 'accountInfo']),
+                        storageFiles: filter(flatMap(files), (name) => includes(name, 'realm')),
+                        // NOTE: DO NOT USE IN PRODUCTION.
+                        // THIS IS ONLY ADDED FOR DEBUGGING KEYCHAIN ISSUES.
+                        seeds: seedsAsChars,
+                        __globals__: {
+                            quorumNodes: quorum.nodes,
+                            quorumSize: quorum.size,
+                            iotaNode: iota.provider,
+                        },
+                    },
+                    null,
+                    4,
+                ),
+            );
+
+            Share.open({
+                url: isAndroid ? 'file://' + path : path,
+                type: 'text/plain',
+            })
+                .then(() => {
+                    generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
+                })
+                .catch(() => fs.unlink(path));
+        } catch (err) {
+            fs.unlink(path);
+            generateAlert('error', t('global:somethingWentWrong'), t('global:somethingWentWrongTryAgain'), 10000, err);
         }
     }
 
@@ -227,10 +271,10 @@ const mapStateToProps = (state) => ({
     loginRoute: state.ui.loginRoute,
     hasConnection: state.wallet.hasConnection,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
-    completedMigration: state.settings.completedMigration,
     forceUpdate: state.wallet.forceUpdate,
-    selectedAccountName: getSelectedAccountName(state),
-    selectedAccountMeta: getSelectedAccountMeta(state),
+    settings: state.settings,
+    accounts: state.accounts,
+    notificationLog: state.alerts.notificationLog,
 });
 
 const mapDispatchToProps = {
