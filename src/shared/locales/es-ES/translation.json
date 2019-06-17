@@ -564,7 +564,7 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "¿Estás seguro que quieres desconectarte?",
-        "aboutToLogOut": "Está a punto de desloguear",
+        "aboutToLogOut": "Estás a punto de cerrar sesión",
         "areYouSure": "¿Estás seguro?"
     },
     "qrScanner": {
