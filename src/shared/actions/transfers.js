@@ -35,6 +35,7 @@ import {
     isFundedBundle,
     isBundle,
     isFatalTransactionError,
+    isAboveMaxDepth,
 } from '../libs/iota/transfers';
 import {
     syncAccountAfterReattachment,
@@ -360,7 +361,7 @@ export const forceTransactionPromotion = (
     let promotionAttempt = 0;
 
     const promote = (settings) => (tailTransaction) => {
-        const { hash } = tailTransaction;
+        const { hash, attachmentTimestamp } = tailTransaction;
 
         promotionAttempt += 1;
 
@@ -377,6 +378,8 @@ export const forceTransactionPromotion = (
             } else if (
                 isTransactionInconsistent &&
                 promotionAttempt === maxPromotionAttempts &&
+                // Do not allow reattachments if transaction is still above max depth
+                !isAboveMaxDepth(attachmentTimestamp) &&
                 // If number of reattachments haven't exceeded max reattachments
                 replayCount < maxReplays
             ) {
