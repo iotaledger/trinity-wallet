@@ -458,6 +458,7 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn, quoru
  *
  * @param {string} bundleHash
  * @param {string} accountName
+ * @param {object} seedStore
  * @param {boolean} [withQuorum]
  *
  * @returns {function} - dispatch
