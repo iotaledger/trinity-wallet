@@ -11,12 +11,22 @@ import { Icon } from 'ui/theme/icons';
 import ModalView from './ModalView';
 
 const styles = StyleSheet.create({
+    scannerContainer: {
+          flex: isAndroid ? 1 : 0,
+          width,
+          height: width,
+          justifyContent: 'center'
+    },
     qrText: {
         fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
         fontSize: Styling.fontSize4,
         justifyContent: 'center',
     },
+    cameraFlip: {
+        width,
+        alignItems: 'center'
+    }
 });
 
 export class QRScanner extends Component {
@@ -91,7 +101,7 @@ export class QRScanner extends Component {
                 onButtonPress={() => this.props.hideModal()}
                 buttonText={t('global:close')}
             >
-                <View style={{ flex: isAndroid ? 1 : 0, width, height: width, justifyContent: 'center' }}>
+                <View style={styles.scannerContainer}>
                     <QRscanner
                         onRead={(data) => this.props.onQRRead(data.data)}
                         rectHeight={width * 0.75}
@@ -110,10 +120,7 @@ export class QRScanner extends Component {
                     />
                 </View>
                 <View
-                    style={[
-                        { width, alignItems: 'center' },
-                        isAndroid ? { position: 'absolute', bottom: height / 6 } : { marginTop: height / 20 },
-                    ]}
+                    style={[styles.cameraFlip, isAndroid ? { position: 'absolute', bottom: height / 6 } : { marginTop: height / 20 }]}
                 >
                     <TouchableOpacity onPress={() => this.changeCamera()}>
                         <Icon name="cameraFlip" size={width / 10} color={body.color} />
