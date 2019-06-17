@@ -498,7 +498,7 @@
         "automaticNodeManagement": "Gestión automática de nodos",
         "addCustomNodes": "Agregar un nodo personalizado",
         "autoNodeList": "Usar lista remota de nodos",
-        "nodeAutoswitching": "Autowitching de nodo principal",
+        "nodeAutoswitching": "Cambio automático de nodo principal",
         "primaryNode": "Nodo principal",
         "enableQuorum": "Habilitar quórum",
         "quorumSize": "Tamaño del quórum",
@@ -564,7 +564,7 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "¿Estás seguro que quieres desconectarte?",
-        "aboutToLogOut": "Está a punto de desloguear",
+        "aboutToLogOut": "Estás a punto de cerrar sesión",
         "areYouSure": "¿Estás seguro?"
     },
     "qrScanner": {
