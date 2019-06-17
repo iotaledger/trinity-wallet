@@ -59,6 +59,13 @@ export class AboutComponent extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.6.1</h5>
+                            <ul>
+                                <li>Fix: Autopromotion not working as intended</li>
+                                <li>Fix: Improve reliability of reattachment and promotion</li>
+                                <li>Fix: Temporarily disable hardened runtime - fix Mac Ledger issues</li>
+                                <li>Fix: Mac tray app not rendering</li>
+                            </ul>
                             <h5>0.6.0</h5>
                             <ul>
                                 <li>
