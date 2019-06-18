@@ -1345,18 +1345,18 @@
       "integrity": "sha512-IS9s4WkgDMn9CE0qoo8mZE7blPvWy8mnFPxO1AAE8oewqUw3hWV5Fv+FFgHe+kB8oLaW+2E1EFG5E7xHS3ytxg=="
     },
     "@bugsnag/js": {
-      "version": "6.3.0",
-      "resolved": "https://registry.npmjs.org/@bugsnag/js/-/js-6.3.0.tgz",
-      "integrity": "sha512-waGwrqmMdjMJ9KEjPZgP3iFAQrepM8HwMAXP6ycUJMUfsb5e4JwoalW3ktyamJztNIM4AJ9yoTIpPxnCz7dCvA==",
+      "version": "6.3.1",
+      "resolved": "https://registry.npmjs.org/@bugsnag/js/-/js-6.3.1.tgz",
+      "integrity": "sha512-OSJvovnEsAUmh9Hfb9ZmpeZR1v/vFGZml444B1NPmfc0vivlIfSYE4/pTt+rjhVDuCZE+b00pflD/QL7/Tt8kw==",
       "requires": {
         "@bugsnag/browser": "^6.3.0",
-        "@bugsnag/node": "^6.3.0"
+        "@bugsnag/node": "^6.3.1"
       }
     },
     "@bugsnag/node": {
-      "version": "6.3.0",
-      "resolved": "https://registry.npmjs.org/@bugsnag/node/-/node-6.3.0.tgz",
-      "integrity": "sha512-TuvvGx98AFhhuntKzFUnD7rSko77R2im6Ec8ZNL0w8JJe9nGaVF35uCK297Pk6E7x136+FY7dBNRWgdJJZ3RNA==",
+      "version": "6.3.1",
+      "resolved": "https://registry.npmjs.org/@bugsnag/node/-/node-6.3.1.tgz",
+      "integrity": "sha512-KtFh3fR+Yzb3O4IgFLnxMK/yXqDyoR4fl1yl+EghwgkwDc4nETZ/NXpqroaMUtHYNOY+7cTpHaGqlaSTWLGp1Q==",
       "requires": {
         "byline": "^5.0.0",
         "error-stack-parser": "^2.0.2",
