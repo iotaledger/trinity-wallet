@@ -322,15 +322,7 @@ export const fetchNodeList = () => {
         fetchRemoteNodes()
             .then((remoteNodes) => {
                 if (remoteNodes.length) {
-                    nodes = unionBy(
-                        nodes,
-                        map(remoteNodes, (node) => ({
-                            url: node.node,
-                            pow: node.pow,
-                            token: '',
-                        })),
-                        'url',
-                    );
+                    nodes = unionBy(nodes, remoteNodes, 'url');
                 }
                 quorum.setNodes(
                     unionBy(getCustomNodesFromState(getState()), getState().settings.autoNodeList && nodes, 'url'),
