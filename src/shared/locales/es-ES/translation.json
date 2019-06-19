@@ -519,7 +519,7 @@
         "nodeFieldEmpty": "El campo de texto esta vacio",
         "nodeFieldEmptyExplanation": "Por favor ingrese un nodo personalizado.",
         "invalidURL": "Por favor, ingrese una URL válida.",
-        "addAuthKey": "Añadir auth key",
+        "addAuthKey": "Añadir clave de autenticación",
         "username": "Nombre de usuario",
         "couldNotRemove": "No se pudo remover el nodo personalizado",
         "couldNotRemoveExplanation": "Debe haber suficientes nodos para el quórum. Reduce el tamaño del quórum o habilita la lista de nodos remotos."
