@@ -737,7 +737,7 @@
         "transitionComplete": "Transición de snapshot completada",
         "transitionCompleteExplanation": "La transición de snapshot fue completada exitosamente.",
         "detectedBalance": "Balance detectado: {{amount}} {{unit}}",
-        "isThisCorrect": "Es esto correcto?",
+        "isThisCorrect": "¿Es esto correcto?",
         "snapshotExplanation": "Cada tanto, un snapshot es realizado para reducir el tamaño de la Tangle.",
         "hasSnapshotTakenPlace": "Ocurrió un snapshot recientemente? Presione el botón debajo para comenzar la transición.",
         "transition": "Transición",
