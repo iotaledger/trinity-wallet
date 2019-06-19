@@ -1,8 +1,8 @@
 {
     "global": {
-        "send": "SEND",
-        "cancel": "Cancel",
-        "continue?": "Are you sure you want to continue?",
+        "send": "ENVIAR",
+        "cancel": "Cancel·lar",
+        "continue?": "Estàs segur que vols continuar?",
         "noTransactions": "NO RECENT HISTORY",
         "refresh": "Refresh",
         "balanceError": "Not enough balance",
@@ -243,7 +243,7 @@
     },
     "home": {
         "balance": "BALANCE",
-        "send": "SEND",
+        "send": "ENVIAR",
         "receive": "RECEIVE",
         "history": "HISTORY",
         "settings": "SETTINGS"
