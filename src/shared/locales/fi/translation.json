@@ -15,7 +15,7 @@
         "messageSent": "Viesti lähetetty",
         "messageSentMessage": "Viestisi on lähetetty Tangle-verkkoon.",
         "keyReuse": "Lähetys jo käytettyyn osoitteeseen",
-        "keyReuseError": "Et voi lähettää osoitteeseen, jota on jo käytetty aikaisemmin.",
+        "keyReuseError": "Et voi lähettää osoitteeseen, josta on aiemmin lähetetty muualle.",
         "invalidResponse": "Palvelin virhe",
         "invalidResponseExplanation": "Palvelin antoi virheilmoituksen. Kokeile uudestaan vaihtamalla palvelinta.",
         "invalidResponseFetchingAccount": "Palvelin antoi virheilmoituksen haettaessa tilitietoja. Kokeile uudestaan vaihtamalla palvelinta.",
