@@ -203,7 +203,7 @@
         "currentPassword": "Contraseña actual",
         "newPassword": "Contraseña nueva",
         "confirmPassword": "Confirmar contraseña nueva",
-        "passwordTooWeak": "Contraseña es demasiado débil",
+        "passwordTooWeak": "Contraseña demasiado débil",
         "passwordTooWeakReason": "Su contraseña es demasiado débil. Utilice combinaciónes de palabras y evite frases comunes, nombres o fechas.",
         "reasonRow": "Los patrones de teclas son fáciles de adivinar.",
         "reasonPattern": "Los patrones de teclas cortos son fáciles de adivinar.",
@@ -225,7 +225,7 @@
         "passwordTooShortExplanation": "Su contraseña debe tener al menos {{minLength}} caracteres. Actualmente tiene {{currentLength}} caracteres. Por favor inténtelo nuevamente.",
         "passwordMismatch": "Las contraseñas no coinciden",
         "passwordMismatchExplanation": "Las contraseñas introducidas no coinciden. Por favor, inténtalo de nuevo.",
-        "anEncryptedCopy": "Está es su contraseña de la billetera principal. Usala para loguearte.",
+        "anEncryptedCopy": "Está es su contraseña de la billetera principal. La usarás para iniciar la sesión.",
         "retypePassword": "Escribe la contraseña de nuevo"
     },
     "copyToClipboard": {
@@ -258,7 +258,7 @@
         "enterPassword": "Por favor introduzca su contraseña.",
         "login": "Iniciar Sesión",
         "setNode": "Seleccionar nodo",
-        "whyBiometricDisabled": "Por que la autentificación biométrica está deshabilitada?",
+        "whyBiometricDisabled": "¿Por qué está deshabilitada la autenticación biométrica?",
         "whyBiometricDisabledExplanationPart1": "La autenticación biométrica está desactivada en la primera carga de la aplicación por seguridad.",
         "whyBiometricDisabledExplanationPart2": "Cuando uses Trinity serás deslogueado por inactividad. Puedes entrar nuevamente con la autenticación biométrica."
     },
@@ -275,7 +275,7 @@
         "pressForNewSeed": "Pulse para obtener una Nueva Semilla",
         "generateSuccess": "Semilla generada exitosamente",
         "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio.",
-        "individualLetterCount": "Oprima <1><0>{{count}}</0></1> letras más para aleatorizar.",
+        "individualLetterCount": "Presiona <1><0>{{count}}</0></1> letras más para aleatorizar.",
         "individualLetterCount_plural": "Oprima <1><0>{{count}}</0></1> letras más para aleatorizar.",
         "randomiseCharsToContinue": "Aleatorizar <1>{{count}}</1> más para continuar.",
         "randomiseCharsToContinue_plural": "Aleatorizar <1>{{count}}</1> carácteres más para continuar.",
