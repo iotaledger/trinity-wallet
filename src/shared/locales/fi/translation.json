@@ -504,11 +504,11 @@
         "quorumSize": "Quorum size",
         "noCustomNodes": "Ei omavalintaisia palvelimia",
         "mustAddCustomNodes": "Sinun pitää lisätä vähintään yksi omavalintainen palvelin ennen kuin kytket etä-palvelin listan pois päältä.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesTitle": "Ei tarpeeksi palvelimia",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeEnoughNodesExplanationCustomNodes": "Lisää omavalintaisia palvelimia tai kytke etä-palvelin lista päälle.",
+        "nodeSettingsUpdatedTitle": "Palvelin asetukset päivitetty",
+        "nodeSettingsUpdatedExplanation": "Olet onnistuneesti päivittänyt palvelin asetukset."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Palvelinta ei voitu lisätä",
@@ -520,8 +520,8 @@
         "nodeFieldEmptyExplanation": "Anna omavalintaisen palvelin osoite.",
         "invalidURL": "Syötä kelvollinen URL-osoite.",
         "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
+        "username": "Käyttäjätunnus",
+        "couldNotRemove": "Omavalintaisen palvelimen poisto ei onnistunut",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Virhe haettaessa päivityksiä",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Päivitystarkastus epäonnistui. Tarkista Internet-yhteytesi ja yritä uudelleen.",
         "noUpdatesAvailable": "Ei uusia päivityksiä",
         "noUpdatesAvailableExplanation": "Sinulla on uusin Trinity-versio!",
         "newVersionAvailable": "Uusi versio saatavilla",
@@ -826,7 +826,7 @@
         "notReady": "Mikäli haluat käyttää Ledger-laitetta, yhdistä se nyt ja avaa sen lukitus",
         "indexInUse": "Indeksi on jo käytössä tilille {{account}}",
         "indexInUseExplanation": "Valitsemasi indeksi on jo käytössä toisessa tilissäsi. Valitse toinen indeksinumero.",
-        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "createNewLedgerAccountInfo": "Varmista, että kirjoitat alas ja muistat indeksinumerosi.",
         "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
         "createNewLedgerAccount": "Create a new Ledger account",
         "restoreLedgerAccount": "Restore an existing Ledger account",
