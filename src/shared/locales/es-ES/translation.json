@@ -614,7 +614,7 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "¿Hizo una copia de seguridad de la semilla?",
-        "iHaveBackedUp": "Respalde correctamente mi semilla",
+        "iHaveBackedUp": "He respaldado con seguridad mi semilla",
         "reenterSeed": "En el siguiente paso debe reingresar su semilla.",
         "reenterSeedWarning": "Si no ha guardado su semilla y su dispositivo falla, usted perderá todas sus IOTA.",
         "pleaseConfirm": "Por favor confirme que ha almacenado seguramente su semilla."
