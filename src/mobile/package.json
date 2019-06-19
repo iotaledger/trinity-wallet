@@ -75,7 +75,7 @@
     "react-native-qr-scanner": "https://github.com/cvarley100/react-native-qr-scanner#867e45d7f46d8464a636d85a0250d9e409c7beb6",
     "react-native-randombytes": "^3.2.0",
     "react-native-safe-area-view": "^0.9.0",
-    "react-native-securerandom": "^0.1.1",
+    "react-native-securerandom": "^0.3.1",
     "react-native-share": "^1.0.27",
     "react-native-splash-screen": "^3.1.1",
     "react-native-svg": "~6.1.4",
