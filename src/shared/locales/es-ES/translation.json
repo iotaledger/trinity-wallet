@@ -225,7 +225,7 @@
         "passwordTooShortExplanation": "Su contraseña debe tener al menos {{minLength}} caracteres. Actualmente tiene {{currentLength}} caracteres. Por favor inténtelo nuevamente.",
         "passwordMismatch": "Las contraseñas no coinciden",
         "passwordMismatchExplanation": "Las contraseñas introducidas no coinciden. Por favor, inténtalo de nuevo.",
-        "anEncryptedCopy": "Esta es tu contraseña principal de cartera. Lo usarás para iniciar sesión.",
+        "anEncryptedCopy": "Está es su contraseña de la billetera principal. La usarás para iniciar la sesión.",
         "retypePassword": "Escribe la contraseña de nuevo"
     },
     "copyToClipboard": {
