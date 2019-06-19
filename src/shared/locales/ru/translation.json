@@ -859,7 +859,7 @@
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
         "checkLedger": "Check your Ledger device",
         "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
-        "udevError": "Could not communicate with Ledger device",
+        "udevError": "Не удается соединиться с Ledger устройством",
         "udevErrorExplanation": "Тринити не может соединиться с вашим Ledger устройством. Пожалуйста перейдите по _ссылке_ для исправления этой проблемы.",
         "writtenDownInfoTitle": "Сохраните ваш порядковый номер",
         "writtenDownInfoExplanation": "Пожалуйста сохраните ваш порядковый номер. Он понадобится вам для восстановления учетной записи. Если вы потеряете ваш порядковый номер - вы потеряете доступ к учетной записи."
