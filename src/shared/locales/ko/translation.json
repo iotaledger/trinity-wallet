@@ -502,13 +502,13 @@
         "primaryNode": "Primary node",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "noCustomNodes": "커스텀 노드 없음",
+        "mustAddCustomNodes": "원격 노드 목록을 비활성화하기 전에 최소한 하나의 커스텀 노드를 추가해야 합니다.",
         "nodeEnoughNodesTitle": "Not enough nodes",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeEnoughNodesExplanation": "큐럼을 활성화하기 위한 노드의 수가 부족합니다.",
+        "nodeEnoughNodesExplanationCustomNodes": "더많은 커스텀 노드를 추가하거나 원격 노드 목록을 활성화하십시오.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeSettingsUpdatedExplanation": "노드 설정이 성공적으로 업데이트되었습니다."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "커스텀 노드를 추가할 수 없습니다.",
