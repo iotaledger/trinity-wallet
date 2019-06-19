@@ -468,7 +468,7 @@
         "emptyHistory": "Votre historique de transaction est vide",
         "hideZeroBalance": "Masquer un solde nul",
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papier.",
-        "addressCopied": "Adressée copiée",
+        "addressCopied": "Adresse copiée",
         "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papier.",
         "messageCopied": "Message copié",
         "messageCopiedExplanation": "Le message a été copié dans le presse-papier.",
