@@ -121,7 +121,7 @@
         "nodeMustUseHTTPSExplanation": "Seuls les serveurs personnalisés utilisant HTTPS sont autorisés.",
         "nodeDuplicated": "Serveur dupliqué",
         "nodeDuplicatedExplanation": "Le serveur personnalisé est déjà répertorié.",
-        "customNodeAdded": "Serveur personnalisé ajouté",
+        "customNodeAdded": "Noeud personnalisé ajouté",
         "customNodeAddedExplanation": "Vous avez ajouté {{nodeAddress}} en tant que noeud personnalisé avec succès.",
         "nodeAutoChanged": "Changement automatique de serveur",
         "nodeAutoChangedExplanation": "Passage au nouveau serveur {{- nodeAddress}} car le serveur sélectionné est hors ligne.",
