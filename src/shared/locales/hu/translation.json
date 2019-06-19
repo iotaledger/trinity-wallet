@@ -501,14 +501,14 @@
         "nodeAutoswitching": "Elsődleges csomópont automatikus váltása",
         "primaryNode": "Elsődleges csomópont",
         "enableQuorum": "Határozatképesség-ellenőrzés engedélyezése",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "quorumSize": "Határozatképességhez minimálisan szükséges csomópontok száma",
+        "noCustomNodes": "Nincs saját csomópont",
+        "mustAddCustomNodes": "Legalább egy saját csomópont hozzáadása szükséges a távoli csomópontlista használatának letiltásához.",
+        "nodeEnoughNodesTitle": "Nincs elég csomópont",
+        "nodeEnoughNodesExplanation": "Nincs elegendő csomópont a határozatképesség-ellenőrzés engedélyezéséhez.",
+        "nodeEnoughNodesExplanationCustomNodes": "Adjon hozzá újabb csomópontokat vagy engedélyezze a távoli csomópontlista használatát.",
+        "nodeSettingsUpdatedTitle": "Csomópont beállítások frissítve",
+        "nodeSettingsUpdatedExplanation": "Sikeresen módosította a csomópont beállításait."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Saját csomópont hozzáadása sikertelen",
@@ -519,10 +519,10 @@
         "nodeFieldEmpty": "Üres szövegmező",
         "nodeFieldEmptyExplanation": "Kérjük adjon meg egy saját csomópontot.",
         "invalidURL": "Kérjük adjon meg egy helyes URL-t.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "addAuthKey": "Ellenőrző kulcs hozzáadása",
+        "username": "Felhasználónév",
+        "couldNotRemove": "Csomópont törlés sikertelen",
+        "couldNotRemoveExplanation": "Nem marad elegendő csomópont a határozatképesség eléréséhez. Csökkentse a határozatképességhez szükséges csomópontok számát vagy engedélyezze a távoli csomópontlista használatát."
     },
     "addNewAccount": {
         "useExistingSeed": "Meglévő mester jelszó használata",
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Frissítés adatletöltési hiba",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "A szoftverfrissítés sikertelen. Kérjük, ellenőrizze az internet kapcsolatot majd próbálja újra.",
         "noUpdatesAvailable": "Nincs elérhető frissítés",
         "noUpdatesAvailableExplanation": "Nem érhető el újabb Trinity verzió!",
         "newVersionAvailable": "Új verzió elérhető",
@@ -826,7 +826,7 @@
         "notReady": "Ha hardveres tárcát szeretne használni, most csatlakoztassa majd nyissa ki",
         "indexInUse": "{{account}} számla által már használt számlasorszám",
         "indexInUseExplanation": "A választott számlasorszámot korábban már egy másik számlájához rendelte. Kérjük, válasszon egy másik számlasorszámot.",
-        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
+        "createNewLedgerAccountInfo": "Győződjön meg róla, hogy leírta és megjegyezte az index számot.",
         "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
         "createNewLedgerAccount": "Create a new Ledger account",
         "restoreLedgerAccount": "Restore an existing Ledger account",
