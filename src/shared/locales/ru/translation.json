@@ -300,12 +300,12 @@
         "printTemplateQuestion": "Would you like to print a blank template?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "print": "Да, печатать"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Ваш адрес",
+        "qrOptions": "Параметры QR",
+        "shareQr": "Поделиться QR-кодом",
         "copyAddress": "Скопировать адрес",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
@@ -327,7 +327,7 @@
         "paperWallet": "Бумажный кошелек",
         "writeYourSeedDown": "Запишите Ваш ключ",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для Вашей безопасности.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Давайте напишите ваш seed",
         "youCanHighlightCharacters": "Одновременно можно выделить 9 символов",
         "printBlankWallet": "Распечатать чистый кошелёк",
         "whatIsAChecksum": "What is a checksum?",
@@ -344,7 +344,7 @@
         "incorrectSeedExplanation": "Введенный ключ неправильный. Пожалуйста, попробуйте еще раз.",
         "ifYouHaveNotSaved": "Если Вы не сохранили свой ключ, пожалуйста, вернитесь на шаг назад и сделайте это.",
         "enterSeedBelow": "Введите только что созданный Вами ключ ниже, чтобы подтвердить, что Вы правильно создали его резервную копию",
-        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarning": "ВНИМАНИЕ: Невозможно вставить seed",
         "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
@@ -386,7 +386,7 @@
         "standard": "Стандартный",
         "advancedModeExplanation": "Расширенный режим будет отображать более подробную техническую информацию.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
-        "modeUpdated": "Mode updated",
+        "modeUpdated": "Режим обновлен",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
@@ -403,8 +403,8 @@
         "changePassword": "Изменить пароль",
         "general": "General settings",
         "advanced": "Дополнительные настройки",
-        "nodeSettings": "Node settings",
-        "account": "Account settings",
+        "nodeSettings": "Настройки узла(ноды)",
+        "account": "Настройки учетной записи",
         "logout": "Выход",
         "reset": "Сбросить настройки кошелька",
         "syncingComplete": "Синхронизация завершена",
@@ -443,7 +443,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите Ваш пароль для сброса настроек кошелька.",
-        "reset": "Reset"
+        "reset": "Сброс"
     },
     "walletSetup": {
         "okay": "Хорошо, давайте настроим Ваш кошелек!",
@@ -451,7 +451,7 @@
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "Нет, у меня уже есть ключ",
         "yesINeedASeed": "Да, мне нужен ключ",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "explanation": "<0><0>Вы можете использовать его для доступа к средствам с</0><1> любого кошелька</1><2>, на</2><3> любом устройстве.</3></0>",
         "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Пожалуйста, храните Ваш ключ в безопасности."
     },
@@ -495,8 +495,8 @@
         "tools": "Инструменты"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
+        "automaticNodeManagement": "Автоматическое управление узлами",
+        "addCustomNodes": "Добавить пользовательские узлы",
         "autoNodeList": "Use remote node list",
         "nodeAutoswitching": "Primary node autoswitching",
         "primaryNode": "Primary node",
@@ -518,10 +518,10 @@
         "add": "Добавить",
         "nodeFieldEmpty": "Текстовое поле пусто",
         "nodeFieldEmptyExplanation": "Пожалуйста, введите пользовательский узел.",
-        "invalidURL": "Please enter a valid URL.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
+        "invalidURL": "Пожалуйста, введите правильный URL.",
+        "addAuthKey": "Добавить ключ авторизации",
+        "username": "Имя пользователя",
+        "couldNotRemove": "Не удалось удалить пользовательский узел",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
@@ -551,12 +551,12 @@
         "classic": "Classic",
         "contemporary": "Contemporary",
         "dark": "Тёмная",
-        "default": "Default",
+        "default": "По умолчанию",
         "electric": "Electric",
         "ionic": "Ionic",
         "light": "Светлая",
         "lucky": "Случайный выбор",
-        "mint": "Mint",
+        "mint": "Мятный",
         "steelblue": "Темно-Голубой"
     },
     "currencySelection": {
@@ -585,7 +585,7 @@
         "discordInformation": "Пожалуйста посетите канал #help в Discord, чтобы узнать, что вы можете сделать."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Вы уверены, что хотите удалить свой аккаунт?",
         "yourSeedWillBeRemoved": "Ваш ключ и история транзакций будут удалены.",
         "thisAction": "Это действие нельзя будет отменить",
         "enterPassword": "Введите Ваш пароль для удаления данного счёта."
@@ -634,9 +634,9 @@
         "fingerprintAuthFailedExplanation": "Ошибка аутентификации на основе отпечатков пальцев. Пожалуйста, попробуйте еще раз.",
         "status": "Статус",
         "fingerprintUnavailable": "Биометрическая аутентификация недоступна",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "Аутентификация недоступна в течение 30 секунд",
         "fingerprintUnavailableExplanation": "Ваше устройство не поддерживает биометрической аутентификации, или она не была настроена в параметрах устройства.",
-        "notSupported": "Device does not support biometric authentication",
+        "notSupported": "Устройство не поддерживает биометрическую аутентификацию",
         "notConfigured": "Biometric authentication has not been configured in device settings",
         "buttonInstructionsDisable": "Нажмите на кнопку ниже, чтобы отключить аутентификацию на основе отпечатков пальцев.",
         "buttonInstructionsEnable": "Нажмите на кнопку ниже, чтобы включить аутентификацию на основе отпечатков пальцев.",
@@ -644,7 +644,7 @@
         "buttonInstructionsEnableIPhoneX": "Нажмите на кнопку ниже, чтобы включить идентификатор лица",
         "instructionsLogin": "Приложите палец к сенсору чтения отпечатков пальцев для входа",
         "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
+        "userCancelledAuth": "Запрос на аутентификацию отменен",
         "passwordFallback": "Fall back to password authentication",
         "noPassword": "Password is not set on device"
     },
