@@ -275,7 +275,7 @@
         "pressForNewSeed": "Pulse para obtener una Nueva Semilla",
         "generateSuccess": "Semilla generada exitosamente",
         "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio.",
-        "individualLetterCount": "Oprima <1><0>{{count}}</0></1> letras más para aleatorizar.",
+        "individualLetterCount": "Presiona <1><0>{{count}}</0></1> letras más para aleatorizar.",
         "individualLetterCount_plural": "Oprima <1><0>{{count}}</0></1> letras más para aleatorizar.",
         "randomiseCharsToContinue": "Aleatorizar <1>{{count}}</1> más para continuar.",
         "randomiseCharsToContinue_plural": "Aleatorizar <1>{{count}}</1> carácteres más para continuar.",
