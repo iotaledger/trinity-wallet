@@ -827,7 +827,7 @@
         "indexInUse": "Indeksi on jo käytössä tilille {{account}}",
         "indexInUseExplanation": "Valitsemasi indeksi on jo käytössä toisessa tilissäsi. Valitse toinen indeksinumero.",
         "createNewLedgerAccountInfo": "Varmista, että kirjoitat alas ja muistat indeksinumerosi.",
-        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "restoreLedgerAccountInfo": "Anna tallennettu indeksinumero tilisi palauttamiseksi.",
         "createNewLedgerAccount": "Create a new Ledger account",
         "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Tili hakemisto",
