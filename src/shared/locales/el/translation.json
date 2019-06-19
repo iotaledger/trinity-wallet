@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Ο κόμβος επέστρεψε ένα σφάλμα κατά τη λήψη των πληροφοριών του λογαριασμού σας. Εάν το πρόβλημά σας παραμένει, δοκιμάστε να αλλάξετε κόμβο ή να απενεργοποιήσετε τον διακομιστή μεσολάβησης συστήματος στις Ρυθμίσεις Trinity.",
         "nodeOutOfSync": "Κόμβος εκτός συγχρονισμού",
         "nodeOutOfSyncExplanation": "Ο επιλεγμένος κόμβο σας είναι εκτός συγχρονισμού. Παρακαλώ αλλάξτε κόμβο ή προσπαθήστε ξανά.",
-        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "nodeOutOfSyncByTimestampExplanation": "Ο επιλεγμένος κόμβος είναι αποσυγχρονισμένος. Παρακαλώ επιλέξτε ένα διαφορετικό κόμβο ή ξαναπροσπαθήστε. Εάν το πρόβλημα παραμένει, βεβαιωθείτε ότι η ώρα της συσκευή σας είναι ακριβής.",
         "experimentalNode": "Η έκδοση κόμβου δεν υποστηρίζεται",
         "experimentalNodeExplanation": "Ο τρέχων επιλεγμένος κόμβος σας διαθέτει μια πειραματική έκδοση που δεν υποστηρίζεται. Αλλάξτε κόμβο ή δοκιμάστε ξανά.",
         "thisNodeOutOfSync": "Αυτός ο κόμβος είναι εκτός συγχρονισμού. Παρακαλώ αλλάξτε κόμβο ή προσπαθήστε ξανά.",
