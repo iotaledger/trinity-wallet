@@ -170,7 +170,7 @@
         "missingPermissionExplanation": "Tilgang til filsystemet kreves for å utføre denne funksjonen.",
         "swipeToConfirm": "Dra for å bekrefte",
         "expert": "Ekspert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodes": "Ikke nok synkroniserte noder",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
@@ -504,7 +504,7 @@
         "quorumSize": "Quorum-størrelse",
         "noCustomNodes": "Ingen egendefinerte noder",
         "mustAddCustomNodes": "Du må legge til minst en egendefinert node før du deaktiverer listen med eksterne noder.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesTitle": "Ikke nok noder",
         "nodeEnoughNodesExplanation": "Det er ikke nok noder for å aktivere quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Legg til flere egendefinerte noder eller aktiver listen med eksterne noder.",
         "nodeSettingsUpdatedTitle": "Node-innstillinger oppdatert",
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Feil under henting av oppdaterte data",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Kan ikke koble til server, vennligst kontroller internettforbindelsen og prøv igjen.",
         "noUpdatesAvailable": "Ingen tilgjengelige oppdateringer",
         "noUpdatesAvailableExplanation": "Du har den nyeste versjonen av Trinity!",
         "newVersionAvailable": "Ny versjon tilgjengelig",
