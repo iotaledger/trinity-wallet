@@ -169,7 +169,7 @@
         "missingPermission": "Failisüsteemi luba on nõutud",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
         "swipeToConfirm": "Tõmba kinnitamiseks",
-        "expert": "Expert",
+        "expert": "Ekspert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
@@ -499,8 +499,8 @@
         "addCustomNodes": "Add custom nodes",
         "autoNodeList": "Use remote node list",
         "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
-        "enableQuorum": "Enable quorum",
+        "primaryNode": "Peamine sõlm",
+        "enableQuorum": "Luba kvoorum",
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
@@ -564,7 +564,7 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Kas soovite kindlasti välja logida?",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "Olete välja logimas",
         "areYouSure": "Olete kindel?"
     },
     "qrScanner": {
@@ -651,7 +651,7 @@
     "transferConfirmation": {
         "youAreAbout": "Te olete saatmas {{contents}} aadressile",
         "aMessage": "sõnum",
-        "fromAccount": "From {{selectedAccountName}}",
+        "fromAccount": "Kontolt {{selectedAccountName}}",
         "toAddress": "Aadressile",
         "sendingAMessage": "Sõnumi saatmine",
         "sendingAnEmptyMessage": "Tühja sõnumi saatmine"
@@ -725,11 +725,11 @@
         "proofOfWork": "Valmistan töötõendit",
         "broadcasting": "Edastamine",
         "preparingData": "Andmete ettevalmistamine",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "migratingSettings": "Sätede ületoomine",
+        "migratingAccounts": "Kontode ületoomine",
+        "cleaningUpOldData": "Vanade andmete puhastamine",
+        "migrationComplete": "Ületoomine lõpetatud",
+        "transferComplete": "Ülekanne tehtud"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Ei saa hetkvõtte üleminekut lõpetada",
@@ -831,7 +831,7 @@
         "createNewLedgerAccount": "Create a new Ledger account",
         "restoreLedgerAccount": "Restore an existing Ledger account",
         "accountIndex": "Account index",
-        "accountPage": "Account page",
+        "accountPage": "Konto leht",
         "actionCancelled": "Ledger device access cancelled",
         "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
         "chooseAccountIndex": "Choose your Ledger account index",
@@ -849,13 +849,13 @@
         "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
         "ledgerDisconnectedTitle": "Ledger device disconnected",
         "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
-        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedTitle": "Tehing tagasilükatud",
         "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
         "ledgerIncorrectIndex": "Ledger device mismatch",
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialised": "Hoiatus kinnitamata",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
         "checkLedger": "Check your Ledger device",
         "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
