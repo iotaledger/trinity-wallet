@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Palvelin ei onnistunut noutamaan tilisi tietojasi. Mikäli ongelma jatkuu koita vaihtaa noodi tai ottaa järjestelmäsi välityspalvelin pois käytöstä Trinityn asetuksista.",
         "nodeOutOfSync": "Palvelin ei ole ajantasalla",
         "nodeOutOfSyncExplanation": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen tai yritä uudestaan.",
-        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "nodeOutOfSyncByTimestampExplanation": "Valitsemaasi noodiin ei ole yhteyttä. Vaihda noodi tai yritä uudelleen. Jos ongelma toistuu, varmista että laitteesi aika-asetukset ovat oikein.",
         "experimentalNode": "Palvelin versiota ei tueta",
         "experimentalNodeExplanation": "Valitsemasi palvelin toimii testiversiossa mitä ei tueta. Ole hyvä ja vaihda palvelin tai yritä uudestaan.",
         "thisNodeOutOfSync": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen.",
