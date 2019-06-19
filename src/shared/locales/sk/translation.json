@@ -498,17 +498,17 @@
         "automaticNodeManagement": "Automatická správa nodu",
         "addCustomNodes": "Pridať vlastný node",
         "autoNodeList": "Použite zoznam vzdialených nodov",
-        "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeAutoswitching": "Automatické prepínanie primárneho nodu",
+        "primaryNode": "Primárny node",
+        "enableQuorum": "Povoliť kvórum",
+        "quorumSize": "Veľkosť kvóra",
+        "noCustomNodes": "Žiadne vlastné nody",
+        "mustAddCustomNodes": "Pred vypnutím zoznamu vzdialených nodov musíte pridať aspoň jeden vlastný node.",
+        "nodeEnoughNodesTitle": "Nedostatočný počet nodov",
+        "nodeEnoughNodesExplanation": "Pre správne fungovanie kvóra nie je dostatok nodov.",
+        "nodeEnoughNodesExplanationCustomNodes": "Pridať ďalšie vlastné nody alebo povoliť zoznam vzdialených nodov.",
+        "nodeSettingsUpdatedTitle": "Nastavenia nodu boli aktualizované",
+        "nodeSettingsUpdatedExplanation": "Úspešne ste aktualizovali nastavenia vášho nodu."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nedá sa pridať vlastný Node",
@@ -519,10 +519,10 @@
         "nodeFieldEmpty": "Textové pole je prázdne",
         "nodeFieldEmptyExplanation": "Prosím, vložte vlastný Node.",
         "invalidURL": "Prosím, zadajte platnú adresu URL.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "addAuthKey": "Pridať autentifikačný kľúč",
+        "username": "Užívateľské meno",
+        "couldNotRemove": "Nepodarilo sa odstrániť vlastný node",
+        "couldNotRemoveExplanation": "Pre správnu funkcionalitu kvóra, musí byť použitý dostatok nodov. Znížte veľkosť kvora alebo povolte zoznam vzdialených nodov."
     },
     "addNewAccount": {
         "useExistingSeed": "Použiť existujúci Seed",
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba pri získavaní aktualizačných dát",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Nepodarilo sa načítať aktualizáciu. Skontrolujte internetové pripojenie a skúste to znova.",
         "noUpdatesAvailable": "Nie sú dostupné žiadne aktualizácie",
         "noUpdatesAvailableExplanation": "Používate aktuálnu verziu Trinity!",
         "newVersionAvailable": "K dispozícií je nová verzia",
