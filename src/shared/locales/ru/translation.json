@@ -856,11 +856,11 @@
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
+        "applicationNotInitialisedExplanation": "Перезапустите IOTA приложение на вашем Ledger устройстве, согласитесь с текстовым предупреждением и попробуйте еще раз.",
         "checkLedger": "Проверьте ваше Ledger устройство",
-        "acceptWarningExplanation": "В случае появления текстового уведомления на Ledger устройстве, вам потребуется прочесть его и согласиться одновременным нажатием на обе кнопки.",
+        "acceptWarningExplanation": "Если на вашем Ledger устройстве появилось текстовое предупреждение, вам потребуется прочесть его и согласиться одновременным нажатием на обе кнопки.",
         "udevError": "Не удается соединиться с Ledger устройством",
-        "udevErrorExplanation": "Тринити не может соединиться с вашим Ledger устройством. Пожалуйста перейдите по _ссылке_ для исправления этой проблемы.",
+        "udevErrorExplanation": "Тринити не удается соединиться с вашим Ledger устройством. Пожалуйста перейдите по _ссылке_ для исправления этой проблемы.",
         "writtenDownInfoTitle": "Сохраните ваш порядковый номер",
         "writtenDownInfoExplanation": "Пожалуйста сохраните ваш порядковый номер. Он понадобится вам для восстановления учетной записи. Если вы потеряете ваш порядковый номер - вы потеряете доступ к учетной записи."
     }
