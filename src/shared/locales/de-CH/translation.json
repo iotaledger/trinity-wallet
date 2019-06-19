@@ -121,7 +121,7 @@
         "nodeMustUseHTTPSExplanation": "Benutzerdefinierte Nodes müssen HTTPS verwenden.",
         "nodeDuplicated": "Doppelter Node",
         "nodeDuplicatedExplanation": "Dieser Node ist bereits vorhanden.",
-        "customNodeAdded": "Custom node added",
+        "customNodeAdded": "Benutzerdefinierter Node hinzugefügt",
         "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
