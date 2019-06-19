@@ -15,6 +15,7 @@ import RNFetchBlob from 'rn-fetch-blob';
 import { navigator } from 'libs/navigation';
 import { moment } from 'shared-modules/libs/exports';
 import { Linking, StyleSheet, View } from 'react-native';
+import { hash } from 'libs/keychain';
 import timer from 'react-native-timer';
 import { setFullNode } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -157,9 +158,11 @@ class Login extends Component {
         const fs = RNFetchBlob.fs;
 
         try {
-            const seedStore = await new SeedStore.keychain(global.passwordHash);
+            const passwordHash = await hash(this.state.password);
+            const seedStore = await new SeedStore.keychain(passwordHash);
 
             const seeds = await seedStore.getSeeds();
+
             const seedsAsTrits = Object.values(isNull(seeds) ? [] : seeds);
             const seedsAsChars = map(seedsAsTrits, tritsToChars);
 
