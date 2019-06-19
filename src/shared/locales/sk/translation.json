@@ -495,8 +495,8 @@
         "tools": "Nástroje"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
+        "automaticNodeManagement": "Automatická správa nodu",
+        "addCustomNodes": "Pridať vlastný node",
         "autoNodeList": "Use remote node list",
         "nodeAutoswitching": "Primary node autoswitching",
         "primaryNode": "Primary node",
