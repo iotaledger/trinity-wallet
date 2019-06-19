@@ -170,8 +170,8 @@
         "missingPermissionExplanation": "L'accès au système de fichiers est nécessaire afin de réaliser cette action.",
         "swipeToConfirm": "Balayer pour confirmer",
         "expert": "Expert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodes": "Trop peu de noeuds synchronisés",
+        "notEnoughSyncedNodesExplanation": "Un quorum n'a pas pu être atteint. Désactivez quorum ou réessayez."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -504,7 +504,7 @@
         "quorumSize": "Taille du Quorum",
         "noCustomNodes": "Aucun serveur personnalisé",
         "mustAddCustomNodes": "Vous devez ajouter au moins un serveur personnalisé avant de désactiver la liste des serveurs distants.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesTitle": "Pas assez de nœuds",
         "nodeEnoughNodesExplanation": "Il n'y a pas assez de serveurs pour activer le mécanisme de quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Ajoutez plus de serveurs personnalisés ou activez la liste des serveurs distants.",
         "nodeSettingsUpdatedTitle": "Paramètres de serveur mis à jour",
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Erreur lors de la récupération des données de mise à jour",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Impossible de récupérer la mise à jour. Merci de vérifier votre connexion internet et essayer à nouveau.",
         "noUpdatesAvailable": "Aucune mise à jour disponible",
         "noUpdatesAvailableExplanation": "Vous avez la dernière version de Trinity !",
         "newVersionAvailable": "Une nouvelle version est disponible",
