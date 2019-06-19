@@ -155,7 +155,7 @@
         "tryingAgainWithLocalPoW": "Réessayez en choisissant la preuve de travail locale.",
         "tryingAgainWithDifferentNode": "Réessayez avec un autre noeud.",
         "errorFetchingAccountInformation": "Erreur durant la récupération des informations de votre compte.",
-        "errorSyncingAddresses": "Une erreur a été rencontrée pendant la synchronisation des informations de vos adresses. Essayer de nouveau avec un autre serveur.",
+        "errorSyncingAddresses": "Une erreur a été rencontrée pendant la synchronisation des informations de vos adresses. Essayer de nouveau avec un autre noeud.",
         "errorAccessingKeychain": "Erreur de Porte-clés",
         "errorAccessingKeychainExplanation": "Impossible d'accéder au porte-clés nécessaire au stockage sécurisé.",
         "mainWallet": "COMPTE PRINCIPAL",
