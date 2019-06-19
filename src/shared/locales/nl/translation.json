@@ -495,18 +495,18 @@
         "tools": "Hulpmiddelen"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
+        "automaticNodeManagement": "Automatische node beheer",
         "addCustomNodes": "Aangepaste nodes toevoegen",
         "autoNodeList": "Gebruik externe node lijst",
-        "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
+        "nodeAutoswitching": "Primaire node autoswitch",
+        "primaryNode": "Primaire node",
         "enableQuorum": "Quorum inschakelen",
         "quorumSize": "Quorum grootte",
         "noCustomNodes": "Geen aangepaste nodes",
         "mustAddCustomNodes": "U moet ten minste één aangepast node toevoegen voordat u de externe node lijst uitschakelt.",
         "nodeEnoughNodesTitle": "Niet genoeg nodes",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "nodeEnoughNodesExplanation": "Er zijn niet genoeg nodes om quorum in te schakelen.",
+        "nodeEnoughNodesExplanationCustomNodes": "Voeg meer aangepaste nodes toe of schakel de externe node lijst in.",
         "nodeSettingsUpdatedTitle": "Node instellingen bijgewerkt",
         "nodeSettingsUpdatedExplanation": "U heeft uw node instellingen met succes bijgewerkt."
     },
@@ -519,10 +519,10 @@
         "nodeFieldEmpty": "Tekst veld is leeg",
         "nodeFieldEmptyExplanation": "Voer a.u.b. een aangepaste node in.",
         "invalidURL": "Voer een geldige URL in.",
-        "addAuthKey": "Add auth key",
+        "addAuthKey": "Voeg autorisatie sleutel toe",
         "username": "Gebruikersnaam",
         "couldNotRemove": "Aangepaste node kon niet worden verwijderd",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "Er moeten genoeg nodes zijn voor quorum. Verminder de quorum grootte of schakel de remote node lijst in."
     },
     "addNewAccount": {
         "useExistingSeed": "Bestaande seed gebruiken",
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Fout bij het ophalen van de update data",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Update kon niet worden opgehaald. Controleer uw internetverbinding en probeer het opnieuw.",
         "noUpdatesAvailable": "Geen updates beschikbaar",
         "noUpdatesAvailableExplanation": "Je hebt de nieuwste versie van Trinity!",
         "newVersionAvailable": "Nieuwe versie beschikbaar",
@@ -826,8 +826,8 @@
         "notReady": "Indien je een Ledger apparaat wil gebruiken dien je deze nu aan te sluiten en te ontgrendelen",
         "indexInUse": "Index is al in gebruik voor account {{account}}",
         "indexInUseExplanation": "Uw gekozen index is al in gebruik op een van uw accounts. Kies een ander index nummer.",
-        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
-        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "createNewLedgerAccountInfo": "Zorg ervoor dat u uw index nummer ergens opschrijft en onthoudt.",
+        "restoreLedgerAccountInfo": "Voer uw opgeslagen index nummer in om uw account te herstellen.",
         "createNewLedgerAccount": "Maak een nieuw Ledger account aan",
         "restoreLedgerAccount": "Herstel een bestaand Ledger account",
         "accountIndex": "Account index",
@@ -835,7 +835,7 @@
         "actionCancelled": "Ledger apparaat toegang geannuleerd",
         "actionCancelledExplanation": "Kan de actie niet uitvoeren zonder toegang tot het Ledger apparaat.",
         "chooseAccountIndex": "Kies uw Ledger account index",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
+        "accountIndexExplanation": "Uw Ledger kan verschillende seeds opslaan. Elke seed wordt geïndentificeerd door een uniek index nummer.",
         "accountPageExplanation": "Sommige wallets van een derde partij vereisen pagina's.",
         "connectionError": "Kan geen verbinding maken met Ledger",
         "connectionErrorExplanation": "Controleer of uw Ledger is verbonden en ontgrendeld.",
@@ -857,11 +857,11 @@
         "checkAddressExplanation": "Controleer of het adres overeenkomt met het adres dat wordt weergegeven op uw Ledger apparaat.",
         "applicationNotInitialised": "Waarschuwing niet bevestigd",
         "applicationNotInitialisedExplanation": "Heropen de IOTA app op uw Ledger apparaat, accepteer de informatieve waarschuwing en probeer het opnieuw.",
-        "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "checkLedger": "Controleer uw Ledger apparaat",
+        "acceptWarningExplanation": "Als er een informatieve waarschuwing is op uw Ledger apparaat, moet u door scrollen en het accepteren door op beide knoppen te drukken.",
         "udevError": "Kan niet communiceren met Ledger apparaat",
         "udevErrorExplanation": "Trinity kon niet communiceren met uw Ledger-apparaat. Bezoek de onderstaande URL om dit probleem op te lossen.",
-        "writtenDownInfoTitle": "Remember your index number",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "writtenDownInfoTitle": "Onthoud uw index nummer",
+        "writtenDownInfoExplanation": "Je hebt je index nummer nodig om je account in de toekomst te herstellen. Als je je index nummer verliest, verlies je IOTA. Onthoudt dit goed."
     }
 }
