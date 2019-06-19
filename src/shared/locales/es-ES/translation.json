@@ -330,7 +330,7 @@
         "letsWriteDownYourSeed": "Vamos a anotar su semilla",
         "youCanHighlightCharacters": "Puede resaltar 9 caracteres a la vez",
         "printBlankWallet": "Imprima una cartera en blanco",
-        "whatIsAChecksum": "Que es un checksum?",
+        "whatIsAChecksum": "¿Que es un checksum?",
         "everySeedHasAChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres.",
         "iHavesavedMySeed": "He guardado mi semilla",
         "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
