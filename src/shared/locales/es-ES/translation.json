@@ -276,10 +276,10 @@
         "generateSuccess": "Semilla generada exitosamente",
         "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio.",
         "individualLetterCount": "Presiona <1><0>{{count}}</0></1> letras más para aleatorizar.",
-        "individualLetterCount_plural": "Oprima <1><0>{{count}}</0></1> letras más para aleatorizar.",
+        "individualLetterCount_plural": "Presiona <1><0>{{count}}</0></1> letras más para aleatorizar.",
         "randomiseCharsToContinue": "Aleatorizar <1>{{count}}</1> más para continuar.",
         "randomiseCharsToContinue_plural": "Aleatorizar <1>{{count}}</1> carácteres más para continuar.",
-        "whatIsASeed": "Que es una semilla?"
+        "whatIsASeed": "¿Que es una semilla?"
     },
     "onboardingComplete": {
         "allDone": "¡Todo terminado!",
@@ -330,7 +330,7 @@
         "letsWriteDownYourSeed": "Vamos a anotar su semilla",
         "youCanHighlightCharacters": "Puede resaltar 9 caracteres a la vez",
         "printBlankWallet": "Imprima una cartera en blanco",
-        "whatIsAChecksum": "Que es un checksum?",
+        "whatIsAChecksum": "¿Que es un checksum?",
         "everySeedHasAChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres.",
         "iHavesavedMySeed": "He guardado mi semilla",
         "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
