@@ -501,7 +501,7 @@
         "nodeAutoswitching": "主节点自动切换",
         "primaryNode": "主节点",
         "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
+        "quorumSize": "参与协同的节点个数",
         "noCustomNodes": "没有自定义节点",
         "mustAddCustomNodes": "您必须添加至少一个自定义节点，然后才可以关闭远程节点列表功能。",
         "nodeEnoughNodesTitle": "没有足够的节点",
