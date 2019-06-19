@@ -795,7 +795,7 @@
     "notifications": {
         "notifications": "Уведомления",
         "notificationExplanation": "Показывать системные уведомления о новых транзакциях.",
-        "typeConfirmations": "Notify me about confirmations",
+        "typeConfirmations": "Уведомить меня о подтверждениях",
         "typeMessages": "Notify me about zero value transactions",
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "Receiving {{value}} to {{account}}",
@@ -822,7 +822,7 @@
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
+        "ready": "Устройство Ledger подключено и готово",
         "notReady": "Если вы хотите использовать устройство Ledger, подключите и разблокируйте его сейчас",
         "indexInUse": "Index already in use for account {{account}}",
         "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
