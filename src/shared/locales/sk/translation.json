@@ -144,8 +144,8 @@
         "isYourBalanceCorrect": "Je váš zostatok správny?",
         "ifYourBalanceIsNotCorrect": "Pokiaľ váš zostatok nie je správny, je pravdepodobné, že používate Seed z doby pred Snapshotom.",
         "headToAdvancedSettingsForTransition": "Choďte do Pokročilých nastavení a urobte Aktualizáciu údajov po Snapshote.",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
+        "headToAccountTools": "Prejdite na Nástroje účtu a vykonajte Aktualizáciu údajov po Snapshote.",
+        "openAccountTools": "Otvorte Nástroje účtu",
         "usingTrinityWalletWithKeePass": "Použitie Trinity peňaženky s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Počas odosielania Vašej transakcie sa vyskytla chyba siete.",
         "broadcastError": "Nepodarilo sa odoslať transakciu",
@@ -170,7 +170,7 @@
         "missingPermissionExplanation": "K potvrdeniu tejto funkcie potrebujete prístup k súborovému systému.",
         "swipeToConfirm": "Posunutím potvrďte",
         "expert": "Expert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodes": "Synchronizuje sa príliš málo nodov",
         "notEnoughSyncedNodesExplanation": "Nebolo možné dosiahnuť kvórum. Vypnite kvórum alebo skúste znova."
     },
     "addAdditionalSeed": {
@@ -497,7 +497,7 @@
     "nodeSettings": {
         "automaticNodeManagement": "Automatická správa nodu",
         "addCustomNodes": "Pridať vlastný node",
-        "autoNodeList": "Use remote node list",
+        "autoNodeList": "Použite zoznam vzdialených nodov",
         "nodeAutoswitching": "Primary node autoswitching",
         "primaryNode": "Primary node",
         "enableQuorum": "Enable quorum",
