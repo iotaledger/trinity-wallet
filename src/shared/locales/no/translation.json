@@ -171,7 +171,7 @@
         "swipeToConfirm": "Dra for å bekrefte",
         "expert": "Ekspert",
         "notEnoughSyncedNodes": "Ikke nok synkroniserte noder",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodesExplanation": "Et quorum kunne ikke oppnås. Slå av quorum eller prøv på nytt."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
