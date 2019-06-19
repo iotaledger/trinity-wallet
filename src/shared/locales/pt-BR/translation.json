@@ -144,8 +144,8 @@
         "isYourBalanceCorrect": "Seu saldo está correto?",
         "ifYourBalanceIsNotCorrect": "Se seu saldo estiver incorreto, é provável que você esteja usando uma seed criada antes do último snapshot.",
         "headToAdvancedSettingsForTransition": "Vá até as Opções Avançadas e realize uma Transição de Snapshot.",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
+        "headToAccountTools": "Vá até as Ferramentas de Conta e faça uma transição de Snapshot.",
+        "openAccountTools": "Abra as Ferramentas de Conta",
         "usingTrinityWalletWithKeePass": "Usando a carteira Trinity com Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Houve um erro ao processar sua transação.",
         "broadcastError": "Não foi possível enviar transação",
@@ -165,13 +165,13 @@
         "shouldUpdateExplanation": "Uma nova atualização foi lançada. É recomendável você atualizar para a versão mais recente.",
         "forceUpdate": "Atualize o aplicativo para continuar",
         "forceUpdateExplanation": "Foi lançada uma atualização importante. Por favor, atualize o aplicativo agora.",
-        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
+        "testVersionWarning": "Esta versão deve ser usada apenas para fins de teste, com pequenas quantidades de tokens.",
         "missingPermission": "Permissões do sistema de arquivo necessárias",
         "missingPermissionExplanation": "O acesso ao sistema de arquivos é necessário para executar esta função.",
         "swipeToConfirm": "Deslize para confirmar",
-        "expert": "Expert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "expert": "Avançado",
+        "notEnoughSyncedNodes": "Poucos servidores em sincronia",
+        "notEnoughSyncedNodesExplanation": "Um quórum não pôde ser alcançado. Desligue o quórum ou tente novamente."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -495,7 +495,7 @@
         "tools": "Ferramentas"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
+        "automaticNodeManagement": "Gerenciamento automático de servidores",
         "addCustomNodes": "Add custom nodes",
         "autoNodeList": "Use remote node list",
         "nodeAutoswitching": "Primary node autoswitching",
