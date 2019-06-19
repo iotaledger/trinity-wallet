@@ -580,7 +580,7 @@
         "unitInfoExplanation": "Los IOTAs son típicamente adquiridos en múltiplos de un millon, pero pueden ser transferidos en una unidad."
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Porque no puedo gastar todos mis fondos?",
+        "cantSpendFullBalanceQuestion": "¿Por qué no puedo gastar mi saldo completo?",
         "spentAddressExplanation": "Tiene fondos en al menos una dirección usada. Reutilizar direcciones es muy peligroso en IOTA, por eso esta billetera no esta habilitada para enviar desde la misma dirección más de una vez.",
         "discordInformation": "Por favor diríjase al canal #help en Discord para averiguar qué puede hacer."
     },
@@ -591,7 +591,7 @@
         "enterPassword": "Escriba su contraseña para eliminar la cuenta."
     },
     "manualSync": {
-        "outOfSync": "El historial de transacciones parece estar desincronizado?",
+        "outOfSync": "¿Su historial de transacciones parece que puede estar fuera de sincronización?",
         "pressToSync": "Presione el botón debajo para sincronizar su cuenta.",
         "thisMayTake": "Esto puede tomar un rato. Es probable que su dispositivo se ralentice.",
         "doNotClose": "Atención! minimizar la aplicación cancelara la sincronización.",
