@@ -169,8 +169,8 @@
         "missingPermission": "Требуется доступ к файловой системе",
         "missingPermissionExplanation": "Для выполнения этой функции необходим доступ к файловой системе.",
         "swipeToConfirm": "Проведите, чтобы подтвердить",
-        "expert": "Expert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "expert": "Эксперт",
+        "notEnoughSyncedNodes": "Слишком мало нод в синхронизации",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
@@ -236,7 +236,7 @@
         "invalidCharacters": "Ключ содержит недопустимые символы",
         "invalidCharactersExplanation": "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте еще раз.",
         "seedTooShort": "Ключ слишком короткий",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "Слишком длинный Seed",
         "seedTooShortExplanation": "Ключ должен быть длиной в {{maxLength}} символ. Ваш текущий ключ имеет длину в {{currentLength}} символов. Пожалуйста, повторите попытку.",
         "seedExplanation": "Ключ должен быть длиной в {{maxLength}} символ и содержать только заглавные буквы A-Z и цифру 9. Ключи длиной более чем {{maxLength}} символ не допускаются.",
         "neverShare": "НИКОГДА НИКОМУ НЕ СООБЩАЙТЕ ВАШ КЛЮЧ"
@@ -258,7 +258,7 @@
         "enterPassword": "Пожалуйста, введите пароль.",
         "login": "Войти",
         "setNode": "Выбрать узел",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabled": "Почему биометрическая аутентификация отключена?",
         "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
@@ -322,7 +322,7 @@
         "saveYourSeed": "Создать резервную копию Вашего ключа",
         "seedCleared": "Ключ удален из буфера обмена",
         "mostSecure": "Наиболее безопасно",
-        "recommended": "Recommended",
+        "recommended": "Рекомендовано",
         "leastSecure": "Наименее безопасно",
         "paperWallet": "Бумажный кошелек",
         "writeYourSeedDown": "Запишите Ваш ключ",
@@ -373,8 +373,8 @@
         "totalTime": "Общее время",
         "addressPasteDetected": "Обнаружена вставка адреса",
         "addressPasteExplanation": "Похоже, что Вы вставили адрес. Убедитесь, что этот адрес соответствует тому, на который Вы хотите отправить.",
-        "invalid": "INVALID",
-        "swipeToSend": "Swipe to send"
+        "invalid": "НЕКОРРЕКТНО",
+        "swipeToSend": "Свайп для того чтобы отправить"
     },
     "setSeedName": {
         "letsAddName": "Пожалуйста, добавьте название",
@@ -382,9 +382,9 @@
         "youCanAdd": "Вы можете добавить больше ключей в меню настроек."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Дополнительные параметры",
         "standard": "Стандартный",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "advancedModeExplanation": "Расширенный режим будет отображать более подробную техническую информацию.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
         "modeUpdated": "Mode updated",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
@@ -550,21 +550,21 @@
     "themes": {
         "classic": "Classic",
         "contemporary": "Contemporary",
-        "dark": "Dark",
+        "dark": "Тёмная",
         "default": "Default",
         "electric": "Electric",
         "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
+        "light": "Светлая",
+        "lucky": "Случайный выбор",
         "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "steelblue": "Темно-Голубой"
     },
     "currencySelection": {
         "currency": "Валюта"
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Вы уверены, что хотите выйти?",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "Вы собираетесь выйти",
         "areYouSure": "Вы уверены?"
     },
     "qrScanner": {
@@ -692,7 +692,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Изменения (24ч)",
         "volume": "Объем (24ч)",
         "error": "Ошибка при загрузке данных графика"
     },
@@ -724,9 +724,9 @@
         "gettingTransactionsToApprove": "Подтверждение транзакции",
         "proofOfWork": "Завершение доказательства работы",
         "broadcasting": "Трансляция",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
+        "preparingData": "Подготовка данных",
+        "migratingSettings": "Перенос настроек",
+        "migratingAccounts": "Перенос учетных записей",
         "cleaningUpOldData": "Cleaning up old data",
         "migrationComplete": "Migration complete",
         "transferComplete": "Transfer complete"
@@ -761,40 +761,40 @@
         "errorRetrievingUpdateData": "Ошибка при получении данных обновления",
         "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Нет доступных обновлений",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "Установлена последняя версия Trinity!",
         "newVersionAvailable": "Доступна новая версия",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "newVersionAvailableExplanation": "Доступна новая версия Trinity. Хотите обновить сейчас?",
+        "installUpdate": "Установить обновление и перезапустить",
+        "installUpdateExplanation": "Загрузка завершена, Trinity перезапустится для установки обновления.",
+        "downloadingUpdate": "Загрузка обновлений",
+        "downloadProgress": "{{transferred}} из {{total}} загружено"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Журнал ошибок"
     },
     "terms": {
         "termsAndConditions": "Условия использования",
         "accept": "Я принимаю",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Пожалуйста, прочитайте полный текст"
     },
     "privacyPolicy": {
         "privacyPolicy": "Политика конфиденциальности",
         "agree": "Я согласен"
     },
     "tray": {
-        "trayApplication": "Tray application",
+        "trayApplication": "Приложение в области уведомлений",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "notLoggedIn": "Вы не авторизованы",
+        "setupIncomplete": "Настройка кошелька не завершена",
+        "completeSetup": "Завершить установку"
     },
     "proxy": {
-        "proxy": "Use system proxy",
+        "proxy": "Использовать системный прокси",
         "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "notifications": "Уведомления",
+        "notificationExplanation": "Показывать системные уведомления о новых транзакциях.",
         "typeConfirmations": "Notify me about confirmations",
         "typeMessages": "Notify me about zero value transactions",
         "multipleTx": "Receiving multiple transactions to {{account}}",
@@ -809,21 +809,21 @@
         "sweepError": "Error unlocking funds",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
         "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanation": "Trinity Desktop версии 0.3.4 содержало ошибку, которая может временно блокировать средства. Это влияет на небольшое количество пользователей, которые выполняли транзакции с версией 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
         "proceed": "Proceed to Recovery",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     },
     "migration": {
-        "dataMigration": "Data migration",
+        "dataMigration": "Перенос данных",
         "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
         "problemMigratingYourData": "There was a problem migrating your data. Please try again",
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
         "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "notReady": "Если вы хотите использовать устройство Ledger, подключите и разблокируйте его сейчас",
         "indexInUse": "Index already in use for account {{account}}",
         "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
         "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
