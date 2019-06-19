@@ -861,7 +861,7 @@
         "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Falha ao comunicar com o dispositivo Ledger",
         "udevErrorExplanation": "A Trinity não pôde se comunicar com o seu dispositivo Ledger. Por favor, visite o link abaixo para resolver este problema.",
-        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoTitle": "Lembrar seu número de índice",
         "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }
