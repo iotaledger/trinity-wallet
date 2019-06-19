@@ -147,7 +147,7 @@
         "headToAccountTools": "Dirígete a Configuración Avanzada y realiza una transición de Snapshot.",
         "openAccountTools": "Ingresa a Configuración Avanzada",
         "usingTrinityWalletWithKeePass": "Usando cartera Trinity con Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "Hubo un error mientras se estaba transmitiendo su transacción.",
+        "signedTrytesBroadcastErrorExplanation": "Hubo un error de red al emitir su transacción.",
         "broadcastError": "No se pudo transmitir la transacción",
         "addressesAlreadySpentFrom": "Una o más direcciones ya han sido utilizadas.",
         "problemSendingYourTransaction": "Ocurrio un problema en el envío de su transacción.",
