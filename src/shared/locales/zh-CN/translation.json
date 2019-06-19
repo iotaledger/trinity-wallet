@@ -858,10 +858,10 @@
         "applicationNotInitialised": "未经确认的警告",
         "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。",
         "checkLedger": "检查您的 Ledger设备",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "acceptWarningExplanation": "如果您的 Ledger设备显示了警告信息，请您持续翻页并在最后同时按下两个按钮以接受。",
         "udevError": "无法与Ledger 设备进行通信",
         "udevErrorExplanation": "Trinity 无法与您的Ledger 设备通信。请访问以下网址来解决这个问题。",
-        "writtenDownInfoTitle": "Remember your index number",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "writtenDownInfoTitle": "请记住您的索引号码",
+        "writtenDownInfoExplanation": "当需要恢复您的账户时，需要您提供所对应的索引号码。如果您丢失索引号码，您将丢失您的 IOTA。请记住它。"
     }
 }
