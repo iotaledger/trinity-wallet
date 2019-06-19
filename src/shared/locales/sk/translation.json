@@ -121,8 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Povolené sú iba vlastné Nody s protokolom HTTPS.",
         "nodeDuplicated": "Duplicitný Node",
         "nodeDuplicatedExplanation": "Tento vlastný Node je už v zozname.",
-        "customNodeAdded": "Custom node added",
-        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
+        "customNodeAdded": "Vlastný node bol pridaný",
+        "customNodeAddedExplanation": "Úspešne ste pridali {{nodeAddress}} ako vlastný node.",
         "nodeAutoChanged": "Automatické prepnutie Nodu",
         "nodeAutoChangedExplanation": "Prepnuté na nový Node {{- nodeAddress}} keďže predtým vybraný je offline.",
         "touchSensor": "Dotknite sa snímača otisku prstov",
@@ -171,7 +171,7 @@
         "swipeToConfirm": "Posunutím potvrďte",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodesExplanation": "Nebolo možné dosiahnuť kvórum. Vypnite kvórum alebo skúste znova."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
