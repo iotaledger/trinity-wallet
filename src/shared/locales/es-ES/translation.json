@@ -258,7 +258,7 @@
         "enterPassword": "Por favor introduzca su contraseña.",
         "login": "Iniciar Sesión",
         "setNode": "Seleccionar nodo",
-        "whyBiometricDisabled": "Por que la autentificación biométrica está deshabilitada?",
+        "whyBiometricDisabled": "¿Por qué está deshabilitada la autenticación biométrica?",
         "whyBiometricDisabledExplanationPart1": "La autenticación biométrica está desactivada en la primera carga de la aplicación por seguridad.",
         "whyBiometricDisabledExplanationPart2": "Cuando uses Trinity serás deslogueado por inactividad. Puedes entrar nuevamente con la autenticación biométrica."
     },
