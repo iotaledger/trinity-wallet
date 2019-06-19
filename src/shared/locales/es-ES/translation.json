@@ -110,7 +110,7 @@
         "pleaseWaitEllipses": "Por favor espere...",
         "pleaseWaitExplanation": "Trinity está ejecutando otra función. Por favor espere un poco e inténtelo de nuevo.",
         "pleaseWaitTransferExplanation": "Su balance disponible está siendo usado en otra transferencia. Por favor espere a que dicha transferencia se confirme e intente devuelta.",
-        "pleaseWaitIncomingTransferExplanation": "Tiene transacciones pendientes. Por favor espere que se confirmen antes de intentar devuelta.",
+        "pleaseWaitIncomingTransferExplanation": "Tiene transacciones pendientes. Por favor espere a que se confirmen antes de intentarlo de nuevo.",
         "snapshotTransitionInProgress": "Transición de snapshot en progreso",
         "snapshotTransitionInProgressExplanation": "Por favor espere hasta que la transición se complete.",
         "checkForUpdates": "Comprobar Actualizaciones",
