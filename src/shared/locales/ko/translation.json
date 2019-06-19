@@ -30,7 +30,7 @@
         "checksum": "체크섬",
         "back": "뒤로가기",
         "goBack": "뒤로가기",
-        "goBackStep": "뒤로가기",
+        "goBackStep": "한 단계 뒤로가기",
         "done": "완료",
         "prev": "이전",
         "next": "다음",
@@ -496,7 +496,7 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
+        "addCustomNodes": "커스텀 노드 추가",
         "autoNodeList": "Use remote node list",
         "nodeAutoswitching": "Primary node autoswitching",
         "primaryNode": "Primary node",
@@ -519,8 +519,8 @@
         "nodeFieldEmpty": "입력한 텍스트가 없습니다.",
         "nodeFieldEmptyExplanation": "커스텀 노드를 입력해 주세요.",
         "invalidURL": "유효한 URL을 입력하십시오.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
+        "addAuthKey": "인증 키 추가",
+        "username": "사용자 이름",
         "couldNotRemove": "Could not remove custom node",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "업데이트를 받아오는 중 오류 발생",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "업데이트를 확인할 수 없었습니다. 인터넷 연결을 확인하고 다시 시도해주세요.",
         "noUpdatesAvailable": "사용 가능한 업데이트 없음",
         "noUpdatesAvailableExplanation": "최신 버전의 트리니티를 사용하고 계시네요!",
         "newVersionAvailable": "새 버전 이용 가능",
