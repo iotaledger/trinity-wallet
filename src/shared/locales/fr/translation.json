@@ -294,7 +294,7 @@
         "publicInsecure": "Mais l’impression avec un wifi public ou une imprimante publique n’est pas sécurisée.",
         "pleaseCheck": "Veuillez vérifier et confirmer avant d’imprimer",
         "wifiConfirmation": "Je ne suis pas sur un wifi public",
-        "printerConfirmation": "Je n'imprimerai pas sur une imprimante publique"
+        "printerConfirmation": "Je ne suis pas en train d'imprimer sur une imprimante publique"
     },
     "printBlankTemplate": {
         "printTemplateQuestion": "Voulez-vous imprimer un modèle vide ?",
