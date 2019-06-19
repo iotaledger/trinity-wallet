@@ -520,7 +520,7 @@
         "nodeFieldEmptyExplanation": "Por favor, insira um servidor personalizado.",
         "invalidURL": "Por favor, insira uma URL válida.",
         "addAuthKey": "Add auth key",
-        "username": "Username",
+        "username": "Usuário",
         "couldNotRemove": "Could not remove custom node",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
@@ -761,7 +761,7 @@
         "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",
         "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Nenhuma atualização disponível",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "Você tem a versão mais recente da Trinity!",
         "newVersionAvailable": "Nova versão disponível",
         "newVersionAvailableExplanation": "Uma nova versão da Trinity está disponível. Deseja atualizar agora?",
         "installUpdate": "Instale a atualização e reinicie",
