@@ -126,7 +126,7 @@
         "nodeAutoChanged": "Auto-cambiar nodo",
         "nodeAutoChangedExplanation": "Cambio a un nuevo nodo {{- nodeAddress}} el nodo seleccionado está desconectado.",
         "touchSensor": "Toca el lector de huellas",
-        "fingerprintOnSend": "Toque el lector de huellas para autorizar la transaferencia",
+        "fingerprintOnSend": "Toque el lector de huellas para autorizar la transferencia",
         "masterKey": "Su semilla de IOTA es la llave maestra a sus fondos.",
         "seedThief": "Si alguien posee su semilla puede robar sus IOTA.",
         "googlePlayServicesNotAvailable": "Servicio de Google Play no disponible",
