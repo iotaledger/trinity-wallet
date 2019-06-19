@@ -171,7 +171,7 @@
         "swipeToConfirm": "滑动以确认",
         "expert": "专家",
         "notEnoughSyncedNodes": "同步的节点过少",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodesExplanation": "节点无法达到协同。 请关闭节点协同功能或重试。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -500,12 +500,12 @@
         "autoNodeList": "使用远程节点列表",
         "nodeAutoswitching": "主节点自动切换",
         "primaryNode": "主节点",
-        "enableQuorum": "Enable quorum",
+        "enableQuorum": "启用节点协同功能",
         "quorumSize": "参与协同的节点个数",
         "noCustomNodes": "没有自定义节点",
         "mustAddCustomNodes": "您必须添加至少一个自定义节点，然后才可以关闭远程节点列表功能。",
         "nodeEnoughNodesTitle": "没有足够的节点",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanation": "没有足够的节点来启用节点协同功能。",
         "nodeEnoughNodesExplanationCustomNodes": "添加更多自定义节点或启用远程节点列表。",
         "nodeSettingsUpdatedTitle": "节点设置已更新",
         "nodeSettingsUpdatedExplanation": "您已成功更新了您的节点设置。"
@@ -522,7 +522,7 @@
         "addAuthKey": "添加认证密钥",
         "username": "用户名",
         "couldNotRemove": "无法删除自定义节点",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "节点不足以达到协同。请减少设置中参与节点协同的节点个数，或者启用远程节点列表。"
     },
     "addNewAccount": {
         "useExistingSeed": "使用现有种子",
