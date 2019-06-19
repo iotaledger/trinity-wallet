@@ -14,6 +14,7 @@ import {
     isSettingUpNewAccount,
     getPromotableBundlesFromState,
     getSelectedAccountName,
+    getSelectedAccountType,
     getFailedBundleHashes,
 } from 'selectors/accounts';
 import {
@@ -36,6 +37,8 @@ class Polling extends React.PureComponent {
         accountNames: PropTypes.array.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string,
+        /** Type for selected account */
+        selectedAccountType: PropTypes.string.isRequired,
         /** @ignore */
         pollFor: PropTypes.string.isRequired,
         /** @ignore */
@@ -183,8 +186,8 @@ class Polling extends React.PureComponent {
         }
     };
 
-    promote = () => {
-        const { unconfirmedBundleTails, autoPromotion } = this.props;
+    promote = async () => {
+        const { unconfirmedBundleTails, autoPromotion, selectedAccountType, password } = this.props;
 
         const { autoPromoteSkips } = this.state;
 
@@ -199,7 +202,9 @@ class Polling extends React.PureComponent {
 
                 const { accountName } = unconfirmedBundleTails[bundleHashToPromote];
 
-                return this.props.promoteTransfer(bundleHashToPromote, accountName);
+                const seedStore = await new SeedStore[selectedAccountType](password, name);
+
+                return this.props.promoteTransfer(bundleHashToPromote, accountName, seedStore);
             }
         }
 
@@ -228,6 +233,7 @@ const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
     unconfirmedBundleTails: getPromotableBundlesFromState(state),
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountType: getSelectedAccountType(state),
     isTransitioning: state.ui.isTransitioning,
     isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
     failedBundleHashes: getFailedBundleHashes(state),

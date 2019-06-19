@@ -1,4 +1,5 @@
 import each from 'lodash/each';
+import extend from 'lodash/extend';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
@@ -457,11 +458,12 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn, quoru
  *
  * @param {string} bundleHash
  * @param {string} accountName
+ * @param {object} seedStore
  * @param {boolean} [withQuorum]
  *
  * @returns {function} - dispatch
  **/
-export const promoteTransfer = (bundleHash, accountName, quorum = true) => (dispatch, getState) => {
+export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = true) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
     let accountState = selectedAccountStateFactory(accountName)(getState());
@@ -520,9 +522,14 @@ export const promoteTransfer = (bundleHash, accountName, quorum = true) => (disp
                     result,
                     getTailTransactionsForThisBundleHash(accountState.transactions),
                     false,
-                    // Auto promote does not support local proof of work
-                    // Pass in null in replacement of seedStore object
-                    null,
+                    // Make sure proof-of-work is offloaded when it comes to auto promotion
+                    extend(
+                        {
+                            __proto__: seedStore.__proto__,
+                        },
+                        seedStore,
+                        { offloadPow: true },
+                    ),
                 ),
             );
         })

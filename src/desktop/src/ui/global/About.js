@@ -59,11 +59,16 @@ export class AboutComponent extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.6.1</h5>
+                            <ul>
+                                <li>Fix: Autopromotion not working as intended</li>
+                                <li>Fix: Improve reliability of reattachment and promotion</li>
+                                <li>Fix: Temporarily disable hardened runtime - fix Mac Ledger issues</li>
+                                <li>Fix: Mac tray app not rendering</li>
+                            </ul>
                             <h5>0.6.0</h5>
                             <ul>
-                                <li>
-                                    New: Automatic node management, with lots of configurability for advanced users
-                                </li>
+                                <li>New: Automatic node management, with lots of configurability for advanced users</li>
                                 <li>Fix: Wallet not working on Windows when username has special characters</li>
                                 <li>Update: Auto update functionality improvements</li>
                                 <li>Update: Add various wallet initialisation error explanations</li>
