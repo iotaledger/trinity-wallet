@@ -63,6 +63,9 @@
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <note>Privacy - Camera Usage Description</note>
         <target state="translated">Тринити нужен доступ к камере, чтобы включить сканер QR-кодов.</target>
+        <alt-trans>
+          <target>Чтобы выполнить сканирование QR-кода, Тринити нужно разрешить доступ к камере.</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
