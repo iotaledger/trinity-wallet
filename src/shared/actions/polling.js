@@ -544,7 +544,7 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
         })
         .then(() => dispatch(promoteTransactionSuccess()))
         .catch((err) => {
-            if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+            if (typeof err.message === 'string' && err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
                 // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion
                 dispatch(
                     generateAlert(
