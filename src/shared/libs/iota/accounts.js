@@ -210,7 +210,9 @@ export const syncAccountAfterSpending = (settings, withQuorum) => (seedStore, ne
     return (
         syncAddresses(settings, withQuorum)(seedStore, updatedAddressData, updatedTransactions)
             // Map latest address data (spend statuses & balances) to addresses
-            .then((latestAddressData) => mapLatestAddressData(settings)(latestAddressData, updatedTransactions))
+            .then((latestAddressData) =>
+                mapLatestAddressData(settings, withQuorum)(latestAddressData, updatedTransactions),
+            )
             .then((latestAddressData) => ({ addressData: latestAddressData, transactions: updatedTransactions }))
     );
 };
@@ -242,19 +244,20 @@ export const syncAccountAfterReattachment = (reattachment, accountState) => ({
 });
 
 /**
- *  Sync local account in case signed inputs were exposed to the network (and the network call failed)
+ *  Sync local account in case signed inputs were exposed to the network (and a network call failed)
  *
- *   @method syncAccountOnValueTransactionFailure
+ *   @method syncAccountOnErrorAfterSigning
  *   @param {array} newTransactionObjects
  *   @param {object} accountState
+ *   @param {boolean} hasBroadcast
  *
  *   @returns {object}
  **/
-export const syncAccountOnValueTransactionFailure = (newTransactionObjects, accountState) => {
+export const syncAccountOnErrorAfterSigning = (newTransactionObjects, accountState, hasBroadcast = false) => {
     const failedTransactions = map(newTransactionObjects, (transaction) => ({
         ...transaction,
         persistence: false,
-        broadcasted: false,
+        broadcasted: hasBroadcast,
         fatalErrorOnRetry: false,
     }));
     const addressData = markAddressesAsSpentSync([failedTransactions], accountState.addressData);

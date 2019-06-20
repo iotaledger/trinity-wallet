@@ -41,7 +41,7 @@ import {
     syncAccountAfterReattachment,
     syncAccount,
     syncAccountAfterSpending,
-    syncAccountOnValueTransactionFailure,
+    syncAccountOnErrorAfterSigning,
     syncAccountOnSuccessfulRetryAttempt,
     syncAccountOnUnsuccessfulAutoRetryAttempt,
 } from '../libs/iota/accounts';
@@ -63,6 +63,7 @@ import {
     generateNodeOutOfSyncErrorAlert,
     generateUnsupportedNodeErrorAlert,
     generateTransactionSuccessAlert,
+    prepareLogUpdate,
 } from './alerts';
 import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
@@ -472,6 +473,9 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
     // Keep track if the inputs are signed
     let hasSignedInputs = false;
 
+    // Keep track if the bundle was successfully broadcasted
+    let hasBroadcast = false;
+
     // Keep track if the created bundle is valid after inputs are signed
     let isValidBundle = false;
 
@@ -506,7 +510,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
-                    return syncAccount(settings, quorum)(accountState, seedStore);
+                    return syncAccount(settings, withQuorum)(accountState, seedStore);
                 });
             })
             .then((newState) => {
@@ -743,13 +747,24 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                         ),
                 )(storeAndBroadcastAsync)(cached.trytes);
             })
-            .then(() =>
-                new NodesManager(
+            .then(() => {
+                hasBroadcast = true;
+                return new NodesManager(
                     nodesConfigurationFactory({
                         quorum,
                     })(getState()),
-                ).withRetries()(syncAccountAfterSpending)(seedStore, cached.transactionObjects, accountState),
-            )
+                )
+                    .withRetries()(syncAccountAfterSpending)(seedStore, cached.transactionObjects, accountState)
+                    .catch((error) => {
+                        dispatch(prepareLogUpdate(error));
+                        return syncAccountOnErrorAfterSigning(
+                            // Sort in ascending order
+                            orderBy(cached.transactionObjects, ['currentIndex']),
+                            accountState,
+                            hasBroadcast,
+                        );
+                    });
+            })
             .then((newState) => {
                 // Update account in (Realm) storage
                 Account.update(accountName, newState);
@@ -777,10 +792,11 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // Only keep the failed trytes locally if the bundle was valid
                 // In case the bundle is invalid, discard the signing as it was never broadcast
                 if (hasSignedInputs && isValidBundle) {
-                    const newState = syncAccountOnValueTransactionFailure(
+                    const newState = syncAccountOnErrorAfterSigning(
                         // Sort in ascending order
                         orderBy(cached.transactionObjects, ['currentIndex']),
                         accountState,
+                        hasBroadcast,
                     );
 
                     // Update account in (Realm) storage
