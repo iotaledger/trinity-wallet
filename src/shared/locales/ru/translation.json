@@ -464,9 +464,9 @@
     },
     "history": {
         "bundleHashCopied": "Хэш пакет скопирован",
-        "noTransactionsFound": "No transactions found",
-        "emptyHistory": "Your transaction history is empty",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "Транзакции не найдены",
+        "emptyHistory": "Нет истории транзакций",
+        "hideZeroBalance": "Скрыть нулевой баланс",
         "bundleHashCopiedExplanation": "Хэш пакет скопирован в буфер обмена.",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Адрес скопирован в буфер обмена.",
