@@ -13,7 +13,7 @@ import URL from 'url-parse';
 import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
 import { isNodeHealthy } from './extendedApi';
-import { NODELIST_ENDPOINTS, GET_NODELIST_REQUEST_TIMEOUT, MAX_REQUEST_TIMEOUT } from '../../config';
+import { NODELIST_ENDPOINTS, FETCH_REMOTE_NODES_REQUEST_TIMEOUT, MAX_REQUEST_TIMEOUT } from '../../config';
 import Errors from '../errors';
 import { roundDown } from '../utils';
 
@@ -444,7 +444,7 @@ export const fetchRemoteNodes = async () => {
             const response = await Promise.race([
                 fetch(endPoint, requestOptions),
                 new Promise((_, reject) =>
-                    setTimeout(() => reject(new Error('Fetch timeout')), GET_NODELIST_REQUEST_TIMEOUT),
+                    setTimeout(() => reject(new Error('Fetch timeout')), FETCH_REMOTE_NODES_REQUEST_TIMEOUT),
                 ),
             ]);
             const remoteList = await response.json();
