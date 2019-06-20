@@ -686,9 +686,9 @@
         "key": "کلید"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "ایجاد فایل گزارش کلی یک فایل متنی با اطلاعات اکانت شما(تراکنشها،آدرس ها)، نسخه ی کیف پول و نام فایل های ذخیره بر روی دستگاه شما ذخیره می کند.",
+        "exportSuccess": "فایل گزارش کلی ایجاد شد",
+        "exportSuccessExplanation": "فایل گزارش کلی شما با موفقیت ارسال شد."
     },
     "chart": {
         "mcap": "MCAP",
@@ -717,18 +717,18 @@
     "progressSteps": {
         "checkingNodeHealth": "بررسی سلامت Node",
         "validatingReceiveAddress": "تایید آدرس دریافتی",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "اعتبارسنجی آدرس های تراکنش",
         "syncingAccount": "همگام سازی حساب",
         "preparingInputs": "آماده سازی ورودی",
         "preparingTransfers": "آماده سازی انتقال",
         "gettingTransactionsToApprove": "گرفتن معاملات برای تایید",
         "proofOfWork": "تکمیل اثبات کار",
         "broadcasting": "در حال پخش",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
+        "preparingData": "آماده سازی داده",
+        "migratingSettings": "تنظیمات ارسال",
+        "migratingAccounts": "تنظیمات حساب ها",
+        "cleaningUpOldData": "پاک سازی داده قدیمی",
+        "migrationComplete": "ارسال کامل شد",
         "transferComplete": "انتقال کامل شد"
     },
     "snapshotTransition": {
