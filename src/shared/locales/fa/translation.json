@@ -519,9 +519,9 @@
         "nodeFieldEmpty": "فیلد متن خالی است",
         "nodeFieldEmptyExplanation": "لطفا Node سفارشی خود را وارد کنید.",
         "invalidURL": "لطفا یک URL معتبر وارد کنید.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
+        "addAuthKey": "اضافه کردن کلید auth",
+        "username": "نام کاربری",
+        "couldNotRemove": "نود سفارشی نمی توان حذف کرد",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
