@@ -441,7 +441,12 @@ export const fetchRemoteNodes = async () => {
         try {
             const endPoint = NODELIST_ENDPOINTS[index];
 
-            const response = await fetch(endPoint, requestOptions, GET_NODELIST_REQUEST_TIMEOUT);
+            const response = await Promise.race([
+                fetch(endPoint, requestOptions),
+                new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Fetch timeout')), GET_NODELIST_REQUEST_TIMEOUT),
+                ),
+            ]);
             const remoteList = await response.json();
 
             remoteNodes = remoteList.filter(
