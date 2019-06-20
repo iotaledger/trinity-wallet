@@ -171,7 +171,7 @@
         "swipeToConfirm": "برای تایید بکشید",
         "expert": "حرفه ای",
         "notEnoughSyncedNodes": "کمی از نود ها همگام شده",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodesExplanation": "سیستم قابل دستیابی نیست. سیستم را خاموش کرده یا دوباره تلاش کنید."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "سید ورودی دارای کاراکترهای نامعتبر است",
@@ -297,10 +297,10 @@
         "printerConfirmation": "من از یک چاپگر عمومی استفاده نمی‌کنم"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "تمایل دارید یک نمونه خالی را چاپ کنید?",
+        "printTemplateInfo": "شما می توانید یک نمونه خالی را برای نوشتن سید خود چاپ کنید.",
+        "printTemplateWarning": "مطمئن شوید که سید خود را در جایی امن ذخیره کردید. آن را به هیچ کس نشان ندهید.",
+        "print": "بله، چاپ شود"
     },
     "receive": {
         "yourAddress": "آدرس شما",
