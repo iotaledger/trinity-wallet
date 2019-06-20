@@ -114,8 +114,8 @@ class Welcome extends React.PureComponent {
                             <Lottie
                                 width={280}
                                 height={280}
-                                data={getAnimation('welcome', themeName)}
-                                segments={[161, 395]}
+                                data={getAnimation('sending', themeName)}
+                                segments={[89, 624]}
                                 loop
                             />
                         </React.Fragment>
