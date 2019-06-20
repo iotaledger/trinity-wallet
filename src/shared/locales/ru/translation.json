@@ -275,9 +275,9 @@
         "pressForNewSeed": "Создать новый ключ",
         "generateSuccess": "Ключ (seed) успешно сгенерирован",
         "individualLetters": "Нажмите на любые несколько символов в случайном порядке.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "individualLetterCount": "Наберите <1><0>{{count}}</0></1> букву что бы выдержать разнообразие символов.",
+        "individualLetterCount_plural": "Наберите <1><0>{{count}}</0></1> больше букв что бы выдержать разнообразие символов.",
+        "randomiseCharsToContinue": "Разнообразить <1>{{count}}</1> символ что бы продолжить.",
         "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Что такое ключ (seed) ?"
     },
