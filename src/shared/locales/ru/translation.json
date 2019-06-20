@@ -477,7 +477,7 @@
         "empty": "Пустой",
         "retrying": "Повторная попытка",
         "yesterday": "Вчера",
-        "promotingAnotherBundle": "Promoting another bundle",
+        "promotingAnotherBundle": "Содействую активации другого пакета",
         "pleaseWait": "Please wait, Trinity is promoting another bundle.",
         "typeHelp": "Type !help for available commands",
         "searchHelpText": "Search by bundle hash or message content",
