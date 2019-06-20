@@ -80,6 +80,9 @@
         <note>Copyright (human-readable)</note>
         <target state="translated">2018 IOTA Foundation. Все права защищены.</target>
         <alt-trans>
+          <target>2018 IOTA Фонд. Все права защищены.</target>
+        </alt-trans>
+        <alt-trans>
           <target>2018 IOTA фонд. Все права защищены.</target>
         </alt-trans>
       </trans-unit>
