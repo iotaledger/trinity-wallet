@@ -679,8 +679,8 @@
         "noSeedFoundExplanation": "سید Vault یا خالی است یا حاوی یک سید در قالب نامعتبر است.",
         "seedFileError": "باز کردن فایل سید Vault ناموفق بود",
         "seedFileErrorExplanation": "در باز کردن سید Vault با مشکل مواجه شد. اگر فایل درست را انتخاب کردید، ممکن است خراب شده باشد.",
-        "invalidSeedFileError": "Invalid SeedVault file",
-        "invalidSeedFileErrorExplanation": "This file format is not supported. Only SeedVault files (.kdbx) created via Trinity or a password manager are supported.",
+        "invalidSeedFileError": "فایل امن سید نا معتبر",
+        "invalidSeedFileErrorExplanation": "فرمت فایل پشتیبانی نمی شود. فقط فایل های امن سید (kdbx.) ساخته شده توسط ترینیتی یا مدیریت پسورد قابل پشتیبانی هستند.",
         "seedVaultKeyExplanation": "ما ابتدا نیاز داریم که SeedVault شما را امن کنیم. لطفا یک کلید برای رمزنگاری فایل انتخاب کنید. شما زمانی که نیاز به بازیابی سید خود از پشتیبان‌گیری SeedVault داشته باشید، از این کلید استفاده خواهید کرد.",
         "retypeKey": "کلید را دوباره وارد کنید",
         "key": "کلید"
