@@ -275,10 +275,10 @@
         "pressForNewSeed": "Создать новый ключ",
         "generateSuccess": "Ключ (seed) успешно сгенерирован",
         "individualLetters": "Нажмите на любые несколько символов в случайном порядке.",
-        "individualLetterCount": "Наберите <1><0>{{count}}</0></1> букву что бы выдержать разнообразие символов.",
-        "individualLetterCount_plural": "Наберите <1><0>{{count}}</0></1> больше букв что бы выдержать разнообразие символов.",
-        "randomiseCharsToContinue": "Разнообразить <1>{{count}}</1> символ что бы продолжить.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount": "Наберите <1><0>{{count}}</0></1> букву что бы выдержать произвольность.",
+        "individualLetterCount_plural": "Наберите <1><0>{{count}}</0></1> больше букв что бы выдержать произвольность.",
+        "randomiseCharsToContinue": "Разнообразьте <1>{{count}}</1> символ что бы продолжить.",
+        "randomiseCharsToContinue_plural": "Разнообразьте <1>{{count}}</1> символы что бы продолжить.",
         "whatIsASeed": "Что такое ключ (seed) ?"
     },
     "onboardingComplete": {
@@ -289,10 +289,10 @@
     "paperWallet": {
         "neverShare": "Никогда не сообщайте свой ключ кому-либо.",
         "iotaLogo": "Логотип IOTA",
-        "print": "Print",
+        "print": "Печать",
         "paperConvenience": "Печать бумажной копии Вашего ключа - это удобный способ его хранения.",
         "publicInsecure": "Но печать через общественный Wi-Fi или на общедоступном принтере небезопасна.",
-        "pleaseCheck": "Please check and confirm before you print",
+        "pleaseCheck": "Пожалуйста проведите проверку и подтвердите печать",
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
