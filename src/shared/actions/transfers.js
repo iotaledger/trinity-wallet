@@ -35,6 +35,7 @@ import {
     isFundedBundle,
     isBundle,
     isFatalTransactionError,
+    isAboveMaxDepth,
 } from '../libs/iota/transfers';
 import {
     syncAccountAfterReattachment,
@@ -360,7 +361,7 @@ export const forceTransactionPromotion = (
     let promotionAttempt = 0;
 
     const promote = (settings) => (tailTransaction) => {
-        const { hash } = tailTransaction;
+        const { hash, attachmentTimestamp } = tailTransaction;
 
         promotionAttempt += 1;
 
@@ -377,6 +378,8 @@ export const forceTransactionPromotion = (
             } else if (
                 isTransactionInconsistent &&
                 promotionAttempt === maxPromotionAttempts &&
+                // Do not allow reattachments if transaction is still above max depth
+                !isAboveMaxDepth(attachmentTimestamp) &&
                 // If number of reattachments haven't exceeded max reattachments
                 replayCount < maxReplays
             ) {
@@ -478,7 +481,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
     // Reassign with latest state when account is synced
     let accountState = selectedAccountStateFactory(accountName)(getState());
 
-    const withPreTransactionSecurityChecks = () => {
+    const withPreTransactionSecurityChecks = (settings, withQuorum) => () => {
         // Progressbar step => (Validating receive address)
         dispatch(setNextStepAsActive());
 
@@ -495,7 +498,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 maxInputs = maxInputResponse;
 
                 // Make sure that the address a user is about to send to is not already used.
-                return isAnyAddressSpent(undefined, quorum)([address]).then((isSpent) => {
+                return isAnyAddressSpent(settings, withQuorum)([address]).then((isSpent) => {
                     if (isSpent) {
                         throw new Error(Errors.KEY_REUSE);
                     }
@@ -503,7 +506,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
-                    return syncAccount(undefined, quorum)(accountState, seedStore);
+                    return syncAccount(settings, quorum)(accountState, seedStore);
                 });
             })
             .then((newState) => {
@@ -514,7 +517,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // Progressbar step => (Preparing inputs)
                 dispatch(setNextStepAsActive());
 
-                return getInputs(undefined, quorum)(
+                return getInputs(settings, withQuorum)(
                     accountState.addressData,
                     accountState.transactions,
                     value,
@@ -536,7 +539,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
-                return getAddressDataUptoRemainder(undefined, quorum)(
+                return getAddressDataUptoRemainder(settings, withQuorum)(
                     accountState.addressData,
                     accountState.transactions,
                     seedStore,
@@ -569,10 +572,13 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
         transactionObjects: [],
     };
 
-    const withInputs = isZeroValue ? () => Promise.resolve(null) : withPreTransactionSecurityChecks;
-
     return (
-        withInputs()
+        (isZeroValue
+            ? Promise.resolve(null)
+            : new NodesManager(nodesConfigurationFactory({ quorum })(getState())).withRetries()(
+                  withPreTransactionSecurityChecks,
+              )()
+        )
             // If we are making a zero value transaction, options would be null
             // Otherwise, it would be a dictionary with inputs and remainder address
             // Forward options to prepareTransfersAsync as is, because it contains a null check
@@ -582,27 +588,33 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // Progressbar step => (Preparing transfers)
                 dispatch(setNextStepAsActive());
 
-                return seedStore.prepareTransfers()(transfer, options);
-            })
-            .then((trytes) => {
-                if (!isZeroValue) {
-                    hasSignedInputs = true;
-                }
+                return new NodesManager(nodesConfigurationFactory({ quorum })(getState())).withRetries()(
+                    (settings) => () => {
+                        return seedStore
+                            .prepareTransfers(settings)(transfer, options)
+                            .then((trytes) => {
+                                if (!isZeroValue) {
+                                    hasSignedInputs = true;
+                                }
 
-                cached.trytes = trytes;
+                                cached.trytes = trytes;
 
-                const convertToTransactionObjects = (tryteString) => iota.utils.transactionObject(tryteString);
-                cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
+                                const convertToTransactionObjects = (tryteString) =>
+                                    iota.utils.transactionObject(tryteString);
+                                cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
 
-                if (isBundle(cached.transactionObjects)) {
-                    isValidBundle = true;
-                    // Progressbar step => (Getting transactions to approve)
-                    dispatch(setNextStepAsActive());
+                                if (isBundle(cached.transactionObjects)) {
+                                    isValidBundle = true;
+                                    // Progressbar step => (Getting transactions to approve)
+                                    dispatch(setNextStepAsActive());
 
-                    return getTransactionsToApproveAsync()();
-                }
+                                    return getTransactionsToApproveAsync(settings)();
+                                }
 
-                throw new Error(Errors.INVALID_BUNDLE);
+                                throw new Error(Errors.INVALID_BUNDLE);
+                            });
+                    },
+                )();
             })
             .then(({ trunkTransaction, branchTransaction }) => {
                 const shouldOffloadPow = getRemotePoWFromState(getState());
@@ -692,13 +704,19 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 const addresses = uniq(map(transactionObjects, (transaction) => transaction.address));
 
-                return isAnyAddressSpent(undefined, quorum)(addresses).then((isSpent) => {
-                    if (isSpent) {
-                        throw new Error(Errors.KEY_REUSE);
-                    }
+                return new NodesManager(
+                    nodesConfigurationFactory({
+                        quorum,
+                    })(getState()),
+                )
+                    .withRetries()(isAnyAddressSpent)(addresses)
+                    .then((isSpent) => {
+                        if (isSpent) {
+                            throw new Error(Errors.KEY_REUSE);
+                        }
 
-                    return { trytes, transactionObjects };
-                });
+                        return { trytes, transactionObjects };
+                    });
             })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;
@@ -725,9 +743,13 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                         ),
                 )(storeAndBroadcastAsync)(cached.trytes);
             })
-            .then(() => {
-                return syncAccountAfterSpending(undefined, quorum)(seedStore, cached.transactionObjects, accountState);
-            })
+            .then(() =>
+                new NodesManager(
+                    nodesConfigurationFactory({
+                        quorum,
+                    })(getState()),
+                ).withRetries()(syncAccountAfterSpending)(seedStore, cached.transactionObjects, accountState),
+            )
             .then((newState) => {
                 // Update account in (Realm) storage
                 Account.update(accountName, newState);

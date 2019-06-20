@@ -18,6 +18,7 @@ import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode, quorum } from 'libs/iota';
 import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
 import { initialise as initialiseStorage, realm } from 'storage';
+import { updateSchema } from 'schemas';
 
 import Index from 'ui/Index';
 import Tray from 'ui/Tray';
@@ -45,6 +46,19 @@ const init = () => {
             const data = JSON.parse(payload);
             store.dispatch(mapStorageToStateAction(data));
         });
+
+        render(
+            <ErrorBoundary>
+                <Redux store={store}>
+                    <I18nextProvider i18n={i18next}>
+                        <Router>
+                            <Tray />
+                        </Router>
+                    </I18nextProvider>
+                </Redux>
+            </ErrorBoundary>,
+            rootEl,
+        );
     } else {
         initialiseStorage(getEncryptionKey)
             .then(() => {
@@ -58,7 +72,7 @@ const init = () => {
                 }
 
                 // Get persisted data from Realm storage if no old persisted data present
-                const data = hasDataToMigrate ? oldPersistedData : mapStorageToState();
+                const data = hasDataToMigrate ? updateSchema(oldPersistedData) : mapStorageToState();
 
                 // Change provider on global iota instance
                 const node = get(data, 'settings.node');
@@ -96,14 +110,10 @@ const init = () => {
                         <Redux store={store}>
                             <I18nextProvider i18n={i18next}>
                                 <Router>
-                                    {Electron.mode === 'tray' ? (
-                                        <Tray />
-                                    ) : (
-                                        <React.Fragment>
-                                            <Alerts />
-                                            <Index />
-                                        </React.Fragment>
-                                    )}
+                                    <React.Fragment>
+                                        <Alerts />
+                                        <Index />
+                                    </React.Fragment>
                                 </Router>
                             </I18nextProvider>
                         </Redux>
