@@ -253,7 +253,7 @@ export const syncAccountAfterReattachment = (reattachment, accountState) => ({
  *
  *   @returns {object}
  **/
-export const syncAccountOnErrorAfterSigning = (newTransactionObjects, accountState, hasBroadcast) => {
+export const syncAccountOnErrorAfterSigning = (newTransactionObjects, accountState, hasBroadcast = false) => {
     const failedTransactions = map(newTransactionObjects, (transaction) => ({
         ...transaction,
         persistence: false,
