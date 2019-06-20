@@ -171,7 +171,7 @@
         "swipeToConfirm": "Проведите, чтобы подтвердить",
         "expert": "Эксперт",
         "notEnoughSyncedNodes": "Слишком мало нод в синхронизации",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodesExplanation": "Кворум не может быть достигнут. Выключите Кворум либо повторите позже."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
