@@ -385,9 +385,9 @@
         "advanced": "Дополнительные параметры",
         "standard": "Стандартный",
         "advancedModeExplanation": "Расширенный режим будет отображать более подробную техническую информацию.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
+        "modesExplanation": "Режим Эксперта содержит продвинутые настройки и предназначен только для опытных пользователей.",
         "modeUpdated": "Режим обновлен",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdatedExplanation": "Была произведена смена в режим {{mode}}"
     },
     "settings": {
         "transferSending": "Осуществляется перевод",
@@ -401,7 +401,7 @@
         "accountManagement": "Управление счётом",
         "addNewSeed": "Добавить новый ключ",
         "changePassword": "Изменить пароль",
-        "general": "General settings",
+        "general": "Общие настройки",
         "advanced": "Дополнительные настройки",
         "nodeSettings": "Настройки узла(ноды)",
         "account": "Настройки учетной записи",
@@ -448,11 +448,11 @@
     "walletSetup": {
         "okay": "Хорошо, давайте настроим Ваш кошелек!",
         "doYouNeedASeed": "Нужно ли Вам создать новый ключ?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "Ваш ключ служит в качестве универсального доступа к IOTA средствам. Он содержит 81 символ, состоящий из заглавных букв A-Z и/или номера 9.",
         "noIHaveOne": "Нет, у меня уже есть ключ",
         "yesINeedASeed": "Да, мне нужен ключ",
         "explanation": "<0><0>Вы можете использовать его для доступа к средствам с</0><1> любого кошелька</1><2>, на</2><3> любом устройстве.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "loseSeed": "Потеря Вашего ключа равносильна потере Ваших IOTA.",
         "keepSafe": "Пожалуйста, храните Ваш ключ в безопасности."
     },
     "welcome": {
@@ -460,7 +460,7 @@
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Запишите Ваш ключ, контрольную сумму и </ 0><1>трижды проверьте </ 1><2> что они верны.</ 2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Прокрутить в конец страницы"
     },
     "history": {
         "bundleHashCopied": "Хэш пакет скопирован",
