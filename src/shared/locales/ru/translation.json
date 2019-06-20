@@ -331,14 +331,14 @@
         "youCanHighlightCharacters": "Одновременно можно выделить 9 символов",
         "printBlankWallet": "Распечатать чистый кошелёк",
         "whatIsAChecksum": "Что такое Контрольная Сумма?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "У каждого ключа имеется соответствующая контрольная сумма из трёх символов.",
         "iHavesavedMySeed": "Я сохранил свой ключ",
         "checksumExplanation": "Каждый раз, когда Вы добавляете ключ к Вашему кошельку, Вы должны убедиться, что контрольная сумма, сгенерированная кошельком, соответствует той, которую Вы записали.",
         "mustSaveYourSeed": "<0><0>Вы должны сохранить свой ключ </ 0><1>как минимум одним</ 1> <2> из перечисленных ниже способов.</ 2></ 0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Пожалуйста, введите ключ ещё раз",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Сброс кошелька и удаление приложения это единственные случаи когда Тринити попросит Вас снова вести ключ.",
         "enterYourSeed": "Введите Ваш ключ",
         "incorrectSeed": "Неверный ключ",
         "incorrectSeedExplanation": "Введенный ключ неправильный. Пожалуйста, попробуйте еще раз.",
