@@ -755,13 +755,13 @@
         "deepLinkingEnabled": "شما لینک عمیق را فعال کردید.",
         "deepLinkingDisabled": "شما لینک عمیق را غیر فعال کردید.",
         "deepLinkingInfoTitle": "لینک عمیق فعال نیست",
-        "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
+        "deepLinkingInfoMessage": "شما یک لینک عمیق //: iota را باز کردید ولی لینک عمیق فعال نیست."
     },
     "updates": {
         "errorRetrievingUpdateData": "خطا در بازیابی داده های به روزرسانی",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "بروزرسانی امکان پذیر نیست. لطفاً اتصال اینترنت خود را بررسی و دوباره تلاش کنید.",
         "noUpdatesAvailable": "بروزرسانی موجود نيست",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "شما آخرین نسخه ترینیتی را دارید!",
         "newVersionAvailable": "نسخه جدید موجود است",
         "newVersionAvailableExplanation": "یک نسخه‌ی جدید از Trinity در دسترس است. آیا می‌خواهید الان به‌روز‌رسانی کنید؟",
         "installUpdate": "نصب به‌روزرسانی و راه‌اندازی مجدد",
@@ -816,9 +816,9 @@
         "sweepConfirmationTitle": "تایید جارو کردن (sweep)"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "dataMigration": "انتقال اطلاعات",
+        "dataMigrationExplanation": "به علت محدودیت های کارایی و حافظه، ترینیتی یک دیتابیس جدید را برای ذخیره سازی تنظیمات و اطلاعات حساب استفاده می کند. ترینیتی در حال انتقال اطلاعات موجود شما می باشد لطفاً صبر کنید.",
+        "problemMigratingYourData": "انتقال اطلاعات شما با مشکل مواجه شد. لطفاً دوباره سعی کنید",
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
