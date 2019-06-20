@@ -480,7 +480,7 @@
         "promotingAnotherBundle": "Содействую активации другого пакета",
         "pleaseWait": "Пожалуйста, подождите, Тринити содействует активации другого пакета.",
         "typeHelp": "Введите !help для отображения доступных команд",
-        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpText": "Поиск по хэшу пакета либо содержанию сообщения",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "Find transactions with a value greater than X",
