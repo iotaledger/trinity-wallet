@@ -522,7 +522,7 @@
         "addAuthKey": "اضافه کردن کلید auth",
         "username": "نام کاربری",
         "couldNotRemove": "نود سفارشی نمی توان حذف کرد",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "باید نود های کافی برای سیستم وجود داشته باشد. سایز سیستم را کاهش داده یا لیست نود از راه دور را فعال کنید."
     },
     "addNewAccount": {
         "useExistingSeed": "استفاده از سیدهای موجود",
@@ -536,8 +536,8 @@
         "autoPromotion": "ارتقا خودکار",
         "autoPromotionExplanation": "ارتقا خودکار کمک می کند تا معاملات خود را در Tangle تایید کنید. اگر شما دچار تردید در دریافت معاملات خود هستید این تنظیم را فعال کنید.",
         "autoPromotionPoW": "ارتقا خودکار تنها در Node هایی است که از اثبات کار از راه دور پشتیبانی می کند.",
-        "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "deepLinking": "اتصال عمیق",
+        "stateExport": "ایجاد فایل گزارش کلی"
     },
     "advancedThemeCustomisation": {
         "background": "پس زمینه",
@@ -608,7 +608,7 @@
         "viewSeed": "مشاهده سید",
         "hideSeed": "پنهان کردن سید",
         "notAvailable": "برون‌ریزی سید برای نوع حساب {{accountType}} در دسترس نمی‌باشد",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailableExplanationLedger": "دستگاه لجر شما از یک واحد امن برای ذخیره ی سید شما استفاده می کند. سید به امنی کد گذاری شده و از دستگاه خارج نمی شود.",
         "accountIndex": "اندیس حساب لدجر شما",
         "accountPage": "صفحه حساب لدجر شما"
     },
@@ -634,18 +634,18 @@
         "fingerprintAuthFailedExplanation": "احراز هویت اثر انگشت با شکست مواجه شد. لطفا دوباره تلاش کنید.",
         "status": "وضعیت",
         "fingerprintUnavailable": "احراز هویت بیومتریک در دسترس نیست",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "احراز هویت برای ۳۰ ثانیه غیر فعال شد",
         "fingerprintUnavailableExplanation": "دستگاه شما از تاییدیه بیومتریک پشتیبانی نمیکند یا در تنظیمات دستگاه پیکربندی نشده است.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "notSupported": "دستگاه احراز هویت بیومتریک را ساپورت نمی کند",
+        "notConfigured": "احراز هویت بیومتریک در تنظیمات دستگاه انجام نشده است",
         "buttonInstructionsDisable": "برای غیرفعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید.",
         "buttonInstructionsEnable": "برای فعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید.",
         "buttonInstructionsDisableIPhoneX": "برای غیرفعال کردن Face ID، دکمه زیر را فشار دهید",
         "buttonInstructionsEnableIPhoneX": "برای فعال کردن Face ID، دکمه زیر را فشار دهید",
         "instructionsLogin": "اثر انگشت برای ورود به سیستم را لمس کنید",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
+        "systemCancelledAuth": "احراز هویت توسط دستگاه شما لغو شد",
+        "userCancelledAuth": "درخواست احراز هویت لغو شد",
+        "passwordFallback": "به احراز هویت توسط رمز عبور برگردید",
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
