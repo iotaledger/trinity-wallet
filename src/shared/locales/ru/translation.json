@@ -293,11 +293,11 @@
         "paperConvenience": "Печать бумажной копии Вашего ключа - это удобный способ его хранения.",
         "publicInsecure": "Но печать через общественный Wi-Fi или на общедоступном принтере небезопасна.",
         "pleaseCheck": "Пожалуйста проведите проверку и подтвердите печать",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "wifiConfirmation": "Я НЕ на публичной точке доступа wifi",
+        "printerConfirmation": "Я НЕ использую принтер с публичным доступом"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateQuestion": "Хотите распечатать пустой шаблон?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
         "print": "Да, печатать"
