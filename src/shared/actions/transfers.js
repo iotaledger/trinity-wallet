@@ -309,7 +309,7 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
                         err,
                     ),
                 );
-            } else if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+            } else if (get(err, 'message') === Errors.ATTACH_TO_TANGLE_UNAVAILABLE) {
                 dispatch(
                     generateAlert(
                         'error',

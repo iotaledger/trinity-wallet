@@ -149,7 +149,7 @@ class Ledger extends SeedStoreCore {
         } catch (err) {
             Electron.send('ledger', { awaitTransaction: false });
 
-            const error = err.message;
+            const error = typeof err.message === 'string' ? err.message : err;
 
             if (options === null) {
                 throw new Error(Errors.LEDGER_ZERO_VALUE);
