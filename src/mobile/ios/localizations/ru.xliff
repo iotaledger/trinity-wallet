@@ -72,6 +72,9 @@
         <note>Privacy - Face ID Usage Description</note>
         <target state="translated">Тринити нужен доступ к Face ID, чтобы использовать биометрическую аутентификацию.</target>
         <alt-trans>
+          <target>Чтобы использовать биометрическую аутентификацию Тринити потребуется разрешить доступ к Face ID.</target>
+        </alt-trans>
+        <alt-trans>
           <target>Тринити нужен доступ к Face ID, чтобы использовать биометрическую аутентификации.</target>
         </alt-trans>
       </trans-unit>
