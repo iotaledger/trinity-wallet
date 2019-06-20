@@ -68,6 +68,7 @@ export class AboutComponent extends React.PureComponent {
                                 <li>Fix: Error-related crashes</li>
                                 <li>Fix: Handle exception if password salt is missing from keychain</li>
                                 <li>Update: Add remote node list endpoint back-ups</li>
+                                <li>Update: Add more verbose error log messages</li>
                                 <li>Update: New translations</li>
                             </ul>
                             <h5>0.6.1</h5>
