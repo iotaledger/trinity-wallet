@@ -125,7 +125,7 @@ class ForceChangePassword extends Component {
 
         if (this.isNewPasswordValid()) {
             const throwError = (err) => {
-                if (err.message === 'Incorrect password') {
+                if (typeof err.message === 'string' && err.message === 'Incorrect password') {
                     this.props.generateAlert(
                         'error',
                         t('global:unrecognisedPassword'),
@@ -225,7 +225,10 @@ class ForceChangePassword extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+        } = this.props;
         const { currentPassword, newPassword, newPasswordReentry } = this.state;
         const textColor = { color: body.color };
         const score = zxcvbn(newPassword);
@@ -291,24 +294,22 @@ class ForceChangePassword extends Component {
                             <View style={{ flex: 0.2 }} />
                         </View>
                         <View style={styles.bottomContainer}>
-                            {currentPassword !== '' &&
-                                newPassword !== '' &&
-                                newPasswordReentry !== '' && (
-                                    <TouchableOpacity
-                                        onPress={() => this.onSavePress()}
-                                        hitSlop={{
-                                            top: height / 55,
-                                            bottom: height / 55,
-                                            left: width / 55,
-                                            right: width / 55,
-                                        }}
-                                    >
-                                        <View style={styles.itemRight}>
-                                            <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                            <Icon name="tick" size={width / 28} color={body.color} />
-                                        </View>
-                                    </TouchableOpacity>
-                                )}
+                            {currentPassword !== '' && newPassword !== '' && newPasswordReentry !== '' && (
+                                <TouchableOpacity
+                                    onPress={() => this.onSavePress()}
+                                    hitSlop={{
+                                        top: height / 55,
+                                        bottom: height / 55,
+                                        left: width / 55,
+                                        right: width / 55,
+                                    }}
+                                >
+                                    <View style={styles.itemRight}>
+                                        <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
+                                        <Icon name="tick" size={width / 28} color={body.color} />
+                                    </View>
+                                </TouchableOpacity>
+                            )}
                         </View>
                         <View style={{ flex: 0.5 }} />
                     </View>
@@ -329,5 +330,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['changePassword', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(ForceChangePassword),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ForceChangePassword),
 );

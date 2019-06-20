@@ -137,7 +137,7 @@ class Receive extends React.PureComponent {
         } catch (err) {
             this.props.addressValidationSuccess();
             history.push('/wallet/');
-            if (err.message === Errors.LEDGER_INVALID_INDEX) {
+            if (typeof err.message === 'string' && err.message === Errors.LEDGER_INVALID_INDEX) {
                 generateAlert(
                     'error',
                     t('ledger:ledgerIncorrectIndex'),

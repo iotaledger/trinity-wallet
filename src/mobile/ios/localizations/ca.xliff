@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
-  <file original="iotaWallet-tvOS/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="fa">
+  <file original="iotaWallet-tvOS/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="ca">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.4" build-num="9Q1019a"/>
     </header>
@@ -17,7 +17,7 @@
       </trans-unit>
     </body>
   </file>
-  <file original="iotaWallet-tvOSTests/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="fa">
+  <file original="iotaWallet-tvOSTests/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="ca">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.4" build-num="9Q1019a"/>
     </header>
@@ -29,7 +29,7 @@
       </trans-unit>
     </body>
   </file>
-  <file original="iotaWallet/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="fa">
+  <file original="iotaWallet/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="ca">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.4" build-num="9Q1019a"/>
     </header>
@@ -62,23 +62,17 @@
       <trans-unit id="NSCameraUsageDescription">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <note>Privacy - Camera Usage Description</note>
-        <target state="translated">Trinity به دسترسی دوربین برای فعال کردن QR کد نیاز دارد.</target>
-        <alt-trans>
-          <target>Trinity نیاز به دسترسی به دوربین برای فعال کردن اسکن QR دارد.</target>
-        </alt-trans>
+        <target state="needs-translation">Trinity requires access to the camera in order to enable QR scanning.</target>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <note>Privacy - Face ID Usage Description</note>
-        <target state="translated">Trinity به دسترسی به Face ID برای فعال کردن احراز هویت بیومتریک نیاز دارد.</target>
-        <alt-trans>
-          <target>Trinity نیاز به دسترسی به Face ID برای فعال کردن احراز هویت بیومتریک دارد.</target>
-        </alt-trans>
+        <target state="needs-translation">Trinity requires access to Face ID in order to enable biometric authentication.</target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>
         <note>Copyright (human-readable)</note>
-        <target state="translated">بنیاد آیوتا 2018. همه حقوق محفوظ است.</target>
+        <target state="needs-translation">2018 IOTA Foundation. All rights reserved.</target>
       </trans-unit>
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
@@ -107,7 +101,7 @@
       </trans-unit>
     </body>
   </file>
-  <file original="iotaWalletTests/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="fa">
+  <file original="iotaWalletTests/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="ca">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.4" build-num="9Q1019a"/>
     </header>
@@ -119,7 +113,7 @@
       </trans-unit>
     </body>
   </file>
-  <file original="iotaWalletUITests/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="fa">
+  <file original="iotaWalletUITests/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="ca">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.4" build-num="9Q1019a"/>
     </header>

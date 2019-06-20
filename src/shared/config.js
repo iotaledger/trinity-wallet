@@ -38,7 +38,11 @@ export const NODES_WITH_POW_ENABLED = [
 
 export const DEFAULT_NODES = [...NODES_WITH_POW_DISABLED, ...NODES_WITH_POW_ENABLED];
 
-export const NODELIST_URL = 'https://nodes.iota.works/api/ssl/live';
+export const NODELIST_ENDPOINTS = [
+    'https://nodes.iota.works/api/ssl/live',
+    'https://iota-node-api.now.sh/api/ssl/live',
+    'https://iota.dance/api/ssl/live',
+];
 
 export const VERSIONS_URL =
     'https://raw.githubusercontent.com/iotaledger/trinity-wallet/develop/src/shared/libs/versions.json';
@@ -56,6 +60,7 @@ export const MAX_REQUEST_TIMEOUT = 60 * 1000 * 2;
 export const DEFAULT_NODE_REQUEST_TIMEOUT = 6000 * 2;
 export const GET_NODE_INFO_REQUEST_TIMEOUT = 2500;
 export const GET_BALANCES_REQUEST_TIMEOUT = 6000;
+export const FETCH_REMOTE_NODES_REQUEST_TIMEOUT = 4000;
 export const WERE_ADDRESSES_SPENT_FROM_REQUEST_TIMEOUT = 4000;
 export const ATTACH_TO_TANGLE_REQUEST_TIMEOUT = 25000;
 export const GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT = 40000;
