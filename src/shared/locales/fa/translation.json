@@ -169,8 +169,8 @@
         "missingPermission": "نیاز به مجوز سیستم فایل است",
         "missingPermissionExplanation": "به منظور انجام این عمل دسترسی به فایل‌های سیستمی مورد نیاز است.",
         "swipeToConfirm": "برای تایید بکشید",
-        "expert": "Expert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "expert": "حرفه ای",
+        "notEnoughSyncedNodes": "کمی از نود ها همگام شده",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
