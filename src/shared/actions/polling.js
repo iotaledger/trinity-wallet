@@ -15,7 +15,7 @@ import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/u
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { constructBundlesFromTransactions, findPromotableTail, isFundedBundle } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
-import { nodesConfigurationFactory, getCustomNodesFromState } from '../selectors/global';
+import { nodesConfigurationFactory, getCustomNodesFromState, getNodesFromState } from '../selectors/global';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
 import { DEFAULT_NODES } from '../config';
@@ -318,15 +318,24 @@ export const fetchPrice = () => {
 export const fetchNodeList = () => {
     return (dispatch, getState) => {
         dispatch(fetchNodeListRequest());
-        let nodes = unionBy(DEFAULT_NODES, getState().settings.nodes, 'url');
+
+        let nodes = DEFAULT_NODES;
+
         fetchRemoteNodes()
             .then((remoteNodes) => {
+                // If there is a successful response, keep a union of (new nodes returned from the endpoint, default hardcoded nodes)
                 if (remoteNodes.length) {
                     nodes = unionBy(nodes, remoteNodes, 'url');
+                } else {
+                    // Otherwise, fallback to existing nodes
+                    nodes = getNodesFromState(getState());
                 }
+
+                // Update nodes on global quorum instance
                 quorum.setNodes(
                     unionBy(getCustomNodesFromState(getState()), getState().settings.autoNodeList && nodes, 'url'),
                 );
+
                 dispatch(setNodeList(nodes));
                 dispatch(fetchNodeListSuccess());
             })

@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "O servidor retornou um erro durante a busca de informações de sua conta. Se o problema persistir, tente alterar o servidor ou desative o proxy do sistema em configurações da Trinity.",
         "nodeOutOfSync": "Servidor não sincronizado",
         "nodeOutOfSyncExplanation": "O servidor selecionado não está sincronizado. Por favor, altere o servidor e tente novamente.",
-        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "nodeOutOfSyncByTimestampExplanation": "Seu servidor atual selecionado está fora de sincronização. Por favor mude o servidor ou tente de novo. Se o seu problema persistir, tenha certeza de que o seu dispositivo está com a hora correta.",
         "experimentalNode": "Versão do servidor não suportado",
         "experimentalNodeExplanation": "Seu servidor selecionado está executando uma versão experimental que não é suportada. Por favor, altere o servidor ou tente novamente.",
         "thisNodeOutOfSync": "O servidor selecionado não está sincronizado. Por favor, altere o servidor e tente novamente.",
@@ -121,8 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Somente servidores com HTTPS são permitidos.",
         "nodeDuplicated": "Servidor duplicado",
         "nodeDuplicatedExplanation": "Servidor personalizado já existe.",
-        "customNodeAdded": "Custom node added",
-        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
+        "customNodeAdded": "Servidor personalizado adicionado",
+        "customNodeAddedExplanation": "Você adicionou com sucesso {{nodeAddress}} como um servidor personalizado.",
         "nodeAutoChanged": "Troca automática de servidor",
         "nodeAutoChangedExplanation": "Substituição para o novo servidor {{- nodeAddress}} sendo que o servidor selecionado está offline.",
         "touchSensor": "Toque no sensor de impressão digital",
@@ -144,8 +144,8 @@
         "isYourBalanceCorrect": "Seu saldo está correto?",
         "ifYourBalanceIsNotCorrect": "Se seu saldo estiver incorreto, é provável que você esteja usando uma seed criada antes do último snapshot.",
         "headToAdvancedSettingsForTransition": "Vá até as Opções Avançadas e realize uma Transição de Snapshot.",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
+        "headToAccountTools": "Vá até as Ferramentas de Conta e faça uma transição de Snapshot.",
+        "openAccountTools": "Abra as Ferramentas de Conta",
         "usingTrinityWalletWithKeePass": "Usando a carteira Trinity com Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Houve um erro ao processar sua transação.",
         "broadcastError": "Não foi possível enviar transação",
@@ -165,13 +165,13 @@
         "shouldUpdateExplanation": "Uma nova atualização foi lançada. É recomendável você atualizar para a versão mais recente.",
         "forceUpdate": "Atualize o aplicativo para continuar",
         "forceUpdateExplanation": "Foi lançada uma atualização importante. Por favor, atualize o aplicativo agora.",
-        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
+        "testVersionWarning": "Esta versão deve ser usada apenas para fins de teste, com pequenas quantidades de tokens.",
         "missingPermission": "Permissões do sistema de arquivo necessárias",
         "missingPermissionExplanation": "O acesso ao sistema de arquivos é necessário para executar esta função.",
         "swipeToConfirm": "Deslize para confirmar",
-        "expert": "Expert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "expert": "Avançado",
+        "notEnoughSyncedNodes": "Poucos servidores em sincronia",
+        "notEnoughSyncedNodesExplanation": "Um quórum não pôde ser alcançado. Desligue o quórum ou tente novamente."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -495,7 +495,7 @@
         "tools": "Ferramentas"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
+        "automaticNodeManagement": "Gerenciamento automático de servidores",
         "addCustomNodes": "Add custom nodes",
         "autoNodeList": "Use remote node list",
         "nodeAutoswitching": "Primary node autoswitching",
@@ -520,7 +520,7 @@
         "nodeFieldEmptyExplanation": "Por favor, insira um servidor personalizado.",
         "invalidURL": "Por favor, insira uma URL válida.",
         "addAuthKey": "Add auth key",
-        "username": "Username",
+        "username": "Usuário",
         "couldNotRemove": "Could not remove custom node",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
@@ -761,7 +761,7 @@
         "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",
         "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Nenhuma atualização disponível",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "Você tem a versão mais recente da Trinity!",
         "newVersionAvailable": "Nova versão disponível",
         "newVersionAvailableExplanation": "Uma nova versão da Trinity está disponível. Deseja atualizar agora?",
         "installUpdate": "Instale a atualização e reinicie",
@@ -861,7 +861,7 @@
         "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
         "udevError": "Falha ao comunicar com o dispositivo Ledger",
         "udevErrorExplanation": "A Trinity não pôde se comunicar com o seu dispositivo Ledger. Por favor, visite o link abaixo para resolver este problema.",
-        "writtenDownInfoTitle": "Remember your index number",
+        "writtenDownInfoTitle": "Lembrar seu número de índice",
         "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
     }
 }

@@ -6,6 +6,7 @@ import v3Schema, { migration as v3Migration } from './v3';
 import v4Schema, { migration as v4Migration } from './v4';
 import v5Schema, { migration as v5Migration } from './v5';
 import { __MOBILE__, __TEST__, __DEV__ } from '../config';
+import { initialState as reduxSettingsState } from '../reducers/settings';
 
 const STORAGE_PATH =
     __MOBILE__ || __TEST__
@@ -25,6 +26,30 @@ const getDeprecatedStoragePath = (schemaVersion) =>
     __MOBILE__ || __TEST__
         ? `trinity-${schemaVersion}.realm`
         : `${Electron.getUserDataPath()}/trinity${__DEV__ ? '-dev' : ''}-${schemaVersion}.realm`;
+
+/**
+ * Updates (redux) state object schema to current wallet version
+ *
+ * @method updateSchema
+ *
+ * @param {object} input - target state object
+ *
+ * @returns {object} - updated state object
+ */
+export const updateSchema = (input) => {
+    const state = Object.assign({}, input);
+
+    /**
+     * 0.6.0
+     */
+    if (typeof state.settings.quorum !== 'object') {
+        state.settings.quorum = Object.assign({}, reduxSettingsState.quorum);
+        state.settings.autoNodeList = reduxSettingsState.autoNodeList;
+        state.settings.nodeAutoSwitch = reduxSettingsState.nodeAutoSwitch;
+    }
+
+    return state;
+};
 
 export default [
     {
