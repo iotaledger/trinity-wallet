@@ -165,7 +165,7 @@
         "shouldUpdateExplanation": "Доступно новое обновление. Рекомендуем обновиться до последней версии.",
         "forceUpdate": "Для продолжения работы необходимо обновить приложение",
         "forceUpdateExplanation": "Было выпущено критическое обновление. Пожалуйста, обновите приложение.",
-        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
+        "testVersionWarning": "Эта версия рекомендуется для использования только в целях тестирования, с минимальным количеством токенов.",
         "missingPermission": "Требуется доступ к файловой системе",
         "missingPermissionExplanation": "Для выполнения этой функции необходим доступ к файловой системе.",
         "swipeToConfirm": "Проведите, чтобы подтвердить",
