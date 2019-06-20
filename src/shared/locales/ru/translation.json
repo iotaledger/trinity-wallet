@@ -481,10 +481,10 @@
         "pleaseWait": "Пожалуйста, подождите, Тринити содействует активации другого пакета.",
         "typeHelp": "Введите !help для отображения доступных команд",
         "searchHelpText": "Поиск по хэшу пакета либо содержанию сообщения",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpValue": "Найти транзакции по точной величине iota",
+        "searchHelpUnits": "Найти транзакции по величине и мере единиц iota",
+        "searchHelpMore": "Найти транзакции со значением превосходящим X",
+        "searchHelpLess": "Найти транзакции со значением превосходящим X"
     },
     "accountManagement": {
         "viewSeed": "Показать ключ",
