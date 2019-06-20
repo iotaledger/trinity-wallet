@@ -316,7 +316,7 @@
         "generateAnAddress": "تولید آدرس",
         "generateAnAddressTitle": "تولید یک آدرس",
         "generateAnAddressExplanation": "لطفا پیش از استفاده از این عمل یک آدرس تولید کنید.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "هربار که می خواهید IOTA دریافت کنید یک آدرس دریافت جدید بسازید"
     },
     "saveYourSeed": {
         "saveYourSeed": "از سید خود پشتیبان بگیرید",
@@ -403,7 +403,7 @@
         "changePassword": "تغییر گذرواژه",
         "general": "تنظیمات عمومی",
         "advanced": "تنظیمات پیشرفته",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "تنظیمات نود",
         "account": "تنظیمات حساب",
         "logout": "خروج",
         "reset": "بازنشانی کیف پول",
@@ -465,7 +465,7 @@
     "history": {
         "bundleHashCopied": "بسته نرم افزاری هش کپی شد",
         "noTransactionsFound": "هیچ تراکنشی یافت نشد",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "تاریخچه تراکنش شما خالی است",
         "hideZeroBalance": "پنهان کردن موجودی صفر",
         "bundleHashCopiedExplanation": "هش بسته نرم افزاری به کلیپ بورد کپی شد.",
         "addressCopied": "آدرس کپی شد",
@@ -479,12 +479,12 @@
         "yesterday": "دیروز",
         "promotingAnotherBundle": "در حال ارتقای یک بسته تراکنش دیگر",
         "pleaseWait": "لطفا صبر کنید، Trinity در حال ارتقای یک بسته تراکنش دیگر است.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "typeHelp": "بنویسید !کمک برای دستورات موجود",
+        "searchHelpText": "جستجو بر اساس هش نرم افزار یا موضوع پیام",
+        "searchHelpValue": "پیدا کردن تراکنش ها بامیزان دقیق iota",
+        "searchHelpUnits": "پیدا کردن تراکنش ها با ارزش iota و واحدش",
+        "searchHelpMore": "پیدا کردن تراکنش ها با یک ارزش بیشتر از X",
+        "searchHelpLess": "پیدا کردن تراکنش ها با یک ارزش کمتر از X"
     },
     "accountManagement": {
         "viewSeed": "مشاهده سید",
@@ -495,8 +495,8 @@
         "tools": "ابزارها"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
+        "automaticNodeManagement": "مدیریت اتوماتیک نود",
+        "addCustomNodes": "اضافه کردن نود سفارشی",
         "autoNodeList": "Use remote node list",
         "nodeAutoswitching": "Primary node autoswitching",
         "primaryNode": "Primary node",
