@@ -325,15 +325,7 @@ export const fetchNodeList = () => {
             .then((remoteNodes) => {
                 // If there is a successful response, keep a union of (new nodes returned from the endpoint, default hardcoded nodes)
                 if (remoteNodes.length) {
-                    nodes = unionBy(
-                        nodes,
-                        map(remoteNodes, (node) => ({
-                            url: node.node,
-                            pow: node.pow,
-                            token: '',
-                        })),
-                        'url',
-                    );
+                    nodes = unionBy(nodes, remoteNodes, 'url');
                 } else {
                     // Otherwise, fallback to existing nodes
                     nodes = getNodesFromState(getState());
