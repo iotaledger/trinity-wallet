@@ -299,7 +299,7 @@
     "printBlankTemplate": {
         "printTemplateQuestion": "Хотите распечатать пустой шаблон?",
         "printTemplateInfo": "Вы можете использовать распечатанный шаблон в качестве бланка для ручной записи ключа.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "printTemplateWarning": "Убедитесь что вы храните Ваш ключ в безопасном месте. Обеспечивайте секретность ключа.",
         "print": "Да, печатать"
     },
     "receive": {
@@ -309,12 +309,12 @@
         "copyAddress": "Скопировать адрес",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Создать адрес",
         "noAddresses": "НЕТ АДРЕСОВ",
         "spent": "Использованный адрес",
         "tag": "Метка",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddress": "Создать адрес",
+        "generateAnAddressTitle": "Создать адрес",
         "generateAnAddressExplanation": "Please generate an address before using this function.",
         "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
