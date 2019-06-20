@@ -298,7 +298,7 @@
     },
     "printBlankTemplate": {
         "printTemplateQuestion": "Хотите распечатать пустой шаблон?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
+        "printTemplateInfo": "Вы можете использовать распечатанный шаблон в качестве бланка для ручной записи ключа.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
         "print": "Да, печатать"
     },
