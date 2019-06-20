@@ -971,7 +971,7 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, quoru
                 // If any address (input, remainder, receive) is spent, error out
                 .then(({ spent }) => {
                     if (size(spent)) {
-                        throw new Error(`${Errors.ALREADY_SPENT_FROM_ADDRESSES}:${join(spent, ',')}`);
+                        throw new Error(`${Errors.ALREADY_SPENT_FROM_ADDRESSES.slice(0, -1)}: ${join(spent, ',')}`);
                     }
 
                     // If all addresses are still unspent, retry

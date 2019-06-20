@@ -40,14 +40,14 @@ describe('libs: iota/inputs', () => {
         });
 
         describe('when has insufficient balance on inputs', () => {
-            it('should throw an error with message "Insufficient balance."', () => {
-                expect(prepareInputs.bind(null, addressData, 10000)).to.throw('Insufficient balance.');
+            it('should throw an error with message "Insufficient balance to send a transaction with the specified amount."', () => {
+                expect(prepareInputs.bind(null, addressData, 10000)).to.throw('Insufficient balance to send a transaction with the specified amount.');
             });
         });
 
         describe('when provided threshold is zero', () => {
-            it('should throw an error with message "Inputs threshold cannot be zero."', () => {
-                expect(prepareInputs.bind(null, addressData, 0)).to.throw('Inputs threshold cannot be zero.');
+            it('should throw an error with message "Limit for input addresses cannot be zero."', () => {
+                expect(prepareInputs.bind(null, addressData, 0)).to.throw('Limit for input addresses cannot be zero.');
             });
         });
 
@@ -68,7 +68,7 @@ describe('libs: iota/inputs', () => {
                     expect(result.inputs.length <= limit).to.equal(true);
                 } catch (e) {
                     // If inputs cannot be selected within a specified limit, test the error message
-                    expect(e.message).to.equal('Cannot find inputs with provided limit.');
+                    expect(e.message).to.equal('Cannot find input addresses with provided limit.');
                 }
             });
 
@@ -136,9 +136,9 @@ describe('libs: iota/inputs', () => {
 
     describe('#getInputs', () => {
         describe('when has insufficient balance Sum(balances) < threshold', () => {
-            it('should throw with an error with message "Insufficient balance."', () => {
+            it('should throw with an error with message "Insufficient balance to send a transaction with the specified amount."', () => {
                 return getInputs()(mockAddressData, mockTransactions, totalBalanceOfMockAddressData + 10).catch(
-                    (error) => expect(error.message).to.equal('Insufficient balance.'),
+                    (error) => expect(error.message).to.equal('Insufficient balance to send a transaction with the specified amount.'),
                 );
             });
         });
@@ -239,7 +239,7 @@ describe('libs: iota/inputs', () => {
             });
 
             describe('when does not have enough balance after filtering addresses in address data with pending incoming transactions', () => {
-                it('should throw with an error with message "Incoming transfers to all selected inputs"', () => {
+                it('should throw with an error with message "Incoming transfers to all selected input addresses."', () => {
                     const threshold = 300;
                     const addressesWithPendingIncomingTransactions = [
                         // See shared/__tests__/__samples/transactions -> unconfirmedValueTransactions
@@ -260,7 +260,7 @@ describe('libs: iota/inputs', () => {
                         .then(() => {
                             throw new Error();
                         })
-                        .catch((error) => expect(error.message).to.equal('Incoming transfers to all selected inputs'));
+                        .catch((error) => expect(error.message).to.equal('Incoming transfers to all selected input addresses.'));
                 });
             });
         });
@@ -356,7 +356,7 @@ describe('libs: iota/inputs', () => {
             });
 
             describe('when does not have enough balance after filtering addresses in address data with pending outgoing transactions', () => {
-                it('should throw with an error with message "Input addresses already used in a pending transfer."', () => {
+                it('should throw with an error with message "The input addresses have pending outgoing transfers. Confirm them before trying again."', () => {
                     const threshold = 300;
                     const addressesWithPendingOutgoingTransactions = [
                         // See shared/__tests__/__samples/transactions -> unconfirmedValueTransactions
@@ -382,7 +382,7 @@ describe('libs: iota/inputs', () => {
                             throw new Error();
                         })
                         .catch((error) =>
-                            expect(error.message).to.equal('Input addresses already used in a pending transfer.'),
+                            expect(error.message).to.equal('The input addresses have pending outgoing transfers. Confirm them before trying again.'),
                         );
                 });
             });
@@ -492,14 +492,14 @@ describe('libs: iota/inputs', () => {
             });
 
             describe('when does not have enough balance to spend after filtering spent addresses in address data', () => {
-                it('should throw with an error with message "WARNING FUNDS AT SPENT ADDRESSES."', () => {
+                it('should throw with an error with message "Warning. Funds detected on a spent address."', () => {
                     const threshold = 170;
 
                     return getInputs()(mockAddressData, mockTransactions, threshold)
                         .then(() => {
                             throw new Error();
                         })
-                        .catch((error) => expect(error.message).to.equal('WARNING FUNDS AT SPENT ADDRESSES.'));
+                        .catch((error) => expect(error.message).to.equal('Warning. Funds detected on a spent address.'));
                 });
             });
         });
