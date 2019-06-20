@@ -61,7 +61,7 @@ export class AboutComponent extends React.PureComponent {
                         <Scrollbar>
                             <h5>0.6.2</h5>
                             <ul>
-                                <li>Fix: Migration not successful when migrating from 0.4x and below to latest</li>
+                                <li>Fix: Migration not successful when migrating from 0.4.x and below to latest</li>
                                 <li>Fix: Incorrect already spent from address errors on transaction retry</li>
                                 <li>Fix: Incorrect transaction failure alert when successfully broadcast</li>
                                 <li>Fix: Quorum being conducted on transaction account syncs when explicitly turned off</li>
