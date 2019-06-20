@@ -53,11 +53,11 @@
         "proceed": "Proceed",
         "qr": "QR",
         "enterSeed": "Please enter your seed.",
-        "yes": "Yes",
+        "yes": "Sí",
         "no": "No",
-        "okay": "Okay",
-        "skip": "Skip",
-        "password": "Password",
+        "okay": "D'acord",
+        "skip": "Omet",
+        "password": "Contrasenya",
         "unrecognisedPassword": "Unrecognised password",
         "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
         "unrecognisedAccount": "Unrecognised account",
@@ -249,7 +249,7 @@
         "settings": "SETTINGS"
     },
     "languageSetup": {
-        "language": "Language",
+        "language": "Llengua",
         "letsGetStarted": "Let's get started"
     },
     "login": {
@@ -397,7 +397,7 @@
         "currency": "Currency",
         "cannotChangeNode": "Cannot change node",
         "cannotChangeNodeWhileSending": "Cannot change node while sending.",
-        "language": "Language",
+        "language": "Llengua",
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
         "changePassword": "Change password",
