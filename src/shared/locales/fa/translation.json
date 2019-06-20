@@ -646,7 +646,7 @@
         "systemCancelledAuth": "احراز هویت توسط دستگاه شما لغو شد",
         "userCancelledAuth": "درخواست احراز هویت لغو شد",
         "passwordFallback": "به احراز هویت توسط رمز عبور برگردید",
-        "noPassword": "Password is not set on device"
+        "noPassword": "رمز عبور روی دستگاه تنظیم نشده"
     },
     "transferConfirmation": {
         "youAreAbout": "شما در حال ارسال به آدرس {{contents}} هستید",
