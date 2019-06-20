@@ -209,7 +209,7 @@
         "reasonPattern": "Короткий ключ легко угадать.",
         "reasonNames": "Распространенные имена и фамилии легко угадать.",
         "reasonRepeats": "Повторяет вроде «aaa» легко угадать.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
+        "reasonRepeats2": "Повторения символов ‘abcabcabc’ так же легки на подбор как и повторение символов ‘abc’.",
         "reasonSequence": "Последовательности вроде \"abc\" или \"54321\" легко угадать.",
         "reasonYears": "Последние годы легко угадать.",
         "reasonDates": "Даты часто легко угадать.",
@@ -225,7 +225,7 @@
         "passwordTooShortExplanation": "Ваш пароль должен быть длиной как минимум {{minLength}} символов. Текущая длина {{currentLength}} символов. Пожалуйста, попробуйте еще раз.",
         "passwordMismatch": "Пароли не совпадают",
         "passwordMismatchExplanation": "Введенные пароли не совпадают. Пожалуйста, попробуйте еще раз.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Это пароль для вашего основного кошелька. Вы будете использовать его для входа в систему.",
         "retypePassword": "Введите пароль еще раз"
     },
     "copyToClipboard": {
@@ -259,7 +259,7 @@
         "login": "Войти",
         "setNode": "Выбрать узел",
         "whyBiometricDisabled": "Почему биометрическая аутентификация отключена?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart1": "При первой загрузке приложения биометрическая аутентификация будет отключена в целях вашей безопасности.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
