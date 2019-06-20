@@ -60,4 +60,5 @@ export default {
     LEDGER_INVALID_INDEX: 'Incorrect Ledger device or changed mnemonic',
     REQUEST_TIMED_OUT: 'Request timed out',
     FOUND_INVALID_SEED_IN_KEYCHAIN: 'Found invalid seed in keychain',
+    MISSING_FROM_KEYCHAIN: (alias) => `Missing ${alias} from keychain.`,
 };
