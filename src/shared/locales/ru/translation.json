@@ -316,7 +316,7 @@
         "generateAnAddress": "Создать адрес",
         "generateAnAddressTitle": "Создавать адрес",
         "generateAnAddressExplanation": "Пожалуйста создавайте адрес перед использованием этой функции.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "Каждый раз при желании получить IOTA Вам требуется создавать новый адрес"
     },
     "saveYourSeed": {
         "saveYourSeed": "Создать резервную копию Вашего ключа",
@@ -330,7 +330,7 @@
         "letsWriteDownYourSeed": "Давайте напишите ваш seed",
         "youCanHighlightCharacters": "Одновременно можно выделить 9 символов",
         "printBlankWallet": "Распечатать чистый кошелёк",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Что такое Контрольная Сумма?",
         "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
         "iHavesavedMySeed": "Я сохранил свой ключ",
         "checksumExplanation": "Каждый раз, когда Вы добавляете ключ к Вашему кошельку, Вы должны убедиться, что контрольная сумма, сгенерированная кошельком, соответствует той, которую Вы записали.",
