@@ -210,7 +210,7 @@ export const syncAccountAfterSpending = (settings, withQuorum) => (seedStore, ne
     return (
         syncAddresses(settings, withQuorum)(seedStore, updatedAddressData, updatedTransactions)
             // Map latest address data (spend statuses & balances) to addresses
-            .then((latestAddressData) => mapLatestAddressData(settings)(latestAddressData, updatedTransactions))
+            .then((latestAddressData) => mapLatestAddressData(settings, withQuorum)(latestAddressData, updatedTransactions))
             .then((latestAddressData) => ({ addressData: latestAddressData, transactions: updatedTransactions }))
     );
 };
