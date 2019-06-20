@@ -314,8 +314,8 @@
         "spent": "Использованный адрес",
         "tag": "Метка",
         "generateAnAddress": "Создать адрес",
-        "generateAnAddressTitle": "Создать адрес",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAnAddressTitle": "Создавать адрес",
+        "generateAnAddressExplanation": "Пожалуйста создавайте адрес перед использованием этой функции.",
         "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
