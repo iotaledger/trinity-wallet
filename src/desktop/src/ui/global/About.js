@@ -66,7 +66,6 @@ export class AboutComponent extends React.PureComponent {
                                 <li>Fix: Incorrect transaction failure alert when successfully broadcast</li>
                                 <li>Fix: Quorum being conducted on transaction account syncs when explicitly turned off</li>
                                 <li>Fix: Error-related crashes</li>
-                                <li>Fix: Handle exception if password salt is missing from keychain</li>
                                 <li>Update: Add remote node list endpoint back-ups</li>
                                 <li>Update: Add more verbose error log messages</li>
                                 <li>Update: New translations</li>
