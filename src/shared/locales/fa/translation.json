@@ -536,7 +536,7 @@
         "autoPromotion": "ارتقا خودکار",
         "autoPromotionExplanation": "ارتقا خودکار کمک می کند تا معاملات خود را در Tangle تایید کنید. اگر شما دچار تردید در دریافت معاملات خود هستید این تنظیم را فعال کنید.",
         "autoPromotionPoW": "ارتقا خودکار تنها در Node هایی است که از اثبات کار از راه دور پشتیبانی می کند.",
-        "deepLinking": "اتصال عمیق",
+        "deepLinking": "لینک عمیق",
         "stateExport": "ایجاد فایل گزارش کلی"
     },
     "advancedThemeCustomisation": {
@@ -749,12 +749,12 @@
     "deepLink": {
         "autofill": "موفقیت در تکمبل خودکار",
         "autofillExplanation": "داده های تراکنش خودکار از لینک پر شده است.",
-        "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
-        "deepLinkingUpdated": "Deep linking settings",
-        "deepLinkingEnabled": "You have enabled deep linking.",
-        "deepLinkingDisabled": "You have disabled deep linking.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingOverview": "لینک های عمیق، لینک های قابل کلیک (...//:iota) هستند که به صورت خودکار اطلاعات تراکنش در ترینیتی را پر می کنند.",
+        "deepLinkingWarning": "حواستان به کلاه برداری ها باشد. اطمینان حاصل کنید که لینکی که بر روی آن کلیک می کنید به برنامه ی اصلی ترینیتی انتقال دهد.",
+        "deepLinkingUpdated": "تنظیمات لینک عمیق",
+        "deepLinkingEnabled": "شما لینک عمیق را فعال کردید.",
+        "deepLinkingDisabled": "شما لینک عمیق را غیر فعال کردید.",
+        "deepLinkingInfoTitle": "لینک عمیق فعال نیست",
         "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
