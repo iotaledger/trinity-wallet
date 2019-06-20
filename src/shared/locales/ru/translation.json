@@ -260,7 +260,7 @@
         "setNode": "Выбрать узел",
         "whyBiometricDisabled": "Почему биометрическая аутентификация отключена?",
         "whyBiometricDisabledExplanationPart1": "При первой загрузке приложения биометрическая аутентификация будет отключена в целях вашей безопасности.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart2": "В случае продолжительной неактивности вы будете выведены из системы автоматически. Вы сможете вернутся в систему с помощью биометрической аутентификации."
     },
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
