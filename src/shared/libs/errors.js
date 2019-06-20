@@ -1,9 +1,11 @@
 export default {
-    CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE: 'Cannot peform a snapshot transition if all addresses have zero balance.',
+    CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE:
+        'Cannot peform a snapshot transition if all addresses have zero balance.',
     ADDRESS_ALREADY_ATTACHED: 'Address already attached.',
     KEY_REUSE: 'Key reuse detected. One or more of the input addresses have been spent from.',
     NOT_ENOUGH_BALANCE: 'Insufficient balance to send the transfer.',
-    ADDRESS_HAS_PENDING_TRANSFERS: 'The input addresses have pending outgoing transfers. Confirm them before trying again.',
+    ADDRESS_HAS_PENDING_TRANSFERS:
+        'The input addresses have pending outgoing transfers. Confirm them before trying again.',
     FUNDS_AT_SPENT_ADDRESSES: 'Warning. Funds detected on a spent address.',
     CANNOT_SEND_TO_OWN_ADDRESS: 'Cannot send to an address used as an input in the bundle.',
     POW_FUNCTION_UNDEFINED: 'Proof of work function is undefined.',
@@ -15,7 +17,8 @@ export default {
     TRANSACTION_ALREADY_CONFIRMED: 'The transaction you are retrying has already confirmed.',
     INCOMING_TRANSFERS: 'Incoming transfers to all selected input addresses.',
     NODE_NOT_SYNCED: 'The selected node is out of sync. Its view of the Tangle may be innacurate.',
-    NODE_NOT_SYNCED_BY_TIMESTAMP: 'The selected node is out of sync by timestamp. Its view of the Tangle may be innacurate.',
+    NODE_NOT_SYNCED_BY_TIMESTAMP:
+        'The selected node is out of sync by timestamp. Its view of the Tangle may be innacurate.',
     UNSUPPORTED_NODE: 'The currently selected node uses an unsupported IRI version.',
     INVALID_BUNDLE: 'The bundle is invalid.',
     INVALID_BUNDLE_CONSTRUCTED_WITH_REMOTE_POW: 'Invalid bundle constructed with remote proof-of-work.',
@@ -52,7 +55,8 @@ export default {
     INSUFFICIENT_BALANCE: 'Insufficient balance to send a transaction with the specified amount.',
     INVALID_MAX_INPUTS_PROVIDED: 'Invalid max inputs provided.',
     NO_STORED_DATA_FOUND: 'No stored data found during migration.',
-    MAX_INPUTS_EXCEEDED: (count, max) => `Ledger does not support transactions with ${count} input addresses. The limit is ${max}.`,
+    MAX_INPUTS_EXCEEDED: (count, max) =>
+        `Ledger does not support transactions with ${count} input addresses. The limit is ${max}.`,
     LEDGER_ZERO_VALUE: 'Cannot send 0 value transfers with a Ledger device.',
     LEDGER_DISCONNECTED: 'Ledger device disconnected.',
     LEDGER_CANCELLED: 'Transaction cancelled on Ledger device.',
@@ -60,4 +64,5 @@ export default {
     LEDGER_INVALID_INDEX: 'Incorrect Ledger device connected or the Ledger mnemonic has changed.',
     REQUEST_TIMED_OUT: 'The node took too long to respond.',
     FOUND_INVALID_SEED_IN_KEYCHAIN: 'Found an invalid seed in the keychain.',
+    MISSING_FROM_KEYCHAIN: (alias) => `Missing ${alias} from keychain.`,
 };
