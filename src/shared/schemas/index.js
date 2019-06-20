@@ -11,6 +11,7 @@ import v4Schema, { migration as v4Migration } from './v4';
 import v5Schema, { migration as v5Migration } from './v5';
 import { __MOBILE__, __TEST__, __DEV__ } from '../config';
 import { initialState as reduxSettingsState } from '../reducers/settings';
+import { initialState as reduxAccountsState } from '../reducers/accounts';
 
 const STORAGE_PATH =
     __MOBILE__ || __TEST__
@@ -46,10 +47,14 @@ export const updateSchema = (input) => {
     const latestReduxSettingsKeys = Object.keys(reduxSettingsState);
     const oldReduxSettingsKeys = Object.keys(state.settings);
 
-    // Find a difference of the properties between of old settings and new settings
-    const newKeys = xor(latestReduxSettingsKeys, oldReduxSettingsKeys);
+    const latestReduxAccountsKeys = Object.keys(reduxAccountsState);
+    const oldReduxAccountsKeys = Object.keys(state.accounts);
 
-    newKeys.forEach((key) => {
+    // Find a difference of the properties between of old state and new state
+    const newSettingsKeys = xor(latestReduxSettingsKeys, oldReduxSettingsKeys);
+    const newAccountsKeys = xor(latestReduxAccountsKeys, oldReduxAccountsKeys);
+
+    newSettingsKeys.forEach((key) => {
         // If property is new, then assign it to the state.settings object
         if (includes(latestReduxSettingsKeys, key) && !includes(oldReduxSettingsKeys, key)) {
             state.settings[key] = reduxSettingsState[key];
@@ -58,6 +63,18 @@ export const updateSchema = (input) => {
         // If the property is old (and not present in the latest state.settings object), remove it
         if (includes(oldReduxSettingsKeys, key) && !includes(latestReduxSettingsKeys, key)) {
             unset(state.settings, key);
+        }
+    });
+
+    newAccountsKeys.forEach((key) => {
+        // If property is new, then assign it to the state.accounts object
+        if (includes(latestReduxAccountsKeys, key) && !includes(oldReduxAccountsKeys, key)) {
+            state.accounts[key] = reduxAccountsState[key];
+        }
+
+        // If the property is old (and not present in the latest state.accounts object), remove it
+        if (includes(oldReduxAccountsKeys, key) && !includes(latestReduxAccountsKeys, key)) {
+            unset(state.accounts, key);
         }
     });
 
