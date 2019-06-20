@@ -163,7 +163,7 @@
     "i18next": "17.0.3",
     "iota.lib.js": "0.5.2",
     "kdbxweb": "1.2.7",
-    "keytar": "4.9.0",
+    "keytar": "4.10.0",
     "machine-uuid-sync": "https://github.com/rajivshah3/machine-uuid-sync#a5ffa8e",
     "perfect-scrollbar": "1.4.0",
     "qr.js": "0.0.0",
