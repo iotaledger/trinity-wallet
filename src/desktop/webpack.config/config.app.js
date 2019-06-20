@@ -45,10 +45,11 @@ const config = {
                     {
                         loader: 'css-loader',
                         options: {
-                            camelCase: true,
-                            modules: true,
+                            localsConvention: 'camelCase',
+                            modules: {
+                                localIdentName: '[name]__[local]',
+                            },
                             importLoaders: 1,
-                            localIdentName: '[name]__[local]',
                         },
                     },
                     {
@@ -88,7 +89,7 @@ const config = {
             title: 'Trinity',
         }),
         new webpack.DefinePlugin({
-            'process.env.BUGSNAG_API_KEY': JSON.stringify(process.env.BUGSNAG_API_KEY || ''),
+            'process.env.BUGSNAG_KEY': JSON.stringify(process.env.BUGSNAG_KEY || ''),
         }),
     ],
 };

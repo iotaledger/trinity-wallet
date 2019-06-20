@@ -22,9 +22,9 @@ import {
     attachToTangleAsync,
     storeAndBroadcastAsync,
 } from '../libs/iota/extendedApi';
-import { getSelectedNodeFromState, getNodesFromState, getRemotePoWFromState } from '../selectors/global';
+import { getRemotePoWFromState, nodesConfigurationFactory } from '../selectors/global';
 import { selectedAccountStateFactory } from '../selectors/accounts';
-import { withRetriesOnDifferentNodes, fetchRemoteNodes, getRandomNodes, isLastTritZero } from '../libs/iota/utils';
+import { isLastTritZero } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
@@ -34,6 +34,8 @@ import {
     constructBundlesFromTransactions,
     isFundedBundle,
     isBundle,
+    isFatalTransactionError,
+    isAboveMaxDepth,
 } from '../libs/iota/transfers';
 import {
     syncAccountAfterReattachment,
@@ -41,6 +43,7 @@ import {
     syncAccountAfterSpending,
     syncAccountOnValueTransactionFailure,
     syncAccountOnSuccessfulRetryAttempt,
+    syncAccountOnUnsuccessfulAutoRetryAttempt,
 } from '../libs/iota/accounts';
 import {
     updateAccountAfterReattachment,
@@ -63,20 +66,9 @@ import {
 } from './alerts';
 import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
-import { DEFAULT_RETRIES } from '../config';
 import { Account } from '../storage';
-
-export const ActionTypes = {
-    PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
-    PROMOTE_TRANSACTION_SUCCESS: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS',
-    PROMOTE_TRANSACTION_ERROR: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR',
-    SEND_TRANSFER_REQUEST: 'IOTA/TRANSFERS/SEND_TRANSFER_REQUEST',
-    SEND_TRANSFER_SUCCESS: 'IOTA/TRANSFERS/SEND_TRANSFER_SUCCESS',
-    SEND_TRANSFER_ERROR: 'IOTA/TRANSFERS/SEND_TRANSFER_ERROR',
-    RETRY_FAILED_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_REQUEST',
-    RETRY_FAILED_TRANSACTION_SUCCESS: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_SUCCESS',
-    RETRY_FAILED_TRANSACTION_ERROR: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_ERROR',
-};
+import { TransfersActionTypes } from '../types';
+import NodesManager from '../libs/iota/NodesManager';
 
 /**
  * Dispatch when a transaction is about to be manually promoted
@@ -87,7 +79,7 @@ export const ActionTypes = {
  * @returns {{type: {string}, payload: {string} }}
  */
 const promoteTransactionRequest = (payload) => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
+    type: TransfersActionTypes.PROMOTE_TRANSACTION_REQUEST,
     payload,
 });
 
@@ -99,7 +91,7 @@ const promoteTransactionRequest = (payload) => ({
  * @returns {{type: {string} }}
  */
 const promoteTransactionSuccess = () => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS,
+    type: TransfersActionTypes.PROMOTE_TRANSACTION_SUCCESS,
 });
 
 /**
@@ -110,7 +102,7 @@ const promoteTransactionSuccess = () => ({
  * @returns {{type: {string} }}
  */
 const promoteTransactionError = () => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_ERROR,
+    type: TransfersActionTypes.PROMOTE_TRANSACTION_ERROR,
 });
 
 /**
@@ -121,7 +113,7 @@ const promoteTransactionError = () => ({
  * @returns {{type: {string} }}
  */
 export const sendTransferRequest = () => ({
-    type: ActionTypes.SEND_TRANSFER_REQUEST,
+    type: TransfersActionTypes.SEND_TRANSFER_REQUEST,
 });
 
 /**
@@ -132,7 +124,7 @@ export const sendTransferRequest = () => ({
  * @returns {{type: {string} }}
  */
 export const sendTransferSuccess = () => ({
-    type: ActionTypes.SEND_TRANSFER_SUCCESS,
+    type: TransfersActionTypes.SEND_TRANSFER_SUCCESS,
 });
 
 /**
@@ -143,7 +135,7 @@ export const sendTransferSuccess = () => ({
  * @returns {{type: {string} }}
  */
 export const sendTransferError = () => ({
-    type: ActionTypes.SEND_TRANSFER_ERROR,
+    type: TransfersActionTypes.SEND_TRANSFER_ERROR,
 });
 
 /**
@@ -154,7 +146,7 @@ export const sendTransferError = () => ({
  * @returns {{type: {string} }}
  */
 export const retryFailedTransactionRequest = () => ({
-    type: ActionTypes.RETRY_FAILED_TRANSACTION_REQUEST,
+    type: TransfersActionTypes.RETRY_FAILED_TRANSACTION_REQUEST,
 });
 
 /**
@@ -166,7 +158,7 @@ export const retryFailedTransactionRequest = () => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const retryFailedTransactionSuccess = (payload) => ({
-    type: ActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS,
+    type: TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS,
     payload,
 });
 
@@ -175,10 +167,11 @@ export const retryFailedTransactionSuccess = (payload) => ({
  *
  * @method retryFailedTransactionSuccess
  *
- * @returns {{type: {string} }}
+ * @returns {{type: {string}, payload ?: {object} }}
  */
-export const retryFailedTransactionError = () => ({
-    type: ActionTypes.RETRY_FAILED_TRANSACTION_ERROR,
+export const retryFailedTransactionError = (payload) => ({
+    type: TransfersActionTypes.RETRY_FAILED_TRANSACTION_ERROR,
+    payload,
 });
 
 /**
@@ -207,7 +200,7 @@ export const completeTransfer = () => {
  *
  * @returns {function} dispatch
  **/
-export const promoteTransaction = (bundleHash, accountName, seedStore, withQuorum = true) => (dispatch, getState) => {
+export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = true) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
     const remotePoW = getRemotePoWFromState(getState());
@@ -226,45 +219,56 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, withQuoru
     const getTailTransactionsForThisBundleHash = (transactions) =>
         filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
 
-    return syncAccount(undefined, withQuorum)(accountState)
-        .then((newAccountState) => {
-            accountState = newAccountState;
+    const executePrePromotionChecks = (settings, withQuorum) => () => {
+        return syncAccount(settings, withQuorum)(accountState)
+            .then((newAccountState) => {
+                accountState = newAccountState;
 
-            Account.update(accountName, accountState);
+                Account.update(accountName, accountState);
 
-            dispatch(syncAccountBeforeManualPromotion(accountState));
+                dispatch(syncAccountBeforeManualPromotion(accountState));
 
-            const transactionsForThisBundleHash = filter(
-                accountState.transactions,
-                (transaction) => transaction.bundle === bundleHash,
-            );
+                const transactionsForThisBundleHash = filter(
+                    accountState.transactions,
+                    (transaction) => transaction.bundle === bundleHash,
+                );
 
-            if (some(transactionsForThisBundleHash, (transaction) => transaction.persistence === true)) {
-                throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
-            }
+                if (some(transactionsForThisBundleHash, (transaction) => transaction.persistence === true)) {
+                    throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
+                }
 
-            const bundles = constructBundlesFromTransactions(
-                filter(accountState.transactions, (transaction) => transaction.bundle === bundleHash),
-            );
+                const bundles = constructBundlesFromTransactions(
+                    filter(accountState.transactions, (transaction) => transaction.bundle === bundleHash),
+                );
 
-            if (isEmpty(filter(bundles, isBundle))) {
-                throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
-            }
+                if (isEmpty(filter(bundles, isBundle))) {
+                    throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
+                }
 
-            return isFundedBundle(undefined, withQuorum)(head(bundles));
-        })
-        .then((isFunded) => {
-            if (!isFunded) {
-                throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
-            }
+                return isFundedBundle(settings, withQuorum)(head(bundles));
+            })
+            .then((isFunded) => {
+                if (!isFunded) {
+                    throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
+                }
 
-            return findPromotableTail()(getTailTransactionsForThisBundleHash(accountState.transactions), 0);
-        })
-        .then((consistentTail) => {
+                return findPromotableTail()(getTailTransactionsForThisBundleHash(accountState.transactions), 0);
+            });
+    };
+
+    // Find nodes with proof of work enabled
+    return new NodesManager(
+        nodesConfigurationFactory({
+            quorum,
+            useOnlyPowNodes: true,
+        })(getState()),
+    )
+        .withRetries()(executePrePromotionChecks)()
+        .then((result) => {
             return dispatch(
                 forceTransactionPromotion(
                     accountName,
-                    consistentTail,
+                    result,
                     getTailTransactionsForThisBundleHash(accountState.transactions),
                     true,
                     // If proof of work configuration is set to remote,
@@ -356,12 +360,12 @@ export const forceTransactionPromotion = (
     let replayCount = 0;
     let promotionAttempt = 0;
 
-    const promote = (tailTransaction) => {
-        const { hash } = tailTransaction;
+    const promote = (settings) => (tailTransaction) => {
+        const { hash, attachmentTimestamp } = tailTransaction;
 
         promotionAttempt += 1;
 
-        return promoteTransactionAsync(null, seedStore)(hash).catch((error) => {
+        return promoteTransactionAsync(settings, seedStore)(hash).catch((error) => {
             const isTransactionInconsistent = includes(error.message, Errors.TRANSACTION_IS_INCONSISTENT);
 
             if (
@@ -370,10 +374,12 @@ export const forceTransactionPromotion = (
                 promotionAttempt < maxPromotionAttempts
             ) {
                 // Retry promotion on same reference (hash)
-                return promote(tailTransaction);
+                return promote(settings)(tailTransaction);
             } else if (
                 isTransactionInconsistent &&
                 promotionAttempt === maxPromotionAttempts &&
+                // Do not allow reattachments if transaction is still above max depth
+                !isAboveMaxDepth(attachmentTimestamp) &&
                 // If number of reattachments haven't exceeded max reattachments
                 replayCount < maxReplays
             ) {
@@ -381,7 +387,7 @@ export const forceTransactionPromotion = (
                 promotionAttempt = 0;
 
                 // Reattach and try to promote with a newly reattached reference (hash)
-                return reattachAndPromote();
+                return reattachAndPromote(settings)();
             }
 
             throw error;
@@ -389,14 +395,14 @@ export const forceTransactionPromotion = (
     };
 
     // Reattach a transaction and promote newly reattached transaction
-    const reattachAndPromote = () => {
+    const reattachAndPromote = (settings) => () => {
         // Increment the reattachment's count
         replayCount += 1;
         // Grab first tail transaction hash
         const tailTransaction = head(tailTransactionHashes);
         const hash = tailTransaction.hash;
 
-        return replayBundleAsync(null, seedStore)(hash).then((reattachment) => {
+        return replayBundleAsync(settings, seedStore)(hash).then((reattachment) => {
             if (shouldGenerateAlert) {
                 dispatch(
                     generateAlert(
@@ -418,15 +424,29 @@ export const forceTransactionPromotion = (
             dispatch(updateAccountAfterReattachment(newState));
             const tailTransaction = find(reattachment, { currentIndex: 0 });
 
-            return promote(tailTransaction);
+            return promote(settings)(tailTransaction);
         });
     };
 
+    const manager = new NodesManager(
+        nodesConfigurationFactory({
+            useOnlyPowNodes: true,
+        })(getState()),
+    );
+
     if (has(consistentTail, 'hash')) {
-        return promote(consistentTail);
+        return manager
+            .withRetries()(promote)(consistentTail)
+            .then((result) => {
+                return result;
+            });
     }
 
-    return reattachAndPromote();
+    return manager
+        .withRetries()(reattachAndPromote)()
+        .then((result) => {
+            return result;
+        });
 };
 
 /**
@@ -437,11 +457,11 @@ export const forceTransactionPromotion = (
  * @param {number} value
  * @param {string} message
  * @param {string} accountName
- * @param {boolean} [withQuorum]
+ * @param {boolean} [quorum]
  *
  * @returns {function} dispatch
  */
-export const makeTransaction = (seedStore, receiveAddress, value, message, accountName, withQuorum = true) => (
+export const makeTransaction = (seedStore, receiveAddress, value, message, accountName, quorum = true) => (
     dispatch,
     getState,
 ) => {
@@ -461,7 +481,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
     // Reassign with latest state when account is synced
     let accountState = selectedAccountStateFactory(accountName)(getState());
 
-    const withPreTransactionSecurityChecks = () => {
+    const withPreTransactionSecurityChecks = (settings, withQuorum) => () => {
         // Progressbar step => (Validating receive address)
         dispatch(setNextStepAsActive());
 
@@ -478,7 +498,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 maxInputs = maxInputResponse;
 
                 // Make sure that the address a user is about to send to is not already used.
-                return isAnyAddressSpent(undefined, withQuorum)([address]).then((isSpent) => {
+                return isAnyAddressSpent(settings, withQuorum)([address]).then((isSpent) => {
                     if (isSpent) {
                         throw new Error(Errors.KEY_REUSE);
                     }
@@ -486,7 +506,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
-                    return syncAccount(undefined, withQuorum)(accountState, seedStore);
+                    return syncAccount(settings, quorum)(accountState, seedStore);
                 });
             })
             .then((newState) => {
@@ -497,7 +517,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // Progressbar step => (Preparing inputs)
                 dispatch(setNextStepAsActive());
 
-                return getInputs(undefined, withQuorum)(
+                return getInputs(settings, withQuorum)(
                     accountState.addressData,
                     accountState.transactions,
                     value,
@@ -519,7 +539,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
-                return getAddressDataUptoRemainder(undefined, withQuorum)(
+                return getAddressDataUptoRemainder(settings, withQuorum)(
                     accountState.addressData,
                     accountState.transactions,
                     seedStore,
@@ -552,10 +572,13 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
         transactionObjects: [],
     };
 
-    const withInputs = isZeroValue ? () => Promise.resolve(null) : withPreTransactionSecurityChecks;
-
     return (
-        withInputs()
+        (isZeroValue
+            ? Promise.resolve(null)
+            : new NodesManager(nodesConfigurationFactory({ quorum })(getState())).withRetries()(
+                  withPreTransactionSecurityChecks,
+              )()
+        )
             // If we are making a zero value transaction, options would be null
             // Otherwise, it would be a dictionary with inputs and remainder address
             // Forward options to prepareTransfersAsync as is, because it contains a null check
@@ -565,27 +588,33 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // Progressbar step => (Preparing transfers)
                 dispatch(setNextStepAsActive());
 
-                return seedStore.prepareTransfers(transfer, options);
-            })
-            .then((trytes) => {
-                if (!isZeroValue) {
-                    hasSignedInputs = true;
-                }
+                return new NodesManager(nodesConfigurationFactory({ quorum })(getState())).withRetries()(
+                    (settings) => () => {
+                        return seedStore
+                            .prepareTransfers(settings)(transfer, options)
+                            .then((trytes) => {
+                                if (!isZeroValue) {
+                                    hasSignedInputs = true;
+                                }
 
-                cached.trytes = trytes;
+                                cached.trytes = trytes;
 
-                const convertToTransactionObjects = (tryteString) => iota.utils.transactionObject(tryteString);
-                cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
+                                const convertToTransactionObjects = (tryteString) =>
+                                    iota.utils.transactionObject(tryteString);
+                                cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
 
-                if (isBundle(cached.transactionObjects)) {
-                    isValidBundle = true;
-                    // Progressbar step => (Getting transactions to approve)
-                    dispatch(setNextStepAsActive());
+                                if (isBundle(cached.transactionObjects)) {
+                                    isValidBundle = true;
+                                    // Progressbar step => (Getting transactions to approve)
+                                    dispatch(setNextStepAsActive());
 
-                    return getTransactionsToApproveAsync()();
-                }
+                                    return getTransactionsToApproveAsync(settings)();
+                                }
 
-                throw new Error(Errors.INVALID_BUNDLE);
+                                throw new Error(Errors.INVALID_BUNDLE);
+                            });
+                    },
+                )();
             })
             .then(({ trunkTransaction, branchTransaction }) => {
                 const shouldOffloadPow = getRemotePoWFromState(getState());
@@ -629,31 +658,24 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     );
 
                     // Find nodes with proof of work enabled
-                    return fetchRemoteNodes()
-                        .then((remoteNodes) => {
-                            const nodesWithPowEnabled = map(
-                                filter(remoteNodes, (node) => node.pow),
-                                (nodeWithPoWEnabled) => nodeWithPoWEnabled.node,
-                            );
-
-                            return withRetriesOnDifferentNodes(
-                                getRandomNodes(nodesWithPowEnabled, DEFAULT_RETRIES, [
-                                    getSelectedNodeFromState(getState()),
-                                ]),
-                            )((provider) =>
-                                attachToTangleAsync(
-                                    provider,
-                                    extend(
-                                        {
-                                            __proto__: seedStore.__proto__,
-                                        },
-                                        seedStore,
-                                        { offloadPow: true },
-                                    ),
+                    return new NodesManager(
+                        nodesConfigurationFactory({
+                            quorum,
+                            useOnlyPowNodes: true,
+                        })(getState()),
+                    )
+                        .withRetries((settings) =>
+                            attachToTangleAsync(
+                                settings,
+                                extend(
+                                    {
+                                        __proto__: seedStore.__proto__,
+                                    },
+                                    seedStore,
+                                    { offloadPow: true },
                                 ),
-                            )(trunkTransaction, branchTransaction, cached.trytes);
-                        })
-                        .then(({ result }) => result)
+                            ),
+                        )(trunkTransaction, branchTransaction, cached.trytes)
                         .catch(() => {
                             // If outsourced proof of work fails on all nodes, fallback to local proof of work.
                             dispatch(
@@ -682,13 +704,19 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 const addresses = uniq(map(transactionObjects, (transaction) => transaction.address));
 
-                return isAnyAddressSpent(undefined, withQuorum)(addresses).then((isSpent) => {
-                    if (isSpent) {
-                        throw new Error(Errors.KEY_REUSE);
-                    }
+                return new NodesManager(
+                    nodesConfigurationFactory({
+                        quorum,
+                    })(getState()),
+                )
+                    .withRetries()(isAnyAddressSpent)(addresses)
+                    .then((isSpent) => {
+                        if (isSpent) {
+                            throw new Error(Errors.KEY_REUSE);
+                        }
 
-                    return { trytes, transactionObjects };
-                });
+                        return { trytes, transactionObjects };
+                    });
             })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;
@@ -699,14 +727,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 // Make an attempt to broadcast transaction on selected node
                 // If it fails, auto retry broadcast on random nodes
-                const selectedNode = getSelectedNodeFromState(getState());
-                const randomNodes = [
-                    selectedNode,
-                    ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode]),
-                ];
-
-                return withRetriesOnDifferentNodes(
-                    randomNodes,
+                return new NodesManager(nodesConfigurationFactory({ quorum })(getState())).withRetries(
                     // Failure callbacks.
                     // Only pass one, as we just want an alert on first broadcast failure
                     () =>
@@ -722,13 +743,13 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                         ),
                 )(storeAndBroadcastAsync)(cached.trytes);
             })
-            .then(() => {
-                return syncAccountAfterSpending(undefined, withQuorum)(
-                    seedStore,
-                    cached.transactionObjects,
-                    accountState,
-                );
-            })
+            .then(() =>
+                new NodesManager(
+                    nodesConfigurationFactory({
+                        quorum,
+                    })(getState()),
+                ).withRetries()(syncAccountAfterSpending)(seedStore, cached.transactionObjects, accountState),
+            )
             .then((newState) => {
                 // Update account in (Realm) storage
                 Account.update(accountName, newState);
@@ -910,14 +931,12 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
  * @param {string} accountName
  * @param {string} bundleHash
  * @param {object} seedStore
+ * @param {boolean} [isAutoRetrying]
  * @param {boolean} [withQuorum]
  *
  * @returns {function} dispatch
  */
-export const retryFailedTransaction = (accountName, bundleHash, seedStore, withQuorum = true) => (
-    dispatch,
-    getState,
-) => {
+export const retryFailedTransaction = (accountName, bundleHash, seedStore, quorum = true) => (dispatch, getState) => {
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
     const shouldOffloadPow = getRemotePoWFromState(getState());
     const failedTransactionsForThisBundleHash = filter(
@@ -927,66 +946,81 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, withQ
 
     dispatch(retryFailedTransactionRequest());
 
-    return (
-        // First check spent statuses against transaction addresses
-        categoriseAddressesBySpentStatus(undefined, withQuorum)(
-            map(failedTransactionsForThisBundleHash, (tx) => tx.address),
-        )
-            // If any address (input, remainder, receive) is spent, error out
-            .then(({ spent }) => {
-                if (size(spent)) {
-                    throw new Error(`${Errors.ALREADY_SPENT_FROM_ADDRESSES}:${join(spent, ',')}`);
-                }
+    const retryFn = (settings, withQuorum) => () => {
+        return (
+            // First check spent statuses against transaction addresses
+            categoriseAddressesBySpentStatus(settings, withQuorum)(
+                map(failedTransactionsForThisBundleHash, (tx) => tx.address),
+            )
+                // If any address (input, remainder, receive) is spent, error out
+                .then(({ spent }) => {
+                    if (size(spent)) {
+                        throw new Error(`${Errors.ALREADY_SPENT_FROM_ADDRESSES}:${join(spent, ',')}`);
+                    }
 
-                // If all addresses are still unspent, retry
-                return retry()(
-                    failedTransactionsForThisBundleHash,
-                    // If proof of work configuration is set to remote,
-                    // Extend seedStore object with offloadPow
-                    // This property will lead to perform remote proof-of-work
-                    // See: extendedApi#attachToTangle
-                    shouldOffloadPow
-                        ? extend(
-                              {
-                                  __proto__: seedStore.__proto__,
-                              },
-                              seedStore,
-                              { offloadPow: true },
-                          )
-                        : seedStore,
-                );
-            })
-            .then(({ transactionObjects }) => {
+                    // If all addresses are still unspent, retry
+                    return retry(settings)(
+                        failedTransactionsForThisBundleHash,
+                        // If proof of work configuration is set to remote,
+                        // Extend seedStore object with offloadPow
+                        // This property will lead to perform remote proof-of-work
+                        // See: extendedApi#attachToTangle
+                        shouldOffloadPow
+                            ? extend(
+                                  {
+                                      __proto__: seedStore.__proto__,
+                                  },
+                                  seedStore,
+                                  { offloadPow: true },
+                              )
+                            : seedStore,
+                    );
+                })
+                .then(({ transactionObjects }) => {
+                    // Update state
+                    const newState = syncAccountOnSuccessfulRetryAttempt(transactionObjects, existingAccountState);
+
+                    // Persist updated state
+                    Account.update(accountName, newState);
+
+                    // Since this transaction was never sent to the tangle
+                    // Generate the same alert we display when a transaction is successfully sent to the tangle
+                    const isZeroValue = every(transactionObjects, (tx) => tx.value === 0);
+
+                    dispatch(generateTransactionSuccessAlert(isZeroValue));
+
+                    return dispatch(retryFailedTransactionSuccess(newState));
+                })
+        );
+    };
+
+    return new NodesManager(nodesConfigurationFactory({ quorum })(getState()))
+        .withRetries()(retryFn)()
+        .catch((err) => {
+            if (isFatalTransactionError(err)) {
                 // Update state
-                const newState = syncAccountOnSuccessfulRetryAttempt(transactionObjects, existingAccountState);
+                const newState = syncAccountOnUnsuccessfulAutoRetryAttempt(existingAccountState, bundleHash);
 
                 // Persist updated state
                 Account.update(accountName, newState);
 
-                // Since this transaction was never sent to the tangle
-                // Generate the same alert we display when a transaction is successfully sent to the tangle
-                const isZeroValue = every(transactionObjects, (tx) => tx.value === 0);
-
-                dispatch(generateTransactionSuccessAlert(isZeroValue));
-
-                return dispatch(retryFailedTransactionSuccess(newState));
-            })
-            .catch((error) => {
+                dispatch(retryFailedTransactionError(newState));
+            } else {
                 dispatch(retryFailedTransactionError());
+            }
 
-                if (error.message && error.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
-                    dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('global:broadcastError'),
-                            i18next.t('global:addressesAlreadySpentFrom'),
-                            20000,
-                            error,
-                        ),
-                    );
-                } else {
-                    dispatch(generateTransferErrorAlert(error));
-                }
-            })
-    );
+            if (err.message && err.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
+                dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('global:broadcastError'),
+                        i18next.t('global:addressesAlreadySpentFrom'),
+                        20000,
+                        err,
+                    ),
+                );
+            } else {
+                dispatch(generateTransferErrorAlert(err));
+            }
+        });
 };

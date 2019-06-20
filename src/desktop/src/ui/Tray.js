@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import i18next from 'libs/i18next';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import { capitalize } from 'libs/iota/converter';
 
@@ -140,4 +140,4 @@ const mapStateToProps = (state) => ({
     accounts: state.accounts,
 });
 
-export default withRouter(connect(mapStateToProps)(withI18n()(App)));
+export default withRouter(connect(mapStateToProps)(withTranslation()(App)));

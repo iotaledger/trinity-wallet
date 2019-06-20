@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { withNamespaces } from 'react-i18next';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { setLanguage, setLocale } from 'shared-modules/actions/settings';
@@ -9,12 +9,9 @@ import { getThemeFromState } from 'shared-modules/selectors/global';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import i18next from 'shared-modules/libs/i18next';
 import DropdownComponent from 'ui/components/Dropdown';
-import { Icon } from 'ui/theme/icons';
-import { Styling } from 'ui/theme/general';
+import SettingsDualFooter from 'ui/components/SettingsDualFooter';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-
-const { width } = Dimensions.get('window');
-const { height } = global;
+import { width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -24,37 +21,10 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     topContainer: {
         flex: 11,
         justifyContent: 'center',
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    titleTextLeft: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    titleTextRight: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
     },
 });
 
@@ -101,9 +71,7 @@ class LanguageSelection extends Component {
     }
 
     render() {
-        const { t, theme } = this.props;
-        const textColor = { color: theme.body.color };
-        const bodyColor = theme.body.color;
+        const { t, theme, language } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -123,31 +91,18 @@ class LanguageSelection extends Component {
                             dropdownWidth={{ width: width / 1.5 }}
                             value={this.state.languageSelected}
                             options={I18N_LOCALE_LABELS}
-                            saveSelection={(lang) => {
-                                this.setState({ languageSelected: lang });
-                            }}
+                            saveSelection={(languageSelected) => this.setState({ languageSelected })}
                         />
                         <View style={{ flex: 0.15 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('mainSettings')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.saveLanguageSelection()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                <Icon name="tick" size={width / 28} color={bodyColor} />
-                            </View>
-                        </TouchableOpacity>
+                        <SettingsDualFooter
+                            hideActionButton={this.state.languageSelected === language }
+                            theme={theme}
+                            backFunction={() => this.props.setSetting('mainSettings')}
+                            actionFunction={() => this.saveLanguageSelection()}
+                            actionName={t('global:save')}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>

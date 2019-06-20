@@ -17,19 +17,10 @@ import mockTransactions, {
     LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
 } from '../../__samples__/transactions';
 import { milestoneTrytes } from '../../__samples__/trytes';
-import { SwitchingConfig } from '../../../libs/iota';
 import { IRI_API_VERSION } from '../../../config';
 import { EMPTY_TRANSACTION_TRYTES } from '../../../libs/iota/utils';
 
 describe('libs: iota/inputs', () => {
-    before(() => {
-        SwitchingConfig.autoSwitch = false;
-    });
-
-    after(() => {
-        SwitchingConfig.autoSwitch = true;
-    });
-
     describe('#prepareInputs', () => {
         let addressData;
 

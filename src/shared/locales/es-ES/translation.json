@@ -108,9 +108,9 @@
         "cannotSendToOwnExplanation": "Usted no puede enviar a una dirección que está siendo utilizada como ingreso en la transacción.",
         "pleaseWait": "Espere por favor",
         "pleaseWaitEllipses": "Por favor espere...",
-        "pleaseWaitExplanation": "Trinity está ejecutando otra función. Por favor espere un poco e intente devuelta.",
+        "pleaseWaitExplanation": "Trinity está ejecutando otra función. Por favor espere un poco e inténtelo de nuevo.",
         "pleaseWaitTransferExplanation": "Su balance disponible está siendo usado en otra transferencia. Por favor espere a que dicha transferencia se confirme e intente devuelta.",
-        "pleaseWaitIncomingTransferExplanation": "Tiene transacciones pendientes. Por favor espere que se confirmen antes de intentar devuelta.",
+        "pleaseWaitIncomingTransferExplanation": "Tiene transacciones pendientes. Por favor espere a que se confirmen antes de intentarlo de nuevo.",
         "snapshotTransitionInProgress": "Transición de snapshot en progreso",
         "snapshotTransitionInProgressExplanation": "Por favor espere hasta que la transición se complete.",
         "checkForUpdates": "Comprobar Actualizaciones",
@@ -126,7 +126,7 @@
         "nodeAutoChanged": "Auto-cambiar nodo",
         "nodeAutoChangedExplanation": "Cambio a un nuevo nodo {{- nodeAddress}} el nodo seleccionado está desconectado.",
         "touchSensor": "Toca el lector de huellas",
-        "fingerprintOnSend": "Toque el lector de huellas para autorizar la transaferencia",
+        "fingerprintOnSend": "Toque el lector de huellas para autorizar la transferencia",
         "masterKey": "Su semilla de IOTA es la llave maestra a sus fondos.",
         "seedThief": "Si alguien posee su semilla puede robar sus IOTA.",
         "googlePlayServicesNotAvailable": "Servicio de Google Play no disponible",
@@ -147,7 +147,7 @@
         "headToAccountTools": "Dirígete a Configuración Avanzada y realiza una transición de Snapshot.",
         "openAccountTools": "Ingresa a Configuración Avanzada",
         "usingTrinityWalletWithKeePass": "Usando cartera Trinity con Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "Hubo un error mientras se estaba transmitiendo su transacción.",
+        "signedTrytesBroadcastErrorExplanation": "Hubo un error de red al emitir su transacción.",
         "broadcastError": "No se pudo transmitir la transacción",
         "addressesAlreadySpentFrom": "Una o más direcciones ya han sido utilizadas.",
         "problemSendingYourTransaction": "Ocurrio un problema en el envío de su transacción.",
@@ -169,7 +169,9 @@
         "missingPermission": "Permisos de sistema de archivos requeridos",
         "missingPermissionExplanation": "Se requiere acceso al sistema de archivos para realizar esta función.",
         "swipeToConfirm": "Desliza para confirmar",
-        "expert": "Avanzado"
+        "expert": "Avanzado",
+        "notEnoughSyncedNodes": "Demasiados nodos en sincronización",
+        "notEnoughSyncedNodesExplanation": "No se pudo alcanzar un quórum. Desactiva quorum o vuelve a intentarlo."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -201,7 +203,7 @@
         "currentPassword": "Contraseña actual",
         "newPassword": "Contraseña nueva",
         "confirmPassword": "Confirmar contraseña nueva",
-        "passwordTooWeak": "Contraseña es demasiado débil",
+        "passwordTooWeak": "Contraseña demasiado débil",
         "passwordTooWeakReason": "Su contraseña es demasiado débil. Utilice combinaciónes de palabras y evite frases comunes, nombres o fechas.",
         "reasonRow": "Los patrones de teclas son fáciles de adivinar.",
         "reasonPattern": "Los patrones de teclas cortos son fáciles de adivinar.",
@@ -223,7 +225,7 @@
         "passwordTooShortExplanation": "Su contraseña debe tener al menos {{minLength}} caracteres. Actualmente tiene {{currentLength}} caracteres. Por favor inténtelo nuevamente.",
         "passwordMismatch": "Las contraseñas no coinciden",
         "passwordMismatchExplanation": "Las contraseñas introducidas no coinciden. Por favor, inténtalo de nuevo.",
-        "anEncryptedCopy": "Está es su contraseña de la billetera principal. Usala para loguearte.",
+        "anEncryptedCopy": "Está es su contraseña de la billetera principal. La usarás para iniciar la sesión.",
         "retypePassword": "Escribe la contraseña de nuevo"
     },
     "copyToClipboard": {
@@ -256,7 +258,7 @@
         "enterPassword": "Por favor introduzca su contraseña.",
         "login": "Iniciar Sesión",
         "setNode": "Seleccionar nodo",
-        "whyBiometricDisabled": "Por que la autentificación biométrica está deshabilitada?",
+        "whyBiometricDisabled": "¿Por qué está deshabilitada la autenticación biométrica?",
         "whyBiometricDisabledExplanationPart1": "La autenticación biométrica está desactivada en la primera carga de la aplicación por seguridad.",
         "whyBiometricDisabledExplanationPart2": "Cuando uses Trinity serás deslogueado por inactividad. Puedes entrar nuevamente con la autenticación biométrica."
     },
@@ -273,11 +275,11 @@
         "pressForNewSeed": "Pulse para obtener una Nueva Semilla",
         "generateSuccess": "Semilla generada exitosamente",
         "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio.",
-        "individualLetterCount": "Oprima <1><0>{{count}}</0></1> letras más para aleatorizar.",
-        "individualLetterCount_plural": "Oprima <1><0>{{count}}</0></1> letras más para aleatorizar.",
+        "individualLetterCount": "Presiona <1><0>{{count}}</0></1> letras más para aleatorizar.",
+        "individualLetterCount_plural": "Presiona <1><0>{{count}}</0></1> letras más para aleatorizar.",
         "randomiseCharsToContinue": "Aleatorizar <1>{{count}}</1> más para continuar.",
         "randomiseCharsToContinue_plural": "Aleatorizar <1>{{count}}</1> carácteres más para continuar.",
-        "whatIsASeed": "Que es una semilla?"
+        "whatIsASeed": "¿Que es una semilla?"
     },
     "onboardingComplete": {
         "allDone": "¡Todo terminado!",
@@ -328,7 +330,7 @@
         "letsWriteDownYourSeed": "Vamos a anotar su semilla",
         "youCanHighlightCharacters": "Puede resaltar 9 caracteres a la vez",
         "printBlankWallet": "Imprima una cartera en blanco",
-        "whatIsAChecksum": "Que es un checksum?",
+        "whatIsAChecksum": "¿Que es un checksum?",
         "everySeedHasAChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres.",
         "iHavesavedMySeed": "He guardado mi semilla",
         "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
@@ -496,13 +498,13 @@
         "automaticNodeManagement": "Gestión automática de nodos",
         "addCustomNodes": "Agregar un nodo personalizado",
         "autoNodeList": "Usar lista remota de nodos",
-        "nodeAutoswitching": "Autowitching de nodo principal",
+        "nodeAutoswitching": "Cambio automático de nodo principal",
         "primaryNode": "Nodo principal",
         "enableQuorum": "Habilitar quórum",
         "quorumSize": "Tamaño del quórum",
         "noCustomNodes": "Sin nodos personalizados",
         "mustAddCustomNodes": "Debe añadir al menos un nodo personalizado antes de desactivar la lista de nodos remotos.",
-        "nodeEnoughNodesTitle": "No hay suficientes nodos añadidos",
+        "nodeEnoughNodesTitle": "No hay suficientes nodos",
         "nodeEnoughNodesExplanation": "No hay suficientes nodos para habilitar el quórum.",
         "nodeEnoughNodesExplanationCustomNodes": "Añadir más nodos personalizados o activar la lista de nodos remotos.",
         "nodeSettingsUpdatedTitle": "Configuración del nodo actualizada",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Seleccionar nodo",
-        "addCustomNode": "Añadir nodo personalizado",
         "manualSync": "Sincronización manual",
         "snapshotTransition": "Transición de snapshot",
         "pow": "Prueba de trabajo",
@@ -563,7 +564,7 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "¿Estás seguro que quieres desconectarte?",
-        "aboutToLogOut": "Está a punto de desloguear",
+        "aboutToLogOut": "Estás a punto de cerrar sesión",
         "areYouSure": "¿Estás seguro?"
     },
     "qrScanner": {
@@ -758,6 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Error al recuperar los datos de actualización",
+        "errorRetrievingUpdateDataExplanation": "No se pudo recuperar la actualización. Por favor, comprueba tu conexión a internet y vuelve a intentarlo.",
         "noUpdatesAvailable": "No hay actualizaciones disponibles",
         "noUpdatesAvailableExplanation": "¡Tiene la última versión de Trinity!",
         "newVersionAvailable": "Nueva versión disponible",

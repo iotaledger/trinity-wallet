@@ -169,7 +169,9 @@
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
         "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen.",
         "swipeToConfirm": "Wischen um zu bestätigen",
-        "expert": "Experte"
+        "expert": "Experte",
+        "notEnoughSyncedNodes": "Nicht genug Nodes synchronisiert",
+        "notEnoughSyncedNodesExplanation": "In der verwendeten Node-Gruppe konnte kein einheitlicher Status ermittelt werden. Deaktiviere die Node-Gruppe und versuche es erneut."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -383,7 +385,7 @@
         "advanced": "Erweitert",
         "standard": "Standard",
         "advancedModeExplanation": "Der erweiterte Modus zeigt detaillierte technische Informationen.",
-        "modesExplanation": "Aktiviere den Experten-Modus nur, wenn du ein erfahrener Tangle-Benutzer bist.",
+        "modesExplanation": "Aktiviere den erweiterten Modus nur, wenn du ein erfahrener Tangle-Benutzer bist.",
         "modeUpdated": "Modus aktualisiert",
         "modeUpdatedExplanation": "Du hast den Modus zu {{mode}} geändert"
     },
@@ -496,13 +498,13 @@
         "automaticNodeManagement": "Automatische Node-Verwaltung",
         "addCustomNodes": "Benutzerdefinierte Nodes hinzufügen",
         "autoNodeList": "Offizielle Node-Liste verwenden",
-        "nodeAutoswitching": "Automatisch primäre Node wechseln",
+        "nodeAutoswitching": "Automatisch den primären Node wechseln",
         "primaryNode": "Primärer Node",
         "enableQuorum": "Node-Gruppe aktivieren",
         "quorumSize": "Anzahl der Nodes in der Node-Gruppe",
         "noCustomNodes": "Keine benutzerdefinierten Nodes vorhanden",
         "mustAddCustomNodes": "Du musst mindestens einen benutzerdefinierten Node hinzugefügt haben, bevor du die offizielle Node-Liste deaktivieren kannst.",
-        "nodeEnoughNodesTitle": "Nicht genug Nodes hinzugefügt",
+        "nodeEnoughNodesTitle": "Nicht genug Nodes",
         "nodeEnoughNodesExplanation": "Es sind nicht genug Nodes vorhanden um die Node-Gruppe zu aktivieren.",
         "nodeEnoughNodesExplanationCustomNodes": "Füge weitere benutzerdefinierte Nodes hinzu oder verwende die offizielle Node-Liste.",
         "nodeSettingsUpdatedTitle": "Node-Einstellungen aktualisiert",
@@ -515,7 +517,7 @@
         "invalidNodeResponse": "Der Node hat eine ungültige Antwort zurückgegeben",
         "add": "Hinzufügen",
         "nodeFieldEmpty": "Textfeld ist leer",
-        "nodeFieldEmptyExplanation": "Bitte einen benutzerdefinierten Node hinzufügen.",
+        "nodeFieldEmptyExplanation": "Trage die Adresse eines Nodes in das Textfeld ein.",
         "invalidURL": "Bitte gib eine gültige Adresse ein.",
         "addAuthKey": "Authentifizierung hinzufügen",
         "username": "Benutzername",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "Node auswählen",
-        "addCustomNode": "Benutzerdefinierten Node hinzufügen",
         "manualSync": "Manuell synchronisieren",
         "snapshotTransition": "Snapshot-Wiederherstellung",
         "pow": "Proof of Work",
@@ -758,6 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",
+        "errorRetrievingUpdateDataExplanation": "Das Update konnte nicht heruntergeladen werden. Überprüfe deine Internetverbindung und versuche es erneut.",
         "noUpdatesAvailable": "Keine Updates verfügbar",
         "noUpdatesAvailableExplanation": "Du hast die aktuelle Version von Trinity installiert!",
         "newVersionAvailable": "Neue Version verfügbar",

@@ -179,12 +179,12 @@ export const subsetSumWithLimit = (limit = 2, MAX_CALL_TIMES = 100000) => {
  *
  * @method getInputs
  *
- * @param {string} provider
+ * @param {object} {settings}
  * @param {boolean} withQuorum
  *
  * @returns {function(array, array, number, *): Promise<object>}
  **/
-export const getInputs = (provider, withQuorum) => (addressData, transactions, threshold, maxInputs = 0) => {
+export const getInputs = (settings, withQuorum) => (addressData, transactions, threshold, maxInputs = 0) => {
     // TODO: Validate address data & transactions
     // Check if there is sufficient balance
     if (reduce(addressData, (acc, addressObject) => acc + addressObject.balance, 0) < threshold) {
@@ -200,7 +200,7 @@ export const getInputs = (provider, withQuorum) => (addressData, transactions, t
     // Filter pending transactions with non-funded inputs
     return (isEmpty(pendingTransactions)
         ? Promise.resolve([])
-        : filterNonFundedBundles(provider, withQuorum)(constructBundlesFromTransactions(pendingTransactions))
+        : filterNonFundedBundles(settings, withQuorum)(constructBundlesFromTransactions(pendingTransactions))
     )
         .then((fundedBundles) => {
             // Remove addresses from addressData with (still funded) pending incoming transactions
@@ -222,7 +222,7 @@ export const getInputs = (provider, withQuorum) => (addressData, transactions, t
             }
 
             // Filter all spent addresses
-            return filterSpentAddressData(provider, withQuorum)(addressDataForInputs, transactions);
+            return filterSpentAddressData(settings, withQuorum)(addressDataForInputs, transactions);
         })
         .then((unspentAddressData) => {
             if (reduce(unspentAddressData, (acc, addressObject) => acc + addressObject.balance, 0) < threshold) {

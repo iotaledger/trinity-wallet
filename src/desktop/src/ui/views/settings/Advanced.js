@@ -1,7 +1,7 @@
 /* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withI18n, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
@@ -45,10 +45,6 @@ class Advanced extends PureComponent {
         setTray: PropTypes.func.isRequired,
         /** @ignore */
         setProxy: PropTypes.func.isRequired,
-        /** @ignore */
-        history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
-        }).isRequired,
         /** @ignore */
         setNotifications: PropTypes.func.isRequired,
         /** @ignore */
@@ -103,17 +99,16 @@ class Advanced extends PureComponent {
      * @returns {undefined}
      */
     resetWallet = async () => {
-        const { t, generateAlert, history } = this.props;
+        const { t, generateAlert } = this.props;
 
         try {
-            history.push('/');
-
             await clearVault(ALIAS_REALM);
             localStorage.clear();
             Electron.clearStorage();
 
             await reinitialiseStorage(getEncryptionKey);
-            location.reload();
+
+            Electron.reload();
         } catch (_err) {
             generateAlert(
                 'error',
@@ -352,4 +347,4 @@ const mapDispatchToProps = {
     setProxy,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Advanced));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Advanced));

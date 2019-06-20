@@ -1,5 +1,7 @@
 /* global __DEV__ */
+
 import 'shared-modules/libs/global';
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import merge from 'lodash/merge';
@@ -9,13 +11,14 @@ import { withNamespaces } from 'react-i18next';
 import Realm from 'realm';
 import { Text, TextInput, NetInfo, YellowBox } from 'react-native';
 import { Provider } from 'react-redux';
-import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
+import { changeIotaNode, quorum } from 'shared-modules/libs/iota';
 import reduxStore from 'shared-modules/store';
 import { assignAccountIndexIfNecessary } from 'shared-modules/actions/accounts';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate, setAppVersions } from 'shared-modules/actions/settings';
 import Themes from 'shared-modules/themes/themes';
-import { ActionTypes, mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
+import { mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
+import { WalletActionTypes } from 'shared-modules/types';
 import { setRealmMigrationStatus } from 'shared-modules/actions/migrations';
 import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
@@ -27,6 +30,7 @@ import { getEncryptionKey } from 'libs/realm';
 import registerScreens from 'ui/routes/navigation';
 import { initialise as initialiseStorage } from 'shared-modules/storage';
 import { mapStorageToState } from 'shared-modules/libs/storageToStateMappers';
+import { updateSchema } from 'shared-modules/schemas';
 
 // Assign Realm to global RN variable
 global.Realm = Realm;
@@ -34,9 +38,6 @@ global.Realm = Realm;
 let firstLaunch = true;
 
 const launch = () => {
-    // Disable auto node switching.
-    SwitchingConfig.autoSwitch = false;
-
     // Disable accessibility fonts
     Text.defaultProps = {};
     Text.defaultProps.allowFontScaling = false;
@@ -84,7 +85,9 @@ const getInitialScreen = () => {
         state.settings.versions.version === '0.5.0' && !state.settings.completedForcedPasswordUpdate;
     // Select initial screen
     return state.accounts.onboardingComplete
-        ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
+        ? navigateToForceChangePassword
+            ? 'forceChangePassword'
+            : 'login'
         : 'languageSetup';
 };
 
@@ -130,7 +133,7 @@ const renderInitialScreen = (initialScreen) => {
         },
     });
 
-    reduxStore.dispatch({ type: ActionTypes.RESET_ROUTE, payload: initialScreen });
+    reduxStore.dispatch({ type: WalletActionTypes.RESET_ROUTE, payload: initialScreen });
 };
 
 /**
@@ -141,12 +144,18 @@ const renderInitialScreen = (initialScreen) => {
  **/
 const fetchNodeList = (store) => {
     const { settings } = store.getState();
-    const hasAlreadyRandomized = get(settings, 'hasRandomizedNode');
+    const node = get(settings, 'node');
 
     // Update provider
-    changeIotaNode(get(settings, 'node'));
+    changeIotaNode(
+        assign({}, node, {
+            provider: node.url,
+        }),
+    );
+    // Set quorum size
+    quorum.setSize(get(settings, 'quorum.size'));
 
-    store.dispatch(fetchNodes(!hasAlreadyRandomized));
+    store.dispatch(fetchNodes());
 };
 
 /**
@@ -158,7 +167,7 @@ const fetchNodeList = (store) => {
 const startListeningToConnectivityChanges = (store) => {
     const checkConnection = (isConnected) => {
         store.dispatch({
-            type: ActionTypes.CONNECTION_CHANGED,
+            type: WalletActionTypes.CONNECTION_CHANGED,
             payload: { isConnected },
         });
     };
@@ -225,14 +234,16 @@ onAppStart()
                 // If a user has stored data in AsyncStorage then map that data to redux store.
                 return reduxStore.dispatch(
                     mapStorageToStateAction(
-                        merge({}, storedData, {
-                            settings: {
-                                versions: latestVersions,
-                                // completedMigration prop was added to keep track of AsyncStorage -> Realm migration
-                                // That is why it won't be present in storedData (Data directly fetched from AsyncStorage)
-                                completedMigration,
-                            },
-                        }),
+                        updateSchema(
+                            merge({}, storedData, {
+                                settings: {
+                                    versions: latestVersions,
+                                    // completedMigration prop was added to keep track of AsyncStorage -> Realm migration
+                                    // That is why it won't be present in storedData (Data directly fetched from AsyncStorage)
+                                    completedMigration,
+                                },
+                            }),
+                        ),
                     ),
                 );
             }
@@ -251,7 +262,7 @@ onAppStart()
     .then(() => {
         const initialize = (isConnected) => {
             reduxStore.dispatch({
-                type: ActionTypes.CONNECTION_CHANGED,
+                type: WalletActionTypes.CONNECTION_CHANGED,
                 payload: { isConnected },
             });
 

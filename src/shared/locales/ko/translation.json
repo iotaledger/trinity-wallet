@@ -30,7 +30,7 @@
         "checksum": "체크섬",
         "back": "뒤로가기",
         "goBack": "뒤로가기",
-        "goBackStep": "뒤로가기",
+        "goBackStep": "한 단계 뒤로가기",
         "done": "완료",
         "prev": "이전",
         "next": "다음",
@@ -169,7 +169,9 @@
         "missingPermission": "파일 시스템 권한 필요",
         "missingPermissionExplanation": "이 기능을 사용하기 위해 파일 시스템 권한이 필요합니다.",
         "swipeToConfirm": "밀어서 확인",
-        "expert": "전문가"
+        "expert": "전문가",
+        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -494,19 +496,19 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
+        "addCustomNodes": "커스텀 노드 추가",
         "autoNodeList": "Use remote node list",
         "nodeAutoswitching": "Primary node autoswitching",
         "primaryNode": "Primary node",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
+        "noCustomNodes": "커스텀 노드 없음",
+        "mustAddCustomNodes": "원격 노드 목록을 비활성화하기 전에 최소한 하나의 커스텀 노드를 추가해야 합니다.",
+        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesExplanation": "큐럼을 활성화하기 위한 노드의 수가 부족합니다.",
+        "nodeEnoughNodesExplanationCustomNodes": "더많은 커스텀 노드를 추가하거나 원격 노드 목록을 활성화하십시오.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeSettingsUpdatedExplanation": "노드 설정이 성공적으로 업데이트되었습니다."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "커스텀 노드를 추가할 수 없습니다.",
@@ -517,8 +519,8 @@
         "nodeFieldEmpty": "입력한 텍스트가 없습니다.",
         "nodeFieldEmptyExplanation": "커스텀 노드를 입력해 주세요.",
         "invalidURL": "유효한 URL을 입력하십시오.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
+        "addAuthKey": "인증 키 추가",
+        "username": "사용자 이름",
         "couldNotRemove": "Could not remove custom node",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "노드 선택",
-        "addCustomNode": "커스텀 노드 추가",
         "manualSync": "수동 동기화",
         "snapshotTransition": "스냅샷 이전",
         "pow": "작업증명",
@@ -758,6 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "업데이트를 받아오는 중 오류 발생",
+        "errorRetrievingUpdateDataExplanation": "업데이트를 확인할 수 없었습니다. 인터넷 연결을 확인하고 다시 시도해주세요.",
         "noUpdatesAvailable": "사용 가능한 업데이트 없음",
         "noUpdatesAvailableExplanation": "최신 버전의 트리니티를 사용하고 계시네요!",
         "newVersionAvailable": "새 버전 이용 가능",

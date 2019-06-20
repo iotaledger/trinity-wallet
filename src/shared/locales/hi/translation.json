@@ -121,8 +121,8 @@
         "nodeMustUseHTTPSExplanation": "केवल HTTPS का उपयोग कर कस्टम नोड्स की अनुमति है ।",
         "nodeDuplicated": "डुप्लिकेट नोड",
         "nodeDuplicatedExplanation": "कस्टम नोड पहले से ही सूचीबद्ध है ।",
-        "customNodeAdded": "Custom node added",
-        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
+        "customNodeAdded": "कस्टम नोड जोड़ा गया",
+        "customNodeAddedExplanation": "आपने कस्टम नोड के रूप में {{nodeAddress}} को सफलतापूर्वक जोड़ा है।",
         "nodeAutoChanged": "स्वत:-स्विच नोड",
         "nodeAutoChangedExplanation": "नए नोड चुने, {{- nodeAddress}} चयनित नोड ऑफ़लाइन है ।",
         "touchSensor": "फिंगरप्रिंट सेंसर को टच करें",
@@ -169,7 +169,9 @@
         "missingPermission": "फाइल सिस्टम की अनुमति आवश्यक",
         "missingPermissionExplanation": "इस फ़ंक्शन को करने के लिए फ़ाइल सिस्टम तक पहुंच आवश्यक है।",
         "swipeToConfirm": "पुष्टि करने के लिए स्वाइप करें",
-        "expert": "एक्स्पर्ट"
+        "expert": "एक्स्पर्ट",
+        "notEnoughSyncedNodes": "सिंक में बहुत कम नोड्स",
+        "notEnoughSyncedNodesExplanation": "कोरम तक नहीं पहुँचा जा सका। कोरम बंद करें या फिर से प्रयास करें।"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
@@ -493,20 +495,20 @@
         "tools": "टूल्स"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes added",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "automaticNodeManagement": "आटोमेटिक नोड मैनेजमेंट",
+        "addCustomNodes": "कस्टम नोड जोड़ें",
+        "autoNodeList": "दूरस्थ नोड सूची का उपयोग करें",
+        "nodeAutoswitching": "प्राथमिक नोड ऑटोस्विचिंग",
+        "primaryNode": "प्राथमिक नोड",
+        "enableQuorum": "कोरम सक्षम करें",
+        "quorumSize": "कोरम का आकार",
+        "noCustomNodes": "कोई कस्टम नोड्स नहीं",
+        "mustAddCustomNodes": "दूरस्थ नोड सूची को अक्षम करने से पहले आपको कम से कम एक कस्टम नोड जोड़ना होगा।",
+        "nodeEnoughNodesTitle": "पर्याप्त नोड्स नहीं जोड़े गए",
+        "nodeEnoughNodesExplanation": "कोरम को सक्षम करने के लिए पर्याप्त नोड नहीं हैं।",
+        "nodeEnoughNodesExplanationCustomNodes": "अधिक कस्टम नोड जोड़ें या दूरस्थ नोड सूची को सक्षम करें",
+        "nodeSettingsUpdatedTitle": "नोड सेटिंग अपडेट की गईं",
+        "nodeSettingsUpdatedExplanation": "आपने अपनी नोड सेटिंग को सफलतापूर्वक अपडेट कर दिया है।"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "कस्टम नोड जोड़ा नहीं जा सका",
@@ -517,10 +519,10 @@
         "nodeFieldEmpty": "यह फील्ड रिक्त है।",
         "nodeFieldEmptyExplanation": "कृपया कोई कस्टम नोड दर्ज करें ।",
         "invalidURL": "मान्य URL दर्ज करे",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "addAuthKey": "Auth key जोड़े",
+        "username": "उपयोगकर्ता का नाम",
+        "couldNotRemove": "कस्टम नोड को हटाया नहीं जा सका",
+        "couldNotRemoveExplanation": "कोरम के लिए पर्याप्त नोड होना चाहिए। कोरम का आकार कम करें या दूरस्थ नोड सूची को सक्षम करें"
     },
     "addNewAccount": {
         "useExistingSeed": "मौजूदा सीड का उपयोग करें",
@@ -528,7 +530,6 @@
     },
     "advancedSettings": {
         "selectNode": "नोड चुने",
-        "addCustomNode": "कस्टम नोड जोड़ें",
         "manualSync": "मैन्युअल सिंक",
         "snapshotTransition": "स्नैपशॉट",
         "pow": "Proof of Work",
@@ -758,6 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "अपडेट डेटा पुनर्प्राप्त करने में त्रुटि",
+        "errorRetrievingUpdateDataExplanation": "अपडेट के लिए जाँच नहीं हो सकती। कृपया इंटरनेट संयोजन की जाँच कर पुन: प्रयास करें।",
         "noUpdatesAvailable": "कोई अपडेट उपलब्ध नहीं",
         "noUpdatesAvailableExplanation": "आपके पास ट्रिनिटी का नवीनतम संस्करण है!",
         "newVersionAvailable": "नया संस्करण उपलब्ध है",

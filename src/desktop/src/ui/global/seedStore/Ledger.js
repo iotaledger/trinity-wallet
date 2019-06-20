@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import classNames from 'classnames';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -128,12 +128,11 @@ class Ledger extends React.PureComponent {
                                 <strong>{sendAddressFieldText.substring(60, 90)}</strong>
                             </p>
                         )}
-                        {view !== 'transaction' &&
-                            !addingAdditionalAccount && (
-                                <Button variant="secondary" className="outlineSmall" onClick={this.onCancel}>
-                                    {t('cancel')}
-                                </Button>
-                            )}
+                        {view !== 'transaction' && !addingAdditionalAccount && (
+                            <Button variant="secondary" className="outlineSmall" onClick={this.onCancel}>
+                                {t('cancel')}
+                            </Button>
+                        )}
                     </div>
                 )}
             </div>
@@ -146,4 +145,4 @@ const mapStateToProps = (state) => ({
     sendAddressFieldText: state.ui.sendAddressFieldText,
 });
 
-export default translate()(connect(mapStateToProps)(Ledger));
+export default connect(mapStateToProps)(withTranslation()(Ledger));

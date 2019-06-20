@@ -1,6 +1,7 @@
 /* global Electron */
 import assign from 'lodash/assign';
 import each from 'lodash/each';
+import filter from 'lodash/filter';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
@@ -256,12 +257,14 @@ class Node {
      * @method addCustomNode
      * @param {string} url Node URL
      */
-    static addCustomNode(url, pow) {
+    static addCustomNode(node, pow) {
         realm.write(() => {
             realm.create('Node', {
-                url,
+                url: node.url,
                 custom: true,
                 pow,
+                password: node.password,
+                token: node.token,
             });
         });
     }
@@ -285,7 +288,8 @@ class Node {
      */
     static addNodes(nodes) {
         if (size(nodes)) {
-            const existingUrls = map(Node.getDataAsArray(), (node) => node.url);
+            const existingNodes = Node.getDataAsArray();
+            const existingUrls = map(existingNodes, (node) => node.url);
 
             realm.write(() => {
                 each(nodes, (node) => {
@@ -295,6 +299,18 @@ class Node {
                     } else {
                         realm.create('Node', node);
                     }
+                });
+
+                const newNodesUrls = map(nodes, (node) => node.url);
+
+                // Remove all nodes (non-custom only) that are not part of the new nodes
+                const nodesToRemove = filter(
+                    existingNodes,
+                    (node) => node.custom === false && !includes(newNodesUrls, node.url),
+                );
+
+                each(nodesToRemove, (node) => {
+                    realm.delete(Node.getObjectForId(node.url));
                 });
             });
         }
@@ -388,18 +404,6 @@ class Wallet {
     }
 
     /**
-     * Updates auto node switching configuration.
-     *
-     * @method updateAutoNodeSwitchingSetting
-     * @param {boolean} payload
-     */
-    static updateAutoNodeSwitchingSetting(payload) {
-        realm.write(() => {
-            Wallet.latestSettings.autoNodeSwitching = payload;
-        });
-    }
-
-    /**
      * Updates lock screen timeout.
      *
      * @method updateLockScreenTimeout
@@ -439,6 +443,7 @@ class Wallet {
      * Updates wallet's node.
      *
      * @method updateNode
+     *
      * @param {string} payload
      */
     static updateNode(payload) {
@@ -647,6 +652,58 @@ class Wallet {
     }
 
     /**
+     * Updates system proxy settings.
+     *
+     * @method updateIgnoreProxySetting
+     * @param {object} payload
+     */
+    static updateIgnoreProxySetting(enabled) {
+        realm.write(() => {
+            Wallet.latestSettings.ignoreProxy = enabled;
+        });
+    }
+
+    /*
+     * Updates quorum configuration.
+     *
+     * @method updateQuorumConfig
+     *
+     * @param {object} payload
+     */
+    static updateQuorumConfig(payload) {
+        const existingConfig = Wallet.latestSettings.quorum;
+        realm.write(() => {
+            Wallet.latestSettings.quorum = assign({}, existingConfig, payload);
+        });
+    }
+
+    /**
+     * Updates node auto-switch setting
+     *
+     * @method updateNodeAutoSwitchSetting
+     *
+     * @param {boolean} payload
+     */
+    static updateNodeAutoSwitchSetting(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.nodeAutoSwitch = payload;
+        });
+    }
+
+    /**
+     * Updates autoNodeList setting
+     *
+     * @method updateAutoNodeListSetting
+     *
+     * @param {boolean} payload
+     */
+    static updateAutoNodeListSetting(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.autoNodeList = payload;
+        });
+    }
+
+    /**
      * Updates error log.
      *
      * @method updateErrorLog
@@ -712,7 +769,7 @@ class Wallet {
             realm.write(() =>
                 realm.create('Wallet', {
                     version: Wallet.version,
-                    settings: { notifications: {} },
+                    settings: { notifications: {}, quorum: {} },
                     accountInfoDuringSetup: { meta: {} },
                 }),
             );
@@ -866,7 +923,6 @@ const initialise = (getEncryptionKeyPromise) => {
 
         while (nextSchemaIndex < schemasSize) {
             const migratedRealm = new Realm(assign({}, schemas[nextSchemaIndex++], { encryptionKey }));
-
             migratedRealm.close();
         }
 

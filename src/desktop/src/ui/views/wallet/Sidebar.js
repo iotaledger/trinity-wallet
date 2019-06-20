@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
 import { shorten, capitalize } from 'libs/iota/converter';
@@ -109,6 +109,8 @@ class Sidebar extends React.PureComponent {
                                                             (addressData) => addressData.balance,
                                                         ),
                                                     ),
+                                                    false,
+                                                    true,
                                                 )}
                                             </small>
                                             <div onClick={(e) => this.accountSettings(e, index)}>
@@ -168,4 +170,4 @@ const mapDispatchToProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(withI18n()(Sidebar));
+)(withTranslation()(Sidebar));

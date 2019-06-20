@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withI18n } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -59,15 +59,38 @@ export class AboutComponent extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.6.1</h5>
+                            <ul>
+                                <li>Fix: Autopromotion not working as intended</li>
+                                <li>Fix: Improve reliability of reattachment and promotion</li>
+                                <li>Fix: Temporarily disable hardened runtime - fix Mac Ledger issues</li>
+                                <li>Fix: Mac tray app not rendering</li>
+                            </ul>
+                            <h5>0.6.0</h5>
+                            <ul>
+                                <li>
+                                    New: Automatic node management, with lots of configurability for advanced users
+                                </li>
+                                <li>Fix: Wallet not working on Windows when username has special characters</li>
+                                <li>Update: Auto update functionality improvements</li>
+                                <li>Update: Add various wallet initialisation error explanations</li>
+                                <li>Fix: Do not perform quorum when it is explicitly turned off</li>
+                                <li>Update: Enable Hardened Runtime on MacOS</li>
+                                <li>Fix: Wallet language resets to English</li>
+                                <li>Fix: Windows installation should remove appData on uninstall</li>
+                                <li>Update: New translations</li>
+                            </ul>
                             <h5>0.5.2</h5>
                             <ul>
                                 <li>Fix: Chart and price API calls</li>
                                 <li>Fix: Skip retry failed transactions when password is not available </li>
                                 <li>Fix: Fix: Ledger onboarding loading forever without reporting an error</li>
-                                <li>Fix: Linux wallet incorrectly reporting &quot;Missing security dependencies&quot;</li>
                                 <li>
-                                    Update: Add Snapshot Transition reminder when an existing seed is added with 
-                                    0 balance
+                                    Fix: Linux wallet incorrectly reporting &quot;Missing security dependencies&quot;
+                                </li>
+                                <li>
+                                    Update: Add Snapshot Transition reminder when an existing seed is added with 0
+                                    balance
                                 </li>
                             </ul>
                             <h5>0.5.1</h5>
@@ -400,4 +423,4 @@ export class AboutComponent extends React.PureComponent {
     }
 }
 
-export default withI18n()(AboutComponent);
+export default withTranslation()(AboutComponent);
