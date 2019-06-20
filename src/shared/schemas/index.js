@@ -1,4 +1,8 @@
 /* global Electron */
+import cloneDeep from 'lodash/cloneDeep';
+import includes from 'lodash/includes';
+import unset from 'lodash/unset';
+import xor from 'lodash/xor';
 import v0Schema from './v0';
 import v1Schema, { migration as v1Migration } from './v1';
 import v2Schema, { migration as v2Migration } from './v2';
@@ -7,6 +11,7 @@ import v4Schema, { migration as v4Migration } from './v4';
 import v5Schema, { migration as v5Migration } from './v5';
 import { __MOBILE__, __TEST__, __DEV__ } from '../config';
 import { initialState as reduxSettingsState } from '../reducers/settings';
+import { initialState as reduxAccountsState } from '../reducers/accounts';
 
 const STORAGE_PATH =
     __MOBILE__ || __TEST__
@@ -37,16 +42,56 @@ const getDeprecatedStoragePath = (schemaVersion) =>
  * @returns {object} - updated state object
  */
 export const updateSchema = (input) => {
-    const state = Object.assign({}, input);
+    const state = cloneDeep(input);
 
-    /**
-     * 0.6.0
-     */
-    if (typeof state.settings.quorum !== 'object') {
-        state.settings.quorum = Object.assign({}, reduxSettingsState.quorum);
-        state.settings.autoNodeList = reduxSettingsState.autoNodeList;
-        state.settings.nodeAutoSwitch = reduxSettingsState.nodeAutoSwitch;
-    }
+    const latestReduxSettingsKeys = Object.keys(reduxSettingsState);
+    const oldReduxSettingsKeys = Object.keys(state.settings);
+
+    const latestReduxAccountsKeys = Object.keys(reduxAccountsState);
+    const oldReduxAccountsKeys = Object.keys(state.accounts);
+
+    // Find a difference of the properties between of old state and new state
+    const newSettingsKeys = xor(latestReduxSettingsKeys, oldReduxSettingsKeys);
+    const newAccountsKeys = xor(latestReduxAccountsKeys, oldReduxAccountsKeys);
+
+    newSettingsKeys.forEach((key) => {
+        // If property is new, then assign it to the state.settings object
+        if (includes(latestReduxSettingsKeys, key) && !includes(oldReduxSettingsKeys, key)) {
+            state.settings[key] = reduxSettingsState[key];
+        }
+
+        // If the property is old (and not present in the latest state.settings object), remove it
+        if (includes(oldReduxSettingsKeys, key) && !includes(latestReduxSettingsKeys, key)) {
+            unset(state.settings, key);
+        }
+    });
+
+    newAccountsKeys.forEach((key) => {
+        // If property is new, then assign it to the state.accounts object
+        if (includes(latestReduxAccountsKeys, key) && !includes(oldReduxAccountsKeys, key)) {
+            state.accounts[key] = reduxAccountsState[key];
+        }
+
+        // If the property is old (and not present in the latest state.accounts object), remove it
+        if (includes(oldReduxAccountsKeys, key) && !includes(latestReduxAccountsKeys, key)) {
+            unset(state.accounts, key);
+        }
+    });
+
+    const convertToNodeObject = (url) => ({
+        url,
+        pow: false,
+        token: '',
+        password: '',
+    });
+
+    // Types of state.settings.node, state.settings.nodes and state.settings.customNodes are changed in the latest redux schema
+    // Previously, they were stored as strings e.g., state.settings.node: <string>, state.settings.node: <string>[]
+    // But in the latest redux schema, they are stored as an object with properties (url, pow, token, password)
+    state.settings.customNodes.forEach(convertToNodeObject);
+    state.settings.nodes.forEach(convertToNodeObject);
+
+    state.settings.node = convertToNodeObject(state.settings.node);
 
     return state;
 };
