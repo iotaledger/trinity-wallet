@@ -345,7 +345,7 @@
         "ifYouHaveNotSaved": "Если Вы не сохранили свой ключ, пожалуйста, вернитесь на шаг назад и сделайте это.",
         "enterSeedBelow": "Введите только что созданный Вами ключ ниже, чтобы подтвердить, что Вы правильно создали его резервную копию",
         "clipboardWarning": "ВНИМАНИЕ: Невозможно вставить seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarningExplanation": "В целях Вашей безопасности копирование с буфера обмена было отключено. Вы можете перетащить Ваш ключ в окно программы с помощью текстового документа."
     },
     "send": {
         "invalidAddress": "Неверный адрес",
