@@ -50,7 +50,10 @@ class Welcome extends React.PureComponent {
     };
 
     componentDidMount() {
-        this.changeLanguage(detectLocale(navigator.language));
+        const locale = detectLocale(navigator.language);
+        if (I18N_LOCALES.indexOf(locale) > -1) {
+            this.changeLanguage(detectLocale(navigator.language));
+        }
     }
 
     onNextClick = () => {
