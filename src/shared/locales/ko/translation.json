@@ -121,8 +121,8 @@
         "nodeMustUseHTTPSExplanation": "HTTPS를 사용하는 커스텀 노드만 사용 가능합니다.",
         "nodeDuplicated": "중복된 노드",
         "nodeDuplicatedExplanation": "해당 노드는 이미 등록되어 있습니다.",
-        "customNodeAdded": "Custom node added",
-        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
+        "customNodeAdded": "커스텀 노드가 추가되었습니다.",
+        "customNodeAddedExplanation": "{{nodeAddress}} 가 커스텀노드에 성공적으로 추가되었습니다.",
         "nodeAutoChanged": "노드 자동 변경됨",
         "nodeAutoChangedExplanation": "선택한 노드에 연결할 수 없어 새로운 노드인 {{- nodeAddress}}에 연결합니다.",
         "touchSensor": "지문 센서에 손가락을 올려 주세요",
@@ -170,7 +170,7 @@
         "missingPermissionExplanation": "이 기능을 사용하기 위해 파일 시스템 권한이 필요합니다.",
         "swipeToConfirm": "밀어서 확인",
         "expert": "전문가",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodes": "싱크된 노드의 수가 너무 적습니다.",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
