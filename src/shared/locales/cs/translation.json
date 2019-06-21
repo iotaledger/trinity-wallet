@@ -171,7 +171,7 @@
         "swipeToConfirm": "Posunutím potvrďte",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Synchronizuje se příliš málo Nodů",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodesExplanation": "Nebylo možné dosáhnout kvóra. Vypněte kvórum nebo to zkuste znovu."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -505,7 +505,7 @@
         "noCustomNodes": "Nebyly přidány žádné vlastní Nody",
         "mustAddCustomNodes": "Před vypnutím vzdáleného oficiálního seznamu Nodů musíte přidat alespoň jeden vlastní Node.",
         "nodeEnoughNodesTitle": "Nedostatečný počet Nodů",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanation": "Není dostatek Nodů, které by umožnily zapnout kvorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Přidejte další vlastní Nody, nebo povolte vzdálený oficiální seznam Nodů.",
         "nodeSettingsUpdatedTitle": "Nastavení Nodu bylo aktualizováno",
         "nodeSettingsUpdatedExplanation": "Úspěšně jste aktualizovali nastavení Nodu."
@@ -522,7 +522,7 @@
         "addAuthKey": "Přidat autorizační klíč",
         "username": "Uživatelské jméno",
         "couldNotRemove": "Nelze odebrat vlastní Node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "Musí být dostatek Nodů pro kvórum. Snižte velikost kvóra, nebo povolte vzdálený oficiální seznam Nodů."
     },
     "addNewAccount": {
         "useExistingSeed": "Použít stávající Seed",
