@@ -144,7 +144,7 @@
         "isYourBalanceCorrect": "이 잔액이 옳습니까?",
         "ifYourBalanceIsNotCorrect": "잔액이 옳지 않다면 스냅샷 전의 시드를 사용중일 수 있습니다.",
         "headToAdvancedSettingsForTransition": "고급 설정에서 스냅샷 이전을 수행해 주세요.",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
+        "headToAccountTools": "설정에서 스냅샷 이전을 실행해주세요.",
         "openAccountTools": "Open Account Tools",
         "usingTrinityWalletWithKeePass": "트리니티 지갑과 Keepass2Android 같이 사용하기",
         "signedTrytesBroadcastErrorExplanation": "트랜잭션 송출 중 네트워크 오류가 발생했습니다.",
@@ -171,7 +171,7 @@
         "swipeToConfirm": "밀어서 확인",
         "expert": "전문가",
         "notEnoughSyncedNodes": "싱크된 노드의 수가 너무 적습니다.",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodesExplanation": "큐럼에 연결할 수 없습니다. 큐럼을 끄거나 다시 시도해주세요."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -495,19 +495,19 @@
         "tools": "도구"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
+        "automaticNodeManagement": "자동 노드 관리",
         "addCustomNodes": "커스텀 노드 추가",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
+        "autoNodeList": "원격 노드 목록 사용",
+        "nodeAutoswitching": "기본 노드 자동전환",
+        "primaryNode": "기본 노드",
+        "enableQuorum": "큐럼 활성화",
+        "quorumSize": "큐럼 크기",
         "noCustomNodes": "커스텀 노드 없음",
         "mustAddCustomNodes": "원격 노드 목록을 비활성화하기 전에 최소한 하나의 커스텀 노드를 추가해야 합니다.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesTitle": "노드의 수가 부족합니다.",
         "nodeEnoughNodesExplanation": "큐럼을 활성화하기 위한 노드의 수가 부족합니다.",
         "nodeEnoughNodesExplanationCustomNodes": "더많은 커스텀 노드를 추가하거나 원격 노드 목록을 활성화하십시오.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedTitle": "노드 설정이 업데이트되었습니다.",
         "nodeSettingsUpdatedExplanation": "노드 설정이 성공적으로 업데이트되었습니다."
     },
     "addCustomNode": {
@@ -521,8 +521,8 @@
         "invalidURL": "유효한 URL을 입력하십시오.",
         "addAuthKey": "인증 키 추가",
         "username": "사용자 이름",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemove": "커스텀 노드를 제거할 수 없었습니다",
+        "couldNotRemoveExplanation": "큐럼은 충분한 수의 노드를 필요로 합니다. 큐럼 크기를 줄이거나 원격 노드 목록을 활성화하십시오."
     },
     "addNewAccount": {
         "useExistingSeed": "기존 시드 사용",
