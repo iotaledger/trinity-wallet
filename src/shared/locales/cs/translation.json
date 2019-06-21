@@ -827,7 +827,7 @@
         "indexInUse": "Tento index již používá účet {{account}}",
         "indexInUseExplanation": "Váš zvolený index je již používán na jednom z Vašich účtů. Vyberte si prosím jiné číslo indexu.",
         "createNewLedgerAccountInfo": "Ujistěte se, že jste si zapsali a uložili Vaše číslo indexu.",
-        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "restoreLedgerAccountInfo": "Vložte prosím číslo indexu za účelem obnovení Vašeho účtu.",
         "createNewLedgerAccount": "Vytvořit nový Ledger účet",
         "restoreLedgerAccount": "Obnovit existující Ledger účet",
         "accountIndex": "Index účtu",
