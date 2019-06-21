@@ -30,6 +30,7 @@ import { getEncryptionKey } from 'libs/realm';
 import registerScreens from 'ui/routes/navigation';
 import { initialise as initialiseStorage } from 'shared-modules/storage';
 import { mapStorageToState } from 'shared-modules/libs/storageToStateMappers';
+import { updateSchema } from 'shared-modules/schemas';
 
 // Assign Realm to global RN variable
 global.Realm = Realm;
@@ -233,14 +234,16 @@ onAppStart()
                 // If a user has stored data in AsyncStorage then map that data to redux store.
                 return reduxStore.dispatch(
                     mapStorageToStateAction(
-                        merge({}, storedData, {
-                            settings: {
-                                versions: latestVersions,
-                                // completedMigration prop was added to keep track of AsyncStorage -> Realm migration
-                                // That is why it won't be present in storedData (Data directly fetched from AsyncStorage)
-                                completedMigration,
-                            },
-                        }),
+                        updateSchema(
+                            merge({}, storedData, {
+                                settings: {
+                                    versions: latestVersions,
+                                    // completedMigration prop was added to keep track of AsyncStorage -> Realm migration
+                                    // That is why it won't be present in storedData (Data directly fetched from AsyncStorage)
+                                    completedMigration,
+                                },
+                            }),
+                        ),
                     ),
                 );
             }

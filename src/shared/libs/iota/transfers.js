@@ -123,7 +123,8 @@ export const findPromotableTail = (settings) => (tails, idx) => {
 
     return isPromotable(settings)(get(thisTail, 'hash'))
         .then((state) => {
-            if (state === true && isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
+            // (Temporarily) Allow transaction to promote even if consistency check fails
+            if (state === true || isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
                 return thisTail;
             }
 
@@ -1094,5 +1095,8 @@ export const isFatalTransactionError = (err) => {
         Errors.FUNDS_AT_SPENT_ADDRESSES,
         Errors.KEY_REUSE,
     ];
-    return some(fatalTransferErrors, (error) => err.message && err.message.includes(error));
+    return some(
+        fatalTransferErrors,
+        (error) => error === err || (typeof err.message === 'string' && err.message.includes(error)),
+    );
 };

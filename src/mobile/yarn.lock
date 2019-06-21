@@ -7782,10 +7782,9 @@ react-native-qr-generator@^1.0.3:
   resolved "https://registry.yarnpkg.com/react-native-qr-generator/-/react-native-qr-generator-1.0.3.tgz#a0e667dcaa10bd5b343060b84dae1dd01cfbaebd"
   integrity sha512-SouXtsTzjBDiaOIdS0bsLjJVFyGwr44oLdrGNAUOTN3Igqw+Jg+STRZUAigDK5yyuoe6PZ5CeCDxFKdGHmNyBA==
 
-react-native-qr-scanner@^1.3.2:
+"react-native-qr-scanner@https://github.com/cvarley100/react-native-qr-scanner#867e45d7f46d8464a636d85a0250d9e409c7beb6":
   version "1.3.2"
-  resolved "https://registry.yarnpkg.com/react-native-qr-scanner/-/react-native-qr-scanner-1.3.2.tgz#cb4588d8376e9842121442eca46f98b27140c526"
-  integrity sha512-kAU9ktAekjMGsa93Wkpm8PH5iC6L/xVxF5sfx23ttTHbEdbPijb2JopZoC5iHC7rvfIfYSleVx1YzSHga19ZXw==
+  resolved "https://github.com/cvarley100/react-native-qr-scanner#867e45d7f46d8464a636d85a0250d9e409c7beb6"
   dependencies:
     prop-types "15.5.10"
 

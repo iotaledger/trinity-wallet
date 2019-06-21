@@ -1,6 +1,7 @@
 /* global Electron */
 import assign from 'lodash/assign';
 import each from 'lodash/each';
+import filter from 'lodash/filter';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
@@ -287,7 +288,8 @@ class Node {
      */
     static addNodes(nodes) {
         if (size(nodes)) {
-            const existingUrls = map(Node.getDataAsArray(), (node) => node.url);
+            const existingNodes = Node.getDataAsArray();
+            const existingUrls = map(existingNodes, (node) => node.url);
 
             realm.write(() => {
                 each(nodes, (node) => {
@@ -297,6 +299,18 @@ class Node {
                     } else {
                         realm.create('Node', node);
                     }
+                });
+
+                const newNodesUrls = map(nodes, (node) => node.url);
+
+                // Remove all nodes (non-custom only) that are not part of the new nodes
+                const nodesToRemove = filter(
+                    existingNodes,
+                    (node) => node.custom === false && !includes(newNodesUrls, node.url),
+                );
+
+                each(nodesToRemove, (node) => {
+                    realm.delete(Node.getObjectForId(node.url));
                 });
             });
         }

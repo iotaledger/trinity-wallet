@@ -67,11 +67,11 @@ describe('libs: iota/utils', () => {
             expect(typeof returnValue).to.equal('function');
         });
 
-        it('should throw an error "No nodes to retry on if no nodes are provided"', () => {
+        it('should throw an error "No nodes are available to retry the request."', () => {
             const result = withRetriesOnDifferentNodes([]);
 
             return result(() => Promise.resolve())('foo').catch((err) => {
-                expect(err.message).to.equal('No node to retry.');
+                expect(err.message).to.equal('No nodes are available to retry the request.');
             });
         });
 
@@ -167,7 +167,7 @@ describe('libs: iota/utils', () => {
         });
 
         describe('when node is not synced', () => {
-            it('should return throw an error with message "Node not synced"', () => {
+            it('should return throw an error with message "The selected node is out of sync by timestamp. Its view of the Tangle may be innacurate."', () => {
                 const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(false);
 
                 return throwIfNodeNotHealthy('foo')
@@ -175,7 +175,7 @@ describe('libs: iota/utils', () => {
                         throw new Error();
                     })
                     .catch((error) => {
-                        expect(error.message).to.equal('Node not synced by timestamp');
+                        expect(error.message).to.equal('The selected node is out of sync by timestamp. Its view of the Tangle may be innacurate.');
                         stub.restore();
                     });
             });

@@ -20,7 +20,7 @@ describe('storage: Node', () => {
 
             realm.create('Node', {
                 url: 'https://testnode2.com:443',
-                custom: true,
+                custom: false,
                 pow: true,
             });
         });
@@ -65,7 +65,7 @@ describe('storage: Node', () => {
                 },
                 {
                     url: 'https://testnode2.com:443',
-                    custom: true,
+                    custom: false,
                     pow: true,
                     token: '',
                     password: '',
@@ -175,6 +175,50 @@ describe('storage: Node', () => {
                     expect(updatedNodeObject.custom).to.equal(custom);
                     expect(updatedNodeObject.pow).to.equal(pow);
                 });
+            });
+        });
+
+        describe('when some (existing non-custom) nodes are not part of new nodes', () => {
+            it('should delete nodes', () => {
+                const expectedNodesBeforeDeletion = [
+                    {
+                        url: 'https://testnode1.com:443',
+                        custom: true,
+                        pow: false,
+                        password: '',
+                        token: '',
+                    },
+                    {
+                        url: 'https://testnode2.com:443',
+                        custom: false,
+                        pow: true,
+                        password: '',
+                        token: '',
+                    },
+                ];
+
+                expect(Node.getDataAsArray()).to.eql(expectedNodesBeforeDeletion);
+
+                // Add nodes
+                Node.addNodes([
+                    {
+                        url: 'https://testnode1.com:443',
+                        custom: true,
+                        pow: false,
+                    },
+                ]);
+
+                const expectedNodesAfterUpdate = [
+                    {
+                        url: 'https://testnode1.com:443',
+                        custom: true,
+                        pow: false,
+                        password: '',
+                        token: '',
+                    },
+                ];
+
+                expect(Node.getDataAsArray()).to.eql(expectedNodesAfterUpdate);
             });
         });
     });
