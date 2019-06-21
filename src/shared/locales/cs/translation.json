@@ -144,8 +144,8 @@
         "isYourBalanceCorrect": "Je Váš zůstatek v pořádku?",
         "ifYourBalanceIsNotCorrect": "Pokud Váš zůstatek není správný, je pravděpodobné, že používáte Seed z doby před snapshotem.",
         "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
+        "headToAccountTools": "Přejděte na Nastavení účtu a proveďte Aktualizace údajů po Snapshotu.",
+        "openAccountTools": "Otevřete nastavení účtu",
         "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Během transakce došlo k chybě sítě.",
         "broadcastError": "Nezdařilo se odeslat transakci",
@@ -170,7 +170,7 @@
         "missingPermissionExplanation": "K provedení této funkce potřebujete přístup k souborovému systému.",
         "swipeToConfirm": "Posunutím potvrďte",
         "expert": "Expert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodes": "Synchronizuje se příliš málo Nodů",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba při získávání aktualizačních dat",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Nelze načíst aktualizaci. Zkontrolujte prosím připojení k internetu a zkuste to znovu.",
         "noUpdatesAvailable": "Nejsou dostupné žádné aktualizace",
         "noUpdatesAvailableExplanation": "Máte nainstalovanou nejnovější verzi Trinity!",
         "newVersionAvailable": "K dispozici je nová verze",
