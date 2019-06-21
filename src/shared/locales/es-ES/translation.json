@@ -519,7 +519,7 @@
         "nodeFieldEmpty": "El campo de texto esta vacio",
         "nodeFieldEmptyExplanation": "Por favor ingrese un nodo personalizado.",
         "invalidURL": "Por favor, ingrese una URL válida.",
-        "addAuthKey": "Añadir auth key",
+        "addAuthKey": "Añadir clave de autenticación",
         "username": "Nombre de usuario",
         "couldNotRemove": "No se pudo remover el nodo personalizado",
         "couldNotRemoveExplanation": "Debe haber suficientes nodos para el quórum. Reduce el tamaño del quórum o habilita la lista de nodos remotos."
@@ -580,7 +580,7 @@
         "unitInfoExplanation": "Los IOTAs son típicamente adquiridos en múltiplos de un millon, pero pueden ser transferidos en una unidad."
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Porque no puedo gastar todos mis fondos?",
+        "cantSpendFullBalanceQuestion": "¿Por qué no puedo gastar mi saldo completo?",
         "spentAddressExplanation": "Tiene fondos en al menos una dirección usada. Reutilizar direcciones es muy peligroso en IOTA, por eso esta billetera no esta habilitada para enviar desde la misma dirección más de una vez.",
         "discordInformation": "Por favor diríjase al canal #help en Discord para averiguar qué puede hacer."
     },
@@ -591,7 +591,7 @@
         "enterPassword": "Escriba su contraseña para eliminar la cuenta."
     },
     "manualSync": {
-        "outOfSync": "El historial de transacciones parece estar desincronizado?",
+        "outOfSync": "¿Su historial de transacciones parece que puede estar fuera de sincronización?",
         "pressToSync": "Presione el botón debajo para sincronizar su cuenta.",
         "thisMayTake": "Esto puede tomar un rato. Es probable que su dispositivo se ralentice.",
         "doNotClose": "Atención! minimizar la aplicación cancelara la sincronización.",
@@ -614,7 +614,7 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "¿Hizo una copia de seguridad de la semilla?",
-        "iHaveBackedUp": "Respalde correctamente mi semilla",
+        "iHaveBackedUp": "He respaldado con seguridad mi semilla",
         "reenterSeed": "En el siguiente paso debe reingresar su semilla.",
         "reenterSeedWarning": "Si no ha guardado su semilla y su dispositivo falla, usted perderá todas sus IOTA.",
         "pleaseConfirm": "Por favor confirme que ha almacenado seguramente su semilla."
@@ -737,9 +737,9 @@
         "transitionComplete": "Transición de snapshot completada",
         "transitionCompleteExplanation": "La transición de snapshot fue completada exitosamente.",
         "detectedBalance": "Balance detectado: {{amount}} {{unit}}",
-        "isThisCorrect": "Es esto correcto?",
+        "isThisCorrect": "¿Es esto correcto?",
         "snapshotExplanation": "Cada tanto, un snapshot es realizado para reducir el tamaño de la Tangle.",
-        "hasSnapshotTakenPlace": "Ocurrió un snapshot recientemente? Presione el botón debajo para comenzar la transición.",
+        "hasSnapshotTakenPlace": "¿Ocurrió un snapshot recientemente? Presione el botón debajo para comenzar la transición.",
         "transition": "Transición",
         "transitioning": "Transicionando para el snapshot.",
         "generatingAndDetecting": "Generando direcciones y detectando balances.",
@@ -763,7 +763,7 @@
         "noUpdatesAvailable": "No hay actualizaciones disponibles",
         "noUpdatesAvailableExplanation": "¡Tiene la última versión de Trinity!",
         "newVersionAvailable": "Nueva versión disponible",
-        "newVersionAvailableExplanation": "Una nueva versión de Trinity está disponible. Quieres actualizar ahora?",
+        "newVersionAvailableExplanation": "Una nueva versión de Trinity está disponible. ¿Quieres actualizar ahora?",
         "installUpdate": "Instalar actualización y reiniciar",
         "installUpdateExplanation": "Descarga completa, Trinity ahora se reiniciará para instalar la actualización.",
         "downloadingUpdate": "Descargando actualización",

@@ -1,7 +1,7 @@
 {
   "name": "trinity-desktop",
   "productName": "Trinity",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
   "description": "Desktop wallet for IOTA",

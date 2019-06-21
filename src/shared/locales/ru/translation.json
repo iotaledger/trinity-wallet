@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Узел вернул ошибку при получении информации о вашей учетной записи. Если ваша проблема не устранена, попробуйте изменить узел или отключить системный прокси-сервер в настройках Тринити.",
         "nodeOutOfSync": "Узел не синхронизирован",
         "nodeOutOfSyncExplanation": "Выбранный Вами узел не синхронизирован. Пожалуйста, смените узел или попробуйте снова.",
-        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "nodeOutOfSyncByTimestampExplanation": "Текущий узел вне синхронизации. Пожалуйста измените узел либо повторите позже. Также удостоверьтесь в корректности временной зоны устройства.",
         "experimentalNode": "Версия узла не поддерживается",
         "experimentalNodeExplanation": "На выбранном вами узле установлена ​​экспериментальная версия, которая не поддерживается. Пожалуйста, измените узел или попробуйте снова.",
         "thisNodeOutOfSync": "Этот узел не синхронизирован. Пожалуйста, смените узел или попробуйте снова.",
@@ -105,7 +105,7 @@
         "transactionAlreadyConfirmed": "Транзакция уже подтверждена",
         "transactionAlreadyConfirmedExplanation": "Транзакция, которую Вы пытаетесь продвинуть, уже подтверждена.",
         "cannotSendToOwn": "Отправка на указанный адрес",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwnExplanation": "Не возможно отправить на адрес который уже используется как входящий в этой транзакции.",
         "pleaseWait": "Пожалуйста, подождите",
         "pleaseWaitEllipses": "Секундочку...",
         "pleaseWaitExplanation": "Trinity в данный момент выполняет другую задачу. Пожалуйста, подождите и повторите попытку.",
@@ -121,7 +121,7 @@
         "nodeMustUseHTTPSExplanation": "Допускаются только пользовательские узлы с помощью HTTPS.",
         "nodeDuplicated": "Дублированный узел",
         "nodeDuplicatedExplanation": "Пользовательский узел уже указан.",
-        "customNodeAdded": "Custom node added",
+        "customNodeAdded": "Пользовательский узел добавлен",
         "customNodeAddedExplanation": "{{nodeAddress}} пользовательский узел был успешно добавлен.",
         "nodeAutoChanged": "Авто-переключаемый узел",
         "nodeAutoChangedExplanation": "Подключено к новому узлу {{- nodeAddress}}, так как выбранный Вами узел сейчас оффлайн.",
@@ -146,13 +146,13 @@
         "headToAdvancedSettingsForTransition": "Перейдите в Дополнительные Настройки и выполните Snapshot переход.",
         "headToAccountTools": "Перейдите в Настройки Пользователя и выполните Перемещение Записей Данных.",
         "openAccountTools": "Настройки Учетной Записи",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
+        "usingTrinityWalletWithKeePass": "Пользоваться кошельком Тринити с Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Произошла ошибка при отправке транзакции.",
         "broadcastError": "Не удалось ретранслировать транзакцию",
         "addressesAlreadySpentFrom": "Один или несколько адресов уже были использованы.",
         "problemSendingYourTransaction": "Возникла проблема при отправке Вашей транзакции.",
         "problemPerformingProofOfWork": "Возникла проблема при выполнении доказательства работы (proof of work).",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithLocalPoW": "Повторная попытка с локальным PoW.",
         "tryingAgainWithDifferentNode": "Повторная попытка с другим узлом.",
         "errorFetchingAccountInformation": "Ошибка при получении информации об учетной записи.",
         "errorSyncingAddresses": "Ошибка синхронизации информации об адресе. Повторная попытка с другим узлом.",
@@ -165,13 +165,13 @@
         "shouldUpdateExplanation": "Доступно новое обновление. Рекомендуем обновиться до последней версии.",
         "forceUpdate": "Для продолжения работы необходимо обновить приложение",
         "forceUpdateExplanation": "Было выпущено критическое обновление. Пожалуйста, обновите приложение.",
-        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
+        "testVersionWarning": "Эта версия рекомендуется для использования только в целях тестирования, с минимальным количеством токенов.",
         "missingPermission": "Требуется доступ к файловой системе",
         "missingPermissionExplanation": "Для выполнения этой функции необходим доступ к файловой системе.",
         "swipeToConfirm": "Проведите, чтобы подтвердить",
         "expert": "Эксперт",
         "notEnoughSyncedNodes": "Слишком мало нод в синхронизации",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodesExplanation": "Кворум не может быть достигнут. Выключите Кворум либо повторите позже."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -209,7 +209,7 @@
         "reasonPattern": "Короткий ключ легко угадать.",
         "reasonNames": "Распространенные имена и фамилии легко угадать.",
         "reasonRepeats": "Повторяет вроде «aaa» легко угадать.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
+        "reasonRepeats2": "Повторения символов ‘abcabcabc’ так же легки на подбор как и повторение символов ‘abc’.",
         "reasonSequence": "Последовательности вроде \"abc\" или \"54321\" легко угадать.",
         "reasonYears": "Последние годы легко угадать.",
         "reasonDates": "Даты часто легко угадать.",
@@ -225,7 +225,7 @@
         "passwordTooShortExplanation": "Ваш пароль должен быть длиной как минимум {{minLength}} символов. Текущая длина {{currentLength}} символов. Пожалуйста, попробуйте еще раз.",
         "passwordMismatch": "Пароли не совпадают",
         "passwordMismatchExplanation": "Введенные пароли не совпадают. Пожалуйста, попробуйте еще раз.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Это пароль для вашего основного кошелька. Вы будете использовать его для входа в систему.",
         "retypePassword": "Введите пароль еще раз"
     },
     "copyToClipboard": {
@@ -259,8 +259,8 @@
         "login": "Войти",
         "setNode": "Выбрать узел",
         "whyBiometricDisabled": "Почему биометрическая аутентификация отключена?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "При первой загрузке приложения биометрическая аутентификация будет отключена в целях вашей безопасности.",
+        "whyBiometricDisabledExplanationPart2": "В случае продолжительной неактивности вы будете выведены из системы автоматически. Вы сможете вернутся в систему с помощью биометрической аутентификации."
     },
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
@@ -275,10 +275,10 @@
         "pressForNewSeed": "Создать новый ключ",
         "generateSuccess": "Ключ (seed) успешно сгенерирован",
         "individualLetters": "Нажмите на любые несколько символов в случайном порядке.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount": "Наберите <1><0>{{count}}</0></1> букву что бы выдержать произвольность.",
+        "individualLetterCount_plural": "Наберите <1><0>{{count}}</0></1> больше букв что бы выдержать произвольность.",
+        "randomiseCharsToContinue": "Разнообразьте <1>{{count}}</1> символ что бы продолжить.",
+        "randomiseCharsToContinue_plural": "Разнообразьте <1>{{count}}</1> символы что бы продолжить.",
         "whatIsASeed": "Что такое ключ (seed) ?"
     },
     "onboardingComplete": {
@@ -289,17 +289,17 @@
     "paperWallet": {
         "neverShare": "Никогда не сообщайте свой ключ кому-либо.",
         "iotaLogo": "Логотип IOTA",
-        "print": "Print",
+        "print": "Печать",
         "paperConvenience": "Печать бумажной копии Вашего ключа - это удобный способ его хранения.",
         "publicInsecure": "Но печать через общественный Wi-Fi или на общедоступном принтере небезопасна.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Пожалуйста проведите проверку и подтвердите печать",
+        "wifiConfirmation": "Я НЕ на публичной точке доступа wifi",
+        "printerConfirmation": "Я НЕ использую принтер с публичным доступом"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "printTemplateQuestion": "Хотите распечатать пустой шаблон?",
+        "printTemplateInfo": "Вы можете использовать распечатанный шаблон в качестве бланка для ручной записи ключа.",
+        "printTemplateWarning": "Убедитесь что вы храните Ваш ключ в безопасном месте. Обеспечивайте секретность ключа.",
         "print": "Да, печатать"
     },
     "receive": {
@@ -309,14 +309,14 @@
         "copyAddress": "Скопировать адрес",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Создать адрес",
         "noAddresses": "НЕТ АДРЕСОВ",
         "spent": "Использованный адрес",
         "tag": "Метка",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAnAddress": "Создать адрес",
+        "generateAnAddressTitle": "Создавать адрес",
+        "generateAnAddressExplanation": "Пожалуйста создавайте адрес перед использованием этой функции.",
+        "generateAddressInformation": "Каждый раз при желании получить IOTA Вам требуется создавать новый адрес"
     },
     "saveYourSeed": {
         "saveYourSeed": "Создать резервную копию Вашего ключа",
@@ -330,29 +330,29 @@
         "letsWriteDownYourSeed": "Давайте напишите ваш seed",
         "youCanHighlightCharacters": "Одновременно можно выделить 9 символов",
         "printBlankWallet": "Распечатать чистый кошелёк",
-        "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "whatIsAChecksum": "Что такое Контрольная Сумма?",
+        "everySeedHasAChecksum": "У каждого ключа имеется соответствующая контрольная сумма из трёх символов.",
         "iHavesavedMySeed": "Я сохранил свой ключ",
         "checksumExplanation": "Каждый раз, когда Вы добавляете ключ к Вашему кошельку, Вы должны убедиться, что контрольная сумма, сгенерированная кошельком, соответствует той, которую Вы записали.",
         "mustSaveYourSeed": "<0><0>Вы должны сохранить свой ключ </ 0><1>как минимум одним</ 1> <2> из перечисленных ниже способов.</ 2></ 0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Пожалуйста, введите ключ ещё раз",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Сброс кошелька и удаление приложения это единственные случаи когда Тринити попросит Вас снова вести ключ.",
         "enterYourSeed": "Введите Ваш ключ",
         "incorrectSeed": "Неверный ключ",
         "incorrectSeedExplanation": "Введенный ключ неправильный. Пожалуйста, попробуйте еще раз.",
         "ifYouHaveNotSaved": "Если Вы не сохранили свой ключ, пожалуйста, вернитесь на шаг назад и сделайте это.",
         "enterSeedBelow": "Введите только что созданный Вами ключ ниже, чтобы подтвердить, что Вы правильно создали его резервную копию",
         "clipboardWarning": "ВНИМАНИЕ: Невозможно вставить seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarningExplanation": "В целях Вашей безопасности копирование с буфера обмена было отключено. Вы можете перетащить Ваш ключ в окно программы с помощью текстового документа."
     },
     "send": {
         "invalidAddress": "Неверный адрес",
         "invalidAddressExplanation1": "Адрес должен быть длиной в {{maxLength}} символ и содержать контрольную сумму.",
         "invalidAddressExplanation2": "Адрес содержит недопустимые символы.",
         "invalidAddressExplanation3": "Адрес содержит некорректную контрольную сумму.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "Пожалуйста удостоверьтесь в правильности введенного адреса.",
         "invalidAddressExplanationGeneric": "Действительные адреса должны быть 90 символов и содержать только A-Z или 9.",
         "notEnoughFunds": "Недостаточно средств",
         "notEnoughFundsExplanation": "У вас недостаточно IOTA для данной операции.",
@@ -385,9 +385,9 @@
         "advanced": "Дополнительные параметры",
         "standard": "Стандартный",
         "advancedModeExplanation": "Расширенный режим будет отображать более подробную техническую информацию.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
+        "modesExplanation": "Режим Эксперта содержит продвинутые настройки и предназначен только для опытных пользователей.",
         "modeUpdated": "Режим обновлен",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdatedExplanation": "Была произведена смена в режим {{mode}}"
     },
     "settings": {
         "transferSending": "Осуществляется перевод",
@@ -401,7 +401,7 @@
         "accountManagement": "Управление счётом",
         "addNewSeed": "Добавить новый ключ",
         "changePassword": "Изменить пароль",
-        "general": "General settings",
+        "general": "Общие настройки",
         "advanced": "Дополнительные настройки",
         "nodeSettings": "Настройки узла(ноды)",
         "account": "Настройки учетной записи",
@@ -448,11 +448,11 @@
     "walletSetup": {
         "okay": "Хорошо, давайте настроим Ваш кошелек!",
         "doYouNeedASeed": "Нужно ли Вам создать новый ключ?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "Ваш ключ служит в качестве универсального доступа к IOTA средствам. Он содержит 81 символ, состоящий из заглавных букв A-Z и/или номера 9.",
         "noIHaveOne": "Нет, у меня уже есть ключ",
         "yesINeedASeed": "Да, мне нужен ключ",
         "explanation": "<0><0>Вы можете использовать его для доступа к средствам с</0><1> любого кошелька</1><2>, на</2><3> любом устройстве.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "loseSeed": "Потеря Вашего ключа равносильна потере Ваших IOTA.",
         "keepSafe": "Пожалуйста, храните Ваш ключ в безопасности."
     },
     "welcome": {
@@ -460,13 +460,13 @@
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Запишите Ваш ключ, контрольную сумму и </ 0><1>трижды проверьте </ 1><2> что они верны.</ 2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Прокрутить в конец страницы"
     },
     "history": {
         "bundleHashCopied": "Хэш пакет скопирован",
-        "noTransactionsFound": "No transactions found",
-        "emptyHistory": "Your transaction history is empty",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "Транзакции не найдены",
+        "emptyHistory": "Нет истории транзакций",
+        "hideZeroBalance": "Скрыть нулевой баланс",
         "bundleHashCopiedExplanation": "Хэш пакет скопирован в буфер обмена.",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Адрес скопирован в буфер обмена.",
@@ -474,17 +474,17 @@
         "messageCopiedExplanation": "Сообщение скопировано в буфер обмена.",
         "send": "ОТПРАВИТЬ",
         "receive": "Получить",
-        "empty": "Empty",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday",
-        "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "empty": "Пустой",
+        "retrying": "Повторная попытка",
+        "yesterday": "Вчера",
+        "promotingAnotherBundle": "Содействую активации другого пакета",
+        "pleaseWait": "Пожалуйста, подождите, Тринити содействует активации другого пакета.",
+        "typeHelp": "Введите !help для отображения доступных команд",
+        "searchHelpText": "Поиск по хэшу пакета либо содержанию сообщения",
+        "searchHelpValue": "Найти транзакции по точной величине iota",
+        "searchHelpUnits": "Найти транзакции по величине и мере единиц iota",
+        "searchHelpMore": "Найти транзакции превосходящие значению X",
+        "searchHelpLess": "Найти транзакции снисходящие значению\nX"
     },
     "accountManagement": {
         "viewSeed": "Показать ключ",
@@ -497,12 +497,12 @@
     "nodeSettings": {
         "automaticNodeManagement": "Автоматическое управление узлами",
         "addCustomNodes": "Добавить пользовательские узлы",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
+        "autoNodeList": "Использовать список удаленных узлов сети",
+        "nodeAutoswitching": "Автоматическая смена основного узла сети",
+        "primaryNode": "Основной узел сети",
+        "enableQuorum": "Включить Кворум",
+        "quorumSize": "Размер Кворума",
+        "noCustomNodes": "Нет пользовательских узлов сети",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
         "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",

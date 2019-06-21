@@ -1,10 +1,12 @@
 import values from 'lodash/values';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
+import isNull from 'lodash/isNull';
 import * as Keychain from 'react-native-keychain';
 import { getVersion } from 'react-native-device-info';
 import { serialise } from 'shared-modules/libs/utils';
 import { trytesToTrits } from 'shared-modules/libs/iota/converter';
+import Errors from 'shared-modules/libs/errors';
 import {
     getNonce,
     createSecretBox,
@@ -104,6 +106,11 @@ export const getSecretBoxFromKeychainAndOpenIt = async (alias, keyUInt8) => {
  */
 export const hash = async (password) => {
     const saltItem = await keychain.get(ALIAS_SALT);
+
+    if (isNull(saltItem)) {
+        throw new Error(Errors.MISSING_FROM_KEYCHAIN(ALIAS_SALT));
+    }
+
     const salt = await decodeBase64(saltItem.item);
     return await generatePasswordHash(password, salt);
 };
