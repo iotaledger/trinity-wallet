@@ -63,11 +63,17 @@
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <note>Privacy - Camera Usage Description</note>
         <target state="translated">Тринити нужен доступ к камере, чтобы включить сканер QR-кодов.</target>
+        <alt-trans>
+          <target>Чтобы выполнить сканирование QR-кода, Тринити нужно разрешить доступ к камере.</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <note>Privacy - Face ID Usage Description</note>
         <target state="translated">Тринити нужен доступ к Face ID, чтобы использовать биометрическую аутентификацию.</target>
+        <alt-trans>
+          <target>Для того чтобы включить биометрическую аутентификацию Тринити потребуется разрешить доступ к Face ID.</target>
+        </alt-trans>
         <alt-trans>
           <target>Тринити нужен доступ к Face ID, чтобы использовать биометрическую аутентификации.</target>
         </alt-trans>
@@ -76,6 +82,9 @@
         <source>2018 IOTA Foundation. All rights reserved.</source>
         <note>Copyright (human-readable)</note>
         <target state="translated">2018 IOTA Foundation. Все права защищены.</target>
+        <alt-trans>
+          <target>2018 IOTA Фонд. Все права защищены.</target>
+        </alt-trans>
         <alt-trans>
           <target>2018 IOTA фонд. Все права защищены.</target>
         </alt-trans>

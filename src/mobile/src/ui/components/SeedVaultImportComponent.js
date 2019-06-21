@@ -197,7 +197,7 @@ export class SeedVaultImportComponent extends Component {
                 timer.setTimeout('delayDocumentPicker', () => this.showDocumentPicker(), 200);
             })
             .catch((err) => {
-                if (err.message === 'Read permissions not granted.') {
+                if (typeof err.message === 'string' && err.message === 'Read permissions not granted.') {
                     return this.props.generateAlert(
                         'error',
                         t('receive:missingPermission'),

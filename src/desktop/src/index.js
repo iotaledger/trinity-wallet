@@ -15,7 +15,7 @@ import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode, quorum } from 'libs/iota';
 import { initialise as initialiseStorage } from 'storage';
 import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
-import updateSchema from 'libs/updateSchema';
+import { updateSchema } from 'schemas';
 
 import Index from 'ui/Index';
 import Tray from 'ui/Tray';
