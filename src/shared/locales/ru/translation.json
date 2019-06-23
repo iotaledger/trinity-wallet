@@ -503,7 +503,7 @@
         "enableQuorum": "Включить Кворум",
         "quorumSize": "Размер Кворума",
         "noCustomNodes": "Нет пользовательских узлов сети",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
+        "mustAddCustomNodes": "Перед отключением списка удаленных узлов сети Вам необходимо добавить хотя бы один пользовательский узел.",
         "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
