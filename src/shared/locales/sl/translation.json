@@ -816,9 +816,9 @@
         "sweepConfirmationTitle": "Sweep confirmation"
     },
     "migration": {
-        "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
-        "problemMigratingYourData": "There was a problem migrating your data. Please try again",
+        "dataMigration": "Migracija podatkov",
+        "dataMigrationExplanation": "Zaradi omejitev zmogljivosti in shranjevanja, Trinity uporablja novo bazo podatkov za shranjevanje nastavitev in podatkov o računu. Počakajte, da Trinity samodejno preseli vaše obstoječe podatke.",
+        "problemMigratingYourData": "Pri selitvi vaših podatkov je prišlo do težave. Prosim poskusite ponovno",
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
