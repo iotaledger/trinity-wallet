@@ -571,7 +571,7 @@
         "scan": "Сканировать QR-код"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Система измерения единиц",
         "trillion": "Триллион",
         "billion": "Миллиард",
         "million": "Миллион",
