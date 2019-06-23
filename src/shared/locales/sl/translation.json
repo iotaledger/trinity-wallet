@@ -703,22 +703,22 @@
         "continueDepsiteRisk": "Ali želite nadaljevati kljub temu tveganju?"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote",
-        "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated."
+        "feeless": "Potrebno je dokončati samo Proof of Work, da lahko pošljete IOTA.",
+        "localOrRemote": "Proof of Work se lahko izvede lokalno na vaši napravi ali pa se prenese na Node.",
+        "local": "Lokalno",
+        "remote": "Oddaljeno z Node",
+        "powUpdated": "Proof of Work nastavitve",
+        "powUpdatedExplanation": "Proof of Work nastavitve so posodobljene."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Auto-Promotion nastavitve",
+        "autoPromotionUpdatedExplanation": "Proof of Work nastavitve so posodobljene."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
-        "validatingReceiveAddress": "Validating receive address",
-        "validatingTransactionAddresses": "Validating transaction addresses",
-        "syncingAccount": "Syncing account",
+        "checkingNodeHealth": "Preverjanje Node stanja",
+        "validatingReceiveAddress": "Potrjevanje prejemnega naslova",
+        "validatingTransactionAddresses": "Potrjevanje naslovov transakcij",
+        "syncingAccount": "Sinhroniziranje računa",
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Preparing transfers",
         "gettingTransactionsToApprove": "Getting transactions to approve",
@@ -785,7 +785,7 @@
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "Niste prijavljeni",
-        "setupIncomplete": "Wallet setup incomplete",
+        "setupIncomplete": "Nastavitev denarnice je nepopolna",
         "completeSetup": "Complete setup"
     },
     "proxy": {
