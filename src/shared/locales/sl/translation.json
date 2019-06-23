@@ -738,7 +738,7 @@
         "transitionCompleteExplanation": "Snapshot-obnovitev je uspešno zaključena.",
         "detectedBalance": "Zaznano stanje: {{amount}}{{unit}}",
         "isThisCorrect": "Je pravilno?",
-        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "snapshotExplanation": "V nerednih intervalih se izvede Snapshot, da se zmanjša velikost od Tangle.",
         "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
         "transition": "Transition",
         "transitioning": "Transitioning for the snapshot.",
