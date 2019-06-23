@@ -801,18 +801,18 @@
         "valueTx": "Prejemanje {{value}} v {{account}}",
         "messageTx": "Prejeli ste sporočilo v {{account}}",
         "confirmedIn": "Dohodna transakcija z {{value}} v {{account}} je potrjena",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedOut": "Odhodna transakcija z {{value}} od {{account}} je potrjena"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
+        "sweepSucceeded": "Sredstva so uspešno odklenjena",
+        "sweepSucceededExplanation": "Vaša sredstva so bila uspešno odklenjena in premaknjena na nov naslov. Izvedite Promote transakcij, da jih potrdite.",
+        "sweepError": "Napaka pri odklepanju sredstev",
+        "sweepErrorExplanation": "Pri odklepanju sredstev je prišlo do napake. Poskusite znova.",
+        "warningTitle": "Opozorilo: odkrita zaklenjena sredstva",
+        "explanation": "Trinity Desktop različica 0.3.4 je vsebovala napako, ki lahko začasno zaklene sredstva. To vpliva na majhno število uporabnikov, ki so opravili transakcije z 0.3.4.",
+        "explanationAccounts": "Zaznana so bila zaklenjena sredstva, v računih: {{accounts}}. Trinity bo zdaj samodejno obnovila vaša sredstva, tako da jih premakne na nov naslov.",
+        "proceed": "Naprej k obnovitvi",
+        "sweepConfirmation": "Premikate {{amount}} na naslov {{address}}, račun: {{accountName}}, indeks naslova: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     },
     "migration": {
