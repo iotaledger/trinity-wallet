@@ -537,45 +537,45 @@
         "autoPromotionExplanation": "Auto-Promotion vam pomaga potrditi transakcije v Tangle. Omogočite to nastavitev, če imate težave pri potrditvi transakcij.",
         "autoPromotionPoW": "Auto-Promotion je možen samo na Node, ki podpira oddaljen Proof of Work.",
         "deepLinking": "Deep-Linking",
-        "stateExport": "State export"
+        "stateExport": "Izvozi status"
     },
     "advancedThemeCustomisation": {
         "background": "Ozadje",
-        "frame": "Frame"
+        "frame": "Okvir"
     },
     "themeCustomisation": {
         "theme": "Tema",
-        "mockup": "Mockup"
+        "mockup": "Predogled"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
+        "classic": "Klasično",
+        "contemporary": "Sodobna",
+        "dark": "Temna",
+        "default": "Privzeta",
+        "electric": "Električna",
+        "ionic": "Ionska",
+        "light": "Svetla",
+        "lucky": "Srečna",
         "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "steelblue": "Jekleno modra"
     },
     "currencySelection": {
         "currency": "Valuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "logoutConfirmation": "Ali ste prepričani, da se želite odjaviti?",
+        "aboutToLogOut": "Zdaj se boste odjavili",
+        "areYouSure": "Ste prepričani?"
     },
     "qrScanner": {
         "scan": "Skeniraj QR kodo"
     },
     "unitInfoModal": {
         "unitSystem": "Sistemska enota",
-        "trillion": "Trillion",
+        "trillion": "Bilijon",
         "billion": "Miljarda",
-        "million": "Million",
-        "thousand": "Thousand",
+        "million": "Milijon",
+        "thousand": "Tisoč",
         "one": "One",
         "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
