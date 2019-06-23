@@ -645,13 +645,13 @@
         "instructionsLogin": "Dotaknite se bralnika prstnih odtisov, da se prijavite",
         "systemCancelledAuth": "Naprava je preklicala autentifikacijo",
         "userCancelledAuth": "Autentifikacija je preklicana",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "passwordFallback": "Vrni se na autentifikacijo z geslom",
+        "noPassword": "Na tej napravi ni bilo nastavljeno geslo"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message",
-        "fromAccount": "From {{selectedAccountName}}",
+        "youAreAbout": "Pošiljas {{contents}} na naslov",
+        "aMessage": "sporočilo",
+        "fromAccount": "Od {{selectedAccountName}}",
         "toAddress": "Na naslov",
         "sendingAMessage": "Pošiljanje sporočila",
         "sendingAnEmptyMessage": "Pošiljanje praznega sporočila"
@@ -813,7 +813,7 @@
         "explanationAccounts": "Zaznana so bila zaklenjena sredstva, v računih: {{accounts}}. Trinity bo zdaj samodejno obnovila vaša sredstva, tako da jih premakne na nov naslov.",
         "proceed": "Naprej k obnovitvi",
         "sweepConfirmation": "Premikate {{amount}} na naslov {{address}}, račun: {{accountName}}, indeks naslova: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepConfirmationTitle": "Popravi transakcijo"
     },
     "migration": {
         "dataMigration": "Migracija podatkov",
@@ -846,12 +846,12 @@
         "applicationTitle": "Odprite Ledger IOTA aplikacijo",
         "applicationExplanation": "Pojdite na vaš Ledger in odprite aplikacijo IOTA, da lahko nadaljujete z uporabo Trinity.",
         "cannotSendZeroValueTitle": "Prenos ničelne vrednosti ni mogoč",
-        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
-        "ledgerDisconnectedTitle": "Ledger device disconnected",
-        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
-        "ledgerDeniedTitle": "Transaction denied",
-        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
-        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "cannotSendZeroValueExplanation": "Prenos ničelne vrednosti z Ledger-napravo ni mogoče.",
+        "ledgerDisconnectedTitle": "Ledger povezava prekinjena",
+        "ledgerDisconnectedExplanation": "Ledger povezava je bila prekinjena. Ponovno se povežite in poskusite znova.",
+        "ledgerDeniedTitle": "Transakcija je bila zavrnjena",
+        "ledgerDeniedExplanation": "Transakcija je bila zavrnjena na Ledger-napravi.",
+        "ledgerIncorrectIndex": "Napačen Ledger",
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
