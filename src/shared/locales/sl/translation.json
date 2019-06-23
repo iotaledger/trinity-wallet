@@ -576,13 +576,13 @@
         "billion": "Miljarda",
         "million": "Milijon",
         "thousand": "Tisoč",
-        "one": "One",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "one": "Ena",
+        "unitInfoExplanation": "IOTA se običajno pridobijo v več milijonih, vendar se lahko prenesejo kot ena IOTA."
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "cantSpendFullBalanceQuestion": "Zakaj ne morem porabiti celotnega stanja?",
+        "spentAddressExplanation": "Imate pozitivno stanje na enem ali več, uporabljenih naslovih. Ponovna uporaba naslovov je nevarna za IOTA. Denarnica zato ne dovoljuje pošiljanja več kot enkrat z istega naslova.",
+        "discordInformation": "Prosimo, pojdite na kanal #help na Discord, da ugotovite, kaj lahko storite."
     },
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
