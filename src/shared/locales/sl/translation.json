@@ -586,28 +586,28 @@
     },
     "deleteAccount": {
         "areYouSure": "Ali ste prepričani, da želite izbrisati ta račun?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "yourSeedWillBeRemoved": "Vaš Seed in zgodovina transakcij bo odstranjena.",
         "thisAction": "Tega dejanja ni mogoče razveljaviti",
-        "enterPassword": "Enter your password to delete this account."
+        "enterPassword": "Vnesite vaše geslo, da izbrišete ta račun."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
-        "syncAccount": "Sync Account",
-        "syncingYourAccount": "Syncing your account."
+        "outOfSync": "Ali vaša zgodovina transakcij izgleda, kot da ni sinhronizirana?",
+        "pressToSync": "Za sinhronizacijo računa pritisnite spodnji gumb.",
+        "thisMayTake": "To lahko traja nekaj časa. Morda boste opazili, da se vaša naprava upočasni.",
+        "doNotClose": "Upoštevajte, da bo minimiranje aplikacije prekinilo sinhronizacijo.",
+        "syncAccount": "Sinhroniziraj račun",
+        "syncingYourAccount": "Sinhronizacija vašega računa."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "title": "Vnesite ime računa in Seed",
+        "incorrectFormat": "Nepravilna Seed oblika",
+        "validSeedExplanation": "Veljavni Seed-i vsebujejo 81 znakov in le znake A-Z in 9."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "enterPassword": "Vnesite geslo, za prikaz Seed-a.",
+        "viewSeed": "Prikaži Seed",
+        "hideSeed": "Skrij Seed",
+        "notAvailable": "Seed izvoz ni mogoč za {{accountType}} račun",
         "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
