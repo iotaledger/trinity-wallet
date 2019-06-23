@@ -513,7 +513,7 @@
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Не удалось добавить пользовательский узел",
         "customNode": "Пользовательский узел",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Удалить пользовательский узел сети",
         "invalidNodeResponse": "На узле произошла ошибка",
         "add": "Добавить",
         "nodeFieldEmpty": "Текстовое поле пусто",
@@ -522,7 +522,7 @@
         "addAuthKey": "Добавить ключ авторизации",
         "username": "Имя пользователя",
         "couldNotRemove": "Не удалось удалить пользовательский узел",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "Не достаточно узлов сети. Уменьшите размер кворума или включите список удаленных узлов сети."
     },
     "addNewAccount": {
         "useExistingSeed": "Использовать существующий ключ",
