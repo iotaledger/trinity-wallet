@@ -16,6 +16,7 @@ import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode, quorum } from 'libs/iota';
 import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
 import { initialise as initialiseStorage, realm } from 'storage';
+import { updateSchema } from 'schemas';
 
 import Index from 'ui/Index';
 import Tray from 'ui/Tray';
@@ -69,7 +70,7 @@ const init = () => {
                 }
 
                 // Get persisted data from Realm storage if no old persisted data present
-                const data = hasDataToMigrate ? oldPersistedData : mapStorageToState();
+                const data = hasDataToMigrate ? updateSchema(oldPersistedData) : mapStorageToState();
 
                 // Change provider on global iota instance
                 const node = get(data, 'settings.node');

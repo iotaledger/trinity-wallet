@@ -27,7 +27,7 @@ export const migrateNodes = (nodes) => {
         if (size(remoteNodes)) {
             Node.addNodes(
                 map(nodes, (node) => {
-                    const remoteNode = find(remoteNodes, { node: node.url });
+                    const remoteNode = find(remoteNodes, { url: node.url });
 
                     if (remoteNode) {
                         return assign({}, node, { pow: remoteNode.pow });

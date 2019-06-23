@@ -14,7 +14,7 @@
         "transferSentMessage": "Ваш перевод отправлен в Tangle.",
         "messageSent": "Сообщение отправлено",
         "messageSentMessage": "Ваше сообщение отправлено в Tangle.",
-        "keyReuse": "Отправка на использованный адрес",
+        "keyReuse": "Отправляется на использованный адрес",
         "keyReuseError": "Вы не можете сделать перевод на адрес, с которого уже был осуществлён перевод.",
         "invalidResponse": "Ошибка узла",
         "invalidResponseExplanation": "Узел сообщил об ошибке. Попробуйте сменить узел.",
@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Узел вернул ошибку при получении информации о вашей учетной записи. Если ваша проблема не устранена, попробуйте изменить узел или отключить системный прокси-сервер в настройках Тринити.",
         "nodeOutOfSync": "Узел не синхронизирован",
         "nodeOutOfSyncExplanation": "Выбранный Вами узел не синхронизирован. Пожалуйста, смените узел или попробуйте снова.",
-        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "nodeOutOfSyncByTimestampExplanation": "Текущий узел вне синхронизации. Пожалуйста измените узел либо повторите позже. Также удостоверьтесь в корректности временной зоны устройства.",
         "experimentalNode": "Версия узла не поддерживается",
         "experimentalNodeExplanation": "На выбранном вами узле установлена ​​экспериментальная версия, которая не поддерживается. Пожалуйста, измените узел или попробуйте снова.",
         "thisNodeOutOfSync": "Этот узел не синхронизирован. Пожалуйста, смените узел или попробуйте снова.",
@@ -105,7 +105,7 @@
         "transactionAlreadyConfirmed": "Транзакция уже подтверждена",
         "transactionAlreadyConfirmedExplanation": "Транзакция, которую Вы пытаетесь продвинуть, уже подтверждена.",
         "cannotSendToOwn": "Отправка на указанный адрес",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwnExplanation": "Не возможно отправить на адрес который уже используется как входящий в этой транзакции.",
         "pleaseWait": "Пожалуйста, подождите",
         "pleaseWaitEllipses": "Секундочку...",
         "pleaseWaitExplanation": "Trinity в данный момент выполняет другую задачу. Пожалуйста, подождите и повторите попытку.",
@@ -121,8 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Допускаются только пользовательские узлы с помощью HTTPS.",
         "nodeDuplicated": "Дублированный узел",
         "nodeDuplicatedExplanation": "Пользовательский узел уже указан.",
-        "customNodeAdded": "Custom node added",
-        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
+        "customNodeAdded": "Пользовательский узел добавлен",
+        "customNodeAddedExplanation": "{{nodeAddress}} пользовательский узел был успешно добавлен.",
         "nodeAutoChanged": "Авто-переключаемый узел",
         "nodeAutoChangedExplanation": "Подключено к новому узлу {{- nodeAddress}}, так как выбранный Вами узел сейчас оффлайн.",
         "touchSensor": "Коснитесь датчика отпечатков пальцев",
@@ -144,15 +144,15 @@
         "isYourBalanceCorrect": "Верен ли Ваш баланс?",
         "ifYourBalanceIsNotCorrect": "Если Ваш баланс не верен, то, скорее всего, Вы используете ключ, который не был актувлизирован после снимка сети.",
         "headToAdvancedSettingsForTransition": "Перейдите в Дополнительные Настройки и выполните Snapshot переход.",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
+        "headToAccountTools": "Перейдите в Настройки Пользователя и выполните Перемещение Записей Данных.",
+        "openAccountTools": "Настройки Учетной Записи",
+        "usingTrinityWalletWithKeePass": "Пользоваться кошельком Тринити с Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Произошла ошибка при отправке транзакции.",
         "broadcastError": "Не удалось ретранслировать транзакцию",
         "addressesAlreadySpentFrom": "Один или несколько адресов уже были использованы.",
         "problemSendingYourTransaction": "Возникла проблема при отправке Вашей транзакции.",
         "problemPerformingProofOfWork": "Возникла проблема при выполнении доказательства работы (proof of work).",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithLocalPoW": "Повторная попытка с локальным PoW.",
         "tryingAgainWithDifferentNode": "Повторная попытка с другим узлом.",
         "errorFetchingAccountInformation": "Ошибка при получении информации об учетной записи.",
         "errorSyncingAddresses": "Ошибка синхронизации информации об адресе. Повторная попытка с другим узлом.",
@@ -165,13 +165,13 @@
         "shouldUpdateExplanation": "Доступно новое обновление. Рекомендуем обновиться до последней версии.",
         "forceUpdate": "Для продолжения работы необходимо обновить приложение",
         "forceUpdateExplanation": "Было выпущено критическое обновление. Пожалуйста, обновите приложение.",
-        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
+        "testVersionWarning": "Эта версия рекомендуется для использования только в целях тестирования, с минимальным количеством токенов.",
         "missingPermission": "Требуется доступ к файловой системе",
         "missingPermissionExplanation": "Для выполнения этой функции необходим доступ к файловой системе.",
         "swipeToConfirm": "Проведите, чтобы подтвердить",
-        "expert": "Expert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "expert": "Эксперт",
+        "notEnoughSyncedNodes": "Слишком мало нод в синхронизации",
+        "notEnoughSyncedNodesExplanation": "Кворум не может быть достигнут. Выключите Кворум либо повторите позже."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -209,7 +209,7 @@
         "reasonPattern": "Короткий ключ легко угадать.",
         "reasonNames": "Распространенные имена и фамилии легко угадать.",
         "reasonRepeats": "Повторяет вроде «aaa» легко угадать.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
+        "reasonRepeats2": "Повторения символов ‘abcabcabc’ так же легки на подбор как и повторение символов ‘abc’.",
         "reasonSequence": "Последовательности вроде \"abc\" или \"54321\" легко угадать.",
         "reasonYears": "Последние годы легко угадать.",
         "reasonDates": "Даты часто легко угадать.",
@@ -225,7 +225,7 @@
         "passwordTooShortExplanation": "Ваш пароль должен быть длиной как минимум {{minLength}} символов. Текущая длина {{currentLength}} символов. Пожалуйста, попробуйте еще раз.",
         "passwordMismatch": "Пароли не совпадают",
         "passwordMismatchExplanation": "Введенные пароли не совпадают. Пожалуйста, попробуйте еще раз.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Это пароль для вашего основного кошелька. Вы будете использовать его для входа в систему.",
         "retypePassword": "Введите пароль еще раз"
     },
     "copyToClipboard": {
@@ -236,7 +236,7 @@
         "invalidCharacters": "Ключ содержит недопустимые символы",
         "invalidCharactersExplanation": "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте еще раз.",
         "seedTooShort": "Ключ слишком короткий",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "Слишком длинный Seed",
         "seedTooShortExplanation": "Ключ должен быть длиной в {{maxLength}} символ. Ваш текущий ключ имеет длину в {{currentLength}} символов. Пожалуйста, повторите попытку.",
         "seedExplanation": "Ключ должен быть длиной в {{maxLength}} символ и содержать только заглавные буквы A-Z и цифру 9. Ключи длиной более чем {{maxLength}} символ не допускаются.",
         "neverShare": "НИКОГДА НИКОМУ НЕ СООБЩАЙТЕ ВАШ КЛЮЧ"
@@ -258,9 +258,9 @@
         "enterPassword": "Пожалуйста, введите пароль.",
         "login": "Войти",
         "setNode": "Выбрать узел",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Почему биометрическая аутентификация отключена?",
+        "whyBiometricDisabledExplanationPart1": "При первой загрузке приложения биометрическая аутентификация будет отключена в целях вашей безопасности.",
+        "whyBiometricDisabledExplanationPart2": "В случае продолжительной неактивности вы будете выведены из системы автоматически. Вы сможете вернутся в систему с помощью биометрической аутентификации."
     },
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
@@ -275,10 +275,10 @@
         "pressForNewSeed": "Создать новый ключ",
         "generateSuccess": "Ключ (seed) успешно сгенерирован",
         "individualLetters": "Нажмите на любые несколько символов в случайном порядке.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount": "Наберите <1><0>{{count}}</0></1> букву что бы выдержать произвольность.",
+        "individualLetterCount_plural": "Наберите <1><0>{{count}}</0></1> больше букв что бы выдержать произвольность.",
+        "randomiseCharsToContinue": "Разнообразьте <1>{{count}}</1> символ что бы продолжить.",
+        "randomiseCharsToContinue_plural": "Разнообразьте <1>{{count}}</1> символы что бы продолжить.",
         "whatIsASeed": "Что такое ключ (seed) ?"
     },
     "onboardingComplete": {
@@ -289,70 +289,70 @@
     "paperWallet": {
         "neverShare": "Никогда не сообщайте свой ключ кому-либо.",
         "iotaLogo": "Логотип IOTA",
-        "print": "Print",
+        "print": "Печать",
         "paperConvenience": "Печать бумажной копии Вашего ключа - это удобный способ его хранения.",
         "publicInsecure": "Но печать через общественный Wi-Fi или на общедоступном принтере небезопасна.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Пожалуйста проведите проверку и подтвердите печать",
+        "wifiConfirmation": "Я НЕ на публичной точке доступа wifi",
+        "printerConfirmation": "Я НЕ использую принтер с публичным доступом"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "Хотите распечатать пустой шаблон?",
+        "printTemplateInfo": "Вы можете использовать распечатанный шаблон в качестве бланка для ручной записи ключа.",
+        "printTemplateWarning": "Убедитесь что вы храните Ваш ключ в безопасном месте. Обеспечивайте секретность ключа.",
+        "print": "Да, печатать"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Ваш адрес",
+        "qrOptions": "Параметры QR",
+        "shareQr": "Поделиться QR-кодом",
         "copyAddress": "Скопировать адрес",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Создать адрес",
         "noAddresses": "НЕТ АДРЕСОВ",
         "spent": "Использованный адрес",
         "tag": "Метка",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAnAddress": "Создать адрес",
+        "generateAnAddressTitle": "Создавать адрес",
+        "generateAnAddressExplanation": "Пожалуйста создавайте адрес перед использованием этой функции.",
+        "generateAddressInformation": "Каждый раз при желании получить IOTA Вам требуется создавать новый адрес"
     },
     "saveYourSeed": {
         "saveYourSeed": "Создать резервную копию Вашего ключа",
         "seedCleared": "Ключ удален из буфера обмена",
         "mostSecure": "Наиболее безопасно",
-        "recommended": "Recommended",
+        "recommended": "Рекомендовано",
         "leastSecure": "Наименее безопасно",
         "paperWallet": "Бумажный кошелек",
         "writeYourSeedDown": "Запишите Ваш ключ",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для Вашей безопасности.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Давайте напишите ваш seed",
         "youCanHighlightCharacters": "Одновременно можно выделить 9 символов",
         "printBlankWallet": "Распечатать чистый кошелёк",
-        "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "whatIsAChecksum": "Что такое Контрольная Сумма?",
+        "everySeedHasAChecksum": "У каждого ключа имеется соответствующая контрольная сумма из трёх символов.",
         "iHavesavedMySeed": "Я сохранил свой ключ",
         "checksumExplanation": "Каждый раз, когда Вы добавляете ключ к Вашему кошельку, Вы должны убедиться, что контрольная сумма, сгенерированная кошельком, соответствует той, которую Вы записали.",
         "mustSaveYourSeed": "<0><0>Вы должны сохранить свой ключ </ 0><1>как минимум одним</ 1> <2> из перечисленных ниже способов.</ 2></ 0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Пожалуйста, введите ключ ещё раз",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Сброс кошелька и удаление приложения это единственные случаи когда Тринити попросит Вас снова вести ключ.",
         "enterYourSeed": "Введите Ваш ключ",
         "incorrectSeed": "Неверный ключ",
         "incorrectSeedExplanation": "Введенный ключ неправильный. Пожалуйста, попробуйте еще раз.",
         "ifYouHaveNotSaved": "Если Вы не сохранили свой ключ, пожалуйста, вернитесь на шаг назад и сделайте это.",
         "enterSeedBelow": "Введите только что созданный Вами ключ ниже, чтобы подтвердить, что Вы правильно создали его резервную копию",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "ВНИМАНИЕ: Невозможно вставить seed",
+        "clipboardWarningExplanation": "В целях Вашей безопасности копирование с буфера обмена было отключено. Вы можете перетащить Ваш ключ в окно программы с помощью текстового документа."
     },
     "send": {
         "invalidAddress": "Неверный адрес",
         "invalidAddressExplanation1": "Адрес должен быть длиной в {{maxLength}} символ и содержать контрольную сумму.",
         "invalidAddressExplanation2": "Адрес содержит недопустимые символы.",
         "invalidAddressExplanation3": "Адрес содержит некорректную контрольную сумму.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "Пожалуйста удостоверьтесь в правильности введенного адреса.",
         "invalidAddressExplanationGeneric": "Действительные адреса должны быть 90 символов и содержать только A-Z или 9.",
         "notEnoughFunds": "Недостаточно средств",
         "notEnoughFundsExplanation": "У вас недостаточно IOTA для данной операции.",
@@ -373,8 +373,8 @@
         "totalTime": "Общее время",
         "addressPasteDetected": "Обнаружена вставка адреса",
         "addressPasteExplanation": "Похоже, что Вы вставили адрес. Убедитесь, что этот адрес соответствует тому, на который Вы хотите отправить.",
-        "invalid": "INVALID",
-        "swipeToSend": "Swipe to send"
+        "invalid": "НЕКОРРЕКТНО",
+        "swipeToSend": "Свайп для того чтобы отправить"
     },
     "setSeedName": {
         "letsAddName": "Пожалуйста, добавьте название",
@@ -382,12 +382,12 @@
         "youCanAdd": "Вы можете добавить больше ключей в меню настроек."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Дополнительные параметры",
         "standard": "Стандартный",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "advancedModeExplanation": "Расширенный режим будет отображать более подробную техническую информацию.",
+        "modesExplanation": "Режим Эксперта содержит продвинутые настройки и предназначен только для опытных пользователей.",
+        "modeUpdated": "Режим обновлен",
+        "modeUpdatedExplanation": "Была произведена смена в режим {{mode}}"
     },
     "settings": {
         "transferSending": "Осуществляется перевод",
@@ -401,10 +401,10 @@
         "accountManagement": "Управление счётом",
         "addNewSeed": "Добавить новый ключ",
         "changePassword": "Изменить пароль",
-        "general": "General settings",
+        "general": "Общие настройки",
         "advanced": "Дополнительные настройки",
-        "nodeSettings": "Node settings",
-        "account": "Account settings",
+        "nodeSettings": "Настройки узла(ноды)",
+        "account": "Настройки учетной записи",
         "logout": "Выход",
         "reset": "Сбросить настройки кошелька",
         "syncingComplete": "Синхронизация завершена",
@@ -443,16 +443,16 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите Ваш пароль для сброса настроек кошелька.",
-        "reset": "Reset"
+        "reset": "Сброс"
     },
     "walletSetup": {
         "okay": "Хорошо, давайте настроим Ваш кошелек!",
         "doYouNeedASeed": "Нужно ли Вам создать новый ключ?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "Ваш ключ служит в качестве универсального доступа к IOTA средствам. Он содержит 81 символ, состоящий из заглавных букв A-Z и/или номера 9.",
         "noIHaveOne": "Нет, у меня уже есть ключ",
         "yesINeedASeed": "Да, мне нужен ключ",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>Вы можете использовать его для доступа к средствам с</0><1> любого кошелька</1><2>, на</2><3> любом устройстве.</3></0>",
+        "loseSeed": "Потеря Вашего ключа равносильна потере Ваших IOTA.",
         "keepSafe": "Пожалуйста, храните Ваш ключ в безопасности."
     },
     "welcome": {
@@ -460,13 +460,13 @@
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Запишите Ваш ключ, контрольную сумму и </ 0><1>трижды проверьте </ 1><2> что они верны.</ 2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Прокрутить в конец страницы"
     },
     "history": {
         "bundleHashCopied": "Хэш пакет скопирован",
-        "noTransactionsFound": "No transactions found",
-        "emptyHistory": "Your transaction history is empty",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "Транзакции не найдены",
+        "emptyHistory": "Нет истории транзакций",
+        "hideZeroBalance": "Скрыть нулевой баланс",
         "bundleHashCopiedExplanation": "Хэш пакет скопирован в буфер обмена.",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Адрес скопирован в буфер обмена.",
@@ -474,17 +474,17 @@
         "messageCopiedExplanation": "Сообщение скопировано в буфер обмена.",
         "send": "ОТПРАВИТЬ",
         "receive": "Получить",
-        "empty": "Empty",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday",
-        "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Type !help for available commands",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "empty": "Пустой",
+        "retrying": "Повторная попытка",
+        "yesterday": "Вчера",
+        "promotingAnotherBundle": "Содействую активации другого пакета",
+        "pleaseWait": "Пожалуйста, подождите, Тринити содействует активации другого пакета.",
+        "typeHelp": "Введите !help для отображения доступных команд",
+        "searchHelpText": "Поиск по хэшу пакета либо содержанию сообщения",
+        "searchHelpValue": "Найти транзакции по точной величине iota",
+        "searchHelpUnits": "Найти транзакции по величине и мере единиц iota",
+        "searchHelpMore": "Найти транзакции превосходящие значению X",
+        "searchHelpLess": "Найти транзакции снисходящие значению\nX"
     },
     "accountManagement": {
         "viewSeed": "Показать ключ",
@@ -495,14 +495,14 @@
         "tools": "Инструменты"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
+        "automaticNodeManagement": "Автоматическое управление узлами",
+        "addCustomNodes": "Добавить пользовательские узлы",
+        "autoNodeList": "Использовать список удаленных узлов сети",
+        "nodeAutoswitching": "Автоматическая смена основного узла сети",
+        "primaryNode": "Основной узел сети",
+        "enableQuorum": "Включить Кворум",
+        "quorumSize": "Размер Кворума",
+        "noCustomNodes": "Нет пользовательских узлов сети",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
         "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
@@ -518,10 +518,10 @@
         "add": "Добавить",
         "nodeFieldEmpty": "Текстовое поле пусто",
         "nodeFieldEmptyExplanation": "Пожалуйста, введите пользовательский узел.",
-        "invalidURL": "Please enter a valid URL.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
+        "invalidURL": "Пожалуйста, введите правильный URL.",
+        "addAuthKey": "Добавить ключ авторизации",
+        "username": "Имя пользователя",
+        "couldNotRemove": "Не удалось удалить пользовательский узел",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
@@ -550,21 +550,21 @@
     "themes": {
         "classic": "Classic",
         "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
+        "dark": "Тёмная",
+        "default": "По умолчанию",
         "electric": "Electric",
         "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "light": "Светлая",
+        "lucky": "Случайный выбор",
+        "mint": "Мятный",
+        "steelblue": "Темно-Голубой"
     },
     "currencySelection": {
         "currency": "Валюта"
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Вы уверены, что хотите выйти?",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "Вы собираетесь выйти",
         "areYouSure": "Вы уверены?"
     },
     "qrScanner": {
@@ -585,7 +585,7 @@
         "discordInformation": "Пожалуйста посетите канал #help в Discord, чтобы узнать, что вы можете сделать."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Вы уверены, что хотите удалить свой аккаунт?",
         "yourSeedWillBeRemoved": "Ваш ключ и история транзакций будут удалены.",
         "thisAction": "Это действие нельзя будет отменить",
         "enterPassword": "Введите Ваш пароль для удаления данного счёта."
@@ -634,9 +634,9 @@
         "fingerprintAuthFailedExplanation": "Ошибка аутентификации на основе отпечатков пальцев. Пожалуйста, попробуйте еще раз.",
         "status": "Статус",
         "fingerprintUnavailable": "Биометрическая аутентификация недоступна",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "Аутентификация недоступна в течение 30 секунд",
         "fingerprintUnavailableExplanation": "Ваше устройство не поддерживает биометрической аутентификации, или она не была настроена в параметрах устройства.",
-        "notSupported": "Device does not support biometric authentication",
+        "notSupported": "Устройство не поддерживает биометрическую аутентификацию",
         "notConfigured": "Biometric authentication has not been configured in device settings",
         "buttonInstructionsDisable": "Нажмите на кнопку ниже, чтобы отключить аутентификацию на основе отпечатков пальцев.",
         "buttonInstructionsEnable": "Нажмите на кнопку ниже, чтобы включить аутентификацию на основе отпечатков пальцев.",
@@ -644,7 +644,7 @@
         "buttonInstructionsEnableIPhoneX": "Нажмите на кнопку ниже, чтобы включить идентификатор лица",
         "instructionsLogin": "Приложите палец к сенсору чтения отпечатков пальцев для входа",
         "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
+        "userCancelledAuth": "Запрос на аутентификацию отменен",
         "passwordFallback": "Fall back to password authentication",
         "noPassword": "Password is not set on device"
     },
@@ -692,7 +692,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Изменения (24ч)",
         "volume": "Объем (24ч)",
         "error": "Ошибка при загрузке данных графика"
     },
@@ -724,9 +724,9 @@
         "gettingTransactionsToApprove": "Подтверждение транзакции",
         "proofOfWork": "Завершение доказательства работы",
         "broadcasting": "Трансляция",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
+        "preparingData": "Подготовка данных",
+        "migratingSettings": "Перенос настроек",
+        "migratingAccounts": "Перенос учетных записей",
         "cleaningUpOldData": "Cleaning up old data",
         "migrationComplete": "Migration complete",
         "transferComplete": "Transfer complete"
@@ -761,41 +761,41 @@
         "errorRetrievingUpdateData": "Ошибка при получении данных обновления",
         "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
         "noUpdatesAvailable": "Нет доступных обновлений",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "Установлена последняя версия Trinity!",
         "newVersionAvailable": "Доступна новая версия",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "newVersionAvailableExplanation": "Доступна новая версия Trinity. Хотите обновить сейчас?",
+        "installUpdate": "Установить обновление и перезапустить",
+        "installUpdateExplanation": "Загрузка завершена, Trinity перезапустится для установки обновления.",
+        "downloadingUpdate": "Загрузка обновлений",
+        "downloadProgress": "{{transferred}} из {{total}} загружено"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Журнал ошибок"
     },
     "terms": {
         "termsAndConditions": "Условия использования",
         "accept": "Я принимаю",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Пожалуйста, прочитайте полный текст"
     },
     "privacyPolicy": {
         "privacyPolicy": "Политика конфиденциальности",
         "agree": "Я согласен"
     },
     "tray": {
-        "trayApplication": "Tray application",
+        "trayApplication": "Приложение в области уведомлений",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "notLoggedIn": "Вы не авторизованы",
+        "setupIncomplete": "Настройка кошелька не завершена",
+        "completeSetup": "Завершить установку"
     },
     "proxy": {
-        "proxy": "Use system proxy",
+        "proxy": "Использовать системный прокси",
         "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
+        "notifications": "Уведомления",
+        "notificationExplanation": "Показывать системные уведомления о новых транзакциях.",
+        "typeConfirmations": "Уведомить меня о подтверждениях",
         "typeMessages": "Notify me about zero value transactions",
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "Receiving {{value}} to {{account}}",
@@ -809,21 +809,21 @@
         "sweepError": "Error unlocking funds",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
         "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanation": "Trinity Desktop версии 0.3.4 содержало ошибку, которая может временно блокировать средства. Это влияет на небольшое количество пользователей, которые выполняли транзакции с версией 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
         "proceed": "Proceed to Recovery",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     },
     "migration": {
-        "dataMigration": "Data migration",
+        "dataMigration": "Перенос данных",
         "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data.",
         "problemMigratingYourData": "There was a problem migrating your data. Please try again",
         "seedMigrationExplanation": "As part of Trinity's continued effort to improve wallet security, your seed will be migrated to an enhanced storage methodology. Please wait while Trinity automatically migrates seed storage."
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "ready": "Устройство Ledger подключено и готово",
+        "notReady": "Если вы хотите использовать устройство Ledger, подключите и разблокируйте его сейчас",
         "indexInUse": "Index already in use for account {{account}}",
         "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
         "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
@@ -852,16 +852,16 @@
         "ledgerDeniedTitle": "Transaction denied",
         "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
         "ledgerIncorrectIndex": "Ledger device mismatch",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again.",
-        "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
-        "udevError": "Could not communicate with Ledger device",
-        "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue.",
-        "writtenDownInfoTitle": "Remember your index number",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "ledgerIncorrectIndexExplanation": "Подключенное устройство Ledger не соответсвует зарегистрированному на вашей учетной записи, либо фраза восстановления была изменена.",
+        "checkAddress": "Проверьте _адрес получателя_",
+        "checkAddressExplanation": "Удостоверьтесь в соответствии _адреса_ с адресом отображаемым на Ledger устройстве.",
+        "applicationNotInitialised": "Внимание не подтверждено",
+        "applicationNotInitialisedExplanation": "Перезапустите IOTA приложение на вашем Ledger устройстве, согласитесь с текстовым предупреждением и попробуйте еще раз.",
+        "checkLedger": "Проверьте ваше Ledger устройство",
+        "acceptWarningExplanation": "Если на вашем Ledger устройстве появится текстовое предупреждение, вам потребуется прочесть и согласиться с его условиями одновременным нажатием на обе кнопки.",
+        "udevError": "Не удается соединиться с Ledger устройством",
+        "udevErrorExplanation": "Тринити не удается соединиться с вашим Ledger устройством. Пожалуйста перейдите по _ссылке_ для устранения этой проблемы.",
+        "writtenDownInfoTitle": "Сохраните ваш порядковый номер",
+        "writtenDownInfoExplanation": "Пожалуйста сохраните ваш порядковый номер. Он понадобится вам для восстановления учетной записи. Если вы потеряете ваш порядковый номер - вы потеряете доступ к учетной записи."
     }
 }

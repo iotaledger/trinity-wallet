@@ -252,7 +252,7 @@ describe('libs: iota/recovery', () => {
                             sweep(null)(seedStore, seed, validInput, validTransfer)
                                 // Because provided seed is incorrect, it will lead to incorrect signatures and will throw
                                 .catch((err) => {
-                                    expect(err.message).to.equal('Invalid bundle');
+                                    expect(err.message).to.equal('The bundle is invalid.');
                                     expect(stub.called).to.equal(true);
 
                                     stub.restore();
@@ -335,7 +335,7 @@ describe('libs: iota/recovery', () => {
                             sweep(null)(seedStore, seed, validInput, validTransfer)
                                 // Because provided seed is incorrect, it will lead to incorrect signatures and will throw
                                 .catch((err) => {
-                                    expect(err.message).to.equal('Invalid bundle');
+                                    expect(err.message).to.equal('The bundle is invalid.');
                                     expect(stub.called).to.equal(false);
 
                                     stub.restore();
@@ -469,9 +469,9 @@ describe('libs: iota/recovery', () => {
                     destroyNock();
                 });
 
-                it('should throw with an error "Already spent from addresses"', () => {
+                it('should throw with an error "Addresses used in this bundle have already been spent from."', () => {
                     return sweep(null)(seedStore, seed, validInput, validTransfer).catch((err) => {
-                        expect(err.message).to.equal('Already spent from addresses');
+                        expect(err.message).to.equal('Addresses used in this bundle have already been spent from.');
                     });
                 });
             });
@@ -546,9 +546,9 @@ describe('libs: iota/recovery', () => {
                 destroyNock();
             });
 
-            it('should throw with an error "Already spent from addresses"', () => {
+            it('should throw with an error "Addresses used in this bundle have already been spent from."', () => {
                 return sweep()({}, seed, validInput, validTransfer).catch((err) => {
-                    expect(err.message).to.equal('Already spent from addresses');
+                    expect(err.message).to.equal('Addresses used in this bundle have already been spent from.');
                 });
             });
         });
@@ -562,9 +562,9 @@ describe('libs: iota/recovery', () => {
                 destroyNock();
             });
 
-            it('should throw with an error "Already spent from addresses"', () => {
+            it('should throw with an error "Addresses used in this bundle have already been spent from."', () => {
                 return sweep(null)(seedStore, seed, validInput, validTransfer).catch((err) => {
-                    expect(err.message).to.equal('Already spent from addresses');
+                    expect(err.message).to.equal('Addresses used in this bundle have already been spent from.');
                 });
             });
         });
@@ -578,10 +578,10 @@ describe('libs: iota/recovery', () => {
                 destroyNock();
             });
 
-            it('should throw with an error "Invalid bundle"', () => {
+            it('should throw with an error "The bundle is invalid."', () => {
                 // Seed is fake, so if all checks pass and it prepares transfers the signatures will be invalid
                 return sweep(null)(seedStore, seed, validInput, validTransfer).catch((err) => {
-                    expect(err.message).to.equal('Invalid bundle');
+                    expect(err.message).to.equal('The bundle is invalid.');
                 });
             });
         });

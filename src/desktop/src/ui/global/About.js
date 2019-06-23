@@ -59,6 +59,17 @@ export class AboutComponent extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.6.2</h5>
+                            <ul>
+                                <li>Fix: Migration not successful when migrating from 0.4.x and below to latest</li>
+                                <li>Fix: Incorrect already spent from address errors on transaction retry</li>
+                                <li>Fix: Incorrect transaction failure alert when successfully broadcast</li>
+                                <li>Fix: Quorum being conducted on transaction account syncs when explicitly turned off</li>
+                                <li>Fix: Error-related crashes</li>
+                                <li>Update: Add remote node list endpoint back-ups</li>
+                                <li>Update: Add more verbose error log messages</li>
+                                <li>Update: New translations</li>
+                            </ul>
                             <h5>0.6.1</h5>
                             <ul>
                                 <li>Fix: Autopromotion not working as intended</li>
