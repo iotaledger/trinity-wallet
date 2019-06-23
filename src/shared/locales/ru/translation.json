@@ -504,8 +504,8 @@
         "quorumSize": "Размер Кворума",
         "noCustomNodes": "Нет пользовательских узлов сети",
         "mustAddCustomNodes": "Перед отключением списка удаленных узлов сети Вам необходимо добавить хотя бы один пользовательский узел.",
-        "nodeEnoughNodesTitle": "Количество узлов сети не достаточно",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesTitle": "Не достаточное количество узлов сети",
+        "nodeEnoughNodesExplanation": "Не достаточное количество узлов сети для включения кворума.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
         "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
