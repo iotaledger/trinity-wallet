@@ -786,21 +786,21 @@
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "Niste prijavljeni",
         "setupIncomplete": "Nastavitev denarnice je nepopolna",
-        "completeSetup": "Complete setup"
+        "completeSetup": "Dokončaj nastavitve"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxy": "Uporabi System-Proxy",
+        "proxyExplanation": "Zaznavanje in uporaba nastavitev proxy omrežja za celotno omrežje. Po spremembi te nastavitve zaprite in ponovno odprite denarnico."
     },
     "notifications": {
         "notifications": "Obvestila",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "notificationExplanation": "Prejemanje celotno-sistemskih obvestil o novih transakcijah.",
+        "typeConfirmations": "Obvesti me o potrditvah",
+        "typeMessages": "Obvesti me o transakcijah z ničelno vrednostjo",
+        "multipleTx": "Prejemanje več transakcij v {{account}}",
+        "valueTx": "Prejemanje {{value}} v {{account}}",
+        "messageTx": "Prejeli ste sporočilo v {{account}}",
+        "confirmedIn": "Dohodna transakcija z {{value}} v {{account}} je potrjena",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     },
     "bytetrit": {
