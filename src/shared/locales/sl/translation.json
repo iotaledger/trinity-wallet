@@ -518,7 +518,7 @@
         "add": "Dodaj",
         "nodeFieldEmpty": "Besedilno polje je prazno",
         "nodeFieldEmptyExplanation": "Prosim vnesite prilagojen Node.",
-        "invalidURL": "Please enter a valid URL.",
+        "invalidURL": "Prosim vnesite veljaven spletni naslov.",
         "addAuthKey": "Add auth key",
         "username": "Username",
         "couldNotRemove": "Could not remove custom node",
