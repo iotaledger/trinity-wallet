@@ -620,16 +620,16 @@
         "pleaseConfirm": "Prosim potrdite, da ste varno shranili Seed."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "cannotUndo": "TA UKREP NI VEČ MOGOČE SPREMENIT.",
+        "warning": "<0><0>Vsi podatki iz denarnice, vključno z vašim </0> <1> Seed, geslom, </1><2> in </2><3> drugimi podatki o računu</3><4> bodo izgubljeni.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "instructionsEnable": "Dotaknite se bralnika prstnih odtisov, da omogočite autentifikacijo z prstnim odtisom",
+        "instructionsDisable": "Dotaknite se bralnika prstnih odtisov, da onemogočite autentifikacijo z prstnim odtisom",
+        "fingerprintAuthEnabled": "Biometrična autentifikacija je omogočena",
+        "fingerprintAuthEnabledExplanation": "Uspešno ste omogočili biometrično autentifikacijo.",
+        "fingerprintAuthDisabled": "Biometrična autentifikacija je onemogočena",
+        "fingerprintAuthDisabledExplanation": "Uspešno ste onemogočili biometrično autentifikacijo.",
         "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
         "status": "Stanje",
