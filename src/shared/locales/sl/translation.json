@@ -765,25 +765,25 @@
         "newVersionAvailable": "Na voljo je nova verzija",
         "newVersionAvailableExplanation": "Na voljo je nova različica Trinity. Ali želite posodobiti zdaj?",
         "installUpdate": "Namestite posodobitev in ponovni zagon",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "installUpdateExplanation": "Prenos je dokončan, Trinity se bo znova zagnala in namestila posodobitve.",
+        "downloadingUpdate": "Prenašanje posodobitev",
+        "downloadProgress": "{{transferred}} od {{total}} prenesenih"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Dnevnik napak"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept",
-        "readAllToContinue": "Please read the full text"
+        "termsAndConditions": "Pogoji poslovanja",
+        "accept": "Sprejmem",
+        "readAllToContinue": "Prosim preberite celotno besedilo"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Pravilnik o zasebnosti",
+        "agree": "Strinjam se"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayApplication": "Tray ikona",
+        "trayExplanation": "Nudi pregled stanja na vašem računu in nedavne zgodovine transakcij.",
         "notLoggedIn": "Niste prijavljeni",
         "setupIncomplete": "Nastavitev denarnice je nepopolna",
         "completeSetup": "Dokončaj nastavitve"
