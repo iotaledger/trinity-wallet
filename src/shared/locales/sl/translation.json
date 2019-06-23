@@ -608,16 +608,16 @@
         "viewSeed": "Prikaži Seed",
         "hideSeed": "Skrij Seed",
         "notAvailable": "Seed izvoz ni mogoč za {{accountType}} račun",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "notAvailableExplanationLedger": "V vaši napravi se uporablja varen element za shranjevanje vašega Seed-a. Seed je varno šifriran in ne zapusti naprave.",
+        "accountIndex": "Vaš indeks Ledger-računa",
+        "accountPage": "Vaša stran Ledger-računa"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "didSaveSeed": "Ste shranili vaš Seed?",
+        "iHaveBackedUp": "Varno sem shranil moj Seed",
+        "reenterSeed": "V naslednjem koraku morate ponovno vnesti svoj Seed.",
+        "reenterSeedWarning": "Če se vaša naprava pokvari in če niste varno shranili vašega Seed-a, boste izgobili vsa IOTA.",
+        "pleaseConfirm": "Prosim potrdite, da ste varno shranili Seed."
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
