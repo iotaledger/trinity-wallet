@@ -522,21 +522,21 @@
         "addAuthKey": "Dodaj autentifikacijski ključ",
         "username": "Uporabniško ime",
         "couldNotRemove": "Ni bilo mogoče odstraniti prilagojen Node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "Za Node-zbor mora biti dovolj Node-ov. Zmanjšajte velikost zbora ali pa omogočite uporabo uradnega seznama Node-ov."
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Uporabi obstoječ Seed",
+        "createNewSeed": "Ustvari novi Seed"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "manualSync": "Manual sync",
-        "snapshotTransition": "Snapshot transition",
+        "selectNode": "Izberi Node",
+        "manualSync": "Ročna sinhronizacija",
+        "snapshotTransition": "Snapshot-Obnovitev",
         "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work.",
-        "deepLinking": "Deep linking",
+        "autoPromotion": "Auto-Promotion",
+        "autoPromotionExplanation": "Auto-Promotion vam pomaga potrditi transakcije v Tangle. Omogočite to nastavitev, če imate težave pri potrditvi transakcij.",
+        "autoPromotionPoW": "Auto-Promotion je možen samo na Node, ki podpira oddaljen Proof of Work.",
+        "deepLinking": "Deep-Linking",
         "stateExport": "State export"
     },
     "advancedThemeCustomisation": {
