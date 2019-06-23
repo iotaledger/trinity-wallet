@@ -545,15 +545,15 @@
     },
     "themeCustomisation": {
         "theme": "Тема оформления",
-        "mockup": "Mockup"
+        "mockup": "Макет"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
+        "classic": "Классический",
+        "contemporary": "Современный",
         "dark": "Тёмная",
         "default": "По умолчанию",
-        "electric": "Electric",
-        "ionic": "Ionic",
+        "electric": "Электрический",
+        "ionic": "Ионный",
         "light": "Светлая",
         "lucky": "Случайный выбор",
         "mint": "Мятный",
