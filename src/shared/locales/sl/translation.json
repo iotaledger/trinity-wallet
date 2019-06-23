@@ -434,16 +434,16 @@
         "undo": "Razveljavi",
         "redo": "Ponovi",
         "aboutTrinity": "O Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "lockScreenTimeout": "Zakasnjeno zaklepanje zaslona (minute)",
+        "nodeChangeSuccess": "Node je bil uspešno spremenjen",
+        "nodeChangeSuccessNoRemotePow": "Node je bil spremenjen na {{node}}. Ta Node ne podpira oddaljenega Proof of Work.",
+        "nodeChangeSuccessExplanation": "Node je bil spremenjen na {{node}}.",
         "nodeChangeError": "Napaka pri zamenjavi vozlišča",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeErrorExplanation": "Pri spreminjanju Noda je prišlo do napake. Prosim poskusite ponovno."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Vnesite geslo za ponastavitev denarnice.",
-        "reset": "Reset"
+        "reset": "Ponastavi"
     },
     "walletSetup": {
         "okay": "Okej. Ustvarimo vašo denarnico!",
