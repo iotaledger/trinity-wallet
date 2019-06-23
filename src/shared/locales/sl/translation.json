@@ -451,7 +451,7 @@
         "seedExplanation": "Vaš IOTA Seed je glavni ključ do vaših sredstev. Dolg je 81 znakov in vsebuje samo črke A-Z ali številko 9.",
         "noIHaveOne": "Ne, imam ga že",
         "yesINeedASeed": "Ja, imam seme",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "explanation": "<0><0>Uporabljate ga za dostop do vaših sredstev od</0><1>katere koli denarnice</1><2>, na</2><3>kateri koli napravi.</3></0>",
         "loseSeed": "Ampak če izgubite vašo generirano vrednost boste izgubili tudi vaš IOTA.",
         "keepSafe": "Prosimo vas, da imate seed shranjen na varnem."
     },
@@ -459,8 +459,8 @@
         "thankYou": "Zahvaljujemo se vam za prenos IOTA denarnice"
     },
     "writeSeedDown": {
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "writeDownYourSeed": "<0>Zapišite svoj Seed in kontrolno vsoto </0><1>prepričajte se trikrat,</1><2>da je vse pravilno.</2>",
+        "scrollToBottom": "Pomakni se na dno strani"
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiran",
@@ -483,19 +483,19 @@
         "searchHelpText": "Iščite po Bundle-Hash ali vsebini sporočila",
         "searchHelpValue": "Poišči transakcije z natančno Iota-vrednostjo",
         "searchHelpUnits": "Poišči transakcije z Iota-vrednostjo in enoto",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpMore": "Poišči transakcije z vrednostjo, ki je večja od X",
+        "searchHelpLess": "Poišči transakcije z vrednostjo, manjšo od X"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account",
-        "tools": "Tools"
+        "viewSeed": "Prikaži Seed",
+        "viewAddresses": "Prikaži naslove",
+        "editAccountName": "Uredi ime računa",
+        "deleteAccount": "Izbriši račun",
+        "addNewAccount": "Dodaj nov račun",
+        "tools": "Orodja"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
+        "automaticNodeManagement": "Samodejno Node upravljanje",
         "addCustomNodes": "Add custom nodes",
         "autoNodeList": "Use remote node list",
         "nodeAutoswitching": "Primary node autoswitching",
