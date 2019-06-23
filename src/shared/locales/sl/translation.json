@@ -519,9 +519,9 @@
         "nodeFieldEmpty": "Besedilno polje je prazno",
         "nodeFieldEmptyExplanation": "Prosim vnesite prilagojen Node.",
         "invalidURL": "Prosim vnesite veljaven spletni naslov.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
+        "addAuthKey": "Dodaj autentifikacijski ključ",
+        "username": "Uporabniško ime",
+        "couldNotRemove": "Ni bilo mogoče odstraniti prilagojen Node",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
