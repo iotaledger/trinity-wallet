@@ -652,13 +652,13 @@
         "youAreAbout": "You are about to send {{contents}} to the address",
         "aMessage": "a message",
         "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "toAddress": "Na naslov",
+        "sendingAMessage": "Pošiljanje sporočila",
+        "sendingAnEmptyMessage": "Pošiljanje praznega sporočila"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "exportSeedVault": "Izvozi SeedVault",
+        "seedVaultExplanation": "SeedVault je šifrirana datoteka za varnostno kopiranje vašega Seeda. Seed je šifriran z SeedVault ključem, do njega ni mogoče dostopati brez tega ključa.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
