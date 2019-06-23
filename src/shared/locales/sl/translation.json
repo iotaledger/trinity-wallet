@@ -682,25 +682,25 @@
         "invalidSeedFileError": "Neveljavna SeedVault datoteka",
         "invalidSeedFileErrorExplanation": "Ta format datoteke ni podprt. Podprte so samo datoteke SeedVault (.kdbx), ustvarjene prek Trinity ali upravitelja gesel.",
         "seedVaultKeyExplanation": "Najprej moramo zaščititi vaš SeedVault. Izberite ključ za dešifriranje datoteke. Ta ključ boste uporabili, če boste morali obnoviti Seed iz varnostne kopije SeedVault-a.",
-        "retypeKey": "Retype key",
+        "retypeKey": "Ponovno vnesite ključ",
         "key": "Ključ"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
-        "exportSuccess": "State exported",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "stateExportExplanation": "Izvoz stanja bo v napravo shranil txt datoteko s podatki o vašem računu (transakcijah, naslovih), različici denarnice in imeni datotek za shranjevanje.",
+        "exportSuccess": "Izvozi stanje",
+        "exportSuccessExplanation": "Datoteka stanja je bila uspešno izvožena."
     },
     "chart": {
         "mcap": "Tržna kapitalizacija",
-        "change": "Change (24h)",
-        "volume": "Volume (24h)",
-        "error": "Error fetching chart data"
+        "change": "Spremembe (24ur)",
+        "volume": "Volumen (24ur)",
+        "error": "Napaka pri pridobivanju podatkov grafikona"
     },
     "rootDetection": {
         "warning": "OPOZORILO",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "Zdi se, da je vaša naprava root-ana.",
+        "securityRisk": "To lahko predstavlja veliko tveganje za varnost vaše denarnice.",
+        "continueDepsiteRisk": "Ali želite nadaljevati kljub temu tveganju?"
     },
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
