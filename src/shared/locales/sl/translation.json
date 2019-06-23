@@ -337,22 +337,22 @@
         "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "pleaseConfirmYourSeed": "Prosim, potrdite svoj Seed",
+        "trinityWillNeverAskToReenter": "Trinity vas nikoli ne bo pozval, da znova vnesete ta Seed, razen če ponastavite denarnico ali izbrišete aplikacijo.",
         "enterYourSeed": "Vnesite svojo seme",
         "incorrectSeed": "Napačno generirano število",
         "incorrectSeedExplanation": "Generirana vrednost ki ste jo vnesli ni pravila. Prosimo poskusite kasneje.",
         "ifYouHaveNotSaved": "Če niste shranili vaše vrednosti prosimo pojdite nazaj in naredite to.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "enterSeedBelow": "Spodaj vnesite novo ustvarjen Seed, da potrdite, da ste ga pravilno shranili",
+        "clipboardWarning": "OPOZORILO: Seed ne morete prilepiti",
+        "clipboardWarningExplanation": "Prilepi je za vašo varnost onemogočen. Seme lahko povlečete in spustite iz besedilne datoteke."
     },
     "send": {
         "invalidAddress": "Napačen naslov",
         "invalidAddressExplanation1": "Naslov mora biti {{maxLength}} znakov dolgo in mora biti preverjeno.",
         "invalidAddressExplanation2": "Naslov vsebuje neveljavne znake.",
         "invalidAddressExplanation3": "Naslov vsebuje nepreverjen znak.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "Prosim preverite, ali ste pravilno vnesli naslov.",
         "invalidAddressExplanationGeneric": "Veljavni naslovi vsebujejo 90 znakov in le znake A-Z in 9.",
         "notEnoughFunds": "Premalo sredstev",
         "notEnoughFundsExplanation": "Nimate dovolj IOTA za dokončanje tega prenosa.",
@@ -366,15 +366,15 @@
         "invalidMessageTooLongExplanation": "Sporočilo je predolgo (največ 1093 znakov).",
         "send": "Pošlji",
         "invalidAmount": "Neveljavna vsota",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "Prosim vnesite veljaven transakcijski znesek. Morda bi bilo koristno, če si na dnu te strani ogledate pojasnilo o IOTA enotah.",
         "maximumSelected": "NAJVIŠJI izbrani znesek",
         "iotaUnits": "Razlaga IOTA enot",
         "sendMax": "POŠLJI MAX",
         "totalTime": "Skupen čas",
-        "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "addressPasteDetected": "Zaznan je prilepljen naslov",
+        "addressPasteExplanation": "Izgleda, da ste prilepili naslov. Preverite, ali se naslov ujema z naslovom, na katerega želite poslati.",
         "invalid": "NEVELJAVNO",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Povlecite za potrditev"
     },
     "setSeedName": {
         "letsAddName": "Dodajmo ime",
@@ -385,9 +385,9 @@
         "advanced": "Napredno",
         "standard": "Standard",
         "advancedModeExplanation": "Napreden način vsebuje podrobnejše tehnične informacije.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modesExplanation": "Omogočite napredni način samo, če imate izkušnjo z uporabo IOTA.",
+        "modeUpdated": "Način je posodobljen",
+        "modeUpdatedExplanation": "Zamenjali ste Način na {{mode}}"
     },
     "settings": {
         "transferSending": "Prenos pošiljanja",
@@ -395,7 +395,7 @@
         "mode": "Način",
         "theme": "Tema",
         "currency": "Valuta",
-        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNode": "Node ni bilo mogoče spremeniti",
         "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "Jezik",
         "accountManagement": "Upravljanje z računi",
