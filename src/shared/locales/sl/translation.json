@@ -237,8 +237,8 @@
         "invalidCharactersExplanation": "Seed lahko vsebuje samo velike črke od A-Z in število 9. Vaša Seed ima neveljavne znake. Prosimo poskusite znova.",
         "seedTooShort": "Seed je prekratek",
         "seedTooLong": "Seed je predolg",
-        "seedTooShortExplanation": "Generirano vrednost mora biti {{maxLength}} znakov dolgo. Vaša generirano vrednost je trenutno {{currentLength}} znakov dolga. Prosimo poskusite ponovno.",
-        "seedExplanation": "Generirana vrednost mora biti {{maxLength}} znakov dolgo in mora vsebovati velike črke od A-Z ali število 9. Ne morete uporabljati generiranih vrednosti ki so daljše od {{maxLength}}.",
+        "seedTooShortExplanation": "Seed mora biti {{maxLength}} znakov dolgo. Vaša Seed je trenutno {{currentLength}} znakov dolg. Prosimo poskusite ponovno.",
+        "seedExplanation": "Seed mora biti {{maxLength}} znakov dolg in mora vsebovati velike črke od A-Z ali število 9. Ne morete uporabljati Seed-a ki je daljši od {{maxLength}}.",
         "neverShare": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA"
     },
     "home": {
@@ -259,27 +259,27 @@
         "login": "Prijava",
         "setNode": "Izberi Node",
         "whyBiometricDisabled": "Zakaj je biometrična avtentikacija onemogočena?",
-        "whyBiometricDisabledExplanationPart1": "Biometrična avtentikacija je zaradi varnosti onemogočena ob prvem zagonu aplikacije.",
+        "whyBiometricDisabledExplanationPart1": "Ob prvem zagonu aplikacije je Biometrična avtentikacija zaradi varnosti, onemogočena.",
         "whyBiometricDisabledExplanationPart2": "Trinity vas odjavi ob neaktivnosti. Potem se lahko z Biometrično-autentifikacijo ponovno prijavite."
     },
     "loading": {
-        "loadingFirstTime": "Nalaganje generirane vrednosti prvič.",
+        "loadingFirstTime": "Seed se prvič nalaga.",
         "thisMayTake": "To lahko traja nekaj časa.",
         "doNotMinimise": "Ne minimirajte ali zapirajte aplikacije.",
         "takingAWhile": "To lahko traja, nekaj trenutkov"
     },
     "newSeedSetup": {
         "generatedSeed": "Ustvarite Seed",
-        "seedNotGenerated": "Generirana vrednost ni bila ustvarjena",
+        "seedNotGenerated": "Seed ni bil ustvarjen",
         "seedNotGeneratedExplanation": "Prosim ustvarite nov Seed.",
-        "pressForNewSeed": "Kliknite za novo seme",
-        "generateSuccess": "Seme je bilo uspešno generirano",
-        "individualLetters": "Pritisnite posamezne znake za jih ponaključit.",
+        "pressForNewSeed": "Kliknite za novi Seed",
+        "generateSuccess": "Seed je bil uspešno generiran",
+        "individualLetters": "Pritisnite posamezne znake, da jih ponaključite.",
         "individualLetterCount": "Pritisnite <1><0>{{count}}</0></1> znakov, da postane bolj naključen Seed.",
         "individualLetterCount_plural": "Pritisnite <1><0>{{count}}</0></1> znakov, da postane bolj naključen Seed.",
         "randomiseCharsToContinue": "Izberite <1>{{count}}</1> znakov, da lahko nadaljujete.",
         "randomiseCharsToContinue_plural": "Izberite <1>{{count}}</1> znakov, da lahko nadaljujete.",
-        "whatIsASeed": "Kaj je seme?"
+        "whatIsASeed": "Kaj je Seed?"
     },
     "onboardingComplete": {
         "allDone": "Končano!",
@@ -287,7 +287,7 @@
         "walletReady": "Denarnica je nastavljena in pripravljena za uporabo. Če želite boste v prihodnosti želeleli kaj spreminjati poglejte v meni za nastavitve."
     },
     "paperWallet": {
-        "neverShare": "Nikoli z nikomer ne delite svojega seeda.",
+        "neverShare": "Nikoli z nikomer ne delite svojega Seeda.",
         "iotaLogo": "IOTA logotip",
         "print": "Natisni",
         "paperConvenience": "Tiskanje papirne kopije Seeda je priročen način za shranjevanje.",
@@ -320,7 +320,7 @@
     },
     "saveYourSeed": {
         "saveYourSeed": "Ustvarite varnostno-kopijo Seed-a",
-        "seedCleared": "Generiranava vrednost odstranjena",
+        "seedCleared": "Seed je odstranjen",
         "mostSecure": "Najbolj varno",
         "recommended": "Priporočeno",
         "leastSecure": "Najmanj varno",
