@@ -399,11 +399,11 @@
         "cannotChangeNodeWhileSending": "Med pošiljanjem, ni mogoče spremeniti Node.",
         "language": "Jezik",
         "accountManagement": "Upravljanje z računi",
-        "addNewSeed": "Dodaj nov seed",
+        "addNewSeed": "Dodaj nov Seed",
         "changePassword": "Zamenjaj geslo",
         "general": "Osnovne nastavitve",
         "advanced": "Napredne nastavitve",
-        "nodeSettings": "Nastavitve vozlišča",
+        "nodeSettings": "Node nastavitve",
         "account": "Nastavitve računa",
         "logout": "Izpis",
         "reset": "Ponastavitev denarnice",
@@ -438,7 +438,7 @@
         "nodeChangeSuccess": "Node je bil uspešno spremenjen",
         "nodeChangeSuccessNoRemotePow": "Node je bil spremenjen na {{node}}. Ta Node ne podpira oddaljenega Proof of Work.",
         "nodeChangeSuccessExplanation": "Node je bil spremenjen na {{node}}.",
-        "nodeChangeError": "Napaka pri zamenjavi vozlišča",
+        "nodeChangeError": "Napaka pri zamenjavi Noda",
         "nodeChangeErrorExplanation": "Pri spreminjanju Noda je prišlo do napake. Prosim poskusite ponovno."
     },
     "resetWalletRequirePassword": {
@@ -447,13 +447,13 @@
     },
     "walletSetup": {
         "okay": "Okej. Ustvarimo vašo denarnico!",
-        "doYouNeedASeed": "Potrebujete novo seme?",
+        "doYouNeedASeed": "Potrebujete nov Seed?",
         "seedExplanation": "Vaš IOTA Seed je glavni ključ do vaših sredstev. Dolg je 81 znakov in vsebuje samo črke A-Z ali številko 9.",
         "noIHaveOne": "Ne, imam ga že",
-        "yesINeedASeed": "Ja, imam seme",
+        "yesINeedASeed": "Ja, imam Seed",
         "explanation": "<0><0>Uporabljate ga za dostop do vaših sredstev od</0><1>katere koli denarnice</1><2>, na</2><3>kateri koli napravi.</3></0>",
-        "loseSeed": "Ampak če izgubite vašo generirano vrednost boste izgubili tudi vaš IOTA.",
-        "keepSafe": "Prosimo vas, da imate seed shranjen na varnem."
+        "loseSeed": "Če izgubite vaš Seed boste izgubili tudi vaš IOTA.",
+        "keepSafe": "Prosimo vas, da imate Seed shranjen na varnem."
     },
     "welcome": {
         "thankYou": "Zahvaljujemo se vam za prenos IOTA denarnice"
@@ -504,7 +504,7 @@
         "quorumSize": "Velikost zbora",
         "noCustomNodes": "Ni prilagojenih Node-ov",
         "mustAddCustomNodes": "Preden lahko onemogočite uradni seznam Node-ov, morate dodati vsaj eno ponastavljen Node.",
-        "nodeEnoughNodesTitle": "Ni dovolj vozlišč",
+        "nodeEnoughNodesTitle": "Ni dovolj Node-ov",
         "nodeEnoughNodesExplanation": "Ni dovolj Node-ov, da bi lahko aktivirali zbor.",
         "nodeEnoughNodesExplanationCustomNodes": "Dodajte več poosebljenih Node-ov ali uporabite seznam uradnih vozlišč.",
         "nodeSettingsUpdatedTitle": "Posodobljene Node nastavitve",
@@ -514,7 +514,7 @@
         "customNodeCouldNotBeAdded": "Prilagojen Node ni bilo mogoče dodati",
         "customNode": "Prilagojen Node",
         "removeCustomNode": "Odstrani prilagojen node",
-        "invalidNodeResponse": "Vozlišče je vrnilo neveljaven odziv",
+        "invalidNodeResponse": "Node je vrnil neveljaven odziv",
         "add": "Dodaj",
         "nodeFieldEmpty": "Besedilno polje je prazno",
         "nodeFieldEmptyExplanation": "Prosim vnesite prilagojen Node.",
