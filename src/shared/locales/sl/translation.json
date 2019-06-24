@@ -326,32 +326,32 @@
         "leastSecure": "Najmanj varno",
         "paperWallet": "Papirnata denarnica",
         "writeYourSeedDown": "Zapiši svoj Seed",
-        "seedClearedExplanation": "Generirana vrednost je bila izbrisana iz odložišča za vašo varnost.",
+        "seedClearedExplanation": "Seed je bil izbrisana iz odložišča za vašo varnost.",
         "letsWriteDownYourSeed": "Zapišite svoj Seed",
         "youCanHighlightCharacters": "Istočasno lahko označite 9 znakov",
         "printBlankWallet": "Natisnite prazno denarnico",
         "whatIsAChecksum": "Kaj je kontrolna vsota?",
         "everySeedHasAChecksum": "Vsak Seed ima ustrezno 3-znakovno kontrolno vsoto.",
-        "iHavesavedMySeed": "Shranil sem seme",
+        "iHavesavedMySeed": "Shranil sem Seed",
         "checksumExplanation": "Kadarkoli dodate Seed v denarnico, morate zagotoviti, da se kontrolna vsota, ki jo generira denarnica, ujema s tisto, ki ste jo zapisali.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>Shraniti morate vaš Seed </0><1>na vsaj eno</1><2> od naslednjih možnosti.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Prosim, potrdite svoj Seed",
         "trinityWillNeverAskToReenter": "Trinity vas nikoli ne bo pozval, da znova vnesete ta Seed, razen če ponastavite denarnico ali izbrišete aplikacijo.",
-        "enterYourSeed": "Vnesite svojo seme",
-        "incorrectSeed": "Napačno generirano število",
-        "incorrectSeedExplanation": "Generirana vrednost ki ste jo vnesli ni pravila. Prosimo poskusite kasneje.",
-        "ifYouHaveNotSaved": "Če niste shranili vaše vrednosti prosimo pojdite nazaj in naredite to.",
+        "enterYourSeed": "Vnesite svojo Seed",
+        "incorrectSeed": "Napačen Seed",
+        "incorrectSeedExplanation": "Seed ki ste ga vnesli ni pravilen. Prosimo poskusite ponovno.",
+        "ifYouHaveNotSaved": "Če niste shranili vašega Seed-a, prosim pojdite nazaj in naredite to.",
         "enterSeedBelow": "Spodaj vnesite novo ustvarjen Seed, da potrdite, da ste ga pravilno shranili",
         "clipboardWarning": "OPOZORILO: Seed ne morete prilepiti",
         "clipboardWarningExplanation": "Prilepi je za vašo varnost onemogočen. Seme lahko povlečete in spustite iz besedilne datoteke."
     },
     "send": {
         "invalidAddress": "Napačen naslov",
-        "invalidAddressExplanation1": "Naslov mora biti {{maxLength}} znakov dolgo in mora biti preverjeno.",
+        "invalidAddressExplanation1": "Naslov mora biti {{maxLength}} znakov dolg in mora imeti kontrolno šifro.",
         "invalidAddressExplanation2": "Naslov vsebuje neveljavne znake.",
-        "invalidAddressExplanation3": "Naslov vsebuje nepreverjen znak.",
+        "invalidAddressExplanation3": "Naslov vsebuje neveljavno kontrolno šifro.",
         "invalidAddressExplanation4": "Prosim preverite, ali ste pravilno vnesli naslov.",
         "invalidAddressExplanationGeneric": "Veljavni naslovi vsebujejo 90 znakov in le znake A-Z in 9.",
         "notEnoughFunds": "Premalo sredstev",
@@ -378,8 +378,8 @@
     },
     "setSeedName": {
         "letsAddName": "Dodajmo ime",
-        "canUseMultipleSeeds": "Uporabite lahko več generiranih vrednosti s to denarnico. Vsaka generirana vrednost potrebuje ime računa.",
-        "youCanAdd": "Dodate lahko več generiranih vrednosti v meniju za nastavitve."
+        "canUseMultipleSeeds": "Uporabite lahko več Seed-ov s to denarnico. Vsak Seed potrebuje ime računa.",
+        "youCanAdd": "Več Seed-ov lahko dodate v meniju za nastavitve."
     },
     "modeSelection": {
         "advanced": "Napredno",
