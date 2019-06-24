@@ -174,18 +174,18 @@
         "notEnoughSyncedNodesExplanation": "V skupini uporabljenih Node-ov ni bilo mogoče določiti enotnega statusa. Onemogočite skupino Node-ov in poskusite znova."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
-        "seedInvalidCharsExplanation": "Generirana vrednost lahko vsebuje samo črke od A-Z in številko 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite ponovno.",
+        "seedInvalidChars": "Seed vsebuje neveljavne znake",
+        "seedInvalidCharsExplanation": "Seed lahko vsebuje samo črke od A-Z in številko 9. Vaš Seed ima neveljavne znake. Prosimo poskusite ponovno.",
         "seedTooShort": "Seed je prekratek",
-        "seedTooShortExplanation": "Generirana vrednost mora biti {{maxLength}} znakov dolga. Vaša generirana vrednost je trenutno {{currentLength}} znakov dolga. Prosimo poskusite znova.",
+        "seedTooShortExplanation": "Seed mora biti {{maxLength}} znakov dolg. Vaš Seed je trenutno {{currentLength}} znakov dolg. Prosim poskusite znova.",
         "nameInUse": "Ime računa je že v uporabi",
-        "nameInUseExplanation": "Prosimo vnesite edinstveno ime računa za pridobitev generirane vrednosti.",
+        "nameInUseExplanation": "Prosim vnesite edinstveno ime računa za vaš Seed.",
         "accountNameTooLong": "Ime računa je predolgo",
         "accountNameTooLongExplanation": "Ime računa lahko vsebuje največ {{maxLength}} znakov.",
         "accountName": "Ime računa",
         "noNickname": "Niste vnesli imena računa",
         "noNicknameExplanation": "Prosimo vnesite ime računa za pridobitev generirane vrednosti.",
-        "seedInUse": "Seme je že v uporabi",
+        "seedInUse": "Seed je že v uporabi",
         "seedInUseExplanation": "Ta Seed je že povezano z vašo denarnico. Prosim uporabite drugega."
     },
     "changePassword": {
@@ -197,7 +197,7 @@
         "passwordsDoNotMatchExplanation": "Gesli se ne ujemata. Prosimo poskusite ponovno.",
         "passwordTooShort": "Geslo je prekratko",
         "passwordTooShortExplanation": "Vaše geslo mora vsebovati vsaj 11 znakov. Prosim poskusite ponovno.",
-        "oldPassword": "Ni mogoče nastavite starega gesla",
+        "oldPassword": "Ni mogoče ponovno uporabiti starega gesla",
         "oldPasswordExplanation": "Nemorete uporabljati prejšnjega gesla kot vaše novo geslo. Prosimo poskusite ponovno z novim geslom.",
         "ensureStrongPassword": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 11 znakov.",
         "currentPassword": "Trenutno Geslo",
@@ -229,14 +229,14 @@
         "retypePassword": "Ponovno vnesite geslo"
     },
     "copyToClipboard": {
-        "seedCleared": "Generirana vrednost zbrisana",
-        "seedClearedExplanation": "Generirana vrednost je bila izbrisana iz odložišča za vašo varnost."
+        "seedCleared": "Seed je zbrisan",
+        "seedClearedExplanation": "Seed je bil izbrisan iz odložišča, za vašo varnost."
     },
     "enterSeed": {
-        "invalidCharacters": "Generirana vrednost vsebuje beveljavne znake",
-        "invalidCharactersExplanation": "Generirana vrednost lahko vsebuje samo velike črke od A-Z in število 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite znova.",
+        "invalidCharacters": "Seed vsebuje neveljavne znake",
+        "invalidCharactersExplanation": "Seed lahko vsebuje samo velike črke od A-Z in število 9. Vaša Seed ima neveljavne znake. Prosimo poskusite znova.",
         "seedTooShort": "Seed je prekratek",
-        "seedTooLong": "Seme je predolgo",
+        "seedTooLong": "Seed je predolg",
         "seedTooShortExplanation": "Generirano vrednost mora biti {{maxLength}} znakov dolgo. Vaša generirano vrednost je trenutno {{currentLength}} znakov dolga. Prosimo poskusite ponovno.",
         "seedExplanation": "Generirana vrednost mora biti {{maxLength}} znakov dolgo in mora vsebovati velike črke od A-Z ali število 9. Ne morete uporabljati generiranih vrednosti ki so daljše od {{maxLength}}.",
         "neverShare": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA"
