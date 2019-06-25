@@ -60,7 +60,7 @@
         "password": "Şifre",
         "unrecognisedPassword": "Tanınmayan şifre",
         "unrecognisedPasswordExplanation": "Şifre tanımlı değil. Lütfen yeniden deneyin.",
-        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccount": "Tanımlanamayan hesap",
         "unrecognisedAccountExplanation": "{{accountName}} adlı hesap tanınmadı. Cüzdanınızı sıfırlamayı düşünün.",
         "emptyPasswordExplanation": "Bir parola girmelisiniz. Lütfen tekrar deneyin.",
         "capsLockIsOn": "Caps Lock açık",
@@ -169,7 +169,7 @@
         "missingPermission": "Dosya sistemi izni gerekli",
         "missingPermissionExplanation": "Bu işlevi gerçekleştirmek için dosya sistemine erişim gereklidir.",
         "swipeToConfirm": "Onaylamak için kaydırın",
-        "expert": "Expert",
+        "expert": "Uzman",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
@@ -272,7 +272,7 @@
         "generatedSeed": "Generated seed",
         "seedNotGenerated": "Cüzdan şifresi üretilmedi",
         "seedNotGeneratedExplanation": "Lütfen yeni bir tohum yaratın.",
-        "pressForNewSeed": "Press for New Seed",
+        "pressForNewSeed": "Yeni oluşum için tuşlayın",
         "generateSuccess": "Oluşum başarıyla oluşturuldu",
         "individualLetters": "Randomize etmek için tek tek harflere basın.",
         "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
@@ -282,8 +282,8 @@
         "whatIsASeed": "Oluşum nedir?"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
+        "allDone": "Her Şey Hazır!",
+        "openYourWallet": "Cüzdanınızı açın",
         "walletReady": "Cüzdan kuruldu ve kullanıma hazır. Gelecekte herhangi bir değişiklik yapmanız gerekirse, Ayarlar menüsüne bakın."
     },
     "paperWallet": {
@@ -294,7 +294,7 @@
         "publicInsecure": "Fakat halka açık bir Wi-fi'da veya halka açık bir yazıcıyla yazdırmak güvenli değildir.",
         "pleaseCheck": "Please check and confirm before you print",
         "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "printerConfirmation": "Herkese açık bir yazıcıda çıktı almıyorum"
     },
     "printBlankTemplate": {
         "printTemplateQuestion": "Would you like to print a blank template?",
