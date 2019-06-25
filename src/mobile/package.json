@@ -63,7 +63,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.7.4",
     "react-native-keychain": "3.0.0",
     "react-native-markdown-renderer": "^3.2.1",
-    "react-native-modal": "^7.0.1",
+    "react-native-modal": "^11.0.2",
     "react-native-modal-translucent": "^2.0.0",
     "react-native-navigation": "https://github.com/rajivshah3/react-native-navigation#2.0.255-0.57",
     "react-native-optimized-flatlist": "^1.0.4",
