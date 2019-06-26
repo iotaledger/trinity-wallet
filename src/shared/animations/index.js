@@ -4,6 +4,7 @@ import language from './language.json';
 import ledger from './ledger.json';
 import onboardingComplete from './onboardingComplete.json';
 import sending from './sending.json';
+import sendingDesktop from './sendingDesktop.json';
 import logout from './logout.json';
 import loading from './loading.json';
 import progressLoading from './progressLoading.json';
@@ -17,6 +18,7 @@ export const animations = {
     onboardingComplete,
     welcome,
     sending,
+    sendingDesktop,
     logout,
     loading,
     progressLoading,

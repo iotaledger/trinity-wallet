@@ -143,8 +143,9 @@ class Sidebar extends React.PureComponent {
                             title: t('logoutConfirmationModal:logoutConfirmation'),
                             confirm: t('yes'),
                             cancel: t('no'),
-                            animation: { name: 'logout', loop: false },
+                            animation: { name: 'logout', loop: false }
                         }}
+                        themeName={themeName}
                         onCancel={this.toggleLogout}
                         onConfirm={this.doLogout}
                     />

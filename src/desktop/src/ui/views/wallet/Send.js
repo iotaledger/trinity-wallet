@@ -148,7 +148,7 @@ class Send extends React.PureComponent {
                             ),
                             confirm: t('send'),
                             cancel: t('cancel'),
-                            animation: { name: 'sending', loop: true, segments: [89, 624] },
+                            animation: { name: 'sendingDesktop', loop: true, segments: [89, 624] },
                         }}
                     />
                     <AddressInput
