@@ -1,5 +1,11 @@
 .welcome {
     max-width: 780px !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+
     article {
         display: block;
         position: relative;
@@ -48,7 +54,7 @@
 
     .language {
         position: absolute;
-        bottom: 140px;
+        bottom: -80px;
         left: 50%;
         transform: translate(-50%, 0);
     }
