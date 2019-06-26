@@ -94,7 +94,7 @@ const init = () => {
                 });
 
                 // Set theme to default if current theme does not exist
-                if (get(Themes, store.getState().settings.themeName)) {
+                if (!get(Themes, store.getState().settings.themeName)) {
                     store.dispatch(updateTheme('Default'));
                 }
 
