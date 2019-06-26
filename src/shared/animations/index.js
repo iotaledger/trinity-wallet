@@ -3,11 +3,11 @@ import welcome from './welcome.json';
 import language from './language.json';
 import ledger from './ledger.json';
 import onboardingComplete from './onboardingComplete.json';
-import sending from './transactionA.json';
-import logout from './thanks.json';
+import sending from './sending.json';
+import logout from './logout.json';
 import loading from './loading.json';
-import progressLoading from './slider-loader.json';
-import progressSuccess from './slider-success.json';
+import progressLoading from './progressLoading.json';
+import progressSuccess from './progressSuccess.json';
 
 import themes from '../themes/themes';
 
