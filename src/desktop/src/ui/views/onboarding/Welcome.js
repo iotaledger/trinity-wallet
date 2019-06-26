@@ -115,7 +115,7 @@ class Welcome extends React.PureComponent {
                                 width={280}
                                 height={280}
                                 data={getAnimation('welcome', themeName)}
-                                segments={[89, 624]}
+                                segments={[161, 395]}
                                 loop
                             />
                         </React.Fragment>
