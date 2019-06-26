@@ -94,7 +94,7 @@
     "stream-browserify": "^1.0.0",
     "text-encoding": "^0.6.4",
     "tinycolor2": "^1.4.1",
-    "tweetnacl": "^1.0.0",
+    "tweetnacl": "^1.0.1",
     "tweetnacl-util": "^0.15.0",
     "util": "^0.10.3",
     "victory-native": "^30.3.0",
