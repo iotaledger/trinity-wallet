@@ -778,6 +778,7 @@ export class Send extends Component {
                             onRef={(c) => {
                                 this.messageField = c;
                             }}
+                            maxLength={1093}
                             keyboardType="default"
                             label={t('message')}
                             onValidTextChange={(text) => this.props.setSendMessageField(text)}
