@@ -169,6 +169,7 @@
         "missingPermission": "Potrebna dozvola za pristup sistemu datoteka",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
         "swipeToConfirm": "Swipe to confirm",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Jezik",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Počnimo"
     },
     "login": {
@@ -649,7 +651,7 @@
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
-        "youAreAbout": "Poslaćete {{contents}} na adresu",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "poruka",
         "fromAccount": "From {{selectedAccountName}}",
         "toAddress": "To address",
