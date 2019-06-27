@@ -60,7 +60,7 @@
         "password": "Şifre",
         "unrecognisedPassword": "Tanınmayan şifre",
         "unrecognisedPasswordExplanation": "Şifre tanımlı değil. Lütfen yeniden deneyin.",
-        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccount": "Tanımlanamayan hesap",
         "unrecognisedAccountExplanation": "{{accountName}} adlı hesap tanınmadı. Cüzdanınızı sıfırlamayı düşünün.",
         "emptyPasswordExplanation": "Bir parola girmelisiniz. Lütfen tekrar deneyin.",
         "capsLockIsOn": "Caps Lock açık",
@@ -169,7 +169,7 @@
         "missingPermission": "Dosya sistemi izni gerekli",
         "missingPermissionExplanation": "Bu işlevi gerçekleştirmek için dosya sistemine erişim gereklidir.",
         "swipeToConfirm": "Onaylamak için kaydırın",
-        "expert": "Expert",
+        "expert": "Uzman",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
@@ -272,7 +272,7 @@
         "generatedSeed": "Generated seed",
         "seedNotGenerated": "Cüzdan şifresi üretilmedi",
         "seedNotGeneratedExplanation": "Lütfen yeni bir tohum yaratın.",
-        "pressForNewSeed": "Press for New Seed",
+        "pressForNewSeed": "Yeni oluşum için tuşlayın",
         "generateSuccess": "Oluşum başarıyla oluşturuldu",
         "individualLetters": "Randomize etmek için tek tek harflere basın.",
         "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
@@ -282,8 +282,8 @@
         "whatIsASeed": "Oluşum nedir?"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
+        "allDone": "Her Şey Hazır!",
+        "openYourWallet": "Cüzdanınızı açın",
         "walletReady": "Cüzdan kuruldu ve kullanıma hazır. Gelecekte herhangi bir değişiklik yapmanız gerekirse, Ayarlar menüsüne bakın."
     },
     "paperWallet": {
@@ -293,8 +293,8 @@
         "paperConvenience": "Oluşumunuzun bir kopyasını yazdırmak onu saklamak için etkili bir yöntemdir.",
         "publicInsecure": "Fakat halka açık bir Wi-fi'da veya halka açık bir yazıcıyla yazdırmak güvenli değildir.",
         "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "wifiConfirmation": "Herkese açık bir wifi'ye bağlı değilim",
+        "printerConfirmation": "Herkese açık bir yazıcıda çıktı almıyorum"
     },
     "printBlankTemplate": {
         "printTemplateQuestion": "Would you like to print a blank template?",
@@ -321,17 +321,17 @@
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
         "seedCleared": "Cüzdan şifresi temizlendi",
-        "mostSecure": "Most Secure",
-        "recommended": "Recommended",
+        "mostSecure": "En Güvenli",
+        "recommended": "Önerilen",
         "leastSecure": "Least Secure",
         "paperWallet": "Kağıt cüzdan",
         "writeYourSeedDown": "Write your seed down",
         "seedClearedExplanation": "Güvenliğiniz için cüzdan şifresi panodan temizlendi.",
         "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "Bir seferde sadece 9 karakter secebilirsiniz",
-        "printBlankWallet": "Print a blank wallet",
-        "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "printBlankWallet": "Boş bir cüzdan yazdır",
+        "whatIsAChecksum": "Sağlama nedir?",
+        "everySeedHasAChecksum": "Her oluşumun 3 karakterlik bir sağlaması vardır.",
         "iHavesavedMySeed": "Seed'imi kaydettim",
         "checksumExplanation": "Cüzdanınıza bir seed eklediğinizde, cüzdanın oluşturduğu sağlama toplamının yazdığınızla eşleşmesini sağlamalısınız.",
         "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
@@ -499,12 +499,12 @@
         "addCustomNodes": "Add custom nodes",
         "autoNodeList": "Use remote node list",
         "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
+        "primaryNode": "Birincil ağ",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
+        "noCustomNodes": "Özel ağ yok",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesTitle": "Yeterli ağ yok",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
@@ -519,9 +519,9 @@
         "nodeFieldEmpty": "Bu alan boş",
         "nodeFieldEmptyExplanation": "Lütfen özel ağınızı girin.",
         "invalidURL": "Lütfen geçerli bir URL giriniz.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
+        "addAuthKey": "Kimlik doğrulama anahtarı ekle",
+        "username": "Kullanıcı Adı",
+        "couldNotRemove": "Özel ağ kaldırılamadı",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
@@ -548,30 +548,30 @@
         "mockup": "Mockup"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "classic": "Klasik",
+        "contemporary": "Çağdaş",
+        "dark": "Koyu",
+        "default": "Varsayılan",
+        "electric": "Elektrik",
+        "ionic": "İyonik",
+        "light": "Açık",
+        "lucky": "Şanslı",
+        "mint": "Nane yeşili",
+        "steelblue": "Çelik Mavisi"
     },
     "currencySelection": {
         "currency": "Kur"
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Çıkmak istediğine emin misin?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "Çıkış yapıyorsunuz",
+        "areYouSure": "Emin misiniz?"
     },
     "qrScanner": {
         "scan": "QR Kodunuzu Tarayın"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Ölçü Birimi Sistemi",
         "trillion": "Trilyon",
         "billion": "Milyar",
         "million": "Milyon",
@@ -595,28 +595,28 @@
         "pressToSync": "Hesabınızı senkronize etmek için aşağıdaki tuşa basın.",
         "thisMayTake": "Bu biraz zaman alabilir. Cihazınızın yavaşladığını fark edebilirsiniz.",
         "doNotClose": "Önemli, uygulamayı küçültmek senkronizasyonu iptal edecektir.",
-        "syncAccount": "Sync Account",
+        "syncAccount": "Hesabı Eşle",
         "syncingYourAccount": "Hesabınız eşitleniyor."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Bir hesap adı ve oluşum girin",
         "incorrectFormat": "Geçersiz oluşum formatı",
         "validSeedExplanation": "Geçerli oluşumlar 81 karakter uzunluğunda ve sadece A'dan Z'ye harfler veya 9 içermelidir."
     },
     "viewSeed": {
         "enterPassword": "Seed'ini görüntülemek için parolanı ver.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed",
+        "viewSeed": "Oluşumu Görüntüle",
+        "hideSeed": "Oluşumu Gizle",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
         "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
+        "didSaveSeed": "Oluşumunuzu yedeklediniz mi?",
+        "iHaveBackedUp": "Oluşumumu güvenli bir şekilde yedekledim",
+        "reenterSeed": "Sonraki adımda oluşumunuzu tekrardan girmeniz gerekiyor.",
+        "reenterSeedWarning": "Eğer oluşumunuzu yedeklemezseniz ve cihazınıza erişilemezse tüm IOTA'larınızı kaybedeceksiniz.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
     "walletResetConfirmation": {
@@ -633,7 +633,7 @@
         "fingerprintAuthFailed": "Biyometrik doğrulama başarısız",
         "fingerprintAuthFailedExplanation": "Parmak izi doğrulaması başarısız. Lütfen tekrar deneyin.",
         "status": "Durum",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailable": "Biyometrik doğrulama kullanılamıyor",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "notSupported": "Device does not support biometric authentication",
@@ -775,25 +775,25 @@
     "terms": {
         "termsAndConditions": "Terms & Conditions",
         "accept": "I accept",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Lütfen tüm metni okuyun"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Gizlilik İlkesi",
+        "agree": "Kabul ediyorum"
     },
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "notLoggedIn": "Giriş yapmadınız",
+        "setupIncomplete": "Cüzdan kurulumu tamamlanmadı",
+        "completeSetup": "Kurulumu tamamla"
     },
     "proxy": {
-        "proxy": "Use system proxy",
+        "proxy": "Sistem Proxy'sini kullan",
         "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "Bildirimler",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
         "typeConfirmations": "Notify me about confirmations",
         "typeMessages": "Notify me about zero value transactions",

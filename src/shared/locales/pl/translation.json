@@ -789,7 +789,7 @@
         "completeSetup": "Zakończ konfigurację"
     },
     "proxy": {
-        "proxy": "Użycie ustawień proxy",
+        "proxy": "Użycie systemowych ustawień proxy",
         "proxyExplanation": "Wykryj i używaj ogólnosystemowych ustawień serwera proxy. Po zmianie tego ustawienia należy ponownie uruchomić aplikację."
     },
     "notifications": {
