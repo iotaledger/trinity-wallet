@@ -60,15 +60,15 @@ export const IOTA_DENOMINATIONS = ['i', 'Ki', 'Mi', 'Gi', 'Ti'];
  * @returns {string}
  */
 export const convertFromTrytes = (trytes) => {
-  const trytesWithoutNines = trytes.replace(/9+$/, '');
-  const message = iota.utils.fromTrytes(trytesWithoutNines);
+    const trytesWithoutNines = trytes.replace(/9+$/, '');
+    const message = iota.utils.fromTrytes(trytesWithoutNines);
 
-  /* eslint-disable no-control-regex */
-  if (trytesWithoutNines && message && /^[\x00-\xFF]*$/.test(message)) {
-    return message;
-  }
-  /* eslint-enable no-control-regex */
-  return EMPTY_TRANSACTION_MESSAGE;
+    /* eslint-disable no-control-regex */
+    if (trytesWithoutNines && message && /^[\x00-\xFF]*$/.test(message)) {
+        return message;
+    }
+    /* eslint-enable no-control-regex */
+    return EMPTY_TRANSACTION_MESSAGE;
 };
 
 /**
@@ -82,19 +82,19 @@ export const convertFromTrytes = (trytes) => {
  * @returns {string | array}
  */
 export const getChecksum = (
-  input,
-  // Trinity trytes to trits conversion creates Int8Array
-  length = isArray(input) || input instanceof Int8Array ? SEED_CHECKSUM_LENGTH * 3 : SEED_CHECKSUM_LENGTH,
+    input,
+    // Trinity trytes to trits conversion creates Int8Array
+    length = isArray(input) || input instanceof Int8Array ? SEED_CHECKSUM_LENGTH * 3 : SEED_CHECKSUM_LENGTH,
 ) => {
-  return iota.utils
-    .addChecksum(
-      // https://github.com/iotaledger/iota.js/blob/develop/lib/utils/utils.js#L64
-      // iota.lib.js throws an exception for typed arrays
-      input instanceof Int8Array ? Array.from(input) : input,
-      length,
-      false,
-    )
-    .slice(-length);
+    return iota.utils
+        .addChecksum(
+            // https://github.com/iotaledger/iota.js/blob/develop/lib/utils/utils.js#L64
+            // iota.lib.js throws an exception for typed arrays
+            input instanceof Int8Array ? Array.from(input) : input,
+            length,
+            false,
+        )
+        .slice(-length);
 };
 
 /**
@@ -116,33 +116,33 @@ export const isValidSeed = (seed) => seed.length === MAX_SEED_LENGTH && seed.mat
  * @returns {number}
  */
 export const formatValue = (value) => {
-  let negative = false;
-  if (value < 0) {
-    negative = true;
-    value = -value;
-  }
-  switch (true) {
-    case value < 1000:
-      break;
-    case value < 1000000:
-      value /= 1000;
-      break;
-    case value < 1000000000:
-      value /= 1000000;
-      break;
-    case value < 1000000000000:
-      value /= 1000000000;
-      break;
-    default:
-      value /= 1000000000000;
-      break;
-  }
+    let negative = false;
+    if (value < 0) {
+        negative = true;
+        value = -value;
+    }
+    switch (true) {
+        case value < 1000:
+            break;
+        case value < 1000000:
+            value /= 1000;
+            break;
+        case value < 1000000000:
+            value /= 1000000;
+            break;
+        case value < 1000000000000:
+            value /= 1000000000;
+            break;
+        default:
+            value /= 1000000000000;
+            break;
+    }
 
-  if (negative === true) {
-    return -value;
-  }
+    if (negative === true) {
+        return -value;
+    }
 
-  return value;
+    return value;
 };
 
 /**
@@ -154,22 +154,22 @@ export const formatValue = (value) => {
  * @returns {string}
  */
 export const formatUnit = (value) => {
-  if (value < 0) {
-    value = -value;
-  }
+    if (value < 0) {
+        value = -value;
+    }
 
-  switch (true) {
-    case value < 1000:
-      return 'i';
-    case value < 1000000:
-      return 'Ki';
-    case value < 1000000000:
-      return 'Mi';
-    case value < 1000000000000:
-      return 'Gi';
-    default:
-      return 'Ti';
-  }
+    switch (true) {
+        case value < 1000:
+            return 'i';
+        case value < 1000000:
+            return 'Ki';
+        case value < 1000000000:
+            return 'Mi';
+        case value < 1000000000000:
+            return 'Gi';
+        default:
+            return 'Ti';
+    }
 };
 
 /**
@@ -181,23 +181,23 @@ export const formatUnit = (value) => {
  * @returns {number}
  */
 export const unitStringToValue = (str) => {
-  const value = parseInt(str);
-  const unit = str.substr(value.toString().length).toLowerCase();
+    const value = parseInt(str);
+    const unit = str.substr(value.toString().length).toLowerCase();
 
-  switch (unit) {
-    case 'ki':
-      return value * 1000;
-    case 'mi':
-      return value * 1000000;
-    case 'gi':
-      return value * 1000000000;
-    case 'ti':
-      return value * 1000000000000;
-    case 'pi':
-      return value * 1000000000000000;
-    default:
-      return value;
-  }
+    switch (unit) {
+        case 'ki':
+            return value * 1000;
+        case 'mi':
+            return value * 1000000;
+        case 'gi':
+            return value * 1000000000;
+        case 'ti':
+            return value * 1000000000000;
+        case 'pi':
+            return value * 1000000000000000;
+        default:
+            return value;
+    }
 };
 
 /**
@@ -209,12 +209,12 @@ export const unitStringToValue = (str) => {
  * @returns {string}
  */
 export const formatIotas = (iotas, showShort, showUnit) => {
-  const formattedValue = formatValue(iotas);
-  const outputValue = !showShort
-    ? formattedValue
-    : roundDown(formattedValue, 1) + (iotas < 1000 || (iotas / formattedValue) % 10 === 0 ? '' : '+');
+    const formattedValue = formatValue(iotas);
+    const outputValue = !showShort
+        ? formattedValue
+        : roundDown(formattedValue, 1) + (iotas < 1000 || (iotas / formattedValue) % 10 === 0 ? '' : '+');
 
-  return `${outputValue}${showUnit ? ' ' + formatUnit(iotas) : ''}`;
+    return `${outputValue}${showUnit ? ' ' + formatUnit(iotas) : ''}`;
 };
 
 /**
@@ -226,11 +226,11 @@ export const formatIotas = (iotas, showShort, showUnit) => {
  * @returns {boolean}
  */
 export const isValidServerAddress = (server) => {
-  if (!server.startsWith('http://') && !server.startsWith('https://')) {
-    return false;
-  }
+    if (!server.startsWith('http://') && !server.startsWith('https://')) {
+        return false;
+    }
 
-  return true;
+    return true;
 };
 
 /**
@@ -242,11 +242,11 @@ export const isValidServerAddress = (server) => {
  * @returns {boolean}
  */
 export const isValidAddress = (address) => {
-  if (!isNull(address.match(VALID_SEED_REGEX))) {
-    return size(address) === 90 && iota.utils.isValidChecksum(address);
-  }
+    if (!isNull(address.match(VALID_SEED_REGEX))) {
+        return size(address) === 90 && iota.utils.isValidChecksum(address);
+    }
 
-  return false;
+    return false;
 };
 
 /**
@@ -268,7 +268,7 @@ export const isLastTritZero = (address) => !/[E-V]/.test(address.slice(80, 81));
  * @returns {boolean}
  */
 export const isValidMessage = (message) => {
-  return iota.utils.fromTrytes(iota.utils.toTrytes(message)) === message;
+    return iota.utils.fromTrytes(iota.utils.toTrytes(message)) === message;
 };
 
 /**
@@ -282,24 +282,24 @@ export const isValidMessage = (message) => {
  * @returns {boolean}
  */
 export const isValidAmount = (amount, multiplier, isFiat = false) => {
-  const value = new BigNumber(parseFloat(amount)).times(new BigNumber(multiplier)).toNumber();
-  // For sending a message
-  if (amount === '') {
-    return true;
-  }
-
-  // Ensure iota value is an integer
-  if (!isFiat) {
-    if (value % 1 !== 0) {
-      return false;
+    const value = new BigNumber(parseFloat(amount)).times(new BigNumber(multiplier)).toNumber();
+    // For sending a message
+    if (amount === '') {
+        return true;
     }
-  }
 
-  if (value < 0) {
-    return false;
-  }
+    // Ensure iota value is an integer
+    if (!isFiat) {
+        if (value % 1 !== 0) {
+            return false;
+        }
+    }
 
-  return !isNaN(amount);
+    if (value < 0) {
+        return false;
+    }
+
+    return !isNaN(amount);
 };
 
 /**
@@ -314,53 +314,53 @@ export const isValidAmount = (amount, multiplier, isFiat = false) => {
  * @returns {ParsedURL} - The parsed address, message and/or amount values
  */
 export const parseAddress = (input) => {
-  const result = {
-    address: null,
-    message: null,
-    amount: null,
-  };
-
-  if (!input || typeof input !== 'string') {
-    return null;
-  }
-
-  if (input.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
-    result.address = input;
-    return result;
-  }
-
-  try {
-    let parsed = {
-      address: null,
-      message: null,
-      amount: null,
+    const result = {
+        address: null,
+        message: null,
+        amount: null,
     };
 
-    if (input.toLowerCase().indexOf('iota:') === 0) {
-      const url = new URL(input, true);
-      parsed.address = url.hostname.toUpperCase();
-      parsed.message = url.query.message;
-      parsed.amount = url.query.amount;
-    } else {
-      parsed = JSON.parse(input);
+    if (!input || typeof input !== 'string') {
+        return null;
     }
 
-    if (parsed.address.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
-      result.address = parsed.address;
-    } else {
-      return null;
+    if (input.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
+        result.address = input;
+        return result;
     }
-    if (parsed.message && typeof parsed.message === 'string') {
-      result.message = parsed.message;
-    }
-    if (parsed.amount && String(parsed.amount) === String(parseInt(parsed.amount, 10))) {
-      result.amount = Math.abs(parseInt(parsed.amount, 10));
-    }
-  } catch (error) {
-    return null;
-  }
 
-  return result;
+    try {
+        let parsed = {
+            address: null,
+            message: null,
+            amount: null,
+        };
+
+        if (input.toLowerCase().indexOf('iota:') === 0) {
+            const url = new URL(input, true);
+            parsed.address = url.hostname.toUpperCase();
+            parsed.message = url.query.message;
+            parsed.amount = url.query.amount;
+        } else {
+            parsed = JSON.parse(input);
+        }
+
+        if (parsed.address.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
+            result.address = parsed.address;
+        } else {
+            return null;
+        }
+        if (parsed.message && typeof parsed.message === 'string') {
+            result.message = parsed.message;
+        }
+        if (parsed.amount && String(parsed.amount) === String(parseInt(parsed.amount, 10))) {
+            result.amount = Math.abs(parseInt(parsed.amount, 10));
+        }
+    } catch (error) {
+        return null;
+    }
+
+    return result;
 };
 
 /**
@@ -374,53 +374,53 @@ export const parseAddress = (input) => {
  * @returns {function(function): function(...[*]): Promise}
  */
 export const withRetriesOnDifferentNodes = (nodes, failureCallbacks) => {
-  let attempt = 0;
-  let executedCallback = false;
-  const retries = size(nodes);
+    let attempt = 0;
+    let executedCallback = false;
+    const retries = size(nodes);
 
-  return (promiseFunc) => {
-    const execute = (...args) => {
-      if (isUndefined(nodes[attempt])) {
-        return Promise.reject(new Error(Errors.NO_NODE_TO_RETRY));
-      }
-
-      return promiseFunc(nodes[attempt])(...args)
-        .then((result) => ({ node: nodes[attempt], result }))
-        .catch((err) => {
-          if (get(err, 'message') === Errors.LEDGER_INVALID_INDEX) {
-            throw new Error(Errors.LEDGER_INVALID_INDEX);
-          }
-          // Abort retries on user cancelled Ledger action
-          if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
-            throw new Error(Errors.LEDGER_CANCELLED);
-          }
-          // If a function is passed as failure callback
-          // Just trigger it once.
-          if (isFunction(failureCallbacks)) {
-            if (!executedCallback) {
-              executedCallback = true;
-              failureCallbacks();
+    return (promiseFunc) => {
+        const execute = (...args) => {
+            if (isUndefined(nodes[attempt])) {
+                return Promise.reject(new Error(Errors.NO_NODE_TO_RETRY));
             }
-            // If an array of functions is passed
-            // Execute callback on each failure
-          } else if (isArray(failureCallbacks)) {
-            if (isFunction(failureCallbacks[attempt])) {
-              failureCallbacks[attempt]();
-            }
-          }
 
-          attempt += 1;
+            return promiseFunc(nodes[attempt])(...args)
+                .then((result) => ({ node: nodes[attempt], result }))
+                .catch((err) => {
+                    if (get(err, 'message') === Errors.LEDGER_INVALID_INDEX) {
+                        throw new Error(Errors.LEDGER_INVALID_INDEX);
+                    }
+                    // Abort retries on user cancelled Ledger action
+                    if (get(err, 'message') === Errors.LEDGER_CANCELLED) {
+                        throw new Error(Errors.LEDGER_CANCELLED);
+                    }
+                    // If a function is passed as failure callback
+                    // Just trigger it once.
+                    if (isFunction(failureCallbacks)) {
+                        if (!executedCallback) {
+                            executedCallback = true;
+                            failureCallbacks();
+                        }
+                        // If an array of functions is passed
+                        // Execute callback on each failure
+                    } else if (isArray(failureCallbacks)) {
+                        if (isFunction(failureCallbacks[attempt])) {
+                            failureCallbacks[attempt]();
+                        }
+                    }
 
-          if (attempt < retries) {
-            return execute(...args);
-          }
+                    attempt += 1;
 
-          throw err;
-        });
+                    if (attempt < retries) {
+                        return execute(...args);
+                    }
+
+                    throw err;
+                });
+        };
+
+        return execute;
     };
-
-    return execute;
-  };
 };
 
 /**
@@ -431,44 +431,44 @@ export const withRetriesOnDifferentNodes = (nodes, failureCallbacks) => {
  * @returns {Promise<array>}
  */
 export const fetchRemoteNodes = async () => {
-  const requestOptions = {
-    headers: {
-      Accept: 'application/json',
-    },
-  };
+    const requestOptions = {
+        headers: {
+            Accept: 'application/json',
+        },
+    };
 
-  let remoteNodes = [];
+    let remoteNodes = [];
 
-  for (let index = 0; index < NODELIST_ENDPOINTS.length; index++) {
-    try {
-      const endPoint = NODELIST_ENDPOINTS[index];
+    for (let index = 0; index < NODELIST_ENDPOINTS.length; index++) {
+        try {
+            const endPoint = NODELIST_ENDPOINTS[index];
 
-      const response = await Promise.race([
-        fetch(endPoint, requestOptions),
-        new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Fetch timeout')), FETCH_REMOTE_NODES_REQUEST_TIMEOUT),
-        ),
-      ]);
-      const remoteList = await response.json();
+            const response = await Promise.race([
+                fetch(endPoint, requestOptions),
+                new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Fetch timeout')), FETCH_REMOTE_NODES_REQUEST_TIMEOUT),
+                ),
+            ]);
+            const remoteList = await response.json();
 
-      remoteNodes = remoteList.filter(
-        ({ node, pow }) =>
-          typeof node === 'string' && node.indexOf('https://') === 0 && typeof pow === 'boolean',
-      );
+            remoteNodes = remoteList.filter(
+                ({ node, pow }) =>
+                    typeof node === 'string' && node.indexOf('https://') === 0 && typeof pow === 'boolean',
+            );
 
-      if (remoteNodes.length === 0) {
-        throw Error('No nodes returned');
-      }
+            if (remoteNodes.length === 0) {
+                throw Error('No nodes returned');
+            }
 
-      break;
-    } catch (err) {}
-  }
+            break;
+        } catch (err) {}
+    }
 
-  return remoteNodes.map(({ node, pow }) => ({
-    url: node,
-    pow,
-    token: '',
-  }));
+    return remoteNodes.map(({ node, pow }) => ({
+        url: node,
+        pow,
+        token: '',
+    }));
 };
 
 /**
@@ -483,11 +483,11 @@ export const fetchRemoteNodes = async () => {
  * @returns {Array}
  */
 export const getRandomNodes = (nodes, size = 5, blacklistedNodes = [], PoW = false) => {
-  let nodesToSample = cloneDeep(nodes);
-  if (PoW) {
-    nodesToSample = filter(nodes, (node) => node.pow === true);
-  }
-  return sampleSize(filter(nodesToSample, (node) => !find(blacklistedNodes, { url: node.url })), size);
+    let nodesToSample = cloneDeep(nodes);
+    if (PoW) {
+        nodesToSample = filter(nodes, (node) => node.pow === true);
+    }
+    return sampleSize(filter(nodesToSample, (node) => !find(blacklistedNodes, { url: node.url })), size);
 };
 
 /**
@@ -499,13 +499,13 @@ export const getRandomNodes = (nodes, size = 5, blacklistedNodes = [], PoW = fal
  * @returns {Promise<boolean>}
  */
 export const throwIfNodeNotHealthy = (settings) => {
-  return isNodeHealthy(settings).then((isSynced) => {
-    if (!isSynced) {
-      throw new Error(Errors.NODE_NOT_SYNCED_BY_TIMESTAMP);
-    }
+    return isNodeHealthy(settings).then((isSynced) => {
+        if (!isSynced) {
+            throw new Error(Errors.NODE_NOT_SYNCED_BY_TIMESTAMP);
+        }
 
-    return isSynced;
-  });
+        return isSynced;
+    });
 };
 
 /**
@@ -520,25 +520,25 @@ export const throwIfNodeNotHealthy = (settings) => {
  * @returns {function}
  */
 export const withRequestTimeoutsHandler = (timeout) => {
-  let attempt = 1;
+    let attempt = 1;
 
-  const getNextTimeout = () => attempt * timeout;
+    const getNextTimeout = () => attempt * timeout;
 
-  const handleTimeout = (promiseFunc) => {
-    return promiseFunc(getNextTimeout()).catch((error) => {
-      attempt += 1;
+    const handleTimeout = (promiseFunc) => {
+        return promiseFunc(getNextTimeout()).catch((error) => {
+            attempt += 1;
 
-      if (
-        (includes(error.message, Errors.REQUEST_TIMED_OUT) ||
-          includes(error.message, Errors.REQUEST_TIMED_OUT.toLowerCase())) &&
-        getNextTimeout() < MAX_REQUEST_TIMEOUT
-      ) {
-        return handleTimeout(promiseFunc);
-      }
+            if (
+                (includes(error.message, Errors.REQUEST_TIMED_OUT) ||
+                    includes(error.message, Errors.REQUEST_TIMED_OUT.toLowerCase())) &&
+                getNextTimeout() < MAX_REQUEST_TIMEOUT
+            ) {
+                return handleTimeout(promiseFunc);
+            }
 
-      throw error;
-    });
-  };
+            throw error;
+        });
+    };
 
-  return handleTimeout;
+    return handleTimeout;
 };
