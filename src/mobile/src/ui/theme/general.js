@@ -48,6 +48,7 @@ export const Styling = {
     },
     iPhoneXBottomInsetHeight: 34,
     statusBarHeight: isAndroid ? ExtraDimensions.get('STATUS_BAR_HEIGHT') : isIPhoneX ? 44 : 20,
+    footerButtonHeight: height / 11,
 };
 
 export function getBorderColor(screen, theme, inactive = false) {

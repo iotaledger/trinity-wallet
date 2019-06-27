@@ -30,6 +30,13 @@ class Theme extends PureComponent {
             Object.keys(colorSet).forEach((colorName) => {
                 if (colorName === 'color') {
                     document.documentElement.style.setProperty(`--${colorsName}`, colorSet.color);
+                } else if (colorsName === 'animations') {
+                    let color = colorSet[colorName];
+                    if (color.indexOf('rgb') !== 0) {
+                        const path = color.split('.');
+                        color = theme[path[0]][path[1]];
+                    }
+                    document.documentElement.style.setProperty(`--animations-${colorName}`, color);
                 } else {
                     document.documentElement.style.setProperty(`--${colorsName}-${colorName}`, colorSet[colorName]);
                 }

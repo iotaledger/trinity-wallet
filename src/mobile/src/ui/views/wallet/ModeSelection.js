@@ -124,10 +124,7 @@ class ModeSelection extends Component {
                         <View style={{ flex: 1.5 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <SettingsBackButton
-                            theme={theme}
-                            backFunction={() => this.props.setSetting('mainSettings')}
-                        />
+                        <SettingsBackButton theme={theme} backFunction={() => this.props.setSetting('mainSettings')} />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -146,4 +143,9 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['modeSelection', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ModeSelection));
+export default withNamespaces(['modeSelection', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ModeSelection),
+);

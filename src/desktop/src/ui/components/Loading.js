@@ -22,6 +22,8 @@ export default class Loading extends React.PureComponent {
         subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
         /** On animation end event callback */
         onEnd: PropTypes.func,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     componentDidMount() {
@@ -33,12 +35,12 @@ export default class Loading extends React.PureComponent {
     }
 
     render() {
-        const { loop, inline, transparent, title, subtitle, onEnd } = this.props;
+        const { loop, inline, transparent, title, subtitle, onEnd, themeName } = this.props;
 
         return (
             <div className={classNames(css.loading, inline ? css.inline : null, transparent ? css.transparent : null)}>
                 <div>
-                    <Logo size={200} animate loop={loop} onEnd={onEnd} />
+                    <Logo size={200} animate loop={loop} onEnd={onEnd} themeName={themeName} />
                     {title && <h1>{title}</h1>}
                     {subtitle && <h2>{subtitle}</h2>}
                 </div>

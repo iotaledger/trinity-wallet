@@ -55,6 +55,10 @@ $footer: 70px;
                     max-width: none;
                 }
 
+                &.long {
+                    padding-top: 100px;
+                }
+
                 > p {
                     margin-bottom: 50px;
                 }
@@ -315,40 +319,9 @@ $footer: 70px;
         > div {
             display: block;
             position: relative;
-            margin: 28px auto;
-            width: 60px;
-            height: 60px;
-            padding: 18px;
-            &:before,
-            &:after {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: calc(100% + 12px);
-                height: calc(100% + 12px);
-                border: 1px solid var(--body-alt);
-                border-radius: 100%;
-                transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
-                z-index: 2;
-            }
-            &:after {
-                width: 100%;
-                height: 100%;
-                background: var(--body-bg);
-                border: none;
-                transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
-                z-index: 1;
-            }
-            span {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                margin: 1px 0 0 1px;
-                z-index: 3;
-            }
+            margin: 28px auto 16px;
+            width: 72px;
+            height: 72px;
         }
 
         &:hover {
@@ -440,47 +413,9 @@ $footer: 70px;
 }
 
 .done {
-    position: relative;
-
-    h1,
-    p {
-        position: relative;
-        z-index: 2;
-    }
     p {
         margin: 40px auto;
-        max-width: 320px;
-        line-height: 24px;
-    }
-    svg {
-        position: absolute;
-        width: 320px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0.06;
-        path {
-            fill: var(--body);
-        }
-        g,
-        > path {
-            animation: fly 6s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
-        }
-        :global {
-            #baloon-mask {
-                fill: var(--body-bg);
-                opacity: 1;
-            }
-            #baloon-1 {
-                transform: translate(0, 40%);
-            }
-            #baloon-2 {
-                transform: translate(0, 30%);
-            }
-            #baloon-3 {
-                transform: translate(0, 60%);
-            }
-        }
+        max-width: 480px;
     }
 }
 
@@ -521,89 +456,5 @@ $footer: 70px;
 }
 
 .usb {
-    svg {
-        path:nth-child(1),
-        path:nth-child(4),
-        path:nth-child(5),
-        path:nth-child(6),
-        path:nth-child(7),
-        path:nth-child(8) {
-            fill: var(--body);
-            transition: 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.475);
-            transition-delay: 0.5s;
-        }
-        path:nth-child(4),
-        path:nth-child(5) {
-            transform: translate(0, -4px);
-        }
-        path:nth-child(4),
-        path:nth-child(7) {
-            fill: transparent;
-            stroke: var(--body);
-            stroke-width: 1;
-        }
-        path:nth-child(8) {
-            transform-origin: 20px 15px;
-        }
-
-        path:nth-child(3),
-        circle {
-            fill: none;
-            stroke: var(--body);
-            stroke-width: 1.5;
-        }
-
-        circle {
-            opacity: 0;
-            transition: 0.3s linear;
-        }
-
-        path:nth-child(3) {
-            transform: translate(0, -0.5px);
-            stroke-dasharray: 8;
-            stroke-dashoffset: 8;
-            transition: 0.4s ease-out;
-        }
-    }
-    span {
-        display: block;
-    }
-
-    &.on {
-        svg {
-            path:nth-child(4),
-            path:nth-child(5) {
-                transform: translate(0, 0px);
-                fill: var(--body);
-            }
-            path:nth-child(6),
-            path:nth-child(7) {
-                transform: translate(0, -3px);
-                fill: var(--body);
-            }
-
-            path:nth-child(8) {
-                opacity: 0;
-                transition-delay: 0.4s;
-            }
-
-            circle {
-                opacity: 1;
-                transition-delay: 1s;
-            }
-            path:nth-child(3) {
-                stroke-dashoffset: 0;
-                transition-delay: 1s;
-            }
-            path:nth-child(4) {
-                transform: translate(0, 0px);
-            }
-            path:nth-child(5) {
-                transform: scale(1, 1);
-            }
-            path:nth-child(6) {
-                transform: translate(0, -3px);
-            }
-        }
-    }
+    margin-top: -50px;
 }
