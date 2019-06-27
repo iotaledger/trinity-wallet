@@ -110,7 +110,7 @@ class Welcome extends React.PureComponent {
                 <section className={css.welcome}>
                     {step === 'intro' ? (
                         <React.Fragment>
-                            <h1>{t('welcome:welcome')}</h1>
+                            <h1>{t('welcome:thankYou')}</h1>
                             <Lottie
                                 width={280}
                                 height={280}

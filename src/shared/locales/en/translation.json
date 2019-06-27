@@ -463,7 +463,7 @@
         "keepSafe": "Please keep your seed safe."
     },
     "welcome": {
-        "welcome": "Thank you for downloading Trinity"
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",

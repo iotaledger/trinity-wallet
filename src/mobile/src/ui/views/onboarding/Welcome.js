@@ -100,7 +100,7 @@ class Welcome extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
                     >
-                        <Header textColor={body.color}>{t('welcome')}</Header>
+                        <Header textColor={body.color}>{t('thankYou')}</Header>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
