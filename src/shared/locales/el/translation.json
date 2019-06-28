@@ -364,6 +364,8 @@
         "message": "Μήνυμα",
         "invalidMessage": "Μη έγκυρο μήνυμα",
         "invalidMessageExplanation": "Το μήνυμά σας περιέχει μη έγκυρους χαρακτήρες.",
+        "invalidMessageTooLong": "Το μήνυμα είναι πολύ μεγάλο",
+        "invalidMessageTooLongExplanation": "Το μήνυμα υπερβαίνει το μέγιστο. αριθμός χαρακτήρων (1093).",
         "send": "Αποστολή",
         "invalidAmount": "Εισήχθη λάθος ποσό",
         "invalidAmountExplanation": "Παρακαλώ εισάγετε ένα έγκυρο ποσό συναλλαγής. Μπορεί να είναι χρήσιμος να δείτε την  μονάδα IOTA  στο κάτω μέρος αυτής της σελίδας.",

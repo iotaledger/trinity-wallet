@@ -364,6 +364,8 @@
         "message": "消息",
         "invalidMessage": "无效消息",
         "invalidMessageExplanation": "您的消息中包含无效字符。",
+        "invalidMessageTooLong": "消息过长",
+        "invalidMessageTooLongExplanation": "消息超出了字符数的最大允许值(1093)。",
         "send": "发送",
         "invalidAmount": "输入的金额不正确",
         "invalidAmountExplanation": "请输入有效的交易金额。查看本页底部的IOTA单位说明可能会有所帮助。",

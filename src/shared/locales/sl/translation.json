@@ -364,6 +364,8 @@
         "message": "Sporočilo",
         "invalidMessage": "Napačno sporočilo",
         "invalidMessageExplanation": "Vaše sporočilo vsebuje neveljavne znake.",
+        "invalidMessageTooLong": "Sporočilo je predolgo",
+        "invalidMessageTooLongExplanation": "Sporočilo je predolgo (največ 1093 znakov).",
         "send": "Pošlji",
         "invalidAmount": "Neveljavna vsota",
         "invalidAmountExplanation": "Prosim vnesite veljaven transakcijski znesek. Morda bi bilo koristno, če si na dnu te strani ogledate pojasnilo o IOTA enotah.",

@@ -364,6 +364,8 @@
         "message": "پیام",
         "invalidMessage": "پیام نامعتبر است",
         "invalidMessageExplanation": "پیام شما حاوی کاراکتر های نامعتبر است.",
+        "invalidMessageTooLong": "پیام خیلی طولانی است",
+        "invalidMessageTooLongExplanation": "پیام بیش از حد مجاز است. مقدار کاراکتر ها (1093).",
         "send": "ارسال",
         "invalidAmount": "مقدار نادرست وارد شده است",
         "invalidAmountExplanation": "لطفا یک مقدار معتبر وارد کنید ممکن است برای توضیح واحد آیوتا در پایین این صفحه برای شما مفید باشد.",

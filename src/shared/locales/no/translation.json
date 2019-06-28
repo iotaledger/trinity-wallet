@@ -364,6 +364,8 @@
         "message": "Melding",
         "invalidMessage": "Ugyldig melding",
         "invalidMessageExplanation": "Meldingen din inneholder ugyldige tegn.",
+        "invalidMessageTooLong": "Meldingen er for lang",
+        "invalidMessageTooLongExplanation": "Meldingen overskrider maks antall tegn (1093).",
         "send": "Send",
         "invalidAmount": "Ugyldig beløp angitt",
         "invalidAmountExplanation": "Vennligst angi et gyldig transaksjonsbeløp. Det kan være nyttig å lese IOTA enhets-forklaring nederst på denne siden.",

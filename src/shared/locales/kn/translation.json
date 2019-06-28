@@ -364,6 +364,8 @@
         "message": "ಸಂದೇಶ",
         "invalidMessage": "ಅಮಾನ್ಯವಾದ ಸಂದೇಶ",
         "invalidMessageExplanation": "ನಿಮ್ಮ ಸಂದೇಶವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಒಳಗೊಂಡಿದೆ.",
+        "invalidMessageTooLong": "ಸಂದೇಶ ತುಂಬಾ ಉದ್ದವಾಗಿದೆ",
+        "invalidMessageTooLongExplanation": "ಸಂದೇಶವು ಗರಿಷ್ಠ ಅಕ್ಷರಗಳ ಮೊತ್ತ (1093) ಮೀರಿದೆ.",
         "send": "ಕಳುಹಿಸಿ",
         "invalidAmount": "ತಪ್ಪಾದ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಲಾಗಿದೆ",
         "invalidAmountExplanation": "ದಯವಿಟ್ಟು ಮಾನ್ಯವಾದ ವ್ಯವಹಾರದ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ. ಈ ಪುಟದ ಕೆಳಭಾಗದಲ್ಲಿ IOTA ಪ್ರಮಾಣ\nವಿವರಣೆಯನ್ನು ವೀಕ್ಷಿಸುವುದರಿಂದ ಸಹಾಯಕವಾಗಬಹುದು.",

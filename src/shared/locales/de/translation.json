@@ -364,6 +364,8 @@
         "message": "Nachricht",
         "invalidMessage": "Ungültige Nachricht",
         "invalidMessageExplanation": "Deine Nachricht enthält ungültige Zeichen.",
+        "invalidMessageTooLong": "Nachricht zu lang",
+        "invalidMessageTooLongExplanation": "Die Nachricht überschreitet die max. Anzahl der Zeichen (1093).",
         "send": "Senden",
         "invalidAmount": "Falschen Betrag eingegeben",
         "invalidAmountExplanation": "Bitte gib einen gültigen Betrag ein. Die Liste der IOTA Einheiten am unteren Rand dieser Seite könnte hilfreich sein.",

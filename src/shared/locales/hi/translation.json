@@ -364,6 +364,8 @@
         "message": "संदेश",
         "invalidMessage": "अमान्य संदेश",
         "invalidMessageExplanation": "एड्रेस में अवैध वर्ण हैं।",
+        "invalidMessageTooLong": "संदेश बहुत लंबा है",
+        "invalidMessageTooLongExplanation": "मैसेज की लम्बाई अधिकतम मान्य (१०९३) से ज्यादा है |",
         "send": "भेजें",
         "invalidAmount": "गलत राशि दर्ज की गई",
         "invalidAmountExplanation": "कृपया कोई मान्य हस्तांतरण राशि दर्ज करें । यह इस पृष्ठ के तल पर IOTA इकाई विवरण देखने के लिए सहायक हो सकता है ।",

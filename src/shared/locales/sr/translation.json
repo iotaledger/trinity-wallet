@@ -364,6 +364,8 @@
         "message": "Poruka",
         "invalidMessage": "Neispravna poruka",
         "invalidMessageExplanation": "Vaša poruka sadrži nedozvoljene znakove.",
+        "invalidMessageTooLong": "Predugačka poruka",
+        "invalidMessageTooLongExplanation": "Poruka prelazi maksimalnu količinu znakova (1093).",
         "send": "Pošalji",
         "invalidAmount": "Unet neispravan iznos",
         "invalidAmountExplanation": "Unesite ispravan iznos transakcije. Objašnjenje o IOTA jedinicama pri dnu ove stranice bi vam moglo pomoći.",

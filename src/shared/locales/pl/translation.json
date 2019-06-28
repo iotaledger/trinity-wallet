@@ -364,6 +364,8 @@
         "message": "Wiadomość",
         "invalidMessage": "Nieprawidłowa wiadomość",
         "invalidMessageExplanation": "Twoja wiadomość zawiera nieprawidłowe znaki.",
+        "invalidMessageTooLong": "Wiadomość za długa",
+        "invalidMessageTooLongExplanation": "Wiadomość przekracza maksymalną ilość znaków (1093).",
         "send": "Wyślij",
         "invalidAmount": "Wprowadzono niepoprawną ilość",
         "invalidAmountExplanation": "Wprowadź poprawną kwotę transakcji. Pomocne może być zapoznanie się z objaśnieniem jednostek IOTA na dole tej strony.",
