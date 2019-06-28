@@ -169,6 +169,7 @@
         "missingPermission": "ಫೈಲ್ ವ್ಯವಸ್ಥೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
         "swipeToConfirm": "Swipe to confirm",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "ಭಾಷೆ",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "ನಾವೀಗ ಆರಂಭಿಸೋಣ"
     },
     "login": {
@@ -649,7 +651,7 @@
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
-        "youAreAbout": "ನೀವು {{contents}} ಅನ್ನು ವಿಳಾಸಕ್ಕೆ ಕಳುಹಿಸಲಿದ್ದೀರಿ",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "ಒಂದು ಸಂದೇಶ",
         "fromAccount": "From {{selectedAccountName}}",
         "toAddress": "To address",

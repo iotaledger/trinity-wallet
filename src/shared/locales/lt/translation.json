@@ -169,6 +169,7 @@
         "missingPermission": "Reikalingas failų sistemos leidimas",
         "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norėdami atlikti šią funkciją.",
         "swipeToConfirm": "Paslinkite norėdami patvirtinti",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Per mažai sinchronizuotų serverių",
         "notEnoughSyncedNodesExplanation": "Kvorumas nepasiekiamas. Išjunkite kvorumą ir bandykite dar kartą."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Kalba",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Pradėti"
     },
     "login": {
@@ -649,7 +651,7 @@
         "noPassword": "Slaptažodis įrenginyje nėra sukurtas"
     },
     "transferConfirmation": {
-        "youAreAbout": "Jūs ruošiatės išsiųsti {{contents}} į adresą",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "žinutę",
         "fromAccount": "Iš {{selectedAccountName}}",
         "toAddress": "Į adresą",

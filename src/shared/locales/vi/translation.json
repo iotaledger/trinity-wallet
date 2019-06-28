@@ -169,6 +169,7 @@
         "missingPermission": "Cần có quyền truy cập tập tin hệ thống",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
         "swipeToConfirm": "Swipe to confirm",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Ngôn Ngữ",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Hãy bắt đầu thôi"
     },
     "login": {
@@ -649,7 +651,7 @@
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
-        "youAreAbout": "Bạn chuẩn bị gửi {{contents}} đến địa chỉ",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "tin nhắn",
         "fromAccount": "From {{selectedAccountName}}",
         "toAddress": "To address",
