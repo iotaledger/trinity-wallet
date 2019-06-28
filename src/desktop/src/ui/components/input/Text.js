@@ -21,7 +21,7 @@ export default class Text extends React.PureComponent {
          */
         onChange: PropTypes.func.isRequired,
         /** Limit max text length */
-        maxLength: PropTypes.integer,
+        maxLength: PropTypes.number,
     };
 
     componentDidMount() {
