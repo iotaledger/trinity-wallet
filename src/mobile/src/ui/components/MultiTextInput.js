@@ -9,6 +9,8 @@ import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import AmountTextInput from './AmountTextInput';
+import { /*MAX_TAG_LENGTH,*/ MAX_MESSAGE_LENGTH } from 'shared-modules/libs/iota/utils';
+
 
 const styles = StyleSheet.create({
     fieldContainer: {
@@ -176,6 +178,7 @@ class MultiTextInput extends Component {
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 onChangeText={(text) => this.onMessageType(text)}
+                                maxLength={MAX_MESSAGE_LENGTH}
                                 selectionColor={theme.primary.color}
                                 underlineColorAndroid="transparent"
                                 multiline
@@ -202,6 +205,7 @@ class MultiTextInput extends Component {
                             keyboardType="default"
                             label={null}
                             onValidTextChange={(text) => this.onTagType(text)}
+                            maxLength={MAX_TAG_LENGTH}
                             containerStyle={{ width: width / 1.25 }}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import MESSAGE_LENGTH from 'libs/iota/utils';
+import MAX_MESSAGE_LENGTH from 'libs/iota/utils';
 import css from './input.scss';
 
 /**
@@ -48,7 +48,7 @@ export default class Text extends React.PureComponent {
                         type="text"
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
-                        maxLength={MESSAGE_LENGTH}
+                        maxLength={MAX_MESSAGE_LENGTH}
                     />
                     <small>{label}</small>
                 </fieldset>
