@@ -8,8 +8,8 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import AmountTextInput from './AmountTextInput';
 import { /*MAX_TAG_LENGTH,*/ MAX_MESSAGE_LENGTH } from 'shared-modules/libs/iota/utils';
+import AmountTextInput from './AmountTextInput';
 
 
 const styles = StyleSheet.create({
