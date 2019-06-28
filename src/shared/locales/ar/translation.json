@@ -169,6 +169,7 @@
         "missingPermission": "مطلوب إذن ملف النظام",
         "missingPermissionExplanation": "الدخول الى ملف النظام مطلوب لعمل هذه المهمة.",
         "swipeToConfirm": "اسحب للتأكيد",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "اللغة",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Let's get started"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "رسالة",
         "invalidMessage": "رسالة غير صحيحة",
         "invalidMessageExplanation": "رسالتك تحتوي على أحرف غير صالحة.",
+        "invalidMessageTooLong": "الرسالة طويلة جداً",
+        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "ارسال",
         "invalidAmount": "المبلغ المدخل غير صحيح",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
@@ -647,7 +651,7 @@
         "noPassword": "لم يتم تعيين كلمة مرور على الجهاز"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "رسالة",
         "fromAccount": "From {{selectedAccountName}}",
         "toAddress": "إلى عنوان",

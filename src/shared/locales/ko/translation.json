@@ -169,6 +169,7 @@
         "missingPermission": "파일 시스템 권한 필요",
         "missingPermissionExplanation": "이 기능을 사용하기 위해 파일 시스템 권한이 필요합니다.",
         "swipeToConfirm": "밀어서 확인",
+        "congratulations": "Congratulations",
         "expert": "전문가",
         "notEnoughSyncedNodes": "싱크된 노드의 수가 너무 적습니다.",
         "notEnoughSyncedNodesExplanation": "큐럼에 연결할 수 없습니다. 큐럼을 끄거나 다시 시도해주세요."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "언어",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "시작합시다."
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "메시지",
         "invalidMessage": "잘못된 메시지",
         "invalidMessageExplanation": "메시지에 유효하지 않은 문자가 포함되어 있습니다.",
+        "invalidMessageTooLong": "메시지가 너무 김",
+        "invalidMessageTooLongExplanation": "메시지가 최대 길이(1093자)를 초과하였습니다.",
         "send": "보내기",
         "invalidAmount": "잘못된 금액",
         "invalidAmountExplanation": "유효한 거래 금액을 입력해 주세요. 아래의 IOTA 단위 체계를 참고하시면 좋습니다.",
@@ -647,7 +651,7 @@
         "noPassword": "장치에 비밀번호가 설정되어 있지 않습니다"
     },
     "transferConfirmation": {
-        "youAreAbout": "아래의 주소로 {{contents}}를 보내려고 합니다.",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "메시지",
         "fromAccount": "{{selectedAccountName}} 에서",
         "toAddress": "아래 주소로",

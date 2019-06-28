@@ -187,7 +187,7 @@ export class ViewAddresses extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.listView}>
-                    <View style={{ height: height / 2.5 + height / 60 * 9 }}>{listOfAddresses}</View>
+                    <View style={{ height: height / 2.5 + (height / 60) * 9 }}>{listOfAddresses}</View>
                 </View>
                 <View style={{ flex: 0.2 }} />
                 <View style={styles.bottomContainer}>
@@ -195,12 +195,12 @@ export class ViewAddresses extends Component {
                         theme={theme}
                         backFunction={() => this.props.setSetting('accountManagement')}
                         customActionView={
-                          addresses.length > 0 && (
-                              <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
-                                  <Text style={styles.spentText}>ABC</Text>
-                                  <Text style={[styles.balanceText, textColor]}> = {t('spent')}</Text>
-                              </View>
-                          )
+                            addresses.length > 0 && (
+                                <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+                                    <Text style={styles.spentText}>ABC</Text>
+                                    <Text style={[styles.balanceText, textColor]}> = {t('spent')}</Text>
+                                </View>
+                            )
                         }
                     />
                 </View>
@@ -219,4 +219,9 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
 });
 
-export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewAddresses));
+export default withNamespaces(['receive', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ViewAddresses),
+);

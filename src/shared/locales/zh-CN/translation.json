@@ -169,6 +169,7 @@
         "missingPermission": "需要文件系统权限",
         "missingPermissionExplanation": "本功能需要具备文件系统访问权限。",
         "swipeToConfirm": "滑动以确认",
+        "congratulations": "Congratulations",
         "expert": "专家",
         "notEnoughSyncedNodes": "同步的节点过少",
         "notEnoughSyncedNodesExplanation": "节点无法达到协同。 请关闭节点协同功能或重试。"
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "语言",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "让我们开始吧！"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "消息",
         "invalidMessage": "无效消息",
         "invalidMessageExplanation": "您的消息中包含无效字符。",
+        "invalidMessageTooLong": "消息过长",
+        "invalidMessageTooLongExplanation": "消息超出了字符数的最大允许值(1093)。",
         "send": "发送",
         "invalidAmount": "输入的金额不正确",
         "invalidAmountExplanation": "请输入有效的交易金额。查看本页底部的IOTA单位说明可能会有所帮助。",
@@ -647,7 +651,7 @@
         "noPassword": "设备上未设置密码"
     },
     "transferConfirmation": {
-        "youAreAbout": "您将发送 {{contents}} 到地址",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "一条消息",
         "fromAccount": "来自{{selectedAccountName}}",
         "toAddress": "接受付款地址",

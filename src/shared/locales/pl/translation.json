@@ -169,6 +169,7 @@
         "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików.",
         "swipeToConfirm": "Przesuń, aby potwierdzić",
+        "congratulations": "Congratulations",
         "expert": "Ekspert",
         "notEnoughSyncedNodes": "Zbyt mało zsynchronizowanych serwerów",
         "notEnoughSyncedNodesExplanation": "Nie udało się skompletować kworum. Wyłącz funkcję kworum lub spróbuj ponownie."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Język",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Zaczynamy"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "Wiadomość",
         "invalidMessage": "Nieprawidłowa wiadomość",
         "invalidMessageExplanation": "Twoja wiadomość zawiera nieprawidłowe znaki.",
+        "invalidMessageTooLong": "Wiadomość za długa",
+        "invalidMessageTooLongExplanation": "Wiadomość przekracza maksymalną ilość znaków (1093).",
         "send": "Wyślij",
         "invalidAmount": "Wprowadzono niepoprawną ilość",
         "invalidAmountExplanation": "Wprowadź poprawną kwotę transakcji. Pomocne może być zapoznanie się z objaśnieniem jednostek IOTA na dole tej strony.",
@@ -647,7 +651,7 @@
         "noPassword": "Hasło nie jest ustawione w urządzeniu"
     },
     "transferConfirmation": {
-        "youAreAbout": "Masz zamiar wysłać {{contents}} na adres",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "wiadomość",
         "fromAccount": "Z konta {{selectedAccountName}}",
         "toAddress": "Na adres",

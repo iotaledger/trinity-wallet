@@ -157,4 +157,7 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AccountName));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(AccountName));

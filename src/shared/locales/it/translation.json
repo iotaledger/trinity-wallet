@@ -169,6 +169,7 @@
         "missingPermission": "È richiesto l'accesso al file system",
         "missingPermissionExplanation": "L'accesso al file system è necessario per eseguire questa funzione.",
         "swipeToConfirm": "Scorri per confermare",
+        "congratulations": "Congratulations",
         "expert": "Esperto",
         "notEnoughSyncedNodes": "Numero insufficiente di nodi sincronizzati",
         "notEnoughSyncedNodesExplanation": "Non è stato possibile raggiungere il quorum. Disattiva il quorum o riprova."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Lingua",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Cominciamo"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "Messaggio",
         "invalidMessage": "Messaggio non valido",
         "invalidMessageExplanation": "Il tuo messaggio contiene caratteri non validi.",
+        "invalidMessageTooLong": "Messaggio troppo lungo",
+        "invalidMessageTooLongExplanation": "Il messaggio supera il numero massimo di caratteri (1093).",
         "send": "Invia",
         "invalidAmount": "Inserito un importo non corretto",
         "invalidAmountExplanation": "Inserisci un importo di transazione valido. Può essere utile visualizzare la spiegazione di unità IOTA nella parte inferiore di questa pagina.",
@@ -647,7 +651,7 @@
         "noPassword": "La password non è impostata sul dispositivo"
     },
     "transferConfirmation": {
-        "youAreAbout": "Stai per inviare {{contents}} all'indirizzo",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "un messaggio",
         "fromAccount": "Da {{selectedAccountName}}",
         "toAddress": "A indirizzo",

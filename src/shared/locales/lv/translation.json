@@ -169,6 +169,7 @@
         "missingPermission": "File system permission required",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
         "swipeToConfirm": "Swipe to confirm",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Valoda",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Let's get started"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "Message",
         "invalidMessage": "Invalid message",
         "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessageTooLong": "Message too long",
+        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "Sūtīt",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
@@ -647,7 +651,7 @@
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "a message",
         "fromAccount": "From {{selectedAccountName}}",
         "toAddress": "To address",

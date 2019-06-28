@@ -169,6 +169,7 @@
         "missingPermission": "Απαιτείται άδεια συστήματος αρχείων",
         "missingPermissionExplanation": "Για την εκτέλεση αυτής της λειτουργίας απαιτείται πρόσβαση στο αρχείο συστήματος.",
         "swipeToConfirm": "Σύρετε για επιβεβαίωση",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Γλώσσα",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Ας αρχίσουμε"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "Μήνυμα",
         "invalidMessage": "Μη έγκυρο μήνυμα",
         "invalidMessageExplanation": "Το μήνυμά σας περιέχει μη έγκυρους χαρακτήρες.",
+        "invalidMessageTooLong": "Το μήνυμα είναι πολύ μεγάλο",
+        "invalidMessageTooLongExplanation": "Το μήνυμα υπερβαίνει το μέγιστο. αριθμός χαρακτήρων (1093).",
         "send": "Αποστολή",
         "invalidAmount": "Εισήχθη λάθος ποσό",
         "invalidAmountExplanation": "Παρακαλώ εισάγετε ένα έγκυρο ποσό συναλλαγής. Μπορεί να είναι χρήσιμος να δείτε την  μονάδα IOTA  στο κάτω μέρος αυτής της σελίδας.",
@@ -647,7 +651,7 @@
         "noPassword": "Ο κωδικός πρόσβασης δεν έχει οριστεί στη συσκευή"
     },
     "transferConfirmation": {
-        "youAreAbout": "Είστε έτοιμοι να στείλετε {{contents}} στη διεύθυνση",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "ένα μήνυμα",
         "fromAccount": "Από {{επιλεγμένο όνομα λογαριασμού}}",
         "toAddress": "Στη διεύθυνση",

@@ -169,6 +169,7 @@
         "missingPermission": "Dosya sistemi izni gerekli",
         "missingPermissionExplanation": "Bu işlevi gerçekleştirmek için dosya sistemine erişim gereklidir.",
         "swipeToConfirm": "Onaylamak için kaydırın",
+        "congratulations": "Congratulations",
         "expert": "Uzman",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Dil",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Haydi başlayalım"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "Mesaj",
         "invalidMessage": "Geçersiz mesaj",
         "invalidMessageExplanation": "Mesajınız geçersiz karakterler içeriyor.",
+        "invalidMessageTooLong": "Mesaj çok uzun",
+        "invalidMessageTooLongExplanation": "İleti maksimum karakter sayısını (1093) aşıyor.",
         "send": "Göndermek",
         "invalidAmount": "Yanlış tutar girildi",
         "invalidAmountExplanation": "Lütfen geçerli bir işlem miktarı girin. Bu sayfanın altındaki IOTA birim açıklamasına bakmanız yararlı olabilir.",
@@ -647,7 +651,7 @@
         "noPassword": "Cihazda parola ayarlanmamış"
     },
     "transferConfirmation": {
-        "youAreAbout": "Adrese {{contents}} göndermek üzeresiniz",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "mesaj",
         "fromAccount": "{{selectedAccountName}}'den",
         "toAddress": "Adresine",

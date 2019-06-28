@@ -8,6 +8,7 @@ import withKeyboardMonitor from 'ui/components/KeyboardMonitor';
 import Home from 'ui/views/wallet/Home';
 import Loading from 'ui/views/wallet/Loading';
 import NewSeedSetup from 'ui/views/onboarding/NewSeedSetup';
+import Welcome from 'ui/views/onboarding/Welcome';
 import WalletSetup from 'ui/views/onboarding/WalletSetup';
 import LanguageSetup from 'ui/views/onboarding/LanguageSetup';
 import EnterSeed from 'ui/views/onboarding/EnterSeed';
@@ -46,6 +47,7 @@ export default function registerScreens(store, Provider) {
     Navigation.registerComponentWithRedux('home', () => applyHOCs(Home), Provider, store);
     Navigation.registerComponentWithRedux('loading', () => applyHOCs(Loading), Provider, store);
     Navigation.registerComponentWithRedux('newSeedSetup', () => applyHOCs(NewSeedSetup), Provider, store);
+    Navigation.registerComponentWithRedux('welcome', () => applyHOCs(Welcome), Provider, store);
     Navigation.registerComponentWithRedux('walletSetup', () => applyHOCs(WalletSetup), Provider, store);
     Navigation.registerComponentWithRedux('enterSeed', () => applyHOCs(EnterSeed), Provider, store);
     Navigation.registerComponentWithRedux('saveYourSeed', () => applyHOCs(SaveYourSeed), Provider, store);

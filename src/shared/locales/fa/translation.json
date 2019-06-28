@@ -169,6 +169,7 @@
         "missingPermission": "نیاز به مجوز سیستم فایل است",
         "missingPermissionExplanation": "به منظور انجام این عمل دسترسی به فایل‌های سیستمی مورد نیاز است.",
         "swipeToConfirm": "برای تایید بکشید",
+        "congratulations": "Congratulations",
         "expert": "حرفه ای",
         "notEnoughSyncedNodes": "کمی از نود ها همگام شده",
         "notEnoughSyncedNodesExplanation": "سیستم قابل دستیابی نیست. سیستم را خاموش کرده یا دوباره تلاش کنید."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "زبان",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "بیا شروع کنیم"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "پیام",
         "invalidMessage": "پیام نامعتبر است",
         "invalidMessageExplanation": "پیام شما حاوی کاراکتر های نامعتبر است.",
+        "invalidMessageTooLong": "پیام خیلی طولانی است",
+        "invalidMessageTooLongExplanation": "پیام بیش از حد مجاز است. مقدار کاراکتر ها (1093).",
         "send": "ارسال",
         "invalidAmount": "مقدار نادرست وارد شده است",
         "invalidAmountExplanation": "لطفا یک مقدار معتبر وارد کنید ممکن است برای توضیح واحد آیوتا در پایین این صفحه برای شما مفید باشد.",
@@ -647,7 +651,7 @@
         "noPassword": "رمز عبور روی دستگاه تنظیم نشده"
     },
     "transferConfirmation": {
-        "youAreAbout": "شما در حال ارسال به آدرس {{contents}} هستید",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "یک پیام",
         "fromAccount": "از {{selectedAccountName}}",
         "toAddress": "به آدرس",

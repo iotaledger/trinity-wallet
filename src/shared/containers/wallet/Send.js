@@ -39,6 +39,7 @@ export default function withSendData(SendComponent) {
             generateAlert: PropTypes.func.isRequired,
             makeTransaction: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
+            themeName: PropTypes.string.isRequired,
             t: PropTypes.func.isRequired,
             setSendAddressField: PropTypes.func.isRequired,
             setSendAmountField: PropTypes.func.isRequired,
@@ -172,6 +173,7 @@ export default function withSendData(SendComponent) {
                 marketData,
                 wallet,
                 ui,
+                themeName,
                 theme,
                 t,
                 setSendAddressField,
@@ -210,7 +212,7 @@ export default function withSendData(SendComponent) {
                     remotePoW: settings.remotePoW,
                 },
                 progress: {
-                    progress: Math.round(progress.activeStepIndex / progress.activeSteps.length * 100),
+                    progress: Math.round((progress.activeStepIndex / progress.activeSteps.length) * 100),
                     title: progressTitle,
                 },
                 accountName,
@@ -219,6 +221,7 @@ export default function withSendData(SendComponent) {
                 balance,
                 availableBalance,
                 theme,
+                themeName,
                 t,
             };
 
@@ -238,6 +241,7 @@ export default function withSendData(SendComponent) {
         marketData: state.marketData,
         accounts: state.accounts,
         theme: getThemeFromState(state),
+        themeName: state.settings.themeName,
         progress: state.progress,
         ui: state.ui,
         deepLinkRequestActive: state.wallet.deepLinkRequestActive,
@@ -254,5 +258,8 @@ export default function withSendData(SendComponent) {
         resetProgress,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(SendData));
+    return connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(withI18n()(SendData));
 }

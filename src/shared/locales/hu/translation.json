@@ -169,6 +169,7 @@
         "missingPermission": "Fájl hozzáférési engedély szükséges",
         "missingPermissionExplanation": "A művelet végrehajtásához a fájlrendszerhez való hozzáférési jogosultág szükséges.",
         "swipeToConfirm": "A megerősítéshez húzza el a csúszkát",
+        "congratulations": "Congratulations",
         "expert": "Haladó",
         "notEnoughSyncedNodes": "Túl kevés csomópont szinkronban",
         "notEnoughSyncedNodesExplanation": "A csomópontok nem határozatképesek. Kapcsolja ki a határozatképesség ellenőrzését vagy próbálja meg újra."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Nyelv",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Kezdjük el"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "Üzenet",
         "invalidMessage": "Érvénytelen üzenet",
         "invalidMessageExplanation": "Az üzenet érvénytelen karaktereket tartalmaz.",
+        "invalidMessageTooLong": "Túl hosszú üzenet",
+        "invalidMessageTooLongExplanation": "Az üzenet hossza túllépi a maximálisan megengedett 1093 karaktert.",
         "send": "Küldés",
         "invalidAmount": "Érvénytelen összeg",
         "invalidAmountExplanation": "Kérjük, adjon meg egy érvényes összeget. Az IOTA mértékegységek megértéséhez nézze át az alábbi összefoglalót.",
@@ -647,7 +651,7 @@
         "noPassword": "Nincs jelszó beállítva a készüléken"
     },
     "transferConfirmation": {
-        "youAreAbout": "Ön {{contents}} összeget készül elküldeni az alábbi címre",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "egy üzenet",
         "fromAccount": "{{selectedAccountName}}-tól",
         "toAddress": "Célszámla címe",

@@ -169,6 +169,7 @@
         "missingPermission": "फाइल सिस्टम की अनुमति आवश्यक",
         "missingPermissionExplanation": "इस फ़ंक्शन को करने के लिए फ़ाइल सिस्टम तक पहुंच आवश्यक है।",
         "swipeToConfirm": "पुष्टि करने के लिए स्वाइप करें",
+        "congratulations": "Congratulations",
         "expert": "एक्स्पर्ट",
         "notEnoughSyncedNodes": "सिंक में बहुत कम नोड्स",
         "notEnoughSyncedNodesExplanation": "कोरम तक नहीं पहुँचा जा सका। कोरम बंद करें या फिर से प्रयास करें।"
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "भाषा ",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "आओ शुरू करें"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "संदेश",
         "invalidMessage": "अमान्य संदेश",
         "invalidMessageExplanation": "एड्रेस में अवैध वर्ण हैं।",
+        "invalidMessageTooLong": "संदेश बहुत लंबा है",
+        "invalidMessageTooLongExplanation": "मैसेज की लम्बाई अधिकतम मान्य (१०९३) से ज्यादा है |",
         "send": "भेजें",
         "invalidAmount": "गलत राशि दर्ज की गई",
         "invalidAmountExplanation": "कृपया कोई मान्य हस्तांतरण राशि दर्ज करें । यह इस पृष्ठ के तल पर IOTA इकाई विवरण देखने के लिए सहायक हो सकता है ।",
@@ -647,7 +651,7 @@
         "noPassword": "पासवर्ड डिवाइस पर सेट नहीं है"
     },
     "transferConfirmation": {
-        "youAreAbout": "आप पते पर {{contents}} भेजने वाले है",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "संदेश",
         "fromAccount": "{{selectedAccountName}} से",
         "toAddress": "पते पर",

@@ -169,6 +169,7 @@
         "missingPermission": "ファイルシステム権限が必要です",
         "missingPermissionExplanation": "この機能を実行するには、ファイルシステムへのアクセス権限が必要です。",
         "swipeToConfirm": "スワイプして確認する",
+        "congratulations": "Congratulations",
         "expert": "上級者",
         "notEnoughSyncedNodes": "同期するノードが少なすぎます",
         "notEnoughSyncedNodesExplanation": "定足数を満たしていません。定足数をオフにするかもう一度やり直してください。"
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "言語",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "始めましょう"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "メッセージ",
         "invalidMessage": "無効なメッセージ",
         "invalidMessageExplanation": "メッセージに無効な文字が含まれています。",
+        "invalidMessageTooLong": "メッセージが長すぎます。",
+        "invalidMessageTooLongExplanation": "メッセージが最大値を超えています。 文字の最大値は (1093) です。",
         "send": "送金",
         "invalidAmount": "不適切な金額が入力されました。",
         "invalidAmountExplanation": "有効な取引金額を入力してください。ページ下にIOTAの単位の説明があります。",
@@ -647,7 +651,7 @@
         "noPassword": "パスワードが設定されていません"
     },
     "transferConfirmation": {
-        "youAreAbout": "アドレスに {{contents}} を送信しようとしています。",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "メッセージ",
         "fromAccount": "{{selectedAccountName}}から",
         "toAddress": "送信先アドレスへ",

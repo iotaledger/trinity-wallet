@@ -169,6 +169,7 @@
         "missingPermission": "ಫೈಲ್ ವ್ಯವಸ್ಥೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
         "swipeToConfirm": "Swipe to confirm",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "ಭಾಷೆ",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "ನಾವೀಗ ಆರಂಭಿಸೋಣ"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "ಸಂದೇಶ",
         "invalidMessage": "ಅಮಾನ್ಯವಾದ ಸಂದೇಶ",
         "invalidMessageExplanation": "ನಿಮ್ಮ ಸಂದೇಶವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಒಳಗೊಂಡಿದೆ.",
+        "invalidMessageTooLong": "ಸಂದೇಶ ತುಂಬಾ ಉದ್ದವಾಗಿದೆ",
+        "invalidMessageTooLongExplanation": "ಸಂದೇಶವು ಗರಿಷ್ಠ ಅಕ್ಷರಗಳ ಮೊತ್ತ (1093) ಮೀರಿದೆ.",
         "send": "ಕಳುಹಿಸಿ",
         "invalidAmount": "ತಪ್ಪಾದ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಲಾಗಿದೆ",
         "invalidAmountExplanation": "ದಯವಿಟ್ಟು ಮಾನ್ಯವಾದ ವ್ಯವಹಾರದ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ. ಈ ಪುಟದ ಕೆಳಭಾಗದಲ್ಲಿ IOTA ಪ್ರಮಾಣ\nವಿವರಣೆಯನ್ನು ವೀಕ್ಷಿಸುವುದರಿಂದ ಸಹಾಯಕವಾಗಬಹುದು.",
@@ -647,7 +651,7 @@
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
-        "youAreAbout": "ನೀವು {{contents}} ಅನ್ನು ವಿಳಾಸಕ್ಕೆ ಕಳುಹಿಸಲಿದ್ದೀರಿ",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "ಒಂದು ಸಂದೇಶ",
         "fromAccount": "From {{selectedAccountName}}",
         "toAddress": "To address",

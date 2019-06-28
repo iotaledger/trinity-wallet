@@ -69,6 +69,8 @@ class Login extends React.Component {
         getFullAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     state = {
@@ -201,7 +203,7 @@ class Login extends React.Component {
     };
 
     render() {
-        const { forceUpdate, t, addingAdditionalAccount, ui, completedMigration } = this.props;
+        const { forceUpdate, t, addingAdditionalAccount, ui, completedMigration, themeName } = this.props;
         const { shouldMigrate } = this.state;
 
         if (ui.isFetchingAccountInfo) {
@@ -210,6 +212,7 @@ class Login extends React.Component {
                     loop
                     title={addingAdditionalAccount ? t('loading:loadingFirstTime') : null}
                     subtitle={addingAdditionalAccount ? t('loading:thisMayTake') : null}
+                    themeName={themeName}
                 />
             );
         }
@@ -256,6 +259,7 @@ const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     forceUpdate: state.wallet.forceUpdate,
     completedMigration: state.settings.completedMigration,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {

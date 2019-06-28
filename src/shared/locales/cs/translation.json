@@ -169,6 +169,7 @@
         "missingPermission": "Požadovaný přístup k souborovému systému",
         "missingPermissionExplanation": "K provedení této funkce potřebujete přístup k souborovému systému.",
         "swipeToConfirm": "Posunutím potvrďte",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Synchronizuje se příliš málo Nodů",
         "notEnoughSyncedNodesExplanation": "Nebylo možné dosáhnout kvóra. Vypněte kvórum nebo to zkuste znovu."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Jazyk",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Pojďme začít"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "Zpráva",
         "invalidMessage": "Neplatná zpráva",
         "invalidMessageExplanation": "Vaše zpráva obsahuje neplatné znaky.",
+        "invalidMessageTooLong": "Zpráva je příliš dlouhá",
+        "invalidMessageTooLongExplanation": "Zpráva překračuje maximální počet znaků (1093).",
         "send": "Odeslat",
         "invalidAmount": "Zadána neplatná částka",
         "invalidAmountExplanation": "Prosím zadejte platnou transakční částku. Případně níže na stránce jsou informace o IOTA jednotkách.\n",
@@ -647,7 +651,7 @@
         "noPassword": "V zařízení není nastaveno heslo"
     },
     "transferConfirmation": {
-        "youAreAbout": "Chystáte se odeslat {{contents}} na adresu",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "zpráva",
         "fromAccount": "Od {{selectedAccountName}}",
         "toAddress": "Na adresu",

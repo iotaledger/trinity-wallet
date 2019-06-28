@@ -169,6 +169,7 @@
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
         "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen.",
         "swipeToConfirm": "Wischen um zu bestätigen",
+        "congratulations": "Congratulations",
         "expert": "Experte",
         "notEnoughSyncedNodes": "Nicht genug Nodes synchronisiert",
         "notEnoughSyncedNodesExplanation": "In der verwendeten Node-Gruppe konnte kein einheitlicher Status ermittelt werden. Deaktiviere die Node-Gruppe und versuche es erneut."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Sprache",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Los geht's"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "Nachricht",
         "invalidMessage": "Ungültige Nachricht",
         "invalidMessageExplanation": "Deine Nachricht enthält ungültige Zeichen.",
+        "invalidMessageTooLong": "Nachricht zu lang",
+        "invalidMessageTooLongExplanation": "Die Nachricht überschreitet die max. Anzahl der Zeichen (1093).",
         "send": "Senden",
         "invalidAmount": "Falschen Betrag eingegeben",
         "invalidAmountExplanation": "Bitte gib einen gültigen Betrag ein. Die Liste der IOTA Einheiten am unteren Rand dieser Seite könnte hilfreich sein.",
@@ -647,7 +651,7 @@
         "noPassword": "Auf diesem Gerät wurde kein Passwort eingerichtet"
     },
     "transferConfirmation": {
-        "youAreAbout": "Du sendest jetzt {{contents}} an die Adresse",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "eine Nachricht",
         "fromAccount": "Von {{selectedAccountName}}",
         "toAddress": "An Adresse",

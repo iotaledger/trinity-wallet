@@ -169,6 +169,7 @@
         "missingPermission": "需要檔案系統權限",
         "missingPermissionExplanation": "這個功能必須擁有訪問檔案系統的權限。",
         "swipeToConfirm": "滑動來確認。",
+        "congratulations": "Congratulations",
         "expert": "專家",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "語言",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "讓我們開始吧！"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "訊息",
         "invalidMessage": "無效訊息",
         "invalidMessageExplanation": "您的訊息包含無效字元。",
+        "invalidMessageTooLong": "訊息過長",
+        "invalidMessageTooLongExplanation": "訊息長度超過字元上限 (1093)。",
         "send": "付款",
         "invalidAmount": "輸入金額錯誤",
         "invalidAmountExplanation": "請輸入有效交易金額，詳閱本頁底部的 IOTA 單位說明可能會有幫助。",
@@ -647,7 +651,7 @@
         "noPassword": "密碼尚未設定"
     },
     "transferConfirmation": {
-        "youAreAbout": "您將轉帳{{contents}} 到地址",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "訊息",
         "fromAccount": "由{{selectedAccountName}}",
         "toAddress": "目的地址",

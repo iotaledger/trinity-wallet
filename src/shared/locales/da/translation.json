@@ -169,6 +169,7 @@
         "missingPermission": "Filsystemrettighed kræves",
         "missingPermissionExplanation": "Adgang til filsystemet er nødvendig for at udføre denne funktion.",
         "swipeToConfirm": "Swipe to confirm",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Sprog",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Lad os begynde"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "Besked",
         "invalidMessage": "Ugyldig besked",
         "invalidMessageExplanation": "Dit besked indeholder ugyldige tegn.",
+        "invalidMessageTooLong": "Beskeden for lang",
+        "invalidMessageTooLongExplanation": "Beskeden overskrider tegnbegrænsningen (1093).",
         "send": "Send",
         "invalidAmount": "Forkert beløb indtastet",
         "invalidAmountExplanation": "Angiv et gyldigt posteringsbeløb. Det kan være nyttigt at se IOTAs enhedsforklaring i bunden af denne side.",
@@ -647,7 +651,7 @@
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
-        "youAreAbout": "Du er ved at sende {{contents}} til adressen",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "en besked",
         "fromAccount": "Fra {{selectedAccountName}}",
         "toAddress": "Til adresse",

@@ -169,6 +169,7 @@
         "missingPermission": "File system permission required",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
         "swipeToConfirm": "Swipe to confirm",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "ภาษา",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Let's get started"
     },
     "login": {
@@ -362,6 +364,8 @@
         "message": "ข้อ​ความ",
         "invalidMessage": "ข้อความไม่ถูกต้อง",
         "invalidMessageExplanation": "ข้อความของคุณมีอักขระที่ไม่ถูกต้อง",
+        "invalidMessageTooLong": "Message too long",
+        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "Send",
         "invalidAmount": "กรุณาใส่จำนวนให้ถูกต้อง",
         "invalidAmountExplanation": "กรุณาใส่จำนวนของรายการให้ถูกต้อง ข้อมูลอาจเป็นประโยชน์ในการเรียกดูหน่วยของ IOTA ด้านล่างของหน้านี้",
@@ -647,7 +651,7 @@
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "a message",
         "fromAccount": "From {{selectedAccountName}}",
         "toAddress": "To address",

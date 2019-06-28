@@ -23,4 +23,17 @@ export default {
     body: { bg: 'rgb(11, 31, 53)', color: 'rgb(240, 242, 246)', alt: 'rgba(240, 240, 240, 0.25)' },
     wave: { primary: 'rgba(171, 91, 239, 0.15)', secondary: 'rgba(0, 0, 0, 0.15)' },
     isDark: true,
+    animations: [
+        'body.color',
+        'body.bg',
+        'input.alt',
+        'secondary.color',
+        'primary.color',
+        'label.color',
+        'primary.hover',
+        'bar.alt',
+        'rgb(229,229,229)',
+        'dark.color',
+        'primary.body',
+    ],
 };

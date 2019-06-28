@@ -314,8 +314,8 @@ export class ListComponent extends React.PureComponent {
                                                         ? t('receiving')
                                                         : t('sending')
                                                     : isReceived
-                                                        ? t('received')
-                                                        : t('sent')}
+                                                    ? t('received')
+                                                    : t('sent')}
                                             </span>
                                             <span>
                                                 {transaction.transferValue === 0 ? '' : isReceived ? '+' : '-'}
@@ -344,14 +344,14 @@ export class ListComponent extends React.PureComponent {
                                 <p>
                                     <strong>
                                         {activeTx.incoming ? t('history:receive') : t('history:send')}{' '}
-                                        <span>
-                                            {formatIotas(activeTx.transferValue, false, true)}
-                                        </span>
+                                        <span>{formatIotas(activeTx.transferValue, false, true)}</span>
                                     </strong>
                                     <small>
                                         {!activeTx.persistence
                                             ? t('pending')
-                                            : activeTx.incoming ? t('received') : t('sent')}
+                                            : activeTx.incoming
+                                            ? t('received')
+                                            : t('sent')}
                                         <em>
                                             {formatModalTime(
                                                 navigator.language,
