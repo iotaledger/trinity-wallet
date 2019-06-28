@@ -651,7 +651,7 @@
         "noPassword": "Hasło nie jest ustawione w urządzeniu"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Masz zamiar wysłać {{contents}}",
         "aMessage": "wiadomość",
         "fromAccount": "Z konta {{selectedAccountName}}",
         "toAddress": "Na adres",
