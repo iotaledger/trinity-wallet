@@ -362,8 +362,6 @@
         "message": "訊息",
         "invalidMessage": "無效訊息",
         "invalidMessageExplanation": "您的訊息包含無效字元。",
-        "invalidMessageTooLong": "訊息過長",
-        "invalidMessageTooLongExplanation": "訊息長度超過字元上限 (1093)。",
         "send": "付款",
         "invalidAmount": "輸入金額錯誤",
         "invalidAmountExplanation": "請輸入有效交易金額，詳閱本頁底部的 IOTA 單位說明可能會有幫助。",

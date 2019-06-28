@@ -143,13 +143,6 @@ export default function withSendData(SendComponent) {
                 return false;
             }
 
-            // Validate length of the message
-            const trytes = iota.utils.toTrytes(message) || '';
-            if (trytes.length > 2187) {
-                generateAlert('error', t('send:invalidMessageTooLong'), t('send:invalidMessageTooLongExplanation'));
-                return false;
-            }
-
             return true;
         };
 

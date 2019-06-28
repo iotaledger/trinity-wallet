@@ -362,8 +362,6 @@
         "message": "Sõnum",
         "invalidMessage": "Sobimatu sõnum",
         "invalidMessageExplanation": "Teie sõnum sisaldab sobimatuid tähemärke.",
-        "invalidMessageTooLong": "Sõnum on liiga pikk",
-        "invalidMessageTooLongExplanation": "Sõnum ületab maks. tähemärkide hulka (1093).",
         "send": "Saada",
         "invalidAmount": "Sisestatud vale summa",
         "invalidAmountExplanation": "Palun sisestage kehtiv ülekande summa. IOTA ühikusüsteemi selgitus käesoleva lehe all võib teile abiks tulla.",

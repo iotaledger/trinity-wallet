@@ -362,8 +362,6 @@
         "message": "Mensagem",
         "invalidMessage": "Mensagem inválida",
         "invalidMessageExplanation": "A sua mensagem contém caracteres inválidos.",
-        "invalidMessageTooLong": "A mensagem é demasiado longa",
-        "invalidMessageTooLongExplanation": "A mensagem excede o valor máximo de caracteres (1093).",
         "send": "Enviar",
         "invalidAmount": "Valor inserido está incorreto",
         "invalidAmountExplanation": "Por favor, insira um valor de transação válido. Pode ser útil ver a explicação de unidade IOTA no final desta página.",
