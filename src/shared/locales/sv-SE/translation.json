@@ -169,7 +169,7 @@
         "missingPermission": "Åtkomst till filsystem krävs",
         "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion.",
         "swipeToConfirm": "Dra för att bekräfta",
-        "congratulations": "Congratulations",
+        "congratulations": "Grattis!",
         "expert": "Avancerat",
         "notEnoughSyncedNodes": "För få noder synkade",
         "notEnoughSyncedNodesExplanation": "Ett kvorum kunde inte nås. Stäng av kvorum eller försök igen."
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Språk",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Välj språk",
         "letsGetStarted": "Låt oss komma igång"
     },
     "login": {
@@ -651,7 +651,7 @@
         "noPassword": "Lösenord är inte angett på enheten"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Du är på väg att skicka {{contents}}",
         "aMessage": "ett meddelande",
         "fromAccount": "Från {{selectedAccountName}}",
         "toAddress": "Till adress",
