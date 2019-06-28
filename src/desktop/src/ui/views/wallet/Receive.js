@@ -244,6 +244,7 @@ class Receive extends React.PureComponent {
                         value={message}
                         label={t('send:message')}
                         onChange={(value) => this.setState({ message: value })}
+                        maxLength={maxLength}
                     />
                     <footer>
                         <Button id="to-wallet" to="/wallet/" variant="secondary" className="outlineSmall">
