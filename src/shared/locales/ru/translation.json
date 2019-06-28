@@ -169,6 +169,7 @@
         "missingPermission": "Требуется доступ к файловой системе",
         "missingPermissionExplanation": "Для выполнения этой функции необходим доступ к файловой системе.",
         "swipeToConfirm": "Проведите, чтобы подтвердить",
+        "congratulations": "Congratulations",
         "expert": "Эксперт",
         "notEnoughSyncedNodes": "Слишком мало нод в синхронизации",
         "notEnoughSyncedNodesExplanation": "Кворум не может быть достигнут. Выключите Кворум либо повторите позже."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Язык",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Давайте начнём"
     },
     "login": {
@@ -503,17 +505,17 @@
         "enableQuorum": "Включить Кворум",
         "quorumSize": "Размер Кворума",
         "noCustomNodes": "Нет пользовательских узлов сети",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "mustAddCustomNodes": "Перед отключением списка удаленных узлов сети Вам необходимо добавить хотя бы один пользовательский узел.",
+        "nodeEnoughNodesTitle": "Не достаточное количество узлов сети",
+        "nodeEnoughNodesExplanation": "Не достаточное количество узлов сети для включения кворума.",
+        "nodeEnoughNodesExplanationCustomNodes": "Добавьте больше пользовательских узлов сети или включите список удаленных узлов сети.",
+        "nodeSettingsUpdatedTitle": "Настройки узлов сети обновлены",
+        "nodeSettingsUpdatedExplanation": "Вы успешно обновили настройки узлов сети."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Не удалось добавить пользовательский узел",
         "customNode": "Пользовательский узел",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Удалить пользовательский узел сети",
         "invalidNodeResponse": "На узле произошла ошибка",
         "add": "Добавить",
         "nodeFieldEmpty": "Текстовое поле пусто",
@@ -522,7 +524,7 @@
         "addAuthKey": "Добавить ключ авторизации",
         "username": "Имя пользователя",
         "couldNotRemove": "Не удалось удалить пользовательский узел",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "Не достаточно узлов сети. Уменьшите размер кворума или включите список удаленных узлов сети."
     },
     "addNewAccount": {
         "useExistingSeed": "Использовать существующий ключ",
@@ -545,15 +547,15 @@
     },
     "themeCustomisation": {
         "theme": "Тема оформления",
-        "mockup": "Mockup"
+        "mockup": "Макет"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
+        "classic": "Классический",
+        "contemporary": "Современный",
         "dark": "Тёмная",
         "default": "По умолчанию",
-        "electric": "Electric",
-        "ionic": "Ionic",
+        "electric": "Электрический",
+        "ionic": "Ионный",
         "light": "Светлая",
         "lucky": "Случайный выбор",
         "mint": "Мятный",
@@ -571,7 +573,7 @@
         "scan": "Сканировать QR-код"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Система измерения единиц",
         "trillion": "Триллион",
         "billion": "Миллиард",
         "million": "Миллион",
@@ -649,7 +651,7 @@
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
-        "youAreAbout": "Вы собираетесь отправить {{contents}} на адрес",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "сообщение",
         "fromAccount": "From {{selectedAccountName}}",
         "toAddress": "To address",
@@ -851,7 +853,7 @@
         "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
         "ledgerDeniedTitle": "Transaction denied",
         "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
-        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndex": "Ledger устройство не соответствует",
         "ledgerIncorrectIndexExplanation": "Подключенное устройство Ledger не соответсвует зарегистрированному на вашей учетной записи, либо фраза восстановления была изменена.",
         "checkAddress": "Проверьте _адрес получателя_",
         "checkAddressExplanation": "Удостоверьтесь в соответствии _адреса_ с адресом отображаемым на Ledger устройстве.",

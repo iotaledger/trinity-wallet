@@ -146,4 +146,7 @@ const mapDispatchToProps = {
     setPassword,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(PasswordSettings));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(PasswordSettings));

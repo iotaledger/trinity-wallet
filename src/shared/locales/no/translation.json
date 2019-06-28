@@ -169,6 +169,7 @@
         "missingPermission": "Trenger tillatelse til filsystemet",
         "missingPermissionExplanation": "Tilgang til filsystemet kreves for å utføre denne funksjonen.",
         "swipeToConfirm": "Dra for å bekrefte",
+        "congratulations": "Congratulations",
         "expert": "Ekspert",
         "notEnoughSyncedNodes": "Ikke nok synkroniserte noder",
         "notEnoughSyncedNodesExplanation": "Et quorum kunne ikke oppnås. Slå av quorum eller prøv på nytt."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Språk",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "La oss komme i gang"
     },
     "login": {
@@ -649,7 +651,7 @@
         "noPassword": "Passord er ikke angitt på enheten"
     },
     "transferConfirmation": {
-        "youAreAbout": "Du er nå klar til å sende {{contents}} til adressen",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "en melding",
         "fromAccount": "Fra {{selectedAccountName}}",
         "toAddress": "Til adresse",

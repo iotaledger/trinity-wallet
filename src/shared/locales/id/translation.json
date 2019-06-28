@@ -169,6 +169,7 @@
         "missingPermission": "Izin akses File System dibutuhkan",
         "missingPermissionExplanation": "Akses ke sistem file diperlukan untuk menjalankan fungsi ini.",
         "swipeToConfirm": "Geser untuk mengonfirmasi",
+        "congratulations": "Congratulations",
         "expert": "Ahli",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Bahasa",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Mari mulai"
     },
     "login": {
@@ -649,7 +651,7 @@
         "noPassword": "Kata Sandi tidak diset di perangkat"
     },
     "transferConfirmation": {
-        "youAreAbout": "Anda akan mengirim {{contents}} ke alamat",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "pesan",
         "fromAccount": "Dari {{selectedAccountName}}",
         "toAddress": "Ke alamat",

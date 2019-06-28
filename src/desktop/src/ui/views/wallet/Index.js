@@ -58,6 +58,8 @@ class Wallet extends React.PureComponent {
         }).isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     state = {
@@ -118,13 +120,14 @@ class Wallet extends React.PureComponent {
 
     render() {
         const {
-            password,
             completedByteTritSweep,
             byteTritInfo,
             location,
             history,
             shouldDisplaySnapshotTransition,
             t,
+            themeName,
+            password,
         } = this.props;
         const { isSweeping } = this.state;
 
@@ -155,7 +158,7 @@ class Wallet extends React.PureComponent {
         }
 
         if (!completedByteTritSweep) {
-            return <Loading loop />;
+            return <Loading loop themeName={themeName} />;
         }
 
         if (shouldDisplaySnapshotTransition) {
@@ -199,6 +202,7 @@ const mapStateToProps = (state) => ({
     completedByteTritSweep: state.settings.completedByteTritSweep,
     byteTritInfo: state.settings.byteTritInfo,
     password: state.wallet.password,
+    themeName: state.settings.themeName,
     shouldDisplaySnapshotTransition: shouldTransitionForSnapshot(state) && !hasDisplayedSnapshotTransitionGuide(state),
     selectedAccountName: getSelectedAccountName(state),
     seedIndex: state.wallet.seedIndex,
@@ -210,4 +214,11 @@ const mapDispatchToProps = {
     markTaskAsDone,
 };
 
-export default withRouter(withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Wallet)));
+export default withRouter(
+    withTranslation()(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(Wallet),
+    ),
+);
