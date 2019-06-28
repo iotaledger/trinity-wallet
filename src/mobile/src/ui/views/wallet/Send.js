@@ -166,6 +166,8 @@ export class Send extends Component {
         isKeyboardActive: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -401,7 +403,7 @@ export class Send extends Component {
         const { amount, usdPrice, conversionRate } = this.props;
         const { currencySymbol } = this.state;
         const convertedValue = round(
-            parseFloat(amount) * usdPrice / 1000000 * this.getUnitMultiplier() * conversionRate,
+            ((parseFloat(amount) * usdPrice) / 1000000) * this.getUnitMultiplier() * conversionRate,
             10,
         );
         let conversionText = '';
@@ -469,7 +471,7 @@ export class Send extends Component {
      * @param  {String} modalContent
      */
     showModal(modalContent) {
-        const { theme, address, amount, selectedAccountName, isFingerprintEnabled, message } = this.props;
+        const { theme, themeName, address, amount, isFingerprintEnabled, message } = this.props;
 
         switch (modalContent) {
             case 'qrScanner':
@@ -497,10 +499,10 @@ export class Send extends Component {
                     borderColor: { borderColor: theme.body.color },
                     textColor: { color: theme.body.color },
                     setSendingTransferFlag: () => this.setSendingTransferFlag(),
-                    selectedAccountName,
                     activateFingerprintScanner: () => this.activateFingerprintScanner(),
                     isFingerprintEnabled,
                     theme,
+                    themeName,
                     message,
                 });
             case 'unitInfo':
@@ -682,7 +684,17 @@ export class Send extends Component {
 
     render() {
         const { maxPressed, maxColor, maxText, sending } = this.state;
-        const { t, isSendingTransfer, address, amount, message, denomination, theme, isKeyboardActive } = this.props;
+        const {
+            t,
+            isSendingTransfer,
+            address,
+            amount,
+            message,
+            denomination,
+            theme,
+            isKeyboardActive,
+            themeName,
+        } = this.props;
         const textColor = { color: theme.body.color };
         const opacity = this.getSendMaxOpacity();
         const isSending = sending || isSendingTransfer;
@@ -816,6 +828,7 @@ export class Send extends Component {
                                 interupt={this.state.shouldInteruptSendAnimation}
                                 progressText={this.getProgressBarText()}
                                 staticText={t('swipeToSend')}
+                                themeName={themeName}
                                 onSwipeSuccess={() => {
                                     this.onSendPress();
                                     if (address === '' && amount === '' && message && '') {
@@ -873,6 +886,7 @@ const mapStateToProps = (state) => ({
     deepLinkRequestActive: state.wallet.deepLinkRequestActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     isKeyboardActive: state.ui.isKeyboardActive,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {
@@ -892,4 +906,9 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
+export default withNamespaces(['send', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Send),
+);

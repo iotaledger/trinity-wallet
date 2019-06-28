@@ -169,6 +169,7 @@
         "missingPermission": "Failisüsteemi luba on nõutud",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
         "swipeToConfirm": "Tõmba kinnitamiseks",
+        "congratulations": "Congratulations",
         "expert": "Ekspert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Keel",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Alustame"
     },
     "login": {
@@ -647,7 +649,7 @@
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
-        "youAreAbout": "Te olete saatmas {{contents}} aadressile",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "sõnum",
         "fromAccount": "Kontolt {{selectedAccountName}}",
         "toAddress": "Aadressile",

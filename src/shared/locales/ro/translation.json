@@ -169,6 +169,7 @@
         "missingPermission": "Este necesară permisiunea sistemului de fișiere",
         "missingPermissionExplanation": "Accesul la sistemul de fișiere este necesar pentru a efectua această funcție.",
         "swipeToConfirm": "Glisați pentru a confirma",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Prea puține noduri sincronizate",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Limbă",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Să începem"
     },
     "login": {
@@ -647,7 +649,7 @@
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "un mesaj",
         "fromAccount": "De la {{selectedAccountName}}",
         "toAddress": "Către adresa",

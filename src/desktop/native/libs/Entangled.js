@@ -2,7 +2,6 @@ const fork = require('child_process').fork;
 const path = require('path');
 const EntangledNode = require('entangled-node');
 
-
 let timeout = null;
 
 /**
@@ -55,7 +54,7 @@ process.on('message', async (data) => {
         const address = await EntangledNode.genAddressTritsFunc(payload.seed, payload.index, payload.security);
         process.send(address);
     }
-}); 
+});
 
 const Entangled = {
     powFn: async (trytes, mwm) => {

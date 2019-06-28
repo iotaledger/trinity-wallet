@@ -169,6 +169,7 @@
         "missingPermission": "Fájl hozzáférési engedély szükséges",
         "missingPermissionExplanation": "A művelet végrehajtásához a fájlrendszerhez való hozzáférési jogosultág szükséges.",
         "swipeToConfirm": "A megerősítéshez húzza el a csúszkát",
+        "congratulations": "Congratulations",
         "expert": "Haladó",
         "notEnoughSyncedNodes": "Túl kevés csomópont szinkronban",
         "notEnoughSyncedNodesExplanation": "A csomópontok nem határozatképesek. Kapcsolja ki a határozatképesség ellenőrzését vagy próbálja meg újra."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Nyelv",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Kezdjük el"
     },
     "login": {
@@ -647,7 +649,7 @@
         "noPassword": "Nincs jelszó beállítva a készüléken"
     },
     "transferConfirmation": {
-        "youAreAbout": "Ön {{contents}} összeget készül elküldeni az alábbi címre",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "egy üzenet",
         "fromAccount": "{{selectedAccountName}}-tól",
         "toAddress": "Célszámla címe",

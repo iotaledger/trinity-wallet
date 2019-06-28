@@ -56,9 +56,10 @@ export class MainSettings extends Component {
      * @method openLogoutModal
      */
     openLogoutModal() {
-        const { theme } = this.props;
+        const { theme, themeName } = this.props;
         this.props.toggleModalActivity('logoutConfirmation', {
             style: { flex: 1 },
+            themeName,
             hideModal: () => this.props.toggleModalActivity(),
             theme,
         });
@@ -123,4 +124,9 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['settings', 'global'])(connect(mapStateToProps, mapDispatchToProps)(MainSettings));
+export default withNamespaces(['settings', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(MainSettings),
+);

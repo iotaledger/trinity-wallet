@@ -169,6 +169,7 @@
         "missingPermission": "Zahtevano je dovoljenje za datotečni sistem",
         "missingPermissionExplanation": "Za izvajanje te funkcije je potreben dostop do datotečnega sistema.",
         "swipeToConfirm": "Povlecite za potrditev",
+        "congratulations": "Congratulations",
         "expert": "Strokovnjak",
         "notEnoughSyncedNodes": "Ni dovolj sinkronisiranih Node-ov",
         "notEnoughSyncedNodesExplanation": "V skupini uporabljenih Node-ov ni bilo mogoče določiti enotnega statusa. Onemogočite skupino Node-ov in poskusite znova."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Jezik",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Pa začnimo"
     },
     "login": {
@@ -647,7 +649,7 @@
         "noPassword": "Na tej napravi ni bilo nastavljeno geslo"
     },
     "transferConfirmation": {
-        "youAreAbout": "Pošiljas {{contents}} na naslov",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "sporočilo",
         "fromAccount": "Od {{selectedAccountName}}",
         "toAddress": "Na naslov",

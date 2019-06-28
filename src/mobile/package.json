@@ -34,7 +34,7 @@
     "events": "^1.1.1",
     "hoist-non-react-statics": "^2.3.1",
     "lodash": "^4.17.10",
-    "lottie-react-native": "^2.5.10",
+    "lottie-react-native": "^2.6.1",
     "nodejs-mobile-react-native": "https://github.com/rajivshah3/nodejs-mobile-react-native#ab4a655d30a51115c34dbdb30b98df6f130467ff",
     "path-browserify": "0.0.0",
     "process": "^0.11.10",

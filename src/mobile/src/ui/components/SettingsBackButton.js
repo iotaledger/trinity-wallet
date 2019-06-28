@@ -35,12 +35,12 @@ class SettingsBackButton extends PureComponent {
         /** Disables back button */
         inactive: PropTypes.bool,
         /** Override title */
-        name: PropTypes.string
+        name: PropTypes.string,
     };
 
     static defaultProps = {
         inactive: false,
-        name: i18next.t('global:back')
+        name: i18next.t('global:back'),
     };
 
     render() {
@@ -48,11 +48,11 @@ class SettingsBackButton extends PureComponent {
             theme: { body },
             inactive,
             backFunction,
-            name
+            name,
         } = this.props;
 
         return (
-            <View style={[ styles.itemContainer, inactive && { opacity: 0.35 } ]}>
+            <View style={[styles.itemContainer, inactive && { opacity: 0.35 }]}>
                 <TouchableOpacity
                     onPress={backFunction}
                     hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}

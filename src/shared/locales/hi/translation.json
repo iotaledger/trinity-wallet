@@ -169,6 +169,7 @@
         "missingPermission": "फाइल सिस्टम की अनुमति आवश्यक",
         "missingPermissionExplanation": "इस फ़ंक्शन को करने के लिए फ़ाइल सिस्टम तक पहुंच आवश्यक है।",
         "swipeToConfirm": "पुष्टि करने के लिए स्वाइप करें",
+        "congratulations": "Congratulations",
         "expert": "एक्स्पर्ट",
         "notEnoughSyncedNodes": "सिंक में बहुत कम नोड्स",
         "notEnoughSyncedNodesExplanation": "कोरम तक नहीं पहुँचा जा सका। कोरम बंद करें या फिर से प्रयास करें।"
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "भाषा ",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "आओ शुरू करें"
     },
     "login": {
@@ -647,7 +649,7 @@
         "noPassword": "पासवर्ड डिवाइस पर सेट नहीं है"
     },
     "transferConfirmation": {
-        "youAreAbout": "आप पते पर {{contents}} भेजने वाले है",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "संदेश",
         "fromAccount": "{{selectedAccountName}} से",
         "toAddress": "पते पर",

@@ -169,6 +169,7 @@
         "missingPermission": "Permissões do sistema de arquivo necessárias",
         "missingPermissionExplanation": "O acesso ao sistema de arquivos é necessário para executar esta função.",
         "swipeToConfirm": "Deslize para confirmar",
+        "congratulations": "Congratulations",
         "expert": "Avançado",
         "notEnoughSyncedNodes": "Poucos servidores em sincronia",
         "notEnoughSyncedNodesExplanation": "Um quórum não pôde ser alcançado. Desligue o quórum ou tente novamente."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Idioma",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Vamos começar"
     },
     "login": {
@@ -647,7 +649,7 @@
         "noPassword": "A senha não está definida no dispositivo"
     },
     "transferConfirmation": {
-        "youAreAbout": "Você está prestes a enviar {{contents}} para o endereço",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "uma mensagem",
         "fromAccount": "De {{selectedAccountName}}",
         "toAddress": "Para endereço",

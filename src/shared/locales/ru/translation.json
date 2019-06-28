@@ -169,6 +169,7 @@
         "missingPermission": "Требуется доступ к файловой системе",
         "missingPermissionExplanation": "Для выполнения этой функции необходим доступ к файловой системе.",
         "swipeToConfirm": "Проведите, чтобы подтвердить",
+        "congratulations": "Congratulations",
         "expert": "Эксперт",
         "notEnoughSyncedNodes": "Слишком мало нод в синхронизации",
         "notEnoughSyncedNodesExplanation": "Кворум не может быть достигнут. Выключите Кворум либо повторите позже."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Язык",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Давайте начнём"
     },
     "login": {
@@ -647,7 +649,7 @@
         "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
-        "youAreAbout": "Вы собираетесь отправить {{contents}} на адрес",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "сообщение",
         "fromAccount": "From {{selectedAccountName}}",
         "toAddress": "To address",

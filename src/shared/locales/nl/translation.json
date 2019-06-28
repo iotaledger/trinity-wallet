@@ -169,6 +169,7 @@
         "missingPermission": "Toegang tot bestandsysteem vereist",
         "missingPermissionExplanation": "Toegang tot het bestandssysteem is vereist om deze functie uit te voeren.",
         "swipeToConfirm": "Veeg om te bevestigen",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Te weinig nodes in synchronisatie",
         "notEnoughSyncedNodesExplanation": "Het quorum kon niet worden bereikt. Zet het quorum uit of probeer het opnieuw."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Taal",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Laten we beginnen"
     },
     "login": {
@@ -647,7 +649,7 @@
         "noPassword": "Wachtwoord is niet ingesteld op apparaat"
     },
     "transferConfirmation": {
-        "youAreAbout": "U staat op het punt om {{contents}} te versturen naar het adres",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "een bericht",
         "fromAccount": "Van {{selectedAccountName}}",
         "toAddress": "Naar adres",
