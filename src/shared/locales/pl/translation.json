@@ -169,7 +169,7 @@
         "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików.",
         "swipeToConfirm": "Przesuń, aby potwierdzić",
-        "congratulations": "Congratulations",
+        "congratulations": "Gratulacje",
         "expert": "Ekspert",
         "notEnoughSyncedNodes": "Zbyt mało zsynchronizowanych serwerów",
         "notEnoughSyncedNodesExplanation": "Nie udało się skompletować kworum. Wyłącz funkcję kworum lub spróbuj ponownie."
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Język",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Wybierz język",
         "letsGetStarted": "Zaczynamy"
     },
     "login": {
@@ -458,7 +458,7 @@
         "keepSafe": "Zadbaj o bezpieczeństwo swojego klucza seed."
     },
     "welcome": {
-        "thankYou": "Dziękujemy za pobranie portfela IOTA"
+        "thankYou": "Dziękujemy za pobranie portfela Trinity"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Zanotuj swój seed i sumę kontrolną oraz </0><1>trzykrotnie upewnij się</1><2>, że są one poprawne.</2>",
