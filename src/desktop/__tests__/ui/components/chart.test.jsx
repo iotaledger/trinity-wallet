@@ -38,7 +38,7 @@ describe('Chart component', () => {
     test('Chart currency title', () => {
         const wrapper = shallow(<Chart {...props} />);
 
-        expect(wrapper.find('h3').text()).toEqual('USD/MIOTA');
+        expect(wrapper.find('h3').text()).toEqual('MIOTA/USD');
     });
 
     test('Render chart component', () => {
