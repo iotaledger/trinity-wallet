@@ -172,7 +172,7 @@
         "congratulations": "Onneksi olkoon",
         "expert": "Edistynyt",
         "notEnoughSyncedNodes": "Liian vähän synkronoituja palvelimia",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodesExplanation": "Päätösvaltaisuutta ei voitu saavuttaa. Ota päätösvaltaisuus pois käytöstä tai yritä uudelleen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -500,8 +500,8 @@
         "autoNodeList": "Käytä etä-palvelin listaa",
         "nodeAutoswitching": "Ensisijaisen palvelimen automaattinen kytkentä",
         "primaryNode": "Ensisijainen palvelin",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
+        "enableQuorum": "Ota päätösvaltaisuus käyttöön",
+        "quorumSize": "Päätösvaltaisuuden koko",
         "noCustomNodes": "Ei omavalintaisia palvelimia",
         "mustAddCustomNodes": "Sinun pitää lisätä vähintään yksi omavalintainen palvelin ennen kuin kytket etä-palvelin listan pois päältä.",
         "nodeEnoughNodesTitle": "Ei tarpeeksi palvelimia",
