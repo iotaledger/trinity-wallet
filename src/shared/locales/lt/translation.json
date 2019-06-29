@@ -364,8 +364,6 @@
         "message": "Žinutė",
         "invalidMessage": "Neteisinga žinutė",
         "invalidMessageExplanation": "Žinutėje yra neleistinų simbolių.",
-        "invalidMessageTooLong": "Žinutė per ilga",
-        "invalidMessageTooLongExplanation": "Žinutė viršija maks. leistinų simbolių skaičių (1093).",
         "send": "Siųsti",
         "invalidAmount": "Įvesta neleistina suma",
         "invalidAmountExplanation": "Įveskite leidžiamą pavedimo sumą. Galite pasinaudoti IOTA vienetų paaiškinimu šio puslapio apačioje.",
