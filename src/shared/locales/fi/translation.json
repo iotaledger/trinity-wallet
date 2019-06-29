@@ -364,8 +364,6 @@
         "message": "Viesti",
         "invalidMessage": "Virheellinen viesti",
         "invalidMessageExplanation": "Viestisi sisältää virheellisiä merkkejä.",
-        "invalidMessageTooLong": "Viesti on liian pitkä",
-        "invalidMessageTooLongExplanation": "Viesti merkkimäärä ylittää max. arvon (1093).",
         "send": "Lähetä",
         "invalidAmount": "Syötetty arvo on virheellinen",
         "invalidAmountExplanation": "Anna summa oikein. Voit saada apua sivun alareunan selvityksestä.",
