@@ -364,8 +364,6 @@
         "message": "Mesaj",
         "invalidMessage": "Geçersiz mesaj",
         "invalidMessageExplanation": "Mesajınız geçersiz karakterler içeriyor.",
-        "invalidMessageTooLong": "Mesaj çok uzun",
-        "invalidMessageTooLongExplanation": "İleti maksimum karakter sayısını (1093) aşıyor.",
         "send": "Göndermek",
         "invalidAmount": "Yanlış tutar girildi",
         "invalidAmountExplanation": "Lütfen geçerli bir işlem miktarı girin. Bu sayfanın altındaki IOTA birim açıklamasına bakmanız yararlı olabilir.",
