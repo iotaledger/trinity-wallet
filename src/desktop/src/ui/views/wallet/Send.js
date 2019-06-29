@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { formatIotas } from 'libs/iota/utils';
+import { formatIotas, MAX_MESSAGE_LENGTH } from 'libs/iota/utils';
 import { formatMonetaryValue } from 'libs/currency';
 
 import SeedStore from 'libs/SeedStore';
@@ -174,6 +174,7 @@ class Send extends React.PureComponent {
                         label={t('send:message')}
                         disabled={!isMessageAvailable && parseInt(fields.amount) > 0}
                         onChange={(value) => this.props.setSendMessageField(value)}
+                        maxLength={MAX_MESSAGE_LENGTH}
                     />
                     <footer>
                         {!isSending ? (
