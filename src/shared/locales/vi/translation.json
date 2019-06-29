@@ -364,8 +364,6 @@
         "message": "Tin nhắn",
         "invalidMessage": "Tin nhắn không hợp lệ",
         "invalidMessageExplanation": "Tin nhắn có chứa ký tự không hợp lệ.",
-        "invalidMessageTooLong": "Message too long",
-        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "Gửi",
         "invalidAmount": "Số lượng nhập không đúng",
         "invalidAmountExplanation": "Xin vui lòng nhập số tiền muốn giao dịch. Các bạn nên đọc chú thích ở cuối trang này để hiểu thêm về đơn vị của IOTA.",
