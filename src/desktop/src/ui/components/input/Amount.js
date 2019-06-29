@@ -23,7 +23,7 @@ export default class AmountInput extends React.PureComponent {
         /** Max available ammount */
         balance: PropTypes.number.isRequired,
         /** Fiat currency settings
-         * @property {string} conversionRate - Active currency conversion rate to MIota
+         * @property {string} conversionRate - Active currency conversion rate to Miota
          * @property {string} currency - Active currency name
          * @property {string} usdPrice - Current USD price per Miota
          */
