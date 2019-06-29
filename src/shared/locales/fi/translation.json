@@ -169,7 +169,7 @@
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
         "missingPermissionExplanation": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan suorittaaksesi tämän toiminnon.",
         "swipeToConfirm": "Pyyhkäise vahvistaaksesi",
-        "congratulations": "Congratulations",
+        "congratulations": "Onneksi olkoon",
         "expert": "Edistynyt",
         "notEnoughSyncedNodes": "Liian vähän synkronoituja palvelimia",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Kieli",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Valitse kieli",
         "letsGetStarted": "Aloita"
     },
     "login": {
@@ -649,7 +649,7 @@
         "noPassword": "Laitteelle ei ole asetettu salasanaa"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Olet lähettämässä {{contents}}",
         "aMessage": "viesti",
         "fromAccount": "Osoitteesta {{selectedAccountName}}",
         "toAddress": "Osoitteeseen",
