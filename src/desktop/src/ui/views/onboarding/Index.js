@@ -155,4 +155,9 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Onboarding));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Onboarding),
+);

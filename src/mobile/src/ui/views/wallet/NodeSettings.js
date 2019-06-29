@@ -147,11 +147,11 @@ export class NodeSettings extends PureComponent {
      */
     getQuorumSizeOptions() {
         const maxQuorumSize = Math.min(this.getAvailableNodes().length, MAXIMUM_QUORUM_SIZE);
-        return this.getAvailableNodes().length < MINIMUM_QUORUM_SIZE ?
-            [] :
-            Array(maxQuorumSize - MINIMUM_QUORUM_SIZE + 1)
-                .fill()
-                .map((_, idx) => (MINIMUM_QUORUM_SIZE + idx).toString());
+        return this.getAvailableNodes().length < MINIMUM_QUORUM_SIZE
+            ? []
+            : Array(maxQuorumSize - MINIMUM_QUORUM_SIZE + 1)
+                  .fill()
+                  .map((_, idx) => (MINIMUM_QUORUM_SIZE + idx).toString());
     }
 
     /**
@@ -289,11 +289,11 @@ export class NodeSettings extends PureComponent {
             {
                 name: t('nodeSettings:primaryNode'),
                 function: (nodeURL) =>
-                  this.setState({
-                      node: find(this.getAvailableNodes(), (node) => {
-                          return get(node, 'url') === nodeURL;
-                      }),
-                }),
+                    this.setState({
+                        node: find(this.getAvailableNodes(), (node) => {
+                            return get(node, 'url') === nodeURL;
+                        }),
+                    }),
                 currentSetting: get(node, 'url'),
                 inactive: autoNodeManagement || nodeAutoSwitch,
                 dropdownOptions: map(this.getAvailableNodes(), (node) => node.url),
@@ -301,13 +301,13 @@ export class NodeSettings extends PureComponent {
             { name: 'separator', inactive: autoNodeManagement },
             {
                 name: t('nodeSettings:enableQuorum'),
-                function: () => !autoNodeManagement ? this.toggleQuorumEnabled() : {},
+                function: () => (!autoNodeManagement ? this.toggleQuorumEnabled() : {}),
                 toggle: quorumEnabled,
                 inactive: autoNodeManagement,
             },
             {
                 name: t('nodeSettings:quorumSize'),
-                function: (quorumSize) => quorumSize ? this.setState({ quorumSize }) : {},
+                function: (quorumSize) => (quorumSize ? this.setState({ quorumSize }) : {}),
                 inactive: this.getAvailableNodes().length < quorumSize || autoNodeManagement || !quorumEnabled,
                 dropdownOptions: this.getQuorumSizeOptions(),
                 currentSetting: (!quorumEnabled && '0') || quorumSize,
@@ -356,5 +356,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['advancedSettings', 'nodeSettings', 'settings', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(NodeSettings),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(NodeSettings),
 );

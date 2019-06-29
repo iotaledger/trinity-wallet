@@ -169,6 +169,7 @@
         "missingPermission": "Potreban pristup datotečnom sustavu",
         "missingPermissionExplanation": "Potreban je pristup datotečnom sustavu da bi se izvršila ova funkcija.",
         "swipeToConfirm": "Kliznite po ekranu za potvrdu",
+        "congratulations": "Congratulations",
         "expert": "Stručnjak",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Jezik",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Započnimo"
     },
     "login": {
@@ -649,7 +651,7 @@
         "noPassword": "Lozinka nije postavljena na uređaju"
     },
     "transferConfirmation": {
-        "youAreAbout": "Poslat ćete {{contents}} na adresu",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "poruka",
         "fromAccount": "S {{selectedAccountName}}",
         "toAddress": "Na adresu",

@@ -3,7 +3,7 @@ import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import LottieView from 'lottie-react-native';
-import arrowAnimation from 'shared-modules/animations/arrow-transfer.json';
+import { getAnimation } from 'shared-modules/animations';
 import { round } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { Styling } from 'ui/theme/general';
@@ -44,12 +44,16 @@ const styles = StyleSheet.create({
         borderRadius: Styling.borderRadiusExtraLarge,
         width: Styling.contentWidth,
         alignItems: 'center',
-        paddingVertical: height / 25,
+        paddingVertical: height / 30,
     },
     valueContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    animation: {
+        width: width / 2.4,
+        height: width / 2.4,
     },
 });
 
@@ -73,8 +77,6 @@ class TransferConfirmationModal extends Component {
         amount: PropTypes.string.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Name for selected account */
-        selectedAccountName: PropTypes.string.isRequired,
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
         /** Activates fingerprint scanner */
@@ -83,6 +85,8 @@ class TransferConfirmationModal extends Component {
         onBackButtonPress: PropTypes.func.isRequired,
         /** Transaction message */
         message: PropTypes.string,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     static defaultProps = {
@@ -99,7 +103,6 @@ class TransferConfirmationModal extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('TransferConfirmationModal');
-        this.animation.play();
     }
 
     onSendPress() {
@@ -120,7 +123,7 @@ class TransferConfirmationModal extends Component {
     }
 
     setScrollable(y) {
-        if (y >= height / 5.8) {
+        if (y >= height / 9.5) {
             return this.setState({ scrollable: true });
         }
         this.setState({ scrollable: false });
@@ -133,8 +136,8 @@ class TransferConfirmationModal extends Component {
             value,
             conversionText,
             amount,
-            selectedAccountName,
             message,
+            themeName,
         } = this.props;
         const isMessage = value === 0 || amount === '';
         return (
@@ -147,40 +150,35 @@ class TransferConfirmationModal extends Component {
                 rightButtonText={t('global:confirm')}
             >
                 <View style={[styles.itemContainer, { backgroundColor: dark.color }]}>
-                    <Text style={[styles.titleText, { color: primary.color }]}>
-                        {isMessage
-                            ? message.length > 0
+                    {isMessage && (
+                        <Text style={[styles.titleText, { color: primary.color }]}>
+                            {message.length > 0
                                 ? t('sendingAMessage').toUpperCase()
-                                : t('sendingAnEmptyMessage').toUpperCase()
-                            : selectedAccountName.length >= 18
-                            ? t('fromAccount', {
-                                  selectedAccountName: `${selectedAccountName.substring(0, 18)}...`,
-                              }).toUpperCase()
-                            : t('fromAccount', { selectedAccountName }).toUpperCase()}
-                    </Text>
-                    {isMessage &&
-                        message.length > 0 && (
-                            <ScrollView
-                                scrollEnabled={this.state.scrollable}
-                                showsVerticalScrollIndicator={this.state.scrollable}
+                                : t('sendingAnEmptyMessage').toUpperCase()}
+                        </Text>
+                    )}
+                    {isMessage && message.length > 0 && (
+                        <ScrollView
+                            scrollEnabled={this.state.scrollable}
+                            showsVerticalScrollIndicator={this.state.scrollable}
+                            style={{
+                                maxHeight: height / 9.5,
+                            }}
+                            onContentSizeChange={(x, y) => this.setScrollable(y)}
+                        >
+                            <View
                                 style={{
-                                    maxHeight: height / 5.8,
+                                    paddingTop: height / 40,
+                                    alignItems: 'center',
+                                    paddingHorizontal: width / 20,
                                 }}
-                                onContentSizeChange={(x, y) => this.setScrollable(y)}
                             >
-                                <View
-                                    style={{
-                                        paddingTop: height / 40,
-                                        alignItems: 'center',
-                                        paddingHorizontal: width / 20,
-                                    }}
-                                >
-                                    <Text style={[styles.messageText, { color: body.color }]}>{message}</Text>
-                                </View>
-                            </ScrollView>
-                        )}
+                                <Text style={[styles.messageText, { color: body.color }]}>{message}</Text>
+                            </View>
+                        </ScrollView>
+                    )}
                     {!isMessage && (
-                        <View style={{ paddingTop: height / 80, alignItems: 'center' }}>
+                        <View style={{ alignItems: 'center' }}>
                             <View style={styles.valueContainer}>
                                 <TextWithLetterSpacing
                                     spacing={width / 100}
@@ -203,15 +201,16 @@ class TransferConfirmationModal extends Component {
                         </View>
                     )}
                 </View>
-                <View style={{ paddingVertical: height / 40 }}>
+                <View style={{ paddingVertical: height / 60 }}>
                     <LottieView
-                        source={arrowAnimation}
-                        style={{ width: width / 17, height: height / 18 }}
-                        loop
+                        source={getAnimation('sending', themeName)}
+                        style={styles.animation}
+                        loop={false}
                         autoPlay
-                        ref={(animation) => {
-                            this.animation = animation;
+                        ref={(ref) => {
+                            this.animation = ref;
                         }}
+                        onAnimationFinish={() => this.animation.play(89, 624)}
                     />
                 </View>
                 <View style={[styles.itemContainer, { backgroundColor: dark.color }]}>

@@ -169,6 +169,7 @@
         "missingPermission": "Autorisation de système de fichiers requise",
         "missingPermissionExplanation": "L'accès au système de fichiers est nécessaire afin de réaliser cette action.",
         "swipeToConfirm": "Balayer pour confirmer",
+        "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Pas assez de serveurs synchronisés",
         "notEnoughSyncedNodesExplanation": "Un quorum n'a pas pu être atteint. Désactivez quorum ou réessayez."
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Langue",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Démarrer"
     },
     "login": {
@@ -649,7 +651,7 @@
         "noPassword": "Le mot de passe n'est pas défini sur l'appareil"
     },
     "transferConfirmation": {
-        "youAreAbout": "Vous êtes sur le point d’envoyer {{contents}} à l’adresse",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "un message",
         "fromAccount": "De {{selectedAccountName}}",
         "toAddress": "À l'adresse",

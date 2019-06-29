@@ -8,7 +8,7 @@ import {
     generateAlert,
     generateTransitionErrorAlert,
     generateAddressesSyncRetryAlert,
-    generateErrorAlert
+    generateErrorAlert,
 } from '../actions/alerts';
 import { setActiveStepIndex, startTrackingProgress, reset as resetProgress } from '../actions/progress';
 import { changeNode } from '../actions/settings';

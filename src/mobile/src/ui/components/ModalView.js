@@ -21,6 +21,12 @@ const styles = StyleSheet.create({
         width,
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: Styling.footerButtonHeight,
+    },
+    buttonContainer: {
+        width,
+        position: 'absolute',
+        bottom: 0,
     },
 });
 
@@ -74,7 +80,11 @@ export class ModalViewComponent extends PureComponent {
         if (isAndroid) {
             return { flex: 1 - Styling.topBarHeightRatio };
         }
-        return { height: isIPhoneX ? height - Styling.topBarHeight + 20 : height - Styling.topBarHeight };
+        return {
+            height: isIPhoneX
+                ? height - Styling.topBarHeight + 20 - Styling.footerButtonHeight
+                : height - Styling.topBarHeight - Styling.footerButtonHeight,
+        };
     }
 
     render() {
@@ -113,7 +123,7 @@ export class ModalViewComponent extends PureComponent {
                 >
                     {children}
                 </View>
-                <View style={{ position: 'absolute', bottom: 0 }}>
+                <View style={[styles.buttonContainer, { backgroundColor: body.bg }]}>
                     {modalButtons ||
                         ((dualButtons && (
                             <DualFooterButtons
