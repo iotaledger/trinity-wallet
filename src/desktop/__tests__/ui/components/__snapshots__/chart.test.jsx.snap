@@ -5,8 +5,8 @@ exports[`Chart component Render the component 1`] = `
   className="chart"
 >
   <h3>
+    MIOTA/
     USD
-    /MIOTA
   </h3>
   <div>
     <ResponsiveContainer
