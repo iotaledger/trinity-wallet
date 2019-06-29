@@ -12,6 +12,7 @@ import {
     VALID_ADDRESS_WITH_CHECKSUM_REGEX,
     VALID_SEED_REGEX,
     ADDRESS_LENGTH,
+    MAX_MESSAGE_LENGTH,
 } from 'shared-modules/libs/iota/utils';
 import { completeDeepLinkRequest } from 'shared-modules/actions/wallet';
 import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
@@ -790,6 +791,7 @@ export class Send extends Component {
                             onRef={(c) => {
                                 this.messageField = c;
                             }}
+                            maxLength={MAX_MESSAGE_LENGTH}
                             keyboardType="default"
                             label={t('message')}
                             onValidTextChange={(text) => this.props.setSendMessageField(text)}
