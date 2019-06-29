@@ -364,8 +364,6 @@
         "message": "メッセージ",
         "invalidMessage": "無効なメッセージ",
         "invalidMessageExplanation": "メッセージに無効な文字が含まれています。",
-        "invalidMessageTooLong": "メッセージが長すぎます。",
-        "invalidMessageTooLongExplanation": "メッセージが最大値を超えています。 文字の最大値は (1093) です。",
         "send": "送金",
         "invalidAmount": "不適切な金額が入力されました。",
         "invalidAmountExplanation": "有効な取引金額を入力してください。ページ下にIOTAの単位の説明があります。",
