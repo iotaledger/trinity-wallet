@@ -58,6 +58,8 @@ class Tools extends PureComponent {
         activeSteps: PropTypes.array.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     static renderProgressChildren(activeStepIndex, sizeOfActiveSteps, t) {
@@ -150,7 +152,7 @@ class Tools extends PureComponent {
     };
 
     render() {
-        const { ui, wallet, t, activeStepIndex, activeSteps } = this.props;
+        const { ui, wallet, t, activeStepIndex, activeSteps, themeName } = this.props;
         const sizeOfActiveSteps = size(activeSteps);
 
         if ((ui.isTransitioning || ui.isAttachingToTangle) && !wallet.balanceCheckFlag) {
@@ -175,6 +177,7 @@ class Tools extends PureComponent {
                             )}
                         </React.Fragment>
                     }
+                    themeName={themeName}
                 />
             );
         }
@@ -246,6 +249,7 @@ const mapStateToProps = (state) => ({
     addresses: getAddressesForSelectedAccount(state),
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {

@@ -169,9 +169,10 @@
         "missingPermission": "Trenger tillatelse til filsystemet",
         "missingPermissionExplanation": "Tilgang til filsystemet kreves for å utføre denne funksjonen.",
         "swipeToConfirm": "Dra for å bekrefte",
+        "congratulations": "Congratulations",
         "expert": "Ekspert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodes": "Ikke nok synkroniserte noder",
+        "notEnoughSyncedNodesExplanation": "Et quorum kunne ikke oppnås. Slå av quorum eller prøv på nytt."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Språk",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "La oss komme i gang"
     },
     "login": {
@@ -504,7 +506,7 @@
         "quorumSize": "Quorum-størrelse",
         "noCustomNodes": "Ingen egendefinerte noder",
         "mustAddCustomNodes": "Du må legge til minst en egendefinert node før du deaktiverer listen med eksterne noder.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesTitle": "Ikke nok noder",
         "nodeEnoughNodesExplanation": "Det er ikke nok noder for å aktivere quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Legg til flere egendefinerte noder eller aktiver listen med eksterne noder.",
         "nodeSettingsUpdatedTitle": "Node-innstillinger oppdatert",
@@ -649,7 +651,7 @@
         "noPassword": "Passord er ikke angitt på enheten"
     },
     "transferConfirmation": {
-        "youAreAbout": "Du er nå klar til å sende {{contents}} til adressen",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "en melding",
         "fromAccount": "Fra {{selectedAccountName}}",
         "toAddress": "Til adresse",
@@ -759,7 +761,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Feil under henting av oppdaterte data",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Kan ikke koble til server, vennligst kontroller internettforbindelsen og prøv igjen.",
         "noUpdatesAvailable": "Ingen tilgjengelige oppdateringer",
         "noUpdatesAvailableExplanation": "Du har den nyeste versjonen av Trinity!",
         "newVersionAvailable": "Ny versjon tilgjengelig",

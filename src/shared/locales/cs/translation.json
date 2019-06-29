@@ -144,8 +144,8 @@
         "isYourBalanceCorrect": "Je Váš zůstatek v pořádku?",
         "ifYourBalanceIsNotCorrect": "Pokud Váš zůstatek není správný, je pravděpodobné, že používáte Seed z doby před snapshotem.",
         "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
+        "headToAccountTools": "Přejděte na Nastavení účtu a proveďte Aktualizace údajů po Snapshotu.",
+        "openAccountTools": "Otevřete nastavení účtu",
         "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Během transakce došlo k chybě sítě.",
         "broadcastError": "Nezdařilo se odeslat transakci",
@@ -169,9 +169,10 @@
         "missingPermission": "Požadovaný přístup k souborovému systému",
         "missingPermissionExplanation": "K provedení této funkce potřebujete přístup k souborovému systému.",
         "swipeToConfirm": "Posunutím potvrďte",
+        "congratulations": "Congratulations",
         "expert": "Expert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodes": "Synchronizuje se příliš málo Nodů",
+        "notEnoughSyncedNodesExplanation": "Nebylo možné dosáhnout kvóra. Vypněte kvórum nebo to zkuste znovu."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Jazyk",
+        "selectALanguage": "Select a language",
         "letsGetStarted": "Pojďme začít"
     },
     "login": {
@@ -500,12 +502,12 @@
         "autoNodeList": "Použít vzdálený oficiální seznam Nodů",
         "nodeAutoswitching": "Automatické přepínání primárního Nodu",
         "primaryNode": "Primární Node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
+        "enableQuorum": "Povolit kvórum",
+        "quorumSize": "Velikost kvóra",
         "noCustomNodes": "Nebyly přidány žádné vlastní Nody",
         "mustAddCustomNodes": "Před vypnutím vzdáleného oficiálního seznamu Nodů musíte přidat alespoň jeden vlastní Node.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesTitle": "Nedostatečný počet Nodů",
+        "nodeEnoughNodesExplanation": "Není dostatek Nodů, které by umožnily zapnout kvorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Přidejte další vlastní Nody, nebo povolte vzdálený oficiální seznam Nodů.",
         "nodeSettingsUpdatedTitle": "Nastavení Nodu bylo aktualizováno",
         "nodeSettingsUpdatedExplanation": "Úspěšně jste aktualizovali nastavení Nodu."
@@ -522,7 +524,7 @@
         "addAuthKey": "Přidat autorizační klíč",
         "username": "Uživatelské jméno",
         "couldNotRemove": "Nelze odebrat vlastní Node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "Musí být dostatek Nodů pro kvórum. Snižte velikost kvóra, nebo povolte vzdálený oficiální seznam Nodů."
     },
     "addNewAccount": {
         "useExistingSeed": "Použít stávající Seed",
@@ -649,7 +651,7 @@
         "noPassword": "V zařízení není nastaveno heslo"
     },
     "transferConfirmation": {
-        "youAreAbout": "Chystáte se odeslat {{contents}} na adresu",
+        "youAreAbout": "You are about to send {{contents}}",
         "aMessage": "zpráva",
         "fromAccount": "Od {{selectedAccountName}}",
         "toAddress": "Na adresu",
@@ -759,7 +761,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba při získávání aktualizačních dat",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Nelze načíst aktualizaci. Zkontrolujte prosím připojení k internetu a zkuste to znovu.",
         "noUpdatesAvailable": "Nejsou dostupné žádné aktualizace",
         "noUpdatesAvailableExplanation": "Máte nainstalovanou nejnovější verzi Trinity!",
         "newVersionAvailable": "K dispozici je nová verze",
@@ -827,7 +829,7 @@
         "indexInUse": "Tento index již používá účet {{account}}",
         "indexInUseExplanation": "Váš zvolený index je již používán na jednom z Vašich účtů. Vyberte si prosím jiné číslo indexu.",
         "createNewLedgerAccountInfo": "Ujistěte se, že jste si zapsali a uložili Vaše číslo indexu.",
-        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
+        "restoreLedgerAccountInfo": "Vložte prosím číslo indexu za účelem obnovení Vašeho účtu.",
         "createNewLedgerAccount": "Vytvořit nový Ledger účet",
         "restoreLedgerAccount": "Obnovit existující Ledger účet",
         "accountIndex": "Index účtu",

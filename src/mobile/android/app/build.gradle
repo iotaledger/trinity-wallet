@@ -92,8 +92,8 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
-        versionCode 68
-        versionName "0.7.2"
+        versionCode 78
+        versionName "0.7.3"
         minSdkVersion 21
         targetSdkVersion 26
         multiDexEnabled true
@@ -168,7 +168,7 @@ dependencies {
     implementation project(':react-native-svg')
     implementation project(':react-native-navigation')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:appcompat-v7:27.1.0'
     implementation ('com.facebook.react:react-native:+')
     implementation project(':react-native-svg')
     implementation project(':react-native-keychain')

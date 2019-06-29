@@ -55,12 +55,12 @@ describe('libs: iota/extendedApi', () => {
                 nock.cleanAll();
             });
 
-            it('should throw with an error "Node version not supported"', () => {
+            it('should throw with an error "The currently selected node uses an unsupported IRI version."', () => {
                 return isNodeHealthy()
                     .then(() => {
                         throw new Error();
                     })
-                    .catch((error) => expect(error.message).to.equal('Node version not supported'));
+                    .catch((error) => expect(error.message).to.equal('The currently selected node uses an unsupported IRI version.'));
             });
         });
 
@@ -94,12 +94,12 @@ describe('libs: iota/extendedApi', () => {
                 nock.cleanAll();
             });
 
-            it('should throw with an error "Node not synced"', () => {
+            it('should throw with an error "The selected node is out of sync. Its view of the Tangle may be innacurate."', () => {
                 return isNodeHealthy()
                     .then(() => {
                         throw new Error();
                     })
-                    .catch((error) => expect(error.message).to.equal('Node not synced'));
+                    .catch((error) => expect(error.message).to.equal('The selected node is out of sync. Its view of the Tangle may be innacurate.'));
             });
         });
 
@@ -133,12 +133,12 @@ describe('libs: iota/extendedApi', () => {
                 nock.cleanAll();
             });
 
-            it('should throw with an error "Node not synced"', () => {
+            it('should throw with an error "The selected node is out of sync. Its view of the Tangle may be innacurate."', () => {
                 return isNodeHealthy()
                     .then(() => {
                         throw new Error();
                     })
-                    .catch((error) => expect(error.message).to.equal('Node not synced'));
+                    .catch((error) => expect(error.message).to.equal('The selected node is out of sync. Its view of the Tangle may be innacurate.'));
             });
         });
 

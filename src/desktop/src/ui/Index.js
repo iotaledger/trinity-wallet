@@ -284,7 +284,14 @@ class App extends React.Component {
 
     Init = (props) => {
         return (
-            <Loading inline transparent {...props} loop={false} onEnd={() => this.props.history.push('/onboarding/')} />
+            <Loading
+                inline
+                transparent
+                {...props}
+                loop={false}
+                onEnd={() => this.props.history.push('/onboarding/')}
+                themeName={this.props.themeName}
+            />
         );
     };
 

@@ -74,10 +74,7 @@ class AdvancedSettings extends PureComponent {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <SettingsBackButton
-                        theme={theme}
-                        backFunction={() => this.props.setSetting('mainSettings')}
-                    />
+                    <SettingsBackButton theme={theme} backFunction={() => this.props.setSetting('mainSettings')} />
                 </View>
             </View>
         );
@@ -92,4 +89,9 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings));
+export default withNamespaces(['global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(AdvancedSettings),
+);

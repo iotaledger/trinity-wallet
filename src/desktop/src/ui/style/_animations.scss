@@ -67,4 +67,10 @@
             transition: opacity 0.2s cubic-bezier(0.19, 1, 0.22, 1);
         }
     }
+
+    @for $i from 0 through 6 {
+        .colors-animations-#{$i} {
+            fill: var(--animations-#{$i});
+        }
+    }
 }

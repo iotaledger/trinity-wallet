@@ -5,7 +5,7 @@ import LottieView from 'lottie-react-native';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 import { withNamespaces } from 'react-i18next';
 import timer from 'react-native-timer';
-import sliderSuccessAnimation from 'shared-modules/animations/slider-success.json';
+import sliderSuccessAnimation from 'shared-modules/animations/progressSuccess.json';
 import { height as deviceHeight, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';

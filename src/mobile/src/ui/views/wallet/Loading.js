@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import timer from 'react-native-timer';
-import whiteLoadingAnimation from 'shared-modules/animations/loading-white.json';
-import blackLoadingAnimation from 'shared-modules/animations/loading-black.json';
+import { getAnimation } from 'shared-modules/animations';
 import { navigator } from 'libs/navigation';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -38,11 +37,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     infoText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
-        paddingBottom: height / 30,
+        lineHeight: Styling.fontSize4 * 1.5,
     },
     animationLoading: {
         justifyContent: 'center',
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
     infoTextContainer: {
         flex: 1,
         justifyContent: 'flex-end',
-        paddingBottom: isIPhoneX ? height / 40 : height / 20,
+        paddingBottom: isIPhoneX ? height / 30 : height / 15,
     },
     bottomContainer: {
         position: 'absolute',
@@ -126,7 +125,7 @@ class Loading extends Component {
         /** All stored account names */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
-        isThemeDark: PropTypes.bool.isRequired,
+        themeName: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -152,7 +151,6 @@ class Loading extends Component {
         leaveNavigationBreadcrumb('Loading');
         this.props.setLoginRoute('login');
         KeepAwake.activate();
-        this.animation.play();
         // Ensures animation completes at least one cycle
         timer.setTimeout('animationTimeout', () => this.setState({ animationCycleComplete: true }), 3000);
         if (addingAdditionalAccount) {
@@ -279,10 +277,9 @@ class Loading extends Component {
         const {
             t,
             theme: { body, primary },
-            isThemeDark,
+            themeName,
         } = this.props;
         const textColor = { color: body.color };
-        const loadingAnimationPath = isThemeDark ? whiteLoadingAnimation : blackLoadingAnimation;
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -294,12 +291,10 @@ class Loading extends Component {
                         style={styles.loadingAnimationContainer}
                     >
                         <LottieView
-                            ref={(animation) => {
-                                this.animation = animation;
-                            }}
-                            source={loadingAnimationPath}
+                            source={getAnimation('loading', themeName)}
                             style={styles.animationNewSeed}
                             loop
+                            autoPlay
                         />
                     </AnimatedComponent>
                 </View>
@@ -310,33 +305,35 @@ class Loading extends Component {
                     style={styles.bottomContainer}
                 >
                     <View>
-                        {(this.state.addingAdditionalAccount && (
-                            <View style={styles.infoTextContainer}>
-                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                    <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
-                                    <Text style={[styles.infoText, textColor]}>{t('doNotMinimise')}</Text>
-                                    <View style={{ flexDirection: 'row' }}>
-                                        <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
-                                        <View style={{ alignItems: 'flex-start', width: width / 30 }}>
-                                            <Text style={[styles.infoText, textColor]}>
-                                                {isAndroid ? '..' : this.state.elipsis}
-                                            </Text>
-                                        </View>
-                                    </View>
-                                </View>
+                        {(this.state.displayNodeChangeOption && (
+                            <View>
+                                <Text style={[styles.infoText, textColor, { paddingBottom: height / 30 }]}>
+                                    {t('takingAWhile')}...
+                                </Text>
+                                <SingleFooterButton
+                                    onButtonPress={this.onChangeNodePress}
+                                    buttonStyle={{
+                                        wrapper: { backgroundColor: primary.color },
+                                        children: { color: primary.body },
+                                    }}
+                                    buttonText={t('global:changeNode')}
+                                />
                             </View>
                         )) ||
-                            (this.state.displayNodeChangeOption && (
-                                <View>
-                                    <Text style={[styles.infoText, textColor]}>{t('takingAWhile')}...</Text>
-                                    <SingleFooterButton
-                                        onButtonPress={this.onChangeNodePress}
-                                        buttonStyle={{
-                                            wrapper: { backgroundColor: primary.color },
-                                            children: { color: primary.body },
-                                        }}
-                                        buttonText={t('global:changeNode')}
-                                    />
+                            (this.state.addingAdditionalAccount && (
+                                <View style={styles.infoTextContainer}>
+                                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                        <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
+                                        <Text style={[styles.infoText, textColor]}>{t('doNotMinimise')}</Text>
+                                        <View style={{ flexDirection: 'row' }}>
+                                            <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
+                                            <View style={{ alignItems: 'flex-start', width: width / 30 }}>
+                                                <Text style={[styles.infoText, textColor]}>
+                                                    {isAndroid ? '..' : this.state.elipsis}
+                                                </Text>
+                                            </View>
+                                        </View>
+                                    </View>
                                 </View>
                             ))}
                     </View>
@@ -357,7 +354,7 @@ const mapStateToProps = (state) => ({
     additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
     ready: state.wallet.ready,
     theme: getThemeFromState(state),
-    isThemeDark: getThemeFromState(state).isDark,
+    themeName: state.settings.themeName,
     currency: state.settings.currency,
     deepLinkRequestActive: state.wallet.deepLinkRequestActive,
 });
