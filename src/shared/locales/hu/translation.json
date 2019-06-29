@@ -364,8 +364,6 @@
         "message": "Üzenet",
         "invalidMessage": "Érvénytelen üzenet",
         "invalidMessageExplanation": "Az üzenet érvénytelen karaktereket tartalmaz.",
-        "invalidMessageTooLong": "Túl hosszú üzenet",
-        "invalidMessageTooLongExplanation": "Az üzenet hossza túllépi a maximálisan megengedett 1093 karaktert.",
         "send": "Küldés",
         "invalidAmount": "Érvénytelen összeg",
         "invalidAmountExplanation": "Kérjük, adjon meg egy érvényes összeget. Az IOTA mértékegységek megértéséhez nézze át az alábbi összefoglalót.",
