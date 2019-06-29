@@ -364,8 +364,6 @@
         "message": "Meddelande",
         "invalidMessage": "Ogiltigt meddelande",
         "invalidMessageExplanation": "Ditt meddelande innehåller ogiltiga tecken.",
-        "invalidMessageTooLong": "Meddelandet för långt",
-        "invalidMessageTooLongExplanation": "Meddelandet överskrider max. mängden tecken (1093).",
         "send": "Skicka",
         "invalidAmount": "Felaktigt belopp angivet",
         "invalidAmountExplanation": "Vänligen ange ett giltigt transaktionsbelopp. Det kan vara hjälpsamt att titta på IOTA enhetsförklaringen längst ner på sidan.",
