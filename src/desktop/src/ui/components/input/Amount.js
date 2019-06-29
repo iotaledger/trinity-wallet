@@ -12,15 +12,15 @@ const units = ['i', 'Ki', 'Mi', 'Gi', 'Ti', '$'];
 const decimals = [0, 3, 6, 9, 12, 2];
 
 /**
- * Ammount input component
+ * Amount input component
  */
 export default class AmountInput extends React.PureComponent {
     static propTypes = {
-        /** Current ammount value */
+        /** Current amount value */
         amount: PropTypes.string.isRequired,
         /** Element id */
         id: PropTypes.string,
-        /** Max available ammount */
+        /** Max available amount */
         balance: PropTypes.number.isRequired,
         /** Fiat currency settings
          * @property {string} conversionRate - Active currency conversion rate to Miota
@@ -32,12 +32,12 @@ export default class AmountInput extends React.PureComponent {
             currency: PropTypes.string.isRequired,
             usdPrice: PropTypes.number.isRequired,
         }).isRequired,
-        /** Ammount input label */
+        /** Amount input label */
         label: PropTypes.string.isRequired,
-        /** Max ammount controller label */
+        /** Max amount controller label */
         labelMax: PropTypes.string.isRequired,
-        /** Ammount change event function
-         * @param {string} value - Current ammount value
+        /** Amount change event function
+         * @param {string} value - Current amount value
          */
         onChange: PropTypes.func.isRequired,
     };
