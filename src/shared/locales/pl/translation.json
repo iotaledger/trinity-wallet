@@ -255,7 +255,7 @@
         "letsGetStarted": "Zaczynamy"
     },
     "login": {
-        "emptyPassword": "Puste hasło",
+        "emptyPassword": "Wpisz hasło",
         "emptyPasswordExplanation": "Musisz wprowadzić hasło, aby się zalogować. Proszę spróbować ponownie.",
         "enterPassword": "Wprowadź swoje hasło.",
         "login": "Zaloguj się",
