@@ -505,7 +505,7 @@
         "noCustomNodes": "Ei omavalintaisia palvelimia",
         "mustAddCustomNodes": "Sinun pitää lisätä vähintään yksi omavalintainen palvelin ennen kuin kytket etä-palvelin listan pois päältä.",
         "nodeEnoughNodesTitle": "Ei tarpeeksi palvelimia",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesExplanation": "Palvelimia ei ole tarpeeksi, jotta päätösvaltaisuus voitaisiin ottaa käyttöön.",
         "nodeEnoughNodesExplanationCustomNodes": "Lisää omavalintaisia palvelimia tai kytke etä-palvelin lista päälle.",
         "nodeSettingsUpdatedTitle": "Palvelin asetukset päivitetty",
         "nodeSettingsUpdatedExplanation": "Olet onnistuneesti päivittänyt palvelin asetukset."
@@ -522,7 +522,7 @@
         "addAuthKey": "Lisää tunnistautumisavain",
         "username": "Käyttäjätunnus",
         "couldNotRemove": "Omavalintaisen palvelimen poisto ei onnistunut",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "Päätösvaltaisuutta varten on oltava riittävästi palvelimia. Pienennä päätösvaltaisuuden kokoa tai ota etäpalvelinluettelo käyttöön.\n ."
     },
     "addNewAccount": {
         "useExistingSeed": "Käytä olemassaolevaa seed-lukua",
