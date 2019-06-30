@@ -14215,9 +14215,9 @@
       "dev": true
     },
     "react-i18next": {
-      "version": "10.11.1",
-      "resolved": "https://registry.npmjs.org/react-i18next/-/react-i18next-10.11.1.tgz",
-      "integrity": "sha512-uzfMdGFbe0bZQkR8XyBUw1BV4rPBQ6X3+TgvMWdW94LeKrDrXBcyfokdejTYQpMlOMtf7TGrhQT9fLIfr+gftg==",
+      "version": "10.11.2",
+      "resolved": "https://registry.npmjs.org/react-i18next/-/react-i18next-10.11.2.tgz",
+      "integrity": "sha512-Ru+WonG9BLILDg/By7Pw0Lne2I7HVLRyhyvDtar22tNNu6de2D89zAKl2RzK2jgq7m7l+BFSnLpz4kX7ZPV+JQ==",
       "requires": {
         "@babel/runtime": "^7.3.1",
         "html-parse-stringify2": "2.0.1"
