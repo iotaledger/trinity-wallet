@@ -171,8 +171,8 @@
         "swipeToConfirm": "Povlecite za potrditev",
         "congratulations": "Čestitke",
         "expert": "Strokovnjak",
-        "notEnoughSyncedNodes": "Ni dovolj sinkronisiranih Node-ov",
-        "notEnoughSyncedNodesExplanation": "V skupini uporabljenih Node-ov ni bilo mogoče določiti enotnega statusa. Onemogočite skupino Node-ov in poskusite znova."
+        "notEnoughSyncedNodes": "Ni dovolj sinkronisiranih Node-v",
+        "notEnoughSyncedNodesExplanation": "V skupini uporabljenih Node-v ni bilo mogoče določiti enotnega statusa. Onemogočite skupino Node-ov in poskusite znova."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed vsebuje neveljavne znake",
@@ -502,11 +502,11 @@
         "primaryNode": "Primaren Node",
         "enableQuorum": "Aktiviraj Node-Quorum",
         "quorumSize": "Velikost zbora",
-        "noCustomNodes": "Ni prilagojenih Node-ov",
-        "mustAddCustomNodes": "Preden lahko onemogočite uradni seznam Node-ov, morate dodati vsaj eno ponastavljen Node.",
-        "nodeEnoughNodesTitle": "Ni dovolj Node-ov",
-        "nodeEnoughNodesExplanation": "Ni dovolj Node-ov, da bi lahko aktivirali zbor.",
-        "nodeEnoughNodesExplanationCustomNodes": "Dodajte več poosebljenih Node-ov ali uporabite seznam uradnih vozlišč.",
+        "noCustomNodes": "Ni prilagojenih Node-v",
+        "mustAddCustomNodes": "Preden lahko onemogočite uradni seznam Node-v, morate dodati vsaj en ponastavljen Node.",
+        "nodeEnoughNodesTitle": "Ni dovolj Node-v",
+        "nodeEnoughNodesExplanation": "Ni dovolj Node-v, da bi lahko aktivirali zbor.",
+        "nodeEnoughNodesExplanationCustomNodes": "Dodajte več ročno ponastavljenih Node-v ali uporabite seznam uradnih Node-v.",
         "nodeSettingsUpdatedTitle": "Posodobljene Node nastavitve",
         "nodeSettingsUpdatedExplanation": "Uspešno ste posodobili Node nastavitve."
     },
@@ -522,7 +522,7 @@
         "addAuthKey": "Dodaj autentifikacijski ključ",
         "username": "Uporabniško ime",
         "couldNotRemove": "Ni bilo mogoče odstraniti prilagojen Node",
-        "couldNotRemoveExplanation": "Za Node-zbor mora biti dovolj Node-ov. Zmanjšajte velikost zbora ali pa omogočite uporabo uradnega seznama Node-ov."
+        "couldNotRemoveExplanation": "Za Node-zbor mora biti dovolj Node-v. Zmanjšajte velikost zbora ali pa omogočite uporabo uradnega seznama Node-v."
     },
     "addNewAccount": {
         "useExistingSeed": "Uporabi obstoječ Seed",
