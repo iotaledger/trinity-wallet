@@ -169,7 +169,7 @@
         "missingPermission": "Permisos de sistema de archivos requeridos",
         "missingPermissionExplanation": "Se requiere acceso al sistema de archivos para realizar esta función.",
         "swipeToConfirm": "Desliza para confirmar",
-        "congratulations": "Congratulations",
+        "congratulations": "Felicidades",
         "expert": "Avanzado",
         "notEnoughSyncedNodes": "Demasiados nodos en sincronización",
         "notEnoughSyncedNodesExplanation": "No se pudo alcanzar un quórum. Desactiva quorum o vuelve a intentarlo."
