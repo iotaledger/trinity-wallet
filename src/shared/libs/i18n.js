@@ -134,11 +134,11 @@ export const detectLocale = (locale) => {
         // Swedish (Sweden)
         return 'sv_SE';
     }
-    if (adaptedLocale === 'zh' && !locale.match(/Hant/)) {
+    if (adaptedLocale === 'zh' && !locale.match(/Hant/) && !locale.match(/TW/)) {
         // Catch all non-Traditional Chinese
         return 'zh_CN';
     }
-    if (locale.match(/Hant/)) {
+    if (locale.match(/Hant/) || locale.match(/TW/)) {
         // Catch all Traditional Chinese
         return 'zh_TW';
     }
