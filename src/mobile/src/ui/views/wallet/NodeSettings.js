@@ -28,7 +28,7 @@ const defaultState = {
     autoNodeList: true,
     nodeAutoSwitch: true,
     quorumEnabled: true,
-    quorumSize: '4',
+    quorumSize: QUORUM_SIZE.toString(),
 };
 
 const styles = StyleSheet.create({
