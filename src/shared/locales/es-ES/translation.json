@@ -649,7 +649,7 @@
         "noPassword": "El dispositivo no tiene contraseña"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Estás a punto de enviar {{contents}}",
         "aMessage": "un mensaje",
         "fromAccount": "Desde {{selectedAccountName}}",
         "toAddress": "A dirección",
