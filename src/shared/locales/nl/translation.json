@@ -364,8 +364,6 @@
         "message": "Bericht",
         "invalidMessage": "Ongeldig bericht",
         "invalidMessageExplanation": "Uw bericht bevat ongeldige tekens.",
-        "invalidMessageTooLong": "Bericht te lang",
-        "invalidMessageTooLongExplanation": "Het bericht overschrijdt het max. aantal karakters (1093).",
         "send": "Verstuur",
         "invalidAmount": "Onjuist aantal ingevoerd",
         "invalidAmountExplanation": "Voer een geldig transactiebedrag in. Het kan handig zijn om de uitleg van IOTA-eenheden onderaan de pagina te bekijken.",

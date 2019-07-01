@@ -364,8 +364,6 @@
         "message": "Správa",
         "invalidMessage": "Neplatná správa",
         "invalidMessageExplanation": "Vaša správa obsahuje neplatné znaky.",
-        "invalidMessageTooLong": "Správa je príliš dlhá",
-        "invalidMessageTooLongExplanation": "Správa prekračuje maximálny počet znakov (1093).",
         "send": "Odoslať",
         "invalidAmount": "Zadaná neplatná čiastka",
         "invalidAmountExplanation": "Zadajte, prosím, platnú transakčnú čiastku. Nižšie nájdete nápomocné informácie o IOTA jednotkách.",
