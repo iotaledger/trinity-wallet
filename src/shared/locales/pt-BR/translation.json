@@ -169,7 +169,7 @@
         "missingPermission": "Permissões do sistema de arquivo necessárias",
         "missingPermissionExplanation": "O acesso ao sistema de arquivos é necessário para executar esta função.",
         "swipeToConfirm": "Deslize para confirmar",
-        "congratulations": "Congratulations",
+        "congratulations": "Parabéns",
         "expert": "Avançado",
         "notEnoughSyncedNodes": "Poucos servidores em sincronia",
         "notEnoughSyncedNodesExplanation": "Um quórum não pôde ser alcançado. Desligue o quórum ou tente novamente."
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Idioma",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Selecione um idioma",
         "letsGetStarted": "Vamos começar"
     },
     "login": {
@@ -496,13 +496,13 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Gerenciamento automático de servidores",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
+        "addCustomNodes": "Adicionar servidor personalizado",
+        "autoNodeList": "Usar lista de servidor remoto",
+        "nodeAutoswitching": "Auto-troca de servidor primário",
+        "primaryNode": "Servidor primário",
+        "enableQuorum": "Habilitar quórum",
+        "quorumSize": "Tamanho do Quórum",
+        "noCustomNodes": "Nenhum servidor personalizado",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
         "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
