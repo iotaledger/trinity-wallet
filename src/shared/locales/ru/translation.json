@@ -169,7 +169,7 @@
         "missingPermission": "Требуется доступ к файловой системе",
         "missingPermissionExplanation": "Для выполнения этой функции необходим доступ к файловой системе.",
         "swipeToConfirm": "Проведите, чтобы подтвердить",
-        "congratulations": "Congratulations",
+        "congratulations": "Поздравляем",
         "expert": "Эксперт",
         "notEnoughSyncedNodes": "Слишком мало нод в синхронизации",
         "notEnoughSyncedNodesExplanation": "Кворум не может быть достигнут. Выключите Кворум либо повторите позже."
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Язык",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Выбрать язык",
         "letsGetStarted": "Давайте начнём"
     },
     "login": {
@@ -599,7 +599,7 @@
         "syncingYourAccount": "Синхронизация Вашего счёта."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Введите имя аккаунта и seed-фразу",
         "incorrectFormat": "Неверный формат ключа",
         "validSeedExplanation": "Корректный ключ должен содержать 81 символ и состоять только из A-Z и 9."
     },
@@ -607,15 +607,15 @@
         "enterPassword": "Введите пароль, чтобы увидеть Ваш ключ.",
         "viewSeed": "Показать ключ",
         "hideSeed": "Скрыть ключ",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailable": "Экспорт seed-фразы недоступен для учетной записи {{accountType}}",
+        "notAvailableExplanationLedger": "Ваше устройство Ledger использует безопасный элемент для хранения вашей seed-фразы. Seed-фраза зашифрована и не покидает устройство.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Вы создали резервную копию Вашего ключа?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Я сохранил свою seed-фразу в безопасности",
+        "reenterSeed": "На следующем шаге вам нужно ввести вашу seed-фразу.",
         "reenterSeedWarning": "Если вы не создали резервную копию Вашего ключа и на Вашем устройстве возникнет сбой, Вы потеряете все Ваши IOTA.",
         "pleaseConfirm": "Пожалуйста, подтвердите, что Вы надежно сохранили Ваш ключ."
     },
@@ -637,16 +637,16 @@
         "deviceLocked": "Аутентификация недоступна в течение 30 секунд",
         "fingerprintUnavailableExplanation": "Ваше устройство не поддерживает биометрической аутентификации, или она не была настроена в параметрах устройства.",
         "notSupported": "Устройство не поддерживает биометрическую аутентификацию",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "notConfigured": "Биометрическая аутентификация не была настроена в настройках устройства",
         "buttonInstructionsDisable": "Нажмите на кнопку ниже, чтобы отключить аутентификацию на основе отпечатков пальцев.",
         "buttonInstructionsEnable": "Нажмите на кнопку ниже, чтобы включить аутентификацию на основе отпечатков пальцев.",
         "buttonInstructionsDisableIPhoneX": "Нажмите на кнопку ниже, чтобы отключить идентификатор лица",
         "buttonInstructionsEnableIPhoneX": "Нажмите на кнопку ниже, чтобы включить идентификатор лица",
         "instructionsLogin": "Приложите палец к сенсору чтения отпечатков пальцев для входа",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "systemCancelledAuth": "Аутентификация была отменена вашим устройством",
         "userCancelledAuth": "Запрос на аутентификацию отменен",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "passwordFallback": "Вернуться к аутентификации по паролю",
+        "noPassword": "Пароль не установлен на устройстве"
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}}",
