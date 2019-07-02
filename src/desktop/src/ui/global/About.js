@@ -53,18 +53,26 @@ export class AboutComponent extends React.PureComponent {
                 <section className={css.about}>
                     <Icon icon="iota" size={48} />
                     <h1>Trinity Wallet</h1>
-                    <h2>
-                        v{settings.version} <small>BETA</small>
-                    </h2>
+                    <h2>v{settings.version}</h2>
 
                     <article>
                         <Scrollbar>
+                            <h5>1.0.0</h5>
+                            <ul>
+                                <li>New: Add new UI animations</li>
+                                <li>Fix: Do not allow tab when password fields are disabled</li>
+                                <li>Fix: Add max length for message fields</li>
+                                <li>Fix: Change price quoting display</li>
+                                <li>Fix: Increase timeout for batched PoW</li>
+                            </ul>
                             <h5>0.6.2</h5>
                             <ul>
                                 <li>Fix: Migration not successful when migrating from 0.4.x and below to latest</li>
                                 <li>Fix: Incorrect already spent from address errors on transaction retry</li>
                                 <li>Fix: Incorrect transaction failure alert when successfully broadcast</li>
-                                <li>Fix: Quorum being conducted on transaction account syncs when explicitly turned off</li>
+                                <li>
+                                    Fix: Quorum being conducted on transaction account syncs when explicitly turned off
+                                </li>
                                 <li>Fix: Error-related crashes</li>
                                 <li>Update: Add remote node list endpoint back-ups</li>
                                 <li>Update: Add more verbose error log messages</li>
@@ -79,9 +87,7 @@ export class AboutComponent extends React.PureComponent {
                             </ul>
                             <h5>0.6.0</h5>
                             <ul>
-                                <li>
-                                    New: Automatic node management, with lots of configurability for advanced users
-                                </li>
+                                <li>New: Automatic node management, with lots of configurability for advanced users</li>
                                 <li>Fix: Wallet not working on Windows when username has special characters</li>
                                 <li>Update: Auto update functionality improvements</li>
                                 <li>Update: Add various wallet initialisation error explanations</li>
