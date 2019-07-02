@@ -3,13 +3,13 @@ import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
-import balloonsAnimation from 'shared-modules/animations/balloons-white.json';
+import { getAnimation } from 'shared-modules/animations';
 import LottieView from 'lottie-react-native';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import Header from 'ui/components/Header';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -21,34 +21,31 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1,
+        flex: 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
-        flex: 2,
+        flex: 2.7,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
     },
     bottomContainer: {
-        flex: 1.5,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    infoTextContainer: {
-        paddingHorizontal: width / 8,
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'absolute',
-        top: height / 6,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
-        lineHeight: height / 30,
+        lineHeight: Styling.fontSize4 * 1.5,
+        paddingTop: height / 35,
+    },
+    animation: {
+        width: width / 1.35,
+        height: width / 1.35,
     },
 });
 
@@ -59,6 +56,8 @@ class OnboardingComplete extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     componentDidMount() {
@@ -70,41 +69,44 @@ class OnboardingComplete extends Component {
     }
 
     render() {
-        const { t, theme: { body, primary } } = this.props;
+        const {
+            t,
+            theme: { body, primary },
+            themeName,
+        } = this.props;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
-                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={400}>
-                        <Icon name="iota" size={width / 8} color={body.color} />
+                    <AnimatedComponent
+                        animationInType={['fadeIn', 'slideInRight']}
+                        animationOutType={['fadeOut', 'slideOutLeft']}
+                        delay={400}
+                    >
+                        <Header textColor={body.color}>{t('congratulations')}</Header>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
                     <AnimatedComponent
-                        animationInType={['fadeIn']}
-                        animationOutType={['fadeOut']}
+                        animationInType={['fadeIn', 'slideInRight']}
+                        animationOutType={['fadeOut', 'slideOutLeft']}
                         delay={200}
-                        style={styles.infoTextContainer}
-                    >
-                        <Text style={[styles.infoText, { color: body.color }]}>{t('walletReady')}</Text>
-                    </AnimatedComponent>
-                    <AnimatedComponent
-                        animationInType={['fadeIn']}
-                        animationOutType={['fadeOut']}
-                        delay={0}
-                        style={{ height, width, opacity: 0.04 }}
+                        style={styles.animation}
                     >
                         <LottieView
-                            ref={(animation) => {
-                                this.animation = animation;
-                            }}
-                            source={balloonsAnimation}
+                            source={getAnimation('onboardingComplete', themeName)}
                             loop={false}
                             autoPlay
+                            style={styles.animation}
                         />
+                        <Text style={[styles.infoText, { color: body.color }]}>{t('walletReady')}</Text>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                    <AnimatedComponent
+                        delay={0}
+                        animationInType={['fadeIn', 'slideInRight']}
+                        animationOutType={['fadeOut', 'slideOutLeft']}
+                    >
                         <SingleFooterButton
                             onButtonPress={() => this.onNextPress()}
                             testID="languageSetup-next"
@@ -123,6 +125,7 @@ class OnboardingComplete extends Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
+    themeName: state.settings.themeName,
 });
 
 export default withNamespaces(['onboardingComplete', 'global'])(connect(mapStateToProps)(OnboardingComplete));

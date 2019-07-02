@@ -185,7 +185,7 @@ class CustomTextInput extends Component {
         value: '',
         isSeedInput: false,
         isPasswordInput: false,
-        loading: false
+        loading: false,
     };
 
     constructor(props) {
@@ -429,7 +429,9 @@ class CustomTextInput extends Component {
                         {
                             backgroundColor: isPasswordValid
                                 ? theme.positive.color
-                                : passwordStrength < 1 ? theme.body.alt : theme.negative.color,
+                                : passwordStrength < 1
+                                ? theme.body.alt
+                                : theme.negative.color,
                         },
                     ]}
                 />
@@ -439,7 +441,9 @@ class CustomTextInput extends Component {
                         {
                             backgroundColor: isPasswordValid
                                 ? theme.positive.color
-                                : passwordStrength < 2 ? theme.body.alt : theme.negative.color,
+                                : passwordStrength < 2
+                                ? theme.body.alt
+                                : theme.negative.color,
                         },
                     ]}
                 />
@@ -449,7 +453,9 @@ class CustomTextInput extends Component {
                         {
                             backgroundColor: isPasswordValid
                                 ? theme.positive.color
-                                : passwordStrength < 3 ? theme.body.alt : theme.negative.color,
+                                : passwordStrength < 3
+                                ? theme.body.alt
+                                : theme.negative.color,
                         },
                     ]}
                 />
@@ -501,11 +507,11 @@ class CustomTextInput extends Component {
      */
     renderRightHandWidget() {
         const { theme } = this.props;
-            return (
-                <View style={[styles.widgetContainer, { borderLeftWidth: 0.5, borderLeftColor: theme.input.alt }]}>
-                    {this.getWidgetRenderFunction(this.props.widgets[0])}
-                </View>
-            );
+        return (
+            <View style={[styles.widgetContainer, { borderLeftWidth: 0.5, borderLeftColor: theme.input.alt }]}>
+                {this.getWidgetRenderFunction(this.props.widgets[0])}
+            </View>
+        );
     }
 
     render() {

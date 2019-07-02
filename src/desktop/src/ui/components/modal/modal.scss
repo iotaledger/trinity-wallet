@@ -143,6 +143,7 @@ $footer: 70px;
 .hidden {
     pointer-events: none;
     opacity: 0;
+    transition: none;
 
     .wrapper {
         transform: scale(0.95);

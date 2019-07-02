@@ -21,7 +21,7 @@ describe('Crypto helper lib', () => {
 
         test('Correctly limit item maximum values', () => {
             const maxRange = 27;
-            const maxValue = 256 - 256 % maxRange;
+            const maxValue = 256 - (256 % maxRange);
             const bytes = randomBytes(81, maxRange);
             for (let i = 0; i < bytes.length; i++) {
                 expect(bytes[i]).toBeLessThan(maxValue);

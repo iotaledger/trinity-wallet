@@ -17,9 +17,7 @@ export const DEFAULT_NODE = __TEST__
           password: '',
       };
 
-export const NODES_WITH_POW_DISABLED = [
-    'https://nodes.iota.org',
-].map((url) => ({
+export const NODES_WITH_POW_DISABLED = ['https://nodes.iota.org'].map((url) => ({
     url,
     pow: false,
     token: '',
@@ -71,8 +69,8 @@ export const DEFAULT_RETRIES = 4;
 
 export const IRI_API_VERSION = '1';
 
-export const QUORUM_THRESHOLD = 67;
-export const QUORUM_SIZE = 4;
+export const QUORUM_THRESHOLD = 66;
+export const QUORUM_SIZE = 3;
 export const QUORUM_SYNC_CHECK_INTERVAL = 120;
 export const MINIMUM_QUORUM_SIZE = 2;
 export const MAXIMUM_QUORUM_SIZE = 7;

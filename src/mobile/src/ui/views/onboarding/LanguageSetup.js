@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableWithoutFeedback, Image } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 import timer from 'react-native-timer';
 import { withNamespaces } from 'react-i18next';
 import { navigator } from 'libs/navigation';
 import SplashScreen from 'react-native-splash-screen';
 import { getDeviceLocale } from 'react-native-device-info';
+import LottieView from 'lottie-react-native';
 import { I18N_LOCALE_LABELS, getLabelFromLocale, getLocaleFromLabel, detectLocale } from 'shared-modules/libs/i18n';
 import { setLanguage, setLocale } from 'shared-modules/actions/settings';
-import helloBackImagePath from 'shared-modules/images/hello-back.png';
+import { getAnimation } from 'shared-modules/animations';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -28,23 +29,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1,
+        flex: 1.8,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
     midContainer: {
-        flex: 4,
+        flex: 3.5,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
     },
     bottomContainer: {
-        flex: 1.5,
+        flex: 1.3,
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    helloBackground: {
-        width,
-        height: width / 0.95,
+    animation: {
+        width: width / 1.35,
+        height: width / 1.35,
     },
 });
 
@@ -62,11 +63,9 @@ class LanguageSetup extends Component {
         /** @ignore */
         setLocale: PropTypes.func.isRequired,
         /** @ignore */
-        acceptedPrivacy: PropTypes.bool.isRequired,
-        /** @ignore */
-        acceptedTerms: PropTypes.bool.isRequired,
-        /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     componentWillMount() {
@@ -88,18 +87,7 @@ class LanguageSetup extends Component {
         if (forceUpdate) {
             return;
         }
-        navigator.push(this.getNextRoute());
-    }
-
-    getNextRoute() {
-        const { acceptedTerms, acceptedPrivacy } = this.props;
-        let nextRoute = 'walletSetup';
-        if (!acceptedTerms && !acceptedPrivacy) {
-            nextRoute = 'termsAndConditions';
-        } else if (acceptedTerms && !acceptedPrivacy) {
-            nextRoute = 'privacyPolicy';
-        }
-        return nextRoute;
+        navigator.push('welcome');
     }
 
     selectLanguage(language) {
@@ -109,7 +97,11 @@ class LanguageSetup extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+            themeName,
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -122,24 +114,34 @@ class LanguageSetup extends Component {
             >
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
                     <View style={styles.container}>
-                        <AnimatedComponent
-                            animationInType={['fadeIn']}
-                            animationOutType={['fadeOut']}
-                            delay={0}
-                            style={[styles.helloBackground, { position: 'absolute' }]}
-                        >
-                            <Image style={styles.helloBackground} source={helloBackImagePath} />
-                        </AnimatedComponent>
                         <View style={styles.topContainer}>
                             <AnimatedComponent
                                 animationInType={['fadeIn']}
                                 animationOutType={['fadeOut', 'slideOutLeft']}
-                                delay={200}
+                                delay={400}
                             >
-                                <Header textColor={body.color} />
+                                <Header textColor={body.color}>{t('selectALanguage')}</Header>
                             </AnimatedComponent>
                         </View>
                         <View style={styles.midContainer}>
+                            <AnimatedComponent
+                                animationInType={['fadeIn']}
+                                animationOutType={['fadeOut', 'slideOutLeft']}
+                                delay={200}
+                                style={styles.animation}
+                            >
+                                <LottieView
+                                    source={getAnimation('language', themeName)}
+                                    style={styles.animation}
+                                    loop={false}
+                                    autoPlay
+                                    ref={(ref) => {
+                                        this.animation = ref;
+                                    }}
+                                    onAnimationFinish={() => this.animation.play(52, 431)}
+                                />
+                            </AnimatedComponent>
+                            <View style={{ flex: 0.2 }} />
                             <AnimatedComponent
                                 animationInType={['fadeIn']}
                                 animationOutType={['fadeOut', 'slideOutLeft']}
@@ -178,9 +180,8 @@ class LanguageSetup extends Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
-    acceptedPrivacy: state.settings.acceptedPrivacy,
-    acceptedTerms: state.settings.acceptedTerms,
     forceUpdate: state.wallet.forceUpdate,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {
@@ -189,4 +190,9 @@ const mapDispatchToProps = {
     setLocale,
 };
 
-export default withNamespaces(['languageSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(LanguageSetup));
+export default withNamespaces(['languageSetup', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(LanguageSetup),
+);

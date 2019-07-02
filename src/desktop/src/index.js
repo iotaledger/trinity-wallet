@@ -9,8 +9,10 @@ import { Provider as Redux } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import i18next from 'libs/i18next';
 import store from 'store';
+import Themes from 'themes/themes';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';
 import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
+import { updateTheme } from 'actions/settings';
 import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode, quorum } from 'libs/iota';
 import { initialise as initialiseStorage } from 'storage';
@@ -83,6 +85,11 @@ const init = () => {
 
                     // Update store with persisted state
                     store.dispatch(mapStorageToStateAction(data));
+
+                    // Set theme to default if current theme does not exist
+                    if (!get(Themes, store.getState().settings.themeName)) {
+                        store.dispatch(updateTheme('Default'));
+                    }
 
                     // Update language to initial setting
                     i18next.changeLanguage(data.settings.locale);

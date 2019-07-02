@@ -7,7 +7,6 @@ import SteelBlue from './themes/SteelBlue';
 import Contemporary from './themes/Contemporary';
 import Dark from './themes/Dark';
 import Light from './themes/Light';
-import Lucky from './themes/Lucky';
 
 const themes = {
     Default: Default,
@@ -19,7 +18,6 @@ const themes = {
     Contemporary: Contemporary,
     Dark: Dark,
     Light: Light,
-    Lucky: Lucky,
 };
 
 export default themes;
