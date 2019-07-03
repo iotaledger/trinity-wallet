@@ -169,7 +169,7 @@ export const generateNotEnoughSyncedNodes = (err) => (dispatch) => {
  * @returns {function} dispatch
  */
 export const generateTransitionErrorAlert = (err) => (dispatch) => {
-    if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+    if (typeof err.message === 'string' && err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
         dispatch(
             generateAlert(
                 'error',
@@ -179,7 +179,10 @@ export const generateTransitionErrorAlert = (err) => (dispatch) => {
                 err,
             ),
         );
-    } else if (err.message.includes(Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE)) {
+    } else if (
+        typeof err.message === 'string' &&
+        err.message.includes(Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE)
+    ) {
         dispatch(
             generateAlert(
                 'error',

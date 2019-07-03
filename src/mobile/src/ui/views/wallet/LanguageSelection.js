@@ -97,7 +97,7 @@ class LanguageSelection extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <SettingsDualFooter
-                            hideActionButton={this.state.languageSelected === language }
+                            hideActionButton={this.state.languageSelected === language}
                             theme={theme}
                             backFunction={() => this.props.setSetting('mainSettings')}
                             actionFunction={() => this.saveLanguageSelection()}
@@ -122,5 +122,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['languageSetup', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(LanguageSelection),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(LanguageSelection),
 );

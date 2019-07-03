@@ -100,50 +100,49 @@ const updateAccountName = (state, payload) => {
     };
 };
 
-const account = (
-    state = {
+export const initialState = {
+    /**
+     * Temporary storage for account info during setup
+     */
+    accountInfoDuringSetup: {
         /**
-         * Temporary storage for account info during setup
+         * Account name
          */
-        accountInfoDuringSetup: {
-            /**
-             * Account name
-             */
-            name: '',
-            /**
-             * Account meta - { type, index, page, indexAddress }
-             */
-            meta: {},
-            /**
-             * Determines if a user used an existing seed during account setup
-             */
-            usedExistingSeed: false,
-            /**
-             * Determines if the account info is complete and account ready to be created and synced
-             */
-            completed: false,
-        },
+        name: '',
         /**
-         * Determines if onboarding process is completed
+         * Account meta - { type, index, page, indexAddress }
          */
-        onboardingComplete: false,
+        meta: {},
         /**
-         * Keeps track of each account information (name, addresses[], transactions[])
+         * Determines if a user used an existing seed during account setup
          */
-        accountInfo: {},
+        usedExistingSeed: false,
         /**
-         * Keeps track information during account setup.
-         * For example: Keeps track if a user used an existing seed or generated within Trinity
+         * Determines if the account info is complete and account ready to be created and synced
          */
-        setupInfo: {},
-        /**
-         * Keeps track on tasks wallet needs to perform
-         * For example: Keeps track if user was displayed with the transaction guide modal
-         */
-        tasks: {},
+        completed: false,
     },
-    action,
-) => {
+    /**
+     * Determines if onboarding process is completed
+     */
+    onboardingComplete: false,
+    /**
+     * Keeps track of each account information (name, addresses[], transactions[])
+     */
+    accountInfo: {},
+    /**
+     * Keeps track information during account setup.
+     * For example: Keeps track if a user used an existing seed or generated within Trinity
+     */
+    setupInfo: {},
+    /**
+     * Keeps track on tasks wallet needs to perform
+     * For example: Keeps track if user was displayed with the transaction guide modal
+     */
+    tasks: {},
+};
+
+const account = (state = initialState, action) => {
     switch (action.type) {
         case AccountsActionTypes.SET_ACCOUNT_INFO_DURING_SETUP:
             return {

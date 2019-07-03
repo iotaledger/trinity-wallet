@@ -97,6 +97,7 @@ export class PasswordComponent extends React.PureComponent {
                         <Icon icon="eye" size={16} />
                     </a>
                     <input
+                        {...disabled && { tabIndex: '-1' }}
                         type={hidden ? 'password' : 'text'}
                         ref={(input) => {
                             this.input = input;

@@ -81,12 +81,16 @@ export class AdvancedSettings extends PureComponent {
     renderSettingsContent() {
         const { theme, t, autoPromotion, remotePoW, deepLinking, isSendingTransfer } = this.props;
         const rows = [
-            { name: t('settings:nodeSettings'), icon: 'node', function: () => {
-              if (isSendingTransfer) {
-                  return this.generateChangeNodeAlert();
-              }
-              return this.props.setSetting('nodeSettings');
-            }},
+            {
+                name: t('settings:nodeSettings'),
+                icon: 'node',
+                function: () => {
+                    if (isSendingTransfer) {
+                        return this.generateChangeNodeAlert();
+                    }
+                    return this.props.setSetting('nodeSettings');
+                },
+            },
             {
                 name: t('pow'),
                 icon: 'pow',
@@ -143,5 +147,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['advancedSettings', 'settings', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(AdvancedSettings),
 );

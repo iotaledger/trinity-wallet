@@ -10,6 +10,7 @@ import machineUuid from 'machine-uuid-sync';
 import { byteToTrit, byteToChar } from 'libs/iota/converter';
 import { removeNonAlphaNumeric } from 'libs/utils';
 import { moment } from 'libs/exports';
+import Errors from 'libs/errors';
 
 import kdbx from '../libs/kdbx';
 import Entangled from '../libs/Entangled';
@@ -462,6 +463,30 @@ const Electron = {
         } catch (error) {
             return error.message;
         }
+    },
+
+    /**
+     * Exports wallet's state
+     *
+     * @param {string} - Serialized wallet state
+     *
+     * @returns {Promise}
+     */
+    exportState: (content) => {
+        const prefix = 'Trinity';
+
+        const path = remote.dialog.showSaveDialog(remote.getCurrentWindow(), {
+            title: 'Export state',
+            defaultPath: `${prefix}-${moment().format('YYYYMMDD-HHmm')}.txt`,
+            buttonLabel: 'Export',
+            filters: [{ name: 'State Export File', extensions: ['txt'] }],
+        });
+
+        if (!path) {
+            return Promise.reject(new Error(Errors.EXPORT_CANCELLED));
+        }
+
+        return new Promise((resolve, reject) => fs.writeFile(path, content, (err) => (err ? reject(err) : resolve())));
     },
 
     /**

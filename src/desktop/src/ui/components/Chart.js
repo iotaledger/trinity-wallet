@@ -78,7 +78,7 @@ export class ChartComponent extends PureComponent {
 
         return (
             <div className={css.chart}>
-                <h3>{priceData.currency}/MIOTA</h3>
+                <h3>MIOTA/{priceData.currency}</h3>
                 <div>
                     {chartData.data.length ? (
                         <ResponsiveContainer height="100%" width="100%">

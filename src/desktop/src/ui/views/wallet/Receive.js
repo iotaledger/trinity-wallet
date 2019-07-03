@@ -19,7 +19,7 @@ import { randomBytes } from 'libs/crypto';
 import Errors from 'libs/errors';
 import { byteToChar } from 'libs/iota/converter';
 import { getLatestAddressObject } from 'libs/iota/addresses';
-import { ADDRESS_LENGTH } from 'libs/iota/utils';
+import { ADDRESS_LENGTH, MAX_MESSAGE_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
@@ -137,7 +137,7 @@ class Receive extends React.PureComponent {
         } catch (err) {
             this.props.addressValidationSuccess();
             history.push('/wallet/');
-            if (err.message === Errors.LEDGER_INVALID_INDEX) {
+            if (typeof err.message === 'string' && err.message === Errors.LEDGER_INVALID_INDEX) {
                 generateAlert(
                     'error',
                     t('ledger:ledgerIncorrectIndex'),
@@ -244,6 +244,7 @@ class Receive extends React.PureComponent {
                         value={message}
                         label={t('send:message')}
                         onChange={(value) => this.setState({ message: value })}
+                        maxLength={MAX_MESSAGE_LENGTH}
                     />
                     <footer>
                         <Button id="to-wallet" to="/wallet/" variant="secondary" className="outlineSmall">
@@ -285,4 +286,7 @@ const mapDispatchToProps = {
     addressValidationSuccess,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Receive));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(Receive));

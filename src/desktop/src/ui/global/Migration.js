@@ -155,4 +155,7 @@ const mapDispatchToProps = {
     setFullNode,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Migration));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(Migration));

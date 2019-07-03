@@ -3,6 +3,7 @@
 import 'shared-modules/libs/global';
 import assign from 'lodash/assign';
 import get from 'lodash/get';
+import isUndefined from 'lodash/isUndefined';
 import isEmpty from 'lodash/isEmpty';
 import merge from 'lodash/merge';
 import { Navigation } from 'react-native-navigation';
@@ -15,7 +16,7 @@ import { changeIotaNode, quorum } from 'shared-modules/libs/iota';
 import reduxStore from 'shared-modules/store';
 import { assignAccountIndexIfNecessary } from 'shared-modules/actions/accounts';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
-import { setCompletedForcedPasswordUpdate, setAppVersions } from 'shared-modules/actions/settings';
+import { setCompletedForcedPasswordUpdate, setAppVersions, updateTheme } from 'shared-modules/actions/settings';
 import Themes from 'shared-modules/themes/themes';
 import { mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
 import { WalletActionTypes } from 'shared-modules/types';
@@ -93,7 +94,11 @@ const getInitialScreen = () => {
 
 const renderInitialScreen = (initialScreen) => {
     const state = reduxStore.getState();
-    const theme = Themes[state.settings.themeName] || Themes.Default;
+    let theme = get(Themes, state.settings.themeName);
+    if (isUndefined(theme)) {
+        reduxStore.dispatch(updateTheme('Default'));
+        theme = get(Themes, 'Default');
+    }
 
     const options = {
         layout: {

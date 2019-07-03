@@ -13,7 +13,7 @@ import URL from 'url-parse';
 import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
 import { isNodeHealthy } from './extendedApi';
-import { NODELIST_URL, MAX_REQUEST_TIMEOUT } from '../../config';
+import { NODELIST_ENDPOINTS, FETCH_REMOTE_NODES_REQUEST_TIMEOUT, MAX_REQUEST_TIMEOUT } from '../../config';
 import Errors from '../errors';
 import { roundDown } from '../utils';
 
@@ -26,6 +26,10 @@ export const SEED_CHECKSUM_LENGTH = 3;
 export const ADDRESS_LENGTH_WITHOUT_CHECKSUM = MAX_SEED_LENGTH;
 
 export const ADDRESS_LENGTH = 90;
+
+export const MAX_MESSAGE_LENGTH = 1093;
+
+export const MAX_TAG_LENGTH = 27;
 
 export const CHECKSUM_LENGTH = ADDRESS_LENGTH - ADDRESS_LENGTH_WITHOUT_CHECKSUM;
 
@@ -425,28 +429,49 @@ export const withRetriesOnDifferentNodes = (nodes, failureCallbacks) => {
  * Fetches list of IRI nodes from a server
  *
  * @method fetchRemoteNodes
- * @param {string} [url]
- * @param {object} [options]
  *
- * @returns {Promise<*>}
+ * @returns {Promise<array>}
  */
-export const fetchRemoteNodes = (
-    url = NODELIST_URL,
-    options = {
+export const fetchRemoteNodes = async () => {
+    const requestOptions = {
         headers: {
             Accept: 'application/json',
         },
-    },
-) =>
-    fetch(url, options)
-        .then((response) => response.json())
-        .then((response) => {
-            if (isArray(response)) {
-                return response.filter((node) => typeof node.node === 'string' && node.node.indexOf('https://') === 0);
+    };
+
+    let remoteNodes = [];
+
+    for (let index = 0; index < NODELIST_ENDPOINTS.length; index++) {
+        try {
+            const endPoint = NODELIST_ENDPOINTS[index];
+
+            const response = await Promise.race([
+                fetch(endPoint, requestOptions),
+                new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Fetch timeout')), FETCH_REMOTE_NODES_REQUEST_TIMEOUT),
+                ),
+            ]);
+            const remoteList = await response.json();
+
+            remoteNodes = remoteList.filter(
+                ({ node, pow }) =>
+                    typeof node === 'string' && node.indexOf('https://') === 0 && typeof pow === 'boolean',
+            );
+
+            if (remoteNodes.length === 0) {
+                throw Error('No nodes returned');
             }
 
-            return [];
-        });
+            break;
+        } catch (err) {}
+    }
+
+    return remoteNodes.map(({ node, pow }) => ({
+        url: node,
+        pow,
+        token: '',
+    }));
+};
 
 /**
  * Gets random nodes.

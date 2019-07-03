@@ -44,6 +44,8 @@ class Sidebar extends React.PureComponent {
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     state = {
@@ -75,13 +77,13 @@ class Sidebar extends React.PureComponent {
 
     render() {
         // Use accountNames prop for displaying account names here because accountNames prop preserves the account index
-        const { accountNames, accounts, seedIndex, setSeedIndex, t, location, history, isBusy } = this.props;
+        const { accountNames, accounts, seedIndex, setSeedIndex, t, location, history, isBusy, themeName } = this.props;
         const { modalLogout } = this.state;
 
         return (
             <aside>
                 <div>
-                    <Logo size={60} />
+                    <Logo size={60} themeName={themeName} />
                 </div>
 
                 <nav>
@@ -141,7 +143,9 @@ class Sidebar extends React.PureComponent {
                             title: t('logoutConfirmationModal:logoutConfirmation'),
                             confirm: t('yes'),
                             cancel: t('no'),
+                            animation: { name: 'logout', loop: false }
                         }}
+                        themeName={themeName}
                         onCancel={this.toggleLogout}
                         onConfirm={this.doLogout}
                     />
@@ -160,6 +164,7 @@ const mapStateToProps = (state) => ({
         state.ui.isSendingTransfer ||
         state.ui.isGeneratingReceiveAddress ||
         state.ui.isFetchingAccountInfo,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {

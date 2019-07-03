@@ -1095,5 +1095,8 @@ export const isFatalTransactionError = (err) => {
         Errors.FUNDS_AT_SPENT_ADDRESSES,
         Errors.KEY_REUSE,
     ];
-    return some(fatalTransferErrors, (error) => err.message && err.message.includes(error));
+    return some(
+        fatalTransferErrors,
+        (error) => error === err || (typeof err.message === 'string' && err.message.includes(error)),
+    );
 };

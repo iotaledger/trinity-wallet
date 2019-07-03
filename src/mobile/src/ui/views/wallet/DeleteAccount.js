@@ -201,7 +201,9 @@ class DeleteAccount extends Component {
                                 <Text style={[styles.warningText, { color: primaryColor }]}>
                                     {t('thisAction').toUpperCase()}
                                 </Text>
-                                <Text style={[styles.infoText, textColor, { paddingTop: height / 30 }]}>{t('enterPassword')}</Text>
+                                <Text style={[styles.infoText, textColor, { paddingTop: height / 30 }]}>
+                                    {t('enterPassword')}
+                                </Text>
                                 <CustomTextInput
                                     label={t('global:password')}
                                     onValidTextChange={(password) => this.setState({ password })}

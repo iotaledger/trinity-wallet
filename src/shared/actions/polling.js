@@ -2,6 +2,7 @@ import each from 'lodash/each';
 import extend from 'lodash/extend';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
+import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import some from 'lodash/some';
@@ -324,16 +325,8 @@ export const fetchNodeList = () => {
         fetchRemoteNodes()
             .then((remoteNodes) => {
                 // If there is a successful response, keep a union of (new nodes returned from the endpoint, default hardcoded nodes)
-                if (remoteNodes.length) {
-                    nodes = unionBy(
-                        nodes,
-                        map(remoteNodes, (node) => ({
-                            url: node.node,
-                            pow: node.pow,
-                            token: '',
-                        })),
-                        'url',
-                    );
+                if (isArray(remoteNodes) && remoteNodes.length) {
+                    nodes = unionBy(nodes, remoteNodes, 'url');
                 } else {
                     // Otherwise, fallback to existing nodes
                     nodes = getNodesFromState(getState());
@@ -544,7 +537,7 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
         })
         .then(() => dispatch(promoteTransactionSuccess()))
         .catch((err) => {
-            if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+            if (typeof err.message === 'string' && err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
                 // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion
                 dispatch(
                     generateAlert(

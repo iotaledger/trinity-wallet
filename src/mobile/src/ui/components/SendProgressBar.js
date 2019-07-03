@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { PanResponder, Easing, Animated, StyleSheet, View } from 'react-native';
 import LottieView from 'lottie-react-native';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
-import sliderLoadingAnimation from 'shared-modules/animations/slider-loader.json';
-import sliderSuccessAnimation from 'shared-modules/animations/slider-success.json';
+import { getAnimation } from 'shared-modules/animations';
 import timer from 'react-native-timer';
 import { height as deviceHeight } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -59,6 +58,8 @@ class SendProgressBar extends Component {
         interupt: PropTypes.bool,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     static defaultProps = {
@@ -80,7 +81,7 @@ class SendProgressBar extends Component {
             sliderOpacity: new Animated.Value(1),
             progressText: isAlreadyInProgress ? props.progressText : '',
             inProgress: isAlreadyInProgress,
-            sliderAnimation: sliderLoadingAnimation,
+            sliderAnimation: 'progressLoading',
             sliderSize: new Animated.Value(isAlreadyInProgress ? props.channelHeight : props.channelHeight * 0.8),
         };
         // Global progress
@@ -173,7 +174,7 @@ class SendProgressBar extends Component {
 
     onProgressComplete() {
         this.sliderAnimation.reset();
-        this.setState({ sliderAnimation: sliderSuccessAnimation, shouldLoopSliderAnimation: false });
+        this.setState({ sliderAnimation: 'progressSuccess', shouldLoopSliderAnimation: false });
         timer.setTimeout(
             'delaySliderOpacityIncreaseAnimation',
             () => {
@@ -199,7 +200,7 @@ class SendProgressBar extends Component {
                 this.globalProgress = -1;
                 this.setState({
                     inProgress: false,
-                    sliderAnimation: sliderLoadingAnimation,
+                    sliderAnimation: 'progressLoading',
                     shouldLoopSliderAnimation: true,
                 });
                 this.state.animatedProgressValue.setValue(0);
@@ -324,7 +325,16 @@ class SendProgressBar extends Component {
     }
 
     render() {
-        const { channelHeight, channelWidth, textColor, staticText, unfilledColor, filledColor, t } = this.props;
+        const {
+            themeName,
+            channelHeight,
+            channelWidth,
+            textColor,
+            staticText,
+            unfilledColor,
+            filledColor,
+            t,
+        } = this.props;
         return (
             <View style={[styles.container, { height: channelHeight }]}>
                 <View
@@ -388,7 +398,7 @@ class SendProgressBar extends Component {
                             ref={(animation) => {
                                 this.sliderAnimation = animation;
                             }}
-                            source={this.state.sliderAnimation}
+                            source={getAnimation(this.state.sliderAnimation, themeName)}
                             style={{ width: channelHeight * 0.9, height: channelHeight * 0.9, position: 'absolute' }}
                             loop={this.state.shouldLoopSliderAnimation}
                         />
