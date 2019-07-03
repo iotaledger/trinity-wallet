@@ -43,6 +43,20 @@ export default class Number extends React.PureComponent {
         }
     }
 
+    onInput(value) {
+        const { min, max, onChange } = this.props;
+
+        if (typeof min === 'number') {
+            value = Math.max(value, min);
+        }
+
+        if (typeof max === 'number') {
+            value = Math.min(value, max);
+        }
+
+        onChange(value);
+    }
+
     render() {
         const { disabled, label, inline, value, onChange, max, min } = this.props;
 
@@ -51,7 +65,7 @@ export default class Number extends React.PureComponent {
                 <fieldset>
                     <div>
                         <small>{label}</small>
-                        <span onClick={() => onChange(Math.max(min || 0, value - 1))}>
+                        <span onClick={() => this.onInput(value - 1)}>
                             <Icon icon="chevronLeft" size={inline ? 9 : 12} />
                         </span>
                         <input
@@ -61,11 +75,9 @@ export default class Number extends React.PureComponent {
                             type="number"
                             value={value}
                             min="0"
-                            onChange={(e) =>
-                                onChange(Math.max(min || 0, Math.min(parseInt(e.target.value), max || 999)))
-                            }
+                            onChange={(e) => this.onInput(parseInt(e.target.value))}
                         />
-                        <span onClick={() => onChange(Math.min(value + 1, max || 999))}>
+                        <span onClick={() => this.onInput(value + 1)}>
                             <Icon icon="chevronRight" size={inline ? 9 : 12} />
                         </span>
                     </div>
