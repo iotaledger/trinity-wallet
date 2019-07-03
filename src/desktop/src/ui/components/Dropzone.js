@@ -106,7 +106,9 @@ class Dropzone extends React.Component {
             if (seed.length) {
                 return this.props.onTextDrop(seed);
             }
-        } catch (err) {}
+        } catch (err) {
+            console.log(err); //eslint-disable-line no-console
+        }
 
         const { onDrop } = this.props;
 

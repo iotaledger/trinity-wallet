@@ -31,7 +31,7 @@ import SeedStore from 'libs/SeedStore';
 import { Styling } from 'ui/theme/general';
 import MultiTextInput from 'ui/components/MultiTextInput';
 import CustomQrCodeComponent from 'ui/components/CustomQRCode';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import ScramblingText from 'ui/components/ScramblingText';
 import CtaButton from 'ui/components/CtaButton';
 import AnimatedComponent from 'ui/components/AnimatedComponent';

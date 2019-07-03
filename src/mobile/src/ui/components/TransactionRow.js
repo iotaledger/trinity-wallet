@@ -7,7 +7,7 @@ import spinner from 'shared-modules/animations/spinner.json';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { locale, timezone } from 'libs/device';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
     container: {

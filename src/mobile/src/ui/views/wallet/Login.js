@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
 import SplashScreen from 'react-native-splash-screen';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { Linking, StyleSheet, View } from 'react-native';
 import timer from 'react-native-timer';
 import { setFullNode } from 'shared-modules/actions/settings';

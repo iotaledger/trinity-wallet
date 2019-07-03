@@ -2,7 +2,7 @@ import size from 'lodash/size';
 import React from 'react';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
 import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { VALID_SEED_REGEX, MAX_SEED_TRITS, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';

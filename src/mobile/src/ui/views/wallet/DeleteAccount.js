@@ -167,7 +167,9 @@ class DeleteAccount extends Component {
         const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
         try {
             await seedStore.removeAccount();
-        } catch (err) {}
+        } catch (err) {
+            console.log(err); //eslint-disable-line no-console
+        }
         this.props.deleteAccount(selectedAccountName);
     }
 

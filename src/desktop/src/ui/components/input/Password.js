@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { withTranslation } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
-import { passwordReasons } from 'libs/password';
+import passwordReasons from 'libs/password';
 
 import Icon from 'ui/components/Icon';
 import css from './input.scss';

@@ -9,7 +9,7 @@ import { hash } from 'libs/keychain';
 import { setUserActivity } from 'shared-modules/actions/ui';
 import { clearWalletData } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 
 export default () => (C) => {
     class WithLogout extends Component {

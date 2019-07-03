@@ -9,7 +9,7 @@ import { zxcvbn } from 'libs/exports';
 import { generateAlert } from 'actions/alerts';
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
-import { passwordReasons } from 'libs/password';
+import passwordReasons from 'libs/password';
 
 import PasswordInput from 'ui/components/input/Password';
 import Button from 'ui/components/Button';

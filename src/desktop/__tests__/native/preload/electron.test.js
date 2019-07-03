@@ -2,7 +2,7 @@
 
 import Electron from '../../../native/preload/Electron';
 
-import trytes from '../../../__mocks__/samples/trytes.js';
+import trytes from '../../../__mocks__/samples/trytes';
 import { seedTrytesMock, passwordMock, addressMocks } from '../../../__mocks__/samples/keychain';
 
 describe('Electron preload class', () => {

@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import i18next from 'shared-modules/libs/i18next.js';
+import i18next from 'shared-modules/libs/i18next';
 import { height, width } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 
 const styles = StyleSheet.create({

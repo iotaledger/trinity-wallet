@@ -11,7 +11,7 @@ import { setPassword } from 'actions/wallet';
 
 import SeedStore from 'libs/SeedStore';
 import { hash, initKeychain, initVault } from 'libs/crypto';
-import { passwordReasons } from 'libs/password';
+import passwordReasons from 'libs/password';
 
 import Button from 'ui/components/Button';
 import PasswordInput from 'ui/components/input/Password';

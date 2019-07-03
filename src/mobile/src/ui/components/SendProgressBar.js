@@ -7,7 +7,7 @@ import { getAnimation } from 'shared-modules/animations';
 import timer from 'react-native-timer';
 import { height as deviceHeight } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
     container: {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { getAnimation } from 'shared-modules/animations';
 import LottieView from 'lottie-react-native';
 import { connect } from 'react-redux';

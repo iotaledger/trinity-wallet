@@ -1,5 +1,5 @@
 /* global Electron */
-import { ALIAS_REALM } from 'libs/constants';
+import ALIAS_REALM from 'libs/constants';
 
 export const ACC_MAIN = 'Trinity';
 // Maximum allowed account title

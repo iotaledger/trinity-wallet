@@ -11,7 +11,7 @@ import { getRealmEncryptionKeyFromKeychain, setRealmEncryptionKeyInKeychain } fr
  * @method getEncryptionKey
  * @returns {Promise}
  */
-export const getEncryptionKey = () => {
+const getEncryptionKey = () => {
     // Access keychain and check if there is an encryption key stored for realm
     return getRealmEncryptionKeyFromKeychain().then((key) => {
         // If there is no encryption key stored, generate a new one.
@@ -23,3 +23,5 @@ export const getEncryptionKey = () => {
         return key;
     });
 };
+
+export default getEncryptionKey;

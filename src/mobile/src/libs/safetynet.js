@@ -8,7 +8,7 @@ const API_KEY = 'fakeAPIkey';
  * Send an attestation request to SafetyNet
  * @return {Promise<boolean>}
  */
-export const doAttestationFromSafetyNet = () => {
+const doAttestationFromSafetyNet = () => {
     return isPlayServicesAvailable()
         .then((result) => {
             if (result === true) {
@@ -19,3 +19,5 @@ export const doAttestationFromSafetyNet = () => {
         })
         .then((nonce) => sendAndVerifyAttestation(nonce, API_KEY));
 };
+
+export default doAttestationFromSafetyNet;

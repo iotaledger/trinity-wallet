@@ -8,7 +8,7 @@ import timer from 'react-native-timer';
 import sliderSuccessAnimation from 'shared-modules/animations/progressSuccess.json';
 import { height as deviceHeight, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
     container: {

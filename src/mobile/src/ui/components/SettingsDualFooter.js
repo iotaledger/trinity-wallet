@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
-import i18next from 'shared-modules/libs/i18next.js';
+import i18next from 'shared-modules/libs/i18next';
 import PropTypes from 'prop-types';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { height, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 

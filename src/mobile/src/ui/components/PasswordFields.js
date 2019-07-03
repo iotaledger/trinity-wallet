@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { zxcvbn } from 'shared-modules/libs/exports';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { passwordReasons } from 'shared-modules/libs/password';
+import passwordReasons from 'shared-modules/libs/password';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';

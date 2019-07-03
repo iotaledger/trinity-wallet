@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import Toggle from 'ui/components/Toggle';
 import DropdownComponent from 'ui/components/Dropdown';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import { height, width } from 'libs/dimensions';
 

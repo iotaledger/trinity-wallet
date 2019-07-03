@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import timer from 'react-native-timer';
 import { getAnimation } from 'shared-modules/animations';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';

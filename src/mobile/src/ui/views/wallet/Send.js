@@ -44,7 +44,7 @@ import ProgressSteps from 'libs/progressSteps';
 import SeedStore from 'libs/SeedStore';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import AmountTextInput from 'ui/components/AmountTextInput';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { width } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import { Styling } from 'ui/theme/general';

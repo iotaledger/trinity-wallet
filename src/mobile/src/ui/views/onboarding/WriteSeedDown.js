@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withNamespaces, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FlagSecure from 'react-native-flag-secure-android';

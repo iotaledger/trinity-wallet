@@ -5,7 +5,7 @@ import merge from 'lodash/merge';
 import nock from 'nock';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { sweep } from '../../../libs/iota/recovery';
+import sweep from '../../../libs/iota/recovery';
 import {
     LATEST_MILESTONE,
     LATEST_MILESTONE_INDEX,

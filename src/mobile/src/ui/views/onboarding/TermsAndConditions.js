@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import PropTypes from 'prop-types';
 import Markdown from 'react-native-markdown-renderer';
 import {

@@ -5,10 +5,10 @@ import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { migrateAccounts, migrateSettings } from '../libs/migrations';
 import { mapStorageToState as mapStorageToStateAction } from './wallet';
 import { generateAlert } from './alerts';
-import { mapStorageToState } from '../libs/storageToStateMappers';
+import mapStorageToState from '../libs/storageToStateMappers';
 import { Wallet } from '../storage';
 import Errors from '../libs/errors';
-import i18next from '../libs/i18next.js';
+import i18next from '../libs/i18next';
 import { MigrationsActionTypes } from '../types';
 
 /**

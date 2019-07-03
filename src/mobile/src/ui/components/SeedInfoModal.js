@@ -5,7 +5,7 @@ import { withNamespaces, Trans } from 'react-i18next';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { Styling } from 'ui/theme/general';
 import { height, width } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import ModalView from './ModalView';
 
 const styles = StyleSheet.create({

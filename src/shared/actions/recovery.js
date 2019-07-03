@@ -6,7 +6,7 @@ import { selectedAccountStateFactory } from '../selectors/accounts';
 import { getRemotePoWFromState } from '../selectors/global';
 import { syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
 import { cleanUpAccountState, updateAccountInfoAfterSpending, syncAccountBeforeSweeping } from './accounts';
-import { sweep } from '../libs/iota/recovery';
+import sweep from '../libs/iota/recovery';
 import { formatIotas } from '../libs/iota/utils';
 import { byteToChar, bytesToTrits } from '../libs/iota/converter';
 import { getLatestAddress } from '../libs/iota/addresses';

@@ -1,4 +1,6 @@
 /**
  * Realm database encryption key alias
  */
-export const ALIAS_REALM = 'realm_enc_key';
+const ALIAS_REALM = 'realm_enc_key';
+
+export default ALIAS_REALM;
