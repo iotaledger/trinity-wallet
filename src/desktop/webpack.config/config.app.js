@@ -76,6 +76,10 @@ const config = {
                 ],
             },
             { test: /\.node$/, loader: 'node-loader' },
+            {
+                test: /\.md$/i,
+                use: 'raw-loader',
+            },
         ],
     },
     resolve: {
