@@ -43,22 +43,26 @@ export default class Number extends React.PureComponent {
         }
     }
 
-    onInput(value) {
-        const { min, max, onChange } = this.props;
+    onInput(input) {
+        const { min, max, onChange, value } = this.props;
+
+        if (isNaN(input)) {
+            input = value;
+        }
 
         if (typeof min === 'number') {
-            value = Math.max(value, min);
+            input = Math.max(input, min);
         }
 
         if (typeof max === 'number') {
-            value = Math.min(value, max);
+            input = Math.min(input, max);
         }
 
-        onChange(value);
+        onChange(input);
     }
 
     render() {
-        const { disabled, label, inline, value, onChange, max, min } = this.props;
+        const { disabled, label, inline, value } = this.props;
 
         return (
             <div className={classNames(css.input, css.number, inline && css.inline, disabled && css.disabled)}>
