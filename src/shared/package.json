@@ -30,7 +30,7 @@
     "proxy-polyfill": "^0.3.0",
     "react": "16.2.0",
     "react-i18next": "^8.0.7",
-    "react-redux": "^5.0.6",
+    "react-redux": "^5.1.1",
     "redux": "^4.0.1",
     "redux-persist": "^4.10.1",
     "redux-thunk": "^2.2.0",
