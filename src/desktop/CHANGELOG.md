@@ -49,11 +49,7 @@
 -   Fix: Display fatal errors on preload and initialisation
 -   Fix: Missing Linux application icon
 -   Fix: Windows 7 not deleting files on wallet reset
--
-
-Fix: Windows 10 wallet failing to start if Windows 7 build was installed previously,
-and vice versa
-
+-   Fix: Windows 10 wallet failing to start if Windows 7 build was installed previously, and vice versa
 -   Fix: macOS tray application not displaying fiat value
 -   Fix: Changing account during Snapshot transition corrupting state
 -   Update: Improve user experience when adding Ledger accounts
