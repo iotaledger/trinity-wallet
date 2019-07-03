@@ -44,6 +44,7 @@ class Send extends React.PureComponent {
         settings: PropTypes.shape({
             conversionRate: PropTypes.number.isRequired,
             currency: PropTypes.string.isRequired,
+            usdPrice: PropTypes.number.isRequired,
         }),
         /** @ignore */
         progress: PropTypes.shape({
