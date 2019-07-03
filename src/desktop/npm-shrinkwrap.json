@@ -1,6 +1,6 @@
 {
   "name": "trinity-desktop",
-  "version": "0.6.2",
+  "version": "1.0.0",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -14215,9 +14215,9 @@
       "dev": true
     },
     "react-i18next": {
-      "version": "10.11.1",
-      "resolved": "https://registry.npmjs.org/react-i18next/-/react-i18next-10.11.1.tgz",
-      "integrity": "sha512-uzfMdGFbe0bZQkR8XyBUw1BV4rPBQ6X3+TgvMWdW94LeKrDrXBcyfokdejTYQpMlOMtf7TGrhQT9fLIfr+gftg==",
+      "version": "10.11.3",
+      "resolved": "https://registry.npmjs.org/react-i18next/-/react-i18next-10.11.3.tgz",
+      "integrity": "sha512-+kR0SQrTSws+NQfqK6Xe2FR6tMyfIPB6voxUqnLQ35Eh7T0vfe+v7eC4fF3pZlGGyn0qPKr294ACGbIz74u0sQ==",
       "requires": {
         "@babel/runtime": "^7.3.1",
         "html-parse-stringify2": "2.0.1"
