@@ -169,7 +169,7 @@
         "missingPermission": "Je požadované povolenie súborového systému",
         "missingPermissionExplanation": "K potvrdeniu tejto funkcie potrebujete prístup k súborovému systému.",
         "swipeToConfirm": "Posunutím potvrďte",
-        "congratulations": "Congratulations",
+        "congratulations": "Gratulujeme",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Synchronizuje sa príliš málo nodov",
         "notEnoughSyncedNodesExplanation": "Nebolo možné dosiahnuť kvórum. Vypnite kvórum alebo skúste znova."
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Jazyk",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Zvoľte jazyk",
         "letsGetStarted": "Môžeme začať"
     },
     "login": {
@@ -649,7 +649,7 @@
         "noPassword": "V zariadení nie je nastavené heslo"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Chystáte sa odoslať {{contents}}",
         "aMessage": "správa",
         "fromAccount": "Od {{selectedAccountName}}",
         "toAddress": "Na adresu",
