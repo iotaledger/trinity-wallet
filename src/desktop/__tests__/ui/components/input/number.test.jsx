@@ -25,8 +25,22 @@ describe('TeNumberxt component', () => {
     test('Input change callback', () => {
         const wrapper = shallow(<Number {...props} />);
 
-        wrapper.find('input').simulate('change', { target: { value: '30' } });
-        expect(props.onChange).toHaveBeenLastCalledWith(30);
+        wrapper.find('input').simulate('change', { target: { value: '999999' } });
+        expect(props.onChange).toHaveBeenLastCalledWith(999999);
+    });
+
+    test('Input min value callback', () => {
+        const wrapper = shallow(<Number min={10} {...props} />);
+
+        wrapper.find('input').simulate('change', { target: { value: '5' } });
+        expect(props.onChange).toHaveBeenLastCalledWith(10);
+    });
+
+    test('Input max value callback', () => {
+        const wrapper = shallow(<Number max={10} {...props} />);
+
+        wrapper.find('input').simulate('change', { target: { value: '15' } });
+        expect(props.onChange).toHaveBeenLastCalledWith(10);
     });
 
     test('Input label', () => {

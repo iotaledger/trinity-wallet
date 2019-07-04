@@ -72,6 +72,10 @@ class PasswordSettings extends PureComponent {
                 .map((accountName) => (accounts[accountName].meta ? accounts[accountName].meta.type : 'keychain'))
                 .filter((accountType, index, accountTypes) => accountTypes.indexOf(accountType) === index);
 
+            if (accountTypes.indexOf('keychain') < 0) {
+                accountTypes.push('keychain');
+            }
+
             for (let i = 0; i < accountTypes.length; i++) {
                 await SeedStore[accountTypes[i]].updatePassword(passwordCurrentHash, passwordNewHash);
             }
