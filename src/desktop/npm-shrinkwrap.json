@@ -4348,9 +4348,9 @@
       }
     },
     "dart-sass": {
-      "version": "1.22.2",
-      "resolved": "https://registry.npmjs.org/dart-sass/-/dart-sass-1.22.2.tgz",
-      "integrity": "sha512-lj/YGey7WYHcdneL7+IW2ybKKUCKQ5Abt/hDl/EP3IR0Vqx8IlqYWYmds9ZCzYrcORYhS4rct0E6F10S4I3nPQ==",
+      "version": "1.22.3",
+      "resolved": "https://registry.npmjs.org/dart-sass/-/dart-sass-1.22.3.tgz",
+      "integrity": "sha512-Cow8Og+T2BwDyA9IngKt+t/LzPV3t3tHEnSLp/B4ONmLT5kCa6GTmgtmwUtWsoweJT1V8t7jthoW9SgQB/U4Yg==",
       "dev": true,
       "requires": {
         "chokidar": ">=2.0.0 <4.0.0"
