@@ -4,7 +4,7 @@ const path = require('path');
 const { version } = require('../package.json');
 
 if (process.platform !== 'darwin') {
-    return;
+    exports.default = () => {};
 }
 
 // The Apple ID to be used to upload the app for notarization
@@ -22,7 +22,7 @@ if (!APPLE_ID_IDENTITY_NAME) {
     throw Error('Notarization failed: Environment variable "TRINITY_APPLE_ID_IDENTITY" is not defined');
 }
 
-notarize({
+exports.default = notarize({
     appBundleId: 'org.iota.trinity',
     appPath: path.resolve(__dirname, '..', 'out', `trinity-desktop-${version}.dmg`),
     appleId: APPLE_ID,
