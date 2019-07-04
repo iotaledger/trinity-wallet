@@ -7,7 +7,7 @@ import { zxcvbn } from 'libs/exports';
 import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
-import { passwordReasons } from 'libs/password';
+import passwordReasons from 'libs/password';
 import SeedStore from 'libs/SeedStore';
 import { hash } from 'libs/crypto';
 
@@ -71,6 +71,10 @@ class PasswordSettings extends PureComponent {
             const accountTypes = Object.keys(accounts)
                 .map((accountName) => (accounts[accountName].meta ? accounts[accountName].meta.type : 'keychain'))
                 .filter((accountType, index, accountTypes) => accountTypes.indexOf(accountType) === index);
+
+            if (accountTypes.indexOf('keychain') < 0) {
+                accountTypes.push('keychain');
+            }
 
             for (let i = 0; i < accountTypes.length; i++) {
                 await SeedStore[accountTypes[i]].updatePassword(passwordCurrentHash, passwordNewHash);

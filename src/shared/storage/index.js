@@ -870,11 +870,15 @@ const initialise = (getEncryptionKeyPromise) => {
         try {
             hasVersionZeroRealmAtDeprecatedPath =
                 Realm.schemaVersion(getDeprecatedStoragePath(0), encryptionKey) !== -1;
-        } catch (error) {}
+        } catch (error) {
+            console.log(error); //eslint-disable-line no-console
+        }
 
         try {
             hasVersionOneRealmAtDeprecatedPath = Realm.schemaVersion(getDeprecatedStoragePath(1), encryptionKey) !== -1;
-        } catch (error) {}
+        } catch (error) {
+            console.log(error); //eslint-disable-line no-console
+        }
 
         const versionZeroConfig = {
             encryptionKey,
@@ -907,11 +911,15 @@ const initialise = (getEncryptionKeyPromise) => {
         // Realm.schemaVersion(path) creates unnecessary files at provided path
         try {
             Realm.deleteFile(versionZeroConfig);
-        } catch (error) {}
+        } catch (error) {
+            console.log(error); //eslint-disable-line no-console
+        }
 
         try {
             Realm.deleteFile(versionOneConfig);
-        } catch (error) {}
+        } catch (error) {
+            console.log(error); //eslint-disable-line no-console
+        }
 
         const schemasSize = size(schemas);
         let nextSchemaIndex = 0;
@@ -919,7 +927,9 @@ const initialise = (getEncryptionKeyPromise) => {
         try {
             const schemaVersion = Realm.schemaVersion(latestStoragePath, encryptionKey);
             nextSchemaIndex = schemaVersion === -1 ? schemas[schemasSize - 1].schemaVersion : schemaVersion;
-        } catch (error) {}
+        } catch (error) {
+            console.log(error); //eslint-disable-line no-console
+        }
 
         while (nextSchemaIndex < schemasSize) {
             const migratedRealm = new Realm(assign({}, schemas[nextSchemaIndex++], { encryptionKey }));

@@ -76,17 +76,11 @@ class Migration extends React.Component {
         }
     }
 
-    progressSteps() {
-        const { t } = this.props;
-
-        return [
-            t('progressSteps:preparingData'),
-            t('progressSteps:migratingSettings'),
-            t('progressSteps:migratingAccounts'),
-            t('progressSteps:cleaningUpOldData'),
-            t('progressSteps:migrationComplete'),
-        ];
-    }
+    initMigration = () => {
+        this.setState({ hasFailedMigration: false });
+        this.props.startTrackingProgress(this.progressSteps());
+        this.props.migrate(electronStorage);
+    };
 
     changeNode = () => {
         const { node, nodes } = this.props;
@@ -100,11 +94,17 @@ class Migration extends React.Component {
         this.props.setFullNode(randomNode);
     };
 
-    initMigration = () => {
-        this.setState({ hasFailedMigration: false });
-        this.props.startTrackingProgress(this.progressSteps());
-        this.props.migrate(electronStorage);
-    };
+    progressSteps() {
+        const { t } = this.props;
+
+        return [
+            t('progressSteps:preparingData'),
+            t('progressSteps:migratingSettings'),
+            t('progressSteps:migratingAccounts'),
+            t('progressSteps:cleaningUpOldData'),
+            t('progressSteps:migrationComplete'),
+        ];
+    }
 
     render() {
         const { t, activeSteps, activeStepIndex, isChangingNode } = this.props;

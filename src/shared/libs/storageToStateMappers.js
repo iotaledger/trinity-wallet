@@ -12,7 +12,7 @@ import { Account, Node, Wallet } from '../storage';
  *
  * @returns {object}
  */
-export const mapStorageToState = () => {
+const mapStorageToState = () => {
     Account.orderAccountsByIndex();
     const accountsData = Account.getDataAsArray();
 
@@ -67,3 +67,5 @@ export const mapStorageToState = () => {
         alerts: { notificationLog: map(errorLog, (error) => error) },
     };
 };
+
+export default mapStorageToState;

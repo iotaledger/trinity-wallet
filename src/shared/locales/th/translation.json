@@ -364,8 +364,6 @@
         "message": "ข้อ​ความ",
         "invalidMessage": "ข้อความไม่ถูกต้อง",
         "invalidMessageExplanation": "ข้อความของคุณมีอักขระที่ไม่ถูกต้อง",
-        "invalidMessageTooLong": "Message too long",
-        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "Send",
         "invalidAmount": "กรุณาใส่จำนวนให้ถูกต้อง",
         "invalidAmountExplanation": "กรุณาใส่จำนวนของรายการให้ถูกต้อง ข้อมูลอาจเป็นประโยชน์ในการเรียกดูหน่วยของ IOTA ด้านล่างของหน้านี้",

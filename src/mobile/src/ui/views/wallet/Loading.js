@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import timer from 'react-native-timer';
 import { getAnimation } from 'shared-modules/animations';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
@@ -227,6 +227,14 @@ class Loading extends Component {
         this.props.getCurrencyData(currency);
     }
 
+    animateElipses = (chars, index, time = 750) => {
+        this.timeout = setTimeout(() => {
+            this.setState({ elipsis: chars[index] });
+            const next = index === chars.length - 1 ? 0 : index + 1;
+            this.animateElipses(chars, next);
+        }, time);
+    };
+
     /**
      * Navigates to home screen
      *
@@ -246,14 +254,6 @@ class Loading extends Component {
         timer.clearTimeout('inactivityTimer');
         timer.clearTimeout('waitTimeout');
     }
-
-    animateElipses = (chars, index, time = 750) => {
-        this.timeout = setTimeout(() => {
-            this.setState({ elipsis: chars[index] });
-            const next = index === chars.length - 1 ? 0 : index + 1;
-            this.animateElipses(chars, next);
-        }, time);
-    };
 
     /**
      * Redirect to login page

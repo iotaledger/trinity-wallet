@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import RNExitApp from 'react-native-exit-app';
@@ -18,7 +18,7 @@ import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import { doAttestationFromSafetyNet } from 'libs/safetynet';
+import doAttestationFromSafetyNet from 'libs/safetynet';
 import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
@@ -170,7 +170,10 @@ class WalletSetup extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+        } = this.props;
         const textColor = { color: body.color };
 
         return (
@@ -236,4 +239,9 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['walletSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(WalletSetup));
+export default withNamespaces(['walletSetup', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(WalletSetup),
+);

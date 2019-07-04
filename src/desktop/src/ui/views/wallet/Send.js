@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { formatIotas } from 'libs/iota/utils';
+import { formatIotas, MAX_MESSAGE_LENGTH } from 'libs/iota/utils';
 import { formatMonetaryValue } from 'libs/currency';
 
 import SeedStore from 'libs/SeedStore';
@@ -44,6 +44,7 @@ class Send extends React.PureComponent {
         settings: PropTypes.shape({
             conversionRate: PropTypes.number.isRequired,
             currency: PropTypes.string.isRequired,
+            usdPrice: PropTypes.number.isRequired,
         }),
         /** @ignore */
         progress: PropTypes.shape({
@@ -81,19 +82,6 @@ class Send extends React.PureComponent {
         });
     };
 
-    updateFields(address, message, amount) {
-        this.props.setSendAddressField(address);
-        if (message) {
-            this.props.setSendMessageField(message);
-        }
-        if (amount) {
-            if (typeof amount === 'number') {
-                amount = amount.toString();
-            }
-            this.props.setSendAmountField(amount);
-        }
-    }
-
     confirmTransfer = async () => {
         const { fields, password, accountName, accountMeta, sendTransfer } = this.props;
 
@@ -110,6 +98,19 @@ class Send extends React.PureComponent {
 
         sendTransfer(seedStore, fields.address, parseInt(fields.amount) || 0, message);
     };
+
+    updateFields(address, message, amount) {
+        this.props.setSendAddressField(address);
+        if (message) {
+            this.props.setSendMessageField(message);
+        }
+        if (amount) {
+            if (typeof amount === 'number') {
+                amount = amount.toString();
+            }
+            this.props.setSendAmountField(amount);
+        }
+    }
 
     render() {
         const { themeName, accountMeta, fields, isSending, availableBalance, settings, progress, t } = this.props;
@@ -174,6 +175,7 @@ class Send extends React.PureComponent {
                         label={t('send:message')}
                         disabled={!isMessageAvailable && parseInt(fields.amount) > 0}
                         onChange={(value) => this.props.setSendMessageField(value)}
+                        maxLength={MAX_MESSAGE_LENGTH}
                     />
                     <footer>
                         {!isSending ? (

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Styling } from 'ui/theme/general';
 import PropTypes from 'prop-types';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { height, width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({

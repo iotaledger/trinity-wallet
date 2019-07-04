@@ -173,16 +173,6 @@ class Home extends Component {
         }
     }
 
-    /**
-     * Resets child routes on settings screen
-     */
-    resetSettings() {
-        const { currentSetting } = this.props;
-        if (currentSetting !== 'mainSettings') {
-            this.props.setSetting('mainSettings');
-        }
-    }
-
     handleCloseTopBar = () => {
         const { isTopBarActive } = this.props;
         this.userInactivity.setActiveFromComponent();
@@ -204,6 +194,16 @@ class Home extends Component {
             this.props.setUserActivity({ inactive: true });
         }
     };
+
+    /**
+     * Resets child routes on settings screen
+     */
+    resetSettings() {
+        const { currentSetting } = this.props;
+        if (currentSetting !== 'mainSettings') {
+            this.props.setSetting('mainSettings');
+        }
+    }
 
     /**
      * Mark the task of displaying snapshot transition modal as done
@@ -363,6 +363,13 @@ const mapDispatchToProps = {
 
 export default WithUserActivity()(
     WithDeepLinking()(
-        WithLogout()(withNamespaces(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
+        WithLogout()(
+            withNamespaces(['home', 'global', 'login'])(
+                connect(
+                    mapStateToProps,
+                    mapDispatchToProps,
+                )(Home),
+            ),
+        ),
     ),
 );

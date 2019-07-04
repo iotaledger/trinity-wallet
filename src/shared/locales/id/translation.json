@@ -364,8 +364,6 @@
         "message": "Pesan",
         "invalidMessage": "Pesan tidak valid",
         "invalidMessageExplanation": "Pesan anda mengandung karakter yang tidak valid.",
-        "invalidMessageTooLong": "Pesan terlalu panjang",
-        "invalidMessageTooLongExplanation": "Pesan melebihi maksimum jumlah karakter (1093).",
         "send": "Kirim",
         "invalidAmount": "Jumlah nilai salah",
         "invalidAmountExplanation": "Silahkan masukan angka transaksi yang valid. Ini akan membantu melihat rincian unit IOTA dihalaman ini yang bawah.",

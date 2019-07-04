@@ -8,7 +8,7 @@ import { setSetting, completeDeepLinkRequest } from 'shared-modules/actions/wall
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import Fonts from 'ui/theme/fonts';
 import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import SettingsBackButton from 'ui/components/SettingsBackButton';
 import InfoBox from 'ui/components/InfoBox';
 import Toggle from 'ui/components/Toggle';

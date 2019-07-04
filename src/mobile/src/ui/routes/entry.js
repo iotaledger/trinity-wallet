@@ -27,10 +27,10 @@ import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
 import { resetIfKeychainIsEmpty, reduxPersistStorageAdapter, versionCheck } from 'libs/store';
 import { bugsnag } from 'libs/bugsnag';
-import { getEncryptionKey } from 'libs/realm';
+import getEncryptionKey from 'libs/realm';
 import registerScreens from 'ui/routes/navigation';
 import { initialise as initialiseStorage } from 'shared-modules/storage';
-import { mapStorageToState } from 'shared-modules/libs/storageToStateMappers';
+import mapStorageToState from 'shared-modules/libs/storageToStateMappers';
 import { updateSchema } from 'shared-modules/schemas';
 
 // Assign Realm to global RN variable

@@ -19,12 +19,12 @@ import { randomBytes } from 'libs/crypto';
 import Errors from 'libs/errors';
 import { byteToChar } from 'libs/iota/converter';
 import { getLatestAddressObject } from 'libs/iota/addresses';
-import { ADDRESS_LENGTH } from 'libs/iota/utils';
+import { ADDRESS_LENGTH, MAX_MESSAGE_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
 import Clipboard from 'ui/components/Clipboard';
-import Text from 'ui/components/input/Text.js';
+import Text from 'ui/components/input/Text';
 import QR from 'ui/components/QR';
 
 import css from './receive.scss';
@@ -244,6 +244,7 @@ class Receive extends React.PureComponent {
                         value={message}
                         label={t('send:message')}
                         onChange={(value) => this.setState({ message: value })}
+                        maxLength={MAX_MESSAGE_LENGTH}
                     />
                     <footer>
                         <Button id="to-wallet" to="/wallet/" variant="secondary" className="outlineSmall">

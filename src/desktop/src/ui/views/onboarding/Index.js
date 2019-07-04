@@ -48,9 +48,9 @@ class Onboarding extends React.PureComponent {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.location.pathname !== nextProps.location.pathname) {
-            this.setState({
-                waveIndex: this.state.waveIndex + 1,
-            });
+            this.setState((prevState) => ({
+                waveIndex: prevState.waveIndex + 1,
+            }));
         }
     }
 

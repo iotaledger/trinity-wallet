@@ -13,6 +13,8 @@ const exec = (payload) => {
     return new Promise((resolve, reject) => {
         const child = fork(path.resolve(__dirname, 'Entangled.js'));
 
+        const { job } = JSON.parse(payload);
+
         child.on('message', (message) => {
             resolve(message);
 
@@ -20,10 +22,13 @@ const exec = (payload) => {
             child.kill();
         });
 
-        timeout = setTimeout(() => {
-            reject('Timeout');
-            child.kill();
-        }, 30000);
+        timeout = setTimeout(
+            () => {
+                reject(`Timeout: Entangled job: ${job}`);
+                child.kill();
+            },
+            job === 'batchedPow' ? 180 * 1000 : 30 * 1000,
+        );
 
         child.send(payload);
     });

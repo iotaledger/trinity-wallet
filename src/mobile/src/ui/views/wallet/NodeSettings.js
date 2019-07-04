@@ -28,7 +28,7 @@ const defaultState = {
     autoNodeList: true,
     nodeAutoSwitch: true,
     quorumEnabled: true,
-    quorumSize: '4',
+    quorumSize: QUORUM_SIZE.toString(),
 };
 
 const styles = StyleSheet.create({
@@ -242,7 +242,7 @@ export class NodeSettings extends PureComponent {
         if (!this.hasDefaultNodeSettings()) {
             this.setState(defaultState);
         }
-        this.setState({ autoNodeManagement: !this.state.autoNodeManagement });
+        this.setState((prevState) => ({ autoNodeManagement: !prevState.autoNodeManagement }));
     }
 
     /**

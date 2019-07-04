@@ -1,4 +1,8 @@
 describe('Onboarding welcome view', () => {
+    beforeEach(() => {
+      Object.defineProperty(navigator, 'language', { value: 'en-GB', writable: true });
+    });
+
     test('Render view', async () => {
         const snapshot = await global.__screenshot('onboarding', false);
 

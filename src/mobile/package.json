@@ -116,6 +116,7 @@
     "rn-nodeify": "^10.0.1"
   },
   "resolutions": {
+    "js-yaml": ">=3.13.1",
     "handlebars": ">=4.1.2"
   },
   "jest": {
