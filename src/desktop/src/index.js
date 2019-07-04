@@ -25,7 +25,7 @@ import Tray from 'ui/Tray';
 import Alerts from 'ui/global/Alerts';
 import FatalError from 'ui/global/FatalError';
 
-import { decrypt } from './libs/crypto.js';
+import { decrypt } from './libs/crypto';
 import './ui/index.scss';
 
 const init = () => {
