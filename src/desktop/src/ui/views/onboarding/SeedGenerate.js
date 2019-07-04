@@ -180,6 +180,7 @@ class GenerateSeed extends React.PureComponent {
                                 return (
                                     <button
                                         onClick={this.updateLetter}
+                                        type="button"
                                         key={`${index}${letter}`}
                                         value={index}
                                         style={{ opacity: 1 - offset / 255 }}

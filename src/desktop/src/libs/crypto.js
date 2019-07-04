@@ -1,5 +1,5 @@
 /* global Electron */
-import { ALIAS_REALM } from 'libs/realm';
+import ALIAS_REALM from 'libs/constants';
 
 export const ACC_MAIN = 'Trinity';
 // Maximum allowed account title
@@ -21,7 +21,7 @@ export const randomBytes = (size, max = 256) => {
     const bytes = global.crypto.getRandomValues(rawBytes);
 
     for (let i = 0; i < bytes.length; i++) {
-        while (bytes[i] >= 256 - (256 % max)) {
+        while (bytes[i] >= 256 - 256 % max) {
             bytes[i] = randomBytes(1, max)[0];
         }
     }

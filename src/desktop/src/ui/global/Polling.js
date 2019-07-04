@@ -74,6 +74,28 @@ class Polling extends React.PureComponent {
         retryFailedTransaction: PropTypes.func.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
+        /** @ignore */
+        isPollingPrice: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPollingChartData: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPollingAccountInfo: PropTypes.bool.isRequired,
+        /** @ignore */
+        isAutoPromoting: PropTypes.bool.isRequired,
+        /** @ignore */
+        isTransitioning: PropTypes.bool.isRequired,
+        /** @ignore */
+        isRetryingFailedTransaction: PropTypes.bool.isRequired,
+        /** @ignore */
+        isSyncing: PropTypes.bool.isRequired,
+        /** @ignore */
+        addingAdditionalAccount: PropTypes.bool.isRequired,
+        /** @ignore */
+        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        /** @ignore */
+        isSendingTransfer: PropTypes.bool.isRequired,
+        /** @ignore */
+        isFetchingAccountInfo: PropTypes.bool.isRequired,
     };
 
     state = {
@@ -102,28 +124,6 @@ class Polling extends React.PureComponent {
 
     componentWillUnmount() {
         clearInterval(this.interval);
-    }
-
-    shouldSkipCycle() {
-        const props = this.props;
-
-        const isAlreadyDoingSomeHeavyLifting =
-            props.isSyncing ||
-            props.isSendingTransfer ||
-            props.isGeneratingReceiveAddress ||
-            props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
-            props.addingAdditionalAccount ||
-            props.isTransitioning ||
-            props.isRetryingFailedTransaction;
-
-        const isAlreadyPollingSomething =
-            props.isPollingPrice ||
-            props.isPollingChartData ||
-            props.isPollingMarketData ||
-            props.isPollingAccountInfo ||
-            props.isAutoPromoting;
-
-        return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
 
     moveToNextPollService = () => {
@@ -210,6 +210,28 @@ class Polling extends React.PureComponent {
 
         return this.moveToNextPollService();
     };
+
+    shouldSkipCycle() {
+        const props = this.props;
+
+        const isAlreadyDoingSomeHeavyLifting =
+            props.isSyncing ||
+            props.isSendingTransfer ||
+            props.isGeneratingReceiveAddress ||
+            props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
+            props.addingAdditionalAccount ||
+            props.isTransitioning ||
+            props.isRetryingFailedTransaction;
+
+        const isAlreadyPollingSomething =
+            props.isPollingPrice ||
+            props.isPollingChartData ||
+            props.isPollingMarketData ||
+            props.isPollingAccountInfo ||
+            props.isAutoPromoting;
+
+        return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
+    }
 
     render() {
         return null;

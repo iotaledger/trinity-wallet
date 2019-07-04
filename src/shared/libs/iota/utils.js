@@ -463,7 +463,9 @@ export const fetchRemoteNodes = async () => {
             }
 
             break;
-        } catch (err) {}
+        } catch (err) {
+            console.log(err); //eslint-disable-line no-console
+        }
     }
 
     return remoteNodes.map(({ node, pow }) => ({

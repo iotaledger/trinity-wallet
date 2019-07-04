@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { height } from 'libs/dimensions';

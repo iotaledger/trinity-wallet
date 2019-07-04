@@ -5,7 +5,7 @@ import { withNamespaces } from 'react-i18next';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { height, width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({

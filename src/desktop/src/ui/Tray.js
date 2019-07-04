@@ -59,6 +59,16 @@ class App extends React.Component {
         }
     }
 
+    switchAccount = (nextIndex) => {
+        const { accounts } = this.props;
+
+        const accountCount = Object.keys(accounts.accountInfo).length;
+
+        this.setState({
+            accountIndex: nextIndex >= accountCount ? -1 : nextIndex < -1 ? accountCount - 1 : nextIndex,
+        });
+    };
+
     /**
      * Proxy menu update event to an action
      * @param {Object} payload - Menu update object {attribute, value}
@@ -112,16 +122,6 @@ class App extends React.Component {
             </React.Fragment>
         );
     }
-
-    switchAccount = (nextIndex) => {
-        const { accounts } = this.props;
-
-        const accountCount = Object.keys(accounts.accountInfo).length;
-
-        this.setState({
-            accountIndex: nextIndex >= accountCount ? -1 : nextIndex < -1 ? accountCount - 1 : nextIndex,
-        });
-    };
 
     render() {
         const { authorised } = this.state;

@@ -2,9 +2,9 @@ import last from 'lodash/last';
 import React, { Component } from 'react';
 import { BackHandler, ToastAndroid } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import RNExitApp from 'react-native-exit-app';
-import i18next from 'shared-modules/libs/i18next.js';
+import i18next from 'shared-modules/libs/i18next';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { connect } from 'react-redux';
@@ -49,6 +49,33 @@ export default function withBackPress(C) {
                 Navigation.events().bindComponent(this);
             }
         }
+
+        /**
+         * Choose appropriate action on back press
+         *
+         * @method handleBackPress
+         */
+        handleBackPress = () => {
+            const { currentSetting, currentRoute, loginRoute } = this.props;
+            switch (currentRoute) {
+                case 'home':
+                    this.withBackPressNavigateSettings(currentSetting);
+                    break;
+                case 'languageSetup':
+                case 'onboardingComplete':
+                case 'login':
+                    if (loginRoute !== 'login') {
+                        this.withBackPressNavigateNodeOptions(loginRoute);
+                        break;
+                    }
+                    this.withBackPressCloseApp();
+                    break;
+                default:
+                    this.withBackPressPopRoute();
+                    break;
+            }
+            return true;
+        };
 
         /**
          * Remove back handler
@@ -153,37 +180,13 @@ export default function withBackPress(C) {
             }
         }
 
-        /**
-         * Choose appropriate action on back press
-         *
-         * @method handleBackPress
-         */
-        handleBackPress = () => {
-            const { currentSetting, currentRoute, loginRoute } = this.props;
-            switch (currentRoute) {
-                case 'home':
-                    this.withBackPressNavigateSettings(currentSetting);
-                    break;
-                case 'languageSetup':
-                case 'onboardingComplete':
-                case 'login':
-                    if (loginRoute !== 'login') {
-                        this.withBackPressNavigateNodeOptions(loginRoute);
-                        break;
-                    }
-                    this.withBackPressCloseApp();
-                    break;
-                default:
-                    this.withBackPressPopRoute();
-                    break;
-            }
-            return true;
-        };
-
         render() {
             return <C {...this.props} />;
         }
     }
 
-    return connect(mapStateToProps, mapDispatchToProps)(EnhancedComponent);
+    return connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(EnhancedComponent);
 }

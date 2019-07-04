@@ -203,6 +203,19 @@ class App extends React.Component {
         }
     }
 
+    Init = (props) => {
+        return (
+            <Loading
+                inline
+                transparent
+                {...props}
+                loop={false}
+                onEnd={() => this.props.history.push('/onboarding/')}
+                themeName={this.props.themeName}
+            />
+        );
+    };
+
     /**
      * Check if key chain is available
      */
@@ -292,19 +305,6 @@ class App extends React.Component {
                 break;
         }
     }
-
-    Init = (props) => {
-        return (
-            <Loading
-                inline
-                transparent
-                {...props}
-                loop={false}
-                onEnd={() => this.props.history.push('/onboarding/')}
-                themeName={this.props.themeName}
-            />
-        );
-    };
 
     render() {
         const { location, history } = this.props;

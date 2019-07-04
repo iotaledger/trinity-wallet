@@ -6,7 +6,7 @@ import { withNamespaces } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX, MAX_SEED_TRITS } from 'shared-modules/libs/iota/utils';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
 import FlagSecure from 'react-native-flag-secure-android';

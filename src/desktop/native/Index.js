@@ -5,7 +5,7 @@ import path from 'path';
 import URL from 'url';
 import fs from 'fs';
 
-import { initMenu, contextMenu } from './libs/Menu.js';
+import { initMenu, contextMenu } from './libs/Menu';
 
 /**
  * Expose Garbage Collector flag for manual trigger after seed usage
@@ -103,7 +103,9 @@ try {
     if (windowStateData) {
         windowState = windowStateData;
     }
-} catch (error) {}
+} catch (error) {
+    console.log(error); //eslint-disable-line no-console
+}
 
 /**
  * Temporarily disable proxy if not overridden by settings
@@ -114,7 +116,9 @@ try {
         app.commandLine.appendSwitch('auto-detect', 'false');
         app.commandLine.appendSwitch('no-proxy-server');
     }
-} catch (error) {}
+} catch (error) {
+    console.log(error); //eslint-disable-line no-console
+}
 
 function createWindow() {
     /**
@@ -129,7 +133,9 @@ function createWindow() {
                     .split('#')[0],
             );
         });
-    } catch (error) {}
+    } catch (error) {
+        console.log(error); //eslint-disable-line no-console
+    }
 
     /**
      * Initialize the main wallet window
@@ -287,7 +293,9 @@ function createWindow() {
                 ) {
                     shell.openExternal(targetURL);
                 }
-            } catch (error) {}
+            } catch (error) {
+                console.log(error); //eslint-disable-line no-console
+            }
         }
     });
 }

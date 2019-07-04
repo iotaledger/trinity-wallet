@@ -1,4 +1,4 @@
-export const passwordReasons = {
+const passwordReasons = {
     'Straight rows of keys are easy to guess': 'reasonRow',
     'Short keyboard patterns are easy to guess': 'reasonPattern',
     'Names and surnames by themselves are easy to guess': 'reasonNames',
@@ -14,3 +14,5 @@ export const passwordReasons = {
     'This is similar to a commonly used password': 'reasonSimilar',
     'A word by itself is easy to guess': 'reasonWord',
 };
+
+export default passwordReasons;

@@ -6,7 +6,7 @@ import { withTranslation, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
-import { ALIAS_REALM } from 'libs/realm';
+import ALIAS_REALM from 'libs/constants';
 import { serialise } from 'libs/utils';
 import { iota, quorum } from 'libs/iota';
 import Errors from 'libs/errors';
@@ -135,7 +135,7 @@ class Advanced extends PureComponent {
     confirmReset = () => {
         const { wallet } = this.props;
 
-        this.setState({ resetConfirm: !this.state.resetConfirm, resetCountdown: 15 });
+        this.setState((prevState) => ({ resetConfirm: !prevState.resetConfirm, resetCountdown: 15 }));
 
         if (!wallet || !wallet.isOpen) {
             this.interval = setInterval(() => {
@@ -143,9 +143,9 @@ class Advanced extends PureComponent {
                     clearInterval(this.interval);
                 }
 
-                this.setState({
-                    resetCountdown: this.state.resetCountdown - 1,
-                });
+                this.setState((prevState) => ({
+                    resetCountdown: prevState.resetCountdown - 1,
+                }));
             }, 1000);
         }
     };

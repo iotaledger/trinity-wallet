@@ -24,7 +24,7 @@ import { ADDRESS_LENGTH, MAX_MESSAGE_LENGTH } from 'libs/iota/utils';
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
 import Clipboard from 'ui/components/Clipboard';
-import Text from 'ui/components/input/Text.js';
+import Text from 'ui/components/input/Text';
 import QR from 'ui/components/QR';
 
 import css from './receive.scss';

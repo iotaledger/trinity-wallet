@@ -11,9 +11,9 @@ import i18next from 'libs/i18next';
 import store from 'store';
 import Themes from 'themes/themes';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';
-import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
-import { getEncryptionKey } from 'libs/realm';
+import mapStorageToState from 'libs/storageToStateMappers';
+import getEncryptionKey from 'libs/realm';
 import { changeIotaNode, quorum } from 'libs/iota';
 import { initialise as initialiseStorage } from 'storage';
 import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
@@ -44,7 +44,7 @@ const init = () => {
     if (Electron.mode === 'tray') {
         Electron.onEvent('store.update', (payload) => {
             const data = JSON.parse(payload);
-            store.dispatch(mapStorageToStateAction(data));
+            store.dispatch(mapStorageToState(data));
         });
 
         render(
@@ -84,7 +84,7 @@ const init = () => {
                     quorum.setSize(get(data, 'settings.quorum.size'));
 
                     // Update store with persisted state
-                    store.dispatch(mapStorageToStateAction(data));
+                    store.dispatch(mapStorageToState(data));
 
                     // Set theme to default if current theme does not exist
                     if (!get(Themes, store.getState().settings.themeName)) {

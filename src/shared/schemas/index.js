@@ -78,12 +78,15 @@ export const updateSchema = (input) => {
         }
     });
 
-    const convertToNodeObject = (url) => ({
-        url,
-        pow: false,
-        token: '',
-        password: '',
-    });
+    const convertToNodeObject = (url) =>
+        typeof url === 'object'
+            ? url
+            : {
+                  url,
+                  pow: false,
+                  token: '',
+                  password: '',
+              };
 
     // Types of state.settings.node, state.settings.nodes and state.settings.customNodes are changed in the latest redux schema
     // Previously, they were stored as strings e.g., state.settings.node: <string>, state.settings.node: <string>[]

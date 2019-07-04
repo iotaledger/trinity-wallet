@@ -7,7 +7,7 @@ import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { connect } from 'react-redux';
 import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { Styling } from 'ui/theme/general';

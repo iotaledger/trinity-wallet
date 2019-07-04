@@ -7,7 +7,7 @@ import { tritsToChars } from 'shared-modules/libs/iota/converter';
 import { withNamespaces } from 'react-i18next';
 import { width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
     checksumContainer: {

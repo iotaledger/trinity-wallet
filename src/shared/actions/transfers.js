@@ -65,7 +65,7 @@ import {
     generateTransactionSuccessAlert,
     prepareLogUpdate,
 } from './alerts';
-import i18next from '../libs/i18next.js';
+import i18next from '../libs/i18next';
 import Errors from '../libs/errors';
 import { Account } from '../storage';
 import { TransfersActionTypes } from '../types';

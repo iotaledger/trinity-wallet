@@ -4,7 +4,7 @@ import { View, TouchableWithoutFeedback, Text, StyleSheet, Keyboard } from 'reac
 import { withNamespaces } from 'react-i18next';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import CustomTextInput from './CustomTextInput';
 import ModalView from './ModalView';
