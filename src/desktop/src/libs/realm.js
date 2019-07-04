@@ -22,4 +22,4 @@ const getEncryptionKey = () => {
     });
 };
 
-export default getEncryptionKey
+export default getEncryptionKey;

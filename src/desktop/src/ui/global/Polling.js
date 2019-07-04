@@ -212,23 +212,21 @@ class Polling extends React.PureComponent {
     };
 
     shouldSkipCycle() {
-        const props = this.props;
-
         const isAlreadyDoingSomeHeavyLifting =
-            props.isSyncing ||
-            props.isSendingTransfer ||
-            props.isGeneratingReceiveAddress ||
-            props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
-            props.addingAdditionalAccount ||
-            props.isTransitioning ||
-            props.isRetryingFailedTransaction;
+            this.props.isSyncing ||
+            this.props.isSendingTransfer ||
+            this.props.isGeneratingReceiveAddress ||
+            this.props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
+            this.props.addingAdditionalAccount ||
+            this.props.isTransitioning ||
+            this.props.isRetryingFailedTransaction;
 
         const isAlreadyPollingSomething =
-            props.isPollingPrice ||
-            props.isPollingChartData ||
-            props.isPollingMarketData ||
-            props.isPollingAccountInfo ||
-            props.isAutoPromoting;
+            this.props.isPollingPrice ||
+            this.props.isPollingChartData ||
+            this.props.isPollingMarketData ||
+            this.props.isPollingAccountInfo ||
+            this.props.isAutoPromoting;
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }

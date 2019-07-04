@@ -20,7 +20,7 @@ import networkMiddleware from './middlewares/network';
 import versionMiddleware from './middlewares/version';
 import alertsMiddleware from './middlewares/alerts';
 import modalMiddleware from './middlewares/modal';
-import { getEncryptionKey } from '../desktop/src/libs/realm';
+import getEncryptionKey from '../desktop/src/libs/realm';
 import { encrypt } from '../desktop/src/libs/crypto';
 import { __DEV__, __MOBILE__ } from './config';
 
