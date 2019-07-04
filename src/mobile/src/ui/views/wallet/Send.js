@@ -44,7 +44,7 @@ import ProgressSteps from 'libs/progressSteps';
 import SeedStore from 'libs/SeedStore';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import AmountTextInput from 'ui/components/AmountTextInput';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { width } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import { Styling } from 'ui/theme/general';
@@ -428,8 +428,9 @@ export class Send extends Component {
         });
     }
 
+    // eslint-disable-next-line react/sort-comp
     interuptSendAnimation() {
-        this.setState({ shouldInteruptSendAnimation: !this.state.shouldInteruptSendAnimation });
+        this.setState((prevState) => ({ shouldInteruptSendAnimation: !prevState.shouldInteruptSendAnimation }));
     }
 
     /**

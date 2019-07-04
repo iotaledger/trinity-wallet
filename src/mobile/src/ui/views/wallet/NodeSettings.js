@@ -242,7 +242,7 @@ export class NodeSettings extends PureComponent {
         if (!this.hasDefaultNodeSettings()) {
             this.setState(defaultState);
         }
-        this.setState({ autoNodeManagement: !this.state.autoNodeManagement });
+        this.setState((prevState) => ({ autoNodeManagement: !prevState.autoNodeManagement }));
     }
 
     /**

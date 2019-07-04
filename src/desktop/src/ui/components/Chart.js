@@ -16,6 +16,7 @@ export class ChartComponent extends PureComponent {
     static propTypes = {
         /** Current price data for selected currency */
         priceData: PropTypes.shape({
+            globalSymbol: PropTypes.string.isRequired,
             currency: PropTypes.string.isRequired,
             symbol: PropTypes.string.isRequired,
             price: PropTypes.number.isRequired,

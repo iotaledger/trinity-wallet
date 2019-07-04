@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import isString from 'lodash/isString';
-import i18next from '../libs/i18next.js';
+import i18next from '../libs/i18next';
 import Errors from '../libs/errors';
 import { Wallet } from '../storage';
 import { AlertsActionTypes } from '../types';

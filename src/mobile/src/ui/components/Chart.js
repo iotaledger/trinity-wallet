@@ -116,6 +116,7 @@ class Chart extends PureComponent {
         /* @ignore */
         priceData: PropTypes.shape({
             currency: PropTypes.string.isRequired,
+            globalSymbol: PropTypes.string.isRequired,
             symbol: PropTypes.string.isRequired,
             price: PropTypes.number.isRequired,
             volume: PropTypes.string.isRequired,

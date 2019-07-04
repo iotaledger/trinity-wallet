@@ -88,7 +88,9 @@ export class SeedComponent extends React.PureComponent {
                 sel.removeAllRanges();
                 sel.addRange(range);
                 this.input.scrollLeft = range.startOffset * 10;
-            } catch (error) {}
+            } catch (error) {
+                console.log(error); //eslint-disable-line no-console
+            }
         }
     }
 
@@ -177,9 +179,9 @@ export class SeedComponent extends React.PureComponent {
     };
 
     setVisibility = () => {
-        this.setState({
-            hidden: !this.state.hidden,
-        });
+        this.setState((prevState) => ({
+            hidden: !prevState.hidden,
+        }));
     };
 
     closeScanner = () => {

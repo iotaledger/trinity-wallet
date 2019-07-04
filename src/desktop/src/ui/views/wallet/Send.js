@@ -44,6 +44,7 @@ class Send extends React.PureComponent {
         settings: PropTypes.shape({
             conversionRate: PropTypes.number.isRequired,
             currency: PropTypes.string.isRequired,
+            usdPrice: PropTypes.number.isRequired,
         }),
         /** @ignore */
         progress: PropTypes.shape({
@@ -81,19 +82,6 @@ class Send extends React.PureComponent {
         });
     };
 
-    updateFields(address, message, amount) {
-        this.props.setSendAddressField(address);
-        if (message) {
-            this.props.setSendMessageField(message);
-        }
-        if (amount) {
-            if (typeof amount === 'number') {
-                amount = amount.toString();
-            }
-            this.props.setSendAmountField(amount);
-        }
-    }
-
     confirmTransfer = async () => {
         const { fields, password, accountName, accountMeta, sendTransfer } = this.props;
 
@@ -110,6 +98,19 @@ class Send extends React.PureComponent {
 
         sendTransfer(seedStore, fields.address, parseInt(fields.amount) || 0, message);
     };
+
+    updateFields(address, message, amount) {
+        this.props.setSendAddressField(address);
+        if (message) {
+            this.props.setSendMessageField(message);
+        }
+        if (amount) {
+            if (typeof amount === 'number') {
+                amount = amount.toString();
+            }
+            this.props.setSendAmountField(amount);
+        }
+    }
 
     render() {
         const { themeName, accountMeta, fields, isSending, availableBalance, settings, progress, t } = this.props;

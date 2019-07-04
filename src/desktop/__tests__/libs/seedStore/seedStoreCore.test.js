@@ -1,7 +1,7 @@
 'use strict';
 
 import SeedStoreCore from 'libs/SeedStore/SeedStoreCore';
-import trytes from '../../../__mocks__/samples/trytes.js';
+import trytes from '../../../__mocks__/samples/trytes';
 
 global.Electron = {
     getPowFn: () => async () => 'N9UIMZQVDYWLXWGHLELNRCUUPMP',

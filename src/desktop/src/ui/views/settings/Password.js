@@ -7,7 +7,7 @@ import { zxcvbn } from 'libs/exports';
 import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
-import { passwordReasons } from 'libs/password';
+import passwordReasons from 'libs/password';
 import SeedStore from 'libs/SeedStore';
 import { hash } from 'libs/crypto';
 

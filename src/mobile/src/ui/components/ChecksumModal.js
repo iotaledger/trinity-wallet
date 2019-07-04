@@ -4,7 +4,7 @@ import { Text, StyleSheet } from 'react-native';
 import { Styling } from 'ui/theme/general';
 import { withNamespaces } from 'react-i18next';
 import { height, width } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import ModalView from './ModalView';
 
 const styles = StyleSheet.create({

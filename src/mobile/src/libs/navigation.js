@@ -27,7 +27,7 @@ const getDefaultOptions = (nextScreen) => {
     };
 };
 
-export const navigator = {
+const navigator = {
     push: (nextScreen, options = {}, delay = 300) => {
         const currentScreen = last(store.getState().wallet.navStack);
         store.dispatch({ type: WalletActionTypes.PUSH_ROUTE, payload: nextScreen });
@@ -71,3 +71,5 @@ export const navigator = {
         );
     },
 };
+
+export default navigator

@@ -68,6 +68,34 @@ export class Poll extends Component {
         retryFailedTransaction: PropTypes.func.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
+        /** @ignore */
+        isPollingPrice: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPollingNodeList: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPollingChartData: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPollingMarketData: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPollingAccountInfo: PropTypes.bool.isRequired,
+        /** @ignore */
+        isAutoPromoting: PropTypes.bool.isRequired,
+        /** @ignore */
+        isTransitioning: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPromotingTransaction: PropTypes.bool.isRequired,
+        /** @ignore */
+        isRetryingFailedTransaction: PropTypes.bool.isRequired,
+        /** @ignore */
+        isSyncing: PropTypes.bool.isRequired,
+        /** @ignore */
+        addingAdditionalAccount: PropTypes.bool.isRequired,
+        /** @ignore */
+        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        /** @ignore */
+        isSendingTransfer: PropTypes.bool.isRequired,
+        /** @ignore */
+        isFetchingAccountInfo: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -91,6 +119,14 @@ export class Poll extends Component {
         timer.clearInterval(this, 'polling');
         AppState.removeEventListener('change', this.handleAppStateChange);
     }
+
+    handleAppStateChange = (nextAppState) => {
+        if (nextAppState.match(/inactive|background/)) {
+            this.stopBackgroundProcesses();
+        } else if (nextAppState === 'active') {
+            this.startBackgroundProcesses();
+        }
+    };
 
     shouldSkipCycle() {
         const props = this.props;
@@ -186,14 +222,6 @@ export class Poll extends Component {
     startBackgroundProcesses() {
         timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 8000);
     }
-
-    handleAppStateChange = (nextAppState) => {
-        if (nextAppState.match(/inactive|background/)) {
-            this.stopBackgroundProcesses();
-        } else if (nextAppState === 'active') {
-            this.startBackgroundProcesses();
-        }
-    };
 
     stopBackgroundProcesses() {
         timer.clearInterval(this, 'polling');

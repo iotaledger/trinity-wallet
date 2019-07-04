@@ -62,9 +62,9 @@ class Sidebar extends React.PureComponent {
     };
 
     toggleLogout = () => {
-        this.setState({
-            modalLogout: !this.state.modalLogout,
-        });
+        this.setState((prevState) => ({
+            modalLogout: !prevState.modalLogout,
+        }));
     };
 
     doLogout = () => {

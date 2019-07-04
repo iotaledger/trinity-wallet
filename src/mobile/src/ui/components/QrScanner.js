@@ -7,15 +7,15 @@ import { Styling } from 'ui/theme/general';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { height, width } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import ModalView from './ModalView';
 
 const styles = StyleSheet.create({
     scannerContainer: {
-          flex: isAndroid ? 1 : 0,
-          width,
-          height: width,
-          justifyContent: 'center'
+        flex: isAndroid ? 1 : 0,
+        width,
+        height: width,
+        justifyContent: 'center',
     },
     qrText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     },
     cameraFlip: {
         width,
-        alignItems: 'center'
-    }
+        alignItems: 'center',
+    },
 });
 
 export class QRScanner extends Component {
@@ -86,7 +86,9 @@ export class QRScanner extends Component {
     }
 
     changeCamera() {
-        this.setState({ cameraType: this.state.cameraType === 'front' ? 'back' : 'front' });
+        this.setState((prevState) => ({
+            cameraType: prevState.cameraType === 'front' ? 'back' : 'front',
+        }));
     }
 
     render() {
@@ -120,7 +122,10 @@ export class QRScanner extends Component {
                     />
                 </View>
                 <View
-                    style={[styles.cameraFlip, isAndroid ? { position: 'absolute', bottom: height / 6 } : { marginTop: height / 20 }]}
+                    style={[
+                        styles.cameraFlip,
+                        isAndroid ? { position: 'absolute', bottom: height / 6 } : { marginTop: height / 20 },
+                    ]}
                 >
                     <TouchableOpacity onPress={() => this.changeCamera()}>
                         <Icon name="cameraFlip" size={width / 10} color={body.color} />

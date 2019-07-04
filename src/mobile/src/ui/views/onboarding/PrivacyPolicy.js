@@ -4,7 +4,7 @@ import Markdown from 'react-native-markdown-renderer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { acceptPrivacy } from 'shared-modules/actions/settings';
 import {
     enPrivacyPolicyAndroid,

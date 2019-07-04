@@ -8,7 +8,7 @@ import timer from 'react-native-timer';
 import sliderSuccessAnimation from 'shared-modules/animations/progressSuccess.json';
 import { height as deviceHeight, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
     container: {
@@ -163,7 +163,7 @@ class Slider extends Component {
             duration: 50,
         }).start();
         if (this.props.numberOfSliders > 1) {
-            this.setState({ sliderNumber: this.state.sliderNumber + 1 });
+            this.setState((prevState) => ({ sliderNumber: prevState.sliderNumber + 1 }));
         }
         this.setState({ sliderColor: this.props.postSwipeColor, swipeComplete: true });
         this.sliderAnimation.play();

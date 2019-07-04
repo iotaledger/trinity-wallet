@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity, ActivityIndicator 
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { Checksum } from 'ui/components/Checksum';
 import { isAndroid } from 'libs/device';
 import { stringToUInt8, UInt8ToString } from 'libs/crypto';
@@ -523,11 +523,7 @@ class CustomTextInput extends Component {
             onRef,
             testID,
             height,
-            conversionText,
             currencyConversion,
-            innerPadding,
-            fingerprintAuthentication,
-            isPasswordValid,
             passwordStrength,
             isSeedInput,
             secureTextEntry,

@@ -133,19 +133,20 @@ export default class AmountInput extends React.PureComponent {
             return;
         }
 
-        const iotas = round(this.state.value * this.getUnitMultiplier(unit));
+        this.setState((prevState) => {
+            const iotas = round(prevState.value * this.getUnitMultiplier(unit));
 
-        const value =
-            iotas <= TOTAL_IOTA_SUPPLY ? this.state.value : round(TOTAL_IOTA_SUPPLY / this.getUnitMultiplier(unit));
+            const value =
+                iotas <= TOTAL_IOTA_SUPPLY ? prevState.value : round(TOTAL_IOTA_SUPPLY / this.getUnitMultiplier(unit));
 
-        this.setState(
-            {
+            this.props.onChange(String(iotas));
+
+            return {
                 unit: unit,
                 iotas: iotas,
                 value: value,
-            },
-            () => this.props.onChange(String(iotas)),
-        );
+            };
+        });
     };
 
     render() {
