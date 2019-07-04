@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "concurrently --kill-others \"npm run devserver\" \"cross-env NODE_ENV=development electron -r @babel/register native/Index.js\"",
-    "postinstall": "node scripts/win-realm-patch.js && patch-package && electron-builder install-app-deps",
+    "postinstall": "electron-builder install-app-deps",
     "devserver": "node scripts/webpackServer.js",
     "build": "rimraf dist && npm run build-main && npm run build-app",
     "build-main": "./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config/config.main.js",
@@ -56,7 +56,6 @@
     "jest": "^24.8.0",
     "jest-image-snapshot": "^2.9.0",
     "mini-css-extract-plugin": "0.7.0",
-    "patch-package": "6.1.2",
     "puppeteer": "1.18.1",
     "raw-loader": "^3.0.0",
     "react-dev-utils": "9.0.1",
