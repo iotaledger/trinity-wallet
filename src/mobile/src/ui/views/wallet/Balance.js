@@ -277,7 +277,7 @@ export class Balance extends Component {
                                     <Text style={[styles.iotaUnit, textColor]}>{iotaUnit}</Text>
                                 </View>
                                 <Text style={[styles.fiatBalance, textColor]}>
-                                    {new Intl.NumberFormat(getLocaleFromLabel(language), { style: 'currency', currency }).format(fiatBalance)}{' '}
+                                    {new Intl.NumberFormat(getLocaleFromLabel(language), { style: 'currency', currency }).format(fiatBalance)}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>

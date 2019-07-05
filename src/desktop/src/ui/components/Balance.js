@@ -96,7 +96,7 @@ export class BalanceComponent extends React.PureComponent {
                     {formatIotas(accountBalance, balanceIsShort)}
                     <small>{`${formatUnit(accountBalance)}`}</small>
                 </h1>
-                <h2>{new Intl.NumberFormat(settings.locale, { style: 'currency', currency: settings.currency }).format(fiatBalance)}{' '}</h2>
+                <h2>{new Intl.NumberFormat(settings.locale, { style: 'currency', currency: settings.currency }).format(fiatBalance)}</h2>
             </div>
         );
     }
