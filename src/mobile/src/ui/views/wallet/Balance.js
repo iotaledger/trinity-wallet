@@ -18,12 +18,13 @@ import { round, roundDown } from 'shared-modules/libs/utils';
 import { computeStatusText, formatRelevantRecentTransactions } from 'shared-modules/libs/iota/transfers';
 import { setAnimateChartOnMount } from 'shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
+import { getFiatBalance } from 'shared-modules/libs/currency';
 import {
     getTransactionsForSelectedAccount,
     getBalanceForSelectedAccount,
     getAddressesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
-import { getCurrencySymbol } from 'shared-modules/libs/currency';
+import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import WithManualRefresh from 'ui/components/ManualRefresh';
 import SimpleTransactionRow from 'ui/components/SimpleTransactionRow';
@@ -126,6 +127,8 @@ export class Balance extends Component {
         setAnimateChartOnMount: PropTypes.func.isRequired,
         /** @ignore */
         animateChartOnMount: PropTypes.bool.isRequired,
+        /** @ignore */
+        language: PropTypes.string.isRequired,
     };
 
     /**
@@ -236,14 +239,13 @@ export class Balance extends Component {
     }
 
     render() {
-        const { balance, conversionRate, currency, usdPrice, theme, isRefreshing, animateChartOnMount } = this.props;
+        const { balance, conversionRate, currency, usdPrice, theme, isRefreshing, animateChartOnMount, language } = this.props;
         const { body, primary } = theme;
 
         const shortenedBalance =
             roundDown(formatValue(balance), 1) +
             (balance < 1000 || Balance.getDecimalPlaces(formatValue(balance)) <= 1 ? '' : '+');
-        const currencySymbol = getCurrencySymbol(currency);
-        const fiatBalance = balance * usdPrice / 1000000 * conversionRate;
+        const fiatBalance = getFiatBalance(balance, usdPrice, conversionRate);
         const textColor = { color: body.color };
         const recentTransactions = this.renderTransactions();
         const iotaBalance = this.state.balanceIsShort ? shortenedBalance : formatValue(balance);
@@ -275,7 +277,7 @@ export class Balance extends Component {
                                     <Text style={[styles.iotaUnit, textColor]}>{iotaUnit}</Text>
                                 </View>
                                 <Text style={[styles.fiatBalance, textColor]}>
-                                    {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
+                                    {new Intl.NumberFormat(getLocaleFromLabel(language), { style: 'currency', currency }).format(fiatBalance)}{' '}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -304,6 +306,7 @@ const mapStateToProps = (state) => ({
     conversionRate: state.settings.conversionRate,
     theme: getThemeFromState(state),
     animateChartOnMount: state.ui.animateChartOnMount,
+    language: state.settings.language,
 });
 
 const mapDispatchToProps = {

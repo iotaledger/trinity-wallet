@@ -115,6 +115,16 @@ export const formatMonetaryValue = (iotas, unitPrice, currency) => {
     return `${currency ? getCurrencySymbol(currency) + ' ' : ''}${value}`;
 };
 
+/**
+ * Returns fiat balance
+ * @param {*} balance
+ * @param {*} usdPrice
+ * @param {string} conversionRate
+ */
+export const getFiatBalance = (balance, usdPrice, conversionRate) => {
+    return balance * usdPrice / 1000000 * conversionRate;
+}
+
 export const availableCurrencies = [
     'USD',
     'GBP',
