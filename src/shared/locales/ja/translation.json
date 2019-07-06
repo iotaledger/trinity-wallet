@@ -749,7 +749,7 @@
     "deepLink": {
         "autofill": "自動入力成功",
         "autofillExplanation": "取引データはリンクから自動入力されました。",
-        "deepLinkingOverview": "ディープリンクとはTrinityにあるトランザクションデータを自動で取得できるようにするリンク (iota://...) のことです。",
+        "deepLinkingOverview": "ディープリンクとはTrinityの取引データを自動で埋めることができるリンク (iota://...) のことです。",
         "deepLinkingWarning": "フィッシング詐欺にご注意ください。開いたリンク先が公式のTrinityアプリであることをご確認ください。",
         "deepLinkingUpdated": "ディープリンク設定",
         "deepLinkingEnabled": "ディープリンクを有効にしました。",
