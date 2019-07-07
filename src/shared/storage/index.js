@@ -726,7 +726,7 @@ class Wallet {
      */
     static clearErrorLog() {
         realm.write(() => {
-            Wallet.latestData.errorLog = [];
+            realm.delete(realm.objects('ErrorLog'));
         });
     }
 
