@@ -117,7 +117,7 @@ export const formatMonetaryValue = (iotas, unitPrice, currency) => {
 
 /**
  * Returns fiat balance
- * @param {*} balance
+ * @param {number} balance
  * @param {*} usdPrice
  * @param {number} conversionRate
  */
