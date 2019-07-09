@@ -20,6 +20,7 @@ const props = {
     },
     accountNames: ['foo', 'bar'],
     settings: {
+        locale: 'en',
         currency: 'USD',
         conversionRate: 1,
     },
