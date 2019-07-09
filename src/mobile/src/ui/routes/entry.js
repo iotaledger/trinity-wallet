@@ -21,7 +21,7 @@ import Themes from 'shared-modules/themes/themes';
 import { mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
 import { WalletActionTypes } from 'shared-modules/types';
 import { setRealmMigrationStatus } from 'shared-modules/actions/migrations';
-import i18next from 'shared-modules/libs/i18next';
+import i18next, { i18nextInit } from 'shared-modules/libs/i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
@@ -38,7 +38,7 @@ global.Realm = Realm;
 
 let firstLaunch = true;
 
-const launch = () => {
+const launch = async () => {
     // Disable accessibility fonts
     Text.defaultProps = {};
     Text.defaultProps.allowFontScaling = false;
@@ -57,6 +57,9 @@ const launch = () => {
 
     // Assign accountIndex to every account in accountInfo if it is not assigned already
     reduxStore.dispatch(assignAccountIndexIfNecessary(get(state, 'accounts.accountInfo')));
+
+    // Initialise i18next
+    await i18nextInit();
 
     // Set default language
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));

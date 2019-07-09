@@ -3,7 +3,6 @@ import some from 'lodash/some';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
 
 import {
     setFullNode,
@@ -186,5 +185,5 @@ export default function withNodeData(NodeComponent) {
     return connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(withI18n()(NodeData));
+    )(NodeData);
 }
