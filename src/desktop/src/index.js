@@ -98,9 +98,10 @@ const init = () => {
                     store.dispatch(updateTheme('Default'));
                 }
 
-                // Update language to initial setting
+                // Initialize i18next
                 await i18nextInit();
-                console.log(i18next);
+
+                // Update language to initial setting
                 i18next.changeLanguage(data.settings.locale);
 
                 // Start Tray application if enabled in settings

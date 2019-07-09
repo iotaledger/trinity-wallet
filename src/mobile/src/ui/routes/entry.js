@@ -38,7 +38,7 @@ global.Realm = Realm;
 
 let firstLaunch = true;
 
-const launch = async () => {
+const launch = () => {
     // Disable accessibility fonts
     Text.defaultProps = {};
     Text.defaultProps.allowFontScaling = false;
@@ -57,9 +57,6 @@ const launch = async () => {
 
     // Assign accountIndex to every account in accountInfo if it is not assigned already
     reduxStore.dispatch(assignAccountIndexIfNecessary(get(state, 'accounts.accountInfo')));
-
-    // Initialise i18next
-    await i18nextInit();
 
     // Set default language
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
@@ -222,6 +219,8 @@ onAppStart()
     // Reset persisted state if keychain has no entries
     .then(() => resetIfKeychainIsEmpty(reduxStore))
     // Restore persistent storage (Map to redux store)
+    // Initialise i18next
+    .then(() => i18nextInit())
     .then(() => {
         const latestVersions = {
             version: getVersion(),
