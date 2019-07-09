@@ -1,11 +1,16 @@
 /* global Electron */
+import pick from 'lodash/pick';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
-import { getEncryptionKey, ALIAS_REALM } from 'libs/realm';
+import ALIAS_REALM from 'libs/constants';
+import getEncryptionKey from 'libs/realm';
+import { serialise } from 'libs/utils';
+import { iota, quorum } from 'libs/iota';
+import Errors from 'libs/errors';
 
 import {
     changePowSettings,
@@ -40,6 +45,10 @@ class Advanced extends PureComponent {
         settings: PropTypes.object.isRequired,
         /** @ignore */
         wallet: PropTypes.object,
+        /** @ignore */
+        accounts: PropTypes.object.isRequired,
+        /** @ignore */
+        notificationLog: PropTypes.array.isRequired,
         /** @ignore */
         setTray: PropTypes.func.isRequired,
         /** @ignore */
@@ -131,7 +140,7 @@ class Advanced extends PureComponent {
     confirmReset = () => {
         const { wallet } = this.props;
 
-        this.setState({ resetConfirm: !this.state.resetConfirm, resetCountdown: 15 });
+        this.setState((prevState) => ({ resetConfirm: !prevState.resetConfirm, resetCountdown: 15 }));
 
         if (!wallet || !wallet.isOpen) {
             this.interval = setInterval(() => {
@@ -139,11 +148,57 @@ class Advanced extends PureComponent {
                     clearInterval(this.interval);
                 }
 
-                this.setState({
-                    resetCountdown: this.state.resetCountdown - 1,
-                });
+                this.setState((prevState) => ({
+                    resetCountdown: prevState.resetCountdown - 1,
+                }));
             }, 1000);
         }
+    };
+
+    /**
+     * Exports wallet's state
+     *
+     * @method exportState
+     *
+     * @returns {void}
+     */
+    exportState = () => {
+        const { accounts, settings, notificationLog, t } = this.props;
+
+        const content = serialise(
+            {
+                notificationLog,
+                settings,
+                accounts: pick(accounts, ['onboardingComplete', 'accountInfo']),
+                __globals__: {
+                    quorumNodes: quorum.nodes,
+                    quorumSize: quorum.size,
+                    iotaNode: iota.provider,
+                },
+            },
+            null,
+            4,
+        );
+
+        Electron.exportState(content)
+            .then(() => {
+                this.props.generateAlert(
+                    'success',
+                    t('stateExport:exportSuccess'),
+                    t('stateExport:exportSuccessExplanation'),
+                );
+            })
+            .catch((error) => {
+                if (error.message !== Errors.EXPORT_CANCELLED) {
+                    this.props.generateAlert(
+                        'error',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongTryAgain'),
+                        10000,
+                        error,
+                    );
+                }
+            });
     };
 
     render() {
@@ -262,6 +317,17 @@ class Advanced extends PureComponent {
                             <hr />
                         </React.Fragment>
 
+                        <React.Fragment>
+                            <h3>{t('advancedSettings:stateExport')}</h3>
+                            <p>
+                                <React.Fragment>{t('stateExport:stateExportExplanation')}</React.Fragment>
+                            </p>
+                            <Button className="small" onClick={this.exportState} variant="positive">
+                                {t('global:export')}
+                            </Button>
+                            <hr />
+                        </React.Fragment>
+
                         <h3>{t('settings:reset')}</h3>
                         <Trans i18nKey="walletResetConfirmation:warning">
                             <p>
@@ -330,6 +396,8 @@ class Advanced extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
+    accounts: state.accounts,
+    notificationLog: state.alerts.notificationLog,
     settings: state.settings,
     wallet: state.wallet,
     lockScreenTimeout: state.settings.lockScreenTimeout,
@@ -346,4 +414,7 @@ const mapDispatchToProps = {
     setProxy,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Advanced));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(Advanced));

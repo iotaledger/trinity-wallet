@@ -41,7 +41,7 @@ import { accumulateBalance } from './addresses';
  *
  * @returns {function(object, string, object, object): Promise<object>}
  **/
-export const sweep = (settings, withQuorum) => (seedStore, seed, input, transfer) => {
+const sweep = (settings, withQuorum) => (seedStore, seed, input, transfer) => {
     if (!isValidInput(input)) {
         return Promise.reject(new Error(Errors.INVALID_INPUT));
     }
@@ -208,3 +208,5 @@ export const sweep = (settings, withQuorum) => (seedStore, seed, input, transfer
         })
         .then(() => cached);
 };
+
+export default sweep;

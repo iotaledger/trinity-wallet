@@ -1,8 +1,9 @@
-patch-package
+diff --git a/node_modules/react-native-device-info/RNDeviceInfo/RNDeviceInfo.m b/node_modules/react-native-device-info/RNDeviceInfo/RNDeviceInfo.m
+index e8042fc..e253c06 100644
 --- a/node_modules/react-native-device-info/RNDeviceInfo/RNDeviceInfo.m
 +++ b/node_modules/react-native-device-info/RNDeviceInfo/RNDeviceInfo.m
-@@ -163,12 +163,7 @@ RCT_EXPORT_MODULE()
-
+@@ -163,12 +163,7 @@ - (NSString *) carrier
+ 
  - (NSString*) userAgent
  {
 -#if TARGET_OS_TV
@@ -12,5 +13,26 @@ patch-package
 -    return [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
 -#endif
  }
-
+ 
  - (NSString*) deviceLocale
+diff --git a/node_modules/react-native-device-info/android/build.gradle b/node_modules/react-native-device-info/android/build.gradle
+index 965da58..0d15369 100644
+--- a/node_modules/react-native-device-info/android/build.gradle
++++ b/node_modules/react-native-device-info/android/build.gradle
+@@ -1,5 +1,9 @@
+ apply plugin: 'com.android.library'
+ 
++def safeExtGet(prop, fallback) {
++    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
++}
++
+ android {
+     compileSdkVersion 23
+     buildToolsVersion "25.0.2"
+@@ -20,5 +24,5 @@ android {
+ 
+ dependencies {
+     compile 'com.facebook.react:react-native:+'
+-    compile 'com.google.android.gms:play-services-gcm:+'
++    compile "com.google.android.gms:play-services-gcm:${safeExtGet('googlePlayServicesVersion', '16.1.0')}"
+ }

@@ -518,5 +518,9 @@
             margin-bottom: 10px;
             min-width: 120px;
         }
+
+        @media (max-width: 320px) {
+            display: none;
+        }
     }
 }

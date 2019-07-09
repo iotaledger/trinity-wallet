@@ -4,7 +4,7 @@ import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableHighlight, FlatList, BackHandler, TouchableOpacity } from 'react-native';
 import timer from 'react-native-timer';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
@@ -19,7 +19,7 @@ import CtaButton from 'ui/components/CtaButton';
 import { width, height } from 'libs/dimensions';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import Header from 'ui/components/Header';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -145,6 +145,7 @@ class NewSeedSetup extends Component {
     async onCharPress(sectionID) {
         const { hasGeneratedSeed } = this.state;
         if (hasGeneratedSeed) {
+            // eslint-disable-next-line react/no-access-state-in-setstate
             this.setState({ seed: await randomiseSeedCharacter(this.state.seed, sectionID, generateSecureRandom) });
         }
     }
@@ -176,7 +177,9 @@ class NewSeedSetup extends Component {
     }
 
     renderChequerboard(character, index) {
-        const { theme: { input, primary } } = this.props;
+        const {
+            theme: { input, primary },
+        } = this.props;
 
         const { hasGeneratedSeed } = this.state;
 
@@ -197,7 +200,11 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { t, theme: { primary, secondary, body }, minimised } = this.props;
+        const {
+            t,
+            theme: { primary, secondary, body },
+            minimised,
+        } = this.props;
         const { hasGeneratedSeed } = this.state;
         const viewOpacity = hasGeneratedSeed ? 1 : 0.2;
         const opacity = hasGeneratedSeed ? 1 : 0.4;
@@ -300,5 +307,10 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    withNamespaces(['newSeedSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup)),
+    withNamespaces(['newSeedSetup', 'global'])(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(NewSeedSetup),
+    ),
 );

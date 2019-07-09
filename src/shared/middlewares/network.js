@@ -1,5 +1,5 @@
 import { WalletActionTypes, AlertsActionTypes } from '../types';
-import i18next from '../libs/i18next.js';
+import i18next from '../libs/i18next';
 
 const networkMiddleware = (store) => (next) => (action) => {
     if (action.type === WalletActionTypes.CONNECTION_CHANGED && !action.payload.isConnected) {

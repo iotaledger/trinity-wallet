@@ -20,6 +20,8 @@ export default class Text extends React.PureComponent {
          * @param {string} value - Current input value
          */
         onChange: PropTypes.func.isRequired,
+        /** Limit max text length */
+        maxLength: PropTypes.number,
     };
 
     componentDidMount() {
@@ -35,7 +37,7 @@ export default class Text extends React.PureComponent {
     }
 
     render() {
-        const { value, label, onChange, disabled } = this.props;
+        const { value, label, onChange, disabled, maxLength } = this.props;
 
         return (
             <div className={classNames(css.input, disabled ? css.disabled : null)}>
@@ -47,6 +49,7 @@ export default class Text extends React.PureComponent {
                         type="text"
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
+                        maxLength={maxLength}
                     />
                     <small>{label}</small>
                 </fieldset>

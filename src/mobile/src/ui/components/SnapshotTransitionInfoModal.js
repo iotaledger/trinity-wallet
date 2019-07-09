@@ -4,7 +4,7 @@ import { Text, StyleSheet } from 'react-native';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import ModalView from './ModalView';
 
 const styles = StyleSheet.create({

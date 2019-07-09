@@ -3,7 +3,7 @@ import sample from 'lodash/sampleSize';
 import React, { Component } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import timer from 'react-native-timer';
 import { withNamespaces } from 'react-i18next';
 import { startTrackingProgress } from 'shared-modules/actions/progress';

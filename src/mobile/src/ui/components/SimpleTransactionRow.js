@@ -5,7 +5,7 @@ import { formatTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
 import { width, height } from 'libs/dimensions';
 import { locale, timezone } from 'libs/device';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
     container: {

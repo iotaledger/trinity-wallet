@@ -11,10 +11,10 @@ import RNFetchBlob from 'rn-fetch-blob';
 import { withNamespaces } from 'react-i18next';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
-import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/constants';
+import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/config';
 import { height, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import { trytesToTrits } from 'shared-modules/libs/iota/converter';
 import { parse } from 'shared-modules/libs/utils';
@@ -197,7 +197,7 @@ export class SeedVaultImportComponent extends Component {
                 timer.setTimeout('delayDocumentPicker', () => this.showDocumentPicker(), 200);
             })
             .catch((err) => {
-                if (err.message === 'Read permissions not granted.') {
+                if (typeof err.message === 'string' && err.message === 'Read permissions not granted.') {
                     return this.props.generateAlert(
                         'error',
                         t('receive:missingPermission'),

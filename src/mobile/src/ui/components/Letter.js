@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
 
-export const Letter = (props) => {
+const Letter = (props) => {
     const { children, spacing, textStyle } = props;
 
     const letterStyles = [textStyle, { paddingRight: spacing }];
@@ -18,3 +18,5 @@ Letter.propTypes = {
     /** Letter text styles */
     textStyle: PropTypes.array,
 };
+
+export default Letter;

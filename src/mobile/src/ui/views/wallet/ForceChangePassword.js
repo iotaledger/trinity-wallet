@@ -4,12 +4,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { zxcvbn } from 'shared-modules/libs/exports';
 import { setSetting } from 'shared-modules/actions/wallet';
-import { passwordReasons } from 'shared-modules/libs/password';
+import passwordReasons from 'shared-modules/libs/password';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -20,7 +20,7 @@ import { generatePasswordHash, getSalt, getOldPasswordHash, hexToUint8 } from 'l
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import InfoBox from 'ui/components/InfoBox';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -125,7 +125,7 @@ class ForceChangePassword extends Component {
 
         if (this.isNewPasswordValid()) {
             const throwError = (err) => {
-                if (err.message === 'Incorrect password') {
+                if (typeof err.message === 'string' && err.message === 'Incorrect password') {
                     this.props.generateAlert(
                         'error',
                         t('global:unrecognisedPassword'),
@@ -225,7 +225,10 @@ class ForceChangePassword extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+        } = this.props;
         const { currentPassword, newPassword, newPasswordReentry } = this.state;
         const textColor = { color: body.color };
         const score = zxcvbn(newPassword);
@@ -291,24 +294,22 @@ class ForceChangePassword extends Component {
                             <View style={{ flex: 0.2 }} />
                         </View>
                         <View style={styles.bottomContainer}>
-                            {currentPassword !== '' &&
-                                newPassword !== '' &&
-                                newPasswordReentry !== '' && (
-                                    <TouchableOpacity
-                                        onPress={() => this.onSavePress()}
-                                        hitSlop={{
-                                            top: height / 55,
-                                            bottom: height / 55,
-                                            left: width / 55,
-                                            right: width / 55,
-                                        }}
-                                    >
-                                        <View style={styles.itemRight}>
-                                            <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                            <Icon name="tick" size={width / 28} color={body.color} />
-                                        </View>
-                                    </TouchableOpacity>
-                                )}
+                            {currentPassword !== '' && newPassword !== '' && newPasswordReentry !== '' && (
+                                <TouchableOpacity
+                                    onPress={() => this.onSavePress()}
+                                    hitSlop={{
+                                        top: height / 55,
+                                        bottom: height / 55,
+                                        left: width / 55,
+                                        right: width / 55,
+                                    }}
+                                >
+                                    <View style={styles.itemRight}>
+                                        <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
+                                        <Icon name="tick" size={width / 28} color={body.color} />
+                                    </View>
+                                </TouchableOpacity>
+                            )}
                         </View>
                         <View style={{ flex: 0.5 }} />
                     </View>
@@ -329,5 +330,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['changePassword', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(ForceChangePassword),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ForceChangePassword),
 );

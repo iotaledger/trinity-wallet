@@ -76,6 +76,10 @@ const config = {
                 ],
             },
             { test: /\.node$/, loader: 'node-loader' },
+            {
+                test: /\.md$/i,
+                use: 'raw-loader',
+            },
         ],
     },
     resolve: {
@@ -89,7 +93,7 @@ const config = {
             title: 'Trinity',
         }),
         new webpack.DefinePlugin({
-            'process.env.BUGSNAG_API_KEY': JSON.stringify(process.env.BUGSNAG_API_KEY || ''),
+            'process.env.BUGSNAG_KEY': JSON.stringify(process.env.BUGSNAG_KEY || ''),
         }),
     ],
 };

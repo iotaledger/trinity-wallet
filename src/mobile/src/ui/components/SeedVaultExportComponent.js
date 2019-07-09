@@ -19,7 +19,7 @@ import { width, height } from 'libs/dimensions';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import { removeNonAlphaNumeric, serialise } from 'shared-modules/libs/utils';
-import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/constants';
+import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/config';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
 import { MAX_SEED_TRITS } from 'shared-modules/libs/iota/utils';
 import { moment } from 'shared-modules/libs/exports';

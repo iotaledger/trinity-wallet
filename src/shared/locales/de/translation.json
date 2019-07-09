@@ -169,9 +169,10 @@
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
         "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen.",
         "swipeToConfirm": "Wischen um zu bestätigen",
+        "congratulations": "Glückwunsch",
         "expert": "Experte",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodes": "Nicht genug Nodes synchronisiert",
+        "notEnoughSyncedNodesExplanation": "In der verwendeten Node-Gruppe konnte kein einheitlicher Status ermittelt werden. Deaktiviere die Node-Gruppe und versuche es erneut."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Sprache",
+        "selectALanguage": "Sprache auswählen",
         "letsGetStarted": "Los geht's"
     },
     "login": {
@@ -362,8 +364,6 @@
         "message": "Nachricht",
         "invalidMessage": "Ungültige Nachricht",
         "invalidMessageExplanation": "Deine Nachricht enthält ungültige Zeichen.",
-        "invalidMessageTooLong": "Nachricht zu lang",
-        "invalidMessageTooLongExplanation": "Die Nachricht überschreitet die max. Anzahl der Zeichen (1093).",
         "send": "Senden",
         "invalidAmount": "Falschen Betrag eingegeben",
         "invalidAmountExplanation": "Bitte gib einen gültigen Betrag ein. Die Liste der IOTA Einheiten am unteren Rand dieser Seite könnte hilfreich sein.",
@@ -498,13 +498,13 @@
         "automaticNodeManagement": "Automatische Node-Verwaltung",
         "addCustomNodes": "Benutzerdefinierte Nodes hinzufügen",
         "autoNodeList": "Offizielle Node-Liste verwenden",
-        "nodeAutoswitching": "Automatisch primären Node wechseln",
+        "nodeAutoswitching": "Automatisch den primären Node wechseln",
         "primaryNode": "Primärer Node",
         "enableQuorum": "Node-Gruppe aktivieren",
         "quorumSize": "Anzahl der Nodes in der Node-Gruppe",
         "noCustomNodes": "Keine benutzerdefinierten Nodes vorhanden",
         "mustAddCustomNodes": "Du musst mindestens einen benutzerdefinierten Node hinzugefügt haben, bevor du die offizielle Node-Liste deaktivieren kannst.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesTitle": "Nicht genug Nodes",
         "nodeEnoughNodesExplanation": "Es sind nicht genug Nodes vorhanden um die Node-Gruppe zu aktivieren.",
         "nodeEnoughNodesExplanationCustomNodes": "Füge weitere benutzerdefinierte Nodes hinzu oder verwende die offizielle Node-Liste.",
         "nodeSettingsUpdatedTitle": "Node-Einstellungen aktualisiert",
@@ -649,7 +649,7 @@
         "noPassword": "Auf diesem Gerät wurde kein Passwort eingerichtet"
     },
     "transferConfirmation": {
-        "youAreAbout": "Du sendest jetzt {{contents}} an die Adresse",
+        "youAreAbout": "Du bist dabei {{contents}} zu senden",
         "aMessage": "eine Nachricht",
         "fromAccount": "Von {{selectedAccountName}}",
         "toAddress": "An Adresse",

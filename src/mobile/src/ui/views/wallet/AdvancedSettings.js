@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -81,12 +81,16 @@ export class AdvancedSettings extends PureComponent {
     renderSettingsContent() {
         const { theme, t, autoPromotion, remotePoW, deepLinking, isSendingTransfer } = this.props;
         const rows = [
-            { name: t('settings:nodeSettings'), icon: 'node', function: () => {
-              if (isSendingTransfer) {
-                  return this.generateChangeNodeAlert();
-              }
-              return this.props.setSetting('nodeSettings');
-            }},
+            {
+                name: t('settings:nodeSettings'),
+                icon: 'node',
+                function: () => {
+                    if (isSendingTransfer) {
+                        return this.generateChangeNodeAlert();
+                    }
+                    return this.props.setSetting('nodeSettings');
+                },
+            },
             {
                 name: t('pow'),
                 icon: 'pow',
@@ -143,5 +147,8 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['advancedSettings', 'settings', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(AdvancedSettings),
 );

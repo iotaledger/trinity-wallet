@@ -177,7 +177,7 @@ describe('libs: iota/quorum', () => {
 
         describe('when has no whitelisted nodes', () => {
             describe('when size of synced nodes is less than quorum size', () => {
-                it('should throw with an error "Not enough synced nodes for quorum."', () => {
+                it('should throw with an error "Not enough are in sync nodes to perform a quorum."', () => {
                     const blacklistedNodes = nodes.slice(0, nodes.length - 1);
                     const syncedNodes = nodes.slice(nodes.length - 1);
 
@@ -185,12 +185,12 @@ describe('libs: iota/quorum', () => {
                         .then(() => {
                             throw new Error();
                         })
-                        .catch((err) => expect(err.message).to.equal('Not enough synced nodes for quorum.'));
+                        .catch((err) => expect(err.message).to.equal('Not enough are in sync nodes to perform a quorum.'));
                 });
             });
 
             describe('when size of synced nodes is not less than quorum size', () => {
-                it('should not throw with an error "Not enough synced nodes for quorum."', () => {
+                it('should not throw with an error "Not enough are in sync nodes to perform a quorum."', () => {
                     const syncedNodes = nodes.slice(0, 7);
                     const blacklistedNodes = nodes.slice(7);
 

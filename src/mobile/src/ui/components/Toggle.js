@@ -39,7 +39,7 @@ class Toggle extends PureComponent {
         super(props);
         this.state = {
             togglePosition: new Animated.Value(this.getTogglePosition(props.active)),
-            toggleStyle: this.getToggleStyle()
+            toggleStyle: this.getToggleStyle(),
         };
     }
 
@@ -47,7 +47,7 @@ class Toggle extends PureComponent {
         if (this.props.active !== newProps.active) {
             Animated.timing(this.state.togglePosition, {
                 toValue: this.getTogglePosition(!this.props.active),
-                duration: 80
+                duration: 80,
             }).start(() => this.setState({ toggleStyle: this.getToggleStyle() }));
         }
     }
@@ -73,7 +73,7 @@ class Toggle extends PureComponent {
      */
     getTogglePosition(condition) {
         const size = width * this.props.scale;
-        return condition ? (size / 12 - size / 33) - 5 : 1.5;
+        return condition ? size / 12 - size / 33 - 5 : 1.5;
     }
 
     render() {
@@ -101,9 +101,9 @@ class Toggle extends PureComponent {
                                 height: size / 33,
                                 borderRadius: size / 33,
                                 position: 'absolute',
-                                left: this.state.togglePosition
+                                left: this.state.togglePosition,
                             },
-                            this.state.toggleStyle
+                            this.state.toggleStyle,
                         ]}
                     />
                 </View>

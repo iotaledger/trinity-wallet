@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import i18next from 'shared-modules/libs/i18next.js';
+import i18next from 'shared-modules/libs/i18next';
 import { height, width } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 
 const styles = StyleSheet.create({
@@ -35,12 +35,12 @@ class SettingsBackButton extends PureComponent {
         /** Disables back button */
         inactive: PropTypes.bool,
         /** Override title */
-        name: PropTypes.string
+        name: PropTypes.string,
     };
 
     static defaultProps = {
         inactive: false,
-        name: i18next.t('global:back')
+        name: i18next.t('global:back'),
     };
 
     render() {
@@ -48,11 +48,11 @@ class SettingsBackButton extends PureComponent {
             theme: { body },
             inactive,
             backFunction,
-            name
+            name,
         } = this.props;
 
         return (
-            <View style={[ styles.itemContainer, inactive && { opacity: 0.35 } ]}>
+            <View style={[styles.itemContainer, inactive && { opacity: 0.35 }]}>
                 <TouchableOpacity
                     onPress={backFunction}
                     hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}

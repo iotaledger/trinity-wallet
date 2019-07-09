@@ -33,6 +33,8 @@ class App extends React.Component {
         locale: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -57,6 +59,16 @@ class App extends React.Component {
         }
     }
 
+    switchAccount = (nextIndex) => {
+        const { accounts } = this.props;
+
+        const accountCount = Object.keys(accounts.accountInfo).length;
+
+        this.setState({
+            accountIndex: nextIndex >= accountCount ? -1 : nextIndex < -1 ? accountCount - 1 : nextIndex,
+        });
+    };
+
     /**
      * Proxy menu update event to an action
      * @param {Object} payload - Menu update object {attribute, value}
@@ -72,11 +84,11 @@ class App extends React.Component {
     }
 
     unauthorised() {
-        const { complete, t } = this.props;
+        const { complete, t, themeName } = this.props;
 
         return (
             <div className={css.intro}>
-                <Logo size={72} animate loop />
+                <Logo size={72} animate loop themeName={themeName} />
                 <h2>{complete ? t('tray:notLoggedIn') : t('tray:setupIncomplete')}</h2>
                 <Button onClick={() => Electron.focus()}>
                     {complete ? t('login:login') : t('tray:completeSetup')}
@@ -111,16 +123,6 @@ class App extends React.Component {
         );
     }
 
-    switchAccount = (nextIndex) => {
-        const { accounts } = this.props;
-
-        const accountCount = Object.keys(accounts.accountInfo).length;
-
-        this.setState({
-            accountIndex: nextIndex >= accountCount ? -1 : nextIndex < -1 ? accountCount - 1 : nextIndex,
-        });
-    };
-
     render() {
         const { authorised } = this.state;
         const { history } = this.props;
@@ -138,6 +140,7 @@ const mapStateToProps = (state) => ({
     complete: state.accounts.onboardingComplete,
     locale: state.settings.locale,
     accounts: state.accounts,
+    themeName: state.settings.themeName,
 });
 
 export default withRouter(connect(mapStateToProps)(withTranslation()(App)));

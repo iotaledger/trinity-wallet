@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Animated, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { isIPhoneX } from 'libs/device';

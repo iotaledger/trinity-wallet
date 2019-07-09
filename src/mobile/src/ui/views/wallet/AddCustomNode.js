@@ -21,7 +21,7 @@ import { connect } from 'react-redux';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import SettingsSeparator from 'ui/components/SettingsSeparator';
 import SettingsDualFooter from 'ui/components/SettingsDualFooter';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import { isIOS } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -121,7 +121,7 @@ export class AddCustomNode extends Component {
                 duration: 200,
             }),
         ]).start(() => {
-            this.setState({ viewAuthKeyFields: !this.state.viewAuthKeyFields });
+            this.setState((prevState) => ({ viewAuthKeyFields: !prevState.viewAuthKeyFields }));
         });
     }
 

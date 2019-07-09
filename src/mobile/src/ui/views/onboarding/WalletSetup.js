@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import RNExitApp from 'react-native-exit-app';
@@ -18,7 +18,7 @@ import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import { doAttestationFromSafetyNet } from 'libs/safetynet';
+import doAttestationFromSafetyNet from 'libs/safetynet';
 import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1.4,
+        flex: 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
     midContainer: {
-        flex: 2.6,
+        flex: 2.4,
         alignItems: 'center',
     },
     bottomContainer: {
@@ -170,7 +170,10 @@ class WalletSetup extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+        } = this.props;
         const textColor = { color: body.color };
 
         return (
@@ -181,7 +184,7 @@ class WalletSetup extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
                     >
-                        <Header textColor={body.color}>{t('welcome:thankYou')}</Header>
+                        <Header textColor={body.color}>{t('doYouNeedASeed')}</Header>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
@@ -209,15 +212,6 @@ class WalletSetup extends Component {
                         </InfoBox>
                     </AnimatedComponent>
                     <View style={{ flex: 0.3 }} />
-                    <AnimatedComponent
-                        animationInType={['slideInRight', 'fadeIn']}
-                        animationOutType={['slideOutLeft', 'fadeOut']}
-                        delay={133}
-                    >
-                        <View style={styles.greetingTextContainer}>
-                            <Text style={[styles.greetingText, textColor]}>{t('doYouNeedASeed')}</Text>
-                        </View>
-                    </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
@@ -245,4 +239,9 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['walletSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(WalletSetup));
+export default withNamespaces(['walletSetup', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(WalletSetup),
+);

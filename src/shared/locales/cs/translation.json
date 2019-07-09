@@ -144,8 +144,8 @@
         "isYourBalanceCorrect": "Je Váš zůstatek v pořádku?",
         "ifYourBalanceIsNotCorrect": "Pokud Váš zůstatek není správný, je pravděpodobné, že používáte Seed z doby před snapshotem.",
         "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
+        "headToAccountTools": "Přejděte na Nastavení účtu a proveďte Aktualizace údajů po Snapshotu.",
+        "openAccountTools": "Otevřete nastavení účtu",
         "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Během transakce došlo k chybě sítě.",
         "broadcastError": "Nezdařilo se odeslat transakci",
@@ -165,13 +165,14 @@
         "shouldUpdateExplanation": "Byla vydána nová aktualizace. Doporučujeme aktualizovat na nejnovější verzi.",
         "forceUpdate": "Chcete-li pokračovat, aktualizujte aplikaci",
         "forceUpdateExplanation": "Byla vydána kritická aktualizace. Aktualizujte aplikaci nyní.",
-        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
+        "testVersionWarning": "Tato verze je určena výhradně pro testovací účely s velmi malým množstvím tokenů.",
         "missingPermission": "Požadovaný přístup k souborovému systému",
         "missingPermissionExplanation": "K provedení této funkce potřebujete přístup k souborovému systému.",
         "swipeToConfirm": "Posunutím potvrďte",
+        "congratulations": "Gratulujeme",
         "expert": "Expert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodes": "Synchronizuje se příliš málo Nodů",
+        "notEnoughSyncedNodesExplanation": "Nebylo možné dosáhnout kvóra. Vypněte kvórum nebo to zkuste znovu."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Jazyk",
+        "selectALanguage": "Vyberte jazyk",
         "letsGetStarted": "Pojďme začít"
     },
     "login": {
@@ -362,8 +364,6 @@
         "message": "Zpráva",
         "invalidMessage": "Neplatná zpráva",
         "invalidMessageExplanation": "Vaše zpráva obsahuje neplatné znaky.",
-        "invalidMessageTooLong": "Zpráva je příliš dlouhá",
-        "invalidMessageTooLongExplanation": "Zpráva překračuje maximální počet znaků (1093).",
         "send": "Odeslat",
         "invalidAmount": "Zadána neplatná částka",
         "invalidAmountExplanation": "Prosím zadejte platnou transakční částku. Případně níže na stránce jsou informace o IOTA jednotkách.\n",
@@ -500,12 +500,12 @@
         "autoNodeList": "Použít vzdálený oficiální seznam Nodů",
         "nodeAutoswitching": "Automatické přepínání primárního Nodu",
         "primaryNode": "Primární Node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
+        "enableQuorum": "Povolit kvórum",
+        "quorumSize": "Velikost kvóra",
         "noCustomNodes": "Nebyly přidány žádné vlastní Nody",
         "mustAddCustomNodes": "Před vypnutím vzdáleného oficiálního seznamu Nodů musíte přidat alespoň jeden vlastní Node.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
+        "nodeEnoughNodesTitle": "Nedostatečný počet Nodů",
+        "nodeEnoughNodesExplanation": "Není dostatek Nodů, které by umožnily zapnout kvorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Přidejte další vlastní Nody, nebo povolte vzdálený oficiální seznam Nodů.",
         "nodeSettingsUpdatedTitle": "Nastavení Nodu bylo aktualizováno",
         "nodeSettingsUpdatedExplanation": "Úspěšně jste aktualizovali nastavení Nodu."
@@ -522,7 +522,7 @@
         "addAuthKey": "Přidat autorizační klíč",
         "username": "Uživatelské jméno",
         "couldNotRemove": "Nelze odebrat vlastní Node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "Musí být dostatek Nodů pro kvórum. Snižte velikost kvóra, nebo povolte vzdálený oficiální seznam Nodů."
     },
     "addNewAccount": {
         "useExistingSeed": "Použít stávající Seed",
@@ -649,7 +649,7 @@
         "noPassword": "V zařízení není nastaveno heslo"
     },
     "transferConfirmation": {
-        "youAreAbout": "Chystáte se odeslat {{contents}} na adresu",
+        "youAreAbout": "Chystáte se odeslat {{contents}}",
         "aMessage": "zpráva",
         "fromAccount": "Od {{selectedAccountName}}",
         "toAddress": "Na adresu",
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Chyba při získávání aktualizačních dat",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Nelze načíst aktualizaci. Zkontrolujte prosím připojení k internetu a zkuste to znovu.",
         "noUpdatesAvailable": "Nejsou dostupné žádné aktualizace",
         "noUpdatesAvailableExplanation": "Máte nainstalovanou nejnovější verzi Trinity!",
         "newVersionAvailable": "K dispozici je nová verze",
@@ -826,16 +826,16 @@
         "notReady": "Pokud si přejete použít zařízení Ledger, připojte je nyní a odemkněte",
         "indexInUse": "Tento index již používá účet {{account}}",
         "indexInUseExplanation": "Váš zvolený index je již používán na jednom z Vašich účtů. Vyberte si prosím jiné číslo indexu.",
-        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
-        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
-        "createNewLedgerAccount": "Create a new Ledger account",
-        "restoreLedgerAccount": "Restore an existing Ledger account",
+        "createNewLedgerAccountInfo": "Ujistěte se, že jste si zapsali a uložili Vaše číslo indexu.",
+        "restoreLedgerAccountInfo": "Vložte prosím číslo indexu za účelem obnovení Vašeho účtu.",
+        "createNewLedgerAccount": "Vytvořit nový Ledger účet",
+        "restoreLedgerAccount": "Obnovit existující Ledger účet",
         "accountIndex": "Index účtu",
         "accountPage": "Stránka účtu",
         "actionCancelled": "Přístup k zařízení Ledger byl zrušen",
         "actionCancelledExplanation": "Akci nelze provést bez přístupu k zařízení Ledger.",
         "chooseAccountIndex": "Vyberte Index účtu ve Vašem Ledgeru",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
+        "accountIndexExplanation": "Váš Ledger vám umožňuje používat více Seedů. Každý Seed je identifikovatelný unikátním číslem indexu.",
         "accountPageExplanation": "Některé peněženky třetích stran vyžadují použití \"stron\".",
         "connectionError": "Nelze se připojit k Vašemu Ledgeru",
         "connectionErrorExplanation": "Zkontrolujte, zda je Váš Ledger připojen a odemknut.",
@@ -857,11 +857,11 @@
         "checkAddressExplanation": "Zkontrolujte, zda adresa odpovídá adrese zobrazené na Vašem zařízení Ledger.",
         "applicationNotInitialised": "Informační upozornění, nebylo přijato",
         "applicationNotInitialisedExplanation": "Znovu otevřete aplikaci IOTA na Vašem zařízení Ledger, přijměte informační upozornění a zkuste to znovu.",
-        "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "checkLedger": "Zkontrolujte Váš Ledger",
+        "acceptWarningExplanation": "V případě, že se na Vašem Ledger zařízení objeví informační upozornění, je nutné ho zobrazit a akceptovat prostřednictvím stisknutí obou tlačítek.",
         "udevError": "Nelze komunikovat se zařízením Ledger",
         "udevErrorExplanation": "Trinity nemohla komunikovat s Vaším zařízením Ledger. Tento problém vyřešíte na adrese uvedené níže.",
-        "writtenDownInfoTitle": "Remember your index number",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "writtenDownInfoTitle": "Zapamatujte si číslo Vašeho indexu",
+        "writtenDownInfoExplanation": "Číslo Vašeho indexu je důležité při případné potřebě obnovení vašeho účtu v budoucnosti. V případě ztráty tohoto čísla, přijdete o Vaší IOTU. Prosím zapište si ho."
     }
 }

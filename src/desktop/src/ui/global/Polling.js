@@ -14,6 +14,7 @@ import {
     isSettingUpNewAccount,
     getPromotableBundlesFromState,
     getSelectedAccountName,
+    getSelectedAccountType,
     getFailedBundleHashes,
 } from 'selectors/accounts';
 import {
@@ -36,6 +37,8 @@ class Polling extends React.PureComponent {
         accountNames: PropTypes.array.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string,
+        /** Type for selected account */
+        selectedAccountType: PropTypes.string.isRequired,
         /** @ignore */
         pollFor: PropTypes.string.isRequired,
         /** @ignore */
@@ -71,6 +74,28 @@ class Polling extends React.PureComponent {
         retryFailedTransaction: PropTypes.func.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
+        /** @ignore */
+        isPollingPrice: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPollingChartData: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPollingAccountInfo: PropTypes.bool.isRequired,
+        /** @ignore */
+        isAutoPromoting: PropTypes.bool.isRequired,
+        /** @ignore */
+        isTransitioning: PropTypes.bool.isRequired,
+        /** @ignore */
+        isRetryingFailedTransaction: PropTypes.bool.isRequired,
+        /** @ignore */
+        isSyncing: PropTypes.bool.isRequired,
+        /** @ignore */
+        addingAdditionalAccount: PropTypes.bool.isRequired,
+        /** @ignore */
+        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        /** @ignore */
+        isSendingTransfer: PropTypes.bool.isRequired,
+        /** @ignore */
+        isFetchingAccountInfo: PropTypes.bool.isRequired,
     };
 
     state = {
@@ -99,28 +124,6 @@ class Polling extends React.PureComponent {
 
     componentWillUnmount() {
         clearInterval(this.interval);
-    }
-
-    shouldSkipCycle() {
-        const props = this.props;
-
-        const isAlreadyDoingSomeHeavyLifting =
-            props.isSyncing ||
-            props.isSendingTransfer ||
-            props.isGeneratingReceiveAddress ||
-            props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
-            props.addingAdditionalAccount ||
-            props.isTransitioning ||
-            props.isRetryingFailedTransaction;
-
-        const isAlreadyPollingSomething =
-            props.isPollingPrice ||
-            props.isPollingChartData ||
-            props.isPollingMarketData ||
-            props.isPollingAccountInfo ||
-            props.isAutoPromoting;
-
-        return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
 
     moveToNextPollService = () => {
@@ -177,18 +180,14 @@ class Polling extends React.PureComponent {
 
             const seedStore = await new SeedStore[type](password, name);
 
-            this.props.retryFailedTransaction(
-                  name,
-                  bundleForRetry,
-                  seedStore,
-            );
+            this.props.retryFailedTransaction(name, bundleForRetry, seedStore);
         } else {
             this.moveToNextPollService();
         }
     };
 
-    promote = () => {
-        const { unconfirmedBundleTails, autoPromotion } = this.props;
+    promote = async () => {
+        const { unconfirmedBundleTails, autoPromotion, selectedAccountType, password } = this.props;
 
         const { autoPromoteSkips } = this.state;
 
@@ -203,12 +202,36 @@ class Polling extends React.PureComponent {
 
                 const { accountName } = unconfirmedBundleTails[bundleHashToPromote];
 
-                return this.props.promoteTransfer(bundleHashToPromote, accountName);
+                const seedStore = await new SeedStore[selectedAccountType](password, name);
+
+                return this.props.promoteTransfer(bundleHashToPromote, accountName, seedStore);
             }
         }
 
         return this.moveToNextPollService();
     };
+
+    shouldSkipCycle() {
+        const props = this.props;
+
+        const isAlreadyDoingSomeHeavyLifting =
+            props.isSyncing ||
+            props.isSendingTransfer ||
+            props.isGeneratingReceiveAddress ||
+            props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
+            props.addingAdditionalAccount ||
+            props.isTransitioning ||
+            props.isRetryingFailedTransaction;
+
+        const isAlreadyPollingSomething =
+            props.isPollingPrice ||
+            props.isPollingChartData ||
+            props.isPollingMarketData ||
+            props.isPollingAccountInfo ||
+            props.isAutoPromoting;
+
+        return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
+    }
 
     render() {
         return null;
@@ -232,6 +255,7 @@ const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
     unconfirmedBundleTails: getPromotableBundlesFromState(state),
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountType: getSelectedAccountType(state),
     isTransitioning: state.ui.isTransitioning,
     isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
     failedBundleHashes: getFailedBundleHashes(state),

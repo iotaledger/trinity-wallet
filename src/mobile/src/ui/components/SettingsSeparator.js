@@ -24,17 +24,14 @@ class SettingsSeparator extends PureComponent {
     };
 
     static defaultProps = {
-        inactive: false
+        inactive: false,
     };
 
     render() {
-        const {
-            color,
-            inactive
-        } = this.props;
+        const { color, inactive } = this.props;
 
         return (
-            <View style={[ styles.separatorContainer, inactive && { opacity: 0.35 } ]}>
+            <View style={[styles.separatorContainer, inactive && { opacity: 0.35 }]}>
                 <View style={[styles.separator, { borderBottomColor: color }]} />
             </View>
         );

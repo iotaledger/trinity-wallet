@@ -9,7 +9,7 @@ import { AsyncStorage } from 'react-native';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { hasEntryInKeychain, ALIAS_SALT, ALIAS_REALM } from 'libs/keychain';
 import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
-import { getEncryptionKey } from 'libs/realm';
+import getEncryptionKey from 'libs/realm';
 import { setAppVersions, resetWallet } from 'shared-modules/actions/settings';
 import { parse, fetchVersions } from 'shared-modules/libs/utils';
 import { shouldUpdate as triggerShouldUpdate, forceUpdate as triggerForceUpdate } from 'shared-modules/actions/wallet';

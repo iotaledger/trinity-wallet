@@ -9,7 +9,7 @@ import { zxcvbn } from 'libs/exports';
 import { generateAlert } from 'actions/alerts';
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
-import { passwordReasons } from 'libs/password';
+import passwordReasons from 'libs/password';
 
 import PasswordInput from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
@@ -50,14 +50,14 @@ export class SeedExportComponent extends PureComponent {
     onBackStep = (e) => {
         e.preventDefault();
         if (this.state.step !== 1) {
-            return this.setState({ step: this.state.step - 1 });
+            return this.setState((prevState) => ({ step: prevState.step - 1 }));
         }
         this.onClose(e);
     };
 
     onStep = (e) => {
         e.preventDefault();
-        this.setState({ step: this.state.step + 1 });
+        this.setState((prevState) => ({ step: prevState.step + 1 }));
     };
 
     /**
@@ -205,4 +205,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(null, mapDispatchToProps)(withTranslation()(SeedExportComponent));
+export default connect(
+    null,
+    mapDispatchToProps,
+)(withTranslation()(SeedExportComponent));

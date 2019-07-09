@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Styling } from 'ui/theme/general';
 import PropTypes from 'prop-types';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { height, width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
@@ -13,30 +13,34 @@ const styles = StyleSheet.create({
     },
     header: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize6,
         textAlign: 'center',
         width: Styling.contentWidth,
         paddingTop: height / 16,
-        flex: 1,
         alignItems: 'center',
     },
 });
 
 export default class Header extends PureComponent {
     static propTypes = {
-        /* Text color for heading */
-        textColor: PropTypes.string.isRequired,
         /* Heading text content */
         children: PropTypes.string,
+        /* Heading text color */
+        textColor: PropTypes.string.isRequired,
+        /* Heading text size */
+        textSize: PropTypes.number,
     };
 
+    static defaultProps = {
+        textSize: Styling.fontSize6
+    }
+
     render() {
-        const { textColor, children } = this.props;
+        const { children, textSize, textColor } = this.props;
 
         return (
             <View style={styles.container}>
                 <Icon name="iota" size={width / 8} color={textColor} />
-                {children && <Text style={[styles.header, { color: textColor }]}>{children}</Text>}
+                {children && <Text style={[styles.header, { color: textColor, fontSize: textSize, lineHeight: textSize * 1.5 }]}>{children}</Text>}
             </View>
         );
     }

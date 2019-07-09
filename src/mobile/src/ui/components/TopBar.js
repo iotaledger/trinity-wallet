@@ -30,7 +30,7 @@ import { getThemeFromState } from 'shared-modules/selectors/global';
 import { roundDown } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { accumulateBalance } from 'shared-modules/libs/iota/addresses';
-import { Icon } from 'ui/theme/icons';
+import Icon from 'ui/theme/icons';
 import { isAndroid, isIPhoneX } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 import NotificationButtonComponent from 'ui/components/NotificationButton';

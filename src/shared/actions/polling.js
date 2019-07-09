@@ -1,6 +1,8 @@
 import each from 'lodash/each';
+import extend from 'lodash/extend';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
+import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import some from 'lodash/some';
@@ -14,7 +16,7 @@ import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/u
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { constructBundlesFromTransactions, findPromotableTail, isFundedBundle } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
-import { nodesConfigurationFactory, getCustomNodesFromState } from '../selectors/global';
+import { nodesConfigurationFactory, getCustomNodesFromState, getNodesFromState } from '../selectors/global';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
 import { DEFAULT_NODES } from '../config';
@@ -317,31 +319,24 @@ export const fetchPrice = () => {
 export const fetchNodeList = () => {
     return (dispatch, getState) => {
         dispatch(fetchNodeListRequest());
-        let nodes = unionBy(
-            DEFAULT_NODES,
-            getState().settings.nodes,
-            'url'
-        );
+
+        let nodes = DEFAULT_NODES;
+
         fetchRemoteNodes()
             .then((remoteNodes) => {
-                if (remoteNodes.length) {
-                    nodes = unionBy(
-                        nodes,
-                        map(remoteNodes, (node) => ({
-                            url: node.node,
-                            pow: node.pow,
-                            token: '',
-                        })),
-                        'url',
-                    );
+                // If there is a successful response, keep a union of (new nodes returned from the endpoint, default hardcoded nodes)
+                if (isArray(remoteNodes) && remoteNodes.length) {
+                    nodes = unionBy(nodes, remoteNodes, 'url');
+                } else {
+                    // Otherwise, fallback to existing nodes
+                    nodes = getNodesFromState(getState());
                 }
+
+                // Update nodes on global quorum instance
                 quorum.setNodes(
-                    unionBy(
-                        getCustomNodesFromState(getState()),
-                        getState().settings.autoNodeList && nodes,
-                        'url',
-                    ),
+                    unionBy(getCustomNodesFromState(getState()), getState().settings.autoNodeList && nodes, 'url'),
                 );
+
                 dispatch(setNodeList(nodes));
                 dispatch(fetchNodeListSuccess());
             })
@@ -465,11 +460,12 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn, quoru
  *
  * @param {string} bundleHash
  * @param {string} accountName
+ * @param {object} seedStore
  * @param {boolean} [withQuorum]
  *
  * @returns {function} - dispatch
  **/
-export const promoteTransfer = (bundleHash, accountName, quorum = true) => (dispatch, getState) => {
+export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = true) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
     let accountState = selectedAccountStateFactory(accountName)(getState());
@@ -528,15 +524,20 @@ export const promoteTransfer = (bundleHash, accountName, quorum = true) => (disp
                     result,
                     getTailTransactionsForThisBundleHash(accountState.transactions),
                     false,
-                    // Auto promote does not support local proof of work
-                    // Pass in null in replacement of seedStore object
-                    null,
+                    // Make sure proof-of-work is offloaded when it comes to auto promotion
+                    extend(
+                        {
+                            __proto__: seedStore.__proto__,
+                        },
+                        seedStore,
+                        { offloadPow: true },
+                    ),
                 ),
             );
         })
         .then(() => dispatch(promoteTransactionSuccess()))
         .catch((err) => {
-            if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+            if (typeof err.message === 'string' && err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
                 // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion
                 dispatch(
                     generateAlert(

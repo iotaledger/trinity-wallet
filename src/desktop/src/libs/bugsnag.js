@@ -5,7 +5,7 @@ import bugsnagReact from '@bugsnag/plugin-react';
 
 import settings from '../../package.json';
 
-const bugsnagKey = process.env.BUGSNAG_API_KEY;
+const bugsnagKey = process.env.BUGSNAG_KEY;
 
 export const bugsnagClient = bugsnagKey.length
     ? bugsnag({

@@ -3,7 +3,7 @@ const reportBuild = require('bugsnag-build-reporter');
 const { resolve } = require('path');
 const { version } = require('./package.json');
 
-const API_KEY = process.env.BUGSNAG_API_KEY;
+const API_KEY = process.env.BUGSNAG_KEY;
 
 reportBuild(
     {

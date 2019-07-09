@@ -169,9 +169,10 @@
         "missingPermission": "È richiesto l'accesso al file system",
         "missingPermissionExplanation": "L'accesso al file system è necessario per eseguire questa funzione.",
         "swipeToConfirm": "Scorri per confermare",
+        "congratulations": "Congratulazioni",
         "expert": "Esperto",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodes": "Numero insufficiente di nodi sincronizzati",
+        "notEnoughSyncedNodesExplanation": "Non è stato possibile raggiungere il quorum. Disattiva il quorum o riprova."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -250,6 +251,7 @@
     },
     "languageSetup": {
         "language": "Lingua",
+        "selectALanguage": "Scegli una lingua",
         "letsGetStarted": "Cominciamo"
     },
     "login": {
@@ -362,8 +364,6 @@
         "message": "Messaggio",
         "invalidMessage": "Messaggio non valido",
         "invalidMessageExplanation": "Il tuo messaggio contiene caratteri non validi.",
-        "invalidMessageTooLong": "Messaggio troppo lungo",
-        "invalidMessageTooLongExplanation": "Il messaggio supera il numero massimo di caratteri (1093).",
         "send": "Invia",
         "invalidAmount": "Inserito un importo non corretto",
         "invalidAmountExplanation": "Inserisci un importo di transazione valido. Può essere utile visualizzare la spiegazione di unità IOTA nella parte inferiore di questa pagina.",
@@ -504,7 +504,7 @@
         "quorumSize": "Dimensione Quorum",
         "noCustomNodes": "Nessun nodo personalizzato",
         "mustAddCustomNodes": "Devi aggiungere almeno un nodo personalizzato prima di disabilitare la lista dei nodi remoti.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesTitle": "Nodi insufficienti",
         "nodeEnoughNodesExplanation": "Non ci sono abbastanza nodi per consentire il quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Aggiungi più nodi personalizzati o attiva la lista dei nodi remoti.",
         "nodeSettingsUpdatedTitle": "Impostazioni nodo aggiornate",
@@ -649,7 +649,7 @@
         "noPassword": "La password non è impostata sul dispositivo"
     },
     "transferConfirmation": {
-        "youAreAbout": "Stai per inviare {{contents}} all'indirizzo",
+        "youAreAbout": "Stai per inviare {{contents}}",
         "aMessage": "un messaggio",
         "fromAccount": "Da {{selectedAccountName}}",
         "toAddress": "A indirizzo",
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Impossibile recuperare l'aggiornamento. Controlla la connessione Internet e riprova.",
         "noUpdatesAvailable": "Nessun aggiornamento disponibile",
         "noUpdatesAvailableExplanation": "Hai l'ultima versione di Trinity!",
         "newVersionAvailable": "Una nuova versione è disponibile",

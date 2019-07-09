@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import Fonts from 'ui/theme/fonts';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';

@@ -45,6 +45,18 @@ class Idle extends React.Component {
         Electron.removeEvent('lockScreen', this.onSetIdle);
     }
 
+    handleEvent = () => {
+        clearTimeout(this.timeout);
+
+        this.timeout = setTimeout(() => {
+            if (this.props.isAuthorised) {
+                this.lock();
+            } else {
+                this.handleEvent();
+            }
+        }, this.props.timeout * 60 * 1000);
+    };
+
     lock() {
         if (this.props.isAuthorised) {
             this.props.setPassword({});
@@ -72,18 +84,6 @@ class Idle extends React.Component {
             window.removeEventListener(event, this.restartLockTimeout, true);
         });
     }
-
-    handleEvent = () => {
-        clearTimeout(this.timeout);
-
-        this.timeout = setTimeout(() => {
-            if (this.props.isAuthorised) {
-                this.lock();
-            } else {
-                this.handleEvent();
-            }
-        }, this.props.timeout * 60 * 1000);
-    };
 
     render() {
         if (!this.state.locked) {

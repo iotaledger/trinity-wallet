@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { navigator } from 'libs/navigation';
+import navigator from 'libs/navigation';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { MAX_SEED_TRITS, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -153,6 +153,7 @@ class UseExistingSeed extends Component {
      * Navigates to loading screen
      * @method fetchAccountInfo
      */
+    // eslint-disable-next-line react/sort-comp
     async fetchAccountInfo(seed, accountName) {
         const seedStore = await new SeedStore.keychain(global.passwordHash);
         await seedStore.addAccount(accountName, seed);

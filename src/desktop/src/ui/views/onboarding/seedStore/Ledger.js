@@ -183,6 +183,7 @@ class Ledger extends React.PureComponent {
                         <Number
                             value={index}
                             focus
+                            min={0}
                             label={advancedMode ? t('ledger:accountIndex') : null}
                             onChange={(value) => this.updateIndex(value)}
                         />
@@ -190,6 +191,7 @@ class Ledger extends React.PureComponent {
                             <Number
                                 value={page}
                                 focus
+                                min={0}
                                 label={t('ledger:accountPage')}
                                 onChange={(value) => this.setState({ page: value })}
                             />
@@ -233,4 +235,7 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Ledger));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(Ledger));

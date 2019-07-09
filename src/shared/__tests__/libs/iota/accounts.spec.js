@@ -5,7 +5,7 @@ import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import { expect } from 'chai';
 import {
-    syncAccountOnValueTransactionFailure,
+    syncAccountOnErrorAfterSigning,
     syncAccountOnSuccessfulRetryAttempt,
     syncAccountDuringSnapshotTransition,
 } from '../../../libs/iota/accounts';
@@ -14,7 +14,7 @@ import { latestAddressObject, latestAddressIndex } from '../../__samples__/addre
 import { newValueTransaction as mockValueTransactionObjects } from '../../__samples__/transactions';
 
 describe('libs: iota/accounts', () => {
-    describe('#syncAccountOnValueTransactionFailure', () => {
+    describe('#syncAccountOnErrorAfterSigning', () => {
         let accountName;
 
         before(() => {
@@ -25,11 +25,11 @@ describe('libs: iota/accounts', () => {
             const accountState = mockAccounts.accountInfo[accountName];
             const inputAddress = 'ZBQWFOZVCOURPSVBNIBWOBQNRQXDBESSEJWWETTWWMGSJDUJLITMJYYBM9ZUFXTYTTPSGDTVBNIKLKXJA';
 
-            // Assert that input address is unspent before syncAccountOnValueTransactionFailure is called
+            // Assert that input address is unspent before syncAccountOnErrorAfterSigning is called
             const inputAddressDataBefore = find(accountState.addressData, { address: inputAddress });
             expect(inputAddressDataBefore.spent.local).to.equal(false);
 
-            const result = syncAccountOnValueTransactionFailure(mockValueTransactionObjects, accountState);
+            const result = syncAccountOnErrorAfterSigning(mockValueTransactionObjects, accountState);
 
             const inputAddressDataAfter = find(result.addressData, { address: inputAddress });
             expect(inputAddressDataAfter.spent.local).to.equal(true);
@@ -43,7 +43,7 @@ describe('libs: iota/accounts', () => {
 
             expect(find(accountState.transactions, { bundle })).to.equal(undefined);
 
-            const result = syncAccountOnValueTransactionFailure(mockValueTransactionObjects, accountState);
+            const result = syncAccountOnErrorAfterSigning(mockValueTransactionObjects, accountState);
 
             expect(find(result.transactions, { bundle })).to.not.equal(undefined);
 
@@ -53,6 +53,22 @@ describe('libs: iota/accounts', () => {
                     ...transaction,
                     persistence: false,
                     broadcasted: false,
+                })),
+            ]);
+        });
+
+        it('should set "broadcasted" property to true for successfully broadcasted transactions (with persistence as false)', () => {
+            const accountState = mockAccounts.accountInfo[accountName];
+            const hasBroadcast = true;
+
+            const result = syncAccountOnErrorAfterSigning(mockValueTransactionObjects, accountState, hasBroadcast);
+
+            expect(result.transactions).to.eql([
+                ...accountState.transactions,
+                ...map(mockValueTransactionObjects, (transaction) => ({
+                    ...transaction,
+                    persistence: false,
+                    broadcasted: hasBroadcast,
                 })),
             ]);
         });
