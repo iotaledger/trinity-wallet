@@ -17,7 +17,7 @@ import mapStorageToState from 'libs/storageToStateMappers';
 import getEncryptionKey from 'libs/realm';
 import { changeIotaNode, quorum } from 'libs/iota';
 import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
-import { initialise as initialiseStorage, realm } from 'storage';
+import { initialise as initialiseStorage } from 'storage';
 import { updateSchema } from 'schemas';
 
 import Index from 'ui/Index';
@@ -87,10 +87,10 @@ const init = () => {
                 // Assign accountIndex to every account in accountInfo if it is not assigned already
                 store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
 
-                // Proxy realm changes to Tray application
-                realm.addListener('change', () => {
-                    const data = mapStorageToState();
-                    Electron.storeUpdate(JSON.stringify(data));
+                // Proxy state changes to Tray application
+                store.subscribe(() => {
+                    const { settings, accounts, marketData } = store.getState();
+                    Electron.storeUpdate(JSON.stringify({ settings, accounts, marketData }));
                 });
 
                 // Set theme to default if current theme does not exist

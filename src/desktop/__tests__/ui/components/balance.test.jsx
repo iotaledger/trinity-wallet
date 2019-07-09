@@ -20,6 +20,7 @@ const props = {
     },
     accountNames: ['foo', 'bar'],
     settings: {
+        locale: 'en',
         currency: 'USD',
         conversionRate: 1,
     },
@@ -51,7 +52,7 @@ describe('Balance component', () => {
     test('Balance account monetary value', () => {
         const wrapper = shallow(<Balance {...props} />);
 
-        expect(wrapper.find('h2').text()).toEqual('$ 5.50');
+        expect(wrapper.find('h2').text()).toEqual('$5.50');
     });
 
     test('Summary account name', () => {
@@ -72,7 +73,7 @@ describe('Balance component', () => {
         const mockProps = Object.assign({}, props, { summary: true, index: -1 });
         const wrapper = shallow(<Balance {...mockProps} />);
 
-        expect(wrapper.find('h2').text()).toEqual('$ 9.50');
+        expect(wrapper.find('h2').text()).toEqual('$9.50');
     });
 
     test('Summary account switch', () => {
