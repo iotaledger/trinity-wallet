@@ -6540,13 +6540,13 @@ nodejs-mobile-gyp@^0.2.0:
     tar "^3.1.3"
     which "1"
 
-"nodejs-mobile-react-native@https://github.com/rajivshah3/nodejs-mobile-react-native#ab4a655d30a51115c34dbdb30b98df6f130467ff":
-  version "0.3.2"
-  resolved "https://github.com/rajivshah3/nodejs-mobile-react-native#ab4a655d30a51115c34dbdb30b98df6f130467ff"
+"nodejs-mobile-react-native@https://github.com/rajivshah3/nodejs-mobile-react-native#f3e99d92aa6983ca84805839b58cbe2ad2a33a37":
+  version "0.4.3"
+  resolved "https://github.com/rajivshah3/nodejs-mobile-react-native#f3e99d92aa6983ca84805839b58cbe2ad2a33a37"
   dependencies:
     mkdirp "^0.5.1"
     ncp "^2.0.0"
-    nodejs-mobile-gyp "^0.2.0"
+    nodejs-mobile-gyp "^0.3.1"
     xcode "^0.9.3"
 
 nomnom@~1.6.2:
