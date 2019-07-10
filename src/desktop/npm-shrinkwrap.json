@@ -1602,70 +1602,53 @@
       }
     },
     "@ledgerhq/devices": {
-      "version": "4.64.1",
-      "resolved": "https://registry.npmjs.org/@ledgerhq/devices/-/devices-4.64.1.tgz",
-      "integrity": "sha512-MmmSxScrpN1hZLeMnLf/KnVO/QVF9xzjUYQIX7JkV1V8kBhdxAcdHZYdYPLyQS+Ll54W35LvOy+2NQ6kT+e0ZA==",
+      "version": "4.66.0",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/devices/-/devices-4.66.0.tgz",
+      "integrity": "sha512-yes5W8LWrXb1y1ELjoa6bMLZnAh0d1Ap/fX/2Ni0xodnPKwltFCatbw++X0HeJB3E5OL0/nTjosn9a4r1vfrtw==",
       "requires": {
-        "@ledgerhq/errors": "^4.64.1",
+        "@ledgerhq/errors": "^4.66.0",
         "@ledgerhq/logs": "^4.64.0",
         "rxjs": "^6.5.2"
       }
     },
     "@ledgerhq/errors": {
-      "version": "4.64.1",
-      "resolved": "https://registry.npmjs.org/@ledgerhq/errors/-/errors-4.64.1.tgz",
-      "integrity": "sha512-cO93K8Qa8CbpG42RRCfb12ARJ7CyI/hAjYwGlxNE/mbfTrT4KmakeonOsM5vm0JhQw4NZyk2OLNMlEwptjSXlw=="
+      "version": "4.66.0",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/errors/-/errors-4.66.0.tgz",
+      "integrity": "sha512-TVgt6VDPaJCLKGx3qhGf4KQ5TEsGOMwUTUnZYy68IpqgUmPxbxevZ+OeF5G2Ns8D3/FZvKx9uQFWjA40B0R5qQ=="
     },
     "@ledgerhq/hw-transport": {
-      "version": "4.64.1",
-      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport/-/hw-transport-4.64.1.tgz",
-      "integrity": "sha512-8vIfbaEb+yj9y7YKcpKMV3oa2FrPN/HwT17Q15RNXDQMHvnt4R8VB9V3ZGeqxWkYX4x2mAyLNWyNg+u3HvPiYw==",
+      "version": "4.66.0",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport/-/hw-transport-4.66.0.tgz",
+      "integrity": "sha512-qiO1K5QrhBJfNCXkgON/dsHib4ex+tmliyXOqOqFra4ZftOWQiLQiFsh7MLWTUqhs182kI/MP1ETez5wZB4g6g==",
       "requires": {
-        "@ledgerhq/devices": "^4.64.1",
-        "@ledgerhq/errors": "^4.64.1",
+        "@ledgerhq/devices": "^4.66.0",
+        "@ledgerhq/errors": "^4.66.0",
         "events": "^3.0.0"
       }
     },
     "@ledgerhq/hw-transport-node-hid": {
-      "version": "4.64.1",
-      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport-node-hid/-/hw-transport-node-hid-4.64.1.tgz",
-      "integrity": "sha512-sE9g0QkeVfczzlzx6SlXhntDzOzQly97/RH0OzRHMIF6Kz8zw7Fi4GXyrA7HcXkxUQ7TBCawl7eI2KCDZ3jHCg==",
+      "version": "4.66.0",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport-node-hid/-/hw-transport-node-hid-4.66.0.tgz",
+      "integrity": "sha512-0IrbDHomygOiUlryZURe2xYhGPo10uE1VAkWmCuD8dlzR6ROVZAw0rdAbrFQqxMGiKoxMm1BgL5CTSyGV55ZLw==",
       "requires": {
-        "@ledgerhq/devices": "^4.64.1",
-        "@ledgerhq/errors": "^4.64.1",
-        "@ledgerhq/hw-transport": "^4.64.1",
-        "@ledgerhq/hw-transport-node-hid-noevents": "^4.64.1",
+        "@ledgerhq/devices": "^4.66.0",
+        "@ledgerhq/errors": "^4.66.0",
+        "@ledgerhq/hw-transport": "^4.66.0",
+        "@ledgerhq/hw-transport-node-hid-noevents": "^4.66.0",
         "@ledgerhq/logs": "^4.64.0",
         "lodash": "^4.17.11",
         "node-hid": "^0.7.9",
         "usb": "^1.6.0"
-      },
-      "dependencies": {
-        "nan": {
-          "version": "2.13.2",
-          "resolved": "https://registry.npmjs.org/nan/-/nan-2.13.2.tgz",
-          "integrity": "sha512-TghvYc72wlMGMVMluVo9WRJc0mB8KxxF/gZ4YYFy7V2ZQX9l7rgbPg7vjS9mt6U5HXODVFVI2bOduCzwOMv/lw=="
-        },
-        "usb": {
-          "version": "1.6.0",
-          "resolved": "https://registry.npmjs.org/usb/-/usb-1.6.0.tgz",
-          "integrity": "sha512-52DyWlCk9K+iw3LnvY95WXSnpHjxJoI++aGkV8HiMNPc4zmvDQlYvWAzrkbJ2JH3oUcx26XfU5sZcG4RAcVkMg==",
-          "requires": {
-            "bindings": "^1.4.0",
-            "nan": "2.13.2",
-            "prebuild-install": "^5.2.4"
-          }
-        }
       }
     },
     "@ledgerhq/hw-transport-node-hid-noevents": {
-      "version": "4.64.1",
-      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport-node-hid-noevents/-/hw-transport-node-hid-noevents-4.64.1.tgz",
-      "integrity": "sha512-MbIjWGr9tu/LOJvkIPiIzVJIf34MYU3a2/LB558dBliXZAZv5Qk8Sk92nPJgNLnwIL6pdt1V+ulPi7zV2A23vA==",
+      "version": "4.66.0",
+      "resolved": "https://registry.npmjs.org/@ledgerhq/hw-transport-node-hid-noevents/-/hw-transport-node-hid-noevents-4.66.0.tgz",
+      "integrity": "sha512-dtn8ODFXjLXrEac2NR9aqhVyDcdpt0VyJPGGdw9FWzKZ2qHTSFOB+FEgtFlfMzPGVSz7Jx7ZAFEpNIx0fvpzBA==",
       "requires": {
-        "@ledgerhq/devices": "^4.64.1",
-        "@ledgerhq/errors": "^4.64.1",
-        "@ledgerhq/hw-transport": "^4.64.1",
+        "@ledgerhq/devices": "^4.66.0",
+        "@ledgerhq/errors": "^4.66.0",
+        "@ledgerhq/hw-transport": "^4.66.0",
         "@ledgerhq/logs": "^4.64.0",
         "node-hid": "^0.7.9"
       }
@@ -16454,6 +16437,23 @@
           "resolved": "https://registry.npmjs.org/prepend-http/-/prepend-http-2.0.0.tgz",
           "integrity": "sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=",
           "dev": true
+        }
+      }
+    },
+    "usb": {
+      "version": "1.6.0",
+      "resolved": "https://registry.npmjs.org/usb/-/usb-1.6.0.tgz",
+      "integrity": "sha512-52DyWlCk9K+iw3LnvY95WXSnpHjxJoI++aGkV8HiMNPc4zmvDQlYvWAzrkbJ2JH3oUcx26XfU5sZcG4RAcVkMg==",
+      "requires": {
+        "bindings": "^1.4.0",
+        "nan": "2.13.2",
+        "prebuild-install": "^5.2.4"
+      },
+      "dependencies": {
+        "nan": {
+          "version": "2.13.2",
+          "resolved": "https://registry.npmjs.org/nan/-/nan-2.13.2.tgz",
+          "integrity": "sha512-TghvYc72wlMGMVMluVo9WRJc0mB8KxxF/gZ4YYFy7V2ZQX9l7rgbPg7vjS9mt6U5HXODVFVI2bOduCzwOMv/lw=="
         }
       }
     },

@@ -151,7 +151,7 @@
     "@babel/register": "7.4.4",
     "@bugsnag/js": "6.3.2",
     "@bugsnag/plugin-react": "^6.2.0",
-    "@ledgerhq/hw-transport-node-hid": "4.64.1",
+    "@ledgerhq/hw-transport-node-hid": "4.66.0",
     "argon2": "0.24.0",
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",
