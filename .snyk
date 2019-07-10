@@ -3,9 +3,6 @@ version: v1.13.5
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
-  'npm:lodash:20180130':
-    - auditjs > npm > cli-table2 > lodash:
-        patched: '2018-09-18T19:39:18.142Z'
   SNYK-JS-LODASH-450202:
     - snyk > snyk-nodejs-lockfile-parser > lodash:
         patched: '2019-07-10T10:20:53.034Z'
