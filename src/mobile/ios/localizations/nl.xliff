@@ -59,10 +59,13 @@
         <note>Privacy - Calendars Usage Description</note>
         <target state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
-      <trans-unit id="NSCameraUsageDescription">
+      <trans-unit id="NSCameraUsageDescription" approved="yes">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <note>Privacy - Camera Usage Description</note>
-        <target state="translated">Trinity vereist toegang tot de camera voor het scannen van QR-codes.</target>
+        <target state="translated">Trinity wil toegang voor de camera om QR-codes te scannen.</target>
+        <alt-trans>
+          <target>Trinity vereist toegang tot de camera voor het scannen van QR-codes.</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>

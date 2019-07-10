@@ -169,10 +169,10 @@
         "missingPermission": "Izin akses File System dibutuhkan",
         "missingPermissionExplanation": "Akses ke sistem file diperlukan untuk menjalankan fungsi ini.",
         "swipeToConfirm": "Geser untuk mengonfirmasi",
-        "congratulations": "Congratulations",
+        "congratulations": "Selamat",
         "expert": "Ahli",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodes": "Terlalu sedikit Node yang sinkron",
+        "notEnoughSyncedNodesExplanation": "Quorum tidak bisa tercapai. Matikan Quorum atau coba lagi."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Bahasa",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Pilih bahasa",
         "letsGetStarted": "Mari mulai"
     },
     "login": {
@@ -504,7 +504,7 @@
         "quorumSize": "Ukuran Quorum",
         "noCustomNodes": "Tidak ada Node kostum",
         "mustAddCustomNodes": "Anda harus tambah satu Node kostum sebelum menonaktifkan list node jarak jauh.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesTitle": "Node tidak cukup",
         "nodeEnoughNodesExplanation": "Tidak cukup Node untuk mengaktifkan Quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Tambah Node kostum atau aktifkan List Node jarak jauh.",
         "nodeSettingsUpdatedTitle": "Aturan Node diperbarui",
@@ -649,7 +649,7 @@
         "noPassword": "Kata Sandi tidak diset di perangkat"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Anda akan mengirim {{contents}}",
         "aMessage": "pesan",
         "fromAccount": "Dari {{selectedAccountName}}",
         "toAddress": "Ke alamat",
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Gagal dalam mengunduh data pembaruan",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Tidak bisa menerima tambahan terbaru. Cek koneksi internet Anda atau coba lagi.",
         "noUpdatesAvailable": "Tidak ada pembaruan tersedia",
         "noUpdatesAvailableExplanation": "Anda mempunyai versi Trinity terbaru!",
         "newVersionAvailable": "Versi baru tersedia",
