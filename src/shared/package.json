@@ -26,7 +26,7 @@
     "iota.lib.js": "^0.5.2",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.25",
+    "moment-timezone": "^0.5.26",
     "proxy-polyfill": "^0.3.0",
     "react": "16.2.0",
     "react-i18next": "^8.0.7",
