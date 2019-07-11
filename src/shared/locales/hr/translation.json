@@ -121,8 +121,8 @@
         "nodeMustUseHTTPSExplanation": "Dopušteni su samo prilagođeni node-ovi koji koriste HTTPS.",
         "nodeDuplicated": "Duplicirani node",
         "nodeDuplicatedExplanation": "Prilagođeni node se već nalazi na listi.",
-        "customNodeAdded": "Custom node added",
-        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
+        "customNodeAdded": "Prilagođeni node dodan",
+        "customNodeAddedExplanation": "Uspješno ste dodali {{nodeAddress}} kao prilagođeni node.",
         "nodeAutoChanged": "Node automatski promijenjen",
         "nodeAutoChangedExplanation": "Promijenjeno na novi node {{- nodeAddress}} pošto je trenutno odabrani offline.",
         "touchSensor": "Dodirnite čitač otiska prstiju",
@@ -169,10 +169,10 @@
         "missingPermission": "Potreban pristup datotečnom sustavu",
         "missingPermissionExplanation": "Potreban je pristup datotečnom sustavu da bi se izvršila ova funkcija.",
         "swipeToConfirm": "Kliznite po ekranu za potvrdu",
-        "congratulations": "Congratulations",
+        "congratulations": "Čestitamo",
         "expert": "Stručnjak",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodes": "Nedovoljan broj sinkroniziranih node-ova",
+        "notEnoughSyncedNodesExplanation": "Nije bilo moguće uspostaviti kvorum. Isključite kvorum i pokušajte ponovno."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedopuštene znakove",
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Jezik",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Odaberite jezik",
         "letsGetStarted": "Započnimo"
     },
     "login": {
