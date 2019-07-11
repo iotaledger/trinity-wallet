@@ -277,15 +277,19 @@ export const fetchMarketData = () => {
     return (dispatch) => {
         dispatch(fetchMarketDataRequest());
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=MIOTA&tsyms=USD')
-            .then(
-                (response) => response.json(),
-                () => {
-                    dispatch(fetchMarketDataError());
-                },
-            )
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+
+                throw response;
+            })
             .then((json) => {
                 dispatch(setMarketData(json));
                 dispatch(fetchMarketDataSuccess());
+            })
+            .catch(() => {
+                dispatch(fetchMarketDataError());
             });
     };
 };
@@ -301,10 +305,19 @@ export const fetchPrice = () => {
     return (dispatch) => {
         dispatch(fetchPriceRequest());
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=MIOTA&tsyms=USD,EUR,BTC,ETH')
-            .then((response) => response.json(), () => dispatch(fetchPriceError()))
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+
+                throw response;
+            })
             .then((json) => {
                 dispatch(setPrice(json));
                 dispatch(fetchPriceSuccess());
+            })
+            .catch(() => {
+                dispatch(fetchPriceError());
             });
     };
 };
@@ -371,7 +384,14 @@ export const fetchChartData = () => {
         });
 
         const urls = [];
-        const grabContent = (url) => fetch(url).then((response) => response.json());
+        const grabContent = (url) =>
+            fetch(url).then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+
+                throw response;
+            });
 
         each(arrayCurrenciesTimeFrames, (currencyTimeFrameArrayItem) => {
             const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(

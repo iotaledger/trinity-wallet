@@ -352,22 +352,13 @@ export function getCurrencyData(currency, withAlerts = false) {
         dispatch(currencyDataFetchRequest());
 
         return fetch(url)
-            .then(
-                (response) => response.json(),
-                () => {
-                    dispatch(currencyDataFetchError());
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
 
-                    if (withAlerts) {
-                        dispatch(
-                            generateAlert(
-                                'error',
-                                i18next.t('settings:couldNotFetchRates'),
-                                i18next.t('settings:couldNotFetchRatesExplanation', { currency: currency }),
-                            ),
-                        );
-                    }
-                },
-            )
+                throw response;
+            })
             .then((json) => {
                 const conversionRate = get(json, `rates.${currency}`) || 1;
                 const availableCurrencies = keys(get(json, 'rates'));
@@ -383,6 +374,20 @@ export function getCurrencyData(currency, withAlerts = false) {
                             'success',
                             i18next.t('settings:fetchedConversionRates'),
                             i18next.t('settings:fetchedConversionRatesExplanation', { currency: currency }),
+                        ),
+                    );
+                }
+            })
+            .catch((error) => {
+                console.log('Error', error);
+                dispatch(currencyDataFetchError());
+
+                if (withAlerts) {
+                    dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('settings:couldNotFetchRates'),
+                            i18next.t('settings:couldNotFetchRatesExplanation', { currency: currency }),
                         ),
                     );
                 }
