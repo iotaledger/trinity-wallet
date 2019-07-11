@@ -170,7 +170,7 @@
         "missingPermissionExplanation": "Potreban je pristup datotečnom sustavu da bi se izvršila ova funkcija.",
         "swipeToConfirm": "Kliznite po ekranu za potvrdu",
         "congratulations": "Čestitamo",
-        "expert": "Stručnjak",
+        "expert": "Stručni",
         "notEnoughSyncedNodes": "Nedovoljan broj sinkroniziranih node-ova",
         "notEnoughSyncedNodesExplanation": "Nije bilo moguće uspostaviti kvorum. Isključite kvorum i pokušajte ponovno."
     },
@@ -829,7 +829,7 @@
         "createNewLedgerAccountInfo": "Pobrinite se da zapišete i zapamtite svoj indeksni broj.",
         "restoreLedgerAccountInfo": "Unesite Vaš prethodno spremljeni indeksni broj da biste vratili svoj račun.",
         "createNewLedgerAccount": "Kreirajte novi Ledger račun",
-        "restoreLedgerAccount": "Vratite postojeći račun glavne knjige",
+        "restoreLedgerAccount": "Vratite postojeći Ledger račun",
         "accountIndex": "Indeks računa (Ledger Nano S)",
         "accountPage": "Stranica računa (Deviota Romeo)",
         "actionCancelled": "Pristup Ledger uređaju otkazan",
