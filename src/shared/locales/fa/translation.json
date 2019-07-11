@@ -2,7 +2,7 @@
     "global": {
         "send": "ارسال",
         "cancel": "لغو",
-        "continue?": "آیا اطمینان دارید که می‌خواهید ادامه دهید؟",
+        "continue?": "آیا اطمینان دارید که می‌خواهید ادامه دهید?",
         "noTransactions": "تاریخچه اخیری وجود ندارد",
         "refresh": "تازه کردن",
         "balanceError": "موجودی کافی نیست",
@@ -169,7 +169,7 @@
         "missingPermission": "نیاز به مجوز سیستم فایل است",
         "missingPermissionExplanation": "به منظور انجام این عمل دسترسی به فایل‌های سیستمی مورد نیاز است.",
         "swipeToConfirm": "برای تایید بکشید",
-        "congratulations": "Congratulations",
+        "congratulations": "تبریک میگوییم",
         "expert": "حرفه ای",
         "notEnoughSyncedNodes": "کمی از نود ها همگام شده",
         "notEnoughSyncedNodesExplanation": "سیستم قابل دستیابی نیست. سیستم را خاموش کرده یا دوباره تلاش کنید."
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "زبان",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "زبان را انتخاب کنید",
         "letsGetStarted": "بیا شروع کنیم"
     },
     "login": {
@@ -649,7 +649,7 @@
         "noPassword": "رمز عبور روی دستگاه تنظیم نشده"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "شما در حال ارسال {{contents}}",
         "aMessage": "یک پیام",
         "fromAccount": "از {{selectedAccountName}}",
         "toAddress": "به آدرس",

@@ -16,7 +16,7 @@ exports[`Balance component Render the component 1`] = `
     </small>
   </h1>
   <h2>
-    $ 5.50
+    $5.50
   </h2>
 </div>
 `;

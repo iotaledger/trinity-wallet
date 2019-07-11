@@ -25,6 +25,7 @@ exports[`About component Render the component 1`] = `
         <ReactMarkdown
           astPlugins={Array []}
           escapeHtml={true}
+          parserOptions={Object {}}
           plugins={Array []}
           rawSourcePos={false}
           renderers={Object {}}

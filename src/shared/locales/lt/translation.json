@@ -672,7 +672,7 @@
         "importSuccessExplanation": "Jūsų užraktas sėkmingai įkeltas.",
         "saveToDownloadFolder": "Išsaugoti į atsisiuntimų failą",
         "importSeedVault": "Įkelti SeedVault",
-        "dropInstructions": "Įkelkite SeedVault arba įrašykite čia <1></1> arba spauskite naršyti",
+        "dropInstructions": "Įkelkite SeedVault arba tekstą čia <1></1> arba spauskite naršyti",
         "dropActive": "Įkelkite SeedVault arba įrašykite čia",
         "enterKeyExplanation": "Įveskite raktą norėdami atidaryti SeedVault",
         "noSeedFound": "SeedVault neturi tinkamo užrakto",

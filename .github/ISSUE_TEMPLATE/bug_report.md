@@ -8,8 +8,8 @@ labels: 'T - Bug'
 
 <!--- Remove text and sections that do not apply -->
 
-The issue tracker is only for reporting bugs. If you need technical assistance for using Trinity Wallet, please consult the Trinity [documentation](https://docs.iota.works/trinity) and [knowledge base](https://iotaledger.atlassian.net/wiki/spaces/trinity/overview). For further assistance, please visit the #help channel on [Discord](https://discord.gg/7Gu2mG5).
-If you have general questions on IOTA you can go to https://iota.stackexchange.com/, https://forum.helloiota.com/, or browse Discord channels (https://discord.gg/C88Wexg).
+The issue tracker is only for reporting bugs. If you need technical assistance with the Trinity wallet, please consult the [documentation](https://docs.iota.works/trinity). For further assistance, please visit the #help channel on [Discord](https://discord.iota.org).
+If you have general questions on IOTA you can go to https://iota.stackexchange.com/, https://forum.helloiota.com/, or browse Discord channels (https://discord.iota.org).
 
 ### Bug description
 A general description of the bug.
