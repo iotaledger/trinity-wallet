@@ -11,7 +11,7 @@
 import merge from 'lodash/merge';
 import v6Schema from '../v6';
 
-export default v4Schema.map((schema) => {
+export default v6Schema.map((schema) => {
     if (schema.name === 'WalletSettings') {
         return merge({}, schema, {
             properties: {
