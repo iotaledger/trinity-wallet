@@ -34,7 +34,7 @@ export default v6Schema.map((schema) => {
 5. Import updated schema and migration function in `shared/schema/index.js`. For example, if the updated schema is `v7`, the import in `shared/schema/index.js` should look like:
 
 ```javascript
-import v7Schema, { migration as v5Migration } from './v5';
+import v7Schema, { migration as v7Migration } from './v7';
 ```
 
 6. Append (updated) `schema`, `schemaVersion`, `path` and `migration` function to the default export array in `shared/schema/index.js`. 
