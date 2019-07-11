@@ -506,9 +506,9 @@
         "mustAddCustomNodes": "Morate dodati barem jedan prilagođeni node prije onemogućavanja vanjske node liste.",
         "nodeEnoughNodesTitle": "Nedovoljan broj node-ova",
         "nodeEnoughNodesExplanation": "Nedovoljan broj node-ova da bi se omogućio kvorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeEnoughNodesExplanationCustomNodes": "Dodajte još prilagođenih node-ova ili omogućite vanjsku node listu.",
+        "nodeSettingsUpdatedTitle": "Node postavke spremljene",
+        "nodeSettingsUpdatedExplanation": "Uspješno ste spremili vaše node postavke."
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nije bilo moguće dodati prilagođeni node",
@@ -519,10 +519,10 @@
         "nodeFieldEmpty": "Tekstualno polje je prazno",
         "nodeFieldEmptyExplanation": "Molimo unesite prilagođeni node.",
         "invalidURL": "Molimo unesite valjani URL.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "addAuthKey": "Dodaj autorizacijski ključ",
+        "username": "Korisničko ime",
+        "couldNotRemove": "Nije bilo moguće ukloniti prilagođeni node",
+        "couldNotRemoveExplanation": "Uklanjanjem prilagođenog node-a kvorum nema dovoljan broj node-ova za uspostavu istog. Smanjite veličinu kvoruma ili omogućite vanjsku node listu."
     },
     "addNewAccount": {
         "useExistingSeed": "Koristi postojeći seed",
@@ -649,7 +649,7 @@
         "noPassword": "Lozinka nije postavljena na uređaju"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Poslat ćete {{contents}}",
         "aMessage": "poruka",
         "fromAccount": "S {{selectedAccountName}}",
         "toAddress": "Na adresu",
