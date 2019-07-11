@@ -90,7 +90,7 @@
         "reattach": "PONOVNO PRIPNI",
         "promote": "PROMOVIRAJ",
         "retry": "Poizkusi znova",
-        "pressBackAgain": "Pritisnite nazaj ponovno za zapreti app",
+        "pressBackAgain": "Ponovno pritisnite nazaj, da zaprete app",
         "reattached": "Uspešno ponovno dodana transakcija",
         "reattachedExplanation": "Ponovno dodana transakcija z hash-om {{hash}}",
         "promotingTransaction": "Promoviranje transakcije",
