@@ -144,8 +144,8 @@
         "isYourBalanceCorrect": "Da li je vaš saldo ispravan?",
         "ifYourBalanceIsNotCorrect": "Ako vaš saldo nije ispravan, vjerojatno koristite pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Otvorite Napredne Postavke i izvršite Snapshot tranziciju.",
-        "headToAccountTools": "Idite na Alati za račune i napravite prijelaz na snimku.",
-        "openAccountTools": "Otvorite račun Alati",
+        "headToAccountTools": "Otvorite Alate Računa i izvršite Snapshot tranziciju.",
+        "openAccountTools": "Otvorite Alate Računa",
         "usingTrinityWalletWithKeePass": "Korištenje Trinity novčanika s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Došlo je do greške u vezi prilikom emitiranja vaše transakcije.",
         "broadcastError": "Nije bilo moguće emitirati transakciju",
@@ -741,7 +741,7 @@
         "snapshotExplanation": "Periodično je potrebno obaviti snapshot radi kontrole veličine Tangle-a.",
         "hasSnapshotTakenPlace": "Da li je došlo do snapshot-a? Pritisnite gumb ispod za tranziciju.",
         "transition": "Tranzicija",
-        "transitioning": "Tranzicija snapshot-a u tijeku.",
+        "transitioning": "Snapshot tranzicija u tijeku.",
         "generatingAndDetecting": "Generiranje adresa i detektiranje salda.",
         "attaching": "Pridodavanje adresa na Tangle.",
         "attachProgress": "Pridodavanje adrese {{currentAddress}} od {{totalAddresses}} u tijeku"
@@ -862,6 +862,6 @@
         "udevError": "Nije bilo moguće uspostaviti komunikaciju s Ledger uređajem",
         "udevErrorExplanation": "Trinity nije mogao uspostaviti komunikaciju s vašim Ledger uređajem. Molimo posjetite URL naveden ispod kako bi riješili ovaj problem.",
         "writtenDownInfoTitle": "Zapamtite svoj indeksni broj",
-        "writtenDownInfoExplanation": "Da biste ubuduće obnovili račun, potreban vam je indeksni broj. Ako izgubite indeksni broj, izgubit ćete svoj IOTA. Zapamtite to."
+        "writtenDownInfoExplanation": "Da biste ubuduće mogli vratiti Vaš račun, potreban vam je indeksni broj. Ako izgubite indeksni broj, izgubit ćete pristup svojim IOTA tokenima. Pobrinite se da zapamtite svoj indeksni broj."
     }
 }
