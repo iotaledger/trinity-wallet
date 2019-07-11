@@ -54,8 +54,6 @@ class Polling extends React.PureComponent {
         /** @ignore */
         setPollFor: PropTypes.func.isRequired,
         /** @ignore */
-        marketData: PropTypes.object.isRequired,
-        /** @ignore */
         fetchMarketData: PropTypes.func.isRequired,
         /** @ignore */
         fetchPrice: PropTypes.func.isRequired,
@@ -109,17 +107,6 @@ class Polling extends React.PureComponent {
 
         this.onPollTick = this.fetch.bind(this);
         this.interval = setInterval(this.onPollTick, 8000);
-    }
-
-    componentDidUpdate(prevProps) {
-        const { marketData, isPollingMarketData } = this.props;
-
-        /**
-         * Send updated marketData to Tray application
-         */
-        if (prevProps.isPollingMarketData && !isPollingMarketData) {
-            Electron.storeUpdate(JSON.stringify({ marketData }));
-        }
     }
 
     componentWillUnmount() {
@@ -212,23 +199,21 @@ class Polling extends React.PureComponent {
     };
 
     shouldSkipCycle() {
-        const props = this.props;
-
         const isAlreadyDoingSomeHeavyLifting =
-            props.isSyncing ||
-            props.isSendingTransfer ||
-            props.isGeneratingReceiveAddress ||
-            props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
-            props.addingAdditionalAccount ||
-            props.isTransitioning ||
-            props.isRetryingFailedTransaction;
+            this.props.isSyncing ||
+            this.props.isSendingTransfer ||
+            this.props.isGeneratingReceiveAddress ||
+            this.props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
+            this.props.addingAdditionalAccount ||
+            this.props.isTransitioning ||
+            this.props.isRetryingFailedTransaction;
 
         const isAlreadyPollingSomething =
-            props.isPollingPrice ||
-            props.isPollingChartData ||
-            props.isPollingMarketData ||
-            props.isPollingAccountInfo ||
-            props.isAutoPromoting;
+            this.props.isPollingPrice ||
+            this.props.isPollingChartData ||
+            this.props.isPollingMarketData ||
+            this.props.isPollingAccountInfo ||
+            this.props.isAutoPromoting;
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
@@ -260,7 +245,6 @@ const mapStateToProps = (state) => ({
     isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
     failedBundleHashes: getFailedBundleHashes(state),
     password: state.wallet.password,
-    marketData: state.marketData,
 });
 
 const mapDispatchToProps = {
