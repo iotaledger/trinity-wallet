@@ -16,7 +16,7 @@
         "messageSentMessage": "Vaša poruka je poslana na Tangle.",
         "keyReuse": "Slanje na upotrijebljenu adresu",
         "keyReuseError": "Ne možete poslati na prethodno upotrijebljenu adresu.",
-        "invalidResponse": "Pogreška na čvoru",
+        "invalidResponse": "Greška na node-u",
         "invalidResponseExplanation": "Čvor je poslao pogrešku. Probajte s promjenom čvora.",
         "invalidResponseFetchingAccount": "Greška prilikom dohvata podataka o Vašem računu. Pokušajte promijeniti node.",
         "invalidResponseFetchingAccountDesktop": "Greška prilikom dohvata podataka o Vašem računu. U slučaju ponavljanja problema pokušajte promijeniti node ili onemogućite korištenje sistemskog proxy-a u Trinity postavkama.",
@@ -495,7 +495,7 @@
         "tools": "Alati"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
+        "automaticNodeManagement": "Automatsko upravljanje node-ovima",
         "addCustomNodes": "Dodaj prilagođeni node",
         "autoNodeList": "Koristi vanjsku node listu",
         "nodeAutoswitching": "Automatska promjena primarnog node-a",
@@ -759,7 +759,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Ažuriranje trenutno nije moguće. Molimo provjerite vašu internet vezu i pokušajte ponovno.",
         "noUpdatesAvailable": "Nema dostupnih ažuriranja",
         "noUpdatesAvailableExplanation": "Trenutno koristite najnoviju verziju Trinity novčanika!",
         "newVersionAvailable": "Dostupna je nova verzija",
