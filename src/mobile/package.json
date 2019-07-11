@@ -65,7 +65,7 @@
     "react-native-markdown-renderer": "^3.2.1",
     "react-native-modal": "^7.0.1",
     "react-native-modal-translucent": "^2.0.0",
-    "react-native-navigation": "^2.13.0",
+    "react-native-navigation": "^2.22.3",
     "react-native-optimized-flatlist": "^1.0.4",
     "react-native-os": "git+https://github.com/laumair/react-native-os.git#527b0ae",
     "react-native-picker-select": "git+https://github.com/cvarley100/react-native-picker-select#master",
@@ -98,8 +98,7 @@
     "tweetnacl-util": "^0.15.0",
     "util": "^0.10.3",
     "victory-native": "^30.3.0",
-    "vm-browserify": "0.0.4",
-    "@tradle/react-native-http": "^2.0.0"
+    "vm-browserify": "0.0.4"
   },
   "devDependencies": {
     "babel-plugin-module-resolver": "^3.1.1",
