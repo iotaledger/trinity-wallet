@@ -649,10 +649,10 @@
         "noPassword": "Auf diesem Gerät wurde kein Passwort eingerichtet"
     },
     "transferConfirmation": {
-        "youAreAbout": "Du bist dabei {{contents}} zu senden",
+        "youAreAbout": "Du sendest {{contents}}",
         "aMessage": "eine Nachricht",
         "fromAccount": "Von {{selectedAccountName}}",
-        "toAddress": "An Adresse",
+        "toAddress": "an Adresse",
         "sendingAMessage": "Sende die Nachricht",
         "sendingAnEmptyMessage": "Sende eine leere Nachricht"
     },
