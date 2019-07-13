@@ -379,7 +379,6 @@ export function getCurrencyData(currency, withAlerts = false) {
                 }
             })
             .catch((error) => {
-                console.log('Error', error);
                 dispatch(currencyDataFetchError());
 
                 if (withAlerts) {
