@@ -7758,10 +7758,10 @@ react-native-device-info@^0.13.0:
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.13.0.tgz#81051eebd3db6959e4f1d2cb0ae8df74105040cf"
   integrity sha512-R7F8T801ThgYrjDiBy8td3N5VKdlMM7v5x7vpowsCVrOHrLnMw7iBUJqzh2tsLOb8JKfI0h5mw1gHW5YDFSVcg==
 
-react-native-document-picker@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-2.1.0.tgz#61bbe113435a9d7bf67ab77093a4092d76b52fe3"
-  integrity sha512-BFCBXwz8xuLvHLVFVeQM+RhaY8yZ38PEWt9WSbq5VIoZ/VssP6uu51XxOfdwaMALOrAHIojK0SiYnd155upZAg==
+react-native-document-picker@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-3.2.2.tgz#d9774cb95d44f9b993600a048b0f18e7dd5ecea2"
+  integrity sha512-0vnWKfAWNxKlo7swZE0I66uF4zqp7uy6eUD/TjhD+xd1xkX9WNX5rbD/xMS46KOAcyZsp+OatxRWd7acPSL/Xg==
 
 "react-native-dropdownalert@https://github.com/cvarley100/react-native-dropdownalert#fc6655c4542e3b35da67ccca5f708adb0a7ccff8":
   version "3.7.0"
