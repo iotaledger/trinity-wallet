@@ -30,7 +30,7 @@
   "dependencies": {
     "@tradle/react-native-http": "^2.0.0",
     "axios": "^0.18.1",
-    "bugsnag-react-native": "^2.11.0",
+    "bugsnag-react-native": "^2.22.0",
     "events": "^1.1.1",
     "hoist-non-react-statics": "^2.3.1",
     "lodash": "^4.17.13",
