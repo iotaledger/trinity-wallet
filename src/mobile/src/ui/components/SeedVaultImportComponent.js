@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid, Keyboard 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
-import { DocumentPicker } from 'react-native-document-picker';
+import DocumentPicker from 'react-native-document-picker';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
@@ -147,22 +147,10 @@ export class SeedVaultImportComponent extends Component {
      */
     showDocumentPicker() {
         const { t } = this.props;
-        DocumentPicker.show(
-            {
-                filetype: isAndroid
-                    ? ['application/octet-stream']
-                    : ['public.data', 'public.item', 'dyn.ah62d4rv4ge8003dcta'],
-            },
-            (error, res) => {
-                if (error) {
-                    return this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongTryAgain'),
-                        10000,
-                        error,
-                    );
-                }
+        DocumentPicker.pick({
+            type: isAndroid ? ['application/octet-stream'] : ['public.data', 'public.item', 'dyn.ah62d4rv4ge8003dcta'],
+        })
+            .then((res) => {
                 let path = res.uri;
                 if (path.startsWith('file://')) {
                     path = path.slice(7);
@@ -180,8 +168,19 @@ export class SeedVaultImportComponent extends Component {
                             t('seedVault:seedFileErrorExplanation'),
                         ),
                     );
-            },
-        );
+            })
+            .catch((error) => {
+                // Do not show an alert if user cancels and does not pick a file
+                if (!DocumentPicker.isCancel(error)) {
+                    return this.props.generateAlert(
+                        'error',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongTryAgain'),
+                        10000,
+                        error,
+                    );
+                }
+            });
     }
 
     /**
