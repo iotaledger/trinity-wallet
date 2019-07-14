@@ -44,7 +44,7 @@
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
-    "@babel/plugin-proposal-function-sent": "^7.2.0",
+    "@babel/plugin-proposal-function-sent": "^7.5.0",
     "@babel/plugin-proposal-json-strings": "^7.2.0",
     "@babel/plugin-proposal-numeric-separator": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
@@ -65,7 +65,7 @@
     "redux-mock-store": "^1.5.1",
     "rimraf": "^2.6.3",
     "sinon": "^7.3.2",
-    "snyk": "^1.192.6",
+    "snyk": "^1.193.1",
     "svg2ttf": "^4.3.0",
     "svgicons2svgfont": "^9.1.1",
     "timekeeper": "^2.2.0"

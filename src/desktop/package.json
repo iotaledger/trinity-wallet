@@ -63,7 +63,7 @@
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
     "url-loader": "2.0.1",
-    "webpack": "4.35.2",
+    "webpack": "4.35.3",
     "webpack-cli": "3.3.5",
     "webpack-dev-middleware": "3.7.0",
     "webpack-hot-middleware": "2.25.0"
@@ -176,7 +176,7 @@
     "react-transition-group": "4.2.1",
     "realm": "2.29.0",
     "recharts": "1.6.2",
-    "redux": "4.0.2"
+    "redux": "4.0.4"
   },
   "jest": {
     "runner": "@jest-runner/electron",
