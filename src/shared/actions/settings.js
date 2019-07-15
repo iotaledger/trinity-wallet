@@ -378,7 +378,7 @@ export function getCurrencyData(currency, withAlerts = false) {
                     );
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 dispatch(currencyDataFetchError());
 
                 if (withAlerts) {
