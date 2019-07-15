@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { LineChart, ResponsiveContainer, Line, YAxis, Tooltip } from 'recharts';
 import { formatTimeAs, detectedTimezone } from 'libs/date';
+import { withTranslation } from 'react-i18next';
 
 import withChartData from 'containers/components/Chart';
 
@@ -145,4 +146,4 @@ export class ChartComponent extends PureComponent {
     }
 }
 
-export default withChartData(ChartComponent);
+export default withTranslation()(withChartData(ChartComponent));
