@@ -6,6 +6,7 @@ import Ionic from './themes/Ionic';
 import SteelBlue from './themes/SteelBlue';
 import Contemporary from './themes/Contemporary';
 import Dark from './themes/Dark';
+import Night from './themes/Night';
 import Light from './themes/Light';
 
 const themes = {
@@ -17,6 +18,7 @@ const themes = {
     SteelBlue: SteelBlue,
     Contemporary: Contemporary,
     Dark: Dark,
+    Night: Night,
     Light: Light,
 };
 

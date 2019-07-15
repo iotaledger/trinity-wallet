@@ -1,7 +1,7 @@
 export default {
     chart: { color: 'rgb(204, 204, 204)' },
-    box: { bg: 'rgb(14, 14, 14)', alt: 'rgb(14, 14, 14)', body: 'rgb(227, 227, 227)' },
-    bar: { bg: 'rgb(21, 21, 21)', hover: 'rgb(35, 35, 35)', alt: 'rgb(56, 56, 56)', color: 'rgb(175, 175, 175)' },
+    box: { bg: 'rgb(0,0,0)', alt: 'rgb(14, 14, 14)', body: 'rgb(227, 227, 227)' },
+    bar: { bg: 'rgb(0, 0, 0)', hover: 'rgb(20, 20, 20)', alt: 'rgb(56, 56, 56)', color: 'rgb(175, 175, 175)' },
     label: { color: 'rgb(175, 175, 175)', hover: 'rgb(190, 190, 190)' },
     input: {
         bg: 'rgb(25, 25, 25)',
@@ -20,7 +20,7 @@ export default {
         hover: 'rgb(56, 56, 56)',
         body: 'rgb(175, 175, 175)',
     },
-    body: { bg: 'rgb(0, 0, 0)', color: 'rgb(175, 175, 175)', alt: 'rgb(175, 175, 175)' },
+    body: { bg: 'rgb(14, 14, 14)', color: 'rgb(175, 175, 175)', alt: 'rgb(175, 175, 175)' },
     wave: { primary: 'rgba(255, 255, 255, 0.15)', secondary: 'rgba(255, 255, 255, 0.15)' },
     isDark: true,
     animations: [
