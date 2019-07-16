@@ -331,7 +331,13 @@ export const removeNonAlphaNumeric = (source, fallback = '') => {
  */
 export const fetchVersions = (url = VERSIONS_URL) => {
     return fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+
+            throw response;
+        })
         .then((response) => {
             if (isObject(response)) {
                 return response;
