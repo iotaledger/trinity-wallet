@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 
 import withCurrencyData from 'containers/settings/Currency';
 
@@ -66,4 +67,4 @@ class SetCurrency extends PureComponent {
     }
 }
 
-export default withCurrencyData(SetCurrency);
+export default withTranslation()(withCurrencyData(SetCurrency));

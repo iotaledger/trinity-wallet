@@ -2,6 +2,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import withAlertsData from 'containers/global/Alerts';
 
 import Icon from 'ui/components/Icon';
@@ -134,4 +135,4 @@ export class AlertsComponent extends React.PureComponent {
     }
 }
 
-export default withAlertsData(AlertsComponent);
+export default withTranslation()(withAlertsData(AlertsComponent));

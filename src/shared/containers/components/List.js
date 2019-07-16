@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
 import { getSelectedAccountName, getSelectedAccountMeta, getAccountNamesFromState } from '../../selectors/accounts';
 
 import { generateAlert } from '../../actions/alerts';
@@ -150,5 +149,5 @@ export default function withListData(ListComponent) {
         generateAlert,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(ListData));
+    return connect(mapStateToProps, mapDispatchToProps)(ListData);
 }
