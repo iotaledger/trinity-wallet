@@ -17,4 +17,12 @@ module.exports = {
             'react-native': path.resolve(__dirname, 'node_modules/react-native'),
         },
     },
+    transformer: {
+        getTransformOptions: async () => ({
+            transform: {
+                experimentalImportSupport: false,
+                inlineRequires: false,
+            },
+        }),
+    },
 };

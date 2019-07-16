@@ -7,10 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <React/RCTBridgeDelegate.h>
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 
