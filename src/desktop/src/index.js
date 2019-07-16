@@ -7,7 +7,7 @@ import { render } from 'react-dom';
 import { I18nextProvider } from 'react-i18next';
 import { Provider as Redux } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import i18next from 'libs/i18next';
+import i18next, { i18nextInit } from 'libs/i18next';
 import store from 'store';
 import Themes from 'themes/themes';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';
@@ -61,7 +61,7 @@ const init = () => {
         );
     } else {
         initialiseStorage(getEncryptionKey)
-            .then(() => {
+            .then(async () => {
                 const oldPersistedData = Electron.getAllStorage();
                 const hasDataToMigrate = !isEmpty(oldPersistedData);
 
@@ -97,6 +97,9 @@ const init = () => {
                 if (!get(Themes, store.getState().settings.themeName)) {
                     store.dispatch(updateTheme('Default'));
                 }
+
+                // Initialize i18next
+                await i18nextInit();
 
                 // Update language to initial setting
                 i18next.changeLanguage(data.settings.locale);

@@ -15,6 +15,11 @@ jest.mock('nodejs-mobile-react-native', () => ({
     },
 }));
 
+jest.mock('react-native-document-picker', () => ({
+    pick: jest.fn(() => Promise.resolve()),
+    isCancel: () => false,
+}));
+
 const getProps = (overrides) =>
     assign(
         {},

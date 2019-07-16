@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
 
 import { dismissAlert } from '../../actions/alerts';
 
@@ -40,5 +39,5 @@ export default function withAlertsData(AlertsComponent) {
     return connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(withI18n()(AlertsData));
+    )(AlertsData);
 }
