@@ -10,10 +10,10 @@ export default {
         hover: 'rgb(227, 227, 227)',
         color: 'rgb(175, 175, 175)',
     },
-    negative: { color: 'rgb(172, 69, 69)', hover: 'rgb(146, 57, 57)', body: 'rgb(0, 0, 0)' },
-    positive: { color: 'rgb(85, 160, 91)', hover: 'rgb(31, 126, 74)', body: 'rgb(0, 0, 0)' },
+    negative: { color: 'rgb(172, 69, 69)', hover: 'rgb(146, 57, 57)', body: 'rgb(227, 227, 227)' },
+    positive: { color: 'rgb(85, 160, 91)', hover: 'rgb(31, 126, 74)', body: 'rgb(227, 227, 227)' },
     dark: { color: 'rgb(38, 38, 38)', hover: 'rgb(30, 30, 30)', body: 'rgb(90, 90, 90)' },
-    secondary: { color: 'rgb(173, 173, 173)', hover: 'rgb(220, 220, 220)', body: 'rgb(38, 38, 38)', bg: 'rgb(255, 0, 0)' },
+    secondary: { color: 'rgb(173, 173, 173)', hover: 'rgb(220, 220, 220)', body: 'rgb(38, 38, 38)', bg: 'rgb(0, 0, 0)' },
     primary: {
         color: 'rgb(45, 45, 45)',
         border: 'rgb(175, 175, 175)',
