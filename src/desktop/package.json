@@ -44,7 +44,7 @@
     "css-loader": "3.1.0",
     "dart-sass": "1.22.6",
     "electron": "4.2.7",
-    "electron-builder": "21.1.0",
+    "electron-builder": "21.1.1",
     "electron-devtools-installer": "2.2.4",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -117,6 +117,16 @@
     "nsis": {
       "deleteAppDataOnUninstall": true
     },
+    "snap": {
+      "stagePackages": [
+        "default",
+        "libsecret"
+      ],
+      "plugs": [
+        "default",
+        "camera"
+      ]
+    },
     "win": {
       "publisherName": "IOTA Stiftung",
       "target": "nsis",
@@ -126,6 +136,8 @@
       "target": [
         "snap"
       ],
+      "synopsis": "Desktop wallet for IOTA",
+      "category": "Office",
       "desktop": {
         "Name": "Trinity",
         "Comment": "Desktop wallet for IOTA",
