@@ -31,7 +31,7 @@
     "react": "16.8.6",
     "react-i18next": "^10.11.4",
     "react-redux": "^5.1.1",
-    "redux": "^4.0.2",
+    "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "url-parse": "^1.4.7",
