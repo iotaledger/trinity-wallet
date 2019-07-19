@@ -24,6 +24,10 @@
             android:name="com.bugsnag.android.API_KEY"
             android:value="fakeAPIkey"
         />
+        <meta-data
+            android:name="com.bugsnag.android.DETECT_NDK_CRASHES"
+            android:value="true"
+        />
         <activity
             android:name="com.iota.trinity.MainActivity"
             android:theme="@style/SplashTheme"
