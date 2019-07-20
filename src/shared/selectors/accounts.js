@@ -410,3 +410,22 @@ export const getFailedBundleHashes = createSelector(
             {},
         ),
 );
+
+/**
+ * Filters spent address data with balance for the currently selected account
+ *
+ * @method getSpentAddressDataWithBalanceForSelectedAccount
+ * @param {object} state
+ *
+ * @returns {array}
+ **/
+export const getSpentAddressDataWithBalanceForSelectedAccount = createSelector(
+    selectAccountInfo,
+    (account) => {
+        return filter(account.addressData, (addressObject) => {
+            const isSpent = addressObject.spent.local === true || addressObject.spent.remote === true;
+
+            return isSpent && addressObject.balance > 0;
+        });
+    },
+);
