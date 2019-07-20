@@ -873,111 +873,117 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@iota/bundle-validator@^1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@iota/bundle-validator/-/bundle-validator-1.0.0-beta.11.tgz#76fe8e39077be66177f580b5711f94fee519d9dc"
-  integrity sha512-7OijzSNit92k0UwedQgbdAwUe7lyI2FxwMb82EGLEkrC4eQ09RJbu3f0JXLzKubUmzjwUlYGbzrGGC1AHW8cmA==
+"@iota/bundle-validator@^1.0.0-beta.19":
+  version "1.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/@iota/bundle-validator/-/bundle-validator-1.0.0-beta.19.tgz#92d61ab758d1741376c5901fec3851d3fbf48d03"
+  integrity sha512-pgxr8P+38cZ0J6Vt0j+WO/yupDOn3vVwQ1DOaQJyPFwuxovEtu4zYwqqqkwlTvzcWdAOQoqik3E0/VHDgFut0Q==
   dependencies:
-    "@iota/converter" "^1.0.0-beta.11"
-    "@iota/kerl" "^1.0.0-beta.11"
-    "@iota/signing" "^1.0.0-beta.11"
-    "@iota/transaction" "^1.0.0-beta.11"
-    "@iota/transaction-converter" "^1.0.0-beta.11"
+    "@iota/converter" "^1.0.0-beta.19"
+    "@iota/kerl" "^1.0.0-beta.19"
+    "@iota/signing" "^1.0.0-beta.19"
+    "@iota/transaction" "^1.0.0-beta.19"
+    "@iota/transaction-converter" "^1.0.0-beta.19"
 
-"@iota/bundle@^1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@iota/bundle/-/bundle-1.0.0-beta.11.tgz#4b3681c4a1bcf537083be38c120d1d259232602d"
-  integrity sha512-H2lau08OJUOGH3pGbTiFoeK9Mx6BiXMCXf0D8f1VbhMN9VgTAZmIHMy2V8LLi8+Zui9O9gcHlert5+17ynYMXA==
+"@iota/bundle@^1.0.0-beta.19":
+  version "1.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/@iota/bundle/-/bundle-1.0.0-beta.19.tgz#cf9c369d804e5ddf22f673fb0ae9e4734c17b96c"
+  integrity sha512-yQ914ltH0un7M7gcKg2G/kEmxQG7p9Nx4uxLGLdbFvPYpINJwAv2qpi3hYZIS8HP/1reZ5/8o0en0M39cvL1Vg==
   dependencies:
-    "@iota/converter" "^1.0.0-beta.11"
-    "@iota/kerl" "^1.0.0-beta.11"
-    "@iota/pad" "^1.0.0-beta.11"
-    "@iota/signing" "^1.0.0-beta.11"
+    "@iota/converter" "^1.0.0-beta.19"
+    "@iota/kerl" "^1.0.0-beta.19"
+    "@iota/signing" "^1.0.0-beta.19"
+    "@iota/transaction" "^1.0.0-beta.19"
+    "@types/warning" "^3.0.0"
+    warning "^4.0.3"
 
-"@iota/checksum@^1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@iota/checksum/-/checksum-1.0.0-beta.11.tgz#a127404b04f638cb7bc43a141943d526555841ab"
-  integrity sha512-u2WR1kBAAJMoY68CGxnURr36nBz/DSKqqWgNfT9LdG3LI/Ai2CbAPUBdfZ0qKo3Z3HK9psyCyHgk6NDGyz8n6g==
+"@iota/checksum@^1.0.0-beta.19":
+  version "1.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/@iota/checksum/-/checksum-1.0.0-beta.19.tgz#e73b9c6940493554d8f46ab0639e9d20cd8efe77"
+  integrity sha512-LihSrCwOwGq0VG4aAxnjN3Z20+vv5NQ8VIP9TH5mB2Jni7EQhQobzvcoslWjXwDf4BlMEFN7/RiZtonTC5torA==
   dependencies:
-    "@iota/converter" "^1.0.0-beta.11"
-    "@iota/kerl" "^1.0.0-beta.11"
+    "@iota/converter" "^1.0.0-beta.19"
+    "@iota/kerl" "^1.0.0-beta.19"
 
-"@iota/converter@^1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@iota/converter/-/converter-1.0.0-beta.11.tgz#64c661d60729e7877a72b248ef916c9de89971e0"
-  integrity sha512-euKqd0z3So/c0dz0obOcfXhJfB1riZd2nal5oM/R7uW63e4MZUP0A0libbPzGe4iHGX9XqkfAV6j2bhMdzkCFQ==
-
-"@iota/core@1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@iota/core/-/core-1.0.0-beta.11.tgz#bcb3fbe8b7c38271491ff4a26aa7687923c3bd00"
-  integrity sha512-9HARB/wLPmimc9p0Nd2DWOZwFOIML3AB+7dwoS58beZ2XC0ERvfYid5vPTOahWaUfBdDZOGaDYmcISnhfBJXoA==
+"@iota/converter@^1.0.0-beta.19":
+  version "1.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/@iota/converter/-/converter-1.0.0-beta.19.tgz#1951438f632ae680f351f61a881be0297c0bec2a"
+  integrity sha512-9/k8d20WF+HSW/P/BpMulRSxjb+QngJM7I2+D3HpvsDxfnaxv2MbKHMcCCFZBAYPWWrk69UF/4kln7ztzCbn4w==
   dependencies:
-    "@iota/bundle" "^1.0.0-beta.11"
-    "@iota/bundle-validator" "^1.0.0-beta.11"
-    "@iota/checksum" "^1.0.0-beta.11"
-    "@iota/converter" "^1.0.0-beta.11"
-    "@iota/curl" "^1.0.0-beta.11"
-    "@iota/http-client" "^1.0.0-beta.11"
-    "@iota/kerl" "^1.0.0-beta.11"
-    "@iota/pad" "^1.0.0-beta.11"
-    "@iota/signing" "^1.0.0-beta.11"
-    "@iota/transaction" "^1.0.0-beta.11"
-    "@iota/transaction-converter" "^1.0.0-beta.11"
-    "@types/bluebird" "^3.5.25"
-    bluebird "^3.5.1"
+    core-js "^3.1.4"
 
-"@iota/curl@^1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@iota/curl/-/curl-1.0.0-beta.11.tgz#0bb68df07d0f7bb9beb521814e425ddab7dbc7c7"
-  integrity sha512-b2+/S8YBGsr3beX9tg5etKItlbN7rpDIDjDnBRPsqvD9BmFyvcJe/2HxAyPeob/rPuZYoPgFw4OrdDw7ym/sZQ==
-
-"@iota/http-client@^1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@iota/http-client/-/http-client-1.0.0-beta.11.tgz#e6fc3dbadf5e7b8f713f8529487b7bb088e16905"
-  integrity sha512-GsNCqUoHXmxWymnVDejderHvcACtKOOLPJjq8IMAxMBw/MCaxjlIgnMqMKvpeY/7f8gQQBEbBgnyekoHVYsM9g==
+"@iota/core@^1.0.0-beta.19":
+  version "1.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/@iota/core/-/core-1.0.0-beta.19.tgz#ae5ab91ae1b0ad87375bbeca2b2b467aff67b9a2"
+  integrity sha512-lt4891mKh96zYO/QqZsALZLatM1IFiLMXRn+OsjTuYckh2JuETcGzr33WasN37EoeM+OPaeIe/wQ4Z/wZmIBJw==
   dependencies:
-    "@types/bluebird" "^3.5.25"
-    bluebird "^3.5.1"
+    "@iota/bundle" "^1.0.0-beta.19"
+    "@iota/bundle-validator" "^1.0.0-beta.19"
+    "@iota/checksum" "^1.0.0-beta.19"
+    "@iota/converter" "^1.0.0-beta.19"
+    "@iota/curl" "^1.0.0-beta.19"
+    "@iota/http-client" "^1.0.0-beta.19"
+    "@iota/kerl" "^1.0.0-beta.19"
+    "@iota/pad" "^1.0.0-beta.19"
+    "@iota/signing" "^1.0.0-beta.19"
+    "@iota/transaction" "^1.0.0-beta.19"
+    "@iota/transaction-converter" "^1.0.0-beta.19"
+    bluebird "^3.5.5"
+
+"@iota/curl@^1.0.0-beta.19":
+  version "1.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/@iota/curl/-/curl-1.0.0-beta.19.tgz#7c30bec4c7225eaf1a691802251c9199177a54a8"
+  integrity sha512-bUr6VW8lP1XYhAkzUacc8U28qO2Ibdl6R5CSF7N34GgjO2sEkn4DnlzL1VU8cCv+8rfBlZ9qIvYGzklic49JJw==
+
+"@iota/http-client@^1.0.0-beta.19":
+  version "1.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/@iota/http-client/-/http-client-1.0.0-beta.19.tgz#b6e649a84b0bf05fa3a55e80792225f11181a7df"
+  integrity sha512-3g6fGgjLe1LzZEGal6d+1oV3QPa8jA3Nvsnk17+1ZRsgCyf+fYqM7Dm/E0QMQ+R+PttWwiUzyZkTabJqhXdsSQ==
+  dependencies:
     cross-fetch "^3.0.0"
+    url-parse "^1.4.7"
 
-"@iota/kerl@^1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@iota/kerl/-/kerl-1.0.0-beta.11.tgz#b1ec7a44e1dd3b3e0c11f48522ad35407bc72846"
-  integrity sha512-Yut/cl5xiBUA4wtVctgJDWtRltahSfLN8sWmRLQF7uqL/qngCRZ7iVtUehyPuXR4UlVzqU1kV/uMeuHKth2bWw==
+"@iota/kerl@^1.0.0-beta.19":
+  version "1.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/@iota/kerl/-/kerl-1.0.0-beta.19.tgz#57743e18a2d91ab668f814fdfd998e46c4c02097"
+  integrity sha512-4YVXtP8JaHwzqsND+fl1PL++Jpx5NBCevEqFFPMVwyz2pCbp/ESzdq5h8uuI7hmINj3mGeFBsdDkRoiTeu9RAw==
   dependencies:
     "@types/crypto-js" "^3.1.38"
     crypto-js "^3.1.9-1"
 
-"@iota/pad@^1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@iota/pad/-/pad-1.0.0-beta.11.tgz#dab98b86a1db120ba08cfe4aa527567d71efec57"
-  integrity sha512-1e6ujEhKbtk4jB+Y0Hlbg48DvdDjvbU8RUST3IrOK1NekFKVoU9KQBxm3o3RVyxos+2KPIzHddyOYbSyOIyFrw==
+"@iota/pad@^1.0.0-beta.19":
+  version "1.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/@iota/pad/-/pad-1.0.0-beta.19.tgz#ffe39ebf149bf310222680bafbca68c536758d16"
+  integrity sha512-J82UxKK3d5x6bxDKzi3qgRpy/NxCXbuDprC3ar225ahwtt1Qd0srQY3ZN6GjCAtV9/bFe7EysXqGcQnumfECBQ==
 
-"@iota/signing@^1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@iota/signing/-/signing-1.0.0-beta.11.tgz#c03fb0ed19f8215fc5bc74af8510957ce20814e7"
-  integrity sha512-pzYNQboly9TcgYoVO5xk8xBaQV084CrTKG+tFwlvnFUZEua9J73GBSQmmlg63R1AyC7oOPmV0yuxyT3CWdKUzw==
+"@iota/signing@^1.0.0-beta.19":
+  version "1.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/@iota/signing/-/signing-1.0.0-beta.19.tgz#334f241a3a4e2ead8fa5d68c8118b4cc17c3ac48"
+  integrity sha512-rGhjFx5R/PaNxZYjbF9Jbv/ByfgcYxjfeHCPXqHRv5R9cFJQ4IT/xWuIrOYXHk7TmxRlhyVfwvN9F3Y7W/er2g==
   dependencies:
-    "@iota/converter" "^1.0.0-beta.11"
-    "@iota/kerl" "^1.0.0-beta.11"
-    "@iota/pad" "^1.0.0-beta.11"
+    "@iota/converter" "^1.0.0-beta.19"
+    "@iota/kerl" "^1.0.0-beta.19"
+    "@iota/pad" "^1.0.0-beta.19"
 
-"@iota/transaction-converter@^1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@iota/transaction-converter/-/transaction-converter-1.0.0-beta.11.tgz#149ec78491b60d413d52c793c691d3db4f4e5b1e"
-  integrity sha512-ba/G9U8Z+er3C9SYPejxYqS/tHf7pxaCn+F0lJm5K9wd1dcHAb1F2tGsub+88J4lwZrHsrhhhMQSqf1nooNE5A==
+"@iota/transaction-converter@^1.0.0-beta.19":
+  version "1.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/@iota/transaction-converter/-/transaction-converter-1.0.0-beta.19.tgz#2eb14ceacb771b167a72cc97ecba9ea283f31b09"
+  integrity sha512-jaqagNPZjhvvZs50InDxr7oXfY+azTBukZAW+sSeZCPii369g9QTavqiCZvAXWWMaVYz8+PDl18LRRd8Ce/MUg==
   dependencies:
-    "@iota/converter" "^1.0.0-beta.11"
-    "@iota/pad" "^1.0.0-beta.11"
-    "@iota/transaction" "^1.0.0-beta.11"
+    "@iota/converter" "^1.0.0-beta.19"
+    "@iota/pad" "^1.0.0-beta.19"
+    "@iota/transaction" "^1.0.0-beta.19"
 
-"@iota/transaction@^1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@iota/transaction/-/transaction-1.0.0-beta.11.tgz#02d6817cd17610f3657558d828e1a3f885dd5fd3"
-  integrity sha512-fXQSjb169vF61d7tvzKQbbCl+rWVHoxy9kTg+OSwLnEDCh/36iEgVh1u+PyudzzyBzP5r3dbwJRZa95N8HGscw==
+"@iota/transaction@^1.0.0-beta.19":
+  version "1.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/@iota/transaction/-/transaction-1.0.0-beta.19.tgz#c09691d3bbaa71cc6ab4c5caec5b18e1d7e93063"
+  integrity sha512-d6tefAhmnznrrHXTp3KhYmS6kgvr3x8Mjhk1s1DhTpbtp7Rnu0DaLsXelBUNUUYxm8oa32C29K38ZtqLxMdWNQ==
   dependencies:
-    "@iota/converter" "^1.0.0-beta.11"
-    "@iota/curl" "^1.0.0-beta.11"
+    "@iota/converter" "^1.0.0-beta.19"
+    "@iota/curl" "^1.0.0-beta.19"
+    "@iota/kerl" "^1.0.0-beta.19"
+    "@iota/signing" "^1.0.0-beta.19"
+    "@types/warning" "^3.0.0"
+    warning "^4.0.3"
 
 "@sinonjs/commons@^1", "@sinonjs/commons@^1.0.2", "@sinonjs/commons@^1.4.0":
   version "1.4.0"
@@ -1040,11 +1046,6 @@
     "@types/events" "*"
     "@types/node" "*"
 
-"@types/bluebird@^3.5.25":
-  version "3.5.25"
-  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.25.tgz#59188b871208092e37767e4b3d80c3b3eaae43bd"
-  integrity sha512-yfhIBix+AIFTmYGtkC0Bi+XGjSkOINykqKvO/Wqdz/DuXlAKK7HmhLAXdPIGsV4xzKcL3ev/zYc4yLNo+OvGaw==
-
 "@types/crypto-js@^3.1.38":
   version "3.1.43"
   resolved "https://registry.yarnpkg.com/@types/crypto-js/-/crypto-js-3.1.43.tgz#b859347d6289ba13e347c335a4c9efa63337a748"
@@ -1069,6 +1070,11 @@
   version "8.10.48"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.48.tgz#e385073561643a9ba6199a1985ffc03530f90781"
   integrity sha512-c35YEBTkL4rzXY2ucpSKy+UYHjUBIIkuJbWYbsGIrKLEWU5dgJMmLkkIb3qeC3O3Tpb1ZQCwecscvJTDjDjkRw==
+
+"@types/warning@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/warning/-/warning-3.0.0.tgz#0d2501268ad8f9962b740d387c4654f5f8e23e52"
+  integrity sha1-DSUBJorY+ZYrdA04fEZU9fjiPlI=
 
 "@yarnpkg/lockfile@^1.0.2":
   version "1.1.0"
@@ -1320,10 +1326,10 @@ bl@^1.0.0:
     readable-stream "^2.3.5"
     safe-buffer "^5.1.1"
 
-bluebird@^3.5.1:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.3.tgz#7d01c6f9616c9a51ab0f8c549a79dfe6ec33efa7"
-  integrity sha512-/qKPUQlaW1OyR51WeCPBvRnAlnZFUJkCSG5HzGnuIqhgyJtF+T94lFnn33eiazjRm2LAHVy2guNnaq48X9SJuw==
+bluebird@^3.5.5:
+  version "3.5.5"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.5.tgz#a8d0afd73251effbbd5fe384a77d73003c17a71f"
+  integrity sha512-5am6HnnfN+urzt4yfg7IgTbotDjIT/u8AJpEt0sIU9FtXfVeezXAPKswrG+xKUCOYAINpSdgZVDU6QFh+cuH3w==
 
 boxen@^1.2.1:
   version "1.3.0"
@@ -1655,6 +1661,11 @@ core-js@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.0.1.tgz#1343182634298f7f38622f95e73f54e48ddf4738"
   integrity sha512-sco40rF+2KlE0ROMvydjkrVMMG1vYilP2ALoRXcYR4obqbYIuV3Bg+51GEDW+HF8n7NRA+iaA4qD0nD9lo9mew==
+
+core-js@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.1.4.tgz#3a2837fc48e582e1ae25907afcd6cf03b0cc7a07"
+  integrity sha512-YNZN8lt82XIMLnLirj9MhKDFZHalwzzrL9YLt6eb0T5D0EDl4IQ90IGkua8mHbnxNrkj1d8hbdizMc0Qmg1WnQ==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -5289,6 +5300,13 @@ vscode-languageserver-types@^3.5.0:
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/vscode-languageserver-types/-/vscode-languageserver-types-3.14.0.tgz#d3b5952246d30e5241592b6dde8280e03942e743"
   integrity sha512-lTmS6AlAlMHOvPQemVwo3CezxBp0sNB95KNPkqp3Nxd5VFEnuG1ByM0zlRWos0zjO3ZWtkvhal0COgiV1xIA4A==
+
+warning@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
+  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
+  dependencies:
+    loose-envify "^1.0.0"
 
 whatwg-fetch@3.0.0:
   version "3.0.0"
