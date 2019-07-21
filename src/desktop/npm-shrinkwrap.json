@@ -4754,9 +4754,9 @@
       "dev": true
     },
     "electron": {
-      "version": "4.2.6",
-      "resolved": "https://registry.npmjs.org/electron/-/electron-4.2.6.tgz",
-      "integrity": "sha512-qnaQXQcRKugXoQ7/4J4lYKzyU/RJMK/qrIGyC8KsgGG/IVVagolNPYy7QrsGpJ7YwpQHzNjwtDNaJ/UI7VTCyA==",
+      "version": "4.2.8",
+      "resolved": "https://registry.npmjs.org/electron/-/electron-4.2.8.tgz",
+      "integrity": "sha512-/D9zfs+EWLN4yLV7tu2kWyXUnZQ3CKG1cmWbXeSFXF+0dNXQ8iFpY49dqZRoHGIBImFfp2x4N3Zc5Tu7rw3PJw==",
       "dev": true,
       "requires": {
         "@types/node": "^10.12.18",
@@ -4765,9 +4765,9 @@
       },
       "dependencies": {
         "@types/node": {
-          "version": "10.14.10",
-          "resolved": "https://registry.npmjs.org/@types/node/-/node-10.14.10.tgz",
-          "integrity": "sha512-V8wj+w2YMNvGuhgl/MA5fmTxgjmVHVoasfIaxMMZJV6Y8Kk+Ydpi1z2whoShDCJ2BuNVoqH/h1hrygnBxkrw/Q==",
+          "version": "10.14.13",
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-10.14.13.tgz",
+          "integrity": "sha512-yN/FNNW1UYsRR1wwAoyOwqvDuLDtVXnaJTZ898XIw/Q5cCaeVAlVwvsmXLX5PuiScBYwZsZU4JYSHB3TvfdwvQ==",
           "dev": true
         }
       }
