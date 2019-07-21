@@ -9,12 +9,14 @@ export const DEFAULT_NODE = __TEST__
           pow: false,
           token: '',
           password: '',
+          alwaysUseForPow: false
       }
     : {
           url: 'https://nodes.iota.org',
           pow: false,
           token: '',
           password: '',
+          alwaysUseForPow: false
       };
 
 export const NODES_WITH_POW_DISABLED = ['https://nodes.iota.org'].map((url) => ({
@@ -22,6 +24,7 @@ export const NODES_WITH_POW_DISABLED = ['https://nodes.iota.org'].map((url) => (
     pow: false,
     token: '',
     password: '',
+    alwaysUseForPow: false
 }));
 
 export const NODES_WITH_POW_ENABLED = [
@@ -34,6 +37,7 @@ export const NODES_WITH_POW_ENABLED = [
     pow: true,
     token: '',
     password: '',
+    alwaysUseForPow: false
 }));
 
 export const DEFAULT_NODES = [...NODES_WITH_POW_DISABLED, ...NODES_WITH_POW_ENABLED];
