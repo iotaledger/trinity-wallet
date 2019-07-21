@@ -882,3 +882,22 @@ export const changeAutoNodeListSetting = (payload) => (dispatch, getState) => {
 
     quorum.setNodes(nodes);
 };
+
+/**
+ * Dispatch to set/mark a node for all attachToTangle (pow) requests
+ *
+ * @method setNodeForRemotePow
+ * 
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const setNodeForRemotePow = (payload) => {
+    // Update autoNodeList setting in realm
+    // Node(payload);
+
+    return {
+        type: SettingsActionTypes.SET_NODE_FOR_REMOTE_POW,
+        payload,
+    };
+};

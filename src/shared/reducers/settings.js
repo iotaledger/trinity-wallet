@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+import map from 'lodash/map';
 import merge from 'lodash/merge';
 import unionBy from 'lodash/unionBy';
 import sortBy from 'lodash/sortBy';
@@ -130,6 +132,21 @@ export const initialState = {
      */
     autoNodeList: true,
 };
+
+/**
+ * Sets node for all attachToTangle requests
+ *
+ * @method setNodeForRemotePow
+ *
+ * @param {array} nodes
+ *
+ * @return {array}
+ */
+const setNodeForRemotePow = (existingNodes, url) =>
+    map(existingNodes, (node) => ({
+        ...node,
+        alwaysUseForPow: node.url === url,
+    }));
 
 const settingsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -292,6 +309,13 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 autoNodeList: action.payload,
+            };
+        case SettingsActionTypes.SET_NODE_FOR_REMOTE_POW:
+            return {
+                ...state,
+                nodes: setNodeForRemotePow(state.nodes, action.payload),
+                customNodes: setNodeForRemotePow(state.customNodes, action.payload),
+                node: head(setNodeForRemotePow([state.node], action.payload)),
             };
     }
 

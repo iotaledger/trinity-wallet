@@ -315,6 +315,30 @@ class Node {
             });
         }
     }
+
+    /**
+     * Marks a node for all remote attachToTangle requests
+     *
+     * @method setNodeForPow
+     *
+     * @param {string} url Node URL
+     *
+     * @returns {void}
+     */
+    static setNodeForPow(url) {
+        const existingNodes = Node.getDataAsArray();
+
+        realm.write(() => {
+            each(existingNodes, (node) => {
+                const updatedNode = {
+                    ...node,
+                    alwaysUseForPow: node.url === url,
+                };
+
+                realm.create('Node', updatedNode, 'modified');
+            });
+        });
+    }
 }
 
 /**
