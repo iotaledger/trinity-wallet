@@ -40,7 +40,7 @@
     "path-browserify": "0.0.0",
     "process": "^0.11.10",
     "prop-types": "^15.6.0",
-    "punycode": "^1.4.1",
+    "punycode": "^2.1.1",
     "qr.js": "https://github.com/defunctzombie/qr.js",
     "react": "16.6.1",
     "react-i18next": "^8.0.7",
