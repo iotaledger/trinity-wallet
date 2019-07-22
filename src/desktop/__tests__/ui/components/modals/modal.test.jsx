@@ -1,4 +1,4 @@
-import React from 'shared/react';
+import React from 'react';
 import { shallow } from 'enzyme';
 
 import Modal from 'ui/components/modal/Modal';

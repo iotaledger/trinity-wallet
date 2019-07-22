@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'shared/react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import withNodeData from 'containers/settings/Node';

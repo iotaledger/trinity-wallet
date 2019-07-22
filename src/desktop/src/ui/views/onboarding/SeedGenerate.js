@@ -1,7 +1,7 @@
 /* global Electron */
-import React from 'shared/react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation, Trans } from 'shared/react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import { randomBytes } from 'libs/crypto';
 import { capitalize, byteToChar } from 'libs/iota/converter';
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';

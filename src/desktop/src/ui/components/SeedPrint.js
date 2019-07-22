@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'shared/react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import QRCode from 'qr.js/lib/QRCode';
 

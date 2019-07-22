@@ -203,8 +203,10 @@
       "\\.(scss)$": "<rootDir>/__mocks__/styleMock.js",
       "\\.(svg)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(md)$": "<rootDir>/__mocks__/markdownMock.js",
-      "^shared(.*)$": "<rootDir>/../shared/node_modules$1",
-      "^react-dom(.*)$": "<rootDir>/../shared/node_modules/react-dom$1"
+      "^react": "<rootDir>/../shared/node_modules/react",
+      "^react-dom(.*)$": "<rootDir>/../shared/node_modules/react-dom$1",
+      "^react-i18next(.*)$": "<rootDir>/../shared/node_modules/react-i18next$1",
+      "^react-redux(.*)$": "<rootDir>/../shared/node_modules/react-redux$1"
     },
     "transformIgnorePatterns": [
       "node_modules/react-qr-reader/"

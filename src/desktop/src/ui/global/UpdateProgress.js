@@ -1,7 +1,7 @@
 /* global Electron */
-import React from 'shared/react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'shared/react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import Modal from 'ui/components/modal/Modal';
 import Progress from 'ui/components/Progress';

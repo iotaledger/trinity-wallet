@@ -1,10 +1,10 @@
 /* global Electron */
-import React from 'shared/react';
+import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'shared/react-i18next';
+import { withTranslation } from 'react-i18next';
 import { Switch, Route } from 'react-router-dom';
-import { connect } from 'shared/react-redux';
+import { connect } from 'react-redux';
 
 import SeedStore from 'libs/SeedStore';
 import { capitalize } from 'libs/iota/converter';

@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'shared/react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withTranslation } from 'shared/react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import { byteToChar } from 'libs/iota/converter';
 

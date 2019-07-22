@@ -1,7 +1,7 @@
 /* global Electron */
-import React from 'shared/react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'shared/react-redux';
+import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 

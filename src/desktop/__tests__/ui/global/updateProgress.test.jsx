@@ -1,4 +1,4 @@
-import React from 'shared/react';
+import React from 'react';
 import { shallow } from 'enzyme';
 
 import { UpdateProgressComponent as UpdateProgress } from 'ui/global/UpdateProgress';

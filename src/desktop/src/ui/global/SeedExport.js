@@ -1,9 +1,9 @@
 /* global Electron */
-import React, { PureComponent } from 'shared/react';
+import React, { PureComponent } from 'react';
 import classNames from 'classnames';
-import { connect } from 'shared/react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'shared/react-i18next';
+import { withTranslation } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';

@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'shared/react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { LineChart, ResponsiveContainer, Line, YAxis, Tooltip } from 'recharts';
 import { formatTimeAs, detectedTimezone } from 'libs/date';
-import { withTranslation } from 'shared/react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import withChartData from 'containers/components/Chart';
 

@@ -1,4 +1,4 @@
-import React from 'shared/react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import PerfectScrollbar from 'perfect-scrollbar';
 

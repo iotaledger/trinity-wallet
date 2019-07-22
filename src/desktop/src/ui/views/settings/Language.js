@@ -1,8 +1,8 @@
-import React from 'shared/react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'shared/react-redux';
+import { connect } from 'react-redux';
 import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'libs/i18n';
-import { withTranslation } from 'shared/react-i18next';
+import { withTranslation } from 'react-i18next';
 import Select from 'ui/components/input/Select';
 import i18next from 'libs/i18next';
 import { setLocale } from 'actions/settings';

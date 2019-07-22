@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'shared/react';
-import { connect } from 'shared/react-redux';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getThemeFromState } from 'selectors/global';
 

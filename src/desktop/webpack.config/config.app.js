@@ -85,8 +85,10 @@ const config = {
     resolve: {
         modules: ['node_modules', path.resolve(__dirname, '../src'), path.resolve(__dirname, '../../shared')],
         alias: {
-            'shared': path.resolve(__dirname, '../../shared/node_modules'),
+            react: path.resolve(__dirname, '../../shared/node_modules/react'),
             'react-dom': path.resolve(__dirname, '../../shared/node_modules/react-dom'),
+            'react-i18next': path.resolve(__dirname, '../../shared/node_modules/react-i18next'),
+            'react-redux': path.resolve(__dirname, '../../shared/node_modules/react-redux'),
         },
     },
     plugins: [

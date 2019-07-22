@@ -1,4 +1,4 @@
-import React from 'shared/react';
+import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
 import { ADDRESS_LENGTH, parseAddress } from 'libs/iota/utils';
