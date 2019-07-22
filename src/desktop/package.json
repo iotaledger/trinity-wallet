@@ -203,7 +203,7 @@
       "\\.(scss)$": "<rootDir>/__mocks__/styleMock.js",
       "\\.(svg)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(md)$": "<rootDir>/__mocks__/markdownMock.js",
-      "~(.*)$": "<rootDir>/../shared/node_modules$1",
+      "^shared(.*)$": "<rootDir>/../shared/node_modules$1",
       "^react-dom(.*)$": "<rootDir>/../shared/node_modules/react-dom$1"
     },
     "transformIgnorePatterns": [

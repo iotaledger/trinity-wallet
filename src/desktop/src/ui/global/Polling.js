@@ -1,13 +1,13 @@
 /* global Electron */
 import head from 'lodash/head';
 import filter from 'lodash/filter';
-import React from '~/react';
+import React from 'shared/react';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import random from 'lodash/random';
 import size from 'lodash/size';
 import PropTypes from 'prop-types';
-import { connect } from '~/react-redux';
+import { connect } from 'shared/react-redux';
 import SeedStore from 'libs/SeedStore';
 import {
     getAccountNamesFromState,

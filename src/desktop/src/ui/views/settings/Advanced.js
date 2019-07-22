@@ -1,9 +1,9 @@
 /* global Electron */
 import pick from 'lodash/pick';
-import React, { PureComponent } from '~/react';
+import React, { PureComponent } from 'shared/react';
 import PropTypes from 'prop-types';
-import { withTranslation, Trans } from '~/react-i18next';
-import { connect } from '~/react-redux';
+import { withTranslation, Trans } from 'shared/react-i18next';
+import { connect } from 'shared/react-redux';
 
 import { clearVault } from 'libs/crypto';
 import ALIAS_REALM from 'libs/constants';

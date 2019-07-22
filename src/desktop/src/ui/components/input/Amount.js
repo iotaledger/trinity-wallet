@@ -1,4 +1,4 @@
-import React from '~/react';
+import React from 'shared/react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { formatIotas, TOTAL_IOTA_SUPPLY } from 'libs/iota/utils';

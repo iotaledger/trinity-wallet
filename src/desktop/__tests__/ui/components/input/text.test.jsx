@@ -1,4 +1,4 @@
-import React from '~/react';
+import React from 'shared/react';
 import { shallow } from 'enzyme';
 
 import Text from 'ui/components/input/Text';

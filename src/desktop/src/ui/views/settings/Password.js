@@ -1,7 +1,7 @@
-import React, { PureComponent } from '~/react';
+import React, { PureComponent } from 'shared/react';
 import PropTypes from 'prop-types';
-import { withTranslation } from '~/react-i18next';
-import { connect } from '~/react-redux';
+import { withTranslation } from 'shared/react-i18next';
+import { connect } from 'shared/react-redux';
 import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';

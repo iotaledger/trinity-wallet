@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from '~/react';
+import React, { useEffect, useState } from 'shared/react';
 import PropTypes from 'prop-types';
 import unionBy from 'lodash/unionBy';
-import { withTranslation } from '~/react-i18next';
+import { withTranslation } from 'shared/react-i18next';
 
 import withNodeData from 'containers/settings/Node';
 

@@ -1,4 +1,4 @@
-import React from '~/react';
+import React from 'shared/react';
 import { shallow } from 'enzyme';
 
 import { ClipboardComponent as Clipboard } from 'ui/components/Clipboard';

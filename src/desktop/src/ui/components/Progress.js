@@ -1,4 +1,4 @@
-import React from '~/react';
+import React from 'shared/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import css from './progress.scss';

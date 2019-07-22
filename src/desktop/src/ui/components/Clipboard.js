@@ -1,7 +1,7 @@
 /* global Electron */
-import React from '~/react';
+import React from 'shared/react';
 import PropTypes from 'prop-types';
-import { connect } from '~/react-redux';
+import { connect } from 'shared/react-redux';
 
 import { generateAlert } from 'actions/alerts';
 

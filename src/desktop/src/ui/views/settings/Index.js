@@ -1,9 +1,9 @@
-import React, { useState } from '~/react';
+import React, { useState } from 'shared/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
-import { withTranslation } from '~/react-i18next';
-import { connect } from '~/react-redux';
+import { withTranslation } from 'shared/react-i18next';
+import { connect } from 'shared/react-redux';
 
 import { shorten } from 'libs/iota/converter';
 import { getAccountNamesFromState } from 'selectors/accounts';

@@ -1,4 +1,4 @@
-import React from '~/react';
+import React from 'shared/react';
 import { shallow } from 'enzyme';
 
 import SeedPrint from 'ui/components/SeedPrint';

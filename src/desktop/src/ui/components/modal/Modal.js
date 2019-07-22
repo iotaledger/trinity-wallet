@@ -1,5 +1,5 @@
-import React from '~/react';
-import ReactDOM from '~/react-dom';
+import React from 'shared/react';
+import ReactDOM from 'shared/react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import css from './modal.scss';

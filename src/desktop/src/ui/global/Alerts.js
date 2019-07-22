@@ -1,8 +1,8 @@
 /* global Electron */
-import React from '~/react';
+import React from 'shared/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { withTranslation } from '~/react-i18next';
+import { withTranslation } from 'shared/react-i18next';
 import withAlertsData from 'containers/global/Alerts';
 
 import Icon from 'ui/components/Icon';

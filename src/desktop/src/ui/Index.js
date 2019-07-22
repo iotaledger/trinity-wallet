@@ -1,11 +1,11 @@
 /* global Electron */
-import React from '~/react';
+import React from 'shared/react';
 import PropTypes from 'prop-types';
-import { connect } from '~/react-redux';
+import { connect } from 'shared/react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
-import { withTranslation } from '~/react-i18next';
+import { withTranslation } from 'shared/react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';

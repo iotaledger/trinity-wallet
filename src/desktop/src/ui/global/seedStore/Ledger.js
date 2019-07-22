@@ -1,9 +1,9 @@
 /* global Electron */
-import React from '~/react';
+import React from 'shared/react';
 import classNames from 'classnames';
-import { withTranslation } from '~/react-i18next';
+import { withTranslation } from 'shared/react-i18next';
 import PropTypes from 'prop-types';
-import { connect } from '~/react-redux';
+import { connect } from 'shared/react-redux';
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 

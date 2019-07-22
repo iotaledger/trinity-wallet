@@ -1,8 +1,8 @@
-import React from '~/react';
+import React from 'shared/react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withTranslation } from '~/react-i18next';
-import { connect } from '~/react-redux';
+import { withTranslation } from 'shared/react-i18next';
+import { connect } from 'shared/react-redux';
 
 import {
     selectLatestAddressFromAccountFactory,

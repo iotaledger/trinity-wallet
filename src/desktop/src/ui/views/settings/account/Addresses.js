@@ -1,6 +1,6 @@
-import React, { PureComponent } from '~/react';
+import React, { PureComponent } from 'shared/react';
 import PropTypes from 'prop-types';
-import { withTranslation } from '~/react-i18next';
+import { withTranslation } from 'shared/react-i18next';
 import { formatValue, formatUnit } from 'libs/iota/utils';
 
 import Scrollbar from 'ui/components/Scrollbar';

@@ -1,4 +1,4 @@
-import React from '~/react';
+import React from 'shared/react';
 import { shallow } from 'enzyme';
 
 import { AlertsComponent as Alerts } from 'ui/global/Alerts';

@@ -1,7 +1,7 @@
 /* global Electron */
-import React from '~/react';
+import React from 'shared/react';
 import PropTypes from 'prop-types';
-import { withTranslation } from '~/react-i18next';
+import { withTranslation } from 'shared/react-i18next';
 import ReactMarkdown from 'react-markdown';
 
 import Modal from 'ui/components/modal/Modal';

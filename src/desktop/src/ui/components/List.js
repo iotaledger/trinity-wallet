@@ -1,8 +1,8 @@
-import React from '~/react';
+import React from 'shared/react';
 import PropTypes from 'prop-types';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
-import { withTranslation } from '~/react-i18next';
+import { withTranslation } from 'shared/react-i18next';
 
 import { formatIotas, unitStringToValue } from 'libs/iota/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate, detectedTimezone } from 'libs/date';

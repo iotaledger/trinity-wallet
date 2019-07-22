@@ -85,7 +85,7 @@ const config = {
     resolve: {
         modules: ['node_modules', path.resolve(__dirname, '../src'), path.resolve(__dirname, '../../shared')],
         alias: {
-            '~': path.resolve(__dirname, '../../shared/node_modules'),
+            'shared': path.resolve(__dirname, '../../shared/node_modules'),
             'react-dom': path.resolve(__dirname, '../../shared/node_modules/react-dom'),
         },
     },

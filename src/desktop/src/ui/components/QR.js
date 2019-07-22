@@ -1,4 +1,4 @@
-import React from '~/react';
+import React from 'shared/react';
 import PropTypes from 'prop-types';
 import QRCode from 'qr.js/lib/QRCode';
 

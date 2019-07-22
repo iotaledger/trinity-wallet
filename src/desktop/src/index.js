@@ -2,10 +2,10 @@
 import assign from 'lodash/assign';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
-import React from '~/react';
-import { render } from '~/react-dom';
-import { I18nextProvider } from '~/react-i18next';
-import { Provider as Redux } from '~/react-redux';
+import React from 'shared/react';
+import { render } from 'shared/react-dom';
+import { I18nextProvider } from 'shared/react-i18next';
+import { Provider as Redux } from 'shared/react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import i18next, { i18nextInit } from 'libs/i18next';
 import store from 'store';

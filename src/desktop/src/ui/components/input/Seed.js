@@ -1,10 +1,10 @@
 /* global Electron */
-import React from '~/react';
+import React from 'shared/react';
 import QrReader from 'react-qr-reader';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { connect } from '~/react-redux';
-import { withTranslation } from '~/react-i18next';
+import { connect } from 'shared/react-redux';
+import { withTranslation } from 'shared/react-i18next';
 
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
 import { MAX_ACC_LENGTH } from 'libs/crypto';
