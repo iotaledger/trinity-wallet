@@ -120,7 +120,7 @@
     "snap": {
       "stagePackages": [
         "default",
-        "libsecret"
+        "libsecret-1-dev"
       ],
       "plugs": [
         "default",
