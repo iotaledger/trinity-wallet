@@ -771,17 +771,17 @@
   dependencies:
     core-js "^3.1.4"
 
-"@iota/core@^1.0.0-beta.19":
-  version "1.0.0-beta.19"
-  resolved "https://registry.yarnpkg.com/@iota/core/-/core-1.0.0-beta.19.tgz#ae5ab91ae1b0ad87375bbeca2b2b467aff67b9a2"
-  integrity sha512-lt4891mKh96zYO/QqZsALZLatM1IFiLMXRn+OsjTuYckh2JuETcGzr33WasN37EoeM+OPaeIe/wQ4Z/wZmIBJw==
+"@iota/core@^1.0.0-beta.20":
+  version "1.0.0-beta.20"
+  resolved "https://registry.yarnpkg.com/@iota/core/-/core-1.0.0-beta.20.tgz#9d9d1cf2437c233091ae671d58c97951dcb0a4f7"
+  integrity sha512-Nsscy66BGfZA/BQfBRCI5dCax6KMXE9A+ujhpeqShAboBYP98fghBZ5Atw/S6MKVPfyDsUFWGcfWZ3EkjXkBFQ==
   dependencies:
     "@iota/bundle" "^1.0.0-beta.19"
     "@iota/bundle-validator" "^1.0.0-beta.19"
     "@iota/checksum" "^1.0.0-beta.19"
     "@iota/converter" "^1.0.0-beta.19"
     "@iota/curl" "^1.0.0-beta.19"
-    "@iota/http-client" "^1.0.0-beta.19"
+    "@iota/http-client" "^1.0.0-beta.20"
     "@iota/kerl" "^1.0.0-beta.19"
     "@iota/pad" "^1.0.0-beta.19"
     "@iota/signing" "^1.0.0-beta.19"
@@ -794,10 +794,10 @@
   resolved "https://registry.yarnpkg.com/@iota/curl/-/curl-1.0.0-beta.19.tgz#7c30bec4c7225eaf1a691802251c9199177a54a8"
   integrity sha512-bUr6VW8lP1XYhAkzUacc8U28qO2Ibdl6R5CSF7N34GgjO2sEkn4DnlzL1VU8cCv+8rfBlZ9qIvYGzklic49JJw==
 
-"@iota/http-client@^1.0.0-beta.19":
-  version "1.0.0-beta.19"
-  resolved "https://registry.yarnpkg.com/@iota/http-client/-/http-client-1.0.0-beta.19.tgz#b6e649a84b0bf05fa3a55e80792225f11181a7df"
-  integrity sha512-3g6fGgjLe1LzZEGal6d+1oV3QPa8jA3Nvsnk17+1ZRsgCyf+fYqM7Dm/E0QMQ+R+PttWwiUzyZkTabJqhXdsSQ==
+"@iota/http-client@^1.0.0-beta.20":
+  version "1.0.0-beta.20"
+  resolved "https://registry.yarnpkg.com/@iota/http-client/-/http-client-1.0.0-beta.20.tgz#e76e7a355b73ec321196f9ecf71414a8209cca11"
+  integrity sha512-Sfex5o2afugYjgwYxeoXl5EYEb9czq7jWPOkmvA+87ZdtlQitqRJZt6Gn/KsvBE/bxHZA2uNjR+yzYjn+81F3A==
   dependencies:
     cross-fetch "^3.0.0"
     url-parse "^1.4.7"
@@ -8698,7 +8698,7 @@ shallow-clone@^0.1.2:
 shared-modules@../shared/:
   version "0.0.0"
   dependencies:
-    "@iota/core" "^1.0.0-beta.19"
+    "@iota/core" "^1.0.0-beta.20"
     bignumber.js "^9.0.0"
     i18next "^17.0.6"
     iota.lib.js "^0.5.2"
