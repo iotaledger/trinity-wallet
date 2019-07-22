@@ -1,9 +1,9 @@
 /* global Electron */
-import React from 'react';
+import React from '~/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
+import { withTranslation } from '~/react-i18next';
+import { connect } from '~/react-redux';
 
 import { getAnimation } from 'animations';
 import Button from 'ui/components/Button';

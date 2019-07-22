@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '~/react';
 import { shallow } from 'enzyme';
 
 import Checksum from 'ui/components/Checksum';

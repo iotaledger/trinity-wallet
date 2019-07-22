@@ -1,8 +1,8 @@
 /* global Electron */
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from '~/react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
+import { withTranslation } from '~/react-i18next';
+import { connect } from '~/react-redux';
 
 import { hash, authorize } from 'libs/crypto';
 

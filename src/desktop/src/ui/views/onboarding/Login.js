@@ -1,8 +1,8 @@
 /* global Electron */
-import React from 'react';
+import React from '~/react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
+import { withTranslation } from '~/react-i18next';
+import { connect } from '~/react-redux';
 
 import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';

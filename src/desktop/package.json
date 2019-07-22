@@ -170,7 +170,6 @@
     "electron-updater": "4.1.2",
     "entangled-node": "rihardsgravis/entangled-node#a39bfbf",
     "hw-app-iota": "0.6.1",
-    "i18next": "17.0.6",
     "iota.lib.js": "0.5.2",
     "kdbxweb": "1.2.7",
     "keytar": "4.11.0",
@@ -178,17 +177,12 @@
     "node-machine-id": "1.1.12",
     "perfect-scrollbar": "1.4.0",
     "qr.js": "0.0.0",
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
-    "react-i18next": "10.11.4",
     "react-markdown": "4.1.0",
     "react-qr-reader": "2.2.1",
-    "react-redux": "5.1.1",
     "react-router-dom": "5.0.1",
     "react-transition-group": "4.2.1",
     "realm": "2.29.1",
-    "recharts": "1.6.2",
-    "redux": "4.0.4"
+    "recharts": "1.6.2"
   },
   "jest": {
     "runner": "@jest-runner/electron",
@@ -208,7 +202,9 @@
     "moduleNameMapper": {
       "\\.(scss)$": "<rootDir>/__mocks__/styleMock.js",
       "\\.(svg)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(md)$": "<rootDir>/__mocks__/markdownMock.js"
+      "\\.(md)$": "<rootDir>/__mocks__/markdownMock.js",
+      "~(.*)$": "<rootDir>/../shared/node_modules$1",
+      "^react-dom(.*)$": "<rootDir>/../shared/node_modules/react-dom$1"
     },
     "transformIgnorePatterns": [
       "node_modules/react-qr-reader/"

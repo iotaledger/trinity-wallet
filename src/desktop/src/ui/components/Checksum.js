@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '~/react';
 import PropTypes from 'prop-types';
 import { ADDRESS_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
 

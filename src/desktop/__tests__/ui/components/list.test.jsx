@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '~/react';
 import { shallow } from 'enzyme';
 
 import { ListComponent as List } from 'ui/components/List';

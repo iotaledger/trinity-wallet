@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '~/react';
 import PropTypes from 'prop-types';
 import Icon from 'ui/components/Icon';
 import css from './tooltip.scss';

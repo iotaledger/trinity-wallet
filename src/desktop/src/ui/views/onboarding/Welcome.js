@@ -1,7 +1,7 @@
-import React from 'react';
+import React from '~/react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
+import { connect } from '~/react-redux';
+import { withTranslation } from '~/react-i18next';
 import ReactMarkdown from 'react-markdown';
 
 import { I18N_LOCALE_LABELS, I18N_LOCALES, detectLocale } from 'libs/i18n';

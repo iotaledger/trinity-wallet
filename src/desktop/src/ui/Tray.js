@@ -1,10 +1,10 @@
 /* global Electron */
-import React from 'react';
+import React from '~/react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect } from '~/react-redux';
 import { withRouter } from 'react-router-dom';
 import i18next from 'libs/i18next';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '~/react-i18next';
 
 import { capitalize } from 'libs/iota/converter';
 
