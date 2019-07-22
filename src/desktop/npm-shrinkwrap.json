@@ -4385,9 +4385,9 @@
       }
     },
     "dart-sass": {
-      "version": "1.22.6",
-      "resolved": "https://registry.npmjs.org/dart-sass/-/dart-sass-1.22.6.tgz",
-      "integrity": "sha512-9ZxANYrqt2sXqevo1d1fN210kVn/MwjtJjDzLqsqDxheLjXrQzeMD/KXxBKQDUNapAT2Kyb3WtIVFCM4DVl70g==",
+      "version": "1.22.7",
+      "resolved": "https://registry.npmjs.org/dart-sass/-/dart-sass-1.22.7.tgz",
+      "integrity": "sha512-z0nE0DJXbQaH9JplE67HQd69XdJyRgTIbe+iP3i+8qYfZFU/8PoYYNckdrH4teI1uzcnH6weGxT8uZ6j4+/d4Q==",
       "dev": true,
       "requires": {
         "chokidar": ">=2.0.0 <4.0.0"
@@ -4900,9 +4900,9 @@
       "dev": true
     },
     "electron": {
-      "version": "4.2.7",
-      "resolved": "https://registry.npmjs.org/electron/-/electron-4.2.7.tgz",
-      "integrity": "sha512-Azpkw0OPzKVipSsN9/0DrBQhXOpG48Q1gTG7Akchtv37s8TijMe403TUgHxGGhw2ti117ek51kYf7NXLhjXqoA==",
+      "version": "4.2.8",
+      "resolved": "https://registry.npmjs.org/electron/-/electron-4.2.8.tgz",
+      "integrity": "sha512-/D9zfs+EWLN4yLV7tu2kWyXUnZQ3CKG1cmWbXeSFXF+0dNXQ8iFpY49dqZRoHGIBImFfp2x4N3Zc5Tu7rw3PJw==",
       "dev": true,
       "requires": {
         "@types/node": "^10.12.18",
@@ -11284,9 +11284,9 @@
       }
     },
     "lottie-web": {
-      "version": "5.5.6",
-      "resolved": "https://registry.npmjs.org/lottie-web/-/lottie-web-5.5.6.tgz",
-      "integrity": "sha512-UUUIjKT9BncCHFIJEfb+1glvd+8MLjrAP1mbX2atE7A9TAtZn3yEz96k5K/n2pC20tEL7Q4xKaN1qyXp+6YSDg=="
+      "version": "5.5.7",
+      "resolved": "https://registry.npmjs.org/lottie-web/-/lottie-web-5.5.7.tgz",
+      "integrity": "sha512-NqXq1AncbLvUXHzQwpNMv4ySLOj6IWXOuN8GZbz6e3lMfw6y93rrxVhwYTPudQ8VKAYLjwu72cZiPQgcDt+mPg=="
     },
     "loud-rejection": {
       "version": "1.6.0",
@@ -14086,9 +14086,9 @@
       }
     },
     "regenerator-runtime": {
-      "version": "0.13.2",
-      "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.2.tgz",
-      "integrity": "sha512-S/TQAZJO+D3m9xeN1WTI8dLKBBiRgXBlTJvbWjCThHWZj9EvHK70Ff50/tYj2J/fvBY6JtFVwRuazHN2E7M9BA=="
+      "version": "0.13.3",
+      "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz",
+      "integrity": "sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw=="
     },
     "regenerator-transform": {
       "version": "0.14.0",
