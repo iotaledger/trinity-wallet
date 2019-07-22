@@ -1,6 +1,7 @@
 import assign from 'lodash/assign';
 import has from 'lodash/has';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import { createSelector } from 'reselect';
 import Themes from '../themes/themes';
 import { DEFAULT_NODE } from '../config';
@@ -211,6 +212,12 @@ export const nodesConfigurationFactory = (overrides) =>
 
             if (shouldUseOnlyPowNodes) {
                 config.nodes = filter(config.nodes, (node) => node.pow === true);
+
+                const nodeforPow = find(config.nodes, { alwaysUseForPow: true });
+
+                if (nodeforPow) {
+                    config.primaryNode = nodeforPow;
+                }
             }
 
             return config;
