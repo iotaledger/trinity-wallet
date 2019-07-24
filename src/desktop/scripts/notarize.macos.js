@@ -1,8 +1,6 @@
 const { notarize } = require('electron-notarize');
 const path = require('path');
 
-const { version } = require('../package.json');
-
 exports.default = async () => {
     if (process.platform !== 'darwin') {
         return true;
@@ -21,7 +19,7 @@ exports.default = async () => {
 
     await notarize({
         appBundleId: 'org.iota.trinity',
-        appPath: path.resolve(__dirname, '..', 'out', `trinity-desktop-${version}.dmg`),
+        appPath: path.resolve(__dirname, '../out/mac/Trinity.app'),
         appleId: APPLE_ID,
         appleIdPassword: `@keychain:${APPLE_ID_IDENTITY_NAME}`,
         ascProvider: 'UG77RJKZHH',
