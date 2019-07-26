@@ -19,14 +19,14 @@
         "invalidResponse": "Ошибка узла",
         "invalidResponseExplanation": "Узел сообщил об ошибке. Попробуйте сменить узел.",
         "invalidResponseFetchingAccount": "Узел сообщил об ошибке во время получения информации о Вашем счёте. Попробуйте поменять узел.",
-        "invalidResponseFetchingAccountDesktop": "Узел вернул ошибку при получении информации о вашей учетной записи. Если ваша проблема не устранена, попробуйте изменить узел или отключить системный прокси-сервер в настройках Тринити.",
+        "invalidResponseFetchingAccountDesktop": "Узел вернул ошибку при получении информации о вашей учетной записи. Если ошибка повторяется, попробуйте изменить узел или отключить системный прокси-сервер в настройках Trinity.",
         "nodeOutOfSync": "Узел не синхронизирован",
         "nodeOutOfSyncExplanation": "Выбранный Вами узел не синхронизирован. Пожалуйста, смените узел или попробуйте снова.",
         "nodeOutOfSyncByTimestampExplanation": "Текущий узел вне синхронизации. Пожалуйста измените узел либо повторите позже. Также удостоверьтесь в корректности временной зоны устройства.",
         "experimentalNode": "Версия узла не поддерживается",
         "experimentalNodeExplanation": "На выбранном вами узле установлена ​​экспериментальная версия, которая не поддерживается. Пожалуйста, измените узел или попробуйте снова.",
         "thisNodeOutOfSync": "Этот узел не синхронизирован. Пожалуйста, смените узел или попробуйте снова.",
-        "seed": "Ключ",
+        "seed": "Seed-фраза",
         "checksum": "Контрольная сумма",
         "back": "Назад",
         "goBack": "Назад",
@@ -146,7 +146,7 @@
         "headToAdvancedSettingsForTransition": "Перейдите в Дополнительные Настройки и выполните Snapshot переход.",
         "headToAccountTools": "Перейдите в Настройки Пользователя и выполните Перемещение Записей Данных.",
         "openAccountTools": "Настройки Учетной Записи",
-        "usingTrinityWalletWithKeePass": "Пользоваться кошельком Тринити с Keepass2Android",
+        "usingTrinityWalletWithKeePass": "Использовать кошелек Trinity с Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Произошла ошибка при отправке транзакции.",
         "broadcastError": "Не удалось ретранслировать транзакцию",
         "addressesAlreadySpentFrom": "Один или несколько адресов уже были использованы.",
@@ -169,7 +169,7 @@
         "missingPermission": "Требуется доступ к файловой системе",
         "missingPermissionExplanation": "Для выполнения этой функции необходим доступ к файловой системе.",
         "swipeToConfirm": "Проведите, чтобы подтвердить",
-        "congratulations": "Congratulations",
+        "congratulations": "Поздравляем",
         "expert": "Эксперт",
         "notEnoughSyncedNodes": "Слишком мало нод в синхронизации",
         "notEnoughSyncedNodesExplanation": "Кворум не может быть достигнут. Выключите Кворум либо повторите позже."
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Язык",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Выбрать язык",
         "letsGetStarted": "Давайте начнём"
     },
     "login": {
@@ -340,7 +340,7 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Пожалуйста, введите ключ ещё раз",
-        "trinityWillNeverAskToReenter": "Сброс кошелька и удаление приложения это единственные случаи когда Тринити попросит Вас снова вести ключ.",
+        "trinityWillNeverAskToReenter": "Trinity никогда не попросит вас повторно ввести seed-фразу, если вы не выполнили полный сброс кошелька или переустановили приложение.",
         "enterYourSeed": "Введите Ваш ключ",
         "incorrectSeed": "Неверный ключ",
         "incorrectSeedExplanation": "Введенный ключ неправильный. Пожалуйста, попробуйте еще раз.",
@@ -433,7 +433,7 @@
         "fetchedConversionRatesExplanation": "Успешно получен актуальный курс обмена для {{currency}}.",
         "undo": "Отменить",
         "redo": "Вернуть",
-        "aboutTrinity": "О Тринити",
+        "aboutTrinity": "О Trinity",
         "lockScreenTimeout": "Время ожидания блокировки экрана (минут)",
         "nodeChangeSuccess": "Узел успешно изменен",
         "nodeChangeSuccessNoRemotePow": "Узел был изменён на {{node}}. Данный узел не поддерживает удаленное проведение Proof of Work.",
@@ -456,7 +456,7 @@
         "keepSafe": "Пожалуйста, храните Ваш ключ в безопасности."
     },
     "welcome": {
-        "thankYou": "Благодарим за загрузку Тринити"
+        "thankYou": "Благодарим за то что скачали Trinity"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Запишите Ваш ключ, контрольную сумму и </ 0><1>трижды проверьте </ 1><2> что они верны.</ 2>",
@@ -478,7 +478,7 @@
         "retrying": "Повторная попытка",
         "yesterday": "Вчера",
         "promotingAnotherBundle": "Содействую активации другого пакета",
-        "pleaseWait": "Пожалуйста, подождите, Тринити содействует активации другого пакета.",
+        "pleaseWait": "Пожалуйста, подождите, Trinity продвигает другой набор.",
         "typeHelp": "Введите !help для отображения доступных команд",
         "searchHelpText": "Поиск по хэшу пакета либо содержанию сообщения",
         "searchHelpValue": "Найти транзакции по точной величине iota",
@@ -599,7 +599,7 @@
         "syncingYourAccount": "Синхронизация Вашего счёта."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Введите имя аккаунта и seed-фразу",
         "incorrectFormat": "Неверный формат ключа",
         "validSeedExplanation": "Корректный ключ должен содержать 81 символ и состоять только из A-Z и 9."
     },
@@ -607,15 +607,15 @@
         "enterPassword": "Введите пароль, чтобы увидеть Ваш ключ.",
         "viewSeed": "Показать ключ",
         "hideSeed": "Скрыть ключ",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
+        "notAvailable": "Экспорт seed-фразы недоступен для учетной записи {{accountType}}",
+        "notAvailableExplanationLedger": "Ваше устройство Ledger использует безопасный элемент для хранения вашей seed-фразы. Seed-фраза зашифрована и не покидает устройство.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Вы создали резервную копию Вашего ключа?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Я сохранил свою seed-фразу в безопасности",
+        "reenterSeed": "На следующем шаге вам нужно ввести вашу seed-фразу.",
         "reenterSeedWarning": "Если вы не создали резервную копию Вашего ключа и на Вашем устройстве возникнет сбой, Вы потеряете все Ваши IOTA.",
         "pleaseConfirm": "Пожалуйста, подтвердите, что Вы надежно сохранили Ваш ключ."
     },
@@ -637,41 +637,41 @@
         "deviceLocked": "Аутентификация недоступна в течение 30 секунд",
         "fingerprintUnavailableExplanation": "Ваше устройство не поддерживает биометрической аутентификации, или она не была настроена в параметрах устройства.",
         "notSupported": "Устройство не поддерживает биометрическую аутентификацию",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "notConfigured": "Биометрическая аутентификация не была настроена в настройках устройства",
         "buttonInstructionsDisable": "Нажмите на кнопку ниже, чтобы отключить аутентификацию на основе отпечатков пальцев.",
         "buttonInstructionsEnable": "Нажмите на кнопку ниже, чтобы включить аутентификацию на основе отпечатков пальцев.",
         "buttonInstructionsDisableIPhoneX": "Нажмите на кнопку ниже, чтобы отключить идентификатор лица",
         "buttonInstructionsEnableIPhoneX": "Нажмите на кнопку ниже, чтобы включить идентификатор лица",
         "instructionsLogin": "Приложите палец к сенсору чтения отпечатков пальцев для входа",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "systemCancelledAuth": "Аутентификация была отменена вашим устройством",
         "userCancelledAuth": "Запрос на аутентификацию отменен",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "passwordFallback": "Вернуться к аутентификации по паролю",
+        "noPassword": "Пароль не установлен на устройстве"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Вы собираетесь отправить {{contents}}",
         "aMessage": "сообщение",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "От {{selectedAccountName}}",
+        "toAddress": "На адрес",
+        "sendingAMessage": "Отправка сообщения",
+        "sendingAnEmptyMessage": "Отправка пустого сообщения"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
-        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
-        "exportFail": "SeedVault export failed",
-        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
-        "exportSuccess": "SeedVault exported",
-        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
+        "exportSeedVault": "Экспорт SeedVault",
+        "seedVaultExplanation": "SeedVault — это зашифрованный файл для резервного копирования вашей seed-фразы. Seed-фраза зашифрована ключом SeedVault и не может быть расшифрована без этого ключа.",
+        "seedVaultWarning": "Убедитесь, что вы сохранили резервные копии файла в нескольких местах (например, жесткий диск, облако, USB). Если вы потеряете этот файл и не сохранили свою seed-фразу в другом месте, вы потеряете ваши монеты IOTA.",
+        "exportFail": "Ошибка экспорта SeedVault",
+        "exportFailExplanation": "Произошла ошибка при экспорте SeedVault. Пожалуйста, убедитесь, что у вас есть соответствующие права и достаточно свободного места.",
+        "exportSuccess": "SeedVault экспортирован",
+        "exportSuccessExplanation": "Ваш зашифрованный файл SeedVault успешно экспортирован.",
         "unrecognisedKey": "Unrecognised SeedVault Key",
         "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
         "emptyKey": "No SeedVault Key entered",
         "emptyKeyExplanation": "You must enter a key. Please try again.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
-        "saveToDownloadFolder": "Save to Download Folder",
-        "importSeedVault": "Import SeedVault",
+        "importSuccess": "Seed-фраза импортирована",
+        "importSuccessExplanation": "Ваша seed-фраза успешно импортирована.",
+        "saveToDownloadFolder": "Сохранить в папку Загрузки",
+        "importSeedVault": "Импорт SeedVault",
         "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
         "dropActive": "Drop SeedVault or text here",
         "enterKeyExplanation": "Enter your key to open the SeedVault",
@@ -860,7 +860,7 @@
         "checkLedger": "Проверьте ваше Ledger устройство",
         "acceptWarningExplanation": "Если на вашем Ledger устройстве появится текстовое предупреждение, вам потребуется прочесть и согласиться с его условиями одновременным нажатием на обе кнопки.",
         "udevError": "Не удается соединиться с Ledger устройством",
-        "udevErrorExplanation": "Тринити не удается соединиться с вашим Ledger устройством. Пожалуйста перейдите по _ссылке_ для устранения этой проблемы.",
+        "udevErrorExplanation": "Trinity не удается соединиться с вашим Ledger устройством. Пожалуйста перейдите по URL-адрес для устранения этой проблемы.",
         "writtenDownInfoTitle": "Сохраните ваш порядковый номер",
         "writtenDownInfoExplanation": "Пожалуйста сохраните ваш порядковый номер. Он понадобится вам для восстановления учетной записи. Если вы потеряете ваш порядковый номер - вы потеряете доступ к учетной записи."
     }

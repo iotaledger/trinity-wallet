@@ -2,7 +2,6 @@ import get from 'lodash/get';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
 
 import { round } from '../../libs/utils';
 
@@ -139,5 +138,5 @@ export default function withChartData(ChartComponent) {
     return connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(withI18n()(ChartData));
+    )(ChartData);
 }

@@ -11,7 +11,6 @@ import {
     generateErrorAlert,
 } from '../actions/alerts';
 import { setActiveStepIndex, startTrackingProgress, reset as resetProgress } from '../actions/progress';
-import { changeNode } from '../actions/settings';
 import { accumulateBalance, attachAndFormatAddress, syncAddresses } from '../libs/iota/addresses';
 import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
@@ -426,9 +425,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, qu
                             Promise.resolve(),
                         );
                     })
-                    .then(({ node }) => {
-                        dispatch(changeNode(node));
-
+                    .then(() => {
                         dispatch(snapshotTransitionSuccess());
                         dispatch(snapshotAttachToTangleComplete());
                         dispatch(

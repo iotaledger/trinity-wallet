@@ -64,13 +64,19 @@
         <note>Privacy - Camera Usage Description</note>
         <target state="translated">Тринити нужен доступ к камере, чтобы включить сканер QR-кодов.</target>
         <alt-trans>
+          <target>Trinity нужен доступ к камере, чтобы включить сканер QR-кодов.</target>
+        </alt-trans>
+        <alt-trans>
           <target>Чтобы выполнить сканирование QR-кода, Тринити нужно разрешить доступ к камере.</target>
         </alt-trans>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <note>Privacy - Face ID Usage Description</note>
-        <target state="translated">Тринити нужен доступ к Face ID, чтобы использовать биометрическую аутентификацию.</target>
+        <target state="translated">Trinity нужен доступ к Face ID, чтобы использовать биометрическую аутентификацию.</target>
+        <alt-trans>
+          <target>Тринити нужен доступ к Face ID, чтобы использовать биометрическую аутентификацию.</target>
+        </alt-trans>
         <alt-trans>
           <target>Для того чтобы включить биометрическую аутентификацию Тринити потребуется разрешить доступ к Face ID.</target>
         </alt-trans>

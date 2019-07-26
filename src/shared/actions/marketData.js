@@ -93,7 +93,13 @@ export function setPrice(data) {
 export function getPrice() {
     return (dispatch) => {
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=MIOTA&tsyms=USD,EUR,BTC,ETH')
-            .then((response) => response.json(), () => {})
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+
+                throw response;
+            })
             .then((json) => dispatch(setPrice(json)));
     };
 }
@@ -121,7 +127,14 @@ export function getChartData() {
         });
 
         const urls = [];
-        const grabContent = (url) => fetch(url).then((response) => response.json());
+        const grabContent = (url) =>
+            fetch(url).then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+
+                throw response;
+            });
 
         each(arrayCurrenciesTimeFrames, (currencyTimeFrameArrayItem) => {
             const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
@@ -184,7 +197,13 @@ export function setChartData(chartData) {
 export function getMarketData() {
     return (dispatch) =>
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=MIOTA&tsyms=USD')
-            .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error)) // eslint-disable-line no-console
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+
+                throw response;
+            })
             .then((json) => dispatch(setMarketData(json)));
 }
 

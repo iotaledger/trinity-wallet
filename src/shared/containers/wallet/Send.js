@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
 import { generateAlert } from '../../actions/alerts';
 import { completeDeepLinkRequest } from '../../actions/wallet';
 import { makeTransaction } from '../../actions/transfers';
@@ -261,5 +260,5 @@ export default function withSendData(SendComponent) {
     return connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(withI18n()(SendData));
+    )(SendData);
 }

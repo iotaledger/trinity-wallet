@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 
 import { formatIotas, MAX_MESSAGE_LENGTH } from 'libs/iota/utils';
 import { formatMonetaryValue } from 'libs/currency';
@@ -233,4 +234,4 @@ class Send extends React.PureComponent {
     }
 }
 
-export default withSendData(Send);
+export default withTranslation()(withSendData(Send));
