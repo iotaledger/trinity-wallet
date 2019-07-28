@@ -218,7 +218,7 @@ export class AddCustomNode extends Component {
                                             onRef={(c) => {
                                                 this.username = c;
                                             }}
-                                            label="Username"
+                                            label={t('username')}
                                             onValidTextChange={(token) =>
                                                 this.setState({ customNode: { ...customNode, token } })
                                             }
@@ -270,7 +270,7 @@ export class AddCustomNode extends Component {
                                         >
                                             <Icon name="plusAlt" size={width / 40} color={theme.body.color} />
                                             <Text style={[styles.buttonText, { color: theme.body.color }]}>
-                                                Add auth key
+                                                {t('addAuthKey')}
                                             </Text>
                                         </View>
                                     )}
@@ -306,7 +306,7 @@ export class AddCustomNode extends Component {
                                 }}
                             >
                                 <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                    No custom nodes added
+                                    {t('noCustomNodesAdded')}
                                 </Text>
                             </View>
                         )}
