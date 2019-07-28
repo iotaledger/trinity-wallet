@@ -174,7 +174,7 @@
     "react-redux": "5.1.1",
     "react-router-dom": "5.0.1",
     "react-transition-group": "4.2.1",
-    "realm": "2.29.0",
+    "realm": "2.29.1",
     "recharts": "1.6.2",
     "redux": "4.0.4"
   },
