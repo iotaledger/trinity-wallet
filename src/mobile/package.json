@@ -42,7 +42,6 @@
     "prop-types": "^15.6.0",
     "punycode": "^1.4.1",
     "qr.js": "https://github.com/defunctzombie/qr.js",
-    "react": "16.6.1",
     "react-i18next": "^8.0.7",
     "react-native": "0.57.5",
     "react-native-camera": "^1.5.1",
@@ -84,7 +83,6 @@
     "react-native-triangle": "0.0.8",
     "react-native-vector-icons": "^6.4.1",
     "react-native-view-shot": "git+https://github.com/cvarley100/react-native-view-shot#master",
-    "react-redux": "^5.0.6",
     "readable-stream": "^1.0.33",
     "realm": "2.29.0",
     "redux": "^3.7.2",
@@ -112,7 +110,6 @@
     "metro-react-native-babel-preset": "^0.45.0",
     "patch-package": "^6.1.2",
     "react-addons-test-utils": "^15.6.2",
-    "react-dom": "^16.2.0",
     "react-test-renderer": "16.6.1",
     "rn-nodeify": "^10.0.1"
   },
@@ -138,7 +135,12 @@
       "<rootDir>/ios/build/",
       "<rootDir>/android/build/",
       "<rootDir>/nodejs-assets/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^react$": "<rootDir>/../shared/node_modules/react",
+      "^react-dom(.*)$": "<rootDir>/../shared/node_modules/react-dom$1",
+      "^react-redux(.*)$": "<rootDir>/../shared/node_modules/react-redux$1"
+    }
   },
   "react-native": {
     "crypto": "react-native-crypto",
