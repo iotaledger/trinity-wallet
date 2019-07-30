@@ -59,7 +59,7 @@
         "skip": "Omite",
         "password": "Parolă",
         "unrecognisedPassword": "Parolă nerecunoscută",
-        "unrecognisedPasswordExplanation": "Parola nu a fost recunoscută. Încercaţi din nou.",
+        "unrecognisedPasswordExplanation": "Parola nu a fost recunoscută. Vă rugăm, încercaţi din nou.",
         "unrecognisedAccount": "Cont nerecunoscut",
         "unrecognisedAccountExplanation": "Contul cu numele {{accountName}} nu a fost recunoscut. Luați în considerare să vă resetați portofelul.",
         "emptyPasswordExplanation": "Trebuie să introduceți o parolă. Vă rugăm încercați din nou.",
