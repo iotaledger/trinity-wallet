@@ -495,9 +495,9 @@
         "tools": "ツール"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "自動でノード管理を行う",
+        "automaticNodeManagement": "自動ノード管理",
         "addCustomNodes": "カスタムノードの追加",
-        "autoNodeList": "リモートノードリストを使う",
+        "autoNodeList": "リモートノードリストの使用",
         "nodeAutoswitching": "主要ノードの自動切換え",
         "primaryNode": "主要ノード",
         "enableQuorum": "定足数を有効化",
