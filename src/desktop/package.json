@@ -90,7 +90,7 @@
       "!node_modules/realm/vendor${/*}"
     ],
     "appId": "org.iota.trinity",
-    "asar": false,
+    "asar": true,
     "protocols": [
       {
         "name": "IOTA URL Scheme",
@@ -144,7 +144,10 @@
       "entitlements": "./entitlements.mac.plist",
       "entitlementsInherit": "./entitlements.mac.plist",
       "hardenedRuntime": true,
-      "gatekeeperAssess": false
+      "gatekeeperAssess": false,
+      "asarUnpack": [
+        "**/*.node"
+      ]
     },
     "publish": {
       "provider": "generic",
