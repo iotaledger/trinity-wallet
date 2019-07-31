@@ -230,7 +230,7 @@ function createWindow() {
      * Enable React and Redux devtools in development mode
      */
 
-    if (devMode) {
+    //if (devMode) {
         windows.main.webContents.once('dom-ready', () => {
             windows.main.webContents.openDevTools({ mode: 'detach' });
             /* Uncomment to enable Tray app DevTools on macOS
@@ -241,7 +241,7 @@ function createWindow() {
             installExtension(REACT_DEVELOPER_TOOLS);
             installExtension(REDUX_DEVTOOLS);
         });
-    }
+    //}
 
     /**
      * Add right click context menu for input elements
