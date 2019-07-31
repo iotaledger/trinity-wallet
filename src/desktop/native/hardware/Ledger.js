@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import Transport from '@ledgerhq/hw-transport-node-hid-noevents';
+import Transport from '@ledgerhq/hw-transport-node-hid';
 import Iota from 'hw-app-iota';
 import { ipcRenderer as ipc, remote } from 'electron';
 import Errors from 'libs/errors';
@@ -14,8 +14,7 @@ class Ledger {
         this.subscription = Transport.listen({
             next: (e) => {
                 this.onMessage(e.type);
-            },
-            complete: () => {},
+            }
         });
     }
 
