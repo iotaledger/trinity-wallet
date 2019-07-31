@@ -104,8 +104,6 @@ class Ledger extends React.PureComponent {
             history.push('/onboarding/account-name');
         } catch (error) {
 
-            console.log(error)
-
             if (error.statusCode === 27014) {
                 generateAlert(
                     'error',

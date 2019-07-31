@@ -90,7 +90,7 @@
       "!node_modules/realm/vendor${/*}"
     ],
     "appId": "org.iota.trinity",
-    "asar": true,
+    "asar": false,
     "protocols": [
       {
         "name": "IOTA URL Scheme",
