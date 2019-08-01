@@ -3,11 +3,12 @@ import merge from 'lodash/merge';
 import { Navigation } from 'react-native-navigation';
 import timer from 'react-native-timer';
 import { WalletActionTypes } from 'shared-modules/types';
-import { getBackgroundColor } from 'ui/theme/general';
+import { getBackgroundColor, getStatusBarStyle, getStatusBarColor } from 'ui/theme/general';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import store from '../../../shared/store';
 
 const getDefaultOptions = (nextScreen) => {
+    const theme = getThemeFromState(store.getState());
     return {
         animations: {
             push: {
@@ -21,8 +22,11 @@ const getDefaultOptions = (nextScreen) => {
             },
         },
         layout: {
-            backgroundColor: getBackgroundColor(nextScreen, getThemeFromState(store.getState())),
+            backgroundColor: getBackgroundColor(nextScreen, theme),
             orientation: ['portrait'],
+        },
+        statusBar: {
+            style: getStatusBarStyle(getStatusBarColor(nextScreen, theme)).replace('-content', ''),
         },
     };
 };
@@ -72,4 +76,4 @@ const navigator = {
     },
 };
 
-export default navigator
+export default navigator;
