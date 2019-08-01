@@ -14,7 +14,7 @@ class Ledger {
         this.subscription = Transport.listen({
             next: (e) => {
                 this.onMessage(e.type);
-            },
+            }
         });
     }
 
