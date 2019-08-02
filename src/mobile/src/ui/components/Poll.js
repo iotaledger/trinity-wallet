@@ -68,6 +68,34 @@ export class Poll extends Component {
         retryFailedTransaction: PropTypes.func.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
+        /** @ignore */
+        isPollingPrice: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPollingNodeList: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPollingChartData: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPollingMarketData: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPollingAccountInfo: PropTypes.bool.isRequired,
+        /** @ignore */
+        isAutoPromoting: PropTypes.bool.isRequired,
+        /** @ignore */
+        isTransitioning: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPromotingTransaction: PropTypes.bool.isRequired,
+        /** @ignore */
+        isRetryingFailedTransaction: PropTypes.bool.isRequired,
+        /** @ignore */
+        isSyncing: PropTypes.bool.isRequired,
+        /** @ignore */
+        addingAdditionalAccount: PropTypes.bool.isRequired,
+        /** @ignore */
+        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        /** @ignore */
+        isSendingTransfer: PropTypes.bool.isRequired,
+        /** @ignore */
+        isFetchingAccountInfo: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -101,25 +129,23 @@ export class Poll extends Component {
     };
 
     shouldSkipCycle() {
-        const props = this.props;
-
         const isAlreadyDoingSomeHeavyLifting =
-            props.isSyncing ||
-            props.isSendingTransfer ||
-            props.isGeneratingReceiveAddress ||
-            props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
-            props.addingAdditionalAccount ||
-            props.isTransitioning ||
-            props.isPromotingTransaction ||
-            props.isRetryingFailedTransaction;
+            this.props.isSyncing ||
+            this.props.isSendingTransfer ||
+            this.props.isGeneratingReceiveAddress ||
+            this.props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
+            this.props.addingAdditionalAccount ||
+            this.props.isTransitioning ||
+            this.props.isPromotingTransaction ||
+            this.props.isRetryingFailedTransaction;
 
         const isAlreadyPollingSomething =
-            props.isPollingPrice ||
-            props.isPollingNodeList ||
-            props.isPollingChartData ||
-            props.isPollingMarketData ||
-            props.isPollingAccountInfo ||
-            props.isAutoPromoting;
+            this.props.isPollingPrice ||
+            this.props.isPollingNodeList ||
+            this.props.isPollingChartData ||
+            this.props.isPollingMarketData ||
+            this.props.isPollingAccountInfo ||
+            this.props.isAutoPromoting;
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
