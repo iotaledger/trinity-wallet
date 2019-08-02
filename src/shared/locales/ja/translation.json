@@ -822,8 +822,8 @@
         "seedMigrationExplanation": "ウォレットのセキュリティを向上させるためのTrinityの継続的な取り組みの一環として、シードは強化されたストレージに移行されます。Trinityが自動的にシードストレージを移行するまで少々お待ちください。"
     },
     "ledger": {
-        "ready": "Ledger端末の接続が完了し、準備完了です",
-        "notReady": "Ledger端末を使いたい場合、今、接続しロックを解除してください",
+        "ready": "Ledger端末の接続が完了し、準備完了です。",
+        "notReady": "Ledger端末を使いたい場合、ここで接続し、ロックを解除してください。",
         "indexInUse": "アカウント{{account}}で既に使用されているインデックスです",
         "indexInUseExplanation": "選択したインデックスは、いずれかのアカウントですでに使用されています。別のインデックス番号を選択してください。",
         "createNewLedgerAccountInfo": "インデックス番号を書き留めて忘れないようにしてください。",
@@ -847,7 +847,7 @@
         "applicationExplanation": "Trinityウォレットを使い続けるには、LedgerでIOTAアプリを開いてください。",
         "cannotSendZeroValueTitle": "0値の取引は送金できません",
         "cannotSendZeroValueExplanation": "Ledger端末では0値の取引は送金できません。",
-        "ledgerDisconnectedTitle": "Ledger端末が切断されました",
+        "ledgerDisconnectedTitle": "Ledger端末が切断されました。",
         "ledgerDisconnectedExplanation": "Ledger端末が切断されました。再接続してもう一度お試しください。",
         "ledgerDeniedTitle": "取引拒否",
         "ledgerDeniedExplanation": "Ledger端末で取引が拒否されました。",
