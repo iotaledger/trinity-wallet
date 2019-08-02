@@ -306,7 +306,7 @@ export class AddCustomNode extends Component {
                                 }}
                             >
                                 <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                    {t('noCustomNodesAdded')}
+                                    {t('nodeSettings:noCustomNodes')}
                                 </Text>
                             </View>
                         )}
