@@ -12,13 +12,13 @@ const getDefaultOptions = (nextScreen) => {
     return {
         animations: {
             push: {
-                enable: false,
+                enabled: false,
             },
             pop: {
-                enable: false,
+                enabled: false,
             },
             setStackRoot: {
-                enable: false,
+                enabled: false,
             },
         },
         layout: {
