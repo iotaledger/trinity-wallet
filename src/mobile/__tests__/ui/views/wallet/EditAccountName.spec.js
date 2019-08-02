@@ -5,7 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { EditAccountName } from 'ui/views/wallet/EditAccountName';
-import translations from 'shared-modules/locales/en/translation';
+import translations from 'shared-modules/locales/en/translation.json';
 import theme from '../../../../__mocks__/theme';
 
 jest.mock('react-native-device-info');
