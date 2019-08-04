@@ -479,7 +479,7 @@
         "yesterday": "I går",
         "promotingAnotherBundle": "Promovering en anden pakke",
         "pleaseWait": "Vent venligst, Trinity promoverer en anden pakke.",
-        "typeHelp": "Type !help for available commands",
+        "typeHelp": "Tast !hjælp for tilgængelige kommandoer",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
