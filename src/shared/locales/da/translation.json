@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Noden returnerede en fejl under hentning af dine kontooplysninger. Hvis problemet vedvarer, kan du prøve at skifte node eller deaktivere din systemproxy i Trinity Indstillinger.",
         "nodeOutOfSync": "Node er ude af synkronisering",
         "nodeOutOfSyncExplanation": "Din valgte node er ude af synkronisering. Skift node eller forsøg igen.",
-        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "nodeOutOfSyncByTimestampExplanation": "Din nuværende valgte node er ude af sync. Venligst skift node eller prøv igen. Hvis problemet bliver ved, venligst tjek om klokken på din telefon er korrekt.",
         "experimentalNode": "Node-version uunderstøttet",
         "experimentalNodeExplanation": "Din aktuelt valgte node kører en eksperimentel version, som ikke understøttes. Skift derfor node eller forsøg igen.",
         "thisNodeOutOfSync": "Denne node er ude af synkronisering. Skift node eller forsøg igen.",
@@ -125,7 +125,7 @@
         "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Auto-skiftet node",
         "nodeAutoChangedExplanation": "Skiftet til ny node {{- nodeAddress}} da den valgte node er offline.",
-        "touchSensor": "Touch the fingerprint sensor",
+        "touchSensor": "Tryk på fingeraflæsningssensoren",
         "fingerprintOnSend": "Rør fingeraftrykssensoren for at godkende overførslen",
         "masterKey": "Dit IOTA-seed er hovedadgangsnøglen til dine midler.",
         "seedThief": "Har en andre dit seed, kan de stjæle dine IOTA.",
@@ -495,9 +495,9 @@
         "tools": "Værktøjer"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
+        "automaticNodeManagement": "Automatisk nodestyring",
         "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
+        "autoNodeList": "Brug fjern nodeliste",
         "nodeAutoswitching": "Primary node autoswitching",
         "primaryNode": "Primary node",
         "enableQuorum": "Enable quorum",
@@ -520,7 +520,7 @@
         "nodeFieldEmptyExplanation": "Angiv venligst en brugerdefineret node.",
         "invalidURL": "Angiv en gyldig URL.",
         "addAuthKey": "Add auth key",
-        "username": "Username",
+        "username": "Brugernavn",
         "couldNotRemove": "Could not remove custom node",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
