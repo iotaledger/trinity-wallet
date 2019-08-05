@@ -170,7 +170,7 @@
         "missingPermissionExplanation": "الدخول الى ملف النظام مطلوب لعمل هذه المهمة.",
         "swipeToConfirm": "اسحب للتأكيد",
         "congratulations": "Congratulations",
-        "expert": "Expert",
+        "expert": "متقدم",
         "notEnoughSyncedNodes": "عدد العقد متزامنة قليل جدًا",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
