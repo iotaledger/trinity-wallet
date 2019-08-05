@@ -360,7 +360,7 @@ export const initMenu = (app, getWindowFunc) => {
                 {
                     label: `${app.getName()} ${language.help}`,
                     click: function() {
-                        shell.openExternal('https://docs.iota.org/docs/trinity/0.1/introduction/overview');
+                        shell.openExternal('https://docs.iota.org/docs/wallets/0.1/trinity/introduction/overview');
                     },
                 },
             ],
