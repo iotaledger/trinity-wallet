@@ -333,20 +333,20 @@
         "youCanHighlightCharacters": "يمكنك أن تركز على 9 أحرف في كل مرة",
         "printBlankWallet": "اطبع محفظة فارغة",
         "whatIsAChecksum": "ما هو المجموع الاختباري؟",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
-        "iHavesavedMySeed": "I've saved my seed",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "everySeedHasAChecksum": "كل بذرة لها مجموع إختباري ثلاثي الأحرف.",
+        "iHavesavedMySeed": "لقد حفظت بذرتي",
+        "checksumExplanation": "عندما تضيف بذرة إلى محفظتك، يجب عليك التأكد من أن المجموع الاختباري الذي تم إنشاؤه في المحفظة يطابق ما كتبته.",
         "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
-        "enterYourSeed": "Enter your seed",
+        "pleaseConfirmYourSeed": "رجاء أكد بذرتك",
+        "trinityWillNeverAskToReenter": "لن تطلب منك Trinity أبدًا إعادة إدخال هذه البذرة ما لم تقم بإعادة تعيين محفظتك أو حذف التطبيق.",
+        "enterYourSeed": "أدخل بذرتك",
         "incorrectSeed": "قيمة خاطئة",
         "incorrectSeedExplanation": "السييد المدخل غير صحيح. يرجى المحاولة مرة أخرى.",
         "ifYouHaveNotSaved": "إذا لم تقم بحفظ السييد الخاص بك، الرجاء العودة والقيام بذلك.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly",
-        "clipboardWarning": "WARNING: Cannot paste seed",
+        "enterSeedBelow": "أدخل بذرتك المنشأة حديثا في الأسفل لتأكيد أنك نسختها بشكل صحيح",
+        "clipboardWarning": "تحذير: لا يمكن لصق البذرة",
         "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
