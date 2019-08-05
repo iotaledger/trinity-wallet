@@ -92,7 +92,7 @@
         "retry": "اعد المحاولة",
         "pressBackAgain": "تجزئة الحزمة",
         "reattached": "تم إعادة تثبيت الصفقة بنجاح",
-        "reattachedExplanation": "Reattached transaction with hash {{hash}}",
+        "reattachedExplanation": "إعادة ربط المعاملة مع الهاش {{hash}}",
         "promotingTransaction": "تعزيز المعاملة",
         "rebroadcastError": "لا يمكن إعادة بث المعاملة",
         "promoted": "Successfully promoted transaction",
