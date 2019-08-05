@@ -172,7 +172,7 @@
         "congratulations": "Congratulations",
         "expert": "متقدم",
         "notEnoughSyncedNodes": "عدد العقد متزامنة قليل جدًا",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodesExplanation": "لم يتسن التوصل إلى نصاب قانوني. أوقف النصاب القانوني أو أعد المحاولة."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "أوتورياتاتشينج إلى تشابك",
@@ -271,10 +271,10 @@
         "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "بذرة مولدة",
         "seedNotGenerated": "القيم لم يتم تكوينها",
         "seedNotGeneratedExplanation": "الرجاء النقر على الزر إنشاء قيم جديدة.",
-        "pressForNewSeed": "Press for New Seed",
+        "pressForNewSeed": "اضغط للحصول على بذرة جديدة",
         "generateSuccess": "Seed generated successfully",
         "individualLetters": "اضغط على الأحرف بشكل فردي لكي تكن عشوائية.",
         "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
