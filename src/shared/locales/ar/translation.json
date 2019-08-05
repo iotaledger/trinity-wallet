@@ -275,13 +275,13 @@
         "seedNotGenerated": "القيم لم يتم تكوينها",
         "seedNotGeneratedExplanation": "الرجاء النقر على الزر إنشاء قيم جديدة.",
         "pressForNewSeed": "اضغط للحصول على بذرة جديدة",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "بذرة مولدة بنجاح",
         "individualLetters": "اضغط على الأحرف بشكل فردي لكي تكن عشوائية.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
-        "whatIsASeed": "What is a seed?"
+        "individualLetterCount": "اضغط على <1><0>{{count}}</0> </1> المزيد من الحروف لترتيبها عشوائيا.",
+        "individualLetterCount_plural": "اضغط على <1><0>{{count}}</0> </1> المزيد من الحروف لترتيبها عشوائيا.",
+        "randomiseCharsToContinue": "رتب عشوائيا رمز <1>{{count}}</1> للمتابعة.",
+        "randomiseCharsToContinue_plural": "رتب عشوائيا رموز <1>{{count}}</1> للمتابعة.",
+        "whatIsASeed": "ما هي البذرة؟"
     },
     "onboardingComplete": {
         "allDone": "أكتمل كل شيء!",
@@ -292,7 +292,7 @@
         "neverShare": "لا تقم ابداً بمشاركة السييد الخاص بك مع اي شخص.",
         "iotaLogo": "شعار IOTA",
         "print": "طباعة",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "paperConvenience": "تعد طباعة نسخة ورقية من بذرتك وسيلة ملائمة لتخزينها.",
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
         "pleaseCheck": "Please check and confirm before you print",
         "wifiConfirmation": "انا لست متصل بواي فاي عام",
@@ -302,23 +302,23 @@
         "printTemplateQuestion": "Would you like to print a blank template?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "print": "أجل، قم بالطباعة"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
-        "copyAddress": "Copy address",
+        "yourAddress": "عنوانك",
+        "qrOptions": "خيارات QR",
+        "shareQr": "مشاركة رمز QR",
+        "copyAddress": "نسخ العنوان",
         "addressCopied": "تم نسخ العنوان",
         "addressCopiedExplanation": "تم نسخ عنوانك إلى الحافظة.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "إنشاء العنوان",
         "noAddresses": "لا توجد عناوين",
         "spent": "اُنفق",
         "tag": "علامة",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAnAddress": "إنشاء العنوان",
+        "generateAnAddressTitle": "إنشاء عنوان",
+        "generateAnAddressExplanation": "يرجى إنشاء عنوان قبل استخدام هذه الوظيفة.",
+        "generateAddressInformation": "قم بإنشاء عنوان إيداع جديد في كل مرة ترغب في تلقي IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
