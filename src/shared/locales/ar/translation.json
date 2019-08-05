@@ -259,9 +259,9 @@
         "emptyPasswordExplanation": "يجب إدخال كلمة مرور لتسجيل الدخول. الرجاء المحاولة مرة أخرى.",
         "enterPassword": "الرجاء إدخال كلمة المرور.",
         "login": "تسجيل الدخول",
-        "setNode": "Set Node",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "setNode": "حدد العقدة",
+        "whyBiometricDisabled": "لماذا التوثيق البيومتري معطل؟",
+        "whyBiometricDisabledExplanationPart1": "تم تعطيل التوثيق البيومتري عند تحميل التطبيق الأول لحمايتك.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
