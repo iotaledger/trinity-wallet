@@ -347,14 +347,14 @@
         "ifYouHaveNotSaved": "إذا لم تقم بحفظ السييد الخاص بك، الرجاء العودة والقيام بذلك.",
         "enterSeedBelow": "أدخل بذرتك المنشأة حديثا في الأسفل لتأكيد أنك نسختها بشكل صحيح",
         "clipboardWarning": "تحذير: لا يمكن لصق البذرة",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarningExplanation": "تم تعطيل لصق لحمايتك. يمكنك سحب وإسقاط البذرة الخاصة بك من ملف نصي بدلاً من ذلك."
     },
     "send": {
         "invalidAddress": "عنوان خاطئ",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "يجب أن يكون العنوان {{maxLength}} حرفًا ويجب أن يحتوي على المجموع الاختباري.",
         "invalidAddressExplanation2": "السييد يحتوي على أحرف غير صالحة.",
         "invalidAddressExplanation3": "العنوان يحتوي مجموع اختباري غير صحيح.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "الرجاء التحقق من أنك أدخلت العنوان بشكل صحيح.",
         "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "الرصيد غير كافي",
         "notEnoughFundsExplanation": "ليس لديك IOTA كافية لإتمام عملية التحويل.",
@@ -439,7 +439,7 @@
         "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
         "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
         "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeErrorExplanation": "حدث خطأ أثناء تغيير العقدة. حاول مرة اخرى."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "الرجاء ادخال كلمة المرور لإعادة المحفظة.",
@@ -447,23 +447,23 @@
     },
     "walletSetup": {
         "okay": "حسنًا. لنقم بإعداد محفظتك!",
-        "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "doYouNeedASeed": "هل تحتاج إلى إنشاء بذرة جديدة؟",
+        "seedExplanation": "بذرة IOTA الخاصة بك هي المفتاح الرئيسي لأموالك. يبلغ طولها 81 حرفًا، وتستخدم فقط الأحرف A-Z أو الرقم 9.",
         "noIHaveOne": "لا, لدي واحد",
-        "yesINeedASeed": "Yes, I need a seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "yesINeedASeed": "نعم، أحتاج بذرة",
+        "explanation": "<0> <0> يمكنك استخدامها للوصول إلى أموالك من </0> <1> أي محفظة </ 1> <2>، في </2> <3> أي جهاز. </ 3> </ 0 >",
+        "loseSeed": "لكن إذا فقدت بذرتك، ستفقد أيضا IOTA الخاصة بك.",
         "keepSafe": "يرجى الحفاظ على السييد الخاص بك في مكان آمن."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "شكرا لتحميلك Trinity"
     },
     "writeSeedDown": {
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
+        "writeDownYourSeed": "< 0> اكتب بذورك و المجموع الإختباري و </0><1> قم بالتحقق ثلاث مرات </1><2> من صحتها </2>",
         "scrollToBottom": "التمرير للأسفل"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopied": "تم نسخ حزمة الهاش",
         "noTransactionsFound": "لا يوجد معاملات تم العثور عليها",
         "emptyHistory": "سجل تاريخ المعاملات السابقة فارغ",
         "hideZeroBalance": "Hide zero balance",
