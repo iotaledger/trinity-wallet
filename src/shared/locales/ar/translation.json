@@ -171,7 +171,7 @@
         "swipeToConfirm": "اسحب للتأكيد",
         "congratulations": "Congratulations",
         "expert": "Expert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodes": "عدد العقد متزامنة قليل جدًا",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
     },
     "addAdditionalSeed": {
@@ -180,7 +180,7 @@
         "seedTooShort": "السييد قصير جداً",
         "seedTooShortExplanation": "يجب أن تكون البذور {{maxLength}} حرفاً. البذور الخاص بك حاليا {{currentLength}} حرفاً. الرجاء المحاولة مرة أخرى.",
         "nameInUse": "سبق التسجيل بهذا الإسم من قبل",
-        "nameInUseExplanation": "Please use a unique account name for your seed.",
+        "nameInUseExplanation": "يرجى استخدام اسم حساب فريد لبذرتك.",
         "accountNameTooLong": "اسم الحساب طويل جداً",
         "accountNameTooLongExplanation": "الحد الاعلى لأحرف اسم الحساب هو {{maxLength}} أحرف.",
         "accountName": "اسم الحساب",
@@ -206,12 +206,12 @@
         "confirmPassword": "تأكيد كلمة المرور الجديدة",
         "passwordTooWeak": "كلمة المرور ضعيفة جداً",
         "passwordTooWeakReason": "كلمة المرور ضعيفة جداً. استخدم مزيج من الكلمات, وتجنب الجمل, الاسماء والتواريخ الشائعة.",
-        "reasonRow": "Straight rows of keys are easy to guess.",
-        "reasonPattern": "Short patterns of keys are easy to guess.",
-        "reasonNames": "Common names and surnames are easy to guess.",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
+        "reasonRow": "من السهل تخمين الصفوف المستقيمة للمفاتيح.",
+        "reasonPattern": "أنماط المفاتيح القصيرة سهلة التخمين.",
+        "reasonNames": "الأسماء والألقاب الشائعة سهلة التخمين.",
+        "reasonRepeats": "تكرار مثل 'aaa' سهل التخمين.",
+        "reasonRepeats2": "تكرار مثل \"abcabcabc\" صعب التخمين قليلاً مقارنة بـ \"abc\".",
+        "reasonSequence": "التسلسل مثل abc أو 54321 سهل التخمين.",
         "reasonYears": "السنوات الأخيرة سهلة التخمين.",
         "reasonDates": "التواريخ غالباً سهلة التخمين.",
         "reasonTop10": "هذه من أكثر 10 كلمات مرور شائعة.",
@@ -237,9 +237,9 @@
         "invalidCharacters": "السييد يحتوي على أحرف غير صالحة",
         "invalidCharactersExplanation": "يجب ان يتكون السييد من احرف انجليزية كبيرة A-Z والرقم 9 فقط. السييد الخاص بك يحتوي على أحرف غير صالحة. يرجى المحاولة مرة أخرى.",
         "seedTooShort": "السييد قصير جداً",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "البذرة طويلة جدا",
         "seedTooShortExplanation": "يجب أن تكون البذور {{maxLength}} حرفاً. البذور الخاص بك حاليا {{currentLength}} حرفاً. الرجاء المحاولة مرة أخرى.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedExplanation": "يجب أن يكون طول البذور {{maxLength}} حرفًا ، ويجب أن يحتوي على أحرف كبيرة A-Z، أو الرقم 9. لا يمكنك استخدام بذور أطول من {{maxLength}} حرفًا.",
         "neverShare": "لا تقم ابداً بمشاركة السييد الخاص بك مع اي شخص"
     },
     "home": {
@@ -251,8 +251,8 @@
     },
     "languageSetup": {
         "language": "اللغة",
-        "selectALanguage": "Select a language",
-        "letsGetStarted": "Let's get started"
+        "selectALanguage": "اختر لغة",
+        "letsGetStarted": "لنبدأ"
     },
     "login": {
         "emptyPassword": "كلمة المرور فارغة",
