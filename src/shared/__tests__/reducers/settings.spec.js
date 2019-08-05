@@ -53,6 +53,7 @@ describe('Reducer: settings', () => {
                 conversionRate: 1,
                 themeName: 'Default',
                 remotePoW: false,
+                powNode: '',
                 lockScreenTimeout: 3,
                 versions: {},
                 isFingerprintEnabled: false,
@@ -117,6 +118,27 @@ describe('Reducer: settings', () => {
 
             const expectedState = {
                 remotePoW: true,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe(SettingsActionTypes.SET_POW_NODE, () => {
+        it('should update remotePoW in state', () => {
+            const initialState = {
+                powNode: '',
+            };
+
+            const action = {
+                type: SettingsActionTypes.SET_POW_NODE,
+                payload: "https://foo.bar",
+            };
+
+            const newState = reducer(initialState, action);
+
+            const expectedState = {
+                powNode: "https://foo.bar",
             };
 
             expect(newState).to.eql(expectedState);

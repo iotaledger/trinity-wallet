@@ -211,6 +211,13 @@ export const nodesConfigurationFactory = (overrides) =>
 
             if (shouldUseOnlyPowNodes) {
                 config.nodes = filter(config.nodes, (node) => node.pow === true);
+
+                if (state.powNode) {
+                    const powNode = config.nodes.find(({ url }) => url === state.powNode);
+                    if (powNode) {
+                        config.primaryNode = powNode;
+                    }
+                }
             }
 
             return config;
