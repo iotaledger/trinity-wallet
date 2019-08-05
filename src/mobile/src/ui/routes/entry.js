@@ -99,7 +99,7 @@ const renderInitialScreen = (initialScreen) => {
         reduxStore.dispatch(updateTheme('Default'));
         theme = get(Themes, 'Default');
     }
-
+    
     const options = {
         layout: {
             backgroundColor: theme.body.bg,
@@ -107,7 +107,7 @@ const renderInitialScreen = (initialScreen) => {
         },
         topBar: {
             visible: false,
-            drawBehind: false,
+            drawBehind: true,
             elevation: 0,
             background: {
                 color: 'black',

@@ -2,6 +2,8 @@ import map from 'lodash/map';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, isIPhoneX } from 'libs/device';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
+import { rgbToHex } from 'shared-modules/libs/utils';
+import tinycolor from 'tinycolor2';
 
 const screens = [
     'home',
@@ -73,4 +75,30 @@ export function getBackgroundColor(screen, theme) {
         return { [screen]: body.bg };
     };
     return Object.assign({}, ...map(screens, (item) => applyColour(item)))[screen];
+}
+
+/**
+ * Returns status bar colour dependent on current route
+ *
+ * @method getStatusBarColor
+ * @param {string} currentRoute
+ *
+ * @returns {string} Hex colour string
+ */
+export function getStatusBarColor(currentRoute, theme, inactive) {
+    const borderColor = getBorderColor(currentRoute, theme, inactive);
+    if (borderColor) {
+        return rgbToHex(borderColor);
+    }
+}
+
+/**
+ * Returns status bar style (light or dark) dependent on theme
+ *
+ * @method getStatusBarStyle
+ *
+ * @returns {string}
+ */
+export function getStatusBarStyle(statusBarColor) {
+    return tinycolor(statusBarColor).isDark() ? 'light-content' : 'dark-content';
 }
