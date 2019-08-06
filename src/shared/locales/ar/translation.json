@@ -95,7 +95,7 @@
         "reattachedExplanation": "إعادة ربط المعاملة مع الهاش {{hash}}",
         "promotingTransaction": "تعزيز المعاملة",
         "rebroadcastError": "لا يمكن إعادة بث المعاملة",
-        "promoted": "Successfully promoted transaction",
+        "promoted": "تم إعادة تثبيت المعاملة بنجاح",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
         "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
@@ -169,7 +169,7 @@
         "missingPermission": "مطلوب إذن ملف النظام",
         "missingPermissionExplanation": "الدخول الى ملف النظام مطلوب لعمل هذه المهمة.",
         "swipeToConfirm": "اسحب للتأكيد",
-        "congratulations": "Congratulations",
+        "congratulations": "مبروك",
         "expert": "متقدم",
         "notEnoughSyncedNodes": "عدد العقد متزامنة قليل جدًا",
         "notEnoughSyncedNodesExplanation": "لم يتسن التوصل إلى نصاب قانوني. أوقف النصاب القانوني أو أعد المحاولة."
