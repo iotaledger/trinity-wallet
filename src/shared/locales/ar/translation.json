@@ -2,11 +2,11 @@
     "global": {
         "send": "إرسال",
         "cancel": "إلغاء",
-        "continue?": "هل تريد بالتأكيد المتابعة؟",
+        "continue?": "هل أنت متأكد أنك تريد الإستمرار؟",
         "noTransactions": "لا يوجد تاريخ حديث",
         "refresh": "تحديث",
         "balanceError": "لا يوجد رصيد كاف",
-        "balanceErrorMessage": "ليس لديك ما يكفي من يوتا لإتمام عملية النقل هذه.",
+        "balanceErrorMessage": "ليس لديك ما يكفي من IOTA لإتمام هذه العملية.",
         "totalBalance": "الرصيد الاجمالي",
         "transferError": "حدث خطأ في النقل",
         "transferErrorMessage": "حدث خطأ ما أثناء إرسال التحويل. حاول مرة اخرى.",
