@@ -10,7 +10,6 @@ import v3Schema, { migration as v3Migration } from './v3';
 import v4Schema, { migration as v4Migration } from './v4';
 import v5Schema, { migration as v5Migration } from './v5';
 import { __MOBILE__, __TEST__, __DEV__ } from '../config';
-import { version as desktopVersion } from '../../desktop/package.json';
 import { initialState as reduxSettingsState } from '../reducers/settings';
 import { initialState as reduxAccountsState } from '../reducers/accounts';
 
@@ -19,7 +18,13 @@ import { initialState as reduxAccountsState } from '../reducers/accounts';
  */
 const getDesktopPath = () => {
     const path = `${typeof Electron === 'object' ? Electron.getUserDataPath() : ''}/trinity`;
-    const suffixRC = desktopVersion.toLowerCase().indexOf('rc') > 0 ? '-rc' : '';
+    const suffixRC =
+        typeof Electron === 'object' &&
+        Electron.getVersion()
+            .toLowerCase()
+            .indexOf('rc') > 0
+            ? '-rc'
+            : '';
     const suffixDEV = __DEV__ ? '-dev' : '';
 
     return `${path}${suffixDEV}${suffixRC}.realm`;
