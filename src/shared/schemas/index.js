@@ -10,13 +10,19 @@ import v3Schema, { migration as v3Migration } from './v3';
 import v4Schema, { migration as v4Migration } from './v4';
 import v5Schema, { migration as v5Migration } from './v5';
 import { __MOBILE__, __TEST__, __DEV__ } from '../config';
+import { __RC__ } from '../../desktop/src/libs/constants';
 import { initialState as reduxSettingsState } from '../reducers/settings';
 import { initialState as reduxAccountsState } from '../reducers/accounts';
 
-const STORAGE_PATH =
-    __MOBILE__ || __TEST__
-        ? 'trinity.realm'
-        : `${typeof Electron === 'object' ? Electron.getUserDataPath() : ''}/trinity${__DEV__ ? '-dev' : ''}.realm`;
+/**
+ * Get desktop Realm path based on the environment
+ */
+const getDesktopPath = () => {
+    const path = `${typeof Electron === 'object' ? Electron.getUserDataPath() : ''}/trinity`;
+    return `${path}${__DEV__ ? '-dev' : ''}${__RC__}.realm`;
+};
+
+const STORAGE_PATH = __MOBILE__ || __TEST__ ? 'trinity.realm' : getDesktopPath();
 
 /**
  * Gets deprecated realm storage path
