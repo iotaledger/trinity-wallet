@@ -156,7 +156,7 @@
         "tryingAgainWithDifferentNode": "حاول مرة أخرى مع عقدة مختلفة.",
         "errorFetchingAccountInformation": "خطأ في جلب معلومات الحساب.",
         "errorSyncingAddresses": "خطأ في مزامنة معلومات العنوان. حاول مرة أخرى مع عقدة مختلفة.",
-        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychain": "خطأ في نضام كلمات المرور",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
         "mainWallet": "الحساب الرئيسي",
         "confirm": "تأكيد",
