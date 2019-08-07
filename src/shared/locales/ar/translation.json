@@ -480,7 +480,7 @@
         "promotingAnotherBundle": "تعزيز حزمة أخرى",
         "pleaseWait": "يرجى الانتظار، ترينيتي تروج لحزمة أخرى.",
         "typeHelp": "اكتب !مساعدة للأوامر المتاحة",
-        "searchHelpText": "Search by bundle hash or message content",
+        "searchHelpText": "البحث عن طريق حزمة الهاش أو محتوى الرسالة",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "Find transactions with a value greater than X",
