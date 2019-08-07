@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Nincs elegendő csomópont a határozatképesség-ellenőrzés engedélyezéséhez.",
         "nodeEnoughNodesExplanationCustomNodes": "Adjon hozzá újabb csomópontokat vagy engedélyezze a távoli csomópontlista használatát.",
         "nodeSettingsUpdatedTitle": "Csomópont beállítások frissítve",
-        "nodeSettingsUpdatedExplanation": "Sikeresen módosította a csomópont beállításait."
+        "nodeSettingsUpdatedExplanation": "Sikeresen módosította a csomópont beállításait.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Saját csomópont hozzáadása sikertelen",
