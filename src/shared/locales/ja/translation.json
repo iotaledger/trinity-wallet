@@ -509,7 +509,7 @@
         "nodeEnoughNodesExplanationCustomNodes": "カスタムノードが追加するか、リモートノードリストを有効化してください。",
         "nodeSettingsUpdatedTitle": "ノード設定更新完了",
         "nodeSettingsUpdatedExplanation": "ノード設定が正常に更新されました。",
-        "powNode": "Use specific node for PoW"
+        "powNode": "PoWに特定のノードを使用する"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "カスタムノード追加不可",
