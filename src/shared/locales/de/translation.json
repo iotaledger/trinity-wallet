@@ -509,7 +509,7 @@
         "nodeEnoughNodesExplanationCustomNodes": "Füge weitere benutzerdefinierte Nodes hinzu oder verwende die offizielle Node-Liste.",
         "nodeSettingsUpdatedTitle": "Node-Einstellungen aktualisiert",
         "nodeSettingsUpdatedExplanation": "Die Node-Einstellungen wurden erfolgreich gespeichert.",
-        "powNode": "Use specific node for PoW"
+        "powNode": "Einen bestimmten Node für PoW verwenden"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Benutzerdefinierter Node konnte nicht hinzugefügt werden",
