@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Es sind nicht genug Nodes vorhanden um die Node-Gruppe zu aktivieren.",
         "nodeEnoughNodesExplanationCustomNodes": "Füge weitere benutzerdefinierte Nodes hinzu oder verwende die offizielle Node-Liste.",
         "nodeSettingsUpdatedTitle": "Node-Einstellungen aktualisiert",
-        "nodeSettingsUpdatedExplanation": "Die Node-Einstellungen wurden erfolgreich gespeichert."
+        "nodeSettingsUpdatedExplanation": "Die Node-Einstellungen wurden erfolgreich gespeichert.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Benutzerdefinierter Node konnte nicht hinzugefügt werden",
