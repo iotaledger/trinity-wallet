@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Není dostatek Nodů, které by umožnily zapnout kvorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Přidejte další vlastní Nody, nebo povolte vzdálený oficiální seznam Nodů.",
         "nodeSettingsUpdatedTitle": "Nastavení Nodu bylo aktualizováno",
-        "nodeSettingsUpdatedExplanation": "Úspěšně jste aktualizovali nastavení Nodu."
+        "nodeSettingsUpdatedExplanation": "Úspěšně jste aktualizovali nastavení Nodu.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nelze přidat vlastní Node",
