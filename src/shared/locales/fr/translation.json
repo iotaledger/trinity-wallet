@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Il n'y a pas assez de noeuds pour activer le mécanisme de quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Ajouter plus de noeuds personnalisés ou activer la liste des noeuds distants.",
         "nodeSettingsUpdatedTitle": "Paramètres du noeud mis à jour",
-        "nodeSettingsUpdatedExplanation": "Vous avez mis à jour vos paramètres de serveur avec succès."
+        "nodeSettingsUpdatedExplanation": "Vous avez mis à jour vos paramètres de serveur avec succès.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Le serveur personnalisé n'a pas pu être ajouté",
