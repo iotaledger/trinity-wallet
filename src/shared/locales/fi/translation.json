@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Palvelimia ei ole tarpeeksi, jotta päätösvaltaisuus voitaisiin ottaa käyttöön.",
         "nodeEnoughNodesExplanationCustomNodes": "Lisää omavalintaisia palvelimia tai kytke etä-palvelin lista päälle.",
         "nodeSettingsUpdatedTitle": "Palvelin asetukset päivitetty",
-        "nodeSettingsUpdatedExplanation": "Olet onnistuneesti päivittänyt palvelin asetukset."
+        "nodeSettingsUpdatedExplanation": "Olet onnistuneesti päivittänyt palvelin asetukset.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Palvelinta ei voitu lisätä",
