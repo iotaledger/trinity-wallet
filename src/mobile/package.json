@@ -15,7 +15,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "log:android": "./node_modules/.bin/react-native log-android",
     "log:ios": "./node_modules/.bin/react-native log-ios",
-    "android": "./node_modules/.bin/react-native run-android",
+    "android": "./node_modules/.bin/react-native run-android --appIdSuffix 'debug'",
     "android:dev": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/react-native run-android --appIdSuffix 'debug'",
     "ios": "./node_modules/.bin/react-native run-ios",
     "ios:dev": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/react-native run-ios",
