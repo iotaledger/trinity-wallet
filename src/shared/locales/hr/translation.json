@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Nedovoljan broj node-ova da bi se omogućio kvorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Dodajte još prilagođenih node-ova ili omogućite vanjsku node listu.",
         "nodeSettingsUpdatedTitle": "Node postavke spremljene",
-        "nodeSettingsUpdatedExplanation": "Uspješno ste spremili vaše node postavke."
+        "nodeSettingsUpdatedExplanation": "Uspješno ste spremili vaše node postavke.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nije bilo moguće dodati prilagođeni node",
