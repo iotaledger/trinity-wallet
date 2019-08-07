@@ -481,10 +481,10 @@
         "pleaseWait": "يرجى الانتظار، ترينيتي تروج لحزمة أخرى.",
         "typeHelp": "اكتب !مساعدة للأوامر المتاحة",
         "searchHelpText": "البحث عن طريق حزمة الهاش أو محتوى الرسالة",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpValue": "البحث عن المعاملات حسب قيمة iota",
+        "searchHelpUnits": "البحث عن المعاملات حسب قيمة ووحدة iota",
+        "searchHelpMore": "ابحث عن معاملات بقيمة أكبر من X",
+        "searchHelpLess": "ابحث عن معاملات بقيمة أقل من X"
     },
     "accountManagement": {
         "viewSeed": "عرض السييد",
@@ -600,8 +600,8 @@
         "syncingYourAccount": "جاري مزامنة حسابك."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
-        "incorrectFormat": "Incorrect seed format",
+        "title": "أدخل اسم الحساب والبذرة",
+        "incorrectFormat": "تنسيق البذرة غير صحيح",
         "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
