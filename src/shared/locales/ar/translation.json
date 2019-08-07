@@ -262,13 +262,13 @@
         "setNode": "حدد العقدة",
         "whyBiometricDisabled": "لماذا التوثيق البيومتري معطل؟",
         "whyBiometricDisabledExplanationPart1": "تم تعطيل التوثيق البيومتري عند تحميل التطبيق الأول لحمايتك.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart2": "عند استخدام ترينيتي، سيتم تسجيل خروجك عند إنعدام نشاطك. يمكنك بعد ذلك تسجيل الدخول باستخدام التوثيق الحيوي."
     },
     "loading": {
         "loadingFirstTime": "تحميل البذور لأول مرة.",
         "thisMayTake": "قد يستغرق هذا بعض الوقت.",
-        "doNotMinimise": "Do not minimise or close the app.",
-        "takingAWhile": "This seems to be taking a while"
+        "doNotMinimise": "لا تصغر أو تغلق التطبيق.",
+        "takingAWhile": "يبدو أن هذا يستغرق بعض الوقت"
     },
     "newSeedSetup": {
         "generatedSeed": "بذرة مولدة",
@@ -293,15 +293,15 @@
         "iotaLogo": "شعار IOTA",
         "print": "طباعة",
         "paperConvenience": "تعد طباعة نسخة ورقية من بذرتك وسيلة ملائمة لتخزينها.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "pleaseCheck": "Please check and confirm before you print",
+        "publicInsecure": "لكن الطباعة بإستخدام واي فاي عمومي أو طابعة عمومية غير آمن.",
+        "pleaseCheck": "يرجى التحقق والتأكيد قبل الطباعة",
         "wifiConfirmation": "انا لست متصل بواي فاي عام",
         "printerConfirmation": "انا لست اطبع بطابعة عامة"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
+        "printTemplateQuestion": "هل ترغب في طباعة قالب فارغ؟",
+        "printTemplateInfo": "يمكنك طباعة قالب فارغ لمساعدتك في كتابة بذرتك.",
+        "printTemplateWarning": "تأكد من تخزين بذرتك في مكان آمن. لا ترها لأي أحد.",
         "print": "أجل، قم بالطباعة"
     },
     "receive": {
@@ -355,7 +355,7 @@
         "invalidAddressExplanation2": "السييد يحتوي على أحرف غير صالحة.",
         "invalidAddressExplanation3": "العنوان يحتوي مجموع اختباري غير صحيح.",
         "invalidAddressExplanation4": "الرجاء التحقق من أنك أدخلت العنوان بشكل صحيح.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "invalidAddressExplanationGeneric": "يجب أن تتكون العناوين الصالحة من 90 حرفًا وأن تحتوي فقط على A-Z أو 9.",
         "notEnoughFunds": "الرصيد غير كافي",
         "notEnoughFundsExplanation": "ليس لديك IOTA كافية لإتمام عملية التحويل.",
         "recipientAddress": "عنوان المستقبل",
@@ -366,28 +366,28 @@
         "invalidMessageExplanation": "رسالتك تحتوي على أحرف غير صالحة.",
         "send": "ارسال",
         "invalidAmount": "المبلغ المدخل غير صحيح",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "الرجاء إدخال مبلغ معاملة صالح. قد يكون من المفيد عرض شرح وحدة IOTA في أسفل هذه الصفحة.",
         "maximumSelected": "تم اختيار الحد الأقصى",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "وحدات IOTA مشروحة",
         "sendMax": "إرسال الكل",
         "totalTime": "مجموع الوقت",
-        "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "addressPasteDetected": "تم اكتشاف لصق العنوان",
+        "addressPasteExplanation": "يبدو أنك قمت بلصق عنوان. تأكد من أن العنوان يطابق العنوان الذي تريد الإرسال إليه.",
         "invalid": "غير صحيح",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "إمسح للإرسال"
     },
     "setSeedName": {
-        "letsAddName": "Let's add a name",
+        "letsAddName": "لنضف إسما",
         "canUseMultipleSeeds": "يمكنك استخدام اكثر من سييد مع هذه المحفظة. كل سييد يتطلب اسم حساب.",
         "youCanAdd": "يمكنك إضافة سييد آخر في قائمة الإعدادات."
     },
     "modeSelection": {
         "advanced": "متقدم",
         "standard": "عادي",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "advancedModeExplanation": "سيعرض الوضع المتقدم معلومات تقنية أكثر تفصيلاً.",
+        "modesExplanation": "قم بتمكين الوضع المتقدم فقط إذا كنت متمرسًا باستخدام IOTA. خلاف ذلك ستجد الأمر مربكا.",
+        "modeUpdated": "تم تحديث النمط",
+        "modeUpdatedExplanation": "لقد تغيرت إلى النمط {{mode}}"
     },
     "settings": {
         "transferSending": "جاري التحويل",
@@ -395,15 +395,15 @@
         "mode": "نمط",
         "theme": "التصميم",
         "currency": "عملة",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "لا يمكن تغيير العقدة",
+        "cannotChangeNodeWhileSending": "لا يمكن تغيير العقدة أثناء الإرسال.",
         "language": "اللغة",
         "accountManagement": "إدارة الحساب",
         "addNewSeed": "إضافة سييد جديد",
         "changePassword": "تغيير كلمة المرور",
         "general": "الإعدادات العامة",
         "advanced": "إعدادات متقدمة",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "إعدادات العقدة",
         "account": "إعدادات الحساب",
         "logout": "تسجيل خروج",
         "reset": "إعادة تعيين المحفظة",
@@ -426,7 +426,7 @@
         "paste": "لصق",
         "selectAll": "تحديد الكل",
         "securitySettings": "إعدادات الأمان",
-        "fingerprint": "Biometric authentication",
+        "fingerprint": "التوثيق البيومتري",
         "couldNotFetchRates": "Could not fetch rate",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rate",
