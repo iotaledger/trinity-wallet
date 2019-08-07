@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Er zijn niet genoeg nodes om quorum in te schakelen.",
         "nodeEnoughNodesExplanationCustomNodes": "Voeg meer aangepaste nodes toe of schakel de externe node lijst in.",
         "nodeSettingsUpdatedTitle": "Node instellingen bijgewerkt",
-        "nodeSettingsUpdatedExplanation": "U heeft uw node instellingen met succes bijgewerkt."
+        "nodeSettingsUpdatedExplanation": "U heeft uw node instellingen met succes bijgewerkt.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Aangepaste node kon niet worden toegevoegd",
