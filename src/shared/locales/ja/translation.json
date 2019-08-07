@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "定足数を有効にするための十分なノードがありません。",
         "nodeEnoughNodesExplanationCustomNodes": "カスタムノードが追加するか、リモートノードリストを有効化してください。",
         "nodeSettingsUpdatedTitle": "ノード設定更新完了",
-        "nodeSettingsUpdatedExplanation": "ノード設定が正常に更新されました。"
+        "nodeSettingsUpdatedExplanation": "ノード設定が正常に更新されました。",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "カスタムノード追加不可",
