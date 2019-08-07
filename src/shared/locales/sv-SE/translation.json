@@ -509,7 +509,7 @@
         "nodeEnoughNodesExplanationCustomNodes": "Lägg till fler anpassade noder eller aktivera fjärrnodslistan.",
         "nodeSettingsUpdatedTitle": "Nod-inställningar uppdaterade",
         "nodeSettingsUpdatedExplanation": "Du har uppdaterat dina nod-inställningar.",
-        "powNode": "Use specific node for PoW"
+        "powNode": "Använd specifik nod för PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Anpassad nod kunde inte bli tillagd",
