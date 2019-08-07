@@ -262,7 +262,7 @@
         "setNode": "حدد العقدة",
         "whyBiometricDisabled": "لماذا التوثيق البيومتري معطل؟",
         "whyBiometricDisabledExplanationPart1": "تم تعطيل التوثيق البيومتري عند تحميل التطبيق الأول لحمايتك.",
-        "whyBiometricDisabledExplanationPart2": "عند استخدام ترينيتي، سيتم تسجيل خروجك عند إنعدام نشاطك. يمكنك بعد ذلك تسجيل الدخول باستخدام التوثيق الحيوي."
+        "whyBiometricDisabledExplanationPart2": "عند استخدام ترينيتي، سيتم تسجيل خروجك عند إنعدام نشاطك. يمكنك بعد ذلك تسجيل الدخول باستخدام التوثيق البيومتري."
     },
     "loading": {
         "loadingFirstTime": "تحميل البذور لأول مرة.",
