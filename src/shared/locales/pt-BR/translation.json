@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Não há servidores suficientes para ativar o quórum.",
         "nodeEnoughNodesExplanationCustomNodes": "Adicione mais servidores personalizados ou ative a lista de servidor remoto.",
         "nodeSettingsUpdatedTitle": "Configurações de servidor atualizadas",
-        "nodeSettingsUpdatedExplanation": "Você atualizou as configurações de servidor com sucesso."
+        "nodeSettingsUpdatedExplanation": "Você atualizou as configurações de servidor com sucesso.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Servidor personalizado não pôde ser adicionado",
