@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "没有足够的节点来启用节点协同功能。",
         "nodeEnoughNodesExplanationCustomNodes": "添加更多自定义节点或启用远程节点列表。",
         "nodeSettingsUpdatedTitle": "节点设置已更新",
-        "nodeSettingsUpdatedExplanation": "您已成功更新了您的节点设置。"
+        "nodeSettingsUpdatedExplanation": "您已成功更新了您的节点设置。",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "无法添加自定义节点",
