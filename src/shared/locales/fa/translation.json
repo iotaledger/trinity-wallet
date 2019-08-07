@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "نود های کافی برای فعال کردن سیستم نیست.",
         "nodeEnoughNodesExplanationCustomNodes": "نود های سفارشی بیشتری اضافه کنید یا لیست نود از راه دور را فعال کنید.",
         "nodeSettingsUpdatedTitle": "تنظیمات نود به روز رسانی شد",
-        "nodeSettingsUpdatedExplanation": "شما تنظیمات نود خود را با موفقیت به روز کردید."
+        "nodeSettingsUpdatedExplanation": "شما تنظیمات نود خود را با موفقیت به روز کردید.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node سفارشی نمیتوان اضافه کرد",
