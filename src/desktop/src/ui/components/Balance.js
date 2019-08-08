@@ -7,7 +7,7 @@ import { getAccountNamesFromState } from 'selectors/accounts';
 
 import { accumulateBalance } from 'libs/iota/addresses';
 import { formatUnit, formatIotas } from 'libs/iota/utils';
-import { getFiatBalance } from 'libs/currency';
+import { getFiatBalance, formatFiatBalance } from 'libs/currency';
 
 import Icon from 'ui/components/Icon';
 
@@ -96,7 +96,7 @@ export class BalanceComponent extends React.PureComponent {
                     {formatIotas(accountBalance, balanceIsShort)}
                     <small>{`${formatUnit(accountBalance)}`}</small>
                 </h1>
-                <h2>{new Intl.NumberFormat(settings.locale, { style: 'currency', currency: settings.currency }).format(fiatBalance)}</h2>
+                <h2>{formatFiatBalance(settings.locale, settings.currency, fiatBalance)}</h2>
             </div>
         );
     }
