@@ -130,7 +130,6 @@ android {
     buildTypes {
         release {
             debuggable false
-            shrinkResources enableProguardInReleaseBuilds
             zipAlignEnabled enableProguardInReleaseBuilds
             minifyEnabled enableProguardInReleaseBuilds
             useProguard enableProguardInReleaseBuilds
