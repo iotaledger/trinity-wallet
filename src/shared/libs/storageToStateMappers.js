@@ -55,6 +55,7 @@ const mapStorageToState = () => {
         },
         settings: assign({}, settings, {
             node: find(nodes, { url: settings.node }) || DEFAULT_NODE,
+            powNode: settings.powNode,
             nodes: map(nodes, ({ url, pow, token, password }) => ({ url, pow, token, password })),
             availableCurrencies: map(settings.availableCurrencies, (currency) => currency),
             customNodes: map(filter(nodes, (node) => node.custom === true), ({ url, pow, token, password }) => ({

@@ -67,7 +67,7 @@ GEM
     fastlane-plugin-bugsnag (1.4.1)
       git
       xml-simple
-    fastlane-plugin-clean_testflight_testers (0.2.0)
+    fastlane-plugin-clean_testflight_testers (0.3.0)
     fastlane-plugin-load_json (0.0.1)
     fastlane-plugin-localization (0.2.0)
     gh_inspector (1.1.3)

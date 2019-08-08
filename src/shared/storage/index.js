@@ -392,6 +392,18 @@ class Wallet {
     }
 
     /**
+     * Updates proof of work node setting.
+     *
+     * @method updatePowNodeSetting
+     * @param {string} payload
+     */
+    static updatePowNodeSetting(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.powNode = payload;
+        });
+    }
+
+    /**
      * Updates auto-promotion setting.
      *
      * @method updateAutoPromotionSetting
@@ -769,7 +781,7 @@ class Wallet {
             realm.write(() =>
                 realm.create('Wallet', {
                     version: Wallet.version,
-                    settings: { notifications: {}, quorum: {} },
+                    settings: { notifications: {}, quorum: {}, powNode: '' },
                     accountInfoDuringSetup: { meta: {} },
                 }),
             );
