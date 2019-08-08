@@ -168,7 +168,7 @@ class MultiTextInput extends Component {
                                 styles.messageInputContainer,
                                 {
                                     backgroundColor: theme.input.bg,
-                                    borderColor: isMessageInputFocused ? theme.input.hover : theme.input.border,
+                                    borderColor: isMessageInputFocused ? theme.input.hover : theme.input.bg,
                                 },
                                 { height },
                             ]}

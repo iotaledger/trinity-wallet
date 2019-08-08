@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     row: {
         flex: 1,
         borderRadius: Styling.borderRadius,
-        borderWidth: 1,
         paddingVertical: height / 55,
         width: Styling.contentWidth,
         justifyContent: 'center',
@@ -140,7 +139,7 @@ export default class TransactionRow extends PureComponent {
         return (
             <TouchableOpacity onPress={() => onPress(this.props)}>
                 <View style={styles.container}>
-                    <View style={[styles.row, style.containerBackgroundColor, style.rowBorderColor]}>
+                    <View style={[styles.row, style.containerBackgroundColor]}>
                         {bundleIsBeingPromoted && (
                             <View
                                 style={{

@@ -20,7 +20,7 @@
             font-size: var(--font-size-default);
             line-height: 46px;
             width: 100%;
-            border: 1px solid var(--input-border);
+            border: 1px solid var(--input-bg);
             background: var(--input-bg);
             color: var(--input);
             padding: 0 20px 0 14px;
@@ -30,7 +30,7 @@
             transition: border 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
             &:focus {
                 outline: none;
-                border-color: var(--input-focus);
+                border-color: var(--input-hover);
             }
             &:disabled {
                 pointer-events: none;
@@ -157,7 +157,7 @@
                 width: 42px;
                 background: var(--input-bg);
                 border-radius: 4px 0 0 4px;
-                border: 1px solid var(--input-border);
+                border: 1px solid var(--input-bg);
                 border-right: none;
                 &:before {
                     display: none;
@@ -265,7 +265,7 @@
     border-radius: 0 0 4px 4px;
     background: var(--input-bg);
     margin: -1px 38px 0 0;
-    border: 1px solid var(--input-border);
+    border: 1px solid var(--input-bg);
     border-top: none;
 }
 
