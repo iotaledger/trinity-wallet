@@ -509,7 +509,7 @@
         "nodeEnoughNodesExplanationCustomNodes": "Adjon hozzá újabb csomópontokat vagy engedélyezze a távoli csomópontlista használatát.",
         "nodeSettingsUpdatedTitle": "Csomópont beállítások frissítve",
         "nodeSettingsUpdatedExplanation": "Sikeresen módosította a csomópont beállításait.",
-        "powNode": "Use specific node for PoW"
+        "powNode": "Megadott csomópont használata a kiszabott munka elvégzéséhez"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Saját csomópont hozzáadása sikertelen",
@@ -650,7 +650,7 @@
         "noPassword": "Nincs jelszó beállítva a készüléken"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Jóváhagyja a {{contents}} küldését?",
         "aMessage": "egy üzenet",
         "fromAccount": "{{selectedAccountName}}-tól",
         "toAddress": "Célszámla címe",
