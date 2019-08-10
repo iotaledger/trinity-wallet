@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "कोरम को सक्षम करने के लिए पर्याप्त नोड नहीं हैं।",
         "nodeEnoughNodesExplanationCustomNodes": "अधिक कस्टम नोड जोड़ें या दूरस्थ नोड सूची को सक्षम करें",
         "nodeSettingsUpdatedTitle": "नोड सेटिंग अपडेट की गईं",
-        "nodeSettingsUpdatedExplanation": "आपने अपनी नोड सेटिंग को सफलतापूर्वक अपडेट कर दिया है।"
+        "nodeSettingsUpdatedExplanation": "आपने अपनी नोड सेटिंग को सफलतापूर्वक अपडेट कर दिया है।",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "कस्टम नोड जोड़ा नहीं जा सका",

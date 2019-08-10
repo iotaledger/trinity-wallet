@@ -169,7 +169,7 @@
         "missingPermission": "Toegang tot bestandsysteem vereist",
         "missingPermissionExplanation": "Toegang tot het bestandssysteem is vereist om deze functie uit te voeren.",
         "swipeToConfirm": "Veeg om te bevestigen",
-        "congratulations": "Congratulations",
+        "congratulations": "Gefeliciteerd",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Te weinig nodes in synchronisatie",
         "notEnoughSyncedNodesExplanation": "Het quorum kon niet worden bereikt. Zet het quorum uit of probeer het opnieuw."
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Taal",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Selecteer een taal",
         "letsGetStarted": "Laten we beginnen"
     },
     "login": {
@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Er zijn niet genoeg nodes om quorum in te schakelen.",
         "nodeEnoughNodesExplanationCustomNodes": "Voeg meer aangepaste nodes toe of schakel de externe node lijst in.",
         "nodeSettingsUpdatedTitle": "Node instellingen bijgewerkt",
-        "nodeSettingsUpdatedExplanation": "U heeft uw node instellingen met succes bijgewerkt."
+        "nodeSettingsUpdatedExplanation": "U heeft uw node instellingen met succes bijgewerkt.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Aangepaste node kon niet worden toegevoegd",
@@ -649,7 +650,7 @@
         "noPassword": "Wachtwoord is niet ingesteld op apparaat"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Je staat op het punt om {{contents}} te verzenden",
         "aMessage": "een bericht",
         "fromAccount": "Van {{selectedAccountName}}",
         "toAddress": "Naar adres",

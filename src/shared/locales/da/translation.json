@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Noden returnerede en fejl under hentning af dine kontooplysninger. Hvis problemet vedvarer, kan du prøve at skifte node eller deaktivere din systemproxy i Trinity Indstillinger.",
         "nodeOutOfSync": "Node er ude af synkronisering",
         "nodeOutOfSyncExplanation": "Din valgte node er ude af synkronisering. Skift node eller forsøg igen.",
-        "nodeOutOfSyncByTimestampExplanation": "Your currently selected node is out of sync. Please change node or try again. If your problem persists, make sure your device time is correct.",
+        "nodeOutOfSyncByTimestampExplanation": "Din nuværende valgte node er ude af sync. Venligst skift node eller prøv igen. Hvis problemet bliver ved, venligst tjek om klokken på din telefon er korrekt.",
         "experimentalNode": "Node-version uunderstøttet",
         "experimentalNodeExplanation": "Din aktuelt valgte node kører en eksperimentel version, som ikke understøttes. Skift derfor node eller forsøg igen.",
         "thisNodeOutOfSync": "Denne node er ude af synkronisering. Skift node eller forsøg igen.",
@@ -122,10 +122,10 @@
         "nodeDuplicated": "Duplikeret node",
         "nodeDuplicatedExplanation": "Den tilpassede node er allerede opført.",
         "customNodeAdded": "Brugerdefineret node tilføjet",
-        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
+        "customNodeAddedExplanation": "Du har tilføjet en {{nodeAddress}} som en custom node med succes.",
         "nodeAutoChanged": "Auto-skiftet node",
         "nodeAutoChangedExplanation": "Skiftet til ny node {{- nodeAddress}} da den valgte node er offline.",
-        "touchSensor": "Touch the fingerprint sensor",
+        "touchSensor": "Tryk på fingeraflæsningssensoren",
         "fingerprintOnSend": "Rør fingeraftrykssensoren for at godkende overførslen",
         "masterKey": "Dit IOTA-seed er hovedadgangsnøglen til dine midler.",
         "seedThief": "Har en andre dit seed, kan de stjæle dine IOTA.",
@@ -144,8 +144,8 @@
         "isYourBalanceCorrect": "Er din saldo korrekt?",
         "ifYourBalanceIsNotCorrect": "Hvis din saldo ikke er korrekt, skyldes det muligvis, at din seed endnu ikke er blevet gendannet efter seneste snapshot.",
         "headToAdvancedSettingsForTransition": "Gå til avancerede indstillinger og udfør en Snapshot transition.",
-        "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
+        "headToAccountTools": "Gå til Konto Værktøjer og foretag en Snapshot Transition.",
+        "openAccountTools": "Åbn kontoværktøjer",
         "usingTrinityWalletWithKeePass": "Benytter Trinity Wallet med Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "En netværksfejl opstod under afsendelse af din transaktion.",
         "broadcastError": "Kunne ikke udsende transaktion",
@@ -165,14 +165,14 @@
         "shouldUpdateExplanation": "En ny opdatering er frigivet. Det anbefales at opdatere til den seneste version.",
         "forceUpdate": "Opdatér app'en for at fortsætte",
         "forceUpdateExplanation": "En kritisk opdatering er frigivet. Opdatér venligst app'en nu.",
-        "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
+        "testVersionWarning": "Denne version skal kun anvendes til test, og med meget små antal tokens.",
         "missingPermission": "Filsystemrettighed kræves",
         "missingPermissionExplanation": "Adgang til filsystemet er nødvendig for at udføre denne funktion.",
-        "swipeToConfirm": "Swipe to confirm",
-        "congratulations": "Congratulations",
-        "expert": "Expert",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "swipeToConfirm": "Swipe for at bekræfte",
+        "congratulations": "Tillykke",
+        "expert": "Ekspert",
+        "notEnoughSyncedNodes": "For få noder i sync",
+        "notEnoughSyncedNodesExplanation": "Et kvorum kunne ikke nås. Sluk for kvorummet eller prøv igen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøglen indeholder ugyldige tegn",
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Sprog",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Vælg et sprog",
         "letsGetStarted": "Lad os begynde"
     },
     "login": {
@@ -299,10 +299,10 @@
         "printerConfirmation": "Jeg udskriver ikke via en offentlig printer"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
-        "printTemplateInfo": "You can print a blank template to help you write your seed down.",
-        "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
-        "print": "Yes, print"
+        "printTemplateQuestion": "Vil du printe en blank skabelon?",
+        "printTemplateInfo": "Du kan printe en blank skabelon til at hjælpe dig med at skrive dit seed ned.",
+        "printTemplateWarning": "Sørg for at du opbevarer dit seed et sikkert sted. Vis det ikke til nogen.",
+        "print": "Ja, print"
     },
     "receive": {
         "yourAddress": "Din adresse",
@@ -318,7 +318,7 @@
         "generateAnAddress": "Generér adresse",
         "generateAnAddressTitle": "Generér en adresse",
         "generateAnAddressExplanation": "Generér en adresse inden du benytter denne funktion.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "Generer en ny indbetalingsadresse hver gang du ønsker at modtage IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Sikkerhedskopiere din hovednøgle",
@@ -354,7 +354,7 @@
         "invalidAddressExplanation1": "Adressen bør indeholde {{maxLength}} tegn og skal have en kontrolsum.",
         "invalidAddressExplanation2": "Adressen indeholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressen indeholder en ugyldig kontrolsum.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "Venligst tjek om du har indtastet adressen korrekt.",
         "invalidAddressExplanationGeneric": "Gyldige adresser skal være på 90 tegn og må kun indeholde A-Z eller 9.",
         "notEnoughFunds": "Utilstrækkelig saldo",
         "notEnoughFundsExplanation": "Du har ikke nok IOTA til at gennemføre denne transaktion.",
@@ -403,7 +403,7 @@
         "changePassword": "Skift adgangskode",
         "general": "Generelle indstillinger",
         "advanced": "Avancerede indstillinger",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "Nodeindstillinger",
         "account": "Kontoindstillinger",
         "logout": "Log ud",
         "reset": "Nulstil tegnebog",
@@ -465,7 +465,7 @@
     "history": {
         "bundleHashCopied": "Bundt-hash kopieret",
         "noTransactionsFound": "Ingen transaktioner fundet",
-        "emptyHistory": "Your transaction history is empty",
+        "emptyHistory": "Din transaktionshistorik er tom",
         "hideZeroBalance": "Skjul nulsaldo",
         "bundleHashCopiedExplanation": "Den gruppérede hash er blevet kopiret til udklipsholderen.",
         "addressCopied": "Adresse kopieret",
@@ -479,7 +479,7 @@
         "yesterday": "I går",
         "promotingAnotherBundle": "Promovering en anden pakke",
         "pleaseWait": "Vent venligst, Trinity promoverer en anden pakke.",
-        "typeHelp": "Type !help for available commands",
+        "typeHelp": "Tast !hjælp for tilgængelige kommandoer",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
@@ -495,20 +495,21 @@
         "tools": "Værktøjer"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
+        "automaticNodeManagement": "Automatisk nodestyring",
         "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
+        "autoNodeList": "Brug fjern nodeliste",
         "nodeAutoswitching": "Primary node autoswitching",
         "primaryNode": "Primary node",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
+        "nodeEnoughNodesTitle": "Ikke nok noder",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeSettingsUpdatedTitle": "Nodeindstillinger opdateret",
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Brugerdefineret node kunne ikke tilføjes",
@@ -520,7 +521,7 @@
         "nodeFieldEmptyExplanation": "Angiv venligst en brugerdefineret node.",
         "invalidURL": "Angiv en gyldig URL.",
         "addAuthKey": "Add auth key",
-        "username": "Username",
+        "username": "Brugernavn",
         "couldNotRemove": "Could not remove custom node",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
