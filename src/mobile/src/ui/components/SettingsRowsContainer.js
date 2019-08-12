@@ -9,7 +9,7 @@ class SettingsRowsContainer extends PureComponent {
     static propTypes = {
         /** Row content */
         rows: PropTypes.array.isRequired,
-        /** Number of visible row */
+        /** Number of visible rows */
         visibleRows: PropTypes.number.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired
