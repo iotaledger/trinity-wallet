@@ -18,10 +18,12 @@ import { __MOBILE__, __TEST__ } from '../config';
 import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
 
 // Initialise realm instance
-let realm = {}; // eslint-disable-line import/no-mutable-exports
+let realm = {
+    write: () => {},
+}; // eslint-disable-line import/no-mutable-exports
 
 // Initialise Realm constructor as null and reinitialise after importing the correct (platform) Realm dependency
-let Realm = null;
+let Realm = {};
 
 /**
  * Imports Realm dependency

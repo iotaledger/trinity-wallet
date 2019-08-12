@@ -12,11 +12,10 @@ import store from 'store';
 import Themes from 'themes/themes';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';
 import { updateTheme } from 'actions/settings';
-import mapStorageToState from 'libs/storageToStateMappers';
+import { mapStorageToState } from 'actions/wallet';
 import getEncryptionKey from 'libs/realm';
 import { changeIotaNode, quorum } from 'libs/iota';
 import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
-import { initialise as initialiseStorage } from 'storage';
 import { updateSchema } from 'schemas';
 
 import Index from 'ui/Index';
@@ -60,7 +59,7 @@ const init = () => {
             rootEl,
         );
     } else {
-        initialiseStorage(getEncryptionKey)
+        getEncryptionKey()
             .then(async (key) => {
                 const persistedData = Electron.getStorage('__STATE__');
 
@@ -72,11 +71,9 @@ const init = () => {
 
                 return JSON.parse(data);
             })
-            .then((persistedData) => {
-
+            .then(async (persistedData) => {
                 // Initialize i18next
                 await i18nextInit();
-
 
                 if (!isEmpty(persistedData)) {
                     const data = updateSchema(persistedData);
