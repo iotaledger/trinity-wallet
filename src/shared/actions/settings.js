@@ -578,8 +578,7 @@ export function updateTheme(payload) {
 }
 
 /**
- * Makes an API call for checking if attachToTangle is enabled on the selected IRI node
- * and changes proof of work configuration for wallet
+ * Changes proof of work configuration for wallet
  *
  * @method changePowSettings
  *
@@ -587,26 +586,7 @@ export function updateTheme(payload) {
  */
 export function changePowSettings() {
     return (dispatch, getState) => {
-        const settings = getState().settings;
-        if (!settings.remotePoW) {
-            allowsRemotePow(settings.node).then((hasRemotePow) => {
-                if (!hasRemotePow) {
-                    return dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('global:attachToTangleUnavailable'),
-                            i18next.t('global:attachToTangleUnavailableExplanationShort'),
-                            10000,
-                        ),
-                    );
-                }
-                dispatch(setRemotePoW(!settings.remotePoW));
-                dispatch(generateAlert('success', i18next.t('pow:powUpdated'), i18next.t('pow:powUpdatedExplanation')));
-            });
-        } else {
-            dispatch(setRemotePoW(!settings.remotePoW));
-            dispatch(generateAlert('success', i18next.t('pow:powUpdated'), i18next.t('pow:powUpdatedExplanation')));
-        }
+        dispatch(setRemotePoW(!getState().settings.remotePoW));
     };
 }
 

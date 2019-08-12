@@ -11,6 +11,7 @@ import {
     updateQuorumConfig,
     updateNodeAutoSwitchSetting,
     changeAutoNodeListSetting,
+    changePowSettings
 } from '../../actions/settings';
 import { generateAlert } from '../../actions/alerts';
 import { isValidUrl, isValidHttpsUrl } from '../../libs/utils';
@@ -38,6 +39,7 @@ export default function withNodeData(NodeComponent) {
             updateQuorumConfig: PropTypes.func.isRequired,
             updateNodeAutoSwitchSetting: PropTypes.func.isRequired,
             changeAutoNodeListSetting: PropTypes.func.isRequired,
+            changePowSettings: PropTypes.func.isRequired,
             generateAlert: PropTypes.func.isRequired,
             quorumEnabled: PropTypes.bool.isRequired,
             quorumSize: PropTypes.number.isRequired,
@@ -128,6 +130,7 @@ export default function withNodeData(NodeComponent) {
                 changeAutoNodeListSetting,
                 setFullNode,
                 setPowNode,
+                changePowSettings,
                 t,
             } = this.props;
 
@@ -152,6 +155,7 @@ export default function withNodeData(NodeComponent) {
                     updateQuorumConfig,
                     setFullNode,
                     setPowNode,
+                    changePowSettings
                 },
                 backPress,
                 generateAlert,
@@ -189,6 +193,7 @@ export default function withNodeData(NodeComponent) {
         updateNodeAutoSwitchSetting,
         updateQuorumConfig,
         changeAutoNodeListSetting,
+        changePowSettings
     };
 
     return connect(
