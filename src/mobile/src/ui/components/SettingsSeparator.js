@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     separatorContainer: {
-        flex: 0.5,
+        flex: 1,
         justifyContent: 'center',
     },
 });
