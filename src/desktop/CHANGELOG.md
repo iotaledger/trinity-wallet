@@ -1,3 +1,16 @@
+### 1.1.0
+
+-   New: Basic auth for custom nodes (#2088)
+-   Update: Enable Hardened Runtime on macOS (#1931)
+-   Update: Improved Dark theme (#2035) by @MatthewScheuerman
+-   Update: Localise balance depending on language (#1951) 
+-   Fix: Password change with only Ledger accounts does not work (#1910)
+-   Fix: Can't add Ledger accounts with index over 999 (#1875)
+-   Fix: Update from older Windows 7 release crashes wallet (#1913)
+-   Fix: Hide Retry button in macOS tray application (#1928)
+-   Fix: Cannot login when node auto-switching disabled on Windows 7 (#1929)
+-   Fix: Mac tray app shows zero fiat balance (#1970)
+
 ### 1.0.0
 
 -   New: Add new UI animations

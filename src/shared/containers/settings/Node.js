@@ -3,10 +3,10 @@ import some from 'lodash/some';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withI18n } from 'react-i18next';
 
 import {
     setFullNode,
+    setPowNode,
     removeCustomNode,
     updateQuorumConfig,
     updateNodeAutoSwitchSetting,
@@ -26,10 +26,12 @@ export default function withNodeData(NodeComponent) {
         static propTypes = {
             node: PropTypes.object.isRequired,
             nodes: PropTypes.array.isRequired,
+            powNode: PropTypes.string.isRequired,
             customNodes: PropTypes.array.isRequired,
             isChangingNode: PropTypes.bool.isRequired,
             isCheckingCustomNode: PropTypes.bool.isRequired,
             setFullNode: PropTypes.func.isRequired,
+            setPowNode: PropTypes.func.isRequired,
             removeCustomNode: PropTypes.func.isRequired,
             nodeAutoSwitch: PropTypes.bool.isRequired,
             autoNodeSelection: PropTypes.bool.isRequired,
@@ -109,6 +111,7 @@ export default function withNodeData(NodeComponent) {
                 node,
                 nodes,
                 customNodes,
+                powNode,
                 autoNodeList,
                 backPress,
                 isChangingNode,
@@ -124,6 +127,7 @@ export default function withNodeData(NodeComponent) {
                 onClose,
                 changeAutoNodeListSetting,
                 setFullNode,
+                setPowNode,
                 t,
             } = this.props;
 
@@ -140,12 +144,14 @@ export default function withNodeData(NodeComponent) {
                     autoNodeList,
                     quorumEnabled,
                     quorumSize,
+                    powNode,
                 },
                 actions: {
                     changeAutoNodeListSetting,
                     updateNodeAutoSwitchSetting,
                     updateQuorumConfig,
                     setFullNode,
+                    setPowNode,
                 },
                 backPress,
                 generateAlert,
@@ -164,6 +170,7 @@ export default function withNodeData(NodeComponent) {
         node: state.settings.node,
         nodes: state.settings.nodes,
         customNodes: state.settings.customNodes,
+        powNode: state.settings.powNode,
         theme: getThemeFromState(state),
         nodeAutoSwitch: state.settings.nodeAutoSwitch,
         autoNodeSelection: false,
@@ -176,6 +183,7 @@ export default function withNodeData(NodeComponent) {
 
     const mapDispatchToProps = {
         setFullNode,
+        setPowNode,
         removeCustomNode,
         generateAlert,
         updateNodeAutoSwitchSetting,
@@ -186,5 +194,5 @@ export default function withNodeData(NodeComponent) {
     return connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(withI18n()(NodeData));
+    )(NodeData);
 }

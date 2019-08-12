@@ -73,7 +73,7 @@
         "cannotPerformAction": "No se puede realizar la acción",
         "cannotPerformActionExplanation": "Ve a configuración avanzada para restaurar la billetera.",
         "attachToTangleUnavailable": "Vincular con Tangle no está disponible",
-        "attachToTangleUnavailableExplanation": "Vincular con Tangle no está disponible en el nodo seleccionado.",
+        "attachToTangleUnavailableExplanation": "PoW remota no disponible en el nodo seleccionado. Pruebe cambiandolo o active PoW local en opciones avanzadas.",
         "attachToTangleUnavailableExplanationShort": "PoW remoto no disponible en el nodo seleccionado.",
         "wallet": "Billetera",
         "all": "Todo",
@@ -124,7 +124,7 @@
         "customNodeAdded": "Nodo personalizado agregado",
         "customNodeAddedExplanation": "Has añadido con éxito {{nodeAddress}} como un nodo personalizado.",
         "nodeAutoChanged": "Cambiar de nodo automáticamente",
-        "nodeAutoChangedExplanation": "El nuevo nodo {{- nodeAddress}} seleccionado está fuera de línea.",
+        "nodeAutoChangedExplanation": "Cambio a un nuevo nodo {{- nodeAddress}} el nodo seleccionado está desconectado.",
         "touchSensor": "Toca el sensor de huella dactilar",
         "fingerprintOnSend": "Toque el lector de huella dactilar para autorizar la transferencia",
         "masterKey": "Su semilla de IOTA es la llave maestra a sus fondos.",
@@ -169,7 +169,7 @@
         "missingPermission": "Permisos de sistema de archivos requeridos",
         "missingPermissionExplanation": "Se requiere acceso al sistema de archivos para realizar esta función.",
         "swipeToConfirm": "Desliza para confirmar",
-        "congratulations": "Congratulations",
+        "congratulations": "Felicidades",
         "expert": "Experto",
         "notEnoughSyncedNodes": "Demasiados nodos en sincronización",
         "notEnoughSyncedNodesExplanation": "No se pudo alcanzar un quórum. Apaga el quórum o vuelve a intentarlo."
@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "No hay suficientes nodos para habilitar el quórum.",
         "nodeEnoughNodesExplanationCustomNodes": "Añadir más nodos personalizados o activar la lista de nodos remotos.",
         "nodeSettingsUpdatedTitle": "Configuración del nodo actualizada",
-        "nodeSettingsUpdatedExplanation": "Has actualizado con éxito la configuración de tu nodo."
+        "nodeSettingsUpdatedExplanation": "Has actualizado con éxito la configuración de tu nodo.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "No se pudo añadir el nodo personalizado",
@@ -649,7 +650,7 @@
         "noPassword": "El dispositivo no tiene contraseña"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Estás a punto de enviar {{contents}}",
         "aMessage": "un mensaje",
         "fromAccount": "Desde {{selectedAccountName}}",
         "toAddress": "A address",

@@ -7,7 +7,7 @@ import { render } from 'react-dom';
 import { I18nextProvider } from 'react-i18next';
 import { Provider as Redux } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import i18next from 'libs/i18next';
+import i18next, { i18nextInit } from 'libs/i18next';
 import store from 'store';
 import Themes from 'themes/themes';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';
@@ -15,8 +15,8 @@ import { updateTheme } from 'actions/settings';
 import mapStorageToState from 'libs/storageToStateMappers';
 import getEncryptionKey from 'libs/realm';
 import { changeIotaNode, quorum } from 'libs/iota';
-import { initialise as initialiseStorage } from 'storage';
 import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
+import { initialise as initialiseStorage } from 'storage';
 import { updateSchema } from 'schemas';
 
 import Index from 'ui/Index';
@@ -73,6 +73,11 @@ const init = () => {
                 return JSON.parse(data);
             })
             .then((persistedData) => {
+
+                // Initialize i18next
+                await i18nextInit();
+
+
                 if (!isEmpty(persistedData)) {
                     const data = updateSchema(persistedData);
 

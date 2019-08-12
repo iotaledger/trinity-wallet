@@ -111,7 +111,7 @@ class DualFooterButtons extends PureComponent {
                             wrapper: {
                                 backgroundColor: theme.dark.color,
                                 width: isIPhoneX ? Styling.contentWidth / 2 : width / 2,
-                                borderColor: theme.primary.border,
+                                borderColor: theme.dark.color,
                                 borderWidth: 1,
                                 borderBottomLeftRadius: borderRadius,
                                 borderTopLeftRadius: borderRadius,

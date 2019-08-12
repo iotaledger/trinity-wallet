@@ -69,7 +69,10 @@ import com.android.build.OutputFile
  *   extraPackagerArgs: []
  * ]
  */
-project.ext.react = [entryFile: "index.js"]
+project.ext.react = [
+        entryFile: "index.js",
+        jsBundleDirRelease: "$buildDir/intermediates/merged_assets/release/mergeReleaseAssets/out"
+]
 
 apply from: "../../node_modules/react-native/react.gradle"
 /**
@@ -88,8 +91,8 @@ def enableProguardInReleaseBuilds = true
 
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
         versionCode 78
@@ -103,15 +106,15 @@ android {
         aaptOptions {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
-        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57_5"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     packagingOptions {
-        pickFirst 'lib/x86/libc++_shared.so'
-        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+        pickFirst '**/libjsc.so'
+        pickFirst '**/libc++_shared.so'
     }
     splits {
         abi {
@@ -127,11 +130,21 @@ android {
     buildTypes {
         release {
             debuggable false
-            shrinkResources enableProguardInReleaseBuilds
             zipAlignEnabled enableProguardInReleaseBuilds
             minifyEnabled enableProguardInReleaseBuilds
             useProguard enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            resValue "string", "app_name", "Trinity"
+        }
+        debug {
+            applicationIdSuffix = ".debug"
+            resValue "string", "app_name", "Trinity Debug"
+        }
+        beta {
+            initWith release
+            applicationIdSuffix = ".beta"
+            resValue "string", "app_name", "Trinity Beta"
+            matchingFallbacks = ['debug', 'release']
         }
     }
     // applicationVariants are e.g. debug, release
@@ -151,6 +164,10 @@ android {
     }
 }
 dependencies {
+    // Make sure to put android-jsc at the top
+    implementation "org.webkit:android-jsc-intl:r241213"
+
+
     compile project(':react-native-qr-generator')
     implementation project(':react-native-modal-translucent')
     implementation project(':react-native-qr-scanner')

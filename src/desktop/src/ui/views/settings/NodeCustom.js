@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 
 import withNodeData from 'containers/settings/Node';
 
@@ -16,9 +17,9 @@ import css from './index.scss';
  */
 const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, t }) => {
     const [url, setUrl] = useState('');
-    // const [token, setToken] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [authVisible, setAuthVisible] = useState(false);
+    const [token, setToken] = useState('');
+    const [password, setPassword] = useState('');
+    const [authVisible, setAuthVisible] = useState(false);
 
     useEffect(() => {
         setUrl('');
@@ -28,7 +29,7 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
         if (e) {
             e.preventDefault();
         }
-        setNode({ url, token: '', password: '' }, true);
+        setNode({ url, token, password }, true);
     };
 
     return (
@@ -37,18 +38,16 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
                 <form onSubmit={addNode}>
                     <fieldset>
                         <Text value={url} disabled={loading} label={t('addCustomNode:customNode')} onChange={setUrl} />
-                        {/*
-                    // Temporary disable authorisation entry #https://github.com/iotaledger/trinity-wallet/pull/1654
-                    authVisible ? (
-                        <Fragment>
-                            <Text value={token} label={t('addCustomNode:username')} onChange={setToken} />
-                            <Text value={password} label={t('addCustomNode:password')} onChange={setPassword} />
-                        </Fragment>
-                    ) : (
-                        <a className={css.authLink} onClick={() => setAuthVisible(true)}>
-                            <Icon icon="plusAlt" size={10} /> {t('addCustomNode:addAuthKey')}
-                        </a>
-                    )*/}
+                        {authVisible ? (
+                            <div className={css.column}>
+                                <Text value={token} label={t('addCustomNode:username')} onChange={setToken} />
+                                <Text value={password} label={t('addCustomNode:password')} onChange={setPassword} />
+                            </div>
+                        ) : (
+                            <a className={css.authLink} onClick={() => setAuthVisible(true)}>
+                                <Icon icon="plusAlt" size={10} /> {t('addCustomNode:addAuthKey')}
+                            </a>
+                        )}
                     </fieldset>
                     <hr />
                     {customNodes.length ? (
@@ -90,4 +89,4 @@ NodeCustom.propTypes = {
     t: PropTypes.func.isRequired,
 };
 
-export default withNodeData(NodeCustom);
+export default withTranslation()(withNodeData(NodeCustom));

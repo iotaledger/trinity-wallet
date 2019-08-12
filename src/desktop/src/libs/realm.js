@@ -1,6 +1,6 @@
 /* global Electron */
 import { randomBytes } from './crypto';
-import ALIAS_REALM from './constants';
+import { ALIAS_REALM } from './constants';
 /**
  * Gets encryption key for realm.
  * - Checks keychain if there is already an encryption key stored for realm data.

@@ -9,7 +9,7 @@ import i18next from 'libs/i18next';
 import { withTranslation } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
-import { ACC_MAIN } from 'libs/crypto';
+import { ALIAS_MAIN } from 'libs/constants';
 import { fetchVersions } from 'libs/utils';
 
 import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
@@ -221,7 +221,7 @@ class App extends React.Component {
      */
     async checkVaultAvailability() {
         try {
-            await Electron.readKeychain(ACC_MAIN);
+            await Electron.readKeychain(ALIAS_MAIN);
         } catch (err) {
             this.setState({
                 fatalError: err instanceof Error && typeof err.message === 'string' ? err.message : err.toString(),

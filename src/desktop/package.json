@@ -1,7 +1,7 @@
 {
   "name": "trinity-desktop",
   "productName": "Trinity",
-  "version": "1.0.0",
+  "version": "1.1.0-RC1",
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
   "description": "Desktop wallet for IOTA",
@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "concurrently --kill-others \"npm run devserver\" \"cross-env NODE_ENV=development electron -r @babel/register native/Index.js\"",
-    "postinstall": "patch-package && electron-builder install-app-deps",
+    "postinstall": "electron-builder install-app-deps",
     "devserver": "node scripts/webpackServer.js",
     "build": "rimraf dist && npm run build-main && npm run build-app",
     "build-main": "./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config/config.main.js",
@@ -31,41 +31,40 @@
     "test": "npm run build-app && jest"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "7.4.4",
-    "@babel/plugin-proposal-object-rest-spread": "7.4.4",
-    "@babel/preset-env": "7.4.5",
+    "@babel/plugin-proposal-class-properties": "7.5.0",
+    "@babel/preset-env": "7.5.4",
     "@babel/preset-react": "7.0.0",
-    "@jest-runner/electron": "^2.0.2",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^24.8.0",
+    "@jest-runner/electron": "2.0.2",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "24.8.0",
     "babel-loader": "8.0.6",
     "bugsnag-build-reporter": "1.0.2",
     "concurrently": "4.1.1",
     "cross-env": "5.2.0",
     "css-loader": "3.0.0",
-    "dart-sass": "1.22.3",
+    "dart-sass": "1.22.4",
     "electron": "4.2.6",
     "electron-builder": "20.44.4",
     "electron-devtools-installer": "2.2.4",
+    "electron-notarize": "^0.1.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "enzyme-to-json": "^3.3.5",
+    "enzyme-to-json": "^3.4.0",
     "express": "4.17.1",
-    "file-loader": "4.0.0",
+    "file-loader": "4.1.0",
     "html-webpack-plugin": "3.2.0",
-    "jest": "^24.8.0",
+    "jest": "24.8.0",
     "jest-image-snapshot": "^2.9.0",
     "mini-css-extract-plugin": "0.7.0",
-    "patch-package": "6.1.2",
     "puppeteer": "1.18.1",
-    "raw-loader": "^3.0.0",
+    "raw-loader": "3.0.0",
     "react-dev-utils": "9.0.1",
     "regenerator-runtime": "^0.13.2",
     "rimraf": "2.6.3",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
     "url-loader": "2.0.1",
-    "webpack": "4.35.2",
+    "webpack": "4.35.3",
     "webpack-cli": "3.3.5",
     "webpack-dev-middleware": "3.7.0",
     "webpack-hot-middleware": "2.25.0"
@@ -78,6 +77,7 @@
       "buildResources": "./assets",
       "output": "./out"
     },
+    "afterSign": "./scripts/notarize.macos.js",
     "files": [
       "dist/",
       "assets/",
@@ -102,6 +102,7 @@
     "dmg": {
       "iconSize": 120,
       "title": "${productName}",
+      "sign": false,
       "contents": [
         {
           "x": 520,
@@ -139,6 +140,13 @@
       "target": [
         "dmg",
         "zip"
+      ],
+      "entitlements": "./entitlements.mac.plist",
+      "entitlementsInherit": "./entitlements.mac.plist",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "asarUnpack": [
+        "**/*.node"
       ]
     },
     "publish": {
@@ -150,10 +158,10 @@
   },
   "dependencies": {
     "@babel/register": "7.4.4",
-    "@ledgerhq/hw-transport-node-hid": "4.63.2",
-    "@bugsnag/js": "^6.3.2",
+    "@bugsnag/js": "6.3.2",
     "@bugsnag/plugin-react": "^6.2.0",
-    "argon2": "rihardsgravis/node-argon2#ae1a860",
+    "@ledgerhq/hw-transport-node-hid": "^4.68.2",
+    "argon2": "0.24.0",
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",
     "electron-settings": "3.2.0",
@@ -164,22 +172,21 @@
     "iota.lib.js": "0.5.2",
     "kdbxweb": "1.2.7",
     "keytar": "4.11.0",
-    "lottie-web": "5.5.5",
-    "machine-uuid-sync": "https://github.com/rajivshah3/machine-uuid-sync#a5ffa8e",
+    "lottie-web": "5.5.6",
+    "node-machine-id": "1.1.12",
     "perfect-scrollbar": "1.4.0",
     "qr.js": "0.0.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-i18next": "10.11.3",
+    "react-i18next": "10.11.4",
     "react-markdown": "4.1.0",
     "react-qr-reader": "2.2.1",
     "react-redux": "5.1.1",
     "react-router-dom": "5.0.1",
     "react-transition-group": "4.2.1",
-    "realm": "2.23.0",
+    "realm": "2.29.0",
     "recharts": "1.6.2",
-    "redux": "4.0.1",
-    "usb": "1.5.0"
+    "redux": "4.0.4"
   },
   "jest": {
     "runner": "@jest-runner/electron",

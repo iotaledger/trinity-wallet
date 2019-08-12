@@ -21,7 +21,7 @@ import Themes from 'shared-modules/themes/themes';
 import { mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
 import { WalletActionTypes } from 'shared-modules/types';
 import { setRealmMigrationStatus } from 'shared-modules/actions/migrations';
-import i18next from 'shared-modules/libs/i18next';
+import i18next, { i18nextInit } from 'shared-modules/libs/i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
@@ -107,7 +107,7 @@ const renderInitialScreen = (initialScreen) => {
         },
         topBar: {
             visible: false,
-            drawBehind: false,
+            drawBehind: true,
             elevation: 0,
             background: {
                 color: 'black',
@@ -219,6 +219,8 @@ onAppStart()
     // Reset persisted state if keychain has no entries
     .then(() => resetIfKeychainIsEmpty(reduxStore))
     // Restore persistent storage (Map to redux store)
+    // Initialise i18next
+    .then(() => i18nextInit())
     .then(() => {
         const latestVersions = {
             version: getVersion(),

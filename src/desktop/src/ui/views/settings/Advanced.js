@@ -6,7 +6,7 @@ import { withTranslation, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
-import ALIAS_REALM from 'libs/constants';
+import { ALIAS_REALM } from 'libs/constants';
 import { serialise } from 'libs/utils';
 import { iota, quorum } from 'libs/iota';
 import Errors from 'libs/errors';

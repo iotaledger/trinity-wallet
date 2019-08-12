@@ -300,12 +300,12 @@
     padding: 0 20px;
     text-align: left;
 
-    form > fieldset > div{
+    form > fieldset > div {
         max-width: none;
     }
 
     ul {
-        height: 400px;
+        margin-top: 40px;
         position: relative;
     }
 
@@ -339,5 +339,12 @@
 
     > fieldset {
         min-height: 140px;
+    }
+
+    .column {
+        display: flex;
+        > div:first-child {
+            margin-right: 20px;
+        }
     }
 }

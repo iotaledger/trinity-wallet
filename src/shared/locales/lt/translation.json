@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Serverių yra nepakankamai norint įjungti kvorumą.",
         "nodeEnoughNodesExplanationCustomNodes": "Pridėkite daugiau vartotojo serverių arba įjunkite nuotolinį serverių sąrašą.",
         "nodeSettingsUpdatedTitle": "Serverio nustatymai atnaujinti",
-        "nodeSettingsUpdatedExplanation": "Jūs sėkmingai atnaujinote serverio nustatymus."
+        "nodeSettingsUpdatedExplanation": "Jūs sėkmingai atnaujinote serverio nustatymus.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",
@@ -672,7 +673,7 @@
         "importSuccessExplanation": "Jūsų užraktas sėkmingai įkeltas.",
         "saveToDownloadFolder": "Išsaugoti į atsisiuntimų failą",
         "importSeedVault": "Įkelti SeedVault",
-        "dropInstructions": "Įkelkite SeedVault arba įrašykite čia <1></1> arba spauskite naršyti",
+        "dropInstructions": "Įkelkite SeedVault arba tekstą čia <1></1> arba spauskite naršyti",
         "dropActive": "Įkelkite SeedVault arba įrašykite čia",
         "enterKeyExplanation": "Įveskite raktą norėdami atidaryti SeedVault",
         "noSeedFound": "SeedVault neturi tinkamo užrakto",

@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
         width: Styling.contentWidth,
         height: height / 1.5,
         borderRadius: 6,
-        borderWidth: 1,
         backfaceVisibility: 'hidden',
     },
     flipCardBack: {
@@ -81,14 +80,12 @@ const styles = StyleSheet.create({
         flex: 2.75,
         justifyContent: 'center',
         alignItems: 'center',
-        borderTopWidth: 1,
     },
     multiInputContainer: {
         flex: 2.6,
         justifyContent: 'center',
         paddingHorizontal: width / 30,
         paddingVertical: height / 50,
-        borderTopWidth: 1,
     },
     addressButton: {
         flex: 1,
@@ -116,7 +113,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderBottomLeftRadius: 6,
         borderBottomRightRadius: 6,
-        borderWidth: 1,
     },
     refreshIconBackgroundAndroid: {
         width: width / 7,
@@ -126,7 +122,6 @@ const styles = StyleSheet.create({
         bottom: -width / 14,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 1,
         paddingTop: 1,
     },
     refreshIconBackground: {
@@ -137,7 +132,6 @@ const styles = StyleSheet.create({
         top: -width / 14,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 1,
     },
     refreshIcon: {
         backgroundColor: 'transparent',
@@ -765,7 +759,7 @@ class Receive extends Component {
                                 <View
                                     style={[
                                         styles.multiInputContainer,
-                                        { backgroundColor: dark.color, borderColor: primary.border },
+                                        { backgroundColor: dark.color },
                                     ]}
                                 >
                                     <MultiTextInput multiplier={this.getUnitMultiplier()} />
@@ -774,7 +768,7 @@ class Receive extends Component {
                                     <TouchableOpacity
                                         style={[
                                             styles.footerButton,
-                                            { backgroundColor: primary.color, borderColor: primary.border },
+                                            { backgroundColor: primary.color },
                                         ]}
                                         onPress={() => this.onShareQRCodePress()}
                                     >

@@ -384,8 +384,8 @@
     "modeSelection": {
         "advanced": "Ekspert",
         "standard": "Tavaline",
-        "advancedModeExplanation": "Ekspert režiimis kuvatakse üksikasjalist tehnilist informatsiooni.",
-        "modesExplanation": "Ainult lubage ekspert režiim, kui olete kogenud Tangle kasutaja. Võite leida selle pisut keerulisena.",
+        "advancedModeExplanation": "Ekspert režiim kuvab detailsemat tehnilist informatsiooni.",
+        "modesExplanation": "Lülitage Ekspert režiim sisse ainult siis, kui olete kogenud Tangle kasutaja. Vastasel juhul võite segadusse sattuda.",
         "modeUpdated": "Mode updated",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Sõlme seaded uuendatud",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Kohandatud sõlme ei saanud lisada",

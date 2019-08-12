@@ -145,7 +145,7 @@
         "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
         "headToAdvancedSettingsForTransition": "Wechsle zu den erweiterten Einstellungen und führe eine Snapshot-Wiederherstellung aus.",
         "headToAccountTools": "Öffne die Konto-Werkzeuge und führe die Snapshot-Wiederherstellung durch.",
-        "openAccountTools": "Öffne die Konto-Werkzeuge",
+        "openAccountTools": "Konto-Werkzeuge",
         "usingTrinityWalletWithKeePass": "Trinity Brieftasche mit Keepass2Android verwenden",
         "signedTrytesBroadcastErrorExplanation": "Während der Transkation ist ein Netzwerkfehler aufgetreten.",
         "broadcastError": "Transaktion konnte nicht gebroadcastet werden",
@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Es sind nicht genug Nodes vorhanden um die Node-Gruppe zu aktivieren.",
         "nodeEnoughNodesExplanationCustomNodes": "Füge weitere benutzerdefinierte Nodes hinzu oder verwende die offizielle Node-Liste.",
         "nodeSettingsUpdatedTitle": "Node-Einstellungen aktualisiert",
-        "nodeSettingsUpdatedExplanation": "Die Node-Einstellungen wurden erfolgreich gespeichert."
+        "nodeSettingsUpdatedExplanation": "Die Node-Einstellungen wurden erfolgreich gespeichert.",
+        "powNode": "Einen bestimmten Node für PoW verwenden"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Benutzerdefinierter Node konnte nicht hinzugefügt werden",
@@ -649,10 +650,10 @@
         "noPassword": "Auf diesem Gerät wurde kein Passwort eingerichtet"
     },
     "transferConfirmation": {
-        "youAreAbout": "Du bist dabei {{contents}} zu senden",
+        "youAreAbout": "Du sendest {{contents}}",
         "aMessage": "eine Nachricht",
         "fromAccount": "Von {{selectedAccountName}}",
-        "toAddress": "An Adresse",
+        "toAddress": "an Adresse",
         "sendingAMessage": "Sende die Nachricht",
         "sendingAnEmptyMessage": "Sende eine leere Nachricht"
     },

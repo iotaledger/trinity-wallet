@@ -52,6 +52,10 @@ export const initialState = {
      */
     remotePoW: false,
     /**
+     * Determines if proof of work should be offloaded to a specific node
+     */
+    powNode: '',
+    /**
      * Determines if polling should auto promote unconfirmed transactions
      */
     autoPromotion: true,
@@ -142,6 +146,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 remotePoW: action.payload,
+            };
+        case SettingsActionTypes.SET_POW_NODE:
+            return {
+                ...state,
+                powNode: action.payload,
             };
         case SettingsActionTypes.SET_AUTO_PROMOTION:
             return {

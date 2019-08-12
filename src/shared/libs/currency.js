@@ -115,6 +115,39 @@ export const formatMonetaryValue = (iotas, unitPrice, currency) => {
     return `${currency ? getCurrencySymbol(currency) + ' ' : ''}${value}`;
 };
 
+/**
+ * Returns fiat balance
+ * @param {number} balance
+ * @param {number} usdPrice
+ * @param {number} conversionRate
+ */
+export const getFiatBalance = (balance, usdPrice, conversionRate) => {
+    return ((balance * usdPrice) / 1000000) * conversionRate;
+};
+
+/**
+ * Format fiat balance
+ * @param  {string} locale
+ * @param  {string} currency
+ * @param  {number} fiatBalance
+ * @return {string}
+ */
+export const formatFiatBalance = (locale, currency, fiatBalance) => {
+    // FIXME(rajivshah3): Temporarily mitigate crashes
+    // Will be fixed when language codes are standardized
+    // See https://github.com/iotaledger/trinity-wallet/issues/2039
+    let intl = null;
+
+    // Replace underscore with hyphen
+    locale = locale.replace(/_/g, '-');
+    try {
+        intl = new Intl.NumberFormat(locale, { style: 'currency', currency, localeMatcher: 'best fit' });
+    } catch {
+        intl = new Intl.NumberFormat('en', { style: 'currency', currency, localeMatcher: 'best fit' });
+    }
+    return intl.format(fiatBalance);
+};
+
 export const availableCurrencies = [
     'USD',
     'GBP',

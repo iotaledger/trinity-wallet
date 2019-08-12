@@ -7,7 +7,7 @@ import { getAccountNamesFromState } from 'selectors/accounts';
 
 import { accumulateBalance } from 'libs/iota/addresses';
 import { formatUnit, formatIotas } from 'libs/iota/utils';
-import { formatMonetaryValue } from 'libs/currency';
+import { getFiatBalance, formatFiatBalance } from 'libs/currency';
 
 import Icon from 'ui/components/Icon';
 
@@ -77,12 +77,7 @@ export class BalanceComponent extends React.PureComponent {
 
         const accountBalance = accumulateBalance(balances);
 
-        const fiatBalance = formatMonetaryValue(
-            accountBalance,
-            marketData.usdPrice * settings.conversionRate,
-            settings.currency,
-        );
-
+        const fiatBalance = getFiatBalance(accountBalance, marketData.usdPrice, settings.conversionRate);
         return (
             <div className={css.balance}>
                 <h3>{accountName}</h3>
@@ -101,7 +96,7 @@ export class BalanceComponent extends React.PureComponent {
                     {formatIotas(accountBalance, balanceIsShort)}
                     <small>{`${formatUnit(accountBalance)}`}</small>
                 </h1>
-                <h2>{fiatBalance}</h2>
+                <h2>{formatFiatBalance(settings.locale, settings.currency, fiatBalance)}</h2>
             </div>
         );
     }

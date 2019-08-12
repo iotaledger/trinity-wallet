@@ -169,7 +169,7 @@
         "missingPermission": "Permissões do sistema de arquivo necessárias",
         "missingPermissionExplanation": "O acesso ao sistema de arquivos é necessário para executar esta função.",
         "swipeToConfirm": "Deslize para confirmar",
-        "congratulations": "Congratulations",
+        "congratulations": "Parabéns",
         "expert": "Avançado",
         "notEnoughSyncedNodes": "Poucos servidores em sincronia",
         "notEnoughSyncedNodesExplanation": "Um quórum não pôde ser alcançado. Desligue o quórum ou tente novamente."
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Idioma",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Selecione um idioma",
         "letsGetStarted": "Vamos começar"
     },
     "login": {
@@ -496,19 +496,20 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Gerenciamento automático de servidores",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "addCustomNodes": "Adicionar servidor personalizado",
+        "autoNodeList": "Usar lista de servidor remoto",
+        "nodeAutoswitching": "Auto-troca de servidor primário",
+        "primaryNode": "Servidor primário",
+        "enableQuorum": "Habilitar quórum",
+        "quorumSize": "Tamanho do Quórum",
+        "noCustomNodes": "Nenhum servidor personalizado",
+        "mustAddCustomNodes": "Você deve adicionar pelo menos um servidor personalizado antes de desativar a lista de servidor remoto.",
+        "nodeEnoughNodesTitle": "Servidores insuficientes",
+        "nodeEnoughNodesExplanation": "Não há servidores suficientes para ativar o quórum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Adicione mais servidores personalizados ou ative a lista de servidor remoto.",
+        "nodeSettingsUpdatedTitle": "Configurações de servidor atualizadas",
+        "nodeSettingsUpdatedExplanation": "Você atualizou as configurações de servidor com sucesso.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Servidor personalizado não pôde ser adicionado",
@@ -519,10 +520,10 @@
         "nodeFieldEmpty": "O campo de texto está vazio",
         "nodeFieldEmptyExplanation": "Por favor, insira um servidor personalizado.",
         "invalidURL": "Por favor, insira uma URL válida.",
-        "addAuthKey": "Add auth key",
+        "addAuthKey": "Adicionar chave de autenticação",
         "username": "Usuário",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemove": "Não foi possível remover servidor personalizado",
+        "couldNotRemoveExplanation": "Deve haver servidores suficientes para quórum. Reduza o tamanho do quórum ou ative a lista remota de servidores."
     },
     "addNewAccount": {
         "useExistingSeed": "Usar Seed existente",
@@ -649,7 +650,7 @@
         "noPassword": "A senha não está definida no dispositivo"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Você está prestes a enviar {{contents}}",
         "aMessage": "uma mensagem",
         "fromAccount": "De {{selectedAccountName}}",
         "toAddress": "Para endereço",
@@ -759,7 +760,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Não foi possível conectar. Por favor, verifique sua conexão de internet e tente novamente.",
         "noUpdatesAvailable": "Nenhuma atualização disponível",
         "noUpdatesAvailableExplanation": "Você tem a versão mais recente da Trinity!",
         "newVersionAvailable": "Nova versão disponível",
@@ -826,16 +827,16 @@
         "notReady": "Se você deseja usar um dispositivo de Ledger, conecte e desbloqueie agora",
         "indexInUse": "Índice já em uso para conta {{account}}",
         "indexInUseExplanation": "Índice escolhido já está em uso em uma das suas contas. Por favor escolha outro número de índice.",
-        "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
-        "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
-        "createNewLedgerAccount": "Create a new Ledger account",
-        "restoreLedgerAccount": "Restore an existing Ledger account",
+        "createNewLedgerAccountInfo": "Certifique-se de anotar e lembrar o seu número de índice.",
+        "restoreLedgerAccountInfo": "Digite seu número de índice salvo para restaurar sua conta.",
+        "createNewLedgerAccount": "Crie uma nova conta Ledger",
+        "restoreLedgerAccount": "Restaurar uma conta do Ledger existente",
         "accountIndex": "Índice de conta",
         "accountPage": "Página da conta",
         "actionCancelled": "Acesso de dispositivo Ledger cancelado",
         "actionCancelledExplanation": "Não é possível executar a ação sem acesso ao dispositivo Ledger.",
         "chooseAccountIndex": "Escolha o seu índice da conta Ledger",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
+        "accountIndexExplanation": "Seu Ledger pode armazenar varias Seeds. Cada seed é identificada por um número de índice exclusivo.",
         "accountPageExplanation": "Algumas carteiras de terceiros exigem páginas.",
         "connectionError": "Não foi possível conectar-se ao Ledger",
         "connectionErrorExplanation": "Verifique se seu Ledger está conectado e desbloqueado.",
@@ -857,11 +858,11 @@
         "checkAddressExplanation": "Verifique se o endereço é igual ao endereço no dispositivo Ledger.",
         "applicationNotInitialised": "Aviso não confirmado",
         "applicationNotInitialisedExplanation": "Reabra o aplicativo IOTA no seu dispositivo Ledger, aceite o aviso e tente novamente.",
-        "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "checkLedger": "Verifique seu dispositivo Ledger",
+        "acceptWarningExplanation": "Se houver um aviso informativo no seu dispositivo Ledger, você deve rolar e aceitá-lo pressionando os dois botões.",
         "udevError": "Falha ao comunicar com o dispositivo Ledger",
         "udevErrorExplanation": "A Trinity não pôde se comunicar com o seu dispositivo Ledger. Por favor, visite o link abaixo para resolver este problema.",
         "writtenDownInfoTitle": "Lembrar seu número de índice",
-        "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+        "writtenDownInfoExplanation": "Você precisa do seu número de índice para restaurar sua conta no futuro. Se você perder seu número de índice, perderá seu IOTA. Por favor, lembre-se disso."
     }
 }

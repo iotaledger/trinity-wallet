@@ -18,13 +18,14 @@ exports[`About component Render the component 1`] = `
     </h1>
     <h2>
       v
-      1.0.0
+      0.0.0
     </h2>
     <article>
       <Scrollbar>
         <ReactMarkdown
           astPlugins={Array []}
           escapeHtml={true}
+          parserOptions={Object {}}
           plugins={Array []}
           rawSourcePos={false}
           renderers={Object {}}

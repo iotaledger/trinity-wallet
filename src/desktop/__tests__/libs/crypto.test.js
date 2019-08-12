@@ -1,10 +1,11 @@
 'use strict';
 
-import { ACC_MAIN, randomBytes, sha256, hash, encrypt, decrypt, initKeychain, authorize } from 'libs/crypto';
+import { ALIAS_MAIN } from 'libs/constants';
+import { randomBytes, sha256, hash, encrypt, decrypt, initKeychain, authorize } from 'libs/crypto';
 import { passwordMock, saltMock, vaultMock } from '../../__mocks__/samples/keychain';
 
 global.Electron = {
-    readKeychain: (target) => (target === `${ACC_MAIN}-salt` ? saltMock : vaultMock),
+    readKeychain: (target) => (target === `${ALIAS_MAIN}-salt` ? saltMock : vaultMock),
     setKeychain: jest.fn(),
     listKeychain: () => {
         return {};
@@ -43,7 +44,7 @@ describe('Crypto helper lib', () => {
         test('Initialize keychain', async () => {
             await initKeychain();
             expect(global.Electron.setKeychain).toBeCalledWith(
-                `${ACC_MAIN}-salt`,
+                `${ALIAS_MAIN}-salt`,
                 expect.stringMatching(/[0-9]+(,[0-9]+){15}/),
             );
         });

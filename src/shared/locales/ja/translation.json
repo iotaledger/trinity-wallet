@@ -495,9 +495,9 @@
         "tools": "ツール"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "自動でノード管理を行う",
+        "automaticNodeManagement": "自動ノード管理",
         "addCustomNodes": "カスタムノードの追加",
-        "autoNodeList": "リモートノードリストを使う",
+        "autoNodeList": "リモートノードリストの使用",
         "nodeAutoswitching": "主要ノードの自動切換え",
         "primaryNode": "主要ノード",
         "enableQuorum": "定足数を有効化",
@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "定足数を有効にするための十分なノードがありません。",
         "nodeEnoughNodesExplanationCustomNodes": "カスタムノードが追加するか、リモートノードリストを有効化してください。",
         "nodeSettingsUpdatedTitle": "ノード設定更新完了",
-        "nodeSettingsUpdatedExplanation": "ノード設定が正常に更新されました。"
+        "nodeSettingsUpdatedExplanation": "ノード設定が正常に更新されました。",
+        "powNode": "PoWに特定のノードを使用する"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "カスタムノード追加不可",
@@ -682,7 +683,7 @@
         "invalidSeedFileError": "無効なシード金庫ファイルです。",
         "invalidSeedFileErrorExplanation": "このファイル形式はサポートされていません。Trinityまたはパスワード・マネージャーを介して作成されたシード金庫ファイル（.kdbx）のみがサポートされています。",
         "seedVaultKeyExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するための鍵を選んでください。シード金庫からシードを復元する時に、この鍵が必要です。",
-        "retypeKey": "鍵を再入力してください",
+        "retypeKey": "キーを再入力してください",
         "key": "キー"
     },
     "stateExport": {
@@ -749,7 +750,7 @@
     "deepLink": {
         "autofill": "自動入力成功",
         "autofillExplanation": "取引データはリンクから自動入力されました。",
-        "deepLinkingOverview": "ディープリンクとはTrinityにあるトランザクションデータを自動で取得できるようにするリンク (iota://...) のことです。",
+        "deepLinkingOverview": "ディープリンクとはTrinityの取引データを自動で埋めることができるリンク (iota://...) のことです。",
         "deepLinkingWarning": "フィッシング詐欺にご注意ください。開いたリンク先が公式のTrinityアプリであることをご確認ください。",
         "deepLinkingUpdated": "ディープリンク設定",
         "deepLinkingEnabled": "ディープリンクを有効にしました。",
@@ -822,8 +823,8 @@
         "seedMigrationExplanation": "ウォレットのセキュリティを向上させるためのTrinityの継続的な取り組みの一環として、シードは強化されたストレージに移行されます。Trinityが自動的にシードストレージを移行するまで少々お待ちください。"
     },
     "ledger": {
-        "ready": "Ledger端末の接続が完了し、準備完了です",
-        "notReady": "Ledger端末を使いたい場合、今、接続しロックを解除してください",
+        "ready": "Ledger端末の接続が完了し、準備完了です。",
+        "notReady": "Ledger端末を使いたい場合、ここで接続し、ロックを解除してください。",
         "indexInUse": "アカウント{{account}}で既に使用されているインデックスです",
         "indexInUseExplanation": "選択したインデックスは、いずれかのアカウントですでに使用されています。別のインデックス番号を選択してください。",
         "createNewLedgerAccountInfo": "インデックス番号を書き留めて忘れないようにしてください。",
@@ -847,7 +848,7 @@
         "applicationExplanation": "Trinityウォレットを使い続けるには、LedgerでIOTAアプリを開いてください。",
         "cannotSendZeroValueTitle": "0値の取引は送金できません",
         "cannotSendZeroValueExplanation": "Ledger端末では0値の取引は送金できません。",
-        "ledgerDisconnectedTitle": "Ledger端末が切断されました",
+        "ledgerDisconnectedTitle": "Ledger端末が切断されました。",
         "ledgerDisconnectedExplanation": "Ledger端末が切断されました。再接続してもう一度お試しください。",
         "ledgerDeniedTitle": "取引拒否",
         "ledgerDeniedExplanation": "Ledger端末で取引が拒否されました。",

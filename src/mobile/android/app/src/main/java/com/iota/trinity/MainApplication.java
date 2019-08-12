@@ -31,7 +31,7 @@ import io.realm.react.RealmReactPackage;
 import me.listenzz.modal.TranslucentModalReactPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.janeasystems.rn_nodejs_mobile.RNNodeJsMobilePackage;
-import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
+import io.github.elyx0.reactnativedocumentpicker.DocumentPickerPackage;
 import com.lewin.qrcode.QRScanReaderPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.reactnativenavigation.NavigationApplication;
@@ -70,7 +70,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
                 new QRCodePackage(),
                 new RNCameraPackage(),
                 new QRScanReaderPackage(),
-                new ReactNativeDocumentPicker(),
+                new DocumentPickerPackage(),
                 new RNNodeJsMobilePackage(),
                 new FlagSecurePackage(),
                 new RNDetectNavbarAndroidPackage(),

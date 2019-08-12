@@ -223,9 +223,22 @@ export const setNode = (payload) => {
 export const setNodeList = (payload) => {
     Node.addNodes(payload);
 
-    return {
-        type: SettingsActionTypes.SET_NODELIST,
-        payload,
+    return (dispatch, getState) => {
+        dispatch({
+            type: SettingsActionTypes.SET_NODELIST,
+            payload,
+        });
+
+        const { settings } = getState();
+        const nodes = [...settings.nodes, ...settings.customNodes];
+
+        const powNodeExists = nodes.find(({ url }) => url === settings.powNode);
+        if (!powNodeExists) {
+            dispatch({
+                type: SettingsActionTypes.SET_POW_NODE,
+                payload: '',
+            });
+        }
     };
 };
 
@@ -240,9 +253,20 @@ export const setNodeList = (payload) => {
 export const removeCustomNode = (payload) => {
     Node.delete(payload);
 
-    return {
-        type: SettingsActionTypes.REMOVE_CUSTOM_NODE,
-        payload,
+    return (dispatch, getState) => {
+        dispatch({
+            type: SettingsActionTypes.REMOVE_CUSTOM_NODE,
+            payload,
+        });
+
+        const { settings } = getState();
+
+        if (settings.powNode === payload) {
+            dispatch({
+                type: SettingsActionTypes.SET_POW_NODE,
+                payload: '',
+            });
+        }
     };
 };
 
@@ -259,6 +283,23 @@ export const setRemotePoW = (payload) => {
 
     return {
         type: SettingsActionTypes.SET_REMOTE_POW,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to update proof of work node configuration for wallet
+ *
+ * @method setRemotePoW
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const setPowNode = (payload) => {
+    Wallet.updatePowNodeSetting(payload);
+
+    return {
+        type: SettingsActionTypes.SET_POW_NODE,
         payload,
     };
 };
@@ -352,22 +393,13 @@ export function getCurrencyData(currency, withAlerts = false) {
         dispatch(currencyDataFetchRequest());
 
         return fetch(url)
-            .then(
-                (response) => response.json(),
-                () => {
-                    dispatch(currencyDataFetchError());
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
 
-                    if (withAlerts) {
-                        dispatch(
-                            generateAlert(
-                                'error',
-                                i18next.t('settings:couldNotFetchRates'),
-                                i18next.t('settings:couldNotFetchRatesExplanation', { currency: currency }),
-                            ),
-                        );
-                    }
-                },
-            )
+                throw response;
+            })
             .then((json) => {
                 const conversionRate = get(json, `rates.${currency}`) || 1;
                 const availableCurrencies = keys(get(json, 'rates'));
@@ -383,6 +415,19 @@ export function getCurrencyData(currency, withAlerts = false) {
                             'success',
                             i18next.t('settings:fetchedConversionRates'),
                             i18next.t('settings:fetchedConversionRatesExplanation', { currency: currency }),
+                        ),
+                    );
+                }
+            })
+            .catch(() => {
+                dispatch(currencyDataFetchError());
+
+                if (withAlerts) {
+                    dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('settings:couldNotFetchRates'),
+                            i18next.t('settings:couldNotFetchRatesExplanation', { currency: currency }),
                         ),
                     );
                 }

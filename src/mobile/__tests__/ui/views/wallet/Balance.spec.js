@@ -46,6 +46,7 @@ const getProps = (overrides) =>
             onRefresh: noop,
             animateChartOnMount: true,
             setAnimateChartOnMount: noop,
+            language: 'English (International)',
         },
         overrides,
     );
@@ -91,6 +92,10 @@ describe('Testing Balance component', () => {
         it('should require an animateChartOnMount bool as a prop', () => {
             expect(Balance.propTypes.animateChartOnMount).toEqual(PropTypes.bool.isRequired);
         });
+
+        it('should require a language string as a prop', () => {
+            expect(Balance.propTypes.language).toEqual(PropTypes.string.isRequired);
+        });
     });
 
     describe('when renders', () => {
@@ -98,7 +103,7 @@ describe('Testing Balance component', () => {
             const props = getProps();
 
             const wrapper = shallow(<Balance {...props} />);
-            expect(wrapper.name()).toEqual('ScrollView');
+            expect(wrapper.name()).toEqual('ScrollViewMock');
         });
     });
 

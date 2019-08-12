@@ -6,7 +6,7 @@ import Kerl from 'iota.lib.js/lib/crypto/kerl/kerl';
 import Curl from 'iota.lib.js/lib/crypto/curl/curl';
 import Converter from 'iota.lib.js/lib/crypto/converter/converter';
 import argon2 from 'argon2';
-import machineUuid from 'machine-uuid-sync';
+import { machineIdSync } from 'node-machine-id';
 import { byteToTrit, byteToChar } from 'libs/iota/converter';
 import { removeNonAlphaNumeric } from 'libs/utils';
 import { moment } from 'libs/exports';
@@ -17,6 +17,8 @@ import Entangled from '../libs/Entangled';
 import ledger from '../hardware/Ledger';
 import Realm from '../libs/Realm';
 import { version } from '../../package.json';
+
+import { __RC__ } from '../../src/libs/constants';
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -51,7 +53,7 @@ let onboardingGenerated = false;
 let storageLock = false;
 
 // Use a different keychain entry for development versions
-const KEYTAR_SERVICE = remote.app.isPackaged ? 'Trinity wallet' : 'Trinity wallet (dev)';
+const KEYTAR_SERVICE = remote.app.isPackaged ? `Trinity wallet${__RC__}` : `Trinity wallet${__RC__} (dev)`;
 
 /**
  * Global Electron helper for native support
@@ -123,7 +125,7 @@ const Electron = {
      * Gets machine UUID
      * @return {string}
      */
-    getUuid: () => machineUuid(),
+    getUuid: () => machineIdSync(),
 
     /**
      * Proxy native menu attribute settings
