@@ -37,8 +37,14 @@ export default class NodesManager {
         let attempt = 0;
         let executedCallback = false;
         const remotePoW = store.getState().settings.remotePoW;
-        const randomNodes = getRandomNodes(nodes, retryAttempts, [primaryNode], remotePoW);
-        const retryNodes = unionBy(remotePoW === priorityNode.pow && [priorityNode], randomNodes, 'url');
+        const powNode = store.getState().settings.powNode;
+        const randomNodes = getRandomNodes(
+            nodes,
+            retryAttempts,
+            [primaryNode],
+            priorityNode.url === powNode && remotePoW,
+        );
+        const retryNodes = unionBy([priorityNode], randomNodes, 'url');
         // Abort retries on these errors
         const cancellationErrors = [Errors.LEDGER_CANCELLED, Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE];
 

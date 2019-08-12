@@ -5,7 +5,7 @@ import Toggle from 'ui/components/Toggle';
 import DropdownComponent from 'ui/components/Dropdown';
 import Icon from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
-import { height, width } from 'libs/dimensions';
+import { width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     itemContainer: {
@@ -75,15 +75,11 @@ class SettingsRow extends PureComponent {
             icon,
             currentSetting,
             toggle,
-            height
+            height,
         } = this.props;
 
         return (
-            <TouchableOpacity
-                onPress={onPress}
-                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                disabled={inactive}
-            >
+            <TouchableOpacity onPress={onPress} disabled={inactive}>
                 <View style={[styles.item, { height }]}>
                     {icon && <Icon name={icon} size={width / 22} color={body.color} />}
                     <View style={styles.content}>

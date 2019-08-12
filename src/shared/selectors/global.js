@@ -215,7 +215,7 @@ export const nodesConfigurationFactory = (overrides) =>
                 if (state.powNode) {
                     const powNode = config.nodes.find(({ url }) => url === state.powNode);
                     if (powNode) {
-                        config.primaryNode = powNode;
+                        config.priorityNode = powNode;
                     }
                 }
             }

@@ -118,11 +118,14 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
         if (quorumEnabled !== settings.quorumEnabled || quorumSize !== settings.quorumSize) {
             actions.updateQuorumConfig({ enabled: quorumEnabled, size: quorumSize });
         }
+        if (powNode !== settings.powNode) {
+            actions.setPowNode(powNode);
+        }
+        if (powNode.length ^ this.props.powNode.length) {
+            this.props.changePowSettings();
+        }
         if (primaryNode.url !== settings.node.url || primaryNode.password !== settings.node.password) {
             return actions.setFullNode(primaryNode);
-        }
-        if (powNode !== settings.powNode) {
-            return actions.setPowNode(powNode);
         }
         generateAlert(
             'success',
@@ -256,6 +259,7 @@ NodeSettings.propTypes = {
         updateQuorumConfig: PropTypes.func.isRequired,
         setFullNode: PropTypes.func.isRequired,
         setPowNode: PropTypes.func.isRequired,
+        changePowSettings: PropTypes.func.isRequired,
     }),
     t: PropTypes.func.isRequired,
 };
