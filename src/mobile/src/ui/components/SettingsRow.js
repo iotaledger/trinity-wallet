@@ -58,6 +58,8 @@ class SettingsRow extends PureComponent {
         icon: PropTypes.string,
         /** List of dropdown options */
         dropdownOptions: PropTypes.array,
+        /** Component height */
+        height: PropTypes.number,
     };
 
     static defaultProps = {
@@ -73,6 +75,7 @@ class SettingsRow extends PureComponent {
             icon,
             currentSetting,
             toggle,
+            height
         } = this.props;
 
         return (
@@ -81,7 +84,7 @@ class SettingsRow extends PureComponent {
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                 disabled={inactive}
             >
-                <View style={styles.item}>
+                <View style={[styles.item, { height }]}>
                     {icon && <Icon name={icon} size={width / 22} color={body.color} />}
                     <View style={styles.content}>
                         <Text style={[styles.titleText, { color: body.color }, icon && { marginLeft: width / 25 }]}>

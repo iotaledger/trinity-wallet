@@ -503,7 +503,7 @@
         "automaticNodeManagement": "Automatic node management",
         "addCustomNodes": "Add custom nodes",
         "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
+        "nodeAutoswitching": "Auto select primary node",
         "primaryNode": "Primary node",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
@@ -514,7 +514,8 @@
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
         "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
-        "powNode": "Use specific node for PoW"
+        "powNode": "Outsource PoW to node",
+        "nodeForPow": "Proof of Work Node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
