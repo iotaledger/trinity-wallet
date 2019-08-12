@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Det er ikke nok noder for å aktivere quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Legg til flere egendefinerte noder eller aktiver listen med eksterne noder.",
         "nodeSettingsUpdatedTitle": "Node-innstillinger oppdatert",
-        "nodeSettingsUpdatedExplanation": "Du har oppdatert node-innstillingene dine."
+        "nodeSettingsUpdatedExplanation": "Du har oppdatert node-innstillingene dine.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Egendefinert node kunne ikke legges til",

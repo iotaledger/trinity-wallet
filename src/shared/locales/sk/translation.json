@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Pre správne fungovanie kvóra nie je dostatok nodov.",
         "nodeEnoughNodesExplanationCustomNodes": "Pridať ďalšie vlastné nody alebo povoliť zoznam vzdialených nodov.",
         "nodeSettingsUpdatedTitle": "Nastavenia nodu boli aktualizované",
-        "nodeSettingsUpdatedExplanation": "Úspešne ste aktualizovali nastavenia vášho nodu."
+        "nodeSettingsUpdatedExplanation": "Úspešne ste aktualizovali nastavenia vášho nodu.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nedá sa pridať vlastný Node",

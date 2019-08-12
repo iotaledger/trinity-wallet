@@ -99,7 +99,7 @@ const renderInitialScreen = (initialScreen) => {
         reduxStore.dispatch(updateTheme('Default'));
         theme = get(Themes, 'Default');
     }
-    
+
     const options = {
         layout: {
             backgroundColor: theme.body.bg,

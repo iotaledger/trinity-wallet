@@ -69,7 +69,10 @@ import com.android.build.OutputFile
  *   extraPackagerArgs: []
  * ]
  */
-project.ext.react = [entryFile: "index.js"]
+project.ext.react = [
+        entryFile: "index.js",
+        jsBundleDirRelease: "$buildDir/intermediates/merged_assets/release/mergeReleaseAssets/out"
+]
 
 apply from: "../../node_modules/react-native/react.gradle"
 /**
@@ -127,11 +130,21 @@ android {
     buildTypes {
         release {
             debuggable false
-            shrinkResources enableProguardInReleaseBuilds
             zipAlignEnabled enableProguardInReleaseBuilds
             minifyEnabled enableProguardInReleaseBuilds
             useProguard enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            resValue "string", "app_name", "Trinity"
+        }
+        debug {
+            applicationIdSuffix = ".debug"
+            resValue "string", "app_name", "Trinity Debug"
+        }
+        beta {
+            initWith release
+            applicationIdSuffix = ".beta"
+            resValue "string", "app_name", "Trinity Beta"
+            matchingFallbacks = ['debug', 'release']
         }
     }
     // applicationVariants are e.g. debug, release

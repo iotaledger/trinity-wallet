@@ -163,8 +163,6 @@ class CustomTextInput extends Component {
     };
 
     static defaultProps = {
-        onFocus: () => {},
-        onBlur: () => {},
         onFingerprintPress: () => {},
         containerStyle: { width: Styling.contentWidth },
         widgets: [],
@@ -403,7 +401,7 @@ class CustomTextInput extends Component {
                         styles.checksumContainer,
                         {
                             backgroundColor: theme.input.bg,
-                            borderColor: this.state.isFocused ? theme.input.hover : theme.input.border,
+                            borderColor: this.state.isFocused ? theme.input.hover : theme.input.bg,
                         },
                     ]}
                 >
@@ -546,7 +544,7 @@ class CustomTextInput extends Component {
                         styles.innerContainer,
                         {
                             backgroundColor: theme.input.bg,
-                            borderColor: isFocused ? theme.input.hover : theme.input.border,
+                            borderColor: isFocused ? theme.input.hover : theme.input.bg,
                         },
                         { height },
                     ]}

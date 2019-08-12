@@ -169,7 +169,7 @@
         "missingPermission": "Fájl hozzáférési engedély szükséges",
         "missingPermissionExplanation": "A művelet végrehajtásához a fájlrendszerhez való hozzáférési jogosultág szükséges.",
         "swipeToConfirm": "A megerősítéshez húzza el a csúszkát",
-        "congratulations": "Congratulations",
+        "congratulations": "Gratulálunk",
         "expert": "Haladó",
         "notEnoughSyncedNodes": "Túl kevés csomópont szinkronban",
         "notEnoughSyncedNodesExplanation": "A csomópontok nem határozatképesek. Kapcsolja ki a határozatképesség ellenőrzését vagy próbálja meg újra."
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Nyelv",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Válasszon nyelvet",
         "letsGetStarted": "Kezdjük el"
     },
     "login": {
@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Nincs elegendő csomópont a határozatképesség-ellenőrzés engedélyezéséhez.",
         "nodeEnoughNodesExplanationCustomNodes": "Adjon hozzá újabb csomópontokat vagy engedélyezze a távoli csomópontlista használatát.",
         "nodeSettingsUpdatedTitle": "Csomópont beállítások frissítve",
-        "nodeSettingsUpdatedExplanation": "Sikeresen módosította a csomópont beállításait."
+        "nodeSettingsUpdatedExplanation": "Sikeresen módosította a csomópont beállításait.",
+        "powNode": "Megadott csomópont használata a kiszabott munka elvégzéséhez"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Saját csomópont hozzáadása sikertelen",
@@ -649,7 +650,7 @@
         "noPassword": "Nincs jelszó beállítva a készüléken"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Jóváhagyja a {{contents}} küldését?",
         "aMessage": "egy üzenet",
         "fromAccount": "{{selectedAccountName}}-tól",
         "toAddress": "Célszámla címe",

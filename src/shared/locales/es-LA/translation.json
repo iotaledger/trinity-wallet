@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "No hay suficientes nodos para habilitar el quórum.",
         "nodeEnoughNodesExplanationCustomNodes": "Añadir más nodos personalizados o activar la lista de nodos remotos.",
         "nodeSettingsUpdatedTitle": "Configuración del nodo actualizada",
-        "nodeSettingsUpdatedExplanation": "Has actualizado con éxito la configuración de tu nodo."
+        "nodeSettingsUpdatedExplanation": "Has actualizado con éxito la configuración de tu nodo.",
+        "powNode": "Use specific node for PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "No se pudo añadir el nodo personalizado",

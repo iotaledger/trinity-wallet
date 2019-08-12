@@ -508,7 +508,8 @@
         "nodeEnoughNodesExplanation": "Brak wystarczającej liczby serwerów, aby włączyć kworum.",
         "nodeEnoughNodesExplanationCustomNodes": "Dodaj więcej niestandardowych serwerów lub włącz zdalną listę serwerów.",
         "nodeSettingsUpdatedTitle": "Zaktualizowano ustawienia serwera",
-        "nodeSettingsUpdatedExplanation": "Pomyślnie zaktualizowałeś swoje ustawienia serwera."
+        "nodeSettingsUpdatedExplanation": "Pomyślnie zaktualizowałeś swoje ustawienia serwera.",
+        "powNode": "Użyj konkretnego serwera dla PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nie można dodać serwera",
