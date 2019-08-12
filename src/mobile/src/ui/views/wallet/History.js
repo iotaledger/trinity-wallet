@@ -284,7 +284,6 @@ class History extends Component {
                     containerBackgroundColor: { backgroundColor: dark.color },
                     defaultTextColor: { color: body.color },
                     rowTextColor: { color: dark.body },
-                    rowBorderColor: { borderColor: primary.border },
                     backgroundColor: body.bg,
                     borderColor: { borderColor: body.color },
                     barBg: bar.bg,

@@ -8,7 +8,7 @@
     display: flex;
     padding: 20px;
     border-radius: 5px;
-    
+
     @media screen and (max-width: 860px) {
         display: block;
         position: relative;
@@ -32,7 +32,6 @@
         }
 
         input {
-            border: none;
             line-height: 40px;
             padding-left: 10px;
             font-size: 14px;
