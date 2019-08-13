@@ -166,66 +166,66 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
 
                         <Toggle inline={t('nodeSettings:outsourcePow')} checked={remotePoW} onChange={setRemotePoW} />
 
-                        <hr />
-                        <Toggle
-                            disabled={autoNodeSelection}
-                            inline={t('nodeSettings:autoNodeList')}
-                            checked={autoNodeList}
-                            onChange={updateAutoNodeList}
-                        />
+                        { !autoNodeSelection &&
+                            <div>
+                                <hr />
+                                <Toggle
+                                    inline={t('nodeSettings:autoNodeList')}
+                                    checked={autoNodeList}
+                                    onChange={updateAutoNodeList}
+                                />
 
-                        <hr />
-                        <Toggle
-                            disabled={autoNodeSelection}
-                            inline={t('nodeSettings:nodeAutoswitching')}
-                            checked={nodeAutoSwitch}
-                            onChange={setNodeAutoSwitch}
-                        />
-                        {!nodeAutoSwitch && (
-                            <Select
-                                label={t('nodeSettings:primaryNode')}
-                                disabled={autoNodeSelection}
-                                value={primaryNode.url}
-                                onChange={(url) => setPrimaryNode(availableNodes.find((node) => node.url === url))}
-                                options={availableNodes.map(({ url }) => {
-                                    return { value: url };
-                                })}
-                            />
-                        )}
+                                <Toggle
+                                    inline={t('nodeSettings:nodeAutoswitching')}
+                                    checked={nodeAutoSwitch}
+                                    onChange={setNodeAutoSwitch}
+                                />
+                                {!nodeAutoSwitch && (
+                                    <Select
+                                        label={t('nodeSettings:primaryNode')}
+                                        value={primaryNode.url}
+                                        onChange={(url) => setPrimaryNode(availableNodes.find((node) => node.url === url))}
+                                        options={availableNodes.map(({ url }) => {
+                                            return { value: url };
+                                        })}
+                                    />
+                                )}
 
-                        <hr />
-                        <Toggle
-                            disabled={autoNodeSelection || !remotePoW}
-                            inline={t('nodeSettings:autoSelectPowNode')}
-                            checked={powNodeAutoSwitch}
-                            onChange={togglePowNodeAutoSwitch}
-                        />
-                        {!powNodeAutoSwitch && (
-                            <Select
-                                value={powNode}
-                                onChange={(url) => setPowNode(url)}
-                                options={availablePowNodes.map(({ url }) => {
-                                    return { value: url };
-                                })}
-                            />
-                        )}
+                                { remotePoW &&
+                                    <Toggle
+                                        inline={t('nodeSettings:autoSelectPowNode')}
+                                        checked={powNodeAutoSwitch}
+                                        onChange={togglePowNodeAutoSwitch}
+                                    />
+                                }
+                                {!powNodeAutoSwitch && remotePoW && (
+                                    <Select
+                                        label={t('nodeSettings:nodeForPow')}
+                                        value={powNode}
+                                        onChange={(url) => setPowNode(url)}
+                                        options={availablePowNodes.map(({ url }) => {
+                                            return { value: url };
+                                        })}
+                                    />
+                                )}
 
-                        <hr />
-                        <Toggle
-                            disabled={autoNodeSelection}
-                            inline={t('nodeSettings:enableQuorum')}
-                            checked={quorumEnabled}
-                            onChange={updateQuorumEnabled}
-                        />
-                        <Number
-                            disabled={autoNodeSelection || !quorumEnabled}
-                            inline
-                            min={MINIMUM_QUORUM_SIZE}
-                            max={Math.min(availableNodes.length, MAXIMUM_QUORUM_SIZE)}
-                            value={quorumSize}
-                            label={t('nodeSettings:quorumSize')}
-                            onChange={setQuorumSize}
-                        />
+                                <Toggle
+                                    inline={t('nodeSettings:enableQuorum')}
+                                    checked={quorumEnabled}
+                                    onChange={updateQuorumEnabled}
+                                />
+                                {quorumEnabled &&
+                                    <Number
+                                        inline
+                                        min={MINIMUM_QUORUM_SIZE}
+                                        max={Math.min(availableNodes.length, MAXIMUM_QUORUM_SIZE)}
+                                        value={quorumSize}
+                                        label={t('nodeSettings:quorumSize')}
+                                        onChange={setQuorumSize}
+                                    />
+                                }
+                            </div>
+                        }
                     </article>
                 </Scrollbar>
             </div>
