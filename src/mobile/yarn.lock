@@ -7812,10 +7812,10 @@ react-fast-compare@^2.0.0:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.2.tgz#0560ba7a61a1662d9cea8cd97a0d9db7591bab1c"
   integrity sha512-EdPU5vXIzvNvQFNuej3oQ1PZ6YmDunTPZJ3V5EmwRqOhEmW0PNxzUdbYhXnZKZFtrrjGiu9718f6iQRdj0l2JA==
 
-react-i18next@^10.11.5:
-  version "10.11.5"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-10.11.5.tgz#10d0726a6c63c2d928078a7e7ec3db708246be04"
-  integrity sha512-+LXYehLGWbOzM4on9pgeCMTmo7J24Pm2rio4S8OSVdYudUKxLSYzoMDgJect0SQbTlIiK6b6+OTgTGY4YKPECw==
+react-i18next@^10.12.0:
+  version "10.12.1"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-10.12.1.tgz#13965943b3175e5bef6023cf180c759fe8fd1aae"
+  integrity sha512-cy8jnWVufZsotExiYpmwqqOHjUJsPWTunifjrqWjvkFrBFf1biBCdCHjr9h+pt+ZsLLn+y3o0v6qXDBPpKvqUg==
   dependencies:
     "@babel/runtime" "^7.3.1"
     html-parse-stringify2 "2.0.1"
@@ -8904,7 +8904,7 @@ shared-modules@../shared/:
     moment-timezone "^0.5.26"
     proxy-polyfill "^0.3.0"
     react "16.8.6"
-    react-i18next "^10.11.5"
+    react-i18next "^10.12.0"
     react-redux "^5.1.1"
     redux "^4.0.4"
     redux-thunk "^2.3.0"
