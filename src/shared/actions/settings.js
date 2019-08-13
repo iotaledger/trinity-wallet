@@ -7,7 +7,7 @@ import i18next from '../libs/i18next';
 import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
 import { fetchNodeList } from '../actions/polling';
 import { allowsRemotePow } from '../libs/iota/extendedApi';
-import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState } from '../selectors/global';
+import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState, getRandomPowNodeFromState } from '../selectors/global';
 import { throwIfNodeNotHealthy } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import { Wallet, Node } from '../storage';
@@ -232,12 +232,10 @@ export const setNodeList = (payload) => {
         const { settings } = getState();
         const nodes = [...settings.nodes, ...settings.customNodes];
 
-        const powNodeExists = nodes.find(({ url }) => url === settings.powNode);
+        const powNodeExists = settings.powNode && nodes.find(({ url }) => url === settings.powNode);
+
         if (!powNodeExists) {
-            dispatch({
-                type: SettingsActionTypes.SET_POW_NODE,
-                payload: '',
-            });
+            return dispatch(setPowNode(getRandomPowNodeFromState(getState())));
         }
     };
 };
@@ -262,10 +260,7 @@ export const removeCustomNode = (payload) => {
         const { settings } = getState();
 
         if (settings.powNode === payload) {
-            dispatch({
-                type: SettingsActionTypes.SET_POW_NODE,
-                payload: '',
-            });
+            return dispatch(setPowNode(getRandomPowNodeFromState(getState())));
         }
     };
 };

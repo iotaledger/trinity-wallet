@@ -2,6 +2,8 @@ import assign from 'lodash/assign';
 import has from 'lodash/has';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
+import get from 'lodash/get';
+import sample from 'lodash/sample';
 import { createSelector } from 'reselect';
 import Themes from '../themes/themes';
 import { DEFAULT_NODE } from '../config';
@@ -106,6 +108,21 @@ export const getNodesFromState = createSelector(
 export const getSelectedNodeFromState = createSelector(
     getSettingsFromState,
     (state) => state.node || DEFAULT_NODE,
+);
+
+/**
+ *   Selects random pow node prop from settings reducer state object.
+ *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
+ *
+ *   @method getRandomPowNodeFromState
+ *
+ *   @param {object} state
+ *
+ *   @returns {object}
+ **/
+export const getRandomPowNodeFromState = createSelector(
+    getSettingsFromState,
+    (state) => get(sample(filter([...state.customNodes, ... state.nodes], (node) => node.pow === true)), 'url')
 );
 
 /**
