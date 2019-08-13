@@ -1,6 +1,7 @@
 import assign from 'lodash/assign';
 import has from 'lodash/has';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import { createSelector } from 'reselect';
 import Themes from '../themes/themes';
 import { DEFAULT_NODE } from '../config';
@@ -184,12 +185,18 @@ export const nodesConfigurationFactory = (overrides) =>
                 nodes: state.autoNodeList ? [...state.nodes, ...state.customNodes] : state.customNodes,
                 /** Wallet's active node */
                 primaryNode: state.node,
+                /** Wallet's active PoW node - undefined if not performing remote PoW */
+                powNode: undefined,
                 /** Determines if quorum is enabled/disabled */
                 quorum: state.quorum,
                 /**
                  * Determines if (primary) node should automatically be auto-switched
                  */
                 nodeAutoSwitch: state.nodeAutoSwitch,
+                /**
+                 * Determines if (PoW) node should automatically be auto-switched
+                 */
+                powNodeAutoSwitch: state.powNodeAutoSwitch,
                 /**
                  * - When true: pull in nodes from endpoint (config#NODELIST_URL) and include the custom nodes in the quorum selection
                  * - When false: only use custom nodes in quorum selection
@@ -211,13 +218,7 @@ export const nodesConfigurationFactory = (overrides) =>
 
             if (shouldUseOnlyPowNodes) {
                 config.nodes = filter(config.nodes, (node) => node.pow === true);
-
-                if (state.powNode) {
-                    const powNode = config.nodes.find(({ url }) => url === state.powNode);
-                    if (powNode) {
-                        config.priorityNode = powNode;
-                    }
-                }
+                config.powNode = find(config.nodes, (node) => node.url === state.powNode);
             }
 
             return config;

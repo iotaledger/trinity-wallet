@@ -1,12 +1,13 @@
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isFunction from 'lodash/isFunction';
+import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 import unionBy from 'lodash/unionBy';
 import Errors from '../errors';
 import { getRandomNodes } from './utils';
 import { DEFAULT_RETRIES } from '../../config';
-import { changeNode } from '../../actions/settings';
+import { changeNode, setPowNode } from '../../actions/settings';
 import store from '../../store';
 
 export default class NodesManager {
@@ -33,18 +34,15 @@ export default class NodesManager {
      * @returns {function(function): function(...[*]): Promise}
      */
     withRetries(failureCallbacks, retryAttempts = DEFAULT_RETRIES) {
-        const { priorityNode, primaryNode, nodeAutoSwitch, nodes, quorum } = this.config;
+        const { priorityNode, primaryNode, nodeAutoSwitch, powNodeAutoSwitch, nodes, quorum, powNode } = this.config;
         let attempt = 0;
         let executedCallback = false;
-        const remotePoW = store.getState().settings.remotePoW;
-        const powNode = store.getState().settings.powNode;
-        const randomNodes = getRandomNodes(
-            nodes,
+        const randomNodes = getRandomNodes(nodes,
             retryAttempts,
             [primaryNode],
-            priorityNode.url === powNode && remotePoW,
+            !isUndefined(powNode),
         );
-        const retryNodes = unionBy([priorityNode], randomNodes, 'url');
+        const retryNodes = isUndefined(powNode) ? unionBy([priorityNode], randomNodes, 'url') : unionBy([powNode], randomNodes, 'url') ;
         // Abort retries on these errors
         const cancellationErrors = [Errors.LEDGER_CANCELLED, Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE];
 
@@ -56,7 +54,11 @@ export default class NodesManager {
 
                 return promiseFunc(retryNodes[attempt], quorum.enabled)(...args)
                     .then((result) => {
-                        store.dispatch(changeNode(retryNodes[attempt]));
+                        if (powNode) {
+                            store.dispatch(setPowNode(get(retryNodes[attempt], 'url')))
+                        } else {
+                            store.dispatch(changeNode(retryNodes[attempt]));
+                        }
 
                         return result;
                     })
@@ -90,9 +92,17 @@ export default class NodesManager {
                     });
             };
 
-            // If auto node switching is disabled, just connect to the selected (primary) node
-            if (!nodeAutoSwitch) {
-                return (...args) => promiseFunc(primaryNode, quorum.enabled)(...args);
+            // If powNode is defined, then this is an attachToTangle request
+            if (powNode) {
+                // If auto pow node switching is disabled, just connect to the selected (pow) node
+                if (!powNodeAutoSwitch) {
+                    return (...args) => promiseFunc(powNode, quorum.enabled)(...args);
+                }
+            } else {
+                // If auto primaru node switching is disabled, just connect to the selected (primary) node
+                if (!nodeAutoSwitch) {
+                    return (...args) => promiseFunc(primaryNode, quorum.enabled)(...args);
+                }
             }
 
             return execute;

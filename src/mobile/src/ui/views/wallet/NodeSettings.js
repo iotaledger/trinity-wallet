@@ -305,7 +305,7 @@ export class NodeSettings extends PureComponent {
      */
     togglePowNodeAutoSwitch() {
         const { powNodeAutoSwitch } = this.state;
-        this.setState({ powNode: powNodeAutoSwitch ? get(sample(this.getAvailableNodes(true)), 'url') : '' });
+        this.setState({ powNode: this.props.powNode || get(sample(this.getAvailableNodes(true)), 'url') });
         this.setState({ powNodeAutoSwitch: !powNodeAutoSwitch });
     }
 

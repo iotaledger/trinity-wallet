@@ -82,7 +82,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
     };
 
     const togglePowNodeAutoSwitch = () => {
-        setPowNode(powNodeAutoSwitch ? get(sample(availablePowNodes), 'url') : '');
+        setPowNode(settings.powNode || get(sample(availablePowNodes), 'url'));
         setPowNodeAutoSwitch(!powNodeAutoSwitch);
     };
 
