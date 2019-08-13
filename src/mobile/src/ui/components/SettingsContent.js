@@ -67,10 +67,9 @@ const SettingsContent = ({ component, ...props }) => {
 export const renderSettingsRows = (rows, theme) => {
     const dualFooter = find(rows, { name: 'dualFooter' });
     const backButton = find(rows, { name: 'back' });
-    const visibleRows = dualFooter || backButton ? 10 : 11;
+    const visibleRows = dualFooter || backButton ? 11 : 12;
 
     return (
-
         <View style={{ flex: 1 }}>
             <View style={{ flex: 12 }}>
                 <View style={{ flex: visibleRows }}>
@@ -80,11 +79,15 @@ export const renderSettingsRows = (rows, theme) => {
                         theme={theme}
                     />
                 </View>
-                {(dualFooter || backButton) && <View style={{ flex: 1 }}/>}
+                {(dualFooter || backButton) && <View style={{ flex: 1 }} />}
             </View>
             <View style={{ flex: 1 }}>
                 {backButton && (
-                    <SettingsBackButton theme={theme} backFunction={backButton.function} inactive={backButton.inactive} />
+                    <SettingsBackButton
+                        theme={theme}
+                        backFunction={backButton.function}
+                        inactive={backButton.inactive}
+                    />
                 )}
                 {dualFooter && (
                     <SettingsDualFooter

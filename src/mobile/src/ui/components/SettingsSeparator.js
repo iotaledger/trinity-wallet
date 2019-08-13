@@ -34,7 +34,7 @@ class SettingsSeparator extends PureComponent {
 
         return (
             <TouchableWithoutFeedback>
-                <View style={[styles.separatorContainer, {height}, inactive && { opacity: 0.35 }]}>
+                <View style={[styles.separatorContainer, { height }, inactive && { opacity: 0.35 }]}>
                     <View style={[styles.separator, { borderBottomColor: color }]} />
                 </View>
             </TouchableWithoutFeedback>

@@ -865,6 +865,25 @@ export const updateNodeAutoSwitchSetting = (payload) => {
 };
 
 /**
+ * Dispatch to update proof of work node auto-switch setting
+ *
+ * @method updatePowNodeAutoSwitchSetting
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const updatePowNodeAutoSwitchSetting = (payload) => {
+    // Update pow node auto switching setting in realm
+    Wallet.updatePowNodeAutoSwitchSetting(payload);
+
+    // Update pow node auto switching setting in redux store
+    return {
+        type: SettingsActionTypes.UPDATE_POW_NODE_AUTO_SWITCH_SETTING,
+        payload,
+    };
+};
+
+/**
  * Dispatch to update autoNodeList setting
  *
  * @method updateAutoNodeListSetting

@@ -2,6 +2,7 @@ import map from 'lodash/map';
 import omit from 'lodash/omit';
 import find from 'lodash/find';
 import get from 'lodash/get';
+import sample from 'lodash/sample';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 import unionBy from 'lodash/unionBy';
@@ -17,7 +18,8 @@ import {
     updateNodeAutoSwitchSetting,
     changeAutoNodeListSetting,
     setPowNode,
-    changePowSettings
+    changePowSettings,
+    updatePowNodeAutoSwitchSetting,
 } from 'shared-modules/actions/settings';
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -31,7 +33,8 @@ const defaultState = {
     nodeAutoSwitch: true,
     quorumEnabled: true,
     quorumSize: QUORUM_SIZE.toString(),
-    powNode: ''
+    powNode: '',
+    powNodeAutoSwitch: true,
 };
 
 const styles = StyleSheet.create({
@@ -66,11 +69,17 @@ export class NodeSettings extends PureComponent {
         /** @ignore */
         changeAutoNodeListSetting: PropTypes.func.isRequired,
         /** @ignore */
+        updatePowNodeAutoSwitchSetting: PropTypes.func.isRequired,
+        /** @ignore */
         setPowNode: PropTypes.func.isRequired,
         /** @ignore */
         changePowSettings: PropTypes.func.isRequired,
         /** @ignore */
         powNode: PropTypes.string.isRequired,
+        /** @ignore */
+        remotePoW: PropTypes.bool.isRequired,
+        /** @ignore */
+        powNodeAutoSwitch: PropTypes.bool.isRequired,
         /** @ignore */
         autoNodeList: PropTypes.bool.isRequired,
         /** @ignore */
@@ -97,7 +106,9 @@ export class NodeSettings extends PureComponent {
             quorumEnabled: props.quorumEnabled,
             quorumSize: props.quorumSize,
             node: props.node,
-            powNode: props.powNode
+            powNode: props.powNode,
+            powNodeAutoSwitch: props.powNodeAutoSwitch,
+            remotePoW: props.remotePoW,
         };
         this.state.autoNodeManagement = this.hasDefaultNodeSettings();
     }
@@ -114,7 +125,16 @@ export class NodeSettings extends PureComponent {
 
     onApplyPress() {
         const { t } = this.props;
-        const { quorumSize, autoNodeList, nodeAutoSwitch, quorumEnabled, node, powNode } = this.state;
+        const {
+            quorumSize,
+            autoNodeList,
+            nodeAutoSwitch,
+            quorumEnabled,
+            node,
+            powNode,
+            remotePoW,
+            powNodeAutoSwitch,
+        } = this.state;
 
         if (autoNodeList !== this.props.autoNodeList) {
             this.props.changeAutoNodeListSetting(autoNodeList);
@@ -128,8 +148,11 @@ export class NodeSettings extends PureComponent {
         if (powNode !== this.props.powNode) {
             this.props.setPowNode(powNode);
         }
-        if (powNode.length ^ this.props.powNode.length) {
+        if (remotePoW !== this.props.remotePoW) {
             this.props.changePowSettings();
+        }
+        if (powNodeAutoSwitch !== this.props.powNodeAutoSwitch) {
+            this.props.updatePowNodeAutoSwitchSetting(powNodeAutoSwitch);
         }
         if (!isEqual(node, this.props.node)) {
             return this.props.setFullNode(node);
@@ -183,10 +206,19 @@ export class NodeSettings extends PureComponent {
      * @returns {bool}
      */
     haveNodeSettingsChanged() {
-        const { autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node, powNode } = this.props;
+        const {
+            autoNodeList,
+            nodeAutoSwitch,
+            quorumEnabled,
+            quorumSize,
+            node,
+            powNode,
+            powNodeAutoSwitch,
+            remotePoW,
+        } = this.props;
         return isEqual(
-            { autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node, powNode },
-            omit(this.state, 'autoNodeManagement'),
+            { autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node, powNode, powNodeAutoSwitch, remotePoW },
+            omit(this.state, ['autoNodeManagement']),
         );
     }
 
@@ -198,7 +230,7 @@ export class NodeSettings extends PureComponent {
      * @returns {bool}
      */
     hasDefaultNodeSettings() {
-        return isEqual(defaultState, omit(this.state, ['node', 'autoNodeManagement']));
+        return isEqual(defaultState, omit(this.state, ['node', 'autoNodeManagement', 'remotePoW']));
     }
 
     /**
@@ -269,13 +301,13 @@ export class NodeSettings extends PureComponent {
     /**
      * Toggles proof of work between local and remote and sets node to outsource to
      *
-     * @method togglePow
+     * @method togglePowNodeAutoSwitch
      */
-     togglePowNode(){
-         const availablePowNodes = this.getAvailableNodes(true);
-         const powNode = this.state.powNode.length === 0 && availablePowNodes.length ? availablePowNodes[0].url : '';
-         this.setState({ powNode });
-     };
+    togglePowNodeAutoSwitch() {
+        const { powNodeAutoSwitch } = this.state;
+        this.setState({ powNode: powNodeAutoSwitch ? get(sample(this.getAvailableNodes(true)), 'url') : '' });
+        this.setState({ powNodeAutoSwitch: !powNodeAutoSwitch });
+    }
 
     /**
      * Render setting rows
@@ -285,7 +317,17 @@ export class NodeSettings extends PureComponent {
      */
     renderSettingsContent() {
         const { theme, t, isChangingNode, loginRoute } = this.props;
-        const { autoNodeManagement, autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node, powNode } = this.state;
+        const {
+            autoNodeManagement,
+            autoNodeList,
+            nodeAutoSwitch,
+            quorumEnabled,
+            quorumSize,
+            node,
+            powNode,
+            remotePoW,
+            powNodeAutoSwitch,
+        } = this.state;
 
         const rows = [
             {
@@ -300,6 +342,11 @@ export class NodeSettings extends PureComponent {
                         ? this.props.setLoginRoute('addCustomNode')
                         : this.props.setSetting('addCustomNode'),
             },
+            {
+                name: t('nodeSettings:outsourcePow'),
+                function: () => this.setState({ remotePoW: !remotePoW }),
+                toggle: remotePoW,
+            },
             { name: 'separator', hidden: autoNodeManagement },
             {
                 name: t('nodeSettings:autoNodeList'),
@@ -307,7 +354,6 @@ export class NodeSettings extends PureComponent {
                 toggle: autoNodeList,
                 hidden: autoNodeManagement,
             },
-            { name: 'separator', hidden: autoNodeManagement },
             {
                 name: t('nodeSettings:nodeAutoswitching'),
                 function: () => this.setState({ nodeAutoSwitch: !nodeAutoSwitch }),
@@ -327,19 +373,18 @@ export class NodeSettings extends PureComponent {
                 dropdownOptions: map(this.getAvailableNodes(), (node) => node.url),
             },
             {
-                name: t('nodeSettings:powNode'),
-                function: () => this.togglePowNode(),
-                toggle: powNode.length > 0,
-                hidden: autoNodeManagement,
+                name: t('nodeSettings:autoSelectPowNode'),
+                function: () => this.togglePowNodeAutoSwitch(),
+                toggle: powNodeAutoSwitch,
+                hidden: autoNodeManagement || !remotePoW,
             },
             {
                 name: t('nodeSettings:nodeForPow'),
                 function: (powNode) => this.setState({ powNode }),
                 currentSetting: powNode,
-                hidden: autoNodeManagement || powNode.length === 0,
+                hidden: autoNodeManagement || powNodeAutoSwitch || !remotePoW,
                 dropdownOptions: map(this.getAvailableNodes(true), (node) => node.url),
             },
-            { name: 'separator', hidden: autoNodeManagement },
             {
                 name: t('nodeSettings:enableQuorum'),
                 function: () => this.toggleQuorumEnabled(),
@@ -379,7 +424,9 @@ const mapStateToProps = (state) => ({
     nodes: map(state.settings.nodes, (node) => omit(node, 'custom')),
     customNodes: state.settings.customNodes,
     powNode: state.settings.powNode,
+    remotePoW: state.settings.remotePoW,
     nodeAutoSwitch: state.settings.nodeAutoSwitch,
+    powNodeAutoSwitch: state.settings.powNodeAutoSwitch,
     autoNodeList: state.settings.autoNodeList,
     quorumSize: state.settings.quorum.size.toString(),
     quorumEnabled: state.settings.quorum.enabled,
@@ -396,7 +443,8 @@ const mapDispatchToProps = {
     setFullNode,
     setLoginRoute,
     setPowNode,
-    changePowSettings
+    changePowSettings,
+    updatePowNodeAutoSwitchSetting,
 };
 
 export default withNamespaces(['advancedSettings', 'nodeSettings', 'settings', 'global'])(

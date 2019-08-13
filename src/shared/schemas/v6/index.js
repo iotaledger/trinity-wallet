@@ -20,6 +20,13 @@ export default map(v5Schema, (schema) => {
                     type: 'string',
                     default: null,
                 },
+                /*
+                 * Determines if the node for proof of work should be automatically selected
+                 */
+                powNodeAutoSwitch: {
+                    type: 'bool',
+                    default: true,
+                },
             },
         });
     }

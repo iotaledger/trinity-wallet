@@ -11,7 +11,8 @@ import {
     updateQuorumConfig,
     updateNodeAutoSwitchSetting,
     changeAutoNodeListSetting,
-    changePowSettings
+    changePowSettings,
+    updatePowNodeAutoSwitchSetting,
 } from '../../actions/settings';
 import { generateAlert } from '../../actions/alerts';
 import { isValidUrl, isValidHttpsUrl } from '../../libs/utils';
@@ -28,11 +29,14 @@ export default function withNodeData(NodeComponent) {
             node: PropTypes.object.isRequired,
             nodes: PropTypes.array.isRequired,
             powNode: PropTypes.string.isRequired,
+            remotePoW: PropTypes.bool.isRequired,
+            powNodeAutoSwitch: PropTypes.bool.isRequired,
             customNodes: PropTypes.array.isRequired,
             isChangingNode: PropTypes.bool.isRequired,
             isCheckingCustomNode: PropTypes.bool.isRequired,
             setFullNode: PropTypes.func.isRequired,
             setPowNode: PropTypes.func.isRequired,
+            updatePowNodeAutoSwitchSetting: PropTypes.func.isRequired,
             removeCustomNode: PropTypes.func.isRequired,
             nodeAutoSwitch: PropTypes.bool.isRequired,
             autoNodeSelection: PropTypes.bool.isRequired,
@@ -120,6 +124,8 @@ export default function withNodeData(NodeComponent) {
                 isCheckingCustomNode,
                 theme,
                 nodeAutoSwitch,
+                remotePoW,
+                powNodeAutoSwitch,
                 autoNodeSelection,
                 updateQuorumConfig,
                 updateNodeAutoSwitchSetting,
@@ -148,6 +154,8 @@ export default function withNodeData(NodeComponent) {
                     quorumEnabled,
                     quorumSize,
                     powNode,
+                    remotePoW,
+                    powNodeAutoSwitch,
                 },
                 actions: {
                     changeAutoNodeListSetting,
@@ -155,7 +163,8 @@ export default function withNodeData(NodeComponent) {
                     updateQuorumConfig,
                     setFullNode,
                     setPowNode,
-                    changePowSettings
+                    changePowSettings,
+                    updatePowNodeAutoSwitchSetting,
                 },
                 backPress,
                 generateAlert,
@@ -175,6 +184,8 @@ export default function withNodeData(NodeComponent) {
         nodes: state.settings.nodes,
         customNodes: state.settings.customNodes,
         powNode: state.settings.powNode,
+        powNodeAutoSwitch: state.settings.powNodeAutoSwitch,
+        remotePoW: state.settings.remotePoW,
         theme: getThemeFromState(state),
         nodeAutoSwitch: state.settings.nodeAutoSwitch,
         autoNodeSelection: false,
@@ -193,7 +204,8 @@ export default function withNodeData(NodeComponent) {
         updateNodeAutoSwitchSetting,
         updateQuorumConfig,
         changeAutoNodeListSetting,
-        changePowSettings
+        changePowSettings,
+        updatePowNodeAutoSwitchSetting,
     };
 
     return connect(

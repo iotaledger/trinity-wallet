@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import unionBy from 'lodash/unionBy';
+import get from 'lodash/get';
+import sample from 'lodash/sample';
 import { withTranslation } from 'react-i18next';
 
 import withNodeData from 'containers/settings/Node';
@@ -29,7 +31,8 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
         defaultSettings.quorum.enabled === settings.quorumEnabled &&
         defaultSettings.quorum.size === settings.quorumSize &&
         defaultSettings.node.url === settings.node.url &&
-        defaultSettings.powNode === settings.powNode;
+        defaultSettings.powNode === settings.powNode &&
+        defaultSettings.powNodeAutoSwitch === settings.powNodeAutoSwitch;
 
     const [autoNodeSelection, setAutoNodeSelection] = useState(isDefault);
     const [autoNodeList, setAutoNodeList] = useState(settings.autoNodeList);
@@ -39,6 +42,8 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
     const [quorumSize, setQuorumSize] = useState(settings.quorumSize);
     const [showCustomNodes, setshowCustomNodes] = useState(false);
     const [powNode, setPowNode] = useState(settings.powNode);
+    const [powNodeAutoSwitch, setPowNodeAutoSwitch] = useState(settings.powNodeAutoSwitch);
+    const [remotePoW, setRemotePoW] = useState(settings.remotePoW);
 
     const availableNodes = unionBy(customNodes, autoNodeList && nodes, nodeAutoSwitch && [DEFAULT_NODE], 'url');
     const availablePowNodes = availableNodes.filter(({ pow }) => pow);
@@ -76,9 +81,9 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
         }
     };
 
-    const togglePowNode = (enabled) => {
-        const url = enabled && availablePowNodes.length ? availablePowNodes[0].url : '';
-        setPowNode(url);
+    const togglePowNodeAutoSwitch = () => {
+        setPowNode(powNodeAutoSwitch ? get(sample(availablePowNodes), 'url') : '');
+        setPowNodeAutoSwitch(!powNodeAutoSwitch);
     };
 
     const updateAutoNodeList = () => {
@@ -101,6 +106,9 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
             setPrimaryNode(defaultSettings.node);
             setQuorumEnabled(defaultSettings.quorum.enabled);
             setQuorumSize(defaultSettings.quorum.size);
+            setPowNode(defaultSettings.powNode);
+            setPowNodeAutoSwitch(defaultSettings.powNodeAutoSwitch);
+            setQuorumSize(defaultSettings.quorum.size);
         }
         setAutoNodeSelection(!autoNodeSelection);
     };
@@ -121,7 +129,10 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
         if (powNode !== settings.powNode) {
             actions.setPowNode(powNode);
         }
-        if (powNode.length ^ settings.powNode.length) {
+        if (powNodeAutoSwitch !== settings.powNodeAutoSwitch) {
+            actions.updatePowNodeAutoSwitchSetting(powNodeAutoSwitch);
+        }
+        if (remotePoW !== settings.remotePoW) {
             actions.changePowSettings();
         }
         if (primaryNode.url !== settings.node.url || primaryNode.password !== settings.node.password) {
@@ -153,6 +164,8 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                             {t('nodeSettings:addCustomNodes')}
                         </Button>
 
+                        <Toggle inline={t('nodeSettings:outsourcePow')} checked={remotePoW} onChange={setRemotePoW} />
+
                         <hr />
                         <Toggle
                             disabled={autoNodeSelection}
@@ -182,16 +195,16 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
 
                         <hr />
                         <Toggle
-                            disabled={autoNodeSelection}
-                            inline={t('nodeSettings:powNode')}
-                            checked={powNode.length > 0}
-                            onChange={togglePowNode}
+                            disabled={autoNodeSelection || !remotePoW}
+                            inline={t('nodeSettings:autoSelectPowNode')}
+                            checked={powNodeAutoSwitch}
+                            onChange={togglePowNodeAutoSwitch}
                         />
-                        {!autoNodeSelection && powNode && (
+                        {!powNodeAutoSwitch && (
                             <Select
                                 value={powNode}
                                 onChange={(url) => setPowNode(url)}
-                                options={availableNodes.map(({ url }) => {
+                                options={availablePowNodes.map(({ url }) => {
                                     return { value: url };
                                 })}
                             />
@@ -228,7 +241,9 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                         primaryNode.url === settings.node.url &&
                         primaryNode.token === settings.node.token &&
                         primaryNode.password === settings.node.password &&
-                        powNode === settings.powNode
+                        powNode === settings.powNode &&
+                        powNodeAutoSwitch === settings.powNodeAutoSwitch &&
+                        remotePoW === settings.remotePoW
                     }
                     type="submit"
                     onClick={saveSettings}
@@ -252,6 +267,8 @@ NodeSettings.propTypes = {
         powNode: PropTypes.string.isRequired,
         quorumEnabled: PropTypes.bool.isRequired,
         quorumSize: PropTypes.number.isRequired,
+        remotePoW: PropTypes.bool.isRequired,
+        powNodeAutoSwitch: PropTypes.bool.isRequired,
     }),
     actions: PropTypes.shape({
         changeAutoNodeListSetting: PropTypes.func.isRequired,
@@ -260,6 +277,7 @@ NodeSettings.propTypes = {
         setFullNode: PropTypes.func.isRequired,
         setPowNode: PropTypes.func.isRequired,
         changePowSettings: PropTypes.func.isRequired,
+        updatePowNodeAutoSwitchSetting: PropTypes.func.isRequired,
     }),
     t: PropTypes.func.isRequired,
 };
