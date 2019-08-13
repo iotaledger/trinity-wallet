@@ -129,6 +129,7 @@ export default function withNodeData(NodeComponent) {
                 autoNodeSelection,
                 updateQuorumConfig,
                 updateNodeAutoSwitchSetting,
+                updatePowNodeAutoSwitchSetting,
                 quorumEnabled,
                 generateAlert,
                 quorumSize,
