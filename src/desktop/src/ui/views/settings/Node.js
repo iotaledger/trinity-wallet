@@ -121,8 +121,8 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
         if (powNode !== settings.powNode) {
             actions.setPowNode(powNode);
         }
-        if (powNode.length ^ this.props.powNode.length) {
-            this.props.changePowSettings();
+        if (powNode.length ^ settings.powNode.length) {
+            actions.changePowSettings();
         }
         if (primaryNode.url !== settings.node.url || primaryNode.password !== settings.node.password) {
             return actions.setFullNode(primaryNode);
