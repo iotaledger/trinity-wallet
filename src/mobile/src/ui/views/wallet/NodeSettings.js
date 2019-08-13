@@ -33,7 +33,6 @@ const defaultState = {
     nodeAutoSwitch: true,
     quorumEnabled: true,
     quorumSize: QUORUM_SIZE.toString(),
-    powNode: '',
     powNodeAutoSwitch: true,
 };
 
@@ -230,7 +229,7 @@ export class NodeSettings extends PureComponent {
      * @returns {bool}
      */
     hasDefaultNodeSettings() {
-        return isEqual(defaultState, omit(this.state, ['node', 'autoNodeManagement', 'remotePoW']));
+        return isEqual(defaultState, omit(this.state, ['node', 'autoNodeManagement', 'powNode', 'remotePoW']));
     }
 
     /**

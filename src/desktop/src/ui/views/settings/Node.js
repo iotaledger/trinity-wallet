@@ -31,7 +31,6 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
         defaultSettings.quorum.enabled === settings.quorumEnabled &&
         defaultSettings.quorum.size === settings.quorumSize &&
         defaultSettings.node.url === settings.node.url &&
-        defaultSettings.powNode === settings.powNode &&
         defaultSettings.powNodeAutoSwitch === settings.powNodeAutoSwitch;
 
     const [autoNodeSelection, setAutoNodeSelection] = useState(isDefault);
