@@ -497,7 +497,7 @@
     "nodeSettings": {
         "automaticNodeManagement": "Automatinis serverio valdymas",
         "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use official node list",
+        "autoNodeList": "Use default node list",
         "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Pagrindinis serveris",
         "enableQuorum": "Įjungti kvorumą",
