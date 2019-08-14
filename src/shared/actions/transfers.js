@@ -633,68 +633,50 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     return performLocalPow();
                 }
 
-                // If proof of work configuration is set to remote PoW
-                // Make an attempt to offload proof of work to remote
-                // If network call fails:
-                // 1) Find nodes with PoW enabled
-                // 2) Auto retry offloading PoW
-                // 3) If auto retry fails, perform proof of work locally
-                return attachToTangleAsync(
-                    null,
-                    // See: extendedApi#attachToTangle
-                    extend(
-                        {
-                            __proto__: seedStore.__proto__,
-                        },
-                        seedStore,
-                        { offloadPow: true },
-                    ),
-                )(trunkTransaction, branchTransaction, cached.trytes).catch(() => {
-                    dispatch(
-                        generateAlert(
-                            'info',
-                            i18next.t('global:pleaseWait'),
-                            `${i18next.t('global:problemPerformingProofOfWork')} ${i18next.t(
-                                'global:tryingAgainWithDifferentNode',
-                            )}`,
-                            20000,
-                        ),
-                    );
-
-                    // Find nodes with proof of work enabled
-                    return new NodesManager(
-                        nodesConfigurationFactory({
-                            quorum,
-                            useOnlyPowNodes: true,
-                        })(getState()),
-                    )
-                        .withRetries((settings) =>
-                            attachToTangleAsync(
-                                settings,
-                                extend(
-                                    {
-                                        __proto__: seedStore.__proto__,
-                                    },
-                                    seedStore,
-                                    { offloadPow: true },
-                                ),
+                // Find nodes with proof of work enabled
+                return new NodesManager(
+                    nodesConfigurationFactory({
+                        quorum,
+                        useOnlyPowNodes: true,
+                    })(getState()),
+                )
+                    .withRetries(() =>
+                        dispatch(
+                            generateAlert(
+                                'info',
+                                i18next.t('global:pleaseWait'),
+                                `${i18next.t('global:problemPerformingProofOfWork')} ${i18next.t(
+                                    'global:tryingAgainWithDifferentNode',
+                                )}`,
+                                20000,
                             ),
-                        )(trunkTransaction, branchTransaction, cached.trytes)
-                        .catch(() => {
-                            // If outsourced proof of work fails on all nodes, fallback to local proof of work.
-                            dispatch(
-                                generateAlert(
-                                    'info',
-                                    i18next.t('global:pleaseWait'),
-                                    `${i18next.t('global:problemPerformingProofOfWork')} ${i18next.t(
-                                        'global:tryingAgainWithLocalPoW',
-                                    )}`,
-                                ),
-                            );
+                        ),
+                    )((settings) =>
+                        attachToTangleAsync(
+                            settings,
+                            extend(
+                                {
+                                    __proto__: seedStore.__proto__,
+                                },
+                                seedStore,
+                                { offloadPow: true },
+                            ),
+                        ),
+                    )(trunkTransaction, branchTransaction, cached.trytes)
+                    .catch(() => {
+                        // If outsourced proof of work fails on all nodes, fallback to local proof of work.
+                        dispatch(
+                            generateAlert(
+                                'info',
+                                i18next.t('global:pleaseWait'),
+                                `${i18next.t('global:problemPerformingProofOfWork')} ${i18next.t(
+                                    'global:tryingAgainWithLocalPoW',
+                                )}`,
+                            ),
+                        );
 
-                            return performLocalPow();
-                        });
-                });
+                        return performLocalPow();
+                    });
             })
             // Re-check spend statuses of all addresses in bundle
             .then(({ trytes, transactionObjects }) => {

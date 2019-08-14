@@ -7,7 +7,7 @@ import i18next from '../libs/i18next';
 import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
 import { fetchNodeList } from '../actions/polling';
 import { allowsRemotePow } from '../libs/iota/extendedApi';
-import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState } from '../selectors/global';
+import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState, getRandomPowNodeFromState } from '../selectors/global';
 import { throwIfNodeNotHealthy } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import { Wallet, Node } from '../storage';
@@ -232,12 +232,10 @@ export const setNodeList = (payload) => {
         const { settings } = getState();
         const nodes = [...settings.nodes, ...settings.customNodes];
 
-        const powNodeExists = nodes.find(({ url }) => url === settings.powNode);
+        const powNodeExists = settings.powNode && nodes.find(({ url }) => url === settings.powNode);
+
         if (!powNodeExists) {
-            dispatch({
-                type: SettingsActionTypes.SET_POW_NODE,
-                payload: '',
-            });
+            return dispatch(setPowNode(getRandomPowNodeFromState(getState())));
         }
     };
 };
@@ -262,10 +260,7 @@ export const removeCustomNode = (payload) => {
         const { settings } = getState();
 
         if (settings.powNode === payload) {
-            dispatch({
-                type: SettingsActionTypes.SET_POW_NODE,
-                payload: '',
-            });
+            return dispatch(setPowNode(getRandomPowNodeFromState(getState())));
         }
     };
 };
@@ -578,8 +573,7 @@ export function updateTheme(payload) {
 }
 
 /**
- * Makes an API call for checking if attachToTangle is enabled on the selected IRI node
- * and changes proof of work configuration for wallet
+ * Changes proof of work configuration for wallet
  *
  * @method changePowSettings
  *
@@ -587,26 +581,7 @@ export function updateTheme(payload) {
  */
 export function changePowSettings() {
     return (dispatch, getState) => {
-        const settings = getState().settings;
-        if (!settings.remotePoW) {
-            allowsRemotePow(settings.node).then((hasRemotePow) => {
-                if (!hasRemotePow) {
-                    return dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('global:attachToTangleUnavailable'),
-                            i18next.t('global:attachToTangleUnavailableExplanationShort'),
-                            10000,
-                        ),
-                    );
-                }
-                dispatch(setRemotePoW(!settings.remotePoW));
-                dispatch(generateAlert('success', i18next.t('pow:powUpdated'), i18next.t('pow:powUpdatedExplanation')));
-            });
-        } else {
-            dispatch(setRemotePoW(!settings.remotePoW));
-            dispatch(generateAlert('success', i18next.t('pow:powUpdated'), i18next.t('pow:powUpdatedExplanation')));
-        }
+        dispatch(setRemotePoW(!getState().settings.remotePoW));
     };
 }
 
@@ -880,6 +855,25 @@ export const updateNodeAutoSwitchSetting = (payload) => {
     // Update auto node switching setting in redux store
     return {
         type: SettingsActionTypes.UPDATE_NODE_AUTO_SWITCH_SETTING,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to update proof of work node auto-switch setting
+ *
+ * @method updatePowNodeAutoSwitchSetting
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const updatePowNodeAutoSwitchSetting = (payload) => {
+    // Update pow node auto switching setting in realm
+    Wallet.updatePowNodeAutoSwitchSetting(payload);
+
+    // Update pow node auto switching setting in redux store
+    return {
+        type: SettingsActionTypes.UPDATE_POW_NODE_AUTO_SWITCH_SETTING,
         payload,
     };
 };
