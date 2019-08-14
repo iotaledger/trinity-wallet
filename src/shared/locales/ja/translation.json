@@ -497,7 +497,7 @@
     "nodeSettings": {
         "automaticNodeManagement": "自動ノード管理",
         "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use official node list",
+        "autoNodeList": "Use default node list",
         "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "主要ノード",
         "enableQuorum": "定足数を有効化",
