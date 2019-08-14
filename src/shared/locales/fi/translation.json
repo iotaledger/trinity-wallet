@@ -497,7 +497,7 @@
     "nodeSettings": {
         "automaticNodeManagement": "Automaattinen palvelimen hallinta",
         "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use official node list",
+        "autoNodeList": "Use default node list",
         "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Ensisijainen palvelin",
         "enableQuorum": "Ota päätösvaltaisuus käyttöön",
