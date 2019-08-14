@@ -497,7 +497,7 @@
     "nodeSettings": {
         "automaticNodeManagement": "आटोमेटिक नोड मैनेजमेंट",
         "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use official node list",
+        "autoNodeList": "Use default node list",
         "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "प्राथमिक नोड",
         "enableQuorum": "कोरम सक्षम करें",
