@@ -497,7 +497,7 @@
     "nodeSettings": {
         "automaticNodeManagement": "مدیریت اتوماتیک نود",
         "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use official node list",
+        "autoNodeList": "Use default node list",
         "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "نود اصلی",
         "enableQuorum": "فعال کردن سیستم",
