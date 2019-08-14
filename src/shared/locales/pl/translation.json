@@ -497,7 +497,7 @@
     "nodeSettings": {
         "automaticNodeManagement": "Automatyczny wybór serwera",
         "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use official node list",
+        "autoNodeList": "Use default node list",
         "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Główny serwer",
         "enableQuorum": "Włącz kworum",
