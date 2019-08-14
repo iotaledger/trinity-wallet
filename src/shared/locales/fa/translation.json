@@ -116,7 +116,7 @@
         "checkForUpdates": "بررسی برای بروزرسانی",
         "account": "حساب",
         "changeNode": "تغییر Node",
-        "addCustomNode": "اضافه کردن Node سفارشی",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Node نامعتبر (غیر HTTPS)",
         "nodeMustUseHTTPSExplanation": "فقط Node های سفارشی با استفاده از HTTPS مجاز می باشند.",
         "nodeDuplicated": "Node تکراری",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "مدیریت اتوماتیک نود",
-        "addCustomNodes": "اضافه کردن نود سفارشی",
-        "autoNodeList": "لیست نود از راه دور استفاده کنید",
-        "nodeAutoswitching": "تغییر اتوماتیک نود اصلی",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use official node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "نود اصلی",
         "enableQuorum": "فعال کردن سیستم",
         "quorumSize": "اندازه سیستم",
@@ -509,7 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "نود های سفارشی بیشتری اضافه کنید یا لیست نود از راه دور را فعال کنید.",
         "nodeSettingsUpdatedTitle": "تنظیمات نود به روز رسانی شد",
         "nodeSettingsUpdatedExplanation": "شما تنظیمات نود خود را با موفقیت به روز کردید.",
-        "powNode": "Use specific node for PoW"
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node سفارشی نمیتوان اضافه کرد",
