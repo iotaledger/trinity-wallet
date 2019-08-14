@@ -509,7 +509,7 @@
         "nodeEnoughNodesExplanationCustomNodes": "Tambah Node kostum atau aktifkan List Node jarak jauh.",
         "nodeSettingsUpdatedTitle": "Aturan Node diperbarui",
         "nodeSettingsUpdatedExplanation": "Anda telah berhasil memperbarui aturan Node.",
-        "powNode": "Use specific node for PoW"
+        "powNode": "Pilih Node tertentu untuk PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node kustom tidak dapat ditambah",
