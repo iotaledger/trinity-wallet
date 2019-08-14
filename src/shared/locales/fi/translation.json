@@ -116,7 +116,7 @@
         "checkForUpdates": "Tarkista päivitykset",
         "account": "Oma tili",
         "changeNode": "Vaihda Palvelinta",
-        "addCustomNode": "Lisää Omavalintainen Palvelin",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Virheellinen palvelin (ei HTTPS yhteyttä)",
         "nodeMustUseHTTPSExplanation": "Voit lisätä vain palvelimia jotka tukevat HTTPS yhteyttä.",
         "nodeDuplicated": "Palvelin on jo olemassa",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automaattinen palvelimen hallinta",
-        "addCustomNodes": "Lisää omavalintainen palvelin",
-        "autoNodeList": "Käytä etä-palvelin listaa",
-        "nodeAutoswitching": "Ensisijaisen palvelimen automaattinen kytkentä",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use official node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Ensisijainen palvelin",
         "enableQuorum": "Ota päätösvaltaisuus käyttöön",
         "quorumSize": "Päätösvaltaisuuden koko",
@@ -509,7 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Lisää omavalintaisia palvelimia tai kytke etä-palvelin lista päälle.",
         "nodeSettingsUpdatedTitle": "Palvelin asetukset päivitetty",
         "nodeSettingsUpdatedExplanation": "Olet onnistuneesti päivittänyt palvelin asetukset.",
-        "powNode": "Use specific node for PoW"
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Palvelinta ei voitu lisätä",
