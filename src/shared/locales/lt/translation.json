@@ -116,7 +116,7 @@
         "checkForUpdates": "Tikrinti, ar yra atnaujinimų",
         "account": "Paskyra",
         "changeNode": "Pakeisti serverį",
-        "addCustomNode": "Pridėti vartotojo serverį",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Neteisingas serveris (ne HTTPS)",
         "nodeMustUseHTTPSExplanation": "Vartotojo serveriai galimi tik naudojantys HTTPS.",
         "nodeDuplicated": "Dubliuotas serveris",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatinis serverio valdymas",
-        "addCustomNodes": "Pridėti vartotojo serverius",
-        "autoNodeList": "Naudotis nuotoliniu serverių sąrašu",
-        "nodeAutoswitching": "Automatinis pagrindinio serverio keitimas",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use official node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Pagrindinis serveris",
         "enableQuorum": "Įjungti kvorumą",
         "quorumSize": "Kvorumo dydis",
@@ -509,7 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Pridėkite daugiau vartotojo serverių arba įjunkite nuotolinį serverių sąrašą.",
         "nodeSettingsUpdatedTitle": "Serverio nustatymai atnaujinti",
         "nodeSettingsUpdatedExplanation": "Jūs sėkmingai atnaujinote serverio nustatymus.",
-        "powNode": "Use specific node for PoW"
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",
