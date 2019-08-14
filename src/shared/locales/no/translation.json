@@ -497,7 +497,7 @@
     "nodeSettings": {
         "automaticNodeManagement": "Automatisk nodehåndtering",
         "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use official node list",
+        "autoNodeList": "Use default node list",
         "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Primærnode",
         "enableQuorum": "Aktiver quorum",
