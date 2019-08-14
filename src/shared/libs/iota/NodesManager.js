@@ -99,7 +99,7 @@ export default class NodesManager {
                     return (...args) => promiseFunc(powNode, quorum.enabled)(...args);
                 }
             } else {
-                // If auto primaru node switching is disabled, just connect to the selected (primary) node
+                // If auto primary node switching is disabled, just connect to the selected (primary) node
                 if (!nodeAutoSwitch) {
                     return (...args) => promiseFunc(primaryNode, quorum.enabled)(...args);
                 }
