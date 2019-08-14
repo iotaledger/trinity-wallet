@@ -116,7 +116,7 @@
         "checkForUpdates": "Проверить наличие обновлений",
         "account": "Учетная запись",
         "changeNode": "Сменить узел",
-        "addCustomNode": "Добавить пользовательский узел",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Недопустимый узел (не HTTPS)",
         "nodeMustUseHTTPSExplanation": "Допускаются только пользовательские узлы с помощью HTTPS.",
         "nodeDuplicated": "Дублированный узел",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Автоматическое управление узлами",
-        "addCustomNodes": "Добавить пользовательские узлы",
-        "autoNodeList": "Использовать список удаленных узлов сети",
-        "nodeAutoswitching": "Автоматическая смена основного узла сети",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use official node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Основной узел сети",
         "enableQuorum": "Включить Кворум",
         "quorumSize": "Размер Кворума",
@@ -509,7 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Добавьте больше пользовательских узлов сети или включите список удаленных узлов сети.",
         "nodeSettingsUpdatedTitle": "Настройки узлов сети обновлены",
         "nodeSettingsUpdatedExplanation": "Вы успешно обновили настройки узлов сети.",
-        "powNode": "Use specific node for PoW"
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Не удалось добавить пользовательский узел",
