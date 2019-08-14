@@ -116,7 +116,7 @@
         "checkForUpdates": "ನವೀಕರಣಗಳಿಗಾಗಿ ಪರಿಶೀಲಿಸಿ",
         "account": "ಖಾತೆ",
         "changeNode": "ನೋಡ್ ಬದಲಿಸಿ",
-        "addCustomNode": "ಕಸ್ಟಮ್ ನೋಡ್ ಸೇರಿಸಿ",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "ಅಮಾನ್ಯ ನೋಡ್ (ಅಲ್ಲದ HTTPS)",
         "nodeMustUseHTTPSExplanation": "HTTPS ಅನ್ನು ಬಳಸುವ ಕಸ್ಟಮ್ ನೋಡ್ ಗಳನ್ನೂ ಮಾತ್ರ ಅನುಮತಿಸಲಾಗಿದೆ.",
         "nodeDuplicated": "ನಕಲಿ ನೋಡ್",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use official node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Primary node",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
@@ -509,7 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
         "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
-        "powNode": "Use specific node for PoW"
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "ಕಸ್ಟಮ್ ನೋಡ್ ಅನ್ನು ಸೇರಿಸಲಾಗಲಿಲ್ಲ",
