@@ -497,7 +497,7 @@
     "nodeSettings": {
         "automaticNodeManagement": "Automatikus csomópont kezelés",
         "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use official node list",
+        "autoNodeList": "Use default node list",
         "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Elsődleges csomópont",
         "enableQuorum": "Határozatképesség-ellenőrzés engedélyezése",
