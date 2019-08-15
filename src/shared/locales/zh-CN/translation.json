@@ -652,7 +652,7 @@
         "noPassword": "设备上未设置密码"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "您即将发送 {{contents}}",
         "aMessage": "一条消息",
         "fromAccount": "来自{{selectedAccountName}}",
         "toAddress": "接受付款地址",
