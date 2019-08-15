@@ -1,33 +1,46 @@
 default_platform :ios
 
-def enable_manual_provisioning(project_file)
-  UI.important "Switching to manual code signing"
+def enable_manual_provisioning(project_file, provisioning_profile_uuid)
+  UI.message 'Switching to manual code signing'
   fastlane_require 'xcodeproj'
   project = Xcodeproj::Project.open(project_file)
-  target = project.native_targets.detect { |target| target.name == "iotaWallet" }
-  target_attributes = project.root_object.attributes["TargetAttributes"]
-  target_attributes.each { |id, attrs| attrs["ProvisioningStyle"] = 'Manual' }
+  target = project.native_targets.detect { |target| target.name == 'iotaWallet' }
+  target_attributes = project.root_object.attributes['TargetAttributes']
+  target_attributes.each { |_id, attrs| attrs['ProvisioningStyle'] = 'Manual' }
   target.build_configurations.each do |item|
-    item.build_settings['PROVISIONING_PROFILE[sdk=iphoneos*]'] = ENV['PROVISIONING_PROFILE_UUID']
-    item.build_settings['DEVELOPMENT_TEAM'] = "UG77RJKZHH"
-    item.build_settings['CODE_SIGN_IDENTITY[sdk=iphoneos*]'] = "iPhone Distribution"
+    item.build_settings['PROVISIONING_PROFILE[sdk=iphoneos*]'] = provisioning_profile_uuid
+    item.build_settings['DEVELOPMENT_TEAM'] = 'UG77RJKZHH'
+    item.build_settings['CODE_SIGN_IDENTITY[sdk=iphoneos*]'] = 'iPhone Distribution'
   end
   project.save
 end
 
 def add_bugsnag_api_key(plist_path, bugsnag_key)
-  UI.important "Adding Bugsnag API key"
+  UI.message 'Adding Bugsnag API key'
   set_info_plist_value(
     path: plist_path,
-    key: "BugsnagAPIKey",
-    value: bugsnag_key,
+    key: 'BugsnagAPIKey',
+    value: bugsnag_key
   )
 end
 
-lane :build_release do
+lane :configure_release do |options|
   if is_ci?
-    # Switch to manual code signing
-    enable_manual_provisioning('../iotaWallet.xcodeproj')
+    provisioning_profile = nil
+    if options[:destination] == 'beta'
+      UI.message 'Configuring signing for beta release'
+      # Use distribution profile for beta deployment
+      provisioning_profile = ENV['BETA_PROVISIONING_PROFILE_UUID']
+    elsif options[:destination] == 'adhoc'
+      UI.message 'Configuring signing for ad hoc release'
+      # Use ad hoc profile
+      provisioning_profile = ENV['AD_HOC_PROVISIONING_PROFILE_UUID']
+    else
+      UI.message 'Configuring signing for App Store release'
+      # Use distribution profile for App Store deployment
+      provisioning_profile = ENV['APPSTORE_PROVISIONING_PROFILE_UUID']
+    end
+    enable_manual_provisioning('../iotaWallet.xcodeproj', provisioning_profile)
     # Add Bugsnag API key
     add_bugsnag_api_key('./iotaWallet/Info.plist', ENV['BUGSNAG_API_KEY'])
   else
@@ -62,10 +75,10 @@ end
 lane :deploy do
   if is_ci?
     pilot(
-      username: "lewis@iota.org",
-      app_identifier: "com.iota.trinity",
+      username: 'lewis@iota.org',
+      app_identifier: 'com.iota.trinity',
       skip_submission: true,
-      team_name: "IOTA Stiftung",
+      team_name: 'IOTA Stiftung'
     )
   else
     UI.error('This lane should only be run on CI!')
@@ -77,20 +90,20 @@ lane :localization do
 end
 
 lane :clean_testers_dry_run do
-  UI.important "This may take about 20 minutes for 10,000 testers"
-  UI.important "Do not run this too often! You may be rate limited"
+  UI.important 'This may take about 20 minutes for 10,000 testers'
+  UI.important 'Do not run this too often! You may be rate limited'
   clean_testflight_testers(
-    app_identifier: "com.iota.trinity",
+    app_identifier: 'com.iota.trinity',
     days_of_inactivity: 120,
-    dry_run: true,
+    dry_run: true
   )
 end
 
 lane :clean_testers do
-  UI.important "This may take about 20 minutes for 10,000 testers"
-  UI.important "Do not run this too often! You may be rate limited"
+  UI.important 'This may take about 20 minutes for 10,000 testers'
+  UI.important 'Do not run this too often! You may be rate limited'
   clean_testflight_testers(
-    app_identifier: "com.iota.trinity",
-    days_of_inactivity: 120,
+    app_identifier: 'com.iota.trinity',
+    days_of_inactivity: 120
   )
 end
