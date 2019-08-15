@@ -13,7 +13,7 @@ lane :release do
   increment_version_name(version_name: version)
 end
 
-lane :build_release do
+lane :configure_release do
   if is_ci?
     add_bugsnag_api_key(ENV['BUGSNAG_API_KEY'])
   else
