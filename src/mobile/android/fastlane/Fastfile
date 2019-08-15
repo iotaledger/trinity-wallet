@@ -2,8 +2,8 @@ actions_path 'actions/'
 default_platform :android
 
 def add_bugsnag_api_key(bugsnag_key)
-  UI.important "Adding Bugsnag API key"
-  set_meta_data(attribute: "com.bugsnag.android.API_KEY", value: bugsnag_key)
+  UI.important 'Adding Bugsnag API key'
+  set_meta_data(attribute: 'com.bugsnag.android.API_KEY', value: bugsnag_key)
 end
 
 lane :release do
