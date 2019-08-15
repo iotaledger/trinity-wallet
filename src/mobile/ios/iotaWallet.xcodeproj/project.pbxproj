@@ -2922,7 +2922,8 @@
 			baseConfigurationReference = FC0C813F80FE9398560C13E6CC59C201 /* iotaWallet-debug-config.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Trinity Beta";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				APP_ICON_NAME = AppIconBeta;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "${APP_ICON_NAME}";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ASSETCATALOG_WARNINGS = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -3320,7 +3321,8 @@
 			baseConfigurationReference = A402C8584E5EA99F404511B6FE64D661 /* iotaWallet-release-config.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Trinity Beta";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				APP_ICON_NAME = AppIconBeta;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "${APP_ICON_NAME}";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ASSETCATALOG_WARNINGS = YES;
 				CODE_SIGN_ENTITLEMENTS = iotaWallet/iotaWallet.entitlements;
@@ -3593,7 +3595,8 @@
 			baseConfigurationReference = A402C8584E5EA99F404511B6FE64D661 /* iotaWallet-release-config.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = Trinity;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				APP_ICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "${APP_ICON_NAME}";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ASSETCATALOG_WARNINGS = YES;
 				CODE_SIGN_ENTITLEMENTS = iotaWallet/iotaWallet.entitlements;
