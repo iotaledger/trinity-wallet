@@ -69,6 +69,7 @@
 		CB63E7A5218B544E0084CBFD /* Icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB63E7A4218B544E0084CBFD /* Icons.ttf */; };
 		CB6626F52085057F00651519 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6626F42085056C00651519 /* libSplashScreen.a */; };
 		CB866281209F36CA00C026E3 /* EntangledIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = CB86627D209F36CA00C026E3 /* EntangledIOS.m */; };
+		CB8E9A5C23057D8E00969E09 /* CatCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CB54CCFD21261E42001F1630 /* CatCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CB98FB9420A0A5BB0047877B /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9120A0A5BB0047877B /* SourceSansPro-Bold.ttf */; };
 		CB98FB9520A0A5BB0047877B /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9220A0A5BB0047877B /* SourceSansPro-Regular.ttf */; };
 		CB98FB9620A0A5BB0047877B /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */; };
@@ -693,6 +694,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				CB8E9A5C23057D8E00969E09 /* CatCrypto.framework in Embed Frameworks */,
 				D1DC0968101C454F996F0262 /* NodeMobile.framework in Embed Frameworks */,
 				CBDE11BC21AEFFFE00CA1909 /* Lottie.framework in Embed Frameworks */,
 			);
@@ -2500,7 +2502,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export DEVELOPMENT_BUILD_CONFIGURATIONS=\"+(Debug)\"\nexport NODE_BINARY=node\n../node_modules/react-native-schemes-manager/lib/react-native-xcode.sh";
 		};
 		1C8C88AE59968844F0D8C59F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2596,7 +2598,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		B59F787FE434CB99F8DA67C59029AF6B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
