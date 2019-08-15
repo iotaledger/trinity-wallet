@@ -116,7 +116,7 @@
         "checkForUpdates": "检查更新",
         "account": "账户",
         "changeNode": "更换节点",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "添加节点",
         "nodeMustUseHTTPS": "无效节点 (非HTTPS)",
         "nodeMustUseHTTPSExplanation": "仅允许使用HTTPS的自定义节点。",
         "nodeDuplicated": "重复节点",
@@ -169,7 +169,7 @@
         "missingPermission": "需要文件系统权限",
         "missingPermissionExplanation": "本功能需要具备文件系统访问权限。",
         "swipeToConfirm": "滑动以确认",
-        "congratulations": "Congratulations",
+        "congratulations": "恭喜",
         "expert": "专家",
         "notEnoughSyncedNodes": "同步的节点过少",
         "notEnoughSyncedNodesExplanation": "节点无法达到协同。 请关闭节点协同功能或重试。"
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "语言",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "选择语言",
         "letsGetStarted": "让我们开始吧！"
     },
     "login": {
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "自动管理节点",
-        "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "addCustomNodes": "添加节点",
+        "autoNodeList": "使用默认节点列表",
+        "nodeAutoswitching": "自动选择主节点",
         "primaryNode": "主节点",
         "enableQuorum": "启用节点协同功能",
         "quorumSize": "参与协同的节点个数",
