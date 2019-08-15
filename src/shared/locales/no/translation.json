@@ -116,7 +116,7 @@
         "checkForUpdates": "Søk etter oppdateringer",
         "account": "Konto",
         "changeNode": "Endre node",
-        "addCustomNode": "Legg til egendefinert node",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Ugyldig node (ikke HTTPS)",
         "nodeMustUseHTTPSExplanation": "Kun egendefinerte noder med HTTPS er tillatt.",
         "nodeDuplicated": "Duplisert node",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatisk nodehåndtering",
-        "addCustomNodes": "Legg til egendefinerte noder",
-        "autoNodeList": "Bruk liste med eksterne noder",
-        "nodeAutoswitching": "Automatisk endring av primærnode",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Primærnode",
         "enableQuorum": "Aktiver quorum",
         "quorumSize": "Quorum-størrelse",
@@ -509,7 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Legg til flere egendefinerte noder eller aktiver listen med eksterne noder.",
         "nodeSettingsUpdatedTitle": "Node-innstillinger oppdatert",
         "nodeSettingsUpdatedExplanation": "Du har oppdatert node-innstillingene dine.",
-        "powNode": "Use specific node for PoW"
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Egendefinert node kunne ikke legges til",
