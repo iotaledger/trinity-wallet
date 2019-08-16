@@ -703,6 +703,19 @@ class Wallet {
     }
 
     /**
+     * Updates proof of work node auto-switch setting
+     *
+     * @method updatePowNodeAutoSwitchSetting
+     *
+     * @param {boolean} payload
+     */
+    static updatePowNodeAutoSwitchSetting(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.powNodeAutoSwitch = payload;
+        });
+    }
+
+    /**
      * Updates autoNodeList setting
      *
      * @method updateAutoNodeListSetting

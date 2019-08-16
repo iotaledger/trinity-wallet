@@ -116,7 +116,7 @@
         "checkForUpdates": "Išči posodobitve",
         "account": "Račun",
         "changeNode": "Zamenjaj Node",
-        "addCustomNode": "Dodaj prilagojen Node",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Neveljaven Node (ne podpira HTTPS)",
         "nodeMustUseHTTPSExplanation": "Prilagojen Node mora podpirat HTTPS.",
         "nodeDuplicated": "Podvojen Node",
@@ -450,8 +450,8 @@
         "doYouNeedASeed": "Potrebujete nov Seed?",
         "seedExplanation": "Vaš IOTA Seed je glavni ključ do vaših sredstev. Dolg je 81 znakov in vsebuje samo črke A-Z ali številko 9.",
         "noIHaveOne": "Ne, imam ga že",
-        "yesINeedASeed": "Ja, imam Seed",
-        "explanation": "<0><0>Uporabljate ga za dostop do vaših sredstev od</0><1>katere koli denarnice</1><2>, na</2><3>kateri koli napravi.</3></0>",
+        "yesINeedASeed": "Ja, potrebujem nov Seed",
+        "explanation": "<0><0>Uporabljate ga za dostop do vaših sredstev, od </0><1>katere koli denarnice</1><2>, na </2><3>kateri koli napravi.</3></0>",
         "loseSeed": "Če izgubite vaš Seed boste izgubili tudi vaš IOTA.",
         "keepSafe": "Prosimo vas, da imate Seed shranjen na varnem."
     },
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Samodejno Node upravljanje",
-        "addCustomNodes": "Dodaj prilagojen Node",
-        "autoNodeList": "Uporabi uradni Node seznam",
-        "nodeAutoswitching": "Samodejno preklopi med primarnih Node-ih",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Primaren Node",
         "enableQuorum": "Aktiviraj Node-Quorum",
         "quorumSize": "Velikost zbora",
@@ -509,7 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Dodajte več ročno ponastavljenih Node-v ali uporabite seznam uradnih Node-v.",
         "nodeSettingsUpdatedTitle": "Posodobljene Node nastavitve",
         "nodeSettingsUpdatedExplanation": "Uspešno ste posodobili Node nastavitve.",
-        "powNode": "Use specific node for PoW"
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Prilagojen Node ni bilo mogoče dodati",

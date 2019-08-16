@@ -116,7 +116,7 @@
         "checkForUpdates": "Controleren op Updates",
         "account": "Account",
         "changeNode": "Verander Node",
-        "addCustomNode": "Aangepaste Node Toevoegen",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Ongeldige node (niet HTTPS)",
         "nodeMustUseHTTPSExplanation": "Alleen aangepaste nodes met HTTPS zijn toegestaan.",
         "nodeDuplicated": "Node geduplificeerd",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatische node beheer",
-        "addCustomNodes": "Aangepaste nodes toevoegen",
-        "autoNodeList": "Gebruik externe node lijst",
-        "nodeAutoswitching": "Primaire node autoswitch",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Primaire node",
         "enableQuorum": "Quorum inschakelen",
         "quorumSize": "Quorum grootte",
@@ -509,7 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Voeg meer aangepaste nodes toe of schakel de externe node lijst in.",
         "nodeSettingsUpdatedTitle": "Node instellingen bijgewerkt",
         "nodeSettingsUpdatedExplanation": "U heeft uw node instellingen met succes bijgewerkt.",
-        "powNode": "Use specific node for PoW"
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Aangepaste node kon niet worden toegevoegd",

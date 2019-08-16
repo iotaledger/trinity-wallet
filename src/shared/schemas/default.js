@@ -199,13 +199,6 @@ export const WalletSettingsSchema = {
             default: false,
         },
         /**
-         * Determines if proof of work should be offloaded to a specific node
-         */
-        powNode: {
-            type: 'string',
-            default: '',
-        },
-        /**
          * Determines if polling should auto promote unconfirmed transactions.
          */
         autoPromotion: {

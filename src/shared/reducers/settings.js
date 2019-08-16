@@ -125,7 +125,7 @@ export const initialState = {
         enabled: true,
     },
     /**
-     * Determines if (primary) node should automatically be auto-switched
+     * Determines if (primary) node should be auto-switched
      */
     nodeAutoSwitch: true,
     /**
@@ -133,6 +133,10 @@ export const initialState = {
      * - When false: only use custom nodes in quorum selection
      */
     autoNodeList: true,
+    /**
+     * Determines if (proof of work) node should be auto-switched
+     */
+    powNodeAutoSwitch: true,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -296,6 +300,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 nodeAutoSwitch: action.payload,
+            };
+        case SettingsActionTypes.UPDATE_POW_NODE_AUTO_SWITCH_SETTING:
+            return {
+                ...state,
+                powNodeAutoSwitch: action.payload,
             };
         case SettingsActionTypes.UPDATE_AUTO_NODE_LIST_SETTING:
             return {

@@ -13,7 +13,6 @@ import { iota, quorum } from 'libs/iota';
 import Errors from 'libs/errors';
 
 import {
-    changePowSettings,
     changeAutoPromotionSettings,
     changeDeepLinkingSettings,
     setLockScreenTimeout,
@@ -55,8 +54,6 @@ class Advanced extends PureComponent {
         setProxy: PropTypes.func.isRequired,
         /** @ignore */
         setNotifications: PropTypes.func.isRequired,
-        /** @ignore */
-        changePowSettings: PropTypes.func.isRequired,
         /** @ignore */
         changeAutoPromotionSettings: PropTypes.func.isRequired,
         /** @ignore */
@@ -205,7 +202,6 @@ class Advanced extends PureComponent {
         const {
             settings,
             wallet,
-            changePowSettings,
             changeAutoPromotionSettings,
             changeDeepLinkingSettings,
             lockScreenTimeout,
@@ -234,18 +230,6 @@ class Advanced extends PureComponent {
 
                         {wallet && wallet.ready ? (
                             <React.Fragment>
-                                <h3>{t('pow:powUpdated')}</h3>
-                                <Toggle
-                                    checked={settings.remotePoW}
-                                    onChange={() => changePowSettings()}
-                                    on={t('pow:remote')}
-                                    off={t('pow:local')}
-                                />
-                                <p>
-                                    {t('pow:feeless')} {t('pow:localOrRemote')}
-                                </p>
-                                <hr />
-
                                 <h3>{t('advancedSettings:autoPromotion')}</h3>
                                 <Toggle
                                     checked={settings.autoPromotion}
@@ -405,7 +389,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
-    changePowSettings,
     changeAutoPromotionSettings,
     changeDeepLinkingSettings,
     setLockScreenTimeout,
