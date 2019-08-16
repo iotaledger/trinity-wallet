@@ -116,7 +116,7 @@
         "checkForUpdates": "업데이트 확인",
         "account": "계정",
         "changeNode": "노드 변경",
-        "addCustomNode": "커스텀 노드 추가",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "잘못된 노드 (HTTPS를 사용하지 않음)",
         "nodeMustUseHTTPSExplanation": "HTTPS를 사용하는 커스텀 노드만 사용 가능합니다.",
         "nodeDuplicated": "중복된 노드",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "자동 노드 관리",
-        "addCustomNodes": "커스텀 노드 추가",
-        "autoNodeList": "원격 노드 목록 사용",
-        "nodeAutoswitching": "기본 노드 자동전환",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "기본 노드",
         "enableQuorum": "큐럼 활성화",
         "quorumSize": "큐럼 크기",
@@ -509,7 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "더많은 커스텀 노드를 추가하거나 원격 노드 목록을 활성화하십시오.",
         "nodeSettingsUpdatedTitle": "노드 설정이 업데이트되었습니다.",
         "nodeSettingsUpdatedExplanation": "노드 설정이 성공적으로 업데이트되었습니다.",
-        "powNode": "Use specific node for PoW"
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "커스텀 노드를 추가할 수 없습니다.",

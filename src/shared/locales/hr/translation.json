@@ -116,7 +116,7 @@
         "checkForUpdates": "Provjeri ažuriranja",
         "account": "Profil",
         "changeNode": "Promijeni node",
-        "addCustomNode": "Dodaj prilagođeni node",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Nedopušten node (ne koristi HTTPS)",
         "nodeMustUseHTTPSExplanation": "Dopušteni su samo prilagođeni node-ovi koji koriste HTTPS.",
         "nodeDuplicated": "Duplicirani node",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatsko upravljanje node-ovima",
-        "addCustomNodes": "Dodaj prilagođeni node",
-        "autoNodeList": "Koristi vanjsku node listu",
-        "nodeAutoswitching": "Automatska promjena primarnog node-a",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Primarni node",
         "enableQuorum": "Omogući kvorum",
         "quorumSize": "Veličina kvoruma",
@@ -509,7 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Dodajte još prilagođenih node-ova ili omogućite vanjsku node listu.",
         "nodeSettingsUpdatedTitle": "Node postavke spremljene",
         "nodeSettingsUpdatedExplanation": "Uspješno ste spremili vaše node postavke.",
-        "powNode": "Use specific node for PoW"
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nije bilo moguće dodati prilagođeni node",

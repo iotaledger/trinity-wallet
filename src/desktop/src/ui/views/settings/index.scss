@@ -200,6 +200,7 @@
                 align-items: stretch;
                 overflow: hidden;
                 background: var(--body-bg);
+                z-index: 10;
                 * {
                     flex: 1;
                 }

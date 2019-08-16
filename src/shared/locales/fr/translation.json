@@ -116,7 +116,7 @@
         "checkForUpdates": "Rechercher des mises à jour",
         "account": "Compte",
         "changeNode": "Changez de serveur",
-        "addCustomNode": "Ajouter un serveur personnalisé",
+        "addCustomNode": "Ajouter des nœuds",
         "nodeMustUseHTTPS": "Serveur invalide (pas HTTPS)",
         "nodeMustUseHTTPSExplanation": "Seuls les serveurs personnalisés utilisant HTTPS sont autorisés.",
         "nodeDuplicated": "Serveur dupliqué",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Gestion automatique des noeuds",
-        "addCustomNodes": "Ajouter noeuds personnalisés",
-        "autoNodeList": "Utiliser la liste de noeuds distants",
-        "nodeAutoswitching": "Changement automatique de noeud primaire",
+        "addCustomNodes": "Ajouter des nœuds",
+        "autoNodeList": "Utiliser la liste de noeuds par défaut",
+        "nodeAutoswitching": "Sélectionner automatiquement le noeud primaire",
         "primaryNode": "Noeud primaire",
         "enableQuorum": "Activer le mécanisme de quorum",
         "quorumSize": "Taille du Quorum",
@@ -509,7 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Ajouter plus de noeuds personnalisés ou activer la liste des noeuds distants.",
         "nodeSettingsUpdatedTitle": "Paramètres du noeud mis à jour",
         "nodeSettingsUpdatedExplanation": "Vous avez mis à jour vos paramètres de serveur avec succès.",
-        "powNode": "Use specific node for PoW"
+        "outsourcePow": "Externaliser la preuve de travail",
+        "autoSelectPowNode": "Détection automatique du nœud de travail",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Le serveur personnalisé n'a pas pu être ajouté",

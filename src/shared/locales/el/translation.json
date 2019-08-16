@@ -116,7 +116,7 @@
         "checkForUpdates": "Έλεγχος για ενημερώσεις",
         "account": "Λογαριασμός",
         "changeNode": "Αλλαξτε Κόμβο",
-        "addCustomNode": "Προσθήκη προσαρμοσμένου κόμβου",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Μη έγκυρος κόμβος (μη HTTPS)",
         "nodeMustUseHTTPSExplanation": "Μόνο προσαρμοσμένοι κόμβοι που χρησιμοποιούν HTTPS επιτρέπονται.",
         "nodeDuplicated": "Διπλότυπος κόμβος",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Αυτόματη διαχείριση κόμβου",
-        "addCustomNodes": "Προσθήκη προσαρμοσμένων κόμβων",
-        "autoNodeList": "Χρήση απομακρυσμένης λίστας κόμβων",
-        "nodeAutoswitching": "Primary node autoswitching",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Πρωτεύων κόμβος",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
@@ -509,7 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
         "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
-        "powNode": "Use specific node for PoW"
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Δεν ήταν δυνατή η προσθήκη προσαρμοσμένου κόμβου",

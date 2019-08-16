@@ -30,8 +30,6 @@ export class AdvancedSettings extends PureComponent {
         /** @ignore */
         autoPromotion: PropTypes.bool.isRequired,
         /** @ignore */
-        remotePoW: PropTypes.bool.isRequired,
-        /** @ignore */
         deepLinking: PropTypes.bool.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
@@ -79,7 +77,7 @@ export class AdvancedSettings extends PureComponent {
      * @returns {function}
      */
     renderSettingsContent() {
-        const { theme, t, autoPromotion, remotePoW, deepLinking, isSendingTransfer } = this.props;
+        const { theme, t, autoPromotion, deepLinking, isSendingTransfer } = this.props;
         const rows = [
             {
                 name: t('settings:nodeSettings'),
@@ -90,12 +88,6 @@ export class AdvancedSettings extends PureComponent {
                     }
                     return this.props.setSetting('nodeSettings');
                 },
-            },
-            {
-                name: t('pow'),
-                icon: 'pow',
-                function: () => this.props.setSetting('pow'),
-                currentSetting: remotePoW ? t('pow:remote') : t('pow:local'),
             },
             {
                 name: t('autoPromotion'),
@@ -136,7 +128,6 @@ export class AdvancedSettings extends PureComponent {
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     autoPromotion: state.settings.autoPromotion,
-    remotePoW: state.settings.remotePoW,
     deepLinking: state.settings.deepLinking,
     isSendingTransfer: state.ui.isSendingTransfer,
 });

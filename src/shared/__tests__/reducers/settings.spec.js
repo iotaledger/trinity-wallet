@@ -54,6 +54,7 @@ describe('Reducer: settings', () => {
                 themeName: 'Default',
                 remotePoW: false,
                 powNode: '',
+                powNodeAutoSwitch: true,
                 lockScreenTimeout: 3,
                 versions: {},
                 isFingerprintEnabled: false,
@@ -132,13 +133,13 @@ describe('Reducer: settings', () => {
 
             const action = {
                 type: SettingsActionTypes.SET_POW_NODE,
-                payload: "https://foo.bar",
+                payload: 'https://foo.bar',
             };
 
             const newState = reducer(initialState, action);
 
             const expectedState = {
-                powNode: "https://foo.bar",
+                powNode: 'https://foo.bar',
             };
 
             expect(newState).to.eql(expectedState);
@@ -182,6 +183,29 @@ describe('Reducer: settings', () => {
 
                 const expectedState = {
                     nodeAutoSwitch: true,
+                };
+
+                expect(newState).to.eql(expectedState);
+            });
+        });
+    });
+
+    describe(SettingsActionTypes.UPDATE_POW_NODE_AUTO_SWITCH_SETTING, () => {
+        describe('when action.payload is defined', () => {
+            it('should set powNodeAutoSwitch to action.payload', () => {
+                const initialState = {
+                    powNodeAutoSwitch: true,
+                };
+
+                const action = {
+                    type: SettingsActionTypes.UPDATE_POW_NODE_AUTO_SWITCH_SETTING,
+                    payload: false,
+                };
+
+                const newState = reducer(initialState, action);
+
+                const expectedState = {
+                    powNodeAutoSwitch: false,
                 };
 
                 expect(newState).to.eql(expectedState);

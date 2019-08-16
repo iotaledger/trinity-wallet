@@ -116,7 +116,7 @@
         "checkForUpdates": "Periksa pembaruan",
         "account": "Akun",
         "changeNode": "Ubah Node",
-        "addCustomNode": "Tambah Node kustom",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Node tidak valid (bukan HTTPS)",
         "nodeMustUseHTTPSExplanation": "Hanya Node kustom yang menggunakan HTTPS diperbolehkan.",
         "nodeDuplicated": "Node diduplikasi",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Node Manajemen Otomatis",
-        "addCustomNodes": "Tambah Node kostum",
-        "autoNodeList": "Gunakan list Node jarak jauh",
-        "nodeAutoswitching": "Node utama ganti otomatis",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Node Utama",
         "enableQuorum": "Aktifkan Quorum",
         "quorumSize": "Ukuran Quorum",
@@ -509,7 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Tambah Node kostum atau aktifkan List Node jarak jauh.",
         "nodeSettingsUpdatedTitle": "Aturan Node diperbarui",
         "nodeSettingsUpdatedExplanation": "Anda telah berhasil memperbarui aturan Node.",
-        "powNode": "Use specific node for PoW"
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node kustom tidak dapat ditambah",
