@@ -116,7 +116,7 @@
         "checkForUpdates": "更新を確認",
         "account": "アカウント",
         "changeNode": "ノード変更",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "ノードの追加",
         "nodeMustUseHTTPS": "無効なノード (非HTTPS)",
         "nodeMustUseHTTPSExplanation": "HTTPSを使用するカスタムノードだけがご使用になれます。",
         "nodeDuplicated": "重複したノード",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "自動ノード管理",
-        "addCustomNodes": "Add nodes",
+        "addCustomNodes": "ノードの追加",
         "autoNodeList": "デフォルトノードリストの使用",
-        "nodeAutoswitching": "Autoselect primary node",
+        "nodeAutoswitching": "主要ノードの自動選択",
         "primaryNode": "主要ノード",
         "enableQuorum": "定足数を有効化",
         "quorumSize": "定足数サイズ",
@@ -510,8 +510,8 @@
         "nodeSettingsUpdatedTitle": "ノード設定更新完了",
         "nodeSettingsUpdatedExplanation": "ノード設定が正常に更新されました。",
         "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "autoSelectPowNode": "PoWノードの自動選択",
+        "nodeForPow": "PoWノード"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "カスタムノード追加不可",
