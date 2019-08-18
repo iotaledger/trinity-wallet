@@ -116,7 +116,7 @@
         "checkForUpdates": "Sök efter uppdateringar",
         "account": "Konto",
         "changeNode": "Ändra nod",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "Lägg till noder",
         "nodeMustUseHTTPS": "Ogiltig nod (ej HTTPS)",
         "nodeMustUseHTTPSExplanation": "Endast anpassade noder som använder HTTPS är tillåtna.",
         "nodeDuplicated": "Duplicerad nod",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatisk nodhantering",
-        "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "addCustomNodes": "Lägg till noder",
+        "autoNodeList": "Använd standardlistan med noder",
+        "nodeAutoswitching": "Välj primär nod automatiskt",
         "primaryNode": "Primär nod",
         "enableQuorum": "Aktivera kvorum",
         "quorumSize": "Kvorumstorlek",
@@ -509,8 +509,8 @@
         "nodeEnoughNodesExplanationCustomNodes": "Lägg till fler anpassade noder eller aktivera fjärrnodslistan.",
         "nodeSettingsUpdatedTitle": "Nod-inställningar uppdaterade",
         "nodeSettingsUpdatedExplanation": "Du har uppdaterat dina nod-inställningar.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
+        "outsourcePow": "Outsourca bevis på arbete",
+        "autoSelectPowNode": "Välj automatiskt nod för bevis på arbete",
         "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
