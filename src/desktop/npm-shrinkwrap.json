@@ -10531,7 +10531,6 @@
             "oauth-sign": "~0.8.1",
             "qs": "~6.2.0",
             "stringstream": "~0.0.4",
-            "tough-cookie": "~2.3.0",
             "tunnel-agent": "~0.4.1"
           }
         },
@@ -10736,14 +10735,6 @@
           "version": "1.0.1",
           "resolved": "https://registry.npmjs.org/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz",
           "integrity": "sha1-fSKbH8xjfkZsoIEYCDanqr/4P0M="
-        },
-        "tough-cookie": {
-          "version": "2.3.2",
-          "resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.3.2.tgz",
-          "integrity": "sha1-8IH3bkyFcg5sN6X6ztc3FQ2EByo=",
-          "requires": {
-            "punycode": "^1.4.1"
-          }
         },
         "tty-browserify": {
           "version": "0.0.0",
