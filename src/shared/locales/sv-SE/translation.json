@@ -509,9 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Lägg till fler anpassade noder eller aktivera fjärrnodslistan.",
         "nodeSettingsUpdatedTitle": "Nod-inställningar uppdaterade",
         "nodeSettingsUpdatedExplanation": "Du har uppdaterat dina nod-inställningar.",
-        "outsourcePow": "Outsourca bevis på arbete",
-        "autoSelectPowNode": "Välj automatiskt nod för bevis på arbete",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "Outsourca bevis på arbete (PoW)",
+        "autoSelectPowNode": "Välj automatiskt PoW-nod",
+        "nodeForPow": "PoW-nod"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Anpassad nod kunde inte bli tillagd",
