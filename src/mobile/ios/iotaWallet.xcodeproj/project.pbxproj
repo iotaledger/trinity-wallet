@@ -621,6 +621,13 @@
 			remoteGlobalIDString = 7B49FEBB1E95090800DEB3EA;
 			remoteInfo = ReactNativeNavigationTests;
 		};
+		CBFFDF4B230ACCF800CBC76A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 83CBBA2D1A601D0E00E9B192;
+			remoteInfo = React;
+		};
 		CD481D22B9AD23CF851BD7CA4F49E762 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B8B9BB680BF96F04B35C8CF2291F3DF7 /* Lottie.xcodeproj */;
@@ -1141,6 +1148,7 @@
 		6C07637C2BD02779C4E072737C53A2E3 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */,
 				CB5577D0219F221E00B698BF /* LottieReactNative.xcodeproj */,
 				CBEA4C8B2149481F007DA583 /* ReactNativeNavigation.xcodeproj */,
 				60F7E3AE2125EAE7005355C7 /* RNDocumentPicker.xcodeproj */,
@@ -1174,7 +1182,6 @@
 				AB682616086B06AFA962D8B5F1DCAB78 /* RNRandomBytes.xcodeproj */,
 				FF6707891F5797B0CC78F1267EB8F1A2 /* RNSVG.xcodeproj */,
 				2D84DC61092C2CB09498AB83CAA9B91F /* RNSecureRandom.xcodeproj */,
-				33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */,
 				78457F3624D0D3C241289BCB545E290E /* ReactNativeFingerprintScanner.xcodeproj */,
 				68D1880393EB486F98F90D04 /* RNNodeJsMobile.xcodeproj */,
 				6BA32972BAD24F7ABBA45866 /* RealmReact.xcodeproj */,
@@ -1580,6 +1587,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CBFFDF4C230ACCF800CBC76A /* PBXTargetDependency */,
 				6020D31D21A5065300159E5A /* PBXTargetDependency */,
 				CBDE11BE21AEFFFE00CA1909 /* PBXTargetDependency */,
 			);
@@ -2748,6 +2756,11 @@
 			isa = PBXTargetDependency;
 			name = Lottie_iOS;
 			targetProxy = CBDE11BD21AEFFFE00CA1909 /* PBXContainerItemProxy */;
+		};
+		CBFFDF4C230ACCF800CBC76A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = React;
+			targetProxy = CBFFDF4B230ACCF800CBC76A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
