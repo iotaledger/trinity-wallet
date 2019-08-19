@@ -18,11 +18,6 @@ jest.mock('rn-fetch-blob', () => {});
 
 jest.mock('react-native-share', () => {});
 
-jest.mock('react-native-document-picker', () => ({
-    pick: jest.fn(() => Promise.resolve()),
-    isCancel: () => false,
-}));
-
 const getProps = (overrides) =>
     assign(
         {},
