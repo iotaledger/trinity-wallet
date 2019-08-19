@@ -596,37 +596,17 @@ export function changePowSettings() {
 export function changeAutoPromotionSettings() {
     return (dispatch, getState) => {
         const settings = getState().settings;
-        if (!settings.autoPromotion) {
-            allowsRemotePow(settings.node).then((hasRemotePow) => {
-                if (!hasRemotePow) {
-                    return dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('global:attachToTangleUnavailable'),
-                            i18next.t('global:attachToTangleUnavailableExplanationShort'),
-                            10000,
-                        ),
-                    );
-                }
-                dispatch(setAutoPromotion(!settings.autoPromotion));
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('autoPromotion:autoPromotionUpdated'),
-                        i18next.t('autoPromotion:autoPromotionUpdatedExplanation'),
-                    ),
-                );
-            });
-        } else {
-            dispatch(setAutoPromotion(!settings.autoPromotion));
-            dispatch(
-                generateAlert(
-                    'success',
-                    i18next.t('autoPromotion:autoPromotionUpdated'),
-                    i18next.t('autoPromotion:autoPromotionUpdatedExplanation'),
-                ),
-            );
+        if (!settings.powNode) {
+            dispatch(setPowNode(getRandomPowNodeFromState(getState())));
         }
+        dispatch(setAutoPromotion(!settings.autoPromotion));
+        dispatch(
+            generateAlert(
+                'success',
+                i18next.t('autoPromotion:autoPromotionUpdated'),
+                i18next.t('autoPromotion:autoPromotionUpdatedExplanation'),
+            ),
+        );
     };
 }
 
