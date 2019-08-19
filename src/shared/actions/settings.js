@@ -595,7 +595,7 @@ export function changePowSettings() {
 export function changeAutoPromotionSettings() {
     return (dispatch, getState) => {
         const settings = getState().settings;
-        if (!settings.powNode) {
+        if (!settings.autoPromotion && !settings.powNode) {
             dispatch(setPowNode(getRandomPowNodeFromState(getState())));
         }
         dispatch(setAutoPromotion(!settings.autoPromotion));
