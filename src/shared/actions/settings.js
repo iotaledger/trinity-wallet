@@ -524,7 +524,6 @@ export function setFullNode(node, addingCustomNode = false) {
                 } else {
                     // Automatically default to local PoW if this node has no attach to tangle available
                     dispatch(setRemotePoW(false));
-                    dispatch(setAutoPromotion(false));
 
                     dispatch(
                         generateAlert(
