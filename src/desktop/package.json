@@ -71,7 +71,7 @@
   },
   "build": {
     "productName": "Trinity-RC",
-    "artifactName": "trinity-${version}.${ext}",
+    "artifactName": "trinity-desktop-${version}.${ext}",
     "copyright": "IOTA Foundation",
     "directories": {
       "buildResources": "./assets",
