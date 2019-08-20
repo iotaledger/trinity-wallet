@@ -116,7 +116,7 @@
         "checkForUpdates": "Suche nach Updates",
         "account": "Konto",
         "changeNode": "Node wechseln",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "Nodes hinzufügen",
         "nodeMustUseHTTPS": "Ungültiger Node (fehlende Verschlüsselung)",
         "nodeMustUseHTTPSExplanation": "Benutzerdefinierte Nodes müssen eine Verschlüsselung verwenden (HTTPS).",
         "nodeDuplicated": "Doppelter Node",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatische Node-Verwaltung",
-        "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "addCustomNodes": "Nodes hinzufügen",
+        "autoNodeList": "Standard Node-Liste verwenden",
+        "nodeAutoswitching": "Primäre Node automatisch wählen",
         "primaryNode": "Primärer Node",
         "enableQuorum": "Node-Gruppe aktivieren",
         "quorumSize": "Anzahl der Nodes in der Node-Gruppe",
@@ -509,9 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Füge weitere benutzerdefinierte Nodes hinzu oder verwende die offizielle Node-Liste.",
         "nodeSettingsUpdatedTitle": "Node-Einstellungen aktualisiert",
         "nodeSettingsUpdatedExplanation": "Die Node-Einstellungen wurden erfolgreich gespeichert.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "Proof of work auslagern",
+        "autoSelectPowNode": "Node für proof of work automatisch wählen",
+        "nodeForPow": "Proof of work Node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Benutzerdefinierter Node konnte nicht hinzugefügt werden",
