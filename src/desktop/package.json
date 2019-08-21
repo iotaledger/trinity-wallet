@@ -74,7 +74,7 @@
     "artifactName": "trinity-desktop-${version}.${ext}",
     "copyright": "IOTA Foundation",
     "directories": {
-      "buildResources": "./assets",
+      "buildResources": "./assets/RC",
       "output": "./out"
     },
     "afterSign": "./scripts/notarize.macos.js",
