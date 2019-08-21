@@ -116,7 +116,7 @@
         "checkForUpdates": "Sprawdź aktualizacje",
         "account": "Konto",
         "changeNode": "Zmień serwer",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "Dodaj serwery",
         "nodeMustUseHTTPS": "Serwer bez obsługi HTTPS",
         "nodeMustUseHTTPSExplanation": "Dozwolone są jedynie serwery, które obsługują protokół HTTPS.",
         "nodeDuplicated": "Serwer zduplikowany",
@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatyczny wybór serwera",
-        "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "addCustomNodes": "Dodaj serwery",
+        "autoNodeList": "Użyj domyślnej listy serwerów",
+        "nodeAutoswitching": "Automatyczny wybór głównego serwera",
         "primaryNode": "Główny serwer",
         "enableQuorum": "Włącz kworum",
         "quorumSize": "Wielkość kworum",
@@ -509,9 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Dodaj więcej niestandardowych serwerów lub włącz zdalną listę serwerów.",
         "nodeSettingsUpdatedTitle": "Zaktualizowano ustawienia serwera",
         "nodeSettingsUpdatedExplanation": "Pomyślnie zaktualizowałeś swoje ustawienia serwera.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "Zewnętrzne wykonywanie Proof of Work",
+        "autoSelectPowNode": "Automatyczny wybór serwera dla PoW",
+        "nodeForPow": "Serwer dla PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nie można dodać serwera",
