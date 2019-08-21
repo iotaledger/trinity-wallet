@@ -1,15 +1,20 @@
 ### 1.1.0
 
--   New: Basic auth for custom nodes (#2088)
--   Update: Enable Hardened Runtime on macOS (#1931)
+-   New: Basic auth for custom nodes
+-   New: Add ability to set a specific node for Proof of Work
+-   Update: Enable Hardened Runtime and Notarisation on MacOS
 -   Update: Improved Dark theme (#2035) by @MatthewScheuerman
--   Update: Localise balance depending on language (#1951) 
--   Fix: Password change with only Ledger accounts does not work (#1910)
--   Fix: Can't add Ledger accounts with index over 999 (#1875)
--   Fix: Update from older Windows 7 release crashes wallet (#1913)
--   Fix: Hide Retry button in macOS tray application (#1928)
--   Fix: Cannot login when node auto-switching disabled on Windows 7 (#1929)
--   Fix: Mac tray app shows zero fiat balance (#1970)
+-   Update: Localise balance depending on language and currency
+-   Update: Revise node settings layout and relocate PoW setting
+-   Fix: Change password not working when user has only Ledger accounts
+-   Fix: Inability to add Ledger accounts with index over 999
+-   Fix: Crash when updating from older Windows 7 release
+-   Fix: Hide retry button in macOS tray application
+-   Fix: Login failure when node auto-switching is disabled on Windows 7
+-   Fix: Mac tray app showing zero fiat balance
+-   Fix: Snapshot transition failure
+-   Fix: Various issues with light theme, dark theme, and all theme text inputs
+-   Fix: Trinity docs link returning 404 (by @CrashTD)
 
 ### 1.0.0
 
