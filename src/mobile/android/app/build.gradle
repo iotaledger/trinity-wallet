@@ -71,7 +71,11 @@ import com.android.build.OutputFile
  */
 project.ext.react = [
         entryFile: "index.js",
-        jsBundleDirRelease: "$buildDir/intermediates/merged_assets/release/mergeReleaseAssets/out"
+        bundleInBeta: true,
+        devDisabledInBeta: true,
+        jsBundleDirRelease: "$buildDir/intermediates/merged_assets/release/mergeReleaseAssets/out",
+        jsBundleDirBeta: "$buildDir/intermediates/merged_assets/beta/mergeReleaseAssets/out",
+        resourcesDirBeta: "$buildDir/intermediates/res/merged/beta",
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -144,7 +148,7 @@ android {
             initWith release
             applicationIdSuffix = ".beta"
             resValue "string", "app_name", "Trinity Beta"
-            matchingFallbacks = ['debug', 'release']
+            matchingFallbacks = ['release']
         }
     }
     // applicationVariants are e.g. debug, release
@@ -168,7 +172,7 @@ dependencies {
     implementation "org.webkit:android-jsc-intl:r241213"
 
 
-    compile project(':react-native-qr-generator')
+    implementation project(':react-native-qr-generator')
     implementation project(':react-native-modal-translucent')
     implementation project(':react-native-qr-scanner')
     implementation 'com.github.laumair:argon2jni:jitpack-SNAPSHOT'
