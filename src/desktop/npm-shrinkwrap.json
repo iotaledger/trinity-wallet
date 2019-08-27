@@ -6242,18 +6242,7 @@
         "balanced-match": {
           "version": "1.0.0",
           "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.0.tgz",
-          "integrity": "sha1-ibTRmasr7kneFk6gK4nORi1xt2c=",
-          "optional": true
-        },
-        "brace-expansion": {
-          "version": "1.1.11",
-          "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.11.tgz",
-          "integrity": "sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==",
-          "optional": true,
-          "requires": {
-            "balanced-match": "^1.0.0",
-            "concat-map": "0.0.1"
-          }
+          "integrity": "sha1-ibTRmasr7kneFk6gK4nORi1xt2c="
         },
         "chownr": {
           "version": "1.1.1",
@@ -6269,8 +6258,7 @@
         "concat-map": {
           "version": "0.0.1",
           "resolved": "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz",
-          "integrity": "sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=",
-          "optional": true
+          "integrity": "sha1-2Klr13/Wjfd5OnMDajug1UBdR3s="
         },
         "console-control-strings": {
           "version": "1.1.0",
@@ -9033,15 +9021,6 @@
           "integrity": "sha1-OciRjO/1eZ+D+UkqhI9iWt0Mdm8=",
           "requires": {
             "hoek": "2.x.x"
-          }
-        },
-        "brace-expansion": {
-          "version": "1.1.6",
-          "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.6.tgz",
-          "integrity": "sha1-cZfX6qm4fmSDkOph/GbIRCdCDfk=",
-          "requires": {
-            "balanced-match": "^0.4.1",
-            "concat-map": "0.0.1"
           }
         },
         "braces": {
