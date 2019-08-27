@@ -55,7 +55,8 @@
   "resolutions": {
     "js-yaml": ">=3.13.1",
     "request": ">=2.88.0",
-    "node.extend": ">=1.1.7"
+    "node.extend": ">=1.1.7",
+    "eslint-utils": ">=1.4.1"
   },
   "snyk": true,
   "husky": {
