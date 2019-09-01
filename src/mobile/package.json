@@ -128,7 +128,8 @@
   },
   "resolutions": {
     "js-yaml": ">=3.13.1",
-    "handlebars": ">=4.1.2"
+    "handlebars": ">=4.1.2",
+    "set-value": ">=2.0.1"
   },
   "jest": {
     "preset": "react-native",
