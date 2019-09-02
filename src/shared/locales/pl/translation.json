@@ -509,9 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Dodaj więcej niestandardowych serwerów lub włącz zdalną listę serwerów.",
         "nodeSettingsUpdatedTitle": "Zaktualizowano ustawienia serwera",
         "nodeSettingsUpdatedExplanation": "Pomyślnie zaktualizowałeś swoje ustawienia serwera.",
-        "outsourcePow": "Zewnętrzne wykonywanie Proof of Work",
-        "autoSelectPowNode": "Automatyczny wybór serwera dla PoW",
-        "nodeForPow": "Serwer dla PoW"
+        "outsourcePow": "Zewnętrzny Proof of Work",
+        "autoSelectPowNode": "Autom. wybór serwera dla PoW",
+        "nodeForPow": "Serwer PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nie można dodać serwera",
