@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import i18next from 'shared-modules/libs/i18next';
@@ -124,7 +124,7 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['settings', 'global'])(
+export default withTranslation(['settings', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

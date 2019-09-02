@@ -15,7 +15,7 @@ import {
 import withNodeData from 'shared-modules/containers/settings/Node';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { setLoginRoute } from 'shared-modules/actions/ui';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { width } from 'libs/dimensions';
 import { connect } from 'react-redux';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -341,7 +341,7 @@ const mapDispatchToProps = {
     setLoginRoute,
 };
 
-export default withNamespaces(['addCustomNode', 'global'])(
+export default withTranslation(['addCustomNode', 'global'])(
     withNodeData(
         connect(
             mapStateToProps,

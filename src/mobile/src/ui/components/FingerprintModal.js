@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
@@ -152,4 +152,4 @@ const mapStateToProps = (state) => ({
     minimised: state.ui.minimised,
 });
 
-export default withNamespaces(['global'])(connect(mapStateToProps)(FingerprintModal));
+export default withTranslation(['global'])(connect(mapStateToProps)(FingerprintModal));

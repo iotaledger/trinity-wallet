@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { changeAutoPromotionSettings } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -144,7 +144,7 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withNamespaces(['advancedSettings', 'autoPromotion', 'global'])(
+export default withTranslation(['advancedSettings', 'autoPromotion', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

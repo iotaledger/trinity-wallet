@@ -2,7 +2,7 @@ import size from 'lodash/size';
 import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import navigator from 'libs/navigation';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
@@ -330,7 +330,7 @@ const mapDispatchToProps = {
     setDoNotMinimise,
 };
 
-export default withNamespaces(['addAdditionalSeed', 'useExistingSeed', 'global'])(
+export default withTranslation(['addAdditionalSeed', 'useExistingSeed', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

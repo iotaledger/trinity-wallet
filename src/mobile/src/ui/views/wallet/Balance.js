@@ -1,7 +1,7 @@
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -323,7 +323,7 @@ const mapDispatchToProps = {
 };
 
 export default WithManualRefresh()(
-    withNamespaces(['global'])(
+    withTranslation(['global'])(
         connect(
             mapStateToProps,
             mapDispatchToProps,
