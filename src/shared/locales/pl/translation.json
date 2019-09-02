@@ -499,7 +499,7 @@
         "addCustomNodes": "Dodaj serwery",
         "autoNodeList": "Użyj domyślnej listy serwerów",
         "nodeAutoswitching": "Automatyczny wybór głównego serwera",
-        "primaryNode": "Główny serwer",
+        "primaryNode": "Serwer główny",
         "enableQuorum": "Włącz kworum",
         "quorumSize": "Wielkość kworum",
         "noCustomNodes": "Nie dodano serwerów niestandardowych",
