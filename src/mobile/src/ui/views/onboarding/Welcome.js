@@ -50,10 +50,6 @@ class Welcome extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        acceptedPrivacy: PropTypes.bool.isRequired,
-        /** @ignore */
-        acceptedTerms: PropTypes.bool.isRequired,
-        /** @ignore */
         themeName: PropTypes.string.isRequired,
     };
 
@@ -75,14 +71,7 @@ class Welcome extends Component {
      * @returns {string}
      */
     getNextRoute() {
-        const { acceptedTerms, acceptedPrivacy } = this.props;
-        let nextRoute = 'walletSetup';
-        if (!acceptedTerms && !acceptedPrivacy) {
-            nextRoute = 'termsAndConditions';
-        } else if (acceptedTerms && !acceptedPrivacy) {
-            nextRoute = 'privacyPolicy';
-        }
-        return nextRoute;
+        return 'enterSeed';
     }
 
     render() {
@@ -100,7 +89,7 @@ class Welcome extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
                     >
-                        <Header textColor={body.color}>{t('thankYou')}</Header>
+                        <Header textColor={body.color}>Thank you for downloading the Trinity demo</Header>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
@@ -142,8 +131,6 @@ class Welcome extends Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
-    acceptedPrivacy: state.settings.acceptedPrivacy,
-    acceptedTerms: state.settings.acceptedTerms,
     themeName: state.settings.themeName,
 });
 

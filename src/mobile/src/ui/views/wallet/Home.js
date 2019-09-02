@@ -11,11 +11,10 @@ import { connect } from 'react-redux';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from 'shared-modules/actions/home';
 import { markTaskAsDone } from 'shared-modules/actions/accounts';
 import { setSetting } from 'shared-modules/actions/wallet';
-import { setUserActivity, toggleModalActivity } from 'shared-modules/actions/ui';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import timer from 'react-native-timer';
-import UserInactivity from 'ui/components/UserInactivity';
 import WithUserActivity from 'ui/components/UserActivity';
 import WithLogout from 'ui/components/Logout';
 import WithDeepLinking from 'ui/components/DeepLinking';
@@ -24,7 +23,6 @@ import PollComponent from 'ui/components/Poll';
 import Tabs from 'ui/components/Tabs';
 import Tab from 'ui/components/Tab';
 import TabContent from 'ui/components/TabContent';
-import EnterPassword from 'ui/components/EnterPassword';
 import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
@@ -35,11 +33,6 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 0.68,
     },
-    inactivityLogoutContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
 });
 
 class Home extends Component {
@@ -48,12 +41,6 @@ class Home extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         changeHomeScreenRoute: PropTypes.func.isRequired,
-        /** @ignore */
-        generateAlert: PropTypes.func.isRequired,
-        /** @ignore */
-        setUserActivity: PropTypes.func.isRequired,
-        /** @ignore */
-        inactive: PropTypes.bool.isRequired,
         /** @ignore */
         minimised: PropTypes.bool.isRequired,
         /** @ignore */
@@ -66,8 +53,6 @@ class Home extends Component {
         isSendingTransfer: PropTypes.bool.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** @ignore */
-        isFingerprintEnabled: PropTypes.bool.isRequired,
         /** @ignore */
         currentSetting: PropTypes.string.isRequired,
         /** @ignore */
@@ -92,10 +77,6 @@ class Home extends Component {
         currentRoute: PropTypes.string.isRequired,
         /** @ignore */
         isKeyboardActive: PropTypes.bool.isRequired,
-        /** Triggered when login from inactivity is pressed */
-        onInactivityLoginPress: PropTypes.func.isRequired,
-        /** Clears temporary wallet data and navigates to login screen */
-        logout: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -104,7 +85,6 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.userInactivity.setActiveFromComponent();
         this.displayUpdates();
     }
 
@@ -121,9 +101,6 @@ class Home extends Component {
                 duration: isAndroid ? 100 : 250,
                 toValue: 0.7,
             }).start();
-        }
-        if (this.props.inactive && !newProps.inactive) {
-            this.userInactivity.setActiveFromComponent();
         }
     }
 
@@ -155,7 +132,6 @@ class Home extends Component {
      */
     onTabSwitch(nextRoute) {
         const { isSyncing, isTransitioning, isCheckingCustomNode } = this.props;
-        this.userInactivity.setActiveFromComponent();
 
         if (isTransitioning) {
             return;
@@ -175,23 +151,8 @@ class Home extends Component {
 
     handleCloseTopBar = () => {
         const { isTopBarActive } = this.props;
-        this.userInactivity.setActiveFromComponent();
         if (isTopBarActive) {
             this.props.toggleTopBarDisplay();
-        }
-    };
-
-    handleInactivity = () => {
-        const { isTransitioning, isSyncing, isSendingTransfer, isModalActive } = this.props;
-        const doingSomething = isTransitioning || isSyncing || isSendingTransfer;
-        if (doingSomething) {
-            this.userInactivity.setActiveFromComponent();
-        } else {
-            if (isModalActive) {
-                this.props.toggleModalActivity();
-            }
-            this.resetSettings();
-            this.props.setUserActivity({ inactive: true });
         }
     };
 
@@ -239,101 +200,49 @@ class Home extends Component {
     render() {
         const {
             t,
-            inactive,
             minimised,
-            isFingerprintEnabled,
-            theme: { body, negative, positive },
+            theme: { body },
             theme,
             isKeyboardActive,
         } = this.props;
-        const textColor = { color: body.color };
 
         return (
-            <UserInactivity
-                ref={(c) => {
-                    this.userInactivity = c;
-                }}
-                timeForInactivity={300000}
-                timeForLogout={1800000}
-                checkInterval={3000}
-                onInactivity={this.handleInactivity}
-                logout={this.props.logout}
-            >
-                <View style={{ flex: 1, backgroundColor: body.bg }}>
-                    {(!inactive && (
-                        <View style={{ flex: 1 }}>
-                            {(!minimised && (
-                                <KeyboardAvoidingView
-                                    enabled={isKeyboardActive}
-                                    style={styles.midContainer}
-                                    behavior="padding"
-                                >
-                                    <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
-                                    <View style={{ flex: 4.72 }}>
-                                        <TabContent
-                                            onTabSwitch={(name) => this.onTabSwitch(name)}
-                                            handleCloseTopBar={() => this.handleCloseTopBar()}
-                                        />
-                                    </View>
-                                </KeyboardAvoidingView>
-                            )) || <View style={styles.midContainer} />}
-                            <View style={styles.bottomContainer}>
-                                <Tabs onPress={(name) => this.onTabSwitch(name)} theme={theme}>
-                                    <Tab
-                                        name="balance"
-                                        icon="wallet"
-                                        theme={theme}
-                                        text={t('home:balance').toUpperCase()}
-                                    />
-                                    <Tab name="send" icon="send" theme={theme} text={t('home:send').toUpperCase()} />
-                                    <Tab
-                                        name="receive"
-                                        icon="receive"
-                                        theme={theme}
-                                        text={t('home:receive').toUpperCase()}
-                                    />
-                                    <Tab
-                                        name="history"
-                                        icon="history"
-                                        theme={theme}
-                                        text={t('home:history').toUpperCase()}
-                                    />
-                                    <Tab
-                                        name="settings"
-                                        icon="settings"
-                                        theme={theme}
-                                        text={t('home:settings').toUpperCase()}
-                                    />
-                                </Tabs>
+            <View style={{ flex: 1, backgroundColor: body.bg }}>
+                <View style={{ flex: 1 }}>
+                    {(!minimised && (
+                        <KeyboardAvoidingView enabled={isKeyboardActive} style={styles.midContainer} behavior="padding">
+                            <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
+                            <View style={{ flex: 4.72 }}>
+                                <TabContent
+                                    onTabSwitch={(name) => this.onTabSwitch(name)}
+                                    handleCloseTopBar={() => this.handleCloseTopBar()}
+                                />
                             </View>
-                            <TopBar minimised={minimised} />
-                        </View>
-                    )) || (
-                        <View style={[styles.inactivityLogoutContainer, { backgroundColor: body.bg }]}>
-                            <EnterPassword
-                                onLoginPress={this.props.onInactivityLoginPress}
-                                backgroundColor={body.bg}
-                                negativeColor={negative.color}
-                                positiveColor={positive.color}
-                                bodyColor={body.color}
-                                textColor={textColor}
-                                setUserActive={() => this.props.setUserActivity({ inactive: false })}
-                                generateAlert={(error, title, explanation) =>
-                                    this.props.generateAlert(error, title, explanation)
-                                }
-                                isFingerprintEnabled={isFingerprintEnabled}
+                        </KeyboardAvoidingView>
+                    )) || <View style={styles.midContainer} />}
+                    <View style={styles.bottomContainer}>
+                        <Tabs onPress={(name) => this.onTabSwitch(name)} theme={theme}>
+                            <Tab name="balance" icon="wallet" theme={theme} text={t('home:balance').toUpperCase()} />
+                            <Tab name="send" icon="send" theme={theme} text={t('home:send').toUpperCase()} />
+                            <Tab name="receive" icon="receive" theme={theme} text={t('home:receive').toUpperCase()} />
+                            <Tab name="history" icon="history" theme={theme} text={t('home:history').toUpperCase()} />
+                            <Tab
+                                name="settings"
+                                icon="settings"
+                                theme={theme}
+                                text={t('home:settings').toUpperCase()}
                             />
-                        </View>
-                    )}
-                    <PollComponent />
+                        </Tabs>
+                    </View>
+                    <TopBar minimised={minimised} />
                 </View>
-            </UserInactivity>
+                <PollComponent />
+            </View>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    inactive: state.ui.inactive,
     minimised: state.ui.minimised,
     theme: getThemeFromState(state),
     isSyncing: state.ui.isSyncing,
@@ -354,7 +263,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     changeHomeScreenRoute,
     generateAlert,
-    setUserActivity,
     setSetting,
     toggleTopBarDisplay,
     toggleModalActivity,

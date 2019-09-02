@@ -13,10 +13,10 @@ const migration = (oldRealm, newRealm) => {
 
     each(newWalletSettings, (settings) => {
         settings.quorum = {
-            enabled: true,
+            enabled: false,
             size: QUORUM_SIZE,
         };
-        settings.autoNodeList = true;
+        settings.autoNodeList = false;
         settings.nodeAutoSwitch = true;
     });
 };
@@ -33,7 +33,7 @@ export const QuorumConfigSchema = {
         },
         enabled: {
             type: 'bool',
-            default: true,
+            default: false,
         },
     },
 };
@@ -72,7 +72,7 @@ export default [
                      */
                     autoNodeList: {
                         type: 'bool',
-                        default: true,
+                        default: false,
                     },
                     /**
                      * - When true: pull in nodes from endpoint (config#NODELIST_URL) and include the custom nodes in the quorum selection

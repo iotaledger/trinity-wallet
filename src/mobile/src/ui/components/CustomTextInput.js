@@ -221,10 +221,10 @@ class CustomTextInput extends Component {
     onChangeText(value) {
         const { isPasswordInput, isSeedInput, onValidTextChange } = this.props;
         if (isSeedInput) {
-            if (value && !value.match(VALID_SEED_REGEX)) {
+            if (value && !value.toUpperCase().match(VALID_SEED_REGEX)) {
                 return;
             }
-            return onValidTextChange(trytesToTrits(value));
+            return onValidTextChange(trytesToTrits(value.toUpperCase()));
         } else if (isPasswordInput) {
             return onValidTextChange(stringToUInt8(value));
         }

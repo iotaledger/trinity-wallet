@@ -4,9 +4,11 @@ import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import navigator from 'libs/navigation';
 import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
-import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { VALID_SEED_REGEX, MAX_SEED_TRITS, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
+import { setOnboardingComplete, setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
+import { clearWalletData } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import SeedStore from 'libs/SeedStore';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FlagSecure from 'react-native-flag-secure-android';
@@ -83,9 +85,13 @@ class EnterSeed extends React.Component {
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
         /** @ignore */
-        setAccountInfoDuringSetup: PropTypes.func.isRequired,
-        /** @ignore */
         setDoNotMinimise: PropTypes.func.isRequired,
+        /** @ignore */
+        setOnboardingComplete: PropTypes.func.isRequired,
+        /** @ignore */
+        clearWalletData: PropTypes.func.isRequired,
+        /** @ignore */
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -112,7 +118,7 @@ class EnterSeed extends React.Component {
     /**
      * Validate seed
      */
-    onDonePress() {
+    async onDonePress() {
         const { t } = this.props;
         const { seed } = this.state;
         if (seed === null || seed.length !== MAX_SEED_TRITS) {
@@ -125,10 +131,27 @@ class EnterSeed extends React.Component {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
-            global.onboardingSeed = seed;
-            // Since this seed was not generated in Trinity, mark "usedExistingSeed" as true.
-            this.props.setAccountInfoDuringSetup({ usedExistingSeed: true });
-            navigator.push('setAccountName');
+            const accountName = 'MAIN ACCOUNT';
+
+            const seedStore = await new SeedStore.keychain(global.passwordHash);
+            const isUniqueSeed = await seedStore.isUniqueSeed(seed);
+            if (!isUniqueSeed) {
+                return this.props.generateAlert(
+                    'error',
+                    t('addAdditionalSeed:seedInUse'),
+                    t('addAdditionalSeed:seedInUseExplanation'),
+                );
+            }
+            this.props.setAccountInfoDuringSetup({
+                name: accountName,
+                meta: { type: 'keychain' },
+                completed: true,
+            });
+            await seedStore.addAccount(accountName, seed);
+
+            this.props.clearWalletData();
+            this.props.setOnboardingComplete(true);
+            navigator.setStackRoot('loading');
         }
     }
 
@@ -218,10 +241,6 @@ class EnterSeed extends React.Component {
                                         <Text style={[styles.infoText, { color: theme.body.color }]}>
                                             {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
                                         </Text>
-                                        <Text style={[styles.warningText, { color: theme.body.color }]}>
-                                            {'\n'}
-                                            {t('neverShare')}
-                                        </Text>
                                     </InfoBox>
                                 </AnimatedComponent>
                                 <View style={{ flex: 0.5 }} />
@@ -298,10 +317,17 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     toggleModalActivity,
-    setAccountInfoDuringSetup,
     setDoNotMinimise,
+    setOnboardingComplete,
+    clearWalletData,
+    setAccountInfoDuringSetup,
 };
 
 export default WithUserActivity()(
-    withNamespaces(['enterSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterSeed)),
+    withNamespaces(['enterSeed', 'global'])(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(EnterSeed),
+    ),
 );

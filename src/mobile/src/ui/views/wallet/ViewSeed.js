@@ -1,4 +1,3 @@
-import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -11,7 +10,6 @@ import { getThemeFromState } from 'shared-modules/selectors/global';
 import FlagSecure from 'react-native-flag-secure-android';
 import Fonts from 'ui/theme/fonts';
 import SeedPicker from 'ui/components/SeedPicker';
-import CustomTextInput from 'ui/components/CustomTextInput';
 import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -21,7 +19,6 @@ import SettingsBackButton from 'ui/components/SettingsBackButton';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
-import { hash } from 'libs/keychain';
 
 const styles = StyleSheet.create({
     container: {
@@ -87,17 +84,14 @@ class ViewSeed extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** @ignore */
-        generateAlert: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            password: null,
             seed: '',
             step: 'isViewingGeneralInfo',
-            steps: ['isViewingGeneralInfo', 'isEnteringPassword', 'isViewingSeed'],
+            steps: ['isViewingGeneralInfo', 'isViewingSeed'],
         };
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
         this.onNextPress = this.onNextPress.bind(this);
@@ -123,7 +117,6 @@ class ViewSeed extends Component {
             FlagSecure.deactivate();
         }
         delete this.state.seed;
-        delete this.state.password;
     }
 
     /**
@@ -132,12 +125,10 @@ class ViewSeed extends Component {
      * @method onNextPress
      */
     async onNextPress() {
-        const { step } = this.state;
-        if (step === 'isViewingGeneralInfo') {
-            return this.navigateToStep('isEnteringPassword');
-        } else if (step === 'isEnteringPassword') {
-            return this.verifyPassword();
-        }
+        const { selectedAccountMeta, selectedAccountName } = this.props;
+        const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+        this.setState({ seed: await seedStore.getSeed() });
+        return this.navigateToStep('isViewingSeed');
     }
 
     /**
@@ -178,25 +169,10 @@ class ViewSeed extends Component {
      * @returns {Promise<void>}
      */
     async verifyPassword() {
-        const { t, selectedAccountName, selectedAccountMeta } = this.props;
-        if (!this.state.password) {
-            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
-        }
-        const pwdHash = await hash(this.state.password);
-        if (isEqual(global.passwordHash, pwdHash)) {
-            const seedStore = await new SeedStore[selectedAccountMeta.type](pwdHash, selectedAccountName);
-            if (isAndroid) {
-                FlagSecure.activate();
-            }
-            this.setState({ seed: await seedStore.getSeed() });
-            this.navigateToStep('isViewingSeed');
-        } else {
-            this.props.generateAlert(
-                'error',
-                t('global:unrecognisedPassword'),
-                t('global:unrecognisedPasswordExplanation'),
-            );
-        }
+        const { selectedAccountName, selectedAccountMeta } = this.props;
+        const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+        this.setState({ seed: await seedStore.getSeed() });
+        this.navigateToStep('isViewingSeed');
     }
 
     /**
@@ -217,13 +193,13 @@ class ViewSeed extends Component {
      */
     resetComponent() {
         this.navigateToStep('isViewingGeneralInfo');
-        this.setState({ password: null, seed: '' });
+        this.setState({ seed: '' });
     }
 
     render() {
         const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
-        const { password, steps, step } = this.state;
+        const { steps, step } = this.state;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -251,31 +227,6 @@ class ViewSeed extends Component {
                                     containerStyle={{ marginTop: height / 20 }}
                                 />
                             </InfoBox>
-                        </View>
-                        <View style={styles.viewContainer}>
-                            <Text style={[styles.generalText, textColor]}>{t('viewSeed:enterPassword')}</Text>
-                            <CustomTextInput
-                                label={t('global:password')}
-                                onValidTextChange={(password) => this.setState({ password })}
-                                containerStyle={{ width: Styling.contentWidth, paddingVertical: height / 20 }}
-                                autoCapitalize="none"
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="done"
-                                secureTextEntry
-                                value={password}
-                                theme={theme}
-                                isPasswordInput
-                            />
-                            <CtaButton
-                                ctaColor={theme.primary.color}
-                                secondaryCtaColor={theme.primary.body}
-                                text={t('viewSeed:viewSeed')}
-                                onPress={this.onNextPress}
-                                ctaWidth={width / 2}
-                                ctaHeight={height / 16}
-                                containerStyle={{ marginTop: height / 20 }}
-                            />
                         </View>
                         <View style={styles.viewContainer}>
                             <View style={{ flex: 1 }}>

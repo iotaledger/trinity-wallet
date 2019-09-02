@@ -73,10 +73,10 @@ describe('Reducer: settings', () => {
                 deepLinking: false,
                 quorum: {
                     size: QUORUM_SIZE,
-                    enabled: true,
+                    enabled: false,
                 },
                 nodeAutoSwitch: true,
-                autoNodeList: true,
+                autoNodeList: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

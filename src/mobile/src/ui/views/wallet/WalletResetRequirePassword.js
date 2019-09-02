@@ -1,5 +1,3 @@
-import isEmpty from 'lodash/isEmpty';
-import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -10,15 +8,14 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
 import getEncryptionKey from 'libs/realm';
-import { Text, StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
+import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import { clearKeychain, hash } from 'libs/keychain';
-import CustomTextInput from 'ui/components/CustomTextInput';
-import InfoBox from 'ui/components/InfoBox';
-import Header from 'ui/components/Header';
-import { Styling } from 'ui/theme/general';
+import { clearKeychain } from 'libs/keychain';
+import { getAnimation } from 'shared-modules/animations';
+import LottieView from 'lottie-react-native';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -27,12 +24,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topWrapper: {
-        flex: 0.9,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    midWrapper: {
-        flex: 4.6,
+        flex: 5.5,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -41,11 +33,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    infoText: {
-        fontSize: Styling.fontSize3,
-        fontFamily: 'SourceSansPro-Light',
-        textAlign: 'center',
-        backgroundColor: 'transparent',
+    animation: {
+        width: width / 1.35,
+        height: width / 1.35,
     },
 });
 
@@ -70,13 +60,12 @@ class WalletResetRequirePassword extends Component {
         isAutoPromoting: PropTypes.bool.isRequired,
         /** Determines whether to allow account change */
         shouldPreventAction: PropTypes.bool.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     constructor() {
         super();
-        this.state = {
-            password: null,
-        };
         this.goBack = this.goBack.bind(this);
         this.resetWallet = this.resetWallet.bind(this);
     }
@@ -91,7 +80,6 @@ class WalletResetRequirePassword extends Component {
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress');
-        delete this.state.password;
     }
 
     /**
@@ -100,14 +88,6 @@ class WalletResetRequirePassword extends Component {
      */
     goBack() {
         navigator.pop(this.props.componentId);
-    }
-
-    /**
-     * Checks if password is correct
-     * @method isAuthenticated
-     */
-    async isAuthenticated() {
-        return isEqual(global.passwordHash, await hash(this.state.password));
     }
 
     /**
@@ -128,39 +108,29 @@ class WalletResetRequirePassword extends Component {
         if (isAutoPromoting || shouldPreventAction) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
-        if (isEmpty(this.state.password)) {
-            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
-        } else if (await this.isAuthenticated()) {
-            reinitialiseStorage(getEncryptionKey)
-                .then(() => clearKeychain())
-                .then(() => {
-                    this.redirectToInitialScreen();
-                    // resetWallet action creator resets the whole state object to default values
-                    // https://github.com/iotaledger/trinity-wallet/blob/develop/src/shared/store.js#L37
-                    this.props.resetWallet();
-                    // FIXME: Temporarily needed for password migration
-                    this.props.setCompletedForcedPasswordUpdate();
-                })
-                .catch((err) => {
-                    this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongExplanation'),
-                        10000,
-                        err,
-                    );
-                });
-        } else {
-            this.props.generateAlert(
-                'error',
-                t('global:unrecognisedPassword'),
-                t('global:unrecognisedPasswordExplanation'),
-            );
-        }
+        reinitialiseStorage(getEncryptionKey)
+            .then(() => clearKeychain())
+            .then(() => {
+                this.redirectToInitialScreen();
+                // resetWallet action creator resets the whole state object to default values
+                // https://github.com/iotaledger/trinity-wallet/blob/develop/src/shared/store.js#L37
+                this.props.resetWallet();
+                // FIXME: Temporarily needed for password migration
+                this.props.setCompletedForcedPasswordUpdate();
+            })
+            .catch((err) => {
+                this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongExplanation'),
+                    10000,
+                    err,
+                );
+            });
     }
 
     render() {
-        const { t, theme } = this.props;
+        const { t, theme, themeName } = this.props;
         const backgroundColor = { backgroundColor: theme.body.bg };
 
         return (
@@ -171,44 +141,15 @@ class WalletResetRequirePassword extends Component {
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={400}
-                            >
-                                <Header textColor={theme.body.color} />
-                            </AnimatedComponent>
-                        </View>
-                        <View style={styles.midWrapper}>
-                            <AnimatedComponent
-                                animationInType={['slideInRight', 'fadeIn']}
-                                animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={300}
-                            >
-                                <InfoBox>
-                                    <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                        {t('enterPassword')}
-                                    </Text>
-                                </InfoBox>
-                            </AnimatedComponent>
-                            <View style={{ flex: 0.1 }} />
-                            <AnimatedComponent
-                                animationInType={['slideInRight', 'fadeIn']}
-                                animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={100}
                             >
-                                <CustomTextInput
-                                    label={t('global:password')}
-                                    onValidTextChange={(password) => this.setState({ password })}
-                                    value={this.state.password}
-                                    containerStyle={{ width: Styling.contentWidth }}
-                                    autoCapitalize="none"
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically
-                                    returnKeyType="done"
-                                    theme={theme}
-                                    secureTextEntry
-                                    isPasswordInput
+                                <LottieView
+                                    source={getAnimation('logout', themeName)}
+                                    loop={false}
+                                    autoPlay
+                                    style={styles.animation}
                                 />
                             </AnimatedComponent>
-                            <View style={{ flex: 0.1 }} />
                         </View>
                         <View style={styles.bottomContainer}>
                             <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
@@ -231,6 +172,7 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     shouldPreventAction: shouldPreventAction(state),
     isAutoPromoting: state.polling.isAutoPromoting,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {

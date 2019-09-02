@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-import size from 'lodash/size';
 import { withNamespaces } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -14,14 +12,11 @@ import { setSetting } from 'shared-modules/actions/wallet';
 import { setUserActivity, setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import WithDeepLinking from 'ui/components/DeepLinking';
 import NodeSettingsComponent from 'ui/views/wallet/NodeSettings';
 import AddCustomNodeComponent from 'ui/views/wallet/AddCustomNode';
-import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
+import LoginContent from 'ui/components/LoginContent';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import SeedStore from 'libs/SeedStore';
-import { authorize, hash } from 'libs/keychain';
 import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
@@ -36,13 +31,9 @@ const styles = StyleSheet.create({
 class Login extends Component {
     static propTypes = {
         /** @ignore */
-        generateAlert: PropTypes.func.isRequired,
-        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
         setUserActivity: PropTypes.func.isRequired,
-        /** @ignore */
-        t: PropTypes.func.isRequired,
         /** @ignore */
         loginRoute: PropTypes.string.isRequired,
         /** @ignore */
@@ -50,15 +41,11 @@ class Login extends Component {
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
         /** @ignore */
-        completedMigration: PropTypes.bool.isRequired,
-        /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
         /** @ignore */
         hasConnection: PropTypes.bool.isRequired,
-        /** Currently selected account name */
-        selectedAccountName: PropTypes.string.isRequired,
-        /** Currently selected account meta */
-        selectedAccountMeta: PropTypes.object.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -105,41 +92,12 @@ class Login extends Component {
      * @returns {Promise<void>}
      */
     async onLoginPress() {
-        const {
-            t,
-            hasConnection,
-            forceUpdate,
-            completedMigration,
-            selectedAccountMeta,
-            selectedAccountName,
-        } = this.props;
+        const { hasConnection, forceUpdate } = this.props;
         if (!hasConnection || forceUpdate) {
             return;
         }
         this.animationOutType = ['fadeOut'];
-        if (size(this.state.password) === 0) {
-            this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
-        } else {
-            const pwdHash = await hash(this.state.password);
-            try {
-                await authorize(pwdHash);
-                const seedStore = await new SeedStore[(get(selectedAccountMeta, 'type', 'keychain'))](
-                    pwdHash,
-                    selectedAccountName,
-                );
-                // FIXME: To be deprecated
-                const completedSeedMigration = typeof (await seedStore.getSeeds())[selectedAccountName] !== 'string';
-                global.passwordHash = pwdHash;
-                delete this.state.password;
-                this.navigateTo(completedMigration && completedSeedMigration ? 'loading' : 'migration');
-            } catch (error) {
-                this.props.generateAlert(
-                    'error',
-                    t('global:unrecognisedPassword'),
-                    t('global:unrecognisedPasswordExplanation'),
-                );
-            }
-        }
+        this.navigateTo('loading');
     }
 
     /**
@@ -182,7 +140,7 @@ class Login extends Component {
     }
 
     render() {
-        const { theme, isFingerprintEnabled } = this.props;
+        const { theme, isFingerprintEnabled, themeName } = this.props;
         const { nextLoginRoute } = this.state;
         const body = theme.body;
 
@@ -198,13 +156,14 @@ class Login extends Component {
                 style={[styles.container, { backgroundColor: body.bg }]}
             >
                 {nextLoginRoute === 'login' && (
-                    <EnterPasswordOnLoginComponent
+                    <LoginContent
                         theme={theme}
                         onLoginPress={this.onLoginPress}
                         navigateToNodeOptions={() => this.props.setLoginRoute('nodeSettings')}
                         setLoginPasswordField={(password) => this.setState({ password })}
                         password={this.state.password}
                         isFingerprintEnabled={isFingerprintEnabled}
+                        themeName={themeName}
                     />
                 )}
                 {nextLoginRoute !== 'login' && (
@@ -224,13 +183,12 @@ const mapStateToProps = (state) => ({
     node: state.settings.node,
     nodes: state.settings.nodes,
     theme: getThemeFromState(state),
+    themeName: state.settings.themeName,
     loginRoute: state.ui.loginRoute,
     hasConnection: state.wallet.hasConnection,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     completedMigration: state.settings.completedMigration,
     forceUpdate: state.wallet.forceUpdate,
-    selectedAccountName: getSelectedAccountName(state),
-    selectedAccountMeta: getSelectedAccountMeta(state),
 });
 
 const mapDispatchToProps = {

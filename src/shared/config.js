@@ -11,25 +11,22 @@ export const DEFAULT_NODE = __TEST__
           password: '',
       }
     : {
-          url: 'https://nodes.iota.org',
+          url: 'https://nodes.devnet.iota.org',
           pow: false,
           token: '',
           password: '',
       };
 
-export const NODES_WITH_POW_DISABLED = ['https://nodes.iota.org'].map((url) => ({
-    url,
-    pow: false,
-    token: '',
-    password: '',
-}));
+export const NODES_WITH_POW_DISABLED = ['https://nodes.devnet.iota.org', 'https://altnodes.devnet.iota.org'].map(
+    (url) => ({
+        url,
+        pow: false,
+        token: '',
+        password: '',
+    }),
+);
 
-export const NODES_WITH_POW_ENABLED = [
-    'https://nodes.thetangle.org:443',
-    'https://iotanode.us:443',
-    'https://pool.trytes.eu',
-    'https://pow.iota.community:443',
-].map((url) => ({
+export const NODES_WITH_POW_ENABLED = ['https://devnet.thetangle.org:443'].map((url) => ({
     url,
     pow: true,
     token: '',
@@ -65,7 +62,7 @@ export const WERE_ADDRESSES_SPENT_FROM_REQUEST_TIMEOUT = 4000;
 export const ATTACH_TO_TANGLE_REQUEST_TIMEOUT = 25000;
 export const GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT = 40000;
 
-export const DEFAULT_RETRIES = 4;
+export const DEFAULT_RETRIES = 2;
 
 export const IRI_API_VERSION = '1';
 

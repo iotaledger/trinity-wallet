@@ -24,14 +24,20 @@ import {
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { DEFAULT_NODE, MINIMUM_QUORUM_SIZE, MAXIMUM_QUORUM_SIZE, QUORUM_SIZE } from 'shared-modules/config';
+import {
+    DEFAULT_NODE,
+    DEFAULT_NODES,
+    MINIMUM_QUORUM_SIZE,
+    MAXIMUM_QUORUM_SIZE,
+    QUORUM_SIZE,
+} from 'shared-modules/config';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
 const defaultState = {
-    autoNodeList: true,
+    autoNodeList: false,
     nodeAutoSwitch: true,
-    quorumEnabled: true,
+    quorumEnabled: false,
     quorumSize: QUORUM_SIZE.toString(),
     powNodeAutoSwitch: true,
 };
@@ -174,7 +180,7 @@ export class NodeSettings extends PureComponent {
     getAvailableNodes(pow = false) {
         const { nodes, customNodes } = this.props;
         const { autoNodeList } = this.state;
-        const availableNodes = unionBy(customNodes, autoNodeList && nodes, [DEFAULT_NODE], 'url');
+        const availableNodes = unionBy(customNodes, DEFAULT_NODES, autoNodeList && nodes, [DEFAULT_NODE], 'url');
         if (pow) {
             return availableNodes.filter(({ pow }) => pow);
         }
@@ -243,7 +249,7 @@ export class NodeSettings extends PureComponent {
         if (
             !quorumEnabled &&
             ((autoNodeList && nodes.length < MINIMUM_QUORUM_SIZE) ||
-                (!autoNodeList && customNodes.length < MINIMUM_QUORUM_SIZE))
+                (!autoNodeList && unionBy(customNodes.length, DEFAULT_NODES) < MINIMUM_QUORUM_SIZE))
         ) {
             return this.props.generateAlert(
                 'error',

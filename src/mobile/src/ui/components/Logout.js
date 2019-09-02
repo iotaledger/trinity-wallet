@@ -50,7 +50,6 @@ export default () => (C) => {
                 'delayLogout',
                 () => {
                     navigator.setStackRoot('login');
-                    delete global.passwordHash;
                     this.props.clearWalletData();
                 },
                 500,

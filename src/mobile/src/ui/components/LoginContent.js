@@ -4,23 +4,16 @@ import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
-import { width } from 'libs/dimensions';
-import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import { Styling } from 'ui/theme/general';
-import CustomTextInput from './CustomTextInput';
+import { getAnimation } from 'shared-modules/animations';
+import LottieView from 'lottie-react-native';
 import DualFooterButtons from './DualFooterButtons';
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 2.6,
+        flex: 5.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
-    },
-    midContainer: {
-        flex: 3,
-        width,
-        alignItems: 'center',
     },
     bottomContainer: {
         flex: 0.7,
@@ -31,23 +24,19 @@ const styles = StyleSheet.create({
 
 export class EnterPasswordOnLogin extends Component {
     static propTypes = {
-        /** @ignore */
-        theme: PropTypes.object.isRequired,
-        /** Password text */
-        password: PropTypes.object,
         /** Verify two factor authentication token */
         /** @param {object} password - user's password */
         onLoginPress: PropTypes.func.isRequired,
         /** Navigate to node selection screen */
         navigateToNodeOptions: PropTypes.func.isRequired,
         /** @ignore */
-        setLoginPasswordField: PropTypes.func.isRequired,
-        /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        isFingerprintEnabled: PropTypes.bool.isRequired,
-        /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** @ignore */
+        theme: PropTypes.object.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -60,11 +49,8 @@ export class EnterPasswordOnLogin extends Component {
         leaveNavigationBreadcrumb('EnterPasswordOnLogin');
     }
 
-    handleChangeText = (password) => this.props.setLoginPasswordField(password);
-
     handleLogin = () => {
-        const { onLoginPress, password } = this.props;
-        onLoginPress(password);
+        this.props.onLoginPress();
     };
 
     changeNode = () => {
@@ -86,31 +72,17 @@ export class EnterPasswordOnLogin extends Component {
     }
 
     render() {
-        const { t, theme, password, isFingerprintEnabled } = this.props;
+        const { t, themeName } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
                     <View style={styles.topContainer}>
-                        <Header textColor={theme.body.color} />
-                    </View>
-                    <View style={styles.midContainer}>
-                        <CustomTextInput
-                            label={t('global:password')}
-                            onValidTextChange={this.handleChangeText}
-                            containerStyle={{ width: Styling.contentWidth }}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            enablesReturnKeyAutomatically
-                            returnKeyType="done"
-                            secureTextEntry
-                            onSubmitEditing={this.handleLogin}
-                            theme={theme}
-                            value={password}
-                            widgets={isFingerprintEnabled ? ['fingerprintDisabled'] : []}
-                            fingerprintAuthentication={isFingerprintEnabled}
-                            onFingerprintPress={this.openModal}
-                            isPasswordInput
+                        <LottieView
+                            source={getAnimation('onboardingComplete', themeName)}
+                            loop={false}
+                            autoPlay
+                            style={styles.animation}
                         />
                     </View>
                     <View style={styles.bottomContainer}>

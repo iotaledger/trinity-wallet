@@ -6,7 +6,7 @@ import isUndefined from 'lodash/isUndefined';
 import unionBy from 'lodash/unionBy';
 import Errors from '../errors';
 import { getRandomNodes } from './utils';
-import { DEFAULT_RETRIES } from '../../config';
+import { DEFAULT_RETRIES, DEFAULT_NODES } from '../../config';
 import { changeNode, setPowNode } from '../../actions/settings';
 import store from '../../store';
 
@@ -37,15 +37,17 @@ export default class NodesManager {
         const { priorityNode, primaryNode, nodeAutoSwitch, powNodeAutoSwitch, nodes, quorum, powNode } = this.config;
         let attempt = 0;
         let executedCallback = false;
-        const randomNodes = getRandomNodes(nodes,
+        const randomNodes = getRandomNodes(
+            unionBy(nodes, DEFAULT_NODES, 'url'),
             retryAttempts,
             [primaryNode],
             !isUndefined(powNode),
         );
-        const retryNodes = isUndefined(powNode) ? unionBy([priorityNode], randomNodes, 'url') : unionBy([powNode], randomNodes, 'url') ;
+        const retryNodes = isUndefined(powNode)
+            ? unionBy([priorityNode], randomNodes, 'url')
+            : unionBy([powNode], randomNodes, 'url');
         // Abort retries on these errors
         const cancellationErrors = [Errors.LEDGER_CANCELLED, Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE];
-
         return (promiseFunc) => {
             const execute = (...args) => {
                 if (isUndefined(retryNodes[attempt])) {
@@ -55,7 +57,7 @@ export default class NodesManager {
                 return promiseFunc(retryNodes[attempt], quorum.enabled)(...args)
                     .then((result) => {
                         if (powNode) {
-                            store.dispatch(setPowNode(get(retryNodes[attempt], 'url')))
+                            store.dispatch(setPowNode(get(retryNodes[attempt], 'url')));
                         } else {
                             store.dispatch(changeNode(retryNodes[attempt]));
                         }

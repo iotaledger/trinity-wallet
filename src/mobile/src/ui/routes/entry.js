@@ -72,7 +72,6 @@ const onAppStart = () => {
                 firstLaunch = false;
                 return;
             }
-            delete global.passwordHash;
             return renderInitialScreen(getInitialScreen());
         });
         resolve();

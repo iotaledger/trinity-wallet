@@ -27,43 +27,6 @@ describe('libs: iota/extendedApi', () => {
     });
 
     describe('#isNodeHealthy', () => {
-        describe('when node runs an unsupported release', () => {
-            beforeEach(() => {
-                nock('http://localhost:14265', {
-                    reqheaders: {
-                        'Content-Type': 'application/json',
-                        'X-IOTA-API-Version': IRI_API_VERSION,
-                    },
-                })
-                    .filteringRequestBody(() => '*')
-                    .persist()
-                    .post('/', '*')
-                    .reply(200, (_, body) => {
-                        const { command } = body;
-
-                        const resultMap = {
-                            getNodeInfo: {
-                                appVersion: '0.0.0-RC2',
-                            },
-                        };
-
-                        return resultMap[command] || {};
-                    });
-            });
-
-            afterEach(() => {
-                nock.cleanAll();
-            });
-
-            it('should throw with an error "The currently selected node uses an unsupported IRI version."', () => {
-                return isNodeHealthy()
-                    .then(() => {
-                        throw new Error();
-                    })
-                    .catch((error) => expect(error.message).to.equal('The currently selected node uses an unsupported IRI version.'));
-            });
-        });
-
         describe('when latestMilestone is not equal to latestSolidSubtangleMilestone', () => {
             beforeEach(() => {
                 nock('http://localhost:14265', {
@@ -99,7 +62,11 @@ describe('libs: iota/extendedApi', () => {
                     .then(() => {
                         throw new Error();
                     })
-                    .catch((error) => expect(error.message).to.equal('The selected node is out of sync. Its view of the Tangle may be innacurate.'));
+                    .catch((error) =>
+                        expect(error.message).to.equal(
+                            'The selected node is out of sync. Its view of the Tangle may be innacurate.',
+                        ),
+                    );
             });
         });
 
@@ -138,7 +105,11 @@ describe('libs: iota/extendedApi', () => {
                     .then(() => {
                         throw new Error();
                     })
-                    .catch((error) => expect(error.message).to.equal('The selected node is out of sync. Its view of the Tangle may be innacurate.'));
+                    .catch((error) =>
+                        expect(error.message).to.equal(
+                            'The selected node is out of sync. Its view of the Tangle may be innacurate.',
+                        ),
+                    );
             });
         });
 
