@@ -498,7 +498,7 @@
         "automaticNodeManagement": "Automatische Node-Verwaltung",
         "addCustomNodes": "Nodes hinzufügen",
         "autoNodeList": "Standard Node-Liste verwenden",
-        "nodeAutoswitching": "Primäre Node automatisch wählen",
+        "nodeAutoswitching": "Primären Node automatisch wählen",
         "primaryNode": "Primärer Node",
         "enableQuorum": "Node-Gruppe aktivieren",
         "quorumSize": "Anzahl der Nodes in der Node-Gruppe",
@@ -510,7 +510,7 @@
         "nodeSettingsUpdatedTitle": "Node-Einstellungen aktualisiert",
         "nodeSettingsUpdatedExplanation": "Die Node-Einstellungen wurden erfolgreich gespeichert.",
         "outsourcePow": "Proof of work auslagern",
-        "autoSelectPowNode": "Node für proof of work automatisch wählen",
+        "autoSelectPowNode": "Proof of Work-Node automatisch wählen",
         "nodeForPow": "Proof of work Node"
     },
     "addCustomNode": {
