@@ -31,6 +31,10 @@ lane :configure_release do |options|
       UI.message 'Configuring signing for beta release'
       # Use distribution profile for beta deployment
       provisioning_profile = ENV['BETA_PROVISIONING_PROFILE_UUID']
+    elsif options[:destination] == 'demo'
+      UI.message 'Configuring signing for beta release'
+      # Use distribution profile for demo deployment
+      provisioning_profile = ENV['DEMO_PROVISIONING_PROFILE_UUID']
     elsif options[:destination] == 'adhoc'
       UI.message 'Configuring signing for ad hoc release'
       # Use ad hoc profile
