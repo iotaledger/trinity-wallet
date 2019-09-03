@@ -8,6 +8,11 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import some from 'lodash/some';
 import uniqBy from 'lodash/uniqBy';
+import { addEntry, finalizeBundle } from '@iota/bundle';
+import { tritsToTrytes, trytesToTrits, valueToTrits } from '@iota/converter';
+import { bundle } from '@iota/transaction';
+import { normalizedBundle } from '@iota/signing';
+import { createBundleMiner } from '@iota/bundle-miner';
 import {
     attachToTangleAsync,
     getTransactionsToApproveAsync,
@@ -207,6 +212,53 @@ const sweep = (settings, withQuorum) => (seedStore, seed, input, transfer) => {
             return storeAndBroadcastAsync(settings)(cached.trytes);
         })
         .then(() => cached);
+};
+
+const createUnsignedBundle = (outputAddress, inputAddress, value, securityLevel = 2) => {
+    const issuanceTimestamp = valueToTrits(Math.floor(Date.now() / 1000));
+
+    let bundle = new Int8Array();
+
+    bundle = addEntry(bundle, {
+        address: outputAddress,
+        value: valueToTrits(value),
+        issuanceTimestamp,
+    });
+
+    // For every security level, create a new zero-value transaction to which you can later add the rest of the signature fragments
+    for (let i = 0; i < securityLevel; i++) {
+        bundle = addEntry(bundle, {
+            address: inputAddress,
+            value: valueToTrits(i == 0 ? -value : 0),
+            issuanceTimestamp,
+        });
+    }
+
+    return finalizeBundle(bundle).then((result) => tritsToTrytes(bundle(result)));
+};
+
+export const testSweep = () => {
+    return createUnsignedBundle(
+        'U'.repeat(81),
+        'QWXMKGYQLTJXZWGIJBVMFXIJGISIFKDYBUNPPOFWGWAWJFSYSIKMJKIRRRUPNWCQVLECSVKZOLSWPNGZX',
+        1,
+    ).then((unsignedBundleHash) => {
+        const normalizedBundles = ['NQHTZBUBHUUFJ9F9SDQVIBBBX9WGRWNSIEK9SGLBIGJYJGXCNGACWPZBWQLCTEDWFIABLEEYJHFRCUQFX']
+            .map(trytesToTrits)
+            .map(normalizedBundle);
+
+        const bundleMiner = createBundleMiner({
+            normalizedBundles,
+            bundle: trytesToTrits(unsignedBundleHash),
+        });
+
+        bundleMiner.start();
+
+        return new Promise((resolve, reject) => {
+            bundleMiner.on('end', resolve);
+            bundleMiner.on('error', reject);
+        });
+    });
 };
 
 export default sweep;
