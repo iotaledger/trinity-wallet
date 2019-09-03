@@ -496,9 +496,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Gestion automatique des noeuds",
-        "addCustomNodes": "Ajouter des nœuds",
-        "autoNodeList": "Utiliser la liste de noeuds par défaut",
-        "nodeAutoswitching": "Sélectionner automatiquement le noeud primaire",
+        "addCustomNodes": "Ajouter des serveurs",
+        "autoNodeList": "Utiliser la liste de serveurs par défaut",
+        "nodeAutoswitching": "Sélectionner automatiquement le serveur principal",
         "primaryNode": "Noeud primaire",
         "enableQuorum": "Activer le mécanisme de quorum",
         "quorumSize": "Taille du Quorum",
@@ -510,7 +510,7 @@
         "nodeSettingsUpdatedTitle": "Paramètres du noeud mis à jour",
         "nodeSettingsUpdatedExplanation": "Vous avez mis à jour vos paramètres de serveur avec succès.",
         "outsourcePow": "Externaliser la preuve de travail",
-        "autoSelectPowNode": "Détection automatique du nœud de travail",
+        "autoSelectPowNode": "Sélection automatique du serveur pour preuve de travail",
         "nodeForPow": "Serveur pour preuve de travail"
     },
     "addCustomNode": {
