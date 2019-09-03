@@ -116,7 +116,7 @@
         "checkForUpdates": "Rechercher des mises à jour",
         "account": "Compte",
         "changeNode": "Changez de serveur",
-        "addCustomNode": "Ajouter des nœuds",
+        "addCustomNode": "Ajouter des serveurs",
         "nodeMustUseHTTPS": "Serveur invalide (pas HTTPS)",
         "nodeMustUseHTTPSExplanation": "Seuls les serveurs personnalisés utilisant HTTPS sont autorisés.",
         "nodeDuplicated": "Serveur dupliqué",
@@ -511,7 +511,7 @@
         "nodeSettingsUpdatedExplanation": "Vous avez mis à jour vos paramètres de serveur avec succès.",
         "outsourcePow": "Externaliser la preuve de travail",
         "autoSelectPowNode": "Détection automatique du nœud de travail",
-        "nodeForPow": "Proof of work node"
+        "nodeForPow": "Serveur pour preuve de travail"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Le serveur personnalisé n'a pas pu être ajouté",
