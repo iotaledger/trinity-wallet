@@ -30,7 +30,7 @@
   "xcodeSchemes": {
     "Debug": [],
     "Release": [
-      "Beta"
+      "Beta", "Demo"
     ]
   },
   "dependencies": {
