@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { computeStatusText, formatRelevantTransactions } from 'shared-modules/libs/iota/transfers';
 import { promoteTransaction, retryFailedTransaction } from 'shared-modules/actions/transfers';
@@ -300,7 +300,11 @@ class History extends Component {
     }
 
     renderTransactions() {
-        const { theme: { primary, body }, t, isRefreshing } = this.props;
+        const {
+            theme: { primary, body },
+            t,
+            isRefreshing,
+        } = this.props;
         const data = this.prepTransactions();
         const noTransactions = data.length === 0;
 
@@ -383,5 +387,10 @@ const mapDispatchToProps = {
 };
 
 export default WithManualRefresh()(
-    withNamespaces(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History)),
+    withTranslation(['history', 'global'])(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(History),
+    ),
 );

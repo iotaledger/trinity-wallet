@@ -8,7 +8,7 @@ import isEmpty from 'lodash/isEmpty';
 import unionBy from 'lodash/unionBy';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -446,7 +446,7 @@ const mapDispatchToProps = {
     updatePowNodeAutoSwitchSetting,
 };
 
-export default withNamespaces(['advancedSettings', 'nodeSettings', 'settings', 'global'])(
+export default withTranslation(['advancedSettings', 'nodeSettings', 'settings', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

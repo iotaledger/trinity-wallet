@@ -1,5 +1,5 @@
 import last from 'lodash/last';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { dismissAlert } from 'shared-modules/actions/alerts';
@@ -190,7 +190,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = { dismissAlert };
 
-export default withNamespaces(['global'])(
+export default withTranslation(['global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

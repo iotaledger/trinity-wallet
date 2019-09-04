@@ -1,7 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import navigator from 'libs/navigation';
@@ -239,7 +239,7 @@ const mapDispatchToProps = {
     setCompletedForcedPasswordUpdate,
 };
 
-export default withNamespaces(['resetWalletRequirePassword', 'global'])(
+export default withTranslation(['resetWalletRequirePassword', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

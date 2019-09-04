@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
@@ -152,7 +152,7 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['welcome', 'global'])(
+export default withTranslation(['welcome', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

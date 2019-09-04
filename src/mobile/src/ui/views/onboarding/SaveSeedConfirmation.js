@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import navigator from 'libs/navigation';
@@ -108,7 +108,10 @@ class SaveSeedConfirmation extends Component {
     }
 
     renderInfoBoxContent() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+        } = this.props;
         const textColor = { color: body.color };
 
         return (
@@ -133,7 +136,10 @@ class SaveSeedConfirmation extends Component {
     }
 
     render() {
-        const { t, theme: { body, input, dark, primary, secondary } } = this.props;
+        const {
+            t,
+            theme: { body, input, dark, primary, secondary },
+        } = this.props;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
@@ -202,4 +208,4 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
 });
 
-export default withNamespaces(['saveSeedConfirmation', 'global'])(connect(mapStateToProps)(SaveSeedConfirmation));
+export default withTranslation(['saveSeedConfirmation', 'global'])(connect(mapStateToProps)(SaveSeedConfirmation));
