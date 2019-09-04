@@ -6,7 +6,7 @@ import { clearLog } from 'shared-modules/actions/alerts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { width } from 'libs/dimensions';
 import Icon from 'ui/theme/icons';
 
@@ -67,7 +67,11 @@ export class NotificationButton extends Component {
     }
 
     render() {
-        const { theme: { bar }, isModalActive, notificationLog } = this.props;
+        const {
+            theme: { bar },
+            isModalActive,
+            notificationLog,
+        } = this.props;
         const hasNotifications = size(notificationLog) && notificationLog.length > 0;
 
         return (
@@ -99,6 +103,9 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['enterSeed', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(NotificationButton),
+export default withTranslation(['enterSeed', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(NotificationButton),
 );

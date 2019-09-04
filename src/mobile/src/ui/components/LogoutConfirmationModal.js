@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Text, StyleSheet } from 'react-native';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import LottieView from 'lottie-react-native';
 import { Styling } from 'ui/theme/general';
 import { width } from 'libs/dimensions';
@@ -72,4 +72,4 @@ export class LogoutConfirmationModal extends PureComponent {
     }
 }
 
-export default WithLogout()(withNamespaces(['logoutConfirmationModal', 'global'])(LogoutConfirmationModal));
+export default WithLogout()(withTranslation(['logoutConfirmationModal', 'global'])(LogoutConfirmationModal));

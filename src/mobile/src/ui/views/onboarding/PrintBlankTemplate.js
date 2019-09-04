@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import navigator from 'libs/navigation';
@@ -107,7 +107,9 @@ class PrintBlankTemplate extends Component {
      *  @method print
      */
     async print() {
-        const { theme: { body } } = this.props;
+        const {
+            theme: { body },
+        } = this.props;
         const blankWalletHTML = `
             <!DOCTYPE html>
             <html>
@@ -232,6 +234,9 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['printBlankTemplate', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(PrintBlankTemplate),
+export default withTranslation(['printBlankTemplate', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(PrintBlankTemplate),
 );

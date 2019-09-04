@@ -8,7 +8,7 @@ import isEmpty from 'lodash/isEmpty';
 import merge from 'lodash/merge';
 import { Navigation } from 'react-native-navigation';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
-import { withNamespaces } from 'react-i18next';
+import { setI18n } from 'react-i18next';
 import Realm from 'realm';
 import { Text, TextInput, NetInfo, YellowBox } from 'react-native';
 import { Provider } from 'react-redux';
@@ -280,7 +280,7 @@ onAppStart()
 
             // Register components
             registerScreens(reduxStore, Provider);
-            withNamespaces.setI18n(i18next);
+            setI18n(i18next);
 
             // Render initial screen
             launch();

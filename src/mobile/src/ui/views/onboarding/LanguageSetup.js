@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 import timer from 'react-native-timer';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import navigator from 'libs/navigation';
 import SplashScreen from 'react-native-splash-screen';
 import { getDeviceLocale } from 'react-native-device-info';
@@ -190,7 +190,7 @@ const mapDispatchToProps = {
     setLocale,
 };
 
-export default withNamespaces(['languageSetup', 'global'])(
+export default withTranslation(['languageSetup', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

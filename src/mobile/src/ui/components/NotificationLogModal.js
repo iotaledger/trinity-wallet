@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, Text, ListView } from 'react-native';
 import { formatTimeAs } from 'shared-modules/libs/date';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { height, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { locale, timezone } from 'libs/device';
@@ -84,7 +84,11 @@ export class NotificationLogModal extends PureComponent {
     }
 
     render() {
-        const { t, notificationLog, theme: { body } } = this.props;
+        const {
+            t,
+            notificationLog,
+            theme: { body },
+        } = this.props;
         const trimmedLog = notificationLog.reverse().slice(0, 10);
         const textColor = { color: body.color };
 
@@ -124,4 +128,4 @@ export class NotificationLogModal extends PureComponent {
     }
 }
 
-export default withNamespaces(['global, notificationLog'])(NotificationLogModal);
+export default withTranslation(['global, notificationLog'])(NotificationLogModal);

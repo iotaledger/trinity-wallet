@@ -2,7 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -174,7 +174,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['changePassword', 'global'])(
+export default withTranslation(['changePassword', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

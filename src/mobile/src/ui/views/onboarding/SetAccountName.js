@@ -2,7 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
 import navigator from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -231,6 +231,9 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default withNamespaces(['setSeedName', 'global', 'addAdditionalSeed'])(
-    connect(mapStateToProps, mapDispatchToProps)(SetAccountName),
+export default withTranslation(['setSeedName', 'global', 'addAdditionalSeed'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(SetAccountName),
 );

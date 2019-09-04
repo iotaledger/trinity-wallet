@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -78,7 +78,12 @@ class UnitInfoModal extends PureComponent {
     }
 
     render() {
-        const { t, textColor, lineColor, theme: { primary } } = this.props;
+        const {
+            t,
+            textColor,
+            lineColor,
+            theme: { primary },
+        } = this.props;
 
         return (
             <ModalView displayTopBar onButtonPress={this.props.hideModal} buttonText={t('done')}>
@@ -140,4 +145,4 @@ class UnitInfoModal extends PureComponent {
     }
 }
 
-export default withNamespaces(['unitInfoModal', 'global'])(UnitInfoModal);
+export default withTranslation(['unitInfoModal', 'global'])(UnitInfoModal);

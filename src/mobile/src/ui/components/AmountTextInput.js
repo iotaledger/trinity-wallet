@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { round } from 'shared-modules/libs/utils';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { isValidAmount } from 'shared-modules/libs/iota/utils';
@@ -119,7 +119,7 @@ class MultiTextInput extends Component {
      **/
     getConversionTextIOTA(currencySymbol) {
         const { amount, usdPrice, conversionRate, multiplier } = this.props;
-        const convertedValue = round(parseFloat(amount) * usdPrice / 1000000 * multiplier * conversionRate, 10);
+        const convertedValue = round(((parseFloat(amount) * usdPrice) / 1000000) * multiplier * conversionRate, 10);
         let conversionText = '';
         if (convertedValue > 0 && convertedValue < 0.01) {
             conversionText = `< ${currencySymbol}0.01`;
@@ -166,4 +166,9 @@ const mapStateToProps = (state) => ({
     conversionRate: state.settings.conversionRate,
 });
 
-export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, null)(MultiTextInput));
+export default withTranslation(['receive', 'global'])(
+    connect(
+        mapStateToProps,
+        null,
+    )(MultiTextInput),
+);

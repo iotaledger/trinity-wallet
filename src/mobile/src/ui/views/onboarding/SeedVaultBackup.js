@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
@@ -83,7 +83,10 @@ class SeedVaultBackup extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+        } = this.props;
         const { step } = this.state;
 
         return (
@@ -126,7 +129,9 @@ class SeedVaultBackup extends Component {
                                 rightButtonText={
                                     step === 'isExporting' && !isAndroid
                                         ? t('global:export')
-                                        : step === 'isSelectingSaveMethodAndroid' ? t('global:done') : t('global:next')
+                                        : step === 'isSelectingSaveMethodAndroid'
+                                        ? t('global:done')
+                                        : t('global:next')
                                 }
                             />
                         </AnimatedComponent>
@@ -141,4 +146,9 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
 });
 
-export default withNamespaces(['seedVault', 'global'])(connect(mapStateToProps, null)(SeedVaultBackup));
+export default withTranslation(['seedVault', 'global'])(
+    connect(
+        mapStateToProps,
+        null,
+    )(SeedVaultBackup),
+);

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import navigator from 'libs/navigation';
@@ -137,7 +137,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['advancedSettings', 'settings', 'global'])(
+export default withTranslation(['advancedSettings', 'settings', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,
