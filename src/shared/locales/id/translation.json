@@ -497,8 +497,8 @@
     "nodeSettings": {
         "automaticNodeManagement": "Node Manajemen Otomatis",
         "addCustomNodes": "Tambah Node",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "autoNodeList": "Gunakan Node terpilih",
+        "nodeAutoswitching": "Pilih otomatis Node utama",
         "primaryNode": "Node Utama",
         "enableQuorum": "Aktifkan Quorum",
         "quorumSize": "Ukuran Quorum",
@@ -509,9 +509,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Tambah Node kostum atau aktifkan List Node jarak jauh.",
         "nodeSettingsUpdatedTitle": "Aturan Node diperbarui",
         "nodeSettingsUpdatedExplanation": "Anda telah berhasil memperbarui aturan Node.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "Sumber luar untuk Proof of Work",
+        "autoSelectPowNode": "Pilih otomatis Node Proof of Work",
+        "nodeForPow": "Node Proof of Work"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node kustom tidak dapat ditambah",
