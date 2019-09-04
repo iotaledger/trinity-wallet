@@ -22,7 +22,7 @@
   "dependencies": {
     "@iota/core": "^1.0.0-beta.20",
     "bignumber.js": "^9.0.0",
-    "i18next": "^17.0.6",
+    "i18next": "^17.0.13",
     "iota.lib.js": "^0.5.2",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
