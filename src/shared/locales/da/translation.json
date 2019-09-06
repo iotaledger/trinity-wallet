@@ -456,7 +456,8 @@
         "keepSafe": "Du bedes opbevare din hovednøgle sikkert."
     },
     "welcome": {
-        "thankYou": "Tak for din download af Trinity"
+        "thankYou": "Tak for din download af Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Skriv din hovednøgle og din kontrolsum ned, og lav et</0><1>tredobbelt tjek</1><2> for at sikre, at de er korrekte.</2>",
