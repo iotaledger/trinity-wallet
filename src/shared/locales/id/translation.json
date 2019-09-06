@@ -456,7 +456,8 @@
         "keepSafe": "Harap disimpan Seed anda dengan baik."
     },
     "welcome": {
-        "thankYou": "Terima kasih telah mengunduh Trinity"
+        "thankYou": "Terima kasih telah mengunduh Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Tulis Seed, Checksum dan </0><1>cek ketiga kalinya</1><2> jika itu benar.</2>",
