@@ -456,7 +456,8 @@
         "keepSafe": "Por favor mantén tu semilla a salvo."
     },
     "welcome": {
-        "thankYou": "Gracias por descargar Trinity"
+        "thankYou": "Gracias por descargar Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Escriba su semilla y código de verificación y </0><1>vuelva a chequear</1><2>que son correctos.</2>",
