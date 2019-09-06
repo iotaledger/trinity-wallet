@@ -456,7 +456,8 @@
         "keepSafe": "Prosimo vas, da imate Seed shranjen na varnem."
     },
     "welcome": {
-        "thankYou": "Zahvaljujemo se vam za prenos IOTA denarnice"
+        "thankYou": "Zahvaljujemo se vam za prenos IOTA denarnice",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Zapišite svoj Seed in kontrolno vsoto </0><1>prepričajte se trikrat,</1><2>da je vse pravilno.</2>",
