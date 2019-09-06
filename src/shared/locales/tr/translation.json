@@ -456,7 +456,8 @@
         "keepSafe": "Lütfen cüzdan şifrenizi güvende tutun."
     },
     "welcome": {
-        "thankYou": "Trinity'i indirdiğiniz için teşekkür ederiz"
+        "thankYou": "Trinity'i indirdiğiniz için teşekkür ederiz",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Oluşumunuzu ve sağlamanızı </0><1> birden çok kez </1><2> doğru olduğuna dair kontrol edin. </2>",
