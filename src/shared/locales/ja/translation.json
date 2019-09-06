@@ -456,7 +456,8 @@
         "keepSafe": "シードは安全に保管してください。"
     },
     "welcome": {
-        "thankYou": "Trinityウォレットをダウンロードしていただきありがとうございます。"
+        "thankYou": "Trinityウォレットをダウンロードしていただきありがとうございます。",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>３回チェック</1><2>を行ってください。</2>",
