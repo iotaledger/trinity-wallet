@@ -456,7 +456,8 @@
         "keepSafe": "Zadbaj o bezpieczeństwo swojego klucza seed."
     },
     "welcome": {
-        "thankYou": "Dziękujemy za pobranie portfela Trinity"
+        "thankYou": "Dziękujemy za pobranie portfela Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Zanotuj swój seed i sumę kontrolną oraz </0><1>trzykrotnie upewnij się</1><2>, że są one poprawne.</2>",
