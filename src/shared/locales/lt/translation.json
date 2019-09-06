@@ -456,7 +456,8 @@
         "keepSafe": "Laikykite užraktą saugiai."
     },
     "welcome": {
-        "thankYou": "Dėkojame, kad naudojatės Trinity"
+        "thankYou": "Dėkojame, kad naudojatės Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Nusirašykite savo užraktą ir kontrolinę sumą, </0><1>tris kartus patikrinkite</1><2> ar kodai sutampa</2>",
