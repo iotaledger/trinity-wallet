@@ -115,7 +115,7 @@
         "snapshotTransitionInProgressExplanation": "Veuillez patienter jusqu'à ce que la transition soit terminée.",
         "checkForUpdates": "Rechercher des mises à jour",
         "account": "Compte",
-        "changeNode": "Changez de serveur",
+        "changeNode": "Changer de serveur",
         "addCustomNode": "Ajouter des serveurs",
         "nodeMustUseHTTPS": "Serveur invalide (pas HTTPS)",
         "nodeMustUseHTTPSExplanation": "Seuls les serveurs personnalisés utilisant HTTPS sont autorisés.",
@@ -331,7 +331,7 @@
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
         "letsWriteDownYourSeed": "Écrivez votre seed",
         "youCanHighlightCharacters": "Vous pouvez sélectionner 9 caractères à la fois",
-        "printBlankWallet": "Imprimer une feuille vierge à remplir manuellement",
+        "printBlankWallet": "Imprimer un portefeuille vide",
         "whatIsAChecksum": "Qu'est-ce qu'une somme de contrôle?",
         "everySeedHasAChecksum": "Chaque seed a une somme de contrôle de 3 caractères.",
         "iHavesavedMySeed": "J’ai enregistré ma seed",
@@ -457,7 +457,7 @@
     },
     "welcome": {
         "thankYou": "Merci d’avoir téléchargé Trinity",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Merci d’avoir téléchargé la démo de Trinity"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Notez votre seed et le code de vérification et </0><1>vérifiez à plusieurs reprises</1><2> qu’ils sont corrects.</2>",
