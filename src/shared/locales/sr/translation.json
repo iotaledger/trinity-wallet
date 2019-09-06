@@ -456,7 +456,8 @@
         "keepSafe": "Čuvajte seed na sigurno."
     },
     "welcome": {
-        "thankYou": "Hvala na preuzimanju Trinity novčanika"
+        "thankYou": "Hvala na preuzimanju Trinity novčanika",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Zapišite svoj seed i kontrolni zbir, te </0><1>proverite bar 3 puta</1><2> da li su tačni.</2>",
