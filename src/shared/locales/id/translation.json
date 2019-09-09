@@ -116,7 +116,7 @@
         "checkForUpdates": "Periksa pembaruan",
         "account": "Akun",
         "changeNode": "Ubah Node",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "Tambah Node",
         "nodeMustUseHTTPS": "Node tidak valid (bukan HTTPS)",
         "nodeMustUseHTTPSExplanation": "Hanya Node kustom yang menggunakan HTTPS diperbolehkan.",
         "nodeDuplicated": "Node diduplikasi",
@@ -456,7 +456,8 @@
         "keepSafe": "Harap disimpan Seed anda dengan baik."
     },
     "welcome": {
-        "thankYou": "Terima kasih telah mengunduh Trinity"
+        "thankYou": "Terima kasih telah mengunduh Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Tulis Seed, Checksum dan </0><1>cek ketiga kalinya</1><2> jika itu benar.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Node Manajemen Otomatis",
-        "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "addCustomNodes": "Tambah Node",
+        "autoNodeList": "Gunakan Node terpilih",
+        "nodeAutoswitching": "Pilih otomatis Node utama",
         "primaryNode": "Node Utama",
         "enableQuorum": "Aktifkan Quorum",
         "quorumSize": "Ukuran Quorum",
@@ -509,9 +510,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Tambah Node kostum atau aktifkan List Node jarak jauh.",
         "nodeSettingsUpdatedTitle": "Aturan Node diperbarui",
         "nodeSettingsUpdatedExplanation": "Anda telah berhasil memperbarui aturan Node.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "Sumber luar untuk Proof of Work",
+        "autoSelectPowNode": "Pilih otomatis Node Proof of Work",
+        "nodeForPow": "Node Proof of Work"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node kustom tidak dapat ditambah",

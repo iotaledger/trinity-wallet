@@ -456,7 +456,8 @@
         "keepSafe": "請妥善保存您的種子碼。"
     },
     "welcome": {
-        "thankYou": "感謝您下載 Trinity"
+        "thankYou": "感謝您下載 Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> 記下您的種子碼和檢查碼</0><1>請再三確認</1><2>它們是正確無誤的。</2>",

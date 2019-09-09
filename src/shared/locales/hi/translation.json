@@ -456,7 +456,8 @@
         "keepSafe": "कृपया अपने सीड को सुरक्षित रखें"
     },
     "welcome": {
-        "thankYou": "Iota वॉलेट डाउनलोड करने के लिए धन्यवाद।"
+        "thankYou": "Iota वॉलेट डाउनलोड करने के लिए धन्यवाद।",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> अपना सीड और चेकसम लिखें और </ 0> <1> ट्रिपल चेक कर ले </ 1> <2> यह सही है। </ 2>",

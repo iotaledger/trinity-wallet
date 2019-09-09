@@ -456,7 +456,8 @@
         "keepSafe": "Please keep your seed safe."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet"
+        "thankYou": "Thank you for downloading the IOTA wallet",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",

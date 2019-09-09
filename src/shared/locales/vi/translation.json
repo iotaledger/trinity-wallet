@@ -456,7 +456,8 @@
         "keepSafe": "Vui lòng giữ từ khoá ở một nơi an toàn."
     },
     "welcome": {
-        "thankYou": "Cám ơn bạn đã tải ví Trinity về"
+        "thankYou": "Cám ơn bạn đã tải ví Trinity về",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Ghi từ khoá và mã kiểm tra xuống và </0><1>kiểm tra 3 lần</1><2>để chắc chắn nó đúng.</2>",
