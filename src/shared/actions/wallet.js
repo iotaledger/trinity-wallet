@@ -352,13 +352,6 @@ export const transitionForSnapshot = (seedStore, addresses) => {
  */
 export const completeSnapshotTransition = (seedStore, accountName, addresses, quorum = true) => {
     return (dispatch, getState) => {
-        dispatch(
-            generateAlert(
-                'info',
-                i18next.t('snapshotTransition:attaching'),
-                i18next.t('global:deviceMayBecomeUnresponsive'),
-            ),
-        );
 
         dispatch(snapshotAttachToTangleRequest());
 

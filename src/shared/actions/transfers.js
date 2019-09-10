@@ -206,16 +206,6 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
 
     const remotePoW = getRemotePoWFromState(getState());
 
-    if (!remotePoW) {
-        dispatch(
-            generateAlert(
-                'info',
-                i18next.t('global:promotingTransaction'),
-                i18next.t('global:deviceMayBecomeUnresponsive'),
-            ),
-        );
-    }
-
     let accountState = selectedAccountStateFactory(accountName)(getState());
     const getTailTransactionsForThisBundleHash = (transactions) =>
         filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
