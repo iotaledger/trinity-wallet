@@ -15,7 +15,7 @@ import {
     updatePowNodeAutoSwitchSetting,
 } from '../../actions/settings';
 import { generateAlert } from '../../actions/alerts';
-import { isValidUrl, isValidHttpsUrl } from '../../libs/utils';
+import { isValidUrl } from '../../libs/utils';
 
 import { getThemeFromState } from '../../selectors/global';
 
@@ -68,12 +68,6 @@ export default function withNodeData(NodeComponent) {
             // Check if URL is valid
             if (!isValidUrl(nodeSelected.url)) {
                 generateAlert('error', t('addCustomNode:customNodeCouldNotBeAdded'), t('addCustomNode:invalidURL'));
-                return;
-            }
-
-            // Only allow HTTPS nodes
-            if (!isValidHttpsUrl(nodeSelected.url)) {
-                generateAlert('error', t('nodeMustUseHTTPS'), t('nodeMustUseHTTPSExplanation'));
                 return;
             }
 
