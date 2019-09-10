@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -756,20 +756,12 @@ class Receive extends Component {
                                         />
                                     </View>
                                 </View>
-                                <View
-                                    style={[
-                                        styles.multiInputContainer,
-                                        { backgroundColor: dark.color },
-                                    ]}
-                                >
+                                <View style={[styles.multiInputContainer, { backgroundColor: dark.color }]}>
                                     <MultiTextInput multiplier={this.getUnitMultiplier()} />
                                 </View>
                                 <View style={styles.footerButtonContainer}>
                                     <TouchableOpacity
-                                        style={[
-                                            styles.footerButton,
-                                            { backgroundColor: primary.color },
-                                        ]}
+                                        style={[styles.footerButton, { backgroundColor: primary.color }]}
                                         onPress={() => this.onShareQRCodePress()}
                                     >
                                         <Text style={[styles.buttonText, { color: primary.body }]}>{t('shareQr')}</Text>
@@ -811,7 +803,7 @@ const mapDispatchToProps = {
     getFromKeychainError,
 };
 
-export default withNamespaces(['receive', 'global'])(
+export default withTranslation(['receive', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

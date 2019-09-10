@@ -456,7 +456,8 @@
         "keepSafe": "يرجى الحفاظ على السييد الخاص بك في مكان آمن."
     },
     "welcome": {
-        "thankYou": "شكرا لتحميلك Trinity"
+        "thankYou": "شكرا لتحميلك Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "< 0> اكتب بذورك و المجموع الإختباري و </0><1> قم بالتحقق ثلاث مرات </1><2> من صحتها </2>",

@@ -456,7 +456,8 @@
         "keepSafe": "Bewahre deinen Seed sicher auf."
     },
     "welcome": {
-        "thankYou": "Danke, dass du Trinity heruntergeladen hast"
+        "thankYou": "Danke, dass du Trinity heruntergeladen hast",
+        "demoThankYou": "Danke, dass du Demoversion von Trinity heruntergeladen hast"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Schreibe deinen Seed und deine Prüfsumme auf und </0><1>versichere dich</1><2>, dass diese korrekt sind.</2>",
@@ -498,7 +499,7 @@
         "automaticNodeManagement": "Automatische Node-Verwaltung",
         "addCustomNodes": "Nodes hinzufügen",
         "autoNodeList": "Standard Node-Liste verwenden",
-        "nodeAutoswitching": "Primäre Node automatisch wählen",
+        "nodeAutoswitching": "Primären Node automatisch wählen",
         "primaryNode": "Primärer Node",
         "enableQuorum": "Node-Gruppe aktivieren",
         "quorumSize": "Anzahl der Nodes in der Node-Gruppe",
@@ -510,7 +511,7 @@
         "nodeSettingsUpdatedTitle": "Node-Einstellungen aktualisiert",
         "nodeSettingsUpdatedExplanation": "Die Node-Einstellungen wurden erfolgreich gespeichert.",
         "outsourcePow": "Proof of work auslagern",
-        "autoSelectPowNode": "Node für proof of work automatisch wählen",
+        "autoSelectPowNode": "Proof of Work-Node automatisch wählen",
         "nodeForPow": "Proof of work Node"
     },
     "addCustomNode": {

@@ -2,7 +2,7 @@ import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import Triangle from 'react-native-triangle';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -209,4 +209,4 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
 });
 
-export default withNamespaces(['global'])(connect(mapStateToProps)(Dropdown));
+export default withTranslation(['global'])(connect(mapStateToProps)(Dropdown));

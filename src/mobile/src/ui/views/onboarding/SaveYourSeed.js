@@ -1,6 +1,6 @@
 import each from 'lodash/each';
 import React, { Component } from 'react';
-import { withNamespaces, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -480,7 +480,7 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['saveYourSeed', 'global'])(
+export default withTranslation(['saveYourSeed', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

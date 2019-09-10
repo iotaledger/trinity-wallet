@@ -456,7 +456,8 @@
         "keepSafe": "Kérjük, hogy a mester jelszavát mindig tartsa titokban."
     },
     "welcome": {
-        "thankYou": "Köszönjük, hogy letöltötte a Trinity alkalmazást"
+        "thankYou": "Köszönjük, hogy letöltötte a Trinity alkalmazást",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Jegyezze fel a mester jelszavát és az ellenőrző összeget, majd</0><1>többszörösen ellenőrizze</1><2>hogy mindkettő helyes.</2>",

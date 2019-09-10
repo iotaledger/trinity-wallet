@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { MAX_SEED_TRITS, getChecksum } from 'shared-modules/libs/iota/utils';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import Icon from 'ui/theme/icons';
@@ -101,4 +101,4 @@ export class Checksum extends Component {
     }
 }
 
-export default withNamespaces(['enterSeed', 'global'])(Checksum);
+export default withTranslation(['enterSeed', 'global'])(Checksum);

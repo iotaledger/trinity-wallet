@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, Keyboard, TouchableWithoutFeedback, AppState, Animated, Easing } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -257,7 +257,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['viewSeed', 'global'])(
+export default withTranslation(['viewSeed', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

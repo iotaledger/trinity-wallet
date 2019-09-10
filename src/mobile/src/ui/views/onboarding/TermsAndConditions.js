@@ -10,7 +10,7 @@ import {
     deTermsAndConditionsIOS,
 } from 'shared-modules/markdown';
 import { connect } from 'react-redux';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { acceptTerms } from 'shared-modules/actions/settings';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
@@ -98,7 +98,10 @@ class TermsAndConditions extends Component {
     }
 
     render() {
-        const { t, theme: { primary, bar } } = this.props;
+        const {
+            t,
+            theme: { primary, bar },
+        } = this.props;
         const textColor = { color: bar.color };
 
         return (
@@ -163,4 +166,9 @@ const mapDispatchToProps = {
     acceptTerms,
 };
 
-export default withNamespaces('terms')(connect(mapStateToProps, mapDispatchToProps)(TermsAndConditions));
+export default withTranslation('terms')(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(TermsAndConditions),
+);

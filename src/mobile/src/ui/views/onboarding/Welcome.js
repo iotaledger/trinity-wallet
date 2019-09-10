@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
@@ -89,7 +89,7 @@ class Welcome extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
                     >
-                        <Header textColor={body.color}>Thank you for downloading the Trinity demo</Header>
+                        <Header textColor={body.color}>{t('demoThankYou')}</Header>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
@@ -139,7 +139,7 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['welcome', 'global'])(
+export default withTranslation(['welcome', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

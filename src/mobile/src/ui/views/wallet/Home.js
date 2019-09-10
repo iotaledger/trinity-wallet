@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, KeyboardAvoidingView, Animated } from 'react-native';
 import {
@@ -272,7 +272,7 @@ const mapDispatchToProps = {
 export default WithUserActivity()(
     WithDeepLinking()(
         WithLogout()(
-            withNamespaces(['home', 'global', 'login'])(
+            withTranslation(['home', 'global', 'login'])(
                 connect(
                     mapStateToProps,
                     mapDispatchToProps,

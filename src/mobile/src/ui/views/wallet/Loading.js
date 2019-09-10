@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import timer from 'react-native-timer';
 import { getAnimation } from 'shared-modules/animations';
 import navigator from 'libs/navigation';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
 import LottieView from 'lottie-react-native';
@@ -371,7 +371,7 @@ const mapDispatchToProps = {
     setLoginRoute,
 };
 
-export default withNamespaces(['loading', 'global'])(
+export default withTranslation(['loading', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

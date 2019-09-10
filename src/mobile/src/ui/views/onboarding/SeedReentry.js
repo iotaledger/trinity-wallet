@@ -2,7 +2,7 @@ import isEqual from 'lodash/isEqual';
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX, MAX_SEED_TRITS } from 'shared-modules/libs/iota/utils';
@@ -296,5 +296,10 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    withNamespaces(['seedReentry', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SeedReentry)),
+    withTranslation(['seedReentry', 'global'])(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(SeedReentry),
+    ),
 );

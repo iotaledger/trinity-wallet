@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { Text, StyleSheet } from 'react-native';
 import { Styling } from 'ui/theme/general';
@@ -54,7 +54,10 @@ export class RootDetectionModal extends PureComponent {
     }
 
     render() {
-        const { t, theme: { body, negative } } = this.props;
+        const {
+            t,
+            theme: { body, negative },
+        } = this.props;
         const textColor = { color: body.color };
         return (
             <ModalView
@@ -76,4 +79,4 @@ export class RootDetectionModal extends PureComponent {
     }
 }
 
-export default withNamespaces(['rootDetection', 'global'])(RootDetectionModal);
+export default withTranslation(['rootDetection', 'global'])(RootDetectionModal);

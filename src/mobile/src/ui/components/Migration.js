@@ -5,7 +5,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import navigator from 'libs/navigation';
 import timer from 'react-native-timer';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { startTrackingProgress } from 'shared-modules/actions/progress';
 import { connect } from 'react-redux';
 import { Styling } from 'ui/theme/general';
@@ -197,7 +197,13 @@ class Migration extends Component {
     }
 
     render() {
-        const { t, theme: { body, primary }, activeSteps, activeStepIndex, isChangingNode } = this.props;
+        const {
+            t,
+            theme: { body, primary },
+            activeSteps,
+            activeStepIndex,
+            isChangingNode,
+        } = this.props;
         const textColor = { color: body.color };
         const { hasFailedRealmMigration, hasCompletedRealmMigration } = this.state;
         const sizeOfActiveSteps = size(activeSteps) - 1;
@@ -215,36 +221,34 @@ class Migration extends Component {
                     </InfoBox>
                     <View style={{ flex: 0.4 }} />
                     <View style={{ flex: 1 }}>
-                        {!hasCompletedRealmMigration &&
-                            activeStepIndex > -1 && (
-                                <ProgressBar
-                                    style={{
-                                        textWrapper: { flex: 0.3 },
-                                    }}
-                                    indeterminate={activeStepIndex === -1}
-                                    progress={activeStepIndex / sizeOfActiveSteps}
-                                    color={primary.color}
-                                    textColor={body.color}
-                                >
-                                    {t(this.renderProgressBarChildren())}
-                                </ProgressBar>
-                            )}
+                        {!hasCompletedRealmMigration && activeStepIndex > -1 && (
+                            <ProgressBar
+                                style={{
+                                    textWrapper: { flex: 0.3 },
+                                }}
+                                indeterminate={activeStepIndex === -1}
+                                progress={activeStepIndex / sizeOfActiveSteps}
+                                color={primary.color}
+                                textColor={body.color}
+                            >
+                                {t(this.renderProgressBarChildren())}
+                            </ProgressBar>
+                        )}
                         {hasCompletedRealmMigration && (
                             <ActivityIndicator animating size="large" color={primary.color} />
                         )}
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    {hasFailedRealmMigration &&
-                        !hasCompletedRealmMigration && (
-                            <DualFooterButtons
-                                onLeftButtonPress={this.changeNode}
-                                onRightButtonPress={this.retryMigration}
-                                leftButtonText={t('login:changeNode')}
-                                rightButtonText={t('retry')}
-                                isLeftButtonLoading={isChangingNode}
-                            />
-                        )}
+                    {hasFailedRealmMigration && !hasCompletedRealmMigration && (
+                        <DualFooterButtons
+                            onLeftButtonPress={this.changeNode}
+                            onRightButtonPress={this.retryMigration}
+                            leftButtonText={t('login:changeNode')}
+                            rightButtonText={t('retry')}
+                            isLeftButtonLoading={isChangingNode}
+                        />
+                    )}
                 </View>
                 {hasFailedRealmMigration && (
                     <View style={styles.notificationButton}>
@@ -273,4 +277,9 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['migration'])(connect(mapStateToProps, mapDispatchToProps)(Migration));
+export default withTranslation(['migration'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Migration),
+);

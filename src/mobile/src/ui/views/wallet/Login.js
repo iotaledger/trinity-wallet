@@ -1,4 +1,4 @@
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -200,7 +200,7 @@ const mapDispatchToProps = {
 };
 
 export default WithDeepLinking()(
-    withNamespaces(['login', 'global'])(
+    withTranslation(['login', 'global'])(
         connect(
             mapStateToProps,
             mapDispatchToProps,

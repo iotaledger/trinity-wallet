@@ -1,6 +1,6 @@
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
@@ -84,7 +84,7 @@ export default () => (C) => {
         theme: getThemeFromState(state),
     });
 
-    return withNamespaces(['global'])(
+    return withTranslation(['global'])(
         connect(
             mapStateToProps,
             mapDispatchToProps,
