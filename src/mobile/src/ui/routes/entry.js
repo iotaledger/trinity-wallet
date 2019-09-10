@@ -15,7 +15,6 @@ import { Provider } from 'react-redux';
 import { changeIotaNode, quorum } from 'shared-modules/libs/iota';
 import reduxStore from 'shared-modules/store';
 import { assignAccountIndexIfNecessary } from 'shared-modules/actions/accounts';
-import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate, setAppVersions, updateTheme } from 'shared-modules/actions/settings';
 import Themes from 'shared-modules/themes/themes';
 import { mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
@@ -158,8 +157,6 @@ const fetchNodeList = (store) => {
     );
     // Set quorum size
     quorum.setSize(get(settings, 'quorum.size'));
-
-    store.dispatch(fetchNodes());
 };
 
 /**

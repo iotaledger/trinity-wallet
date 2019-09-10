@@ -5,7 +5,6 @@ import keys from 'lodash/keys';
 import { changeIotaNode, quorum } from '../libs/iota/index';
 import i18next from '../libs/i18next';
 import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
-import { fetchNodeList } from '../actions/polling';
 import { allowsRemotePow } from '../libs/iota/extendedApi';
 import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState, getRandomPowNodeFromState } from '../selectors/global';
 import { throwIfNodeNotHealthy } from '../libs/iota/utils';
@@ -787,9 +786,6 @@ export const resetNodesList = () => ({
 export const reinitialiseNodesList = () => (dispatch) => {
     // First reset the existing nodes in the state
     dispatch(resetNodesList());
-
-    // Fetch latest nodes
-    dispatch(fetchNodeList());
 };
 
 /**

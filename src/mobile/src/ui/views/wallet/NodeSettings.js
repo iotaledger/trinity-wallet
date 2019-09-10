@@ -4,7 +4,6 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import sample from 'lodash/sample';
 import isEqual from 'lodash/isEqual';
-import isEmpty from 'lodash/isEmpty';
 import unionBy from 'lodash/unionBy';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
@@ -16,7 +15,6 @@ import {
     setFullNode,
     updateQuorumConfig,
     updateNodeAutoSwitchSetting,
-    changeAutoNodeListSetting,
     setPowNode,
     changePowSettings,
     updatePowNodeAutoSwitchSetting,
@@ -35,7 +33,6 @@ import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
 const defaultState = {
-    autoNodeList: false,
     nodeAutoSwitch: true,
     quorumEnabled: false,
     quorumSize: QUORUM_SIZE.toString(),
@@ -62,8 +59,6 @@ export class NodeSettings extends PureComponent {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        nodes: PropTypes.array.isRequired,
-        /** @ignore */
         customNodes: PropTypes.array.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
@@ -71,8 +66,6 @@ export class NodeSettings extends PureComponent {
         updateQuorumConfig: PropTypes.func.isRequired,
         /** @ignore */
         updateNodeAutoSwitchSetting: PropTypes.func.isRequired,
-        /** @ignore */
-        changeAutoNodeListSetting: PropTypes.func.isRequired,
         /** @ignore */
         updatePowNodeAutoSwitchSetting: PropTypes.func.isRequired,
         /** @ignore */
@@ -85,8 +78,6 @@ export class NodeSettings extends PureComponent {
         remotePoW: PropTypes.bool.isRequired,
         /** @ignore */
         powNodeAutoSwitch: PropTypes.bool.isRequired,
-        /** @ignore */
-        autoNodeList: PropTypes.bool.isRequired,
         /** @ignore */
         nodeAutoSwitch: PropTypes.bool.isRequired,
         /** @ignore */
@@ -106,7 +97,6 @@ export class NodeSettings extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            autoNodeList: props.autoNodeList,
             nodeAutoSwitch: props.nodeAutoSwitch,
             quorumEnabled: props.quorumEnabled,
             quorumSize: props.quorumSize,
@@ -132,7 +122,6 @@ export class NodeSettings extends PureComponent {
         const { t } = this.props;
         const {
             quorumSize,
-            autoNodeList,
             nodeAutoSwitch,
             quorumEnabled,
             node,
@@ -140,10 +129,6 @@ export class NodeSettings extends PureComponent {
             remotePoW,
             powNodeAutoSwitch,
         } = this.state;
-
-        if (autoNodeList !== this.props.autoNodeList) {
-            this.props.changeAutoNodeListSetting(autoNodeList);
-        }
         if (nodeAutoSwitch !== this.props.nodeAutoSwitch) {
             this.props.updateNodeAutoSwitchSetting(nodeAutoSwitch);
         }
@@ -178,9 +163,8 @@ export class NodeSettings extends PureComponent {
      * @returns {array}
      */
     getAvailableNodes(pow = false) {
-        const { nodes, customNodes } = this.props;
-        const { autoNodeList } = this.state;
-        const availableNodes = unionBy(customNodes, DEFAULT_NODES, autoNodeList && nodes, [DEFAULT_NODE], 'url');
+        const { customNodes } = this.props;
+        const availableNodes = unionBy(customNodes, DEFAULT_NODES, [DEFAULT_NODE], 'url');
         if (pow) {
             return availableNodes.filter(({ pow }) => pow);
         }
@@ -212,7 +196,6 @@ export class NodeSettings extends PureComponent {
      */
     haveNodeSettingsChanged() {
         const {
-            autoNodeList,
             nodeAutoSwitch,
             quorumEnabled,
             quorumSize,
@@ -222,7 +205,7 @@ export class NodeSettings extends PureComponent {
             remotePoW,
         } = this.props;
         return isEqual(
-            { autoNodeList, nodeAutoSwitch, quorumEnabled, quorumSize, node, powNode, powNodeAutoSwitch, remotePoW },
+            { nodeAutoSwitch, quorumEnabled, quorumSize, node, powNode, powNodeAutoSwitch, remotePoW },
             omit(this.state, ['autoNodeManagement']),
         );
     }
@@ -244,51 +227,11 @@ export class NodeSettings extends PureComponent {
      * @method toggleQuorumEnabled
      */
     toggleQuorumEnabled() {
-        const { t, customNodes, nodes } = this.props;
-        const { quorumEnabled, autoNodeList } = this.state;
-        if (
-            !quorumEnabled &&
-            ((autoNodeList && nodes.length < MINIMUM_QUORUM_SIZE) ||
-                (!autoNodeList && unionBy(customNodes.length, DEFAULT_NODES) < MINIMUM_QUORUM_SIZE))
-        ) {
-            return this.props.generateAlert(
-                'error',
-                t('nodeSettings:nodeEnoughNodesTitle'),
-                autoNodeList
-                    ? t('nodeSettings:nodeEnoughNodesExplanation')
-                    : `${t('nodeSettings:nodeEnoughNodesExplanation')} ${t(
-                          'nodeSettings:nodeEnoughNodesExplanationCustomNodes',
-                      )}`,
-            );
-        }
-
+        const { quorumEnabled } = this.state;
         if (!quorumEnabled) {
             this.setState({ quorumSize: Math.min(this.getAvailableNodes().length, QUORUM_SIZE).toString() });
         }
         this.setState({ quorumEnabled: !quorumEnabled });
-    }
-
-    /**
-     * Toggles auto node list and adjusts quorum settings if there aren't enough quorum nodes
-     *
-     * @method toggleAutoNodeList
-     */
-    toggleAutoNodeList() {
-        const { autoNodeList } = this.state;
-        const { t, customNodes, quorumSize } = this.props;
-        if (autoNodeList && isEmpty(customNodes)) {
-            return this.props.generateAlert(
-                'error',
-                t('nodeSettings:noCustomNodes'),
-                t('nodeSettings:mustAddCustomNodes'),
-            );
-        }
-        if (autoNodeList && customNodes.length < MINIMUM_QUORUM_SIZE) {
-            this.setState({ quorumEnabled: false });
-        } else if (autoNodeList && customNodes.length < quorumSize) {
-            this.setState({ quorumSize: customNodes.length.toString() });
-        }
-        this.setState({ autoNodeList: !autoNodeList });
     }
 
     /**
@@ -324,7 +267,6 @@ export class NodeSettings extends PureComponent {
         const { theme, t, isChangingNode, loginRoute } = this.props;
         const {
             autoNodeManagement,
-            autoNodeList,
             nodeAutoSwitch,
             quorumEnabled,
             quorumSize,
@@ -353,12 +295,6 @@ export class NodeSettings extends PureComponent {
                 toggle: remotePoW,
             },
             { name: 'separator', hidden: autoNodeManagement },
-            {
-                name: t('nodeSettings:autoNodeList'),
-                function: () => this.toggleAutoNodeList(),
-                toggle: autoNodeList,
-                hidden: autoNodeManagement,
-            },
             {
                 name: t('nodeSettings:nodeAutoswitching'),
                 function: () => this.setState({ nodeAutoSwitch: !nodeAutoSwitch }),
@@ -426,13 +362,11 @@ export class NodeSettings extends PureComponent {
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     node: omit(state.settings.node, 'custom'),
-    nodes: map(state.settings.nodes, (node) => omit(node, 'custom')),
     customNodes: state.settings.customNodes,
     powNode: state.settings.powNode,
     remotePoW: state.settings.remotePoW,
     nodeAutoSwitch: state.settings.nodeAutoSwitch,
     powNodeAutoSwitch: state.settings.powNodeAutoSwitch,
-    autoNodeList: state.settings.autoNodeList,
     quorumSize: state.settings.quorum.size.toString(),
     quorumEnabled: state.settings.quorum.enabled,
     isChangingNode: state.ui.isChangingNode,
@@ -444,7 +378,6 @@ const mapDispatchToProps = {
     generateAlert,
     updateQuorumConfig,
     updateNodeAutoSwitchSetting,
-    changeAutoNodeListSetting,
     setFullNode,
     setLoginRoute,
     setPowNode,

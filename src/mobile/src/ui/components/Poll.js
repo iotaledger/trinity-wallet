@@ -22,7 +22,6 @@ import {
     fetchMarketData,
     fetchChartData,
     fetchPrice,
-    fetchNodeList,
     setPollFor,
     getAccountInfoForAllAccounts,
     promoteTransfer,
@@ -51,8 +50,6 @@ export class Poll extends Component {
         fetchMarketData: PropTypes.func.isRequired,
         /** @ignore */
         fetchPrice: PropTypes.func.isRequired,
-        /** @ignore */
-        fetchNodeList: PropTypes.func.isRequired,
         /** @ignore */
         fetchChartData: PropTypes.func.isRequired,
         /** @ignore */
@@ -176,7 +173,6 @@ export class Poll extends Component {
             marketData: this.props.fetchMarketData,
             price: this.props.fetchPrice,
             chartData: this.props.fetchChartData,
-            nodeList: this.props.fetchNodeList,
             accountInfo: this.fetchLatestAccountInfo,
             broadcast: this.retryFailedTransaction,
         };
@@ -290,7 +286,6 @@ const mapDispatchToProps = {
     fetchMarketData,
     fetchChartData,
     fetchPrice,
-    fetchNodeList,
     setPollFor,
     getAccountInfoForAllAccounts,
     promoteTransfer,
