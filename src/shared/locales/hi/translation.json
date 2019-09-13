@@ -116,7 +116,7 @@
         "checkForUpdates": "अपडेट के लिए जाँचें",
         "account": "अकाउंट",
         "changeNode": "नोड बदलें",
-        "addCustomNode": "कस्टम नोड जोड़ें",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "नोड मान्य नहीं है (Non HTTPS)",
         "nodeMustUseHTTPSExplanation": "केवल HTTPS का उपयोग कर कस्टम नोड्स की अनुमति है ।",
         "nodeDuplicated": "डुप्लिकेट नोड",
@@ -456,7 +456,8 @@
         "keepSafe": "कृपया अपने सीड को सुरक्षित रखें"
     },
     "welcome": {
-        "thankYou": "Iota वॉलेट डाउनलोड करने के लिए धन्यवाद।"
+        "thankYou": "Iota वॉलेट डाउनलोड करने के लिए धन्यवाद।",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> अपना सीड और चेकसम लिखें और </ 0> <1> ट्रिपल चेक कर ले </ 1> <2> यह सही है। </ 2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "आटोमेटिक नोड मैनेजमेंट",
-        "addCustomNodes": "कस्टम नोड जोड़ें",
-        "autoNodeList": "दूरस्थ नोड सूची का उपयोग करें",
-        "nodeAutoswitching": "प्राथमिक नोड ऑटोस्विचिंग",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "प्राथमिक नोड",
         "enableQuorum": "कोरम सक्षम करें",
         "quorumSize": "कोरम का आकार",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "कोरम को सक्षम करने के लिए पर्याप्त नोड नहीं हैं।",
         "nodeEnoughNodesExplanationCustomNodes": "अधिक कस्टम नोड जोड़ें या दूरस्थ नोड सूची को सक्षम करें",
         "nodeSettingsUpdatedTitle": "नोड सेटिंग अपडेट की गईं",
-        "nodeSettingsUpdatedExplanation": "आपने अपनी नोड सेटिंग को सफलतापूर्वक अपडेट कर दिया है।"
+        "nodeSettingsUpdatedExplanation": "आपने अपनी नोड सेटिंग को सफलतापूर्वक अपडेट कर दिया है।",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "कस्टम नोड जोड़ा नहीं जा सका",

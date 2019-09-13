@@ -1,7 +1,7 @@
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -18,7 +18,7 @@ import { round, roundDown } from 'shared-modules/libs/utils';
 import { computeStatusText, formatRelevantRecentTransactions } from 'shared-modules/libs/iota/transfers';
 import { setAnimateChartOnMount } from 'shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
-import { getFiatBalance } from 'shared-modules/libs/currency';
+import { getFiatBalance, formatFiatBalance } from 'shared-modules/libs/currency';
 import {
     getTransactionsForSelectedAccount,
     getBalanceForSelectedAccount,
@@ -239,7 +239,16 @@ export class Balance extends Component {
     }
 
     render() {
-        const { balance, conversionRate, currency, usdPrice, theme, isRefreshing, animateChartOnMount, language } = this.props;
+        const {
+            balance,
+            conversionRate,
+            currency,
+            usdPrice,
+            theme,
+            isRefreshing,
+            animateChartOnMount,
+            language,
+        } = this.props;
         const { body, primary } = theme;
 
         const shortenedBalance =
@@ -277,7 +286,7 @@ export class Balance extends Component {
                                     <Text style={[styles.iotaUnit, textColor]}>{iotaUnit}</Text>
                                 </View>
                                 <Text style={[styles.fiatBalance, textColor]}>
-                                    {new Intl.NumberFormat(getLocaleFromLabel(language), { style: 'currency', currency }).format(fiatBalance)}
+                                    {formatFiatBalance(getLocaleFromLabel(language), currency, fiatBalance)}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -313,4 +322,11 @@ const mapDispatchToProps = {
     setAnimateChartOnMount,
 };
 
-export default WithManualRefresh()(withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(Balance)));
+export default WithManualRefresh()(
+    withTranslation(['global'])(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(Balance),
+    ),
+);

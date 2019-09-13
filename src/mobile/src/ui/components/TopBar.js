@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { toggleTopBarDisplay } from 'shared-modules/actions/home';
 import { setSeedIndex } from 'shared-modules/actions/wallet';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
@@ -333,59 +333,58 @@ class TopBar extends Component {
                         }
                     }}
                 >
-                    {(!isKeyboardActive &&
-                        !minimised && (
-                            <View style={styles.barWrapper}>
-                                <Animated.View style={[styles.iconWrapper, { paddingLeft: width / 18 }]}>
-                                    {(!isKeyboardActive && mode === 'Advanced' && <NotificationButtonComponent />) || (
-                                        <View />
-                                    )}
-                                </Animated.View>
-                                <Animated.View style={styles.balanceWrapper}>
+                    {(!isKeyboardActive && !minimised && (
+                        <View style={styles.barWrapper}>
+                            <Animated.View style={[styles.iconWrapper, { paddingLeft: width / 18 }]}>
+                                {(!isKeyboardActive && mode === 'Advanced' && <NotificationButtonComponent />) || (
+                                    <View />
+                                )}
+                            </Animated.View>
+                            <Animated.View style={styles.balanceWrapper}>
+                                <Text
+                                    numberOfLines={1}
+                                    style={[
+                                        shouldDisable
+                                            ? StyleSheet.flatten([
+                                                  styles.mainTitle,
+                                                  styles.disabled,
+                                                  { color: bar.color },
+                                              ])
+                                            : [styles.mainTitle, { color: bar.color }],
+                                        isModalActive && { opacity: 0.5 },
+                                    ]}
+                                >
+                                    {selectedTitle}
+                                </Text>
+                                <View style={{ opacity: balanceOpacity }}>
                                     <Text
-                                        numberOfLines={1}
                                         style={[
                                             shouldDisable
                                                 ? StyleSheet.flatten([
-                                                      styles.mainTitle,
+                                                      styles.subtitle,
                                                       styles.disabled,
-                                                      { color: bar.color },
+                                                      { color: subtitleColor },
                                                   ])
-                                                : [styles.mainTitle, { color: bar.color }],
+                                                : [styles.subtitle, { color: subtitleColor }],
                                             isModalActive && { opacity: 0.5 },
                                         ]}
                                     >
-                                        {selectedTitle}
+                                        {selectedSubtitle}
                                     </Text>
-                                    <View style={{ opacity: balanceOpacity }}>
-                                        <Text
-                                            style={[
-                                                shouldDisable
-                                                    ? StyleSheet.flatten([
-                                                          styles.subtitle,
-                                                          styles.disabled,
-                                                          { color: subtitleColor },
-                                                      ])
-                                                    : [styles.subtitle, { color: subtitleColor }],
-                                                isModalActive && { opacity: 0.5 },
-                                            ]}
-                                        >
-                                            {selectedSubtitle}
-                                        </Text>
-                                    </View>
-                                </Animated.View>
-                                <Animated.View style={[styles.iconWrapper, { paddingRight: width / 18 }]}>
-                                    {(hasMultipleSeeds && (
-                                        <Icon
-                                            name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
-                                            size={width / 22}
-                                            color={bar.color}
-                                            style={[shouldDisable && styles.disabled && { opacity: 0.5 }]}
-                                        />
-                                    )) || <View />}
-                                </Animated.View>
-                            </View>
-                        )) || <View />}
+                                </View>
+                            </Animated.View>
+                            <Animated.View style={[styles.iconWrapper, { paddingRight: width / 18 }]}>
+                                {(hasMultipleSeeds && (
+                                    <Icon
+                                        name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
+                                        size={width / 22}
+                                        color={bar.color}
+                                        style={[shouldDisable && styles.disabled && { opacity: 0.5 }]}
+                                    />
+                                )) || <View />}
+                            </Animated.View>
+                        </View>
+                    )) || <View />}
                 </TouchableWithoutFeedback>
             </Animated.View>
         );
@@ -475,7 +474,10 @@ class TopBar extends Component {
     }
 
     render() {
-        const { accountNames, theme: { bar } } = this.props;
+        const {
+            accountNames,
+            theme: { bar },
+        } = this.props;
         const children = this.renderTitles();
         const shouldDisable = this.shouldDisable();
 
@@ -538,4 +540,9 @@ const mapDispatchToProps = {
     setPollFor,
 };
 
-export default withNamespaces('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));
+export default withTranslation('global')(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(TopBar),
+);

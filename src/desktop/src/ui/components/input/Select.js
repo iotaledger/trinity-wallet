@@ -18,7 +18,7 @@ export default class Select extends React.PureComponent {
         /** Select dropdown options */
         options: PropTypes.array.isRequired,
         /** Select item label */
-        label: PropTypes.string.isRequired,
+        label: PropTypes.string,
         /** Is the component disabled */
         disabled: PropTypes.bool,
         /** Select event callback

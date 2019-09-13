@@ -15,7 +15,7 @@ import {
 import withNodeData from 'shared-modules/containers/settings/Node';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { setLoginRoute } from 'shared-modules/actions/ui';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { width } from 'libs/dimensions';
 import { connect } from 'react-redux';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -169,8 +169,14 @@ export class AddCustomNode extends Component {
 
     render() {
         const { t, theme, customNodes, loading, loginRoute } = this.props;
-        const { nodeListHeight, textInputFlex, nodeListFlex, customNode } = this.state;
-        // viewAuthKeyButton, viewAuthKeyFields
+        const {
+            nodeListHeight,
+            textInputFlex,
+            nodeListFlex,
+            customNode,
+            viewAuthKeyFields,
+            viewAuthKeyButton,
+        } = this.state;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -205,56 +211,71 @@ export class AddCustomNode extends Component {
                                     }}
                                 />
                             </View>
-                            {/* viewAuthKeyFields &&
-                            <View style={{ flex: 4 }}>
-                                <View style={{ flex: 2, justifyContent: 'flex-start' }}>
-                                    <CustomTextInput
-                                        onRef={(c) => {
-                                            this.username = c;
-                                        }}
-                                        label='Username'
-                                        onValidTextChange={(token) => this.setState({ customNode: {...customNode, token } })}
-                                        autoCapitalize="none"
-                                        autoCorrect={false}
-                                        enablesReturnKeyAutomatically
-                                        returnKeyType="next"
-                                        theme={theme}
-                                        editable={!loading}
-                                        value={customNode.token}
-                                        onSubmitEditing={() => {
-                                            this.username.blur();
-                                            this.password.focus();
-                                        }}
-                                    />
+                            {(viewAuthKeyFields && (
+                                <View style={{ flex: 4 }}>
+                                    <View style={{ flex: 2, justifyContent: 'flex-start' }}>
+                                        <CustomTextInput
+                                            onRef={(c) => {
+                                                this.username = c;
+                                            }}
+                                            label={t('username')}
+                                            onValidTextChange={(token) =>
+                                                this.setState({ customNode: { ...customNode, token } })
+                                            }
+                                            autoCapitalize="none"
+                                            autoCorrect={false}
+                                            enablesReturnKeyAutomatically
+                                            returnKeyType="next"
+                                            theme={theme}
+                                            editable={!loading}
+                                            value={customNode.token}
+                                            onSubmitEditing={() => {
+                                                this.username.blur();
+                                                this.password.focus();
+                                            }}
+                                        />
+                                    </View>
+                                    <View style={{ flex: 2, justifyContent: 'flex-start' }}>
+                                        <CustomTextInput
+                                            onRef={(c) => {
+                                                this.password = c;
+                                            }}
+                                            label={t('password')}
+                                            onValidTextChange={(password) =>
+                                                this.setState({ customNode: { ...customNode, password } })
+                                            }
+                                            autoCapitalize="none"
+                                            autoCorrect={false}
+                                            enablesReturnKeyAutomatically
+                                            returnKeyType="done"
+                                            theme={theme}
+                                            editable={!loading}
+                                            value={customNode.password}
+                                            onSubmitEditing={() => this.addCustomNode()}
+                                        />
+                                    </View>
                                 </View>
-                                <View style={{ flex: 2, justifyContent: 'flex-start' }}>
-                                    <CustomTextInput
-                                        onRef={(c) => {
-                                            this.password = c;
-                                        }}
-                                        label={t('password')}
-                                        onValidTextChange={(password) => this.setState({ customNode: {...customNode, password } })}
-                                        autoCapitalize="none"
-                                        autoCorrect={false}
-                                        enablesReturnKeyAutomatically
-                                        returnKeyType="done"
-                                        theme={theme}
-                                        editable={!loading}
-                                        value={customNode.password}
-                                        onSubmitEditing={() => this.addCustomNode()}
-                                    />
-                                </View>
-                            </View>
-                            ||
-                            <TouchableOpacity onPress={() => this.onAuthKeypress()} style={{flex: 1, justifyContent: 'flex-end' }}>
-                                { viewAuthKeyButton &&
-                                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                    <Icon name="plusAlt" size={width / 40} color={theme.body.color} />
-                                    <Text style={[ styles.buttonText, { color: theme.body.color } ]}>Add auth key</Text>
-                                </View>
-                                }
-                            </TouchableOpacity>
-                          */}
+                            )) || (
+                                <TouchableOpacity
+                                    onPress={() => this.onAuthKeypress()}
+                                    style={{ flex: 1, justifyContent: 'flex-end' }}
+                                >
+                                    {viewAuthKeyButton && (
+                                        <View
+                                            style={{
+                                                flexDirection: 'row',
+                                                justifyContent: 'flex-start',
+                                                alignItems: 'center',
+                                            }}
+                                        >
+                                            <Icon name="plusAlt" size={width / 40} color={theme.body.color} />
+                                            <Text style={[styles.buttonText, { color: theme.body.color }]}>
+                                                {t('addAuthKey')}
+                                            </Text>
+                                        </View>
+                                    )}
+                                </TouchableOpacity>
+                            )}
                         </Animated.View>
                         <SettingsSeparator color={theme.body.color} />
                         {(customNodes.length > 0 && (
@@ -285,7 +306,7 @@ export class AddCustomNode extends Component {
                                 }}
                             >
                                 <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                    No custom nodes added
+                                    {t('nodeSettings:noCustomNodes')}
                                 </Text>
                             </View>
                         )}
@@ -320,7 +341,7 @@ const mapDispatchToProps = {
     setLoginRoute,
 };
 
-export default withNamespaces(['addCustomNode', 'global'])(
+export default withTranslation(['addCustomNode', 'global'])(
     withNodeData(
         connect(
             mapStateToProps,

@@ -5,7 +5,7 @@ import { BackHandler, View, StyleSheet } from 'react-native';
 import navigator from 'libs/navigation';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import timer from 'react-native-timer';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
@@ -82,4 +82,9 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withNamespaces(['addNewAccount', 'global'])(connect(mapStateToProps, mapDispatchToProps)(AddNewAccount));
+export default withTranslation(['addNewAccount', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(AddNewAccount),
+);

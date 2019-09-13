@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import size from 'lodash/size';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -123,7 +123,7 @@ class Login extends Component {
             const pwdHash = await hash(this.state.password);
             try {
                 await authorize(pwdHash);
-                const seedStore = await new SeedStore[(get(selectedAccountMeta, 'type', 'keychain'))](
+                const seedStore = await new SeedStore[get(selectedAccountMeta, 'type', 'keychain')](
                     pwdHash,
                     selectedAccountName,
                 );
@@ -242,7 +242,7 @@ const mapDispatchToProps = {
 };
 
 export default WithDeepLinking()(
-    withNamespaces(['login', 'global'])(
+    withTranslation(['login', 'global'])(
         connect(
             mapStateToProps,
             mapDispatchToProps,

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 import { width } from 'libs/dimensions';
 
@@ -21,6 +21,8 @@ class SettingsSeparator extends PureComponent {
         color: PropTypes.string.isRequired,
         /** @ignore */
         inactive: PropTypes.bool,
+        /** Component height */
+        height: PropTypes.number,
     };
 
     static defaultProps = {
@@ -28,12 +30,14 @@ class SettingsSeparator extends PureComponent {
     };
 
     render() {
-        const { color, inactive } = this.props;
+        const { color, inactive, height } = this.props;
 
         return (
-            <View style={[styles.separatorContainer, inactive && { opacity: 0.35 }]}>
-                <View style={[styles.separator, { borderBottomColor: color }]} />
-            </View>
+            <TouchableWithoutFeedback>
+                <View style={[styles.separatorContainer, { height }, inactive && { opacity: 0.35 }]}>
+                    <View style={[styles.separator, { borderBottomColor: color }]} />
+                </View>
+            </TouchableWithoutFeedback>
         );
     }
 }

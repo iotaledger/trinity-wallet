@@ -16,13 +16,13 @@
         "messageSentMessage": "Vaša poruka je poslana na Tangle.",
         "keyReuse": "Slanje na upotrijebljenu adresu",
         "keyReuseError": "Ne možete poslati na prethodno upotrijebljenu adresu.",
-        "invalidResponse": "Pogreška na čvoru",
-        "invalidResponseExplanation": "Čvor je poslao pogrešku. Probajte s promjenom čvora.",
+        "invalidResponse": "Greška na node-u",
+        "invalidResponseExplanation": "Došlo je do greške prilikom komunikacije s node-om. Pokušajte promijeniti node.",
         "invalidResponseFetchingAccount": "Greška prilikom dohvata podataka o Vašem računu. Pokušajte promijeniti node.",
         "invalidResponseFetchingAccountDesktop": "Greška prilikom dohvata podataka o Vašem računu. U slučaju ponavljanja problema pokušajte promijeniti node ili onemogućite korištenje sistemskog proxy-a u Trinity postavkama.",
         "nodeOutOfSync": "Vaš node nije sinkroniziran",
         "nodeOutOfSyncExplanation": "Vaš odabrani node nije sinkroniziran. Molimo Vas promijenite node i pokušajte ponovno.",
-        "nodeOutOfSyncByTimestampExplanation": "\nTrenutno odabrani čvor nije sinkroniziran. Promijenite čvor ili pokušajte ponovno. Ako se problem i dalje pojavljuje, provjerite je li vrijeme uređaja ispravno.",
+        "nodeOutOfSyncByTimestampExplanation": "Trenutno odabrani node nije sinkroniziran. Molimo promijenite node ili pokušajte ponovno. Ako se problem i dalje pojavljuje, provjerite da li je vrijeme vašeg uređaja ispravno.",
         "experimentalNode": "Nepodržana verzija node-a",
         "experimentalNodeExplanation": "Vaš trenutno odabrani node koristi eksperimentalnu verziju koja nije podržana. Molimo promijenite node i pokušajte ponovno.",
         "thisNodeOutOfSync": "Vaš odabrani node nije sinkroniziran. Molimo Vas promijenite node i pokušajte ponovno.",
@@ -116,13 +116,13 @@
         "checkForUpdates": "Provjeri ažuriranja",
         "account": "Profil",
         "changeNode": "Promijeni node",
-        "addCustomNode": "Dodaj prilagođeni node",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Nedopušten node (ne koristi HTTPS)",
         "nodeMustUseHTTPSExplanation": "Dopušteni su samo prilagođeni node-ovi koji koriste HTTPS.",
         "nodeDuplicated": "Duplicirani node",
         "nodeDuplicatedExplanation": "Prilagođeni node se već nalazi na listi.",
-        "customNodeAdded": "Custom node added",
-        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
+        "customNodeAdded": "Prilagođeni node dodan",
+        "customNodeAddedExplanation": "Uspješno ste dodali {{nodeAddress}} kao prilagođeni node.",
         "nodeAutoChanged": "Node automatski promijenjen",
         "nodeAutoChangedExplanation": "Promijenjeno na novi node {{- nodeAddress}} pošto je trenutno odabrani offline.",
         "touchSensor": "Dodirnite čitač otiska prstiju",
@@ -144,8 +144,8 @@
         "isYourBalanceCorrect": "Da li je vaš saldo ispravan?",
         "ifYourBalanceIsNotCorrect": "Ako vaš saldo nije ispravan, vjerojatno koristite pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Otvorite Napredne Postavke i izvršite Snapshot tranziciju.",
-        "headToAccountTools": "Idite na Alati za račune i napravite prijelaz na snimku.",
-        "openAccountTools": "Otvorite račun Alati",
+        "headToAccountTools": "Otvorite Alate Računa i izvršite Snapshot tranziciju.",
+        "openAccountTools": "Otvorite Alate Računa",
         "usingTrinityWalletWithKeePass": "Korištenje Trinity novčanika s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Došlo je do greške u vezi prilikom emitiranja vaše transakcije.",
         "broadcastError": "Nije bilo moguće emitirati transakciju",
@@ -169,10 +169,10 @@
         "missingPermission": "Potreban pristup datotečnom sustavu",
         "missingPermissionExplanation": "Potreban je pristup datotečnom sustavu da bi se izvršila ova funkcija.",
         "swipeToConfirm": "Kliznite po ekranu za potvrdu",
-        "congratulations": "Congratulations",
-        "expert": "Stručnjak",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "congratulations": "Čestitamo",
+        "expert": "Stručni",
+        "notEnoughSyncedNodes": "Nedovoljan broj sinkroniziranih node-ova",
+        "notEnoughSyncedNodesExplanation": "Nije bilo moguće uspostaviti kvorum. Isključite kvorum i pokušajte ponovno."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedopuštene znakove",
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Jezik",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Odaberite jezik",
         "letsGetStarted": "Započnimo"
     },
     "login": {
@@ -456,7 +456,8 @@
         "keepSafe": "Molimo vas, čuvajte svoj seed na sigurnom mjestu."
     },
     "welcome": {
-        "thankYou": "Hvala što ste preuzeli Trinity"
+        "thankYou": "Hvala što ste preuzeli Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Zapišite svoj seed i kontrolni zbroj, te </0><1>provjerite barem 3 puta</1><2> da li su točni.</2>",
@@ -495,20 +496,23 @@
         "tools": "Alati"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
-        "primaryNode": "Primary node",
-        "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "automaticNodeManagement": "Automatsko upravljanje node-ovima",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
+        "primaryNode": "Primarni node",
+        "enableQuorum": "Omogući kvorum",
+        "quorumSize": "Veličina kvoruma",
+        "noCustomNodes": "Bez prilagođenih node-ova",
+        "mustAddCustomNodes": "Morate dodati barem jedan prilagođeni node prije onemogućavanja vanjske node liste.",
+        "nodeEnoughNodesTitle": "Nedovoljan broj node-ova",
+        "nodeEnoughNodesExplanation": "Nedovoljan broj node-ova da bi se omogućio kvorum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Dodajte još prilagođenih node-ova ili omogućite vanjsku node listu.",
+        "nodeSettingsUpdatedTitle": "Node postavke spremljene",
+        "nodeSettingsUpdatedExplanation": "Uspješno ste spremili vaše node postavke.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nije bilo moguće dodati prilagođeni node",
@@ -519,10 +523,10 @@
         "nodeFieldEmpty": "Tekstualno polje je prazno",
         "nodeFieldEmptyExplanation": "Molimo unesite prilagođeni node.",
         "invalidURL": "Molimo unesite valjani URL.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "addAuthKey": "Dodaj autorizacijski ključ",
+        "username": "Korisničko ime",
+        "couldNotRemove": "Nije bilo moguće ukloniti prilagođeni node",
+        "couldNotRemoveExplanation": "Uklanjanjem prilagođenog node-a kvorum nema dovoljan broj node-ova za uspostavu istog. Smanjite veličinu kvoruma ili omogućite vanjsku node listu."
     },
     "addNewAccount": {
         "useExistingSeed": "Koristi postojeći seed",
@@ -649,7 +653,7 @@
         "noPassword": "Lozinka nije postavljena na uređaju"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Poslat ćete {{contents}}",
         "aMessage": "poruka",
         "fromAccount": "S {{selectedAccountName}}",
         "toAddress": "Na adresu",
@@ -741,7 +745,7 @@
         "snapshotExplanation": "Periodično je potrebno obaviti snapshot radi kontrole veličine Tangle-a.",
         "hasSnapshotTakenPlace": "Da li je došlo do snapshot-a? Pritisnite gumb ispod za tranziciju.",
         "transition": "Tranzicija",
-        "transitioning": "Tranzicija snapshot-a u tijeku.",
+        "transitioning": "Snapshot tranzicija u tijeku.",
         "generatingAndDetecting": "Generiranje adresa i detektiranje salda.",
         "attaching": "Pridodavanje adresa na Tangle.",
         "attachProgress": "Pridodavanje adrese {{currentAddress}} od {{totalAddresses}} u tijeku"
@@ -759,7 +763,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Ažuriranje trenutno nije moguće. Molimo provjerite vašu internet vezu i pokušajte ponovno.",
         "noUpdatesAvailable": "Nema dostupnih ažuriranja",
         "noUpdatesAvailableExplanation": "Trenutno koristite najnoviju verziju Trinity novčanika!",
         "newVersionAvailable": "Dostupna je nova verzija",
@@ -826,16 +830,16 @@
         "notReady": "Ukoliko želite koristiti Ledger uređaj, povežite ga i otključajte sada",
         "indexInUse": "Indeks već u upotrebi za račun {{account}}",
         "indexInUseExplanation": "Odabrani indeks je već u upotrebi na nekom od vaših računa. Molimo odaberite neki drugi broj indeksa.",
-        "createNewLedgerAccountInfo": "Svakako zapišite i zapamtite svoj indeksni broj.",
-        "restoreLedgerAccountInfo": "Unesite spremljeni indeksni broj da biste vratili svoj račun.",
-        "createNewLedgerAccount": "Stvorite novi račun glavne knjige",
-        "restoreLedgerAccount": "Vratite postojeći račun glavne knjige",
+        "createNewLedgerAccountInfo": "Pobrinite se da zapišete i zapamtite svoj indeksni broj.",
+        "restoreLedgerAccountInfo": "Unesite Vaš prethodno spremljeni indeksni broj da biste vratili svoj račun.",
+        "createNewLedgerAccount": "Kreirajte novi Ledger račun",
+        "restoreLedgerAccount": "Vratite postojeći Ledger račun",
         "accountIndex": "Indeks računa (Ledger Nano S)",
         "accountPage": "Stranica računa (Deviota Romeo)",
         "actionCancelled": "Pristup Ledger uređaju otkazan",
         "actionCancelledExplanation": "Nije moguće izvršiti radnju bez pristupa Ledger uređaju.",
         "chooseAccountIndex": "Odaberite indeks računa vašeg Ledger uređaja",
-        "accountIndexExplanation": "Vaša knjiga može pohraniti više sjemenki. Svako sjeme se identificira jedinstvenim indeksnim brojem.",
+        "accountIndexExplanation": "Vaš Ledger može pohraniti više seed-ova. Svaki seed se identificira jedinstvenim indeksnim brojem.",
         "accountPageExplanation": "Neki novčanici trećih strana zahtijevaju stranice (npr. Deviota Romeo).",
         "connectionError": "Nije moguće povezivanje s Ledger uređajem",
         "connectionErrorExplanation": "Provjerite da li je vaš Ledger uređaj povezan i otključan.",
@@ -858,10 +862,10 @@
         "applicationNotInitialised": "Upozorenje nije prihvaćeno",
         "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno.",
         "checkLedger": "Provjerite svoj Ledger uređaj",
-        "acceptWarningExplanation": "Ako postoji upozorenje na uređaju knjige, morate se pomicati i prihvatiti ga pritiskom na oba gumba.",
+        "acceptWarningExplanation": "Ako postoji informativno upozorenje na vašem Ledger uređaju, morate ga pregledati i prihvatiti pritiskom na oba gumba.",
         "udevError": "Nije bilo moguće uspostaviti komunikaciju s Ledger uređajem",
         "udevErrorExplanation": "Trinity nije mogao uspostaviti komunikaciju s vašim Ledger uređajem. Molimo posjetite URL naveden ispod kako bi riješili ovaj problem.",
         "writtenDownInfoTitle": "Zapamtite svoj indeksni broj",
-        "writtenDownInfoExplanation": "Da biste ubuduće obnovili račun, potreban vam je indeksni broj. Ako izgubite indeksni broj, izgubit ćete svoj IOTA. Zapamtite to."
+        "writtenDownInfoExplanation": "Da biste ubuduće mogli vratiti Vaš račun, potreban vam je indeksni broj. Ako izgubite indeksni broj, izgubit ćete pristup svojim IOTA tokenima. Pobrinite se da zapamtite svoj indeksni broj."
     }
 }

@@ -116,7 +116,7 @@
         "checkForUpdates": "Frissítések keresése",
         "account": "Számla",
         "changeNode": "Csomópont választása",
-        "addCustomNode": "Saját csomópont hozzáadása",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Érvénytelen csomópont (nem HTTPS)",
         "nodeMustUseHTTPSExplanation": "Csak HTTPS protokollt használó csomópontok használata megengedett.",
         "nodeDuplicated": "Duplikált csomópont",
@@ -169,7 +169,7 @@
         "missingPermission": "Fájl hozzáférési engedély szükséges",
         "missingPermissionExplanation": "A művelet végrehajtásához a fájlrendszerhez való hozzáférési jogosultág szükséges.",
         "swipeToConfirm": "A megerősítéshez húzza el a csúszkát",
-        "congratulations": "Congratulations",
+        "congratulations": "Gratulálunk",
         "expert": "Haladó",
         "notEnoughSyncedNodes": "Túl kevés csomópont szinkronban",
         "notEnoughSyncedNodesExplanation": "A csomópontok nem határozatképesek. Kapcsolja ki a határozatképesség ellenőrzését vagy próbálja meg újra."
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Nyelv",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Válasszon nyelvet",
         "letsGetStarted": "Kezdjük el"
     },
     "login": {
@@ -456,7 +456,8 @@
         "keepSafe": "Kérjük, hogy a mester jelszavát mindig tartsa titokban."
     },
     "welcome": {
-        "thankYou": "Köszönjük, hogy letöltötte a Trinity alkalmazást"
+        "thankYou": "Köszönjük, hogy letöltötte a Trinity alkalmazást",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Jegyezze fel a mester jelszavát és az ellenőrző összeget, majd</0><1>többszörösen ellenőrizze</1><2>hogy mindkettő helyes.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatikus csomópont kezelés",
-        "addCustomNodes": "Saját csomópont hozzáadása",
-        "autoNodeList": "Távoli csomópontlista használata",
-        "nodeAutoswitching": "Elsődleges csomópont automatikus váltása",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Elsődleges csomópont",
         "enableQuorum": "Határozatképesség-ellenőrzés engedélyezése",
         "quorumSize": "Határozatképességhez minimálisan szükséges csomópontok száma",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "Nincs elegendő csomópont a határozatképesség-ellenőrzés engedélyezéséhez.",
         "nodeEnoughNodesExplanationCustomNodes": "Adjon hozzá újabb csomópontokat vagy engedélyezze a távoli csomópontlista használatát.",
         "nodeSettingsUpdatedTitle": "Csomópont beállítások frissítve",
-        "nodeSettingsUpdatedExplanation": "Sikeresen módosította a csomópont beállításait."
+        "nodeSettingsUpdatedExplanation": "Sikeresen módosította a csomópont beállításait.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Saját csomópont hozzáadása sikertelen",
@@ -649,7 +653,7 @@
         "noPassword": "Nincs jelszó beállítva a készüléken"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Jóváhagyja a {{contents}} küldését?",
         "aMessage": "egy üzenet",
         "fromAccount": "{{selectedAccountName}}-tól",
         "toAddress": "Célszámla címe",

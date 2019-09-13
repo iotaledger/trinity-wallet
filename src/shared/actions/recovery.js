@@ -8,7 +8,7 @@ import { syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
 import { cleanUpAccountState, updateAccountInfoAfterSpending, syncAccountBeforeSweeping } from './accounts';
 import sweep from '../libs/iota/recovery';
 import { formatIotas } from '../libs/iota/utils';
-import { byteToChar, bytesToTrits } from '../libs/iota/converter';
+import { byteToChar, bytesToTrits, tritsToChars } from '../libs/iota/converter';
 import { getLatestAddress } from '../libs/iota/addresses';
 import { DEFAULT_SECURITY } from '../config';
 import { setByteTritSweepInfo, setCompletedByteTritSweep } from './settings';
@@ -42,11 +42,15 @@ export const byteTritCheck = (accounts, genFn, withQuorum = true) => async (disp
         const seed = await accounts[i].seedStore.getSeed(true);
 
         const seedTrits = bytesToTrits(seed.filter((trit) => trit > -1).slice(0, 81));
-        const addresses = await genFn(seedTrits, 0, 2, addressCount);
+        const addressesTrits = await genFn(seedTrits, 0, 2, addressCount);
+
+        // Convert addresses trits to trytes
+        const addresses = addressCount === 1 ? tritsToChars(addressesTrits) : map(addressesTrits, tritsToChars);
 
         const balances = await getBalancesAsync(undefined, withQuorum)(
             typeof addresses === 'string' ? [addresses] : addresses,
         );
+
         const balanceTotal = balances.balances.reduce((total, balance) => parseInt(total) + parseInt(balance));
 
         if (balanceTotal > 0) {

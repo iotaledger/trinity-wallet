@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Linking } from 'react-native';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { initiateDeepLinkRequest, setSetting } from 'shared-modules/actions/wallet';
@@ -44,7 +44,11 @@ export default () => (C) => {
                     parsedData.message || null,
                 );
             } else {
-                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
+                generateAlert(
+                    'error',
+                    t('send:invalidAddress'),
+                    t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }),
+                );
             }
         }
 
@@ -87,5 +91,10 @@ export default () => (C) => {
         setSetting,
     };
 
-    return withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithDeepLinking));
+    return withTranslation(['global'])(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(WithDeepLinking),
+    );
 };

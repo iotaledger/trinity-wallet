@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-schemes-manager/src/utilities.js b/node_modules/react-native-schemes-manager/src/utilities.js
+index 7dee56e..896cabb 100644
+--- a/node_modules/react-native-schemes-manager/src/utilities.js
++++ b/node_modules/react-native-schemes-manager/src/utilities.js
+@@ -37,7 +37,7 @@ module.exports = {
+ 		const project = this.getClosestLikelyReactNativeProjectPath();
+ 		if (!project) return callback(new Error('Unable to find project path.'));
+ 
+-		glob(path.join(project, pattern), { follow: true }, (err, files) => {
++		glob(path.join(project, pattern), (err, files) => {
+ 			if (err) return callback(err);
+ 
+ 			// Go through each project.

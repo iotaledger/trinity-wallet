@@ -116,7 +116,7 @@
         "checkForUpdates": "Tarkista päivitykset",
         "account": "Oma tili",
         "changeNode": "Vaihda Palvelinta",
-        "addCustomNode": "Lisää Omavalintainen Palvelin",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Virheellinen palvelin (ei HTTPS yhteyttä)",
         "nodeMustUseHTTPSExplanation": "Voit lisätä vain palvelimia jotka tukevat HTTPS yhteyttä.",
         "nodeDuplicated": "Palvelin on jo olemassa",
@@ -456,7 +456,8 @@
         "keepSafe": "Muista aina pitää seed-lukusi turvassa."
     },
     "welcome": {
-        "thankYou": "Kiitos, että olet ladannut Trinity-lompakon"
+        "thankYou": "Kiitos, että olet ladannut Trinity-lompakon",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Kirjoita muistiin seed-lukusi ja tarkistussumma ja</0> <1>varmista kolmesti,</1> <2>että ne ovat oikein.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automaattinen palvelimen hallinta",
-        "addCustomNodes": "Lisää omavalintainen palvelin",
-        "autoNodeList": "Käytä etä-palvelin listaa",
-        "nodeAutoswitching": "Ensisijaisen palvelimen automaattinen kytkentä",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Ensisijainen palvelin",
         "enableQuorum": "Ota päätösvaltaisuus käyttöön",
         "quorumSize": "Päätösvaltaisuuden koko",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "Palvelimia ei ole tarpeeksi, jotta päätösvaltaisuus voitaisiin ottaa käyttöön.",
         "nodeEnoughNodesExplanationCustomNodes": "Lisää omavalintaisia palvelimia tai kytke etä-palvelin lista päälle.",
         "nodeSettingsUpdatedTitle": "Palvelin asetukset päivitetty",
-        "nodeSettingsUpdatedExplanation": "Olet onnistuneesti päivittänyt palvelin asetukset."
+        "nodeSettingsUpdatedExplanation": "Olet onnistuneesti päivittänyt palvelin asetukset.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Palvelinta ei voitu lisätä",

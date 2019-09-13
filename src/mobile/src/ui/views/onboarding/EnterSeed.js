@@ -1,6 +1,6 @@
 import size from 'lodash/size';
 import React from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import navigator from 'libs/navigation';
 import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
@@ -303,5 +303,10 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    withNamespaces(['enterSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterSeed)),
+    withTranslation(['enterSeed', 'global'])(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(EnterSeed),
+    ),
 );

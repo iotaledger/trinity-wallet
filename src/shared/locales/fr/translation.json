@@ -115,8 +115,8 @@
         "snapshotTransitionInProgressExplanation": "Veuillez patienter jusqu'à ce que la transition soit terminée.",
         "checkForUpdates": "Rechercher des mises à jour",
         "account": "Compte",
-        "changeNode": "Changez de serveur",
-        "addCustomNode": "Ajouter un serveur personnalisé",
+        "changeNode": "Changer de serveur",
+        "addCustomNode": "Ajouter des serveurs",
         "nodeMustUseHTTPS": "Serveur invalide (pas HTTPS)",
         "nodeMustUseHTTPSExplanation": "Seuls les serveurs personnalisés utilisant HTTPS sont autorisés.",
         "nodeDuplicated": "Serveur dupliqué",
@@ -331,7 +331,7 @@
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
         "letsWriteDownYourSeed": "Écrivez votre seed",
         "youCanHighlightCharacters": "Vous pouvez sélectionner 9 caractères à la fois",
-        "printBlankWallet": "Imprimer une feuille vierge à remplir manuellement",
+        "printBlankWallet": "Imprimer un portefeuille vide",
         "whatIsAChecksum": "Qu'est-ce qu'une somme de contrôle?",
         "everySeedHasAChecksum": "Chaque seed a une somme de contrôle de 3 caractères.",
         "iHavesavedMySeed": "J’ai enregistré ma seed",
@@ -456,7 +456,8 @@
         "keepSafe": "Merci de garder votre seed en sécurité."
     },
     "welcome": {
-        "thankYou": "Merci d’avoir téléchargé Trinity"
+        "thankYou": "Merci d’avoir téléchargé Trinity",
+        "demoThankYou": "Merci d’avoir téléchargé la démo de Trinity"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Notez votre seed et le code de vérification et </0><1>vérifiez à plusieurs reprises</1><2> qu’ils sont corrects.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Gestion automatique des noeuds",
-        "addCustomNodes": "Ajouter noeuds personnalisés",
-        "autoNodeList": "Utiliser la liste de noeuds distants",
-        "nodeAutoswitching": "Changement automatique de noeud primaire",
+        "addCustomNodes": "Ajouter des serveurs",
+        "autoNodeList": "Utiliser la liste de serveurs par défaut",
+        "nodeAutoswitching": "Sélectionner automatiquement le serveur principal",
         "primaryNode": "Noeud primaire",
         "enableQuorum": "Activer le mécanisme de quorum",
         "quorumSize": "Taille du Quorum",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "Il n'y a pas assez de noeuds pour activer le mécanisme de quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Ajouter plus de noeuds personnalisés ou activer la liste des noeuds distants.",
         "nodeSettingsUpdatedTitle": "Paramètres du noeud mis à jour",
-        "nodeSettingsUpdatedExplanation": "Vous avez mis à jour vos paramètres de serveur avec succès."
+        "nodeSettingsUpdatedExplanation": "Vous avez mis à jour vos paramètres de serveur avec succès.",
+        "outsourcePow": "Externaliser la preuve de travail",
+        "autoSelectPowNode": "Sélection automatique du serveur pour preuve de travail",
+        "nodeForPow": "Serveur pour preuve de travail"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Le serveur personnalisé n'a pas pu être ajouté",
@@ -607,10 +611,10 @@
         "enterPassword": "Saisissez le mot de passe pour afficher votre seed.",
         "viewSeed": "Afficher la seed",
         "hideSeed": "Masquer la seed",
-        "notAvailable": "L'exportation de la seed n’est pas disponible pour le compte {{accountType}}",
+        "notAvailable": "L'exportation de la seed n’est pas disponible pour le type de compte {{accountType}}",
         "notAvailableExplanationLedger": "Votre Ledger utilise un élément sécurisé pour stocker votre seed. La seed est cryptée en toute sécurité et ne sort jamais de l'appareil.",
         "accountIndex": "L'index de votre compte Ledger",
-        "accountPage": "Numéro de page du compte de votre Ledger"
+        "accountPage": "Votre page de compte Ledger"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Avez-vous enregistré votre seed ?",

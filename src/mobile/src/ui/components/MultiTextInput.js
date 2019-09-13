@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setQrMessage, setQrAmount, setQrTag, setSelectedQrTab, setQrDenomination } from 'shared-modules/actions/ui';
@@ -10,7 +10,6 @@ import { Styling } from 'ui/theme/general';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { /*MAX_TAG_LENGTH,*/ MAX_MESSAGE_LENGTH } from 'shared-modules/libs/iota/utils';
 import AmountTextInput from './AmountTextInput';
-
 
 const styles = StyleSheet.create({
     fieldContainer: {
@@ -168,7 +167,7 @@ class MultiTextInput extends Component {
                                 styles.messageInputContainer,
                                 {
                                     backgroundColor: theme.input.bg,
-                                    borderColor: isMessageInputFocused ? theme.input.hover : theme.input.border,
+                                    borderColor: isMessageInputFocused ? theme.input.hover : theme.input.bg,
                                 },
                                 { height },
                             ]}
@@ -239,4 +238,9 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(MultiTextInput));
+export default withTranslation(['receive', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(MultiTextInput),
+);

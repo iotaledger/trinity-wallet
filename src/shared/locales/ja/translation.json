@@ -116,7 +116,7 @@
         "checkForUpdates": "更新を確認",
         "account": "アカウント",
         "changeNode": "ノード変更",
-        "addCustomNode": "カスタムノードの追加",
+        "addCustomNode": "ノードの追加",
         "nodeMustUseHTTPS": "無効なノード (非HTTPS)",
         "nodeMustUseHTTPSExplanation": "HTTPSを使用するカスタムノードだけがご使用になれます。",
         "nodeDuplicated": "重複したノード",
@@ -456,7 +456,8 @@
         "keepSafe": "シードは安全に保管してください。"
     },
     "welcome": {
-        "thankYou": "Trinityウォレットをダウンロードしていただきありがとうございます。"
+        "thankYou": "Trinityウォレットをダウンロードしていただきありがとうございます。",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>３回チェック</1><2>を行ってください。</2>",
@@ -495,10 +496,10 @@
         "tools": "ツール"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "自動でノード管理を行う",
-        "addCustomNodes": "カスタムノードの追加",
-        "autoNodeList": "リモートノードリストを使う",
-        "nodeAutoswitching": "主要ノードの自動切換え",
+        "automaticNodeManagement": "自動ノード管理",
+        "addCustomNodes": "ノードの追加",
+        "autoNodeList": "デフォルトノードリストの使用",
+        "nodeAutoswitching": "主要ノードの自動選択",
         "primaryNode": "主要ノード",
         "enableQuorum": "定足数を有効化",
         "quorumSize": "定足数サイズ",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "定足数を有効にするための十分なノードがありません。",
         "nodeEnoughNodesExplanationCustomNodes": "カスタムノードが追加するか、リモートノードリストを有効化してください。",
         "nodeSettingsUpdatedTitle": "ノード設定更新完了",
-        "nodeSettingsUpdatedExplanation": "ノード設定が正常に更新されました。"
+        "nodeSettingsUpdatedExplanation": "ノード設定が正常に更新されました。",
+        "outsourcePow": "PoWを外部委託",
+        "autoSelectPowNode": "PoWノードの自動選択",
+        "nodeForPow": "PoWノード"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "カスタムノード追加不可",
@@ -822,8 +826,8 @@
         "seedMigrationExplanation": "ウォレットのセキュリティを向上させるためのTrinityの継続的な取り組みの一環として、シードは強化されたストレージに移行されます。Trinityが自動的にシードストレージを移行するまで少々お待ちください。"
     },
     "ledger": {
-        "ready": "Ledger端末の接続が完了し、準備完了です",
-        "notReady": "Ledger端末を使いたい場合、今、接続しロックを解除してください",
+        "ready": "Ledger端末の接続が完了し、準備完了です。",
+        "notReady": "Ledger端末を使いたい場合、ここで接続し、ロックを解除してください。",
         "indexInUse": "アカウント{{account}}で既に使用されているインデックスです",
         "indexInUseExplanation": "選択したインデックスは、いずれかのアカウントですでに使用されています。別のインデックス番号を選択してください。",
         "createNewLedgerAccountInfo": "インデックス番号を書き留めて忘れないようにしてください。",
@@ -847,7 +851,7 @@
         "applicationExplanation": "Trinityウォレットを使い続けるには、LedgerでIOTAアプリを開いてください。",
         "cannotSendZeroValueTitle": "0値の取引は送金できません",
         "cannotSendZeroValueExplanation": "Ledger端末では0値の取引は送金できません。",
-        "ledgerDisconnectedTitle": "Ledger端末が切断されました",
+        "ledgerDisconnectedTitle": "Ledger端末が切断されました。",
         "ledgerDisconnectedExplanation": "Ledger端末が切断されました。再接続してもう一度お試しください。",
         "ledgerDeniedTitle": "取引拒否",
         "ledgerDeniedExplanation": "Ledger端末で取引が拒否されました。",

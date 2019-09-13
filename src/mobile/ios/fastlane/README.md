@@ -15,9 +15,9 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
-### build_release
+### configure_release
 ```
-fastlane build_release
+fastlane configure_release
 ```
 
 ### screenshots

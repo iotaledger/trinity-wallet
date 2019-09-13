@@ -59,8 +59,6 @@ class SingleFooterButton extends PureComponent {
                             wrapper: {
                                 backgroundColor: primary.color,
                                 width: isIPhoneX ? Styling.contentWidth : width,
-                                borderColor: primary.border,
-                                borderWidth: 1,
                                 borderRadius: isIPhoneX ? Styling.borderRadiusExtraLarge : 0,
                             },
                             children: {

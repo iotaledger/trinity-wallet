@@ -8,7 +8,7 @@ import { setQrDenomination, setSendDenomination } from 'shared-modules/actions/u
 import { IOTA_DENOMINATIONS } from 'shared-modules/libs/iota/utils';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { width } from 'libs/dimensions';
 import DropdownComponent from 'ui/components/Dropdown';
 import SettingsDualFooter from 'ui/components/SettingsDualFooter';
@@ -149,7 +149,7 @@ const mapDispatchToProps = {
     setSendDenomination,
 };
 
-export default withNamespaces(['currencySelection', 'global'])(
+export default withTranslation(['currencySelection', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

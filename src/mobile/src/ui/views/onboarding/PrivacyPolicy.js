@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import Markdown from 'react-native-markdown-renderer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import navigator from 'libs/navigation';
 import { acceptPrivacy } from 'shared-modules/actions/settings';
 import {
@@ -93,7 +93,10 @@ class PrivacyPolicy extends Component {
     }
 
     render() {
-        const { t, theme: { primary, bar } } = this.props;
+        const {
+            t,
+            theme: { primary, bar },
+        } = this.props;
         const textColor = { color: bar.color };
 
         return (
@@ -158,4 +161,9 @@ const mapDispatchToProps = {
     acceptPrivacy,
 };
 
-export default withNamespaces('privacyPolicy')(connect(mapStateToProps, mapDispatchToProps)(PrivacyPolicy));
+export default withTranslation('privacyPolicy')(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(PrivacyPolicy),
+);

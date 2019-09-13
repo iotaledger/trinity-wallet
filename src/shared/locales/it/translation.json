@@ -116,7 +116,7 @@
         "checkForUpdates": "Controlla Aggiornamenti",
         "account": "Conto",
         "changeNode": "Cambia nodo",
-        "addCustomNode": "Aggiungi un nodo personalizzato",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Nodo non valido (non HTTPS)",
         "nodeMustUseHTTPSExplanation": "Sono ammessi solo nodi personalizzati che usano HTTPS.",
         "nodeDuplicated": "Nodo duplicato",
@@ -456,7 +456,8 @@
         "keepSafe": "Sei pregato di tenere il tuo seme al sicuro."
     },
     "welcome": {
-        "thankYou": "Grazie per aver scaricato Trinity"
+        "thankYou": "Grazie per aver scaricato Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Trascrivi il tuo seme e la checksum e </0><1>verifica tre volte</1><2> di averli trascritti correttamente.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Gestione automatica del nodo",
-        "addCustomNodes": "Aggiungi nodi personalizzati",
-        "autoNodeList": "Usa la lista dei nodi remoti",
-        "nodeAutoswitching": "Cambio automatico del nodo primario",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Nodo primario",
         "enableQuorum": "Abilita quorum",
         "quorumSize": "Dimensione Quorum",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "Non ci sono abbastanza nodi per consentire il quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Aggiungi più nodi personalizzati o attiva la lista dei nodi remoti.",
         "nodeSettingsUpdatedTitle": "Impostazioni nodo aggiornate",
-        "nodeSettingsUpdatedExplanation": "Hai aggiornato con successo le impostazioni del nodo."
+        "nodeSettingsUpdatedExplanation": "Hai aggiornato con successo le impostazioni del nodo.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Impossibile aggiungere il nodo personalizzato",

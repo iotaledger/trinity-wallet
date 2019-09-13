@@ -116,7 +116,7 @@
         "checkForUpdates": "Sök efter uppdateringar",
         "account": "Konto",
         "changeNode": "Ändra nod",
-        "addCustomNode": "Lägg till anpassad nod",
+        "addCustomNode": "Lägg till noder",
         "nodeMustUseHTTPS": "Ogiltig nod (ej HTTPS)",
         "nodeMustUseHTTPSExplanation": "Endast anpassade noder som använder HTTPS är tillåtna.",
         "nodeDuplicated": "Duplicerad nod",
@@ -456,7 +456,8 @@
         "keepSafe": "Vänligen förvara din seed säkert."
     },
     "welcome": {
-        "thankYou": "Tack för att du laddade ned Trinity"
+        "thankYou": "Tack för att du laddade ned Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Skriv ner din seed och checksumma och </0><1>dubbelkolla</1><2> att det stämmer.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatisk nodhantering",
-        "addCustomNodes": "Lägg till anpassad nod",
-        "autoNodeList": "Använd fjärrnodslistan",
-        "nodeAutoswitching": "Automatisk växling för primär nod",
+        "addCustomNodes": "Lägg till noder",
+        "autoNodeList": "Använd standardlistan med noder",
+        "nodeAutoswitching": "Välj primär nod automatiskt",
         "primaryNode": "Primär nod",
         "enableQuorum": "Aktivera kvorum",
         "quorumSize": "Kvorumstorlek",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "Det finns inte tillräckligt med noder för att möjliggöra kvorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Lägg till fler anpassade noder eller aktivera fjärrnodslistan.",
         "nodeSettingsUpdatedTitle": "Nod-inställningar uppdaterade",
-        "nodeSettingsUpdatedExplanation": "Du har uppdaterat dina nod-inställningar."
+        "nodeSettingsUpdatedExplanation": "Du har uppdaterat dina nod-inställningar.",
+        "outsourcePow": "Outsourca bevis på arbete (PoW)",
+        "autoSelectPowNode": "Välj automatiskt PoW-nod",
+        "nodeForPow": "PoW-nod"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Anpassad nod kunde inte bli tillagd",

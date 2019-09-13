@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import navigator from 'libs/navigation';
@@ -29,8 +29,6 @@ export class AdvancedSettings extends PureComponent {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         autoPromotion: PropTypes.bool.isRequired,
-        /** @ignore */
-        remotePoW: PropTypes.bool.isRequired,
         /** @ignore */
         deepLinking: PropTypes.bool.isRequired,
         /** @ignore */
@@ -79,7 +77,7 @@ export class AdvancedSettings extends PureComponent {
      * @returns {function}
      */
     renderSettingsContent() {
-        const { theme, t, autoPromotion, remotePoW, deepLinking, isSendingTransfer } = this.props;
+        const { theme, t, autoPromotion, deepLinking, isSendingTransfer } = this.props;
         const rows = [
             {
                 name: t('settings:nodeSettings'),
@@ -90,12 +88,6 @@ export class AdvancedSettings extends PureComponent {
                     }
                     return this.props.setSetting('nodeSettings');
                 },
-            },
-            {
-                name: t('pow'),
-                icon: 'pow',
-                function: () => this.props.setSetting('pow'),
-                currentSetting: remotePoW ? t('pow:remote') : t('pow:local'),
             },
             {
                 name: t('autoPromotion'),
@@ -136,7 +128,6 @@ export class AdvancedSettings extends PureComponent {
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     autoPromotion: state.settings.autoPromotion,
-    remotePoW: state.settings.remotePoW,
     deepLinking: state.settings.deepLinking,
     isSendingTransfer: state.ui.isSendingTransfer,
 });
@@ -146,7 +137,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['advancedSettings', 'settings', 'global'])(
+export default withTranslation(['advancedSettings', 'settings', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

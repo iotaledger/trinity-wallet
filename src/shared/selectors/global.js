@@ -1,6 +1,9 @@
 import assign from 'lodash/assign';
 import has from 'lodash/has';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import sample from 'lodash/sample';
 import { createSelector } from 'reselect';
 import Themes from '../themes/themes';
 import { DEFAULT_NODE } from '../config';
@@ -108,6 +111,21 @@ export const getSelectedNodeFromState = createSelector(
 );
 
 /**
+ *   Selects random pow node prop from settings reducer state object.
+ *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
+ *
+ *   @method getRandomPowNodeFromState
+ *
+ *   @param {object} state
+ *
+ *   @returns {object}
+ **/
+export const getRandomPowNodeFromState = createSelector(
+    getSettingsFromState,
+    (state) => get(sample(filter([...state.customNodes, ... state.nodes], (node) => node.pow === true)), 'url')
+);
+
+/**
  *   Selects wallet prop from state.
  *
  *   @method getWalletFromState
@@ -184,12 +202,18 @@ export const nodesConfigurationFactory = (overrides) =>
                 nodes: state.autoNodeList ? [...state.nodes, ...state.customNodes] : state.customNodes,
                 /** Wallet's active node */
                 primaryNode: state.node,
+                /** Wallet's active PoW node - undefined if not performing remote PoW */
+                powNode: undefined,
                 /** Determines if quorum is enabled/disabled */
                 quorum: state.quorum,
                 /**
                  * Determines if (primary) node should automatically be auto-switched
                  */
                 nodeAutoSwitch: state.nodeAutoSwitch,
+                /**
+                 * Determines if (PoW) node should automatically be auto-switched
+                 */
+                powNodeAutoSwitch: state.powNodeAutoSwitch,
                 /**
                  * - When true: pull in nodes from endpoint (config#NODELIST_URL) and include the custom nodes in the quorum selection
                  * - When false: only use custom nodes in quorum selection
@@ -211,6 +235,7 @@ export const nodesConfigurationFactory = (overrides) =>
 
             if (shouldUseOnlyPowNodes) {
                 config.nodes = filter(config.nodes, (node) => node.pow === true);
+                config.powNode = find(config.nodes, (node) => node.url === state.powNode);
             }
 
             return config;

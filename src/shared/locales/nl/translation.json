@@ -116,7 +116,7 @@
         "checkForUpdates": "Controleren op Updates",
         "account": "Account",
         "changeNode": "Verander Node",
-        "addCustomNode": "Aangepaste Node Toevoegen",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Ongeldige node (niet HTTPS)",
         "nodeMustUseHTTPSExplanation": "Alleen aangepaste nodes met HTTPS zijn toegestaan.",
         "nodeDuplicated": "Node geduplificeerd",
@@ -169,7 +169,7 @@
         "missingPermission": "Toegang tot bestandsysteem vereist",
         "missingPermissionExplanation": "Toegang tot het bestandssysteem is vereist om deze functie uit te voeren.",
         "swipeToConfirm": "Veeg om te bevestigen",
-        "congratulations": "Congratulations",
+        "congratulations": "Gefeliciteerd",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Te weinig nodes in synchronisatie",
         "notEnoughSyncedNodesExplanation": "Het quorum kon niet worden bereikt. Zet het quorum uit of probeer het opnieuw."
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Taal",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Selecteer een taal",
         "letsGetStarted": "Laten we beginnen"
     },
     "login": {
@@ -456,7 +456,8 @@
         "keepSafe": "Houd uw seed veilig."
     },
     "welcome": {
-        "thankYou": "Bedankt voor het downloaden van Trinity"
+        "thankYou": "Bedankt voor het downloaden van Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Schrijf uw seed en controlesom nauwkeurig op en</0> <1>controleer nogmaals</1> <2>of ze overeenkomen.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatische node beheer",
-        "addCustomNodes": "Aangepaste nodes toevoegen",
-        "autoNodeList": "Gebruik externe node lijst",
-        "nodeAutoswitching": "Primaire node autoswitch",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Primaire node",
         "enableQuorum": "Quorum inschakelen",
         "quorumSize": "Quorum grootte",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "Er zijn niet genoeg nodes om quorum in te schakelen.",
         "nodeEnoughNodesExplanationCustomNodes": "Voeg meer aangepaste nodes toe of schakel de externe node lijst in.",
         "nodeSettingsUpdatedTitle": "Node instellingen bijgewerkt",
-        "nodeSettingsUpdatedExplanation": "U heeft uw node instellingen met succes bijgewerkt."
+        "nodeSettingsUpdatedExplanation": "U heeft uw node instellingen met succes bijgewerkt.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Aangepaste node kon niet worden toegevoegd",
@@ -649,7 +653,7 @@
         "noPassword": "Wachtwoord is niet ingesteld op apparaat"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Je staat op het punt om {{contents}} te verzenden",
         "aMessage": "een bericht",
         "fromAccount": "Van {{selectedAccountName}}",
         "toAddress": "Naar adres",

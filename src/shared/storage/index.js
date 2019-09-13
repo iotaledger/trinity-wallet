@@ -392,6 +392,18 @@ class Wallet {
     }
 
     /**
+     * Updates proof of work node setting.
+     *
+     * @method updatePowNodeSetting
+     * @param {string} payload
+     */
+    static updatePowNodeSetting(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.powNode = payload;
+        });
+    }
+
+    /**
      * Updates auto-promotion setting.
      *
      * @method updateAutoPromotionSetting
@@ -691,6 +703,19 @@ class Wallet {
     }
 
     /**
+     * Updates proof of work node auto-switch setting
+     *
+     * @method updatePowNodeAutoSwitchSetting
+     *
+     * @param {boolean} payload
+     */
+    static updatePowNodeAutoSwitchSetting(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.powNodeAutoSwitch = payload;
+        });
+    }
+
+    /**
      * Updates autoNodeList setting
      *
      * @method updateAutoNodeListSetting
@@ -769,7 +794,7 @@ class Wallet {
             realm.write(() =>
                 realm.create('Wallet', {
                     version: Wallet.version,
-                    settings: { notifications: {}, quorum: {} },
+                    settings: { notifications: {}, quorum: {}, powNode: '' },
                     accountInfoDuringSetup: { meta: {} },
                 }),
             );

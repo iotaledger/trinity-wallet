@@ -141,7 +141,7 @@ class Wallet extends React.PureComponent {
             return (
                 <Modal isOpen onClose={() => {}}>
                     <div>
-                        <h1>{t('bytetrit:title')}</h1>
+                        <h1>{t('bytetrit:warningTitle')}</h1>
 
                         <p style={{ maxWidth: '620px', margin: '0 auto 40px' }}>
                             {t('bytetrit:explanation')}

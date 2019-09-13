@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import navigator from 'libs/navigation';
@@ -128,4 +128,4 @@ const mapStateToProps = (state) => ({
     themeName: state.settings.themeName,
 });
 
-export default withNamespaces(['onboardingComplete', 'global'])(connect(mapStateToProps)(OnboardingComplete));
+export default withTranslation(['onboardingComplete', 'global'])(connect(mapStateToProps)(OnboardingComplete));

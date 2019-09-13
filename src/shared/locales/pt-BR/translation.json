@@ -116,7 +116,7 @@
         "checkForUpdates": "Verificar Atualizações",
         "account": "Conta",
         "changeNode": "Alterar Servidor",
-        "addCustomNode": "Adicionar Servidor Personalizado",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Servidor Inválido (sem HTTPS)",
         "nodeMustUseHTTPSExplanation": "Somente servidores com HTTPS são permitidos.",
         "nodeDuplicated": "Servidor duplicado",
@@ -456,7 +456,8 @@
         "keepSafe": "Por favor, mantenha a sua Seed protegida e segura."
     },
     "welcome": {
-        "thankYou": "Obrigado por baixar a Trinity"
+        "thankYou": "Obrigado por baixar a Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Anote sua Seed e os dígitos de verificação e </0><1>certifique-se</1><2> que estão corretos.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Gerenciamento automático de servidores",
-        "addCustomNodes": "Adicionar servidor personalizado",
-        "autoNodeList": "Usar lista de servidor remoto",
-        "nodeAutoswitching": "Auto-troca de servidor primário",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Servidor primário",
         "enableQuorum": "Habilitar quórum",
         "quorumSize": "Tamanho do Quórum",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "Não há servidores suficientes para ativar o quórum.",
         "nodeEnoughNodesExplanationCustomNodes": "Adicione mais servidores personalizados ou ative a lista de servidor remoto.",
         "nodeSettingsUpdatedTitle": "Configurações de servidor atualizadas",
-        "nodeSettingsUpdatedExplanation": "Você atualizou as configurações de servidor com sucesso."
+        "nodeSettingsUpdatedExplanation": "Você atualizou as configurações de servidor com sucesso.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Servidor personalizado não pôde ser adicionado",

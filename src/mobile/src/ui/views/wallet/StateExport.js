@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import Share from 'react-native-share';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { setSetting } from 'shared-modules/actions/wallet';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -166,7 +166,7 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withNamespaces(['stateExport', 'global'])(
+export default withTranslation(['stateExport', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

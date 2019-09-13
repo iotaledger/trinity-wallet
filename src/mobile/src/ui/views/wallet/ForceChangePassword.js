@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
@@ -329,7 +329,7 @@ const mapDispatchToProps = {
     setCompletedForcedPasswordUpdate,
 };
 
-export default withNamespaces(['changePassword', 'global'])(
+export default withTranslation(['changePassword', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,
