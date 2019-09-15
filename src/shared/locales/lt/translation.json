@@ -116,7 +116,7 @@
         "checkForUpdates": "Tikrinti, ar yra atnaujinimų",
         "account": "Paskyra",
         "changeNode": "Pakeisti serverį",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "Pridėti serverius",
         "nodeMustUseHTTPS": "Neteisingas serveris (ne HTTPS)",
         "nodeMustUseHTTPSExplanation": "Vartotojo serveriai galimi tik naudojantys HTTPS.",
         "nodeDuplicated": "Dubliuotas serveris",
@@ -497,7 +497,7 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatinis serverio valdymas",
-        "addCustomNodes": "Add nodes",
+        "addCustomNodes": "Pridėti serverius",
         "autoNodeList": "Use default node list",
         "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Pagrindinis serveris",
