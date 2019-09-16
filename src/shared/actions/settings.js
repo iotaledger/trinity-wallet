@@ -453,7 +453,7 @@ export function setLanguage(language) {
  *
  * @method setFullNode
  *
- * @param {object} node - { url, token }
+ * @param {object} node - { url, username }
  * @param {boolean} addingCustomNode
  *
  * @returns {function}
