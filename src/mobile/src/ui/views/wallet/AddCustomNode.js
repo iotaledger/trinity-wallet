@@ -85,7 +85,7 @@ export class AddCustomNode extends Component {
     constructor() {
         super();
         this.state = {
-            customNode: { url: '', token: '', password: '' },
+            customNode: { url: '', username: '', password: '' },
             textInputFlex: new Animated.Value(2.5),
             nodeListFlex: new Animated.Value(7),
             viewAuthKeyButton: true,
@@ -99,7 +99,7 @@ export class AddCustomNode extends Component {
 
     componentWillReceiveProps(newProps) {
         if (newProps.customNodes.length > this.props.customNodes.length) {
-            this.setState({ customNode: { url: '', token: '', password: '' } });
+            this.setState({ customNode: { url: '', username: '', password: '' } });
         }
     }
 
@@ -219,8 +219,8 @@ export class AddCustomNode extends Component {
                                                 this.username = c;
                                             }}
                                             label={t('username')}
-                                            onValidTextChange={(token) =>
-                                                this.setState({ customNode: { ...customNode, token } })
+                                            onValidTextChange={(username) =>
+                                                this.setState({ customNode: { ...customNode, username } })
                                             }
                                             autoCapitalize="none"
                                             autoCorrect={false}
@@ -228,7 +228,7 @@ export class AddCustomNode extends Component {
                                             returnKeyType="next"
                                             theme={theme}
                                             editable={!loading}
-                                            value={customNode.token}
+                                            value={customNode.username}
                                             onSubmitEditing={() => {
                                                 this.username.blur();
                                                 this.password.focus();

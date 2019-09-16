@@ -17,7 +17,7 @@ import css from './index.scss';
  */
 const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, t }) => {
     const [url, setUrl] = useState('');
-    const [token, setToken] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [authVisible, setAuthVisible] = useState(false);
 
@@ -29,7 +29,7 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
         if (e) {
             e.preventDefault();
         }
-        setNode({ url, token, password }, true);
+        setNode({ url, username, password }, true);
     };
 
     return (
@@ -40,7 +40,7 @@ const NodeCustom = ({ customNodes, loading, onClose, removeCustomNode, setNode, 
                         <Text value={url} disabled={loading} label={t('addCustomNode:customNode')} onChange={setUrl} />
                         {authVisible ? (
                             <div className={css.column}>
-                                <Text value={token} label={t('addCustomNode:username')} onChange={setToken} />
+                                <Text value={username} label={t('addCustomNode:username')} onChange={setUsername} />
                                 <Text value={password} label={t('addCustomNode:password')} onChange={setPassword} />
                             </div>
                         ) : (
