@@ -498,8 +498,8 @@
     "nodeSettings": {
         "automaticNodeManagement": "Automatický výběr Nodu",
         "addCustomNodes": "Přidat Node",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "autoNodeList": "Použít výchozí seznam Nodů",
+        "nodeAutoswitching": "Automatický výběr hlavního Nodu",
         "primaryNode": "Primární Node",
         "enableQuorum": "Povolit kvórum",
         "quorumSize": "Velikost kvóra",
@@ -510,7 +510,7 @@
         "nodeEnoughNodesExplanationCustomNodes": "Přidejte další vlastní Nody, nebo povolte vzdálený oficiální seznam Nodů.",
         "nodeSettingsUpdatedTitle": "Nastavení Nodu bylo aktualizováno",
         "nodeSettingsUpdatedExplanation": "Úspěšně jste aktualizovali nastavení Nodu.",
-        "outsourcePow": "Outsource proof of work",
+        "outsourcePow": "Vzdálený Proof of Work",
         "autoSelectPowNode": "Automaticky vyber Node s Proof of work",
         "nodeForPow": "Node s Proof of work"
     },
