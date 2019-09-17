@@ -511,7 +511,7 @@
         "nodeSettingsUpdatedTitle": "Nastavení Nodu bylo aktualizováno",
         "nodeSettingsUpdatedExplanation": "Úspěšně jste aktualizovali nastavení Nodu.",
         "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
+        "autoSelectPowNode": "Automaticky vyber Node s Proof of work",
         "nodeForPow": "Node s Proof of work"
     },
     "addCustomNode": {
