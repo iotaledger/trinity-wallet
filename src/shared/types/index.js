@@ -210,3 +210,8 @@ export const WalletActionTypes = {
     POP_TO_ROUTE: 'IOTA/APP/WALLET/POP_TO_ROUTE',
     RESET_ROUTE: 'IOTA/APP/WALLET/RESET_ROUTE',
 };
+
+/** Sweeps action types */
+export const SweepsActionTypes = {
+    SET_SWEEPS_STATUSES: 'IOTA/SWEEPS/SET_SWEEPS_STATUSES',
+};

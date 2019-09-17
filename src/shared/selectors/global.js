@@ -122,7 +122,7 @@ export const getSelectedNodeFromState = createSelector(
  **/
 export const getRandomPowNodeFromState = createSelector(
     getSettingsFromState,
-    (state) => get(sample(filter([...state.customNodes, ... state.nodes], (node) => node.pow === true)), 'url')
+    (state) => get(sample(filter([...state.customNodes, ...state.nodes], (node) => node.pow === true)), 'url'),
 );
 
 /**
@@ -241,3 +241,17 @@ export const nodesConfigurationFactory = (overrides) =>
             return config;
         },
     );
+
+/**
+ * Selects sweepsStatuses from state.wallet
+ *
+ * @method getSweepsStatusesFromState
+ *
+ * @param {object} state
+ *
+ * @returns {object}
+ **/
+export const getSweepsStatusesFromState = createSelector(
+    getWalletFromState,
+    (state) => state.sweepsStatuses,
+);

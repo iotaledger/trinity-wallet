@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import union from 'lodash/union';
-import { AccountsActionTypes, WalletActionTypes } from '../types';
+import { AccountsActionTypes, WalletActionTypes, SweepsActionTypes } from '../types';
 
 const initialState = {
     /**
@@ -59,6 +59,13 @@ const initialState = {
      * Determines whether to display test version warning
      */
     displayTestWarning: false,
+    /**
+     * Stores sweeps statuses { <string>: <number> } e.g., { UUU...UUU: -1 | 0 | 1 }
+     * -1 - Failed
+     * 0 - In progress
+     * 1 - Successful
+     */
+    sweepsStatuses: {},
 };
 
 export default (state = initialState, action) => {
@@ -206,6 +213,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 displayTestWarning: true,
+            };
+        case SweepsActionTypes.SET_SWEEPS_STATUSES:
+            return {
+                ...state,
+                sweepsStatuses: action.payload,
             };
         default:
             return state;

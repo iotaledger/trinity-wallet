@@ -38,6 +38,7 @@ import UpdateProgress from 'ui/global/UpdateProgress';
 import Loading from 'ui/components/Loading';
 
 import Onboarding from 'ui/views/onboarding/Index';
+import Sweeps from 'ui/views/sweeps/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Ledger from 'ui/global/seedStore/Ledger';
@@ -156,7 +157,8 @@ class App extends React.Component {
                 this.props.setOnboardingComplete(true);
             }
 
-            this.props.history.push('/wallet/');
+            // Temporarily added for testing purpose
+            this.props.history.push('/sweeps');
         }
 
         // Dispose alerts on route change
@@ -331,6 +333,7 @@ class App extends React.Component {
                                 />
                                 <Route path="/wallet" component={Wallet} />
                                 <Route path="/onboarding" component={Onboarding} />
+                                <Route path="/sweeps" component={Sweeps} />
                                 <Route loop={false} component={this.Init} />
                             </Switch>
                         </div>

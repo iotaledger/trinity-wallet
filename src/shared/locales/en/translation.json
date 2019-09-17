@@ -1,5 +1,6 @@
 {
     "global": {
+        "accept": "Accept",
         "send": "SEND",
         "cancel": "Cancel",
         "continue?": "Are you sure you want to continue?",
@@ -174,7 +175,8 @@
         "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again.",
+        "success": "Success"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -445,6 +447,14 @@
         "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
         "nodeChangeError": "Error changing node",
         "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+    },
+    "sweeps": {
+        "lockedFundsRecovery": "Locked Funds Recovery",
+        "aboutLockedFunds": "About Locked Funds",
+        "lockedFundsRecoveryExplanation": "Lorem Ipsum",
+        "transferYourFunds": "Transfer your funds",
+        "transferYourFundsExplanation": "Trinity will recover your funds by moving them to new addresses, but it may take some time. Please do not close Trinity or turn off your computer whilst in progress. Press continue below to commence the sweep.",
+        "fundsUnlockedExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",

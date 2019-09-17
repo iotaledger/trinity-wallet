@@ -412,7 +412,7 @@ export const getFailedBundleHashes = createSelector(
 );
 
 /**
- * Filters spent address data with balance for the currently selected account
+ * Filters spent address data with balance for currently selected account
  *
  * @method getSpentAddressDataWithBalanceForSelectedAccount
  * @param {object} state
@@ -427,5 +427,20 @@ export const getSpentAddressDataWithBalanceForSelectedAccount = createSelector(
 
             return isSpent && addressObject.balance > 0;
         });
+    },
+);
+
+/**
+ * Filters broadcasted transactions for currently selected account
+ *
+ * @method getBroadcastedTransactions
+ * @param {object} state
+ *
+ * @returns {array}
+ **/
+export const getBroadcastedTransactionsForSelectedAccount = createSelector(
+    selectAccountInfo,
+    (account) => {
+        return filter(account.transactions, (transaction) => transaction.broadcasted === true);
     },
 );
