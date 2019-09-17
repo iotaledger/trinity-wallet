@@ -116,7 +116,7 @@
         "checkForUpdates": "Kontrola aktualizací",
         "account": "Účet",
         "changeNode": "Změna Nodu",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "Přidat Node",
         "nodeMustUseHTTPS": "Neplatný Node (bez podpory protokolu HTTPS)",
         "nodeMustUseHTTPSExplanation": "Podporovány jsou pouze Nody podporující protokol HTTPS.",
         "nodeDuplicated": "Duplicitní Node",
@@ -457,7 +457,7 @@
     },
     "welcome": {
         "thankYou": "Děkujeme, že jste si stáhli Trinity",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Děkujeme, že jste si stáhli Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Zapište si svůj Seed a kontrolní součet </0><1>a důkladně zkontrolujte</1><2> jejich správnost.</2>",
@@ -497,7 +497,7 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatický výběr Nodu",
-        "addCustomNodes": "Add nodes",
+        "addCustomNodes": "Přidat Node",
         "autoNodeList": "Use default node list",
         "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Primární Node",
@@ -512,7 +512,7 @@
         "nodeSettingsUpdatedExplanation": "Úspěšně jste aktualizovali nastavení Nodu.",
         "outsourcePow": "Outsource proof of work",
         "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "nodeForPow": "Node s Proof of work"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nelze přidat vlastní Node",
