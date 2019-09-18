@@ -219,7 +219,7 @@ export class Send extends Component {
         }
         if (this.props.deepLinking && !this.props.deepLinkRequestActive && newProps.deepLinkRequestActive) {
             this.completeActiveDeepLink();
-            await await Clipboard.setString('');
+            await Clipboard.setString('');
         }
         if (!newProps.deepLinkRequestActive && address.length === 0 && newProps.address.length === 90) {
             this.detectAddressInClipboard();
