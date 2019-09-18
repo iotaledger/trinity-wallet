@@ -238,7 +238,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                         quorumEnabled === settings.quorumEnabled &&
                         quorumSize === settings.quorumSize &&
                         primaryNode.url === settings.node.url &&
-                        primaryNode.token === settings.node.token &&
+                        primaryNode.username === settings.node.username &&
                         primaryNode.password === settings.node.password &&
                         powNode === settings.powNode &&
                         powNodeAutoSwitch === settings.powNodeAutoSwitch &&
