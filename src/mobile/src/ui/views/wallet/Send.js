@@ -432,16 +432,6 @@ export class Send extends Component {
         });
     }
 
-    /**
-     *   Completes the deep link request if active and displays an alert
-     *   @method setMaxPressed
-     **/
-    completeActiveDeepLink() {
-        const { t } = this.props;
-        this.props.generateAlert('success', t('deepLink:autofill'), t('deepLink:autofillExplanation'));
-        this.props.completeDeepLinkRequest();
-    }
-
     // eslint-disable-next-line react/sort-comp
     interuptSendAnimation() {
         this.setState((prevState) => ({ shouldInteruptSendAnimation: !prevState.shouldInteruptSendAnimation }));
@@ -566,6 +556,16 @@ export class Send extends Component {
     hideModal = () => {
         this.props.toggleModalActivity();
     };
+
+    /**
+     *   Completes the deep link request if active and displays an alert
+     *   @method setMaxPressed
+     **/
+    completeActiveDeepLink() {
+        const { t } = this.props;
+        this.props.generateAlert('success', t('deepLink:autofill'), t('deepLink:autofillExplanation'));
+        this.props.completeDeepLinkRequest();
+    }
 
     /**
      * Determines if user's balance is less than the entered amount

@@ -257,7 +257,7 @@ describe('Reducer: ui', () => {
             };
 
             const action = {
-                type: 'IOTA/APP/WALLET/SET_DEEP_LINK_CONTENT:',
+                type: 'IOTA/APP/WALLET/SET_DEEP_LINK_CONTENT',
                 address: '9'.repeat(81),
             };
 
@@ -275,7 +275,7 @@ describe('Reducer: ui', () => {
             };
 
             const action = {
-                type: 'IOTA/APP/WALLET/SET_DEEP_LINK_CONTENT:',
+                type: 'IOTA/APP/WALLET/SET_DEEP_LINK_CONTENT',
                 amount: '100',
             };
 
@@ -293,7 +293,7 @@ describe('Reducer: ui', () => {
             };
 
             const action = {
-                type: 'IOTA/APP/WALLET/SET_DEEP_LINK_CONTENT:',
+                type: 'IOTA/APP/WALLET/SET_DEEP_LINK_CONTENT',
                 message: 'YNWA',
             };
 
