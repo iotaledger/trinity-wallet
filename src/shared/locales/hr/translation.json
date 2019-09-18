@@ -456,7 +456,8 @@
         "keepSafe": "Molimo vas, čuvajte svoj seed na sigurnom mjestu."
     },
     "welcome": {
-        "thankYou": "Hvala što ste preuzeli Trinity"
+        "thankYou": "Hvala što ste preuzeli Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Zapišite svoj seed i kontrolni zbroj, te </0><1>provjerite barem 3 puta</1><2> da li su točni.</2>",

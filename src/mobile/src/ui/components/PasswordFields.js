@@ -3,7 +3,7 @@ import size from 'lodash/size';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { zxcvbn } from 'shared-modules/libs/exports';
@@ -180,7 +180,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['setPassword', 'global'])(
+export default withTranslation(['setPassword', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

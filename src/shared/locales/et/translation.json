@@ -456,7 +456,8 @@
         "keepSafe": "Palun hoidke oma seemne turvalisust."
     },
     "welcome": {
-        "thankYou": "Täname teid Trinity allalaadimise eest"
+        "thankYou": "Täname teid Trinity allalaadimise eest",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Kirjutage oma seeme ja kontrollsumma üles ning </0><1>veenduge</1><2>, et need on õiged.</2>",

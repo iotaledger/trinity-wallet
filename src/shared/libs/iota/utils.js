@@ -471,7 +471,7 @@ export const fetchRemoteNodes = async () => {
     return remoteNodes.map(({ node, pow }) => ({
         url: node,
         pow,
-        token: '',
+        username: '',
     }));
 };
 

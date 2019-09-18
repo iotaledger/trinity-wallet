@@ -456,7 +456,8 @@
         "keepSafe": "لطفا سید خود را جای امن نگهداری کنید."
     },
     "welcome": {
-        "thankYou": "با تشکر از شما برای دانلود Trinity"
+        "thankYou": "با تشکر از شما برای دانلود Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>سید و کد اعتبارسنجی خود را بنویسید و </0><1>بررسی سه گانه</1><2>آنها درست هستند</2>",

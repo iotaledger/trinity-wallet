@@ -116,7 +116,7 @@
         "checkForUpdates": "Sprawdź aktualizacje",
         "account": "Konto",
         "changeNode": "Zmień serwer",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "Dodaj serwery",
         "nodeMustUseHTTPS": "Serwer bez obsługi HTTPS",
         "nodeMustUseHTTPSExplanation": "Dozwolone są jedynie serwery, które obsługują protokół HTTPS.",
         "nodeDuplicated": "Serwer zduplikowany",
@@ -456,7 +456,8 @@
         "keepSafe": "Zadbaj o bezpieczeństwo swojego klucza seed."
     },
     "welcome": {
-        "thankYou": "Dziękujemy za pobranie portfela Trinity"
+        "thankYou": "Dziękujemy za pobranie portfela Trinity",
+        "demoThankYou": "Dziękujemy za pobranie portfela Trinity w wersji demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Zanotuj swój seed i sumę kontrolną oraz </0><1>trzykrotnie upewnij się</1><2>, że są one poprawne.</2>",
@@ -496,10 +497,10 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatyczny wybór serwera",
-        "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
-        "primaryNode": "Główny serwer",
+        "addCustomNodes": "Dodaj serwery",
+        "autoNodeList": "Użyj domyślnej listy serwerów",
+        "nodeAutoswitching": "Automatyczny wybór głównego serwera",
+        "primaryNode": "Serwer główny",
         "enableQuorum": "Włącz kworum",
         "quorumSize": "Wielkość kworum",
         "noCustomNodes": "Nie dodano serwerów niestandardowych",
@@ -509,9 +510,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Dodaj więcej niestandardowych serwerów lub włącz zdalną listę serwerów.",
         "nodeSettingsUpdatedTitle": "Zaktualizowano ustawienia serwera",
         "nodeSettingsUpdatedExplanation": "Pomyślnie zaktualizowałeś swoje ustawienia serwera.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "Zewnętrzny Proof of Work",
+        "autoSelectPowNode": "Autom. wybór serwera dla PoW",
+        "nodeForPow": "Serwer PoW"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nie można dodać serwera",
@@ -697,7 +698,7 @@
         "mcap": "Kapitalizacja",
         "change": "Zmiana (24h)",
         "volume": "Wolumen (24h)",
-        "error": "Błąd pobierania danych do wykresu"
+        "error": "Nie można pobrać danych do wykresu"
     },
     "rootDetection": {
         "warning": "OSTRZEŻENIE",

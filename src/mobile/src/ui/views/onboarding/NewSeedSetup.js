@@ -1,6 +1,6 @@
 import split from 'lodash/split';
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableHighlight, FlatList, BackHandler, TouchableOpacity } from 'react-native';
 import timer from 'react-native-timer';
@@ -307,7 +307,7 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    withNamespaces(['newSeedSetup', 'global'])(
+    withTranslation(['newSeedSetup', 'global'])(
         connect(
             mapStateToProps,
             mapDispatchToProps,

@@ -407,7 +407,9 @@ export default class TransactionHistoryModal extends PureComponent {
                     >
                         <View style={{ width: contentWidth }}>
                             <TouchableOpacity onPress={() => this.copy(message, 'message')}>
-                                <Text style={[styles.messageText, style.defaultTextColor]}>{message}</Text>
+                                <Text style={[styles.messageText, style.defaultTextColor]}>
+                                    {message === 'Empty' ? t('history:empty') : message}
+                                </Text>
                             </TouchableOpacity>
                         </View>
                     </ScrollView>

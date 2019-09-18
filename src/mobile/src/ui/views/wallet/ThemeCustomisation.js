@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep';
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
@@ -269,7 +269,7 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default withNamespaces(['themeCustomisation', 'global'])(
+export default withTranslation(['themeCustomisation', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

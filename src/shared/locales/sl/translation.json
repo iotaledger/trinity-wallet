@@ -116,7 +116,7 @@
         "checkForUpdates": "Išči posodobitve",
         "account": "Račun",
         "changeNode": "Zamenjaj Node",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "Dodaj Node",
         "nodeMustUseHTTPS": "Neveljaven Node (ne podpira HTTPS)",
         "nodeMustUseHTTPSExplanation": "Prilagojen Node mora podpirat HTTPS.",
         "nodeDuplicated": "Podvojen Node",
@@ -456,7 +456,8 @@
         "keepSafe": "Prosimo vas, da imate Seed shranjen na varnem."
     },
     "welcome": {
-        "thankYou": "Zahvaljujemo se vam za prenos IOTA denarnice"
+        "thankYou": "Zahvaljujemo se vam za prenos IOTA denarnice",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Zapišite svoj Seed in kontrolno vsoto </0><1>prepričajte se trikrat,</1><2>da je vse pravilno.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Samodejno Node upravljanje",
-        "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "addCustomNodes": "Dodaj Node",
+        "autoNodeList": "Uporabi uradni Node seznam",
+        "nodeAutoswitching": "Automatska izbira primarnega Noda",
         "primaryNode": "Primaren Node",
         "enableQuorum": "Aktiviraj Node-Quorum",
         "quorumSize": "Velikost zbora",

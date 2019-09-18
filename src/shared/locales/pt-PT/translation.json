@@ -456,7 +456,8 @@
         "keepSafe": "Por favor, mantenha a sua Seed protegida e segura."
     },
     "welcome": {
-        "thankYou": "Obrigado por descarregar a carteira IOTA"
+        "thankYou": "Obrigado por descarregar a carteira IOTA",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Anote a sua seed e os dígitos de verificação e </0><1>certifique-se</1><2> que estão corretos.</2>",

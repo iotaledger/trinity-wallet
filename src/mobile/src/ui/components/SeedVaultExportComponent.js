@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Animated, Text, View, StyleSheet, Keyboard, Easing } from 'react-native';
 import { connect } from 'react-redux';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import timer from 'react-native-timer';
@@ -472,7 +472,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['seedVault', 'global'])(
+export default withTranslation(['seedVault', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

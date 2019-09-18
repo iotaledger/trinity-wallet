@@ -1,7 +1,7 @@
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Clipboard } from 'react-native';
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
@@ -157,6 +157,8 @@ export class Send extends Component {
         /** @ignore */
         deepLinkRequestActive: PropTypes.bool.isRequired,
         /** @ignore */
+        deepLinking: PropTypes.bool.isRequired,
+        /** @ignore */
         completeDeepLinkRequest: PropTypes.func.isRequired,
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
@@ -197,14 +199,12 @@ export class Send extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('Send');
-        const { t, deepLinkRequestActive } = this.props;
-        if (deepLinkRequestActive) {
-            this.props.generateAlert('success', t('deepLink:autofill'), t('deepLink:autofillExplanation'));
-            this.props.completeDeepLinkRequest();
+        if (this.props.deepLinking && this.props.deepLinkRequestActive) {
+            this.completeActiveDeepLink(this.props.deepLinkRequestActive);
         }
     }
 
-    componentWillReceiveProps(newProps) {
+    async componentWillReceiveProps(newProps) {
         const { seedIndex, isSendingTransfer, address } = this.props;
         if (!isSendingTransfer && newProps.isSendingTransfer) {
             KeepAwake.activate();
@@ -217,7 +217,11 @@ export class Send extends Component {
         if (seedIndex !== newProps.seedIndex) {
             this.resetMaxPressed();
         }
-        if (address.length === 0 && newProps.address.length === 90) {
+        if (this.props.deepLinking && !this.props.deepLinkRequestActive && newProps.deepLinkRequestActive) {
+            this.completeActiveDeepLink();
+            await Clipboard.setString('');
+        }
+        if (!newProps.deepLinkRequestActive && address.length === 0 && newProps.address.length === 90) {
             this.detectAddressInClipboard();
         }
     }
@@ -554,6 +558,16 @@ export class Send extends Component {
     };
 
     /**
+     *   Completes the deep link request if active and displays an alert
+     *   @method setMaxPressed
+     **/
+    completeActiveDeepLink() {
+        const { t } = this.props;
+        this.props.generateAlert('success', t('deepLink:autofill'), t('deepLink:autofillExplanation'));
+        this.props.completeDeepLinkRequest();
+    }
+
+    /**
      * Determines if user's balance is less than the entered amount
      *
      * @method enoughBalance
@@ -885,6 +899,7 @@ const mapStateToProps = (state) => ({
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
     deepLinkRequestActive: state.wallet.deepLinkRequestActive,
+    deepLinking: state.settings.deepLinking,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     isKeyboardActive: state.ui.isKeyboardActive,
     themeName: state.settings.themeName,
@@ -907,7 +922,7 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['send', 'global'])(
+export default withTranslation(['send', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

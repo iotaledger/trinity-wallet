@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { setLanguage, setLocale } from 'shared-modules/actions/settings';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -121,7 +121,7 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withNamespaces(['languageSetup', 'global'])(
+export default withTranslation(['languageSetup', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

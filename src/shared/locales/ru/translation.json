@@ -456,7 +456,8 @@
         "keepSafe": "Пожалуйста, храните Ваш ключ в безопасности."
     },
     "welcome": {
-        "thankYou": "Благодарим за то что скачали Trinity"
+        "thankYou": "Благодарим за то что скачали Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Запишите Ваш ключ, контрольную сумму и </ 0><1>трижды проверьте </ 1><2> что они верны.</ 2>",

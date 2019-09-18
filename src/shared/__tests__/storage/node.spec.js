@@ -60,14 +60,14 @@ describe('storage: Node', () => {
                     url: 'https://testnode1.com:443',
                     custom: true,
                     pow: false,
-                    token: '',
+                    username: '',
                     password: '',
                 },
                 {
                     url: 'https://testnode2.com:443',
                     custom: false,
                     pow: true,
-                    token: '',
+                    username: '',
                     password: '',
                 },
             ];
@@ -81,7 +81,7 @@ describe('storage: Node', () => {
             const node = {
                 url: 'https://example.com:443',
                 password: 'foo',
-                token: 'baz@@',
+                username: 'baz@@',
             };
 
             // Assert that a node with this url does not exist
@@ -96,7 +96,7 @@ describe('storage: Node', () => {
             expect(customNode.pow).to.equal(true);
             expect(customNode.custom).to.equal(true);
             expect(customNode.password).to.equal(node.password);
-            expect(customNode.token).to.equal(node.token);
+            expect(customNode.username).to.equal(node.username);
         });
     });
 
@@ -186,14 +186,14 @@ describe('storage: Node', () => {
                         custom: true,
                         pow: false,
                         password: '',
-                        token: '',
+                        username: '',
                     },
                     {
                         url: 'https://testnode2.com:443',
                         custom: false,
                         pow: true,
                         password: '',
-                        token: '',
+                        username: '',
                     },
                 ];
 
@@ -214,7 +214,7 @@ describe('storage: Node', () => {
                         custom: true,
                         pow: false,
                         password: '',
-                        token: '',
+                        username: '',
                     },
                 ];
 
