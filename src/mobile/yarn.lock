@@ -8179,7 +8179,8 @@ react-native-optimized-flatlist@^1.0.4:
 
 "react-native-picker-select@git+https://github.com/cvarley100/react-native-picker-select#master":
   version "6.1.0"
-  resolved "git+https://github.com/cvarley100/react-native-picker-select#a9ee590565b46e2f97669367920d4ce007c218d6"
+  uid "7eb0c2a8d5289c4f3f5e81f8f7e2290c02ee5243"
+  resolved "git+https://github.com/cvarley100/react-native-picker-select#7eb0c2a8d5289c4f3f5e81f8f7e2290c02ee5243"
   dependencies:
     lodash.isequal "^4.5.0"
 
