@@ -270,7 +270,7 @@ class Node {
                 custom: true,
                 pow,
                 password: node.password,
-                token: node.token,
+                username: node.username,
             });
         });
     }

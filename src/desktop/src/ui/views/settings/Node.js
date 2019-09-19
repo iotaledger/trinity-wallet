@@ -165,7 +165,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
 
                         <Toggle inline={t('nodeSettings:outsourcePow')} checked={remotePoW} onChange={setRemotePoW} />
 
-                        { !autoNodeSelection &&
+                        {!autoNodeSelection && (
                             <div>
                                 <hr />
                                 <Toggle
@@ -183,20 +183,22 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                                     <Select
                                         label={t('nodeSettings:primaryNode')}
                                         value={primaryNode.url}
-                                        onChange={(url) => setPrimaryNode(availableNodes.find((node) => node.url === url))}
+                                        onChange={(url) =>
+                                            setPrimaryNode(availableNodes.find((node) => node.url === url))
+                                        }
                                         options={availableNodes.map(({ url }) => {
                                             return { value: url };
                                         })}
                                     />
                                 )}
 
-                                { remotePoW &&
+                                {remotePoW && (
                                     <Toggle
                                         inline={t('nodeSettings:autoSelectPowNode')}
                                         checked={powNodeAutoSwitch}
                                         onChange={togglePowNodeAutoSwitch}
                                     />
-                                }
+                                )}
                                 {!powNodeAutoSwitch && remotePoW && (
                                     <Select
                                         label={t('nodeSettings:nodeForPow')}
@@ -213,7 +215,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                                     checked={quorumEnabled}
                                     onChange={updateQuorumEnabled}
                                 />
-                                {quorumEnabled &&
+                                {quorumEnabled && (
                                     <Number
                                         inline
                                         min={MINIMUM_QUORUM_SIZE}
@@ -222,9 +224,9 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                                         label={t('nodeSettings:quorumSize')}
                                         onChange={setQuorumSize}
                                     />
-                                }
+                                )}
                             </div>
-                        }
+                        )}
                     </article>
                 </Scrollbar>
             </div>
@@ -238,7 +240,7 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                         quorumEnabled === settings.quorumEnabled &&
                         quorumSize === settings.quorumSize &&
                         primaryNode.url === settings.node.url &&
-                        primaryNode.token === settings.node.token &&
+                        primaryNode.username === settings.node.username &&
                         primaryNode.password === settings.node.password &&
                         powNode === settings.powNode &&
                         powNodeAutoSwitch === settings.powNodeAutoSwitch &&

@@ -123,7 +123,7 @@ class Login extends Component {
             const pwdHash = await hash(this.state.password);
             try {
                 await authorize(pwdHash);
-                const seedStore = await new SeedStore[get(selectedAccountMeta, 'type', 'keychain')](
+                const seedStore = await new SeedStore[(get(selectedAccountMeta, 'type', 'keychain'))](
                     pwdHash,
                     selectedAccountName,
                 );

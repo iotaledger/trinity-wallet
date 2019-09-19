@@ -456,7 +456,8 @@
         "keepSafe": "시드는 반드시 안전히 보관해야 합니다."
     },
     "welcome": {
-        "thankYou": "트리니티를 다운로드 해 주셔서 감사합니다."
+        "thankYou": "트리니티를 다운로드 해 주셔서 감사합니다.",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인</1><2>하세요.</2>",
