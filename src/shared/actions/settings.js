@@ -8,7 +8,12 @@ import i18next from '../libs/i18next';
 import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
 import { fetchNodeList } from '../actions/polling';
 import { allowsRemotePow } from '../libs/iota/extendedApi';
-import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState, getRandomPowNodeFromState } from '../selectors/global';
+import {
+    getSelectedNodeFromState,
+    getNodesFromState,
+    getCustomNodesFromState,
+    getRandomPowNodeFromState,
+} from '../selectors/global';
 import { throwIfNodeNotHealthy } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import { Wallet, Node } from '../storage';

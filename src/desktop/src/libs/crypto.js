@@ -1,7 +1,6 @@
 /* global Electron */
-import ALIAS_REALM from 'libs/constants';
+import { ALIAS_REALM, ALIAS_MAIN } from 'libs/constants';
 
-export const ACC_MAIN = 'Trinity';
 // Maximum allowed account title
 export const MAX_ACC_LENGTH = 250;
 
@@ -21,7 +20,7 @@ export const randomBytes = (size, max = 256) => {
     const bytes = global.crypto.getRandomValues(rawBytes);
 
     for (let i = 0; i < bytes.length; i++) {
-        while (bytes[i] >= 256 - 256 % max) {
+        while (bytes[i] >= 256 - (256 % max)) {
             bytes[i] = randomBytes(1, max)[0];
         }
     }
@@ -92,12 +91,12 @@ export const decrypt = async (cipherText, hash) => {
  */
 export const initVault = async (password) => {
     try {
-        const vault = await Electron.readKeychain(ACC_MAIN);
+        const vault = await Electron.readKeychain(ALIAS_MAIN);
         const decryptedVault = vault === null ? {} : await decrypt(vault, password);
 
         const updatedVault = await encrypt(decryptedVault, password);
 
-        await Electron.setKeychain(ACC_MAIN, updatedVault);
+        await Electron.setKeychain(ALIAS_MAIN, updatedVault);
 
         return true;
     } catch (err) {
@@ -112,7 +111,7 @@ export const initKeychain = async () => {
     await clearVault([ALIAS_REALM]);
     const salt = crypto.getRandomValues(new Uint8Array(16));
     const saltHex = salt.toString();
-    await Electron.setKeychain(`${ACC_MAIN}-salt`, saltHex);
+    await Electron.setKeychain(`${ALIAS_MAIN}-salt`, saltHex);
 };
 
 /**
@@ -121,7 +120,7 @@ export const initKeychain = async () => {
  * @returns {boolean | string}
  */
 export const authorize = async (key) => {
-    const vault = await Electron.readKeychain(ACC_MAIN);
+    const vault = await Electron.readKeychain(ALIAS_MAIN);
 
     if (!vault) {
         throw new Error('Local storage not available');
@@ -179,7 +178,7 @@ export const hash = async (inputPlain) => {
         return false;
     }
 
-    const saltHex = await Electron.readKeychain(`${ACC_MAIN}-salt`);
+    const saltHex = await Electron.readKeychain(`${ALIAS_MAIN}-salt`);
 
     if (!saltHex) {
         throw new Error('Keychain unavailable');

@@ -15,10 +15,24 @@ import { __MOBILE__, __TEST__, __DEV__ } from '../config';
 import { initialState as reduxSettingsState } from '../reducers/settings';
 import { initialState as reduxAccountsState } from '../reducers/accounts';
 
-const STORAGE_PATH =
-    __MOBILE__ || __TEST__
-        ? 'trinity.realm'
-        : `${typeof Electron === 'object' ? Electron.getUserDataPath() : ''}/trinity${__DEV__ ? '-dev' : ''}.realm`;
+/**
+ * Get desktop Realm path based on the environment
+ */
+const getDesktopPath = () => {
+    const path = `${typeof Electron === 'object' ? Electron.getUserDataPath() : ''}/trinity`;
+    const suffixRC =
+        typeof Electron === 'object' &&
+        Electron.getVersion()
+            .toLowerCase()
+            .indexOf('rc') > 0
+            ? '-rc'
+            : '';
+    const suffixDEV = __DEV__ ? '-dev' : '';
+
+    return `${path}${suffixDEV}${suffixRC}.realm`;
+};
+
+const STORAGE_PATH = __MOBILE__ || __TEST__ ? 'trinity.realm' : getDesktopPath();
 
 /**
  * Gets deprecated realm storage path
