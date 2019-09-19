@@ -19,7 +19,7 @@ exports.default = async () => {
 
     await notarize({
         appBundleId: 'org.iota.trinity',
-        appPath: path.resolve(__dirname, '../out/mac/Trinity-RC.app'),
+        appPath: path.resolve(__dirname, '../out/mac/Trinity.app'),
         appleId: APPLE_ID,
         appleIdPassword: `@keychain:${APPLE_ID_IDENTITY_NAME}`,
         ascProvider: 'UG77RJKZHH',

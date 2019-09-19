@@ -1,7 +1,7 @@
 {
-  "name": "trinity-desktop-rc",
-  "productName": "Trinity-RC",
-  "version": "1.1.0-RC1",
+  "name": "trinity-desktop",
+  "productName": "Trinity",
+  "version": "1.1.0",
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
   "description": "Desktop wallet for IOTA",
@@ -70,11 +70,11 @@
     "webpack-hot-middleware": "2.25.0"
   },
   "build": {
-    "productName": "Trinity-RC",
+    "productName": "Trinity",
     "artifactName": "trinity-desktop-${version}.${ext}",
     "copyright": "IOTA Foundation",
     "directories": {
-      "buildResources": "./assets/RC",
+      "buildResources": "./assets",
       "output": "./out"
     },
     "afterSign": "./scripts/notarize.macos.js",
@@ -89,7 +89,7 @@
       "!node_modules/realm/src${/*}",
       "!node_modules/realm/vendor${/*}"
     ],
-    "appId": "org.iota.trinity-rc",
+    "appId": "org.iota.trinity",
     "asar": true,
     "protocols": [
       {
@@ -130,7 +130,7 @@
         "AppImage"
       ],
       "desktop": {
-        "Name": "Trinity RC",
+        "Name": "Trinity",
         "Comment": "Desktop wallet for IOTA",
         "Categories": "Office;Network;Finance"
       }
