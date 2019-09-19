@@ -456,7 +456,8 @@
         "keepSafe": "请妥善保管您的种子。"
     },
     "welcome": {
-        "thankYou": "感谢您下载 Trinity 钱包"
+        "thankYou": "感谢您下载 Trinity 钱包",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>写下您的种子和校验和并</0><1>多次检查</1><2>以确保他们是正确的。</2>",

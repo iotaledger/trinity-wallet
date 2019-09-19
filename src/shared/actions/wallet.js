@@ -224,18 +224,31 @@ export const setBalanceCheckFlag = (payload) => ({
 });
 
 /**
- * Dispatch to set parsed data from link (amount, address and message) in state
+ * Dispatch to initiate deep link request
  *
  * @method initiateDeepLinkRequest
+ *
+ * @returns {{type: {string}}}
+ */
+export const initiateDeepLinkRequest = () => {
+    return {
+        type: WalletActionTypes.INITIATE_DEEP_LINK_REQUEST,
+    };
+};
+
+/**
+ * Dispatch to set parsed data from link (amount, address and message) in state
+ *
+ * @method setDeepLinkContent
  * @param {string} amount
  * @param {string} address
  * @param {string} message
  *
  * @returns {{type: {string}, amount: {string}, address: {string}, message: {string} }}
  */
-export const initiateDeepLinkRequest = (amount, address, message) => {
+export const setDeepLinkContent = (amount, address, message) => {
     return {
-        type: WalletActionTypes.INITIATE_DEEP_LINK_REQUEST,
+        type: WalletActionTypes.SET_DEEP_LINK_CONTENT,
         amount,
         address,
         message,

@@ -2,12 +2,18 @@ import unionBy from 'lodash/unionBy';
 import assign from 'lodash/assign';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
+import omit from 'lodash/omit';
 import { changeIotaNode, quorum } from '../libs/iota/index';
 import i18next from '../libs/i18next';
 import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
 import { fetchNodeList } from '../actions/polling';
 import { allowsRemotePow } from '../libs/iota/extendedApi';
-import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState, getRandomPowNodeFromState } from '../selectors/global';
+import {
+    getSelectedNodeFromState,
+    getNodesFromState,
+    getCustomNodesFromState,
+    getRandomPowNodeFromState,
+} from '../selectors/global';
 import { throwIfNodeNotHealthy } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import { Wallet, Node } from '../storage';
@@ -368,7 +374,7 @@ export const changeNode = (payload) => (dispatch, getState) => {
     if (selectedNode.url !== payload.url) {
         dispatch(setNode(payload));
         // Change provider on global iota instance
-        changeIotaNode(assign({}, payload, { provider: payload.url }));
+        changeIotaNode(assign({}, omit(payload, 'url'), { provider: payload.url }));
     }
 };
 
@@ -452,7 +458,7 @@ export function setLanguage(language) {
  *
  * @method setFullNode
  *
- * @param {object} node - { url, token }
+ * @param {object} node - { url, username }
  * @param {boolean} addingCustomNode
  *
  * @returns {function}

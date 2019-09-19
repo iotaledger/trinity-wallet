@@ -456,7 +456,8 @@
         "keepSafe": "Παρακαλώ κρατήστε το σπόρο σας ασφαλή."
     },
     "welcome": {
-        "thankYou": "Σας ευχαριστούμε για τη λήψη του Trinity"
+        "thankYou": "Σας ευχαριστούμε για τη λήψη του Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Σημειώστε το seed και το checksum και</0> <1>επαληθεύστε</1> <2>ότι είναι σωστά.</2>",

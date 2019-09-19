@@ -375,7 +375,7 @@ export class ListComponent extends React.PureComponent {
                                     <strong>{t('send:message')}:</strong>
                                     <Scrollbar>
                                         <Clipboard
-                                            text={activeTx.message}
+                                            text={activeTx.message === 'Empty' ? t('history:empty') : activeTx.message}
                                             title={t('history:messageCopied')}
                                             success={t('history:messageCopiedExplanation')}
                                         />

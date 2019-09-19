@@ -19,6 +19,7 @@ import {
     setPassword,
     clearWalletData,
     initiateDeepLinkRequest,
+    setDeepLinkContent,
     setSeedIndex,
     shouldUpdate,
     forceUpdate,
@@ -100,6 +101,8 @@ class App extends React.Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         initiateDeepLinkRequest: PropTypes.func.isRequired,
+        /** @ignore */
+        setDeepLinkContent: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -181,7 +184,7 @@ class App extends React.Component {
      */
     setDeepUrl(data) {
         const { deepLinking, generateAlert, t } = this.props;
-
+        this.props.initiateDeepLinkRequest();
         if (!deepLinking) {
             this.props.history.push('/settings/advanced');
             return generateAlert('info', t('deepLink:deepLinkingInfoTitle'), t('deepLink:deepLinkingInfoMessage'));
@@ -190,7 +193,7 @@ class App extends React.Component {
         const parsedData = parseAddress(data);
 
         if (parsedData) {
-            this.props.initiateDeepLinkRequest(
+            this.props.setDeepLinkContent(
                 parsedData.amount ? String(parsedData.amount) : '0',
                 parsedData.address,
                 parsedData.message || '',
@@ -370,6 +373,7 @@ const mapDispatchToProps = {
     clearWalletData,
     setPassword,
     initiateDeepLinkRequest,
+    setDeepLinkContent,
     setSeedIndex,
     dismissAlert,
     generateAlert,
