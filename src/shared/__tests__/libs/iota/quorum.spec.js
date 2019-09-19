@@ -170,7 +170,7 @@ describe('libs: iota/quorum', () => {
             ].map((url) => ({
                 url,
                 pow: false,
-                token: '',
+                username: '',
                 password: '',
             }));
         });
@@ -185,7 +185,9 @@ describe('libs: iota/quorum', () => {
                         .then(() => {
                             throw new Error();
                         })
-                        .catch((err) => expect(err.message).to.equal('Not enough are in sync nodes to perform a quorum.'));
+                        .catch((err) =>
+                            expect(err.message).to.equal('Not enough are in sync nodes to perform a quorum.'),
+                        );
                 });
             });
 
@@ -216,13 +218,13 @@ describe('libs: iota/quorum', () => {
                     return findSyncedNodes(nodes, 7, syncedNodes, blacklistedNodes).then((newSyncedNodes) => {
                         expect(newSyncedNodes).to.eql(syncedNodes);
 
-                        newSyncedNodes.forEach(({ url, token, password }) =>
-                            expect(stub.calledWith({ url, token, password })).to.equal(true),
+                        newSyncedNodes.forEach(({ url, username, password }) =>
+                            expect(stub.calledWith({ url, username, password })).to.equal(true),
                         );
 
                         // Also assert that it was never called with any blacklisted node
-                        blacklistedNodes.forEach(({ url, token, password }) =>
-                            expect(stub.calledWith({ url, token, password })).to.equal(false),
+                        blacklistedNodes.forEach(({ url, username, password }) =>
+                            expect(stub.calledWith({ url, username, password })).to.equal(false),
                         );
 
                         stub.restore();
@@ -242,13 +244,13 @@ describe('libs: iota/quorum', () => {
                         expect(newSyncedNodes).to.eql([...syncedNodes, ...whitelistedNodes]);
 
                         // Check that existing synced nodes were never rechecked for sync status
-                        syncedNodes.forEach(({ url, token, password }) =>
-                            expect(stub.calledWith({ url, token, password })).to.equal(false),
+                        syncedNodes.forEach(({ url, username, password }) =>
+                            expect(stub.calledWith({ url, username, password })).to.equal(false),
                         );
 
                         // Also assert that it was never called with any blacklisted node
-                        blacklistedNodes.forEach(({ url, token, password }) =>
-                            expect(stub.calledWith({ url, token, password })).to.equal(false),
+                        blacklistedNodes.forEach(({ url, username, password }) =>
+                            expect(stub.calledWith({ url, username, password })).to.equal(false),
                         );
 
                         stub.restore();
