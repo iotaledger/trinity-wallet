@@ -510,7 +510,7 @@
         "nodeEnoughNodesExplanationCustomNodes": "Dodaj więcej niestandardowych serwerów lub włącz zdalną listę serwerów.",
         "nodeSettingsUpdatedTitle": "Zaktualizowano ustawienia serwera",
         "nodeSettingsUpdatedExplanation": "Pomyślnie zaktualizowałeś swoje ustawienia serwera.",
-        "outsourcePow": "Wykonaj PoW zdalnie",
+        "outsourcePow": "Wykonuj PoW zdalnie",
         "autoSelectPowNode": "Autom. wybór serwera dla PoW",
         "nodeForPow": "Serwer PoW"
     },
