@@ -1,3 +1,19 @@
+diff --git a/node_modules/react-native-schemes-manager/src/fix-libraries.js b/node_modules/react-native-schemes-manager/src/fix-libraries.js
+index d587997..3b44f2e 100644
+--- a/node_modules/react-native-schemes-manager/src/fix-libraries.js
++++ b/node_modules/react-native-schemes-manager/src/fix-libraries.js
+@@ -44,7 +44,10 @@ function updateProject (project) {
+ 					const sourceConfig = sourceConfigs[key];
+ 					const configList = configListForConfig(configLists, key);
+ 
+-					if (!configList) throw new Error(`Unable to find config list for build configuration: ${sourceConfig.name}`);
++					if (!configList) {
++						console.log(`Unable to find config list for build configuration: ${sourceConfig.name}`);
++						continue;
++					}
+ 
+ 					// Copy that bad boy.
+ 					const clone = JSON.parse(JSON.stringify(sourceConfig));
 diff --git a/node_modules/react-native-schemes-manager/src/utilities.js b/node_modules/react-native-schemes-manager/src/utilities.js
 index 7dee56e..896cabb 100644
 --- a/node_modules/react-native-schemes-manager/src/utilities.js
