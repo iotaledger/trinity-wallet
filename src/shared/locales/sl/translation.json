@@ -510,9 +510,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Dodajte več ročno ponastavljenih Node-v ali uporabite seznam uradnih Node-v.",
         "nodeSettingsUpdatedTitle": "Posodobljene Node nastavitve",
         "nodeSettingsUpdatedExplanation": "Uspešno ste posodobili Node nastavitve.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Vozlišče za opravljanje dokaza o delu"
+        "outsourcePow": "Oddaj izvajanje dokaza o delu",
+        "autoSelectPowNode": "Samodejno izberi vozlišče, ki opravlja dokaz o delu",
+        "nodeForPow": "Vozlišče, ki opravlja dokaz o delu"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Prilagojen Node ni bilo mogoče dodati",
