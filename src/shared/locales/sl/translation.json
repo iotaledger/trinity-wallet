@@ -457,7 +457,7 @@
     },
     "welcome": {
         "thankYou": "Zahvaljujemo se vam za prenos IOTA denarnice",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Zahvaljujemo se Vam za prenos Trinity delovne verzije"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Zapišite svoj Seed in kontrolno vsoto </0><1>prepričajte se trikrat,</1><2>da je vse pravilno.</2>",
@@ -512,7 +512,7 @@
         "nodeSettingsUpdatedExplanation": "Uspešno ste posodobili Node nastavitve.",
         "outsourcePow": "Outsource proof of work",
         "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "nodeForPow": "Vozlišče za opravljanje dokaza o delu"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Prilagojen Node ni bilo mogoče dodati",
