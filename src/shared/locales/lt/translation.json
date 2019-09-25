@@ -116,7 +116,7 @@
         "checkForUpdates": "Tikrinti, ar yra atnaujinimų",
         "account": "Paskyra",
         "changeNode": "Pakeisti serverį",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "Pridėti serverius",
         "nodeMustUseHTTPS": "Neteisingas serveris (ne HTTPS)",
         "nodeMustUseHTTPSExplanation": "Vartotojo serveriai galimi tik naudojantys HTTPS.",
         "nodeDuplicated": "Dubliuotas serveris",
@@ -151,7 +151,7 @@
         "broadcastError": "Pavedimo ištransliuoti nepavyko",
         "addressesAlreadySpentFrom": "Vienas ar daugiau adresų jau buvo panaudoti.",
         "problemSendingYourTransaction": "Įvyko klaida apdorojant jūsų pavedimą.",
-        "problemPerformingProofOfWork": "Įvyko klaida atliekant apskaičiavimus.",
+        "problemPerformingProofOfWork": "Įvyko klaida atliekant skaičiavimus.",
         "tryingAgainWithLocalPoW": "Bandykite dar kartą su lokaliu skaičiavimu.",
         "tryingAgainWithDifferentNode": "Bandykite dar kartą su kitu serveriu.",
         "errorFetchingAccountInformation": "Klaida užkraunant paskyros duomenis.",
@@ -457,7 +457,7 @@
     },
     "welcome": {
         "thankYou": "Dėkojame, kad naudojatės Trinity",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Dėkojame, kad naudojatės Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Nusirašykite savo užraktą ir kontrolinę sumą, </0><1>tris kartus patikrinkite</1><2> ar kodai sutampa</2>",
@@ -497,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatinis serverio valdymas",
-        "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "addCustomNodes": "Pridėti serverius",
+        "autoNodeList": "Naudoti pradinį serverių sąrašą",
+        "nodeAutoswitching": "Automatiškai parinkti pagr. serverį",
         "primaryNode": "Pagrindinis serveris",
         "enableQuorum": "Įjungti kvorumą",
         "quorumSize": "Kvorumo dydis",
@@ -510,9 +510,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Pridėkite daugiau vartotojo serverių arba įjunkite nuotolinį serverių sąrašą.",
         "nodeSettingsUpdatedTitle": "Serverio nustatymai atnaujinti",
         "nodeSettingsUpdatedExplanation": "Jūs sėkmingai atnaujinote serverio nustatymus.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "Iškelti skaičiavimus",
+        "autoSelectPowNode": "Automatiškai parinkti skaičiavimų serverį",
+        "nodeForPow": "Skaičiavimų serveris"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",

@@ -123,7 +123,7 @@
         "nodeDuplicatedExplanation": "Ten serwer znajduje się już na liście.",
         "customNodeAdded": "Dodano niestandardowy serwer",
         "customNodeAddedExplanation": "Pomyślnie dodałeś {{nodeAddress}} jako niestandardowy serwer.",
-        "nodeAutoChanged": "Autom. zmiana serwera",
+        "nodeAutoChanged": "Automatyczna zmiana serwera",
         "nodeAutoChangedExplanation": "Przełączono na nowy serwer {{- nodeAddress}}, ponieważ poprzednio wybrany serwer był offline.",
         "touchSensor": "Przyłóż palec do czytnika",
         "fingerprintOnSend": "Przyłóż palec do czytnika, aby autoryzować transfer",
@@ -496,10 +496,10 @@
         "tools": "Narzędzia"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatyczny wybór serwera",
+        "automaticNodeManagement": "Automatyczne zarządzanie serwerami",
         "addCustomNodes": "Dodaj serwery",
         "autoNodeList": "Użyj domyślnej listy serwerów",
-        "nodeAutoswitching": "Automatyczny wybór głównego serwera",
+        "nodeAutoswitching": "Automatyczny wybór serwera głównego",
         "primaryNode": "Serwer główny",
         "enableQuorum": "Włącz kworum",
         "quorumSize": "Wielkość kworum",
@@ -510,8 +510,8 @@
         "nodeEnoughNodesExplanationCustomNodes": "Dodaj więcej niestandardowych serwerów lub włącz zdalną listę serwerów.",
         "nodeSettingsUpdatedTitle": "Zaktualizowano ustawienia serwera",
         "nodeSettingsUpdatedExplanation": "Pomyślnie zaktualizowałeś swoje ustawienia serwera.",
-        "outsourcePow": "Zewnętrzny Proof of Work",
-        "autoSelectPowNode": "Autom. wybór serwera dla PoW",
+        "outsourcePow": "Wykonuj Proof of Work zdalnie",
+        "autoSelectPowNode": "Automatyczny wybór serwera dla PoW",
         "nodeForPow": "Serwer PoW"
     },
     "addCustomNode": {
