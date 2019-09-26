@@ -87,11 +87,13 @@ class DeepLinking extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('DeepLinking');
+        if (!this.props.deepLinking && this.props.deepLinkRequestActive) {
+            this.props.completeDeepLinkRequest();
+        }
     }
 
     componentWillReceiveProps(newProps) {
-        // If a deep link was in progress but deep linking was not enabled at the time, clear previous deep link request
-        if (this.props.deepLinkRequestActive && !this.props.deepLinking && newProps.deepLinking) {
+        if (!this.props.deepLinking && this.props.deepLinkRequestActive && newProps.deepLinkRequestActive) {
             this.props.completeDeepLinkRequest();
         }
     }

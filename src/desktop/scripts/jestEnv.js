@@ -5,7 +5,7 @@ const puppeteer = require('puppeteer');
 const os = require('os');
 const stateMock = require('../__mocks__/stateMock.json');
 const electronMock = require('../__mocks__/electronMock.js');
-const settings = require('../package.json');
+const settings = require('../../shared/libs/versions.json');
 
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
@@ -52,7 +52,7 @@ class PuppeteerEnvironment extends ElectronEnvironment {
                 deviceScaleFactor: 2,
             });
 
-            page.evaluateOnNewDocument(electronMock, settings, stateMock);
+            page.evaluateOnNewDocument(electronMock, { version: settings.latestDesktop }, stateMock);
 
             await page.goto(`http://localhost:1074/${route}`, { waitUntil: 'domcontentloaded' });
 

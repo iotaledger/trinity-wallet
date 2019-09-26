@@ -8,7 +8,7 @@ import i18next from 'libs/i18next';
 import { withTranslation } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
-import { ACC_MAIN } from 'libs/crypto';
+import { ALIAS_MAIN } from 'libs/constants';
 import { fetchVersions } from 'libs/utils';
 
 import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
@@ -18,6 +18,7 @@ import {
     setPassword,
     clearWalletData,
     initiateDeepLinkRequest,
+    setDeepLinkContent,
     setSeedIndex,
     shouldUpdate,
     forceUpdate,
@@ -99,6 +100,8 @@ class App extends React.Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         initiateDeepLinkRequest: PropTypes.func.isRequired,
+        /** @ignore */
+        setDeepLinkContent: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -179,7 +182,7 @@ class App extends React.Component {
      */
     setDeepUrl(data) {
         const { deepLinking, generateAlert, t } = this.props;
-
+        this.props.initiateDeepLinkRequest();
         if (!deepLinking) {
             this.props.history.push('/settings/advanced');
             return generateAlert('info', t('deepLink:deepLinkingInfoTitle'), t('deepLink:deepLinkingInfoMessage'));
@@ -188,7 +191,7 @@ class App extends React.Component {
         const parsedData = parseAddress(data);
 
         if (parsedData) {
-            this.props.initiateDeepLinkRequest(
+            this.props.setDeepLinkContent(
                 parsedData.amount ? String(parsedData.amount) : '0',
                 parsedData.address,
                 parsedData.message || '',
@@ -219,7 +222,7 @@ class App extends React.Component {
      */
     async checkVaultAvailability() {
         try {
-            await Electron.readKeychain(ACC_MAIN);
+            await Electron.readKeychain(ALIAS_MAIN);
         } catch (err) {
             this.setState({
                 fatalError: err instanceof Error && typeof err.message === 'string' ? err.message : err.toString(),
@@ -359,6 +362,7 @@ const mapDispatchToProps = {
     clearWalletData,
     setPassword,
     initiateDeepLinkRequest,
+    setDeepLinkContent,
     setSeedIndex,
     dismissAlert,
     generateAlert,

@@ -4,7 +4,7 @@
         display: block;
         position: relative;
         max-width: 680px;
-        max-height: 300px;
+        max-height: calc(100vh - 400px);
         width: calc(100% - 20px);
         height: calc(100vh - 200px);
         margin: 40px auto;

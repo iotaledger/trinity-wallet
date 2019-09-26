@@ -71,7 +71,6 @@ import com.android.build.OutputFile
  */
 project.ext.react = [
         entryFile: "index.js",
-        jsBundleDirRelease: "$buildDir/intermediates/merged_assets/release/mergeReleaseAssets/out"
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -95,13 +94,13 @@ android {
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
-        versionCode 81
+        versionCode 83
         versionName "1.1.0"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 28
         multiDexEnabled true
         ndk {
-            abiFilters "armeabi-v7a", "x86"
+            abiFilters "armeabi-v7a","arm64-v8a","x86","x86_64"
         }
         aaptOptions {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
@@ -121,11 +120,11 @@ android {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
-            include "armeabi-v7a", "x86"
+            include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
     }
     repositories {
-        maven { url "https://jitpack.io" }
+        maven { url "https://www.jitpack.io" }
     }
     buildTypes {
         release {
@@ -152,7 +151,7 @@ android {
         variant.outputs.each { output ->
             // For each separate APK per architecture, set a unique version code as described here:
             // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-            def versionCodes = ["armeabi-v7a": 1, "x86": 2]
+            def versionCodes = ["armeabi-v7a": 1, "x86": 2, "arm64-v8a": 3, "x86_64": 4]
             def abi = output.getFilter(OutputFile.ABI)
             if (abi != null) {  // null for the universal-debug, universal-release variants
                 output.versionCodeOverride =

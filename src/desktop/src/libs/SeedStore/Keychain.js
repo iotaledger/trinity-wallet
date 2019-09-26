@@ -1,13 +1,10 @@
 /* global Electron */
-import { ACC_MAIN, sha256, encrypt, decrypt } from 'libs/crypto';
-import ALIAS_REALM from 'libs/constants';
+import { sha256, encrypt, decrypt } from 'libs/crypto';
+import { ALIAS_REALM, ALIAS_MAIN, ALIAS_ACCOUNT } from 'libs/constants';
 import { tritsToChars, byteToTrit } from 'libs/iota/converter';
 import { prepareTransfersAsync } from 'libs/iota/extendedApi';
 
 import SeedStoreCore from './SeedStoreCore';
-
-// Prefix for seed account titles stored in Keychain
-const ACC_PREFIX = 'account';
 
 class Keychain extends SeedStoreCore {
     /**
@@ -21,7 +18,7 @@ class Keychain extends SeedStoreCore {
         return (async () => {
             this.key = key.slice(0);
             if (accountId) {
-                this.accountId = await sha256(`${ACC_PREFIX}-${accountId}`);
+                this.accountId = await sha256(`${ALIAS_ACCOUNT}-${accountId}`);
             }
 
             return this;
@@ -59,7 +56,7 @@ class Keychain extends SeedStoreCore {
      * @returns {promise} - Resolves to a success boolean
      */
     addAccount = async (accountId, seed) => {
-        this.accountId = await sha256(`${ACC_PREFIX}-${accountId}`);
+        this.accountId = await sha256(`${ALIAS_ACCOUNT}-${accountId}`);
 
         const vault = await encrypt(seed, this.key);
         await Electron.setKeychain(this.accountId, vault);
@@ -90,7 +87,7 @@ class Keychain extends SeedStoreCore {
      * @returns {boolean} Seed renamed success state
      */
     renameAccount = async (accountName) => {
-        const newID = await sha256(`${ACC_PREFIX}-${accountName}`);
+        const newID = await sha256(`${ALIAS_ACCOUNT}-${accountName}`);
 
         const vault = await Electron.readKeychain(this.accountId);
 
@@ -130,7 +127,7 @@ class Keychain extends SeedStoreCore {
         for (let i = 0; i < accounts.length; i++) {
             const account = vault[i];
 
-            if (account.account === `${ACC_MAIN}-salt` || account.account === ALIAS_REALM) {
+            if (account.account === `${ALIAS_MAIN}-salt` || account.account === ALIAS_REALM) {
                 continue;
             }
 
@@ -225,7 +222,7 @@ class Keychain extends SeedStoreCore {
         }
         try {
             const accounts = vault.filter(
-                (acc) => acc.account !== ACC_MAIN && acc.account !== `${ACC_MAIN}-salt` && acc.account !== ALIAS_REALM,
+                (acc) => acc.account !== ALIAS_MAIN && acc.account !== `${ALIAS_MAIN}-salt` && acc.account !== ALIAS_REALM,
             );
 
             for (let i = 0; i < accounts.length; i++) {

@@ -7,6 +7,14 @@ const props = {
     t: (str) => str,
 };
 
+jest.mock(
+    '../../../package.json',
+    () => ({
+        version: '0.0.0',
+    }),
+    { virtual: true },
+);
+
 global.Electron = {
     onEvent: function(_event, e) {
         this.menuEvent = e;

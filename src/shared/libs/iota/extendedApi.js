@@ -68,9 +68,9 @@ const getApiTimeout = (method, payload) => {
  */
 const getIotaInstance = (settings, requestTimeout = DEFAULT_NODE_REQUEST_TIMEOUT) => {
     if (settings) {
-        const { url, token, password } = settings;
+        const { url, username, password } = settings;
 
-        const instance = new IOTA({ provider: url, password, token });
+        const instance = new IOTA({ provider: url, password, username });
         instance.api.setApiTimeout(requestTimeout);
 
         return instance;

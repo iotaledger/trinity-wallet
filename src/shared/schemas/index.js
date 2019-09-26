@@ -10,14 +10,29 @@ import v3Schema, { migration as v3Migration } from './v3';
 import v4Schema, { migration as v4Migration } from './v4';
 import v5Schema, { migration as v5Migration } from './v5';
 import v6Schema, { migration as v6Migration } from './v6';
+import v7Schema, { migration as v7Migration } from './v7';
 import { __MOBILE__, __TEST__, __DEV__ } from '../config';
 import { initialState as reduxSettingsState } from '../reducers/settings';
 import { initialState as reduxAccountsState } from '../reducers/accounts';
 
-const STORAGE_PATH =
-    __MOBILE__ || __TEST__
-        ? 'trinity.realm'
-        : `${typeof Electron === 'object' ? Electron.getUserDataPath() : ''}/trinity${__DEV__ ? '-dev' : ''}.realm`;
+/**
+ * Get desktop Realm path based on the environment
+ */
+const getDesktopPath = () => {
+    const path = `${typeof Electron === 'object' ? Electron.getUserDataPath() : ''}/trinity`;
+    const suffixRC =
+        typeof Electron === 'object' &&
+        Electron.getVersion()
+            .toLowerCase()
+            .indexOf('rc') > 0
+            ? '-rc'
+            : '';
+    const suffixDEV = __DEV__ ? '-dev' : '';
+
+    return `${path}${suffixDEV}${suffixRC}.realm`;
+};
+
+const STORAGE_PATH = __MOBILE__ || __TEST__ ? 'trinity.realm' : getDesktopPath();
 
 /**
  * Gets deprecated realm storage path
@@ -141,6 +156,12 @@ export default [
         schemaVersion: 6,
         path: STORAGE_PATH,
         migration: v6Migration,
+    },
+    {
+        schema: v7Schema,
+        schemaVersion: 7,
+        path: STORAGE_PATH,
+        migration: v7Migration,
     },
 ];
 

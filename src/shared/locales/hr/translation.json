@@ -116,7 +116,7 @@
         "checkForUpdates": "Provjeri ažuriranja",
         "account": "Profil",
         "changeNode": "Promijeni node",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "Dodaj prilagođeni node",
         "nodeMustUseHTTPS": "Nedopušten node (ne koristi HTTPS)",
         "nodeMustUseHTTPSExplanation": "Dopušteni su samo prilagođeni node-ovi koji koriste HTTPS.",
         "nodeDuplicated": "Duplicirani node",
@@ -457,7 +457,7 @@
     },
     "welcome": {
         "thankYou": "Hvala što ste preuzeli Trinity",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Hvala što ste preuzeli Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Zapišite svoj seed i kontrolni zbroj, te </0><1>provjerite barem 3 puta</1><2> da li su točni.</2>",
@@ -497,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatsko upravljanje node-ovima",
-        "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "addCustomNodes": "Dodaj prilagođeni node",
+        "autoNodeList": "Koristi zadanu node listu",
+        "nodeAutoswitching": "Automatski odabir primarnog node-a",
         "primaryNode": "Primarni node",
         "enableQuorum": "Omogući kvorum",
         "quorumSize": "Veličina kvoruma",
@@ -510,9 +510,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Dodajte još prilagođenih node-ova ili omogućite vanjsku node listu.",
         "nodeSettingsUpdatedTitle": "Node postavke spremljene",
         "nodeSettingsUpdatedExplanation": "Uspješno ste spremili vaše node postavke.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "Outsourcaj Proof of Work (PoW)",
+        "autoSelectPowNode": "Automatski odaberi PoW node",
+        "nodeForPow": "PoW Node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nije bilo moguće dodati prilagođeni node",
