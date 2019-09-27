@@ -122,7 +122,7 @@
         "nodeDuplicated": "Nó duplicado",
         "nodeDuplicatedExplanation": "O nó personalizado já está listado.",
         "customNodeAdded": "Nó personalizado adicionado",
-        "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
+        "customNodeAddedExplanation": "Você adicionou com sucesso {{nodeAddress}} como um nó personalizado.",
         "nodeAutoChanged": "Nó Auto-switched",
         "nodeAutoChangedExplanation": "Alternado para um novo nó {{- nodeAddress}} uma vez que o nó selecionado está offline.",
         "touchSensor": "Toque no sensor de impressão digital",
@@ -692,7 +692,7 @@
     "stateExport": {
         "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
         "exportSuccess": "Estado exportado",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "exportSuccessExplanation": "Seu arquivo de estado foi exportado com sucesso."
     },
     "chart": {
         "mcap": "MCAP",
@@ -711,7 +711,7 @@
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
         "remote": "Remoto",
-        "powUpdated": "Proof of work settings",
+        "powUpdated": "Prova das configurações de trabalho",
         "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "autoPromotion": {
@@ -727,7 +727,7 @@
         "preparingTransfers": "Preparando transferências",
         "gettingTransactionsToApprove": "Obtendo transações para aprovar",
         "proofOfWork": "Completando a prova do trabalho",
-        "broadcasting": "Broadcasting",
+        "broadcasting": "Transmitindo",
         "preparingData": "Preparando dados",
         "migratingSettings": "Migrando configurações",
         "migratingAccounts": "Migrando contas",
@@ -743,7 +743,7 @@
         "detectedBalance": "Saldo detectado: {{amount}} {{unit}}",
         "isThisCorrect": "Está correcto?",
         "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
-        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "hasSnapshotTakenPlace": "Tem um snapshot feito? Pressione o botão abaixo para transição.",
         "transition": "Transição",
         "transitioning": "Transição para o snapshot.",
         "generatingAndDetecting": "Gerando endereços e detectando o saldo.",
@@ -751,14 +751,14 @@
         "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
-        "autofill": "Autofill success",
+        "autofill": "Autopreenchimento bem sucedido",
         "autofillExplanation": "Transaction data autofilled from link.",
         "deepLinkingOverview": "Deep links are clickable links (iota://...) that automatically fill transaction data in Trinity.",
         "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
         "deepLinkingUpdated": "Configurações de link profundo",
         "deepLinkingEnabled": "Você ativou o link profundo.",
         "deepLinkingDisabled": "Você desativou a ligação profunda.",
-        "deepLinkingInfoTitle": "Deep linking is not enabled",
+        "deepLinkingInfoTitle": "Link profundo não está ativado",
         "deepLinkingInfoMessage": "You opened an iota:// deep link but deep linking is not enabled."
     },
     "updates": {
@@ -783,29 +783,29 @@
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "agree": "Aceito"
     },
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "notLoggedIn": "Não iniciou a sessão",
+        "setupIncomplete": "Configuração da carteira incompleta",
+        "completeSetup": "Completar configuração"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxy": "Usar proxy do sistema",
+        "proxyExplanation": "Detectar e usar configurações de proxy de rede ao nível do sistema. Feche e reabra a carteira após alterar esta configuração."
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "notifications": "Notificações",
+        "notificationExplanation": "Receber notificações de nível de sistema sobre novas transações.",
+        "typeConfirmations": "Notificar-me sobre confirmações",
+        "typeMessages": "Notificar-me sobre transações de valor zero",
+        "multipleTx": "Recebendo múltiplas transações para {{account}}",
+        "valueTx": "Recebendo {{value}} de {{account}}",
+        "messageTx": "Você recebeu uma mensagem para {{account}}",
+        "confirmedIn": "A entrada de {{value}} para {{account}} foi confirmada",
+        "confirmedOut": "A entrada de {{value}} para {{account}} foi confirmada"
     },
     "bytetrit": {
         "sweepSucceeded": "Fundos desbloqueados com sucesso",
@@ -838,7 +838,7 @@
         "accountPage": "Página da conta",
         "actionCancelled": "Ledger device access cancelled",
         "actionCancelledExplanation": "Cannot perform the action without Ledger device access.",
-        "chooseAccountIndex": "Choose your Ledger account index",
+        "chooseAccountIndex": "Escolha o índice da sua conta Ledger",
         "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number.",
         "accountPageExplanation": "Some third party wallets require pages.",
         "connectionError": "Cannot connect to Ledger",
@@ -849,7 +849,7 @@
         "transactionExplanation": "Use seu dispositivo Ledger para aprovar a transação de saída.",
         "applicationTitle": "Abrir app Ledger IOTA",
         "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
-        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueTitle": "Não é possível enviar a transferência de valor zero",
         "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
         "ledgerDisconnectedTitle": "Ledger device disconnected",
         "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
