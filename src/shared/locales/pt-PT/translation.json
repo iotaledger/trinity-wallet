@@ -145,7 +145,7 @@
         "ifYourBalanceIsNotCorrect": "Se o seu saldo não estiver correto, é provável que você esteja usando uma semente de um pré-snapshot.",
         "headToAdvancedSettingsForTransition": "Vá a Configurações Avançadas e execute uma Transição de Snapshot.",
         "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
+        "openAccountTools": "Abrir Ferramentas de Conta",
         "usingTrinityWalletWithKeePass": "A usar Carteira Trinity com Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Houve um erro de rede ao transmitir a sua transação.",
         "broadcastError": "Não foi foi possível transmitir a transação",
@@ -169,10 +169,10 @@
         "missingPermission": "Permissões do sistema de arquivo necessárias",
         "missingPermissionExplanation": "O acesso ao sistema de arquivos é necessário para executar esta função.",
         "swipeToConfirm": "Deslize para confirmar",
-        "congratulations": "Congratulations",
+        "congratulations": "Parabéns",
         "expert": "Avançado",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodes": "Poucos nós em sincronia",
+        "notEnoughSyncedNodesExplanation": "Não foi possível alcançar um quórum. Desative o quórum ou tente novamente."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "Idioma",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Selecionar idioma",
         "letsGetStarted": "Vamos começar"
     },
     "login": {
@@ -457,7 +457,7 @@
     },
     "welcome": {
         "thankYou": "Obrigado por descarregar a carteira IOTA",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Obrigado por baixar a demonstração de Trinity"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Anote a sua seed e os dígitos de verificação e </0><1>certifique-se</1><2> que estão corretos.</2>",
@@ -496,23 +496,23 @@
         "tools": "Ferramentas"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
+        "automaticNodeManagement": "Gerenciamento automático de nó",
         "addCustomNodes": "Adicionar nó",
         "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
-        "primaryNode": "Primary node",
+        "nodeAutoswitching": "Auto selecionar nó primário",
+        "primaryNode": "Nó primário",
         "enableQuorum": "Enable quorum",
-        "quorumSize": "Quorum size",
-        "noCustomNodes": "No custom nodes",
-        "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
-        "nodeEnoughNodesTitle": "Not enough nodes",
-        "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
-        "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "quorumSize": "Tamanho do quórum",
+        "noCustomNodes": "Editar nós personalizados",
+        "mustAddCustomNodes": "Você deve adicionar pelo menos um nó personalizado antes de desativar a lista de nó remoto.",
+        "nodeEnoughNodesTitle": "Nós insuficientes",
+        "nodeEnoughNodesExplanation": "Não há nós suficientes para ativar o quórum.",
+        "nodeEnoughNodesExplanationCustomNodes": "Adicione mais nós personalizados ou ative a lista de nó remoto.",
+        "nodeSettingsUpdatedTitle": "Configurações de nó atualizadas",
+        "nodeSettingsUpdatedExplanation": "Actualizou as configurações de nó com sucesso.",
+        "outsourcePow": "Prova de origem do trabalho",
+        "autoSelectPowNode": "Seleção automática de prova do nó de trabalho",
+        "nodeForPow": "Prova do nó de trabalho"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Não foi possível adicionar um nó personalizado",
@@ -523,10 +523,10 @@
         "nodeFieldEmpty": "Este campo está vazio",
         "nodeFieldEmptyExplanation": "Por favor, insira um nó personalizado.",
         "invalidURL": "Por favor, introduza um URL válido.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "addAuthKey": "Adicionar chave de autenticação",
+        "username": "Nome de usuário",
+        "couldNotRemove": "Não foi possível remover a opção personalizada",
+        "couldNotRemoveExplanation": "Deve haver nós suficientes para quórum. Reduza o tamanho do quórum ou ative a lista remota de nós."
     },
     "addNewAccount": {
         "useExistingSeed": "Usar Seed existente",
@@ -595,32 +595,32 @@
         "enterPassword": "Insira a sua palavra-passe para eliminar esta conta."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
+        "outOfSync": "O seu histórico de transações parece estar fora de sincronização?",
+        "pressToSync": "Pressione o botão abaixo para sincronizar sua conta.",
         "thisMayTake": "Isto pode demorar algum tempo.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
-        "syncAccount": "Sync Account",
-        "syncingYourAccount": "Syncing your account."
+        "doNotClose": "Por favor, minimizando o aplicativo cancelará a sincronização.",
+        "syncAccount": "Sincronizar conta",
+        "syncingYourAccount": "Sincronizando sua conta."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "title": "Insira um nome de conta e uma semente",
+        "incorrectFormat": "Formato de semente incorreto",
+        "validSeedExplanation": "Endereços válidos devem ter 81 caracteres e conter apenas A-Z ou 9."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "enterPassword": "Insira a sua palavra-passe para ver a sua semente.",
+        "viewSeed": "Ver semente",
+        "hideSeed": "Esconder semente",
+        "notAvailable": "Exportação de sementes não está disponível para seu tipo de conta {{accountType}}",
+        "notAvailableExplanationLedger": "Seu dispositivo de livro usa um elemento seguro para armazenar sua semente. A semente está criptografada com segurança e não deixa o dispositivo.",
+        "accountIndex": "Seu índice de conta Ledger",
+        "accountPage": "Sua página de conta Ledger"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
+        "didSaveSeed": "Você fez o backup da sua semente?",
         "iHaveBackedUp": "I have safely backed up my seed",
         "reenterSeed": "At the next step you need to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
+        "reenterSeedWarning": "Se você não fez backup de sua semente e seu dispositivo falhar, você perderá toda a sua IOTA.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
     "walletResetConfirmation": {
@@ -696,30 +696,30 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Mudança (24h)",
         "volume": "Volume (24h)",
-        "error": "Error fetching chart data"
+        "error": "Erro ao obter os dados do gráfico"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "warning": "AVISO",
+        "appearsRooted": "Seu dispositivo parece estar com root.",
+        "securityRisk": "Isto pode representar um risco significativo para a segurança da sua carteira.",
+        "continueDepsiteRisk": "Deseja continuar apesar deste risco?"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "feeless": "É necessário completar uma pequena prova de trabalho para enviar transações na IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
-        "remote": "Remote",
+        "remote": "Remoto",
         "powUpdated": "Proof of work settings",
         "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdated": "Configurações da promoção",
         "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "Verificando a saúde do nó",
         "validatingReceiveAddress": "Validating receive address",
         "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Syncing account",
