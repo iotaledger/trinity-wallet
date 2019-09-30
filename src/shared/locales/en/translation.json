@@ -260,7 +260,13 @@
         "checkInbox": "Please check your inbox to verify your email",
         "verificationCodeSent": "We've sent a verification code to {{email}}",
         "verificationCode": "VERIFICATION CODE",
-        "agreeWithTerms": "I agree with MoonPay's Terms of Use And Privacy Policy"
+        "agreeWithTerms": "I agree with MoonPay's Terms of Use And Privacy Policy",
+        "tellUsMore": "Tell us more about yourself",
+        "cardRegistrationName": "We need the name your card is registered to",
+        "cardBillingAddress": "We need a payment card billing address",
+        "firstName": "FIRST NAME",
+        "lastName": "LAST NAME",
+        "dateOfBirth": "DATE OF BIRTH"
     },
     "home": {
         "balance": "BALANCE",
