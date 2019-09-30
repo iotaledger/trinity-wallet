@@ -34,6 +34,8 @@ import MigrationComponent from 'ui/components/Migration';
 import MoonPayLandingComponent from 'ui/views/wallet/exchanges/MoonPay/Landing';
 import MoonPayAddAmountComponent from 'ui/views/wallet/exchanges/MoonPay/AddAmount';
 import MoonPaySelectAccount from 'ui/views/wallet/exchanges/MoonPay/SelectAccount';
+import MoonPaySetupEmail from 'ui/views/wallet/exchanges/MoonPay/SetupEmail';
+
 
 import { isIPhoneX, isAndroid } from 'libs/device';
 
@@ -53,6 +55,7 @@ export default function registerScreens(store, Provider) {
     Navigation.registerComponentWithRedux('landing', () => applyHOCs(MoonPayLandingComponent), Provider, store);
     Navigation.registerComponentWithRedux('addAmount', () => applyHOCs(MoonPayAddAmountComponent), Provider, store);
     Navigation.registerComponentWithRedux('selectAccount', () => applyHOCs(MoonPaySelectAccount), Provider, store);
+    Navigation.registerComponentWithRedux('setupEmail', () => applyHOCs(MoonPaySetupEmail), Provider, store);
 
     Navigation.registerComponentWithRedux('migration', () => applyHOCs(MigrationComponent), Provider, store);
     Navigation.registerComponentWithRedux('home', () => applyHOCs(Home), Provider, store);

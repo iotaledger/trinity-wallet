@@ -9,14 +9,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import WithUserActivity from 'ui/components/UserActivity';
-import DropdownComponent from 'ui/components/Dropdown';
+import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
-import { isIPhoneX, isAndroid } from 'libs/device';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 
@@ -61,8 +60,8 @@ const styles = StyleSheet.create({
     },
 });
 
-/** MoonPay select account component */
-class SelectAccount extends React.Component {
+/** MoonPay setup email component */
+class SetupEmail extends React.Component {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -106,7 +105,7 @@ class SelectAccount extends React.Component {
                                 >
                                     <InfoBox>
                                         <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                            {t('moonpay:selectAccount')}
+                                            {t('moonpay:setupEmail')}
                                         </Text>
                                         <Text
                                             style={[
@@ -114,7 +113,7 @@ class SelectAccount extends React.Component {
                                                 { paddingTop: height / 60, color: theme.body.color },
                                             ]}
                                         >
-                                            {t('moonpay:selectAccountExplanation')}
+                                            {t('moonpay:setupEmailExplanation')}
                                         </Text>
                                     </InfoBox>
                                 </AnimatedComponent>
@@ -124,14 +123,16 @@ class SelectAccount extends React.Component {
                                     animationOutType={['slideOutLeft', 'fadeOut']}
                                     delay={200}
                                 >
-                                    <DropdownComponent
-                                        onRef={(c) => {
-                                            this.dropdown = c;
-                                        }}
-                                        dropdownWidth={{ width: isIPhoneX ? width / 1.1 : width / 1.2 }}
-                                        value="foo"
-                                        options={['foo', 'baz']}
-                                        saveSelection={(account) => {}}
+                                    <CustomTextInput
+                                        label={t('moonpay:yourEmail')}
+                                        onValidTextChange={(seed) => this.setState({ seed })}
+                                        theme={theme}
+                                        autoCorrect={false}
+                                        enablesReturnKeyAutomatically
+                                        returnKeyType="done"
+                                        onSubmitEditing={() => this.onDonePress()}
+                                        value=''
+                                        testID="enterSeed-seedbox"
                                     />
                                 </AnimatedComponent>
                                 <View style={{ flex: 0.6 }} />
@@ -143,10 +144,10 @@ class SelectAccount extends React.Component {
                                     delay={0}
                                 >
                                     <DualFooterButtons
-                                        onLeftButtonPress={() => SelectAccount.redirectToScreen('addAmount')}
-                                        onRightButtonPress={() => SelectAccount.redirectToScreen('setupEmail')}
+                                        onLeftButtonPress={() => SetupEmail.redirectToScreen('addAmount')}
+                                        onRightButtonPress={() => SetupEmail.redirectToScreen('setupEmail')}
                                         leftButtonText={t('global:goBack')}
-                                        rightButtonText={t('global:confirm')}
+                                        rightButtonText={t('global:continue')}
                                         leftButtonTestID="enterSeed-back"
                                         rightButtonTestID="enterSeed-next"
                                     />
@@ -161,8 +162,7 @@ class SelectAccount extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: getThemeFromState(state),
-    minimised: state.ui.minimised,
+    theme: getThemeFromState(state)
 });
 
 const mapDispatchToProps = {
@@ -177,6 +177,6 @@ export default WithUserActivity()(
         connect(
             mapStateToProps,
             mapDispatchToProps,
-        )(SelectAccount),
+        )(SetupEmail),
     ),
 );
