@@ -256,7 +256,11 @@
         "selectAccountExplanation": "Your MoonPay purchase will be transferred automatically to your selected account",
         "setupEmail": "First, let's get setup quickly",
         "setupEmailExplanation": "Provide your email account to receive a receipt for your purchase",
-        "yourEmail": "YOUR EMAIL"
+        "yourEmail": "YOUR EMAIL",
+        "checkInbox": "Please check your inbox to verify your email",
+        "verificationCodeSent": "We've sent a verification code to {{email}}",
+        "verificationCode": "VERIFICATION CODE",
+        "agreeWithTerms": "I agree with MoonPay's Terms of Use And Privacy Policy"
     },
     "home": {
         "balance": "BALANCE",
