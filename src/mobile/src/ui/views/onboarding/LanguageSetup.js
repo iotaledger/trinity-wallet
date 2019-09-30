@@ -87,7 +87,7 @@ class LanguageSetup extends Component {
         if (forceUpdate) {
             return;
         }
-        navigator.push('addPaymentMethod');
+        navigator.push('landing');
     }
 
     selectLanguage(language) {

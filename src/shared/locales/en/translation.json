@@ -245,6 +245,10 @@
         "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
     },
+    "moonpay": {
+        "buyIOTAInstantly": "Buy IOTA instantly",
+        "supportExplanation": "MoonPay supports purchase of IOTA with all major debit/credit cards and Apple Pay, securely sent to your Trinity wallet"
+    },
     "home": {
         "balance": "BALANCE",
         "send": "SEND",
