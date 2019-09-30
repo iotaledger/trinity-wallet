@@ -10,12 +10,14 @@ import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
+import DropdownComponent from 'ui/components/Dropdown';
 import InfoBox from 'ui/components/InfoBox';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
+import { isIPhoneX } from 'libs/device';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 
@@ -60,8 +62,8 @@ const styles = StyleSheet.create({
     },
 });
 
-/** MoonPay user basic info component */
-class UserBasicInfo extends React.Component {
+/** MoonPay user advanced info component */
+class UserAdvancedInfo extends React.Component {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -124,7 +126,7 @@ class UserBasicInfo extends React.Component {
                                     delay={200}
                                 >
                                     <CustomTextInput
-                                        label={t('moonpay:firstName')}
+                                        label={t('moonpay:address')}
                                         onValidTextChange={(seed) => this.setState({ seed })}
                                         theme={theme}
                                         autoCorrect={false}
@@ -141,17 +143,42 @@ class UserBasicInfo extends React.Component {
                                     animationOutType={['slideOutLeft', 'fadeOut']}
                                     delay={200}
                                 >
-                                    <CustomTextInput
-                                        label={t('moonpay:lastName')}
-                                        onValidTextChange={(seed) => this.setState({ seed })}
-                                        theme={theme}
-                                        autoCorrect={false}
-                                        enablesReturnKeyAutomatically
-                                        returnKeyType="done"
-                                        onSubmitEditing={() => this.onDonePress()}
-                                        value=""
-                                        testID="enterSeed-seedbox"
-                                    />
+                                    <View
+                                        style={{
+                                            flexDirection: 'row',
+                                        }}
+                                    >
+                                        <CustomTextInput
+                                            containerStyle={{
+                                                width: isIPhoneX ? width / 1.08 : width / 2.5,
+                                                marginRight: 13,
+                                            }}
+                                            label={t('moonpay:city')}
+                                            onValidTextChange={(seed) => this.setState({ seed })}
+                                            theme={theme}
+                                            autoCorrect={false}
+                                            enablesReturnKeyAutomatically
+                                            returnKeyType="done"
+                                            onSubmitEditing={() => this.onDonePress()}
+                                            value=""
+                                            testID="enterSeed-seedbox"
+                                        />
+                                        <CustomTextInput
+                                            containerStyle={{
+                                                width: isIPhoneX ? width / 1.08 : width / 2.5,
+                                                marginLeft: 13,
+                                            }}
+                                            label={t('moonpay:zipCode')}
+                                            onValidTextChange={(seed) => this.setState({ seed })}
+                                            theme={theme}
+                                            autoCorrect={false}
+                                            enablesReturnKeyAutomatically
+                                            returnKeyType="done"
+                                            onSubmitEditing={() => this.onDonePress()}
+                                            value=""
+                                            testID="enterSeed-seedbox"
+                                        />
+                                    </View>
                                 </AnimatedComponent>
                                 <View style={{ flex: 0.6 }} />
                                 <AnimatedComponent
@@ -159,16 +186,14 @@ class UserBasicInfo extends React.Component {
                                     animationOutType={['slideOutLeft', 'fadeOut']}
                                     delay={200}
                                 >
-                                    <CustomTextInput
-                                        label={t('moonpay:dateOfBirth')}
-                                        onValidTextChange={(seed) => this.setState({ seed })}
-                                        theme={theme}
-                                        autoCorrect={false}
-                                        enablesReturnKeyAutomatically
-                                        returnKeyType="done"
-                                        onSubmitEditing={() => this.onDonePress()}
-                                        value=""
-                                        testID="enterSeed-seedbox"
+                                    <DropdownComponent
+                                        onRef={(c) => {
+                                            this.dropdown = c;
+                                        }}
+                                        dropdownWidth={{ width: isIPhoneX ? width / 1.1 : width / 1.2 }}
+                                        value="United Kingdom"
+                                        options={['foo', 'baz']}
+                                        saveSelection={(country) => {}}
                                     />
                                 </AnimatedComponent>
                                 <View style={{ flex: 0.6 }} />
@@ -180,8 +205,8 @@ class UserBasicInfo extends React.Component {
                                     delay={0}
                                 >
                                     <DualFooterButtons
-                                        onLeftButtonPress={() => UserBasicInfo.redirectToScreen('addAmount')}
-                                        onRightButtonPress={() => UserBasicInfo.redirectToScreen('userAdvancedInfo')}
+                                        onLeftButtonPress={() => UserAdvancedInfo.redirectToScreen('addAmount')}
+                                        onRightButtonPress={() => UserAdvancedInfo.redirectToScreen('addAmount')}
                                         leftButtonText={t('global:goBack')}
                                         rightButtonText={t('global:continue')}
                                         leftButtonTestID="enterSeed-back"
@@ -213,6 +238,6 @@ export default WithUserActivity()(
         connect(
             mapStateToProps,
             mapDispatchToProps,
-        )(UserBasicInfo),
+        )(UserAdvancedInfo),
     ),
 );

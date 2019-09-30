@@ -266,7 +266,10 @@
         "cardBillingAddress": "We need a payment card billing address",
         "firstName": "FIRST NAME",
         "lastName": "LAST NAME",
-        "dateOfBirth": "DATE OF BIRTH"
+        "dateOfBirth": "DATE OF BIRTH",
+        "address": "ADDRESS",
+        "city": "CITY",
+        "zipCode": "ZIP CODE"
     },
     "home": {
         "balance": "BALANCE",
