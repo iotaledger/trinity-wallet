@@ -60,6 +60,7 @@
         "okay": "Okay",
         "skip": "Skip",
         "password": "Password",
+        "purchase": "Purchase",
         "unrecognisedPassword": "Unrecognised password",
         "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
         "unrecognisedAccount": "Unrecognised account",
@@ -247,7 +248,10 @@
     },
     "moonpay": {
         "buyIOTAInstantly": "Buy IOTA instantly",
-        "supportExplanation": "MoonPay supports purchase of IOTA with all major debit/credit cards and Apple Pay, securely sent to your Trinity wallet"
+        "supportExplanation": "MoonPay supports purchase of IOTA with all major debit/credit cards and Apple Pay, securely sent to your Trinity wallet",
+        "addAmount": "Choose the amount of MIOTA for purchase",
+        "addAmountExplanation": "Select the amount of IOTA you wish to purchase in your currency, or specify the amount of MIOTA",
+        "enterAmount": "ENTER AMOUNT"
     },
     "home": {
         "balance": "BALANCE",

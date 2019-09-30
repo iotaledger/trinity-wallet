@@ -32,6 +32,7 @@ import MigrationComponent from 'ui/components/Migration';
 
 // MoonPay routes
 import MoonPayLandingComponent from 'ui/views/wallet/exchanges/MoonPay/Landing';
+import MoonPayAddAmountComponent from 'ui/views/wallet/exchanges/MoonPay/AddAmount';
 
 import { isIPhoneX, isAndroid } from 'libs/device';
 
@@ -49,6 +50,7 @@ function applyHOCs(screen) {
 export default function registerScreens(store, Provider) {
     // MoonPay routes registration
     Navigation.registerComponentWithRedux('landing', () => applyHOCs(MoonPayLandingComponent), Provider, store);
+    Navigation.registerComponentWithRedux('addAmount', () => applyHOCs(MoonPayAddAmountComponent), Provider, store);
 
     Navigation.registerComponentWithRedux('migration', () => applyHOCs(MigrationComponent), Provider, store);
     Navigation.registerComponentWithRedux('home', () => applyHOCs(Home), Provider, store);

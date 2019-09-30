@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getAnimation } from 'shared-modules/animations';
+import navigator from 'libs/navigation';
+
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
 import { width, height } from 'libs/dimensions';
@@ -76,6 +78,15 @@ class Landing extends Component {
         theme: PropTypes.object.isRequired,
     };
 
+    /**
+     * Navigates to chosen screen
+     *
+     * @method redirectToScreen
+     */
+    static redirectToScreen(screen) {
+        navigator.push(screen);
+    }
+
     render() {
         const {
             t,
@@ -134,8 +145,8 @@ class Landing extends Component {
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
-                            onLeftButtonPress={() => this.redirectToScreen('enterSeed')}
-                            onRightButtonPress={() => this.redirectToScreen('newSeedSetup')}
+                            onLeftButtonPress={() => Landing.redirectToScreen('enterSeed')}
+                            onRightButtonPress={() => Landing.redirectToScreen('addAmount')}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:continue')}
                             leftButtonTestID="walletSetup-no"
