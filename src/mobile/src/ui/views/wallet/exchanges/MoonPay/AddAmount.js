@@ -209,7 +209,7 @@ class AddAmount extends Component {
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
                             onLeftButtonPress={() => AddAmount.redirectToScreen('landing')}
-                            onRightButtonPress={() => AddAmount.redirectToScreen('newSeedSetup')}
+                            onRightButtonPress={() => AddAmount.redirectToScreen('selectAccount')}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:purchase')}
                             leftButtonTestID="walletSetup-no"
