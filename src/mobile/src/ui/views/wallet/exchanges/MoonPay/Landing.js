@@ -5,9 +5,9 @@ import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import { fetchCurrencies, fetchIotaExchangeRates } from 'shared-modules/actions/exchanges/MoonPay';
 import { getAnimation } from 'shared-modules/animations';
 import navigator from 'libs/navigation';
-
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
 import { width, height } from 'libs/dimensions';
@@ -76,6 +76,12 @@ class Landing extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        themeName: PropTypes.string.isRequired,
+        /** @ignore */
+        fetchCurrencies: PropTypes.func.isRequired,
+        /** @ignore */
+        fetchIotaExchangeRates: PropTypes.func.isRequired,
     };
 
     /**
@@ -85,6 +91,11 @@ class Landing extends Component {
      */
     static redirectToScreen(screen) {
         navigator.push(screen);
+    }
+
+    componentDidMount() {
+        this.props.fetchCurrencies();
+        this.props.fetchIotaExchangeRates();
     }
 
     render() {
@@ -164,4 +175,14 @@ const mapStateToProps = (state) => ({
     themeName: state.settings.themeName,
 });
 
-export default withTranslation()(connect(mapStateToProps)(Landing));
+const mapDispatchToProps = {
+    fetchCurrencies,
+    fetchIotaExchangeRates,
+};
+
+export default withTranslation()(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Landing),
+);

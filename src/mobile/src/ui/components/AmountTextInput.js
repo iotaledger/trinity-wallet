@@ -131,6 +131,7 @@ class MultiTextInput extends Component {
 
     render() {
         const { theme, amount, denomination, onRef, label, containerStyle, onSubmitEditing, editable } = this.props;
+
         return (
             <CustomTextInput
                 keyboardType="numeric"
