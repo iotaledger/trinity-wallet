@@ -17,6 +17,10 @@ const initialState = {
      * MoonPay exchange rates for IOTA - { EUR, USD, GBP }
      */
     exchangeRates: {},
+    /**
+     * MoonPay currency quote
+     */
+    currencyQuote: {},
 };
 
 export default (state = initialState, action) => {
@@ -40,6 +44,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 exchangeRates: action.payload,
+            };
+        case MoonPayExchangeActionTypes.SET_CURRENCY_QUOTE:
+            return {
+                ...state,
+                currencyQuote: action.payload,
             };
         default:
             return state;

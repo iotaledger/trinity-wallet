@@ -59,6 +59,20 @@ export const setAmount = (payload) => ({
 });
 
 /**
+ * Dispatch to set currency quote
+ *
+ * @method setCurrencyQuote
+ *
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const setCurrencyQuote = (payload) => ({
+    type: MoonPayExchangeActionTypes.SET_CURRENCY_QUOTE,
+    payload,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -108,7 +122,7 @@ export const fetchIotaExchangeRates = () => (dispatch) => {
  */
 export const fetchQuote = (baseCurrencyAmount, baseCurrencyCode) => (dispatch) => {
     api.fetchQuote(IOTA_CURRENCY_CODE, baseCurrencyAmount, baseCurrencyCode)
-        .then((quote) => {})
+        .then((quote) => dispatch(setCurrencyQuote(quote)))
         .catch((error) => {
             if (__DEV__) {
                 /* eslint-disable no-console */

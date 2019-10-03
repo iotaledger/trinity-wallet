@@ -10,7 +10,7 @@ import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { getFiatCurrencies } from 'shared-modules/selectors/exchanges/MoonPay';
+import { getFiatCurrencies, getMoonPayFee, getTotalPurchaseAmount } from 'shared-modules/selectors/exchanges/MoonPay';
 import { fetchQuote, setAmount, setDenomination } from 'shared-modules/actions/exchanges/MoonPay';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -96,6 +96,10 @@ class AddAmount extends Component {
         /** @ignore */
         exchangeRates: PropTypes.object.isRequired,
         /** @ignore */
+        fee: PropTypes.number.isRequired,
+        /** @ignore */
+        totalAmount: PropTypes.number.isRequired,
+        /** @ignore */
         fetchQuote: PropTypes.func.isRequired,
         /** @ignore */
         setAmount: PropTypes.func.isRequired,
@@ -140,7 +144,7 @@ class AddAmount extends Component {
     }
 
     render() {
-        const { amount, t, theme, denomination } = this.props;
+        const { amount, fee, totalAmount, t, theme, denomination } = this.props;
         const textColor = { color: theme.body.color };
 
         return (
@@ -233,7 +237,7 @@ class AddAmount extends Component {
                         }}
                     >
                         <Text style={[styles.infoTextLight, textColor]}>MoonPay Fee</Text>
-                        <Text style={[styles.infoTextLight, textColor]}>$4.99</Text>
+                        <Text style={[styles.infoTextLight, textColor]}>$ {fee}</Text>
                     </View>
                     <View style={{ flex: 0.3 }} />
                     <View
@@ -244,7 +248,7 @@ class AddAmount extends Component {
                         }}
                     >
                         <Text style={[styles.infoTextRegular, textColor]}>Total</Text>
-                        <Text style={[styles.infoTextBold, textColor]}>$42.00</Text>
+                        <Text style={[styles.infoTextBold, textColor]}>$ {totalAmount}</Text>
                     </View>
                     <View style={{ flex: 0.3 }} />
                 </View>
@@ -272,6 +276,8 @@ const mapStateToProps = (state) => ({
     denomination: state.exchanges.moonpay.denomination,
     fiatCurrencies: getFiatCurrencies(state),
     exchangeRates: state.exchanges.moonpay.exchangeRates,
+    fee: getMoonPayFee(state),
+    totalAmount: getTotalPurchaseAmount(state),
 });
 
 const mapDispatchToProps = {

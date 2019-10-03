@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import filter from 'lodash/filter';
 import { createSelector } from 'reselect';
 
@@ -26,7 +27,42 @@ export const getFiatCurrencies = createSelector(
     (exchanges) => {
         const currencies = exchanges.moonpay.currencies;
 
-        console.log('Currencies', currencies);
         return filter(currencies, (currency) => currency.type === 'fiat');
+    },
+);
+
+/**
+ * Selects MoonPay fee
+ *
+ * @method getMoonPayFee
+ *
+ * @param {object} state
+ *
+ * @returns {array}
+ */
+export const getMoonPayFee = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const currencyQuote = exchanges.moonpay.currencyQuote;
+
+        return get(currencyQuote, 'feeAmount') || 0;
+    },
+);
+
+/**
+ * Selects total purchase amount
+ *
+ * @method getTotalPurchaseAmount
+ *
+ * @param {object} state
+ *
+ * @returns {array}
+ */
+export const getTotalPurchaseAmount = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const currencyQuote = exchanges.moonpay.currencyQuote;
+
+        return get(currencyQuote, 'totalAmount') || 0;
     },
 );
