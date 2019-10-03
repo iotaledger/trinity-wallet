@@ -159,9 +159,6 @@ class App extends React.Component {
             if (!this.props.onboardingComplete) {
                 this.props.setOnboardingComplete(true);
             }
-
-            // Temporarily added for testing purpose
-            this.props.history.push('/sweeps');
         }
 
         // Dispose alerts on route change

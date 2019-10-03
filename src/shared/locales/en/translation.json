@@ -449,6 +449,10 @@
         "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "sweeps": {
+        "recoverLockedFunds": "Recover locked funds",
+        "recover": "Recover",
+        "pressButtonBelow": "Press the button below to recover your locked funds.",
+        "lockedFundsDetected": "Trinity has detected locked funds in your account.",
         "lockedFundsRecovery": "Locked Funds Recovery",
         "aboutLockedFunds": "About Locked Funds",
         "lockedFundsRecoveryExplanation": "Lorem Ipsum",
