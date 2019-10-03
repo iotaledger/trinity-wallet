@@ -811,15 +811,12 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@iota/bundle-miner@file:../../../iota.js/packages/bundle-miner":
-  version "1.0.0-beta.19"
+"@iota/bundle-miner@https://github.com/chrisdukakis/iota.js#feat/bundle-miner":
+  version "1.0.0-alpha.1"
+  resolved "https://github.com/chrisdukakis/iota.js#37d93c14489bf095183ad0e863c9d67e7427191c"
   dependencies:
-    "@iota/bundle" "^1.0.0-beta.19"
-    "@iota/converter" "^1.0.0-beta.19"
-    "@iota/kerl" "^1.0.0-beta.19"
-    "@iota/signing" "^1.0.0-beta.19"
-    "@iota/transaction" "^1.0.0-beta.19"
-    bluebird "^3.5.5"
+    "@types/bluebird" "^3.5.25"
+    "@types/node" "^12.0.0"
 
 "@iota/bundle-validator@^1.0.0-beta.19":
   version "1.0.0-beta.19"
@@ -1049,6 +1046,11 @@
     "@types/events" "*"
     "@types/node" "*"
 
+"@types/bluebird@^3.5.25":
+  version "3.5.27"
+  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.27.tgz#61eb4d75dc6bfbce51cf49ee9bbebe941b2cb5d0"
+  integrity sha512-6BmYWSBea18+tSjjSC3QIyV93ZKAeNWGM7R6aYt1ryTZXrlHF+QLV0G2yV0viEGVyRkyQsWfMoJ0k/YghBX5sQ==
+
 "@types/bunyan@*":
   version "1.8.6"
   resolved "https://registry.yarnpkg.com/@types/bunyan/-/bunyan-1.8.6.tgz#6527641cca30bedec5feb9ab527b7803b8000582"
@@ -1075,6 +1077,11 @@
   version "12.6.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.2.tgz#a5ccec6abb6060d5f20d256fb03ed743e9774999"
   integrity sha512-gojym4tX0FWeV2gsW4Xmzo5wxGjXGm550oVUII7f7G5o4BV6c7DBdiG1RRQd+y1bvqRyYtPfMK85UM95vsapqQ==
+
+"@types/node@^12.0.0":
+  version "12.7.11"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.11.tgz#be879b52031cfb5d295b047f5462d8ef1a716446"
+  integrity sha512-Otxmr2rrZLKRYIybtdG/sgeO+tHY20GxeDjcGmUnmmlCWyEnv2a2x1ZXBo3BTec4OiTXMQCiazB8NMBf0iRlFw==
 
 "@types/node@^6.14.4":
   version "6.14.7"
