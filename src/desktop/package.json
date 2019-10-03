@@ -1,7 +1,7 @@
 {
   "name": "trinity-desktop",
   "productName": "Trinity",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
   "description": "Desktop wallet for IOTA",
@@ -71,7 +71,7 @@
   },
   "build": {
     "productName": "Trinity",
-    "artifactName": "${name}-${version}.${ext}",
+    "artifactName": "trinity-desktop-${version}.${ext}",
     "copyright": "IOTA Foundation",
     "directories": {
       "buildResources": "./assets",
@@ -184,7 +184,7 @@
     "react-redux": "5.1.1",
     "react-router-dom": "5.0.1",
     "react-transition-group": "4.2.1",
-    "realm": "2.29.0",
+    "realm": "2.29.2",
     "recharts": "1.6.2",
     "redux": "4.0.4"
   },

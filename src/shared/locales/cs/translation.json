@@ -116,7 +116,7 @@
         "checkForUpdates": "Kontrola aktualizací",
         "account": "Účet",
         "changeNode": "Změna Nodu",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "Přidat Node",
         "nodeMustUseHTTPS": "Neplatný Node (bez podpory protokolu HTTPS)",
         "nodeMustUseHTTPSExplanation": "Podporovány jsou pouze Nody podporující protokol HTTPS.",
         "nodeDuplicated": "Duplicitní Node",
@@ -151,7 +151,7 @@
         "broadcastError": "Nezdařilo se odeslat transakci",
         "addressesAlreadySpentFrom": "Jedna nebo více adres již byla použita.",
         "problemSendingYourTransaction": "Při odesílání transakce došlo k chybě.",
-        "problemPerformingProofOfWork": "Při provádění proof of work došlo k chybě.",
+        "problemPerformingProofOfWork": "Při provádění Proof of Work došlo k chybě.",
         "tryingAgainWithLocalPoW": "Opakování pomocí místního režimu Proof of Work.",
         "tryingAgainWithDifferentNode": "Opakování s jiným Nodem.",
         "errorFetchingAccountInformation": "Při načítání informací o účtu došlo k chybě.",
@@ -457,7 +457,7 @@
     },
     "welcome": {
         "thankYou": "Děkujeme, že jste si stáhli Trinity",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Děkujeme, že jste si stáhli Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Zapište si svůj Seed a kontrolní součet </0><1>a důkladně zkontrolujte</1><2> jejich správnost.</2>",
@@ -497,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatický výběr Nodu",
-        "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "addCustomNodes": "Přidat Node",
+        "autoNodeList": "Použít výchozí seznam Nodů",
+        "nodeAutoswitching": "Automatický výběr hlavního Nodu",
         "primaryNode": "Primární Node",
         "enableQuorum": "Povolit kvórum",
         "quorumSize": "Velikost kvóra",
@@ -510,9 +510,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Přidejte další vlastní Nody, nebo povolte vzdálený oficiální seznam Nodů.",
         "nodeSettingsUpdatedTitle": "Nastavení Nodu bylo aktualizováno",
         "nodeSettingsUpdatedExplanation": "Úspěšně jste aktualizovali nastavení Nodu.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "Vzdálený Proof of Work",
+        "autoSelectPowNode": "Automaticky vyber Node s Proof of work",
+        "nodeForPow": "Node s Proof of Work"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nelze přidat vlastní Node",
@@ -707,12 +707,12 @@
         "continueDepsiteRisk": "Přejete si pokračovat i přes toto riziko?"
     },
     "pow": {
-        "feeless": "Pro odeslání bezplatné transakce v IOTA je potřebné vykonat malý důkaz práce - proof of work.",
-        "localOrRemote": "Proof of work může být dokončen lokálně ve Vašem zařízení a nebo převeden do Nodu.",
+        "feeless": "Pro odeslání bezplatné transakce v IOTA je potřebné vykonat malý důkaz práce - Proof of Work.",
+        "localOrRemote": "Proof of Work může být dokončen lokálně ve Vašem zařízení a nebo převeden do Nodu.",
         "local": "Lokální",
         "remote": "Vzdálený",
-        "powUpdated": "Proof of work nastavení",
-        "powUpdatedExplanation": "Nastavení proof of work bylo aktualizováno."
+        "powUpdated": "Proof of Work nastavení",
+        "powUpdatedExplanation": "Nastavení Proof of Work bylo aktualizováno."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Nastavení automatické podpory",
@@ -726,7 +726,7 @@
         "preparingInputs": "Příprava vstupních dat",
         "preparingTransfers": "Příprava transakce",
         "gettingTransactionsToApprove": "Získávání transakcí ke schválení",
-        "proofOfWork": "Dokončení proof of work",
+        "proofOfWork": "Dokončení Proof of Work",
         "broadcasting": "Odesílání transakcí do sítě",
         "preparingData": "Příprava dat",
         "migratingSettings": "Migrace nastavení",
