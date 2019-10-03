@@ -1,5 +1,6 @@
 import { MoonPayExchangeActionTypes } from '../../../types';
 import api, { IOTA_CURRENCY_CODE } from '../../../exchanges/MoonPay';
+import { getCustomerEmail } from '../../../selectors/exchanges/MoonPay';
 import { __DEV__ } from '../../../config';
 
 /**
@@ -73,6 +74,34 @@ export const setCurrencyQuote = (payload) => ({
 });
 
 /**
+ * Dispatch to set account name
+ *
+ * @method setAccountName
+ *
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const setAccountName = (payload) => ({
+    type: MoonPayExchangeActionTypes.SET_ACCOUNT_NAME,
+    payload,
+});
+
+/**
+ * Dispatch to update customer info
+ *
+ * @method updateCustomerInfo
+ *
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const updateCustomerInfo = (payload) => ({
+    type: MoonPayExchangeActionTypes.UPDATE_CUSTOMER_INFO,
+    payload,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -123,6 +152,48 @@ export const fetchIotaExchangeRates = () => (dispatch) => {
 export const fetchQuote = (baseCurrencyAmount, baseCurrencyCode) => (dispatch) => {
     api.fetchQuote(IOTA_CURRENCY_CODE, baseCurrencyAmount, baseCurrencyCode)
         .then((quote) => dispatch(setCurrencyQuote(quote)))
+        .catch((error) => {
+            if (__DEV__) {
+                /* eslint-disable no-console */
+                console.log(error);
+                /* eslint-enable no-console */
+            }
+        });
+};
+
+/**
+ * Authenticates customer via email
+ *
+ * @method authenticateViaEmail
+ *
+ * @param {string} email
+ *
+ * @returns {function}
+ */
+export const authenticateViaEmail = (email) => (dispatch) => {
+    api.login(email)
+        .then(() => dispatch(updateCustomerInfo({ email })))
+        .catch((error) => {
+            if (__DEV__) {
+                /* eslint-disable no-console */
+                console.log(error);
+                /* eslint-enable no-console */
+            }
+        });
+};
+
+/**
+ * Verifies customer's email
+ *
+ * @method verifyEmail
+ *
+ * @param {string} securityCode
+ *
+ * @returns {function}
+ */
+export const verifyEmail = (securityCode) => (dispatch, getState) => {
+    api.login(getCustomerEmail(getState()), securityCode)
+        .then((customer) => dispatch(updateCustomerInfo(customer)))
         .catch((error) => {
             if (__DEV__) {
                 /* eslint-disable no-console */

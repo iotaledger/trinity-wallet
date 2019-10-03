@@ -1,3 +1,4 @@
+import merge from 'lodash/merge';
 import { MoonPayExchangeActionTypes } from '../../../types';
 
 const initialState = {
@@ -21,6 +22,14 @@ const initialState = {
      * MoonPay currency quote
      */
     currencyQuote: {},
+    /**
+     * Selected account for transfer
+     */
+    accountName: '',
+    /**
+     * Stores customer information e.g., email, DOB
+     */
+    customer: {},
 };
 
 export default (state = initialState, action) => {
@@ -49,6 +58,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 currencyQuote: action.payload,
+            };
+        case MoonPayExchangeActionTypes.SET_ACCOUNT_NAME:
+            return {
+                ...state,
+                accountName: action.payload,
+            };
+        case MoonPayExchangeActionTypes.UPDATE_CUSTOMER_INFO:
+            return {
+                ...state,
+                customer: merge({}, state.customer, action.payload),
             };
         default:
             return state;

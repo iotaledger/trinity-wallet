@@ -38,7 +38,7 @@ export const getFiatCurrencies = createSelector(
  *
  * @param {object} state
  *
- * @returns {array}
+ * @returns {number}
  */
 export const getMoonPayFee = createSelector(
     getExchangesFromState,
@@ -56,7 +56,7 @@ export const getMoonPayFee = createSelector(
  *
  * @param {object} state
  *
- * @returns {array}
+ * @returns {number}
  */
 export const getTotalPurchaseAmount = createSelector(
     getExchangesFromState,
@@ -64,5 +64,23 @@ export const getTotalPurchaseAmount = createSelector(
         const currencyQuote = exchanges.moonpay.currencyQuote;
 
         return get(currencyQuote, 'totalAmount') || 0;
+    },
+);
+
+/**
+ * Selects customer email from state
+ *
+ * @method getCustomerEmail
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getCustomerEmail = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
+
+        return get(customer, 'email') || '';
     },
 );
