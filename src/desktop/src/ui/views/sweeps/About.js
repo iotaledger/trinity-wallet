@@ -9,6 +9,16 @@ import Info from 'ui/components/Info';
 import css from './index.scss';
 
 class About extends React.PureComponent {
+    static propTypes = {
+        /** @ignore */
+        history: PropTypes.shape({
+            goBack: PropTypes.func.isRequired,
+            push: PropTypes.func.isRequired,
+        }).isRequired,
+        /** @ignore */
+        t: PropTypes.func.isRequired,
+    };
+
     render() {
         const { t } = this.props;
 

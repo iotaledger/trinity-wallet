@@ -1,10 +1,11 @@
 import map from 'lodash/map';
 import { addEntry, addSignatureOrMessage, finalizeBundle } from '@iota/bundle';
-import { createBundleMiner, minNormalizedBundle, bundleEssence } from '@iota/bundle-miner';
+import { createBundleMiner, minNormalizedBundle, bundleEssence } from '@iota/bundle-miner/packages/bundle-miner';
 import { tritsToTrytes, trytesToTrits, valueToTrits } from '@iota/converter';
 import * as Transaction from '@iota/transaction';
 import { normalizedBundle, signatureFragments } from '@iota/signing';
 import Errors from '../errors';
+/* eslint-disable */
 import { attachToTangleAsync, getTransactionsToApproveAsync, storeAndBroadcastAsync } from './extendedApi';
 import { isBundle } from './transfers';
 import { iota } from './index';

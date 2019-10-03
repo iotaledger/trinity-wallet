@@ -6,7 +6,6 @@ import { syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
 import { updateAccountInfoAfterSpending, syncAccountBeforeSweeping } from './accounts';
 import { sweep } from '../libs/iota/sweeps';
 import { getLatestAddress } from '../libs/iota/addresses';
-import Errors from '../libs/errors';
 import { Account } from '../storage';
 import { SweepsActionTypes } from '../types';
 

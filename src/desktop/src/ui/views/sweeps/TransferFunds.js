@@ -39,7 +39,7 @@ class TransferFunds extends React.PureComponent {
         /** @ignore */
         password: PropTypes.object,
         /** @ignore */
-        sweepsStatuses: PropTypes.object.isRequired,
+        sweepsStatuses: PropTypes.object.isRequired, // eslint-disable-line
         /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,

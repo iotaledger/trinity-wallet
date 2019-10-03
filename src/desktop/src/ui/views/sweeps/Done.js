@@ -16,8 +16,6 @@ import css from './index.scss';
 class Done extends React.PureComponent {
     static propTypes = {
         /** @ignore */
-        history: PropTypes.object.isRequired,
-        /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         themeName: PropTypes.string.isRequired,
