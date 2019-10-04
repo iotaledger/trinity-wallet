@@ -458,7 +458,8 @@
         "lockedFundsRecoveryExplanation": "Lorem Ipsum",
         "transferYourFunds": "Transfer your funds",
         "transferYourFundsExplanation": "Trinity will recover your funds by moving them to new addresses, but it may take some time. Please do not close Trinity or turn off your computer whilst in progress. Press continue below to commence the sweep.",
-        "fundsUnlockedExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm."
+        "fundsUnlockedExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "tryAgain": "Try again"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",

@@ -159,6 +159,8 @@ class App extends React.Component {
             if (!this.props.onboardingComplete) {
                 this.props.setOnboardingComplete(true);
             }
+
+            this.props.history.push('/wallet/');
         }
 
         // Dispose alerts on route change

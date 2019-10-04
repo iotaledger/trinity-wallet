@@ -4,6 +4,7 @@ import { selectedAccountStateFactory } from '../selectors/accounts';
 import { getRemotePoWFromState } from '../selectors/global';
 import { syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
 import { updateAccountInfoAfterSpending, syncAccountBeforeSweeping } from './accounts';
+import { startTrackingProgress, setNextStepAsActive, reset as resetProgress } from './progress';
 import { sweep } from '../libs/iota/sweeps';
 import { getLatestAddress } from '../libs/iota/addresses';
 import { Account } from '../storage';
@@ -15,11 +16,46 @@ import { SweepsActionTypes } from '../types';
  * @method setSweepsStatuses
  * @param {object} payload
  *
- * @returns {{type: {string}, payload: {number} }}
+ * @returns {{type: {string}, payload: {object} }}
  */
 export const setSweepsStatuses = (payload) => ({
     type: SweepsActionTypes.SET_SWEEPS_STATUSES,
     payload,
+});
+
+/**
+ * Dispatch to update sweeps statuses
+ *
+ * @method updateSweepsStatuses
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const updateSweepsStatuses = (payload) => ({
+    type: SweepsActionTypes.UPDATE_SWEEPS_STATUSES,
+    payload,
+});
+
+/**
+ * Dispatch when funds recovery is about to start
+ *
+ * @method recoverFundsRequest
+ *
+ * @returns {{type: {string} }}
+ */
+export const recoverFundsRequest = () => ({
+    type: SweepsActionTypes.RECOVER_FUNDS_REQUEST,
+});
+
+/**
+ * Dispatch when funds recovery is about to start
+ *
+ * @method recoverFundsComplete
+ *
+ * @returns {{type: {string} }}
+ */
+export const recoverFundsComplete = () => ({
+    type: SweepsActionTypes.RECOVER_FUNDS_COMPLETE,
 });
 
 /**
@@ -33,11 +69,18 @@ export const setSweepsStatuses = (payload) => ({
  * @returns {function} dispatch
  */
 export const recoverLockedFunds = (accountName, seedStore, inputs, withQuorum = true) => (dispatch, getState) => {
+    dispatch(recoverFundsRequest());
+
     return reduce(
         inputs,
         (promise, input) => {
             return promise.then(() => {
-                dispatch(setSweepsStatuses({ [input.address]: 0 }));
+                // Initialise progress bar
+                dispatch(startTrackingProgress(['Syncing account', 'Sweeping funds', 'complete']));
+
+                dispatch(updateSweepsStatuses({ [input.address]: 0 }));
+
+                dispatch(setNextStepAsActive());
 
                 // Sync account state in each iteration
                 return syncAccount(undefined, withQuorum)(
@@ -45,6 +88,8 @@ export const recoverLockedFunds = (accountName, seedStore, inputs, withQuorum = 
                     seedStore,
                 )
                     .then((newState) => {
+                        dispatch(setNextStepAsActive());
+
                         // Update storage (realm)
                         Account.update(accountName, newState);
                         // Update redux store
@@ -68,28 +113,35 @@ export const recoverLockedFunds = (accountName, seedStore, inputs, withQuorum = 
                             input.bundleHashes,
                         );
                     })
-                    .then(({ transactionObjects }) =>
-                        syncAccountAfterSpending()(
+                    .then(({ transactionObjects }) => {
+                        dispatch(setNextStepAsActive());
+
+                        return syncAccountAfterSpending()(
                             seedStore,
                             transactionObjects,
                             // Since we updated state before sweeping
                             // Get the latest state directly via store.getState()
                             selectedAccountStateFactory(accountName)(getState()),
-                        ),
-                    )
+                        );
+                    })
                     .then((newState) => {
+                        dispatch(resetProgress());
                         // Update storage (realm)
                         Account.update(accountName, newState);
                         // Update redux store
                         dispatch(updateAccountInfoAfterSpending(newState));
 
-                        dispatch(setSweepsStatuses({ [input.address]: 1 }));
+                        dispatch(updateSweepsStatuses({ [input.address]: 1 }));
                     })
                     .catch(() => {
-                        dispatch(setSweepsStatuses({ [input.address]: -1 }));
+                        dispatch(resetProgress());
+
+                        dispatch(updateSweepsStatuses({ [input.address]: -1 }));
                     });
             });
         },
         Promise.resolve(),
-    );
+    ).then(() => {
+        dispatch(recoverFundsComplete());
+    });
 };

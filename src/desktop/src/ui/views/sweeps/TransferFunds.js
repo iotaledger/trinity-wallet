@@ -1,7 +1,11 @@
 import assign from 'lodash/assign';
+import get from 'lodash/get';
 import filter from 'lodash/filter';
+import has from 'lodash/has';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+import some from 'lodash/some';
+import size from 'lodash/size';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -9,7 +13,10 @@ import { withTranslation } from 'react-i18next';
 
 import SeedStore from 'libs/SeedStore';
 
-import { recoverLockedFunds } from 'actions/sweeps';
+import { reset as resetProgress } from 'actions/progress';
+import { recoverLockedFunds, setSweepsStatuses } from 'actions/sweeps';
+
+import { formatUnit, formatIotas } from 'libs/iota/utils';
 
 import {
     getSelectedAccountName,
@@ -20,6 +27,7 @@ import {
 } from 'selectors/accounts';
 
 import Button from 'ui/components/Button';
+import Progress from 'ui/components/Progress';
 
 /**
  * Sweep functionality "Transfer Funds" screen"
@@ -39,17 +47,40 @@ class TransferFunds extends React.PureComponent {
         /** @ignore */
         password: PropTypes.object,
         /** @ignore */
-        sweepsStatuses: PropTypes.object.isRequired, // eslint-disable-line
+        sweepsStatuses: PropTypes.object.isRequired,
         /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
+            goBack: PropTypes.func.isRequired,
         }).isRequired,
+        /** @ignore */
+        isRecoveringFunds: PropTypes.bool.isRequired,
+        /** @ignore */
+        activeStepIndex: PropTypes.number.isRequired,
+        /** @ignore */
+        activeSteps: PropTypes.array.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         recoverLockedFunds: PropTypes.func.isRequired,
+        /** @ignore */
+        setSweepsStatuses: PropTypes.func.isRequired,
+        /** @ignore */
+        resetProgress: PropTypes.func.isRequired,
     };
 
+    componentWillUnmount() {
+        this.props.setSweepsStatuses({});
+        this.props.resetProgress();
+    }
+
+    /**
+     * Gets address data
+     *
+     * @method getAddressData
+     *
+     * @returns {array}
+     */
     getAddressData() {
         const { spentAddressDataWithBalance, broadcastedTransactions } = this.props;
 
@@ -69,8 +100,66 @@ class TransferFunds extends React.PureComponent {
     }
 
     /**
+     * Gets sweep status
+     *
+     * @method getSweepStatus
+     *
+     * @param {boolean} hasFailed
+     * @param {boolean} isInProgress
+     *
+     * @returns {string}
+     */
+    getSweepStatus(hasFailed, isInProgress) {
+        if (hasFailed) {
+            return 'Failed';
+        } else if (isInProgress) {
+            return 'In Progress';
+        }
+
+        return 'Completed';
+    }
+
+    /**
+     * Renders sweep progress
+     *
+     * @method renderProgress
+     *
+     * @param {object} addressObject
+     *
+     * @returns {object}
+     */
+    getProgress(hasFailed, hasCompleted) {
+        const { activeStepIndex, activeSteps } = this.props;
+
+        // Check if sweep was failed.
+        if (hasFailed || hasCompleted) {
+            return 100;
+        }
+
+        return Math.round((activeStepIndex / size(activeSteps)) * 100);
+    }
+
+    /**
+     * Determines if any sweep was unsuccessful
+     *
+     * @method hasFailedAnySweep
+     *
+     * @returns {boolean}
+     */
+    hasFailedAnySweep() {
+        const { sweepsStatuses } = this.props;
+
+        return !isEmpty(sweepsStatuses) && some(Object.values(sweepsStatuses), (status) => status === -1);
+    }
+
+    /**
+     * Initiates sweep funds
+     *
+     * @method sweep
      *
      * @param {array} addressData - Result of #getAddressData
+     *
+     * @returns {void}
      */
     async sweep(addressData) {
         const { accountName, accountMeta, password } = this.props;
@@ -80,9 +169,19 @@ class TransferFunds extends React.PureComponent {
     }
 
     render() {
-        const { latestAddress, t } = this.props;
+        const { isRecoveringFunds, latestAddress, sweepsStatuses, t } = this.props;
 
-        const addressData = this.getAddressData();
+        const mockAddressData = [
+            {
+                address: 'U'.repeat(81),
+                bundleHashes: [],
+                balance: 10000000,
+                checksum: 'XXXUUUVVV',
+                spent: { remote: true, local: true },
+            },
+        ];
+        const addressData = [...this.getAddressData(), ...mockAddressData];
+        const hasFailedAnySweep = this.hasFailedAnySweep();
 
         return (
             <form>
@@ -95,50 +194,92 @@ class TransferFunds extends React.PureComponent {
                             flexDirection: 'column',
                         }}
                     >
-                        {addressData.map((object, index) => (
-                            <div
-                                key={index}
-                                style={{
-                                    marginBottom: '20px',
-                                }}
-                            >
+                        {addressData.map((object, index) => {
+                            const status = get(sweepsStatuses, object.address);
+
+                            const hasFailed = status === -1;
+                            const isInProgress = status === 0;
+                            const hasCompleted = status === 1;
+
+                            return (
                                 <div
+                                    key={index}
                                     style={{
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
+                                        marginBottom: '30px',
                                     }}
                                 >
-                                    <strong>{`Sweep ${index + 1} of ${addressData.length}`}</strong>
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            marginBottom: '10px',
+                                        }}
+                                    >
+                                        <strong
+                                            style={{
+                                                marginRight: '40px',
+                                            }}
+                                        >{`Sweep ${index + 1} of ${addressData.length}`}</strong>
+                                        {has(sweepsStatuses, object.address) && (
+                                            <span
+                                                style={{
+                                                    maxWidth: '365px',
+                                                    minWidth: '340px',
+                                                    marginRight: '40px',
+                                                }}
+                                            >
+                                                <Progress progress={this.getProgress(hasFailed, hasCompleted)} />
+                                            </span>
+                                        )}
+                                        {has(sweepsStatuses, object.address) && (
+                                            <span>
+                                                <strong>{this.getSweepStatus(hasFailed, isInProgress)}</strong>
+                                            </span>
+                                        )}
+                                    </div>
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                        }}
+                                    >
+                                        <span>
+                                            <strong>
+                                                {formatIotas(object.balance)} {formatUnit(object.balance)}{' '}
+                                            </strong>{' '}
+                                            from the locked address{' '}
+                                            <strong title={object.inputAddress}>
+                                                {object.address.slice(0, 9)} ... {object.address.slice(-3)}
+                                            </strong>{' '}
+                                            to the safe address{' '}
+                                            <strong title={object.outputAddress}>
+                                                {latestAddress.slice(0, 9)} ... {latestAddress.slice(-3)}
+                                            </strong>
+                                        </span>
+                                    </div>
                                 </div>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                    }}
-                                >
-                                    <span>
-                                        <strong>2 Mi </strong> from the locked address{' '}
-                                        <strong title={object.inputAddress}>
-                                            {object.address.slice(0, 9)} ... {object.address.slice(-3)}
-                                        </strong>{' '}
-                                        to the safe address{' '}
-                                        <strong title={object.outputAddress}>
-                                            {latestAddress.slice(0, 9)} ... {latestAddress.slice(-3)}
-                                        </strong>
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </section>
                 <footer>
                     <Button
                         id="sweep-funds-complete"
-                        onClick={() => this.sweep(addressData)}
+                        onClick={() => (hasFailedAnySweep ? this.props.history.goBack() : this.sweep(addressData))}
+                        disabled={isRecoveringFunds}
                         className="square"
-                        variant="primary"
+                        variant={hasFailedAnySweep ? 'secondary' : 'primary'}
                     >
-                        {t('continue')}
+                        {t(hasFailedAnySweep ? 'cancel' : 'continue')}
                     </Button>
+                    {hasFailedAnySweep && (
+                        <Button
+                            id="try-again"
+                            onClick={() => this.sweep(addressData)}
+                            className="square"
+                            variant="primary"
+                        >
+                            {t('sweeps:tryAgain')}
+                        </Button>
+                    )}
                 </footer>
             </form>
         );
@@ -153,10 +294,15 @@ const mapStateToProps = (state) => ({
     latestAddress: selectLatestAddressFromAccountFactory()(state),
     sweepsStatuses: state.wallet.sweepsStatuses,
     password: state.wallet.password,
+    isRecoveringFunds: state.ui.isRecoveringFunds,
+    activeStepIndex: state.progress.activeStepIndex,
+    activeSteps: state.progress.activeSteps,
 });
 
 const mapDispatchToProps = {
     recoverLockedFunds,
+    setSweepsStatuses,
+    resetProgress,
 };
 
 export default connect(

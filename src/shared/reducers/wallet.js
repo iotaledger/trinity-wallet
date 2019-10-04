@@ -214,6 +214,11 @@ export default (state = initialState, action) => {
                 ...state,
                 displayTestWarning: true,
             };
+        case SweepsActionTypes.UPDATE_SWEEPS_STATUSES:
+            return {
+                ...state,
+                sweepsStatuses: { ...state.sweepsStatuses, ...action.payload },
+            };
         case SweepsActionTypes.SET_SWEEPS_STATUSES:
             return {
                 ...state,

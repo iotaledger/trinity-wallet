@@ -6,6 +6,7 @@ import {
     TransfersActionTypes,
     UiActionTypes,
     WalletActionTypes,
+    SweepsActionTypes,
 } from '../types';
 
 const initialState = {
@@ -152,6 +153,10 @@ const initialState = {
      * Determines whether to animate the chart line on mount
      */
     animateChartOnMount: true,
+    /**
+     * Determines manual sweeps is in progress
+     */
+    isRecoveringFunds: false,
 };
 
 export default (state = initialState, action) => {
@@ -461,6 +466,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 animateChartOnMount: action.payload,
+            };
+        case SweepsActionTypes.RECOVER_FUNDS_REQUEST:
+            return {
+                ...state,
+                isRecoveringFunds: true,
+            };
+        case SweepsActionTypes.RECOVER_FUNDS_COMPLETE:
+            return {
+                ...state,
+                isRecoveringFunds: false,
             };
         default:
             return state;

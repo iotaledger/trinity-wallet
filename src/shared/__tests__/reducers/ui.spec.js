@@ -40,6 +40,7 @@ describe('Reducer: ui', () => {
                 hadErrorGeneratingNewAddress: false,
                 isKeyboardActive: false,
                 animateChartOnMount: true,
+                isRecoveringFunds: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

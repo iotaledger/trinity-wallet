@@ -254,12 +254,7 @@ class Tools extends PureComponent {
                                     {t('sweeps:lockedFundsDetected')} <br />
                                     {t('sweeps:pressButtonBelow')}
                                 </p>
-                                <Button
-                                    onClick={() => this.props.history.push('/sweeps')}
-                                    className="small"
-                                    loading={ui.isSyncing}
-                                    disabled={ui.isTransitioning || ui.isAttachingToTangle}
-                                >
+                                <Button onClick={() => this.props.history.push('/sweeps')} className="small">
                                     {t('sweeps:recover')}
                                 </Button>
                             </div>
