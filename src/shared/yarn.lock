@@ -3399,10 +3399,10 @@ node-modules-regexp@^1.0.0:
   resolved "https://registry.yarnpkg.com/node-modules-regexp/-/node-modules-regexp-1.0.0.tgz#8d9dbe28964a4ac5712e9131642107c71e90ec40"
   integrity sha1-jZ2+KJZKSsVxLpExZCEHxx6Q7EA=
 
-node-pre-gyp@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.11.0.tgz#db1f33215272f692cd38f03238e3e9b47c5dd054"
-  integrity sha512-TwWAOZb0j7e9eGaf9esRx3ZcLaE5tQ2lvYy1pb5IAaG1a2e2Kv5Lms1Y4hpj+ciXJRofIxxlt5haeQ/2ANeE0Q==
+node-pre-gyp@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.13.0.tgz#df9ab7b68dd6498137717838e4f92a33fc9daa42"
+  integrity sha512-Md1D3xnEne8b/HGVQkZZwV27WUi1ZRuZBij24TNaZwUPU3ZAFtvT6xxJGaUVillfmMKnn5oD1HoGsp2Ftik7SQ==
   dependencies:
     detect-libc "^1.0.2"
     mkdirp "^0.5.1"
@@ -4065,10 +4065,10 @@ readable-stream@^2.0.6, readable-stream@^2.2.2, readable-stream@^2.3.0, readable
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
 
-realm@2.29.0:
-  version "2.29.0"
-  resolved "https://registry.yarnpkg.com/realm/-/realm-2.29.0.tgz#bc734be98be46faa6388067f09f0ed1d8f9d8579"
-  integrity sha512-xjv3UJlnxmoMcWDbkikPfGPbUyScO1o9ho0GjqiLoLlRbgnAQBHexxiRbA5XAjo7dfT86uYbU9/oBEpkwPQO6w==
+realm@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/realm/-/realm-3.2.0.tgz#32aa87c98d9db5f0c289f4d235bd35813620a903"
+  integrity sha512-bAS16v0jVmmH2/o4kEdBETf+ywhIy9Bq4rXKBpGZ9egSBdlYBIOfO/dhDqeMaR+toEGrfMgvobDSiQYUgGiBBw==
   dependencies:
     command-line-args "^4.0.6"
     decompress "^4.2.0"
@@ -4079,7 +4079,7 @@ realm@2.29.0:
     nan "^2.12.1"
     node-fetch "^1.7.3"
     node-machine-id "^1.1.10"
-    node-pre-gyp "^0.11.0"
+    node-pre-gyp "^0.13.0"
     progress "^2.0.3"
     prop-types "^15.6.2"
     request "^2.88.0"
