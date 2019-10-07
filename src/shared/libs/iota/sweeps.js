@@ -44,6 +44,7 @@ export const createUnsignedBundle = (outputAddress, inputAddress, value, securit
     return bundle;
 };
 
+
 /**
  * Sweeps funds
  *
@@ -65,15 +66,30 @@ export const sweep = (settings, withQuorum) => (seedStore, input, outputAddress,
 
     const normalizedBundles = map(map(knownBundleHashes, trytesToTrits), normalizedBundle);
 
-    const result = createBundleMiner({
-        signedNormalizedBundle: minNormalizedBundle(normalizedBundles, numberOfFragments),
-        essence: bundleEssence(unsignedBundle),
-        numberOfFragments,
-        offset: 0,
-        count: 1000,
-    }).start();
+    let optimalOutcome = {
+        tritSecurityLevel: 0,
+    };
 
-    unsignedBundle.set(valueToTrits(result.index), Transaction.OBSOLETE_TAG_OFFSET);
+    let offset = 0;
+    const count = 10 ** 3;
+    
+    while (offset < 10 ** 7) {
+        const outcome = createBundleMiner({
+            signedNormalizedBundle: minNormalizedBundle(normalizedBundles, numberOfFragments),
+            essence: bundleEssence(unsignedBundle),
+            numberOfFragments,
+            offset,
+            count,
+        }).start();
+    
+        if (outcome.tritSecurityLevel > optimalOutcome.tritSecurityLevel) {
+            optimalOutcome = outcome;
+        }
+    
+        offset += count;
+    }
+    
+    unsignedBundle.set(valueToTrits(optimalOutcome.index), Transaction.OBSOLETE_TAG_OFFSET);
 
     const bundle = finalizeBundle(unsignedBundle);
 
@@ -83,7 +99,7 @@ export const sweep = (settings, withQuorum) => (seedStore, input, outputAddress,
     };
     return seedStore
         .getSeed(true)
-        .then((seed) => signatureFragments(seed, input.index, numberOfFragments, result.bundle))
+        .then((seed) => signatureFragments(seed, input.index, numberOfFragments, optimalOutcome.bundle))
         .then((_signatureFragments) => {
             bundle.set(addSignatureOrMessage(bundle, _signatureFragments, 1));
 
