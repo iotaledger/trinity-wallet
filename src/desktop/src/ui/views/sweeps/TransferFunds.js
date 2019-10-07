@@ -136,7 +136,7 @@ class TransferFunds extends React.PureComponent {
             return 100;
         }
 
-        return Math.round((activeStepIndex / size(activeSteps)) * 100);
+        return Math.round(((activeStepIndex + 1) / size(activeSteps)) * 100);
     }
 
     /**

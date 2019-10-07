@@ -756,7 +756,10 @@
         "migratingAccounts": "Migrating accounts",
         "cleaningUpOldData": "Cleaning up old data",
         "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Transfer complete",
+        "sweepingFunds": "Sweeping funds",
+        "syncingAccountAfterSpending": "Syncing account after spending",
+        "fundsSweptSuccessfully": "Funds swept successfully"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",

@@ -7,6 +7,7 @@ import { updateAccountInfoAfterSpending, syncAccountBeforeSweeping } from './acc
 import { startTrackingProgress, setNextStepAsActive, reset as resetProgress } from './progress';
 import { sweep } from '../libs/iota/sweeps';
 import { getLatestAddress } from '../libs/iota/addresses';
+import i18next from '../libs/i18next';
 import { Account } from '../storage';
 import { SweepsActionTypes } from '../types';
 
@@ -76,7 +77,14 @@ export const recoverLockedFunds = (accountName, seedStore, inputs, withQuorum = 
         (promise, input) => {
             return promise.then(() => {
                 // Initialise progress bar
-                dispatch(startTrackingProgress(['Syncing account', 'Sweeping funds', 'complete']));
+                dispatch(
+                    startTrackingProgress([
+                        i18next.t('progressStpes:syncingAccount'),
+                        i18next.t('progressStpes:sweepingFunds'),
+                        i18next.t('progressStpes:syncingAccountAfterSpending'),
+                        i18next.t('progressStpes:fundsSweptSuccessfully'),
+                    ]),
+                );
 
                 dispatch(updateSweepsStatuses({ [input.address]: 0 }));
 
@@ -97,21 +105,25 @@ export const recoverLockedFunds = (accountName, seedStore, inputs, withQuorum = 
 
                         const receiveAddress = getLatestAddress(newState.addressData);
 
-                        return sweep(undefined, withQuorum)(
-                            // See: extendedApi#attachToTangle
-                            getRemotePoWFromState(getState())
-                                ? extend(
-                                      {
-                                          __proto__: seedStore.__proto__,
-                                      },
-                                      seedStore,
-                                      { offloadPow: true },
-                                  )
-                                : seedStore,
-                            input,
-                            receiveAddress,
-                            input.bundleHashes,
-                        );
+                        return new Promise((resolve) => {
+                            setTimeout(() => {
+                                sweep(undefined, withQuorum)(
+                                    // See: extendedApi#attachToTangle
+                                    getRemotePoWFromState(getState())
+                                        ? extend(
+                                              {
+                                                  __proto__: seedStore.__proto__,
+                                              },
+                                              seedStore,
+                                              { offloadPow: true },
+                                          )
+                                        : seedStore,
+                                    input,
+                                    receiveAddress,
+                                    input.bundleHashes,
+                                ).then(resolve);
+                            }, 2000);
+                        });
                     })
                     .then(({ transactionObjects }) => {
                         dispatch(setNextStepAsActive());
@@ -125,13 +137,14 @@ export const recoverLockedFunds = (accountName, seedStore, inputs, withQuorum = 
                         );
                     })
                     .then((newState) => {
-                        dispatch(resetProgress());
                         // Update storage (realm)
                         Account.update(accountName, newState);
                         // Update redux store
                         dispatch(updateAccountInfoAfterSpending(newState));
 
                         dispatch(updateSweepsStatuses({ [input.address]: 1 }));
+
+                        dispatch(resetProgress());
                     })
                     .catch(() => {
                         dispatch(resetProgress());
