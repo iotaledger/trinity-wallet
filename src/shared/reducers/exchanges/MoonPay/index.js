@@ -38,6 +38,14 @@ const initialState = {
      * Determines if there was an error during email authentication request
      */
     hasErrorAuthenticatingEmail: false,
+    /**
+     * Determines if a network call is in progress for email verification
+     */
+    isVerifyingEmail: false,
+    /**
+     * Determines if there was an error during email verification request
+     */
+    hasErrorVerifyingEmail: false,
 };
 
 export default (state = initialState, action) => {
@@ -93,6 +101,23 @@ export default (state = initialState, action) => {
                 ...state,
                 isAuthenticatingEmail: false,
                 hasErrorAuthenticatingEmail: true,
+            };
+        case MoonPayExchangeActionTypes.VERIFY_EMAIL_REQUEST:
+            return {
+                ...state,
+                isVerifyingEmail: true,
+                hasErrorVerifyingEmail: false,
+            };
+        case MoonPayExchangeActionTypes.VERIFY_EMAIL_SUCCESS:
+            return {
+                ...state,
+                isVerifyingEmail: false,
+            };
+        case MoonPayExchangeActionTypes.VERIFY_EMAIL_ERROR:
+            return {
+                ...state,
+                isVerifyingEmail: false,
+                hasErrorVerifyingEmail: true,
             };
         default:
             return state;

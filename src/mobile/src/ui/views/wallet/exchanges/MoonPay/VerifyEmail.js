@@ -2,9 +2,8 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 import { Image, StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import navigator from 'libs/navigation';
-import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
-import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { verifyEmail } from 'shared-modules/actions/exchanges/MoonPay';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -18,8 +17,6 @@ import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import whiteCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-white.png';
 import whiteCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-white.png';
-import blackCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-black.png';
-import blackCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-black.png';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 
@@ -86,17 +83,15 @@ class VerifyEmail extends React.Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Determines if the application is minimised */
-        minimised: PropTypes.bool.isRequired,
+        /** @ignore */
+        isVerifyingEmail: PropTypes.bool.isRequired,
+        /** @ignore */
+        hasErrorVerifyingEmail: PropTypes.bool.isRequired,
+        /** @ignore */
+        generateAlert: PropTypes.func.isRequired,
+        /** @ignore */
+        verifyEmail: PropTypes.func.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            checkboxImage: whiteCheckboxUncheckedImagePath,
-        };
-    }
 
     /**
      * Navigates to chosen screen
@@ -107,90 +102,131 @@ class VerifyEmail extends React.Component {
         navigator.push(screen);
     }
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            securityCode: '',
+            checkboxImage: whiteCheckboxUncheckedImagePath,
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.isVerifyingEmail && !nextProps.isVerifyingEmail && !nextProps.hasErrorVerifyingEmail) {
+            VerifyEmail.redirectToScreen('userBasicInfo');
+        }
+    }
+
+    /**
+     * Handles checkbox press
+     *
+     * @method onCheckboxPress
+     *
+     * @returns {void}
+     */
+    onCheckboxPress() {
+        this.setState((prevState) => ({
+            checkboxImage:
+                prevState.checkboxImage === whiteCheckboxCheckedImagePath
+                    ? whiteCheckboxUncheckedImagePath
+                    : whiteCheckboxCheckedImagePath,
+        }));
+    }
+
+    /**
+     * Verifies user email
+     *
+     * @method verify
+     * 
+     * @returns {function}
+     */
+    verify() {
+        if (!this.state.securityCode) {
+            return this.props.generateAlert('error', 'Invalid security code', 'Please enter a valid security code');
+        }
+
+        if (this.state.checkboxImage === whiteCheckboxUncheckedImagePath) {
+            return this.props.generateAlert('error', 'Not accepted Terms of Use', 'Please accept MoonPay Terms of Use and Privacy Policy');
+        }
+
+        return this.props.verifyEmail(this.state.securityCode);
+    }
+
     render() {
-        const { t, theme, minimised } = this.props;
+        const { t, theme, isVerifyingEmail } = this.props;
         const textColor = { color: theme.body.color };
 
         return (
             <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
                 <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
-                    {!minimised && (
-                        <View>
-                            <View style={styles.topContainer}>
-                                <AnimatedComponent
-                                    animationInType={['slideInRight', 'fadeIn']}
-                                    animationOutType={['slideOutLeft', 'fadeOut']}
-                                    delay={400}
-                                >
-                                    <Header textColor={theme.body.color} />
-                                </AnimatedComponent>
-                            </View>
-                            <View style={styles.midContainer}>
-                                <AnimatedComponent
-                                    animationInType={['slideInRight', 'fadeIn']}
-                                    animationOutType={['slideOutLeft', 'fadeOut']}
-                                    delay={300}
-                                >
-                                    <InfoBox>
-                                        <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                            {t('moonpay:checkInbox')}
-                                        </Text>
-                                        <Text
-                                            style={[
-                                                styles.infoTextRegular,
-                                                { paddingTop: height / 60, color: theme.body.color },
-                                            ]}
-                                        >
-                                            {t('moonpay:verificationCodeSent', { email: 'john.doe@foo.com' })}
-                                        </Text>
-                                    </InfoBox>
-                                </AnimatedComponent>
-                                <View style={{ flex: 0.3 }} />
-                                <AnimatedComponent
-                                    animationInType={['slideInRight', 'fadeIn']}
-                                    animationOutType={['slideOutLeft', 'fadeOut']}
-                                    delay={200}
-                                >
-                                    <CustomTextInput
-                                        label={t('moonpay:verificationCode')}
-                                        onValidTextChange={(seed) => this.setState({ seed })}
-                                        theme={theme}
-                                        autoCorrect={false}
-                                        enablesReturnKeyAutomatically
-                                        returnKeyType="done"
-                                        onSubmitEditing={() => this.onDonePress()}
-                                        value=""
-                                        testID="enterSeed-seedbox"
-                                    />
-                                </AnimatedComponent>
-                                <View style={{ flex: 0.08 }} />
-                                <TouchableOpacity
-                                    style={styles.checkboxContainer}
-                                    onPress={(event) => this.onCheckboxPress()}
-                                >
-                                    <Image source={this.state.checkboxImage} style={styles.checkbox} />
-                                    <Text style={[styles.checkboxText, textColor]}>{t('moonpay:agreeWithTerms')}</Text>
-                                </TouchableOpacity>
-                                <View style={{ flex: 0.4 }} />
-                            </View>
-                            <View style={styles.bottomContainer}>
-                                <AnimatedComponent
-                                    animationInType={['fadeIn']}
-                                    animationOutType={['fadeOut']}
-                                    delay={0}
-                                >
-                                    <DualFooterButtons
-                                        onLeftButtonPress={() => VerifyEmail.redirectToScreen('addAmount')}
-                                        onRightButtonPress={() => VerifyEmail.redirectToScreen('userBasicInfo')}
-                                        leftButtonText={t('global:goBack')}
-                                        rightButtonText={t('global:continue')}
-                                        leftButtonTestID="enterSeed-back"
-                                        rightButtonTestID="enterSeed-next"
-                                    />
-                                </AnimatedComponent>
-                            </View>
+                    <View>
+                        <View style={styles.topContainer}>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={400}
+                            >
+                                <Header textColor={theme.body.color} />
+                            </AnimatedComponent>
                         </View>
-                    )}
+                        <View style={styles.midContainer}>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={300}
+                            >
+                                <InfoBox>
+                                    <Text style={[styles.infoText, { color: theme.body.color }]}>
+                                        {t('moonpay:checkInbox')}
+                                    </Text>
+                                    <Text
+                                        style={[
+                                            styles.infoTextRegular,
+                                            { paddingTop: height / 60, color: theme.body.color },
+                                        ]}
+                                    >
+                                        {t('moonpay:verificationCodeSent', { email: 'john.doe@foo.com' })}
+                                    </Text>
+                                </InfoBox>
+                            </AnimatedComponent>
+                            <View style={{ flex: 0.3 }} />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={200}
+                            >
+                                <CustomTextInput
+                                    label={t('moonpay:verificationCode')}
+                                    onValidTextChange={(securityCode) => this.setState({ securityCode })}
+                                    theme={theme}
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically
+                                    returnKeyType="done"
+                                    value={this.state.securityCode}
+                                    testID="enterSeed-seedbox"
+                                />
+                            </AnimatedComponent>
+                            <View style={{ flex: 0.08 }} />
+                            <TouchableOpacity style={styles.checkboxContainer} onPress={() => this.onCheckboxPress()}>
+                                <Image source={this.state.checkboxImage} style={styles.checkbox} />
+                                <Text style={[styles.checkboxText, textColor]}>{t('moonpay:agreeWithTerms')}</Text>
+                            </TouchableOpacity>
+                            <View style={{ flex: 0.4 }} />
+                        </View>
+                        <View style={styles.bottomContainer}>
+                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                                <DualFooterButtons
+                                    onLeftButtonPress={() => VerifyEmail.redirectToScreen('addAmount')}
+                                    onRightButtonPress={() => this.verify()}
+                                    isRightButtonLoading={isVerifyingEmail}
+                                    leftButtonText={t('global:goBack')}
+                                    rightButtonText={t('global:continue')}
+                                    leftButtonTestID="enterSeed-back"
+                                    rightButtonTestID="enterSeed-next"
+                                />
+                            </AnimatedComponent>
+                        </View>
+                    </View>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -199,13 +235,13 @@ class VerifyEmail extends React.Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
+    isVerifyingEmail: state.exchanges.moonpay.isVerifyingEmail,
+    hasErrorVerifyingEmail: state.exchanges.moonpay.hasErrorVerifyingEmail,
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    toggleModalActivity,
-    setAccountInfoDuringSetup,
-    setDoNotMinimise,
+    verifyEmail,
 };
 
 export default WithUserActivity()(

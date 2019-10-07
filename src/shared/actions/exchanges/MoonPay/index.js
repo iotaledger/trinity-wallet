@@ -136,6 +136,39 @@ export const authenticateEmailError = () => ({
 });
 
 /**
+ * Dispatch when request for email verification is about to be made
+ *
+ * @method verifyEmailRequest
+ *
+ * @returns {{type: {string} }}
+ */
+export const verifyEmailRequest = () => ({
+    type: MoonPayExchangeActionTypes.VERIFY_EMAIL_REQUEST,
+});
+
+/**
+ * Dispatch when request for email verification is successfully made
+ *
+ * @method verifyEmailSuccess
+ *
+ * @returns {{type: {string} }}
+ */
+export const verifyEmailSuccess = () => ({
+    type: MoonPayExchangeActionTypes.VERIFY_EMAIL_SUCCESS,
+});
+
+/**
+ * Dispatch when request for email verification is not successful
+ *
+ * @method verifyEmailError
+ *
+ * @returns {{type: {string} }}
+ */
+export const verifyEmailError = () => ({
+    type: MoonPayExchangeActionTypes.VERIFY_EMAIL_ERROR,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -235,13 +268,22 @@ export const authenticateViaEmail = (email) => (dispatch) => {
  * @returns {function}
  */
 export const verifyEmail = (securityCode) => (dispatch, getState) => {
+    dispatch(verifyEmailRequest());
+
     api.login(getCustomerEmail(getState()), securityCode)
-        .then((customer) => dispatch(updateCustomerInfo(customer)))
-        .catch((error) => {
-            if (__DEV__) {
-                /* eslint-disable no-console */
-                console.log(error);
-                /* eslint-enable no-console */
-            }
+        .then((customer) => {
+            dispatch(updateCustomerInfo(customer));
+            dispatch(verifyEmailSuccess());
+        })
+        .catch(() => {
+            dispatch(
+                generateAlert(
+                    'error',
+                    'Error verifying email',
+                    'The security code you provided is incorrect. Please try again.',
+                ),
+            );
+
+            dispatch(verifyEmailError());
         });
 };
