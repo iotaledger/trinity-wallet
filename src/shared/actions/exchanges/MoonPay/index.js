@@ -1,4 +1,5 @@
 import { MoonPayExchangeActionTypes } from '../../../types';
+import { generateAlert } from '../../alerts';
 import api, { IOTA_CURRENCY_CODE } from '../../../exchanges/MoonPay';
 import { getCustomerEmail } from '../../../selectors/exchanges/MoonPay';
 import { __DEV__ } from '../../../config';
@@ -102,6 +103,39 @@ export const updateCustomerInfo = (payload) => ({
 });
 
 /**
+ * Dispatch when request for email authentication is about to be made
+ *
+ * @method fullAccountInfoFetchRequest
+ *
+ * @returns {{type: {string} }}
+ */
+export const authenticateEmailRequest = () => ({
+    type: MoonPayExchangeActionTypes.AUTHENTICATE_EMAIL_REQUEST,
+});
+
+/**
+ * Dispatch when request for email authentication is successfully made
+ *
+ * @method authenticateEmailSuccess
+ *
+ * @returns {{type: {string} }}
+ */
+export const authenticateEmailSuccess = () => ({
+    type: MoonPayExchangeActionTypes.AUTHENTICATE_EMAIL_SUCCESS,
+});
+
+/**
+ * Dispatch when request for email authentication is not successful
+ *
+ * @method authenticateEmailError
+ *
+ * @returns {{type: {string} }}
+ */
+export const authenticateEmailError = () => ({
+    type: MoonPayExchangeActionTypes.AUTHENTICATE_EMAIL_ERROR,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -171,14 +205,23 @@ export const fetchQuote = (baseCurrencyAmount, baseCurrencyCode) => (dispatch) =
  * @returns {function}
  */
 export const authenticateViaEmail = (email) => (dispatch) => {
+    dispatch(authenticateEmailRequest());
+
     api.login(email)
-        .then(() => dispatch(updateCustomerInfo({ email })))
-        .catch((error) => {
-            if (__DEV__) {
-                /* eslint-disable no-console */
-                console.log(error);
-                /* eslint-enable no-console */
-            }
+        .then(() => {
+            dispatch(updateCustomerInfo({ email }));
+            dispatch(authenticateEmailSuccess());
+        })
+        .catch(() => {
+            dispatch(
+                generateAlert(
+                    'error',
+                    'Error authenticating email',
+                    'There was an error authenticating your email address. Please try again.',
+                ),
+            );
+
+            dispatch(authenticateEmailError());
         });
 };
 

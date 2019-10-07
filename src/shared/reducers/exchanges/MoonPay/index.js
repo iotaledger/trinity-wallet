@@ -30,6 +30,14 @@ const initialState = {
      * Stores customer information e.g., email, DOB
      */
     customer: {},
+    /**
+     * Determines if a network call is in progress for email authentication
+     */
+    isAuthenticatingEmail: false,
+    /**
+     * Determines if there was an error during email authentication request
+     */
+    hasErrorAuthenticatingEmail: false,
 };
 
 export default (state = initialState, action) => {
@@ -68,6 +76,23 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 customer: merge({}, state.customer, action.payload),
+            };
+        case MoonPayExchangeActionTypes.AUTHENTICATE_EMAIL_REQUEST:
+            return {
+                ...state,
+                isAuthenticatingEmail: true,
+                hasErrorAuthenticatingEmail: false,
+            };
+        case MoonPayExchangeActionTypes.AUTHENTICATE_EMAIL_SUCCESS:
+            return {
+                ...state,
+                isAuthenticatingEmail: false,
+            };
+        case MoonPayExchangeActionTypes.AUTHENTICATE_EMAIL_ERROR:
+            return {
+                ...state,
+                isAuthenticatingEmail: false,
+                hasErrorAuthenticatingEmail: true,
             };
         default:
             return state;

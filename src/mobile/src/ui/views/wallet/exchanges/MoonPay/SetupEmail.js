@@ -2,12 +2,10 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import navigator from 'libs/navigation';
-import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
-import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
-import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getThemeFromState } from 'shared-modules/selectors/global';
+import { authenticateViaEmail } from 'shared-modules/actions/exchanges/MoonPay';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
@@ -67,8 +65,12 @@ class SetupEmail extends React.Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Determines if the application is minimised */
-        minimised: PropTypes.bool.isRequired,
+        /** @ignore */
+        isAuthenticatingEmail: PropTypes.bool.isRequired,
+        /** @ignore */
+        hasErrorAuthenticatingEmail: PropTypes.bool.isRequired,
+        /** @ignore */
+        authenticateViaEmail: PropTypes.func.isRequired,
     };
 
     /**
@@ -80,81 +82,94 @@ class SetupEmail extends React.Component {
         navigator.push(screen);
     }
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: '',
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (
+            this.props.isAuthenticatingEmail &&
+            !nextProps.isAuthenticatingEmail &&
+            !nextProps.hasErrorAuthenticatingEmail
+        ) {
+            SetupEmail.redirectToScreen('verifyEmail');
+        }
+    }
+
     render() {
-        const { t, theme, minimised } = this.props;
+        const { t, theme, isAuthenticatingEmail } = this.props;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
                 <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
-                    {!minimised && (
-                        <View>
-                            <View style={styles.topContainer}>
-                                <AnimatedComponent
-                                    animationInType={['slideInRight', 'fadeIn']}
-                                    animationOutType={['slideOutLeft', 'fadeOut']}
-                                    delay={400}
-                                >
-                                    <Header textColor={theme.body.color} />
-                                </AnimatedComponent>
-                            </View>
-                            <View style={styles.midContainer}>
-                                <AnimatedComponent
-                                    animationInType={['slideInRight', 'fadeIn']}
-                                    animationOutType={['slideOutLeft', 'fadeOut']}
-                                    delay={300}
-                                >
-                                    <InfoBox>
-                                        <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                            {t('moonpay:setupEmail')}
-                                        </Text>
-                                        <Text
-                                            style={[
-                                                styles.infoTextRegular,
-                                                { paddingTop: height / 60, color: theme.body.color },
-                                            ]}
-                                        >
-                                            {t('moonpay:setupEmailExplanation')}
-                                        </Text>
-                                    </InfoBox>
-                                </AnimatedComponent>
-                                <View style={{ flex: 0.3 }} />
-                                <AnimatedComponent
-                                    animationInType={['slideInRight', 'fadeIn']}
-                                    animationOutType={['slideOutLeft', 'fadeOut']}
-                                    delay={200}
-                                >
-                                    <CustomTextInput
-                                        label={t('moonpay:yourEmail')}
-                                        onValidTextChange={(seed) => this.setState({ seed })}
-                                        theme={theme}
-                                        autoCorrect={false}
-                                        enablesReturnKeyAutomatically
-                                        returnKeyType="done"
-                                        onSubmitEditing={() => this.onDonePress()}
-                                        value=""
-                                        testID="enterSeed-seedbox"
-                                    />
-                                </AnimatedComponent>
-                                <View style={{ flex: 0.6 }} />
-                            </View>
-                            <View style={styles.bottomContainer}>
-                                <AnimatedComponent
-                                    animationInType={['fadeIn']}
-                                    animationOutType={['fadeOut']}
-                                    delay={0}
-                                >
-                                    <DualFooterButtons
-                                        onLeftButtonPress={() => SetupEmail.redirectToScreen('addAmount')}
-                                        onRightButtonPress={() => SetupEmail.redirectToScreen('verifyEmail')}
-                                        leftButtonText={t('global:goBack')}
-                                        rightButtonText={t('global:continue')}
-                                        leftButtonTestID="enterSeed-back"
-                                        rightButtonTestID="enterSeed-next"
-                                    />
-                                </AnimatedComponent>
-                            </View>
+                    <View>
+                        <View style={styles.topContainer}>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={400}
+                            >
+                                <Header textColor={theme.body.color} />
+                            </AnimatedComponent>
                         </View>
-                    )}
+                        <View style={styles.midContainer}>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={300}
+                            >
+                                <InfoBox>
+                                    <Text style={[styles.infoText, { color: theme.body.color }]}>
+                                        {t('moonpay:setupEmail')}
+                                    </Text>
+                                    <Text
+                                        style={[
+                                            styles.infoTextRegular,
+                                            { paddingTop: height / 60, color: theme.body.color },
+                                        ]}
+                                    >
+                                        {t('moonpay:setupEmailExplanation')}
+                                    </Text>
+                                </InfoBox>
+                            </AnimatedComponent>
+                            <View style={{ flex: 0.3 }} />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={200}
+                            >
+                                <CustomTextInput
+                                    label={t('moonpay:yourEmail')}
+                                    onValidTextChange={(email) => this.setState({ email })}
+                                    theme={theme}
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically
+                                    autoCapitalize="none"
+                                    returnKeyType="done"
+                                    value={this.state.email}
+                                    testID="enterSeed-seedbox"
+                                />
+                            </AnimatedComponent>
+                            <View style={{ flex: 0.6 }} />
+                        </View>
+                        <View style={styles.bottomContainer}>
+                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                                <DualFooterButtons
+                                    onLeftButtonPress={() => SetupEmail.redirectToScreen('addAmount')}
+                                    onRightButtonPress={() => this.props.authenticateViaEmail(this.state.email)}
+                                    isRightButtonLoading={isAuthenticatingEmail}
+                                    leftButtonText={t('global:goBack')}
+                                    rightButtonText={t('global:continue')}
+                                    leftButtonTestID="enterSeed-back"
+                                    rightButtonTestID="enterSeed-next"
+                                />
+                            </AnimatedComponent>
+                        </View>
+                    </View>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -163,13 +178,12 @@ class SetupEmail extends React.Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
+    isAuthenticatingEmail: state.exchanges.moonpay.isAuthenticatingEmail,
+    hasErrorAuthenticatingEmail: state.exchanges.moonpay.hasErrorAuthenticatingEmail,
 });
 
 const mapDispatchToProps = {
-    generateAlert,
-    toggleModalActivity,
-    setAccountInfoDuringSetup,
-    setDoNotMinimise,
+    authenticateViaEmail,
 };
 
 export default WithUserActivity()(
