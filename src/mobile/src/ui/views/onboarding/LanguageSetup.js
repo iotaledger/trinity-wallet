@@ -87,7 +87,7 @@ class LanguageSetup extends Component {
         if (forceUpdate) {
             return;
         }
-        navigator.push('landing');
+        navigator.push('welcome');
     }
 
     selectLanguage(language) {
