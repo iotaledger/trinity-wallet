@@ -3588,7 +3588,7 @@ errorhandler@^1.5.0:
     accepts "~1.3.3"
     escape-html "~1.0.3"
 
-es-abstract@^1.10.0, es-abstract@^1.5.0, es-abstract@^1.5.1, es-abstract@^1.6.1:
+es-abstract@^1.10.0, es-abstract@^1.5.0, es-abstract@^1.5.1:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.12.0.tgz#9dbbdd27c6856f0001421ca18782d786bf8a6165"
   integrity sha512-C8Fx/0jFmV5IPoMOFPA9P9G5NtqW+4cOPit3MIuvR2t7Ag2K15EJTpxnHAYTzL+aYQJIESYeXZmDBfOBE1HcpA==
@@ -4216,7 +4216,7 @@ ftp@~0.3.10:
     readable-stream "1.1.x"
     xregexp "2.0.0"
 
-function-bind@^1.0.2, function-bind@^1.1.0, function-bind@^1.1.1:
+function-bind@^1.0.2, function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
@@ -4850,6 +4850,11 @@ is-accessor-descriptor@^1.0.0:
   dependencies:
     kind-of "^6.0.0"
 
+is-arguments@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/is-arguments/-/is-arguments-1.0.4.tgz#3faf966c7cba0ff437fb31f6250082fcf0448cf3"
+  integrity sha512-xPh0Rmt8NE65sNzvyUmWgI1tz3mKq74lGA0mL8LYZcoIzKOzDh6HmrYm3d18k60nHerC8A9Km8kYu87zfSFnLA==
+
 is-arrayish@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-arrayish/-/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
@@ -4983,6 +4988,11 @@ is-generator-fn@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/is-generator-fn/-/is-generator-fn-2.0.0.tgz#038c31b774709641bda678b1f06a4e3227c10b3e"
   integrity sha512-elzyIdM7iKoFHzcrndIqjYomImhxrFRnGP3galODoII4TB9gI7mZ+FnlLQmmjf27SxHS2gKEeyhX5/+YRS6H9g==
+
+is-generator-function@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/is-generator-function/-/is-generator-function-1.0.7.tgz#d2132e529bb0000a7f80794d4bdf5cd5e5813522"
+  integrity sha512-YZc5EwyO4f2kWCax7oegfuSr9mFz1ZvieNYBEjmukLxgXfBUbxAWGVF7GZf0zidYtoBl3WvC07YK0wT76a+Rtw==
 
 is-glob@^2.0.0, is-glob@^2.0.1:
   version "2.0.1"
@@ -7104,17 +7114,7 @@ object.assign@^4.1.0:
     has-symbols "^1.0.0"
     object-keys "^1.0.11"
 
-object.entries@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/object.entries/-/object.entries-1.0.4.tgz#1bf9a4dd2288f5b33f3a993d257661f05d161a5f"
-  integrity sha1-G/mk3SKI9bM/Opk9JXZh8F0WGl8=
-  dependencies:
-    define-properties "^1.1.2"
-    es-abstract "^1.6.1"
-    function-bind "^1.1.0"
-    has "^1.0.1"
-
-object.entries@^1.1.0:
+object.entries@^1.0.4, object.entries@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/object.entries/-/object.entries-1.1.0.tgz#2024fc6d6ba246aee38bdb0ffd5cfbcf371b7519"
   integrity sha512-l+H6EQ8qzGRxbkHOd5I/aHRhHDKoQXQ8g0BYt4uSweQU1/J6dZUOyWh9a2Vky35YCKjzmgxOzta2hH6kf9HuXA==
@@ -7998,10 +7998,10 @@ react-lifecycles-compat@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-native-animatable@^1.2.4:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.0.tgz#b5c3940fc758cfd9b2fe54613a457c4b6962b46e"
-  integrity sha512-GGYEYvderfzPZcPnw7xov4nlRmi9d6oqcIzx0fGkUUsMshOQEtq5IEzFp3np0uTB9n8/gZIZcdbUPggVlVydMg==
+react-native-animatable@^1.3.1:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.2.tgz#4783ee1a73dc98815aef234ce6b819f80bfe7d80"
+  integrity sha512-rmah3KQ63ft8DxkzFUwJSuZeq+oSYwldoGF4DTOR5WM2WR5wiWLgBAtrAHlI3Di3by323uOR21s+MlqPcHz2Kw==
   dependencies:
     prop-types "^15.5.10"
 
@@ -8054,10 +8054,10 @@ react-native-exit-app@^1.0.0:
   resolved "https://registry.yarnpkg.com/react-native-exit-app/-/react-native-exit-app-1.0.0.tgz#a2fbb121d902e6967cd8a365fe8453e5c4bc3172"
   integrity sha512-2d8RlzfjA4fTJaXD3xObTt0hv+7i41bDyWDB9+zOI0zS1nGvY4mtENKhte8ceRih/3eZWQLpwkkHFP1Y8AG/5w==
 
-react-native-extra-dimensions-android@^1.2.4:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/react-native-extra-dimensions-android/-/react-native-extra-dimensions-android-1.2.5.tgz#8ade91029aaac7519bf305116d39019e618a60f0"
-  integrity sha512-eorFo9X1vEqAWUkgcZ300yKBG1wtgNeE7tdWAH2CE+P50FGTniJg5Sr6l1iPWG8ZskQOuF+KeiSTFlDa4vLfMw==
+react-native-extra-dimensions-android@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/react-native-extra-dimensions-android/-/react-native-extra-dimensions-android-0.21.0.tgz#2992384a90df738cf678a452cadbf251052ce7bc"
+  integrity sha512-rOzODn4vvocqsXnMJG/4bxYxfYbN4ONVla0iaDXMv8665cZO8U354VFkGOsAEP5cRaq6xxYt10bYhthaPt99Rg==
 
 react-native-fingerprint-scanner@^2.3.1:
   version "2.5.0"
@@ -8147,13 +8147,13 @@ react-native-modal-translucent@^2.0.0:
   resolved "https://registry.yarnpkg.com/react-native-modal-translucent/-/react-native-modal-translucent-2.0.0.tgz#a0b9e4a2fa1ed8e47be1d4bb8c2bf0deee0721c4"
   integrity sha512-YocZY2c8CSDuvVGYLZphpFisgdG0pXHbB05roh5Ox4URlGF1xV51RBEzIgSGtWcQ0OcU8mq8rT375xsYq8OgaA==
 
-react-native-modal@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-7.0.1.tgz#120df1966f5da96e9d89bf384f22b79ab6ca97b1"
-  integrity sha512-I/BZ4ZkVLjD/wApvSjqp/w9+J100czFNGB+SNm3oYHKAfPfm5g1OoB9UQT6DvChmG4TiVX8kiDXTm8FNrbkWpQ==
+react-native-modal@^11.4.0:
+  version "11.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-11.4.0.tgz#29f2fd241aed864f3c7ce25a941498ebe2ab217a"
+  integrity sha512-5AsvppV843bGBOgRotORhb0OJLAf3EOueJ1Z0a9vH/ZO3E2KdnGpxgJFRWx2SZhgUmQ65YP392rsMZl/NYwdIw==
   dependencies:
-    prop-types "^15.6.1"
-    react-native-animatable "^1.2.4"
+    prop-types "^15.6.2"
+    react-native-animatable "^1.3.1"
 
 react-native-navigation@^2.22.3:
   version "2.22.3"
@@ -10207,6 +10207,17 @@ util@^0.10.3:
   integrity sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A==
   dependencies:
     inherits "2.0.3"
+
+util@^0.12.1:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/util/-/util-0.12.1.tgz#f908e7b633e7396c764e694dd14e716256ce8ade"
+  integrity sha512-MREAtYOp+GTt9/+kwf00IYoHZyjM8VU4aVrkzUlejyqaIjd2GztVl5V9hGXKlvBKE3gENn/FMfHE5v6hElXGcQ==
+  dependencies:
+    inherits "^2.0.3"
+    is-arguments "^1.0.4"
+    is-generator-function "^1.0.7"
+    object.entries "^1.1.0"
+    safe-buffer "^5.1.2"
 
 utils-merge@1.0.1:
   version "1.0.1"
