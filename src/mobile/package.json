@@ -104,7 +104,7 @@
     "tinycolor2": "^1.4.1",
     "tweetnacl": "^1.0.0",
     "tweetnacl-util": "^0.15.0",
-    "util": "^0.10.3",
+    "util": "^0.12.1",
     "victory-native": "^32.0.2",
     "vm-browserify": "0.0.4"
   },
