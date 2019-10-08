@@ -159,7 +159,7 @@ class SetupEmail extends React.Component {
                         <View style={styles.bottomContainer}>
                             <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                                 <DualFooterButtons
-                                    onLeftButtonPress={() => SetupEmail.redirectToScreen('addAmount')}
+                                    onLeftButtonPress={() => SetupEmail.redirectToScreen('selectAccount')}
                                     onRightButtonPress={() => this.props.authenticateViaEmail(this.state.email)}
                                     isRightButtonLoading={isAuthenticatingEmail}
                                     leftButtonText={t('global:goBack')}

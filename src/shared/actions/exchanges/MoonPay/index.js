@@ -19,6 +19,20 @@ export const setSupportedCurrencies = (payload) => ({
 });
 
 /**
+ * Dispatch to set supported currencies by MoonPay
+ *
+ * @method setSupportedCountries
+ *
+ * @param {array} payload
+ *
+ * @returns {{type: {string}, payload: {array} }}
+ */
+export const setSupportedCountries = (payload) => ({
+    type: MoonPayExchangeActionTypes.SET_SUPPORTED_COUNTRIES,
+    payload,
+});
+
+/**
  * Dispatch to set Iota exchange rates
  *
  * @method setIotaExchangeRates
@@ -169,6 +183,39 @@ export const verifyEmailError = () => ({
 });
 
 /**
+ * Dispatch when request for customer update is about to be made
+ *
+ * @method updateCustomerRequest
+ *
+ * @returns {{type: {string} }}
+ */
+export const updateCustomerRequest = () => ({
+    type: MoonPayExchangeActionTypes.UPDATE_CUSTOMER_REQUEST,
+});
+
+/**
+ * Dispatch when request for customer update is successfully made
+ *
+ * @method updateCustomerSuccess
+ *
+ * @returns {{type: {string} }}
+ */
+export const updateCustomerSuccess = () => ({
+    type: MoonPayExchangeActionTypes.UPDATE_CUSTOMER_SUCCESS,
+});
+
+/**
+ * Dispatch when request for customer update is not successful
+ *
+ * @method updateCustomerError
+ *
+ * @returns {{type: {string} }}
+ */
+export const updateCustomerError = () => ({
+    type: MoonPayExchangeActionTypes.UPDATE_CUSTOMER_ERROR,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -178,6 +225,25 @@ export const verifyEmailError = () => ({
 export const fetchCurrencies = () => (dispatch) => {
     api.fetchCurrencies()
         .then((currencies) => dispatch(setSupportedCurrencies(currencies)))
+        .catch((error) => {
+            if (__DEV__) {
+                /* eslint-disable no-console */
+                console.log(error);
+                /* eslint-enable no-console */
+            }
+        });
+};
+
+/**
+ * Fetches list of all countries supported by MoonPay
+ *
+ * @method fetchCountries
+ *
+ * @returns {function}
+ */
+export const fetchCountries = () => (dispatch) => {
+    api.fetchCountries()
+        .then((countries) => dispatch(setSupportedCountries(countries)))
         .catch((error) => {
             if (__DEV__) {
                 /* eslint-disable no-console */
@@ -271,8 +337,8 @@ export const verifyEmail = (securityCode) => (dispatch, getState) => {
     dispatch(verifyEmailRequest());
 
     api.login(getCustomerEmail(getState()), securityCode)
-        .then((customer) => {
-            dispatch(updateCustomerInfo(customer));
+        .then((data) => {
+            dispatch(updateCustomerInfo(data.customer));
             dispatch(verifyEmailSuccess());
         })
         .catch(() => {
@@ -285,5 +351,39 @@ export const verifyEmail = (securityCode) => (dispatch, getState) => {
             );
 
             dispatch(verifyEmailError());
+        });
+};
+
+/**
+ * Updates customer's information
+ *
+ * @method updateCustomer
+ *
+ * @param {object} info
+ *
+ * @returns {function}
+ */
+export const updateCustomer = (info) => (dispatch) => {
+    dispatch(updateCustomerRequest());
+
+    // api.updateUserInfo(info)
+    new Promise((resolve) => {
+        setTimeout(() => resolve(info), 2000);
+    })
+        .then((data) => {
+            // dispatch(updateCustomerInfo(data.customer));
+            dispatch(updateCustomerInfo(info));
+            dispatch(updateCustomerSuccess());
+        })
+        .catch(() => {
+            dispatch(
+                generateAlert(
+                    'error',
+                    'Error updating user details',
+                    'An unknown error has occurred updating user details. Please try again.',
+                ),
+            );
+
+            dispatch(updateCustomerError());
         });
 };

@@ -7,6 +7,7 @@ import { verifyEmail } from 'shared-modules/actions/exchanges/MoonPay';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import { getCustomerEmail } from 'shared-modules/selectors/exchanges/MoonPay';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
@@ -84,6 +85,8 @@ class VerifyEmail extends React.Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
+        email: PropTypes.string.isRequired,
+        /** @ignore */
         isVerifyingEmail: PropTypes.bool.isRequired,
         /** @ignore */
         hasErrorVerifyingEmail: PropTypes.bool.isRequired,
@@ -137,7 +140,7 @@ class VerifyEmail extends React.Component {
      * Verifies user email
      *
      * @method verify
-     * 
+     *
      * @returns {function}
      */
     verify() {
@@ -146,14 +149,18 @@ class VerifyEmail extends React.Component {
         }
 
         if (this.state.checkboxImage === whiteCheckboxUncheckedImagePath) {
-            return this.props.generateAlert('error', 'Not accepted Terms of Use', 'Please accept MoonPay Terms of Use and Privacy Policy');
+            return this.props.generateAlert(
+                'error',
+                'Not accepted Terms of Use',
+                'Please accept MoonPay Terms of Use and Privacy Policy',
+            );
         }
 
         return this.props.verifyEmail(this.state.securityCode);
     }
 
     render() {
-        const { t, theme, isVerifyingEmail } = this.props;
+        const { t, theme, isVerifyingEmail, email } = this.props;
         const textColor = { color: theme.body.color };
 
         return (
@@ -185,7 +192,7 @@ class VerifyEmail extends React.Component {
                                             { paddingTop: height / 60, color: theme.body.color },
                                         ]}
                                     >
-                                        {t('moonpay:verificationCodeSent', { email: 'john.doe@foo.com' })}
+                                        {t('moonpay:verificationCodeSent', { email })}
                                     </Text>
                                 </InfoBox>
                             </AnimatedComponent>
@@ -216,7 +223,7 @@ class VerifyEmail extends React.Component {
                         <View style={styles.bottomContainer}>
                             <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                                 <DualFooterButtons
-                                    onLeftButtonPress={() => VerifyEmail.redirectToScreen('addAmount')}
+                                    onLeftButtonPress={() => VerifyEmail.redirectToScreen('setupEmail')}
                                     onRightButtonPress={() => this.verify()}
                                     isRightButtonLoading={isVerifyingEmail}
                                     leftButtonText={t('global:goBack')}
@@ -235,6 +242,7 @@ class VerifyEmail extends React.Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
+    email: getCustomerEmail(state),
     isVerifyingEmail: state.exchanges.moonpay.isVerifyingEmail,
     hasErrorVerifyingEmail: state.exchanges.moonpay.hasErrorVerifyingEmail,
 });

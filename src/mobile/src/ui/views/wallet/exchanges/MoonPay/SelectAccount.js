@@ -1,3 +1,4 @@
+import head from 'lodash/head';
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
@@ -61,6 +62,10 @@ class SelectAccount extends React.Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
+        accountName: PropTypes.string.isRequired,
+        /** @ignore */
+        accountNames: PropTypes.array.isRequired,
+        /** @ignore */
         setAccountName: PropTypes.func.isRequired,
     };
 
@@ -73,8 +78,16 @@ class SelectAccount extends React.Component {
         navigator.push(screen);
     }
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            accountName: props.accountName || head(this.props.accountNames),
+        };
+    }
+
     render() {
-        const { t, theme } = this.props;
+        const { accountNames, t, theme } = this.props;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
@@ -120,9 +133,12 @@ class SelectAccount extends React.Component {
                                         this.dropdown = c;
                                     }}
                                     dropdownWidth={{ width: isIPhoneX ? width / 1.1 : width / 1.2 }}
-                                    value="foo"
-                                    options={['foo', 'baz']}
-                                    saveSelection={(name) => this.props.setAccountName(name)}
+                                    value={this.state.accountName}
+                                    options={accountNames}
+                                    saveSelection={(name) => {
+                                        this.setState({ accountName: name });
+                                        this.props.setAccountName(name);
+                                    }}
                                 />
                             </AnimatedComponent>
                             <View style={{ flex: 0.6 }} />
@@ -131,7 +147,10 @@ class SelectAccount extends React.Component {
                             <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                                 <DualFooterButtons
                                     onLeftButtonPress={() => SelectAccount.redirectToScreen('addAmount')}
-                                    onRightButtonPress={() => SelectAccount.redirectToScreen('setupEmail')}
+                                    onRightButtonPress={() => {
+                                        SelectAccount.redirectToScreen('setupEmail');
+                                        this.props.setAccountName(this.state.accountName);
+                                    }}
                                     leftButtonText={t('global:goBack')}
                                     rightButtonText={t('global:confirm')}
                                     leftButtonTestID="moonpay-back"
@@ -149,6 +168,7 @@ class SelectAccount extends React.Component {
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     accountNames: getAccountNamesFromState(state),
+    accountName: state.exchanges.moonpay.accountName,
 });
 
 const mapDispatchToProps = {

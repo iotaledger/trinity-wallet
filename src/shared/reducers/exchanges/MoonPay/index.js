@@ -15,6 +15,10 @@ const initialState = {
      */
     currencies: [],
     /**
+     * MoonPay supported countries
+     */
+    countries: [],
+    /**
      * MoonPay exchange rates for IOTA - { EUR, USD, GBP }
      */
     exchangeRates: {},
@@ -46,6 +50,14 @@ const initialState = {
      * Determines if there was an error during email verification request
      */
     hasErrorVerifyingEmail: false,
+    /**
+     * Determines if a network call is in progress for customer update
+     */
+    isUpdatingCustomer: false,
+    /**
+     * Determines if there was an error during customer update request
+     */
+    hasErrorUpdatingCustomer: false,
 };
 
 export default (state = initialState, action) => {
@@ -54,6 +66,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 currencies: action.payload,
+            };
+        case MoonPayExchangeActionTypes.SET_SUPPORTED_COUNTRIES:
+            return {
+                ...state,
+                countries: action.payload,
             };
         case MoonPayExchangeActionTypes.SET_DENOMINATION:
             return {
@@ -118,6 +135,23 @@ export default (state = initialState, action) => {
                 ...state,
                 isVerifyingEmail: false,
                 hasErrorVerifyingEmail: true,
+            };
+        case MoonPayExchangeActionTypes.UPDATE_CUSTOMER_REQUEST:
+            return {
+                ...state,
+                isUpdatingCustomer: true,
+                hasErrorUpdatingCustomer: false,
+            };
+        case MoonPayExchangeActionTypes.UPDATE_CUSTOMER_SUCCESS:
+            return {
+                ...state,
+                isUpdatingCustomer: false,
+            };
+        case MoonPayExchangeActionTypes.UPDATE_CUSTOMER_ERROR:
+            return {
+                ...state,
+                isUpdatingCustomer: false,
+                hasErrorUpdatingCustomer: true,
             };
         default:
             return state;

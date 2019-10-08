@@ -5,7 +5,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { fetchCurrencies, fetchIotaExchangeRates } from 'shared-modules/actions/exchanges/MoonPay';
+import { fetchCountries, fetchCurrencies, fetchIotaExchangeRates } from 'shared-modules/actions/exchanges/MoonPay';
 import { getAnimation } from 'shared-modules/animations';
 import navigator from 'libs/navigation';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
@@ -79,6 +79,8 @@ class Landing extends Component {
         /** @ignore */
         themeName: PropTypes.string.isRequired,
         /** @ignore */
+        fetchCountries: PropTypes.func.isRequired,
+        /** @ignore */
         fetchCurrencies: PropTypes.func.isRequired,
         /** @ignore */
         fetchIotaExchangeRates: PropTypes.func.isRequired,
@@ -94,6 +96,7 @@ class Landing extends Component {
     }
 
     componentDidMount() {
+        this.props.fetchCountries();
         this.props.fetchCurrencies();
         this.props.fetchIotaExchangeRates();
     }
@@ -176,6 +179,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
+    fetchCountries,
     fetchCurrencies,
     fetchIotaExchangeRates,
 };

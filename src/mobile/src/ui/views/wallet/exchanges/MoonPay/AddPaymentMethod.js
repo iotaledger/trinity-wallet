@@ -1,8 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
+import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
 import { StyleSheet, View, WebView } from 'react-native';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -11,19 +14,38 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    bottomContainer: {
-        flex: 1,
-    },
     topContainer: {
-        flex: 11,
-        justifyContent: 'space-around',
+        flex: 1,
         alignItems: 'center',
+        justifyContent: 'flex-start',
     },
-    titleText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
+    midContainer: {
+        flex: 3,
+        alignItems: 'center',
+        width,
+        justifyContent: 'space-between',
+    },
+    bottomContainer: {
+        flex: 0.5,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+    },
+    infoText: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: Styling.fontSize6,
+        textAlign: 'center',
         backgroundColor: 'transparent',
-        marginLeft: width / 25,
+    },
+    infoTextRegular: {
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: Styling.fontSize3,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    seedVaultImportContainer: {
+        flex: 0.5,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });
 
@@ -42,10 +64,6 @@ const VGSCollectFormHTMl = `
     <script type="text/javascript" src="https://js.verygoodvault.com/vgs-collect/1/ACwR8j4YLDecDMmyR1kddGfH.js"></script>
 
     <style>
-      body {
-        margin-top: 100px;
-      }
-
       span[id*="cc-"] {
         display: block;
         height: 40px;
@@ -95,18 +113,9 @@ const VGSCollectFormHTMl = `
       <div class="col-md-4 mb-4">
         <div class="row card card-outline-secondary">
           <div class="card-body">
-            <h3 class="text-center">Credit Card Payment</h3>
+            <h3 class="text-center">Add a payment method</h3>
             <hr>
-            <div class="alert alert-info p-2">
-              Please fill in and submit a form to see redacted data in response window.
-            </div>
             <form id="cc-form">
-              <div class="form-group">
-                <label for="cc-name">Name</label>
-                <span id="cc-name" class="form-field">
-                  <!--VGS Collect iframe for card name field will be here!-->
-                </span>
-              </div>
               <div class="form-group">
                 <label for="cc-number">Card number</label>
                 <span id="cc-number" class="form-field">
@@ -135,7 +144,6 @@ const VGSCollectFormHTMl = `
       <div class="col-md-4 p-0">
         <div class="alert alert-warning">
           <h5 class="text-center">Response</h5>
-          <p>For this example we secured <b>card number</b> and <b>cvc code</b> fields.</p>
           <pre id="result">
             Submit a form to see result.
           </pre>
@@ -148,16 +156,6 @@ const VGSCollectFormHTMl = `
   <script>
     // VGS Collect form initialization
     const form = VGSCollect.create('tntzdhyyfg9', function(state) {});
-
-    // Create VGS Collect field for credit card name
-    form.field('#cc-name', {
-      type: 'text',
-      name: 'card_name',
-      defaultValue: 'Umair',
-      value: 'Umar',
-      placeholder: 'Joe Business',
-      validations: ['required'],
-    });
 
     // Create VGS Collect field for credit card number
     form.field('#cc-number', {
@@ -194,7 +192,7 @@ const VGSCollectFormHTMl = `
                 'Content-Type': 'application/json',
               }
         }, function(status, data) {
-          document.getElementById('result').innerHTML = JSON.stringify(data.json, null, 4);
+          document.getElementById('result').innerHTML = JSON.stringify(data, null, 4);
         });
       }, function (errors) {
         document.getElementById('result').innerHTML = errors;
@@ -212,10 +210,29 @@ class AddPaymentMethod extends PureComponent {
         theme: PropTypes.object.isRequired,
     };
 
+    /**
+     * Navigates to chosen screen
+     *
+     * @method redirectToScreen
+     */
+    static redirectToScreen(screen) {
+        navigator.push(screen);
+    }
+
     render() {
         return (
-            <View style={styles.container}>
-                <WebView style={{ flex: 1 }} source={{ html: VGSCollectFormHTMl }} javaScriptEnabled />
+            <View style={[styles.container]}>
+                <WebView source={{ html: VGSCollectFormHTMl }} javaScriptEnabled />
+                <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                    <DualFooterButtons
+                        onLeftButtonPress={() => AddPaymentMethod.redirectToScreen('userAdvancedInfo')}
+                        onRightButtonPress={() => {}}
+                        leftButtonText="Go back"
+                        rightButtonText="Continue"
+                        leftButtonTestID="enterSeed-back"
+                        rightButtonTestID="enterSeed-next"
+                    />
+                </AnimatedComponent>
             </View>
         );
     }

@@ -16,9 +16,8 @@ export class MoonPayApi {
         this.apiKey = apiKey;
         this.url = url || BASE_API_URL;
 
-        this._csrfToken = '8z0GNV3pYGbr6x03qDYZNPZzWT8YK46';
-        this._jwt =
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiJmNDQ5OGFhOS03Mzk5LTQ0MDctYWM1Ni1mYWY1NzA3YmY0OGQiLCJjc3JmVG9rZW4iOiJSek9veGVpcWtnU3JVMm9KSnFGMnM2aEhqOXI0YkFMIiwiY3VzdG9tZXJJZCI6IjQ2MDkwMWMxLWRjNTAtNDhmMS04ZTY3LTc5MjU1NzMzZThjMyIsImlhdCI6MTU2ODc4MDcwOX0.QK-DCUt58TfvGW-hSp2K6Wr1bcH0WxdcVIhg81ZCmAA';
+        this._csrfToken = null;
+        this._jwt = null;
     }
 
     /**
@@ -49,15 +48,16 @@ export class MoonPayApi {
 
         const requestOptions = assign({}, options, {
             headers: {
-                'Content-Type': 'application/json',
                 ..._getAuthorizationHeaders(),
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
             },
+            credentials: 'include',
             ...(get(options, 'body')
                 ? {
                       body: serialise(options.body),
                   }
                 : {}),
-            credentials: 'include',
         });
 
         return fetch(url, requestOptions).then((response) => {
@@ -89,8 +89,10 @@ export class MoonPayApi {
             method: 'post',
             body,
         }).then((result) => {
-            this._csrfToken = result.csrfToken;
-            this._jwt = result.token;
+            if (result.csrfToken && result.token) {
+                this._csrfToken = result.csrfToken;
+                this._jwt = result.token;
+            }
 
             return result;
         });
@@ -107,7 +109,7 @@ export class MoonPayApi {
      */
     updateUserInfo(info) {
         return this._fetch(
-            `${this.url}/customers/me`,
+            `${this.url}/customers/me/`,
             {
                 method: 'patch',
                 body: info,
@@ -119,11 +121,11 @@ export class MoonPayApi {
     /**
      * Fetches list of all countries supported by MoonPay
      *
-     * @method getCountries
+     * @method fetchCountries
      *
      * @returns {Promise}
      */
-    getCountries() {
+    fetchCountries() {
         return this._fetch(`${this.url}/countries`);
     }
 
