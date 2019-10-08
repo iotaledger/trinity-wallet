@@ -1,6 +1,7 @@
+import get from 'lodash/get';
 import head from 'lodash/head';
 import includes from 'lodash/includes';
-import map from 'lodash/map';
+import find from 'lodash/find';
 import toUpper from 'lodash/toUpper';
 import toLower from 'lodash/toLower';
 import size from 'lodash/size';
@@ -116,7 +117,7 @@ class AddAmount extends Component {
         navigator.push(screen);
     }
 
-    static iotaDenominations = ['i', 'Ki', 'Mi', 'Gi', 'Ti'];
+    static iotaDenominations = ['Mi'];
 
     /**
      * Sets next denomination in redux store
@@ -128,10 +129,11 @@ class AddAmount extends Component {
     setDenomination() {
         const { denomination, fiatCurrencies } = this.props;
 
-        const availableDenominations = [
-            ...AddAmount.iotaDenominations,
-            ...map(fiatCurrencies, (currency) => toUpper(currency.code)),
-        ];
+        console.log('Fiat currencies', fiatCurrencies);
+
+        const usdCurrencyObject = find(fiatCurrencies, { code: 'usd' });
+
+        const availableDenominations = [...AddAmount.iotaDenominations, toUpper(get(usdCurrencyObject, 'code'))];
 
         const currentDenominationIndex = availableDenominations.indexOf(denomination);
 
@@ -143,9 +145,41 @@ class AddAmount extends Component {
         this.props.setDenomination(nextDenomination);
     }
 
+    getAmountInFiat() {
+        const { amount, denomination, exchangeRates } = this.props;
+
+        if (includes(AddAmount.iotaDenominations, denomination)) {
+            return amount ? `$${(Number(amount) * exchangeRates.USD).toFixed(2)}` : '$0';
+        }
+
+        return amount ? `$${amount}` : '0$';
+    }
+
+    getAmountinMiota() {
+        const { amount, exchangeRates } = this.props;
+
+        if (!amount) {
+            return '0 Mi';
+        }
+
+        return `${(Number(amount) / exchangeRates.USD).toFixed(2)} Mi`;
+    }
+
+    getReceiveAmount() {
+        const { amount, denomination, exchangeRates } = this.props;
+
+        if (includes(AddAmount.iotaDenominations, denomination)) {
+            return amount ? `${amount} Mi` : '0 Mi';
+        }
+
+        return amount ? `${(Number(amount) / exchangeRates.USD).toFixed(2)} Mi` : '0 Mi';
+    }
+
     render() {
-        const { amount, fee, totalAmount, t, theme, denomination } = this.props;
+        const { amount, fee, totalAmount, t, theme, denomination, exchangeRates } = this.props;
         const textColor = { color: theme.body.color };
+
+        const receiveAmount = this.getReceiveAmount();
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
@@ -188,12 +222,7 @@ class AddAmount extends Component {
                                 this.props.setAmount(amount);
 
                                 // TODO: Do validation on amount
-                                this.props.fetchQuote(
-                                    Number(amount),
-                                    includes(AddAmount.iotaDenominations, denomination)
-                                        ? denomination
-                                        : toLower(denomination),
-                                );
+                                this.props.fetchQuote(Number(amount), 'usd');
                             }}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -215,7 +244,7 @@ class AddAmount extends Component {
                         }}
                     >
                         <Text style={[styles.infoTextLight, textColor]}>You will receive</Text>
-                        <Text style={[styles.infoTextLight, textColor]}>82.12 Miota</Text>
+                        <Text style={[styles.infoTextLight, textColor]}>{receiveAmount}</Text>
                     </View>
                     <View style={{ flex: 0.05 }} />
                     <View
@@ -225,8 +254,10 @@ class AddAmount extends Component {
                             width: width / 1.2,
                         }}
                     >
-                        <Text style={[styles.infoTextLight, textColor]}>Market Price: 82.13 Mi @ $0.12</Text>
-                        <Text style={[styles.infoTextLight, textColor]}>$0.12</Text>
+                        <Text style={[styles.infoTextLight, textColor]}>
+                            Market Price: {receiveAmount} @ ${exchangeRates.USD}
+                        </Text>
+                        <Text style={[styles.infoTextLight, textColor]}>{this.getAmountInFiat()}</Text>
                     </View>
                     <View style={{ flex: 0.05 }} />
                     <View
@@ -237,7 +268,7 @@ class AddAmount extends Component {
                         }}
                     >
                         <Text style={[styles.infoTextLight, textColor]}>MoonPay Fee</Text>
-                        <Text style={[styles.infoTextLight, textColor]}>$ {fee}</Text>
+                        <Text style={[styles.infoTextLight, textColor]}>${fee}</Text>
                     </View>
                     <View style={{ flex: 0.3 }} />
                     <View
