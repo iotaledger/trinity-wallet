@@ -216,6 +216,18 @@ export const updateCustomerError = () => ({
 });
 
 /**
+ * Dispatch to set payment card info
+ *
+ * @method setPaymentCardInfo
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const setPaymentCardInfo = (payload) => ({
+    type: MoonPayExchangeActionTypes.SET_PAYMENT_CARD_INFO,
+    payload,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies

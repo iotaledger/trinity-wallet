@@ -35,6 +35,10 @@ const initialState = {
      */
     customer: {},
     /**
+     * Stores payment card info
+     */
+    paymentCardInfo: {},
+    /**
      * Determines if a network call is in progress for email authentication
      */
     isAuthenticatingEmail: false,
@@ -152,6 +156,11 @@ export default (state = initialState, action) => {
                 ...state,
                 isUpdatingCustomer: false,
                 hasErrorUpdatingCustomer: true,
+            };
+        case MoonPayExchangeActionTypes.SET_PAYMENT_CARD_INFO:
+            return {
+                ...state,
+                paymentCardInfo: action.payload,
             };
         default:
             return state;
