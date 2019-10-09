@@ -207,7 +207,7 @@ const VGSCollectFormHTMl = `
 class AddPaymentMethod extends PureComponent {
     static propTypes = {
         /** @ignore */
-        theme: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired, // eslint-disable-line
     };
 
     /**

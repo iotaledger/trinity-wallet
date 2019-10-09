@@ -3,7 +3,6 @@ import head from 'lodash/head';
 import includes from 'lodash/includes';
 import find from 'lodash/find';
 import toUpper from 'lodash/toUpper';
-import toLower from 'lodash/toLower';
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -128,8 +127,6 @@ class AddAmount extends Component {
      */
     setDenomination() {
         const { denomination, fiatCurrencies } = this.props;
-
-        console.log('Fiat currencies', fiatCurrencies);
 
         const usdCurrencyObject = find(fiatCurrencies, { code: 'usd' });
 
@@ -279,7 +276,7 @@ class AddAmount extends Component {
                         }}
                     >
                         <Text style={[styles.infoTextRegular, textColor]}>Total</Text>
-                        <Text style={[styles.infoTextBold, textColor]}>$ {totalAmount}</Text>
+                        <Text style={[styles.infoTextBold, textColor]}>${totalAmount}</Text>
                     </View>
                     <View style={{ flex: 0.3 }} />
                 </View>

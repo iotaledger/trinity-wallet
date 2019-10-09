@@ -370,6 +370,7 @@ export const updateCustomer = (info) => (dispatch) => {
     new Promise((resolve) => {
         setTimeout(() => resolve(info), 2000);
     })
+        // eslint-disable-next-line
         .then((data) => {
             // dispatch(updateCustomerInfo(data.customer));
             dispatch(updateCustomerInfo(info));
