@@ -252,6 +252,7 @@ class AddPaymentMethod extends PureComponent {
 
         if (type === 'success') {
             this.props.setPaymentCardInfo(get(message, 'data'));
+            AddPaymentMethod.redirectToScreen('reviewPurchase');
         }
     }
 

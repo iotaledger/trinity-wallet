@@ -62,6 +62,14 @@ const initialState = {
      * Determines if there was an error during customer update request
      */
     hasErrorUpdatingCustomer: false,
+    /**
+     * Determines if a network call is in progress for transaction creation
+     */
+    isCreatingTransaction: false,
+    /**
+     * Determines if there was an error during transaction creation
+     */
+    hasErrorCreatingTransaction: false,
 };
 
 export default (state = initialState, action) => {
@@ -161,6 +169,23 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 paymentCardInfo: action.payload,
+            };
+        case MoonPayExchangeActionTypes.CREATE_TRANSACTION_REQUEST:
+            return {
+                ...state,
+                isCreatingTransaction: true,
+                hasErrorCreatingTransaction: false,
+            };
+        case MoonPayExchangeActionTypes.CREATE_TRANSACTION_SUCCESS:
+            return {
+                ...state,
+                isCreatingTransaction: false,
+            };
+        case MoonPayExchangeActionTypes.CREATE_TRANSACTION_ERROR:
+            return {
+                ...state,
+                isCreatingTransaction: false,
+                hasErrorCreatingTransaction: true,
             };
         default:
             return state;

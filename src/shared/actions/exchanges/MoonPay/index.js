@@ -1,7 +1,7 @@
 import { MoonPayExchangeActionTypes } from '../../../types';
 import { generateAlert } from '../../alerts';
-import api, { IOTA_CURRENCY_CODE } from '../../../exchanges/MoonPay';
-import { getCustomerEmail } from '../../../selectors/exchanges/MoonPay';
+import api, { IOTA_CURRENCY_CODE, MOONPAY_RETURN_URL } from '../../../exchanges/MoonPay';
+import { getCustomerEmail, getPaymentCardId } from '../../../selectors/exchanges/MoonPay';
 import { __DEV__ } from '../../../config';
 
 /**
@@ -228,6 +228,40 @@ export const setPaymentCardInfo = (payload) => ({
 });
 
 /**
+ * Dispatch when request for createe transaction is about to be made
+ *
+ * @method createTransactionRequest
+ *
+ * @returns {{type: {string} }}
+ */
+export const createTransactionRequest = () => ({
+    type: MoonPayExchangeActionTypes.CREATE_TRANSACTION_REQUEST,
+});
+
+/**
+ * Dispatch when request for create transaction is successfully made
+ *
+ * @method createTransactionSuccess
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const createTransactionSuccess = (payload) => ({
+    type: MoonPayExchangeActionTypes.CREATE_TRANSACTION_SUCCESS,
+    payload,
+});
+
+/**
+ * Dispatch when request for create transaction is not successful
+ *
+ * @method createTransactionError
+ *
+ * @returns {{type: {string} }}
+ */
+export const createTransactionError = () => ({
+    type: MoonPayExchangeActionTypes.CREATE_TRANSACTION_ERROR,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -398,5 +432,50 @@ export const updateCustomer = (info) => (dispatch) => {
             );
 
             dispatch(updateCustomerError());
+        });
+};
+
+/**
+ * Creates new transaction
+ *
+ * @method createTransaction
+ *
+ * @param {number} baseCurrencyAmount
+ *
+ * @returns {function}
+ */
+export const createTransaction = (
+    baseCurrencyAmount,
+    baseCurrencyCode,
+    walletAddress,
+    extraFeePercentage = 0,
+    returnUrl = MOONPAY_RETURN_URL,
+) => (dispatch, getState) => {
+    dispatch(createTransactionRequest());
+
+    api.createTransaction({
+        baseCurrencyAmount,
+        baseCurrencyCode,
+        walletAddress,
+        extraFeePercentage,
+        returnUrl,
+        tokenId: getPaymentCardId(getState()),
+        currencyCode: IOTA_CURRENCY_CODE,
+    })
+        .then((data) => {
+            console.log('Data', data);
+            dispatch(createTransactionSuccess(data));
+        })
+        .catch((error) => {
+            console.log('Error', error);
+            dispatch(
+                generateAlert(
+                    'error',
+                    'Error creating transaction',
+                    'There was a problem sending your transaction. Please try again!',
+                ),
+            );
+
+            dispatch(createTransactionError());
         });
 };

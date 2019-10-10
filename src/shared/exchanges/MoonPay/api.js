@@ -169,4 +169,24 @@ export class MoonPayApi {
             `${this.url}/currencies/${currency}/quote/?apiKey=${this.apiKey}&baseCurrencyAmount=${baseCurrencyAmount}&baseCurrencyCode=${baseCurrencyCode}`,
         );
     }
+
+    /**
+     * Creates a new transaction
+     *
+     * @method createTransaction
+     *
+     * @param {object} transaction
+     *
+     * @returns {Promise}
+     */
+    createTransaction(transaction) {
+        return this._fetch(
+            `${this.url}/transactions`,
+            {
+                method: 'post',
+                body: transaction,
+            },
+            true,
+        );
+    }
 }

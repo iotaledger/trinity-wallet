@@ -270,7 +270,13 @@
         "dateOfBirth": "DATE OF BIRTH",
         "address": "ADDRESS",
         "city": "CITY",
-        "zipCode": "ZIP CODE"
+        "zipCode": "ZIP CODE",
+        "reviewYourPurchase": "Review your purchase",
+        "pleaseCarefullyCheckOrder": "Please carefully check your order below",
+        "order": "Order",
+        "trinityWalletAddress": "TRINITY WALLET ADDRESS",
+        "debitCard": "{{brand}} Debit Card",
+        "cardExpiry": "Card Expiry"
     },
     "home": {
         "balance": "BALANCE",

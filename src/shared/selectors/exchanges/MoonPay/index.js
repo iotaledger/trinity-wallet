@@ -84,3 +84,37 @@ export const getCustomerEmail = createSelector(
         return get(customer, 'email') || '';
     },
 );
+
+/**
+ * Selects selected account name
+ *
+ * @method getSelectedAccountName
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getSelectedAccountName = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        return exchanges.moonpay.accountName;
+    },
+);
+
+/**
+ * Selects payment card id
+ *
+ * @method getPaymentCardId
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getPaymentCardId = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const info = exchanges.moonpay.paymentCardInfo;
+
+        return get(info, 'id') || '';
+    },
+);
