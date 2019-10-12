@@ -161,11 +161,10 @@ export class MoonPayApi {
      * @param {string} currency
      * @param {number} baseCurrencyAmount
      * @param {string} baseCurrencyCode
-     * @param {number} [extraFeePercentage]
      *
      * @returns {Promise}
      */
-    fetchQuote(currency, baseCurrencyAmount, baseCurrencyCode, extraFeePercentage = 0) {
+    fetchQuote(currency, baseCurrencyAmount, baseCurrencyCode) {
         return this._fetch(
             `${this.url}/currencies/${currency}/quote/?apiKey=${this.apiKey}&baseCurrencyAmount=${baseCurrencyAmount}&baseCurrencyCode=${baseCurrencyCode}`,
         );

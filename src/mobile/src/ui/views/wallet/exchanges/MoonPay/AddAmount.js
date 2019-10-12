@@ -282,7 +282,7 @@ class AddAmount extends Component {
                             }}
                         >
                             <Text style={[styles.infoTextRegular, textColor]}>Total</Text>
-                            <Text style={[styles.infoTextBold, textColor]}>$ {totalAmount}</Text>
+                            <Text style={[styles.infoTextBold, textColor]}>${totalAmount}</Text>
                         </View>
                     </AnimatedComponent>
                 </View>

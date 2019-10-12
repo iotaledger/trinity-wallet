@@ -1,11 +1,16 @@
+import get from 'lodash/get';
 import React, { PureComponent } from 'react';
 import { withTranslation } from 'react-i18next';
 import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
-import { StyleSheet, View, WebView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import PropTypes from 'prop-types';
+import { WebView } from 'react-native-webview';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
+import { setPaymentCardInfo } from 'shared-modules/actions/exchanges/MoonPay';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import { parse } from 'shared-modules/libs/utils';
 import { width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 
@@ -192,6 +197,11 @@ const VGSCollectFormHTMl = `
               }
         }, function(status, data) {
           document.getElementById('result').innerHTML = JSON.stringify(data, null, 4);
+
+          window.ReactNativeWebView.postMessage(JSON.stringify({
+            type: 'success',
+            data: data
+          }));
         });
       }, function (errors) {
         document.getElementById('result').innerHTML = errors;
@@ -204,6 +214,10 @@ const VGSCollectFormHTMl = `
  * (MoonPay) Add Payment Method
  */
 class AddPaymentMethod extends PureComponent {
+    static propTypes = {
+        /** @ignore */
+        setPaymentCardInfo: PropTypes.func.isRequired,
+    };
 
     /**
      * Navigates to chosen screen
@@ -214,10 +228,35 @@ class AddPaymentMethod extends PureComponent {
         navigator.push(screen);
     }
 
+    constructor(props) {
+        super(props);
+
+        this.onMessage = this.onMessage.bind(this);
+    }
+
+    /**
+     * onMessage event callback method
+     *
+     * @method onMessage
+     *
+     * @param {object} event
+     *
+     * @returns {void}
+     */
+    onMessage(event) {
+        const message = parse(event.nativeEvent.data);
+
+        const type = get(message, 'type');
+
+        if (type === 'success') {
+            this.props.setPaymentCardInfo(get(message, 'data'));
+        }
+    }
+
     render() {
         return (
             <View style={[styles.container]}>
-                <WebView source={{ html: VGSCollectFormHTMl }} javaScriptEnabled />
+                <WebView source={{ html: VGSCollectFormHTMl }} javaScriptEnabled onMessage={this.onMessage} />
                 <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                     <DualFooterButtons
                         onLeftButtonPress={() => AddPaymentMethod.redirectToScreen('userAdvancedInfo')}
@@ -237,4 +276,13 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
 });
 
-export default withTranslation(['global'])(connect(mapStateToProps)(AddPaymentMethod));
+const mapDispatchToProps = {
+    setPaymentCardInfo,
+};
+
+export default withTranslation(['global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(AddPaymentMethod),
+);
