@@ -88,4 +88,9 @@
 }
 
 
+#if RCT_DEV
+- (BOOL)bridge:(RCTBridge *)bridge didNotFindModule:(NSString *)moduleName {
+  return YES;
+}
+#endif
 @end
