@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
@@ -205,10 +204,6 @@ const VGSCollectFormHTMl = `
  * (MoonPay) Add Payment Method
  */
 class AddPaymentMethod extends PureComponent {
-    static propTypes = {
-        /** @ignore */
-        theme: PropTypes.object.isRequired,
-    };
 
     /**
      * Navigates to chosen screen

@@ -132,7 +132,7 @@ class Landing extends Component {
                             <AnimatedComponent
                                 animationInType={['fadeIn', 'slideInRight']}
                                 animationOutType={['fadeOut', 'slideOutLeft']}
-                                delay={200}
+                                delay={266}
                                 style={styles.animation}
                             >
                                 <LottieView
@@ -152,9 +152,15 @@ class Landing extends Component {
                         </InfoBox>
                     </AnimatedComponent>
                     <View style={{ flex: 0.3 }} />
-                    <Text style={[styles.infoTextRegular, textColor, { textDecorationLine: 'underline' }]}>
-                        Terms and conditions apply
-                    </Text>
+                    <AnimatedComponent
+                        animationInType={['fadeIn', 'slideInRight']}
+                        animationOutType={['fadeOut', 'slideOutLeft']}
+                        delay={133}
+                    >
+                        <Text style={[styles.infoTextRegular, textColor, { textDecorationLine: 'underline' }]}>
+                            Terms and conditions apply
+                        </Text>
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>

@@ -214,10 +214,16 @@ class VerifyEmail extends React.Component {
                                 />
                             </AnimatedComponent>
                             <View style={{ flex: 0.08 }} />
-                            <TouchableOpacity style={styles.checkboxContainer} onPress={() => this.onCheckboxPress()}>
-                                <Image source={this.state.checkboxImage} style={styles.checkbox} />
-                                <Text style={[styles.checkboxText, textColor]}>{t('moonpay:agreeWithTerms')}</Text>
-                            </TouchableOpacity>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={100}
+                            >
+                                <TouchableOpacity style={styles.checkboxContainer} onPress={() => this.onCheckboxPress()}>
+                                    <Image source={this.state.checkboxImage} style={styles.checkbox} />
+                                    <Text style={[styles.checkboxText, textColor]}>{t('moonpay:agreeWithTerms')}</Text>
+                                </TouchableOpacity>
+                            </AnimatedComponent>
                             <View style={{ flex: 0.4 }} />
                         </View>
                         <View style={styles.bottomContainer}>

@@ -205,7 +205,7 @@ class UserBasicInfo extends React.Component {
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={200}
+                                delay={100}
                             >
                                 <CustomTextInput
                                     label={t('moonpay:dateOfBirth')}

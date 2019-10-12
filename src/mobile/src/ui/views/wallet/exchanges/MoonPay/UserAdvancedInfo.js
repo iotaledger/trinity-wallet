@@ -165,7 +165,7 @@ class UserAdvancedInfo extends React.Component {
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={300}
+                                delay={320}
                             >
                                 <InfoBox>
                                     <Text style={[styles.infoText, { color: theme.body.color }]}>
@@ -185,7 +185,7 @@ class UserAdvancedInfo extends React.Component {
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={200}
+                                delay={240}
                             >
                                 <CustomTextInput
                                     label={t('moonpay:address')}
@@ -202,7 +202,7 @@ class UserAdvancedInfo extends React.Component {
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={200}
+                                delay={160}
                             >
                                 <View
                                     style={{
@@ -243,7 +243,7 @@ class UserAdvancedInfo extends React.Component {
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={200}
+                                delay={80}
                             >
                                 <DropdownComponent
                                     onRef={(c) => {
