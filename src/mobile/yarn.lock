@@ -8059,10 +8059,10 @@ react-native-extra-dimensions-android@^0.21.0:
   resolved "https://registry.yarnpkg.com/react-native-extra-dimensions-android/-/react-native-extra-dimensions-android-0.21.0.tgz#2992384a90df738cf678a452cadbf251052ce7bc"
   integrity sha512-rOzODn4vvocqsXnMJG/4bxYxfYbN4ONVla0iaDXMv8665cZO8U354VFkGOsAEP5cRaq6xxYt10bYhthaPt99Rg==
 
-react-native-fingerprint-scanner@^2.3.1:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-fingerprint-scanner/-/react-native-fingerprint-scanner-2.5.0.tgz#259c497911d90250409f8ebfe55a66c6b1bc6798"
-  integrity sha512-GJWR/AK4JDXsjFJ72dYrZZl97Vhf+uFl6Laqk3Ep5PwPxFKGD9jDwb9z4ltnNEAwMdmoN6O+xx6zqcWs7aYIVQ==
+react-native-fingerprint-scanner@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/react-native-fingerprint-scanner/-/react-native-fingerprint-scanner-2.6.2.tgz#e9b5d40fa0bf7f96ccbf48e8702b54962b233bae"
+  integrity sha512-7mXqE9GUiK+Bh5sG+aVq1RGV94Z0PPl6qTibh6i4+ApZ3DU3HxsJ2di7vHTvZsJ1YfmQCHmQIXs4bNuwp20wEg==
 
 react-native-fit-image@^1.5.2:
   version "1.5.4"
