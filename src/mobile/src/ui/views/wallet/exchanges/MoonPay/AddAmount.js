@@ -194,7 +194,7 @@ class AddAmount extends Component {
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
-                        delay={266}
+                        delay={300}
                     >
                         <InfoBox>
                             <Text style={[styles.infoText, textColor]}>{t('moonpay:addAmount')}</Text>
@@ -233,52 +233,58 @@ class AddAmount extends Component {
                         />
                     </AnimatedComponent>
                     <View style={{ flex: 0.3 }} />
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            width: width / 1.2,
-                        }}
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={100}
+                        style={{ flex: 1.5, width: width / 1.2 }}
                     >
-                        <Text style={[styles.infoTextLight, textColor]}>You will receive</Text>
-                        <Text style={[styles.infoTextLight, textColor]}>{receiveAmount}</Text>
-                    </View>
-                    <View style={{ flex: 0.05 }} />
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            width: width / 1.2,
-                        }}
-                    >
-                        <Text style={[styles.infoTextLight, textColor]}>
-                            Market Price: {receiveAmount} @ ${exchangeRates.USD}
-                        </Text>
-                        <Text style={[styles.infoTextLight, textColor]}>{this.getAmountInFiat()}</Text>
-                    </View>
-                    <View style={{ flex: 0.05 }} />
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            width: width / 1.2,
-                        }}
-                    >
-                        <Text style={[styles.infoTextLight, textColor]}>MoonPay Fee</Text>
-                        <Text style={[styles.infoTextLight, textColor]}>${fee}</Text>
-                    </View>
-                    <View style={{ flex: 0.3 }} />
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            width: width / 1.2,
-                        }}
-                    >
-                        <Text style={[styles.infoTextRegular, textColor]}>Total</Text>
-                        <Text style={[styles.infoTextBold, textColor]}>${totalAmount}</Text>
-                    </View>
-                    <View style={{ flex: 0.3 }} />
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                width: width / 1.2,
+                            }}
+                        >
+                            <Text style={[styles.infoTextLight, textColor]}>You will receive</Text>
+                            <Text style={[styles.infoTextLight, textColor]}>{receiveAmount}</Text>
+                        </View>
+                        <View style={{ flex: 0.05 }} />
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                width: width / 1.2,
+                            }}
+                        >
+                            <Text style={[styles.infoTextLight, textColor]}>
+                                Market Price: {receiveAmount} @ ${exchangeRates.USD}
+                            </Text>
+                            <Text style={[styles.infoTextLight, textColor]}>{this.getAmountInFiat()}</Text>
+                        </View>
+                        <View style={{ flex: 0.05 }} />
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                width: width / 1.2,
+                            }}
+                        >
+                            <Text style={[styles.infoTextLight, textColor]}>MoonPay Fee</Text>
+                            <Text style={[styles.infoTextLight, textColor]}>${fee}</Text>
+                        </View>
+                        <View style={{ flex: 0.3 }} />
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                width: width / 1.2,
+                            }}
+                        >
+                            <Text style={[styles.infoTextRegular, textColor]}>Total</Text>
+                            <Text style={[styles.infoTextBold, textColor]}>${totalAmount}</Text>
+                        </View>
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>

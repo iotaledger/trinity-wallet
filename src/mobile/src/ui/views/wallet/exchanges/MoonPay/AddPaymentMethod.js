@@ -1,10 +1,10 @@
 import get from 'lodash/get';
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
+import PropTypes from 'prop-types';
 import { WebView } from 'react-native-webview';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
@@ -215,8 +215,6 @@ const VGSCollectFormHTMl = `
  */
 class AddPaymentMethod extends PureComponent {
     static propTypes = {
-        /** @ignore */
-        theme: PropTypes.object.isRequired, // eslint-disable-line,
         /** @ignore */
         setPaymentCardInfo: PropTypes.func.isRequired,
     };

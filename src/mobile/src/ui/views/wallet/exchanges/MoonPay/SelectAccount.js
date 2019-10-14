@@ -106,7 +106,7 @@ class SelectAccount extends React.Component {
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={300}
+                                delay={266}
                             >
                                 <InfoBox>
                                     <Text style={[styles.infoText, { color: theme.body.color }]}>
@@ -126,7 +126,7 @@ class SelectAccount extends React.Component {
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={200}
+                                delay={133}
                             >
                                 <DropdownComponent
                                     onRef={(c) => {
