@@ -172,7 +172,7 @@
         "congratulations": "Felicitări",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Prea puține noduri sincronizate",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodesExplanation": "Quorum-ul nu a fost atins. Opriți quorum-ul sau incercați din nou."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-ul conține caractere invalide",
@@ -182,7 +182,7 @@
         "nameInUse": "Nume de cont deja utilizat",
         "nameInUseExplanation": "Vă rugăm să folosiți un nume de cont unic pentru seed-ul dumnevoastră.",
         "accountNameTooLong": "Nume de cont prea lung",
-        "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
+        "accountNameTooLongExplanation": "Numărul maxim de caractere al numelui contului este {{maxLength}}.",
         "accountName": "Numele contului",
         "noNickname": "Nu a fost introdus nici un nume de cont",
         "noNicknameExplanation": "Vă rugăm să introduceţi un nume de cont pentru secretul dumnevoastră.",
@@ -206,8 +206,8 @@
         "confirmPassword": "Confirmă noua parolă",
         "passwordTooWeak": "Parola este prea slabă",
         "passwordTooWeakReason": "Parola dvs. este prea slabă. Utilizați o combinație de cuvinte și evitați expresii comune, nume sau date.",
-        "reasonRow": "Straight rows of keys are easy to guess.",
-        "reasonPattern": "Short patterns of keys are easy to guess.",
+        "reasonRow": "Şirurile consecutive de taste sunt uşor de ghicit.",
+        "reasonPattern": "Şirurile scurte de taste sunt uşor de ghicit.",
         "reasonNames": "Common names and surnames are easy to guess.",
         "reasonRepeats": "Repetări ca \"aaa\" sunt ușor de ghicit.",
         "reasonRepeats2": "Repetări ca \"abcabcabc\" sunt puțin mai greu de ghicit decât \"abc\".",
