@@ -185,7 +185,17 @@ class ReviewPurchase extends Component {
     }
 
     render() {
-        const { address, brand, lastDigits, fee, totalAmount, t, theme, exchangeRates } = this.props;
+        const {
+            isCreatingTransaction,
+            address,
+            brand,
+            lastDigits,
+            fee,
+            totalAmount,
+            t,
+            theme,
+            exchangeRates,
+        } = this.props;
 
         const textColor = { color: theme.body.color };
 
@@ -366,6 +376,7 @@ class ReviewPurchase extends Component {
                         <DualFooterButtons
                             onLeftButtonPress={() => ReviewPurchase.redirectToScreen('landing')}
                             onRightButtonPress={() => this.createTransaction()}
+                            isRightButtonLoading={isCreatingTransaction}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:confirm')}
                             leftButtonTestID="walletSetup-no"

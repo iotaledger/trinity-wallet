@@ -46,25 +46,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    infoTextLight: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-    },
     infoTextRegular: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-    },
-    greetingTextContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: width / 1.5,
-    },
-    greetingText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize4,
-        textAlign: 'center',
         backgroundColor: 'transparent',
     },
 });
@@ -158,7 +142,7 @@ class Landing extends Component {
                         delay={133}
                     >
                         <Text style={[styles.infoTextRegular, textColor, { textDecorationLine: 'underline' }]}>
-                            Terms and conditions apply
+                            {t('moonpay:termsAndConditionsApply')}
                         </Text>
                     </AnimatedComponent>
                 </View>
@@ -169,8 +153,8 @@ class Landing extends Component {
                             onRightButtonPress={() => Landing.redirectToScreen('addAmount')}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:continue')}
-                            leftButtonTestID="walletSetup-no"
-                            rightButtonTestID="walletSetup-yes"
+                            leftButtonTestID="moonpay-back-to-home"
+                            rightButtonTestID="moonpay-add-amount"
                         />
                     </AnimatedComponent>
                 </View>

@@ -463,11 +463,9 @@ export const createTransaction = (
         currencyCode: IOTA_CURRENCY_CODE,
     })
         .then((data) => {
-            console.log('Data', data);
             dispatch(createTransactionSuccess(data));
         })
-        .catch((error) => {
-            console.log('Error', error);
+        .catch(() => {
             dispatch(
                 generateAlert(
                     'error',

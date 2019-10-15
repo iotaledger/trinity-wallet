@@ -276,7 +276,8 @@
         "order": "Order",
         "trinityWalletAddress": "TRINITY WALLET ADDRESS",
         "debitCard": "{{brand}} Debit Card",
-        "cardExpiry": "Card Expiry"
+        "cardExpiry": "Card Expiry",
+        "termsAndConditionsApply": "Terms and conditions apply"
     },
     "home": {
         "balance": "BALANCE",
