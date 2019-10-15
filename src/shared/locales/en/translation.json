@@ -281,7 +281,11 @@
         "termsAndConditionsApply": "Terms and conditions apply",
         "youWillReceive": "You will receive",
         "marketPrice": "Market price",
-        "moonpayFee": "MoonPay fee"
+        "moonpayFee": "MoonPay fee",
+        "emptyEmail": "Empty email",
+        "emptyEmailExplanation": "Email field cannot be empty",
+        "invalidEmail": "Invalid email",
+        "invalidEmailExplanation": "You have entered an invalid email"
     },
     "home": {
         "balance": "BALANCE",
