@@ -176,7 +176,8 @@
         "congratulations": "Congratulations",
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
-        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again."
+        "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again.",
+        "total": "Total"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -277,7 +278,10 @@
         "trinityWalletAddress": "TRINITY WALLET ADDRESS",
         "debitCard": "{{brand}} Debit Card",
         "cardExpiry": "Card Expiry",
-        "termsAndConditionsApply": "Terms and conditions apply"
+        "termsAndConditionsApply": "Terms and conditions apply",
+        "youWillReceive": "You will receive",
+        "marketPrice": "Market price",
+        "moonpayFee": "MoonPay fee"
     },
     "home": {
         "balance": "BALANCE",

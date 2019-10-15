@@ -22,11 +22,6 @@ import Header from 'ui/components/Header';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 
 const styles = StyleSheet.create({
-    animation: {
-        width: width / 2.4,
-        height: width / 2.4,
-        alignSelf: 'center',
-    },
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -67,16 +62,10 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
     },
-    greetingTextContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: width / 1.5,
-    },
-    greetingText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize4,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
+    summaryRowContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: width / 1.2,
     },
 });
 
@@ -239,49 +228,25 @@ class AddAmount extends Component {
                         delay={100}
                         style={{ flex: 1.5, width: width / 1.2 }}
                     >
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                width: width / 1.2,
-                            }}
-                        >
-                            <Text style={[styles.infoTextLight, textColor]}>You will receive</Text>
+                        <View style={styles.summaryRowContainer}>
+                            <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:youWillReceive')}</Text>
                             <Text style={[styles.infoTextLight, textColor]}>{receiveAmount}</Text>
                         </View>
                         <View style={{ flex: 0.05 }} />
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                width: width / 1.2,
-                            }}
-                        >
+                        <View style={styles.summaryRowContainer}>
                             <Text style={[styles.infoTextLight, textColor]}>
-                                Market Price: {receiveAmount} @ ${exchangeRates.USD}
+                                {t('moonpay:marketPrice')}: {receiveAmount} @ ${exchangeRates.USD}
                             </Text>
                             <Text style={[styles.infoTextLight, textColor]}>{this.getAmountInFiat()}</Text>
                         </View>
                         <View style={{ flex: 0.05 }} />
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                width: width / 1.2,
-                            }}
-                        >
-                            <Text style={[styles.infoTextLight, textColor]}>MoonPay Fee</Text>
+                        <View style={styles.summaryRowContainer}>
+                            <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:moonpayFee')}</Text>
                             <Text style={[styles.infoTextLight, textColor]}>${fee}</Text>
                         </View>
                         <View style={{ flex: 0.3 }} />
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                width: width / 1.2,
-                            }}
-                        >
-                            <Text style={[styles.infoTextRegular, textColor]}>Total</Text>
+                        <View style={styles.summaryRowContainer}>
+                            <Text style={[styles.infoTextRegular, textColor]}>{t('global:total')}</Text>
                             <Text style={[styles.infoTextBold, textColor]}>${totalAmount}</Text>
                         </View>
                     </AnimatedComponent>
@@ -293,8 +258,8 @@ class AddAmount extends Component {
                             onRightButtonPress={() => AddAmount.redirectToScreen('selectAccount')}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:purchase')}
-                            leftButtonTestID="walletSetup-no"
-                            rightButtonTestID="walletSetup-yes"
+                            leftButtonTestID="moonpay-landing"
+                            rightButtonTestID="moonpay-select-account"
                         />
                     </AnimatedComponent>
                 </View>
