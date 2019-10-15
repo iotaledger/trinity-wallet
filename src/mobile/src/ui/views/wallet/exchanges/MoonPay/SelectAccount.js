@@ -1,7 +1,7 @@
 import head from 'lodash/head';
 import React from 'react';
 import { withTranslation } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import navigator from 'libs/navigation';
 import { setAccountName } from 'shared-modules/actions/exchanges/MoonPay';
 import PropTypes from 'prop-types';
@@ -90,77 +90,75 @@ class SelectAccount extends React.Component {
         const { accountNames, t, theme } = this.props;
 
         return (
-            <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
-                <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
-                    <View>
-                        <View style={styles.topContainer}>
-                            <AnimatedComponent
-                                animationInType={['slideInRight', 'fadeIn']}
-                                animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={400}
-                            >
-                                <Header textColor={theme.body.color} />
-                            </AnimatedComponent>
-                        </View>
-                        <View style={styles.midContainer}>
-                            <AnimatedComponent
-                                animationInType={['slideInRight', 'fadeIn']}
-                                animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={266}
-                            >
-                                <InfoBox>
-                                    <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                        {t('moonpay:selectAccount')}
-                                    </Text>
-                                    <Text
-                                        style={[
-                                            styles.infoTextRegular,
-                                            { paddingTop: height / 60, color: theme.body.color },
-                                        ]}
-                                    >
-                                        {t('moonpay:selectAccountExplanation')}
-                                    </Text>
-                                </InfoBox>
-                            </AnimatedComponent>
-                            <View style={{ flex: 0.3 }} />
-                            <AnimatedComponent
-                                animationInType={['slideInRight', 'fadeIn']}
-                                animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={133}
-                            >
-                                <DropdownComponent
-                                    onRef={(c) => {
-                                        this.dropdown = c;
-                                    }}
-                                    dropdownWidth={{ width: isIPhoneX ? width / 1.1 : width / 1.2 }}
-                                    value={this.state.accountName}
-                                    options={accountNames}
-                                    saveSelection={(name) => {
-                                        this.setState({ accountName: name });
-                                        this.props.setAccountName(name);
-                                    }}
-                                />
-                            </AnimatedComponent>
-                            <View style={{ flex: 0.6 }} />
-                        </View>
-                        <View style={styles.bottomContainer}>
-                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
-                                <DualFooterButtons
-                                    onLeftButtonPress={() => SelectAccount.redirectToScreen('addAmount')}
-                                    onRightButtonPress={() => {
-                                        SelectAccount.redirectToScreen('setupEmail');
-                                        this.props.setAccountName(this.state.accountName);
-                                    }}
-                                    leftButtonText={t('global:goBack')}
-                                    rightButtonText={t('global:confirm')}
-                                    leftButtonTestID="moonpay-back"
-                                    rightButtonTestID="moonpay-setupEmail"
-                                />
-                            </AnimatedComponent>
-                        </View>
+            <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
+                <View>
+                    <View style={styles.topContainer}>
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={400}
+                        >
+                            <Header textColor={theme.body.color} />
+                        </AnimatedComponent>
+                    </View>
+                    <View style={styles.midContainer}>
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={266}
+                        >
+                            <InfoBox>
+                                <Text style={[styles.infoText, { color: theme.body.color }]}>
+                                    {t('moonpay:selectAccount')}
+                                </Text>
+                                <Text
+                                    style={[
+                                        styles.infoTextRegular,
+                                        { paddingTop: height / 60, color: theme.body.color },
+                                    ]}
+                                >
+                                    {t('moonpay:selectAccountExplanation')}
+                                </Text>
+                            </InfoBox>
+                        </AnimatedComponent>
+                        <View style={{ flex: 0.3 }} />
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={133}
+                        >
+                            <DropdownComponent
+                                onRef={(c) => {
+                                    this.dropdown = c;
+                                }}
+                                dropdownWidth={{ width: isIPhoneX ? width / 1.1 : width / 1.2 }}
+                                value={this.state.accountName}
+                                options={accountNames}
+                                saveSelection={(name) => {
+                                    this.setState({ accountName: name });
+                                    this.props.setAccountName(name);
+                                }}
+                            />
+                        </AnimatedComponent>
+                        <View style={{ flex: 0.6 }} />
+                    </View>
+                    <View style={styles.bottomContainer}>
+                        <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                            <DualFooterButtons
+                                onLeftButtonPress={() => SelectAccount.redirectToScreen('addAmount')}
+                                onRightButtonPress={() => {
+                                    SelectAccount.redirectToScreen('setupEmail');
+                                    this.props.setAccountName(this.state.accountName);
+                                }}
+                                leftButtonText={t('global:goBack')}
+                                rightButtonText={t('global:confirm')}
+                                leftButtonTestID="moonpay-back"
+                                rightButtonTestID="moonpay-setup-email"
+                            />
+                        </AnimatedComponent>
                     </View>
                 </View>
-            </TouchableWithoutFeedback>
+            </View>
         );
     }
 }
