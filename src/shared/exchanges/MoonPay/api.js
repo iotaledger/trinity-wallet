@@ -182,7 +182,7 @@ export class MoonPayApi {
      */
     createTransaction(transaction) {
         return this._fetch(
-            `${this.url}/transactions`,
+            `${this.url}/transactions/`,
             {
                 method: 'post',
                 body: transaction,

@@ -22,11 +22,6 @@ import Header from 'ui/components/Header';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 
 const styles = StyleSheet.create({
-    animation: {
-        width: width / 2.4,
-        height: width / 2.4,
-        alignSelf: 'center',
-    },
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -67,16 +62,10 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
     },
-    greetingTextContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: width / 1.5,
-    },
-    greetingText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize4,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
+    summaryRowContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: width / 1.2,
     },
 });
 
@@ -238,15 +227,9 @@ class ReviewPurchase extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={200}
                     >
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                width: width / 1.2,
-                            }}
-                        >
+                        <View style={styles.summaryRowContainer}>
                             <Text style={[styles.infoTextRegular, textColor, { fontSize: Styling.fontSize5 }]}>
-                                Order
+                                {t('moonpay:order')}
                             </Text>
                             <Text style={[styles.infoTextBold, textColor, { fontSize: Styling.fontSize5 }]}>
                                 {receiveAmount}
@@ -259,14 +242,8 @@ class ReviewPurchase extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={200}
                     >
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                width: width / 1.2,
-                            }}
-                        >
-                            <Text style={[styles.infoTextRegular, textColor]}>TRINITY WALLET ADDRESS</Text>
+                        <View style={styles.summaryRowContainer}>
+                            <Text style={[styles.infoTextRegular, textColor]}>{t('moonpay:trinityWalletAddress')}</Text>
                         </View>
                     </AnimatedComponent>
                     <View style={{ flex: 0.1 }} />
@@ -275,13 +252,7 @@ class ReviewPurchase extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={200}
                     >
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                width: width / 1.2,
-                            }}
-                        >
+                        <View style={styles.summaryRowContainer}>
                             <Text style={[styles.infoTextLight, textColor]}>{address}</Text>
                         </View>
                     </AnimatedComponent>
@@ -291,13 +262,7 @@ class ReviewPurchase extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={200}
                     >
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                width: width / 1.2,
-                            }}
-                        >
+                        <View style={styles.summaryRowContainer}>
                             <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:debitCard', { brand })}</Text>
                             <Text style={[styles.infoTextLight, textColor]}>**** **** **** {lastDigits}</Text>
                         </View>
@@ -308,13 +273,7 @@ class ReviewPurchase extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={200}
                     >
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                width: width / 1.2,
-                            }}
-                        >
+                        <View style={styles.summaryRowContainer}>
                             <Text style={[styles.infoTextLight, textColor]}>
                                 {t('moonpay:cardExpiry', { brand: 'Visa' })}
                             </Text>
@@ -322,49 +281,27 @@ class ReviewPurchase extends Component {
                         </View>
                     </AnimatedComponent>
                     <View style={{ flex: 0.4 }} />
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            width: width / 1.2,
-                        }}
-                    >
+                    <View style={styles.summaryRowContainer}>
                         <Text style={[styles.infoTextLight, textColor]}>You will receive</Text>
                         <Text style={[styles.infoTextLight, textColor]}>{receiveAmount}</Text>
                     </View>
                     <View style={{ flex: 0.05 }} />
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            width: width / 1.2,
-                        }}
-                    >
+                    <View style={styles.summaryRowContainer}>
                         <Text style={[styles.infoTextLight, textColor]}>
-                            Market Price: {receiveAmount} @ ${exchangeRates.USD}
+                            {t('moonpay:marketPrice')}: {receiveAmount} @ ${exchangeRates.USD}
                         </Text>
                         <Text style={[styles.infoTextLight, textColor]}>{this.getAmountInFiat()}</Text>
                     </View>
                     <View style={{ flex: 0.05 }} />
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            width: width / 1.2,
-                        }}
-                    >
-                        <Text style={[styles.infoTextLight, textColor]}>MoonPay Fee</Text>
+                    <View style={styles.summaryRowContainer}>
+                        <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:moonpayFee')}</Text>
                         <Text style={[styles.infoTextLight, textColor]}>${fee}</Text>
                     </View>
                     <View style={{ flex: 0.4 }} />
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            width: width / 1.2,
-                        }}
-                    >
-                        <Text style={[styles.infoTextRegular, textColor, { fontSize: Styling.fontSize5 }]}>Total</Text>
+                    <View style={styles.summaryRowContainer}>
+                        <Text style={[styles.infoTextRegular, textColor, { fontSize: Styling.fontSize5 }]}>
+                            {t('global:total')}
+                        </Text>
                         <Text style={[styles.infoTextBold, textColor, { fontSize: Styling.fontSize5 }]}>
                             ${totalAmount}
                         </Text>
@@ -379,8 +316,8 @@ class ReviewPurchase extends Component {
                             isRightButtonLoading={isCreatingTransaction}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:confirm')}
-                            leftButtonTestID="walletSetup-no"
-                            rightButtonTestID="walletSetup-yes"
+                            leftButtonTestID="moonpay-back"
+                            rightButtonTestID="moonpay-done"
                         />
                     </AnimatedComponent>
                 </View>
