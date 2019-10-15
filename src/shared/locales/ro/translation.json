@@ -208,7 +208,7 @@
         "passwordTooWeakReason": "Parola dvs. este prea slabă. Utilizați o combinație de cuvinte și evitați expresii comune, nume sau date.",
         "reasonRow": "Şirurile consecutive de taste sunt uşor de ghicit.",
         "reasonPattern": "Şirurile scurte de taste sunt uşor de ghicit.",
-        "reasonNames": "Common names and surnames are easy to guess.",
+        "reasonNames": "Prenumele şi numele comune sunt uşor de ghicit.",
         "reasonRepeats": "Repetări ca \"aaa\" sunt ușor de ghicit.",
         "reasonRepeats2": "Repetări ca \"abcabcabc\" sunt puțin mai greu de ghicit decât \"abc\".",
         "reasonSequence": "Secvențele precum abc sau 54321 sunt ușor de ghicit.",
