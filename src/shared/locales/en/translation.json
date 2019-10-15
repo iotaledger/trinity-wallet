@@ -285,7 +285,11 @@
         "emptyEmail": "Empty email",
         "emptyEmailExplanation": "Email field cannot be empty",
         "invalidEmail": "Invalid email",
-        "invalidEmailExplanation": "You have entered an invalid email"
+        "invalidEmailExplanation": "You have entered an invalid email",
+        "invalidSecurityCode": "Invalid security code",
+        "pleaseEnterValidSecurityCode": "Please enter a valid security code",
+        "notAcceptedTermsOfUse" : "Not accepted Terms of Use",
+        "pleaseAcceptMoonPayTermsOfUse": "Please accept MoonPay Terms of Use and Privacy Policy"
     },
     "home": {
         "balance": "BALANCE",
