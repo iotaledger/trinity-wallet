@@ -56,11 +56,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    seedVaultImportContainer: {
-        flex: 0.5,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
 });
 
 /** MoonPay user advanced info component */

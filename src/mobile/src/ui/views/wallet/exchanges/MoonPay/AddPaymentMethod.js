@@ -9,47 +9,13 @@ import { WebView } from 'react-native-webview';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { setPaymentCardInfo } from 'shared-modules/actions/exchanges/MoonPay';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { parse } from 'shared-modules/libs/utils';
-import { width } from 'libs/dimensions';
-import { Styling } from 'ui/theme/general';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    topContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    midContainer: {
-        flex: 3,
-        alignItems: 'center',
-        width,
-        justifyContent: 'space-between',
-    },
-    bottomContainer: {
-        flex: 0.5,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    infoText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize6,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    infoTextRegular: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: Styling.fontSize3,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    seedVaultImportContainer: {
-        flex: 0.5,
-        alignItems: 'center',
-        justifyContent: 'center',
     },
 });
 
@@ -72,6 +38,7 @@ const VGSCollectFormHTMl = `
         display: block;
         height: 40px;
         margin-bottom: 15px;
+        font-family: SourceSansPro-Light;
       }
 
       span[id*="cc-"] iframe {
@@ -204,6 +171,11 @@ const VGSCollectFormHTMl = `
           }));
         });
       }, function (errors) {
+        window.ReactNativeWebView.postMessage(JSON.stringify({
+          type: 'error',
+          data: errors
+        }));
+
         document.getElementById('result').innerHTML = errors;
       });
   </script>
@@ -215,6 +187,10 @@ const VGSCollectFormHTMl = `
  */
 class AddPaymentMethod extends PureComponent {
     static propTypes = {
+        /** @ignore */
+        t: PropTypes.func.isRequired,
+        /** @ignore */
+        generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         setPaymentCardInfo: PropTypes.func.isRequired,
     };
@@ -251,10 +227,18 @@ class AddPaymentMethod extends PureComponent {
         if (type === 'success') {
             this.props.setPaymentCardInfo(get(message, 'data'));
             AddPaymentMethod.redirectToScreen('reviewPurchase');
+        } else if (type === 'error') {
+            this.props.generateAlert(
+                'error',
+                'global:somethingWentWrong',
+                'moonpay:somethingWentWrongProcessingCardInfo',
+            );
         }
     }
 
     render() {
+        const { t } = this.props;
+
         return (
             <View style={[styles.container]}>
                 <WebView source={{ html: VGSCollectFormHTMl }} javaScriptEnabled onMessage={this.onMessage} />
@@ -262,10 +246,10 @@ class AddPaymentMethod extends PureComponent {
                     <DualFooterButtons
                         onLeftButtonPress={() => AddPaymentMethod.redirectToScreen('userAdvancedInfo')}
                         onRightButtonPress={() => {}}
-                        leftButtonText="Go back"
-                        rightButtonText="Continue"
-                        leftButtonTestID="enterSeed-back"
-                        rightButtonTestID="enterSeed-next"
+                        leftButtonText={t('global:goBack')}
+                        rightButtonText={t('global:continue')}
+                        leftButtonTestID="moonpay-back"
+                        rightButtonTestID="moonpay-review-purchase"
                     />
                 </AnimatedComponent>
             </View>
@@ -278,6 +262,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
+    generateAlert,
     setPaymentCardInfo,
 };
 

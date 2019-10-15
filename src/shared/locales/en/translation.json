@@ -297,7 +297,8 @@
         "invalidAddress": "Invalid address",
         "invalidAddressExplanation": "Please enter a valid address",
         "invalidCity": "Invalid city",
-        "invalidCityExplanation": "Please enter a valid city"
+        "invalidCityExplanation": "Please enter a valid city",
+        "somethingWentWrongProcessingCardInfo": "Something went wrong while processing your card information. Please try again."
     },
     "home": {
         "balance": "BALANCE",
