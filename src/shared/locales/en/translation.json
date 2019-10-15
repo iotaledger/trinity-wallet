@@ -289,7 +289,15 @@
         "invalidSecurityCode": "Invalid security code",
         "pleaseEnterValidSecurityCode": "Please enter a valid security code",
         "notAcceptedTermsOfUse" : "Not accepted Terms of Use",
-        "pleaseAcceptMoonPayTermsOfUse": "Please accept MoonPay Terms of Use and Privacy Policy"
+        "pleaseAcceptMoonPayTermsOfUse": "Please accept MoonPay Terms of Use and Privacy Policy",
+        "invalidFirstName": "Invalid first name",
+        "invalidFirstNameExplanation": "Please enter a valid first name",
+        "invalidLastName": "Invalid last name",
+        "invalidLastNameExplanation": "Please enter a valid last name",
+        "invalidAddress": "Invalid address",
+        "invalidAddressExplanation": "Please enter a valid address",
+        "invalidCity": "Invalid city",
+        "invalidCityExplanation": "Please enter a valid city"
     },
     "home": {
         "balance": "BALANCE",

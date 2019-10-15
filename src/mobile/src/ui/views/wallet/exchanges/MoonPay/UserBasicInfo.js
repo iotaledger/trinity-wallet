@@ -1,7 +1,7 @@
 import isNull from 'lodash/isNull';
 import React from 'react';
 import { withTranslation } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import navigator from 'libs/navigation';
 import { updateCustomer } from 'shared-modules/actions/exchanges/MoonPay';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -16,8 +16,6 @@ import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
-
-console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 
 const styles = StyleSheet.create({
     container: {
@@ -52,11 +50,6 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
-    },
-    seedVaultImportContainer: {
-        flex: 0.5,
-        alignItems: 'center',
-        justifyContent: 'center',
     },
 });
 
@@ -116,12 +109,22 @@ class UserBasicInfo extends React.Component {
      * @returns {function}
      */
     updateCustomer() {
+        const { t } = this.props;
+
         if (!this.state.firstName) {
-            return this.props.generateAlert('error', 'Invalid first name', 'Please enter a valid first name');
+            return this.props.generateAlert(
+                'error',
+                t('moonpay:invalidFirstName'),
+                t('moonpay:invalidFirstNameExplanation'),
+            );
         }
 
         if (!this.state.lastName) {
-            return this.props.generateAlert('error', 'Invalid last name', 'Please enter a valid last name');
+            return this.props.generateAlert(
+                'error',
+                t('moonpay:invalidLastName'),
+                t('moonpay:invalidLastNameExplanation'),
+            );
         }
 
         return this.props.updateCustomer({
@@ -135,107 +138,102 @@ class UserBasicInfo extends React.Component {
         const { t, theme, isUpdatingCustomer } = this.props;
 
         return (
-            <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
-                <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
-                    <View>
-                        <View style={styles.topContainer}>
-                            <AnimatedComponent
-                                animationInType={['slideInRight', 'fadeIn']}
-                                animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={400}
-                            >
-                                <Header textColor={theme.body.color} />
-                            </AnimatedComponent>
-                        </View>
-                        <View style={styles.midContainer}>
-                            <AnimatedComponent
-                                animationInType={['slideInRight', 'fadeIn']}
-                                animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={300}
-                            >
-                                <InfoBox>
-                                    <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                        {t('moonpay:tellUsMore')}
-                                    </Text>
-                                    <Text
-                                        style={[
-                                            styles.infoTextRegular,
-                                            { paddingTop: height / 60, color: theme.body.color },
-                                        ]}
-                                    >
-                                        {t('moonpay:cardRegistrationName')}
-                                    </Text>
-                                </InfoBox>
-                            </AnimatedComponent>
-                            <View style={{ flex: 0.6 }} />
-                            <AnimatedComponent
-                                animationInType={['slideInRight', 'fadeIn']}
-                                animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={200}
-                            >
-                                <CustomTextInput
-                                    label={t('moonpay:firstName')}
-                                    onValidTextChange={(firstName) => this.setState({ firstName })}
-                                    theme={theme}
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically
-                                    returnKeyType="done"
-                                    value={this.state.firstName}
-                                    testID="enterSeed-seedbox"
-                                />
-                            </AnimatedComponent>
-                            <View style={{ flex: 0.6 }} />
-                            <AnimatedComponent
-                                animationInType={['slideInRight', 'fadeIn']}
-                                animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={200}
-                            >
-                                <CustomTextInput
-                                    label={t('moonpay:lastName')}
-                                    onValidTextChange={(lastName) => this.setState({ lastName })}
-                                    theme={theme}
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically
-                                    returnKeyType="done"
-                                    value={this.state.lastName}
-                                    testID="enterSeed-seedbox"
-                                />
-                            </AnimatedComponent>
-                            <View style={{ flex: 0.6 }} />
-                            <AnimatedComponent
-                                animationInType={['slideInRight', 'fadeIn']}
-                                animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={100}
-                            >
-                                <CustomTextInput
-                                    label={t('moonpay:dateOfBirth')}
-                                    onValidTextChange={(dateOfBirth) => this.setState({ dateOfBirth })}
-                                    theme={theme}
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically
-                                    returnKeyType="done"
-                                    value={this.state.dateOfBirth}
-                                    testID="enterSeed-seedbox"
-                                />
-                            </AnimatedComponent>
-                            <View style={{ flex: 0.6 }} />
-                        </View>
-                        <View style={styles.bottomContainer}>
-                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
-                                <DualFooterButtons
-                                    onLeftButtonPress={() => UserBasicInfo.redirectToScreen('addAmount')}
-                                    onRightButtonPress={() => this.updateCustomer()}
-                                    isRightButtonLoading={isUpdatingCustomer}
-                                    leftButtonText={t('global:goBack')}
-                                    rightButtonText={t('global:continue')}
-                                    leftButtonTestID="enterSeed-back"
-                                    rightButtonTestID="enterSeed-next"
-                                />
-                            </AnimatedComponent>
-                        </View>
+            <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
+                <View>
+                    <View style={styles.topContainer}>
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={400}
+                        >
+                            <Header textColor={theme.body.color} />
+                        </AnimatedComponent>
+                    </View>
+                    <View style={styles.midContainer}>
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={300}
+                        >
+                            <InfoBox>
+                                <Text style={[styles.infoText, { color: theme.body.color }]}>
+                                    {t('moonpay:tellUsMore')}
+                                </Text>
+                                <Text
+                                    style={[
+                                        styles.infoTextRegular,
+                                        { paddingTop: height / 60, color: theme.body.color },
+                                    ]}
+                                >
+                                    {t('moonpay:cardRegistrationName')}
+                                </Text>
+                            </InfoBox>
+                        </AnimatedComponent>
+                        <View style={{ flex: 0.6 }} />
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={200}
+                        >
+                            <CustomTextInput
+                                label={t('moonpay:firstName')}
+                                onValidTextChange={(firstName) => this.setState({ firstName })}
+                                theme={theme}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="done"
+                                value={this.state.firstName}
+                            />
+                        </AnimatedComponent>
+                        <View style={{ flex: 0.6 }} />
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={200}
+                        >
+                            <CustomTextInput
+                                label={t('moonpay:lastName')}
+                                onValidTextChange={(lastName) => this.setState({ lastName })}
+                                theme={theme}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="done"
+                                value={this.state.lastName}
+                            />
+                        </AnimatedComponent>
+                        <View style={{ flex: 0.6 }} />
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={100}
+                        >
+                            <CustomTextInput
+                                label={t('moonpay:dateOfBirth')}
+                                onValidTextChange={(dateOfBirth) => this.setState({ dateOfBirth })}
+                                theme={theme}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="done"
+                                value={this.state.dateOfBirth}
+                            />
+                        </AnimatedComponent>
+                        <View style={{ flex: 0.6 }} />
+                    </View>
+                    <View style={styles.bottomContainer}>
+                        <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                            <DualFooterButtons
+                                onLeftButtonPress={() => UserBasicInfo.redirectToScreen('addAmount')}
+                                onRightButtonPress={() => this.updateCustomer()}
+                                isRightButtonLoading={isUpdatingCustomer}
+                                leftButtonText={t('global:goBack')}
+                                rightButtonText={t('global:continue')}
+                                leftButtonTestID="moonpay-back"
+                                rightButtonTestID="moonpay-next"
+                            />
+                        </AnimatedComponent>
                     </View>
                 </View>
-            </TouchableWithoutFeedback>
+            </View>
         );
     }
 }

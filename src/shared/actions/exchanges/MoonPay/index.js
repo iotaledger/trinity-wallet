@@ -412,14 +412,9 @@ export const verifyEmail = (securityCode) => (dispatch, getState) => {
 export const updateCustomer = (info) => (dispatch) => {
     dispatch(updateCustomerRequest());
 
-    // api.updateUserInfo(info)
-    new Promise((resolve) => {
-        setTimeout(() => resolve(info), 2000);
-    })
-        // eslint-disable-next-line
+    api.updateUserInfo(info)
         .then((data) => {
-            // dispatch(updateCustomerInfo(data.customer));
-            dispatch(updateCustomerInfo(info));
+            dispatch(updateCustomerInfo(data));
             dispatch(updateCustomerSuccess());
         })
         .catch(() => {

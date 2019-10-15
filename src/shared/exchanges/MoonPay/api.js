@@ -37,6 +37,7 @@ export class MoonPayApi {
                 return __MOBILE__
                     ? {
                           Authorization: `Bearer ${this._jwt}`,
+                          'X-CSRF-TOKEN': this._csrfToken,
                       }
                     : {
                           'X-CSRF-TOKEN': this._csrfToken,
