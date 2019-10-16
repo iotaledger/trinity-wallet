@@ -115,7 +115,7 @@ class AddAmount extends Component {
      * @returns {void}
      */
     setDenomination() {
-        const { denomination, fiatCurrencies } = this.props;
+        const { amount, denomination, fiatCurrencies } = this.props;
 
         const usdCurrencyObject = find(fiatCurrencies, { code: 'usd' });
 
@@ -129,6 +129,7 @@ class AddAmount extends Component {
                 : availableDenominations[currentDenominationIndex + 1];
 
         this.props.setDenomination(nextDenomination);
+        this.props.fetchQuote(this.getAmountInFiat(amount, nextDenomination), 'usd');
     }
 
     /**
@@ -136,16 +137,19 @@ class AddAmount extends Component {
      *
      * @method getAmountInFiat
      *
-     * @returns {string}
+     * @param {string} amount
+     * @param {string} denomination
+     *
+     * @returns {number}
      */
-    getAmountInFiat() {
-        const { amount, denomination, exchangeRates } = this.props;
+    getAmountInFiat(amount, denomination) {
+        const { exchangeRates } = this.props;
 
         if (includes(AddAmount.iotaDenominations, denomination)) {
-            return amount ? `$${(Number(amount) * exchangeRates.USD).toFixed(2)}` : '$0';
+            return amount ? Number((Number(amount) * exchangeRates.USD).toFixed(2)) : 0;
         }
 
-        return amount ? `$${amount}` : '0$';
+        return amount ? Number(Number(amount).toFixed(2)) : 0;
     }
 
     getAmountinMiota() {
@@ -166,6 +170,19 @@ class AddAmount extends Component {
         }
 
         return amount ? `${(Number(amount) / exchangeRates.USD).toFixed(2)} Mi` : '0 Mi';
+    }
+
+    /**
+     * Gets stringified amount in fiat
+     *
+     * @method getStringifiedFiatAmount
+     *
+     * @param {number} amount
+     *
+     * @returns {string}
+     */
+    getStringifiedFiatAmount(amount) {
+        return amount ? `$${amount.toFixed(2)}` : '$0';
     }
 
     render() {
@@ -211,11 +228,11 @@ class AddAmount extends Component {
                             onRef={(c) => {
                                 this.amountField = c;
                             }}
-                            onValidTextChange={(amount) => {
-                                this.props.setAmount(amount);
+                            onValidTextChange={(newAmount) => {
+                                this.props.setAmount(newAmount);
 
                                 // TODO: Do validation on amount
-                                this.props.fetchQuote(Number(amount), 'usd');
+                                this.props.fetchQuote(this.getAmountInFiat(newAmount, denomination), 'usd');
                             }}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -244,7 +261,9 @@ class AddAmount extends Component {
                             <Text style={[styles.infoTextLight, textColor]}>
                                 {t('moonpay:marketPrice')}: {receiveAmount} @ ${exchangeRates.USD}
                             </Text>
-                            <Text style={[styles.infoTextLight, textColor]}>{this.getAmountInFiat()}</Text>
+                            <Text style={[styles.infoTextLight, textColor]}>
+                                {this.getStringifiedFiatAmount(this.getAmountInFiat(amount, denomination))}
+                            </Text>
                         </View>
                         <View style={{ flex: 0.05 }} />
                         <View style={styles.summaryRowContainer}>

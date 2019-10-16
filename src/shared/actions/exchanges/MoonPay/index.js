@@ -332,6 +332,8 @@ export const fetchQuote = (baseCurrencyAmount, baseCurrencyCode) => (dispatch) =
     api.fetchQuote(IOTA_CURRENCY_CODE, baseCurrencyAmount, baseCurrencyCode)
         .then((quote) => dispatch(setCurrencyQuote(quote)))
         .catch((error) => {
+            dispatch(setCurrencyQuote({}));
+
             if (__DEV__) {
                 /* eslint-disable no-console */
                 console.log(error);
