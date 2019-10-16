@@ -129,7 +129,7 @@ class SetupEmail extends React.Component {
                             animationOutType={['slideOutLeft', 'fadeOut']}
                             delay={400}
                         >
-                            <Header textColor={theme.body.color} />
+                            <Header iconSize={width / 3} iconName="moonpay" textColor={theme.body.color} />
                         </AnimatedComponent>
                     </View>
                     <View style={styles.midContainer}>

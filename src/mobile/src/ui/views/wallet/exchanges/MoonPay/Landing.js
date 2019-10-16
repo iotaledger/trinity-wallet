@@ -101,7 +101,7 @@ class Landing extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
                     >
-                        <Header textColor={body.color} />
+                        <Header iconSize={width / 3} iconName="moonpay" textColor={body.color} />
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>

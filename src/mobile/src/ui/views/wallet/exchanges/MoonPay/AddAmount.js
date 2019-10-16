@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 0.7,
+        flex: 0.9,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
     midContainer: {
-        flex: 3.3,
+        flex: 3.1,
         alignItems: 'center',
     },
     bottomContainer: {
@@ -131,6 +131,13 @@ class AddAmount extends Component {
         this.props.setDenomination(nextDenomination);
     }
 
+    /**
+     * Gets amount in fiat
+     *
+     * @method getAmountInFiat
+     *
+     * @returns {string}
+     */
     getAmountInFiat() {
         const { amount, denomination, exchangeRates } = this.props;
 
@@ -175,7 +182,7 @@ class AddAmount extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
                     >
-                        <Header textColor={theme.body.color} />
+                        <Header iconSize={width / 3} iconName="moonpay" textColor={theme.body.color} />
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
