@@ -298,7 +298,9 @@
         "invalidAddressExplanation": "Please enter a valid address",
         "invalidCity": "Invalid city",
         "invalidCityExplanation": "Please enter a valid city",
-        "somethingWentWrongProcessingCardInfo": "Something went wrong while processing your card information. Please try again."
+        "somethingWentWrongProcessingCardInfo": "Something went wrong while processing your card information. Please try again.",
+        "notEnoughAmount": "Not enough amount",
+        "notEnoughAmountExplanation": "Minimum transaction amount is {{amount}}"
     },
     "home": {
         "balance": "BALANCE",

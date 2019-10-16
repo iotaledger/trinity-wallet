@@ -9,9 +9,11 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { MINIMUM_TRANSACTION_SIZE } from 'shared-modules/exchanges/MoonPay/index';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getFiatCurrencies, getMoonPayFee, getTotalPurchaseAmount } from 'shared-modules/selectors/exchanges/MoonPay';
 import { fetchQuote, setAmount, setDenomination } from 'shared-modules/actions/exchanges/MoonPay';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import navigator from 'libs/navigation';
@@ -92,6 +94,8 @@ class AddAmount extends Component {
         fetchQuote: PropTypes.func.isRequired,
         /** @ignore */
         setAmount: PropTypes.func.isRequired,
+        /** @ignore */
+        generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         setDenomination: PropTypes.func.isRequired,
     };
@@ -183,6 +187,30 @@ class AddAmount extends Component {
      */
     getStringifiedFiatAmount(amount) {
         return amount ? `$${amount.toFixed(2)}` : '$0';
+    }
+
+    /**
+     * Verifies that amount is above minimum allowed amount ($20)
+     *
+     * @method verifyAmount
+     *
+     * @returns {void}
+     */
+    verifyAmount() {
+        const { amount, denomination, t } = this.props;
+
+        const fiatAmount = this.getAmountInFiat(amount, denomination);
+        console.log('Fiat amount', fiatAmount);
+
+        if (fiatAmount < MINIMUM_TRANSACTION_SIZE) {
+            this.props.generateAlert(
+                'error',
+                t('moonpay:notEnoughAmount'),
+                t('moonpay:notEnoughAmountExplanation', { amount: `$${MINIMUM_TRANSACTION_SIZE}` }),
+            );
+        } else {
+            AddAmount.redirectToScreen('selectAccount');
+        }
     }
 
     render() {
@@ -281,7 +309,7 @@ class AddAmount extends Component {
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
                             onLeftButtonPress={() => AddAmount.redirectToScreen('landing')}
-                            onRightButtonPress={() => AddAmount.redirectToScreen('selectAccount')}
+                            onRightButtonPress={() => this.verifyAmount()}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:purchase')}
                             leftButtonTestID="moonpay-landing"
@@ -306,6 +334,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
+    generateAlert,
     fetchQuote,
     setAmount,
     setDenomination,
