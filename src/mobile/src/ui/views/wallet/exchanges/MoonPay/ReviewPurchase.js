@@ -1,9 +1,4 @@
-import get from 'lodash/get';
-import head from 'lodash/head';
 import includes from 'lodash/includes';
-import find from 'lodash/find';
-import toUpper from 'lodash/toUpper';
-import size from 'lodash/size';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
@@ -11,8 +6,8 @@ import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getLatestAddressForMoonPaySelectedAccount } from 'shared-modules/selectors/accounts';
-import { getFiatCurrencies, getMoonPayFee, getTotalPurchaseAmount } from 'shared-modules/selectors/exchanges/MoonPay';
-import { fetchQuote, setAmount, setDenomination, createTransaction } from 'shared-modules/actions/exchanges/MoonPay';
+import { getMoonPayFee, getTotalPurchaseAmount } from 'shared-modules/selectors/exchanges/MoonPay';
+import { fetchQuote, setAmount, createTransaction } from 'shared-modules/actions/exchanges/MoonPay';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import navigator from 'libs/navigation';
 import InfoBox from 'ui/components/InfoBox';
@@ -81,8 +76,6 @@ class ReviewPurchase extends Component {
         /** @ignore */
         denomination: PropTypes.string.isRequired,
         /** @ignore */
-        fiatCurrencies: PropTypes.array.isRequired,
-        /** @ignore */
         exchangeRates: PropTypes.object.isRequired,
         /** @ignore */
         fee: PropTypes.number.isRequired,
@@ -96,8 +89,6 @@ class ReviewPurchase extends Component {
         lastDigits: PropTypes.string.isRequired,
         /** @ignore */
         isCreatingTransaction: PropTypes.bool.isRequired,
-        /** @ignore */
-        setDenomination: PropTypes.func.isRequired,
         /** @ignore */
         createTransaction: PropTypes.func.isRequired,
     };
@@ -114,37 +105,23 @@ class ReviewPurchase extends Component {
     static iotaDenominations = ['Mi'];
 
     /**
-     * Sets next denomination in redux store
+     * Gets amount in fiat
      *
-     * @method setDenomination
+     * @method getAmountInFiat
      *
-     * @returns {void}
+     * @param {string} amount
+     * @param {string} denomination
+     *
+     * @returns {number}
      */
-    setDenomination() {
-        const { denomination, fiatCurrencies } = this.props;
-
-        const usdCurrencyObject = find(fiatCurrencies, { code: 'usd' });
-
-        const availableDenominations = [...ReviewPurchase.iotaDenominations, toUpper(get(usdCurrencyObject, 'code'))];
-
-        const currentDenominationIndex = availableDenominations.indexOf(denomination);
-
-        const nextDenomination =
-            currentDenominationIndex === -1 || currentDenominationIndex === size(availableDenominations) - 1
-                ? head(availableDenominations)
-                : availableDenominations[currentDenominationIndex + 1];
-
-        this.props.setDenomination(nextDenomination);
-    }
-
-    getAmountInFiat() {
-        const { amount, denomination, exchangeRates } = this.props;
+    getAmountInFiat(amount, denomination) {
+        const { exchangeRates } = this.props;
 
         if (includes(ReviewPurchase.iotaDenominations, denomination)) {
-            return amount ? `$${(Number(amount) * exchangeRates.USD).toFixed(2)}` : '$0';
+            return amount ? Number((Number(amount) * exchangeRates.USD).toFixed(2)) : 0;
         }
 
-        return amount ? `$${amount}` : '0$';
+        return amount ? Number(Number(amount).toFixed(2)) : 0;
     }
 
     getAmountinMiota() {
@@ -167,17 +144,32 @@ class ReviewPurchase extends Component {
         return amount ? `${(Number(amount) / exchangeRates.USD).toFixed(2)} Mi` : '0 Mi';
     }
 
-    createTransaction() {
-        const { amount, address } = this.props;
+    /**
+     * Gets stringified amount in fiat
+     *
+     * @method getStringifiedFiatAmount
+     *
+     * @param {number} amount
+     *
+     * @returns {string}
+     */
+    getStringifiedFiatAmount(amount) {
+        return amount ? `$${amount.toFixed(2)}` : '$0';
+    }
 
-        this.props.createTransaction(Number(amount), 'usd', address);
+    createTransaction() {
+        const { amount, denomination, address } = this.props;
+
+        this.props.createTransaction(this.getAmountInFiat(amount, denomination), 'usd', address);
     }
 
     render() {
         const {
             isCreatingTransaction,
+            amount,
             address,
             brand,
+            denomination,
             lastDigits,
             fee,
             totalAmount,
@@ -290,7 +282,9 @@ class ReviewPurchase extends Component {
                         <Text style={[styles.infoTextLight, textColor]}>
                             {t('moonpay:marketPrice')}: {receiveAmount} @ ${exchangeRates.USD}
                         </Text>
-                        <Text style={[styles.infoTextLight, textColor]}>{this.getAmountInFiat()}</Text>
+                        <Text style={[styles.infoTextLight, textColor]}>
+                            {this.getStringifiedFiatAmount(this.getAmountInFiat(amount, denomination))}
+                        </Text>
                     </View>
                     <View style={{ flex: 0.05 }} />
                     <View style={styles.summaryRowContainer}>
@@ -331,7 +325,6 @@ const mapStateToProps = (state) => ({
     themeName: state.settings.themeName,
     amount: state.exchanges.moonpay.amount,
     denomination: state.exchanges.moonpay.denomination,
-    fiatCurrencies: getFiatCurrencies(state),
     exchangeRates: state.exchanges.moonpay.exchangeRates,
     fee: getMoonPayFee(state),
     totalAmount: getTotalPurchaseAmount(state),
@@ -344,7 +337,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     fetchQuote,
     setAmount,
-    setDenomination,
     createTransaction,
 };
 
