@@ -1,9 +1,6 @@
-import assign from 'lodash/assign';
 import get from 'lodash/get';
-import filter from 'lodash/filter';
 import has from 'lodash/has';
 import isEmpty from 'lodash/isEmpty';
-import map from 'lodash/map';
 import some from 'lodash/some';
 import size from 'lodash/size';
 import React from 'react';
@@ -40,8 +37,6 @@ class TransferFunds extends React.PureComponent {
         accountMeta: PropTypes.object.isRequired,
         /** Spent address data with balance for selected account */
         spentAddressDataWithBalance: PropTypes.array.isRequired,
-        /** Broadcasted transactions for selected account */
-        broadcastedTransactions: PropTypes.array.isRequired,
         /** Latest (unused) address for selected account */
         latestAddress: PropTypes.string.isRequired,
         /** @ignore */
@@ -67,36 +62,15 @@ class TransferFunds extends React.PureComponent {
         setSweepsStatuses: PropTypes.func.isRequired,
         /** @ignore */
         resetProgress: PropTypes.func.isRequired,
+        /** @ignore */
+        currentSweepIteration: PropTypes.number.isRequired,
+        /** @ignore */
+        totalSweepIterations: PropTypes.number.isRequired
     };
 
     componentWillUnmount() {
         this.props.setSweepsStatuses({});
         this.props.resetProgress();
-    }
-
-    /**
-     * Gets address data
-     *
-     * @method getAddressData
-     *
-     * @returns {array}
-     */
-    getAddressData() {
-        const { spentAddressDataWithBalance, broadcastedTransactions } = this.props;
-
-        const inputTransactions = filter(broadcastedTransactions, (transaction) => transaction.value < 0);
-
-        return filter(
-            map(spentAddressDataWithBalance, (addreessObject) =>
-                assign({}, addreessObject, {
-                    bundleHashes: map(
-                        filter(inputTransactions, (transaction) => transaction.address === addreessObject.address),
-                        (transaction) => transaction.bundle,
-                    ),
-                }),
-            ),
-            (addressObject) => !isEmpty(addressObject.bundleHashes),
-        );
     }
 
     /**
@@ -169,32 +143,26 @@ class TransferFunds extends React.PureComponent {
     }
 
     render() {
-        const { isRecoveringFunds, latestAddress, sweepsStatuses, t } = this.props;
+        const { currentSweepIteration, totalSweepIterations, spentAddressDataWithBalance, isRecoveringFunds, latestAddress, sweepsStatuses, t } = this.props;
 
-        const mockAddressData = [
-            {
-                address: 'U'.repeat(81),
-                bundleHashes: [],
-                balance: 10000000,
-                checksum: 'XXXUUUVVV',
-                spent: { remote: true, local: true },
-            },
-        ];
-        const addressData = [...this.getAddressData(), ...mockAddressData];
         const hasFailedAnySweep = this.hasFailedAnySweep();
-
+        console.log(currentSweepIteration)
         return (
             <form>
                 <section>
                     <h1>{t('sweeps:transferYourFunds')}</h1>
-                    <p>{t('sweeps:transferYourFundsExplanation')}</p>
+                    <p>
+                        <span>{t('sweeps:transferYourFundsExplanation')}</span>
+                        <br />
+                        <strong>{t('sweeps:doNotCloseTrinity').toUpperCase()}</strong>
+                    </p>
                     <div
                         style={{
                             display: 'flex',
                             flexDirection: 'column',
                         }}
                     >
-                        {addressData.map((object, index) => {
+                        {spentAddressDataWithBalance.map((object, index) => {
                             const status = get(sweepsStatuses, object.address);
 
                             const hasFailed = status === -1;
@@ -218,7 +186,7 @@ class TransferFunds extends React.PureComponent {
                                             style={{
                                                 marginRight: '40px',
                                             }}
-                                        >{`Sweep ${index + 1} of ${addressData.length}`}</strong>
+                                        >{`Sweep ${index + 1} of ${spentAddressDataWithBalance.length}`}</strong>
                                         {has(sweepsStatuses, object.address) && (
                                             <span
                                                 style={{
@@ -258,12 +226,21 @@ class TransferFunds extends React.PureComponent {
                                 </div>
                             );
                         })}
+                        { isRecoveringFunds &&
+                            <div
+                                style={{
+                                    display: 'flex',
+                                }}
+                            >
+                                <span>Bundles mined {`${currentSweepIteration}/${totalSweepIterations}`}</span>
+                            </div>
+                        }
                     </div>
                 </section>
                 <footer>
                     <Button
                         id="sweep-funds-complete"
-                        onClick={() => (hasFailedAnySweep ? this.props.history.goBack() : this.sweep(addressData))}
+                        onClick={() => (hasFailedAnySweep ? this.props.history.goBack() : this.sweep(spentAddressDataWithBalance))}
                         disabled={isRecoveringFunds}
                         className="square"
                         variant={hasFailedAnySweep ? 'secondary' : 'primary'}
@@ -273,7 +250,7 @@ class TransferFunds extends React.PureComponent {
                     {hasFailedAnySweep && (
                         <Button
                             id="try-again"
-                            onClick={() => this.sweep(addressData)}
+                            onClick={() => this.sweep(spentAddressDataWithBalance)}
                             className="square"
                             variant="primary"
                         >
@@ -297,6 +274,8 @@ const mapStateToProps = (state) => ({
     isRecoveringFunds: state.ui.isRecoveringFunds,
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
+    currentSweepIteration: state.wallet.currentSweepIteration,
+    totalSweepIterations: state.wallet.totalSweepIterations
 });
 
 const mapDispatchToProps = {

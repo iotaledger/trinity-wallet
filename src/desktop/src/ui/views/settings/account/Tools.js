@@ -14,7 +14,7 @@ import {
     generateAddressesAndGetBalance,
 } from 'actions/wallet';
 
-import { getAddressesForSelectedAccount, getSpentAddressDataWithBalanceForSelectedAccount } from 'selectors/accounts';
+import { getAddressesForSelectedAccount, getFilteredSpentAddressDataForSelectedAccount } from 'selectors/accounts';
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
@@ -274,7 +274,7 @@ const mapStateToProps = (state) => ({
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
     themeName: state.settings.themeName,
-    spentAddressDataWithBalance: getSpentAddressDataWithBalanceForSelectedAccount(state),
+    spentAddressDataWithBalance: getFilteredSpentAddressDataForSelectedAccount(state)
 });
 
 const mapDispatchToProps = {

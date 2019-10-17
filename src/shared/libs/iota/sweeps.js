@@ -4,11 +4,13 @@ import { createBundleMiner, minNormalizedBundle, bundleEssence } from '@iota/bun
 import { tritsToTrytes, trytesToTrits, valueToTrits } from '@iota/converter';
 import * as Transaction from '@iota/transaction';
 import { normalizedBundle, signatureFragments } from '@iota/signing';
+import { setCurrentSweepIteration } from '../../actions/sweeps';
 import Errors from '../errors';
 /* eslint-disable */
 import { attachToTangleAsync, getTransactionsToApproveAsync, storeAndBroadcastAsync } from './extendedApi';
 import { isBundle } from './transfers';
 import { iota } from './index';
+import store from '../../store';
 
 /**
  * Creates an unsigned bundle
@@ -72,8 +74,9 @@ export const sweep = (settings, withQuorum) => (seedStore, input, outputAddress,
 
     let offset = 0;
     const count = 10 ** 3;
-    
-    while (offset < 10 ** 7) {
+    const offsetTotal = 10 ** 7
+
+    while (offset < offsetTotal) {
         const outcome = createBundleMiner({
             signedNormalizedBundle: minNormalizedBundle(normalizedBundles, numberOfFragments),
             essence: bundleEssence(unsignedBundle),
@@ -81,14 +84,15 @@ export const sweep = (settings, withQuorum) => (seedStore, input, outputAddress,
             offset,
             count,
         }).start();
-    
+
         if (outcome.tritSecurityLevel > optimalOutcome.tritSecurityLevel) {
             optimalOutcome = outcome;
         }
-    
+
         offset += count;
+        store.dispatch(setCurrentSweepIteration(offset));
     }
-    
+
     unsignedBundle.set(valueToTrits(optimalOutcome.index), Transaction.OBSOLETE_TAG_OFFSET);
 
     const bundle = finalizeBundle(unsignedBundle);

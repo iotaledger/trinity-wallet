@@ -7,6 +7,7 @@ import orderBy from 'lodash/orderBy';
 import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
 import filter from 'lodash/filter';
+import assign from 'lodash/assign';
 import transform from 'lodash/transform';
 import { createSelector } from 'reselect';
 import { getSeedIndexFromState } from './global';
@@ -444,3 +445,27 @@ export const getBroadcastedTransactionsForSelectedAccount = createSelector(
         return filter(account.transactions, (transaction) => transaction.broadcasted === true);
     },
 );
+
+/**
+ * Filters spent address data, removing addresses for which there is no outgoing broadcasted bundle hash
+ *
+ * @method getFilteredSpentAddressDataForSelectedAccount
+ * @param {object} state
+ *
+ * @returns {array}
+ **/
+export const getFilteredSpentAddressDataForSelectedAccount = createSelector(
+        getSpentAddressDataWithBalanceForSelectedAccount, getBroadcastedTransactionsForSelectedAccount, (spentAddressDataWithBalance, broadcastedTransactions) => {
+          const inputTransactions = filter(broadcastedTransactions, (transaction) => transaction.value < 0);
+          return filter(
+              map(spentAddressDataWithBalance, (addressObject) =>
+                  assign({}, addressObject, {
+                      bundleHashes: map(
+                          filter(inputTransactions, (transaction) => transaction.address === addressObject.address),
+                          (transaction) => transaction.bundle,
+                      ),
+                  }),
+              ),
+              (addressObject) => !isEmpty(addressObject.bundleHashes),
+          )
+        })
