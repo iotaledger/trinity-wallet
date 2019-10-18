@@ -65,7 +65,7 @@ class TransferFunds extends React.PureComponent {
         /** @ignore */
         currentSweepIteration: PropTypes.number.isRequired,
         /** @ignore */
-        totalSweepIterations: PropTypes.number.isRequired
+        totalSweepIterations: PropTypes.number.isRequired,
     };
 
     componentWillUnmount() {
@@ -143,10 +143,18 @@ class TransferFunds extends React.PureComponent {
     }
 
     render() {
-        const { currentSweepIteration, totalSweepIterations, spentAddressDataWithBalance, isRecoveringFunds, latestAddress, sweepsStatuses, t } = this.props;
+        const {
+            currentSweepIteration,
+            totalSweepIterations,
+            spentAddressDataWithBalance,
+            isRecoveringFunds,
+            latestAddress,
+            sweepsStatuses,
+            t,
+        } = this.props;
 
         const hasFailedAnySweep = this.hasFailedAnySweep();
-        console.log(currentSweepIteration)
+
         return (
             <form>
                 <section>
@@ -226,7 +234,7 @@ class TransferFunds extends React.PureComponent {
                                 </div>
                             );
                         })}
-                        { isRecoveringFunds &&
+                        {isRecoveringFunds && (
                             <div
                                 style={{
                                     display: 'flex',
@@ -234,13 +242,15 @@ class TransferFunds extends React.PureComponent {
                             >
                                 <span>Bundles mined {`${currentSweepIteration}/${totalSweepIterations}`}</span>
                             </div>
-                        }
+                        )}
                     </div>
                 </section>
                 <footer>
                     <Button
                         id="sweep-funds-complete"
-                        onClick={() => (hasFailedAnySweep ? this.props.history.goBack() : this.sweep(spentAddressDataWithBalance))}
+                        onClick={() =>
+                            hasFailedAnySweep ? this.props.history.goBack() : this.sweep(spentAddressDataWithBalance)
+                        }
                         disabled={isRecoveringFunds}
                         className="square"
                         variant={hasFailedAnySweep ? 'secondary' : 'primary'}
@@ -275,7 +285,7 @@ const mapStateToProps = (state) => ({
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
     currentSweepIteration: state.wallet.currentSweepIteration,
-    totalSweepIterations: state.wallet.totalSweepIterations
+    totalSweepIterations: state.wallet.totalSweepIterations,
 });
 
 const mapDispatchToProps = {
