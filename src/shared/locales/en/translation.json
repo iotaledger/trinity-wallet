@@ -455,11 +455,15 @@
         "lockedFundsDetected": "Trinity has detected locked funds in your account.",
         "lockedFundsRecovery": "Locked Funds Recovery",
         "aboutLockedFunds": "About Locked Funds",
-        "lockedFundsRecoveryExplanation": "Lorem Ipsum",
+        "lockedFundsRecoveryExplanation": "Funds have been detected on one or more addresses that have already been spent from. Spending from an address more than once is insecure.",
+        "lockedFundsToolExplanation": "This tool will attempt to salvage those funds in a way that reduces the risk involved in spending more than once. Recovery cannot be guaranteed.",
+        "lockedFundsOwnRiskExplanation": " Use this tool at your own risk.",
         "transferYourFunds": "Transfer your funds",
-        "transferYourFundsExplanation": "Trinity will recover your funds by moving them to new addresses, but it may take some time. Please do not close Trinity or turn off your computer whilst in progress. Press continue below to commence the sweep.",
-        "fundsUnlockedExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "transferYourFundsExplanation": "Trinity will attempt to recover your funds by moving them to a new address, but it may take some time. Press continue to commence the sweep.",
+        "doNotCloseTrinity": "Do not close Trinity or turn off your computer during this process.",
+        "fundsUnlockedExplanation": "Your funds have been successfully unlocked. Promote the transactions to help them confirm.",
         "tryAgain": "Try again"
+
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",

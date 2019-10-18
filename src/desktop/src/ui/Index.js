@@ -39,7 +39,7 @@ import UpdateProgress from 'ui/global/UpdateProgress';
 import Loading from 'ui/components/Loading';
 
 import Onboarding from 'ui/views/onboarding/Index';
-import Sweeps from 'ui/views/sweeps/Index';
+import Sweeps from 'ui/views/settings/account/sweeps/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Ledger from 'ui/global/seedStore/Ledger';

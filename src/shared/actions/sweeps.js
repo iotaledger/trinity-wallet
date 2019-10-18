@@ -12,6 +12,34 @@ import { Account } from '../storage';
 import { SweepsActionTypes } from '../types';
 
 /**
+ * Dispatch to set the total iterations for the current sweep
+ *
+ * @method setTotalSweepIterations
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const setTotalSweepIterations = (payload) => ({
+    type: SweepsActionTypes.SET_TOTAL_SWEEP_ITERATIONS,
+    payload,
+});
+
+/**
+ * Dispatch to set the current iteration for the current sweep
+ *
+ * @method setCurrentSweepIteration
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const setCurrentSweepIteration = (payload) => {
+    return ({
+        type: SweepsActionTypes.SET_CURRENT_SWEEP_ITERATION,
+        payload,
+    })
+};
+
+/**
  * Dispatch to set sweeps statuses
  *
  * @method setSweepsStatuses

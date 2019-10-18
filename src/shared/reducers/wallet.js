@@ -66,6 +66,14 @@ const initialState = {
      * 1 - Successful
      */
     sweepsStatuses: {},
+    /**
+     * Current iteration for the current sweep
+     */
+    currentSweepIteration: 0,
+    /**
+     * Total number of iterations for the current sweep
+     */
+    totalSweepIterations: 10 ** 7
 };
 
 export default (state = initialState, action) => {
@@ -223,6 +231,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 sweepsStatuses: action.payload,
+            };
+        case SweepsActionTypes.SET_CURRENT_SWEEP_ITERATION:
+            return {
+                ...state,
+                currentSweepIteration: action.payload,
+            };
+        case SweepsActionTypes.SET_TOTAL_SWEEP_ITERATIONS:
+            return {
+                ...state,
+                totalSweepIterations: action.payload,
             };
         default:
             return state;
