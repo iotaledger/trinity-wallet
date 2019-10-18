@@ -57,4 +57,5 @@ module.exports = {
     write: '✍️',
     search: '🔍',
     link: '🔗',
+    sweeps: '🤕',
 };
