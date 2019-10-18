@@ -37,10 +37,10 @@ export default class Text extends React.PureComponent {
     }
 
     render() {
-        const { value, label, onChange, disabled, maxLength } = this.props;
+        const { value, label, onChange, disabled, maxLength, ...restProps } = this.props;
 
         return (
-            <div className={classNames(css.input, disabled ? css.disabled : null)}>
+            <div className={classNames(css.input, disabled ? css.disabled : null)} {...restProps}>
                 <fieldset>
                     <input
                         ref={(input) => {

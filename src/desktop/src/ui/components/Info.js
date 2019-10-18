@@ -10,14 +10,20 @@ export default class Info extends React.PureComponent {
     static propTypes = {
         /** Info block content */
         children: PropTypes.node.isRequired,
+        /** Determines whether to display icon */
+        displayIcon: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        displayIcon: true,
     };
 
     render() {
-        const { children } = this.props;
+        const { children, displayIcon } = this.props;
 
         return (
             <div className={css.wrapper}>
-                <Icon icon="info" size={28} />
+                {displayIcon && <Icon icon="info" size={28} />}
                 {children}
             </div>
         );

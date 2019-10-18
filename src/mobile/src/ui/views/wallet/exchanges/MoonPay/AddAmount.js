@@ -200,7 +200,6 @@ class AddAmount extends Component {
         const { amount, denomination, t } = this.props;
 
         const fiatAmount = this.getAmountInFiat(amount, denomination);
-        console.log('Fiat amount', fiatAmount);
 
         if (fiatAmount < MINIMUM_TRANSACTION_SIZE) {
             this.props.generateAlert(

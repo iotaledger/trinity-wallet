@@ -39,9 +39,11 @@ import UpdateProgress from 'ui/global/UpdateProgress';
 import Loading from 'ui/components/Loading';
 
 import Onboarding from 'ui/views/onboarding/Index';
+
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Ledger from 'ui/global/seedStore/Ledger';
+import MoonPayExchange from 'ui/views/exchanges/MoonPay/Index';
 
 /**
  * Wallet wrapper component
@@ -334,6 +336,7 @@ class App extends React.Component {
                                 />
                                 <Route path="/wallet" component={Wallet} />
                                 <Route path="/onboarding" component={Onboarding} />
+                                <Route path="/exchanges/moonpay" component={MoonPayExchange} />
                                 <Route loop={false} component={this.Init} />
                             </Switch>
                         </div>

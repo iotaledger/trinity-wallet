@@ -66,6 +66,9 @@ const Settings = ({ accounts, accountNames, location, match, wallet, history, t 
                         <NavLink to="/settings/currency">
                             <Icon icon="currency" size={16} /> <strong>{t('settings:currency')}</strong>
                         </NavLink>
+                        <NavLink to="/exchanges/moonpay">
+                            <Icon icon="iota" size={16} /> <strong>Purchase IOTA</strong>
+                        </NavLink>
                         {wallet.ready && (
                             <React.Fragment>
                                 <hr />
