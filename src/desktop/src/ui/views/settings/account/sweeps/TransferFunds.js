@@ -68,6 +68,12 @@ class TransferFunds extends React.PureComponent {
         totalSweepIterations: PropTypes.number.isRequired,
     };
 
+    componentWillReceiveProps(newProps) {
+        if (this.props.isRecoveringFunds && !newProps.isRecoveringFunds && !this.hasFailedAnySweep()) {
+            this.props.history.push('/sweeps/done');
+        }
+    }
+
     componentWillUnmount() {
         this.props.setSweepsStatuses({});
         this.props.resetProgress();
