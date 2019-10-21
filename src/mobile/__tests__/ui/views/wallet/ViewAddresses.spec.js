@@ -81,7 +81,7 @@ describe('Testing ViewAddresses component', () => {
         });
 
         it('should return a View component', () => {
-            const props = getProps({ addressData: { ['U'.repeat(81)]: {} } });
+            const props = getProps();
             const wrapper = shallow(<ViewAddresses {...props} />);
 
             expect(
@@ -96,24 +96,6 @@ describe('Testing ViewAddresses component', () => {
     describe('instance methods', () => {
         describe('when called', () => {
             describe('#prepAddresses', () => {
-                it('should always return an array', () => {
-                    const props = getProps();
-
-                    const wrapper = shallow(<ViewAddresses {...props} />);
-
-                    const instance = wrapper.instance();
-                    let returnValue = instance.prepAddresses();
-
-                    // When addresses are an empty object
-                    expect(Array.isArray(returnValue)).toEqual(true);
-
-                    wrapper.setProps({ selectedAccount: { addresses: { ['U'.repeat(81)]: {} } } });
-
-                    returnValue = instance.prepAddresses();
-
-                    expect(Array.isArray(returnValue)).toEqual(true);
-                });
-
                 it('should have atleast "balance", "unit" and "address" props in each item of the returned array', () => {
                     const props = getProps();
 
