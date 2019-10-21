@@ -14,6 +14,7 @@ const getProps = (overrides) =>
             hideModal: noop,
             logout: noop,
             theme,
+            themeName: 'Default',
         },
         overrides,
     );
