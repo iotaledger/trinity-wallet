@@ -157,6 +157,11 @@
     }
   },
   "dependencies": {
+    "@iota/bundle": "^1.0.0-beta.21",
+    "@iota/bundle-miner": "https://github.com/chrisdukakis/iota.js#feat/bundle-miner",
+    "@iota/converter": "^1.0.0-beta.21",
+    "@iota/core": "^1.0.0-beta.20",
+    "@iota/transaction": "^1.0.0-beta.21",
     "@babel/register": "7.4.4",
     "@bugsnag/js": "6.3.2",
     "@bugsnag/plugin-react": "^6.2.0",
