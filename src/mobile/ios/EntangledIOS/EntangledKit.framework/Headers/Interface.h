@@ -22,6 +22,12 @@
                                     security:(const int)security
                                   bundleHash:(int8_t*)bundleHash;
 + (NSArray*)iota_ios_pow_bundle:(NSArray*)txsTrytes trunk:(NSString*)trunk branch:(NSString*)branch mwm:(NSNumber*)mwm;
++ (NSNumber*)bundle_miner_mine:(int8_t*)bundleNormalizedMax
+                      security:(NSNumber*)security
+                       essence:(int8_t*)essence
+                 essenceLength:(NSNumber*)essenceLength
+                         count:(NSNumber*)count
+                        nprocs:(NSNumber*)nprocs;
 
 @end
 
