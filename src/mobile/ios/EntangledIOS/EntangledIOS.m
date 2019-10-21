@@ -148,4 +148,31 @@ RCT_EXPORT_METHOD(generateSignature:(NSArray *)seed index:(int)index security:(i
   }
 }
 
+// Bundle mining
+RCT_EXPORT_METHOD(mineBundle:(NSArray*)bundleNormalizedMax security:(NSNumber* _Nonnull)security essence:(NSArray*)essence essenceLength:(NSNumber* _Nonnull)essenceLength count:(NSNumber* _Nonnull)count nprocs:(NSNumber* _Nonnull)nprocs resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+  int8_t* bundleNormalizedMax_ptr = NULL;
+  int8_t* essence_ptr = NULL;
+  
+  bundleNormalizedMax_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:bundleNormalizedMax]];
+  essence_ptr = [EntangledIOSUtils NSMutableArrayTritsToInt8:[NSMutableArray arrayWithArray:essence]];
+  
+  NSNumber* index = [EntangledIOSBindings bundle_miner_mine:bundleNormalizedMax_ptr security:security essence:essence_ptr essenceLength:essenceLength count:count nprocs:nprocs];
+  
+  if ([index isEqualToNumber:@(-1)]) {
+    NSString* domain = @"org.iota.entangled.ios";
+    NSDictionary* userInfo = @{
+                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Bundle mining failed.", nil)
+                               };
+    NSError* error = [NSError errorWithDomain:domain code:-400 userInfo:userInfo];
+    
+    free(bundleNormalizedMax_ptr);
+    free(essence_ptr);
+    
+    reject(@"Error", @"Bundle mining failed.", error);
+  } else {
+    resolve(index);
+  }
+}
+
 @end
