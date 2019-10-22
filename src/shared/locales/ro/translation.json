@@ -307,21 +307,21 @@
     "receive": {
         "yourAddress": "Adresa dumneavoastră",
         "qrOptions": "Opțiuni QR",
-        "shareQr": "Share QR code",
+        "shareQr": "Distribuie codul QR",
         "copyAddress": "Copiază adresa",
         "addressCopied": "Adresă copiată",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "addressCopiedExplanation": "Adresa ta a fost copiată în clipboard.",
         "generateNewAddress": "Generează o adresă",
         "noAddresses": "Nici o adresă",
         "spent": "Cheltuit",
         "tag": "Tag",
         "generateAnAddress": "Generează o adresă",
         "generateAnAddressTitle": "Generează o adresă",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAnAddressExplanation": "Generează o adresă înainte de a folosi această funcție.",
+        "generateAddressInformation": "Generează o nouă adresă de depozitare, de fiecare dată cand vrei sa primești IOTA"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Back up your seed",
+        "saveYourSeed": "Fă o copie de rezerva seed-ului",
         "seedCleared": "Seed cleared",
         "mostSecure": "Cel mai sigur",
         "recommended": "Recomandat",
