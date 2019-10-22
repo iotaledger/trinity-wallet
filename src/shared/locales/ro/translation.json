@@ -331,22 +331,22 @@
         "seedClearedExplanation": "Seed-ul a fost eliminat din clipboard pentru securitatea ta.",
         "letsWriteDownYourSeed": "Notează cheia pe hărtie",
         "youCanHighlightCharacters": "Poți evidenția 9 caractere în același timp",
-        "printBlankWallet": "Print a blank wallet",
-        "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "printBlankWallet": "Printează un portofel în alb",
+        "whatIsAChecksum": "Ce este o sumă de control?",
+        "everySeedHasAChecksum": "Orice seed corespunde cu o sumă de control de 3 caractere.",
         "iHavesavedMySeed": "Am salvat cheia",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "checksumExplanation": "De fiecare dată cănd adaugi un seed în portofelul tău, asigură-te că suma de control generată de portofelul tau se potrivește cu cea pe care ți-ai notat-o.",
         "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Confirmă cheia",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity nu o să-ți ceară niciodată să reintroduci seed-ul, decât dacă iți resetezi portofelul sau ștergi aplicația.",
         "enterYourSeed": "Introduceți cheia",
         "incorrectSeed": "Cheie incorectă",
         "incorrectSeedExplanation": "Cheia introdusă este incorectă. Va rugăm, încercați din nou.",
         "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so.",
         "enterSeedBelow": "Introduceți cheia nou creeată mai jos, pentru a confima dacă copia de rezervă s-a salvat corect",
-        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarning": "ATENȚIE: Seed-ul nu poate fi lipit",
         "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
