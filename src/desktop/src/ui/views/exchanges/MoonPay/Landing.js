@@ -34,11 +34,9 @@ class Landing extends React.PureComponent {
                 <Icon icon="moonpay" size={200} />
                 <section className={css.long}>
                     <Info displayIcon={false}>
-                        <div style={{ textAlign: 'center' }}>
+                        <div>
                             <React.Fragment>
-                                <p style={{ fontSize: '28px', marginBottom: '20px' }}>
-                                    {t('moonpay:buyIOTAInstantly')}
-                                </p>
+                                <p>{t('moonpay:buyIOTAInstantly')}</p>
                                 <Lottie
                                     width={180}
                                     height={180}
@@ -47,16 +45,10 @@ class Landing extends React.PureComponent {
                                     loop
                                 />
                             </React.Fragment>
-                            <p
-                                style={{
-                                    paddingTop: '20px',
-                                }}
-                            >
-                                {t('moonpay:supportExplanation')}
-                            </p>
+                            <p>{t('moonpay:supportExplanation')}</p>
                         </div>
                     </Info>
-                    <a style={{ textDecoration: 'underline' }}>{t('moonpay:termsAndConditionsApply')}</a>
+                    <a>{t('moonpay:termsAndConditionsApply')}</a>
                 </section>
                 <footer className={css.choiceDefault}>
                     <div>
@@ -85,8 +77,6 @@ class Landing extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     themeName: state.settings.themeName,
-    wallet: state.wallet,
-    additionalAccountName: state.accounts.accountInfoDuringSetup.name,
 });
 
 export default connect(mapStateToProps)(withTranslation()(Landing));

@@ -30,7 +30,7 @@ class MoonPay extends React.PureComponent {
         const currentKey = location.pathname.split('/')[2] || '/';
 
         return (
-            <main className={css.onboarding}>
+            <main className={css.main}>
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="slide" timeout={1000} mountOnEnter unmountOnExit>
                         <div>
