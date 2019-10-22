@@ -347,10 +347,10 @@
         "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so.",
         "enterSeedBelow": "Introduceți cheia nou creeată mai jos, pentru a confima dacă copia de rezervă s-a salvat corect",
         "clipboardWarning": "ATENȚIE: Seed-ul nu poate fi lipit",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarningExplanation": "Lipirea este dezactivată pentru siguranța ta. Poți trage si plasa seed-ul tău dintr-un fișier text, în loc."
     },
     "send": {
-        "invalidAddress": "Invalid address",
+        "invalidAddress": "Adresă invalidă",
         "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "Address contains invalid characters.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
