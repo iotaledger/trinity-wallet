@@ -213,11 +213,11 @@
         "reasonRepeats2": "Repetări ca \"abcabcabc\" sunt puțin mai greu de ghicit decât \"abc\".",
         "reasonSequence": "Secvențele precum abc sau 54321 sunt ușor de ghicit.",
         "reasonYears": "Anii recenți sunt ușor de ghicit.",
-        "reasonDates": "Dates are often easy to guess.",
+        "reasonDates": "Datele zilelor speciale, sunt deseori ușor de ghicit.",
         "reasonTop10": "Aceasta este o parolă comună din top 10.",
         "reasonTop100": "Aceasta este o parolă comună din top 100.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
+        "reasonCommon": "Parola aceasta este destul de comună.",
+        "reasonSimilar": "Este similară cu o parolă des folosită.",
         "reasonWord": "Un singur cuvânt este ușor de ghicit."
     },
     "setPassword": {
@@ -225,7 +225,7 @@
         "passwordTooShort": "Parola este prea scurtă",
         "passwordTooShortExplanation": "Parola dumneavoastră trebuie să fie de minim {{minLength}} caractere. Momentan este de {{currentLength}} caractere. Vă rugăm reîncercați.",
         "passwordMismatch": "Parolele nu se potrivesc",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
+        "passwordMismatchExplanation": "Parolele care le-ai introdus, nu corespund. Încearcă din nou.",
         "anEncryptedCopy": "Aceasta este parola portofelului dumneavoastră principal. O veți folosi când vă veți autentifica.",
         "retypePassword": "Reintroduceți Parola"
     },
