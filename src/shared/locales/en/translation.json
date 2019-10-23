@@ -177,7 +177,8 @@
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again.",
-        "total": "Total"
+        "total": "Total",
+        "submit": "Submit"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -300,7 +301,12 @@
         "invalidCityExplanation": "Please enter a valid city",
         "somethingWentWrongProcessingCardInfo": "Something went wrong while processing your card information. Please try again.",
         "notEnoughAmount": "Not enough amount",
-        "notEnoughAmountExplanation": "Minimum transaction amount is {{amount}}"
+        "notEnoughAmountExplanation": "Minimum transaction amount is {{amount}}",
+        "addPaymentMethod": "Add a payment method",
+        "pleaseEnterYourBillingDetails": "Please enter your billing details below",
+        "cardNumber": "CARD NUMBER",
+        "cvc": "CVC",
+        "expirationDate": "EXPIRATION DATE"
     },
     "home": {
         "balance": "BALANCE",
