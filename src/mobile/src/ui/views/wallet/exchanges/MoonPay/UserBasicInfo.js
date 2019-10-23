@@ -8,6 +8,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import { moment } from 'shared-modules/libs/exports';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
@@ -65,11 +66,11 @@ class UserBasicInfo extends React.Component {
         /** @ignore */
         hasErrorUpdatingCustomer: PropTypes.bool.isRequired,
         /** @ignore */
-        firstName: PropTypes.string.isRequired,
+        firstName: PropTypes.string,
         /** @ignore */
-        lastName: PropTypes.string.isRequired,
+        lastName: PropTypes.string,
         /** @ignore */
-        dateOfBirth: PropTypes.string.isRequired,
+        dateOfBirth: PropTypes.string,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -91,7 +92,7 @@ class UserBasicInfo extends React.Component {
         this.state = {
             firstName: isNull(props.firstName) ? '' : props.firstName,
             lastName: isNull(props.lastName) ? '' : props.lastName,
-            dateOfBirth: isNull(props.dateOfBirth) ? '' : props.dateOfBirth,
+            dateOfBirth: moment(props.dateOfBirth).format('DD/MM/YYYY'),
         };
     }
 
@@ -130,8 +131,29 @@ class UserBasicInfo extends React.Component {
         return this.props.updateCustomer({
             firstName: this.state.firstName,
             lastName: this.state.lastName,
-            ...(this.state.dateOfBirth && { dateOfBirth: this.state.dateOfBirth }),
+            dateOfBirth: moment(this.state.dateOfBirth, 'DD/MM/YYYY').toISOString(),
         });
+    }
+
+    /**
+     * Updates date of birth value
+     *
+     * @method updateDateOfBirth
+     *
+     * @param {string} newDateOfBirth
+     *
+     * @returns {void}
+     */
+    updateDateOfBirth(newDateOfBirth) {
+        const value = newDateOfBirth.replace(/\D/g, '').slice(0, 10);
+
+        if (value.length >= 5) {
+            this.setState({ dateOfBirth: `${value.slice(0, 2)}/${value.slice(2, 4)}/${value.slice(4, 8)}` });
+        } else if (value.length >= 3) {
+            this.setState({ dateOfBirth: `${value.slice(0, 2)}/${value.slice(2)}` });
+        } else {
+            this.setState({ dateOfBirth: value });
+        }
     }
 
     render() {
@@ -209,7 +231,7 @@ class UserBasicInfo extends React.Component {
                         >
                             <CustomTextInput
                                 label={t('moonpay:dateOfBirth')}
-                                onValidTextChange={(dateOfBirth) => this.setState({ dateOfBirth })}
+                                onValidTextChange={(dateOfBirth) => this.updateDateOfBirth(dateOfBirth)}
                                 theme={theme}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
