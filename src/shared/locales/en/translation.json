@@ -306,7 +306,9 @@
         "pleaseEnterYourBillingDetails": "Please enter your billing details below",
         "cardNumber": "CARD NUMBER",
         "cvc": "CVC",
-        "expirationDate": "EXPIRATION DATE"
+        "expirationDate": "EXPIRATION DATE",
+        "minimumTransactionAmount": "The minimum transaction amount is {{amount}}.",
+        "kycRequired": "KYC required for payments greater than {{amount}}"
     },
     "home": {
         "balance": "BALANCE",

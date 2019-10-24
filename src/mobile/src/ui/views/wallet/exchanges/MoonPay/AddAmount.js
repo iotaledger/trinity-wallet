@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { MINIMUM_TRANSACTION_SIZE } from 'shared-modules/exchanges/MoonPay/index';
+import { BASIC_MONTHLY_LIMIT, MINIMUM_TRANSACTION_SIZE } from 'shared-modules/exchanges/MoonPay/index';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getFiatCurrencies, getMoonPayFee, getTotalPurchaseAmount } from 'shared-modules/selectors/exchanges/MoonPay';
 import { fetchQuote, setAmount, setDenomination } from 'shared-modules/actions/exchanges/MoonPay';
@@ -190,6 +190,29 @@ class AddAmount extends Component {
     }
 
     /**
+     * Gets warning text
+     *
+     * @method getWarningText
+     *
+     * @returns {string|object}
+     */
+    getWarningText() {
+        const { amount, denomination, t } = this.props;
+
+        const fiatAmount = this.getAmountInFiat(amount, denomination);
+
+        if (amount && fiatAmount < MINIMUM_TRANSACTION_SIZE) {
+            return t('moonpay:minimumTransactionAmount', { amount: `$${MINIMUM_TRANSACTION_SIZE}` });
+        }
+
+        if (fiatAmount > BASIC_MONTHLY_LIMIT) {
+            return t('moonpay:kycRequired', { amount: `$${BASIC_MONTHLY_LIMIT}` });
+        }
+
+        return null;
+    }
+
+    /**
      * Verifies that amount is above minimum allowed amount ($20)
      *
      * @method verifyAmount
@@ -271,8 +294,13 @@ class AddAmount extends Component {
                             }}
                             value={amount}
                         />
+                        <View style={[styles.summaryRowContainer, { paddingTop: height / 90 }]}>
+                            <Text style={[styles.infoTextRegular, { color: theme.negative.color }]}>
+                                {this.getWarningText()}
+                            </Text>
+                        </View>
                     </AnimatedComponent>
-                    <View style={{ flex: 0.3 }} />
+                    <View style={{ flex: 0.2 }} />
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}

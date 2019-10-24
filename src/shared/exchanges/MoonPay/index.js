@@ -9,4 +9,7 @@ export const MOONPAY_RETURN_URL = 'iota://moonpay_success';
 /** Minimum transaction amount in USD */
 export const MINIMUM_TRANSACTION_SIZE = 20;
 
+/** Monthly limit without KYC verification in USD */
+export const BASIC_MONTHLY_LIMIT = 150;
+
 export default new MoonPayApi(API_KEY);
