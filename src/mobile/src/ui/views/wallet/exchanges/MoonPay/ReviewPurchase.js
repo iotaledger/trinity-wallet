@@ -80,7 +80,7 @@ class ReviewPurchase extends Component {
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
-                            onLeftButtonPress={() => ReviewPurchase.redirectToScreen('landing')}
+                            onLeftButtonPress={() => ReviewPurchase.redirectToScreen('addAmount')}
                             onRightButtonPress={() => this.props.createTransaction()}
                             isRightButtonLoading={isCreatingTransaction}
                             leftButtonText={t('global:goBack')}

@@ -149,7 +149,7 @@ class Landing extends Component {
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
-                            onLeftButtonPress={() => navigator.popTo('home')}
+                            onLeftButtonPress={() => navigator.push('home')}
                             onRightButtonPress={() => Landing.redirectToScreen('addAmount')}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:continue')}
