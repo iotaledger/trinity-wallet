@@ -39,6 +39,10 @@ const initialState = {
      */
     paymentCardInfo: {},
     /**
+     * Transactions history
+     */
+    transactions: [],
+    /**
      * Determines if a network call is in progress for email authentication
      */
     isAuthenticatingEmail: false,
@@ -186,6 +190,11 @@ export default (state = initialState, action) => {
                 ...state,
                 isCreatingTransaction: false,
                 hasErrorCreatingTransaction: true,
+            };
+        case MoonPayExchangeActionTypes.SET_TRANSACTIONS:
+            return {
+                ...state,
+                transactions: action.payload,
             };
         default:
             return state;

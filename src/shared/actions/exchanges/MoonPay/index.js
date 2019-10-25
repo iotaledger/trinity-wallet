@@ -262,6 +262,18 @@ export const createTransactionError = () => ({
 });
 
 /**
+ * Dispatch to set customer transactions in state
+ *
+ * @method createTransactionError
+ *
+ * @returns {{type: {string}, payload: {{object}} }}
+ */
+export const setTransactions = (payload) => ({
+    type: MoonPayExchangeActionTypes.SET_TRANSACTIONS,
+    payload,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -373,20 +385,24 @@ export const authenticateViaEmail = (email) => (dispatch) => {
 };
 
 /**
- * Verifies customer's email
+ * Verifies customer's email and fetch transaction history
  *
- * @method verifyEmail
+ * @method verifyEmailAndFetchTransactions
  *
  * @param {string} securityCode
  *
  * @returns {function}
  */
-export const verifyEmail = (securityCode) => (dispatch, getState) => {
+export const verifyEmailAndFetchTransactions = (securityCode) => (dispatch, getState) => {
     dispatch(verifyEmailRequest());
 
     api.login(getCustomerEmail(getState()), securityCode)
         .then((data) => {
             dispatch(updateCustomerInfo(data.customer));
+            return api.fetchTransactions();
+        })
+        .then((transactions) => {
+            dispatch(setTransactions(transactions));
             dispatch(verifyEmailSuccess());
         })
         .catch(() => {

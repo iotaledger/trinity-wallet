@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import map from 'lodash/map';
@@ -72,13 +74,13 @@ class UserAdvancedInfo extends React.Component {
         /** @ignore */
         hasErrorUpdatingCustomer: PropTypes.bool.isRequired,
         /** @ignore */
-        address: PropTypes.string.isRequired,
+        address: PropTypes.string,
         /** @ignore */
-        city: PropTypes.string.isRequired,
+        city: PropTypes.string,
         /** @ignore */
-        country: PropTypes.string.isRequired,
+        country: PropTypes.string,
         /** @ignore */
-        zipCode: PropTypes.string.isRequired,
+        zipCode: PropTypes.string,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -100,7 +102,15 @@ class UserAdvancedInfo extends React.Component {
         this.state = {
             address: isNull(props.address) ? '' : props.address,
             city: isNull(props.city) ? '' : props.city,
-            country: isNull(props.country) ? '' : props.country,
+            country: isNull(props.country)
+                ? {
+                      name: get(head(props.countries), 'name'),
+                      alpha3: get(head(props.countries), 'alpha3'),
+                  }
+                : {
+                      name: get(find(props.countries, { alpha3: props.country }), 'name'),
+                      alpha3: props.country,
+                  },
             zipCode: isNull(props.zipCode) ? '' : props.zipCode,
         };
     }
@@ -137,7 +147,7 @@ class UserAdvancedInfo extends React.Component {
             address: {
                 street: this.state.address,
                 town: this.state.city,
-                country: this.state.country,
+                country: this.state.country.alpha3,
                 postCode: this.state.zipCode,
             },
         });
@@ -146,7 +156,6 @@ class UserAdvancedInfo extends React.Component {
     render() {
         const { countries, t, theme, isUpdatingCustomer } = this.props;
         const countryNames = map(filter(countries, (country) => country.isAllowed), (country) => country.name);
-        const selectedCountry = find(countries, { alpha3: this.state.country });
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
@@ -247,11 +256,16 @@ class UserAdvancedInfo extends React.Component {
                                     this.dropdown = c;
                                 }}
                                 dropdownWidth={{ width: isIPhoneX ? width / 1.1 : width / 1.2 }}
-                                value={selectedCountry.name}
+                                value={this.state.country.name}
                                 options={countryNames}
                                 saveSelection={(name) => {
+                                    const country = find(countries, { name });
+
                                     this.setState({
-                                        country: find(countries, { name }).alpha3,
+                                        country: {
+                                            name: country.name,
+                                            alpha3: country.alpha3,
+                                        },
                                     });
                                 }}
                             />

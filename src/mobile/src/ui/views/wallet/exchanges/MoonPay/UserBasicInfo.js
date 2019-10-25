@@ -92,7 +92,11 @@ class UserBasicInfo extends React.Component {
         this.state = {
             firstName: isNull(props.firstName) ? '' : props.firstName,
             lastName: isNull(props.lastName) ? '' : props.lastName,
-            dateOfBirth: moment(props.dateOfBirth).format('DD/MM/YYYY'),
+            dateOfBirth: moment(
+                props.dateOfBirth ||
+                    // Using 1970 as default
+                    new Date(1970),
+            ).format('DD/MM/YYYY'),
         };
     }
 

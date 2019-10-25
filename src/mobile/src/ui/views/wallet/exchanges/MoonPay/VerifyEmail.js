@@ -3,11 +3,15 @@ import { withTranslation } from 'react-i18next';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import navigator from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { verifyEmail } from 'shared-modules/actions/exchanges/MoonPay';
+import { verifyEmailAndFetchTransactions } from 'shared-modules/actions/exchanges/MoonPay';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { getCustomerEmail } from 'shared-modules/selectors/exchanges/MoonPay';
+import {
+    getCustomerEmail,
+    getCustomerDailyLimits,
+    getCustomerMonthlyLimits,
+} from 'shared-modules/selectors/exchanges/MoonPay';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
@@ -86,9 +90,19 @@ class VerifyEmail extends React.Component {
         /** @ignore */
         hasErrorVerifyingEmail: PropTypes.bool.isRequired,
         /** @ignore */
+        dailyLimits: PropTypes.shape({
+            dailyLimit: PropTypes.number,
+            dailyLimitRemaining: PropTypes.number,
+        }),
+        /** @ignore */
+        monthlyLimits: PropTypes.shape({
+            monthlyLimit: PropTypes.number,
+            monthlyLimitRemaining: PropTypes.number,
+        }),
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
-        verifyEmail: PropTypes.func.isRequired,
+        verifyEmailAndFetchTransactions: PropTypes.func.isRequired,
     };
 
     /**
@@ -170,7 +184,7 @@ class VerifyEmail extends React.Component {
             );
         }
 
-        return this.props.verifyEmail(this.state.securityCode);
+        return this.props.verifyEmailAndFetchTransactions(this.state.securityCode);
     }
 
     render() {
@@ -262,11 +276,13 @@ const mapStateToProps = (state) => ({
     email: getCustomerEmail(state),
     isVerifyingEmail: state.exchanges.moonpay.isVerifyingEmail,
     hasErrorVerifyingEmail: state.exchanges.moonpay.hasErrorVerifyingEmail,
+    dailyLimits: getCustomerDailyLimits(state),
+    monthlyLimits: getCustomerMonthlyLimits(state),
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    verifyEmail,
+    verifyEmailAndFetchTransactions,
 };
 
 export default WithUserActivity()(

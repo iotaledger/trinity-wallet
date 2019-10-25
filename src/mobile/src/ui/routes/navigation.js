@@ -41,6 +41,7 @@ import MoonPayUserAdvancedInfo from 'ui/views/wallet/exchanges/MoonPay/UserAdvan
 import MoonPayAddPaymentMethod from 'ui/views/wallet/exchanges/MoonPay/AddPaymentMethod';
 import MoonPayReviewPurchase from 'ui/views/wallet/exchanges/MoonPay/ReviewPurchase';
 import MoonPayPurchaseComplete from 'ui/views/wallet/exchanges/MoonPay/PurchaseComplete';
+import MoonPayPurchaseLimitWarning from 'ui/views/wallet/exchanges/MoonPay/PurchaseLimitWarning';
 
 import { isIPhoneX, isAndroid } from 'libs/device';
 
@@ -79,6 +80,12 @@ export default function registerScreens(store, Provider) {
     Navigation.registerComponentWithRedux(
         'purchaseComplete',
         () => applyHOCs(MoonPayPurchaseComplete),
+        Provider,
+        store,
+    );
+    Navigation.registerComponentWithRedux(
+        'purchaseLimitWarning',
+        () => applyHOCs(MoonPayPurchaseLimitWarning),
         Provider,
         store,
     );

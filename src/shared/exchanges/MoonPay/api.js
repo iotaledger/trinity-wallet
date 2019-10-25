@@ -190,4 +190,23 @@ export class MoonPayApi {
             true,
         );
     }
+
+    /**
+     * Fetches customer transactions
+     *
+     * @method fetchTransactions
+     *
+     * @param {object} transaction
+     *
+     * @returns {Promise}
+     */
+    fetchTransactions() {
+        return this._fetch(
+            `${this.url}/transactions/`,
+            {
+                method: 'get',
+            },
+            true,
+        );
+    }
 }

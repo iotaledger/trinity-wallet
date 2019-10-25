@@ -86,6 +86,48 @@ export const getCustomerEmail = createSelector(
 );
 
 /**
+ * Selects customer daily limits from state
+ *
+ * @method getCustomerDailyLimits
+ *
+ * @param {object} state
+ *
+ * @returns {object}
+ */
+export const getCustomerDailyLimits = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
+
+        return {
+            dailyLimit: get(customer, 'dailyLimit'),
+            dailyLimitRemaining: get(customer, 'dailyLimitRemaining'),
+        };
+    },
+);
+
+/**
+ * Selects customer monthly limits from state
+ *
+ * @method getCustomerMonthlyLimits
+ *
+ * @param {object} state
+ *
+ * @returns {object}
+ */
+export const getCustomerMonthlyLimits = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
+
+        return {
+            monthlyLimit: get(customer, 'monthlyLimit'),
+            monthlyLimitRemaining: get(customer, 'monthlyLimitRemaining'),
+        };
+    },
+);
+
+/**
  * Selects selected account name
  *
  * @method getSelectedAccountName

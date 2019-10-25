@@ -22,8 +22,8 @@ import alertsMiddleware from './middlewares/alerts';
 import modalMiddleware from './middlewares/modal';
 import { __DEV__, __MOBILE__ } from './config';
 
-const developmentMiddleware = [thunk, networkMiddleware, versionMiddleware, alertsMiddleware, modalMiddleware];
-const productionMiddleware = [thunk, networkMiddleware, versionMiddleware, alertsMiddleware, modalMiddleware];
+const developmentMiddleware = [thunk, logger, networkMiddleware, versionMiddleware, alertsMiddleware, modalMiddleware];
+const productionMiddleware = [thunk, logger, networkMiddleware, versionMiddleware, alertsMiddleware, modalMiddleware];
 
 if (__MOBILE__) {
     /* developmentMiddleware.unshift(logger); */
