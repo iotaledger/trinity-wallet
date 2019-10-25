@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import withPurchaseSummary from 'ui/views/wallet/exchanges/MoonPay/WithPurchaseSummary';
-import DualFooterButtons from 'ui/components/DualFooterButtons';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
 import navigator from 'libs/navigation';
 import { width } from 'libs/dimensions';
 import Header from 'ui/components/Header';
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
     },
 });
 
-/** MoonPay review purchase screen component */
-class ReviewPurchase extends Component {
+/** MoonPay purchase complete screen component */
+class PurchaseComplete extends Component {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -35,12 +35,6 @@ class ReviewPurchase extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         children: PropTypes.node.isRequired,
-        /** @ignore */
-        isCreatingTransaction: PropTypes.bool.isRequired,
-        /** @ignore */
-        hasErrorCreatingTransaction: PropTypes.bool.isRequired,
-        /** @ignore */
-        createTransaction: PropTypes.func.isRequired,
     };
 
     /**
@@ -52,18 +46,8 @@ class ReviewPurchase extends Component {
         navigator.push(screen);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (
-            this.props.isCreatingTransaction &&
-            !nextProps.isCreatingTransaction &&
-            !nextProps.hasErrorCreatingTransaction
-        ) {
-            ReviewPurchase.redirectToScreen('purchaseComplete');
-        }
-    }
-
     render() {
-        const { isCreatingTransaction, t, theme } = this.props;
+        const { t, theme } = this.props;
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
@@ -79,14 +63,9 @@ class ReviewPurchase extends Component {
                 {this.props.children}
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
-                        <DualFooterButtons
-                            onLeftButtonPress={() => ReviewPurchase.redirectToScreen('landing')}
-                            onRightButtonPress={() => this.props.createTransaction()}
-                            isRightButtonLoading={isCreatingTransaction}
-                            leftButtonText={t('global:goBack')}
-                            rightButtonText={t('global:confirm')}
-                            leftButtonTestID="moonpay-back"
-                            rightButtonTestID="moonpay-done"
+                        <SingleFooterButton
+                            onButtonPress={() => PurchaseComplete.redirectToScreen('home')}
+                            buttonText={t('global:done')}
                         />
                     </AnimatedComponent>
                 </View>
@@ -96,8 +75,8 @@ class ReviewPurchase extends Component {
 }
 
 const config = {
-    header: 'moonpay:reviewYourPurchase',
-    subtitle: 'moonpay:pleaseCarefullyCheckOrder',
+    header: 'moonpay:purchaseComplete',
+    subtitle: 'moonpay:transactionMayTakeAFewMinutes',
 };
 
-export default withPurchaseSummary(ReviewPurchase, config);
+export default withPurchaseSummary(PurchaseComplete, config);

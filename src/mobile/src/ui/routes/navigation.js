@@ -40,6 +40,7 @@ import MoonPayUserBasicInfo from 'ui/views/wallet/exchanges/MoonPay/UserBasicInf
 import MoonPayUserAdvancedInfo from 'ui/views/wallet/exchanges/MoonPay/UserAdvancedInfo';
 import MoonPayAddPaymentMethod from 'ui/views/wallet/exchanges/MoonPay/AddPaymentMethod';
 import MoonPayReviewPurchase from 'ui/views/wallet/exchanges/MoonPay/ReviewPurchase';
+import MoonPayPurchaseComplete from 'ui/views/wallet/exchanges/MoonPay/PurchaseComplete';
 
 import { isIPhoneX, isAndroid } from 'libs/device';
 
@@ -75,6 +76,12 @@ export default function registerScreens(store, Provider) {
         store,
     );
     Navigation.registerComponentWithRedux('reviewPurchase', () => applyHOCs(MoonPayReviewPurchase), Provider, store);
+    Navigation.registerComponentWithRedux(
+        'purchaseComplete',
+        () => applyHOCs(MoonPayPurchaseComplete),
+        Provider,
+        store,
+    );
 
     Navigation.registerComponentWithRedux('migration', () => applyHOCs(MigrationComponent), Provider, store);
     Navigation.registerComponentWithRedux('home', () => applyHOCs(Home), Provider, store);

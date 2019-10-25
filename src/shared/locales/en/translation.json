@@ -308,7 +308,9 @@
         "cvc": "CVC",
         "expirationDate": "EXPIRATION DATE",
         "minimumTransactionAmount": "The minimum transaction amount is {{amount}}.",
-        "kycRequired": "KYC required for payments greater than {{amount}}"
+        "kycRequired": "KYC required for payments greater than {{amount}}",
+        "purchaseComplete": "Purchase complete",
+        "transactionMayTakeAFewMinutes": "Your transaction may take a few minutes"
     },
     "home": {
         "balance": "BALANCE",
