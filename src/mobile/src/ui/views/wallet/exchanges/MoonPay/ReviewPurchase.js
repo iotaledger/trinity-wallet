@@ -8,6 +8,7 @@ import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getLatestAddressForMoonPaySelectedAccount } from 'shared-modules/selectors/accounts';
 import { getMoonPayFee, getTotalPurchaseAmount } from 'shared-modules/selectors/exchanges/MoonPay';
 import { fetchQuote, setAmount, createTransaction } from 'shared-modules/actions/exchanges/MoonPay';
+import { getCurrencySymbol } from 'shared-modules/libs/currency';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import navigator from 'libs/navigation';
 import InfoBox from 'ui/components/InfoBox';
@@ -105,6 +106,24 @@ class ReviewPurchase extends Component {
     static iotaDenominations = ['Mi'];
 
     /**
+     * Gets active fiat currency.
+     *
+     * @method getActiveFiatCurrency
+     *
+     * @param {string}
+     *
+     * @returns {string}
+     */
+    getActiveFiatCurrency(denomination) {
+        if (includes(ReviewPurchase.iotaDenominations, denomination)) {
+            // Default to USD since we don't allow user to set a default currency.
+            return 'USD';
+        }
+
+        return denomination;
+    }
+
+    /**
      * Gets amount in fiat
      *
      * @method getAmountInFiat
@@ -118,22 +137,38 @@ class ReviewPurchase extends Component {
         const { exchangeRates } = this.props;
 
         if (includes(ReviewPurchase.iotaDenominations, denomination)) {
-            return amount ? Number((Number(amount) * exchangeRates.USD).toFixed(2)) : 0;
+            return amount
+                ? Number((Number(amount) * exchangeRates[this.getActiveFiatCurrency(denomination)]).toFixed(2))
+                : 0;
         }
 
         return amount ? Number(Number(amount).toFixed(2)) : 0;
     }
 
+    /**
+     * Gets amount in Miota
+     *
+     * @method getAmountinMiota
+     *
+     * @returns {string}
+     */
     getAmountinMiota() {
-        const { amount, exchangeRates } = this.props;
+        const { amount, denomination, exchangeRates } = this.props;
 
         if (!amount) {
             return '0 Mi';
         }
 
-        return `${(Number(amount) / exchangeRates.USD).toFixed(2)} Mi`;
+        return `${(Number(amount) / exchangeRates[this.getActiveFiatCurrency(denomination)]).toFixed(2)} Mi`;
     }
 
+    /**
+     * Gets receive amount
+     *
+     * @method getReceiveAmount
+     *
+     * @returns {string}
+     */
     getReceiveAmount() {
         const { amount, denomination, exchangeRates } = this.props;
 
@@ -141,7 +176,9 @@ class ReviewPurchase extends Component {
             return amount ? `${amount} Mi` : '0 Mi';
         }
 
-        return amount ? `${(Number(amount) / exchangeRates.USD).toFixed(2)} Mi` : '0 Mi';
+        return amount
+            ? `${(Number(amount) / exchangeRates[this.getActiveFiatCurrency(denomination)]).toFixed(2)} Mi`
+            : '0 Mi';
     }
 
     /**
@@ -154,9 +191,21 @@ class ReviewPurchase extends Component {
      * @returns {string}
      */
     getStringifiedFiatAmount(amount) {
-        return amount ? `$${amount.toFixed(2)}` : '$0';
+        const { denomination } = this.props;
+        const activeFiatCurrency = this.getActiveFiatCurrency(denomination);
+
+        return amount
+            ? `${getCurrencySymbol(activeFiatCurrency)}${amount.toFixed(2)}`
+            : `${getCurrencySymbol(activeFiatCurrency)}0`;
     }
 
+    /**
+     * Creates transaction
+     *
+     * @method createTransaction
+     *
+     * @returns {void}
+     */
     createTransaction() {
         const { amount, denomination, address } = this.props;
 
@@ -181,6 +230,7 @@ class ReviewPurchase extends Component {
         const textColor = { color: theme.body.color };
 
         const receiveAmount = this.getReceiveAmount();
+        const activeFiatCurrency = this.getActiveFiatCurrency(denomination);
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
@@ -280,7 +330,8 @@ class ReviewPurchase extends Component {
                     <View style={{ flex: 0.05 }} />
                     <View style={styles.summaryRowContainer}>
                         <Text style={[styles.infoTextLight, textColor]}>
-                            {t('moonpay:marketPrice')}: {receiveAmount} @ ${exchangeRates.USD}
+                            {t('moonpay:marketPrice')}: {receiveAmount} @ {getCurrencySymbol(activeFiatCurrency)}
+                            {exchangeRates[activeFiatCurrency]}
                         </Text>
                         <Text style={[styles.infoTextLight, textColor]}>
                             {this.getStringifiedFiatAmount(this.getAmountInFiat(amount, denomination))}
@@ -289,7 +340,10 @@ class ReviewPurchase extends Component {
                     <View style={{ flex: 0.05 }} />
                     <View style={styles.summaryRowContainer}>
                         <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:moonpayFee')}</Text>
-                        <Text style={[styles.infoTextLight, textColor]}>${fee}</Text>
+                        <Text style={[styles.infoTextLight, textColor]}>
+                            {getCurrencySymbol(activeFiatCurrency)}
+                            {fee}
+                        </Text>
                     </View>
                     <View style={{ flex: 0.4 }} />
                     <View style={styles.summaryRowContainer}>
@@ -297,7 +351,8 @@ class ReviewPurchase extends Component {
                             {t('global:total')}
                         </Text>
                         <Text style={[styles.infoTextBold, textColor, { fontSize: Styling.fontSize5 }]}>
-                            ${totalAmount}
+                            {getCurrencySymbol(activeFiatCurrency)}
+                            {totalAmount}
                         </Text>
                     </View>
                     <View style={{ flex: 0.3 }} />
