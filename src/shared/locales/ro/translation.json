@@ -385,9 +385,9 @@
         "advanced": "Avansate",
         "standard": "Standard",
         "advancedModeExplanation": "Modul avansat va arăta informații tehnice mai detaliate.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modesExplanation": "Activează modul avansat doar dacă ești experimentat în a folosi IOTA. S-ar putea să fie confuz, dacă nu.",
+        "modeUpdated": "Mod actualizat",
+        "modeUpdatedExplanation": "Ai schimbat pe modul {{mode}}"
     },
     "settings": {
         "transferSending": "Transfer sending",
