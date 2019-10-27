@@ -448,9 +448,9 @@
     "walletSetup": {
         "okay": "OK. Să configurăm portofelul!",
         "doYouNeedASeed": "Ai nevoie de un nou seed?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
+        "seedExplanation": "Seed-ul tău IOTA este cheia principală a fondurilor tale. Are 81 de caractere, folosind doar litere A-Z și numărul 9.",
+        "noIHaveOne": "Nu, am deja unul",
+        "yesINeedASeed": "Da, am nevoie de un seed",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
         "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Please keep your seed safe."
