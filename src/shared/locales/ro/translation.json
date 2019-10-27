@@ -377,14 +377,14 @@
         "swipeToSend": "Glisează pentru a trimite"
     },
     "setSeedName": {
-        "letsAddName": "Let's add a name",
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "letsAddName": "Să adăugăm un nume",
+        "canUseMultipleSeeds": "Poți folosi mai multe seed-uri cu acest portofel. Fiecare seed necesită un nume de cont.",
+        "youCanAdd": "Poți adăuga mai multe seed-uri în meniul de setări."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Avansate",
         "standard": "Standard",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "advancedModeExplanation": "Modul avansat va arăta informații tehnice mai detaliate.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
         "modeUpdated": "Mode updated",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
