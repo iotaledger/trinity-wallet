@@ -457,10 +457,10 @@
     },
     "welcome": {
         "thankYou": "Thank you for downloading the IOTA wallet",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Mulțumim că ai descărcat demo-ul Trinity"
     },
     "writeSeedDown": {
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
+        "writeDownYourSeed": "<0>Notează-ți seed-ul și suma de control și</0><1>asigură-te</1><2> că sunt corecte.</2>",
         "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
