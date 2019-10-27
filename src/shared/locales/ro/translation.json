@@ -488,8 +488,8 @@
         "searchHelpLess": "Găsește tranzacții cu valoarea mai mică decât X"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
+        "viewSeed": "Vezi seed-ul",
+        "viewAddresses": "Vezi adresele",
         "editAccountName": "Edit account name",
         "deleteAccount": "Delete account",
         "addNewAccount": "Add new account",
