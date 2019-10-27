@@ -390,9 +390,9 @@
         "modeUpdatedExplanation": "Ai schimbat pe modul {{mode}}"
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "mode": "Mode",
+        "transferSending": "Transferul se trimite",
+        "transferSendingExplanation": "Te rog așteaptă până când transferul a fost trimis.",
+        "mode": "Mod",
         "theme": "Temă",
         "currency": "Monedă",
         "cannotChangeNode": "Nu puteți schimba nodul",
