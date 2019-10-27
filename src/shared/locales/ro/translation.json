@@ -480,7 +480,7 @@
         "yesterday": "Ieri",
         "promotingAnotherBundle": "Promovare alt pachet",
         "pleaseWait": "Te rog așteaptă, Trinity promovează alt pachet.",
-        "typeHelp": "Type !help for available commands",
+        "typeHelp": "Tastează !ajutor pentru comenzile disponibile",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
