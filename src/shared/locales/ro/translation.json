@@ -481,11 +481,11 @@
         "promotingAnotherBundle": "Promovare alt pachet",
         "pleaseWait": "Te rog așteaptă, Trinity promovează alt pachet.",
         "typeHelp": "Tastează !ajutor pentru comenzile disponibile",
-        "searchHelpText": "Search by bundle hash or message content",
-        "searchHelpValue": "Find transactions by exact iota value",
-        "searchHelpUnits": "Find transactions by iota value and unit",
-        "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpText": "Caută în funcție de pachetele hash sau conținutul mesajelor",
+        "searchHelpValue": "Găsește tranzacții în valoare exactă de IOTA",
+        "searchHelpUnits": "Găsește tranzacții după valoarea și numărul de IOTA",
+        "searchHelpMore": "Găsește tranzacții cu valoarea mai mare decât X",
+        "searchHelpLess": "Găsește tranzacții cu valoarea mai mică decât X"
     },
     "accountManagement": {
         "viewSeed": "View seed",
