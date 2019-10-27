@@ -366,15 +366,15 @@
         "invalidMessageExplanation": "Mesajul tău conține caractere invalide.",
         "send": "Trimite",
         "invalidAmount": "Suma introdusă incorectă",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX",
-        "totalTime": "Total time",
-        "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "invalidAmountExplanation": "Te rog să introduci o sumă de tranzacție validă. Ar putea fi folositor să vezi explicația unității IOTA la baza acestei pagini.",
+        "maximumSelected": "Suma MAXIMĂ selectată",
+        "iotaUnits": "Unitățile IOTA explicate",
+        "sendMax": "TRIMITE MAX",
+        "totalTime": "Timp total",
+        "addressPasteDetected": "Lipirea adresei detectată",
+        "addressPasteExplanation": "Se pare că ai lipit o adresă. Asigură-te că adresa corespunde cu cea pe care vrei să trimiți.",
         "invalid": "INVALID",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Glisează pentru a trimite"
     },
     "setSeedName": {
         "letsAddName": "Let's add a name",
