@@ -446,8 +446,8 @@
         "reset": "Resetează"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
-        "doYouNeedASeed": "Do you need to create a new seed?",
+        "okay": "OK. Să configurăm portofelul!",
+        "doYouNeedASeed": "Ai nevoie de un nou seed?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
