@@ -436,14 +436,14 @@
         "aboutTrinity": "Despre Trinity",
         "lockScreenTimeout": "Durata ecranului de blocare (Minute)",
         "nodeChangeSuccess": "Nodul a fost schimbat cu succes",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeSuccessNoRemotePow": "Nodul a fost schimbat cu {{node}}. Nodul acesta nu suportă dovadă de lucru de la distanță.",
+        "nodeChangeSuccessExplanation": "Nodul a fost schimbat cu {{node}}.",
+        "nodeChangeError": "Eroare la schimbarea nodului",
+        "nodeChangeErrorExplanation": "A fost o eroare la schimbarea nodului. Te rog încearcă din nou."
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
-        "reset": "Reset"
+        "enterPassword": "Introdu parola pentru a reseta portofelul.",
+        "reset": "Resetează"
     },
     "walletSetup": {
         "okay": "Okay. Let's set up your wallet!",
