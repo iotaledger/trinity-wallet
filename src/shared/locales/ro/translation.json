@@ -502,7 +502,7 @@
         "nodeAutoswitching": "Autoselectează nodul primar",
         "primaryNode": "Nod principal",
         "enableQuorum": "Activează cvorum-ul",
-        "quorumSize": "Quorum size",
+        "quorumSize": "Mărimea cvorum-ului",
         "noCustomNodes": "No custom nodes",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
         "nodeEnoughNodesTitle": "Not enough nodes",
