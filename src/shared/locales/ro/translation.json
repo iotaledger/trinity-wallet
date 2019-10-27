@@ -361,7 +361,7 @@
         "recipientAddress": "Adresa destinatarului",
         "amount": "Sumă",
         "max": "MAX",
-        "message": "Message",
+        "message": "Mesaj",
         "invalidMessage": "Invalid message",
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "Trimite",
