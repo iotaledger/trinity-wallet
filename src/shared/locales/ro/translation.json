@@ -451,9 +451,9 @@
         "seedExplanation": "Seed-ul tău IOTA este cheia principală a fondurilor tale. Are 81 de caractere, folosind doar litere A-Z și numărul 9.",
         "noIHaveOne": "Nu, am deja unul",
         "yesINeedASeed": "Da, am nevoie de un seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe."
+        "explanation": "<0><0>Îl poți folosi să-ți accesezi fondurile din</0><1> orice portofel</1><2>, pe</2><3> orice dispozitiv.</3></0>",
+        "loseSeed": "Dar dacă iți pierzi seed-ul, îți pierzi și IOTA-ul.",
+        "keepSafe": "Te rog păstrează-ți IOTA-ul în siguranță."
     },
     "welcome": {
         "thankYou": "Thank you for downloading the IOTA wallet",
