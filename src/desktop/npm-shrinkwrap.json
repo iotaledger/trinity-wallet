@@ -11099,9 +11099,9 @@
       }
     },
     "lottie-web": {
-      "version": "5.5.6",
-      "resolved": "https://registry.npmjs.org/lottie-web/-/lottie-web-5.5.6.tgz",
-      "integrity": "sha512-UUUIjKT9BncCHFIJEfb+1glvd+8MLjrAP1mbX2atE7A9TAtZn3yEz96k5K/n2pC20tEL7Q4xKaN1qyXp+6YSDg=="
+      "version": "5.5.9",
+      "resolved": "https://registry.npmjs.org/lottie-web/-/lottie-web-5.5.9.tgz",
+      "integrity": "sha512-3Zdxnuyi6WXnMj+0ZfwDd17EXCM87Hcbhd+sVFq6EPGfkVoGzoIkZt9OafcgXw4mzjyILOkPDLaBumrgGKoCaw=="
     },
     "loud-rejection": {
       "version": "1.6.0",
