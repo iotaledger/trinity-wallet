@@ -503,7 +503,7 @@
         "primaryNode": "Nod principal",
         "enableQuorum": "Activează cvorum-ul",
         "quorumSize": "Mărimea cvorum-ului",
-        "noCustomNodes": "No custom nodes",
+        "noCustomNodes": "Fără noduri personalizate",
         "mustAddCustomNodes": "You must add at least one custom node before disabling the remote node list.",
         "nodeEnoughNodesTitle": "Not enough nodes",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
