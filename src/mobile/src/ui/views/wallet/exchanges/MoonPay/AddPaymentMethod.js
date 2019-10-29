@@ -23,6 +23,8 @@ const renderHtml = (theme, t) => {
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!--Replace with generated for your organization JS file.-->
     <script type="text/javascript" src="https://js.verygoodvault.com/vgs-collect/1/ACwR8j4YLDecDMmyR1kddGfH.js"></script>
 
@@ -247,6 +249,7 @@ const renderHtml = (theme, t) => {
       type: 'card-number',
       name: 'number',
       autoFocus: true,
+      errorColor: "${theme.negative.color}",
       css: {
         color: "${theme.input.color}",
         fontSize: '16px',
@@ -258,6 +261,7 @@ const renderHtml = (theme, t) => {
 
     // Create VGS Collect field for CVC
     form.field('#cc-cvc', {
+      errorColor: "${theme.negative.color}",
       css: {
         color: "${theme.input.color}",
         fontSize: '16px',
@@ -273,6 +277,7 @@ const renderHtml = (theme, t) => {
     form.field('#cc-expiration-date', {
       type: 'card-expiration-date',
       name: 'expiryDate',
+      errorColor: "${theme.negative.color}",
       css: {
         color: "${theme.input.color}",
         fontSize: '16px',
@@ -287,6 +292,9 @@ const renderHtml = (theme, t) => {
     document.getElementById('cc-form')
       .addEventListener('submit', function(e) {
         e.preventDefault();
+
+        document.getElementsByClassName("button-right")[0].innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
+
         form.submit('/v2/tokens?apiKey=pk_test_W1g4KpNvqWkHEo58O0CTluQz698eOc', {
             headers: {
                 'Content-Type': 'application/json',
@@ -298,6 +306,8 @@ const renderHtml = (theme, t) => {
           }));
         });
       }, function (errors) {
+        document.getElementsByClassName("button-right")[0].innerHTML = "${t('global:submit')}";
+
         window.ReactNativeWebView.postMessage(JSON.stringify({
           type: 'error',
           data: errors
