@@ -1,3 +1,7 @@
+import assign from 'lodash/assign';
+import get from 'lodash/get';
+import find from 'lodash/find';
+import toUpper from 'lodash/toUpper';
 import { MoonPayExchangeActionTypes } from '../../../types';
 import { generateAlert } from '../../alerts';
 import api, { IOTA_CURRENCY_CODE, MOONPAY_RETURN_URL } from '../../../exchanges/MoonPay';
@@ -398,7 +402,19 @@ export const verifyEmailAndFetchTransactions = (securityCode) => (dispatch, getS
 
     api.login(getCustomerEmail(getState()), securityCode)
         .then((data) => {
-            dispatch(updateCustomerInfo(data.customer));
+            const { currencies } = getState().exchanges.moonpay;
+            const { defaultCurrencyId } = data.customer;
+
+            dispatch(
+                updateCustomerInfo(
+                    assign({}, data.customer, {
+                        defaultCurrencyCode: toUpper(
+                            get(find(currencies, (currency) => currency.id === defaultCurrencyId), 'code'),
+                        ),
+                    }),
+                ),
+            );
+
             return api.fetchTransactions();
         })
         .then((transactions) => {

@@ -1,5 +1,8 @@
+import head from 'lodash/head';
 import get from 'lodash/get';
 import filter from 'lodash/filter';
+import sortBy from 'lodash/sortBy';
+import size from 'lodash/size';
 import { createSelector } from 'reselect';
 
 /**
@@ -128,6 +131,24 @@ export const getCustomerMonthlyLimits = createSelector(
 );
 
 /**
+ * Selects default currency code
+ *
+ * @method getDefaultCurrencyCode
+ *
+ * @param {object} state
+ *
+ * @returns {object}
+ */
+export const getDefaultCurrencyCode = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
+
+        return get(customer, 'defaultCurrencyCode');
+    },
+);
+
+/**
  * Selects selected account name
  *
  * @method getSelectedAccountName
@@ -158,5 +179,25 @@ export const getPaymentCardId = createSelector(
         const info = exchanges.moonpay.paymentCardInfo;
 
         return get(info, 'id') || '';
+    },
+);
+
+/**
+ * Selects payment card id
+ *
+ * @method getPaymentCardId
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getMostRecentTransaction = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const transactions = exchanges.moonpay.transactions;
+
+        return size(transactions)
+            ? head(sortBy(transactions, (transaction) => new Date(transaction.createdAt)).reverse())
+            : {};
     },
 );

@@ -1,14 +1,23 @@
 import includes from 'lodash/includes';
+import toLower from 'lodash/toLower';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text } from 'react-native';
+import { Linking, StyleSheet, View, Text } from 'react-native';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getLatestAddressForMoonPaySelectedAccount } from 'shared-modules/selectors/accounts';
-import { getMoonPayFee, getTotalPurchaseAmount } from 'shared-modules/selectors/exchanges/MoonPay';
+import {
+    getMoonPayFee,
+    getTotalPurchaseAmount,
+    getCustomerDailyLimits,
+    getCustomerMonthlyLimits,
+    getDefaultCurrencyCode,
+} from 'shared-modules/selectors/exchanges/MoonPay';
+import { BASIC_MONTHLY_LIMIT } from 'shared-modules/exchanges/MoonPay/index';
 import { createTransaction } from 'shared-modules/actions/exchanges/MoonPay';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
+import { convertCurrency, prepareMoonPayExternalLink } from 'shared-modules/exchanges/MoonPay/utils';
 import InfoBox from 'ui/components/InfoBox';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -75,6 +84,12 @@ export default function withPurchaseSummary(WrappedComponent, config) {
             isCreatingTransaction: PropTypes.bool.isRequired,
             /** @ignore */
             hasErrorCreatingTransaction: PropTypes.bool.isRequired,
+            /** @ignore */
+            dailyLimits: PropTypes.object.isRequired,
+            /** @ignore */
+            monthlyLimits: PropTypes.object.isRequired,
+            /** @ignore */
+            defaultCurrencyCode: PropTypes.string.isRequired,
             /** @ignore */
             createTransaction: PropTypes.func.isRequired,
         };
@@ -189,9 +204,48 @@ export default function withPurchaseSummary(WrappedComponent, config) {
          * @returns {void}
          */
         createTransaction() {
-            const { amount, denomination, address } = this.props;
+            const {
+                amount,
+                exchangeRates,
+                defaultCurrencyCode,
+                dailyLimits,
+                monthlyLimits,
+                denomination,
+                address,
+            } = this.props;
 
-            this.props.createTransaction(this.getAmountInFiat(amount, denomination), 'usd', address);
+            const purchaseAmount = convertCurrency(
+                this.getAmountInFiat(amount, denomination),
+                exchangeRates,
+                denomination,
+                defaultCurrencyCode,
+            );
+
+            const dailyLimit = Number(
+                convertCurrency(dailyLimits.dailyLimit, exchangeRates, defaultCurrencyCode).toFixed(0),
+            );
+
+            const hasDoneKyc = dailyLimit > BASIC_MONTHLY_LIMIT;
+
+            if (
+                !hasDoneKyc &&
+                (purchaseAmount > dailyLimits.dailyLimitRemaining ||
+                    purchaseAmount > monthlyLimits.monthlyLimitRemaining)
+            ) {
+                Linking.openURL(
+                    prepareMoonPayExternalLink(
+                        address,
+                        this.getAmountInFiat(amount, denomination),
+                        toLower(this.getActiveFiatCurrency(denomination)),
+                    ),
+                );
+            } else {
+                this.props.createTransaction(
+                    this.getAmountInFiat(amount, denomination),
+                    toLower(this.getActiveFiatCurrency(denomination)),
+                    address,
+                );
+            }
         }
 
         render() {
@@ -358,6 +412,9 @@ export default function withPurchaseSummary(WrappedComponent, config) {
         lastDigits: state.exchanges.moonpay.paymentCardInfo.lastDigits,
         isCreatingTransaction: state.exchanges.moonpay.isCreatingTransaction,
         hasErrorCreatingTransaction: state.exchanges.moonpay.hasErrorCreatingTransaction,
+        dailyLimits: getCustomerDailyLimits(state),
+        monthlyLimits: getCustomerMonthlyLimits(state),
+        defaultCurrencyCode: getDefaultCurrencyCode(state),
     });
 
     const mapDispatchToProps = {
