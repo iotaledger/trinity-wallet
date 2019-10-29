@@ -9,6 +9,7 @@
                 "extensions": [".ios.js", ".android.js", ".js", ".json"]
             }
         ],
-        "jest-hoist"
+        "jest-hoist",
+        "babel-plugin-react-native-nodeify-hack"
     ]
 }
