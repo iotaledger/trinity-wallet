@@ -10,7 +10,6 @@ import { getLabelFromLocale } from 'shared-modules/libs/i18n';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import navigator from 'libs/navigation';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
 const styles = StyleSheet.create({
@@ -102,7 +101,6 @@ export class MainSettings extends Component {
             },
             { name: t('advanced'), icon: 'advanced', function: () => this.props.setSetting('advancedSettings') },
             { name: 'separator' },
-            { name: t('purchaseIOTA'), icon: 'iota', function: () => navigator.push('landing') },
             { name: t('aboutTrinity'), icon: 'info', function: () => this.props.setSetting('about') },
             { name: t('logout'), icon: 'logout', function: this.openLogoutModal },
         ];

@@ -68,15 +68,15 @@ export default class SimpleTransactionRow extends PureComponent {
                 </View>
                 <View style={{ flex: 3.2, alignItems: 'flex-start', justifyContent: 'center' }}>
                     <Text style={[styles.text, { color: style.defaultTextColor }]}>
-                        {formatTime(locale, timezone, convertUnixTimeToJSDate(time))}
+                        {sign} {value} {unit}
                     </Text>
                 </View>
-                <View style={{ flex: 2, alignItems: 'flex-start', justifyContent: 'center' }}>
+                <View style={{ flex: 3, alignItems: 'flex-start', justifyContent: 'center' }}>
                     <Text style={[styles.text, { color: style.defaultTextColor }]}>{confirmationStatus}</Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-end', justifyContent: 'center' }}>
-                    <Text style={[styles.text, { color: style.titleColor }]}>
-                        {sign} {value} {unit}
+                    <Text style={[styles.text, { color: style.defaultTextColor }]}>
+                        {formatTime(locale, timezone, convertUnixTimeToJSDate(time))}
                     </Text>
                 </View>
             </View>

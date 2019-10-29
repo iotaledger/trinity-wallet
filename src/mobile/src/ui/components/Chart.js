@@ -9,6 +9,7 @@ import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import navigator from 'libs/navigation';
 
 const chartWidth = width;
 const chartHeight = isAndroid ? height * 0.4 : height * 0.36;
@@ -36,9 +37,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         zIndex: 1,
     },
-    priceContainer: {
-        flex: 8,
+    midButtonContainer: {
+        flex: 4,
         alignItems: 'center',
+        borderWidth: 1,
+        borderRadius: width / 25,
+        marginLeft: width / 6,
+        marginRight: width / 6,
+        paddingVertical: height / 100,
+        backgroundColor: 'white',
     },
     chartContainer: {
         flex: 4.7,
@@ -180,7 +187,7 @@ class Chart extends PureComponent {
             getPriceFormat,
             getPriceForCurrency,
         } = this.props;
-        const volumeFormatted = priceData.volume.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
         const mcapFormatted = priceData.mcap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
         const textColor = { color: theme.body.color };
@@ -196,12 +203,27 @@ class Chart extends PureComponent {
                     >
                         <Text style={[styles.buttonText, textColor]}>{priceData.currency}</Text>
                     </TouchableOpacity>
-                    <View style={styles.priceContainer}>
-                        <Text style={[styles.iotaPrice, textColor]}>
-                            {getChartCurrencySymbol(priceData.currency)}{' '}
-                            {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
+                    <TouchableOpacity
+                        onPress={() => navigator.push('landing')}
+                        style={[
+                            styles.midButtonContainer,
+                            borderColor,
+                            {
+                                backgroundColor: theme.body.color,
+                            },
+                        ]}
+                    >
+                        <Text
+                            style={[
+                                styles.buttonText,
+                                {
+                                    color: theme.body.bg,
+                                },
+                            ]}
+                        >
+                            {t('moonpay:buyIOTA')}
                         </Text>
-                    </View>
+                    </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => setTimeframe()}
                         hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
@@ -267,14 +289,15 @@ class Chart extends PureComponent {
                         </Text>
                     </View>
                     <View style={{ alignItems: 'center' }}>
-                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:change')}</Text>
-                        <Text style={[styles.marketFigure, textColor]}>{priceData.change24h}%</Text>
+                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:currentValue')}</Text>
+                        <Text style={[styles.marketFigure, textColor]}>
+                            {getChartCurrencySymbol(priceData.currency)}{' '}
+                            {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
+                        </Text>
                     </View>
                     <View style={{ alignItems: 'flex-end' }}>
-                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:volume')}</Text>
-                        <Text style={[styles.marketFigure, textColor]}>
-                            {priceData.globalSymbol} {volumeFormatted}
-                        </Text>
+                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:change')}</Text>
+                        <Text style={[styles.marketFigure, textColor]}>{priceData.change24h}%</Text>
                     </View>
                 </View>
                 <View style={{ flex: 0.38 }} />
