@@ -8,6 +8,8 @@ export const MOONPAY_RETURN_URL = 'iota://moonpay_success';
 
 export const MOONPAY_EXTERNAL_LINK_BASE_URL = 'https://buy.moonpay.io';
 
+export const ADVANCED_IDENITY_VERIFICATION_LEVEL_NAME = 'Level 2';
+
 /** Minimum transaction amount in EUR */
 export const MINIMUM_TRANSACTION_SIZE = 20;
 

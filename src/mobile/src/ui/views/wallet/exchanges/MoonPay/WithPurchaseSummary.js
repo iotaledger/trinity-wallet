@@ -13,8 +13,10 @@ import {
     getCustomerDailyLimits,
     getCustomerMonthlyLimits,
     getDefaultCurrencyCode,
+    hasCompletedAdvancedIdentityVerification,
+    isLimitIncreaseAllowed,
+    getPaymentCardExpiryInfo,
 } from 'shared-modules/selectors/exchanges/MoonPay';
-import { BASIC_MONTHLY_LIMIT } from 'shared-modules/exchanges/MoonPay/index';
 import { createTransaction } from 'shared-modules/actions/exchanges/MoonPay';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
 import { convertCurrency, prepareMoonPayExternalLink } from 'shared-modules/exchanges/MoonPay/utils';
@@ -90,6 +92,12 @@ export default function withPurchaseSummary(WrappedComponent, config) {
             monthlyLimits: PropTypes.object.isRequired,
             /** @ignore */
             defaultCurrencyCode: PropTypes.string.isRequired,
+            /** @ignore */
+            expiryInfo: PropTypes.string.isRequired,
+            /** @ignore */
+            hasCompletedAdvancedIdentityVerification: PropTypes.bool.isRequired,
+            /** @ignore */
+            isPurchaseLimitIncreaseAllowed: PropTypes.bool.isRequired,
             /** @ignore */
             createTransaction: PropTypes.func.isRequired,
         };
@@ -212,6 +220,8 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 monthlyLimits,
                 denomination,
                 address,
+                isPurchaseLimitIncreaseAllowed,
+                hasCompletedAdvancedIdentityVerification,
             } = this.props;
 
             const purchaseAmount = convertCurrency(
@@ -221,14 +231,9 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 defaultCurrencyCode,
             );
 
-            const dailyLimit = Number(
-                convertCurrency(dailyLimits.dailyLimit, exchangeRates, defaultCurrencyCode).toFixed(0),
-            );
-
-            const hasDoneKyc = dailyLimit > BASIC_MONTHLY_LIMIT;
-
             if (
-                !hasDoneKyc &&
+                isPurchaseLimitIncreaseAllowed &&
+                !hasCompletedAdvancedIdentityVerification &&
                 (purchaseAmount > dailyLimits.dailyLimitRemaining ||
                     purchaseAmount > monthlyLimits.monthlyLimitRemaining)
             ) {
@@ -262,6 +267,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 t,
                 theme,
                 exchangeRates,
+                expiryInfo,
             } = this.props;
 
             const textColor = { color: theme.body.color };
@@ -357,7 +363,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                                 <Text style={[styles.infoTextLight, textColor]}>
                                     {t('moonpay:cardExpiry', { brand: 'Visa' })}
                                 </Text>
-                                <Text style={[styles.infoTextLight, textColor]}>12/20</Text>
+                                <Text style={[styles.infoTextLight, textColor]}>{expiryInfo}</Text>
                             </View>
                         </AnimatedComponent>
                         <View style={{ flex: 0.4 }} />
@@ -410,11 +416,14 @@ export default function withPurchaseSummary(WrappedComponent, config) {
         address: getLatestAddressForMoonPaySelectedAccount(state),
         brand: state.exchanges.moonpay.paymentCardInfo.brand,
         lastDigits: state.exchanges.moonpay.paymentCardInfo.lastDigits,
+        expiryInfo: getPaymentCardExpiryInfo(state),
         isCreatingTransaction: state.exchanges.moonpay.isCreatingTransaction,
         hasErrorCreatingTransaction: state.exchanges.moonpay.hasErrorCreatingTransaction,
         dailyLimits: getCustomerDailyLimits(state),
         monthlyLimits: getCustomerMonthlyLimits(state),
         defaultCurrencyCode: getDefaultCurrencyCode(state),
+        hasCompletedAdvancedIdentityVerification: hasCompletedAdvancedIdentityVerification(state),
+        isPurchaseLimitIncreaseAllowed: isLimitIncreaseAllowed(state),
     });
 
     const mapDispatchToProps = {

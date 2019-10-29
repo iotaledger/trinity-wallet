@@ -99,13 +99,15 @@ class UserAdvancedInfo extends React.Component {
     constructor(props) {
         super(props);
 
+        const allowedCountries = filter(props.countries, (country) => country.isAllowed);
+
         this.state = {
             address: isNull(props.address) ? '' : props.address,
             city: isNull(props.city) ? '' : props.city,
             country: isNull(props.country)
                 ? {
-                      name: get(head(props.countries), 'name'),
-                      alpha3: get(head(props.countries), 'alpha3'),
+                      name: get(head(allowedCountries), 'name'),
+                      alpha3: get(head(allowedCountries), 'alpha3'),
                   }
                 : {
                       name: get(find(props.countries, { alpha3: props.country }), 'name'),
@@ -117,7 +119,7 @@ class UserAdvancedInfo extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isUpdatingCustomer && !nextProps.isUpdatingCustomer && !nextProps.hasErrorUpdatingCustomer) {
-            UserAdvancedInfo.redirectToScreen('addPaymentMethod');
+            UserAdvancedInfo.redirectToScreen('addAmount');
         }
     }
 
@@ -141,6 +143,14 @@ class UserAdvancedInfo extends React.Component {
 
         if (!this.state.city) {
             return this.props.generateAlert('error', t('moonpay:invalidCity'), t('moonpay:invalidCityExplanation'));
+        }
+
+        if (!this.state.zipCode) {
+            return this.props.generateAlert(
+                'error',
+                t('moonpay:invalidZipCode'),
+                t('moonpay:invalidZipCodeExplanation'),
+            );
         }
 
         return this.props.updateCustomer({

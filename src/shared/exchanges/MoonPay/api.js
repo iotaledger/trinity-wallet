@@ -4,7 +4,7 @@ import Errors from '../../libs/errors';
 import { serialise } from '../../libs/utils';
 import { __MOBILE__ } from '../../config';
 
-export const BASE_API_URL = 'https://api.moonpay.io/v2';
+export const BASE_API_URL = 'https://api.moonpay.io/v3';
 
 export class MoonPayApi {
     /**
@@ -151,7 +151,7 @@ export class MoonPayApi {
      * @returns {Promise}
      */
     fetchExchangeRates(currency) {
-        return this._fetch(`${this.url}/currencies/${currency}/price`);
+        return this._fetch(`${this.url}/currencies/${currency}/price?apiKey=${this.apiKey}`);
     }
 
     /**
@@ -203,6 +203,23 @@ export class MoonPayApi {
     fetchTransactions() {
         return this._fetch(
             `${this.url}/transactions/`,
+            {
+                method: 'get',
+            },
+            true,
+        );
+    }
+
+    /**
+     * Fetches customer purchase limits
+     *
+     * @method fetchCustomerPurchaseLimits
+     *
+     * @returns {Promise}
+     */
+    fetchCustomerPurchaseLimits() {
+        return this._fetch(
+            `${this.url}/customers/me/limits`,
             {
                 method: 'get',
             },

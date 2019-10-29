@@ -15,9 +15,23 @@ import {
     BASIC_MONTHLY_LIMIT,
     MINIMUM_TRANSACTION_SIZE,
 } from 'shared-modules/exchanges/MoonPay/index';
-import { getActiveFiatCurrency, getAmountInFiat, getAmountInEuros } from 'shared-modules/exchanges/MoonPay/utils';
+import {
+    getActiveFiatCurrency,
+    getAmountInFiat,
+    getAmountInEuros,
+    convertCurrency,
+} from 'shared-modules/exchanges/MoonPay/utils';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { getFiatCurrencies, getMoonPayFee, getTotalPurchaseAmount } from 'shared-modules/selectors/exchanges/MoonPay';
+import {
+    hasCompletedAdvancedIdentityVerification,
+    getFiatCurrencies,
+    getMoonPayFee,
+    getTotalPurchaseAmount,
+    isLimitIncreaseAllowed,
+    getDefaultCurrencyCode,
+    getCustomerDailyLimits,
+    getCustomerMonthlyLimits,
+} from 'shared-modules/selectors/exchanges/MoonPay';
 import { fetchQuote, setAmount, setDenomination } from 'shared-modules/actions/exchanges/MoonPay';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -97,6 +111,16 @@ class AddAmount extends Component {
         fee: PropTypes.number.isRequired,
         /** @ignore */
         totalAmount: PropTypes.number.isRequired,
+        /** @ignore */
+        hasCompletedAdvancedIdentityVerification: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPurchaseLimitIncreaseAllowed: PropTypes.bool.isRequired,
+        /** @ignore */
+        dailyLimits: PropTypes.object.isRequired,
+        /** @ignore */
+        monthlyLimits: PropTypes.object.isRequired,
+        /** @ignore */
+        defaultCurrencyCode: PropTypes.string.isRequired,
         /** @ignore */
         fetchQuote: PropTypes.func.isRequired,
         /** @ignore */
@@ -192,14 +216,16 @@ class AddAmount extends Component {
     getWarningText() {
         const { amount, exchangeRates, denomination, t } = this.props;
 
-        const euroAmount = getAmountInEuros(Number(amount), denomination, exchangeRates);
+        if (amount) {
+            const euroAmount = getAmountInEuros(Number(amount), denomination, exchangeRates);
 
-        if (amount && euroAmount < MINIMUM_TRANSACTION_SIZE) {
-            return t('moonpay:minimumTransactionAmount', { amount: `€${MINIMUM_TRANSACTION_SIZE}` });
-        }
+            if (euroAmount < MINIMUM_TRANSACTION_SIZE) {
+                return t('moonpay:minimumTransactionAmount', { amount: `€${MINIMUM_TRANSACTION_SIZE}` });
+            }
 
-        if (euroAmount > BASIC_MONTHLY_LIMIT) {
-            return t('moonpay:kycRequired', { amount: `€${BASIC_MONTHLY_LIMIT}` });
+            if (euroAmount > BASIC_MONTHLY_LIMIT) {
+                return t('moonpay:kycRequired', { amount: `€${BASIC_MONTHLY_LIMIT}` });
+            }
         }
 
         return null;
@@ -213,7 +239,17 @@ class AddAmount extends Component {
      * @returns {void}
      */
     verifyAmount() {
-        const { amount, exchangeRates, denomination, t } = this.props;
+        const {
+            amount,
+            exchangeRates,
+            dailyLimits,
+            monthlyLimits,
+            defaultCurrencyCode,
+            denomination,
+            t,
+            hasCompletedAdvancedIdentityVerification,
+            isPurchaseLimitIncreaseAllowed,
+        } = this.props;
 
         const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
 
@@ -224,7 +260,16 @@ class AddAmount extends Component {
                 t('moonpay:notEnoughAmountExplanation', { amount: `$${MINIMUM_TRANSACTION_SIZE}` }),
             );
         } else {
-            AddAmount.redirectToScreen('selectAccount');
+            const purchaseAmount = convertCurrency(fiatAmount, exchangeRates, denomination, defaultCurrencyCode);
+
+            AddAmount.redirectToScreen(
+                !isPurchaseLimitIncreaseAllowed &&
+                    hasCompletedAdvancedIdentityVerification &&
+                    (purchaseAmount > dailyLimits.dailyLimitRemaining ||
+                        purchaseAmount > monthlyLimits.monthlyLimitRemaining)
+                    ? 'purchaseLimitWarning'
+                    : 'addPaymentMethod',
+            );
         }
     }
 
@@ -315,7 +360,9 @@ class AddAmount extends Component {
                                 {exchangeRates[activeFiatCurrency]}
                             </Text>
                             <Text style={[styles.infoTextLight, textColor]}>
-                                {this.getStringifiedFiatAmount(getAmountInFiat(Number(amount), denomination, exchangeRates))}
+                                {this.getStringifiedFiatAmount(
+                                    getAmountInFiat(Number(amount), denomination, exchangeRates),
+                                )}
                             </Text>
                         </View>
                         <View style={{ flex: 0.05 }} />
@@ -362,6 +409,11 @@ const mapStateToProps = (state) => ({
     exchangeRates: state.exchanges.moonpay.exchangeRates,
     fee: getMoonPayFee(state),
     totalAmount: getTotalPurchaseAmount(state),
+    hasCompletedAdvancedIdentityVerification: hasCompletedAdvancedIdentityVerification(state),
+    isPurchaseLimitIncreaseAllowed: isLimitIncreaseAllowed(state),
+    dailyLimits: getCustomerDailyLimits(state),
+    monthlyLimits: getCustomerMonthlyLimits(state),
+    defaultCurrencyCode: getDefaultCurrencyCode(state),
 });
 
 const mapDispatchToProps = {

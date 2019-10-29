@@ -7,14 +7,7 @@ import { verifyEmailAndFetchTransactions } from 'shared-modules/actions/exchange
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import {
-    getCustomerEmail,
-    getCustomerDailyLimits,
-    getCustomerMonthlyLimits,
-    getDefaultCurrencyCode,
-} from 'shared-modules/selectors/exchanges/MoonPay';
-import { getAmountInFiat, convertCurrency } from 'shared-modules/exchanges/MoonPay/utils';
-import { BASIC_MONTHLY_LIMIT } from 'shared-modules/exchanges/MoonPay';
+import { getCustomerEmail } from 'shared-modules/selectors/exchanges/MoonPay';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
@@ -93,27 +86,9 @@ class VerifyEmail extends React.Component {
         /** @ignore */
         hasErrorVerifyingEmail: PropTypes.bool.isRequired,
         /** @ignore */
-        dailyLimits: PropTypes.shape({
-            dailyLimit: PropTypes.number,
-            dailyLimitRemaining: PropTypes.number,
-        }),
-        /** @ignore */
-        monthlyLimits: PropTypes.shape({
-            monthlyLimit: PropTypes.number,
-            monthlyLimitRemaining: PropTypes.number,
-        }),
-        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         verifyEmailAndFetchTransactions: PropTypes.func.isRequired,
-        /** @ignore */
-        amount: PropTypes.string.isRequired,
-        /** @ignore */
-        denomination: PropTypes.string.isRequired,
-        /** @ignore */
-        exchangeRates: PropTypes.object.isRequired,
-        /** @ignore */
-        defaultCurrencyCode: PropTypes.string,
     };
 
     /**
@@ -138,28 +113,7 @@ class VerifyEmail extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isVerifyingEmail && !nextProps.isVerifyingEmail && !nextProps.hasErrorVerifyingEmail) {
-            const { amount, denomination, exchangeRates, defaultCurrencyCode, dailyLimits, monthlyLimits } = this.props;
-
-            const purchaseAmount = convertCurrency(
-                getAmountInFiat(Number(amount), denomination, exchangeRates),
-                exchangeRates,
-                denomination,
-                defaultCurrencyCode,
-            );
-
-            const dailyLimit = Number(
-                convertCurrency(dailyLimits.dailyLimit, exchangeRates, defaultCurrencyCode).toFixed(0),
-            );
-
-            const hasDoneKyc = dailyLimit > BASIC_MONTHLY_LIMIT;
-
-            VerifyEmail.redirectToScreen(
-                hasDoneKyc &&
-                    (purchaseAmount > dailyLimits.dailyLimitRemaining ||
-                        purchaseAmount > monthlyLimits.monthlyLimitRemaining)
-                    ? 'purchaseLimitWarning'
-                    : 'userBasicInfo',
-            );
+            VerifyEmail.redirectToScreen('selectAccount');
         }
     }
 
@@ -308,12 +262,6 @@ const mapStateToProps = (state) => ({
     email: getCustomerEmail(state),
     isVerifyingEmail: state.exchanges.moonpay.isVerifyingEmail,
     hasErrorVerifyingEmail: state.exchanges.moonpay.hasErrorVerifyingEmail,
-    dailyLimits: getCustomerDailyLimits(state),
-    monthlyLimits: getCustomerMonthlyLimits(state),
-    amount: state.exchanges.moonpay.amount,
-    denomination: state.exchanges.moonpay.denomination,
-    exchangeRates: state.exchanges.moonpay.exchangeRates,
-    defaultCurrencyCode: getDefaultCurrencyCode(state),
 });
 
 const mapDispatchToProps = {

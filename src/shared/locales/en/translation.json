@@ -299,6 +299,8 @@
         "invalidAddressExplanation": "Please enter a valid address",
         "invalidCity": "Invalid city",
         "invalidCityExplanation": "Please enter a valid city",
+        "invalidZipCode": "Invalid zip code",
+        "invalidZipCodeExplanation": "Please enter a valid zip code",
         "somethingWentWrongProcessingCardInfo": "Something went wrong while processing your card information. Please try again.",
         "notEnoughAmount": "Not enough amount",
         "notEnoughAmountExplanation": "Minimum transaction amount is {{amount}}",

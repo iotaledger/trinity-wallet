@@ -8,9 +8,10 @@ import { WebView } from 'react-native-webview';
 import { setPaymentCardInfo } from 'shared-modules/actions/exchanges/MoonPay';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import { getCustomerAddress } from 'shared-modules/selectors/exchanges/MoonPay';
 import { parse } from 'shared-modules/libs/utils';
 
-const renderHtml = (theme, t) => {
+const renderHtml = (theme, t, address) => {
     return `
   <!DOCTYPE html>
   <html lang="en">
@@ -18,15 +19,13 @@ const renderHtml = (theme, t) => {
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
     <title>VGS Collect Credit Card Example</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!--Replace with generated for your organization JS file.-->
-    <script type="text/javascript" src="https://js.verygoodvault.com/vgs-collect/1/ACwR8j4YLDecDMmyR1kddGfH.js"></script>
 
     <style>
       span[id*="cc-"] {
@@ -233,7 +232,8 @@ const renderHtml = (theme, t) => {
     </div>
   </main>
 
-  <!--Include script with VGS Collect form initialization-->
+  <script type="text/javascript" src="https://cdn.moonpay.io/moonpay-sdk.js"></script>
+
   <script>
   function goBack() {
     window.ReactNativeWebView.postMessage(JSON.stringify({
@@ -241,11 +241,13 @@ const renderHtml = (theme, t) => {
     }));
   }
 
-    // VGS Collect form initialization
-    const form = VGSCollect.create('tntzdhyyfg9', function(state) { });
+    moonpay.initialize('pk_test_W1g4KpNvqWkHEo58O0CTluQz698eOc');
+    moonpay.trackPageView();
+
+    const form = moonpay.createCardDetailsForm(function(state) { });
 
     // Create VGS Collect field for credit card number
-    form.field('#cc-number', {
+    form.createField('#cc-number', {
       type: 'card-number',
       name: 'number',
       autoFocus: true,
@@ -260,7 +262,7 @@ const renderHtml = (theme, t) => {
     });
 
     // Create VGS Collect field for CVC
-    form.field('#cc-cvc', {
+    form.createField('#cc-cvc', {
       errorColor: "${theme.negative.color}",
       css: {
         color: "${theme.input.color}",
@@ -274,7 +276,7 @@ const renderHtml = (theme, t) => {
     });
 
     // Create VGS Collect field for credit card expiration date
-    form.field('#cc-expiration-date', {
+    form.createField('#cc-expiration-date', {
       type: 'card-expiration-date',
       name: 'expiryDate',
       errorColor: "${theme.negative.color}",
@@ -295,15 +297,27 @@ const renderHtml = (theme, t) => {
 
         document.getElementsByClassName("button-right")[0].innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
 
-        form.submit('/v2/tokens?apiKey=pk_test_W1g4KpNvqWkHEo58O0CTluQz698eOc', {
-            headers: {
-                'Content-Type': 'application/json',
-              }
+        form.submit({
+          street: "${address.street}",
+          subStreet: "${address.subStreet}",
+          town: "${address.town}",
+          postCode: "${address.postCode}",
+          state: "${address.state}",
+          country: "${address.country}",
         }, function(status, data) {
-          window.ReactNativeWebView.postMessage(JSON.stringify({
-            type: 'success',
-            data: data
-          }));
+          if (status.toString().startsWith('2')) {
+            window.ReactNativeWebView.postMessage(JSON.stringify({
+              type: 'success',
+              data: data,
+            }));
+          } else {
+            document.getElementsByClassName("button-right")[0].innerHTML = "${t('global:submit')}";
+
+            window.ReactNativeWebView.postMessage(JSON.stringify({
+              type: 'error',
+              data: data,
+            }));
+          }
         });
       }, function (errors) {
         document.getElementsByClassName("button-right")[0].innerHTML = "${t('global:submit')}";
@@ -326,7 +340,9 @@ class AddPaymentMethod extends PureComponent {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        t: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
+        address: PropTypes.object.isRequired,
+        /** @ignore */
+        t: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -358,6 +374,8 @@ class AddPaymentMethod extends PureComponent {
      * @returns {void}
      */
     onMessage(event) {
+        const { t } = this.props;
+
         const message = parse(event.nativeEvent.data);
 
         const type = get(message, 'type');
@@ -368,21 +386,21 @@ class AddPaymentMethod extends PureComponent {
         } else if (type === 'error') {
             this.props.generateAlert(
                 'error',
-                'global:somethingWentWrong',
-                'moonpay:somethingWentWrongProcessingCardInfo',
+                t('global:somethingWentWrong'),
+                t('moonpay:somethingWentWrongProcessingCardInfo'),
             );
         } else if (type === 'back') {
-            AddPaymentMethod.redirectToScreen('userAdvancedInfo');
+            AddPaymentMethod.redirectToScreen('addAmount');
         }
     }
 
     render() {
-        const { theme, t } = this.props;
+        const { address, theme, t } = this.props;
 
         return (
             <WebView
                 hideKeyboardAccessoryView
-                source={{ html: renderHtml(theme, t) }}
+                source={{ html: renderHtml(theme, t, address) }}
                 javaScriptEnabled
                 onMessage={this.onMessage}
                 scalesPageToFit
@@ -393,6 +411,7 @@ class AddPaymentMethod extends PureComponent {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
+    address: getCustomerAddress(state),
 });
 
 const mapDispatchToProps = {

@@ -1,9 +1,11 @@
 import head from 'lodash/head';
 import get from 'lodash/get';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import sortBy from 'lodash/sortBy';
 import size from 'lodash/size';
 import { createSelector } from 'reselect';
+import { ADVANCED_IDENITY_VERIFICATION_LEVEL_NAME } from '../../../exchanges/MoonPay';
 
 /**
  * Selects exchanges from state object
@@ -100,11 +102,11 @@ export const getCustomerEmail = createSelector(
 export const getCustomerDailyLimits = createSelector(
     getExchangesFromState,
     (exchanges) => {
-        const customer = exchanges.moonpay.customer;
+        const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
 
         return {
-            dailyLimit: get(customer, 'dailyLimit'),
-            dailyLimitRemaining: get(customer, 'dailyLimitRemaining'),
+            dailyLimit: get(purchaseLimits, 'limits[0].dailyLimit'),
+            dailyLimitRemaining: get(purchaseLimits, 'limits[0].dailyLimitRemaining'),
         };
     },
 );
@@ -121,11 +123,11 @@ export const getCustomerDailyLimits = createSelector(
 export const getCustomerMonthlyLimits = createSelector(
     getExchangesFromState,
     (exchanges) => {
-        const customer = exchanges.moonpay.customer;
+        const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
 
         return {
-            monthlyLimit: get(customer, 'monthlyLimit'),
-            monthlyLimitRemaining: get(customer, 'monthlyLimitRemaining'),
+            monthlyLimit: get(purchaseLimits, 'limits[0].monthlyLimit'),
+            monthlyLimitRemaining: get(purchaseLimits, 'limits[0].monthlyLimitRemaining'),
         };
     },
 );
@@ -199,5 +201,81 @@ export const getMostRecentTransaction = createSelector(
         return size(transactions)
             ? head(sortBy(transactions, (transaction) => new Date(transaction.createdAt)).reverse())
             : {};
+    },
+);
+
+/**
+ * Determines whether a customer requires advanced identity verification
+ *
+ * @method hasCompletedAdvancedIdentityVerification
+ *
+ * @param {object} state
+ *
+ * @returns {boolean}
+ */
+export const hasCompletedAdvancedIdentityVerification = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
+
+        const advancedVerification = find(get(purchaseLimits, 'verificationLevels'), {
+            name: ADVANCED_IDENITY_VERIFICATION_LEVEL_NAME,
+        });
+
+        return get(advancedVerification, 'completed');
+    },
+);
+
+/**
+ * Determines if purchase limit increase is allowed by MoonPay
+ *
+ * @method isLimitIncreaseAllowed
+ *
+ * @param {object} state
+ *
+ * @returns {boolean}
+ */
+export const isLimitIncreaseAllowed = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
+
+        return get(purchaseLimits, 'limitIncreaseEligible');
+    },
+);
+
+/**
+ * Gets payment card expiry info
+ *
+ * @method getPaymentCardExpiryInfo
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getPaymentCardExpiryInfo = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const info = exchanges.moonpay.paymentCardInfo;
+
+        return `${get(info, 'expiryMonth')}/${get(info, 'expiryYear')}`;
+    },
+);
+
+/**
+ * Gets customer address
+ *
+ * @method getCustomerAddress
+ *
+ * @param {object} state
+ *
+ * @returns {object}
+ */
+export const getCustomerAddress = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
+
+        return get(customer, 'address');
     },
 );

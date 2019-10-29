@@ -248,7 +248,7 @@ class UserBasicInfo extends React.Component {
                     <View style={styles.bottomContainer}>
                         <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                             <DualFooterButtons
-                                onLeftButtonPress={() => UserBasicInfo.redirectToScreen('addAmount')}
+                                onLeftButtonPress={() => UserBasicInfo.redirectToScreen('selectAccount')}
                                 onRightButtonPress={() => this.updateCustomer()}
                                 isRightButtonLoading={isUpdatingCustomer}
                                 leftButtonText={t('global:goBack')}

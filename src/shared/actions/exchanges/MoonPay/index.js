@@ -316,25 +316,6 @@ export const fetchCountries = () => (dispatch) => {
 };
 
 /**
- * Fetches Iota exchange rates
- *
- * @method fetchIotaExchangeRates
- *
- * @returns {function}
- */
-export const fetchIotaExchangeRates = () => (dispatch) => {
-    api.fetchExchangeRates(IOTA_CURRENCY_CODE)
-        .then((exchangeRates) => dispatch(setIotaExchangeRates(exchangeRates)))
-        .catch((error) => {
-            if (__DEV__) {
-                /* eslint-disable no-console */
-                console.log(error);
-                /* eslint-enable no-console */
-            }
-        });
-};
-
-/**
  * Fetches real-time currency quote
  *
  * @method fetchQuote
@@ -411,9 +392,15 @@ export const verifyEmailAndFetchTransactions = (securityCode) => (dispatch, getS
                         defaultCurrencyCode: toUpper(
                             get(find(currencies, (currency) => currency.id === defaultCurrencyId), 'code'),
                         ),
+                        purchaseLimits: {},
                     }),
                 ),
             );
+
+            return api.fetchExchangeRates(IOTA_CURRENCY_CODE);
+        })
+        .then((exchangeRates) => {
+            dispatch(setIotaExchangeRates(exchangeRates));
 
             return api.fetchTransactions();
         })
@@ -448,8 +435,10 @@ export const updateCustomer = (info) => (dispatch) => {
 
     api.updateUserInfo(info)
         .then((data) => {
-            dispatch(updateCustomerInfo(data));
-            dispatch(updateCustomerSuccess());
+            return api.fetchCustomerPurchaseLimits().then((purchaseLimits) => {
+                dispatch(updateCustomerInfo(assign({}, data, { purchaseLimits })));
+                dispatch(updateCustomerSuccess());
+            });
         })
         .catch(() => {
             dispatch(

@@ -145,9 +145,9 @@ class SelectAccount extends React.Component {
                     <View style={styles.bottomContainer}>
                         <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                             <DualFooterButtons
-                                onLeftButtonPress={() => SelectAccount.redirectToScreen('addAmount')}
+                                onLeftButtonPress={() => SelectAccount.redirectToScreen('setupEmail')}
                                 onRightButtonPress={() => {
-                                    SelectAccount.redirectToScreen('setupEmail');
+                                    SelectAccount.redirectToScreen('userBasicInfo');
                                     this.props.setAccountName(this.state.accountName);
                                 }}
                                 leftButtonText={t('global:goBack')}
