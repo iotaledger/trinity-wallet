@@ -10,7 +10,12 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { BASIC_MONTHLY_LIMIT, MINIMUM_TRANSACTION_SIZE } from 'shared-modules/exchanges/MoonPay/index';
+import {
+    ALLOWED_IOTA_DENOMINATIONS,
+    BASIC_MONTHLY_LIMIT,
+    MINIMUM_TRANSACTION_SIZE,
+} from 'shared-modules/exchanges/MoonPay/index';
+import { getActiveFiatCurrency, getAmountInFiat, getAmountInEuros } from 'shared-modules/exchanges/MoonPay/utils';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getFiatCurrencies, getMoonPayFee, getTotalPurchaseAmount } from 'shared-modules/selectors/exchanges/MoonPay';
 import { fetchQuote, setAmount, setDenomination } from 'shared-modules/actions/exchanges/MoonPay';
@@ -111,8 +116,6 @@ class AddAmount extends Component {
         navigator.push(screen);
     }
 
-    static iotaDenominations = ['Mi'];
-
     /**
      * Sets next denomination in redux store
      *
@@ -121,10 +124,10 @@ class AddAmount extends Component {
      * @returns {void}
      */
     setDenomination() {
-        const { amount, denomination, fiatCurrencies } = this.props;
+        const { amount, exchangeRates, denomination, fiatCurrencies } = this.props;
 
         const availableDenominations = [
-            ...AddAmount.iotaDenominations,
+            ...ALLOWED_IOTA_DENOMINATIONS,
             ...map(fiatCurrencies, (currencyObject) => toUpper(get(currencyObject, 'code'))),
         ];
 
@@ -137,66 +140,9 @@ class AddAmount extends Component {
 
         this.props.setDenomination(nextDenomination);
         this.props.fetchQuote(
-            this.getAmountInFiat(amount, nextDenomination),
-            this.getActiveFiatCurrency(toLower(this.getActiveFiatCurrency(nextDenomination))),
+            getAmountInFiat(Number(amount), nextDenomination, exchangeRates),
+            toLower(getActiveFiatCurrency(nextDenomination)),
         );
-    }
-
-    /**
-     * Gets active fiat currency.
-     *
-     * @method getActiveFiatCurrency
-     *
-     * @param {string}
-     *
-     * @returns {string}
-     */
-    getActiveFiatCurrency(denomination) {
-        if (includes(AddAmount.iotaDenominations, denomination)) {
-            // Default to USD since we don't allow user to set a default currency.
-            return 'USD';
-        }
-
-        return denomination;
-    }
-
-    /**
-     * Gets amount in fiat
-     *
-     * @method getAmountInFiat
-     *
-     * @param {string} amount
-     * @param {string} denomination
-     *
-     * @returns {number}
-     */
-    getAmountInFiat(amount, denomination) {
-        const { exchangeRates } = this.props;
-
-        if (includes(AddAmount.iotaDenominations, denomination)) {
-            return amount
-                ? Number((Number(amount) * exchangeRates[this.getActiveFiatCurrency(denomination)]).toFixed(2))
-                : 0;
-        }
-
-        return amount ? Number(Number(amount).toFixed(2)) : 0;
-    }
-
-    /**
-     * Gets amount in Miota
-     *
-     * @method getAmountinMiota
-     *
-     * @returns {string}
-     */
-    getAmountinMiota() {
-        const { amount, denomination, exchangeRates } = this.props;
-
-        if (!amount) {
-            return '0 Mi';
-        }
-
-        return `${(Number(amount) / exchangeRates[this.getActiveFiatCurrency(denomination)]).toFixed(2)} Mi`;
     }
 
     /**
@@ -209,12 +155,12 @@ class AddAmount extends Component {
     getReceiveAmount() {
         const { amount, denomination, exchangeRates } = this.props;
 
-        if (includes(AddAmount.iotaDenominations, denomination)) {
+        if (includes(ALLOWED_IOTA_DENOMINATIONS, denomination)) {
             return amount ? `${amount} Mi` : '0 Mi';
         }
 
         return amount
-            ? `${(Number(amount) / exchangeRates[this.getActiveFiatCurrency(denomination)]).toFixed(2)} Mi`
+            ? `${(Number(amount) / exchangeRates[getActiveFiatCurrency(denomination)]).toFixed(2)} Mi`
             : '0 Mi';
     }
 
@@ -229,7 +175,7 @@ class AddAmount extends Component {
      */
     getStringifiedFiatAmount(amount) {
         const { denomination } = this.props;
-        const activeFiatCurrency = this.getActiveFiatCurrency(denomination);
+        const activeFiatCurrency = getActiveFiatCurrency(denomination);
 
         return amount
             ? `${getCurrencySymbol(activeFiatCurrency)}${amount.toFixed(2)}`
@@ -244,16 +190,16 @@ class AddAmount extends Component {
      * @returns {string|object}
      */
     getWarningText() {
-        const { amount, denomination, t } = this.props;
+        const { amount, exchangeRates, denomination, t } = this.props;
 
-        const fiatAmount = this.getAmountInFiat(amount, denomination);
+        const euroAmount = getAmountInEuros(Number(amount), denomination, exchangeRates);
 
-        if (amount && fiatAmount < MINIMUM_TRANSACTION_SIZE) {
-            return t('moonpay:minimumTransactionAmount', { amount: `$${MINIMUM_TRANSACTION_SIZE}` });
+        if (amount && euroAmount < MINIMUM_TRANSACTION_SIZE) {
+            return t('moonpay:minimumTransactionAmount', { amount: `€${MINIMUM_TRANSACTION_SIZE}` });
         }
 
-        if (fiatAmount > BASIC_MONTHLY_LIMIT) {
-            return t('moonpay:kycRequired', { amount: `$${BASIC_MONTHLY_LIMIT}` });
+        if (euroAmount > BASIC_MONTHLY_LIMIT) {
+            return t('moonpay:kycRequired', { amount: `€${BASIC_MONTHLY_LIMIT}` });
         }
 
         return null;
@@ -267,9 +213,9 @@ class AddAmount extends Component {
      * @returns {void}
      */
     verifyAmount() {
-        const { amount, denomination, t } = this.props;
+        const { amount, exchangeRates, denomination, t } = this.props;
 
-        const fiatAmount = this.getAmountInFiat(amount, denomination);
+        const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
 
         if (fiatAmount < MINIMUM_TRANSACTION_SIZE) {
             this.props.generateAlert(
@@ -287,7 +233,7 @@ class AddAmount extends Component {
         const textColor = { color: theme.body.color };
 
         const receiveAmount = this.getReceiveAmount();
-        const activeFiatCurrency = this.getActiveFiatCurrency(denomination);
+        const activeFiatCurrency = getActiveFiatCurrency(denomination);
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
@@ -331,7 +277,7 @@ class AddAmount extends Component {
 
                                 // TODO: Do validation on amount
                                 this.props.fetchQuote(
-                                    this.getAmountInFiat(newAmount, denomination),
+                                    getAmountInFiat(Number(newAmount), denomination, exchangeRates),
                                     toLower(activeFiatCurrency),
                                 );
                             }}
@@ -369,7 +315,7 @@ class AddAmount extends Component {
                                 {exchangeRates[activeFiatCurrency]}
                             </Text>
                             <Text style={[styles.infoTextLight, textColor]}>
-                                {this.getStringifiedFiatAmount(this.getAmountInFiat(amount, denomination))}
+                                {this.getStringifiedFiatAmount(getAmountInFiat(Number(amount), denomination, exchangeRates))}
                             </Text>
                         </View>
                         <View style={{ flex: 0.05 }} />
