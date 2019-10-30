@@ -110,6 +110,7 @@ class SelectAccount extends React.Component {
                         </AnimatedComponent>
                     </View>
                     <View style={styles.midContainer}>
+                        <View style={{ flex: 0.2 }} />
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}
@@ -129,7 +130,7 @@ class SelectAccount extends React.Component {
                                 </Text>
                             </InfoBox>
                         </AnimatedComponent>
-                        <View style={{ flex: 0.3 }} />
+                        <View style={{ flex: 0.2 }} />
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}

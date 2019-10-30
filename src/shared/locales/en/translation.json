@@ -251,7 +251,7 @@
     "moonpay": {
         "buyIOTA": "BUY IOTA",
         "buyIOTAInstantly": "Buy IOTA instantly",
-        "supportExplanation": "MoonPay supports purchase of IOTA with all major debit/credit cards and Apple Pay, securely sent to your Trinity wallet",
+        "supportExplanation": "MoonPay supports IOTA purchases with all major debit/credit cards and Apple Pay, securely sent to your Trinity wallet",
         "addAmount": "Choose the amount of MIOTA for purchase",
         "addAmountExplanation": "Select the amount of IOTA you wish to purchase in your currency, or specify the amount of MIOTA",
         "enterAmount": "ENTER AMOUNT",
@@ -314,7 +314,7 @@
         "purchaseComplete": "Purchase complete",
         "transactionMayTakeAFewMinutes": "Your transaction may take a few minutes",
         "limitExceeded": "Limit Exceeded :(",
-        "limitExceededExplanation": "Unfortunately you have exceeded your Moonpay daily/monthly purchase limit. You may only purchase {{amount}} of IOTA per {{limitBracket}}.",
+        "limitExceededExplanation": "Unfortunately you have exceeded your Moonpay monthly purchase limit. You may only purchase {{amount}} of IOTA per {{limitBracket}}.",
         "limitResetExplanation": "Your limit will reset at {{time}} on {{date}}",
         "invalidCardNumber": "Invalid card number",
         "invalidCardNumberExplanation": "Please enter a valid card number",

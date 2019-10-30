@@ -200,6 +200,7 @@ class VerifyEmail extends React.Component {
                         </AnimatedComponent>
                     </View>
                     <View style={styles.midContainer}>
+                        <View style={{ flex: 0.2 }} />
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}

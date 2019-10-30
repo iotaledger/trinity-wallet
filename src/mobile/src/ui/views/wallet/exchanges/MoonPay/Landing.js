@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
+        textAlign: 'center'
     },
 });
 
