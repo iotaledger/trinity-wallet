@@ -31,8 +31,8 @@ const renderHtml = (theme, t, address) => {
     <style>
       span[id*="cc-"] {
         display: block;
-        height: 50px;
-        margin-bottom: 15px;
+        height: 45px;
+        margin-bottom: 12px;
       }
 
       span[id*="cc-"] iframe {
@@ -75,7 +75,7 @@ const renderHtml = (theme, t, address) => {
       }
 
       .logo-container {
-        padding-top: 40px;
+        padding-top: 25px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -87,10 +87,10 @@ const renderHtml = (theme, t, address) => {
         padding-right: -100 !important;
         margin-right: -100 !important;
         margin-left: 0 !important;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
         width: 100%;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 18px;
+        padding-bottom: 18px;
         justify-content: center;
         align-items: center;
         display: flex;
@@ -130,7 +130,7 @@ const renderHtml = (theme, t, address) => {
         text-transform: uppercase;
         font-family: 'Source Sans Pro', sans-serif;
         font-weight: 400;
-        font-size: 14px;
+        font-size: 13px;
         color: ${theme.body.color};
       }
 
@@ -181,6 +181,7 @@ const renderHtml = (theme, t, address) => {
       .form-custom {
         padding-left: 15px;
         padding-right: 15px;
+        margin-bottom: 20px;
       }
     </style>
   </head>
