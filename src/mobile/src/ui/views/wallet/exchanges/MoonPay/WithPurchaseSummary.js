@@ -2,7 +2,7 @@ import includes from 'lodash/includes';
 import toLower from 'lodash/toLower';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Linking, StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -19,7 +19,8 @@ import {
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import { createTransaction } from 'shared-modules/actions/exchanges/MoonPay';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
-import { convertCurrency, prepareMoonPayExternalLink } from 'shared-modules/exchanges/MoonPay/utils';
+import navigator from 'libs/navigation';
+import { convertCurrency } from 'shared-modules/exchanges/MoonPay/utils';
 import InfoBox from 'ui/components/InfoBox';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -207,6 +208,15 @@ export default function withPurchaseSummary(WrappedComponent, config) {
         }
 
         /**
+         * Navigates to chosen screen
+         *
+         * @method redirectToScreen
+         */
+        redirectToScreen(screen) {
+            navigator.push(screen);
+        }
+
+        /**
          * Creates transaction
          *
          * @method createTransaction
@@ -239,13 +249,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 (purchaseAmount > dailyLimits.dailyLimitRemaining ||
                     purchaseAmount > monthlyLimits.monthlyLimitRemaining)
             ) {
-                Linking.openURL(
-                    prepareMoonPayExternalLink(
-                        address,
-                        this.getAmountInFiat(amount, denomination),
-                        toLower(this.getActiveFiatCurrency(denomination)),
-                    ),
-                );
+                this.redirectToScreen('identityConfirmationWarning');
             } else {
                 this.props.createTransaction(
                     this.getAmountInFiat(amount, denomination),
@@ -270,7 +274,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 theme,
                 exchangeRates,
                 expiryInfo,
-                componentId
+                componentId,
             } = this.props;
 
             const textColor = { color: theme.body.color };
@@ -383,7 +387,8 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                             </View>
                             <View style={styles.summaryRowContainer}>
                                 <Text style={[styles.infoTextLight, textColor]}>
-                                    {t('moonpay:marketPrice')}: {receiveAmount} @ {getCurrencySymbol(activeFiatCurrency)}
+                                    {t('moonpay:marketPrice')}: {receiveAmount} @{' '}
+                                    {getCurrencySymbol(activeFiatCurrency)}
                                     {exchangeRates[activeFiatCurrency]}
                                 </Text>
                                 <Text style={[styles.infoTextLight, textColor]}>

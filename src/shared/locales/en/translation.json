@@ -322,7 +322,9 @@
         "invalidCvcExplanation": "Please enter a valid CVC",
         "invalidExpiryDate": "Invalid expiry date",
         "invalidExpiryDateExplanation": "Please enter a valid expiry date",
-        "waitForCurrencyQuote": "Fetching latest MoonPay fee. Please wait."
+        "waitForCurrencyQuote": "Fetching latest MoonPay fee. Please wait.",
+        "confirmIdentity": "We need to confirm your identity",
+        "confirmIdentityExplanation": "Your purchase exceeds the {{limitBracket}} limit. In order to continue your purchase you will need to confirm your identity (KYC). You will now be navigated to moonpay to complete the KYC process and continue with your purchase."
     },
     "home": {
         "balance": "BALANCE",
