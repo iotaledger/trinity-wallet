@@ -31,7 +31,7 @@ const renderHtml = (theme, t, address) => {
     <style>
       span[id*="cc-"] {
         display: block;
-        height: 40px;
+        height: 50px;
         margin-bottom: 15px;
       }
 
@@ -52,7 +52,7 @@ const renderHtml = (theme, t, address) => {
         line-height: 0.75;
         background-color: ${theme.input.bg};
         background-clip: padding-box;
-        border-radius: .25rem;
+        border-radius: .45rem;
         transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
       }
 
