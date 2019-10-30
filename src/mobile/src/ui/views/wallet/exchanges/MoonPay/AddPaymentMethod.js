@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import React, { PureComponent } from 'react';
+import { View } from 'react-native';
 import { withTranslation } from 'react-i18next';
 import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
@@ -379,6 +380,10 @@ class AddPaymentMethod extends PureComponent {
         super(props);
 
         this.onMessage = this.onMessage.bind(this);
+
+        this.state = {
+            loaded: false,
+        };
     }
 
     /**
@@ -450,13 +455,19 @@ class AddPaymentMethod extends PureComponent {
         const { address, theme, t } = this.props;
 
         return (
-            <WebView
-                hideKeyboardAccessoryView
-                source={{ html: renderHtml(theme, t, address) }}
-                javaScriptEnabled
-                onMessage={this.onMessage}
-                scalesPageToFit
-            />
+            <View style={{ flex: 1, backgroundColor: theme.body.bg }}>
+                <WebView
+                    hideKeyboardAccessoryView
+                    javaScriptEnabled
+                    scalesPageToFit
+                    style={this.state.loaded || { flex: 0, height: 0, opacity: 0 }}
+                    source={{ html: renderHtml(theme, t, address) }}
+                    onMessage={this.onMessage}
+                    onLoad={() => {
+                        this.setState({ loaded: true });
+                    }}
+                />
+            </View>
         );
     }
 }
