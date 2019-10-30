@@ -106,5 +106,5 @@ export const convertCurrency = (fiatAmount, exchangeRates, activeDenomination, t
 };
 
 export const prepareMoonPayExternalLink = (address, baseCurrencyAmount, baseCurrencyCode) => {
-    return `${MOONPAY_EXTERNAL_LINK_BASE_URL}/?currencyCode=${IOTA_CURRENCY_CODE}&walletAddress=${address}&baseCurrencyAmount=${baseCurrencyAmount}&baseCurrencyCode=${baseCurrencyCode}&redirectUrl=iota://moonpay_success`;
+    return `${MOONPAY_EXTERNAL_LINK_BASE_URL}/?currencyCode=${IOTA_CURRENCY_CODE}&walletAddress=${address}&baseCurrencyAmount=${baseCurrencyAmount}&baseCurrencyCode=${baseCurrencyCode}&redirectUrl=iota://`;
 };

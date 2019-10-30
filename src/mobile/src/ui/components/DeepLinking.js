@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import React, { Component } from 'react';
 import { Linking } from 'react-native';
 import { withTranslation } from 'react-i18next';
@@ -37,6 +38,9 @@ export default () => (C) => {
          */
         setDeepUrl(data) {
             const { t, generateAlert, deepLinking } = this.props;
+            if (get(data, 'url') === "iota://"){
+                return;
+            }
             this.props.initiateDeepLinkRequest();
             if (!deepLinking) {
                 this.navigateToSettings();
