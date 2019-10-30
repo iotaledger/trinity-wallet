@@ -100,6 +100,8 @@ export default function withPurchaseSummary(WrappedComponent, config) {
             isPurchaseLimitIncreaseAllowed: PropTypes.bool.isRequired,
             /** @ignore */
             createTransaction: PropTypes.func.isRequired,
+            /** Component ID */
+            componentId: PropTypes.string.isRequired,
         };
 
         static iotaDenominations = ['Mi'];
@@ -268,6 +270,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 theme,
                 exchangeRates,
                 expiryInfo,
+                componentId
             } = this.props;
 
             const textColor = { color: theme.body.color };
@@ -282,13 +285,14 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                     isCreatingTransaction={isCreatingTransaction}
                     hasErrorCreatingTransaction={hasErrorCreatingTransaction}
                     theme={theme}
+                    componentId={componentId}
                 >
                     <View style={styles.container}>
                         <View style={{ flex: 0.2 }} />
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={266}
+                            delay={350}
                         >
                             <InfoBox>
                                 <Text style={[styles.infoText, textColor]}>{t(config.header)}</Text>
@@ -307,7 +311,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={200}
+                            delay={300}
                         >
                             <View style={styles.summaryRowContainer}>
                                 <Text style={[styles.infoTextRegular, textColor, { fontSize: Styling.fontSize5 }]}>
@@ -322,7 +326,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={200}
+                            delay={250}
                         >
                             <View style={styles.summaryRowContainer}>
                                 <Text style={[styles.infoTextRegular, textColor]}>
@@ -344,7 +348,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={200}
+                            delay={150}
                         >
                             <View style={styles.summaryRowContainer}>
                                 <Text style={[styles.infoTextLight, textColor]}>
@@ -357,7 +361,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={200}
+                            delay={100}
                         >
                             <View style={styles.summaryRowContainer}>
                                 <Text style={[styles.infoTextLight, textColor]}>
@@ -367,38 +371,44 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                             </View>
                         </AnimatedComponent>
                         <View style={{ flex: 0.4 }} />
-                        <View style={styles.summaryRowContainer}>
-                            <Text style={[styles.infoTextLight, textColor]}>You will receive</Text>
-                            <Text style={[styles.infoTextLight, textColor]}>{receiveAmount}</Text>
-                        </View>
-                        <View style={{ flex: 0.05 }} />
-                        <View style={styles.summaryRowContainer}>
-                            <Text style={[styles.infoTextLight, textColor]}>
-                                {t('moonpay:marketPrice')}: {receiveAmount} @ {getCurrencySymbol(activeFiatCurrency)}
-                                {exchangeRates[activeFiatCurrency]}
-                            </Text>
-                            <Text style={[styles.infoTextLight, textColor]}>
-                                {this.getStringifiedFiatAmount(this.getAmountInFiat(amount, denomination))}
-                            </Text>
-                        </View>
-                        <View style={{ flex: 0.05 }} />
-                        <View style={styles.summaryRowContainer}>
-                            <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:moonpayFee')}</Text>
-                            <Text style={[styles.infoTextLight, textColor]}>
-                                {getCurrencySymbol(activeFiatCurrency)}
-                                {fee}
-                            </Text>
-                        </View>
-                        <View style={{ flex: 0.4 }} />
-                        <View style={styles.summaryRowContainer}>
-                            <Text style={[styles.infoTextRegular, textColor, { fontSize: Styling.fontSize5 }]}>
-                                {t('global:total')}
-                            </Text>
-                            <Text style={[styles.infoTextBold, textColor, { fontSize: Styling.fontSize5 }]}>
-                                {getCurrencySymbol(activeFiatCurrency)}
-                                {totalAmount}
-                            </Text>
-                        </View>
+
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={50}
+                        >
+                            <View style={styles.summaryRowContainer}>
+                                <Text style={[styles.infoTextLight, textColor]}>You will receive</Text>
+                                <Text style={[styles.infoTextLight, textColor]}>{receiveAmount}</Text>
+                            </View>
+                            <View style={styles.summaryRowContainer}>
+                                <Text style={[styles.infoTextLight, textColor]}>
+                                    {t('moonpay:marketPrice')}: {receiveAmount} @ {getCurrencySymbol(activeFiatCurrency)}
+                                    {exchangeRates[activeFiatCurrency]}
+                                </Text>
+                                <Text style={[styles.infoTextLight, textColor]}>
+                                    {this.getStringifiedFiatAmount(this.getAmountInFiat(amount, denomination))}
+                                </Text>
+                            </View>
+                            <View style={{ flex: 0.05 }} />
+                            <View style={styles.summaryRowContainer}>
+                                <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:moonpayFee')}</Text>
+                                <Text style={[styles.infoTextLight, textColor]}>
+                                    {getCurrencySymbol(activeFiatCurrency)}
+                                    {fee}
+                                </Text>
+                            </View>
+                            <View style={{ flex: 0.4 }} />
+                            <View style={styles.summaryRowContainer}>
+                                <Text style={[styles.infoTextRegular, textColor, { fontSize: Styling.fontSize5 }]}>
+                                    {t('global:total')}
+                                </Text>
+                                <Text style={[styles.infoTextBold, textColor, { fontSize: Styling.fontSize5 }]}>
+                                    {getCurrencySymbol(activeFiatCurrency)}
+                                    {totalAmount}
+                                </Text>
+                            </View>
+                        </AnimatedComponent>
                         <View style={{ flex: 0.3 }} />
                     </View>
                 </WrappedComponent>

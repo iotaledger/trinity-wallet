@@ -85,16 +85,9 @@ class UserAdvancedInfo extends React.Component {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         updateCustomer: PropTypes.func.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
     };
-
-    /**
-     * Navigates to chosen screen
-     *
-     * @method redirectToScreen
-     */
-    static redirectToScreen(screen) {
-        navigator.push(screen);
-    }
 
     constructor(props) {
         super(props);
@@ -119,8 +112,25 @@ class UserAdvancedInfo extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isUpdatingCustomer && !nextProps.isUpdatingCustomer && !nextProps.hasErrorUpdatingCustomer) {
-            UserAdvancedInfo.redirectToScreen('addAmount');
+            this.redirectToScreen('addAmount');
         }
+    }
+
+    /**
+     * Navigates to chosen screen
+     *
+     * @method redirectToScreen
+     */
+    redirectToScreen(screen) {
+        navigator.push(screen);
+    }
+
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
+    goBack() {
+        navigator.pop(this.props.componentId);
     }
 
     /**
@@ -285,7 +295,7 @@ class UserAdvancedInfo extends React.Component {
                     <View style={styles.bottomContainer}>
                         <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                             <DualFooterButtons
-                                onLeftButtonPress={() => UserAdvancedInfo.redirectToScreen('userBasicInfo')}
+                                onLeftButtonPress={() => this.goBack()}
                                 onRightButtonPress={() => this.updateCustomer()}
                                 isRightButtonLoading={isUpdatingCustomer}
                                 leftButtonText={t('global:goBack')}

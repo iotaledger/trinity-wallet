@@ -66,20 +66,30 @@ class Landing extends Component {
         fetchCountries: PropTypes.func.isRequired,
         /** @ignore */
         fetchCurrencies: PropTypes.func.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
     };
+
+    componentDidMount() {
+        this.props.fetchCountries();
+        this.props.fetchCurrencies();
+    }
 
     /**
      * Navigates to chosen screen
      *
      * @method redirectToScreen
      */
-    static redirectToScreen(screen) {
+    redirectToScreen(screen) {
         navigator.push(screen);
     }
 
-    componentDidMount() {
-        this.props.fetchCountries();
-        this.props.fetchCurrencies();
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
+    goBack() {
+        navigator.pop(this.props.componentId);
     }
 
     render() {
@@ -146,8 +156,8 @@ class Landing extends Component {
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
-                            onLeftButtonPress={() => navigator.push('home')}
-                            onRightButtonPress={() => Landing.redirectToScreen('setupEmail')}
+                            onLeftButtonPress={() => this.goBack()}
+                            onRightButtonPress={() => this.redirectToScreen('setupEmail')}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:continue')}
                             leftButtonTestID="moonpay-back-to-home"

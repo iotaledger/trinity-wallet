@@ -79,7 +79,7 @@ const renderHtml = (theme, t, address) => {
         justify-content: center;
         background-color: ${theme.body.bg};
       }
-      
+
       .header-container {
         padding-left: -100 !important;
         padding-right: -100 !important;
@@ -130,7 +130,7 @@ const renderHtml = (theme, t, address) => {
         font-weight: 400;
         font-size: 16px;
         color: ${theme.body.color};
-      } 
+      }
 
       .buttons-container {
         display: flex;
@@ -347,16 +347,9 @@ class AddPaymentMethod extends PureComponent {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         setPaymentCardInfo: PropTypes.func.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
     };
-
-    /**
-     * Navigates to chosen screen
-     *
-     * @method redirectToScreen
-     */
-    static redirectToScreen(screen) {
-        navigator.push(screen);
-    }
 
     constructor(props) {
         super(props);
@@ -382,7 +375,7 @@ class AddPaymentMethod extends PureComponent {
 
         if (type === 'success') {
             this.props.setPaymentCardInfo(get(message, 'data'));
-            AddPaymentMethod.redirectToScreen('reviewPurchase');
+            this.redirectToScreen('reviewPurchase');
         } else if (type === 'error') {
             this.props.generateAlert(
                 'error',
@@ -390,8 +383,25 @@ class AddPaymentMethod extends PureComponent {
                 t('moonpay:somethingWentWrongProcessingCardInfo'),
             );
         } else if (type === 'back') {
-            AddPaymentMethod.redirectToScreen('addAmount');
+            this.goBack();
         }
+    }
+
+    /**
+     * Navigates to chosen screen
+     *
+     * @method redirectToScreen
+     */
+    redirectToScreen(screen) {
+        navigator.push(screen);
+    }
+
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
+    goBack() {
+        navigator.pop(this.props.componentId);
     }
 
     render() {

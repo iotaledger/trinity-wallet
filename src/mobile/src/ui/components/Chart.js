@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         borderWidth: 1,
         borderRadius: width / 25,
-        paddingHorizontal: width / 35,
+        paddingHorizontal: width / 30,
         paddingVertical: height / 100,
     },
     container: {
@@ -42,8 +42,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 1,
         borderRadius: width / 25,
-        marginLeft: width / 6,
-        marginRight: width / 6,
+        marginHorizontal: width / 6.5,
         paddingVertical: height / 100,
         backgroundColor: 'white',
     },

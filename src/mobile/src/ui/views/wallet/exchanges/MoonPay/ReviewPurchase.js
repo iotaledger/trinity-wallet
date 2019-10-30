@@ -41,16 +41,9 @@ class ReviewPurchase extends Component {
         hasErrorCreatingTransaction: PropTypes.bool.isRequired,
         /** @ignore */
         createTransaction: PropTypes.func.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
     };
-
-    /**
-     * Navigates to chosen screen
-     *
-     * @method redirectToScreen
-     */
-    static redirectToScreen(screen) {
-        navigator.push(screen);
-    }
 
     componentWillReceiveProps(nextProps) {
         if (
@@ -58,8 +51,25 @@ class ReviewPurchase extends Component {
             !nextProps.isCreatingTransaction &&
             !nextProps.hasErrorCreatingTransaction
         ) {
-            ReviewPurchase.redirectToScreen('purchaseComplete');
+            this.redirectToScreen('purchaseComplete');
         }
+    }
+
+    /**
+     * Navigates to chosen screen
+     *
+     * @method redirectToScreen
+     */
+    redirectToScreen(screen) {
+        navigator.push(screen);
+    }
+
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
+    goBack() {
+        navigator.pop(this.props.componentId);
     }
 
     render() {
@@ -80,7 +90,7 @@ class ReviewPurchase extends Component {
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
-                            onLeftButtonPress={() => ReviewPurchase.redirectToScreen('addAmount')}
+                            onLeftButtonPress={() => this.goBack()}
                             onRightButtonPress={() => this.props.createTransaction()}
                             isRightButtonLoading={isCreatingTransaction}
                             leftButtonText={t('global:goBack')}

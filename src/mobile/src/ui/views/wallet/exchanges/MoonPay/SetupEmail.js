@@ -68,16 +68,9 @@ class SetupEmail extends React.Component {
         authenticateViaEmail: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
     };
-
-    /**
-     * Navigates to chosen screen
-     *
-     * @method redirectToScreen
-     */
-    static redirectToScreen(screen) {
-        navigator.push(screen);
-    }
 
     constructor(props) {
         super(props);
@@ -93,8 +86,25 @@ class SetupEmail extends React.Component {
             !nextProps.isAuthenticatingEmail &&
             !nextProps.hasErrorAuthenticatingEmail
         ) {
-            SetupEmail.redirectToScreen('verifyEmail');
+            this.redirectToScreen('verifyEmail');
         }
+    }
+
+    /**
+     * Navigates to chosen screen
+     *
+     * @method redirectToScreen
+     */
+    redirectToScreen(screen) {
+        navigator.push(screen);
+    }
+
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
+    goBack() {
+        navigator.pop(this.props.componentId);
     }
 
     /**
@@ -174,7 +184,7 @@ class SetupEmail extends React.Component {
                     <View style={styles.bottomContainer}>
                         <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                             <DualFooterButtons
-                                onLeftButtonPress={() => SetupEmail.redirectToScreen('selectAccount')}
+                                onLeftButtonPress={() => this.goBack()}
                                 onRightButtonPress={() => this.authenticateViaEmail()}
                                 isRightButtonLoading={isAuthenticatingEmail}
                                 leftButtonText={t('global:goBack')}

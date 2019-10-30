@@ -69,21 +69,29 @@ class SelectAccount extends React.Component {
         setAccountName: PropTypes.func.isRequired,
     };
 
-    /**
-     * Navigates to chosen screen
-     *
-     * @method redirectToScreen
-     */
-    static redirectToScreen(screen) {
-        navigator.push(screen);
-    }
-
     constructor(props) {
         super(props);
 
         this.state = {
             accountName: props.accountName || head(this.props.accountNames),
         };
+    }
+
+    /**
+     * Navigates to chosen screen
+     *
+     * @method redirectToScreen
+     */
+    redirectToScreen(screen) {
+        navigator.push(screen);
+    }
+
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
+    goBack() {
+        navigator.popTo('setupEmail');
     }
 
     render() {
@@ -145,9 +153,9 @@ class SelectAccount extends React.Component {
                     <View style={styles.bottomContainer}>
                         <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                             <DualFooterButtons
-                                onLeftButtonPress={() => SelectAccount.redirectToScreen('setupEmail')}
+                                onLeftButtonPress={() => this.goBack()}
                                 onRightButtonPress={() => {
-                                    SelectAccount.redirectToScreen('userBasicInfo');
+                                    this.redirectToScreen('userBasicInfo');
                                     this.props.setAccountName(this.state.accountName);
                                 }}
                                 leftButtonText={t('global:goBack')}

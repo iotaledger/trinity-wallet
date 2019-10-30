@@ -129,16 +129,9 @@ class AddAmount extends Component {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         setDenomination: PropTypes.func.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
     };
-
-    /**
-     * Navigates to chosen screen
-     *
-     * @method redirectToScreen
-     */
-    static redirectToScreen(screen) {
-        navigator.push(screen);
-    }
 
     /**
      * Sets next denomination in redux store
@@ -232,6 +225,23 @@ class AddAmount extends Component {
     }
 
     /**
+     * Navigates to chosen screen
+     *
+     * @method redirectToScreen
+     */
+    redirectToScreen(screen) {
+        navigator.push(screen);
+    }
+
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
+    goBack() {
+        navigator.pop(this.props.componentId);
+    }
+
+    /**
      * Verifies that amount is above minimum allowed amount ($20)
      *
      * @method verifyAmount
@@ -262,7 +272,7 @@ class AddAmount extends Component {
         } else {
             const purchaseAmount = convertCurrency(fiatAmount, exchangeRates, denomination, defaultCurrencyCode);
 
-            AddAmount.redirectToScreen(
+            this.redirectToScreen(
                 !isPurchaseLimitIncreaseAllowed &&
                     hasCompletedAdvancedIdentityVerification &&
                     (purchaseAmount > dailyLimits.dailyLimitRemaining ||
@@ -336,7 +346,7 @@ class AddAmount extends Component {
                             }}
                             value={amount}
                         />
-                        <View style={[styles.summaryRowContainer, { paddingTop: height / 90 }]}>
+                        <View style={[styles.summaryRowContainer, { paddingTop: height / 90, height: height / 30 }]}>
                             <Text style={[styles.infoTextRegular, { color: theme.negative.color }]}>
                                 {this.getWarningText()}
                             </Text>
@@ -386,7 +396,7 @@ class AddAmount extends Component {
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
-                            onLeftButtonPress={() => AddAmount.redirectToScreen('landing')}
+                            onLeftButtonPress={() => this.goBack()}
                             onRightButtonPress={() => this.verifyAmount()}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:purchase')}

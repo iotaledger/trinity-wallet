@@ -75,16 +75,9 @@ class UserBasicInfo extends React.Component {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         updateCustomer: PropTypes.func.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
     };
-
-    /**
-     * Navigates to chosen screen
-     *
-     * @method redirectToScreen
-     */
-    static redirectToScreen(screen) {
-        navigator.push(screen);
-    }
 
     constructor(props) {
         super(props);
@@ -102,9 +95,27 @@ class UserBasicInfo extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isUpdatingCustomer && !nextProps.isUpdatingCustomer && !nextProps.hasErrorUpdatingCustomer) {
-            UserBasicInfo.redirectToScreen('userAdvancedInfo');
+            this.redirectToScreen('userAdvancedInfo');
         }
     }
+
+    /**
+     * Navigates to chosen screen
+     *
+     * @method redirectToScreen
+     */
+    redirectToScreen(screen) {
+        navigator.push(screen);
+    }
+
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
+    goBack() {
+        navigator.pop(this.props.componentId);
+    }
+
 
     /**
      * Updates customer information
@@ -179,7 +190,7 @@ class UserBasicInfo extends React.Component {
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={300}
+                            delay={320}
                         >
                             <InfoBox>
                                 <Text style={[styles.infoText, { color: theme.body.color }]}>
@@ -199,7 +210,7 @@ class UserBasicInfo extends React.Component {
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={200}
+                            delay={240}
                         >
                             <CustomTextInput
                                 label={t('moonpay:firstName')}
@@ -215,7 +226,7 @@ class UserBasicInfo extends React.Component {
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={200}
+                            delay={160}
                         >
                             <CustomTextInput
                                 label={t('moonpay:lastName')}
@@ -231,7 +242,7 @@ class UserBasicInfo extends React.Component {
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={100}
+                            delay={80}
                         >
                             <CustomTextInput
                                 label={t('moonpay:dateOfBirth')}
@@ -248,7 +259,7 @@ class UserBasicInfo extends React.Component {
                     <View style={styles.bottomContainer}>
                         <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                             <DualFooterButtons
-                                onLeftButtonPress={() => UserBasicInfo.redirectToScreen('selectAccount')}
+                                onLeftButtonPress={() => this.goBack()}
                                 onRightButtonPress={() => this.updateCustomer()}
                                 isRightButtonLoading={isUpdatingCustomer}
                                 leftButtonText={t('global:goBack')}

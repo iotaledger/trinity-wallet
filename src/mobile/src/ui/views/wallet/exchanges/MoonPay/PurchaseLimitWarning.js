@@ -73,6 +73,8 @@ class PurchaseLimitWarning extends Component {
         defaultCurrencyCode: PropTypes.string.isRequired,
         /** @ignore */
         mostRecentTransaction: PropTypes.object.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
     };
 
     /**
@@ -80,8 +82,16 @@ class PurchaseLimitWarning extends Component {
      *
      * @method redirectToScreen
      */
-    static redirectToScreen(screen) {
-        navigator.push(screen);
+    redirectToHome() {
+        navigator.setStackRoot('home');
+    }
+
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
+    goBack() {
+        navigator.pop(this.props.componentId);
     }
 
     render() {
@@ -152,8 +162,8 @@ class PurchaseLimitWarning extends Component {
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
-                            onLeftButtonPress={() => PurchaseLimitWarning.redirectToScreen('addAmount')}
-                            onRightButtonPress={() => PurchaseLimitWarning.redirectToScreen('home')}
+                            onLeftButtonPress={() => this.goBack()}
+                            onRightButtonPress={() => this.redirectToHome('home')}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:cancel')}
                             leftButtonTestID="moonpay-back-to-home"

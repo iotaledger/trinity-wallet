@@ -89,16 +89,9 @@ class VerifyEmail extends React.Component {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         verifyEmailAndFetchTransactions: PropTypes.func.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
     };
-
-    /**
-     * Navigates to chosen screen
-     *
-     * @method redirectToScreen
-     */
-    static redirectToScreen(screen) {
-        navigator.push(screen);
-    }
 
     constructor(props) {
         super(props);
@@ -113,7 +106,7 @@ class VerifyEmail extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isVerifyingEmail && !nextProps.isVerifyingEmail && !nextProps.hasErrorVerifyingEmail) {
-            VerifyEmail.redirectToScreen('selectAccount');
+            this.redirectToScreen('selectAccount');
         }
     }
 
@@ -142,6 +135,23 @@ class VerifyEmail extends React.Component {
         this.setState((prevState) => ({
             checkboxImage: _set(prevState),
         }));
+    }
+
+    /**
+     * Navigates to chosen screen
+     *
+     * @method redirectToScreen
+     */
+    redirectToScreen(screen) {
+        navigator.push(screen);
+    }
+
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
+    goBack() {
+        navigator.pop(this.props.componentId);
     }
 
     /**
@@ -241,7 +251,7 @@ class VerifyEmail extends React.Component {
                     <View style={styles.bottomContainer}>
                         <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                             <DualFooterButtons
-                                onLeftButtonPress={() => VerifyEmail.redirectToScreen('setupEmail')}
+                                onLeftButtonPress={() => this.goBack()}
                                 onRightButtonPress={() => this.verify()}
                                 isRightButtonLoading={isVerifyingEmail}
                                 leftButtonText={t('global:goBack')}
