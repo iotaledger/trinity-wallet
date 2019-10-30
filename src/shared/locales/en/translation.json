@@ -321,7 +321,8 @@
         "invalidCvc": "Invalid CVC",
         "invalidCvcExplanation": "Please enter a valid CVC",
         "invalidExpiryDate": "Invalid expiry date",
-        "invalidExpiryDateExplanation": "Please enter a valid expiry date"
+        "invalidExpiryDateExplanation": "Please enter a valid expiry date",
+        "waitForCurrencyQuote": "Fetching latest MoonPay fee. Please wait."
     },
     "home": {
         "balance": "BALANCE",

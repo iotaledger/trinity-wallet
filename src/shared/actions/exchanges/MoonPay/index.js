@@ -278,6 +278,39 @@ export const setTransactions = (payload) => ({
 });
 
 /**
+ * Dispatch when request for currency quote is about to be made
+ *
+ * @method fetchCurrencyQuoteRequest
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchCurrencyQuoteRequest = () => ({
+    type: MoonPayExchangeActionTypes.CURRENCY_QUOTE_FETCH_REQUEST,
+});
+
+/**
+ * Dispatch when request for currency quote is successfully made
+ *
+ * @method fetchCurrencyQuoteSuccess
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchCurrencyQuoteSuccess = () => ({
+    type: MoonPayExchangeActionTypes.CURRENCY_QUOTE_FETCH_SUCCESS,
+});
+
+/**
+ * Dispatch when request for currency quote is not successful
+ *
+ * @method fetchCurrencyQuoteError
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchCurrencyQuoteError = () => ({
+    type: MoonPayExchangeActionTypes.CURRENCY_QUOTE_FETCH_ERROR,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -326,10 +359,16 @@ export const fetchCountries = () => (dispatch) => {
  * @returns {function}
  */
 export const fetchQuote = (baseCurrencyAmount, baseCurrencyCode) => (dispatch) => {
+    dispatch(fetchCurrencyQuoteRequest());
+
     api.fetchQuote(IOTA_CURRENCY_CODE, baseCurrencyAmount, baseCurrencyCode)
-        .then((quote) => dispatch(setCurrencyQuote(quote)))
+        .then((quote) => {
+            dispatch(setCurrencyQuote(quote));
+            dispatch(fetchCurrencyQuoteSuccess());
+        })
         .catch((error) => {
             dispatch(setCurrencyQuote({}));
+            dispatch(fetchCurrencyQuoteError());
 
             if (__DEV__) {
                 /* eslint-disable no-console */

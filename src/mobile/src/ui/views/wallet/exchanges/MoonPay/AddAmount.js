@@ -131,7 +131,66 @@ class AddAmount extends Component {
         setDenomination: PropTypes.func.isRequired,
         /** Component ID */
         componentId: PropTypes.string.isRequired,
+        /** @ignore */
+        isFetchingCurrencyQuote: PropTypes.bool.isRequired,
     };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            /**
+             * Determines if latest currency quote should be fetched.
+             * We skip fetching currency quote if there is already a network in progress
+             * If this flag is turned on, we would automatically fetch the latest currency quote once the previous call is finished
+             * */
+            shouldGetLatestCurrencyQuote: false,
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.isFetchingCurrencyQuote && !nextProps.isFetchingCurrencyQuote) {
+            if (this.state.shouldGetLatestCurrencyQuote) {
+                this.setState({ shouldGetLatestCurrencyQuote: false });
+
+                const { amount, denomination, exchangeRates } = nextProps;
+
+                this.props.fetchQuote(
+                    Number(getAmountInFiat(Number(amount), denomination, exchangeRates).toFixed(2)),
+                    toLower(getActiveFiatCurrency(denomination)),
+                );
+            }
+        }
+    }
+
+    /**
+     * Fetches latest currency quote
+     *
+     * @method fetchCurrencyQuote
+     *
+     * @param {string} amount
+     * @param {string} denomination
+     * @param {object} exchangeRates
+     *
+     * @returns {void}
+     */
+    fetchCurrencyQuote(amount, denomination, exchangeRates) {
+        const { isFetchingCurrencyQuote } = this.props;
+
+        if (
+            // Check if its not already making a network call to fetch quote
+            !isFetchingCurrencyQuote
+        ) {
+            this.props.fetchQuote(
+                Number(getAmountInFiat(Number(amount), denomination, exchangeRates).toFixed(2)),
+                toLower(getActiveFiatCurrency(denomination)),
+            );
+        } else {
+            // If there is already a network call in progress, turn on shouldGetLatestCurrencyQuote flag
+            // Turning this flag on will automatically make a network call as soon as the previous one is finished
+            this.setState({ shouldGetLatestCurrencyQuote: true });
+        }
+    }
 
     /**
      * Sets next denomination in redux store
@@ -156,10 +215,8 @@ class AddAmount extends Component {
                 : availableDenominations[currentDenominationIndex + 1];
 
         this.props.setDenomination(nextDenomination);
-        this.props.fetchQuote(
-            getAmountInFiat(Number(amount), nextDenomination, exchangeRates),
-            toLower(getActiveFiatCurrency(nextDenomination)),
-        );
+
+        this.fetchCurrencyQuote(amount, nextDenomination, exchangeRates);
     }
 
     /**
@@ -259,7 +316,9 @@ class AddAmount extends Component {
             t,
             hasCompletedAdvancedIdentityVerification,
             isPurchaseLimitIncreaseAllowed,
+            isFetchingCurrencyQuote,
         } = this.props;
+        const { shouldGetLatestCurrencyQuote } = this.state;
 
         const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
 
@@ -270,21 +329,25 @@ class AddAmount extends Component {
                 t('moonpay:notEnoughAmountExplanation', { amount: `$${MINIMUM_TRANSACTION_SIZE}` }),
             );
         } else {
-            const purchaseAmount = convertCurrency(fiatAmount, exchangeRates, denomination, defaultCurrencyCode);
+            if (isFetchingCurrencyQuote || shouldGetLatestCurrencyQuote) {
+                this.props.generateAlert('error', t('global:pleaseWait'), t('moonpay:waitForCurrencyQuote'));
+            } else {
+                const purchaseAmount = convertCurrency(fiatAmount, exchangeRates, denomination, defaultCurrencyCode);
 
-            this.redirectToScreen(
-                !isPurchaseLimitIncreaseAllowed &&
-                    hasCompletedAdvancedIdentityVerification &&
-                    (purchaseAmount > dailyLimits.dailyLimitRemaining ||
-                        purchaseAmount > monthlyLimits.monthlyLimitRemaining)
-                    ? 'purchaseLimitWarning'
-                    : 'addPaymentMethod',
-            );
+                this.redirectToScreen(
+                    !isPurchaseLimitIncreaseAllowed &&
+                        hasCompletedAdvancedIdentityVerification &&
+                        (purchaseAmount > dailyLimits.dailyLimitRemaining ||
+                            purchaseAmount > monthlyLimits.monthlyLimitRemaining)
+                        ? 'purchaseLimitWarning'
+                        : 'addPaymentMethod',
+                );
+            }
         }
     }
 
     render() {
-        const { amount, fee, totalAmount, t, theme, denomination, exchangeRates } = this.props;
+        const { amount, fee, isFetchingCurrencyQuote, totalAmount, t, theme, denomination, exchangeRates } = this.props;
         const textColor = { color: theme.body.color };
 
         const receiveAmount = this.getReceiveAmount();
@@ -330,11 +393,7 @@ class AddAmount extends Component {
                             onValidTextChange={(newAmount) => {
                                 this.props.setAmount(newAmount);
 
-                                // TODO: Do validation on amount
-                                this.props.fetchQuote(
-                                    getAmountInFiat(Number(newAmount), denomination, exchangeRates),
-                                    toLower(activeFiatCurrency),
-                                );
+                                this.fetchCurrencyQuote(newAmount, denomination, exchangeRates);
                             }}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -396,6 +455,7 @@ class AddAmount extends Component {
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
+                            disableRightButton={isFetchingCurrencyQuote}
                             onLeftButtonPress={() => this.goBack()}
                             onRightButtonPress={() => this.verifyAmount()}
                             leftButtonText={t('global:goBack')}
@@ -424,6 +484,7 @@ const mapStateToProps = (state) => ({
     dailyLimits: getCustomerDailyLimits(state),
     monthlyLimits: getCustomerMonthlyLimits(state),
     defaultCurrencyCode: getDefaultCurrencyCode(state),
+    isFetchingCurrencyQuote: state.exchanges.moonpay.isFetchingCurrencyQuote,
 });
 
 const mapDispatchToProps = {
