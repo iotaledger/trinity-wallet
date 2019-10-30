@@ -40,11 +40,9 @@ const styles = StyleSheet.create({
     midButtonContainer: {
         flex: 4,
         alignItems: 'center',
-        borderWidth: 1,
         borderRadius: width / 25,
         marginHorizontal: width / 6.5,
-        paddingVertical: height / 100,
-        backgroundColor: 'white',
+        paddingVertical: (height / 100) + 1,
     },
     chartContainer: {
         flex: 4.7,
@@ -206,9 +204,8 @@ class Chart extends PureComponent {
                         onPress={() => navigator.push('landing')}
                         style={[
                             styles.midButtonContainer,
-                            borderColor,
                             {
-                                backgroundColor: theme.body.color,
+                                backgroundColor: theme.secondary.color,
                             },
                         ]}
                     >
