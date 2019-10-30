@@ -39,6 +39,7 @@ const getProps = (overrides) =>
                 titleColor: 'white',
                 containerBackgroundColor: { backgroundColor: 'white' },
                 rowTextColor: { color: 'red' },
+                rowBorderColor: { color: '#000' },
                 backgroundColor: 'yellow',
                 borderColor: { borderColor: 'white' },
                 barColor: 'white',

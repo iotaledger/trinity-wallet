@@ -38,6 +38,7 @@ const getProps = (overrides) =>
             isSendingTransfer: false,
             isTransitioning: false,
             address: '9'.repeat(81),
+            themeName: 'Default',
             theme,
             amount: '10',
             message: 'baz',
@@ -64,6 +65,9 @@ const getProps = (overrides) =>
             isModalActive: false,
             selectedAccountType: 'keychain',
             isKeyboardActive: false,
+            deepLinkRequestActive: false,
+            deepLinking: false,
+            completeDeepLinkRequest: noop,
         },
         overrides,
     );

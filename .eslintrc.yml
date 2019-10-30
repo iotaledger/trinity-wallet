@@ -56,3 +56,4 @@ rules:
     react/jsx-filename-extension: [1, { 'extensions': ['.js', '.jsx'] }]
     react/no-array-index-key: 0
     react/require-default-props: 0
+    react/sort-comp: [2, { 'order': ['static-variables', 'static-methods', 'lifecycle', 'everything-else', 'render'] }]
