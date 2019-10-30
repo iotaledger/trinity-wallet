@@ -315,7 +315,13 @@
         "transactionMayTakeAFewMinutes": "Your transaction may take a few minutes",
         "limitExceeded": "Limit Exceeded :(",
         "limitExceededExplanation": "Unfortunately you have exceeded your Moonpay daily/monthly purchase limit. You may only purchase {{amount}} of IOTA per {{limitBracket}}.",
-        "limitResetExplanation": "Your limit will reset at {{time}} on {{date}}"
+        "limitResetExplanation": "Your limit will reset at {{time}} on {{date}}",
+        "invalidCardNumber": "Invalid card number",
+        "invalidCardNumberExplanation": "Please enter a valid card number",
+        "invalidCvc": "Invalid CVC",
+        "invalidCvcExplanation": "Please enter a valid CVC",
+        "invalidExpiryDate": "Invalid expiry date",
+        "invalidExpiryDateExplanation": "Please enter a valid expiry date"
     },
     "home": {
         "balance": "BALANCE",

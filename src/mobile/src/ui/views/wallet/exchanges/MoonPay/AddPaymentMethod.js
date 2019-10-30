@@ -244,7 +244,16 @@ const renderHtml = (theme, t, address) => {
     moonpay.initialize('pk_test_W1g4KpNvqWkHEo58O0CTluQz698eOc');
     moonpay.trackPageView();
 
-    const form = moonpay.createCardDetailsForm(function(state) { });
+    var isFormValid = false;
+    var formState = {};
+
+    const form = moonpay.createCardDetailsForm(function(state) {
+      formState = state;
+
+      if (state && state.number && state.expiryDate && state.cvc) {
+        isFormValid = state.number.isValid && state.expiryDate.isValid && state.cvc.isValid;
+      }
+     });
 
     // Create VGS Collect field for credit card number
     form.createField('#cc-number', {
@@ -290,43 +299,58 @@ const renderHtml = (theme, t, address) => {
       validations: ['required', 'validCardExpirationDate']
     });
 
-    // Submits all of the form fields by executing a POST request.
-    document.getElementById('cc-form')
-      .addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        document.getElementsByClassName("button-right")[0].innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
-
-        form.submit({
-          street: "${address.street}",
-          subStreet: "${address.subStreet}",
-          town: "${address.town}",
-          postCode: "${address.postCode}",
-          state: "${address.state}",
-          country: "${address.country}",
-        }, function(status, data) {
-          if (status.toString().startsWith('2')) {
-            window.ReactNativeWebView.postMessage(JSON.stringify({
-              type: 'success',
-              data: data,
-            }));
+    document.getElementById('cc-form').addEventListener(
+      'submit',
+      function(e) {
+          e.preventDefault();
+  
+          if (isFormValid) {
+              document.getElementsByClassName('button-right')[0].innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
+              form.submit(
+                  {
+                      street: '${address.street}',
+                      subStreet: '${address.subStreet}',
+                      town: '${address.town}',
+                      postCode: '${address.postCode}',
+                      state: '${address.state}',
+                      country: '${address.country}',
+                  },
+                  function(status, data) {
+                      if (status.toString().startsWith('2')) {
+                          window.ReactNativeWebView.postMessage(
+                              JSON.stringify({
+                                  type: 'success',
+                                  data: data,
+                              }),
+                          );
+                      } else {
+                          document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
+                          window.ReactNativeWebView.postMessage(
+                              JSON.stringify({
+                                  type: 'error',
+                                  data: data,
+                              }),
+                          );
+                      }
+                  },
+              );
           } else {
-            document.getElementsByClassName("button-right")[0].innerHTML = "${t('global:submit')}";
-
-            window.ReactNativeWebView.postMessage(JSON.stringify({
-              type: 'error',
-              data: data,
-            }));
+              window.ReactNativeWebView.postMessage(JSON.stringify({
+                  type: 'submissionError',
+                  data: formState
+                }));
           }
-        });
-      }, function (errors) {
-        document.getElementsByClassName("button-right")[0].innerHTML = "${t('global:submit')}";
-
-        window.ReactNativeWebView.postMessage(JSON.stringify({
-          type: 'error',
-          data: errors
-        }));
-      });
+      },
+      function(errors) {
+          document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
+          window.ReactNativeWebView.postMessage(
+              JSON.stringify({
+                  type: 'error',
+                  data: errors,
+              }),
+          );
+      },
+  );
   </script>
   </body>
   </html>`;
@@ -382,6 +406,24 @@ class AddPaymentMethod extends PureComponent {
                 t('global:somethingWentWrong'),
                 t('moonpay:somethingWentWrongProcessingCardInfo'),
             );
+        } else if (type === 'submissionError') {
+            const formState = get(message, 'data');
+
+            if (!formState.number.isValid) {
+                this.props.generateAlert(
+                    'error',
+                    t('moonpay:invalidCardNumber'),
+                    t('moonpay:invalidCardNumberExplanation'),
+                );
+            } else if (!formState.cvc.isValid) {
+                this.props.generateAlert('error', t('moonpay:invalidCvc'), t('moonpay:invalidCvcExplanation'));
+            } else if (!formState.expiryDate.isValid) {
+                this.props.generateAlert(
+                    'error',
+                    t('moonpay:invalidExpiryDate'),
+                    t('moonpay:invalidExpiryDateExplanation'),
+                );
+            }
         } else if (type === 'back') {
             this.goBack();
         }
