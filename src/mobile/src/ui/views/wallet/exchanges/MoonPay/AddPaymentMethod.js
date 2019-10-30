@@ -317,6 +317,8 @@ const renderHtml = (theme, t, address) => {
                       country: '${address.country}',
                   },
                   function(status, data) {
+                    document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
+
                       if (status.toString().startsWith('2')) {
                           window.ReactNativeWebView.postMessage(
                               JSON.stringify({
@@ -325,7 +327,6 @@ const renderHtml = (theme, t, address) => {
                               }),
                           );
                       } else {
-                          document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
                           window.ReactNativeWebView.postMessage(
                               JSON.stringify({
                                   type: 'error',
