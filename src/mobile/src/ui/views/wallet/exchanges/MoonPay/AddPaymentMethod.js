@@ -305,7 +305,7 @@ const renderHtml = (theme, t, address) => {
       'submit',
       function(e) {
           e.preventDefault();
-  
+
           if (isFormValid) {
               document.getElementsByClassName('button-right')[0].innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
               form.submit(
@@ -468,6 +468,7 @@ class AddPaymentMethod extends PureComponent {
                     onLoad={() => {
                         this.setState({ loaded: true });
                     }}
+                    bounces={false}
                 />
             </View>
         );
