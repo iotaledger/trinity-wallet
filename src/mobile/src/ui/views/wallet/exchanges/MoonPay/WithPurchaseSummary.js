@@ -24,6 +24,7 @@ import { convertCurrency } from 'shared-modules/exchanges/MoonPay/utils';
 import InfoBox from 'ui/components/InfoBox';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
+import WithUserActivity from 'ui/components/UserActivity';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 
 const styles = StyleSheet.create({
@@ -445,10 +446,11 @@ export default function withPurchaseSummary(WrappedComponent, config) {
         createTransaction,
     };
 
-    return withTranslation()(
+    return WithUserActivity()(
+        withTranslation()(
         connect(
             mapStateToProps,
             mapDispatchToProps,
         )(PurchaseSummary),
-    );
+    ));
 }

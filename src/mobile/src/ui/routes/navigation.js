@@ -29,6 +29,7 @@ import PrivacyPolicy from 'ui/views/onboarding/PrivacyPolicy';
 import ForceChangePassword from 'ui/views/wallet/ForceChangePassword';
 import SeedVaultBackupComponent from 'ui/views/onboarding/SeedVaultBackup';
 import MigrationComponent from 'ui/components/Migration';
+import InactivityLogout from 'ui/views/wallet/InactivityLogout';
 
 // MoonPay routes
 import MoonPayLandingComponent from 'ui/views/wallet/exchanges/MoonPay/Landing';
@@ -99,6 +100,7 @@ export default function registerScreens(store, Provider) {
 
     Navigation.registerComponentWithRedux('migration', () => applyHOCs(MigrationComponent), Provider, store);
     Navigation.registerComponentWithRedux('home', () => applyHOCs(Home), Provider, store);
+    Navigation.registerComponentWithRedux('inactivityLogout', () => applyHOCs(InactivityLogout), Provider, store);
     Navigation.registerComponentWithRedux('loading', () => applyHOCs(Loading), Provider, store);
     Navigation.registerComponentWithRedux('newSeedSetup', () => applyHOCs(NewSeedSetup), Provider, store);
     Navigation.registerComponentWithRedux('welcome', () => applyHOCs(Welcome), Provider, store);
