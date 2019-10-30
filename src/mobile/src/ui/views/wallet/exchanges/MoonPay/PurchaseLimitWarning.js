@@ -130,11 +130,11 @@ class PurchaseLimitWarning extends Component {
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 0.2 }} />
+                    <View style={{ flex: 0.4 }} />
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
-                        delay={266}
+                        delay={200}
                     >
                         <InfoBox>
                             <Text style={[styles.infoText, textColor]}>{t('moonpay:limitExceeded')}</Text>
