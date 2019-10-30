@@ -74,6 +74,10 @@ const initialState = {
      * Determines if there was an error during transaction creation
      */
     hasErrorCreatingTransaction: false,
+    /**
+     * Determines if a network call is in progress for currency quote
+     */
+    isFetchingCurrencyQuote: false,
 };
 
 export default (state = initialState, action) => {
@@ -195,6 +199,17 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 transactions: action.payload,
+            };
+        case MoonPayExchangeActionTypes.CURRENCY_QUOTE_FETCH_REQUEST:
+            return {
+                ...state,
+                isFetchingCurrencyQuote: true,
+            };
+        case MoonPayExchangeActionTypes.CURRENCY_QUOTE_FETCH_SUCCESS:
+        case MoonPayExchangeActionTypes.CURRENCY_QUOTE_FETCH_ERROR:
+            return {
+                ...state,
+                isFetchingCurrencyQuote: false,
             };
         default:
             return state;
