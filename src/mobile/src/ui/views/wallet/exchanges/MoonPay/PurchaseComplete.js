@@ -42,7 +42,7 @@ class PurchaseComplete extends Component {
      *
      * @method redirectToScreen
      */
-    redirectToScreen() {
+    redirectToHome() {
         navigator.setStackRoot('home');
     }
 
