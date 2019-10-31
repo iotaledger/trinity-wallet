@@ -1,4 +1,5 @@
 import toLower from 'lodash/toLower';
+import includes from 'lodash/includes';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
@@ -6,8 +7,7 @@ import { Linking, StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { getLatestAddressForMoonPaySelectedAccount } from 'shared-modules/selectors/accounts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { getCustomerDailyLimits, getDefaultCurrencyCode } from 'shared-modules/selectors/exchanges/MoonPay';
-import { getAmountInFiat, convertCurrency, prepareMoonPayExternalLink } from 'shared-modules/exchanges/MoonPay/utils';
+import { getAmountInFiat, prepareMoonPayExternalLink } from 'shared-modules/exchanges/MoonPay/utils';
 import navigator from 'libs/navigation';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
@@ -59,19 +59,15 @@ class IdentityConfirmationWarning extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        dailyLimits: PropTypes.object.isRequired,
-        /** @ignore */
         amount: PropTypes.string.isRequired,
         /** @ignore */
         denomination: PropTypes.string.isRequired,
-        /** @ignore */
-        exchangeRates: PropTypes.object.isRequired,
-        /** @ignore */
-        defaultCurrencyCode: PropTypes.string.isRequired,
         /** Component ID */
         componentId: PropTypes.string.isRequired,
         /** @ignore */
         address: PropTypes.string.isRequired,
+        /** @ignore */
+        exchangeRates: PropTypes.object.isRequired,
     };
 
     /**
@@ -82,6 +78,46 @@ class IdentityConfirmationWarning extends Component {
         navigator.pop(this.props.componentId);
     }
 
+    /**
+     * Gets amount in fiat
+     *
+     * @method getAmountInFiat
+     *
+     * @param {string} amount
+     * @param {string} denomination
+     *
+     * @returns {number}
+     */
+    getAmountInFiat(amount, denomination) {
+        const { exchangeRates } = this.props;
+
+        if (includes(IdentityConfirmationWarning.iotaDenominations, denomination)) {
+            return amount
+                ? Number((Number(amount) * exchangeRates[this.getActiveFiatCurrency(denomination)]).toFixed(2))
+                : 0;
+        }
+
+        return amount ? Number(Number(amount).toFixed(2)) : 0;
+    }
+
+    /**
+      * Gets active fiat currency.
+      *
+      * @method getActiveFiatCurrency
+      *
+      * @param {string}
+      *
+      * @returns {string}
+      */
+     getActiveFiatCurrency(denomination) {
+         if (includes(IdentityConfirmationWarning.iotaDenominations, denomination)) {
+             // Default to USD since we don't allow user to set a default currency.
+             return 'USD';
+         }
+
+         return denomination;
+     }
+
     render() {
         const {
             address,
@@ -89,19 +125,13 @@ class IdentityConfirmationWarning extends Component {
             theme: { body },
             amount,
             denomination,
-            exchangeRates,
-            defaultCurrencyCode,
-            dailyLimits,
         } = this.props;
         const textColor = { color: body.color };
-
-        const purchaseAmount = convertCurrency(
-            getAmountInFiat(Number(amount), denomination, exchangeRates),
-            exchangeRates,
-            denomination,
-            defaultCurrencyCode,
-        );
-
+        console.log(prepareMoonPayExternalLink(
+            address,
+            this.getAmountInFiat(amount, denomination),
+            toLower(this.getActiveFiatCurrency(denomination)),
+        ))
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
@@ -123,10 +153,10 @@ class IdentityConfirmationWarning extends Component {
                         <InfoBox>
                             <Text style={[styles.infoText, textColor]}>{t('moonpay:confirmIdentity')}</Text>
                             <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 30 }]}>
-                                {t('moonpay:confirmIdentityExplanation', {
-                                    limitBracket:
-                                        purchaseAmount > dailyLimits.dailyLimitRemaining ? 'daily' : 'monthly',
-                                })}
+                                {t('moonpay:confirmIdentityExplanation', { limitBracket: "€150" })}
+                            </Text>
+                            <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 30 }]}>
+                                {t('moonpay:moonpayRedirect')}
                             </Text>
                         </InfoBox>
                     </AnimatedComponent>
@@ -145,7 +175,7 @@ class IdentityConfirmationWarning extends Component {
                                 );
                             }}
                             leftButtonText={t('global:goBack')}
-                            rightButtonText={t('global:cancel')}
+                            rightButtonText={t('global:okay')}
                             leftButtonTestID="moonpay-back-to-home"
                             rightButtonTestID="moonpay-add-amount"
                         />
@@ -158,11 +188,9 @@ class IdentityConfirmationWarning extends Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
-    dailyLimits: getCustomerDailyLimits(state),
     amount: state.exchanges.moonpay.amount,
     denomination: state.exchanges.moonpay.denomination,
     exchangeRates: state.exchanges.moonpay.exchangeRates,
-    defaultCurrencyCode: getDefaultCurrencyCode(state),
     address: getLatestAddressForMoonPaySelectedAccount(state),
 });
 
