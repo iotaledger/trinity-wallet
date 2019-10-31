@@ -251,11 +251,11 @@
     "moonpay": {
         "buyIOTA": "BUY IOTA",
         "buyIOTAInstantly": "Buy IOTA instantly",
-        "supportExplanation": "MoonPay supports IOTA purchases with all major debit/credit cards and Apple Pay, securely sent to your Trinity wallet",
+        "supportExplanation": "Purchase IOTA with all major payment cards, securely sent to your Trinity wallet",
         "addAmount": "Choose the amount of MIOTA for purchase",
         "addAmountExplanation": "Select the amount of IOTA you wish to purchase in your currency, or specify the amount of MIOTA",
         "enterAmount": "ENTER AMOUNT",
-        "selectAccount": "Select your preferred Trinity Wallet account",
+        "selectAccount": "Select your Trinity account",
         "selectAccountExplanation": "Your MoonPay purchase will be transferred automatically to your selected account",
         "setupEmail": "First, let's get setup quickly",
         "setupEmailExplanation": "Provide your email account to receive a receipt for your purchase",
@@ -324,7 +324,16 @@
         "invalidExpiryDateExplanation": "Please enter a valid expiry date",
         "waitForCurrencyQuote": "Fetching latest MoonPay fee. Please wait.",
         "confirmIdentity": "We need to confirm your identity",
-        "confirmIdentityExplanation": "Your purchase exceeds the {{limitBracket}} limit. In order to continue your purchase you will need to confirm your identity (KYC). You will now be navigated to moonpay to complete the KYC process and continue with your purchase."
+        "confirmIdentityExplanation": "Your purchase exceeds the monthly limit of {{limitBracket}}. In order to continue your purchase you will need to confirm your identity (KYC).",
+        "moonpayRedirect": "You will now be navigated to Moonpay to complete the KYC process and continue with your purchase.",
+        "authenticateEmailError": "Error authenticating email",
+        "authenticateEmailErrorExplanation": "There was an error authenticating your email address. Please try again.",
+        "emailVerificationError": "Error verifying email",
+        "emailVerificationErrorExplanation": "The security code you provided is incorrect. Please try again.",
+        "updateCustomerError": "Error updating user details",
+        "updateCustomerErrorExplanation": "An unknown error has occurred updating user details. Please try again.",
+        "transactionCreationError": "Error creating transaction",
+        "transactionCreationErrorExplanation": "There was a problem sending your transaction. Please try again."
     },
     "home": {
         "balance": "BALANCE",

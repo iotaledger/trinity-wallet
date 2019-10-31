@@ -7,6 +7,7 @@ import { generateAlert } from '../../alerts';
 import api, { IOTA_CURRENCY_CODE, MOONPAY_RETURN_URL } from '../../../exchanges/MoonPay';
 import { getCustomerEmail, getPaymentCardId } from '../../../selectors/exchanges/MoonPay';
 import { __DEV__ } from '../../../config';
+import i18next from '../../../libs/i18next';
 
 /**
  * Dispatch to set supported currencies by MoonPay
@@ -399,8 +400,8 @@ export const authenticateViaEmail = (email) => (dispatch) => {
             dispatch(
                 generateAlert(
                     'error',
-                    'Error authenticating email',
-                    'There was an error authenticating your email address. Please try again.',
+                    i18next.t('moonpay:authenticateEmailError'),
+                    i18next.t('moonpay:authenticateEmailErrorExplanation'),
                 ),
             );
 
@@ -451,8 +452,8 @@ export const verifyEmailAndFetchTransactions = (securityCode) => (dispatch, getS
             dispatch(
                 generateAlert(
                     'error',
-                    'Error verifying email',
-                    'The security code you provided is incorrect. Please try again.',
+                    i18next.t('moonpay:emailVerificationError'),
+                    i18next.t('moonpay:emailVerificationErrorExplanation'),
                 ),
             );
 
@@ -483,8 +484,8 @@ export const updateCustomer = (info) => (dispatch) => {
             dispatch(
                 generateAlert(
                     'error',
-                    'Error updating user details',
-                    'An unknown error has occurred updating user details. Please try again.',
+                    i18next.t('moonpay:updateCustomerError'),
+                    i18next.t('moonpay:updateCustomerErrorExplanation'),
                 ),
             );
 
@@ -526,8 +527,8 @@ export const createTransaction = (
             dispatch(
                 generateAlert(
                     'error',
-                    'Error creating transaction',
-                    'There was a problem sending your transaction. Please try again!',
+                    i18next.t('moonpay:transactionCreationError'),
+                    i18next.t('moonpay:transactionCreationErrorExplanation'),
                 ),
             );
 

@@ -236,7 +236,7 @@ class VerifyEmail extends React.Component {
                                 value={this.state.securityCode}
                             />
                         </AnimatedComponent>
-                        <View style={{ flex: 0.08 }} />
+                        <View style={{ flex: 0.15 }} />
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}
