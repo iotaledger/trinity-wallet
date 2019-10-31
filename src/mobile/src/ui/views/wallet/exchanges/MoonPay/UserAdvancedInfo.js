@@ -239,8 +239,8 @@ class UserAdvancedInfo extends React.Component {
                             >
                                 <CustomTextInput
                                     containerStyle={{
-                                        width: isIPhoneX ? width / 1.08 : width / 2.5,
-                                        marginRight: 13,
+                                        width: isIPhoneX ? width / 2.33 : width / 2.5,
+                                        marginHorizontal: width / 30,
                                     }}
                                     label={t('moonpay:city')}
                                     onValidTextChange={(city) => this.setState({ city })}
@@ -252,8 +252,8 @@ class UserAdvancedInfo extends React.Component {
                                 />
                                 <CustomTextInput
                                     containerStyle={{
-                                        width: isIPhoneX ? width / 1.08 : width / 2.5,
-                                        marginLeft: 13,
+                                        width: isIPhoneX ? width / 2.33 : width / 2.5,
+                                        marginHorizontal: width / 30,
                                     }}
                                     label={t('moonpay:zipCode')}
                                     onValidTextChange={(zipCode) => this.setState({ zipCode })}
