@@ -38,7 +38,7 @@
     "axios": "^0.18.1",
     "bugsnag-react-native": "^2.22.0",
     "events": "^1.1.1",
-    "hoist-non-react-statics": "^2.3.1",
+    "hoist-non-react-statics": "^3.3.0",
     "intl": "^1.2.5",
     "jsc-android": "241213.x.x",
     "lodash": "^4.17.13",
