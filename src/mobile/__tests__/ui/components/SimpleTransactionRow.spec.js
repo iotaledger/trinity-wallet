@@ -39,10 +39,6 @@ describe('Testing SimpleTransactionRow component', () => {
         it('should require a unit string as a prop', () => {
             expect(SimpleTransactionRow.propTypes.unit).toEqual(PropTypes.string.isRequired);
         });
-
-        it('should require a sign string as a prop', () => {
-            expect(SimpleTransactionRow.propTypes.sign).toEqual(PropTypes.string.isRequired);
-        });
     });
 
     describe('when renders', () => {
@@ -62,20 +58,6 @@ describe('Testing SimpleTransactionRow component', () => {
             expect(text.children().text()).toEqual('pending');
         });
 
-        it('should return "sign" prop as a child to first Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<SimpleTransactionRow {...props} />);
-            const text = wrapper.find('Text').at(0);
-
-            expect(
-                text
-                    .children()
-                    .at(0)
-                    .text(),
-            ).toEqual('+');
-        });
-
         it('should return "value" prop as a child to first Text component', () => {
             const props = getProps();
 
@@ -85,7 +67,7 @@ describe('Testing SimpleTransactionRow component', () => {
             expect(
                 text
                     .children()
-                    .at(2)
+                    .at(0)
                     .text(),
             ).toEqual('100');
         });
@@ -99,7 +81,7 @@ describe('Testing SimpleTransactionRow component', () => {
             expect(
                 text
                     .children()
-                    .at(4)
+                    .at(2)
                     .text(),
             ).toEqual('i');
         });
