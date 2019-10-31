@@ -216,7 +216,6 @@ const renderHtml = (theme, t, address) => {
             </div>
         </div>
 
-        <form id="cc-form">
         <div class="field-container">
             <label for="cc-number" class="field-label">${t('moonpay:cardNumber')}</label>
             <span id="cc-number" class="form-field">
@@ -234,13 +233,13 @@ const renderHtml = (theme, t, address) => {
             <span id="cc-expiration-date" class="form-field">
             </span>
         </div>
-        </form>
+
     </div>
 
     <div class="bottom-container">
         <div class="buttons-container">
             <input type="button" value=${t('global:back')} onclick="goBack()" class="button-left" />
-            <input type="submit" value=${t('global:submit')} form="cc-form" class="button-right" />
+            <button class="button-right" onclick="submit(event)">${t('global:submit')}</button>
         </div>
     </div>
 </div>
@@ -312,59 +311,57 @@ const renderHtml = (theme, t, address) => {
       validations: ['required', 'validCardExpirationDate']
     });
 
-    document.getElementById('cc-form').addEventListener(
-      'submit',
-      function(e) {
-          e.preventDefault();
+    function submit(e) {
+      e.preventDefault();
 
-          if (isFormValid) {
-              document.getElementsByClassName('button-right')[0].innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
-              form.submit(
-                  {
-                      street: '${address.street}',
-                      subStreet: '${address.subStreet}',
-                      town: '${address.town}',
-                      postCode: '${address.postCode}',
-                      state: '${address.state}',
-                      country: '${address.country}',
-                  },
-                  function(status, data) {
-                    document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
-
-                      if (status.toString().startsWith('2')) {
-                          window.ReactNativeWebView.postMessage(
-                              JSON.stringify({
-                                  type: 'success',
-                                  data: data,
-                              }),
-                          );
-                      } else {
-                          window.ReactNativeWebView.postMessage(
-                              JSON.stringify({
-                                  type: 'error',
-                                  data: data,
-                              }),
-                          );
-                      }
-                  },
-              );
-          } else {
-              window.ReactNativeWebView.postMessage(JSON.stringify({
-                  type: 'submissionError',
-                  data: formState
-                }));
-          }
-      },
-      function(errors) {
-          document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
-          window.ReactNativeWebView.postMessage(
-              JSON.stringify({
-                  type: 'error',
-                  data: errors,
-              }),
-          );
-      },
-  );
+      if (isFormValid) {
+        document.getElementsByClassName('button-right')[0].innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
+        form.submit(
+            {
+                street: '${address.street}',
+                subStreet: '${address.subStreet}',
+                town: '${address.town}',
+                postCode: '${address.postCode}',
+                state: '${address.state}',
+                country: '${address.country}',
+            },
+            function(status, data) {
+                document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
+                if (status.toString().startsWith('2')) {
+                    window.ReactNativeWebView.postMessage(
+                        JSON.stringify({
+                            type: 'success',
+                            data: data,
+                        }),
+                    );
+                } else {
+                    window.ReactNativeWebView.postMessage(
+                        JSON.stringify({
+                            type: 'error',
+                            data: data,
+                        }),
+                    );
+                }
+            },
+            function(errors) {
+                document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
+                window.ReactNativeWebView.postMessage(
+                    JSON.stringify({
+                        type: 'error',
+                        data: errors,
+                    }),
+                );
+            },
+        );
+    } else {
+        window.ReactNativeWebView.postMessage(
+            JSON.stringify({
+                type: 'submissionError',
+                data: formState,
+            }),
+        );
+      }
+    }
   </script>
   </body>
   </html>`;
