@@ -9,6 +9,7 @@ import { WebView } from 'react-native-webview';
 import { setPaymentCardInfo } from 'shared-modules/actions/exchanges/MoonPay';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import { API_KEY } from 'shared-modules/exchanges/MoonPay';
 import { height, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { isIPhoneX } from 'libs/device';
@@ -253,7 +254,7 @@ const renderHtml = (theme, t, address) => {
     }));
   }
 
-    moonpay.initialize('pk_test_W1g4KpNvqWkHEo58O0CTluQz698eOc');
+    moonpay.initialize("${API_KEY}");
     moonpay.trackPageView();
 
     var isFormValid = false;
