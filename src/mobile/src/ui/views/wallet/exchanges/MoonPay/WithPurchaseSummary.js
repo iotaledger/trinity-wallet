@@ -19,8 +19,9 @@ import {
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import { createTransaction } from 'shared-modules/actions/exchanges/MoonPay';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
+import { ALLOWED_IOTA_DENOMINATIONS } from 'shared-modules/exchanges/MoonPay/index';
 import navigator from 'libs/navigation';
-import { convertCurrency } from 'shared-modules/exchanges/MoonPay/utils';
+import { getActiveFiatCurrency, getAmountInFiat, convertFiatCurrency } from 'shared-modules/exchanges/MoonPay/utils';
 import InfoBox from 'ui/components/InfoBox';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -106,69 +107,10 @@ export default function withPurchaseSummary(WrappedComponent, config) {
             componentId: PropTypes.string.isRequired,
         };
 
-        static iotaDenominations = ['Mi'];
-
         constructor(props) {
             super(props);
 
             this.createTransaction = this.createTransaction.bind(this);
-        }
-
-        /**
-         * Gets active fiat currency.
-         *
-         * @method getActiveFiatCurrency
-         *
-         * @param {string}
-         *
-         * @returns {string}
-         */
-        getActiveFiatCurrency(denomination) {
-            if (includes(PurchaseSummary.iotaDenominations, denomination)) {
-                // Default to USD since we don't allow user to set a default currency.
-                return 'USD';
-            }
-
-            return denomination;
-        }
-
-        /**
-         * Gets amount in fiat
-         *
-         * @method getAmountInFiat
-         *
-         * @param {string} amount
-         * @param {string} denomination
-         *
-         * @returns {number}
-         */
-        getAmountInFiat(amount, denomination) {
-            const { exchangeRates } = this.props;
-
-            if (includes(PurchaseSummary.iotaDenominations, denomination)) {
-                return amount
-                    ? Number((Number(amount) * exchangeRates[this.getActiveFiatCurrency(denomination)]).toFixed(2))
-                    : 0;
-            }
-
-            return amount ? Number(Number(amount).toFixed(2)) : 0;
-        }
-
-        /**
-         * Gets amount in Miota
-         *
-         * @method getAmountinMiota
-         *
-         * @returns {string}
-         */
-        getAmountinMiota() {
-            const { amount, denomination, exchangeRates } = this.props;
-
-            if (!amount) {
-                return '0 Mi';
-            }
-
-            return `${(Number(amount) / exchangeRates[this.getActiveFiatCurrency(denomination)]).toFixed(2)} Mi`;
         }
 
         /**
@@ -181,12 +123,12 @@ export default function withPurchaseSummary(WrappedComponent, config) {
         getReceiveAmount() {
             const { amount, denomination, exchangeRates } = this.props;
 
-            if (includes(PurchaseSummary.iotaDenominations, denomination)) {
+            if (includes(ALLOWED_IOTA_DENOMINATIONS, denomination)) {
                 return amount ? `${amount} Mi` : '0 Mi';
             }
 
             return amount
-                ? `${(Number(amount) / exchangeRates[this.getActiveFiatCurrency(denomination)]).toFixed(2)} Mi`
+                ? `${(Number(amount) / exchangeRates[getActiveFiatCurrency(denomination)]).toFixed(2)} Mi`
                 : '0 Mi';
         }
 
@@ -201,7 +143,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
          */
         getStringifiedFiatAmount(amount) {
             const { denomination } = this.props;
-            const activeFiatCurrency = this.getActiveFiatCurrency(denomination);
+            const activeFiatCurrency = getActiveFiatCurrency(denomination);
 
             return amount
                 ? `${getCurrencySymbol(activeFiatCurrency)}${amount.toFixed(2)}`
@@ -237,10 +179,11 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 hasCompletedAdvancedIdentityVerification,
             } = this.props;
 
-            const purchaseAmount = convertCurrency(
-                this.getAmountInFiat(amount, denomination),
+            const purchaseAmount = convertFiatCurrency(
+                getAmountInFiat(Number(amount), denomination, exchangeRates),
                 exchangeRates,
                 denomination,
+                // Convert to currency code set by user (not in the app) but what it is set on MoonPay servers
                 defaultCurrencyCode,
             );
 
@@ -253,8 +196,8 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 this.redirectToScreen('identityConfirmationWarning');
             } else {
                 this.props.createTransaction(
-                    this.getAmountInFiat(amount, denomination),
-                    toLower(this.getActiveFiatCurrency(denomination)),
+                    getAmountInFiat(Number(amount), denomination, exchangeRates),
+                    toLower(getActiveFiatCurrency(denomination)),
                     address,
                 );
             }
@@ -281,7 +224,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
             const textColor = { color: theme.body.color };
 
             const receiveAmount = this.getReceiveAmount();
-            const activeFiatCurrency = this.getActiveFiatCurrency(denomination);
+            const activeFiatCurrency = getActiveFiatCurrency(denomination);
 
             return (
                 <WrappedComponent
@@ -393,7 +336,9 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                                     {exchangeRates[activeFiatCurrency]}
                                 </Text>
                                 <Text style={[styles.infoTextLight, textColor]}>
-                                    {this.getStringifiedFiatAmount(this.getAmountInFiat(amount, denomination))}
+                                    {this.getStringifiedFiatAmount(
+                                        getAmountInFiat(Number(amount), denomination, exchangeRates),
+                                    )}
                                 </Text>
                             </View>
                             <View style={{ flex: 0.05 }} />
@@ -448,9 +393,10 @@ export default function withPurchaseSummary(WrappedComponent, config) {
 
     return WithUserActivity()(
         withTranslation()(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(PurchaseSummary),
-    ));
+            connect(
+                mapStateToProps,
+                mapDispatchToProps,
+            )(PurchaseSummary),
+        ),
+    );
 }

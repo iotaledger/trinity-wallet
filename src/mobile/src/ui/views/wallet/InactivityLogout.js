@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
 });
 
 /**
- * Wallet Reset Confirmation screen component
+ * Inactivity logout component
  */
-class WalletResetConfirmation extends Component {
+class InactivityLogout extends Component {
     static propTypes = {
         /** Component ID */
         componentId: PropTypes.string.isRequired,
@@ -55,8 +55,12 @@ class WalletResetConfirmation extends Component {
 
     /**
      * Validates user provided password and sets wallet state as active
+     *
+     * @method onInactivityLoginPress
+     *
      * @param {string} password
-     * @returns {Promise<void>}
+     *
+     * @returns {void}
      */
     async onInactivityLoginPress(password) {
         const { t } = this.props;
@@ -77,7 +81,6 @@ class WalletResetConfirmation extends Component {
     }
 
     render() {
-
         const {
             isFingerprintEnabled,
             theme: { body, negative, positive },
@@ -115,9 +118,12 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
-    setUserActivity
+    setUserActivity,
 };
 
-export default withTranslation(['walletResetConfirmation', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(WalletResetConfirmation),
+export default withTranslation(['global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(InactivityLogout),
 );

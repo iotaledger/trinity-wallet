@@ -9,7 +9,7 @@ import {
     getMostRecentTransaction,
     getDefaultCurrencyCode,
 } from 'shared-modules/selectors/exchanges/MoonPay';
-import { getAmountInFiat, convertCurrency } from 'shared-modules/exchanges/MoonPay/utils';
+import { getAmountInFiat, convertFiatCurrency } from 'shared-modules/exchanges/MoonPay/utils';
 import navigator from 'libs/navigation';
 import { moment } from 'shared-modules/libs/exports';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
@@ -107,10 +107,11 @@ class PurchaseLimitWarning extends Component {
         } = this.props;
         const textColor = { color: body.color };
 
-        const purchaseAmount = convertCurrency(
+        const purchaseAmount = convertFiatCurrency(
             getAmountInFiat(Number(amount), denomination, exchangeRates),
             exchangeRates,
             denomination,
+            // Convert to currency code set by user (not in the app) but what it is set on MoonPay servers
             defaultCurrencyCode,
         );
 

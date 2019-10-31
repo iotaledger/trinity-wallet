@@ -10,17 +10,8 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import {
-    ALLOWED_IOTA_DENOMINATIONS,
-    BASIC_MONTHLY_LIMIT,
-    MINIMUM_TRANSACTION_SIZE,
-} from 'shared-modules/exchanges/MoonPay/index';
-import {
-    getActiveFiatCurrency,
-    getAmountInFiat,
-    getAmountInEuros,
-    convertCurrency,
-} from 'shared-modules/exchanges/MoonPay/utils';
+import { ALLOWED_IOTA_DENOMINATIONS, MINIMUM_TRANSACTION_SIZE } from 'shared-modules/exchanges/MoonPay/index';
+import { getActiveFiatCurrency, getAmountInFiat, convertFiatCurrency } from 'shared-modules/exchanges/MoonPay/utils';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import {
     hasCompletedAdvancedIdentityVerification,
@@ -267,14 +258,15 @@ class AddAmount extends Component {
         const { amount, exchangeRates, denomination, t } = this.props;
 
         if (amount) {
-            const euroAmount = getAmountInEuros(Number(amount), denomination, exchangeRates);
+            const amountInEuros = convertFiatCurrency(
+                getAmountInFiat(Number(amount), denomination, exchangeRates),
+                exchangeRates,
+                denomination,
+                // Skipping the last parameter (target denomination) as it is already set to EUR as default parameter
+            );
 
-            if (euroAmount < MINIMUM_TRANSACTION_SIZE) {
+            if (amountInEuros < MINIMUM_TRANSACTION_SIZE) {
                 return t('moonpay:minimumTransactionAmount', { amount: `€${MINIMUM_TRANSACTION_SIZE}` });
-            }
-
-            if (euroAmount > BASIC_MONTHLY_LIMIT) {
-                return t('moonpay:kycRequired', { amount: `€${BASIC_MONTHLY_LIMIT}` });
             }
         }
 
@@ -332,7 +324,13 @@ class AddAmount extends Component {
             if (isFetchingCurrencyQuote || shouldGetLatestCurrencyQuote) {
                 this.props.generateAlert('error', t('global:pleaseWait'), t('moonpay:waitForCurrencyQuote'));
             } else {
-                const purchaseAmount = convertCurrency(fiatAmount, exchangeRates, denomination, defaultCurrencyCode);
+                const purchaseAmount = convertFiatCurrency(
+                    fiatAmount,
+                    exchangeRates,
+                    denomination,
+                    // Convert to currency code set by user (not in the app) but what it is set on MoonPay servers
+                    defaultCurrencyCode,
+                );
 
                 this.redirectToScreen(
                     !isPurchaseLimitIncreaseAllowed &&

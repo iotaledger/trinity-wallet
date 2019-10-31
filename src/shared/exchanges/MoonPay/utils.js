@@ -2,8 +2,9 @@ import includes from 'lodash/includes';
 import {
     ALLOWED_IOTA_DENOMINATIONS,
     DEFAULT_FIAT_CURRENCY,
-    MOONPAY_EXTERNAL_LINK_BASE_URL,
+    MOONPAY_EXTERNAL_URL,
     IOTA_CURRENCY_CODE,
+    MOONPAY_REDIRECT_URL,
 } from './index';
 
 /**
@@ -17,7 +18,7 @@ import {
  */
 export const getActiveFiatCurrency = (denomination) => {
     if (includes(ALLOWED_IOTA_DENOMINATIONS, denomination)) {
-        // Default to USD since we don't allow user to set a default currency.
+        // Fallback to default since we don't allow user to set a default currency.
         return DEFAULT_FIAT_CURRENCY;
     }
 
@@ -46,47 +47,23 @@ export const getAmountInFiat = (amount, denomination, exchangeRates) => {
 /**
  * Gets amount in Miota
  *
- * @method getAmountinMiota
+ * @method convertFiatToMiota
  *
- * @param {number} amount
+ * @param {number} fiatAmount
  * @param {string} denomination
  * @param {object} exchangeRates
  *
  * @returns {number}
  */
-export const getAmountinMiota = (amount, denomination, exchangeRates) => {
-    if (includes(ALLOWED_IOTA_DENOMINATIONS, denomination)) {
-        return amount;
-    }
-
-    return amount / exchangeRates[getActiveFiatCurrency(denomination)];
+export const convertFiatToMiota = (fiatAmount, denomination, exchangeRates) => {
+    return fiatAmount / exchangeRates[getActiveFiatCurrency(denomination)];
 };
 
 /**
- * Gets amount in EUR
+ * Converts fiat currency to another
+ * E.g: USD -> GBP
  *
- * @method getAmountInEuros
- *
- * @param {number} amount
- * @param {string} denomination
- * @param {object} exchangeRates
- *
- * @returns {number}
- */
-export const getAmountInEuros = (amount, denomination, exchangeRates) => {
-    if (includes(ALLOWED_IOTA_DENOMINATIONS, denomination)) {
-        return amount * exchangeRates.EUR;
-    }
-
-    const miotas = getAmountinMiota(amount, denomination, exchangeRates);
-
-    return miotas * exchangeRates.EUR;
-};
-
-/**
- * Gets amount in EUR
- *
- * @method getAmountInEuros
+ * @method convertFiatCurrency
  *
  * @param {number} fiatAmount
  * @param {object} exchangeRates
@@ -95,16 +72,29 @@ export const getAmountInEuros = (amount, denomination, exchangeRates) => {
  *
  * @returns {number}
  */
-export const convertCurrency = (fiatAmount, exchangeRates, activeDenomination, targetDenomination = 'EUR') => {
+export const convertFiatCurrency = (fiatAmount, exchangeRates, activeDenomination, targetDenomination = 'EUR') => {
+    // If current currency is equal to target currency, then no need to convert
     if (activeDenomination === targetDenomination) {
         return fiatAmount;
     }
 
-    const miotas = getAmountinMiota(fiatAmount, activeDenomination, exchangeRates);
+    const miotas = convertFiatToMiota(fiatAmount, activeDenomination, exchangeRates);
 
     return miotas * exchangeRates[targetDenomination];
 };
 
-export const prepareMoonPayExternalLink = (address, baseCurrencyAmount, baseCurrencyCode) => {
-    return `${MOONPAY_EXTERNAL_LINK_BASE_URL}/?currencyCode=${IOTA_CURRENCY_CODE}&walletAddress=${address}&baseCurrencyAmount=${baseCurrencyAmount}&baseCurrencyCode=${baseCurrencyCode}&redirectUrl=iota://`;
+/**
+ * Prepares MoonPay external link for performing identity verification
+ *
+ * @method prepareMoonPayExternalLink
+ *
+ * @param {string} email
+ * @param {string} address
+ * @param {string} baseCurrencyAmount
+ * @param {string} baseCurrencyCode
+ *
+ * @return {string}
+ */
+export const prepareMoonPayExternalLink = (email, address, baseCurrencyAmount, baseCurrencyCode) => {
+    return `${MOONPAY_EXTERNAL_URL}&email=${email}&currencyCode=${IOTA_CURRENCY_CODE}&walletAddress=${address}&baseCurrencyAmount=${baseCurrencyAmount}&baseCurrencyCode=${baseCurrencyCode}&redirectUrl=${MOONPAY_REDIRECT_URL}`;
 };

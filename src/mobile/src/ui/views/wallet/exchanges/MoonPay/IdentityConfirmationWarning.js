@@ -1,13 +1,17 @@
 import toLower from 'lodash/toLower';
-import includes from 'lodash/includes';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import { Linking, StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { getLatestAddressForMoonPaySelectedAccount } from 'shared-modules/selectors/accounts';
+import { getCustomerEmail } from 'shared-modules/selectors/exchanges/MoonPay';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { prepareMoonPayExternalLink } from 'shared-modules/exchanges/MoonPay/utils';
+import {
+    getAmountInFiat,
+    getActiveFiatCurrency,
+    prepareMoonPayExternalLink,
+} from 'shared-modules/exchanges/MoonPay/utils';
 import navigator from 'libs/navigation';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
@@ -68,6 +72,8 @@ class IdentityConfirmationWarning extends Component {
         address: PropTypes.string.isRequired,
         /** @ignore */
         exchangeRates: PropTypes.object.isRequired,
+        /** @ignore */
+        email: PropTypes.string.isRequired,
     };
 
     /**
@@ -78,49 +84,11 @@ class IdentityConfirmationWarning extends Component {
         navigator.pop(this.props.componentId);
     }
 
-    /**
-     * Gets amount in fiat
-     *
-     * @method getAmountInFiat
-     *
-     * @param {string} amount
-     * @param {string} denomination
-     *
-     * @returns {number}
-     */
-    getAmountInFiat(amount, denomination) {
-        const { exchangeRates } = this.props;
-
-        if (includes(IdentityConfirmationWarning.iotaDenominations, denomination)) {
-            return amount
-                ? Number((Number(amount) * exchangeRates[this.getActiveFiatCurrency(denomination)]).toFixed(2))
-                : 0;
-        }
-
-        return amount ? Number(Number(amount).toFixed(2)) : 0;
-    }
-
-    /**
-      * Gets active fiat currency.
-      *
-      * @method getActiveFiatCurrency
-      *
-      * @param {string}
-      *
-      * @returns {string}
-      */
-     getActiveFiatCurrency(denomination) {
-         if (includes(IdentityConfirmationWarning.iotaDenominations, denomination)) {
-             // Default to USD since we don't allow user to set a default currency.
-             return 'USD';
-         }
-
-         return denomination;
-     }
-
     render() {
         const {
             address,
+            email,
+            exchangeRates,
             t,
             theme: { body },
             amount,
@@ -149,7 +117,7 @@ class IdentityConfirmationWarning extends Component {
                         <InfoBox>
                             <Text style={[styles.infoText, textColor]}>{t('moonpay:confirmIdentity')}</Text>
                             <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 30 }]}>
-                                {t('moonpay:confirmIdentityExplanation', { limitBracket: "€150" })}
+                                {t('moonpay:confirmIdentityExplanation', { limitBracket: '€150' })}
                             </Text>
                             <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 30 }]}>
                                 {t('moonpay:moonpayRedirect')}
@@ -164,9 +132,10 @@ class IdentityConfirmationWarning extends Component {
                             onRightButtonPress={() => {
                                 Linking.openURL(
                                     prepareMoonPayExternalLink(
+                                        email,
                                         address,
-                                        this.getAmountInFiat(amount, denomination),
-                                        toLower(this.getActiveFiatCurrency(denomination)),
+                                        getAmountInFiat(Number(amount), denomination, exchangeRates),
+                                        toLower(getActiveFiatCurrency(denomination)),
                                     ),
                                 );
                             }}
@@ -188,6 +157,7 @@ const mapStateToProps = (state) => ({
     denomination: state.exchanges.moonpay.denomination,
     exchangeRates: state.exchanges.moonpay.exchangeRates,
     address: getLatestAddressForMoonPaySelectedAccount(state),
+    email: getCustomerEmail(state),
 });
 
 export default withTranslation()(connect(mapStateToProps)(IdentityConfirmationWarning));
