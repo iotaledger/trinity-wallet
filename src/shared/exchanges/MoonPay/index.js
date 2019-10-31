@@ -1,12 +1,12 @@
 import { MoonPayApi } from './api';
 
-export const API_KEY = 'pk_live_1Ls6xJrTtp1UbdXjkD9MwBNg8sQm4aRk';
+export const API_KEY = 'pk_test_W1g4KpNvqWkHEo58O0CTluQz698eOc';
 
 export const IOTA_CURRENCY_CODE = 'miota';
 
 export const MOONPAY_RETURN_URL = 'iota://moonpay_success';
 
-export const MOONPAY_EXTERNAL_LINK_BASE_URL = 'https://buy.moonpay.io';
+export const MOONPAY_EXTERNAL_LINK_BASE_URL = `https://buy-staging.moonpay.io?apiKey=${API_KEY}`;
 
 export const MOONPAY_TERMS_OF_USE_LINK = 'https://www.moonpay.io/terms_of_use';
 
