@@ -1,3 +1,4 @@
+import last from 'lodash/last';
 import isNull from 'lodash/isNull';
 import React from 'react';
 import { withTranslation } from 'react-i18next';
@@ -77,6 +78,8 @@ class UserBasicInfo extends React.Component {
         updateCustomer: PropTypes.func.isRequired,
         /** Component ID */
         componentId: PropTypes.string.isRequired,
+        /** @ignore */
+        navStack: PropTypes.array.isRequired
     };
 
     constructor(props) {
@@ -94,7 +97,7 @@ class UserBasicInfo extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.isUpdatingCustomer && !nextProps.isUpdatingCustomer && !nextProps.hasErrorUpdatingCustomer) {
+        if (this.props.isUpdatingCustomer && !nextProps.isUpdatingCustomer && !nextProps.hasErrorUpdatingCustomer && last(this.props.navStack) === this.props.componentId) {
             this.redirectToScreen('userAdvancedInfo');
         }
     }
@@ -282,6 +285,7 @@ const mapStateToProps = (state) => ({
     firstName: state.exchanges.moonpay.customer.firstName,
     lastName: state.exchanges.moonpay.customer.lastName,
     dateOfBirth: state.exchanges.moonpay.customer.dateOfBirth,
+    navStack: state.wallet.navStack
 });
 
 const mapDispatchToProps = {
