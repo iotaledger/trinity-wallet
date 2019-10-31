@@ -42,7 +42,7 @@ class PurchaseComplete extends Component {
      *
      * @method redirectToScreen
      */
-    redirectToScreen() {
+    redirectToHome() {
         navigator.setStackRoot('home');
     }
 
@@ -63,10 +63,7 @@ class PurchaseComplete extends Component {
                 {this.props.children}
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
-                        <SingleFooterButton
-                            onButtonPress={() => this.redirectToHome()}
-                            buttonText={t('global:done')}
-                        />
+                        <SingleFooterButton onButtonPress={() => this.redirectToHome()} buttonText={t('global:done')} />
                     </AnimatedComponent>
                 </View>
             </View>
