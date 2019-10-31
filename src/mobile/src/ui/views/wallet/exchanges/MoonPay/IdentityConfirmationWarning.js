@@ -7,7 +7,7 @@ import { Linking, StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { getLatestAddressForMoonPaySelectedAccount } from 'shared-modules/selectors/accounts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { getAmountInFiat, prepareMoonPayExternalLink } from 'shared-modules/exchanges/MoonPay/utils';
+import { prepareMoonPayExternalLink } from 'shared-modules/exchanges/MoonPay/utils';
 import navigator from 'libs/navigation';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
@@ -127,11 +127,7 @@ class IdentityConfirmationWarning extends Component {
             denomination,
         } = this.props;
         const textColor = { color: body.color };
-        console.log(prepareMoonPayExternalLink(
-            address,
-            this.getAmountInFiat(amount, denomination),
-            toLower(this.getActiveFiatCurrency(denomination)),
-        ))
+
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
