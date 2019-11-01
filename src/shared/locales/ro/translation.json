@@ -612,14 +612,14 @@
         "viewSeed": "Vezi Seed-ul",
         "hideSeed": "Ascunde Seed-ul",
         "notAvailable": "Exportul seed-ului nu este valabil pentru tipul de cont {{accountType}}",
-        "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "notAvailableExplanationLedger": "Dispozitivul tău ledger folosește un element sigur pentru ați stoca seed-ul. Seed-ul este criptat în siguranță și nu părăsește dispozitivul.",
+        "accountIndex": "Indexul contului tău Ledger",
+        "accountPage": "Pagina contului tău Ledger"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "didSaveSeed": "Ți-ai făcut copie de siguranță seed-ului?",
+        "iHaveBackedUp": "Am facut copie de siguranță seed-ului",
+        "reenterSeed": "La pasul următor va trebui să-ți reintroduci seed-ul.",
         "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
