@@ -590,9 +590,9 @@
     },
     "deleteAccount": {
         "areYouSure": "Ești sigur că vrei să-ți ștergi contul?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone",
-        "enterPassword": "Enter your password to delete this account."
+        "yourSeedWillBeRemoved": "Seedul și istoricul tranzacțiilor tale vor fi șterse.",
+        "thisAction": "Această acțiune nu poate fi anulată",
+        "enterPassword": "Introdu parola pentru a șterge acest cont."
     },
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
