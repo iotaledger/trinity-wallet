@@ -12,7 +12,16 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { updateCustomer } from 'shared-modules/actions/exchanges/MoonPay';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getAmountInFiat, convertFiatCurrency } from 'shared-modules/exchanges/MoonPay/utils';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import {
+    hasCompletedBasicIdentityVerification,
+    hasCompletedAdvancedIdentityVerification,
+    isLimitIncreaseAllowed,
+    getDefaultCurrencyCode,
+    getCustomerDailyLimits,
+    getCustomerMonthlyLimits,
+} from 'shared-modules/selectors/exchanges/MoonPay';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import DropdownComponent from 'ui/components/Dropdown';
@@ -87,6 +96,24 @@ class UserAdvancedInfo extends React.Component {
         updateCustomer: PropTypes.func.isRequired,
         /** Component ID */
         componentId: PropTypes.string.isRequired,
+        /** @ignore */
+        amount: PropTypes.string.isRequired,
+        /** @ignore */
+        denomination: PropTypes.string.isRequired,
+        /** @ignore */
+        exchangeRates: PropTypes.object.isRequired,
+        /** @ignore */
+        hasCompletedBasicIdentityVerification: PropTypes.bool.isRequired,
+        /** @ignore */
+        hasCompletedAdvancedIdentityVerification: PropTypes.bool.isRequired,
+        /** @ignore */
+        isPurchaseLimitIncreaseAllowed: PropTypes.bool.isRequired,
+        /** @ignore */
+        dailyLimits: PropTypes.object.isRequired,
+        /** @ignore */
+        monthlyLimits: PropTypes.object.isRequired,
+        /** @ignore */
+        defaultCurrencyCode: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -112,7 +139,37 @@ class UserAdvancedInfo extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isUpdatingCustomer && !nextProps.isUpdatingCustomer && !nextProps.hasErrorUpdatingCustomer) {
-            this.redirectToScreen('addAmount');
+            const {
+                amount,
+                denomination,
+                exchangeRates,
+                defaultCurrencyCode,
+                isPurchaseLimitIncreaseAllowed,
+                hasCompletedBasicIdentityVerification,
+                hasCompletedAdvancedIdentityVerification,
+                dailyLimits,
+                monthlyLimits,
+            } = nextProps;
+
+            const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
+
+            const purchaseAmount = convertFiatCurrency(
+                fiatAmount,
+                exchangeRates,
+                denomination,
+                // Convert to currency code set by user (not in the app) but what it is set on MoonPay servers
+                defaultCurrencyCode,
+            );
+
+            this.redirectToScreen(
+                hasCompletedBasicIdentityVerification &&
+                    !isPurchaseLimitIncreaseAllowed &&
+                    hasCompletedAdvancedIdentityVerification &&
+                    (purchaseAmount > dailyLimits.dailyLimitRemaining ||
+                        purchaseAmount > monthlyLimits.monthlyLimitRemaining)
+                    ? 'purchaseLimitWarning'
+                    : 'addPaymentMethod',
+            );
         }
     }
 
@@ -320,6 +377,15 @@ const mapStateToProps = (state) => ({
     city: state.exchanges.moonpay.customer.address.town,
     country: state.exchanges.moonpay.customer.address.country,
     zipCode: state.exchanges.moonpay.customer.address.postCode,
+    amount: state.exchanges.moonpay.amount,
+    denomination: state.exchanges.moonpay.denomination,
+    exchangeRates: state.exchanges.moonpay.exchangeRates,
+    hasCompletedBasicIdentityVerification: hasCompletedBasicIdentityVerification(state),
+    hasCompletedAdvancedIdentityVerification: hasCompletedAdvancedIdentityVerification(state),
+    isPurchaseLimitIncreaseAllowed: isLimitIncreaseAllowed(state),
+    dailyLimits: getCustomerDailyLimits(state),
+    monthlyLimits: getCustomerMonthlyLimits(state),
+    defaultCurrencyCode: getDefaultCurrencyCode(state),
 });
 
 const mapDispatchToProps = {

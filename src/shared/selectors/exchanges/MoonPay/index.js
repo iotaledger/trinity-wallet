@@ -5,7 +5,10 @@ import find from 'lodash/find';
 import sortBy from 'lodash/sortBy';
 import size from 'lodash/size';
 import { createSelector } from 'reselect';
-import { ADVANCED_IDENITY_VERIFICATION_LEVEL_NAME } from '../../../exchanges/MoonPay';
+import {
+    BASIC_IDENITY_VERIFICATION_LEVEL_NAME,
+    ADVANCED_IDENITY_VERIFICATION_LEVEL_NAME,
+} from '../../../exchanges/MoonPay';
 
 /**
  * Selects exchanges from state object
@@ -201,6 +204,28 @@ export const getMostRecentTransaction = createSelector(
         return size(transactions)
             ? head(sortBy(transactions, (transaction) => new Date(transaction.createdAt)).reverse())
             : {};
+    },
+);
+
+/**
+ * Determines whether a customer has completed basic identity verification
+ *
+ * @method hasCompletedBasicIdentityVerification
+ *
+ * @param {object} state
+ *
+ * @returns {boolean}
+ */
+export const hasCompletedBasicIdentityVerification = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
+
+        const advancedVerification = find(get(purchaseLimits, 'verificationLevels'), {
+            name: BASIC_IDENITY_VERIFICATION_LEVEL_NAME,
+        });
+
+        return get(advancedVerification, 'completed');
     },
 );
 

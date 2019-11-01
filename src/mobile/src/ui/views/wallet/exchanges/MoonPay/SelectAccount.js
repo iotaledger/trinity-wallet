@@ -156,7 +156,7 @@ class SelectAccount extends React.Component {
                             <DualFooterButtons
                                 onLeftButtonPress={() => this.goBack()}
                                 onRightButtonPress={() => {
-                                    this.redirectToScreen('userBasicInfo');
+                                    this.redirectToScreen('addAmount');
                                     this.props.setAccountName(this.state.accountName);
                                 }}
                                 leftButtonText={t('global:goBack')}

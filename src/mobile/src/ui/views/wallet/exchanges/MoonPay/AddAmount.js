@@ -14,6 +14,7 @@ import { ALLOWED_IOTA_DENOMINATIONS, MINIMUM_TRANSACTION_SIZE } from 'shared-mod
 import { getActiveFiatCurrency, getAmountInFiat, convertFiatCurrency } from 'shared-modules/exchanges/MoonPay/utils';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import {
+    hasCompletedBasicIdentityVerification,
     hasCompletedAdvancedIdentityVerification,
     getFiatCurrencies,
     getMoonPayFee,
@@ -102,6 +103,8 @@ class AddAmount extends Component {
         fee: PropTypes.number.isRequired,
         /** @ignore */
         totalAmount: PropTypes.number.isRequired,
+        /** @ignore */
+        hasCompletedBasicIdentityVerification: PropTypes.bool.isRequired,
         /** @ignore */
         hasCompletedAdvancedIdentityVerification: PropTypes.bool.isRequired,
         /** @ignore */
@@ -306,6 +309,7 @@ class AddAmount extends Component {
             defaultCurrencyCode,
             denomination,
             t,
+            hasCompletedBasicIdentityVerification,
             hasCompletedAdvancedIdentityVerification,
             isPurchaseLimitIncreaseAllowed,
             isFetchingCurrencyQuote,
@@ -313,12 +317,13 @@ class AddAmount extends Component {
         const { shouldGetLatestCurrencyQuote } = this.state;
 
         const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
+        const amountInEuros = convertFiatCurrency(fiatAmount, exchangeRates, denomination);
 
-        if (fiatAmount < MINIMUM_TRANSACTION_SIZE) {
+        if (amountInEuros < MINIMUM_TRANSACTION_SIZE) {
             this.props.generateAlert(
                 'error',
                 t('moonpay:notEnoughAmount'),
-                t('moonpay:notEnoughAmountExplanation', { amount: `$${MINIMUM_TRANSACTION_SIZE}` }),
+                t('moonpay:notEnoughAmountExplanation', { amount: `€${MINIMUM_TRANSACTION_SIZE}` }),
             );
         } else {
             if (isFetchingCurrencyQuote || shouldGetLatestCurrencyQuote) {
@@ -333,12 +338,15 @@ class AddAmount extends Component {
                 );
 
                 this.redirectToScreen(
-                    !isPurchaseLimitIncreaseAllowed &&
+                    // Make sure user has completed basic identity verification
+                    // If not, then the daily/monthly limit will default to 0
+                    hasCompletedBasicIdentityVerification &&
+                        !isPurchaseLimitIncreaseAllowed &&
                         hasCompletedAdvancedIdentityVerification &&
                         (purchaseAmount > dailyLimits.dailyLimitRemaining ||
                             purchaseAmount > monthlyLimits.monthlyLimitRemaining)
                         ? 'purchaseLimitWarning'
-                        : 'addPaymentMethod',
+                        : 'userBasicInfo',
                 );
             }
         }
@@ -457,7 +465,7 @@ class AddAmount extends Component {
                             onLeftButtonPress={() => this.goBack()}
                             onRightButtonPress={() => this.verifyAmount()}
                             leftButtonText={t('global:goBack')}
-                            rightButtonText={t('global:purchase')}
+                            rightButtonText={t('global:continue')}
                             leftButtonTestID="moonpay-landing"
                             rightButtonTestID="moonpay-select-account"
                         />
@@ -477,6 +485,7 @@ const mapStateToProps = (state) => ({
     exchangeRates: state.exchanges.moonpay.exchangeRates,
     fee: getMoonPayFee(state),
     totalAmount: getTotalPurchaseAmount(state),
+    hasCompletedBasicIdentityVerification: hasCompletedBasicIdentityVerification(state),
     hasCompletedAdvancedIdentityVerification: hasCompletedAdvancedIdentityVerification(state),
     isPurchaseLimitIncreaseAllowed: isLimitIncreaseAllowed(state),
     dailyLimits: getCustomerDailyLimits(state),

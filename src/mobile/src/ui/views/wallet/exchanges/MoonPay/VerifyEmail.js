@@ -3,7 +3,7 @@ import { withTranslation } from 'react-i18next';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import navigator from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { verifyEmailAndFetchTransactions } from 'shared-modules/actions/exchanges/MoonPay';
+import { verifyEmailAndFetchMeta } from 'shared-modules/actions/exchanges/MoonPay';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -88,7 +88,7 @@ class VerifyEmail extends React.Component {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
-        verifyEmailAndFetchTransactions: PropTypes.func.isRequired,
+        verifyEmailAndFetchMeta: PropTypes.func.isRequired,
         /** Component ID */
         componentId: PropTypes.string.isRequired,
     };
@@ -180,7 +180,7 @@ class VerifyEmail extends React.Component {
             );
         }
 
-        return this.props.verifyEmailAndFetchTransactions(this.state.securityCode);
+        return this.props.verifyEmailAndFetchMeta(this.state.securityCode);
     }
 
     render() {
@@ -277,7 +277,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
-    verifyEmailAndFetchTransactions,
+    verifyEmailAndFetchMeta,
 };
 
 export default WithUserActivity()(

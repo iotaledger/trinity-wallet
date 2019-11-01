@@ -62,6 +62,13 @@ export const MOONPAY_TERMS_OF_USE_LINK = 'https://www.moonpay.io/terms_of_use';
  */
 export const ADVANCED_IDENITY_VERIFICATION_LEVEL_NAME = 'Level 2';
 
+/**
+ * MoonPay basic identity (personal info) verification level name
+ *
+ * See: https://www.moonpay.io/api_reference/v3#retrieve_customer_limits
+ */
+export const BASIC_IDENITY_VERIFICATION_LEVEL_NAME = 'Level 1';
+
 /** MoonPay minimum transaction amount in EUR */
 export const MINIMUM_TRANSACTION_SIZE = 20;
 

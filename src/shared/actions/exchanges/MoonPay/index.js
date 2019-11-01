@@ -410,15 +410,15 @@ export const authenticateViaEmail = (email) => (dispatch) => {
 };
 
 /**
- * Verifies customer's email and fetch transaction history
+ * Verifies customer's email and fetch meta (transactions, purchase limits, exchange rates)
  *
- * @method verifyEmailAndFetchTransactions
+ * @method verifyEmailAndFetchMeta
  *
  * @param {string} securityCode
  *
  * @returns {function}
  */
-export const verifyEmailAndFetchTransactions = (securityCode) => (dispatch, getState) => {
+export const verifyEmailAndFetchMeta = (securityCode) => (dispatch, getState) => {
     dispatch(verifyEmailRequest());
 
     api.login(getCustomerEmail(getState()), securityCode)
@@ -426,18 +426,20 @@ export const verifyEmailAndFetchTransactions = (securityCode) => (dispatch, getS
             const { currencies } = getState().exchanges.moonpay;
             const { defaultCurrencyId } = data.customer;
 
-            dispatch(
-                updateCustomerInfo(
-                    assign({}, data.customer, {
-                        defaultCurrencyCode: toUpper(
-                            get(find(currencies, (currency) => currency.id === defaultCurrencyId), 'code'),
-                        ),
-                        purchaseLimits: {},
-                    }),
-                ),
-            );
+            return api.fetchCustomerPurchaseLimits().then((purchaseLimits) => {
+                dispatch(
+                    updateCustomerInfo(
+                        assign({}, data.customer, {
+                            defaultCurrencyCode: toUpper(
+                                get(find(currencies, (currency) => currency.id === defaultCurrencyId), 'code'),
+                            ),
+                            purchaseLimits,
+                        }),
+                    ),
+                );
 
-            return api.fetchExchangeRates(IOTA_CURRENCY_CODE);
+                return api.fetchExchangeRates(IOTA_CURRENCY_CODE);
+            });
         })
         .then((exchangeRates) => {
             dispatch(setIotaExchangeRates(exchangeRates));
