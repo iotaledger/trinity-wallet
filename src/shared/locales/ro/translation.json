@@ -620,7 +620,7 @@
         "didSaveSeed": "Ți-ai făcut copie de siguranță seed-ului?",
         "iHaveBackedUp": "Am facut copie de siguranță seed-ului",
         "reenterSeed": "La pasul următor va trebui să-ți reintroduci seed-ul.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
+        "reenterSeedWarning": "Dacă nu ai făcut o copie de siguranță seed-ului și dispozitivul se strică, o să pierzi IOTA-ul.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
     "walletResetConfirmation": {
