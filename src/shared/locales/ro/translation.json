@@ -515,17 +515,17 @@
         "nodeForPow": "Nodul dovezii de lucru"
     },
     "addCustomNode": {
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNode": "Custom node",
-        "removeCustomNode": "Remove custom node",
+        "customNodeCouldNotBeAdded": "Nodul personalizat nu a putut fi adăugat",
+        "customNode": "Nod personalizat",
+        "removeCustomNode": "Șterge nod personalizat",
         "invalidNodeResponse": "Nodul a returnat un răspuns nevalid",
-        "add": "Add",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node.",
-        "invalidURL": "Please enter a valid URL.",
-        "addAuthKey": "Add auth key",
-        "username": "Username",
-        "couldNotRemove": "Could not remove custom node",
+        "add": "Adaugă",
+        "nodeFieldEmpty": "Câmpul textului este gol",
+        "nodeFieldEmptyExplanation": "Te rog introdu un nod personalizat.",
+        "invalidURL": "Te rog introdu un URL valid.",
+        "addAuthKey": "Adaugă cheia de autentificare",
+        "username": "Nume de utilizator",
+        "couldNotRemove": "Nu s-a putut elimina nodul personalizat",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
