@@ -584,7 +584,7 @@
         "unitInfoExplanation": "IOTA-urile sunt deobicei achiziționate in multipli de un milion, dar pot fi transferați ca o singură IOTA."
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "cantSpendFullBalanceQuestion": "De ce nu pot cheltui toată balanța?",
         "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
