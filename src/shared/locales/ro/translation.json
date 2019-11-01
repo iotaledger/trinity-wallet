@@ -580,8 +580,8 @@
         "billion": "Miliard",
         "million": "Milion",
         "thousand": "Mie",
-        "one": "One",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "one": "Un",
+        "unitInfoExplanation": "IOTA-urile sunt deobicei achiziționate in multipli de un milion, dar pot fi transferați ca o singură IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
