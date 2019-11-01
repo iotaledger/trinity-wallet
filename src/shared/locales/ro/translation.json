@@ -595,15 +595,15 @@
         "enterPassword": "Introdu parola pentru a șterge acest cont."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
+        "outOfSync": "Istoricul tranzacțiilor tale arată ca și cum nu sunt sincronizate?",
+        "pressToSync": "Apasă butonul de jos pentru a sincroniza contul.",
         "thisMayTake": "This may take a while.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
-        "syncAccount": "Sync Account",
-        "syncingYourAccount": "Syncing your account."
+        "doNotClose": "Te rog notează, minimizarea aplicației va anula sincronizarea.",
+        "syncAccount": "Sincronizează Cont",
+        "syncingYourAccount": "Sincronizarea contului."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Introdu un nume de cont și seed-ul",
         "incorrectFormat": "Incorrect seed format",
         "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
