@@ -629,8 +629,8 @@
     },
     "fingerprintSetup": {
         "instructionsEnable": "Atinge cititorul de amprentă pentru a activa autentificarea cu amprentă",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
+        "instructionsDisable": "Atinge cititorul de amprentă pentru a dezactiva autentificarea cu amprentă",
+        "fingerprintAuthEnabled": "Autentificarea biometrică activată",
         "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
         "fingerprintAuthDisabled": "Biometric authentication disabled",
         "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
