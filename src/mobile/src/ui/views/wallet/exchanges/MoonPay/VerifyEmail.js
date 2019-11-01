@@ -1,12 +1,13 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
-import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { Linking, Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import navigator from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { verifyEmailAndFetchMeta } from 'shared-modules/actions/exchanges/MoonPay';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import { MOONPAY_PRIVACY_POLICY_LINK, MOONPAY_TERMS_OF_USE_LINK } from 'shared-modules/exchanges/MoonPay';
 import { getCustomerEmail } from 'shared-modules/selectors/exchanges/MoonPay';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -69,6 +70,13 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize2,
         backgroundColor: 'transparent',
         marginLeft: width / 40,
+    },
+    checkboxTextOverride: {
+        marginLeft: 0,
+    },
+    link: {
+        textDecorationLine: 'underline',
+        fontSize: Styling.fontSize2,
     },
 });
 
@@ -242,10 +250,29 @@ class VerifyEmail extends React.Component {
                             animationOutType={['slideOutLeft', 'fadeOut']}
                             delay={100}
                         >
-                            <TouchableOpacity style={styles.checkboxContainer} onPress={() => this.onCheckboxPress()}>
-                                <Image source={this.state.checkboxImage} style={styles.checkbox} />
-                                <Text style={[styles.checkboxText, textColor]}>{t('moonpay:agreeWithTerms')}</Text>
-                            </TouchableOpacity>
+                            <View style={styles.checkboxContainer}>
+                                <TouchableOpacity onPress={() => this.onCheckboxPress()}>
+                                    <Image source={this.state.checkboxImage} style={styles.checkbox} />
+                                </TouchableOpacity>
+                                <View style={styles.checkboxContainer}>
+                                    <Text style={[styles.checkboxText, textColor]}>
+                                        {t('moonpay:agreeWithMoonPay')}{' '}
+                                    </Text>
+                                    <TouchableOpacity onPress={() => Linking.openURL(MOONPAY_TERMS_OF_USE_LINK)}>
+                                        <Text style={[styles.infoTextRegular, textColor, styles.link]}>
+                                            {t('moonpay:termsOfUse')}{' '}
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <Text style={[styles.checkboxText, textColor, styles.checkboxTextOverride]}>
+                                        {t('global:and')}{' '}
+                                    </Text>
+                                    <TouchableOpacity onPress={() => Linking.openURL(MOONPAY_PRIVACY_POLICY_LINK)}>
+                                        <Text style={[styles.infoTextRegular, textColor, styles.link]}>
+                                            {t('privacyPolicy:privacyPolicy')}
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
                         </AnimatedComponent>
                         <View style={{ flex: 0.4 }} />
                     </View>

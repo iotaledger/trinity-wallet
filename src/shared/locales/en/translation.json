@@ -1,5 +1,6 @@
 {
     "global": {
+        "and": "and",
         "send": "SEND",
         "cancel": "Cancel",
         "continue?": "Are you sure you want to continue?",
@@ -263,7 +264,8 @@
         "checkInbox": "Please check your inbox to verify your email",
         "verificationCodeSent": "We've sent a verification code to {{email}}",
         "verificationCode": "VERIFICATION CODE",
-        "agreeWithTerms": "I agree with MoonPay's Terms of Use And Privacy Policy",
+        "agreeWithMoonPay": "I agree with MoonPay's",
+        "termsOfUse": "Terms of Use",
         "tellUsMore": "Tell us more about yourself",
         "cardRegistrationName": "We need the name your card is registered to",
         "cardBillingAddress": "We need a payment card billing address",

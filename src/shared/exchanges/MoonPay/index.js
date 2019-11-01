@@ -55,6 +55,9 @@ export const MOONPAY_EXTERNAL_URL = `https://buy-staging.moonpay.io?apiKey=${API
 /** MoonPay website URL for terms of use */
 export const MOONPAY_TERMS_OF_USE_LINK = 'https://www.moonpay.io/terms_of_use';
 
+/** MoonPay website URL for terms of use */
+export const MOONPAY_PRIVACY_POLICY_LINK = 'https://www.moonpay.io/privacy_policy';
+
 /**
  * MoonPay advanced identity (passport) verification level name
  *

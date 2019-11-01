@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Linking } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { fetchCountries, fetchCurrencies } from 'shared-modules/actions/exchanges/MoonPay';
-import { MOONPAY_TERMS_OF_USE_LINK } from 'shared-modules/exchanges/MoonPay';
 import { getAnimation } from 'shared-modules/animations';
 import navigator from 'libs/navigation';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
-        textAlign: 'center'
+        textAlign: 'center',
     },
 });
 
@@ -143,18 +142,6 @@ class Landing extends Component {
                                 {t('moonpay:supportExplanation')}
                             </Text>
                         </InfoBox>
-                    </AnimatedComponent>
-                    <View style={{ flex: 0.3 }} />
-                    <AnimatedComponent
-                        animationInType={['fadeIn', 'slideInRight']}
-                        animationOutType={['fadeOut', 'slideOutLeft']}
-                        delay={133}
-                    >
-                        <TouchableOpacity onPress={() => Linking.openURL(MOONPAY_TERMS_OF_USE_LINK)}>
-                            <Text style={[styles.infoTextRegular, textColor, { textDecorationLine: 'underline' }]}>
-                                {t('moonpay:termsAndConditionsApply')}
-                            </Text>
-                        </TouchableOpacity>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>
