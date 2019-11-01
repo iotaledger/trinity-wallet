@@ -621,14 +621,14 @@
         "iHaveBackedUp": "Am facut copie de siguranță seed-ului",
         "reenterSeed": "La pasul următor va trebui să-ți reintroduci seed-ul.",
         "reenterSeedWarning": "Dacă nu ai făcut o copie de siguranță seed-ului și dispozitivul se strică, o să pierzi IOTA-ul.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "pleaseConfirm": "Te rugăm să confirmi că ți-ai stocat seed-ul în siguranță."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "cannotUndo": "ACEASTA ACȚIUNE NU POATE FI ANULATĂ.",
+        "warning": "<0><0>Toate datele portofelului tău incluzănd </0><1>seed-urile, parola,</1><2> și</2><3> alte informații ale contului </3><4> vor fi pierdute.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
+        "instructionsEnable": "Atinge cititorul de amprentă pentru a activa autentificarea cu amprentă",
         "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
         "fingerprintAuthEnabled": "Biometric authentication enabled",
         "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
