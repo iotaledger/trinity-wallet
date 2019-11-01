@@ -1,11 +1,11 @@
-import assign from 'lodash/assign';
+import merge from 'lodash/merge';
 import get from 'lodash/get';
 import find from 'lodash/find';
 import toUpper from 'lodash/toUpper';
 import { MoonPayExchangeActionTypes } from '../../../types';
 import { generateAlert } from '../../alerts';
 import api, { IOTA_CURRENCY_CODE, MOONPAY_RETURN_URL } from '../../../exchanges/MoonPay';
-import { getCustomerEmail, getPaymentCardId } from '../../../selectors/exchanges/MoonPay';
+import { getCustomerEmail, getPaymentCardId, getCustomerCountryCode } from '../../../selectors/exchanges/MoonPay';
 import { __DEV__ } from '../../../config';
 import i18next from '../../../libs/i18next';
 
@@ -429,10 +429,13 @@ export const verifyEmailAndFetchMeta = (securityCode) => (dispatch, getState) =>
             return api.fetchCustomerPurchaseLimits().then((purchaseLimits) => {
                 dispatch(
                     updateCustomerInfo(
-                        assign({}, data.customer, {
+                        merge({}, data.customer, {
                             defaultCurrencyCode: toUpper(
                                 get(find(currencies, (currency) => currency.id === defaultCurrencyId), 'code'),
                             ),
+                            address: {
+                                country: getCustomerCountryCode(getState()),
+                            },
                             purchaseLimits,
                         }),
                     ),
@@ -472,13 +475,24 @@ export const verifyEmailAndFetchMeta = (securityCode) => (dispatch, getState) =>
  *
  * @returns {function}
  */
-export const updateCustomer = (info) => (dispatch) => {
+export const updateCustomer = (info) => (dispatch, getState) => {
     dispatch(updateCustomerRequest());
 
     api.updateUserInfo(info)
         .then((data) => {
             return api.fetchCustomerPurchaseLimits().then((purchaseLimits) => {
-                dispatch(updateCustomerInfo(assign({}, data, { purchaseLimits })));
+                dispatch(
+                    updateCustomerInfo(
+                        merge({}, data, {
+                            address: {
+                                country: get(info, 'address.country')
+                                    ? get(data, 'address.country')
+                                    : getCustomerCountryCode(getState()),
+                            },
+                            purchaseLimits,
+                        }),
+                    ),
+                );
                 dispatch(updateCustomerSuccess());
             });
         })

@@ -33,7 +33,11 @@ const initialState = {
     /**
      * Stores customer information e.g., email, DOB
      */
-    customer: {},
+    customer: {
+        address: {
+            country: null,
+        },
+    },
     /**
      * Stores payment card info
      */

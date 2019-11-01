@@ -1,6 +1,7 @@
 import head from 'lodash/head';
 import get from 'lodash/get';
 import filter from 'lodash/filter';
+import includes from 'lodash/includes';
 import find from 'lodash/find';
 import sortBy from 'lodash/sortBy';
 import size from 'lodash/size';
@@ -8,6 +9,7 @@ import { createSelector } from 'reselect';
 import {
     BASIC_IDENITY_VERIFICATION_LEVEL_NAME,
     ADVANCED_IDENITY_VERIFICATION_LEVEL_NAME,
+    COUNTRY_CODES_REQUIRING_STATE,
 } from '../../../exchanges/MoonPay';
 
 /**
@@ -90,6 +92,42 @@ export const getCustomerEmail = createSelector(
         const customer = exchanges.moonpay.customer;
 
         return get(customer, 'email') || '';
+    },
+);
+
+/**
+ * Selects customer country code from state
+ *
+ * @method getCustomerCountryCode
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getCustomerCountryCode = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
+
+        return get(customer, 'address.country');
+    },
+);
+
+/**
+ * Determines whether state should be taken as input from user
+ *
+ * @method shouldRequireStateInput
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const shouldRequireStateInput = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
+
+        return includes(COUNTRY_CODES_REQUIRING_STATE, get(customer, 'address.country'));
     },
 );
 

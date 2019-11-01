@@ -303,6 +303,8 @@
         "invalidCityExplanation": "Please enter a valid city",
         "invalidZipCode": "Invalid zip code",
         "invalidZipCodeExplanation": "Please enter a valid zip code",
+        "invalidState": "Invalid state",
+        "invalidStateExplanation": "Please enter a valid state",
         "somethingWentWrongProcessingCardInfo": "Something went wrong while processing your card information. Please try again.",
         "notEnoughAmount": "Not enough amount",
         "notEnoughAmountExplanation": "Minimum transaction amount is {{amount}}",
@@ -334,7 +336,9 @@
         "updateCustomerError": "Error updating user details",
         "updateCustomerErrorExplanation": "An unknown error has occurred updating user details. Please try again.",
         "transactionCreationError": "Error creating transaction",
-        "transactionCreationErrorExplanation": "There was a problem sending your transaction. Please try again."
+        "transactionCreationErrorExplanation": "There was a problem sending your transaction. Please try again.",
+        "selectCountry": "Select Country",
+        "state": "STATE"
     },
     "home": {
         "balance": "BALANCE",

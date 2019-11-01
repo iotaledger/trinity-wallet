@@ -12,6 +12,10 @@ import { getAccountInfo, getFullAccountInfo } from 'shared-modules/actions/accou
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/marketData';
+import {
+    fetchCountries as fetchMoonPayCountries,
+    fetchCurrencies as fetchMoonPayCurrencies,
+} from 'shared-modules/actions/exchanges/MoonPay';
 import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
@@ -122,6 +126,10 @@ class Loading extends Component {
         deepLinkRequestActive: PropTypes.bool.isRequired,
         /** @ignore */
         setLoginRoute: PropTypes.func.isRequired,
+        /** @ignore */
+        fetchMoonPayCountries: PropTypes.func.isRequired,
+        /** @ignore */
+        fetchMoonPayCurrencies: PropTypes.func.isRequired,
         /** All stored account names */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
@@ -225,6 +233,9 @@ class Loading extends Component {
         this.props.getChartData();
         this.props.getMarketData();
         this.props.getCurrencyData(currency);
+
+        this.props.fetchMoonPayCountries();
+        this.props.fetchMoonPayCurrencies();
     }
 
     animateElipses = (chars, index, time = 750) => {
@@ -369,6 +380,8 @@ const mapDispatchToProps = {
     getChartData,
     getCurrencyData,
     setLoginRoute,
+    fetchMoonPayCountries,
+    fetchMoonPayCurrencies,
 };
 
 export default withTranslation(['loading', 'global'])(

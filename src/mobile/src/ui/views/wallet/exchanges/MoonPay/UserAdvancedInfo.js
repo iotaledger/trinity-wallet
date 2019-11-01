@@ -1,8 +1,3 @@
-import get from 'lodash/get';
-import head from 'lodash/head';
-import filter from 'lodash/filter';
-import find from 'lodash/find';
-import map from 'lodash/map';
 import isNull from 'lodash/isNull';
 import React from 'react';
 import { withTranslation } from 'react-i18next';
@@ -21,10 +16,10 @@ import {
     getDefaultCurrencyCode,
     getCustomerDailyLimits,
     getCustomerMonthlyLimits,
+    shouldRequireStateInput,
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import DropdownComponent from 'ui/components/Dropdown';
 import InfoBox from 'ui/components/InfoBox';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
@@ -77,8 +72,6 @@ class UserAdvancedInfo extends React.Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        countries: PropTypes.array.isRequired,
-        /** @ignore */
         isUpdatingCustomer: PropTypes.bool.isRequired,
         /** @ignore */
         hasErrorUpdatingCustomer: PropTypes.bool.isRequired,
@@ -90,6 +83,8 @@ class UserAdvancedInfo extends React.Component {
         country: PropTypes.string,
         /** @ignore */
         zipCode: PropTypes.string,
+        /** @ignore */
+        state: PropTypes.string,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -114,26 +109,18 @@ class UserAdvancedInfo extends React.Component {
         monthlyLimits: PropTypes.object.isRequired,
         /** @ignore */
         defaultCurrencyCode: PropTypes.string.isRequired,
+        /** @ignore */
+        shouldRequireStateInput: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
         super(props);
 
-        const allowedCountries = filter(props.countries, (country) => country.isAllowed);
-
         this.state = {
             address: isNull(props.address) ? '' : props.address,
             city: isNull(props.city) ? '' : props.city,
-            country: isNull(props.country)
-                ? {
-                      name: get(head(allowedCountries), 'name'),
-                      alpha3: get(head(allowedCountries), 'alpha3'),
-                  }
-                : {
-                      name: get(find(props.countries, { alpha3: props.country }), 'name'),
-                      alpha3: props.country,
-                  },
             zipCode: isNull(props.zipCode) ? '' : props.zipCode,
+            state: isNull(props.state) ? '' : props.state,
         };
     }
 
@@ -198,7 +185,7 @@ class UserAdvancedInfo extends React.Component {
      * @returns {function}
      */
     updateCustomer() {
-        const { t } = this.props;
+        const { shouldRequireStateInput, country, t } = this.props;
 
         if (!this.state.address) {
             return this.props.generateAlert(
@@ -206,6 +193,10 @@ class UserAdvancedInfo extends React.Component {
                 t('moonpay:invalidAddress'),
                 t('moonpay:invalidAddressExplanation'),
             );
+        }
+
+        if (shouldRequireStateInput && !this.state.state) {
+            return this.props.generateAlert('error', t('moonpay:invalidState'), t('moonpay:invalidStateExplanation'));
         }
 
         if (!this.state.city) {
@@ -222,17 +213,105 @@ class UserAdvancedInfo extends React.Component {
 
         return this.props.updateCustomer({
             address: {
+                country,
                 street: this.state.address,
                 town: this.state.city,
-                country: this.state.country.alpha3,
                 postCode: this.state.zipCode,
+                ...(shouldRequireStateInput && { state: this.state.state }),
             },
         });
     }
 
+    renderTextField(label, value, restProps) {
+        const { theme } = this.props;
+
+        return (
+            <AnimatedComponent
+                animationInType={['slideInRight', 'fadeIn']}
+                animationOutType={['slideOutLeft', 'fadeOut']}
+                delay={240}
+            >
+                <CustomTextInput
+                    label={label}
+                    theme={theme}
+                    autoCorrect={false}
+                    enablesReturnKeyAutomatically
+                    returnKeyType="done"
+                    value={value}
+                    {...restProps}
+                />
+            </AnimatedComponent>
+        );
+    }
+
+    renderTextFields() {
+        const { shouldRequireStateInput, t } = this.props;
+
+        if (shouldRequireStateInput) {
+            return (
+                <View style={{ flex: 1 }}>
+                    <View style={{ flex: 0.6 }} />
+                    {this.renderTextField(t('moonpay:address'), this.state.address, {
+                        onValidTextChange: (address) => this.setState({ address }),
+                    })}
+                    <View style={{ flex: 0.6 }} />
+                    {this.renderTextField(t('moonpay:state'), this.state.state, {
+                        onValidTextChange: (state) => this.setState({ state }),
+                    })}
+                    <View style={{ flex: 0.6 }} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={160}
+                    >
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                alignItems: 'flex-start',
+                                width,
+                                justifyContent: 'space-around',
+                            }}
+                        >
+                            {this.renderTextField(t('moonpay:city'), this.state.city, {
+                                onValidTextChange: (city) => this.setState({ city }),
+                                containerStyle: {
+                                    width: isIPhoneX ? width / 2.33 : width / 2.66,
+                                },
+                            })}
+                            {this.renderTextField(t('moonpay:zipCode'), this.state.zipCode, {
+                                onValidTextChange: (zipCode) => this.setState({ zipCode }),
+                                containerStyle: {
+                                    width: isIPhoneX ? width / 2.33 : width / 2.66,
+                                },
+                            })}
+                        </View>
+                    </AnimatedComponent>
+                    <View style={{ flex: 0.6 }} />
+                </View>
+            );
+        }
+
+        return (
+            <View style={{ flex: 1 }}>
+                <View style={{ flex: 0.6 }} />
+                {this.renderTextField(t('moonpay:address'), this.state.address, {
+                    onValidTextChange: (address) => this.setState({ address }),
+                })}
+                <View style={{ flex: 0.6 }} />
+                {this.renderTextField(t('moonpay:city'), this.state.city, {
+                    onValidTextChange: (city) => this.setState({ city }),
+                })}
+                <View style={{ flex: 0.6 }} />
+                {this.renderTextField(t('moonpay:zipCode'), this.state.zipCode, {
+                    onValidTextChange: (zipCode) => this.setState({ zipCode }),
+                })}
+                <View style={{ flex: 0.6 }} />
+            </View>
+        );
+    }
+
     render() {
-        const { countries, t, theme, isUpdatingCustomer } = this.props;
-        const countryNames = map(filter(countries, (country) => country.isAllowed), (country) => country.name);
+        const { t, theme, isUpdatingCustomer } = this.props;
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
@@ -266,88 +345,7 @@ class UserAdvancedInfo extends React.Component {
                                 </Text>
                             </InfoBox>
                         </AnimatedComponent>
-                        <View style={{ flex: 0.6 }} />
-                        <AnimatedComponent
-                            animationInType={['slideInRight', 'fadeIn']}
-                            animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={240}
-                        >
-                            <CustomTextInput
-                                label={t('moonpay:address')}
-                                onValidTextChange={(address) => this.setState({ address })}
-                                theme={theme}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="done"
-                                value={this.state.address}
-                                testID="enterSeed-seedbox"
-                            />
-                        </AnimatedComponent>
-                        <View style={{ flex: 0.6 }} />
-                        <AnimatedComponent
-                            animationInType={['slideInRight', 'fadeIn']}
-                            animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={160}
-                        >
-                            <View
-                                style={{
-                                    flexDirection: 'row',
-                                }}
-                            >
-                                <CustomTextInput
-                                    containerStyle={{
-                                        width: isIPhoneX ? width / 2.33 : width / 2.5,
-                                        marginHorizontal: width / 30,
-                                    }}
-                                    label={t('moonpay:city')}
-                                    onValidTextChange={(city) => this.setState({ city })}
-                                    theme={theme}
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically
-                                    returnKeyType="done"
-                                    value={this.state.city}
-                                />
-                                <CustomTextInput
-                                    containerStyle={{
-                                        width: isIPhoneX ? width / 2.33 : width / 2.5,
-                                        marginHorizontal: width / 30,
-                                    }}
-                                    label={t('moonpay:zipCode')}
-                                    onValidTextChange={(zipCode) => this.setState({ zipCode })}
-                                    theme={theme}
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically
-                                    returnKeyType="done"
-                                    value={this.state.zipCode}
-                                />
-                            </View>
-                        </AnimatedComponent>
-                        <View style={{ flex: 0.6 }} />
-                        <AnimatedComponent
-                            animationInType={['slideInRight', 'fadeIn']}
-                            animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={80}
-                        >
-                            <DropdownComponent
-                                onRef={(c) => {
-                                    this.dropdown = c;
-                                }}
-                                dropdownWidth={{ width: isIPhoneX ? width / 1.1 : width / 1.2 }}
-                                value={this.state.country.name}
-                                options={countryNames}
-                                saveSelection={(name) => {
-                                    const country = find(countries, { name });
-
-                                    this.setState({
-                                        country: {
-                                            name: country.name,
-                                            alpha3: country.alpha3,
-                                        },
-                                    });
-                                }}
-                            />
-                        </AnimatedComponent>
-                        <View style={{ flex: 0.6 }} />
+                        {this.renderTextFields()}
                     </View>
                     <View style={styles.bottomContainer}>
                         <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
@@ -370,13 +368,13 @@ class UserAdvancedInfo extends React.Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
-    countries: state.exchanges.moonpay.countries,
     isUpdatingCustomer: state.exchanges.moonpay.isUpdatingCustomer,
     hasErrorUpdatingCustomer: state.exchanges.moonpay.hasErrorUpdatingCustomer,
     address: state.exchanges.moonpay.customer.address.street,
     city: state.exchanges.moonpay.customer.address.town,
     country: state.exchanges.moonpay.customer.address.country,
     zipCode: state.exchanges.moonpay.customer.address.postCode,
+    state: state.exchanges.moonpay.customer.address.state,
     amount: state.exchanges.moonpay.amount,
     denomination: state.exchanges.moonpay.denomination,
     exchangeRates: state.exchanges.moonpay.exchangeRates,
@@ -386,6 +384,7 @@ const mapStateToProps = (state) => ({
     dailyLimits: getCustomerDailyLimits(state),
     monthlyLimits: getCustomerMonthlyLimits(state),
     defaultCurrencyCode: getDefaultCurrencyCode(state),
+    shouldRequireStateInput: shouldRequireStateInput(state),
 });
 
 const mapDispatchToProps = {

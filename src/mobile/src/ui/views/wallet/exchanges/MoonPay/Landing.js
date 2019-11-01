@@ -1,3 +1,9 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import map from 'lodash/map';
+import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
@@ -5,7 +11,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { fetchCountries, fetchCurrencies } from 'shared-modules/actions/exchanges/MoonPay';
+import { updateCustomerInfo } from 'shared-modules/actions/exchanges/MoonPay';
 import { getAnimation } from 'shared-modules/animations';
 import navigator from 'libs/navigation';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
@@ -14,6 +20,7 @@ import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
+import DropdownComponent from 'ui/components/Dropdown';
 
 const styles = StyleSheet.create({
     animation: {
@@ -64,16 +71,31 @@ class Landing extends Component {
         /** @ignore */
         themeName: PropTypes.string.isRequired,
         /** @ignore */
-        fetchCountries: PropTypes.func.isRequired,
+        countries: PropTypes.array.isRequired,
         /** @ignore */
-        fetchCurrencies: PropTypes.func.isRequired,
+        country: PropTypes.string,
         /** Component ID */
         componentId: PropTypes.string.isRequired,
+        /** @ignore */
+        updateCustomerInfo: PropTypes.func.isRequired,
     };
 
-    componentDidMount() {
-        this.props.fetchCountries();
-        this.props.fetchCurrencies();
+    constructor(props) {
+        super(props);
+
+        const allowedCountries = filter(props.countries, (country) => country.isAllowed);
+
+        this.state = {
+            country: isNull(props.country)
+                ? {
+                      name: get(head(allowedCountries), 'name'),
+                      alpha3: get(head(allowedCountries), 'alpha3'),
+                  }
+                : {
+                      name: get(find(props.countries, { alpha3: props.country }), 'name'),
+                      alpha3: props.country,
+                  },
+        };
     }
 
     /**
@@ -98,8 +120,10 @@ class Landing extends Component {
             t,
             theme: { body },
             themeName,
+            countries,
         } = this.props;
         const textColor = { color: body.color };
+        const countryNames = map(filter(countries, (country) => country.isAllowed), (country) => country.name);
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -143,12 +167,45 @@ class Landing extends Component {
                             </Text>
                         </InfoBox>
                     </AnimatedComponent>
+                    <View style={{ flex: 0.4 }} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={80}
+                    >
+                        <DropdownComponent
+                            title={t('moonpay:selectCountry')}
+                            onRef={(c) => {
+                                this.dropdown = c;
+                            }}
+                            value={this.state.country.name}
+                            options={countryNames}
+                            saveSelection={(name) => {
+                                const country = find(countries, { name });
+
+                                this.setState({
+                                    country: {
+                                        name: country.name,
+                                        alpha3: country.alpha3,
+                                    },
+                                });
+                            }}
+                        />
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
                             onLeftButtonPress={() => this.goBack()}
-                            onRightButtonPress={() => this.redirectToScreen('setupEmail')}
+                            onRightButtonPress={() => {
+                                this.props.updateCustomerInfo({
+                                    address: {
+                                        country: this.state.country.alpha3,
+                                    },
+                                });
+
+                                this.redirectToScreen('setupEmail');
+                            }}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:continue')}
                             leftButtonTestID="moonpay-back-to-home"
@@ -164,11 +221,12 @@ class Landing extends Component {
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     themeName: state.settings.themeName,
+    countries: state.exchanges.moonpay.countries,
+    country: state.exchanges.moonpay.customer.address.country,
 });
 
 const mapDispatchToProps = {
-    fetchCountries,
-    fetchCurrencies,
+    updateCustomerInfo,
 };
 
 export default withTranslation()(

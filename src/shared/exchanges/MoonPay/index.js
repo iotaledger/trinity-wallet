@@ -81,4 +81,11 @@ export const ALLOWED_IOTA_DENOMINATIONS = ['Mi'];
 /** MoonPay fallback fiat currency. Will display purchase amount in this format if denomination is in Miota */
 export const DEFAULT_FIAT_CURRENCY = 'USD';
 
+/**
+ * Alpha3 country codes for countries that require "state" input from user
+ *
+ * See: https://www.moonpay.io/api_reference/v3#migration_guide
+ */
+export const COUNTRY_CODES_REQUIRING_STATE = ['USA', 'CAN'];
+
 export default new MoonPayApi(API_KEY);
