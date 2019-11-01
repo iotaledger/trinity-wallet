@@ -585,11 +585,11 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "De ce nu pot cheltui toată balanța?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "spentAddressExplanation": "Dispui de fonduri pe una sau mai multe adrese folosite. Refolosirea adreselor este periculoasă în IOTA, așa că acest portofel nu îți permite să trimiți de pe aceeași adresă de mai multe ori.",
+        "discordInformation": "Te rog folosește canalul #help de pe Discord pentru a afla ce poți face."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Ești sigur că vrei să-ți ștergi contul?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "This action cannot be undone",
         "enterPassword": "Enter your password to delete this account."
