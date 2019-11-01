@@ -530,16 +530,16 @@
     },
     "addNewAccount": {
         "useExistingSeed": "Folosește seedul existent",
-        "createNewSeed": "Create new seed"
+        "createNewSeed": "Creează un seed nou"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "manualSync": "Manual sync",
-        "snapshotTransition": "Snapshot transition",
-        "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work.",
+        "selectNode": "Selectează nodul",
+        "manualSync": "Sincronizare manuală",
+        "snapshotTransition": "Tranziție snapshot",
+        "pow": "Dovadă de Lucru",
+        "autoPromotion": "Auto-promovare",
+        "autoPromotionExplanation": "Auto-promovarea ajută să îți confirmi tranzacțiile din Tangle. Activează această setare dacă ai dificultăți în confirmarea tranzacțiilor.",
+        "autoPromotionPoW": "Auto-promovarea este posibilă doar la nodurile care suportă Dovada de Lucru remote.",
         "deepLinking": "Deep linking",
         "stateExport": "State export"
     },
