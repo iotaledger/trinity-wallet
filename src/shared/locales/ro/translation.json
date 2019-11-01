@@ -611,7 +611,7 @@
         "enterPassword": "Introdu parola pentru ați vedea seed-ul.",
         "viewSeed": "Vezi Seed-ul",
         "hideSeed": "Ascunde Seed-ul",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailable": "Exportul seed-ului nu este valabil pentru tipul de cont {{accountType}}",
         "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
         "accountPage": "Your Ledger account page"
