@@ -526,10 +526,10 @@
         "addAuthKey": "Adaugă cheia de autentificare",
         "username": "Nume de utilizator",
         "couldNotRemove": "Nu s-a putut elimina nodul personalizat",
-        "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
+        "couldNotRemoveExplanation": "Trebuie să fie destule noduri pentru cvorum. Redu mărimea cvorumului sau activează lista de noduri remote."
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
+        "useExistingSeed": "Folosește seedul existent",
         "createNewSeed": "Create new seed"
     },
     "advancedSettings": {
