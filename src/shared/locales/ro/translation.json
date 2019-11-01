@@ -604,13 +604,13 @@
     },
     "useExistingSeed": {
         "title": "Introdu un nume de cont și seed-ul",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "incorrectFormat": "Formatul seed-ului este incorect",
+        "validSeedExplanation": "Seed-urile valide trebuie să fie de 81 de caractere și să conțină numai A-Z sau 9."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed",
+        "enterPassword": "Introdu parola pentru ați vedea seed-ul.",
+        "viewSeed": "Vezi Seed-ul",
+        "hideSeed": "Ascunde Seed-ul",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
         "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
