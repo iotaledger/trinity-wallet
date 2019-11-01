@@ -646,14 +646,14 @@
         "buttonInstructionsEnable": "Apasă butonul de jos pentru a activa autentificarea cu amprentă.",
         "buttonInstructionsDisableIPhoneX": "Apasă butonul de jos pentru a dezactiva Face ID",
         "buttonInstructionsEnableIPhoneX": "Apasă butonul de jos pentru a activa Face ID",
-        "instructionsLogin": "Touch fingerprint reader to log in",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "instructionsLogin": "Atinge cititorul de amprentă pentru a te autentifica",
+        "systemCancelledAuth": "Autentificarea a fost anulată de către dispozitivul tău",
         "userCancelledAuth": "Cerere de autentificare respinsă",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "passwordFallback": "Revino la autentificarea cu parolă",
+        "noPassword": "Parola nu este setată pe dispozitiv"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "Urmează să trimiți {{contents}}",
         "aMessage": "un mesaj",
         "fromAccount": "De la {{selectedAccountName}}",
         "toAddress": "Către adresa",
@@ -666,7 +666,7 @@
         "seedVaultWarning": "Asigurați-vă că vă salvați copia de rezervă în mai multe locații ( de ex. hard, cloud, USB). Dacă vă pierdeți acest fișier și nu aveți depozitat seed-ul dumneavoastră nicăieri, vă veți pierde toate monedele.",
         "exportFail": "Export SeedVault eșuat",
         "exportFailExplanation": "A fost o problemă cu exportul SeedVault-ului. Vă rugăm să vă asigurați că aveți permisiunea necesară și spațiul necesar.",
-        "exportSuccess": "SeedVault exported",
+        "exportSuccess": "SeedVault-ul exportat",
         "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
         "unrecognisedKey": "Unrecognised SeedVault Key",
         "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
