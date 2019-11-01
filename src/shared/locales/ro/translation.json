@@ -540,25 +540,25 @@
         "autoPromotion": "Auto-promovare",
         "autoPromotionExplanation": "Auto-promovarea ajută să îți confirmi tranzacțiile din Tangle. Activează această setare dacă ai dificultăți în confirmarea tranzacțiilor.",
         "autoPromotionPoW": "Auto-promovarea este posibilă doar la nodurile care suportă Dovada de Lucru remote.",
-        "deepLinking": "Deep linking",
-        "stateExport": "State export"
+        "deepLinking": "Legătură către alt site",
+        "stateExport": "Exportarea stării"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Fundal",
+        "frame": "Cadru"
     },
     "themeCustomisation": {
         "theme": "Temă",
-        "mockup": "Mockup"
+        "mockup": "Machetă"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
+        "classic": "Clasic",
+        "contemporary": "Contemporan",
+        "dark": "Închis",
+        "default": "Implicit",
         "electric": "Electric",
         "ionic": "Ionic",
-        "light": "Light",
+        "light": "Deschisă",
         "lucky": "Norocos",
         "mint": "Mentă",
         "steelblue": "Oțel Albastru"
