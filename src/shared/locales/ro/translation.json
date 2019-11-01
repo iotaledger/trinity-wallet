@@ -509,10 +509,10 @@
         "nodeEnoughNodesExplanation": "Nu există destule noduri pentru a activa cvorum-ul.",
         "nodeEnoughNodesExplanationCustomNodes": "Adaugă mai multe noduri personalizate sau activează lista de noduri remote.",
         "nodeSettingsUpdatedTitle": "Setările nodului actualizate",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "nodeSettingsUpdatedExplanation": "Ai actualizat cu succes setările nodului tău.",
+        "outsourcePow": "Externalizează dovada de lucru",
+        "autoSelectPowNode": "Autoselectează nodul dovezii de lucru",
+        "nodeForPow": "Nodul dovezii de lucru"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
