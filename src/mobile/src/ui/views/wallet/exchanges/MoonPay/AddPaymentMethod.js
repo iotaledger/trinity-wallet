@@ -13,10 +13,22 @@ import { API_KEY } from 'shared-modules/exchanges/MoonPay';
 import { height, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { isIPhoneX } from 'libs/device';
-import { getCustomerAddress } from 'shared-modules/selectors/exchanges/MoonPay';
+import { getCustomerAddress, getCustomerId } from 'shared-modules/selectors/exchanges/MoonPay';
 import { parse } from 'shared-modules/libs/utils';
 
-const renderHtml = (theme, t, address) => {
+/**
+ * Renders html for webview
+ *
+ * @method renderHtml
+ *
+ * @param {object} theme
+ * @param {function} t
+ * @param {object} customerAddress
+ * @param {string} customerId
+ *
+ * @returns {string}
+ */
+const renderHtml = (theme, t, customerAddress, customerId) => {
     return `
   <!DOCTYPE html>
   <html lang="en">
@@ -254,7 +266,8 @@ const renderHtml = (theme, t, address) => {
     }));
   }
 
-    moonpay.initialize("${API_KEY}");
+    moonpay.initialize("${API_KEY}", "${customerId}");
+
     moonpay.trackPageView();
 
     var isFormValid = false;
@@ -323,12 +336,12 @@ const renderHtml = (theme, t, address) => {
         document.getElementsByClassName('button-right')[0].innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
         form.submit(
             {
-                street: '${address.street}',
-                subStreet: '${address.subStreet}',
-                town: '${address.town}',
-                postCode: '${address.postCode}',
-                state: '${address.state}',
-                country: '${address.country}',
+                street: '${customerAddress.street}',
+                subStreet: '${customerAddress.subStreet}',
+                town: '${customerAddress.town}',
+                postCode: '${customerAddress.postCode}',
+                state: '${customerAddress.state}',
+                country: '${customerAddress.country}',
             },
             function(status, data) {
                 document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
@@ -389,6 +402,8 @@ class AddPaymentMethod extends PureComponent {
         setPaymentCardInfo: PropTypes.func.isRequired,
         /** Component ID */
         componentId: PropTypes.string.isRequired,
+        /** @ignore */
+        customerId: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -467,7 +482,7 @@ class AddPaymentMethod extends PureComponent {
     }
 
     render() {
-        const { address, theme, t } = this.props;
+        const { address, customerId, theme, t } = this.props;
 
         return (
             <View style={{ flex: 1, backgroundColor: theme.body.bg }}>
@@ -476,7 +491,7 @@ class AddPaymentMethod extends PureComponent {
                     javaScriptEnabled
                     scalesPageToFit
                     style={this.state.loaded || { flex: 0, height: 0, opacity: 0 }}
-                    source={{ html: renderHtml(theme, t, address) }}
+                    source={{ html: renderHtml(theme, t, address, customerId) }}
                     onMessage={this.onMessage}
                     onLoad={() => {
                         this.setState({ loaded: true });
@@ -491,6 +506,7 @@ class AddPaymentMethod extends PureComponent {
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     address: getCustomerAddress(state),
+    customerId: getCustomerId(state),
 });
 
 const mapDispatchToProps = {

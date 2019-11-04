@@ -96,6 +96,24 @@ export const getCustomerEmail = createSelector(
 );
 
 /**
+ * Selects customer id from state
+ *
+ * @method getCustomerId
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getCustomerId = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
+
+        return get(customer, 'id');
+    },
+);
+
+/**
  * Selects customer country code from state
  *
  * @method getCustomerCountryCode
