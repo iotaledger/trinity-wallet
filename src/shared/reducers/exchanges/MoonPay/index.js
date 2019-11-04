@@ -9,7 +9,7 @@ const initialState = {
     /**
      * Active denomination on MoonPay purchase screen
      */
-    denomination: 'Mi',
+    denomination: 'EUR',
     /**
      * MoonPay supported currencies
      */
