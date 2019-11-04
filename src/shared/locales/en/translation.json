@@ -327,7 +327,7 @@
         "invalidExpiryDateExplanation": "Please enter a valid expiry date",
         "waitForCurrencyQuote": "Fetching latest MoonPay fee. Please wait.",
         "confirmIdentity": "We need to confirm your identity",
-        "confirmIdentityExplanation": "Your purchase exceeds the monthly limit of {{limitBracket}}. In order to continue your purchase you will need to confirm your identity (KYC).",
+        "confirmIdentityExplanation": "Your purchase exceeds the monthly limit of {{amount}}. In order to continue your purchase you will need to confirm your identity (KYC).",
         "moonpayRedirect": "You will now be navigated to Moonpay to complete the KYC process and continue with your purchase.",
         "authenticateEmailError": "Error authenticating email",
         "authenticateEmailErrorExplanation": "There was an error authenticating your email address. Please try again.",
