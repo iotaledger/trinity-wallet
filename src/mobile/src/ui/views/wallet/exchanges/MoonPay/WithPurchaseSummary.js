@@ -312,9 +312,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                             delay={100}
                         >
                             <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextLight, textColor]}>
-                                    {t('moonpay:cardExpiry', { brand: 'Visa' })}
-                                </Text>
+                                <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:cardExpiry')}</Text>
                                 <Text style={[styles.infoTextLight, textColor]}>{expiryInfo}</Text>
                             </View>
                         </AnimatedComponent>
