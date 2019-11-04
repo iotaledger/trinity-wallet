@@ -40,7 +40,7 @@ export const IOTA_CURRENCY_CODE = 'miota';
  *
  * See: https://www.moonpay.io/api_reference/v3#transaction_object
  */
-export const MOONPAY_RETURN_URL = 'iota://';
+export const MOONPAY_RETURN_URL = 'iota://moonpay-purchase-complete';
 
 /**
  * The URL provided to you, when required, to which to redirect the customer as part of a redirect authentication flow.

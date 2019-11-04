@@ -315,7 +315,7 @@
         "expirationDate": "EXPIRATION DATE",
         "minimumTransactionAmount": "The minimum transaction amount is {{amount}}.",
         "purchaseComplete": "Purchase complete",
-        "transactionMayTakeAFewMinutes": "Your transaction may take a few minutes",
+        "transactionMayTakeAFewMinutes": "Your transaction may take a few minutes. Check your email for updates.",
         "limitExceeded": "Limit Exceeded :(",
         "limitExceededExplanation": "Unfortunately you have exceeded your Moonpay purchase limit. You may only purchase {{amount}} of IOTA per {{limitBracket}}.",
         "limitResetExplanation": "Your limit will reset at {{time}} on {{date}}",
