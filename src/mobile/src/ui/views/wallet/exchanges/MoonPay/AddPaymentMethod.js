@@ -6,7 +6,7 @@ import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { WebView } from 'react-native-webview';
-import { setPaymentCardInfo } from 'shared-modules/actions/exchanges/MoonPay';
+import { createPaymentCard } from 'shared-modules/actions/exchanges/MoonPay';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { API_KEY } from 'shared-modules/exchanges/MoonPay';
@@ -266,6 +266,18 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
     }));
   }
 
+  window.addEventListener('message', function(event) {
+    if (event.data === 'cardCreationSuccessful' || 'cardCreationUnsuccessful') {
+      setTimeout(function() {
+        document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
+      }, 1000);
+
+      window.ReactNativeWebView.postMessage(JSON.stringify({
+        type: event.data,
+      }));
+    }
+  });
+
     moonpay.initialize("${API_KEY}", "${customerId}");
 
     moonpay.trackPageView();
@@ -334,6 +346,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
       
       if (isFormValid) {
         document.getElementsByClassName('button-right')[0].innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
+
         form.submit(
             {
                 street: '${customerAddress.street}',
@@ -344,7 +357,6 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
                 country: '${customerAddress.country}',
             },
             function(status, data) {
-                document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
                 if (status.toString().startsWith('2')) {
                     window.ReactNativeWebView.postMessage(
                         JSON.stringify({
@@ -399,11 +411,15 @@ class AddPaymentMethod extends PureComponent {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
-        setPaymentCardInfo: PropTypes.func.isRequired,
+        createPaymentCard: PropTypes.func.isRequired,
         /** Component ID */
         componentId: PropTypes.string.isRequired,
         /** @ignore */
         customerId: PropTypes.string.isRequired,
+        /** @ignore */
+        isCreatingPaymentCard: PropTypes.bool.isRequired,
+        /** @ignore */
+        hasErrorCreatingPaymentCard: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -414,6 +430,14 @@ class AddPaymentMethod extends PureComponent {
         this.state = {
             loaded: false,
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.isCreatingPaymentCard && !nextProps.isCreatingPaymentCard) {
+            this.webView.postMessage(
+                !nextProps.hasErrorCreatingPaymentCard ? 'cardCreationSuccessful' : 'cardCreationUnsuccessful',
+            );
+        }
     }
 
     /**
@@ -433,8 +457,7 @@ class AddPaymentMethod extends PureComponent {
         const type = get(message, 'type');
 
         if (type === 'success') {
-            this.props.setPaymentCardInfo(get(message, 'data'));
-            this.redirectToScreen('reviewPurchase');
+            this.props.createPaymentCard(get(message, 'data.id'));
         } else if (type === 'error') {
             this.props.generateAlert(
                 'error',
@@ -461,6 +484,14 @@ class AddPaymentMethod extends PureComponent {
             }
         } else if (type === 'back') {
             this.goBack();
+        } else if (type === 'cardCreationSuccessful') {
+            this.redirectToScreen('reviewPurchase');
+        } else if (type === 'cardCreationUnsuccessful') {
+            this.props.generateAlert(
+                'error',
+                t('moonpay:paymentCardCreationError'),
+                t('moonpay:paymentCardCreationErrorExplanation'),
+            );
         }
     }
 
@@ -487,6 +518,7 @@ class AddPaymentMethod extends PureComponent {
         return (
             <View style={{ flex: 1, backgroundColor: theme.body.bg }}>
                 <WebView
+                    ref={(ref) => (this.webView = ref)}
                     hideKeyboardAccessoryView
                     javaScriptEnabled
                     scalesPageToFit
@@ -507,11 +539,13 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     address: getCustomerAddress(state),
     customerId: getCustomerId(state),
+    isCreatingPaymentCard: state.exchanges.moonpay.isCreatingPaymentCard,
+    hasErrorCreatingPaymentCard: state.exchanges.moonpay.hasErrorCreatingPaymentCard,
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    setPaymentCardInfo,
+    createPaymentCard,
 };
 
 export default withTranslation(['global'])(

@@ -17,6 +17,7 @@ import {
     getCustomerDailyLimits,
     getCustomerMonthlyLimits,
     shouldRequireStateInput,
+    hasStoredAnyPaymentCards,
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -111,6 +112,8 @@ class UserAdvancedInfo extends React.Component {
         defaultCurrencyCode: PropTypes.string.isRequired,
         /** @ignore */
         shouldRequireStateInput: PropTypes.bool.isRequired,
+        /** @ignore */
+        hasAnyPaymentCards: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -136,6 +139,7 @@ class UserAdvancedInfo extends React.Component {
                 hasCompletedAdvancedIdentityVerification,
                 dailyLimits,
                 monthlyLimits,
+                hasAnyPaymentCards,
             } = nextProps;
 
             const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
@@ -148,6 +152,8 @@ class UserAdvancedInfo extends React.Component {
                 defaultCurrencyCode,
             );
 
+            const _getPaymentMethodScreenName = () => (hasAnyPaymentCards ? 'selectPaymentCard' : 'addPaymentMethod');
+
             this.redirectToScreen(
                 hasCompletedBasicIdentityVerification &&
                     !isPurchaseLimitIncreaseAllowed &&
@@ -155,7 +161,7 @@ class UserAdvancedInfo extends React.Component {
                     (purchaseAmount > dailyLimits.dailyLimitRemaining ||
                         purchaseAmount > monthlyLimits.monthlyLimitRemaining)
                     ? 'purchaseLimitWarning'
-                    : 'addPaymentMethod',
+                    : _getPaymentMethodScreenName(),
             );
         }
     }
@@ -385,6 +391,7 @@ const mapStateToProps = (state) => ({
     monthlyLimits: getCustomerMonthlyLimits(state),
     defaultCurrencyCode: getDefaultCurrencyCode(state),
     shouldRequireStateInput: shouldRequireStateInput(state),
+    hasAnyPaymentCards: hasStoredAnyPaymentCards(state),
 });
 
 const mapDispatchToProps = {

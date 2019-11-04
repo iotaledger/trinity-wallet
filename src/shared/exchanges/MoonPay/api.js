@@ -92,6 +92,7 @@ export class MoonPayApi {
         }).then((result) => {
             if (result.csrfToken && result.token) {
                 this._csrfToken = result.csrfToken;
+
                 this._jwt = result.token;
             }
 
@@ -196,13 +197,54 @@ export class MoonPayApi {
      *
      * @method fetchTransactions
      *
-     * @param {object} transaction
-     *
      * @returns {Promise}
      */
     fetchTransactions() {
         return this._fetch(
             `${this.url}/transactions/`,
+            {
+                method: 'get',
+            },
+            true,
+        );
+    }
+
+    /**
+     * Creates new card
+     * See: https://www.moonpay.io/api_reference/v2#create_card
+     *
+     * @method createCard
+     *
+     * @param {string} tokenId
+     *
+     * @returns {Promise}
+     */
+    createPaymentCard(tokenId) {
+        return this._fetch(
+            `${this.url}/cards/`,
+            {
+                method: 'post',
+                body: {
+                    tokenId,
+                },
+            },
+            true,
+        );
+    }
+
+    /**
+     * Fetches user stored cards
+     *
+     * See: https://www.moonpay.io/api_reference/v3#list_cards
+     *
+     * @method fetchCards
+     *
+     *
+     * @returns {Promise}
+     */
+    fetchPaymentCards() {
+        return this._fetch(
+            `${this.url}/cards/`,
             {
                 method: 'get',
             },

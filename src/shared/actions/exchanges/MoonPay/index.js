@@ -1,3 +1,5 @@
+import assign from 'lodash/assign';
+import map from 'lodash/map';
 import merge from 'lodash/merge';
 import get from 'lodash/get';
 import find from 'lodash/find';
@@ -5,7 +7,7 @@ import toUpper from 'lodash/toUpper';
 import { MoonPayExchangeActionTypes } from '../../../types';
 import { generateAlert } from '../../alerts';
 import api, { IOTA_CURRENCY_CODE, MOONPAY_RETURN_URL } from '../../../exchanges/MoonPay';
-import { getCustomerEmail, getPaymentCardId, getCustomerCountryCode } from '../../../selectors/exchanges/MoonPay';
+import { getCustomerEmail, getSelectedPaymentCard, getCustomerCountryCode } from '../../../selectors/exchanges/MoonPay';
 import { __DEV__ } from '../../../config';
 import i18next from '../../../libs/i18next';
 
@@ -221,14 +223,26 @@ export const updateCustomerError = () => ({
 });
 
 /**
- * Dispatch to set payment card info
+ * Dispatch to add payment card info
  *
- * @method setPaymentCardInfo
+ * @method addPaymentCard
  *
  * @returns {{type: {string}, payload: {object} }}
  */
-export const setPaymentCardInfo = (payload) => ({
-    type: MoonPayExchangeActionTypes.SET_PAYMENT_CARD_INFO,
+export const addPaymentCard = (payload) => ({
+    type: MoonPayExchangeActionTypes.ADD_PAYMENT_CARD,
+    payload,
+});
+
+/**
+ * Dispatch to select payment card
+ *
+ * @method selectPaymentCard
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const selectPaymentCard = (payload) => ({
+    type: MoonPayExchangeActionTypes.SELECT_PAYMENT_CARD,
     payload,
 });
 
@@ -309,6 +323,40 @@ export const fetchCurrencyQuoteSuccess = () => ({
  */
 export const fetchCurrencyQuoteError = () => ({
     type: MoonPayExchangeActionTypes.CURRENCY_QUOTE_FETCH_ERROR,
+});
+
+/**
+ * Dispatch when request for create payment card is about to be made
+ *
+ * @method createPaymentCardRequest
+ *
+ * @returns {{type: {string} }}
+ */
+export const createPaymentCardRequest = () => ({
+    type: MoonPayExchangeActionTypes.CREATE_PAYMENT_CARD_REQUEST,
+});
+
+/**
+ * Dispatch when request for create payment card is successfully made
+ *
+ * @method createPaymentCardSuccess
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const createPaymentCardSuccess = (payload) => ({
+    type: MoonPayExchangeActionTypes.CREATE_PAYMENT_CARD_SUCCESS,
+    payload,
+});
+
+/**
+ * Dispatch when request for create payment card is not successful
+ *
+ * @method createPaymentCardError
+ *
+ * @returns {{type: {string} }}
+ */
+export const createPaymentCardError = () => ({
+    type: MoonPayExchangeActionTypes.CREATE_PAYMENT_CARD_ERROR,
 });
 
 /**
@@ -427,21 +475,24 @@ export const verifyEmailAndFetchMeta = (securityCode) => (dispatch, getState) =>
             const { defaultCurrencyId } = data.customer;
 
             return api.fetchCustomerPurchaseLimits().then((purchaseLimits) => {
-                dispatch(
-                    updateCustomerInfo(
-                        merge({}, data.customer, {
-                            defaultCurrencyCode: toUpper(
-                                get(find(currencies, (currency) => currency.id === defaultCurrencyId), 'code'),
-                            ),
-                            address: {
-                                country: getCustomerCountryCode(getState()),
-                            },
-                            purchaseLimits,
-                        }),
-                    ),
-                );
+                return api.fetchPaymentCards().then((paymentCards) => {
+                    dispatch(
+                        updateCustomerInfo(
+                            merge({}, data.customer, {
+                                defaultCurrencyCode: toUpper(
+                                    get(find(currencies, (currency) => currency.id === defaultCurrencyId), 'code'),
+                                ),
+                                address: {
+                                    country: getCustomerCountryCode(getState()),
+                                },
+                                purchaseLimits,
+                                paymentCards: map(paymentCards, (card) => assign({}, card, { selected: false })),
+                            }),
+                        ),
+                    );
 
-                return api.fetchExchangeRates(IOTA_CURRENCY_CODE);
+                    return api.fetchExchangeRates(IOTA_CURRENCY_CODE);
+                });
             });
         })
         .then((exchangeRates) => {
@@ -533,7 +584,7 @@ export const createTransaction = (
         walletAddress,
         extraFeePercentage,
         returnUrl,
-        tokenId: getPaymentCardId(getState()),
+        cardId: get(getSelectedPaymentCard(getState()), 'id'),
         currencyCode: IOTA_CURRENCY_CODE,
     })
         .then((data) => {
@@ -549,5 +600,29 @@ export const createTransaction = (
             );
 
             dispatch(createTransactionError());
+        });
+};
+
+/**
+ * Creates a new card
+ * See: https://www.moonpay.io/api_reference/v2#create_card
+ *
+ * @method createCard
+ *
+ * @param {tokenId} tokenId
+ *
+ * @returns {function}
+ */
+export const createPaymentCard = (tokenId) => (dispatch) => {
+    dispatch(createPaymentCardRequest());
+
+    api.createPaymentCard(tokenId)
+        .then((paymentCard) => {
+            dispatch(addPaymentCard(paymentCard));
+            dispatch(selectPaymentCard(get(paymentCard, 'id')));
+            dispatch(createPaymentCardSuccess());
+        })
+        .catch(() => {
+            dispatch(createPaymentCardError());
         });
 };
