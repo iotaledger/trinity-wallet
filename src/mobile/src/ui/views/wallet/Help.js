@@ -34,12 +34,14 @@ const styles = StyleSheet.create({
 /**
  * Advanced Settings component
  */
-class AdvancedSettings extends PureComponent {
+class Help extends PureComponent {
     static propTypes = {
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        t: PropTypes.func.isRequired
     };
 
     componentDidMount() {
@@ -58,7 +60,7 @@ class AdvancedSettings extends PureComponent {
     }
 
     render() {
-        const { theme } = this.props;
+        const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
 
         return (
@@ -67,17 +69,17 @@ class AdvancedSettings extends PureComponent {
                     <View style={{ alignItems: 'center' }}>
                         <TouchableOpacity onPress={() => Linking.openURL('https://docs.iota.org/docs/wallets/0.1/trinity/introduction/overview')}>
                             <Text style={[styles.titleText, textColor]}>
-                                Trinity Docs Site
+                                {t('help:docsSite')}
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => Linking.openURL('https://trinity.iota.org/help/')}>
                             <Text style={[styles.titleText, textColor, { paddingTop: height / 25 }]}>
-                                Common Wallet Problems
+                                {t('help:commonIssues')}
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => Linking.openURL('https://help.moonpay.io/')}>
                             <Text style={[styles.titleText, textColor, { paddingTop: height / 25 }]}>
-                                Issues Buying IOTA
+                                {t('help:buyingIOTA')}
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -98,9 +100,9 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withTranslation(['global'])(
+export default withTranslation(['global', 'help'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(AdvancedSettings),
+    )(Help),
 );

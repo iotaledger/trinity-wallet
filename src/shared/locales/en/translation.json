@@ -972,5 +972,10 @@
         "udevErrorExplanation": "Trinity could not communicate with your Ledger device. Please visit the URL below to resolve this issue.",
         "writtenDownInfoTitle": "Remember your index number",
         "writtenDownInfoExplanation": "You need your index number to restore your account in future. If you lose your index number, you will lose your IOTA. Please remember it."
+    },
+    "help": {
+        "docsSite": "Trinity Docs Site",
+        "commonIssues": "Common Wallet Issues",
+        "buyingIOTA": "Problems Buying IOTA"
     }
 }
