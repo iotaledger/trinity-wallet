@@ -9,6 +9,7 @@ import { parseAddress, ADDRESS_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
 import { isAndroid } from 'libs/device';
+import navigator from 'libs/navigation';
 
 export default () => (C) => {
     class WithDeepLinking extends Component {
@@ -38,8 +39,8 @@ export default () => (C) => {
          */
         setDeepUrl(data) {
             const { t, generateAlert, deepLinking } = this.props;
-            if (get(data, 'url') === "iota://"){
-                return;
+            if (get(data, 'url').includes('iota://moonpay-purchase-complete')){
+                return navigator.setStackRoot('purchaseComplete');
             }
             this.props.initiateDeepLinkRequest();
             if (!deepLinking) {
