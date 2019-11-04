@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import {
     getCustomerDailyLimits,
+    getCustomerMonthlyLimits,
     getMostRecentTransaction,
     getDefaultCurrencyCode,
 } from 'shared-modules/selectors/exchanges/MoonPay';
@@ -64,6 +65,8 @@ class PurchaseLimitWarning extends Component {
         /** @ignore */
         dailyLimits: PropTypes.object.isRequired,
         /** @ignore */
+        monthlyLimits: PropTypes.object.isRequired,
+        /** @ignore */
         amount: PropTypes.string.isRequired,
         /** @ignore */
         denomination: PropTypes.string.isRequired,
@@ -103,6 +106,7 @@ class PurchaseLimitWarning extends Component {
             exchangeRates,
             defaultCurrencyCode,
             dailyLimits,
+            monthlyLimits,
             mostRecentTransaction,
         } = this.props;
         const textColor = { color: body.color };
@@ -116,8 +120,9 @@ class PurchaseLimitWarning extends Component {
         );
 
         const { createdAt } = mostRecentTransaction;
-        const oneDayFromCreatedAt = moment(createdAt).add('days', 1);
-        const oneMonthFromCreatedAt = moment(createdAt).add('months', 1);
+        const oneDayFromCreatedAt = moment(createdAt).add(1, 'days');
+        const oneMonthFromCreatedAt = moment(createdAt).add(1, 'months');
+        const exceedsDaily = purchaseAmount > dailyLimits.dailyLimitRemaining && purchaseAmount < monthlyLimits.monthlyLimitRemaining;
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -141,18 +146,18 @@ class PurchaseLimitWarning extends Component {
                             <Text style={[styles.infoText, textColor]}>{t('moonpay:limitExceeded')}</Text>
                             <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 30 }]}>
                                 {t('moonpay:limitExceededExplanation', {
-                                    amount: purchaseAmount > dailyLimits.dailyLimitRemaining ? '€2000' : '€10000',
-                                    limitBracket: purchaseAmount > dailyLimits.dailyLimitRemaining ? 'day' : 'month',
+                                    amount: exceedsDaily ? '€2000' : '€10000',
+                                    limitBracket: exceedsDaily ? 'day' : 'month',
                                 })}
                             </Text>
                             <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 30 }]}>
                                 {t('moonpay:limitResetExplanation', {
                                     time:
-                                        purchaseAmount > dailyLimits.dailyLimitRemaining
+                                        exceedsDaily
                                             ? oneDayFromCreatedAt.format('hh:mm a')
                                             : oneMonthFromCreatedAt.format('hh:mm a'),
                                     date:
-                                        purchaseAmount > dailyLimits.dailyLimitRemaining
+                                        exceedsDaily
                                             ? oneDayFromCreatedAt.format('YYYY-MM-DD')
                                             : oneMonthFromCreatedAt.format('YYYY-MM-DD'),
                                 })}
@@ -180,6 +185,7 @@ class PurchaseLimitWarning extends Component {
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     dailyLimits: getCustomerDailyLimits(state),
+    monthlyLimits: getCustomerMonthlyLimits(state),
     amount: state.exchanges.moonpay.amount,
     denomination: state.exchanges.moonpay.denomination,
     exchangeRates: state.exchanges.moonpay.exchangeRates,

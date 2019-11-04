@@ -117,7 +117,7 @@ class IdentityConfirmationWarning extends Component {
                         <InfoBox>
                             <Text style={[styles.infoText, textColor]}>{t('moonpay:confirmIdentity')}</Text>
                             <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 30 }]}>
-                                {t('moonpay:confirmIdentityExplanation', { limitBracket: '€150' })}
+                                {t('moonpay:confirmIdentityExplanation', { amount: '€150' })}
                             </Text>
                             <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 30 }]}>
                                 {t('moonpay:moonpayRedirect')}
