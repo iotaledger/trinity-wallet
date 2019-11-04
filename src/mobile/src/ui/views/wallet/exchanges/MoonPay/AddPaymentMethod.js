@@ -260,6 +260,10 @@ const renderHtml = (theme, t, address) => {
     var isFormValid = false;
     var formState = {};
 
+  document.body.addEventListener('touchstart', function(e) {
+    document.activeElement.blur();
+  });
+
     const form = moonpay.createCardDetailsForm(function(state) {
       formState = state;
 
@@ -314,7 +318,7 @@ const renderHtml = (theme, t, address) => {
 
     function submit(e) {
       e.preventDefault();
-
+      
       if (isFormValid) {
         document.getElementsByClassName('button-right')[0].innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
         form.submit(
