@@ -116,8 +116,8 @@ class PurchaseLimitWarning extends Component {
         );
 
         const { createdAt } = mostRecentTransaction;
-        const oneDayFromCreatedAt = moment(createdAt).add('days', 1);
-        const oneMonthFromCreatedAt = moment(createdAt).add('months', 1);
+        const oneDayFromCreatedAt = moment(createdAt).add(1, 'days');
+        const oneMonthFromCreatedAt = moment(createdAt).add(1, 'months');
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
