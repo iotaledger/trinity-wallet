@@ -24,6 +24,7 @@ import ManualSyncComponent from 'ui/views/wallet/ManualSync';
 import ThemeCustomisation from 'ui/views/wallet/ThemeCustomisation';
 import SnapshotTransitionComponent from 'ui/views/wallet/SnapshotTransition';
 import SecuritySettings from 'ui/views/wallet/SecuritySettings';
+import Help from 'ui/views/wallet/Help';
 import SeedVaultSettings from 'ui/views/wallet/SeedVaultSettings';
 import StateExportComponent from 'ui/views/wallet/StateExport';
 import About from 'ui/views/wallet/About';
@@ -56,6 +57,7 @@ const SETTINGS_COMPONENTS = {
     about: About,
     exportSeedVault: SeedVaultSettings,
     stateExport: StateExportComponent,
+    help: Help
 };
 
 const SettingsContent = ({ component, ...props }) => {
