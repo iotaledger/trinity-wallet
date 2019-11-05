@@ -2,9 +2,10 @@ import head from 'lodash/head';
 import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+import toUpper from 'lodash/toUpper';
 import React from 'react';
 import { withTranslation } from 'react-i18next';
-import { TouchableOpacity, StyleSheet, View, Text } from 'react-native';
+import { TouchableOpacity, StyleSheet, View, Text, Image } from 'react-native';
 import navigator from 'libs/navigation';
 import { selectPaymentCard } from 'shared-modules/actions/exchanges/MoonPay';
 import PropTypes from 'prop-types';
@@ -16,11 +17,14 @@ import InfoBox from 'ui/components/InfoBox';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
-import Icon from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import DropdownComponent from 'ui/components/Dropdown';
 import { isIPhoneX } from 'libs/device';
+import whiteSelectedCircleImagePath from 'shared-modules/images/dot-circle-white.png';
+import blackSelectedCircleImagePath from 'shared-modules/images/dot-circle-black.png';
+import whiteUnselectedCircleImagePath from 'shared-modules/images/circle-white.png';
+import blackUnselectedCircleImagePath from 'shared-modules/images/circle-black.png';
 
 const styles = StyleSheet.create({
     container: {
@@ -56,11 +60,23 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    linkWrapper: {
+    optionsContainer: {
+        borderWidth: 1.2,
+        borderRadius: Styling.borderRadius,
+        width: Styling.contentWidth / 1.1,
+    },
+    rowContainer: {
+        paddingHorizontal: width / 20,
+        paddingVertical: height / 40,
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        width: isIPhoneX ? width / 1.3 : width / 1.5,
+    },
+    image: {
+        width: width / 20,
+        height: width / 20,
+    },
+    dropdownSelectedOption: {
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: Styling.fontSize4,
     },
 });
 
@@ -81,6 +97,8 @@ class SelectPaymentCard extends React.Component {
         selectPaymentCard: PropTypes.func.isRequired,
     };
 
+    static options = ['moonpay:storedPaymentCard', 'moonpay:addACreditOrDebitCard'];
+
     constructor(props) {
         super(props);
 
@@ -88,7 +106,26 @@ class SelectPaymentCard extends React.Component {
             selectedPaymentCard: isEmpty(props.selectedPaymentCard)
                 ? head(props.paymentCards)
                 : props.selectedPaymentCard,
+            selectedOptionIndex: 0,
         };
+    }
+
+    /**
+     * Gets image path
+     *
+     * @method getImagePath
+     *
+     * @param {boolean} isSelected
+     *
+     * @returns {string}
+     */
+    getImagePath(isSelected) {
+        const { isDark } = this.props.theme;
+
+        const _selectedImagePath = isDark ? whiteSelectedCircleImagePath : blackSelectedCircleImagePath;
+        const _unselectedImagePath = isDark ? whiteUnselectedCircleImagePath : blackUnselectedCircleImagePath;
+
+        return isSelected ? _selectedImagePath : _unselectedImagePath;
     }
 
     /**
@@ -122,15 +159,105 @@ class SelectPaymentCard extends React.Component {
 
         return {
             id,
-            text: `${brand} **** **** **** ${lastDigits}`,
+            text: `${toUpper(brand)} **** **** **** ${lastDigits}`,
         };
+    }
+
+    renderOptionRow(rowIndex, isSelected, text) {
+        const { t, theme } = this.props;
+        const textColor = { color: theme.body.color };
+
+        return (
+            <TouchableOpacity
+                style={styles.rowContainer}
+                onPress={() => this.setState({ selectedOptionIndex: rowIndex })}
+            >
+                <View>
+                    <Image source={this.getImagePath(isSelected)} style={styles.image} />
+                </View>
+                <Text
+                    style={[
+                        styles.infoTextRegular,
+                        textColor,
+                        {
+                            marginLeft: height / 70,
+                        },
+                    ]}
+                >
+                    {t(text)}
+                </Text>
+            </TouchableOpacity>
+        );
+    }
+
+    renderOptions() {
+        const { t, theme } = this.props;
+        const { selectedOptionIndex } = this.state;
+
+        const selectedPaymentCard = this.formatCardInfo(this.state.selectedPaymentCard);
+        const paymentCards = map(this.props.paymentCards, this.formatCardInfo);
+        const textColor = { color: theme.body.color };
+
+        return map(SelectPaymentCard.options, (option, index) => {
+            const isSelected = selectedOptionIndex === index;
+
+            if (index) {
+                return this.renderOptionRow(index, isSelected, option);
+            }
+
+            return (
+                <View
+                    style={[
+                        styles.row,
+                        {
+                            borderTopLeftRadius: Styling.borderRadius,
+                            borderTopRightRadius: Styling.borderRadius,
+                            borderBottomWidth: 1.2,
+                            borderBottomColor: theme.body.color,
+                            backgroundColor: theme.input.bg,
+                        },
+                    ]}
+                >
+                    {this.renderOptionRow(index, isSelected, option)}
+                    {isSelected && (
+                        <View
+                            style={[
+                                styles.rowContainer,
+                                {
+                                    marginBottom: height / 80,
+                                    flexDirection: 'column',
+                                },
+                            ]}
+                        >
+                            <DropdownComponent
+                                dropdownTitleStyle={textColor}
+                                dropdownSelectedOptionStyle={styles.dropdownSelectedOption}
+                                dropdownWidth={{ width: isIPhoneX ? width / 1.4 : width / 1.6 }}
+                                title={t('moonpay:card')}
+                                onRef={(c) => {
+                                    this.dropdown = c;
+                                }}
+                                value={selectedPaymentCard.text}
+                                options={map(paymentCards, (card) => card.text)}
+                                saveSelection={(paymentCardText) => {
+                                    const paymentCard = find(paymentCards, { text: paymentCardText });
+
+                                    this.setState({
+                                        selectedPaymentCard: find(this.props.paymentCards, {
+                                            id: paymentCard.id,
+                                        }),
+                                    });
+                                }}
+                            />
+                        </View>
+                    )}
+                </View>
+            );
+        });
     }
 
     render() {
         const { t, theme } = this.props;
-
-        const selectedPaymentCard = this.formatCardInfo(this.state.selectedPaymentCard);
-        const paymentCards = map(this.props.paymentCards, this.formatCardInfo);
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
@@ -152,7 +279,7 @@ class SelectPaymentCard extends React.Component {
                         >
                             <InfoBox>
                                 <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                    Select Payment Method
+                                    {t('moonpay:selectPaymentMethod')}
                                 </Text>
                                 <Text
                                     style={[
@@ -160,7 +287,7 @@ class SelectPaymentCard extends React.Component {
                                         { paddingTop: height / 60, color: theme.body.color },
                                     ]}
                                 >
-                                    Please select your payment method
+                                    {t('moonpay:pleaseChooseFromTheOptionsBelow')}
                                 </Text>
                             </InfoBox>
                         </AnimatedComponent>
@@ -170,53 +297,9 @@ class SelectPaymentCard extends React.Component {
                             animationOutType={['slideOutLeft', 'fadeOut']}
                             delay={240}
                         >
-                            <DropdownComponent
-                                title="Payment Method"
-                                onRef={(c) => {
-                                    this.dropdown = c;
-                                }}
-                                value={selectedPaymentCard.text}
-                                options={map(paymentCards, (card) => card.text)}
-                                saveSelection={(paymentCardText) => {
-                                    const paymentCard = find(paymentCards, { text: paymentCardText });
-
-                                    this.setState({
-                                        selectedPaymentCard: find(this.props.paymentCards, { id: paymentCard.id }),
-                                    });
-                                }}
-                            />
-                        </AnimatedComponent>
-                        <View style={{ flex: 0.1 }} />
-                        <AnimatedComponent
-                            animationInType={['slideInRight', 'fadeIn']}
-                            animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={240}
-                        >
-                            <TouchableOpacity
-                                style={styles.linkWrapper}
-                                onPress={() => this.redirectToScreen('addPaymentMethod')}
-                            >
-                                <Text
-                                    style={[
-                                        styles.infoTextRegular,
-                                        {
-                                            paddingTop: height / 60,
-                                            color: theme.body.color,
-                                        },
-                                    ]}
-                                >
-                                    <Icon
-                                        iconStyle={{
-                                            marginTop: height / 90,
-                                        }}
-                                        name="plusAlt"
-                                        size={width / 32}
-                                        color={theme.body.color}
-                                    />
-                                    {'  '}
-                                    Add a payment method
-                                </Text>
-                            </TouchableOpacity>
+                            <View style={[styles.optionsContainer, { borderColor: theme.body.color }]}>
+                                {this.renderOptions()}
+                            </View>
                         </AnimatedComponent>
                         <View style={{ flex: 0.6 }} />
                     </View>

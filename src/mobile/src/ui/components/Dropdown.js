@@ -1,3 +1,6 @@
+import every from 'lodash/every';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
 import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -72,6 +75,10 @@ export class Dropdown extends Component {
         dropdownWidth: PropTypes.object,
         /** Custom dropdown button */
         customView: PropTypes.object,
+        /** Dropdown title style */
+        dropdownTitleStyle: PropTypes.object,
+        /** Dropdown selected option style */
+        dropdownSelectedOptionStyle: PropTypes.object,
     };
 
     static defaultProps = {
@@ -142,11 +149,23 @@ export class Dropdown extends Component {
      * @method formatOptions
      */
     formatOptions(options) {
-        return map(options, (option) => ({ label: option, value: option }));
+        return !isEmpty(options) && every(options, isString)
+            ? map(options, (option) => ({ label: option, value: option }))
+            : options;
     }
 
     render() {
-        const { t, options, title, dropdownWidth, disableWhen, theme, customView } = this.props;
+        const {
+            t,
+            options,
+            title,
+            dropdownWidth,
+            disableWhen,
+            theme,
+            customView,
+            dropdownTitleStyle,
+            dropdownSelectedOptionStyle,
+        } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
         const formattedOptions = this.formatOptions(options);
@@ -179,6 +198,7 @@ export class Dropdown extends Component {
                                     styles.dropdownTitle,
                                     { color: theme.primary.color },
                                     isAndroid ? null : dropdownWidth,
+                                    dropdownTitleStyle,
                                 ]}
                             >
                                 {title}
@@ -186,7 +206,10 @@ export class Dropdown extends Component {
                             <View
                                 style={[styles.dropdownButton, dropdownWidth, { borderBottomColor: theme.body.color }]}
                             >
-                                <Text numberOfLines={1} style={[styles.selected, { color: theme.body.color }]}>
+                                <Text
+                                    numberOfLines={1}
+                                    style={[styles.selected, { color: theme.body.color }, dropdownSelectedOptionStyle]}
+                                >
                                     {selectedOption.label}
                                 </Text>
                                 <Triangle

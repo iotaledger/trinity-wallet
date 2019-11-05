@@ -340,7 +340,12 @@
         "paymentCardCreationError": "Error creating payment card",
         "paymentCardCreationErrorExplanation": "There was a problem creating your payment card. Please try again.",
         "selectCountry": "Select Country",
-        "state": "STATE"
+        "state": "STATE",
+        "selectPaymentMethod": "Select Payment Method",
+        "pleaseChooseFromTheOptionsBelow": "Please choose from the options below",
+        "storedPaymentCard": "Stored Payment Card",
+        "addACreditOrDebitCard": "Add a Credit or Debit Card",
+        "card": "Card"
     },
     "home": {
         "balance": "BALANCE",
