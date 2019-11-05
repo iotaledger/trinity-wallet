@@ -378,7 +378,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
             },
             function(errors) {
                 document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
-                document.getElementsByClassName('button-left')[0].disabled = true;
+                document.getElementsByClassName('button-left')[0].disabled = false;
 
                 window.ReactNativeWebView.postMessage(
                     JSON.stringify({

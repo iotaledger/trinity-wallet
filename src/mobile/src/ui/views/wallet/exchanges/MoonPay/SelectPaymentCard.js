@@ -97,7 +97,16 @@ class SelectPaymentCard extends React.Component {
         selectPaymentCard: PropTypes.func.isRequired,
     };
 
-    static options = ['moonpay:storedPaymentCard', 'moonpay:addACreditOrDebitCard'];
+    static options = [
+        {
+            title: 'moonpay:storedPaymentCard',
+            redirectUrl: 'reviewPurchase',
+        },
+        {
+            title: 'moonpay:addACreditOrDebitCard',
+            redirectUrl: 'addPaymentMethod',
+        },
+    ];
 
     constructor(props) {
         super(props);
@@ -163,13 +172,13 @@ class SelectPaymentCard extends React.Component {
         };
     }
 
-    renderOptionRow(rowIndex, isSelected, text) {
+    renderOptionRow(rowIndex, isSelected, option, containerStyle) {
         const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
 
         return (
             <TouchableOpacity
-                style={styles.rowContainer}
+                style={[styles.rowContainer, containerStyle]}
                 onPress={() => this.setState({ selectedOptionIndex: rowIndex })}
             >
                 <View>
@@ -184,7 +193,7 @@ class SelectPaymentCard extends React.Component {
                         },
                     ]}
                 >
-                    {t(text)}
+                    {t(option.title)}
                 </Text>
             </TouchableOpacity>
         );
@@ -202,7 +211,11 @@ class SelectPaymentCard extends React.Component {
             const isSelected = selectedOptionIndex === index;
 
             if (index) {
-                return this.renderOptionRow(index, isSelected, option);
+                return this.renderOptionRow(index, isSelected, option, {
+                    backgroundColor: isSelected ? theme.input.bg : 'transparent',
+                    borderBottomLeftRadius: Styling.borderRadius,
+                    borderBottomRightRadius: Styling.borderRadius,
+                });
             }
 
             return (
@@ -215,7 +228,7 @@ class SelectPaymentCard extends React.Component {
                             borderTopRightRadius: Styling.borderRadius,
                             borderBottomWidth: 1.2,
                             borderBottomColor: theme.body.color,
-                            backgroundColor: theme.input.bg,
+                            backgroundColor: isSelected ? theme.input.bg : 'transparent',
                         },
                     ]}
                 >
@@ -311,7 +324,9 @@ class SelectPaymentCard extends React.Component {
                                 onRightButtonPress={() => {
                                     this.props.selectPaymentCard(this.state.selectedPaymentCard.id);
 
-                                    this.redirectToScreen('reviewPurchase');
+                                    this.redirectToScreen(
+                                        SelectPaymentCard.options[this.state.selectedOptionIndex].redirectUrl,
+                                    );
                                 }}
                                 leftButtonText={t('global:goBack')}
                                 rightButtonText={t('global:continue')}
