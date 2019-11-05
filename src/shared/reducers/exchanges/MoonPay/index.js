@@ -213,6 +213,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isCreatingTransaction: false,
+                transactions: [...state.transactions, action.payload],
             };
         case MoonPayExchangeActionTypes.CREATE_TRANSACTION_ERROR:
             return {

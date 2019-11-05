@@ -246,6 +246,24 @@ export const getMostRecentTransaction = createSelector(
 );
 
 /**
+ * Selects active transaction
+ *
+ * @method getActiveTransaction
+ *
+ * @param {object} state
+ *
+ * @returns {object}
+ */
+export const getActiveTransaction = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const transactions = exchanges.moonpay.transactions;
+
+        return find(transactions, { active: true });
+    },
+);
+
+/**
  * Determines whether a customer has completed basic identity verification
  *
  * @method hasCompletedBasicIdentityVerification

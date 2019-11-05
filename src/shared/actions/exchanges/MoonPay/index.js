@@ -501,7 +501,20 @@ export const verifyEmailAndFetchMeta = (securityCode) => (dispatch, getState) =>
             return api.fetchTransactions();
         })
         .then((transactions) => {
-            dispatch(setTransactions(transactions));
+            dispatch(
+                setTransactions(
+                    map(transactions, (transaction) =>
+                        assign(
+                            {},
+                            transaction,
+                            // "active" property determines if the transaction is active on user screen
+                            // i.e., the acive transaction user made from Trinity after authenticating himself/herself
+                            // Also, see #createTransaction action where we set the new transaction to "active"
+                            { active: false },
+                        ),
+                    ),
+                ),
+            );
             dispatch(verifyEmailSuccess());
         })
         .catch(() => {
@@ -588,7 +601,7 @@ export const createTransaction = (
         currencyCode: IOTA_CURRENCY_CODE,
     })
         .then((data) => {
-            dispatch(createTransactionSuccess(data));
+            dispatch(createTransactionSuccess(assign({}, data, { active: true })));
         })
         .catch(() => {
             dispatch(

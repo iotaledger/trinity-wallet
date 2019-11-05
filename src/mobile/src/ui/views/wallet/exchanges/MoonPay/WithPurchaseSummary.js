@@ -18,6 +18,7 @@ import {
     getPaymentCardExpiryInfo,
     getPaymentCardBrand,
     getPaymentCardLastDigits,
+    getActiveTransaction,
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import { createTransaction } from 'shared-modules/actions/exchanges/MoonPay';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
@@ -107,6 +108,8 @@ export default function withPurchaseSummary(WrappedComponent, config) {
             createTransaction: PropTypes.func.isRequired,
             /** Component ID */
             componentId: PropTypes.string.isRequired,
+            /** @ignore */
+            activeTransaction: PropTypes.object,
         };
 
         constructor(props) {
@@ -221,6 +224,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 exchangeRates,
                 expiryInfo,
                 componentId,
+                activeTransaction,
             } = this.props;
 
             const textColor = { color: theme.body.color };
@@ -231,6 +235,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
             return (
                 <WrappedComponent
                     t={t}
+                    activeTransaction={activeTransaction}
                     createTransaction={this.createTransaction}
                     isCreatingTransaction={isCreatingTransaction}
                     hasErrorCreatingTransaction={hasErrorCreatingTransaction}
@@ -385,6 +390,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
         defaultCurrencyCode: getDefaultCurrencyCode(state),
         hasCompletedAdvancedIdentityVerification: hasCompletedAdvancedIdentityVerification(state),
         isPurchaseLimitIncreaseAllowed: isLimitIncreaseAllowed(state),
+        activeTransaction: getActiveTransaction(state),
     });
 
     const mapDispatchToProps = {
