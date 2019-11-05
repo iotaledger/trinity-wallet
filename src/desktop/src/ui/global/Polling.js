@@ -19,8 +19,6 @@ import {
 } from 'selectors/accounts';
 import {
     fetchMarketData,
-    fetchChartData,
-    fetchPrice,
     fetchNodeList,
     setPollFor,
     promoteTransfer,
@@ -56,11 +54,7 @@ class Polling extends React.PureComponent {
         /** @ignore */
         fetchMarketData: PropTypes.func.isRequired,
         /** @ignore */
-        fetchPrice: PropTypes.func.isRequired,
-        /** @ignore */
         fetchNodeList: PropTypes.func.isRequired,
-        /** @ignore */
-        fetchChartData: PropTypes.func.isRequired,
         /** @ignore */
         promoteTransfer: PropTypes.func.isRequired,
         /** Bundle hashes for failed transactions categorised by account name & type */
@@ -132,8 +126,6 @@ class Polling extends React.PureComponent {
         const dict = {
             promotion: this.promote,
             marketData: this.props.fetchMarketData,
-            price: this.props.fetchPrice,
-            chartData: this.props.fetchChartData,
             nodeList: this.props.fetchNodeList,
             accountInfo: this.fetchLatestAccountInfo,
             broadcast: this.retryFailedTransaction,
@@ -249,8 +241,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     fetchMarketData,
-    fetchChartData,
-    fetchPrice,
     fetchNodeList,
     setPollFor,
     promoteTransfer,

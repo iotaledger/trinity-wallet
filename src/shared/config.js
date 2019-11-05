@@ -44,6 +44,8 @@ export const NODELIST_ENDPOINTS = [
     'https://iota.dance/api/ssl/live',
 ];
 
+export const MARKETDATA_ENDPOINTS = ['https://nodes.iota.works/api/market'];
+
 export const VERSIONS_URL =
     'https://raw.githubusercontent.com/iotaledger/trinity-wallet/develop/src/shared/libs/versions.json';
 

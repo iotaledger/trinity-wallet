@@ -15,6 +15,7 @@ describe('Reducer: marketData', () => {
                 eurPrice: 0,
                 btcPrice: 0,
                 ethPrice: 0,
+                rates: {}
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

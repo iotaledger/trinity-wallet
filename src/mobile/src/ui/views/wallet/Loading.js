@@ -11,8 +11,7 @@ import LottieView from 'lottie-react-native';
 import { getAccountInfo, getFullAccountInfo } from 'shared-modules/actions/accounts';
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/marketData';
-import { getCurrencyData } from 'shared-modules/actions/settings';
+import { setMarketData } from 'shared-modules/actions/marketData';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
 import {
@@ -97,13 +96,7 @@ class Loading extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        getMarketData: PropTypes.func.isRequired,
-        /** @ignore */
-        getPrice: PropTypes.func.isRequired,
-        /** @ignore */
-        getChartData: PropTypes.func.isRequired,
-        /** @ignore */
-        getCurrencyData: PropTypes.func.isRequired,
+        setMarketData: PropTypes.func.isRequired,
         /** @ignore */
         additionalAccountName: PropTypes.string.isRequired,
         /** @ignore */
@@ -220,11 +213,7 @@ class Loading extends Component {
     }
 
     getWalletData() {
-        const { currency } = this.props;
-        this.props.getPrice();
-        this.props.getChartData();
-        this.props.getMarketData();
-        this.props.getCurrencyData(currency);
+        this.props.setMarketData();
     }
 
     animateElipses = (chars, index, time = 750) => {
@@ -364,10 +353,7 @@ const mapDispatchToProps = {
     setSetting,
     getAccountInfo,
     getFullAccountInfo,
-    getMarketData,
-    getPrice,
-    getChartData,
-    getCurrencyData,
+    setMarketData,
     setLoginRoute,
 };
 
