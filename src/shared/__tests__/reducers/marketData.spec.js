@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import reducer from '../../reducers/marketData';
+import { availableCurrencies } from '../../libs/currency';
 
 describe('Reducer: marketData', () => {
     describe('initial state', () => {
@@ -15,7 +16,7 @@ describe('Reducer: marketData', () => {
                 eurPrice: 0,
                 btcPrice: 0,
                 ethPrice: 0,
-                rates: {}
+                rates: availableCurrencies,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -137,24 +138,6 @@ describe('Reducer: marketData', () => {
     });
 
     describe('IOTA/MARKET_DATA/SET_STATISTICS', () => {
-        it('should assign "usdPrice" to "usdPrice" state prop', () => {
-            const initialState = {
-                usdPrice: 0,
-            };
-
-            const action = {
-                type: 'IOTA/MARKET_DATA/SET_STATISTICS',
-                usdPrice: 2,
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                usdPrice: 2,
-            };
-
-            expect(newState.usdPrice).to.eql(expectedState.usdPrice);
-        });
-
         it('should assign "mcap" to "mcap" state prop', () => {
             const initialState = {
                 mcap: '0',
