@@ -268,9 +268,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
 
   window.addEventListener('message', function(event) {
     if (event.data === 'cardCreationSuccessful' || 'cardCreationUnsuccessful') {
-      setTimeout(function() {
-        document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
-      }, 1000);
+      document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
 
       window.ReactNativeWebView.postMessage(JSON.stringify({
         type: event.data,
