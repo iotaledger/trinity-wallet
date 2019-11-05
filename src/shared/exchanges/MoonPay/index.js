@@ -7,7 +7,7 @@ const supportedNetworks = {
 };
 
 /** Active MoonPay network. */
-const ACTIVE_NETWORK = supportedNetworks.live;
+const ACTIVE_NETWORK = supportedNetworks.test;
 
 /**
  * MoonPay test mode API key

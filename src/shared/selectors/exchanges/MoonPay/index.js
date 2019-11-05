@@ -96,6 +96,24 @@ export const getCustomerEmail = createSelector(
 );
 
 /**
+ * Selects customer id from state
+ *
+ * @method getCustomerId
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getCustomerId = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
+
+        return get(customer, 'id');
+    },
+);
+
+/**
  * Selects customer country code from state
  *
  * @method getCustomerCountryCode
@@ -208,27 +226,9 @@ export const getSelectedAccountName = createSelector(
 );
 
 /**
- * Selects payment card id
+ * Selects most recent transaction
  *
- * @method getPaymentCardId
- *
- * @param {object} state
- *
- * @returns {string}
- */
-export const getPaymentCardId = createSelector(
-    getExchangesFromState,
-    (exchanges) => {
-        const info = exchanges.moonpay.paymentCardInfo;
-
-        return get(info, 'id') || '';
-    },
-);
-
-/**
- * Selects payment card id
- *
- * @method getPaymentCardId
+ * @method getMostRecentTransaction
  *
  * @param {object} state
  *
@@ -308,24 +308,6 @@ export const isLimitIncreaseAllowed = createSelector(
 );
 
 /**
- * Gets payment card expiry info
- *
- * @method getPaymentCardExpiryInfo
- *
- * @param {object} state
- *
- * @returns {string}
- */
-export const getPaymentCardExpiryInfo = createSelector(
-    getExchangesFromState,
-    (exchanges) => {
-        const info = exchanges.moonpay.paymentCardInfo;
-
-        return `${get(info, 'expiryMonth')}/${get(info, 'expiryYear')}`;
-    },
-);
-
-/**
  * Gets customer address
  *
  * @method getCustomerAddress
@@ -340,5 +322,107 @@ export const getCustomerAddress = createSelector(
         const customer = exchanges.moonpay.customer;
 
         return get(customer, 'address');
+    },
+);
+
+/**
+ * Determines if customer has already added some payment cards on MoonPay servers
+ *
+ * @method hasStoredAnyPaymentCards
+ *
+ * @param {object} state
+ *
+ * @returns {boolean}
+ */
+export const hasStoredAnyPaymentCards = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
+
+        return size(get(customer, 'paymentCards')) > 0;
+    },
+);
+
+/**
+ * Gets selected payment card
+ *
+ * @method getSelectedPaymentCard
+ *
+ * @param {object} state
+ *
+ * @returns {boolean}
+ */
+export const getSelectedPaymentCard = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
+        const paymentCards = get(customer, 'paymentCards');
+
+        return find(paymentCards, { selected: true });
+    },
+);
+
+/**
+ * Gets customer payment cards
+ *
+ * @method getCustomerPaymentCards
+ *
+ * @param {object} state
+ *
+ * @returns {boolean}
+ */
+export const getCustomerPaymentCards = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
+        return get(customer, 'paymentCards') || [];
+    },
+);
+
+/**
+ * Gets payment card expiry info
+ *
+ * @method getPaymentCardExpiryInfo
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getPaymentCardExpiryInfo = createSelector(
+    getSelectedPaymentCard,
+    (paymentCard) => {
+        return `${get(paymentCard, 'expiryMonth')}/${get(paymentCard, 'expiryYear')}`;
+    },
+);
+
+/**
+ * Gets payment card brand e.g., Visa
+ *
+ * @method getPaymentCardBrand
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getPaymentCardBrand = createSelector(
+    getSelectedPaymentCard,
+    (paymentCard) => {
+        return get(paymentCard, 'brand');
+    },
+);
+
+/**
+ * Gets payment card last digits
+ *
+ * @method getPaymentCardLastDigits
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getPaymentCardLastDigits = createSelector(
+    getSelectedPaymentCard,
+    (paymentCard) => {
+        return get(paymentCard, 'lastDigits');
     },
 );

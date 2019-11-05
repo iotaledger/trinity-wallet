@@ -16,6 +16,8 @@ import {
     hasCompletedAdvancedIdentityVerification,
     isLimitIncreaseAllowed,
     getPaymentCardExpiryInfo,
+    getPaymentCardBrand,
+    getPaymentCardLastDigits,
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import { createTransaction } from 'shared-modules/actions/exchanges/MoonPay';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
@@ -196,7 +198,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 this.redirectToScreen('identityConfirmationWarning');
             } else {
                 this.props.createTransaction(
-                    getAmountInFiat(Number(amount), denomination, exchangeRates),
+                    Number(getAmountInFiat(Number(amount), denomination, exchangeRates).toFixed(2)),
                     toLower(getActiveFiatCurrency(denomination)),
                     address,
                 );
@@ -312,9 +314,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                             delay={100}
                         >
                             <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextLight, textColor]}>
-                                    {t('moonpay:cardExpiry', { brand: 'Visa' })}
-                                </Text>
+                                <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:cardExpiry')}</Text>
                                 <Text style={[styles.infoTextLight, textColor]}>{expiryInfo}</Text>
                             </View>
                         </AnimatedComponent>
@@ -375,8 +375,8 @@ export default function withPurchaseSummary(WrappedComponent, config) {
         fee: getMoonPayFee(state),
         totalAmount: getTotalPurchaseAmount(state),
         address: getLatestAddressForMoonPaySelectedAccount(state),
-        brand: state.exchanges.moonpay.paymentCardInfo.brand,
-        lastDigits: state.exchanges.moonpay.paymentCardInfo.lastDigits,
+        brand: getPaymentCardBrand(state),
+        lastDigits: getPaymentCardLastDigits(state),
         expiryInfo: getPaymentCardExpiryInfo(state),
         isCreatingTransaction: state.exchanges.moonpay.isCreatingTransaction,
         hasErrorCreatingTransaction: state.exchanges.moonpay.hasErrorCreatingTransaction,

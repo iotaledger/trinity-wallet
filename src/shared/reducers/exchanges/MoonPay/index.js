@@ -1,3 +1,5 @@
+import assign from 'lodash/assign';
+import map from 'lodash/map';
 import merge from 'lodash/merge';
 import { MoonPayExchangeActionTypes } from '../../../types';
 
@@ -82,6 +84,14 @@ const initialState = {
      * Determines if a network call is in progress for currency quote
      */
     isFetchingCurrencyQuote: false,
+    /**
+     * Determines if a network call is in progress for payment card creation
+     */
+    isCreatingPaymentCard: false,
+    /**
+     * Determines if there was an error during payment card creation
+     */
+    hasErrorCreatingPaymentCard: false,
 };
 
 export default (state = initialState, action) => {
@@ -177,10 +187,21 @@ export default (state = initialState, action) => {
                 isUpdatingCustomer: false,
                 hasErrorUpdatingCustomer: true,
             };
-        case MoonPayExchangeActionTypes.SET_PAYMENT_CARD_INFO:
+        case MoonPayExchangeActionTypes.ADD_PAYMENT_CARD:
             return {
                 ...state,
-                paymentCardInfo: action.payload,
+                customer: merge({}, state.customer, {
+                    paymentCards: [...state.customer.paymentCards, action.payload],
+                }),
+            };
+        case MoonPayExchangeActionTypes.SELECT_PAYMENT_CARD:
+            return {
+                ...state,
+                customer: merge({}, state.customer, {
+                    paymentCards: map(state.customer.paymentCards, (card) =>
+                        assign({}, card, { selected: card.id === action.payload }),
+                    ),
+                }),
             };
         case MoonPayExchangeActionTypes.CREATE_TRANSACTION_REQUEST:
             return {
@@ -214,6 +235,23 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isFetchingCurrencyQuote: false,
+            };
+        case MoonPayExchangeActionTypes.CREATE_PAYMENT_CARD_REQUEST:
+            return {
+                ...state,
+                isCreatingPaymentCard: true,
+                hasErrorCreatingPaymentCard: false,
+            };
+        case MoonPayExchangeActionTypes.CREATE_PAYMENT_CARD_SUCCESS:
+            return {
+                ...state,
+                isCreatingPaymentCard: false,
+            };
+        case MoonPayExchangeActionTypes.CREATE_PAYMENT_CARD_ERROR:
+            return {
+                ...state,
+                isCreatingPaymentCard: false,
+                hasErrorCreatingPaymentCard: true,
             };
         default:
             return state;
