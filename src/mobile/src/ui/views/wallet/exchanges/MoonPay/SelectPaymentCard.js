@@ -207,6 +207,7 @@ class SelectPaymentCard extends React.Component {
 
             return (
                 <View
+                    key={index}
                     style={[
                         styles.row,
                         {

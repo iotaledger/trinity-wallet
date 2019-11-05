@@ -93,6 +93,7 @@ class ReviewPurchase extends Component {
                             onLeftButtonPress={() => this.goBack()}
                             onRightButtonPress={() => this.props.createTransaction()}
                             isRightButtonLoading={isCreatingTransaction}
+                            disableLeftButton={isCreatingTransaction}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:confirm')}
                             leftButtonTestID="moonpay-back"
