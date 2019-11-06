@@ -116,7 +116,7 @@
         "checkForUpdates": "Suche nach Updates",
         "account": "Konto",
         "changeNode": "Node wechseln",
-        "addCustomNode": "Benutzerdefinierten Node hinzufügen",
+        "addCustomNode": "Nodes hinzufügen",
         "nodeMustUseHTTPS": "Ungültiger Node (fehlende Verschlüsselung)",
         "nodeMustUseHTTPSExplanation": "Benutzerdefinierte Nodes müssen eine Verschlüsselung verwenden (HTTPS).",
         "nodeDuplicated": "Doppelter Node",
@@ -145,7 +145,7 @@
         "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
         "headToAdvancedSettingsForTransition": "Wechsle zu den erweiterten Einstellungen und führe eine Snapshot-Wiederherstellung aus.",
         "headToAccountTools": "Öffne die Konto-Werkzeuge und führe die Snapshot-Wiederherstellung durch.",
-        "openAccountTools": "Öffne die Konto-Werkzeuge",
+        "openAccountTools": "Konto-Werkzeuge",
         "usingTrinityWalletWithKeePass": "Trinity Brieftasche mit Keepass2Android verwenden",
         "signedTrytesBroadcastErrorExplanation": "Während der Transkation ist ein Netzwerkfehler aufgetreten.",
         "broadcastError": "Transaktion konnte nicht gebroadcastet werden",
@@ -456,7 +456,8 @@
         "keepSafe": "Bewahre deinen Seed sicher auf."
     },
     "welcome": {
-        "thankYou": "Danke, dass du Trinity heruntergeladen hast"
+        "thankYou": "Danke, dass du Trinity heruntergeladen hast",
+        "demoThankYou": "Danke, dass du Demoversion von Trinity heruntergeladen hast"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Schreibe deinen Seed und deine Prüfsumme auf und </0><1>versichere dich</1><2>, dass diese korrekt sind.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatische Node-Verwaltung",
-        "addCustomNodes": "Benutzerdefinierte Nodes hinzufügen",
-        "autoNodeList": "Offizielle Node-Liste verwenden",
-        "nodeAutoswitching": "Automatisch den primären Node wechseln",
+        "addCustomNodes": "Nodes hinzufügen",
+        "autoNodeList": "Standard Node-Liste verwenden",
+        "nodeAutoswitching": "Primären Node automatisch wählen",
         "primaryNode": "Primärer Node",
         "enableQuorum": "Node-Gruppe aktivieren",
         "quorumSize": "Anzahl der Nodes in der Node-Gruppe",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "Es sind nicht genug Nodes vorhanden um die Node-Gruppe zu aktivieren.",
         "nodeEnoughNodesExplanationCustomNodes": "Füge weitere benutzerdefinierte Nodes hinzu oder verwende die offizielle Node-Liste.",
         "nodeSettingsUpdatedTitle": "Node-Einstellungen aktualisiert",
-        "nodeSettingsUpdatedExplanation": "Die Node-Einstellungen wurden erfolgreich gespeichert."
+        "nodeSettingsUpdatedExplanation": "Die Node-Einstellungen wurden erfolgreich gespeichert.",
+        "outsourcePow": "Proof of work auslagern",
+        "autoSelectPowNode": "Proof of Work-Node automatisch wählen",
+        "nodeForPow": "Proof of work Node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Benutzerdefinierter Node konnte nicht hinzugefügt werden",
@@ -649,10 +653,10 @@
         "noPassword": "Auf diesem Gerät wurde kein Passwort eingerichtet"
     },
     "transferConfirmation": {
-        "youAreAbout": "Du bist dabei {{contents}} zu senden",
+        "youAreAbout": "Du sendest {{contents}}",
         "aMessage": "eine Nachricht",
         "fromAccount": "Von {{selectedAccountName}}",
-        "toAddress": "An Adresse",
+        "toAddress": "an Adresse",
         "sendingAMessage": "Sende die Nachricht",
         "sendingAnEmptyMessage": "Sende eine leere Nachricht"
     },

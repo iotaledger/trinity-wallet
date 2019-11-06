@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableWithoutFeedback, Text, StyleSheet, Keyboard } from 'react-native';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import Icon from 'ui/theme/icons';
@@ -89,4 +89,4 @@ export class PasswordValidationModal extends PureComponent {
     }
 }
 
-export default withNamespaces(['global'])(PasswordValidationModal);
+export default withTranslation(['global'])(PasswordValidationModal);

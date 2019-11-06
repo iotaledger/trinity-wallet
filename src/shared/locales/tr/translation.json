@@ -116,7 +116,7 @@
         "checkForUpdates": "Güncellemeleri Denetle",
         "account": "Hesap",
         "changeNode": "Node Değiştir",
-        "addCustomNode": "Özel Node Ekle",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Geçersiz ağ (Güvenli ağ değil)",
         "nodeMustUseHTTPSExplanation": "Sadece HTTPS kullanan özel ağlar geçerlidir.",
         "nodeDuplicated": "Yineleyen ağ",
@@ -456,7 +456,8 @@
         "keepSafe": "Lütfen cüzdan şifrenizi güvende tutun."
     },
     "welcome": {
-        "thankYou": "Trinity'i indirdiğiniz için teşekkür ederiz"
+        "thankYou": "Trinity'i indirdiğiniz için teşekkür ederiz",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Oluşumunuzu ve sağlamanızı </0><1> birden çok kez </1><2> doğru olduğuna dair kontrol edin. </2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Birincil ağ",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Özel ağ eklenemedi",

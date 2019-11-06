@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
@@ -144,7 +144,10 @@ class SetPassword extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -221,6 +224,9 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['setPassword', 'global', 'addAdditionalSeed'])(
-    connect(mapStateToProps, mapDispatchToProps)(SetPassword),
+export default withTranslation(['setPassword', 'global', 'addAdditionalSeed'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(SetPassword),
 );

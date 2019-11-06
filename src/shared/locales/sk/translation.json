@@ -116,7 +116,7 @@
         "checkForUpdates": "Kontrola aktualizácií",
         "account": "Účet",
         "changeNode": "Zmeniť Node",
-        "addCustomNode": "Pridať vlastný Node",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Neplatný Node (bez podpory protokolu HTTPS)",
         "nodeMustUseHTTPSExplanation": "Povolené sú iba vlastné Nody s protokolom HTTPS.",
         "nodeDuplicated": "Duplicitný Node",
@@ -456,7 +456,8 @@
         "keepSafe": "Prosím, uchovávajte svoj Seed v bezpečí."
     },
     "welcome": {
-        "thankYou": "Ďakujeme, že ste si stiahli Trinity"
+        "thankYou": "Ďakujeme, že ste si stiahli Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Zapíšte si svoj Seed a kontrolný súčet a </0><1>dôkladne skontrolujte</1><2> ich správnosť.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatická správa nodu",
-        "addCustomNodes": "Pridať vlastný node",
-        "autoNodeList": "Použite zoznam vzdialených nodov",
-        "nodeAutoswitching": "Automatické prepínanie primárneho nodu",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Primárny node",
         "enableQuorum": "Povoliť kvórum",
         "quorumSize": "Veľkosť kvóra",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "Pre správne fungovanie kvóra nie je dostatok nodov.",
         "nodeEnoughNodesExplanationCustomNodes": "Pridať ďalšie vlastné nody alebo povoliť zoznam vzdialených nodov.",
         "nodeSettingsUpdatedTitle": "Nastavenia nodu boli aktualizované",
-        "nodeSettingsUpdatedExplanation": "Úspešne ste aktualizovali nastavenia vášho nodu."
+        "nodeSettingsUpdatedExplanation": "Úspešne ste aktualizovali nastavenia vášho nodu.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nedá sa pridať vlastný Node",

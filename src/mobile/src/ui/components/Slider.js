@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { PanResponder, Easing, Animated, StyleSheet, View } from 'react-native';
 import LottieView from 'lottie-react-native';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import timer from 'react-native-timer';
 import sliderSuccessAnimation from 'shared-modules/animations/progressSuccess.json';
 import { height as deviceHeight, width } from 'libs/dimensions';
@@ -279,4 +279,4 @@ class Slider extends Component {
     }
 }
 
-export default withNamespaces('global')(Slider);
+export default withTranslation('global')(Slider);

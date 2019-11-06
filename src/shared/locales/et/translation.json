@@ -116,7 +116,7 @@
         "checkForUpdates": "Otsi uuendusi",
         "account": "Konto",
         "changeNode": "Muuda sõlme",
-        "addCustomNode": "Lisa kohandatud sõlm",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Sobimatu sõlm (mitte-HTTPS)",
         "nodeMustUseHTTPSExplanation": "Ainult kohandatud sõlmed, mis kasutavad HTTPS-i on lubatud.",
         "nodeDuplicated": "Dubleeritud sõlm",
@@ -456,7 +456,8 @@
         "keepSafe": "Palun hoidke oma seemne turvalisust."
     },
     "welcome": {
-        "thankYou": "Täname teid Trinity allalaadimise eest"
+        "thankYou": "Täname teid Trinity allalaadimise eest",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Kirjutage oma seeme ja kontrollsumma üles ning </0><1>veenduge</1><2>, et need on õiged.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Lisa kohandatud sõlmi",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Peamine sõlm",
         "enableQuorum": "Luba kvoorum",
         "quorumSize": "Kvoorumi suurus",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Sõlme seaded uuendatud",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Kohandatud sõlme ei saanud lisada",

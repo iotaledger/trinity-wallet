@@ -116,7 +116,7 @@
         "checkForUpdates": "檢查更新",
         "account": "帳戶",
         "changeNode": "變更節點",
-        "addCustomNode": "新增自訂節點",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "無效節點 (非 HTTPS)",
         "nodeMustUseHTTPSExplanation": "僅允許使用 HTTPS 的自訂節點。",
         "nodeDuplicated": "重複節點",
@@ -456,7 +456,8 @@
         "keepSafe": "請妥善保存您的種子碼。"
     },
     "welcome": {
-        "thankYou": "感謝您下載 Trinity"
+        "thankYou": "感謝您下載 Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> 記下您的種子碼和檢查碼</0><1>請再三確認</1><2>它們是正確無誤的。</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Primary node",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "自訂節點無法加入",

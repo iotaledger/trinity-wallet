@@ -116,7 +116,7 @@
         "checkForUpdates": "检查更新",
         "account": "账户",
         "changeNode": "更换节点",
-        "addCustomNode": "添加自定义节点",
+        "addCustomNode": "添加节点",
         "nodeMustUseHTTPS": "无效节点 (非HTTPS)",
         "nodeMustUseHTTPSExplanation": "仅允许使用HTTPS的自定义节点。",
         "nodeDuplicated": "重复节点",
@@ -169,7 +169,7 @@
         "missingPermission": "需要文件系统权限",
         "missingPermissionExplanation": "本功能需要具备文件系统访问权限。",
         "swipeToConfirm": "滑动以确认",
-        "congratulations": "Congratulations",
+        "congratulations": "恭喜",
         "expert": "专家",
         "notEnoughSyncedNodes": "同步的节点过少",
         "notEnoughSyncedNodesExplanation": "节点无法达到协同。 请关闭节点协同功能或重试。"
@@ -251,7 +251,7 @@
     },
     "languageSetup": {
         "language": "语言",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "选择语言",
         "letsGetStarted": "让我们开始吧！"
     },
     "login": {
@@ -456,7 +456,8 @@
         "keepSafe": "请妥善保管您的种子。"
     },
     "welcome": {
-        "thankYou": "感谢您下载 Trinity 钱包"
+        "thankYou": "感谢您下载 Trinity 钱包",
+        "demoThankYou": "感谢您下载 Trinity Demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>写下您的种子和校验和并</0><1>多次检查</1><2>以确保他们是正确的。</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "自动管理节点",
-        "addCustomNodes": "添加自定义节点",
-        "autoNodeList": "使用远程节点列表",
-        "nodeAutoswitching": "主节点自动切换",
+        "addCustomNodes": "添加节点",
+        "autoNodeList": "使用默认节点列表",
+        "nodeAutoswitching": "自动选择主节点",
         "primaryNode": "主节点",
         "enableQuorum": "启用节点协同功能",
         "quorumSize": "参与协同的节点个数",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "没有足够的节点来启用节点协同功能。",
         "nodeEnoughNodesExplanationCustomNodes": "添加更多自定义节点或启用远程节点列表。",
         "nodeSettingsUpdatedTitle": "节点设置已更新",
-        "nodeSettingsUpdatedExplanation": "您已成功更新了您的节点设置。"
+        "nodeSettingsUpdatedExplanation": "您已成功更新了您的节点设置。",
+        "outsourcePow": "外包工作量",
+        "autoSelectPowNode": "自动选择工作量节点",
+        "nodeForPow": "工作量节点"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "无法添加自定义节点",
@@ -649,7 +653,7 @@
         "noPassword": "设备上未设置密码"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "您即将发送 {{contents}}",
         "aMessage": "一条消息",
         "fromAccount": "来自{{selectedAccountName}}",
         "toAddress": "接受付款地址",

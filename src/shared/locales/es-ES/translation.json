@@ -116,7 +116,7 @@
         "checkForUpdates": "Comprobar Actualizaciones",
         "account": "Cuenta",
         "changeNode": "Cambiar Nodo",
-        "addCustomNode": "Añadir Nodo Personalizado",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Nodo inválido (no HTTPS)",
         "nodeMustUseHTTPSExplanation": "Solo se permiten nodos que usen HTTPS.",
         "nodeDuplicated": "Nodo duplicado",
@@ -456,7 +456,8 @@
         "keepSafe": "Por favor guarde su semilla de manera segura."
     },
     "welcome": {
-        "thankYou": "Gracias por descargar Trinity"
+        "thankYou": "Gracias por descargar Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Escriba su semilla y código de verificación y </0><1>vuelva a comprobar</1><2> que son correctos.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Gestión automática de nodos",
-        "addCustomNodes": "Agregar un nodo personalizado",
-        "autoNodeList": "Usar lista remota de nodos",
-        "nodeAutoswitching": "Cambio automático de nodo principal",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Nodo principal",
         "enableQuorum": "Habilitar quórum",
         "quorumSize": "Tamaño del quórum",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "No hay suficientes nodos para habilitar el quórum.",
         "nodeEnoughNodesExplanationCustomNodes": "Añadir más nodos personalizados o activar la lista de nodos remotos.",
         "nodeSettingsUpdatedTitle": "Configuración del nodo actualizada",
-        "nodeSettingsUpdatedExplanation": "Has actualizado con éxito la configuración de tu nodo."
+        "nodeSettingsUpdatedExplanation": "Has actualizado con éxito la configuración de tu nodo.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "No se pudo añadir el nodo personalizado",

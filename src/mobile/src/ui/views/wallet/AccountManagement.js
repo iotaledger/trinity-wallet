@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 import { isIPhone11 } from 'libs/device';
@@ -101,6 +101,9 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withNamespaces(['accountManagement', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(AccountManagement),
+export default withTranslation(['accountManagement', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(AccountManagement),
 );

@@ -116,7 +116,7 @@
         "checkForUpdates": "업데이트 확인",
         "account": "계정",
         "changeNode": "노드 변경",
-        "addCustomNode": "커스텀 노드 추가",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "잘못된 노드 (HTTPS를 사용하지 않음)",
         "nodeMustUseHTTPSExplanation": "HTTPS를 사용하는 커스텀 노드만 사용 가능합니다.",
         "nodeDuplicated": "중복된 노드",
@@ -456,7 +456,8 @@
         "keepSafe": "시드는 반드시 안전히 보관해야 합니다."
     },
     "welcome": {
-        "thankYou": "트리니티를 다운로드 해 주셔서 감사합니다."
+        "thankYou": "트리니티를 다운로드 해 주셔서 감사합니다.",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인</1><2>하세요.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "자동 노드 관리",
-        "addCustomNodes": "커스텀 노드 추가",
-        "autoNodeList": "원격 노드 목록 사용",
-        "nodeAutoswitching": "기본 노드 자동전환",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "기본 노드",
         "enableQuorum": "큐럼 활성화",
         "quorumSize": "큐럼 크기",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "큐럼을 활성화하기 위한 노드의 수가 부족합니다.",
         "nodeEnoughNodesExplanationCustomNodes": "더많은 커스텀 노드를 추가하거나 원격 노드 목록을 활성화하십시오.",
         "nodeSettingsUpdatedTitle": "노드 설정이 업데이트되었습니다.",
-        "nodeSettingsUpdatedExplanation": "노드 설정이 성공적으로 업데이트되었습니다."
+        "nodeSettingsUpdatedExplanation": "노드 설정이 성공적으로 업데이트되었습니다.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "커스텀 노드를 추가할 수 없습니다.",

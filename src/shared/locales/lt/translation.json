@@ -116,7 +116,7 @@
         "checkForUpdates": "Tikrinti, ar yra atnaujinimų",
         "account": "Paskyra",
         "changeNode": "Pakeisti serverį",
-        "addCustomNode": "Pridėti vartotojo serverį",
+        "addCustomNode": "Pridėti serverius",
         "nodeMustUseHTTPS": "Neteisingas serveris (ne HTTPS)",
         "nodeMustUseHTTPSExplanation": "Vartotojo serveriai galimi tik naudojantys HTTPS.",
         "nodeDuplicated": "Dubliuotas serveris",
@@ -151,7 +151,7 @@
         "broadcastError": "Pavedimo ištransliuoti nepavyko",
         "addressesAlreadySpentFrom": "Vienas ar daugiau adresų jau buvo panaudoti.",
         "problemSendingYourTransaction": "Įvyko klaida apdorojant jūsų pavedimą.",
-        "problemPerformingProofOfWork": "Įvyko klaida atliekant apskaičiavimus.",
+        "problemPerformingProofOfWork": "Įvyko klaida atliekant skaičiavimus.",
         "tryingAgainWithLocalPoW": "Bandykite dar kartą su lokaliu skaičiavimu.",
         "tryingAgainWithDifferentNode": "Bandykite dar kartą su kitu serveriu.",
         "errorFetchingAccountInformation": "Klaida užkraunant paskyros duomenis.",
@@ -170,7 +170,7 @@
         "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norėdami atlikti šią funkciją.",
         "swipeToConfirm": "Paslinkite norėdami patvirtinti",
         "congratulations": "Sveikiname",
-        "expert": "Expert",
+        "expert": "Ekspertams",
         "notEnoughSyncedNodes": "Per mažai sinchronizuotų serverių",
         "notEnoughSyncedNodesExplanation": "Kvorumas nepasiekiamas. Išjunkite kvorumą ir bandykite dar kartą."
     },
@@ -456,7 +456,8 @@
         "keepSafe": "Laikykite užraktą saugiai."
     },
     "welcome": {
-        "thankYou": "Dėkojame, kad naudojatės Trinity"
+        "thankYou": "Dėkojame, kad naudojatės Trinity",
+        "demoThankYou": "Dėkojame, kad naudojatės Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Nusirašykite savo užraktą ir kontrolinę sumą, </0><1>tris kartus patikrinkite</1><2> ar kodai sutampa</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatinis serverio valdymas",
-        "addCustomNodes": "Pridėti vartotojo serverius",
-        "autoNodeList": "Naudotis nuotoliniu serverių sąrašu",
-        "nodeAutoswitching": "Automatinis pagrindinio serverio keitimas",
+        "addCustomNodes": "Pridėti serverius",
+        "autoNodeList": "Naudoti pradinį serverių sąrašą",
+        "nodeAutoswitching": "Automatiškai parinkti pagr. serverį",
         "primaryNode": "Pagrindinis serveris",
         "enableQuorum": "Įjungti kvorumą",
         "quorumSize": "Kvorumo dydis",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "Serverių yra nepakankamai norint įjungti kvorumą.",
         "nodeEnoughNodesExplanationCustomNodes": "Pridėkite daugiau vartotojo serverių arba įjunkite nuotolinį serverių sąrašą.",
         "nodeSettingsUpdatedTitle": "Serverio nustatymai atnaujinti",
-        "nodeSettingsUpdatedExplanation": "Jūs sėkmingai atnaujinote serverio nustatymus."
+        "nodeSettingsUpdatedExplanation": "Jūs sėkmingai atnaujinote serverio nustatymus.",
+        "outsourcePow": "Iškelti skaičiavimus",
+        "autoSelectPowNode": "Automatiškai parinkti skaičiavimų serverį",
+        "nodeForPow": "Skaičiavimų serveris"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",
@@ -843,8 +847,8 @@
         "connectionExplanation": "Ledger įrenginys turi būti prijungtas norint atlikti šią funkciją.",
         "transactionTitle": "Peržiūrėkite ir patvirtinkite pavedimą savo Ledger įrenginyje",
         "transactionExplanation": "Savo Ledger įrenginyje patvirtinkite išeinantį pavedimą.",
-        "applicationTitle": "Atidaryti Ledger IOTA aplikaciją",
-        "applicationExplanation": "Savo Ledger įrenginyje atidarykite IOTA aplikaciją norėdami tęsti.",
+        "applicationTitle": "Atidarykite Ledger IOTA programėlę",
+        "applicationExplanation": "Savo Ledger įrenginyje atidarykite IOTA programėlę norėdami tęsti.",
         "cannotSendZeroValueTitle": "Nulinės vertės pavedimų atlikti negalima",
         "cannotSendZeroValueExplanation": "Su Ledger įrenginiu nulinės vertės pavedimų atlikti negalima.",
         "ledgerDisconnectedTitle": "Ledger įrenginys atjungtas",
@@ -856,7 +860,7 @@
         "checkAddress": "Patikrinkite priėmimo adresą",
         "checkAddressExplanation": "Patikrinkite ar adresas sutampa su rodomu adresu Ledger įrenginyje.",
         "applicationNotInitialised": "Pranešimas nepatvirtintas",
-        "applicationNotInitialisedExplanation": "Iš naujo atidarykite IOTA aplikaciją Ledger įrenginyje, patvirtinkite informacinį pranešimą ir bandykite dar kartą.",
+        "applicationNotInitialisedExplanation": "Iš naujo atidarykite IOTA programėlę Ledger įrenginyje, patvirtinkite informacinį pranešimą ir bandykite dar kartą.",
         "checkLedger": "Patikrinkite savo Ledger įrenginį",
         "acceptWarningExplanation": "Jeigu jūsų Ledger įrenginyje atsirado informacinis pranešimas, privalote jį perskaityti ir sutikti spausdami abu mygtukus.",
         "udevError": "Nepavyksta susisiekti su Ledger įrenginiu",

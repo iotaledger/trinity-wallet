@@ -116,7 +116,7 @@
         "checkForUpdates": "بررسی برای بروزرسانی",
         "account": "حساب",
         "changeNode": "تغییر Node",
-        "addCustomNode": "اضافه کردن Node سفارشی",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Node نامعتبر (غیر HTTPS)",
         "nodeMustUseHTTPSExplanation": "فقط Node های سفارشی با استفاده از HTTPS مجاز می باشند.",
         "nodeDuplicated": "Node تکراری",
@@ -456,7 +456,8 @@
         "keepSafe": "لطفا سید خود را جای امن نگهداری کنید."
     },
     "welcome": {
-        "thankYou": "با تشکر از شما برای دانلود Trinity"
+        "thankYou": "با تشکر از شما برای دانلود Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>سید و کد اعتبارسنجی خود را بنویسید و </0><1>بررسی سه گانه</1><2>آنها درست هستند</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "مدیریت اتوماتیک نود",
-        "addCustomNodes": "اضافه کردن نود سفارشی",
-        "autoNodeList": "لیست نود از راه دور استفاده کنید",
-        "nodeAutoswitching": "تغییر اتوماتیک نود اصلی",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "نود اصلی",
         "enableQuorum": "فعال کردن سیستم",
         "quorumSize": "اندازه سیستم",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "نود های کافی برای فعال کردن سیستم نیست.",
         "nodeEnoughNodesExplanationCustomNodes": "نود های سفارشی بیشتری اضافه کنید یا لیست نود از راه دور را فعال کنید.",
         "nodeSettingsUpdatedTitle": "تنظیمات نود به روز رسانی شد",
-        "nodeSettingsUpdatedExplanation": "شما تنظیمات نود خود را با موفقیت به روز کردید."
+        "nodeSettingsUpdatedExplanation": "شما تنظیمات نود خود را با موفقیت به روز کردید.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node سفارشی نمیتوان اضافه کرد",

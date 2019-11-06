@@ -2,12 +2,18 @@ import unionBy from 'lodash/unionBy';
 import assign from 'lodash/assign';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
+import omit from 'lodash/omit';
 import { changeIotaNode, quorum } from '../libs/iota/index';
 import i18next from '../libs/i18next';
 import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
 import { fetchNodeList } from '../actions/polling';
 import { allowsRemotePow } from '../libs/iota/extendedApi';
-import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState } from '../selectors/global';
+import {
+    getSelectedNodeFromState,
+    getNodesFromState,
+    getCustomNodesFromState,
+    getRandomPowNodeFromState,
+} from '../selectors/global';
 import { throwIfNodeNotHealthy } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import { Wallet, Node } from '../storage';
@@ -223,9 +229,20 @@ export const setNode = (payload) => {
 export const setNodeList = (payload) => {
     Node.addNodes(payload);
 
-    return {
-        type: SettingsActionTypes.SET_NODELIST,
-        payload,
+    return (dispatch, getState) => {
+        dispatch({
+            type: SettingsActionTypes.SET_NODELIST,
+            payload,
+        });
+
+        const { settings } = getState();
+        const nodes = [...settings.nodes, ...settings.customNodes];
+
+        const powNodeExists = settings.powNode && nodes.find(({ url }) => url === settings.powNode);
+
+        if (!powNodeExists) {
+            return dispatch(setPowNode(getRandomPowNodeFromState(getState())));
+        }
     };
 };
 
@@ -240,9 +257,17 @@ export const setNodeList = (payload) => {
 export const removeCustomNode = (payload) => {
     Node.delete(payload);
 
-    return {
-        type: SettingsActionTypes.REMOVE_CUSTOM_NODE,
-        payload,
+    return (dispatch, getState) => {
+        dispatch({
+            type: SettingsActionTypes.REMOVE_CUSTOM_NODE,
+            payload,
+        });
+
+        const { settings } = getState();
+
+        if (settings.powNode === payload) {
+            return dispatch(setPowNode(getRandomPowNodeFromState(getState())));
+        }
     };
 };
 
@@ -259,6 +284,23 @@ export const setRemotePoW = (payload) => {
 
     return {
         type: SettingsActionTypes.SET_REMOTE_POW,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to update proof of work node configuration for wallet
+ *
+ * @method setRemotePoW
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const setPowNode = (payload) => {
+    Wallet.updatePowNodeSetting(payload);
+
+    return {
+        type: SettingsActionTypes.SET_POW_NODE,
         payload,
     };
 };
@@ -332,7 +374,7 @@ export const changeNode = (payload) => (dispatch, getState) => {
     if (selectedNode.url !== payload.url) {
         dispatch(setNode(payload));
         // Change provider on global iota instance
-        changeIotaNode(assign({}, payload, { provider: payload.url }));
+        changeIotaNode(assign({}, omit(payload, 'url'), { provider: payload.url }));
     }
 };
 
@@ -416,7 +458,7 @@ export function setLanguage(language) {
  *
  * @method setFullNode
  *
- * @param {object} node - { url, token }
+ * @param {object} node - { url, username }
  * @param {boolean} addingCustomNode
  *
  * @returns {function}
@@ -488,7 +530,6 @@ export function setFullNode(node, addingCustomNode = false) {
                 } else {
                     // Automatically default to local PoW if this node has no attach to tangle available
                     dispatch(setRemotePoW(false));
-                    dispatch(setAutoPromotion(false));
 
                     dispatch(
                         generateAlert(
@@ -537,8 +578,7 @@ export function updateTheme(payload) {
 }
 
 /**
- * Makes an API call for checking if attachToTangle is enabled on the selected IRI node
- * and changes proof of work configuration for wallet
+ * Changes proof of work configuration for wallet
  *
  * @method changePowSettings
  *
@@ -546,26 +586,7 @@ export function updateTheme(payload) {
  */
 export function changePowSettings() {
     return (dispatch, getState) => {
-        const settings = getState().settings;
-        if (!settings.remotePoW) {
-            allowsRemotePow(settings.node).then((hasRemotePow) => {
-                if (!hasRemotePow) {
-                    return dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('global:attachToTangleUnavailable'),
-                            i18next.t('global:attachToTangleUnavailableExplanationShort'),
-                            10000,
-                        ),
-                    );
-                }
-                dispatch(setRemotePoW(!settings.remotePoW));
-                dispatch(generateAlert('success', i18next.t('pow:powUpdated'), i18next.t('pow:powUpdatedExplanation')));
-            });
-        } else {
-            dispatch(setRemotePoW(!settings.remotePoW));
-            dispatch(generateAlert('success', i18next.t('pow:powUpdated'), i18next.t('pow:powUpdatedExplanation')));
-        }
+        dispatch(setRemotePoW(!getState().settings.remotePoW));
     };
 }
 
@@ -580,37 +601,17 @@ export function changePowSettings() {
 export function changeAutoPromotionSettings() {
     return (dispatch, getState) => {
         const settings = getState().settings;
-        if (!settings.autoPromotion) {
-            allowsRemotePow(settings.node).then((hasRemotePow) => {
-                if (!hasRemotePow) {
-                    return dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('global:attachToTangleUnavailable'),
-                            i18next.t('global:attachToTangleUnavailableExplanationShort'),
-                            10000,
-                        ),
-                    );
-                }
-                dispatch(setAutoPromotion(!settings.autoPromotion));
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('autoPromotion:autoPromotionUpdated'),
-                        i18next.t('autoPromotion:autoPromotionUpdatedExplanation'),
-                    ),
-                );
-            });
-        } else {
-            dispatch(setAutoPromotion(!settings.autoPromotion));
-            dispatch(
-                generateAlert(
-                    'success',
-                    i18next.t('autoPromotion:autoPromotionUpdated'),
-                    i18next.t('autoPromotion:autoPromotionUpdatedExplanation'),
-                ),
-            );
+        if (!settings.autoPromotion && !settings.powNode) {
+            dispatch(setPowNode(getRandomPowNodeFromState(getState())));
         }
+        dispatch(setAutoPromotion(!settings.autoPromotion));
+        dispatch(
+            generateAlert(
+                'success',
+                i18next.t('autoPromotion:autoPromotionUpdated'),
+                i18next.t('autoPromotion:autoPromotionUpdatedExplanation'),
+            ),
+        );
     };
 }
 
@@ -839,6 +840,25 @@ export const updateNodeAutoSwitchSetting = (payload) => {
     // Update auto node switching setting in redux store
     return {
         type: SettingsActionTypes.UPDATE_NODE_AUTO_SWITCH_SETTING,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to update proof of work node auto-switch setting
+ *
+ * @method updatePowNodeAutoSwitchSetting
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const updatePowNodeAutoSwitchSetting = (payload) => {
+    // Update pow node auto switching setting in realm
+    Wallet.updatePowNodeAutoSwitchSetting(payload);
+
+    // Update pow node auto switching setting in redux store
+    return {
+        type: SettingsActionTypes.UPDATE_POW_NODE_AUTO_SWITCH_SETTING,
         payload,
     };
 };

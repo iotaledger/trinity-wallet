@@ -1,4 +1,4 @@
-import { withNamespaces, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
@@ -177,4 +177,6 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
 });
 
-export default withNamespaces(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation));
+export default withTranslation(['walletResetConfirmation', 'global'])(
+    connect(mapStateToProps)(WalletResetConfirmation),
+);

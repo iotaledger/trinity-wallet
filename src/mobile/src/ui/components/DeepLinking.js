@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Linking } from 'react-native';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { initiateDeepLinkRequest, setSetting } from 'shared-modules/actions/wallet';
+import { initiateDeepLinkRequest, setDeepLinkContent, setSetting } from 'shared-modules/actions/wallet';
 import { parseAddress, ADDRESS_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
+import { isAndroid } from 'libs/device';
 
 export default () => (C) => {
     class WithDeepLinking extends Component {
@@ -17,6 +18,13 @@ export default () => (C) => {
 
         componentDidMount() {
             Linking.addEventListener('url', this.setDeepUrl);
+            if (isAndroid) {
+                Linking.getInitialURL().then((url) => {
+                    if (url) {
+                        this.setDeepUrl(url);
+                    }
+                });
+            }
         }
 
         componentWillUnmount() {
@@ -29,22 +37,25 @@ export default () => (C) => {
          */
         setDeepUrl(data) {
             const { t, generateAlert, deepLinking } = this.props;
-
+            this.props.initiateDeepLinkRequest();
             if (!deepLinking) {
-                this.props.initiateDeepLinkRequest();
                 this.navigateToSettings();
                 return generateAlert('info', t('deepLink:deepLinkingInfoTitle'), t('deepLink:deepLinkingInfoMessage'));
             }
             this.props.changeHomeScreenRoute('send');
-            const parsedData = parseAddress(data.url);
+            const parsedData = parseAddress(data.url || data);
             if (parsedData) {
-                this.props.initiateDeepLinkRequest(
+                this.props.setDeepLinkContent(
                     parsedData.amount.toString() || '0',
                     parsedData.address,
                     parsedData.message || null,
                 );
             } else {
-                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
+                generateAlert(
+                    'error',
+                    t('send:invalidAddress'),
+                    t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }),
+                );
             }
         }
 
@@ -71,6 +82,8 @@ export default () => (C) => {
         /** @ignore */
         initiateDeepLinkRequest: PropTypes.func.isRequired,
         /** @ignore */
+        setDeepLinkContent: PropTypes.func.isRequired,
+        /** @ignore */
         changeHomeScreenRoute: PropTypes.func.isRequired,
         /** @ignore */
         deepLinking: PropTypes.bool.isRequired,
@@ -82,10 +95,16 @@ export default () => (C) => {
 
     const mapDispatchToProps = {
         initiateDeepLinkRequest,
+        setDeepLinkContent,
         generateAlert,
         changeHomeScreenRoute,
         setSetting,
     };
 
-    return withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithDeepLinking));
+    return withTranslation(['global'])(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(WithDeepLinking),
+    );
 };

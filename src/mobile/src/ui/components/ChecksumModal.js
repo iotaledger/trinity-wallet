@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Text, StyleSheet } from 'react-native';
 import { Styling } from 'ui/theme/general';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { height, width } from 'libs/dimensions';
 import Icon from 'ui/theme/icons';
 import ModalView from './ModalView';
@@ -40,7 +40,10 @@ export class ChecksumModal extends PureComponent {
     };
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+        } = this.props;
 
         return (
             <ModalView onButtonPress={() => this.props.closeModal()} buttonText={t('okay')}>
@@ -55,4 +58,4 @@ export class ChecksumModal extends PureComponent {
     }
 }
 
-export default withNamespaces(['logoutConfirmationModal', 'global'])(ChecksumModal);
+export default withTranslation(['logoutConfirmationModal', 'global'])(ChecksumModal);

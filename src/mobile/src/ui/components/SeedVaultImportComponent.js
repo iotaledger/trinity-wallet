@@ -8,7 +8,7 @@ import DocumentPicker from 'react-native-document-picker';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { SEED_VAULT_DEFAULT_TITLE } from 'shared-modules/config';
@@ -229,7 +229,7 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default withNamespaces(['seedVault', 'global'])(
+export default withTranslation(['seedVault', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

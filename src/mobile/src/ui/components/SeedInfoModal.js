@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Text, StyleSheet } from 'react-native';
-import { withNamespaces, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { Styling } from 'ui/theme/general';
 import { height, width } from 'libs/dimensions';
@@ -47,7 +47,10 @@ export class SeedInfoModal extends PureComponent {
     };
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const {
+            t,
+            theme: { body },
+        } = this.props;
         const textColor = { color: body.color };
 
         return (
@@ -71,4 +74,4 @@ export class SeedInfoModal extends PureComponent {
     }
 }
 
-export default withNamespaces(['newSeedSetup', 'global'])(SeedInfoModal);
+export default withTranslation(['newSeedSetup', 'global'])(SeedInfoModal);

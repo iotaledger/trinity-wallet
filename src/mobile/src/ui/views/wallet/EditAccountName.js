@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import {
     getAccountNamesFromState,
     getSelectedAccountName,
@@ -189,7 +189,7 @@ const mapDispatchToProps = {
     changeAccountName,
 };
 
-export default withNamespaces(['addAdditionalSeed', 'global', 'settings'])(
+export default withTranslation(['addAdditionalSeed', 'global', 'settings'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

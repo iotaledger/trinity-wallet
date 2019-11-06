@@ -116,7 +116,7 @@
         "checkForUpdates": "Søk etter oppdateringer",
         "account": "Konto",
         "changeNode": "Endre node",
-        "addCustomNode": "Legg til egendefinert node",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Ugyldig node (ikke HTTPS)",
         "nodeMustUseHTTPSExplanation": "Kun egendefinerte noder med HTTPS er tillatt.",
         "nodeDuplicated": "Duplisert node",
@@ -456,7 +456,8 @@
         "keepSafe": "Vennligst oppbevar hovednøkkelen sikkert."
     },
     "welcome": {
-        "thankYou": "Takk for at du lastet ned Trinity"
+        "thankYou": "Takk for at du lastet ned Trinity",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Skriv ned hovednøkkel og kontrolltegn. </0><1>Trippelsjekk</1><2>at de er riktige.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatisk nodehåndtering",
-        "addCustomNodes": "Legg til egendefinerte noder",
-        "autoNodeList": "Bruk liste med eksterne noder",
-        "nodeAutoswitching": "Automatisk endring av primærnode",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Primærnode",
         "enableQuorum": "Aktiver quorum",
         "quorumSize": "Quorum-størrelse",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "Det er ikke nok noder for å aktivere quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Legg til flere egendefinerte noder eller aktiver listen med eksterne noder.",
         "nodeSettingsUpdatedTitle": "Node-innstillinger oppdatert",
-        "nodeSettingsUpdatedExplanation": "Du har oppdatert node-innstillingene dine."
+        "nodeSettingsUpdatedExplanation": "Du har oppdatert node-innstillingene dine.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Egendefinert node kunne ikke legges til",

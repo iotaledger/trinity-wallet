@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import unionBy from 'lodash/unionBy';
+import get from 'lodash/get';
+import sample from 'lodash/sample';
 import { withTranslation } from 'react-i18next';
 
 import withNodeData from 'containers/settings/Node';
@@ -28,7 +30,8 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
         defaultSettings.nodeAutoSwitch === settings.nodeAutoSwitch &&
         defaultSettings.quorum.enabled === settings.quorumEnabled &&
         defaultSettings.quorum.size === settings.quorumSize &&
-        defaultSettings.node.url === settings.node.url;
+        defaultSettings.node.url === settings.node.url &&
+        defaultSettings.powNodeAutoSwitch === settings.powNodeAutoSwitch;
 
     const [autoNodeSelection, setAutoNodeSelection] = useState(isDefault);
     const [autoNodeList, setAutoNodeList] = useState(settings.autoNodeList);
@@ -37,12 +40,22 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
     const [quorumEnabled, setQuorumEnabled] = useState(settings.quorumEnabled);
     const [quorumSize, setQuorumSize] = useState(settings.quorumSize);
     const [showCustomNodes, setshowCustomNodes] = useState(false);
+    const [powNode, setPowNode] = useState(settings.powNode);
+    const [powNodeAutoSwitch, setPowNodeAutoSwitch] = useState(settings.powNodeAutoSwitch);
+    const [remotePoW, setRemotePoW] = useState(settings.remotePoW);
+
+    const availableNodes = unionBy(customNodes, autoNodeList && nodes, nodeAutoSwitch && [DEFAULT_NODE], 'url');
+    const availablePowNodes = availableNodes.filter(({ pow }) => pow);
 
     useEffect(() => {
         if (!loading && settings.node.url !== primaryNode.url) {
             setPrimaryNode(settings.node);
         }
     }, [settings]);
+
+    useEffect(() => {
+        setPowNode(settings.powNode);
+    }, [showCustomNodes]);
 
     const updateQuorumEnabled = () => {
         if (
@@ -67,6 +80,11 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
         }
     };
 
+    const togglePowNodeAutoSwitch = () => {
+        setPowNode(settings.powNode || get(sample(availablePowNodes), 'url'));
+        setPowNodeAutoSwitch(!powNodeAutoSwitch);
+    };
+
     const updateAutoNodeList = () => {
         if (autoNodeList && customNodes.length < 1) {
             generateAlert('error', t('nodeSettings:noCustomNodes'), t('nodeSettings:mustAddCustomNodes'));
@@ -87,6 +105,9 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
             setPrimaryNode(defaultSettings.node);
             setQuorumEnabled(defaultSettings.quorum.enabled);
             setQuorumSize(defaultSettings.quorum.size);
+            setPowNode(defaultSettings.powNode);
+            setPowNodeAutoSwitch(defaultSettings.powNodeAutoSwitch);
+            setQuorumSize(defaultSettings.quorum.size);
         }
         setAutoNodeSelection(!autoNodeSelection);
     };
@@ -95,11 +116,23 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
         if (autoNodeList !== settings.autoNodeList) {
             actions.changeAutoNodeListSetting(autoNodeList);
         }
+        if (autoNodeList !== settings.autoNodeList) {
+            actions.changeAutoNodeListSetting(autoNodeList);
+        }
         if (nodeAutoSwitch !== settings.nodeAutoSwitch) {
             actions.updateNodeAutoSwitchSetting(nodeAutoSwitch);
         }
         if (quorumEnabled !== settings.quorumEnabled || quorumSize !== settings.quorumSize) {
             actions.updateQuorumConfig({ enabled: quorumEnabled, size: quorumSize });
+        }
+        if (powNode !== settings.powNode) {
+            actions.setPowNode(powNode);
+        }
+        if (powNodeAutoSwitch !== settings.powNodeAutoSwitch) {
+            actions.updatePowNodeAutoSwitchSetting(powNodeAutoSwitch);
+        }
+        if (remotePoW !== settings.remotePoW) {
+            actions.changePowSettings();
         }
         if (primaryNode.url !== settings.node.url || primaryNode.password !== settings.node.password) {
             return actions.setFullNode(primaryNode);
@@ -114,8 +147,6 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
     if (showCustomNodes) {
         return <NodeCustom onClose={() => setshowCustomNodes(false)} />;
     }
-
-    const availableNodes = unionBy(customNodes, autoNodeList && nodes, nodeAutoSwitch && [DEFAULT_NODE], 'url');
 
     return (
         <form>
@@ -132,49 +163,70 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                             {t('nodeSettings:addCustomNodes')}
                         </Button>
 
-                        <hr />
-                        <Toggle
-                            disabled={autoNodeSelection}
-                            inline={t('nodeSettings:autoNodeList')}
-                            checked={autoNodeList}
-                            onChange={updateAutoNodeList}
-                        />
+                        <Toggle inline={t('nodeSettings:outsourcePow')} checked={remotePoW} onChange={setRemotePoW} />
 
-                        <hr />
-                        <Toggle
-                            disabled={autoNodeSelection}
-                            inline={t('nodeSettings:nodeAutoswitching')}
-                            checked={nodeAutoSwitch}
-                            onChange={setNodeAutoSwitch}
-                        />
-                        {!nodeAutoSwitch && (
-                            <Select
-                                label={t('nodeSettings:primaryNode')}
-                                disabled={autoNodeSelection}
-                                value={primaryNode.url}
-                                onChange={(url) => setPrimaryNode(availableNodes.find((node) => node.url === url))}
-                                options={availableNodes.map(({ url }) => {
-                                    return { value: url };
-                                })}
-                            />
+                        {!autoNodeSelection && (
+                            <div>
+                                <hr />
+                                <Toggle
+                                    inline={t('nodeSettings:autoNodeList')}
+                                    checked={autoNodeList}
+                                    onChange={updateAutoNodeList}
+                                />
+
+                                <Toggle
+                                    inline={t('nodeSettings:nodeAutoswitching')}
+                                    checked={nodeAutoSwitch}
+                                    onChange={setNodeAutoSwitch}
+                                />
+                                {!nodeAutoSwitch && (
+                                    <Select
+                                        label={t('nodeSettings:primaryNode')}
+                                        value={primaryNode.url}
+                                        onChange={(url) =>
+                                            setPrimaryNode(availableNodes.find((node) => node.url === url))
+                                        }
+                                        options={availableNodes.map(({ url }) => {
+                                            return { value: url };
+                                        })}
+                                    />
+                                )}
+
+                                {remotePoW && (
+                                    <Toggle
+                                        inline={t('nodeSettings:autoSelectPowNode')}
+                                        checked={powNodeAutoSwitch}
+                                        onChange={togglePowNodeAutoSwitch}
+                                    />
+                                )}
+                                {!powNodeAutoSwitch && remotePoW && (
+                                    <Select
+                                        label={t('nodeSettings:nodeForPow')}
+                                        value={powNode}
+                                        onChange={(url) => setPowNode(url)}
+                                        options={availablePowNodes.map(({ url }) => {
+                                            return { value: url };
+                                        })}
+                                    />
+                                )}
+
+                                <Toggle
+                                    inline={t('nodeSettings:enableQuorum')}
+                                    checked={quorumEnabled}
+                                    onChange={updateQuorumEnabled}
+                                />
+                                {quorumEnabled && (
+                                    <Number
+                                        inline
+                                        min={MINIMUM_QUORUM_SIZE}
+                                        max={Math.min(availableNodes.length, MAXIMUM_QUORUM_SIZE)}
+                                        value={quorumSize}
+                                        label={t('nodeSettings:quorumSize')}
+                                        onChange={setQuorumSize}
+                                    />
+                                )}
+                            </div>
                         )}
-
-                        <hr />
-                        <Toggle
-                            disabled={autoNodeSelection}
-                            inline={t('nodeSettings:enableQuorum')}
-                            checked={quorumEnabled}
-                            onChange={updateQuorumEnabled}
-                        />
-                        <Number
-                            disabled={autoNodeSelection || !quorumEnabled}
-                            inline
-                            min={MINIMUM_QUORUM_SIZE}
-                            max={Math.min(availableNodes.length, MAXIMUM_QUORUM_SIZE)}
-                            value={quorumSize}
-                            label={t('nodeSettings:quorumSize')}
-                            onChange={setQuorumSize}
-                        />
                     </article>
                 </Scrollbar>
             </div>
@@ -188,8 +240,11 @@ const NodeSettings = ({ customNodes, generateAlert, loading, nodes, settings, ac
                         quorumEnabled === settings.quorumEnabled &&
                         quorumSize === settings.quorumSize &&
                         primaryNode.url === settings.node.url &&
-                        primaryNode.token === settings.node.token &&
-                        primaryNode.password === settings.node.password
+                        primaryNode.username === settings.node.username &&
+                        primaryNode.password === settings.node.password &&
+                        powNode === settings.powNode &&
+                        powNodeAutoSwitch === settings.powNodeAutoSwitch &&
+                        remotePoW === settings.remotePoW
                     }
                     type="submit"
                     onClick={saveSettings}
@@ -210,14 +265,20 @@ NodeSettings.propTypes = {
         nodeAutoSwitch: PropTypes.bool.isRequired,
         autoNodeList: PropTypes.bool.isRequired,
         node: PropTypes.object.isRequired,
+        powNode: PropTypes.string.isRequired,
         quorumEnabled: PropTypes.bool.isRequired,
         quorumSize: PropTypes.number.isRequired,
+        remotePoW: PropTypes.bool.isRequired,
+        powNodeAutoSwitch: PropTypes.bool.isRequired,
     }),
     actions: PropTypes.shape({
         changeAutoNodeListSetting: PropTypes.func.isRequired,
         updateNodeAutoSwitchSetting: PropTypes.func.isRequired,
         updateQuorumConfig: PropTypes.func.isRequired,
         setFullNode: PropTypes.func.isRequired,
+        setPowNode: PropTypes.func.isRequired,
+        changePowSettings: PropTypes.func.isRequired,
+        updatePowNodeAutoSwitchSetting: PropTypes.func.isRequired,
     }),
     t: PropTypes.func.isRequired,
 };

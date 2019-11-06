@@ -7,20 +7,20 @@ export const DEFAULT_NODE = __TEST__
     ? {
           url: 'http://localhost:14265',
           pow: false,
-          token: '',
+          username: '',
           password: '',
       }
     : {
           url: 'https://nodes.iota.org',
           pow: false,
-          token: '',
+          username: '',
           password: '',
       };
 
 export const NODES_WITH_POW_DISABLED = ['https://nodes.iota.org'].map((url) => ({
     url,
     pow: false,
-    token: '',
+    username: '',
     password: '',
 }));
 
@@ -32,7 +32,7 @@ export const NODES_WITH_POW_ENABLED = [
 ].map((url) => ({
     url,
     pow: true,
-    token: '',
+    username: '',
     password: '',
 }));
 

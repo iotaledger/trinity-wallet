@@ -8,7 +8,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import Fonts from 'ui/theme/fonts';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -275,7 +275,7 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withNamespaces(['fingerprintSetup', 'global'])(
+export default withTranslation(['fingerprintSetup', 'global'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,

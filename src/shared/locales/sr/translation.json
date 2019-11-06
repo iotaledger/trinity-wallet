@@ -116,7 +116,7 @@
         "checkForUpdates": "Proverite da li postoje ažuriranja",
         "account": "Račun",
         "changeNode": "Promenite node",
-        "addCustomNode": "Dodajte prilagođeni node",
+        "addCustomNode": "Add nodes",
         "nodeMustUseHTTPS": "Nedozvoljeni node (mora biti HTPPS)",
         "nodeMustUseHTTPSExplanation": "Dozvoljeni su samo prilagođeni node-ovi koji koriste HTPPS protokol.",
         "nodeDuplicated": "Duplirani node",
@@ -456,7 +456,8 @@
         "keepSafe": "Čuvajte seed na sigurno."
     },
     "welcome": {
-        "thankYou": "Hvala na preuzimanju Trinity novčanika"
+        "thankYou": "Hvala na preuzimanju Trinity novčanika",
+        "demoThankYou": "Thank you for downloading the Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Zapišite svoj seed i kontrolni zbir, te </0><1>proverite bar 3 puta</1><2> da li su tačni.</2>",
@@ -496,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatic node management",
-        "addCustomNodes": "Add custom nodes",
-        "autoNodeList": "Use remote node list",
-        "nodeAutoswitching": "Primary node autoswitching",
+        "addCustomNodes": "Add nodes",
+        "autoNodeList": "Use default node list",
+        "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Primary node",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
@@ -508,7 +509,10 @@
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
         "nodeSettingsUpdatedTitle": "Node settings updated",
-        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings."
+        "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
+        "outsourcePow": "Outsource proof of work",
+        "autoSelectPowNode": "Autoselect proof of work node",
+        "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nije bilo moguće dodati prilagođeni node",

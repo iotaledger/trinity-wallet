@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import timer from 'react-native-timer';
@@ -79,7 +79,10 @@ export class RootDetectionModal extends PureComponent {
     }
 
     render() {
-        const { t, theme: { body, input, dark, secondary, primary } } = this.props;
+        const {
+            t,
+            theme: { body, input, dark, secondary, primary },
+        } = this.props;
         const textColor = { color: body.color };
 
         return (
@@ -121,4 +124,4 @@ export class RootDetectionModal extends PureComponent {
     }
 }
 
-export default withNamespaces(['paperWallet', 'global'])(RootDetectionModal);
+export default withTranslation(['paperWallet', 'global'])(RootDetectionModal);
