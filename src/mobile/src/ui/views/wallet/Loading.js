@@ -102,8 +102,6 @@ class Loading extends Component {
         /** @ignore */
         additionalAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
-        currency: PropTypes.string.isRequired,
-        /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         ready: PropTypes.bool.isRequired,
@@ -344,7 +342,6 @@ const mapStateToProps = (state) => ({
     ready: state.wallet.ready,
     theme: getThemeFromState(state),
     themeName: state.settings.themeName,
-    currency: state.settings.currency,
     deepLinkRequestActive: state.wallet.deepLinkRequestActive,
 });
 

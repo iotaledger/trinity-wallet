@@ -1,6 +1,3 @@
-import assign from 'lodash/assign';
-import noop from 'lodash/noop';
-import React from 'react';
 import PropTypes from 'prop-types';
 import { CurrencySelection } from 'ui/views/wallet/CurrencySelection';
 
