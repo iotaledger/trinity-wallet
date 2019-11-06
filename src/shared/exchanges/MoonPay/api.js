@@ -268,4 +268,19 @@ export class MoonPayApi {
             true,
         );
     }
+
+    /**
+     * Checks IP address of the customer
+     *
+     * See: https://www.moonpay.io/api_reference/v3#ip_addresses
+     *
+     * @method checkIPAddress
+     *
+     * @returns {Promise}
+     */
+    checkIPAddress() {
+        return this._fetch(`${this.url}/ip_address?apiKey=${this.apiKey}`, {
+            method: 'get',
+        });
+    }
 }

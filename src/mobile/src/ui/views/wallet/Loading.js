@@ -15,6 +15,7 @@ import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/ma
 import {
     fetchCountries as fetchMoonPayCountries,
     fetchCurrencies as fetchMoonPayCurrencies,
+    checkIPAddress,
 } from 'shared-modules/actions/exchanges/MoonPay';
 import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -130,6 +131,8 @@ class Loading extends Component {
         fetchMoonPayCountries: PropTypes.func.isRequired,
         /** @ignore */
         fetchMoonPayCurrencies: PropTypes.func.isRequired,
+        /** @ignore */
+        checkIPAddress: PropTypes.func.isRequired,
         /** All stored account names */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
@@ -236,6 +239,7 @@ class Loading extends Component {
 
         this.props.fetchMoonPayCountries();
         this.props.fetchMoonPayCurrencies();
+        this.props.checkIPAddress();
     }
 
     animateElipses = (chars, index, time = 750) => {
@@ -382,6 +386,7 @@ const mapDispatchToProps = {
     setLoginRoute,
     fetchMoonPayCountries,
     fetchMoonPayCurrencies,
+    checkIPAddress,
 };
 
 export default withTranslation(['loading', 'global'])(

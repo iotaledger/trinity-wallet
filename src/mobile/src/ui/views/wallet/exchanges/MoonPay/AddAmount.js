@@ -10,7 +10,11 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { ALLOWED_IOTA_DENOMINATIONS, MINIMUM_TRANSACTION_SIZE } from 'shared-modules/exchanges/MoonPay/index';
+import {
+    ALLOWED_IOTA_DENOMINATIONS,
+    MINIMUM_TRANSACTION_SIZE,
+    BASIC_MONTHLY_LIMIT,
+} from 'shared-modules/exchanges/MoonPay/index';
 import { getActiveFiatCurrency, getAmountInFiat, convertFiatCurrency } from 'shared-modules/exchanges/MoonPay/utils';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import {
@@ -258,11 +262,24 @@ class AddAmount extends Component {
      * @returns {string|object}
      */
     getWarningText() {
-        const { amount, exchangeRates, denomination, t } = this.props;
+        const {
+            amount,
+            exchangeRates,
+            denomination,
+            defaultCurrencyCode,
+            dailyLimits,
+            monthlyLimits,
+            hasCompletedBasicIdentityVerification,
+            hasCompletedAdvancedIdentityVerification,
+            isPurchaseLimitIncreaseAllowed,
+            t,
+        } = this.props;
 
         if (amount) {
+            const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
+
             const amountInEuros = convertFiatCurrency(
-                getAmountInFiat(Number(amount), denomination, exchangeRates),
+                fiatAmount,
                 exchangeRates,
                 denomination,
                 // Skipping the last parameter (target denomination) as it is already set to EUR as default parameter
@@ -270,6 +287,65 @@ class AddAmount extends Component {
 
             if (amountInEuros < MINIMUM_TRANSACTION_SIZE) {
                 return t('moonpay:minimumTransactionAmount', { amount: `€${MINIMUM_TRANSACTION_SIZE}` });
+            }
+
+            if (
+                !hasCompletedBasicIdentityVerification &&
+                !hasCompletedAdvancedIdentityVerification &&
+                isPurchaseLimitIncreaseAllowed
+            ) {
+                return amountInEuros > BASIC_MONTHLY_LIMIT
+                    ? t('moonpay:kycRequired', { limit: `€${BASIC_MONTHLY_LIMIT}` })
+                    : null;
+            } else if (
+                hasCompletedBasicIdentityVerification &&
+                !hasCompletedAdvancedIdentityVerification &&
+                isPurchaseLimitIncreaseAllowed
+            ) {
+                const purchaseAmount = convertFiatCurrency(
+                    fiatAmount,
+                    exchangeRates,
+                    denomination,
+                    // Convert to currency code set by user (not in the app) but what it is set on MoonPay servers
+                    defaultCurrencyCode,
+                );
+
+                const _getLimit = () => {
+                    let limit = null;
+
+                    if (
+                        purchaseAmount > dailyLimits.dailyLimitRemaining &&
+                        purchaseAmount < monthlyLimits.monthlyLimitRemaining
+                    ) {
+                        limit = convertFiatCurrency(
+                            dailyLimits.dailyLimitRemaining,
+                            exchangeRates,
+                            denomination,
+                            getActiveFiatCurrency(denomination),
+                        );
+                    } else if (
+                        purchaseAmount > dailyLimits.dailyLimitRemaining &&
+                        purchaseAmount > monthlyLimits.monthlyLimitRemaining
+                    ) {
+                        limit = convertFiatCurrency(
+                            monthlyLimits.monthlyLimitRemaining,
+                            exchangeRates,
+                            denomination,
+                            getActiveFiatCurrency(denomination),
+                        );
+                    }
+
+                    return limit;
+                };
+
+                const limit = _getLimit();
+
+                // limit could be null, so add a null check
+                return limit && fiatAmount > limit
+                    ? t('moonpay:kycRequired', {
+                          limit: `${getCurrencySymbol(getActiveFiatCurrency(denomination))}${limit.toFixed(0)}`,
+                      })
+                    : null;
             }
         }
 

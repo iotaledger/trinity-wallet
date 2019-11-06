@@ -246,6 +246,24 @@ export const getMostRecentTransaction = createSelector(
 );
 
 /**
+ * Selects active transaction
+ *
+ * @method getActiveTransaction
+ *
+ * @param {object} state
+ *
+ * @returns {object}
+ */
+export const getActiveTransaction = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const transactions = exchanges.moonpay.transactions;
+
+        return find(transactions, { active: true });
+    },
+);
+
+/**
  * Determines whether a customer has completed basic identity verification
  *
  * @method hasCompletedBasicIdentityVerification
@@ -424,5 +442,41 @@ export const getPaymentCardLastDigits = createSelector(
     getSelectedPaymentCard,
     (paymentCard) => {
         return get(paymentCard, 'lastDigits');
+    },
+);
+
+/**
+ * Determines if user IP address is allowed
+ *
+ * @method isIPAddressAllowed
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const isIPAddressAllowed = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const ipAddress = exchanges.moonpay.ipAddress;
+
+        return get(ipAddress, 'isAllowed');
+    },
+);
+
+/**
+ * Gets alpha-3 country code for user IP address
+ *
+ * @method getAlpha3CodeForIPAddress
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getAlpha3CodeForIPAddress = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const ipAddress = exchanges.moonpay.ipAddress;
+
+        return get(ipAddress, 'alpha3');
     },
 );

@@ -359,6 +359,7 @@ class UserAdvancedInfo extends React.Component {
                                 onLeftButtonPress={() => this.goBack()}
                                 onRightButtonPress={() => this.updateCustomer()}
                                 isRightButtonLoading={isUpdatingCustomer}
+                                disableLeftButton={isUpdatingCustomer}
                                 leftButtonText={t('global:goBack')}
                                 rightButtonText={t('global:continue')}
                                 leftButtonTestID="moonpay-back"

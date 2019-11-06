@@ -35,6 +35,9 @@ export const API_KEY = ACTIVE_NETWORK === supportedNetworks.live ? LIVE_MODE_API
 /** MoonPay currency code for IOTA */
 export const IOTA_CURRENCY_CODE = 'miota';
 
+/** MoonPay transaction status for transactions that are protected by 3D secure */
+export const TRANSACTION_STATUS_WAITING_AUTHORIZATION = 'waitingAuthorization';
+
 /**
  * The URL the customer is returned to after they authenticate or cancel their payment on the payment method’s app or site.
  *
@@ -72,8 +75,15 @@ export const ADVANCED_IDENITY_VERIFICATION_LEVEL_NAME = 'Level 2';
  */
 export const BASIC_IDENITY_VERIFICATION_LEVEL_NAME = 'Level 1';
 
-/** MoonPay minimum transaction amount in EUR */
+/** MoonPay minimum transaction amount (in EUR) */
 export const MINIMUM_TRANSACTION_SIZE = 20;
+
+/**
+ * MoonPay monthly limit once a user has signed up and has shared basic information (in EUR)
+ *
+ * See: https://help.moonpay.io/en/articles/2509649-what-are-the-daily-and-monthly-limits
+ */
+export const BASIC_MONTHLY_LIMIT = 150;
 
 /** Allowed IOTA denominations in MoonPay implementation. */
 export const ALLOWED_IOTA_DENOMINATIONS = ['Mi'];

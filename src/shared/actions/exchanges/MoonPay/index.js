@@ -360,6 +360,18 @@ export const createPaymentCardError = () => ({
 });
 
 /**
+ * Dispatch to set IP address info in state
+ *
+ * @method setIPAddress
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const setIPAddress = (payload) => ({
+    type: MoonPayExchangeActionTypes.SET_IP_ADDRESS,
+    payload,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -501,7 +513,20 @@ export const verifyEmailAndFetchMeta = (securityCode) => (dispatch, getState) =>
             return api.fetchTransactions();
         })
         .then((transactions) => {
-            dispatch(setTransactions(transactions));
+            dispatch(
+                setTransactions(
+                    map(transactions, (transaction) =>
+                        assign(
+                            {},
+                            transaction,
+                            // "active" property determines if the transaction is active on user screen
+                            // i.e., the acive transaction user made from Trinity after authenticating himself/herself
+                            // Also, see #createTransaction action where we set the new transaction to "active"
+                            { active: false },
+                        ),
+                    ),
+                ),
+            );
             dispatch(verifyEmailSuccess());
         })
         .catch(() => {
@@ -588,7 +613,7 @@ export const createTransaction = (
         currencyCode: IOTA_CURRENCY_CODE,
     })
         .then((data) => {
-            dispatch(createTransactionSuccess(data));
+            dispatch(createTransactionSuccess(assign({}, data, { active: true })));
         })
         .catch(() => {
             dispatch(
@@ -624,5 +649,28 @@ export const createPaymentCard = (tokenId) => (dispatch) => {
         })
         .catch(() => {
             dispatch(createPaymentCardError());
+        });
+};
+
+/**
+ * Checks IP address
+ *
+ * See: https://www.moonpay.io/api_reference/v3#ip_addresses
+ *
+ * @method checkIPAddress
+ *
+ * @returns {function}
+ */
+export const checkIPAddress = () => (dispatch) => {
+    api.checkIPAddress()
+        .then((info) => {
+            dispatch(setIPAddress(info));
+        })
+        .catch((error) => {
+            if (__DEV__) {
+                /* eslint-disable no-console */
+                console.log(error);
+                /* eslint-enable no-console */
+            }
         });
 };

@@ -49,6 +49,10 @@ const initialState = {
      */
     transactions: [],
     /**
+     * IP address info
+     */
+    ipAddress: {},
+    /**
      * Determines if a network call is in progress for email authentication
      */
     isAuthenticatingEmail: false,
@@ -213,6 +217,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isCreatingTransaction: false,
+                transactions: [...state.transactions, action.payload],
             };
         case MoonPayExchangeActionTypes.CREATE_TRANSACTION_ERROR:
             return {
@@ -252,6 +257,11 @@ export default (state = initialState, action) => {
                 ...state,
                 isCreatingPaymentCard: false,
                 hasErrorCreatingPaymentCard: true,
+            };
+        case MoonPayExchangeActionTypes.SET_IP_ADDRESS:
+            return {
+                ...state,
+                ipAddress: action.payload,
             };
         default:
             return state;

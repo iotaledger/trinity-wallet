@@ -1,7 +1,9 @@
+import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View } from 'react-native';
+import { Linking, StyleSheet, View } from 'react-native';
 import withPurchaseSummary from 'ui/views/wallet/exchanges/MoonPay/WithPurchaseSummary';
+import { TRANSACTION_STATUS_WAITING_AUTHORIZATION } from 'shared-modules/exchanges/MoonPay';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import navigator from 'libs/navigation';
 import { width } from 'libs/dimensions';
@@ -43,6 +45,8 @@ class ReviewPurchase extends Component {
         createTransaction: PropTypes.func.isRequired,
         /** Component ID */
         componentId: PropTypes.string.isRequired,
+        /** @ignore */
+        activeTransaction: PropTypes.object,
     };
 
     componentWillReceiveProps(nextProps) {
@@ -51,7 +55,14 @@ class ReviewPurchase extends Component {
             !nextProps.isCreatingTransaction &&
             !nextProps.hasErrorCreatingTransaction
         ) {
-            this.redirectToScreen('purchaseComplete');
+            const { activeTransaction } = nextProps;
+
+            // See https://www.moonpay.io/api_reference/v3#three_d_secure
+            if (get(activeTransaction, 'status') === TRANSACTION_STATUS_WAITING_AUTHORIZATION) {
+                Linking.openURL(get(activeTransaction, 'redirectUrl'));
+            } else {
+                this.redirectToScreen('purchaseComplete');
+            }
         }
     }
 
@@ -93,6 +104,7 @@ class ReviewPurchase extends Component {
                             onLeftButtonPress={() => this.goBack()}
                             onRightButtonPress={() => this.props.createTransaction()}
                             isRightButtonLoading={isCreatingTransaction}
+                            disableLeftButton={isCreatingTransaction}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:confirm')}
                             leftButtonTestID="moonpay-back"

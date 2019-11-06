@@ -11,6 +11,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import { isIPAddressAllowed, getAlpha3CodeForIPAddress } from 'shared-modules/selectors/exchanges/MoonPay';
 import { updateCustomerInfo } from 'shared-modules/actions/exchanges/MoonPay';
 import { getAnimation } from 'shared-modules/animations';
 import navigator from 'libs/navigation';
@@ -77,6 +78,10 @@ class Landing extends Component {
         /** Component ID */
         componentId: PropTypes.string.isRequired,
         /** @ignore */
+        isIPAddressAllowed: PropTypes.bool.isRequired,
+        /** @ignore */
+        alpha3CodeForIPAddress: PropTypes.string.isRequired,
+        /** @ignore */
         updateCustomerInfo: PropTypes.func.isRequired,
     };
 
@@ -84,13 +89,28 @@ class Landing extends Component {
         super(props);
 
         const allowedCountries = filter(props.countries, (country) => country.isAllowed);
+        const _setCountryBasedOnIPAddress = () => {
+            const fallbackCountryName = get(head(allowedCountries), 'name');
+            const fallbackCountryAlpha3 = get(head(allowedCountries), 'alpha3');
+
+            if (props.isIPAddressAllowed) {
+                return {
+                    name:
+                        get(find(props.countries, { alpha3: props.alpha3CodeForIPAddress }), 'name') ||
+                        fallbackCountryName,
+                    alpha3: props.alpha3CodeForIPAddress || fallbackCountryAlpha3,
+                };
+            }
+
+            return {
+                name: fallbackCountryName,
+                alpha3: fallbackCountryAlpha3,
+            };
+        };
 
         this.state = {
             country: isNull(props.country)
-                ? {
-                      name: get(head(allowedCountries), 'name'),
-                      alpha3: get(head(allowedCountries), 'alpha3'),
-                  }
+                ? _setCountryBasedOnIPAddress()
                 : {
                       name: get(find(props.countries, { alpha3: props.country }), 'name'),
                       alpha3: props.country,
@@ -223,6 +243,8 @@ const mapStateToProps = (state) => ({
     themeName: state.settings.themeName,
     countries: state.exchanges.moonpay.countries,
     country: state.exchanges.moonpay.customer.address.country,
+    isIPAddressAllowed: isIPAddressAllowed(state),
+    alpha3CodeForIPAddress: getAlpha3CodeForIPAddress(state),
 });
 
 const mapDispatchToProps = {

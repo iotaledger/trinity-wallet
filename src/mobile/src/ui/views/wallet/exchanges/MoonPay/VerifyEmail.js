@@ -282,6 +282,7 @@ class VerifyEmail extends React.Component {
                                 onLeftButtonPress={() => this.goBack()}
                                 onRightButtonPress={() => this.verify()}
                                 isRightButtonLoading={isVerifyingEmail}
+                                disableLeftButton={isVerifyingEmail}
                                 leftButtonText={t('global:goBack')}
                                 rightButtonText={t('global:continue')}
                                 leftButtonTestID="moonpay-back"

@@ -267,8 +267,12 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
   }
 
   window.addEventListener('message', function(event) {
-    if (event.data === 'cardCreationSuccessful' || 'cardCreationUnsuccessful') {
+    if (
+      event.data === 'cardCreationSuccessful' || 
+      event.data === 'cardCreationUnsuccessful'
+      ) {
       document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
+      document.getElementsByClassName('button-left')[0].disabled = false;
 
       window.ReactNativeWebView.postMessage(JSON.stringify({
         type: event.data,
@@ -344,6 +348,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
       
       if (isFormValid) {
         document.getElementsByClassName('button-right')[0].innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
+        document.getElementsByClassName('button-left')[0].disabled = true;
 
         form.submit(
             {
@@ -373,6 +378,8 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
             },
             function(errors) {
                 document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
+                document.getElementsByClassName('button-left')[0].disabled = false;
+
                 window.ReactNativeWebView.postMessage(
                     JSON.stringify({
                         type: 'error',

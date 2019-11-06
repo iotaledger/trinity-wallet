@@ -188,6 +188,7 @@ class SetupEmail extends React.Component {
                                 onLeftButtonPress={() => this.goBack()}
                                 onRightButtonPress={() => this.authenticateViaEmail()}
                                 isRightButtonLoading={isAuthenticatingEmail}
+                                disableLeftButton={isAuthenticatingEmail}
                                 leftButtonText={t('global:goBack')}
                                 rightButtonText={t('global:continue')}
                                 leftButtonTestID="moonpay-back"
