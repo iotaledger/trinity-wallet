@@ -360,6 +360,18 @@ export const createPaymentCardError = () => ({
 });
 
 /**
+ * Dispatch to set IP address info in state
+ *
+ * @method setIPAddress
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const setIPAddress = (payload) => ({
+    type: MoonPayExchangeActionTypes.SET_IP_ADDRESS,
+    payload,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -637,5 +649,28 @@ export const createPaymentCard = (tokenId) => (dispatch) => {
         })
         .catch(() => {
             dispatch(createPaymentCardError());
+        });
+};
+
+/**
+ * Checks IP address
+ *
+ * See: https://www.moonpay.io/api_reference/v3#ip_addresses
+ *
+ * @method checkIPAddress
+ *
+ * @returns {function}
+ */
+export const checkIPAddress = () => (dispatch) => {
+    api.checkIPAddress()
+        .then((info) => {
+            dispatch(setIPAddress(info));
+        })
+        .catch((error) => {
+            if (__DEV__) {
+                /* eslint-disable no-console */
+                console.log(error);
+                /* eslint-enable no-console */
+            }
         });
 };
