@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
+        textAlign: 'center',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
@@ -487,7 +488,7 @@ class AddAmount extends Component {
                             }}
                             value={amount}
                         />
-                        <View style={[styles.summaryRowContainer, { paddingTop: height / 90, height: height / 30 }]}>
+                        <View style={[styles.summaryRowContainer, { paddingTop: height / 90, height: height / 25 }]}>
                             <Text style={[styles.infoTextRegular, { color: theme.negative.color }]}>
                                 {this.getWarningText()}
                             </Text>

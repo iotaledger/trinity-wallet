@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
-        fontFamily: 'SourceSansPro-Bold',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -251,7 +251,7 @@ class VerifyEmail extends React.Component {
                             delay={100}
                         >
                             <View style={styles.checkboxContainer}>
-                                <TouchableOpacity onPress={() => this.onCheckboxPress()}>
+                                <TouchableOpacity hitSlop={{ top: 20, right: 20, left: 20, bottom: 20 }} onPress={() => this.onCheckboxPress()}>
                                     <Image source={this.state.checkboxImage} style={styles.checkbox} />
                                 </TouchableOpacity>
                                 <View style={styles.checkboxContainer}>
