@@ -346,7 +346,9 @@
         "pleaseChooseFromTheOptionsBelow": "Please choose from the options below",
         "storedPaymentCard": "Stored Payment Card",
         "addACreditOrDebitCard": "Add a Credit or Debit Card",
-        "card": "Card"
+        "card": "Card",
+        "duplicateCard": "Duplicate card",
+        "duplicateCardExplanation": "The card number you provided already exists."
     },
     "home": {
         "balance": "BALANCE",
