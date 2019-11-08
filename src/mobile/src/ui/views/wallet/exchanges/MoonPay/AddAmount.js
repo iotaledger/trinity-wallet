@@ -8,7 +8,7 @@ import size from 'lodash/size';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import {
     ALLOWED_IOTA_DENOMINATIONS,
@@ -454,118 +454,128 @@ class AddAmount extends Component {
         const activeFiatCurrency = getActiveFiatCurrency(denomination);
 
         return (
-            <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
-                <View style={styles.topContainer}>
-                    <AnimatedComponent
-                        animationInType={['slideInRight', 'fadeIn']}
-                        animationOutType={['slideOutLeft', 'fadeOut']}
-                        delay={400}
-                    >
-                        <Header iconSize={width / 3} iconName="moonpay" textColor={theme.body.color} />
-                    </AnimatedComponent>
-                </View>
-                <View style={styles.midContainer}>
-                    <View style={{ flex: 0.2 }} />
-                    <AnimatedComponent
-                        animationInType={['slideInRight', 'fadeIn']}
-                        animationOutType={['slideOutLeft', 'fadeOut']}
-                        delay={300}
-                    >
-                        <InfoBox>
-                            <Text style={[styles.infoText, textColor]}>{t('moonpay:addAmount')}</Text>
-                            <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 60 }]}>
-                                {t('moonpay:addAmountExplanation')}
-                            </Text>
-                        </InfoBox>
-                    </AnimatedComponent>
-                    <View style={{ flex: 0.3 }} />
-                    <AnimatedComponent
-                        animationInType={['slideInRight', 'fadeIn']}
-                        animationOutType={['slideOutLeft', 'fadeOut']}
-                        delay={200}
-                    >
-                        <CustomTextInput
-                            keyboardType="numeric"
-                            label={t('moonpay:enterAmount')}
-                            onRef={(c) => {
-                                this.amountField = c;
-                            }}
-                            onValidTextChange={(newAmount) => {
-                                this.props.setAmount(newAmount);
-
-                                this.fetchCurrencyQuote(newAmount, denomination, exchangeRates);
-                            }}
-                            autoCorrect={false}
-                            enablesReturnKeyAutomatically
-                            widgets={['denomination']}
-                            theme={theme}
-                            denominationText={denomination}
-                            onDenominationPress={() => {
-                                this.setDenomination();
-                            }}
-                            value={amount}
-                        />
-                        <View style={[styles.summaryRowContainer, { paddingTop: height / 90, height: height / 25 }]}>
-                            <Text style={[styles.infoTextRegular, { color: theme.negative.color }]}>
-                                {this.getWarningText()}
-                            </Text>
-                        </View>
-                    </AnimatedComponent>
-                    <View style={{ flex: 0.2 }} />
-                    <AnimatedComponent
-                        animationInType={['slideInRight', 'fadeIn']}
-                        animationOutType={['slideOutLeft', 'fadeOut']}
-                        delay={100}
-                        style={{ flex: 1.5, width: width / 1.2 }}
-                    >
-                        <View style={styles.summaryRowContainer}>
-                            <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:youWillReceive')}</Text>
-                            <Text style={[styles.infoTextLight, textColor]}>{receiveAmount}</Text>
-                        </View>
-                        <View style={{ flex: 0.05 }} />
-                        <View style={styles.summaryRowContainer}>
-                            <Text style={[styles.infoTextLight, textColor]}>
-                                {t('moonpay:marketPrice')}: {receiveAmount} @ {getCurrencySymbol(activeFiatCurrency)}
-                                {exchangeRates[activeFiatCurrency]}
-                            </Text>
-                            <Text style={[styles.infoTextLight, textColor]}>
-                                {this.getStringifiedFiatAmount(
-                                    getAmountInFiat(Number(amount), denomination, exchangeRates),
-                                )}
-                            </Text>
-                        </View>
-                        <View style={{ flex: 0.05 }} />
-                        <View style={styles.summaryRowContainer}>
-                            <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:moonpayFee')}</Text>
-                            <Text style={[styles.infoTextLight, textColor]}>
-                                {getCurrencySymbol(activeFiatCurrency)}
-                                {fee}
-                            </Text>
-                        </View>
+            <KeyboardAvoidingView
+                style={[styles.container, { backgroundColor: theme.body.bg }]}
+                behavior="position"
+                keyboardVerticalOffset={10}
+                enabled
+            >
+                <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
+                    <View style={styles.topContainer}>
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={400}
+                        >
+                            <Header iconSize={width / 3} iconName="moonpay" textColor={theme.body.color} />
+                        </AnimatedComponent>
+                    </View>
+                    <View style={styles.midContainer}>
+                        <View style={{ flex: 0.2 }} />
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={300}
+                        >
+                            <InfoBox>
+                                <Text style={[styles.infoText, textColor]}>{t('moonpay:addAmount')}</Text>
+                                <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 60 }]}>
+                                    {t('moonpay:addAmountExplanation')}
+                                </Text>
+                            </InfoBox>
+                        </AnimatedComponent>
                         <View style={{ flex: 0.3 }} />
-                        <View style={styles.summaryRowContainer}>
-                            <Text style={[styles.infoTextRegular, textColor]}>{t('global:total')}</Text>
-                            <Text style={[styles.infoTextBold, textColor]}>
-                                {getCurrencySymbol(activeFiatCurrency)}
-                                {totalAmount}
-                            </Text>
-                        </View>
-                    </AnimatedComponent>
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={200}
+                        >
+                            <CustomTextInput
+                                keyboardType="numeric"
+                                label={t('moonpay:enterAmount')}
+                                onRef={(c) => {
+                                    this.amountField = c;
+                                }}
+                                onValidTextChange={(newAmount) => {
+                                    this.props.setAmount(newAmount);
+
+                                    this.fetchCurrencyQuote(newAmount, denomination, exchangeRates);
+                                }}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                widgets={['denomination']}
+                                theme={theme}
+                                denominationText={denomination}
+                                onDenominationPress={() => {
+                                    this.setDenomination();
+                                }}
+                                value={amount}
+                            />
+                            <View
+                                style={[styles.summaryRowContainer, { paddingTop: height / 90, height: height / 25 }]}
+                            >
+                                <Text style={[styles.infoTextRegular, { color: theme.negative.color }]}>
+                                    {this.getWarningText()}
+                                </Text>
+                            </View>
+                        </AnimatedComponent>
+                        <View style={{ flex: 0.2 }} />
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={100}
+                            style={{ flex: 1.5, width: width / 1.2 }}
+                        >
+                            <View style={styles.summaryRowContainer}>
+                                <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:youWillReceive')}</Text>
+                                <Text style={[styles.infoTextLight, textColor]}>{receiveAmount}</Text>
+                            </View>
+                            <View style={{ flex: 0.05 }} />
+                            <View style={styles.summaryRowContainer}>
+                                <Text style={[styles.infoTextLight, textColor]}>
+                                    {t('moonpay:marketPrice')}: {receiveAmount} @{' '}
+                                    {getCurrencySymbol(activeFiatCurrency)}
+                                    {exchangeRates[activeFiatCurrency]}
+                                </Text>
+                                <Text style={[styles.infoTextLight, textColor]}>
+                                    {this.getStringifiedFiatAmount(
+                                        getAmountInFiat(Number(amount), denomination, exchangeRates),
+                                    )}
+                                </Text>
+                            </View>
+                            <View style={{ flex: 0.05 }} />
+                            <View style={styles.summaryRowContainer}>
+                                <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:moonpayFee')}</Text>
+                                <Text style={[styles.infoTextLight, textColor]}>
+                                    {getCurrencySymbol(activeFiatCurrency)}
+                                    {fee}
+                                </Text>
+                            </View>
+                            <View style={{ flex: 0.3 }} />
+                            <View style={styles.summaryRowContainer}>
+                                <Text style={[styles.infoTextRegular, textColor]}>{t('global:total')}</Text>
+                                <Text style={[styles.infoTextBold, textColor]}>
+                                    {getCurrencySymbol(activeFiatCurrency)}
+                                    {totalAmount}
+                                </Text>
+                            </View>
+                        </AnimatedComponent>
+                    </View>
+                    <View style={styles.bottomContainer}>
+                        <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
+                            <DualFooterButtons
+                                disableRightButton={isFetchingCurrencyQuote}
+                                onLeftButtonPress={() => this.goBack()}
+                                onRightButtonPress={() => this.verifyAmount()}
+                                leftButtonText={t('global:goBack')}
+                                rightButtonText={t('global:continue')}
+                                leftButtonTestID="moonpay-landing"
+                                rightButtonTestID="moonpay-select-account"
+                            />
+                        </AnimatedComponent>
+                    </View>
                 </View>
-                <View style={styles.bottomContainer}>
-                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
-                        <DualFooterButtons
-                            disableRightButton={isFetchingCurrencyQuote}
-                            onLeftButtonPress={() => this.goBack()}
-                            onRightButtonPress={() => this.verifyAmount()}
-                            leftButtonText={t('global:goBack')}
-                            rightButtonText={t('global:continue')}
-                            leftButtonTestID="moonpay-landing"
-                            rightButtonTestID="moonpay-select-account"
-                        />
-                    </AnimatedComponent>
-                </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }
