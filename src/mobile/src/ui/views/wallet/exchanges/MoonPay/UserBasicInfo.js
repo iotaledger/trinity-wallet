@@ -2,7 +2,7 @@ import last from 'lodash/last';
 import isNull from 'lodash/isNull';
 import React from 'react';
 import { withTranslation } from 'react-i18next';
-import { StyleSheet, View, Text } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, StyleSheet, View, Text } from 'react-native';
 import navigator from 'libs/navigation';
 import { updateCustomer } from 'shared-modules/actions/exchanges/MoonPay';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -182,7 +182,12 @@ class UserBasicInfo extends React.Component {
         const { t, theme, isUpdatingCustomer } = this.props;
 
         return (
-            <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
+            <KeyboardAvoidingView
+                style={[styles.container, { backgroundColor: theme.body.bg }]}
+                behavior="position"
+                keyboardVerticalOffset={10}
+                enabled
+            >
                 <View>
                     <View style={styles.topContainer}>
                         <AnimatedComponent
@@ -225,7 +230,12 @@ class UserBasicInfo extends React.Component {
                                 theme={theme}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
-                                returnKeyType="done"
+                                returnKeyType="next"
+                                onSubmitEditing={() => {
+                                    if (this.state.firstName) {
+                                        this.lastName.focus();
+                                    }
+                                }}
                                 value={this.state.firstName}
                             />
                         </AnimatedComponent>
@@ -236,12 +246,20 @@ class UserBasicInfo extends React.Component {
                             delay={160}
                         >
                             <CustomTextInput
+                                onRef={(c) => {
+                                    this.lastName = c;
+                                }}
                                 label={t('moonpay:lastName')}
                                 onValidTextChange={(lastName) => this.setState({ lastName })}
                                 theme={theme}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
-                                returnKeyType="done"
+                                returnKeyType="next"
+                                onSubmitEditing={() => {
+                                    if (this.state.lastName) {
+                                        this.dateOfBirth.focus();
+                                    }
+                                }}
                                 value={this.state.lastName}
                             />
                         </AnimatedComponent>
@@ -252,12 +270,17 @@ class UserBasicInfo extends React.Component {
                             delay={80}
                         >
                             <CustomTextInput
+                                onRef={(c) => {
+                                    this.dateOfBirth = c;
+                                }}
                                 label={t('moonpay:dateOfBirth')}
                                 onValidTextChange={(dateOfBirth) => this.updateDateOfBirth(dateOfBirth)}
                                 theme={theme}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
+                                blurOnSubmit
+                                onSubmitEditing={() => Keyboard.dismiss()}
                                 value={this.state.dateOfBirth}
                             />
                         </AnimatedComponent>
@@ -278,7 +301,7 @@ class UserBasicInfo extends React.Component {
                         </AnimatedComponent>
                     </View>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }

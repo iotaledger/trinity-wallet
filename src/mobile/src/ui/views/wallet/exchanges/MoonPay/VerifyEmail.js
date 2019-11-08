@@ -241,6 +241,7 @@ class VerifyEmail extends React.Component {
                             delay={200}
                         >
                             <CustomTextInput
+                                keyboardType="numeric"
                                 label={t('moonpay:verificationCode')}
                                 onValidTextChange={(securityCode) => this.setState({ securityCode })}
                                 theme={theme}
@@ -257,7 +258,10 @@ class VerifyEmail extends React.Component {
                             delay={100}
                         >
                             <View style={styles.checkboxContainer}>
-                                <TouchableOpacity hitSlop={{ top: 20, right: 20, left: 20, bottom: 20 }} onPress={() => this.onCheckboxPress()}>
+                                <TouchableOpacity
+                                    hitSlop={{ top: 20, right: 20, left: 20, bottom: 20 }}
+                                    onPress={() => this.onCheckboxPress()}
+                                >
                                     <Image source={this.state.checkboxImage} style={styles.checkbox} />
                                 </TouchableOpacity>
                                 <View style={styles.checkboxContainer}>
