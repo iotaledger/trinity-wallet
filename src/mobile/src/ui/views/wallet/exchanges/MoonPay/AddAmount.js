@@ -29,7 +29,7 @@ import {
     getDefaultCurrencyCode,
     getCustomerDailyLimits,
     getCustomerMonthlyLimits,
-    getCustomerPaymentCards
+    hasStoredAnyPaymentCards
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import { fetchQuote, setAmount, setDenomination } from 'shared-modules/actions/exchanges/MoonPay';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
@@ -136,7 +136,7 @@ class AddAmount extends Component {
         /** @ignore */
         isFetchingCurrencyQuote: PropTypes.bool.isRequired,
         /** @ignore */
-        paymentCards: PropTypes.array.isRequired,
+        hasAnyPaymentCards: PropTypes.array.isRequired,
     };
 
     constructor(props) {
@@ -399,7 +399,7 @@ class AddAmount extends Component {
             hasCompletedAdvancedIdentityVerification,
             isPurchaseLimitIncreaseAllowed,
             isFetchingCurrencyQuote,
-            paymentCards
+            hasAnyPaymentCards
         } = this.props;
         const { shouldGetLatestCurrencyQuote } = this.state;
 
@@ -439,7 +439,7 @@ class AddAmount extends Component {
                         (purchaseAmount > dailyLimits.dailyLimitRemaining ||
                             purchaseAmount > monthlyLimits.monthlyLimitRemaining)
                         ? 'purchaseLimitWarning'
-                        : isEmpty(paymentCards) ? 'userBasicInfo' : 'selectPaymentCard',
+                        : hasAnyPaymentCards ? 'selectPaymentCard' : 'userBasicInfo',
                 );
             }
         }
@@ -585,7 +585,7 @@ const mapStateToProps = (state) => ({
     monthlyLimits: getCustomerMonthlyLimits(state),
     defaultCurrencyCode: getDefaultCurrencyCode(state),
     isFetchingCurrencyQuote: state.exchanges.moonpay.isFetchingCurrencyQuote,
-    paymentCards: getCustomerPaymentCards(state)
+    hasAnyPaymentCards: hasStoredAnyPaymentCards(state)
 });
 
 const mapDispatchToProps = {
