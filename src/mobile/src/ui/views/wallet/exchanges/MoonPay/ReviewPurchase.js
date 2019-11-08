@@ -43,8 +43,6 @@ class ReviewPurchase extends Component {
         hasErrorCreatingTransaction: PropTypes.bool.isRequired,
         /** @ignore */
         createTransaction: PropTypes.func.isRequired,
-        /** Component ID */
-        componentId: PropTypes.string.isRequired,
         /** @ignore */
         activeTransaction: PropTypes.object,
     };
@@ -76,11 +74,11 @@ class ReviewPurchase extends Component {
     }
 
     /**
-     * Pops the active screen from the navigation stack
+     * Pops to addAmount in the navigation stack
      * @method goBack
      */
     goBack() {
-        navigator.pop(this.props.componentId);
+        navigator.popTo('addAmount');
     }
 
     render() {

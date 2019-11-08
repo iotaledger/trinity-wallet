@@ -55,7 +55,7 @@ const navigator = {
     },
     popTo: (componentId, delay = 300) => {
         const currentScreen = last(store.getState().wallet.navStack);
-        store.dispatch({ type: WalletActionTypes.POP_TO_ROUTE });
+        store.dispatch({ type: WalletActionTypes.POP_TO_ROUTE, payload: componentId });
         return timer.setTimeout(currentScreen, () => Navigation.popTo(componentId), delay);
     },
     setStackRoot: (nextScreen, options = {}, delay = 300) => {
