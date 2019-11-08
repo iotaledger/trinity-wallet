@@ -236,7 +236,7 @@ class UserAdvancedInfo extends React.Component {
                     theme={theme}
                     autoCorrect={false}
                     enablesReturnKeyAutomatically
-                    returnKeyType="done"
+                    returnKeyType="next"
                     value={value}
                     {...restProps}
                 />
@@ -253,10 +253,23 @@ class UserAdvancedInfo extends React.Component {
                     <View style={{ flex: 0.6 }} />
                     {this.renderTextField(t('moonpay:address'), this.state.address, {
                         onValidTextChange: (address) => this.setState({ address }),
+                        onSubmitEditing: () => {
+                            if (this.state.address) {
+                                this.stateTextField.focus();
+                            }
+                        },
                     })}
                     <View style={{ flex: 0.6 }} />
                     {this.renderTextField(t('moonpay:state'), this.state.state, {
                         onValidTextChange: (state) => this.setState({ state }),
+                        onRef: (c) => {
+                            this.stateTextField = c;
+                        },
+                        onSubmitEditing: () => {
+                            if (this.state.state) {
+                                this.city.focus();
+                            }
+                        },
                     })}
                     <View style={{ flex: 0.6 }} />
                     <AnimatedComponent
@@ -277,12 +290,24 @@ class UserAdvancedInfo extends React.Component {
                                 containerStyle: {
                                     width: isIPhoneX ? width / 2.33 : width / 2.66,
                                 },
+                                onRef: (c) => {
+                                    this.city = c;
+                                },
+                                onSubmitEditing: () => {
+                                    if (this.state.city) {
+                                        this.zipCode.focus();
+                                    }
+                                },
                             })}
                             {this.renderTextField(t('moonpay:zipCode'), this.state.zipCode, {
                                 onValidTextChange: (zipCode) => this.setState({ zipCode }),
                                 containerStyle: {
                                     width: isIPhoneX ? width / 2.33 : width / 2.66,
                                 },
+                                onRef: (c) => {
+                                    this.zipCode = c;
+                                },
+                                returnKeyType: 'done',
                             })}
                         </View>
                     </AnimatedComponent>
@@ -296,14 +321,31 @@ class UserAdvancedInfo extends React.Component {
                 <View style={{ flex: 0.6 }} />
                 {this.renderTextField(t('moonpay:address'), this.state.address, {
                     onValidTextChange: (address) => this.setState({ address }),
+                    onSubmitEditing: () => {
+                        if (this.state.address) {
+                            this.city.focus();
+                        }
+                    },
                 })}
                 <View style={{ flex: 0.6 }} />
                 {this.renderTextField(t('moonpay:city'), this.state.city, {
                     onValidTextChange: (city) => this.setState({ city }),
+                    onRef: (c) => {
+                        this.city = c;
+                    },
+                    onSubmitEditing: () => {
+                        if (this.state.city) {
+                            this.zipCode.focus();
+                        }
+                    },
                 })}
                 <View style={{ flex: 0.6 }} />
                 {this.renderTextField(t('moonpay:zipCode'), this.state.zipCode, {
                     onValidTextChange: (zipCode) => this.setState({ zipCode }),
+                    onRef: (c) => {
+                        this.zipCode = c;
+                    },
+                    returnKeyType: 'done',
                 })}
                 <View style={{ flex: 0.6 }} />
             </View>
