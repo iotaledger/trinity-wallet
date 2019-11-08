@@ -56,6 +56,12 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
+    infoTextBold: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: Styling.fontSize3,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
     checkboxContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
@@ -259,7 +265,7 @@ class VerifyEmail extends React.Component {
                                         {t('moonpay:agreeWithMoonPay')}{' '}
                                     </Text>
                                     <TouchableOpacity onPress={() => Linking.openURL(MOONPAY_TERMS_OF_USE_LINK)}>
-                                        <Text style={[styles.infoTextRegular, textColor, styles.link]}>
+                                        <Text style={[styles.infoTextBold, textColor, styles.link]}>
                                             {t('moonpay:termsOfUse')}{' '}
                                         </Text>
                                     </TouchableOpacity>
@@ -267,7 +273,7 @@ class VerifyEmail extends React.Component {
                                         {t('global:and')}{' '}
                                     </Text>
                                     <TouchableOpacity onPress={() => Linking.openURL(MOONPAY_PRIVACY_POLICY_LINK)}>
-                                        <Text style={[styles.infoTextRegular, textColor, styles.link]}>
+                                        <Text style={[styles.infoTextBold, textColor, styles.link]}>
                                             {t('privacyPolicy:privacyPolicy')}
                                         </Text>
                                     </TouchableOpacity>
