@@ -17,7 +17,6 @@ import {
     getCustomerDailyLimits,
     getCustomerMonthlyLimits,
     shouldRequireStateInput,
-    hasStoredAnyPaymentCards,
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';

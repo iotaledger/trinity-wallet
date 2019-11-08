@@ -5,7 +5,6 @@ import map from 'lodash/map';
 import toUpper from 'lodash/toUpper';
 import toLower from 'lodash/toLower';
 import size from 'lodash/size';
-import isEmpty from 'lodash/isEmpty';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
@@ -29,7 +28,7 @@ import {
     getDefaultCurrencyCode,
     getCustomerDailyLimits,
     getCustomerMonthlyLimits,
-    hasStoredAnyPaymentCards
+    hasStoredAnyPaymentCards,
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import { fetchQuote, setAmount, setDenomination } from 'shared-modules/actions/exchanges/MoonPay';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
@@ -136,7 +135,7 @@ class AddAmount extends Component {
         /** @ignore */
         isFetchingCurrencyQuote: PropTypes.bool.isRequired,
         /** @ignore */
-        hasAnyPaymentCards: PropTypes.array.isRequired,
+        hasAnyPaymentCards: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -399,7 +398,7 @@ class AddAmount extends Component {
             hasCompletedAdvancedIdentityVerification,
             isPurchaseLimitIncreaseAllowed,
             isFetchingCurrencyQuote,
-            hasAnyPaymentCards
+            hasAnyPaymentCards,
         } = this.props;
         const { shouldGetLatestCurrencyQuote } = this.state;
 
@@ -412,7 +411,7 @@ class AddAmount extends Component {
                 t('moonpay:notEnoughAmount'),
                 t('moonpay:notEnoughAmountExplanation', { amount: `€${MINIMUM_TRANSACTION_SIZE}` }),
             );
-        } else if (amountInEuros > MAXIMUM_TRANSACTION_SIZE){
+        } else if (amountInEuros > MAXIMUM_TRANSACTION_SIZE) {
             this.props.generateAlert(
                 'error',
                 t('moonpay:amountTooHigh'),
@@ -439,7 +438,9 @@ class AddAmount extends Component {
                         (purchaseAmount > dailyLimits.dailyLimitRemaining ||
                             purchaseAmount > monthlyLimits.monthlyLimitRemaining)
                         ? 'purchaseLimitWarning'
-                        : hasAnyPaymentCards ? 'selectPaymentCard' : 'userBasicInfo',
+                        : hasAnyPaymentCards
+                        ? 'selectPaymentCard'
+                        : 'userBasicInfo',
                 );
             }
         }
@@ -585,7 +586,7 @@ const mapStateToProps = (state) => ({
     monthlyLimits: getCustomerMonthlyLimits(state),
     defaultCurrencyCode: getDefaultCurrencyCode(state),
     isFetchingCurrencyQuote: state.exchanges.moonpay.isFetchingCurrencyQuote,
-    hasAnyPaymentCards: hasStoredAnyPaymentCards(state)
+    hasAnyPaymentCards: hasStoredAnyPaymentCards(state),
 });
 
 const mapDispatchToProps = {
