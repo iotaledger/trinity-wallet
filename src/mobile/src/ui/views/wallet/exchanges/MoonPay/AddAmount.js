@@ -320,7 +320,7 @@ class AddAmount extends Component {
                         limit = convertFiatCurrency(
                             dailyLimits.dailyLimitRemaining,
                             exchangeRates,
-                            denomination,
+                            defaultCurrencyCode,
                             getActiveFiatCurrency(denomination),
                         );
                     } else if (
@@ -330,7 +330,7 @@ class AddAmount extends Component {
                         limit = convertFiatCurrency(
                             monthlyLimits.monthlyLimitRemaining,
                             exchangeRates,
-                            denomination,
+                            defaultCurrencyCode,
                             getActiveFiatCurrency(denomination),
                         );
                     }
