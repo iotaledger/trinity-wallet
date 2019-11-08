@@ -104,7 +104,7 @@ class SelectPaymentCard extends React.Component {
         },
         {
             title: 'moonpay:addACreditOrDebitCard',
-            redirectUrl: 'addPaymentMethod',
+            redirectUrl: 'userBasicInfo',
         },
     ];
 
