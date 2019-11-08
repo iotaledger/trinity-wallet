@@ -1,7 +1,7 @@
 import isNull from 'lodash/isNull';
 import React from 'react';
 import { withTranslation } from 'react-i18next';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, KeyboardAvoidingView } from 'react-native';
 import navigator from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { updateCustomer } from 'shared-modules/actions/exchanges/MoonPay';
@@ -356,7 +356,12 @@ class UserAdvancedInfo extends React.Component {
         const { t, theme, isUpdatingCustomer } = this.props;
 
         return (
-            <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
+            <KeyboardAvoidingView
+                style={[styles.container, { backgroundColor: theme.body.bg }]}
+                behavior="position"
+                keyboardVerticalOffset={10}
+                enabled
+            >
                 <View>
                     <View style={styles.topContainer}>
                         <AnimatedComponent
@@ -404,7 +409,7 @@ class UserAdvancedInfo extends React.Component {
                         </AnimatedComponent>
                     </View>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }

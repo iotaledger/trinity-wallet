@@ -460,7 +460,7 @@ class AddAmount extends Component {
                 keyboardVerticalOffset={10}
                 enabled
             >
-                <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
+                <View>
                     <View style={styles.topContainer}>
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
