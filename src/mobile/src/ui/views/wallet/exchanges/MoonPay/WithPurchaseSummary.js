@@ -21,6 +21,7 @@ import {
     getActiveTransaction,
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import { createTransaction } from 'shared-modules/actions/exchanges/MoonPay';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
 import { ALLOWED_IOTA_DENOMINATIONS } from 'shared-modules/exchanges/MoonPay/index';
 import navigator from 'libs/navigation';
@@ -110,6 +111,8 @@ export default function withPurchaseSummary(WrappedComponent, config) {
             componentId: PropTypes.string.isRequired,
             /** @ignore */
             activeTransaction: PropTypes.object,
+            /** @ignore */
+            generateAlert: PropTypes.func.isRequired,
         };
 
         constructor(props) {
@@ -225,6 +228,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 expiryInfo,
                 componentId,
                 activeTransaction,
+                generateAlert
             } = this.props;
 
             const textColor = { color: theme.body.color };
@@ -241,6 +245,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                     hasErrorCreatingTransaction={hasErrorCreatingTransaction}
                     theme={theme}
                     componentId={componentId}
+                    generateAlert={generateAlert}
                 >
                     <View style={styles.container}>
                         <View style={{ flex: 0.2 }} />
@@ -395,6 +400,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
 
     const mapDispatchToProps = {
         createTransaction,
+        generateAlert
     };
 
     return WithUserActivity()(

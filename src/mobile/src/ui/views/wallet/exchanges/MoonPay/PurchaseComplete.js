@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import withPurchaseSummary from 'ui/views/wallet/exchanges/MoonPay/WithPurchaseSummary';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
+import timer from 'react-native-timer';
 import navigator from 'libs/navigation';
 import { width } from 'libs/dimensions';
 import Header from 'ui/components/Header';
@@ -35,6 +36,8 @@ class PurchaseComplete extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         children: PropTypes.node.isRequired,
+        /** @ignore */
+        generateAlert: PropTypes.func.isRequired,
     };
 
     /**
@@ -43,6 +46,8 @@ class PurchaseComplete extends Component {
      * @method redirectToScreen
      */
     redirectToHome() {
+        const { t } = this.props;
+        timer.setTimeout('delayAlert', () => this.props.generateAlert('info', t('moonpay:purchaseComplete'), t('moonpay:transactionMayTakeAFewMinutes')), 2000);
         navigator.setStackRoot('home');
     }
 

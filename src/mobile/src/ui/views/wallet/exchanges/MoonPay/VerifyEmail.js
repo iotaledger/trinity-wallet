@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoTextBold: {
-        fontFamily: 'SourceSansPro-Regular',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
