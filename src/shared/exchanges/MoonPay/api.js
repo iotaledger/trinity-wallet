@@ -2,7 +2,6 @@ import assign from 'lodash/assign';
 import get from 'lodash/get';
 import Errors from '../../libs/errors';
 import { serialise } from '../../libs/utils';
-import { __MOBILE__ } from '../../config';
 
 export const BASE_API_URL = 'https://api.moonpay.io/v3';
 
@@ -34,14 +33,10 @@ export class MoonPayApi {
     _fetch(url, options, withAuthentication = false) {
         const _getAuthorizationHeaders = () => {
             if (withAuthentication) {
-                return __MOBILE__
-                    ? {
-                          Authorization: `Bearer ${this._jwt}`,
-                          'X-CSRF-TOKEN': this._csrfToken,
-                      }
-                    : {
-                          'X-CSRF-TOKEN': this._csrfToken,
-                      };
+                return {
+                    Authorization: `Bearer ${this._jwt}`,
+                    'X-CSRF-TOKEN': this._csrfToken,
+                };
             }
 
             return {};

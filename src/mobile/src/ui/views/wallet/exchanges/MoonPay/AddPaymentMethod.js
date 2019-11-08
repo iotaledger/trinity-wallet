@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import some from 'lodash/some';
 import React, { PureComponent } from 'react';
 import { View } from 'react-native';
 import { withTranslation } from 'react-i18next';
@@ -13,7 +14,7 @@ import { API_KEY } from 'shared-modules/exchanges/MoonPay';
 import { height, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { isIPhoneX } from 'libs/device';
-import { getCustomerAddress, getCustomerId } from 'shared-modules/selectors/exchanges/MoonPay';
+import { getCustomerAddress, getCustomerPaymentCards, getCustomerId } from 'shared-modules/selectors/exchanges/MoonPay';
 import { parse } from 'shared-modules/libs/utils';
 
 /**
@@ -269,14 +270,15 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
   window.addEventListener('message', function(event) {
     if (
       event.data === 'cardCreationSuccessful' || 
-      event.data === 'cardCreationUnsuccessful'
+      event.data === 'cardCreationUnsuccessful' ||
+      event.data === 'enteredDuplicateCardDetails'
       ) {
-      document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
-      document.getElementsByClassName('button-left')[0].disabled = false;
-
       window.ReactNativeWebView.postMessage(JSON.stringify({
         type: event.data,
       }));
+
+      document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
+      document.getElementsByClassName('button-left')[0].disabled = false;
     }
   });
 
@@ -422,6 +424,8 @@ class AddPaymentMethod extends PureComponent {
         /** @ignore */
         customerId: PropTypes.string.isRequired,
         /** @ignore */
+        paymentCards: PropTypes.array.isRequired,
+        /** @ignore */
         isCreatingPaymentCard: PropTypes.bool.isRequired,
         /** @ignore */
         hasErrorCreatingPaymentCard: PropTypes.bool.isRequired,
@@ -455,14 +459,26 @@ class AddPaymentMethod extends PureComponent {
      * @returns {void}
      */
     onMessage(event) {
-        const { t } = this.props;
+        const { paymentCards, t } = this.props;
 
         const message = parse(event.nativeEvent.data);
 
         const type = get(message, 'type');
 
         if (type === 'success') {
-            this.props.createPaymentCard(get(message, 'data.id'));
+            if (
+                some(paymentCards, (card) => {
+                    return (
+                        get(card, 'brand') === get(message, 'data.brand') &&
+                        get(card, 'lastDigits') === get(message, 'data.lastDigits')
+                    );
+                })
+            ) {
+                this.webView.postMessage('enteredDuplicateCardDetails');
+                this.props.generateAlert('error', t('moonpay:duplicateCard'), t('moonpay:duplicateCardExplanation'));
+            } else {
+                this.props.createPaymentCard(get(message, 'data.id'));
+            }
         } else if (type === 'error') {
             this.props.generateAlert(
                 'error',
@@ -544,6 +560,7 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     address: getCustomerAddress(state),
     customerId: getCustomerId(state),
+    paymentCards: getCustomerPaymentCards(state),
     isCreatingPaymentCard: state.exchanges.moonpay.isCreatingPaymentCard,
     hasErrorCreatingPaymentCard: state.exchanges.moonpay.hasErrorCreatingPaymentCard,
 });
