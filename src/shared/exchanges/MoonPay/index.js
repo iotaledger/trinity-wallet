@@ -52,8 +52,16 @@ export const MOONPAY_RETURN_URL = 'iota://moonpay-purchase-complete';
  */
 export const MOONPAY_REDIRECT_URL = MOONPAY_RETURN_URL;
 
+/** MoonPay test mode external link (Used for redirecting users to perform KYC) */
+export const TEST_MODE_EXTERNAL_URL = 'https://buy-staging.moonpay.io';
+
+/** MoonPay live mode external link (Used for redirecting users to perform KYC) */
+export const LIVE_MODE_EXTERNAL_URL = 'https://buy.moonpay.io';
+
 /** MoonPay external link (Used for redirecting users to perform KYC) */
-export const MOONPAY_EXTERNAL_URL = `https://buy-staging.moonpay.io?apiKey=${API_KEY}`;
+export const MOONPAY_EXTERNAL_URL = `${
+    ACTIVE_NETWORK === supportedNetworks.live ? LIVE_MODE_EXTERNAL_URL : TEST_MODE_EXTERNAL_URL
+}?apiKey=${API_KEY}`;
 
 /** MoonPay website URL for terms of use */
 export const MOONPAY_TERMS_OF_USE_LINK = 'https://www.moonpay.io/terms_of_use';
