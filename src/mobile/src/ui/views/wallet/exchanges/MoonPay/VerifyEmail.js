@@ -51,7 +51,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
-        fontFamily: 'SourceSansPro-Bold',
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: Styling.fontSize3,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    infoTextBold: {
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -251,7 +257,7 @@ class VerifyEmail extends React.Component {
                             delay={100}
                         >
                             <View style={styles.checkboxContainer}>
-                                <TouchableOpacity onPress={() => this.onCheckboxPress()}>
+                                <TouchableOpacity hitSlop={{ top: 20, right: 20, left: 20, bottom: 20 }} onPress={() => this.onCheckboxPress()}>
                                     <Image source={this.state.checkboxImage} style={styles.checkbox} />
                                 </TouchableOpacity>
                                 <View style={styles.checkboxContainer}>
@@ -259,7 +265,7 @@ class VerifyEmail extends React.Component {
                                         {t('moonpay:agreeWithMoonPay')}{' '}
                                     </Text>
                                     <TouchableOpacity onPress={() => Linking.openURL(MOONPAY_TERMS_OF_USE_LINK)}>
-                                        <Text style={[styles.infoTextRegular, textColor, styles.link]}>
+                                        <Text style={[styles.infoTextBold, textColor, styles.link]}>
                                             {t('moonpay:termsOfUse')}{' '}
                                         </Text>
                                     </TouchableOpacity>
@@ -267,7 +273,7 @@ class VerifyEmail extends React.Component {
                                         {t('global:and')}{' '}
                                     </Text>
                                     <TouchableOpacity onPress={() => Linking.openURL(MOONPAY_PRIVACY_POLICY_LINK)}>
-                                        <Text style={[styles.infoTextRegular, textColor, styles.link]}>
+                                        <Text style={[styles.infoTextBold, textColor, styles.link]}>
                                             {t('privacyPolicy:privacyPolicy')}
                                         </Text>
                                     </TouchableOpacity>

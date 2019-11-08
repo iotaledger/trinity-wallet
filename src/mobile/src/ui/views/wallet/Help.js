@@ -2,10 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Linking } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { getVersion, getBuildNumber } from 'react-native-device-info';
 import SettingsBackButton from 'ui/components/SettingsBackButton';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -25,21 +24,24 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
+        fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
+        textDecorationLine: 'underline'
     },
 });
 
 /**
  * Advanced Settings component
  */
-class About extends PureComponent {
+class Help extends PureComponent {
     static propTypes = {
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        t: PropTypes.func.isRequired
     };
 
     componentDidMount() {
@@ -58,19 +60,28 @@ class About extends PureComponent {
     }
 
     render() {
-        const { theme } = this.props;
+        const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
 
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
                     <View style={{ alignItems: 'center' }}>
-                        <Text style={[styles.titleText, textColor]}>
-                            Trinity Wallet. IOTA Foundation {this.getYear()}.
-                        </Text>
-                        <Text style={[styles.titleText, textColor, { paddingTop: height / 30 }]}>
-                            v {getVersion()} ({getBuildNumber()})
-                        </Text>
+                        <TouchableOpacity onPress={() => Linking.openURL('https://docs.iota.org/docs/wallets/0.1/trinity/introduction/overview')}>
+                            <Text style={[styles.titleText, textColor]}>
+                                {t('help:docsSite')}
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => Linking.openURL('https://trinity.iota.org/help/')}>
+                            <Text style={[styles.titleText, textColor, { paddingTop: height / 25 }]}>
+                                {t('help:commonIssues')}
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => Linking.openURL('https://help.moonpay.io/')}>
+                            <Text style={[styles.titleText, textColor, { paddingTop: height / 25 }]}>
+                                {t('help:buyingIOTA')}
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
@@ -89,9 +100,9 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withTranslation(['global'])(
+export default withTranslation(['global', 'help'])(
     connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(About),
+    )(Help),
 );

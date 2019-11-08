@@ -7,7 +7,7 @@ const supportedNetworks = {
 };
 
 /** Active MoonPay network. */
-const ACTIVE_NETWORK = supportedNetworks.test;
+const ACTIVE_NETWORK = supportedNetworks.live;
 
 /**
  * MoonPay test mode API key
@@ -85,6 +85,9 @@ export const BASIC_IDENITY_VERIFICATION_LEVEL_NAME = 'Level 1';
 
 /** MoonPay minimum transaction amount (in EUR) */
 export const MINIMUM_TRANSACTION_SIZE = 20;
+
+/** MoonPay maximum transaction amount (in EUR) */
+export const MAXIMUM_TRANSACTION_SIZE = 10000;
 
 /**
  * MoonPay monthly limit once a user has signed up and has shared basic information (in EUR)

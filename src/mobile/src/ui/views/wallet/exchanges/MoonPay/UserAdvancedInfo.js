@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
-        fontFamily: 'SourceSansPro-Bold',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -112,8 +112,6 @@ class UserAdvancedInfo extends React.Component {
         defaultCurrencyCode: PropTypes.string.isRequired,
         /** @ignore */
         shouldRequireStateInput: PropTypes.bool.isRequired,
-        /** @ignore */
-        hasAnyPaymentCards: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -139,7 +137,6 @@ class UserAdvancedInfo extends React.Component {
                 hasCompletedAdvancedIdentityVerification,
                 dailyLimits,
                 monthlyLimits,
-                hasAnyPaymentCards,
             } = nextProps;
 
             const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
@@ -152,8 +149,6 @@ class UserAdvancedInfo extends React.Component {
                 defaultCurrencyCode,
             );
 
-            const _getPaymentMethodScreenName = () => (hasAnyPaymentCards ? 'selectPaymentCard' : 'addPaymentMethod');
-
             this.redirectToScreen(
                 hasCompletedBasicIdentityVerification &&
                     !isPurchaseLimitIncreaseAllowed &&
@@ -161,7 +156,7 @@ class UserAdvancedInfo extends React.Component {
                     (purchaseAmount > dailyLimits.dailyLimitRemaining ||
                         purchaseAmount > monthlyLimits.monthlyLimitRemaining)
                     ? 'purchaseLimitWarning'
-                    : _getPaymentMethodScreenName(),
+                    : 'addPaymentMethod',
             );
         }
     }
@@ -347,7 +342,7 @@ class UserAdvancedInfo extends React.Component {
                                         { paddingTop: height / 60, color: theme.body.color },
                                     ]}
                                 >
-                                    {t('moonpay:cardRegistrationName')}
+                                    {t('moonpay:cardBillingAddress')}
                                 </Text>
                             </InfoBox>
                         </AnimatedComponent>
@@ -392,7 +387,6 @@ const mapStateToProps = (state) => ({
     monthlyLimits: getCustomerMonthlyLimits(state),
     defaultCurrencyCode: getDefaultCurrencyCode(state),
     shouldRequireStateInput: shouldRequireStateInput(state),
-    hasAnyPaymentCards: hasStoredAnyPaymentCards(state),
 });
 
 const mapDispatchToProps = {
