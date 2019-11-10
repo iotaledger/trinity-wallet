@@ -1300,9 +1300,9 @@
       }
     },
     "@bugsnag/plugin-react": {
-      "version": "6.2.0",
-      "resolved": "https://registry.npmjs.org/@bugsnag/plugin-react/-/plugin-react-6.2.0.tgz",
-      "integrity": "sha512-JI56D3ZhXGjH5UqeSTltdxVTPjMpfNI/Vd5XP0V/gBAJb6CeILX3hLe5G1VmxxZciVNEfG5724YKgadqp6/uWg=="
+      "version": "6.4.0",
+      "resolved": "https://registry.npmjs.org/@bugsnag/plugin-react/-/plugin-react-6.4.0.tgz",
+      "integrity": "sha512-dQx5fMrB1f/vWBnSbGtubRZ4/33ENbCzRbaRsMKS/u9lzIaGxagluq/A4IBkEwdelpgaRp5IfjDjuWgwnSSklw=="
     },
     "@cnakazawa/watch": {
       "version": "1.0.3",
