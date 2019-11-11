@@ -1,5 +1,6 @@
 import { MarketDataActionTypes } from '../types';
 import { MARKETDATA_ENDPOINTS, FETCH_REMOTE_NODES_REQUEST_TIMEOUT } from '../config';
+import Errors from '../libs/errors';
 
 /**
  * Dispatch to set timeframe for IOTA time series price information
@@ -30,17 +31,6 @@ export function setCurrency(currency) {
         payload: currency,
     };
 }
-
-/**
- * Gets and sets latest market information
- *
- * @method setMarketData
- *
- * @returns {function} dispatch
- */
-export const setMarketData = () => (dispatch) => {
-    getMarketData(dispatch);
-};
 
 /**
  * Gets latest market information
@@ -124,7 +114,7 @@ export const getMarketData = async (dispatch) => {
 
             break;
         } catch (err) {
-            console.log(err); //eslint-disable-line no-console
+            throw new Error(Errors.MARKET_DATA_FAILURE);
         }
     }
 

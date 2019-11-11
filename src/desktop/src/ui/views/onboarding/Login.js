@@ -5,7 +5,7 @@ import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { generateAlert } from 'actions/alerts';
-import { setMarketData } from 'actions/marketData';
+import { fetchMarketData } from 'actions/polling';
 import { getAccountInfo, getFullAccountInfo } from 'actions/accounts';
 import { clearWalletData, setPassword } from 'actions/wallet';
 
@@ -53,7 +53,7 @@ class Login extends React.Component {
         /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
-        setMarketData: PropTypes.func.isRequired,
+        fetchMarketData: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -81,7 +81,7 @@ class Login extends React.Component {
             this.props.setPassword({});
         }
 
-        this.props.setMarketData();
+        this.props.fetchMarketData();
     }
 
     componentDidUpdate(prevProps) {
@@ -252,7 +252,7 @@ const mapDispatchToProps = {
     generateAlert,
     setPassword,
     clearWalletData,
-    setMarketData,
+    fetchMarketData,
     getFullAccountInfo,
     getAccountInfo,
 };

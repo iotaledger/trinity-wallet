@@ -10,7 +10,7 @@ import { getMarketData } from './marketData';
 import { quorum } from '../libs/iota';
 import { setNodeList, setAutoPromotion } from './settings';
 import { fetchRemoteNodes } from '../libs/iota/utils';
-import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
+import { generateAccountInfoErrorAlert, generateAlert, prepareLogUpdate } from './alerts';
 import { constructBundlesFromTransactions, findPromotableTail, isFundedBundle } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { nodesConfigurationFactory, getCustomNodesFromState, getNodesFromState } from '../selectors/global';
@@ -215,8 +215,9 @@ export const fetchMarketData = () => {
                     dispatch(fetchMarketDataError());
                 }
             })
-            .catch(() => {
+            .catch((err) => {
                 dispatch(fetchMarketDataError());
+                dispatch(prepareLogUpdate(err))
             });
     };
 };

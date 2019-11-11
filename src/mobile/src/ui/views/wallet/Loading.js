@@ -11,7 +11,7 @@ import LottieView from 'lottie-react-native';
 import { getAccountInfo, getFullAccountInfo } from 'shared-modules/actions/accounts';
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { setMarketData } from 'shared-modules/actions/marketData';
+import { fetchMarketData } from 'shared-modules/actions/polling';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
 import {
@@ -96,7 +96,7 @@ class Loading extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        setMarketData: PropTypes.func.isRequired,
+        fetchMarketData: PropTypes.func.isRequired,
         /** @ignore */
         additionalAccountName: PropTypes.string.isRequired,
         /** @ignore */
@@ -211,7 +211,7 @@ class Loading extends Component {
     }
 
     getWalletData() {
-        this.props.setMarketData();
+        this.props.fetchMarketData();
     }
 
     animateElipses = (chars, index, time = 750) => {
@@ -350,7 +350,7 @@ const mapDispatchToProps = {
     setSetting,
     getAccountInfo,
     getFullAccountInfo,
-    setMarketData,
+    fetchMarketData,
     setLoginRoute,
 };
 
