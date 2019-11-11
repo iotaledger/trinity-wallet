@@ -154,12 +154,12 @@ class PurchaseLimitWarning extends Component {
                                 {t('moonpay:limitResetExplanation', {
                                     time:
                                         exceedsDaily
-                                            ? oneDayFromCreatedAt.format('hh:mm a')
-                                            : oneMonthFromCreatedAt.format('hh:mm a'),
+                                            ? oneDayFromCreatedAt.format('hh:mm')
+                                            : oneMonthFromCreatedAt.format('hh:mm'),
                                     date:
                                         exceedsDaily
-                                            ? oneDayFromCreatedAt.format('YYYY-MM-DD')
-                                            : oneMonthFromCreatedAt.format('YYYY-MM-DD'),
+                                            ? oneDayFromCreatedAt.format('Do MMM YYYY')
+                                            : oneMonthFromCreatedAt.format('Do MMM YYYY'),
                                 })}
                             </Text>
                         </InfoBox>

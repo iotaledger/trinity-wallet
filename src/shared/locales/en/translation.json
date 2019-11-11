@@ -322,7 +322,7 @@
         "transactionMayTakeAFewMinutes": "Your purchase may take a few minutes. Check your email for updates.",
         "limitExceeded": "Limit Exceeded :(",
         "limitExceededExplanation": "Unfortunately you have exceeded your Moonpay purchase limit. You may only purchase {{amount}} of IOTA per {{limitBracket}}.",
-        "limitResetExplanation": "Your limit will reset at {{time}} on {{date}}",
+        "limitResetExplanation": "Your limit will reset at {{time}} on {{date}}.",
         "invalidCardNumber": "Invalid card number",
         "invalidCardNumberExplanation": "Please enter a valid card number",
         "invalidCvc": "Invalid CVC",
