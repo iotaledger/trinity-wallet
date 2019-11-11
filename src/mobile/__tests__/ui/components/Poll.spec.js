@@ -39,8 +39,6 @@ const getProps = (overrides) =>
             unconfirmedBundleTails: {},
             setPollFor: noop,
             fetchMarketData: noop,
-            fetchPrice: noop,
-            fetchChartData: noop,
             getAccountInfoForAllAccounts: noop,
             promoteTransfer: noop,
             removeBundleFromUnconfirmedBundleTails: noop,
@@ -87,8 +85,6 @@ describe('Testing Poll component', () => {
             const argsMap = {
                 allowed: {
                     marketData: { func: 'fetchMarketData', instance: false },
-                    price: { func: 'fetchPrice', instance: false },
-                    chartData: { func: 'fetchChartData', instance: false },
                     accountInfo: { func: 'fetchLatestAccountInfo', instance: true },
                     promotion: { func: 'promote', instance: true },
                 },

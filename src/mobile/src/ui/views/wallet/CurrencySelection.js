@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { getCurrencyData } from 'shared-modules/actions/settings';
+import { setCurrency } from 'shared-modules/actions/settings';
 import { setQrDenomination, setSendDenomination } from 'shared-modules/actions/ui';
 import { IOTA_DENOMINATIONS } from 'shared-modules/libs/iota/utils';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -38,8 +38,6 @@ const styles = StyleSheet.create({
 export class CurrencySelection extends Component {
     static propTypes = {
         /** @ignore */
-        isFetchingCurrencyData: PropTypes.bool.isRequired,
-        /** @ignore */
         currency: PropTypes.string.isRequired,
         /** @ignore */
         sendDenomination: PropTypes.string.isRequired,
@@ -54,7 +52,7 @@ export class CurrencySelection extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        getCurrencyData: PropTypes.func.isRequired,
+        setCurrency: PropTypes.func.isRequired,
         /** @ignore */
         setQrDenomination: PropTypes.func.isRequired,
         /** @ignore */
@@ -72,28 +70,26 @@ export class CurrencySelection extends Component {
         leaveNavigationBreadcrumb('CurrencySelection');
     }
 
-    componentWillReceiveProps(newProps) {
+    updateCurrency() {
         const props = this.props;
+        const { currency } = this.state;
 
-        const wasFetchingCurrencyData = props.isFetchingCurrencyData && !newProps.isFetchingCurrencyData;
-        const hasFetchedCurrencyData = wasFetchingCurrencyData && !newProps.hasErrorFetchingCurrencyData;
+        props.setCurrency(currency);
 
-        if (hasFetchedCurrencyData) {
-            // Navigate to main settings
-            props.setSetting('mainSettings');
+        // Navigate to main settings
+        props.setSetting('mainSettings');
 
-            if (!includes(IOTA_DENOMINATIONS, props.qrDenomination)) {
-                props.setQrDenomination(newProps.currency);
-            }
+        if (!includes(IOTA_DENOMINATIONS, props.qrDenomination)) {
+            props.setQrDenomination(currency);
+        }
 
-            if (!includes(IOTA_DENOMINATIONS, props.sendDenomination)) {
-                props.setSendDenomination(newProps.currency);
-            }
+        if (!includes(IOTA_DENOMINATIONS, props.sendDenomination)) {
+            props.setSendDenomination(currency);
         }
     }
 
     render() {
-        const { currency, availableCurrencies, t, theme, isFetchingCurrencyData } = this.props;
+        const { currency, availableCurrencies, t, theme } = this.props;
         return (
             <TouchableWithoutFeedback
                 onPress={() => {
@@ -112,7 +108,6 @@ export class CurrencySelection extends Component {
                             options={availableCurrencies}
                             value={currency}
                             dropdownWidth={{ width: width / 2 }}
-                            disableWhen={isFetchingCurrencyData}
                             saveSelection={(currency) => this.setState({ currency })}
                         />
                     </View>
@@ -121,9 +116,8 @@ export class CurrencySelection extends Component {
                             theme={theme}
                             hideActionButton={this.state.currency === currency}
                             backFunction={() => this.props.setSetting('mainSettings')}
-                            actionFunction={() => this.props.getCurrencyData(this.state.currency, true)}
+                            actionFunction={() => this.updateCurrency()}
                             actionName={t('global:save')}
-                            actionButtonLoading={isFetchingCurrencyData}
                         />
                     </View>
                 </View>
@@ -136,14 +130,12 @@ const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     sendDenomination: state.ui.sendDenomination,
     qrDenomination: state.ui.qrDenomination,
-    availableCurrencies: state.settings.availableCurrencies,
-    isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
-    hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
+    availableCurrencies: Object.keys(state.marketData.rates),
     theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {
-    getCurrencyData,
+    setCurrency,
     setSetting,
     setQrDenomination,
     setSendDenomination,

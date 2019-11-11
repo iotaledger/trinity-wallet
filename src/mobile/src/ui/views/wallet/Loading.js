@@ -11,8 +11,7 @@ import LottieView from 'lottie-react-native';
 import { getAccountInfo, getFullAccountInfo } from 'shared-modules/actions/accounts';
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/marketData';
-import { getCurrencyData } from 'shared-modules/actions/settings';
+import { fetchMarketData } from 'shared-modules/actions/polling';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
 import {
@@ -97,19 +96,11 @@ class Loading extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        getMarketData: PropTypes.func.isRequired,
-        /** @ignore */
-        getPrice: PropTypes.func.isRequired,
-        /** @ignore */
-        getChartData: PropTypes.func.isRequired,
-        /** @ignore */
-        getCurrencyData: PropTypes.func.isRequired,
+        fetchMarketData: PropTypes.func.isRequired,
         /** @ignore */
         additionalAccountName: PropTypes.string.isRequired,
         /** @ignore */
         additionalAccountMeta: PropTypes.object.isRequired,
-        /** @ignore */
-        currency: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -220,11 +211,7 @@ class Loading extends Component {
     }
 
     getWalletData() {
-        const { currency } = this.props;
-        this.props.getPrice();
-        this.props.getChartData();
-        this.props.getMarketData();
-        this.props.getCurrencyData(currency);
+        this.props.fetchMarketData();
     }
 
     animateElipses = (chars, index, time = 750) => {
@@ -355,7 +342,6 @@ const mapStateToProps = (state) => ({
     ready: state.wallet.ready,
     theme: getThemeFromState(state),
     themeName: state.settings.themeName,
-    currency: state.settings.currency,
     deepLinkRequestActive: state.wallet.deepLinkRequestActive,
 });
 
@@ -364,10 +350,7 @@ const mapDispatchToProps = {
     setSetting,
     getAccountInfo,
     getFullAccountInfo,
-    getMarketData,
-    getPrice,
-    getChartData,
-    getCurrencyData,
+    fetchMarketData,
     setLoginRoute,
 };
 

@@ -81,23 +81,6 @@ const polling = (
     action,
 ) => {
     switch (action.type) {
-        case PollingActionTypes.FETCH_PRICE_REQUEST:
-            return {
-                ...state,
-                isFetchingPrice: true,
-            };
-        case PollingActionTypes.FETCH_PRICE_SUCCESS:
-            return {
-                ...state,
-                isFetchingPrice: false,
-                ...setNextPollIfSuccessful(state),
-            };
-        case PollingActionTypes.FETCH_PRICE_ERROR:
-            return {
-                ...state,
-                isFetchingPrice: false,
-                ...setNextPollIfUnsuccessful(state),
-            };
         case PollingActionTypes.FETCH_NODELIST_REQUEST:
             return {
                 ...state,
@@ -113,23 +96,6 @@ const polling = (
             return {
                 ...state,
                 isFetchingNodeList: false,
-                ...setNextPollIfUnsuccessful(state),
-            };
-        case PollingActionTypes.FETCH_CHART_DATA_REQUEST:
-            return {
-                ...state,
-                isFetchingChartData: true,
-            };
-        case PollingActionTypes.FETCH_CHART_DATA_SUCCESS:
-            return {
-                ...state,
-                isFetchingChartData: false,
-                ...setNextPollIfSuccessful(state),
-            };
-        case PollingActionTypes.FETCH_CHART_DATA_ERROR:
-            return {
-                ...state,
-                isFetchingChartData: false,
                 ...setNextPollIfUnsuccessful(state),
             };
         case PollingActionTypes.FETCH_MARKET_DATA_REQUEST:

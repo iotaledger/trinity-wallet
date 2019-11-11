@@ -6,8 +6,6 @@ describe('Reducer: ui', () => {
         it('should have an initial state', () => {
             const initialState = {
                 isGeneratingReceiveAddress: false,
-                isFetchingCurrencyData: false,
-                hasErrorFetchingCurrencyData: false,
                 isPromotingTransaction: false,
                 isTransitioning: false,
                 isAttachingToTangle: false,
@@ -43,97 +41,6 @@ describe('Reducer: ui', () => {
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
-        });
-    });
-
-    describe('IOTA/SETTINGS/CURRENCY_DATA_FETCH_REQUEST', () => {
-        it('should set "isFetchingCurrencyData" state prop to true', () => {
-            const initialState = {
-                isFetchingCurrencyData: false,
-            };
-
-            const action = {
-                type: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_REQUEST',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                isFetchingCurrencyData: true,
-            };
-
-            expect(newState.isFetchingCurrencyData).to.eql(expectedState.isFetchingCurrencyData);
-        });
-
-        it('should set "hasErrorFetchingCurrencyData" state prop to false', () => {
-            const initialState = {
-                hasErrorFetchingCurrencyData: true,
-            };
-
-            const action = {
-                type: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_REQUEST',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                hasErrorFetchingCurrencyData: false,
-            };
-
-            expect(newState.hasErrorFetchingCurrencyData).to.eql(expectedState.hasErrorFetchingCurrencyData);
-        });
-    });
-
-    describe('IOTA/SETTINGS/CURRENCY_DATA_FETCH_SUCCESS', () => {
-        it('should set "isFetchingCurrencyData" state prop to false', () => {
-            const initialState = {
-                isFetchingCurrencyData: true,
-            };
-
-            const action = {
-                type: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_SUCCESS',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                isFetchingCurrencyData: false,
-            };
-
-            expect(newState.isFetchingCurrencyData).to.eql(expectedState.isFetchingCurrencyData);
-        });
-    });
-
-    describe('IOTA/SETTINGS/CURRENCY_DATA_FETCH_ERROR', () => {
-        it('should set "isFetchingCurrencyData" state prop to false', () => {
-            const initialState = {
-                isFetchingCurrencyData: true,
-            };
-
-            const action = {
-                type: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_ERROR',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                isFetchingCurrencyData: false,
-            };
-
-            expect(newState.isFetchingCurrencyData).to.eql(expectedState.isFetchingCurrencyData);
-        });
-
-        it('should set "hasErrorFetchingCurrencyData" state prop to true', () => {
-            const initialState = {
-                hasErrorFetchingCurrencyData: false,
-            };
-
-            const action = {
-                type: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_ERROR',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                hasErrorFetchingCurrencyData: true,
-            };
-
-            expect(newState.hasErrorFetchingCurrencyData).to.eql(expectedState.hasErrorFetchingCurrencyData);
         });
     });
 
