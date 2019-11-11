@@ -1,9 +1,7 @@
 import merge from 'lodash/merge';
 import unionBy from 'lodash/unionBy';
-import sortBy from 'lodash/sortBy';
-import { SettingsActionTypes, MigrationsActionTypes } from '../types';
+import { SettingsActionTypes, MarketDataActionTypes, MigrationsActionTypes } from '../types';
 import { DEFAULT_NODE, DEFAULT_NODES, QUORUM_SIZE } from '../config';
-import { availableCurrencies } from '../libs/currency';
 
 export const initialState = {
     /**
@@ -35,10 +33,6 @@ export const initialState = {
      * Selected currency for conversions in wallet
      */
     currency: 'USD',
-    /**
-     * Wallet's available currencies
-     */
-    availableCurrencies,
     /**
      * Conversion rate for IOTA token
      */
@@ -196,16 +190,6 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 language: action.payload,
             };
-        case SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS:
-            return {
-                ...state,
-                currency: action.payload.currency,
-                conversionRate: action.payload.conversionRate,
-                availableCurrencies:
-                    action.payload.availableCurrencies.length > 0
-                        ? sortBy(action.payload.availableCurrencies, ['desc'])
-                        : state.availableCurrencies,
-            };
         case SettingsActionTypes.UPDATE_THEME:
             return {
                 ...state,
@@ -310,6 +294,16 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 autoNodeList: action.payload,
+            };
+        case SettingsActionTypes.SET_CURRENCY:
+            return {
+                ...state,
+                ...action.payload,
+            };
+        case MarketDataActionTypes.SET_RATES_DATA:
+            return {
+                ...state,
+                conversionRate: action.payload[state.currency] || state.conversionRate,
             };
     }
 

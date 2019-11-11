@@ -15,41 +15,6 @@ describe('Reducer: settings', () => {
                 mode: 'Standard',
                 language: 'English (International)',
                 currency: 'USD',
-                availableCurrencies: [
-                    'USD',
-                    'GBP',
-                    'EUR',
-                    'AUD',
-                    'BGN',
-                    'BRL',
-                    'CAD',
-                    'CHF',
-                    'CNY',
-                    'CZK',
-                    'DKK',
-                    'HKD',
-                    'HRK',
-                    'HUF',
-                    'IDR',
-                    'ILS',
-                    'INR',
-                    'ISK',
-                    'JPY',
-                    'KRW',
-                    'MXN',
-                    'MYR',
-                    'NOK',
-                    'NZD',
-                    'PHP',
-                    'PLN',
-                    'RON',
-                    'RUB',
-                    'SEK',
-                    'SGD',
-                    'THB',
-                    'TRY',
-                    'ZAR',
-                ],
                 conversionRate: 1,
                 themeName: 'Default',
                 remotePoW: false,
@@ -493,50 +458,6 @@ describe('Reducer: settings', () => {
             };
 
             expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe(SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS, () => {
-        it('should set currency to action.payload.currency', () => {
-            const initialState = {
-                currency: 'USD',
-            };
-
-            const action = {
-                type: SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
-                payload: {
-                    currency: 'EUR',
-                    availableCurrencies: [],
-                },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                currency: 'EUR',
-            };
-
-            expect(newState.currency).to.eql(expectedState.currency);
-        });
-
-        it('should set conversionRate action.payload.conversionRate', () => {
-            const initialState = {
-                conversionRate: 1,
-            };
-
-            const action = {
-                type: SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
-                payload: {
-                    conversionRate: 2,
-                    availableCurrencies: [],
-                },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                conversionRate: 2,
-            };
-
-            expect(newState.conversionRate).to.eql(expectedState.conversionRate);
         });
     });
 

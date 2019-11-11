@@ -14,14 +14,6 @@ const initialState = {
      */
     isGeneratingReceiveAddress: false,
     /**
-     * Determines if wallet is fetching currency information
-     */
-    isFetchingCurrencyData: false,
-    /**
-     * Determines if wallet has an error while fetching currency information
-     */
-    hasErrorFetchingCurrencyData: false,
-    /**
      * Determines if wallet is manually promoting a transaction
      */
     isPromotingTransaction: false,
@@ -156,23 +148,6 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case SettingsActionTypes.CURRENCY_DATA_FETCH_REQUEST:
-            return {
-                ...state,
-                isFetchingCurrencyData: true,
-                hasErrorFetchingCurrencyData: false,
-            };
-        case SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS:
-            return {
-                ...state,
-                isFetchingCurrencyData: false,
-            };
-        case SettingsActionTypes.CURRENCY_DATA_FETCH_ERROR:
-            return {
-                ...state,
-                isFetchingCurrencyData: false,
-                hasErrorFetchingCurrencyData: true,
-            };
         case UiActionTypes.SET_SEND_ADDRESS_FIELD:
             return {
                 ...state,
@@ -264,8 +239,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isGeneratingReceiveAddress: false,
-                isFetchingCurrencyData: false,
-                hasErrorFetchingCurrencyData: false,
                 hasErrorFetchingAccountInfo: false,
                 isPromotingTransaction: false,
                 isTransitioning: false,
