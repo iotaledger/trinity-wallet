@@ -1,3 +1,5 @@
+import keys from 'lodash/keys';
+import reduce from 'lodash/reduce';
 import { MarketDataActionTypes } from '../types';
 import { MARKETDATA_ENDPOINTS, FETCH_REMOTE_NODES_REQUEST_TIMEOUT } from '../config';
 import Errors from '../libs/errors';
@@ -106,9 +108,11 @@ export const getMarketData = async (dispatch) => {
 
             // Set rates statistics
             if (typeof marketData.rates === 'object') {
+                const orderedRates = reduce(keys(marketData.rates).sort(), (result, key) => (result[key] = marketData.rates[key], result), {});
+
                 dispatch({
                     type: MarketDataActionTypes.SET_RATES_DATA,
-                    payload: { ...marketData.rates },
+                    payload: { ...orderedRates },
                 });
             }
 
