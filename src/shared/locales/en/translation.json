@@ -310,7 +310,7 @@
         "notEnoughAmount": "Amount is too low",
         "notEnoughAmountExplanation": "Minimum transaction amount is {{amount}}",
         "amountTooHigh": "Amount is too high",
-        "amountTooHighExplanation": "Maximum transaction amount is {{amount}} per month.",
+        "amountTooHighExplanation": "Maximum transaction amount is {{amount}} per day.",
         "addPaymentMethod": "Add a payment method",
         "pleaseEnterYourBillingDetails": "Please enter your billing details below",
         "cardNumber": "CARD NUMBER",
