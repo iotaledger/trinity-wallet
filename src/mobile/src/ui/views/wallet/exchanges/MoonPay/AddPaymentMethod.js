@@ -145,7 +145,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
         height: ${Styling.footerButtonHeight}px;
         border-color: ${theme.dark.color};
         width: ${isIPhoneX ? Styling.contentWidth / 2 : width / 2}px;
-        border-width: 10;
+        border-width: ${isIPhoneX ? 10 : 0};
         border-bottom-left-radius: ${isIPhoneX ? Styling.borderRadiusExtraLarge : 0}px;
         border-top-left-radius: ${isIPhoneX ? Styling.borderRadiusExtraLarge : 0}px;
         color: ${theme.dark.body};
@@ -159,7 +159,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
       .button-right {
         height: ${Styling.footerButtonHeight}px;
         width: ${isIPhoneX ? Styling.contentWidth / 2 : width / 2}px;
-        border-width: 10;
+        border-width: ${isIPhoneX ? 10 : 0};
         border-color: ${theme.dark.color};
         border-bottom-right-radius: ${isIPhoneX ? Styling.borderRadiusExtraLarge : 0}px;        
         border-top-right-radius: ${isIPhoneX ? Styling.borderRadiusExtraLarge : 0}px;  
@@ -169,6 +169,10 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
         font-family: 'Source Sans Pro', sans-serif;
         font-weight: 600;
         font-size: ${Styling.fontSize3}px;
+      }
+
+      button:focus {
+        outline:0;
       }
 
       .field-container {
@@ -188,11 +192,13 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
         justify-content: center;
         height: ${height}px;
       }
+
       .top-container {
         flex: 1;
         align-items: center;
         align-content: flex-start;
       }
+
       .mid-container {
         flex: 4;
         align-items: center;
@@ -200,6 +206,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
         width: ${width}px;
         align-content: space-between;
       }
+      
       .bottom-container {
         flex: 0.5;
         align-items: flex-end;
@@ -370,6 +377,9 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
                         }),
                     );
                 } else {
+                  document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
+                  document.getElementsByClassName('button-left')[0].disabled = false;
+
                     window.ReactNativeWebView.postMessage(
                         JSON.stringify({
                             type: 'error',
@@ -542,6 +552,7 @@ class AddPaymentMethod extends PureComponent {
                     ref={(ref) => (this.webView = ref)}
                     hideKeyboardAccessoryView
                     javaScriptEnabled
+                    scrollEnabled={false}
                     scalesPageToFit
                     style={this.state.loaded || { flex: 0, height: 0, opacity: 0 }}
                     source={{ html: renderHtml(theme, t, address, customerId) }}
