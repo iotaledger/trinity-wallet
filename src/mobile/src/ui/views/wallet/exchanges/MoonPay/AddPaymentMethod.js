@@ -13,7 +13,7 @@ import { getThemeFromState } from 'shared-modules/selectors/global';
 import { API_KEY } from 'shared-modules/exchanges/MoonPay';
 import { height, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
-import { isIPhoneX } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import { getCustomerAddress, getCustomerPaymentCards, getCustomerId } from 'shared-modules/selectors/exchanges/MoonPay';
 import { parse } from 'shared-modules/libs/utils';
 
@@ -36,13 +36,10 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
-    <title>VGS Collect Credit Card Example</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
@@ -274,21 +271,6 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
     }));
   }
 
-  window.addEventListener('message', function(event) {
-    if (
-      event.data === 'cardCreationSuccessful' || 
-      event.data === 'cardCreationUnsuccessful' ||
-      event.data === 'enteredDuplicateCardDetails'
-      ) {
-      window.ReactNativeWebView.postMessage(JSON.stringify({
-        type: event.data,
-      }));
-
-      document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
-      document.getElementsByClassName('button-left')[0].disabled = false;
-    }
-  });
-
     moonpay.initialize("${API_KEY}", "${customerId}");
 
     moonpay.trackPageView();
@@ -356,7 +338,9 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
       e.preventDefault();
       
       if (isFormValid) {
-        document.getElementsByClassName('button-right')[0].innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
+        document.getElementsByClassName('button-right')[0].innerHTML = '<i class="fa ${
+            isAndroid ? 'fa-circle-o-notch' : 'fa-spinner'
+        } fa-spin"></i>';
         document.getElementsByClassName('button-left')[0].disabled = true;
 
         form.submit(
@@ -453,10 +437,35 @@ class AddPaymentMethod extends PureComponent {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isCreatingPaymentCard && !nextProps.isCreatingPaymentCard) {
-            this.webView.postMessage(
-                !nextProps.hasErrorCreatingPaymentCard ? 'cardCreationSuccessful' : 'cardCreationUnsuccessful',
-            );
+            const { t } = this.props;
+
+            nextProps.hasErrorCreatingPaymentCard
+                ? this.props.generateAlert(
+                      'error',
+                      t('moonpay:paymentCardCreationError'),
+                      t('moonpay:paymentCardCreationErrorExplanation'),
+                  )
+                : this.redirectToScreen('reviewPurchase');
+
+            this.webView.injectJavaScript(this.getJavaScriptToInject());
         }
+    }
+
+    /**
+     * Gets JavaScript to inject to WebView
+     *
+     * @method getJavaScriptToInject
+     *
+     * @returns {void}
+     */
+    getJavaScriptToInject() {
+        const { t } = this.props;
+
+        return `
+          document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
+          document.getElementsByClassName('button-left')[0].disabled = false;
+          true
+        `;
     }
 
     /**
@@ -484,7 +493,7 @@ class AddPaymentMethod extends PureComponent {
                     );
                 })
             ) {
-                this.webView.postMessage('enteredDuplicateCardDetails');
+                this.webView.injectJavaScript(this.getJavaScriptToInject());
                 this.props.generateAlert('error', t('moonpay:duplicateCard'), t('moonpay:duplicateCardExplanation'));
             } else {
                 this.props.createPaymentCard(get(message, 'data.id'));
@@ -515,14 +524,6 @@ class AddPaymentMethod extends PureComponent {
             }
         } else if (type === 'back') {
             this.goBack();
-        } else if (type === 'cardCreationSuccessful') {
-            this.redirectToScreen('reviewPurchase');
-        } else if (type === 'cardCreationUnsuccessful') {
-            this.props.generateAlert(
-                'error',
-                t('moonpay:paymentCardCreationError'),
-                t('moonpay:paymentCardCreationErrorExplanation'),
-            );
         }
     }
 
