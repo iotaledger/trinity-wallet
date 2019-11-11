@@ -1,3 +1,9 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import map from 'lodash/map';
+import isNull from 'lodash/isNull';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -5,6 +11,9 @@ import { withTranslation } from 'react-i18next';
 
 import { getAnimation } from 'animations';
 
+import { isIPAddressAllowed, getAlpha3CodeForIPAddress } from 'selectors/exchanges/MoonPay';
+
+import Select from 'ui/components/input/Select';
 import Button from 'ui/components/Button';
 import Info from 'ui/components/Info';
 import Icon from 'ui/components/Icon';
@@ -23,11 +32,54 @@ class Landing extends React.PureComponent {
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** @ignore */
+        countries: PropTypes.array.isRequired,
+        /** @ignore */
+        country: PropTypes.string,
+        /** @ignore */
+        isIPAddressAllowed: PropTypes.bool.isRequired,
+        /** @ignore */
+        alpha3CodeForIPAddress: PropTypes.string.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
+    constructor(props) {
+        super(props);
+
+        const allowedCountries = filter(props.countries, (country) => country.isAllowed);
+        const _setCountryBasedOnIPAddress = () => {
+            const fallbackCountryName = get(head(allowedCountries), 'name');
+            const fallbackCountryAlpha3 = get(head(allowedCountries), 'alpha3');
+
+            if (props.isIPAddressAllowed) {
+                return {
+                    name:
+                        get(find(props.countries, { alpha3: props.alpha3CodeForIPAddress }), 'name') ||
+                        fallbackCountryName,
+                    alpha3: props.alpha3CodeForIPAddress || fallbackCountryAlpha3,
+                };
+            }
+
+            return {
+                name: fallbackCountryName,
+                alpha3: fallbackCountryAlpha3,
+            };
+        };
+
+        this.state = {
+            country: isNull(props.country)
+                ? _setCountryBasedOnIPAddress()
+                : {
+                      name: get(find(props.countries, { alpha3: props.country }), 'name'),
+                      alpha3: props.country,
+                  },
+        };
+    }
+
     render() {
-        const { t, themeName } = this.props;
+        const { countries, t, themeName } = this.props;
+
+        const countryNames = map(filter(countries, (country) => country.isAllowed), (country) => country.name);
 
         return (
             <form>
@@ -48,7 +100,26 @@ class Landing extends React.PureComponent {
                             <p>{t('moonpay:supportExplanation')}</p>
                         </div>
                     </Info>
-                    <a>{t('moonpay:termsAndConditionsApply')}</a>
+                    <fieldset>
+                        <Select
+                            value={this.state.country.name}
+                            label={t('moonpay:selectCountry')}
+                            onChange={(name) => {
+                                const country = find(countries, { name });
+
+                                this.setState({
+                                    country: {
+                                        name: country.name,
+                                        alpha3: country.alpha3,
+                                    },
+                                });
+                            }}
+                            options={map(countryNames, (countryName) => ({
+                                value: countryName,
+                                label: countryName,
+                            }))}
+                        />
+                    </fieldset>
                 </section>
                 <footer className={css.choiceDefault}>
                     <div>
@@ -62,7 +133,7 @@ class Landing extends React.PureComponent {
                         </Button>
                         <Button
                             id="to-transfer-funds"
-                            onClick={() => this.props.history.push('/exchanges/moonpay/add-amount')}
+                            onClick={() => this.props.history.push('/exchanges/moonpay/setup-email')}
                             className="square"
                             variant="primary"
                         >
@@ -77,6 +148,10 @@ class Landing extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     themeName: state.settings.themeName,
+    countries: state.exchanges.moonpay.countries,
+    country: state.exchanges.moonpay.customer.address.country,
+    isIPAddressAllowed: isIPAddressAllowed(state),
+    alpha3CodeForIPAddress: getAlpha3CodeForIPAddress(state),
 });
 
 export default connect(mapStateToProps)(withTranslation()(Landing));

@@ -9,6 +9,11 @@ import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
 import { getAccountInfo, getFullAccountInfo } from 'actions/accounts';
 import { clearWalletData, setPassword } from 'actions/wallet';
+import {
+    fetchCountries as fetchMoonPayCountries,
+    fetchCurrencies as fetchMoonPayCurrencies,
+    checkIPAddress,
+} from 'actions/exchanges/MoonPay';
 
 import { getSelectedAccountName, getSelectedAccountMeta, isSettingUpNewAccount } from 'selectors/accounts';
 
@@ -67,6 +72,12 @@ class Login extends React.Component {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         getFullAccountInfo: PropTypes.func.isRequired,
+        /** @ignore */
+        fetchMoonPayCountries: PropTypes.func.isRequired,
+        /** @ignore */
+        fetchMoonPayCurrencies: PropTypes.func.isRequired,
+        /** @ignore */
+        checkIPAddress: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -142,6 +153,11 @@ class Login extends React.Component {
         this.props.getChartData();
         this.props.getMarketData();
         this.props.getCurrencyData(currency);
+
+        // MoonPay related actions
+        this.props.fetchMoonPayCountries();
+        this.props.fetchMoonPayCurrencies();
+        this.props.checkIPAddress();
 
         if (addingAdditionalAccount) {
             this.props.getFullAccountInfo(seedStore, accountName);
@@ -272,6 +288,9 @@ const mapDispatchToProps = {
     getCurrencyData,
     getFullAccountInfo,
     getAccountInfo,
+    fetchMoonPayCountries,
+    fetchMoonPayCurrencies,
+    checkIPAddress,
 };
 
 export default connect(

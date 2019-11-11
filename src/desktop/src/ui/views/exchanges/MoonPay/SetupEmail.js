@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 
+import { authenticateViaEmail } from 'actions/exchanges/MoonPay';
 import { generateAlert } from 'actions/alerts';
+import { isValidEmail } from 'libs/utils';
 
 import Button from 'ui/components/Button';
 import Info from 'ui/components/Info';
@@ -21,17 +23,53 @@ class SetupEmail extends React.PureComponent {
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** @ignore */
+        isAuthenticatingEmail: PropTypes.bool.isRequired,
+        /** @ignore */
+        hasErrorAuthenticatingEmail: PropTypes.bool.isRequired,
+        /** @ignore */
+        authenticateViaEmail: PropTypes.func.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        generateAlert: PropTypes.func.isRequired, // eslint-disable-line
+        generateAlert: PropTypes.func.isRequired,
     };
 
     state = {
         email: '',
     };
 
-    render() {
+    componentWillReceiveProps(nextProps) {
+        if (
+            this.props.isAuthenticatingEmail &&
+            !nextProps.isAuthenticatingEmail &&
+            !nextProps.hasErrorAuthenticatingEmail
+        ) {
+            this.props.history.push('/exchanges/moonpay/verify-email');
+        }
+    }
+
+    /**
+     * Authenticates user via email
+     *
+     * @method authenticateViaEmail
+     *
+     * @returns {function}
+     */
+    authenticateViaEmail() {
+        const { email } = this.state;
         const { t } = this.props;
+
+        if (!email) {
+            return this.props.generateAlert('error', t('moonpay:emptyEmail'), t('moonpay:emptyEmailExplanation'));
+        } else if (!isValidEmail(email)) {
+            return this.props.generateAlert('error', t('moonpay:invalidEmail'), t('moonpay:invalidEmailExplanation'));
+        }
+
+        return this.props.authenticateViaEmail(email);
+    }
+
+    render() {
+        const { isAuthenticatingEmail, t } = this.props;
         const { email } = this.state;
 
         return (
@@ -62,6 +100,7 @@ class SetupEmail extends React.PureComponent {
                 <footer className={css.choiceDefault}>
                     <div>
                         <Button
+                            disabled={isAuthenticatingEmail}
                             id="to-cancel"
                             onClick={() => this.props.history.goBack()}
                             className="square"
@@ -70,8 +109,9 @@ class SetupEmail extends React.PureComponent {
                             {t('global:goBack')}
                         </Button>
                         <Button
+                            loading={isAuthenticatingEmail}
                             id="to-transfer-funds"
-                            onClick={() => this.props.history.push('/exchanges/moonpay/verify-email')}
+                            onClick={() => this.authenticateViaEmail()}
                             className="square"
                             variant="primary"
                         >
@@ -84,11 +124,17 @@ class SetupEmail extends React.PureComponent {
     }
 }
 
+const mapStateToProps = (state) => ({
+    isAuthenticatingEmail: state.exchanges.moonpay.isAuthenticatingEmail,
+    hasErrorAuthenticatingEmail: state.exchanges.moonpay.hasErrorAuthenticatingEmail,
+});
+
 const mapDispatchToProps = {
+    authenticateViaEmail,
     generateAlert,
 };
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
 )(withTranslation()(SetupEmail));
