@@ -18,14 +18,14 @@ export default map(v8Schema, (schema) => {
                  */
                 timeframe: {
                     type: 'string',
-                    default: null,
+                    default: '',
                 },
                 /*
                  * Selected chart currency
                  */
                 currency: {
                     type: 'string',
-                    default: null,
+                    default: '',
                 },
             },
         });
