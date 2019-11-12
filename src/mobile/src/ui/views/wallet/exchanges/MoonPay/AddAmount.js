@@ -582,7 +582,6 @@ class AddAmount extends Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
-    themeName: state.settings.themeName,
     amount: state.exchanges.moonpay.amount,
     denomination: state.exchanges.moonpay.denomination,
     fiatCurrencies: getFiatCurrencies(state),
