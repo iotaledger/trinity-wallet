@@ -161,10 +161,27 @@ class Landing extends Component {
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
-                        delay={300}
+                        delay={266}
                     >
                         <InfoBox>
                             <Text style={[styles.infoText, textColor]}>{t('moonpay:buyIOTAInstantly')}</Text>
+                            <AnimatedComponent
+                                animationInType={['fadeIn', 'slideInRight']}
+                                animationOutType={['fadeOut', 'slideOutLeft']}
+                                delay={266}
+                                style={styles.animation}
+                            >
+                                <LottieView
+                                    source={getAnimation('sending', themeName)}
+                                    style={styles.animation}
+                                    loop={false}
+                                    autoPlay
+                                    ref={(ref) => {
+                                        this.animation = ref;
+                                    }}
+                                    onAnimationFinish={() => this.animation.play(161, 395)}
+                                />
+                            </AnimatedComponent>
                             <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 60 }]}>
                                 {t('moonpay:supportExplanation')}
                             </Text>
@@ -172,27 +189,9 @@ class Landing extends Component {
                     </AnimatedComponent>
                     <View style={{ flex: 0.4 }} />
                     <AnimatedComponent
-                        animationInType={['fadeIn', 'slideInRight']}
-                        animationOutType={['fadeOut', 'slideOutLeft']}
-                        delay={200}
-                        style={styles.animation}
-                    >
-                        <LottieView
-                            source={getAnimation('sending', themeName)}
-                            style={styles.animation}
-                            loop={false}
-                            autoPlay
-                            ref={(ref) => {
-                                this.animation = ref;
-                            }}
-                            onAnimationFinish={() => this.animation.play(161, 395)}
-                        />
-                    </AnimatedComponent>
-                    <View style={{ flex: 0.4 }} />
-                    <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
-                        delay={100}
+                        delay={80}
                     >
                         <DropdownComponent
                             title={t('moonpay:selectCountry')}
@@ -214,7 +213,6 @@ class Landing extends Component {
                             }}
                         />
                     </AnimatedComponent>
-                    <View style={{ flex: 0.4 }} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
