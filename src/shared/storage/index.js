@@ -452,7 +452,7 @@ class Wallet {
     }
 
     /**
-     * Updates chart SET_CURRENCY.
+     * Updates chart currency.
      *
      * @method updateCurrency
      * @param {string} payload
@@ -466,7 +466,7 @@ class Wallet {
     /**
      * Updates chart timeframe.
      *
-     * @method updateMode
+     * @method updateTimeframe
      * @param {string} payload
      */
     static updateTimeframe(payload) {
