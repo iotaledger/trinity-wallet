@@ -5,8 +5,7 @@ import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { generateAlert } from 'actions/alerts';
-import { getMarketData, getChartData, getPrice } from 'actions/marketData';
-import { getCurrencyData } from 'actions/settings';
+import { fetchMarketData } from 'actions/polling';
 import { getAccountInfo, getFullAccountInfo } from 'actions/accounts';
 import { clearWalletData, setPassword } from 'actions/wallet';
 import {
@@ -55,19 +54,11 @@ class Login extends React.Component {
         /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
-        currency: PropTypes.string.isRequired,
-        /** @ignore */
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
-        getChartData: PropTypes.func.isRequired,
-        /** @ignore */
-        getPrice: PropTypes.func.isRequired,
-        /** @ignore */
-        getMarketData: PropTypes.func.isRequired,
-        /** @ignore */
-        getCurrencyData: PropTypes.func.isRequired,
+        fetchMarketData: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -100,6 +91,8 @@ class Login extends React.Component {
             this.props.clearWalletData();
             this.props.setPassword({});
         }
+
+        this.props.fetchMarketData();
     }
 
     componentDidUpdate(prevProps) {
@@ -133,7 +126,6 @@ class Login extends React.Component {
             addingAdditionalAccount,
             additionalAccountName,
             additionalAccountMeta,
-            currency,
             currentAccountName,
             currentAccountMeta,
         } = this.props;
@@ -148,11 +140,6 @@ class Login extends React.Component {
             e.accountName = accountName;
             throw e;
         }
-
-        this.props.getPrice();
-        this.props.getChartData();
-        this.props.getMarketData();
-        this.props.getCurrencyData(currency);
 
         // MoonPay related actions
         this.props.fetchMoonPayCountries();
@@ -272,7 +259,6 @@ const mapStateToProps = (state) => ({
     additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
     additionalAccountName: state.accounts.accountInfoDuringSetup.name,
     ui: state.ui,
-    currency: state.settings.currency,
     forceUpdate: state.wallet.forceUpdate,
     completedMigration: state.settings.completedMigration,
     themeName: state.settings.themeName,
@@ -282,10 +268,7 @@ const mapDispatchToProps = {
     generateAlert,
     setPassword,
     clearWalletData,
-    getChartData,
-    getPrice,
-    getMarketData,
-    getCurrencyData,
+    fetchMarketData,
     getFullAccountInfo,
     getAccountInfo,
     fetchMoonPayCountries,

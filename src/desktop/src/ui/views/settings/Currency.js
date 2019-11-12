@@ -17,8 +17,6 @@ class SetCurrency extends PureComponent {
         /** @ignore */
         currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
         /** @ignore */
-        loading: PropTypes.bool.isRequired,
-        /** @ignore */
         setCurrency: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -29,7 +27,7 @@ class SetCurrency extends PureComponent {
     };
 
     render() {
-        const { currency, currencies, loading, setCurrency, t } = this.props;
+        const { currency, currencies, setCurrency, t } = this.props;
         const { selection } = this.state;
 
         return (
@@ -53,12 +51,7 @@ class SetCurrency extends PureComponent {
                     />
                 </fieldset>
                 <footer>
-                    <Button
-                        className="square"
-                        disabled={!selection || selection === currency}
-                        type="submit"
-                        loading={loading}
-                    >
+                    <Button className="square" disabled={!selection || selection === currency} type="submit">
                         {t('save')}
                     </Button>
                 </footer>

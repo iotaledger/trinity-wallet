@@ -90,8 +90,14 @@ export default function withChartData(ChartComponent) {
         render() {
             const { marketData, settings, theme, t } = this.props;
 
-            const currencyData = get(marketData.chartData, marketData.currency);
-            const dataSet = get(currencyData, marketData.timeframe) || [];
+            const currencyData = get(marketData.chartData, marketData.currency.toLowerCase());
+            const rawData = get(currencyData, marketData.timeframe) || [];
+
+            rawData.sort((a, b) => a[0] - b[0]);
+
+            const dataSet = rawData.map(([time, price], index) => {
+                return { x: index, y: parseFloat(price), time: time };
+            });
 
             const chartProps = {
                 setCurrency: this.changeCurrency,
