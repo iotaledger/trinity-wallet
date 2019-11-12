@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     optionsContainer: {
-        borderWidth: 1.2,
+        borderWidth: 1.5,
         borderRadius: Styling.borderRadius,
         width: Styling.contentWidth / 1.1,
     },

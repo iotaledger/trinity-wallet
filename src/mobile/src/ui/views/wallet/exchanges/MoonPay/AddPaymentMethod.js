@@ -64,7 +64,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
       vertical-align: middle;
       width: 100%;
     }
-    
+
     .logo-container {
         padding-top: ${height / 16}px;
         display: flex;
@@ -158,9 +158,9 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
         width: ${isIPhoneX ? Styling.contentWidth / 2 : width / 2}px;
         border-width: ${isIPhoneX ? 10 : 0};
         border-color: ${theme.dark.color};
-        border-bottom-right-radius: ${isIPhoneX ? Styling.borderRadiusExtraLarge : 0}px;        
-        border-top-right-radius: ${isIPhoneX ? Styling.borderRadiusExtraLarge : 0}px;  
-        flex: 1; 
+        border-bottom-right-radius: ${isIPhoneX ? Styling.borderRadiusExtraLarge : 0}px;
+        border-top-right-radius: ${isIPhoneX ? Styling.borderRadiusExtraLarge : 0}px;
+        flex: 1;
         color: ${theme.primary.body};
         background-color: ${theme.primary.color};
         font-family: 'Source Sans Pro', sans-serif;
@@ -203,7 +203,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
         width: ${width}px;
         align-content: space-between;
       }
-      
+
       .bottom-container {
         flex: 0.5;
         align-items: flex-end;
@@ -336,7 +336,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
 
     function submit(e) {
       e.preventDefault();
-      
+
       if (isFormValid) {
         document.getElementsByClassName('button-right')[0].innerHTML = '<i class="fa ${
             isAndroid ? 'fa-circle-o-notch' : 'fa-spinner'
@@ -554,7 +554,6 @@ class AddPaymentMethod extends PureComponent {
                     hideKeyboardAccessoryView
                     javaScriptEnabled
                     scrollEnabled={false}
-                    scalesPageToFit
                     style={this.state.loaded || { flex: 0, height: 0, opacity: 0 }}
                     source={{ html: renderHtml(theme, t, address, customerId) }}
                     onMessage={this.onMessage}
