@@ -64,6 +64,7 @@ const mapStorageToState = () => {
                 password,
             })),
         }),
+        marketData: { currency: settings.currency, timeframe: settings.timeframe },
         alerts: { notificationLog: map(errorLog, (error) => error) },
     };
 };
