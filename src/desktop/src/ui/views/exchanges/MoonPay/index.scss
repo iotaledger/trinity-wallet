@@ -1,6 +1,15 @@
 $header: 110px;
 $footer: 70px;
 
+.agreement {
+    display: flex;
+    
+    a {
+        color: var(--primary);
+        text-decoration: underline;
+    }
+}
+
 .main {
     flex-direction: column;
     align-items: center;

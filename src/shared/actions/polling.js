@@ -217,7 +217,7 @@ export const fetchMarketData = () => {
             })
             .catch((err) => {
                 dispatch(fetchMarketDataError());
-                dispatch(prepareLogUpdate(err))
+                dispatch(prepareLogUpdate(err));
             });
     };
 };

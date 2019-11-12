@@ -108,7 +108,7 @@ class SetupEmail extends React.Component {
     }
 
     /**
-     * Authenticates user via emai
+     * Authenticates user via email
      *
      * @method authenticateViaEmail
      *

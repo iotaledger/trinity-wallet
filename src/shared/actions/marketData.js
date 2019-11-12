@@ -108,7 +108,11 @@ export const getMarketData = async (dispatch) => {
 
             // Set rates statistics
             if (typeof marketData.rates === 'object') {
-                const orderedRates = reduce(keys(marketData.rates).sort(), (result, key) => (result[key] = marketData.rates[key], result), {});
+                const orderedRates = reduce(
+                    keys(marketData.rates).sort(),
+                    (result, key) => ((result[key] = marketData.rates[key]), result),
+                    {},
+                );
 
                 dispatch({
                     type: MarketDataActionTypes.SET_RATES_DATA,

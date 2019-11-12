@@ -1,3 +1,4 @@
+import head from 'lodash/head';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -31,8 +32,16 @@ class SelectAccount extends React.PureComponent {
         setAccountName: PropTypes.func.isRequired,
     };
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            accountName: props.accountName || head(this.props.accountNames),
+        };
+    }
+
     render() {
-        const { accountName, accountNames, t } = this.props;
+        const { accountNames, t } = this.props;
 
         return (
             <form>
@@ -52,8 +61,9 @@ class SelectAccount extends React.PureComponent {
                     </Info>
                     <div style={{ width: '100%' }}>
                         <Select
-                            value={accountName}
+                            value={this.state.accountName}
                             onChange={(newAccountName) => {
+                                this.setState({ accountName: newAccountName });
                                 this.props.setAccountName(newAccountName);
                             }}
                             options={accountNames.map((item) => {
@@ -74,7 +84,10 @@ class SelectAccount extends React.PureComponent {
                         </Button>
                         <Button
                             id="to-transfer-funds"
-                            onClick={() => this.props.history.push('/exchanges/moonpay/setup-email')}
+                            onClick={() => {
+                                this.props.history.push('/exchanges/moonpay/add-amount');
+                                this.props.setAccountName(this.state.name);
+                            }}
                             className="square"
                             variant="primary"
                         >

@@ -222,7 +222,6 @@ class Loading extends Component {
     }
 
     getWalletData() {
-        const { currency } = this.props;
         this.props.fetchMoonPayCountries();
         this.props.fetchMoonPayCurrencies();
         this.props.checkIPAddress();
