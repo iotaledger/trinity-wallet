@@ -9,6 +9,7 @@ import AddPaymentMethod from 'ui/views/exchanges/MoonPay/AddPaymentMethod';
 import SelectAccount from 'ui/views/exchanges/MoonPay/SelectAccount';
 import Landing from 'ui/views/exchanges/MoonPay/Landing';
 import SetupEmail from 'ui/views/exchanges/MoonPay/SetupEmail';
+import SelectPaymentCard from 'ui/views/exchanges/MoonPay/SelectPaymentCard';
 import VerifyEmail from 'ui/views/exchanges/MoonPay/VerifyEmail';
 import UserBasicInfo from 'ui/views/exchanges/MoonPay/UserBasicInfo';
 import UserAdvancedInfo from 'ui/views/exchanges/MoonPay/UserAdvancedInfo';
@@ -36,6 +37,7 @@ class MoonPay extends React.PureComponent {
                         <div>
                             <Switch location={location}>
                                 <Route path="/exchanges/moonpay/add-amount" component={AddAmount} />
+                                <Route path="/exchanges/moonpay/select-payment-card" component={SelectPaymentCard} />
                                 <Route path="/exchanges/moonpay/select-account" component={SelectAccount} />
                                 <Route path="/exchanges/moonpay/setup-email" component={SetupEmail} />
                                 <Route path="/exchanges/moonpay/verify-email" component={VerifyEmail} />

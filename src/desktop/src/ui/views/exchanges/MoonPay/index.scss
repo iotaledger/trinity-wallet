@@ -3,10 +3,65 @@ $footer: 70px;
 
 .agreement {
     display: flex;
-    
+
     a {
         color: var(--primary);
         text-decoration: underline;
+    }
+}
+
+.cards {
+    border: 1px solid var(--box-body);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+
+    section:first-child {
+        border-bottom: 1px solid var(--box-body);
+    }
+}
+
+.option {
+    display: flex;
+
+    > input,
+    span {
+        cursor: pointer;
+        font-weight: 600;
+        margin: 10px 14px;
+    }
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 14px;
+
+    small {
+        text-transform: uppercase;
+        transition: color 0.2s ease-out;
+        font-size: 13px;
+        letter-spacing: 0.2px;
+        color: var(--label);
+        margin-bottom: 4px;
+    }
+
+    span {
+        display: block;
+        padding: 0.475rem 0.75rem;
+        line-height: 0.75;
+        background-color: var(--input-bg);
+        width: 100%;
+        border-radius: 5px;
+        height: 44px;
+        border: 1px solid var(--input-bg);
+
+        iframe {
+            height: 100%;
+            vertical-align: middle;
+            width: 100%;
+        }
     }
 }
 
