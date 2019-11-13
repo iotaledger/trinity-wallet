@@ -3,14 +3,6 @@ import { availableCurrencies } from '../libs/currency';
 
 const initialState = {
     /**
-     * Wallet selected currency
-     */
-    currency: 'USD',
-    /**
-     * Time frame for price
-     */
-    timeframe: '24h',
-    /**
      * Price data points for mapping on chart
      */
     chartData: {},
@@ -50,16 +42,6 @@ const initialState = {
 
 const marketData = (state = initialState, action) => {
     switch (action.type) {
-        case MarketDataActionTypes.SET_CURRENCY:
-            return {
-                ...state,
-                currency: action.payload,
-            };
-        case MarketDataActionTypes.SET_TIMEFRAME:
-            return {
-                ...state,
-                timeframe: action.payload,
-            };
         case MarketDataActionTypes.SET_PRICE:
             return {
                 ...state,

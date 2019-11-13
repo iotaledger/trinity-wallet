@@ -3,41 +3,6 @@ import reduce from 'lodash/reduce';
 import { MarketDataActionTypes } from '../types';
 import { MARKETDATA_ENDPOINTS, FETCH_REMOTE_NODES_REQUEST_TIMEOUT } from '../config';
 import Errors from '../libs/errors';
-import { Wallet } from '../storage';
-
-/**
- * Dispatch to set timeframe for IOTA time series price information
- *
- * @method setTimeframe
- * @param {string} timeframe
- *
- * @returns {{type: {string}, payload: {string} }}
- */
-export function setTimeframe(timeframe) {
-    Wallet.updateTimeframe(timeframe);
-
-    return {
-        type: MarketDataActionTypes.SET_TIMEFRAME,
-        payload: timeframe,
-    };
-}
-
-/**
- * Dispatch to set currency in state
- *
- * @method setCurrency
- * @param {string} currency
- *
- * @returns {{type: {string}, payload: {string} }}
- */
-export function setCurrency(currency) {
-    Wallet.updateCurrency(currency);
-
-    return {
-        type: MarketDataActionTypes.SET_CURRENCY,
-        payload: currency,
-    };
-}
 
 /**
  * Gets latest market information

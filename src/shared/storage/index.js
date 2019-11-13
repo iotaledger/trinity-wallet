@@ -982,9 +982,7 @@ const initialise = (getEncryptionKeyPromise) => {
             const migratedRealm = new Realm(assign({}, schemas[nextSchemaIndex++], { encryptionKey }));
             migratedRealm.close();
         }
-
         realm = new Realm(assign({}, schemas[schemasSize - 1], { encryptionKey }));
-
         initialiseSync();
     });
 };

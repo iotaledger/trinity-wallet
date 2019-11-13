@@ -131,6 +131,14 @@ export const initialState = {
      * Determines if (proof of work) node should be auto-switched
      */
     powNodeAutoSwitch: true,
+    /**
+     * Wallet selected currency
+     */
+    chartCurrency: 'USD',
+    /**
+     * Time frame for price
+     */
+    chartTimeframe: '24h',
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -304,6 +312,16 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 conversionRate: action.payload[state.currency] || state.conversionRate,
+            };
+        case SettingsActionTypes.SET_CHART_CURRENCY:
+            return {
+                ...state,
+                chartCurrency: action.payload,
+            };
+        case SettingsActionTypes.SET_CHART_TIMEFRAME:
+            return {
+                ...state,
+                chartTimeframe: action.payload,
             };
     }
 
