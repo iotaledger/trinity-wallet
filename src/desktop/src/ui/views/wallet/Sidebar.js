@@ -129,6 +129,10 @@ class Sidebar extends React.PureComponent {
                     </div>
                 </nav>
                 <nav className={isBusy ? css.disabled : null}>
+                    <NavLink to="/exchanges/moonpay">
+                        <Icon icon="iota" size={20} />
+                        <strong>{t('moonpay:buyIOTA')}</strong>
+                    </NavLink>
                     <NavLink to="/settings">
                         <Icon icon="settings" size={20} />
                         <strong>{capitalize(t('home:settings'))}</strong>
@@ -143,7 +147,7 @@ class Sidebar extends React.PureComponent {
                             title: t('logoutConfirmationModal:logoutConfirmation'),
                             confirm: t('yes'),
                             cancel: t('no'),
-                            animation: { name: 'logout', loop: false }
+                            animation: { name: 'logout', loop: false },
                         }}
                         themeName={themeName}
                         onCancel={this.toggleLogout}
