@@ -116,7 +116,7 @@
         "checkForUpdates": "Controleren op Updates",
         "account": "Account",
         "changeNode": "Verander Node",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "Nodes toevoegen",
         "nodeMustUseHTTPS": "Ongeldige node (niet HTTPS)",
         "nodeMustUseHTTPSExplanation": "Alleen aangepaste nodes met HTTPS zijn toegestaan.",
         "nodeDuplicated": "Node geduplificeerd",
@@ -152,7 +152,7 @@
         "addressesAlreadySpentFrom": "Eén of meerdere adressen hebben al uitgaande transacties.",
         "problemSendingYourTransaction": "Er was een probleem tijdens het versturen van uw transactie.",
         "problemPerformingProofOfWork": "Er was een probleem tijdens het uitvoeren van proof of work.",
-        "tryingAgainWithLocalPoW": "Probeer het nogmaals met lokale proof of work.",
+        "tryingAgainWithLocalPoW": "Probeer het nogmaals met lokale Proof of Work.",
         "tryingAgainWithDifferentNode": "Probeer het nogmaals met een andere node.",
         "errorFetchingAccountInformation": "Fout tijdens het ophalen van accountinformatie.",
         "errorSyncingAddresses": "Fout bij het synchroniseren van je adres informatie. Probeer het nog een keer met een andere node.",
@@ -457,7 +457,7 @@
     },
     "welcome": {
         "thankYou": "Bedankt voor het downloaden van Trinity",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Bedankt voor het downloaden van de Trinity demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Schrijf uw seed en controlesom nauwkeurig op en</0> <1>controleer nogmaals</1> <2>of ze overeenkomen.</2>",
@@ -497,9 +497,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automatische node beheer",
-        "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "addCustomNodes": "Nodes toevoegen",
+        "autoNodeList": "Gebruik standaard node lijst",
+        "nodeAutoswitching": "Primaire node automatisch selecteren",
         "primaryNode": "Primaire node",
         "enableQuorum": "Quorum inschakelen",
         "quorumSize": "Quorum grootte",
@@ -510,8 +510,8 @@
         "nodeEnoughNodesExplanationCustomNodes": "Voeg meer aangepaste nodes toe of schakel de externe node lijst in.",
         "nodeSettingsUpdatedTitle": "Node instellingen bijgewerkt",
         "nodeSettingsUpdatedExplanation": "U heeft uw node instellingen met succes bijgewerkt.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
+        "outsourcePow": "Proof of work uitbesteden",
+        "autoSelectPowNode": "Proof of work node automatisch selecteren",
         "nodeForPow": "Proof of work node"
     },
     "addCustomNode": {
