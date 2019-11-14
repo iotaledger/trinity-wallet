@@ -217,7 +217,7 @@ class Chart extends PureComponent {
                                 },
                             ]}
                         >
-                            {t('moonpay:BUYIOTA')}
+                            {t('moonpay:buyIOTA')}
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity

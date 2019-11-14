@@ -250,9 +250,7 @@
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
     },
     "moonpay": {
-        "BUYIOTA": "BUY IOTA",
         "buyIOTA": "Buy IOTA",
-        "buyIOTAInstantly": "Buy IOTA instantly",
         "supportExplanation": "Purchase IOTA with all major credit and debit cards, securely sent to your Trinity account.",
         "addAmount": "Choose the amount of MIOTA for purchase",
         "addAmountExplanation": "Select the amount you wish to purchase in your currency, or specify the amount of MIOTA.",
