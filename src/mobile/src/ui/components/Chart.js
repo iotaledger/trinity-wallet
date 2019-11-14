@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: width / 25,
         marginHorizontal: width / 6.5,
-        paddingVertical: (height / 100) + 1,
+        paddingVertical: height / 100 + 1,
     },
     chartContainer: {
         flex: 4.7,
@@ -217,7 +217,7 @@ class Chart extends PureComponent {
                                 },
                             ]}
                         >
-                            {t('moonpay:buyIOTA')}
+                            {t('moonpay:BUYIOTA')}
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity

@@ -12,8 +12,6 @@ import { selectPaymentCard } from 'actions/exchanges/MoonPay';
 import { getCustomerPaymentCards, getSelectedPaymentCard } from 'selectors/exchanges/MoonPay';
 
 import Button from 'ui/components/Button';
-import Info from 'ui/components/Info';
-import Icon from 'ui/components/Icon';
 import Select from 'ui/components/input/Select';
 
 import css from './index.scss';
@@ -126,7 +124,7 @@ class SelectPaymentCard extends React.PureComponent {
             }
 
             return (
-                <section key={index}>
+                <fieldset key={index}>
                     {this.renderOptionRow(index, isSelected, option)}
                     {isSelected && (
                         <Select
@@ -141,10 +139,10 @@ class SelectPaymentCard extends React.PureComponent {
                                     }),
                                 });
                             }}
-                            options={paymentCards.map((item) => ({ value: item, label: item }))}
+                            options={paymentCards.map(({ text }) => ({ value: text, label: text }))}
                         />
                     )}
-                </section>
+                </fieldset>
             );
         });
     }
@@ -154,20 +152,11 @@ class SelectPaymentCard extends React.PureComponent {
 
         return (
             <form>
-                <Icon icon="moonpay" size={200} />
                 <section className={css.long}>
-                    <Info displayIcon={false}>
-                        <div style={{ textAlign: 'center' }}>
-                            <p style={{ fontSize: '28px' }}> {t('moonpay:selectPaymentMethod')}</p>
-                            <p
-                                style={{
-                                    paddingTop: '20px',
-                                }}
-                            >
-                                {t('moonpay:pleaseChooseFromTheOptionsBelow')}
-                            </p>
-                        </div>
-                    </Info>
+                    <div>
+                        <p> {t('moonpay:selectPaymentMethod')}</p>
+                        <p>{t('moonpay:pleaseChooseFromTheOptionsBelow')}</p>
+                    </div>
                     <div className={css.cards}>{this.renderOptions()}</div>
                 </section>
                 <footer className={css.choiceDefault}>
@@ -183,8 +172,10 @@ class SelectPaymentCard extends React.PureComponent {
                         <Button
                             id="to-transfer-funds"
                             onClick={() => {
-                                this.props.history.push('/exchanges/moonpay/add-amount');
                                 this.props.selectPaymentCard(this.state.selectedPaymentCard.id);
+                                this.props.history.push(
+                                    `/exchanges/moonpay/${SelectPaymentCard.options[this.state.selectedOptionIndex].redirectUrl}`,
+                                );
                             }}
                             className="square"
                             variant="primary"

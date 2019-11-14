@@ -12,11 +12,10 @@ import { withTranslation } from 'react-i18next';
 import { getAnimation } from 'animations';
 
 import { isIPAddressAllowed, getAlpha3CodeForIPAddress } from 'selectors/exchanges/MoonPay';
+import { updateCustomerInfo } from 'actions/exchanges/MoonPay';
 
 import Select from 'ui/components/input/Select';
 import Button from 'ui/components/Button';
-import Info from 'ui/components/Info';
-import Icon from 'ui/components/Icon';
 import Lottie from 'ui/components/Lottie';
 
 import css from './index.scss';
@@ -39,6 +38,8 @@ class Landing extends React.PureComponent {
         isIPAddressAllowed: PropTypes.bool.isRequired,
         /** @ignore */
         alpha3CodeForIPAddress: PropTypes.string.isRequired,
+        /** @ignore */
+        updateCustomerInfo: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -83,23 +84,20 @@ class Landing extends React.PureComponent {
 
         return (
             <form>
-                <Icon icon="moonpay" size={200} />
                 <section className={css.long}>
-                    <Info displayIcon={false}>
-                        <div>
-                            <React.Fragment>
-                                <p>{t('moonpay:buyIOTAInstantly')}</p>
-                                <Lottie
-                                    width={180}
-                                    height={180}
-                                    data={getAnimation('welcome', themeName)}
-                                    segments={[161, 395]}
-                                    loop
-                                />
-                            </React.Fragment>
-                            <p>{t('moonpay:supportExplanation')}</p>
-                        </div>
-                    </Info>
+                    <div>
+                        <React.Fragment>
+                            <p>{t('moonpay:buyIOTAInstantly')}</p>
+                            <Lottie
+                                width={180}
+                                height={180}
+                                data={getAnimation('welcome', themeName)}
+                                segments={[161, 395]}
+                                loop
+                            />
+                        </React.Fragment>
+                        <p>{t('moonpay:supportExplanation')}</p>
+                    </div>
                     <fieldset>
                         <Select
                             value={this.state.country.name}
@@ -132,8 +130,15 @@ class Landing extends React.PureComponent {
                             {t('global:goBack')}
                         </Button>
                         <Button
-                            id="to-transfer-funds"
-                            onClick={() => this.props.history.push('/exchanges/moonpay/setup-email')}
+                            id="to-setup-email"
+                            onClick={() => {
+                                this.props.updateCustomerInfo({
+                                    address: {
+                                        country: this.state.country.alpha3,
+                                    },
+                                });
+                                this.props.history.push('/exchanges/moonpay/setup-email');
+                            }}
                             className="square"
                             variant="primary"
                         >
@@ -154,4 +159,11 @@ const mapStateToProps = (state) => ({
     alpha3CodeForIPAddress: getAlpha3CodeForIPAddress(state),
 });
 
-export default connect(mapStateToProps)(withTranslation()(Landing));
+const mapDispatchToProps = {
+    updateCustomerInfo,
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(Landing));

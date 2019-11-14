@@ -1,13 +1,11 @@
+import get from 'lodash/get';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
 
-import { getTotalPurchaseAmount } from 'selectors/exchanges/MoonPay';
+import { TRANSACTION_STATUS_WAITING_AUTHORIZATION } from 'exchanges/MoonPay';
 
 import Button from 'ui/components/Button';
-import Info from 'ui/components/Info';
-import Icon from 'ui/components/Icon';
+import withPurchaseSummary from 'ui/views/exchanges/MoonPay/WithPurchaseSummary';
 
 import css from './index.scss';
 
@@ -20,122 +18,52 @@ class ReviewPurchase extends React.PureComponent {
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** @ignore */
-        totalAmount: PropTypes.string.isRequired,
+        children: PropTypes.node.isRequired,
+        /** @ignore */
+        isCreatingTransaction: PropTypes.bool.isRequired,
+        /** @ignore */
+        hasErrorCreatingTransaction: PropTypes.bool.isRequired,
+        /** @ignore */
+        createTransaction: PropTypes.func.isRequired,
+        /** @ignore */
+        activeTransaction: PropTypes.object,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
+    componentWillReceiveProps(nextProps) {
+        if (
+            this.props.isCreatingTransaction &&
+            !nextProps.isCreatingTransaction &&
+            !nextProps.hasErrorCreatingTransaction
+        ) {
+            const { activeTransaction } = nextProps;
+
+            // See https://www.moonpay.io/api_reference/v3#three_d_secure
+            if (get(activeTransaction, 'status') === TRANSACTION_STATUS_WAITING_AUTHORIZATION) {
+                window.open(get(activeTransaction, 'redirectUrl'));
+            } else {
+                this.props.history.push('/exchanges/moonpay/purchase-complete');
+            }
+        }
+    }
+
     render() {
-        const { totalAmount, t } = this.props;
+        const { isCreatingTransaction, createTransaction, children, t } = this.props;
 
         return (
-            <form>
-                <Icon icon="moonpay" size={200} />
+            <form onSubmit={createTransaction}>
                 <section className={css.long}>
-                    <Info displayIcon={false}>
-                        <div style={{ textAlign: 'center' }}>
-                            <p style={{ fontSize: '28px' }}>{t('moonpay:reviewYourPurchase')}</p>
-                            <p
-                                style={{
-                                    paddingTop: '20px',
-                                }}
-                            >
-                                {t('moonpay:pleaseCarefullyCheckOrder')}
-                            </p>
-                        </div>
-                    </Info>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            marginBottom: '25px',
-                            fontSize: '22px',
-                        }}
-                    >
-                        <span> {t('moonpay:order')}</span>
-                        <span>20 Mi</span>
+                    <div>
+                        <p>{t('moonpay:reviewYourPurchase')}</p>
+                        <p>{t('moonpay:pleaseCarefullyCheckOrder')}</p>
                     </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            marginBottom: '7px',
-                        }}
-                    >
-                        <span>{t('moonpay:trinityWalletAddress')}</span>
-                    </div>
-                    <div
-                        style={{
-                            textAlign: 'left',
-                            marginBottom: '22px',
-                        }}
-                    >
-                        <p style={{ wordWrap: 'break-word' }}>{'U'.repeat(81)}</p>
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            marginBottom: '7px',
-                        }}
-                    >
-                        <span>{t('moonpay:debitCard', { brand: 'Visa' })}</span>
-                        <span>**** **** **** 2536</span>
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            marginBottom: '25px',
-                        }}
-                    >
-                        <span> {t('moonpay:cardExpiry', { brand: 'Visa' })}</span>
-                        <span>12/20</span>
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            marginBottom: '7px',
-                        }}
-                    >
-                        <span>{t('moonpay:youWillReceive')}</span>
-                        <span>20 Mi</span>
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            marginBottom: '7px',
-                        }}
-                    >
-                        <span>{t('moonpay:marketPrice')}: 20 Mi @ $0.28</span>
-                        <span>$20</span>
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            marginBottom: '25px',
-                        }}
-                    >
-                        <span>{t('moonpay:moonpayFee')}</span>
-                        <span>$4.99</span>
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            fontSize: '22px',
-                        }}
-                    >
-                        <span>{t('global:total')}</span>
-                        <span>${totalAmount}</span>
-                    </div>
+                    {children}
                 </section>
                 <footer className={css.choiceDefault}>
                     <div>
                         <Button
+                            disabled={isCreatingTransaction}
                             id="to-cancel"
                             onClick={() => this.props.history.goBack()}
                             className="square"
@@ -143,7 +71,13 @@ class ReviewPurchase extends React.PureComponent {
                         >
                             {t('global:goBack')}
                         </Button>
-                        <Button id="to-transfer-funds" onClick={() => {}} className="square" variant="primary">
+                        <Button
+                            loading={isCreatingTransaction}
+                            id="to-purchase-complete"
+                            type="submit"
+                            className="square"
+                            variant="primary"
+                        >
                             {t('global:continue')}
                         </Button>
                     </div>
@@ -153,8 +87,4 @@ class ReviewPurchase extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
-    totalAmount: getTotalPurchaseAmount(state),
-});
-
-export default connect(mapStateToProps)(withTranslation()(ReviewPurchase));
+export default withPurchaseSummary(ReviewPurchase);

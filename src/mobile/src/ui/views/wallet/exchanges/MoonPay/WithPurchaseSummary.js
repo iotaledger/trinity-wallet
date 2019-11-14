@@ -228,7 +228,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 expiryInfo,
                 componentId,
                 activeTransaction,
-                generateAlert
+                generateAlert,
             } = this.props;
 
             const textColor = { color: theme.body.color };
@@ -336,7 +336,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                             delay={50}
                         >
                             <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextLight, textColor]}>You will receive</Text>
+                                <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:youWillReceive')}</Text>
                                 <Text style={[styles.infoTextLight, textColor]}>{receiveAmount}</Text>
                             </View>
                             <View style={styles.summaryRowContainer}>
@@ -400,7 +400,7 @@ export default function withPurchaseSummary(WrappedComponent, config) {
 
     const mapDispatchToProps = {
         createTransaction,
-        generateAlert
+        generateAlert,
     };
 
     return WithUserActivity()(

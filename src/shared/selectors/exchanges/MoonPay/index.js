@@ -5,6 +5,7 @@ import includes from 'lodash/includes';
 import find from 'lodash/find';
 import sortBy from 'lodash/sortBy';
 import size from 'lodash/size';
+import uniqBy from 'lodash/uniqBy';
 import { createSelector } from 'reselect';
 import {
     BASIC_IDENITY_VERIFICATION_LEVEL_NAME,
@@ -393,7 +394,11 @@ export const getCustomerPaymentCards = createSelector(
     getExchangesFromState,
     (exchanges) => {
         const customer = exchanges.moonpay.customer;
-        return get(customer, 'paymentCards') || [];
+
+        // MoonPay card API does not check for duplicates.
+        // So it is possible that the payment cards we receive from their servers
+        // have duplicate cards. Therefore, just keep a single copy of each card and remove duplicates.
+        return uniqBy(get(customer, 'paymentCards'), (card) => [card.lastDigits, card.brand].join()) || [];
     },
 );
 

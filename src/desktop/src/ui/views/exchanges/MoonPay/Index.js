@@ -4,16 +4,21 @@ import { withTranslation } from 'react-i18next';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
+import Icon from 'ui/components/Icon';
+
 import AddAmount from 'ui/views/exchanges/MoonPay/AddAmount';
+import IdentityConfirmationWarning from 'ui/views/exchanges/MoonPay/IdentityConfirmationWarning';
 import AddPaymentMethod from 'ui/views/exchanges/MoonPay/AddPaymentMethod';
 import SelectAccount from 'ui/views/exchanges/MoonPay/SelectAccount';
 import Landing from 'ui/views/exchanges/MoonPay/Landing';
 import SetupEmail from 'ui/views/exchanges/MoonPay/SetupEmail';
 import SelectPaymentCard from 'ui/views/exchanges/MoonPay/SelectPaymentCard';
+import PurchaseLimitWarning from 'ui/views/exchanges/MoonPay/PurchaseLimitWarning';
 import VerifyEmail from 'ui/views/exchanges/MoonPay/VerifyEmail';
 import UserBasicInfo from 'ui/views/exchanges/MoonPay/UserBasicInfo';
 import UserAdvancedInfo from 'ui/views/exchanges/MoonPay/UserAdvancedInfo';
 import ReviewPurchase from 'ui/views/exchanges/MoonPay/ReviewPurchase';
+import PurchaseComplete from 'ui/views/exchanges/MoonPay/PurchaseComplete';
 
 import css from './index.scss';
 
@@ -28,10 +33,13 @@ class MoonPay extends React.PureComponent {
 
     render() {
         const { location } = this.props;
-        const currentKey = location.pathname.split('/')[2] || '/';
+        const currentKey = location.pathname.split('/')[3] || '/';
 
         return (
             <main className={css.main}>
+                <header>
+                    <Icon icon="moonpay" size={200} />
+                </header>
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="slide" timeout={1000} mountOnEnter unmountOnExit>
                         <div>
@@ -45,6 +53,16 @@ class MoonPay extends React.PureComponent {
                                 <Route path="/exchanges/moonpay/user-advanced-info" component={UserAdvancedInfo} />
                                 <Route path="/exchanges/moonpay/add-payment-method" component={AddPaymentMethod} />
                                 <Route path="/exchanges/moonpay/review-purchase" component={ReviewPurchase} />
+                                <Route path="/exchanges/moonpay/purchase-complete" component={PurchaseComplete} />
+
+                                <Route
+                                    path="/exchanges/moonpay/purchase-limit-warning"
+                                    component={PurchaseLimitWarning}
+                                />
+                                <Route
+                                    path="/exchanges/moonpay/identity-confirmation-warning"
+                                    component={IdentityConfirmationWarning}
+                                />
 
                                 <Route path="/" component={Landing} />
                             </Switch>

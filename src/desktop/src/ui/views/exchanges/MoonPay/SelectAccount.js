@@ -8,8 +8,6 @@ import { getAccountNamesFromState } from 'selectors/accounts';
 import { setAccountName } from 'actions/exchanges/MoonPay';
 
 import Button from 'ui/components/Button';
-import Info from 'ui/components/Info';
-import Icon from 'ui/components/Icon';
 import Select from 'ui/components/input/Select';
 
 import css from './index.scss';
@@ -36,7 +34,7 @@ class SelectAccount extends React.PureComponent {
         super(props);
 
         this.state = {
-            accountName: props.accountName || head(this.props.accountNames),
+            accountName: props.accountName || head(props.accountNames),
         };
     }
 
@@ -45,21 +43,12 @@ class SelectAccount extends React.PureComponent {
 
         return (
             <form>
-                <Icon icon="moonpay" size={200} />
                 <section className={css.long}>
-                    <Info displayIcon={false}>
-                        <div style={{ textAlign: 'center' }}>
-                            <p style={{ fontSize: '28px' }}> {t('moonpay:selectAccount')}</p>
-                            <p
-                                style={{
-                                    paddingTop: '20px',
-                                }}
-                            >
-                                {t('moonpay:selectAccountExplanation')}
-                            </p>
-                        </div>
-                    </Info>
-                    <div style={{ width: '100%' }}>
+                    <div>
+                        <p> {t('moonpay:selectAccount')}</p>
+                        <p>{t('moonpay:selectAccountExplanation')}</p>
+                    </div>
+                    <fieldset>
                         <Select
                             value={this.state.accountName}
                             onChange={(newAccountName) => {
@@ -70,7 +59,7 @@ class SelectAccount extends React.PureComponent {
                                 return { value: item, label: item };
                             })}
                         />
-                    </div>
+                    </fieldset>
                 </section>
                 <footer className={css.choiceDefault}>
                     <div>
@@ -83,10 +72,10 @@ class SelectAccount extends React.PureComponent {
                             {t('global:goBack')}
                         </Button>
                         <Button
-                            id="to-transfer-funds"
+                            id="to-add-amount"
                             onClick={() => {
                                 this.props.history.push('/exchanges/moonpay/add-amount');
-                                this.props.setAccountName(this.state.name);
+                                this.props.setAccountName(this.state.accountName);
                             }}
                             className="square"
                             variant="primary"
