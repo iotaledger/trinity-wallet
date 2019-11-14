@@ -10,8 +10,6 @@ import { verifyEmailAndFetchMeta } from 'actions/exchanges/MoonPay';
 
 import Button from 'ui/components/Button';
 import Checkbox from 'ui/components/Checkbox';
-import Info from 'ui/components/Info';
-import Icon from 'ui/components/Icon';
 import Input from 'ui/components/input/Text';
 
 import css from './index.scss';
@@ -38,10 +36,16 @@ class VerifyEmail extends React.PureComponent {
         t: PropTypes.func.isRequired,
     };
 
-    state = {
-        securityCode: '',
-        agreeWithMoonPayTerms: false,
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            securityCode: '',
+            agreeWithMoonPayTerms: false,
+        };
+
+        this.verify = this.verify.bind(this);
+    }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isVerifyingEmail && !nextProps.isVerifyingEmail && !nextProps.hasErrorVerifyingEmail) {
@@ -83,29 +87,20 @@ class VerifyEmail extends React.PureComponent {
         const { agreeWithMoonPayTerms, securityCode } = this.state;
 
         return (
-            <form>
-                <Icon icon="moonpay" size={200} />
+            <form onSubmit={this.verify}>
                 <section className={css.long}>
-                    <Info displayIcon={false}>
-                        <div style={{ textAlign: 'center' }}>
-                            <p style={{ fontSize: '28px' }}> {t('moonpay:checkInbox')}</p>
-                            <p
-                                style={{
-                                    paddingTop: '20px',
-                                }}
-                            >
-                                {t('moonpay:verificationCodeSent', { email })}
-                            </p>
-                        </div>
-                    </Info>
-                    <div style={{ width: '100%' }}>
+                    <div>
+                        <p>{t('moonpay:checkInbox')}</p>
+                        <p>{t('moonpay:verificationCodeSent', { email })}</p>
+                    </div>
+                    <fieldset>
                         <Input
-                            style={{ maxWidth: '100%' }}
+                            focus
                             value={securityCode}
                             label={t('moonpay:verificationCode')}
                             onChange={(updatedSecurityCode) => this.setState({ securityCode: updatedSecurityCode })}
                         />
-                    </div>
+                    </fieldset>
                     <div className={css.agreement}>
                         <Checkbox
                             checked={agreeWithMoonPayTerms}
@@ -131,9 +126,9 @@ class VerifyEmail extends React.PureComponent {
                             {t('global:goBack')}
                         </Button>
                         <Button
-                            id="to-transfer-funds"
+                            id="to-select-account"
+                            type="submit"
                             loading={isVerifyingEmail}
-                            onClick={() => this.verify()}
                             className="square"
                             variant="primary"
                         >

@@ -8,8 +8,6 @@ import { generateAlert } from 'actions/alerts';
 import { isValidEmail } from 'libs/utils';
 
 import Button from 'ui/components/Button';
-import Info from 'ui/components/Info';
-import Icon from 'ui/components/Icon';
 import Input from 'ui/components/input/Text';
 
 import css from './index.scss';
@@ -34,9 +32,15 @@ class SetupEmail extends React.PureComponent {
         generateAlert: PropTypes.func.isRequired,
     };
 
-    state = {
-        email: '',
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: '',
+        };
+
+        this.authenticateViaEmail = this.authenticateViaEmail.bind(this);
+    }
 
     componentWillReceiveProps(nextProps) {
         if (
@@ -73,29 +77,21 @@ class SetupEmail extends React.PureComponent {
         const { email } = this.state;
 
         return (
-            <form>
-                <Icon icon="moonpay" size={200} />
+            <form onSubmit={this.authenticateViaEmail}>
                 <section className={css.long}>
-                    <Info displayIcon={false}>
-                        <div style={{ textAlign: 'center' }}>
-                            <p style={{ fontSize: '28px' }}> {t('moonpay:setupEmail')}</p>
-                            <p
-                                style={{
-                                    paddingTop: '20px',
-                                }}
-                            >
-                                {t('moonpay:setupEmailExplanation')}
-                            </p>
-                        </div>
-                    </Info>
-                    <div style={{ width: '100%' }}>
+                    <div>
+                        <p> {t('moonpay:setupEmail')}</p>
+                        <p>{t('moonpay:setupEmailExplanation')}</p>
+                    </div>
+                    <fieldset>
                         <Input
-                            style={{ maxWidth: '100%' }}
+                            focus
                             value={email}
+                            name="email"
                             label={t('moonpay:yourEmail')}
                             onChange={(updatedEmail) => this.setState({ email: updatedEmail })}
                         />
-                    </div>
+                    </fieldset>
                 </section>
                 <footer className={css.choiceDefault}>
                     <div>
@@ -110,8 +106,8 @@ class SetupEmail extends React.PureComponent {
                         </Button>
                         <Button
                             loading={isAuthenticatingEmail}
-                            id="to-transfer-funds"
-                            onClick={() => this.authenticateViaEmail()}
+                            id="to-verify-email"
+                            type="submit"
                             className="square"
                             variant="primary"
                         >

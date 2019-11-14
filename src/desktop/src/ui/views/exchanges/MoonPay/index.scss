@@ -5,8 +5,43 @@ $footer: 70px;
     display: flex;
 
     a {
-        color: var(--primary);
+        color: var(--bar-body);
+        font-weight: 600;
         text-decoration: underline;
+    }
+}
+
+.summary {
+    div {
+        display: flex;
+        justify-content: space-between;
+
+        small {
+            text-align: left;
+            font-weight: 200;
+            font-size: 16px;
+            margin-bottom: 15px;
+            word-break: break-word;
+        }
+    }
+
+    div:nth-last-child(-n + 4):not(:last-child):not(:nth-last-child(2)),
+    :nth-last-child(8),
+    :nth-last-child(3) {
+        margin-bottom: 5px;
+    }
+
+    div:nth-last-child(9),
+    :nth-last-child(5) {
+        margin-bottom: 15px;
+    }
+
+    div:nth-last-child(2) {
+        margin-bottom: 30px;
+    }
+
+    div:last-child {
+        font-size: 22px;
     }
 }
 
@@ -16,17 +51,22 @@ $footer: 70px;
     display: flex;
     flex-direction: column;
 
-    section:first-child {
+    > fieldset {
+        width: 100%;
         border-bottom: 1px solid var(--box-body);
+
+        div:nth-child(2) {
+            margin: 0px 14px;
+        }
     }
 }
 
 .option {
     display: flex;
+    cursor: pointer;
 
     > input,
     span {
-        cursor: pointer;
         font-weight: 600;
         margin: 10px 14px;
     }
@@ -36,7 +76,6 @@ $footer: 70px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 14px;
 
     small {
         text-transform: uppercase;
@@ -97,25 +136,50 @@ $footer: 70px;
                     text-decoration: underline;
                 }
 
-                &.wide {
-                    max-width: none;
-                }
-
                 &.long {
-                    padding-top: 10px;
+                    padding-top: 150px;
                 }
 
                 > div {
                     text-align: center;
+                    padding-top: 35px;
+
+                    > div:nth-child(0) {
+                        padding-bottom: 35px;
+                    }
 
                     p:first-child {
-                        margin-bottom: 50px;
+                        margin-top: 40px;
                         font-size: 28px;
-                        margin-bottom: 20px;
+                    }
+
+                    p {
+                        margin-bottom: 35px;
                     }
 
                     p:last-child {
-                        padding-top: 20px;
+                        margin-bottom: 80px;
+                    }
+                }
+
+                > fieldset > div {
+                    max-width: 100%;
+
+                    > fieldset > a {
+                        min-width: 42px;
+                    }
+
+                    > div {
+                        max-width: 100%;
+                    }
+                }
+
+                > fieldset > span {
+                    display: flex;
+                    justify-content: flex-start;
+
+                    > div:first-child {
+                        margin-right: 25px;
                     }
                 }
             }

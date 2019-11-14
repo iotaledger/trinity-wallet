@@ -1,10 +1,8 @@
 import get from 'lodash/get';
-import head from 'lodash/head';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
 import toUpper from 'lodash/toUpper';
 import toLower from 'lodash/toLower';
-import size from 'lodash/size';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -34,10 +32,9 @@ import { getCurrencySymbol } from 'libs/currency';
 import { generateAlert } from 'actions/alerts';
 
 import Button from 'ui/components/Button';
-import Info from 'ui/components/Info';
 import Icon from 'ui/components/Icon';
-import Input from 'ui/components/input/Text';
 
+import defaultTextFieldCss from 'ui/components/input/input.scss';
 import css from './index.scss';
 
 /** MoonPay add amount screen component */
@@ -146,26 +143,32 @@ class AddAmount extends React.PureComponent {
     }
 
     /**
+     * Gets available denominations i.e., Miota plus supported fiat currencies by MoonPay
+     *
+     * @method getAvailableDenominations
+     *
+     * @returns {array}
+     */
+    getAvailableDenominations() {
+        const { fiatCurrencies } = this.props;
+
+        return [
+            ...ALLOWED_IOTA_DENOMINATIONS,
+            ...map(fiatCurrencies, (currencyObject) => toUpper(get(currencyObject, 'code'))),
+        ];
+    }
+
+    /**
      * Sets next denomination in redux store
      *
      * @method setDenomination
      *
+     * @param {string}
+     *
      * @returns {void}
      */
-    setDenomination() {
-        const { amount, exchangeRates, denomination, fiatCurrencies } = this.props;
-
-        const availableDenominations = [
-            ...ALLOWED_IOTA_DENOMINATIONS,
-            ...map(fiatCurrencies, (currencyObject) => toUpper(get(currencyObject, 'code'))),
-        ];
-
-        const currentDenominationIndex = availableDenominations.indexOf(denomination);
-
-        const nextDenomination =
-            currentDenominationIndex === -1 || currentDenominationIndex === size(availableDenominations) - 1
-                ? head(availableDenominations)
-                : availableDenominations[currentDenominationIndex + 1];
+    setDenomination(nextDenomination) {
+        const { amount, exchangeRates } = this.props;
 
         this.props.setDenomination(nextDenomination);
 
@@ -362,24 +365,75 @@ class AddAmount extends React.PureComponent {
                     defaultCurrencyCode,
                 );
 
-                this.props.history.push(
-                    `/exchanges/moonpay/${
-                        // Make sure user has completed basic identity verification
-                        // If not, then the daily/monthly limit will default to 0
-                        hasCompletedBasicIdentityVerification &&
-                        !isPurchaseLimitIncreaseAllowed &&
-                        hasCompletedAdvancedIdentityVerification &&
-                        (purchaseAmount > dailyLimits.dailyLimitRemaining ||
-                            purchaseAmount > monthlyLimits.monthlyLimitRemaining)
-                            ? 'purchase-limit-warning'
-                            : hasAnyPaymentCards
-                            ? 'add-payment-method'
-                            : 'add-payment-method'
-                    }
-                    `,
-                );
+                const nextRoute = `/exchanges/moonpay/${
+                    // Make sure user has completed basic identity verification
+                    // If not, then the daily/monthly limit will default to 0
+                    hasCompletedBasicIdentityVerification &&
+                    !isPurchaseLimitIncreaseAllowed &&
+                    hasCompletedAdvancedIdentityVerification &&
+                    (purchaseAmount > dailyLimits.dailyLimitRemaining ||
+                        purchaseAmount > monthlyLimits.monthlyLimitRemaining)
+                        ? 'purchase-limit-warning'
+                        : hasAnyPaymentCards
+                        ? 'select-payment-card'
+                        : 'user-basic-info'
+                }`;
+
+                this.props.history.push(nextRoute);
             }
         }
+    }
+
+    /**
+     * Renders amount text field
+     *
+     * @method renderTextField
+     *
+     * @param {string} label
+     * @param {string} value
+     *
+     * @returns {object}
+     */
+    renderTextField(label, value) {
+        const { denomination, exchangeRates } = this.props;
+
+        return (
+            <div className={defaultTextFieldCss.input}>
+                <fieldset>
+                    <a>
+                        <strong>
+                            {denomination}
+                            <Icon icon="chevronDown" size={8} />
+                            <ul className={defaultTextFieldCss.dropdown}>
+                                {this.getAvailableDenominations().map((item) => {
+                                    return (
+                                        <li
+                                            key={item}
+                                            className={item === denomination ? defaultTextFieldCss.selected : null}
+                                            onClick={() => this.setDenomination(item)}
+                                        >
+                                            {item}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </strong>
+                    </a>
+                    <input
+                        autoFocus
+                        type="text"
+                        value={value}
+                        onChange={(e) => {
+                            const newAmount = e.target.value;
+
+                            this.props.setAmount(newAmount);
+                            this.fetchCurrencyQuote(newAmount, denomination, exchangeRates);
+                        }}
+                    />
+                    <small>{label}</small>
+                </fieldset>
+            </div>
+        );
     }
 
     render() {
@@ -390,84 +444,42 @@ class AddAmount extends React.PureComponent {
 
         return (
             <form>
-                <Icon icon="moonpay" size={200} />
                 <section className={css.long}>
-                    <Info displayIcon={false}>
-                        <div style={{ textAlign: 'center' }}>
-                            <p style={{ fontSize: '28px' }}>{t('moonpay:addAmount')}</p>
-                            <p
-                                style={{
-                                    paddingTop: '20px',
-                                }}
-                            >
-                                {t('moonpay:addAmountExplanation')}
-                            </p>
+                    <div>
+                        <p>{t('moonpay:addAmount')}</p>
+                        <p>{t('moonpay:addAmountExplanation')}</p>
+                    </div>
+                    <fieldset>{this.renderTextField(t('moonpay:enterAmount'), amount)}</fieldset>
+                    <div className={css.summary}>
+                        <div>
+                            <span>{t('moonpay:youWillReceive')}</span>
+                            <span>{receiveAmount}</span>
                         </div>
-                    </Info>
-                    <div style={{ width: '100%' }}>
-                        <Input
-                            style={{ maxWidth: '100%' }}
-                            value={amount}
-                            label={t('moonpay:enterAmount')}
-                            onChange={(newAmount) => {
-                                this.props.setAmount(newAmount);
-
-                                this.fetchCurrencyQuote(newAmount, denomination, exchangeRates);
-                            }}
-                        />
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            marginBottom: '7px',
-                        }}
-                    >
-                        <span>{t('moonpay:youWillReceive')}</span>
-                        <span>{receiveAmount}</span>
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            marginBottom: '7px',
-                        }}
-                    >
-                        <span>
-                            {t('moonpay:marketPrice')}: {receiveAmount} @ {getCurrencySymbol(activeFiatCurrency)}
-                            {exchangeRates[activeFiatCurrency]}
-                        </span>
-                        <span>
-                            {this.getStringifiedFiatAmount(
-                                getAmountInFiat(Number(amount), denomination, exchangeRates),
-                            )}
-                        </span>
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            marginBottom: '30px',
-                        }}
-                    >
-                        <span>{t('moonpay:moonpayFee')}</span>
-                        <span>
-                            {getCurrencySymbol(activeFiatCurrency)}
-                            {fee}
-                        </span>
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            fontSize: '22px',
-                        }}
-                    >
-                        <span>{t('global:total')}</span>
-                        <span>
-                            {getCurrencySymbol(activeFiatCurrency)}
-                            {totalAmount}
-                        </span>
+                        <div>
+                            <span>
+                                {t('moonpay:marketPrice')}: {receiveAmount} @ {getCurrencySymbol(activeFiatCurrency)}
+                                {exchangeRates[activeFiatCurrency]}
+                            </span>
+                            <span>
+                                {this.getStringifiedFiatAmount(
+                                    getAmountInFiat(Number(amount), denomination, exchangeRates),
+                                )}
+                            </span>
+                        </div>
+                        <div>
+                            <span>{t('moonpay:moonpayFee')}</span>
+                            <span>
+                                {getCurrencySymbol(activeFiatCurrency)}
+                                {fee}
+                            </span>
+                        </div>
+                        <div>
+                            <span>{t('global:total')}</span>
+                            <span>
+                                {getCurrencySymbol(activeFiatCurrency)}
+                                {totalAmount}
+                            </span>
+                        </div>
                     </div>
                 </section>
                 <footer className={css.choiceDefault}>
@@ -482,7 +494,7 @@ class AddAmount extends React.PureComponent {
                         </Button>
                         <Button
                             disabled={isFetchingCurrencyQuote}
-                            id="to-transfer-funds"
+                            id="to-select-payment-option"
                             onClick={() => this.verifyAmount()}
                             className="square"
                             variant="primary"
