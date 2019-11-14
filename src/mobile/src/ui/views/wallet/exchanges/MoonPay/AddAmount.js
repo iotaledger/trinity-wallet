@@ -260,6 +260,18 @@ class AddAmount extends Component {
     }
 
     /**
+     * Gets currency symbol for currently selected currency
+     *
+     * @method getCurrencySymbol
+     *
+     * @returns {string}
+     */
+    getCurrencySymbol() {
+        const { denomination } = this.props;
+        return denomination === 'Mi' ? '$' : getCurrencySymbol(denomination);
+    }
+
+    /**
      * Gets warning text
      *
      * @method getWarningText
@@ -290,12 +302,13 @@ class AddAmount extends Component {
                 // Skipping the last parameter (target denomination) as it is already set to EUR as default parameter
             );
 
+
             if (amountInEuros < MINIMUM_TRANSACTION_SIZE) {
-                return t('moonpay:minimumTransactionAmount', { amount: `€${MINIMUM_TRANSACTION_SIZE}` });
+                return t('moonpay:minimumTransactionAmount', { amount: this.getCurrencySymbol() + MINIMUM_TRANSACTION_SIZE });
             }
 
             if (amountInEuros > MAXIMUM_TRANSACTION_SIZE) {
-                return t('moonpay:maximumTransactionAmount', { amount: `€${MAXIMUM_TRANSACTION_SIZE}` });
+                return t('moonpay:maximumTransactionAmount', { amount: this.getCurrencySymbol() + MAXIMUM_TRANSACTION_SIZE });
             }
 
             if (
@@ -409,13 +422,13 @@ class AddAmount extends Component {
             this.props.generateAlert(
                 'error',
                 t('moonpay:notEnoughAmount'),
-                t('moonpay:notEnoughAmountExplanation', { amount: `€${MINIMUM_TRANSACTION_SIZE}` }),
+                t('moonpay:notEnoughAmountExplanation', { amount: this.getCurrencySymbol() + MINIMUM_TRANSACTION_SIZE }),
             );
         } else if (amountInEuros > MAXIMUM_TRANSACTION_SIZE) {
             this.props.generateAlert(
                 'error',
                 t('moonpay:amountTooHigh'),
-                t('moonpay:amountTooHighExplanation', { amount: `€${MAXIMUM_TRANSACTION_SIZE}` }),
+                t('moonpay:amountTooHighExplanation', { amount: this.getCurrencySymbol() + MAXIMUM_TRANSACTION_SIZE }),
             );
         } else {
             if (isFetchingCurrencyQuote || shouldGetLatestCurrencyQuote) {
