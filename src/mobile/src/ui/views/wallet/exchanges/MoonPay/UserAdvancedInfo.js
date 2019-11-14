@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text, KeyboardAvoidingView } from 'react-native';
 import navigator from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { updateCustomer } from 'shared-modules/actions/exchanges/MoonPay';
+import { updateCustomer, updateCustomerInfo } from 'shared-modules/actions/exchanges/MoonPay';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAmountInFiat, convertFiatCurrency } from 'shared-modules/exchanges/MoonPay/utils';
@@ -17,6 +17,7 @@ import {
     getCustomerDailyLimits,
     getCustomerMonthlyLimits,
     shouldRequireStateInput,
+    hasStoredAnyPaymentCards,
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -111,6 +112,10 @@ class UserAdvancedInfo extends React.Component {
         defaultCurrencyCode: PropTypes.string.isRequired,
         /** @ignore */
         shouldRequireStateInput: PropTypes.bool.isRequired,
+        /** @ignore */
+        hasAnyPaymentCards: PropTypes.bool.isRequired,
+        /** @ignore */
+        updateCustomerInfo: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -126,38 +131,46 @@ class UserAdvancedInfo extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isUpdatingCustomer && !nextProps.isUpdatingCustomer && !nextProps.hasErrorUpdatingCustomer) {
-            const {
-                amount,
-                denomination,
-                exchangeRates,
-                defaultCurrencyCode,
-                isPurchaseLimitIncreaseAllowed,
-                hasCompletedBasicIdentityVerification,
-                hasCompletedAdvancedIdentityVerification,
-                dailyLimits,
-                monthlyLimits,
-            } = nextProps;
-
-            const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
-
-            const purchaseAmount = convertFiatCurrency(
-                fiatAmount,
-                exchangeRates,
-                denomination,
-                // Convert to currency code set by user (not in the app) but what it is set on MoonPay servers
-                defaultCurrencyCode,
-            );
-
-            this.redirectToScreen(
-                hasCompletedBasicIdentityVerification &&
-                    !isPurchaseLimitIncreaseAllowed &&
-                    hasCompletedAdvancedIdentityVerification &&
-                    (purchaseAmount > dailyLimits.dailyLimitRemaining ||
-                        purchaseAmount > monthlyLimits.monthlyLimitRemaining)
-                    ? 'purchaseLimitWarning'
-                    : 'addPaymentMethod',
-            );
+            this.redirect(nextProps);
         }
+    }
+
+    /**
+     * Navigates to the relevant screen
+     *
+     * @method redirect
+     */
+    redirect(props) {
+        const {
+            amount,
+            denomination,
+            exchangeRates,
+            defaultCurrencyCode,
+            isPurchaseLimitIncreaseAllowed,
+            hasCompletedBasicIdentityVerification,
+            hasCompletedAdvancedIdentityVerification,
+            dailyLimits,
+            monthlyLimits,
+        } = props;
+
+        const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
+
+        const purchaseAmount = convertFiatCurrency(
+            fiatAmount,
+            exchangeRates,
+            denomination,
+            // Convert to currency code set by user (not in the app) but what it is set on MoonPay servers
+            defaultCurrencyCode,
+        );
+        this.redirectToScreen(
+            hasCompletedBasicIdentityVerification &&
+                !isPurchaseLimitIncreaseAllowed &&
+                hasCompletedAdvancedIdentityVerification &&
+                (purchaseAmount > dailyLimits.dailyLimitRemaining ||
+                    purchaseAmount > monthlyLimits.monthlyLimitRemaining)
+                ? 'purchaseLimitWarning'
+                : 'addPaymentMethod',
+        );
     }
 
     /**
@@ -185,7 +198,7 @@ class UserAdvancedInfo extends React.Component {
      * @returns {function}
      */
     updateCustomer() {
-        const { shouldRequireStateInput, country, t } = this.props;
+        const { hasAnyPaymentCards, shouldRequireStateInput, country, t } = this.props;
 
         if (!this.state.address) {
             return this.props.generateAlert(
@@ -211,7 +224,7 @@ class UserAdvancedInfo extends React.Component {
             );
         }
 
-        return this.props.updateCustomer({
+        const data = {
             address: {
                 country,
                 street: this.state.address,
@@ -219,7 +232,14 @@ class UserAdvancedInfo extends React.Component {
                 postCode: this.state.zipCode,
                 ...(shouldRequireStateInput && { state: this.state.state }),
             },
-        });
+        };
+
+        if (hasAnyPaymentCards) {
+            this.props.updateCustomerInfo(data);
+            return this.redirect(this.props);
+        }
+
+        this.props.updateCustomer(data);
     }
 
     renderTextField(label, value, restProps) {
@@ -433,11 +453,13 @@ const mapStateToProps = (state) => ({
     monthlyLimits: getCustomerMonthlyLimits(state),
     defaultCurrencyCode: getDefaultCurrencyCode(state),
     shouldRequireStateInput: shouldRequireStateInput(state),
+    hasAnyPaymentCards: hasStoredAnyPaymentCards(state),
 });
 
 const mapDispatchToProps = {
     generateAlert,
     updateCustomer,
+    updateCustomerInfo,
 };
 
 export default WithUserActivity()(
