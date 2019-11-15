@@ -5,36 +5,6 @@ import { MARKETDATA_ENDPOINTS, FETCH_REMOTE_NODES_REQUEST_TIMEOUT } from '../con
 import Errors from '../libs/errors';
 
 /**
- * Dispatch to set timeframe for IOTA time series price information
- *
- * @method setTimeframe
- * @param {string} timeframe
- *
- * @returns {{type: {string}, payload: {string} }}
- */
-export function setTimeframe(timeframe) {
-    return {
-        type: MarketDataActionTypes.SET_TIMEFRAME,
-        payload: timeframe,
-    };
-}
-
-/**
- * Dispatch to set currency in state
- *
- * @method setCurrency
- * @param {string} currency
- *
- * @returns {{type: {string}, payload: {string} }}
- */
-export function setCurrency(currency) {
-    return {
-        type: MarketDataActionTypes.SET_CURRENCY,
-        payload: currency,
-    };
-}
-
-/**
  * Gets latest market information
  *
  * @method getMarketData
@@ -108,7 +78,11 @@ export const getMarketData = async (dispatch) => {
 
             // Set rates statistics
             if (typeof marketData.rates === 'object') {
-                const orderedRates = reduce(keys(marketData.rates).sort(), (result, key) => (result[key] = marketData.rates[key], result), {});
+                const orderedRates = reduce(
+                    keys(marketData.rates).sort(),
+                    (result, key) => ((result[key] = marketData.rates[key]), result),
+                    {},
+                );
 
                 dispatch({
                     type: MarketDataActionTypes.SET_RATES_DATA,
@@ -125,14 +99,4 @@ export const getMarketData = async (dispatch) => {
     return fetched;
 };
 
-export function changeCurrency(currency) {
-    return (dispatch) => {
-        dispatch(setCurrency(currency));
-    };
-}
-
-export function changeTimeframe(currency, timeframe) {
-    return (dispatch) => {
-        dispatch(setTimeframe(timeframe));
-    };
-}
+export default getMarketData;
