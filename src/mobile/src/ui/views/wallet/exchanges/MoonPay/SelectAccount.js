@@ -57,6 +57,8 @@ const styles = StyleSheet.create({
 /** MoonPay select account component */
 class SelectAccount extends React.Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -67,6 +69,8 @@ class SelectAccount extends React.Component {
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
         setAccountName: PropTypes.func.isRequired,
+        /** @ignore */
+        isAuthenticated: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -91,7 +95,7 @@ class SelectAccount extends React.Component {
      * @method goBack
      */
     goBack() {
-        navigator.popTo('setupEmail');
+        this.props.isAuthenticated ? navigator.pop(this.props.componentId) : navigator.popTo('setupEmail');
     }
 
     render() {
@@ -176,6 +180,7 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     accountNames: getAccountNamesFromState(state),
     accountName: state.exchanges.moonpay.accountName,
+    isAuthenticated: state.exchanges.moonpay.isAuthenticated,
 });
 
 const mapDispatchToProps = {
