@@ -87,7 +87,7 @@ class Landing extends React.PureComponent {
                 <section className={css.long}>
                     <div>
                         <React.Fragment>
-                            <p>{t('moonpay:buyIOTAInstantly')}</p>
+                            <p>{t('moonpay:buyIOTA')}</p>
                             <Lottie
                                 width={180}
                                 height={180}

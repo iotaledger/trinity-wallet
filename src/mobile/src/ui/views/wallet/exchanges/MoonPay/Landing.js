@@ -164,7 +164,7 @@ class Landing extends Component {
                         delay={266}
                     >
                         <InfoBox>
-                            <Text style={[styles.infoText, textColor]}>{t('moonpay:buyIOTAInstantly')}</Text>
+                            <Text style={[styles.infoText, textColor]}>{t('moonpay:buyIOTA')}</Text>
                             <AnimatedComponent
                                 animationInType={['fadeIn', 'slideInRight']}
                                 animationOutType={['fadeOut', 'slideOutLeft']}
