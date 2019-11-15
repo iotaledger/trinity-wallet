@@ -1,4 +1,6 @@
 /* global Electron */
+import get from 'lodash/get';
+import isNull from 'lodash/isNull';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
@@ -12,12 +14,15 @@ import {
     fetchCountries as fetchMoonPayCountries,
     fetchCurrencies as fetchMoonPayCurrencies,
     checkIPAddress,
+    refreshCredentialsAndFetchMeta,
 } from 'actions/exchanges/MoonPay';
 
 import { getSelectedAccountName, getSelectedAccountMeta, isSettingUpNewAccount } from 'selectors/accounts';
+import { __DEV__ } from 'config';
 
 import { capitalize } from 'libs/iota/converter';
 import { hash, authorize } from 'libs/crypto';
+import MoonPayKeychainAdapter from 'libs/MoonPay';
 import SeedStore from 'libs/SeedStore';
 
 import PasswordInput from 'ui/components/input/Password';
@@ -69,6 +74,8 @@ class Login extends React.Component {
         fetchMoonPayCurrencies: PropTypes.func.isRequired,
         /** @ignore */
         checkIPAddress: PropTypes.func.isRequired,
+        /** @ignore */
+        refreshCredentialsAndFetchMeta: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -141,10 +148,7 @@ class Login extends React.Component {
             throw e;
         }
 
-        // MoonPay related actions
-        this.props.fetchMoonPayCountries();
-        this.props.fetchMoonPayCurrencies();
-        this.props.checkIPAddress();
+        this.fetchMoonPayData();
 
         if (addingAdditionalAccount) {
             this.props.getFullAccountInfo(seedStore, accountName);
@@ -152,6 +156,37 @@ class Login extends React.Component {
             this.props.getAccountInfo(seedStore, accountName, Electron.notify);
         }
     };
+
+    /**
+     * Fetches MoonPay data from their servers
+     *
+     * @method fetchMoonPayData
+     *
+     * @returns {void}
+     */
+    fetchMoonPayData() {
+        this.props.fetchMoonPayCountries();
+        this.props.fetchMoonPayCurrencies();
+        this.props.checkIPAddress();
+
+        MoonPayKeychainAdapter.get()
+            .then((credentials) => {
+                if (!isNull(credentials)) {
+                    this.props.refreshCredentialsAndFetchMeta(
+                        get(credentials, 'jwt'),
+                        get(credentials, 'csrfToken'),
+                        MoonPayKeychainAdapter,
+                    );
+                }
+            })
+            .catch((error) => {
+                if (__DEV__) {
+                    /* eslint-disable no-console */
+                    console.log(error);
+                    /* eslint-enable no-console */
+                }
+            });
+    }
 
     /**
      * Verify password and trigger account setup
@@ -274,6 +309,7 @@ const mapDispatchToProps = {
     fetchMoonPayCountries,
     fetchMoonPayCurrencies,
     checkIPAddress,
+    refreshCredentialsAndFetchMeta,
 };
 
 export default connect(

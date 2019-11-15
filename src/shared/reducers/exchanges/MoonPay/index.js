@@ -96,6 +96,10 @@ const initialState = {
      * Determines if there was an error during payment card creation
      */
     hasErrorCreatingPaymentCard: false,
+    /**
+     * Determines if the user is authenticated
+     */
+    isAuthenticated: false,
 };
 
 export default (state = initialState, action) => {
@@ -262,6 +266,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ipAddress: action.payload,
+            };
+        case MoonPayExchangeActionTypes.SET_AUTHENTICATION_STATUS:
+            return {
+                ...state,
+                isAuthenticated: action.payload,
             };
         default:
             return state;

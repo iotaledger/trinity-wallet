@@ -372,6 +372,18 @@ export const setIPAddress = (payload) => ({
 });
 
 /**
+ * Dispatch to set user's authentication status
+ *
+ * @method setIPAddress
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const setAuthenticationStatus = (payload) => ({
+    type: MoonPayExchangeActionTypes.SET_AUTHENTICATION_STATUS,
+    payload,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -478,56 +490,26 @@ export const authenticateViaEmail = (email) => (dispatch) => {
  *
  * @returns {function}
  */
-export const verifyEmailAndFetchMeta = (securityCode) => (dispatch, getState) => {
+export const verifyEmailAndFetchMeta = (securityCode, keychainAdapter) => (dispatch, getState) => {
     dispatch(verifyEmailRequest());
 
     api.login(getCustomerEmail(getState()), securityCode)
         .then((data) => {
-            const { currencies } = getState().exchanges.moonpay;
-            const { defaultCurrencyId } = data.customer;
-
-            return api.fetchCustomerPurchaseLimits().then((purchaseLimits) => {
-                return api.fetchPaymentCards().then((paymentCards) => {
+            return keychainAdapter
+                .set({ jwt: get(data, 'token'), csrfToken: get(data, 'csrfToken') })
+                .then(() => api.fetchMeta(IOTA_CURRENCY_CODE))
+                .then((meta) => {
+                    dispatch(setAuthenticationStatus(true));
                     dispatch(
-                        updateCustomerInfo(
-                            merge({}, data.customer, {
-                                defaultCurrencyCode: toUpper(
-                                    get(find(currencies, (currency) => currency.id === defaultCurrencyId), 'code'),
-                                ),
-                                address: {
-                                    country: getCustomerCountryCode(getState()),
-                                },
-                                purchaseLimits,
-                                paymentCards: map(paymentCards, (card) => assign({}, card, { selected: false })),
+                        setMeta(
+                            assign({}, meta, {
+                                customer: data.customer,
                             }),
                         ),
                     );
 
-                    return api.fetchExchangeRates(IOTA_CURRENCY_CODE);
+                    dispatch(verifyEmailSuccess());
                 });
-            });
-        })
-        .then((exchangeRates) => {
-            dispatch(setIotaExchangeRates(exchangeRates));
-
-            return api.fetchTransactions();
-        })
-        .then((transactions) => {
-            dispatch(
-                setTransactions(
-                    map(transactions, (transaction) =>
-                        assign(
-                            {},
-                            transaction,
-                            // "active" property determines if the transaction is active on user screen
-                            // i.e., the acive transaction user made from Trinity after authenticating himself/herself
-                            // Also, see #createTransaction action where we set the new transaction to "active"
-                            { active: false },
-                        ),
-                    ),
-                ),
-            );
-            dispatch(verifyEmailSuccess());
         })
         .catch(() => {
             dispatch(
@@ -667,6 +649,95 @@ export const checkIPAddress = () => (dispatch) => {
             dispatch(setIPAddress(info));
         })
         .catch((error) => {
+            if (__DEV__) {
+                /* eslint-disable no-console */
+                console.log(error);
+                /* eslint-enable no-console */
+            }
+        });
+};
+
+/**
+ * Sets customer meta information (payment cards, exchange rates, purchase limits & transactions) in state
+ *
+ * @method setMeta
+ *
+ * @param {object} meta
+ *
+ * @returns {function}
+ */
+export const setMeta = (meta) => (dispatch, getState) => {
+    const { currencies } = getState().exchanges.moonpay;
+    const { customer, purchaseLimits, paymentCards, exchangeRates, transactions } = meta;
+
+    const { defaultCurrencyId } = customer;
+
+    dispatch(
+        updateCustomerInfo(
+            merge({}, customer, {
+                defaultCurrencyCode: toUpper(
+                    get(find(currencies, (currency) => currency.id === defaultCurrencyId), 'code'),
+                ),
+                address: {
+                    country: getCustomerCountryCode(getState()),
+                },
+                purchaseLimits,
+                paymentCards: map(paymentCards, (card) => assign({}, card, { selected: false })),
+            }),
+        ),
+    );
+
+    dispatch(setIotaExchangeRates(exchangeRates));
+
+    dispatch(
+        setTransactions(
+            map(transactions, (transaction) =>
+                assign(
+                    {},
+                    transaction,
+                    // "active" property determines if the transaction is active on user screen
+                    // i.e., the acive transaction user made from Trinity after authenticating himself/herself
+                    // Also, see #createTransaction action where we set the new transaction to "active"
+                    { active: false },
+                ),
+            ),
+        ),
+    );
+};
+
+/**
+ * Refreshes logged-in customer's JWT and fetches customer info
+ *
+ * See: https://www.moonpay.io/api_reference/v3#refresh_token
+ *
+ * @method refreshCredentialsAndFetchMeta
+ *
+ * @param {string} jwt
+ * @param {string} csrfToken
+ * @param {object} keychainAdapter
+ *
+ * @returns {function}
+ */
+export const refreshCredentialsAndFetchMeta = (jwt, csrfToken, keychainAdapter) => (dispatch) => {
+    api.refreshCredentials(jwt, csrfToken)
+        .then((data) => {
+            return keychainAdapter
+                .set({ jwt: get(data, 'token'), csrfToken: get(data, 'csrfToken') })
+                .then(() => api.fetchMeta(IOTA_CURRENCY_CODE))
+                .then((meta) => {
+                    dispatch(setAuthenticationStatus(true));
+                    dispatch(
+                        setMeta(
+                            assign({}, meta, {
+                                customer: data.customer,
+                            }),
+                        ),
+                    );
+                });
+        })
+        .catch((error) => {
+            dispatch(setAuthenticationStatus(false));
+
             if (__DEV__) {
                 /* eslint-disable no-console */
                 console.log(error);

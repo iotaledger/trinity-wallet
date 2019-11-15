@@ -154,6 +154,8 @@ class Chart extends PureComponent {
         getPriceForCurrency: PropTypes.func.isRequired,
         /* @ignore */
         animateChartOnMount: PropTypes.bool.isRequired,
+        /** @ignore */
+        isAuthenticatedForMoonPay: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -175,6 +177,7 @@ class Chart extends PureComponent {
 
     render() {
         const {
+            isAuthenticatedForMoonPay,
             t,
             priceData,
             chartData,
@@ -201,7 +204,7 @@ class Chart extends PureComponent {
                         <Text style={[styles.buttonText, textColor]}>{priceData.currency}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => navigator.push('landing')}
+                        onPress={() => navigator.push(isAuthenticatedForMoonPay ? 'selectAccount' : 'landing')}
                         style={[
                             styles.midButtonContainer,
                             {

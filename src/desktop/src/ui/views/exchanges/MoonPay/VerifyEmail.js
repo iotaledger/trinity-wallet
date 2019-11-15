@@ -7,6 +7,7 @@ import { MOONPAY_PRIVACY_POLICY_LINK, MOONPAY_TERMS_OF_USE_LINK } from 'exchange
 import { getCustomerEmail } from 'selectors/exchanges/MoonPay';
 import { generateAlert } from 'actions/alerts';
 import { verifyEmailAndFetchMeta } from 'actions/exchanges/MoonPay';
+import MoonPayKeychainAdapter from 'libs/MoonPay';
 
 import Button from 'ui/components/Button';
 import Checkbox from 'ui/components/Checkbox';
@@ -79,7 +80,7 @@ class VerifyEmail extends React.PureComponent {
             );
         }
 
-        return this.props.verifyEmailAndFetchMeta(this.state.securityCode);
+        return this.props.verifyEmailAndFetchMeta(this.state.securityCode, MoonPayKeychainAdapter);
     }
 
     render() {

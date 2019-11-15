@@ -23,6 +23,8 @@ export default function withChartData(ChartComponent) {
             setCurrency: PropTypes.func.isRequired,
             t: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
+            /** @ignore */
+            isAuthenticated: PropTypes.bool.isRequired,
         };
 
         currencies = ['USD', 'EUR', 'BTC', 'ETH']; // eslint-disable-line react/sort-comp
@@ -88,7 +90,7 @@ export default function withChartData(ChartComponent) {
         };
 
         render() {
-            const { marketData, settings, theme, t } = this.props;
+            const { isAuthenticated, marketData, settings, theme, t } = this.props;
 
             const currencyData = get(marketData.chartData, marketData.currency.toLowerCase());
             const rawData = get(currencyData, marketData.timeframe) || [];
@@ -100,6 +102,7 @@ export default function withChartData(ChartComponent) {
             });
 
             const chartProps = {
+                isAuthenticatedForMoonPay: isAuthenticated,
                 setCurrency: this.changeCurrency,
                 setTimeframe: this.changeTimeframe,
                 getPriceFormat: this.getPriceFormat,
@@ -134,6 +137,7 @@ export default function withChartData(ChartComponent) {
         marketData: state.marketData,
         settings: state.settings,
         theme: getThemeFromState(state),
+        isAuthenticated: state.exchanges.moonpay.isAuthenticated,
     });
 
     const mapDispatchToProps = {

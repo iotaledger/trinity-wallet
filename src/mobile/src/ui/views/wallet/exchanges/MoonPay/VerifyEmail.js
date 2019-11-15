@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { MOONPAY_PRIVACY_POLICY_LINK, MOONPAY_TERMS_OF_USE_LINK } from 'shared-modules/exchanges/MoonPay';
 import { getCustomerEmail } from 'shared-modules/selectors/exchanges/MoonPay';
+import { MoonPayKeychainAdapter } from 'libs/keychain';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
@@ -194,7 +195,7 @@ class VerifyEmail extends React.Component {
             );
         }
 
-        return this.props.verifyEmailAndFetchMeta(this.state.securityCode);
+        return this.props.verifyEmailAndFetchMeta(this.state.securityCode, MoonPayKeychainAdapter);
     }
 
     render() {

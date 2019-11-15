@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
@@ -16,9 +18,11 @@ import {
     fetchCountries as fetchMoonPayCountries,
     fetchCurrencies as fetchMoonPayCurrencies,
     checkIPAddress,
+    refreshCredentialsAndFetchMeta,
 } from 'shared-modules/actions/exchanges/MoonPay';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
+import { __DEV__ } from 'shared-modules/config';
 import {
     getSelectedAccountName,
     getSelectedAccountMeta,
@@ -27,6 +31,7 @@ import {
 } from 'shared-modules/selectors/accounts';
 import { Styling } from 'ui/theme/general';
 import SeedStore from 'libs/SeedStore';
+import { MoonPayKeychainAdapter } from 'libs/keychain';
 import { isAndroid, isIPhoneX } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
@@ -124,6 +129,8 @@ class Loading extends Component {
         fetchMoonPayCurrencies: PropTypes.func.isRequired,
         /** @ignore */
         checkIPAddress: PropTypes.func.isRequired,
+        /** @ignore */
+        refreshCredentialsAndFetchMeta: PropTypes.func.isRequired,
         /** All stored account names */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
@@ -163,7 +170,10 @@ class Loading extends Component {
         } else {
             timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 15000);
         }
+
         this.getWalletData();
+        this.fetchMoonPayData();
+
         if (!deepLinkRequestActive) {
             this.props.setSetting('mainSettings');
             this.props.changeHomeScreenRoute('balance');
@@ -221,10 +231,38 @@ class Loading extends Component {
         this.redirectToLogin();
     }
 
-    getWalletData() {
+    /**
+     * Fetches MoonPay data from their servers
+     *
+     * @method fetchMoonPayData
+     *
+     * @returns {void}
+     */
+    fetchMoonPayData() {
         this.props.fetchMoonPayCountries();
         this.props.fetchMoonPayCurrencies();
         this.props.checkIPAddress();
+
+        MoonPayKeychainAdapter.get()
+            .then((credentials) => {
+                if (!isNull(credentials)) {
+                    this.props.refreshCredentialsAndFetchMeta(
+                        get(credentials, 'jwt'),
+                        get(credentials, 'csrfToken'),
+                        MoonPayKeychainAdapter,
+                    );
+                }
+            })
+            .catch((error) => {
+                if (__DEV__) {
+                    /* eslint-disable no-console */
+                    console.log(error);
+                    /* eslint-enable no-console */
+                }
+            });
+    }
+
+    getWalletData() {
         this.props.fetchMarketData();
     }
 
@@ -369,6 +407,7 @@ const mapDispatchToProps = {
     fetchMoonPayCountries,
     fetchMoonPayCurrencies,
     checkIPAddress,
+    refreshCredentialsAndFetchMeta,
 };
 
 export default withTranslation(['loading', 'global'])(

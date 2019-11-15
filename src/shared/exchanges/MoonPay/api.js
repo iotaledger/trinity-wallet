@@ -3,7 +3,9 @@ import get from 'lodash/get';
 import Errors from '../../libs/errors';
 import { serialise } from '../../libs/utils';
 
-export const BASE_API_URL = 'https://api.moonpay.io/v3';
+export const API_VERSION = 'v3';
+
+export const BASE_API_URL = `https://api.moonpay.io/${API_VERSION}`;
 
 export class MoonPayApi {
     /**
@@ -276,6 +278,70 @@ export class MoonPayApi {
     checkIPAddress() {
         return this._fetch(`${this.url}/ip_address?apiKey=${this.apiKey}`, {
             method: 'get',
+        });
+    }
+
+    /**
+     * Refreshes logged-in customer's JWT
+     *
+     * See: https://www.moonpay.io/api_reference/v3#refresh_token
+     *
+     * @method refreshCredentials
+     *
+     * @param {string} jwt
+     * @param {string} csrfToken
+     *
+     * @returns {Promise}
+     */
+    refreshCredentials(jwt, csrfToken) {
+        this._jwt = jwt;
+        this._csrfToken = csrfToken;
+
+        return this._fetch(
+            `${this.url}/customers/refresh_token?apiKey=${this.apiKey}`,
+            {
+                method: 'get',
+            },
+            true,
+        )
+            .then((result) => {
+                this._csrfToken = result.csrfToken;
+                this._jwt = result.token;
+
+                return result;
+            })
+            .catch((error) => {
+                this._jwt = null;
+                this._csrfToken = null;
+
+                throw error;
+            });
+    }
+
+    /**
+     * Fetches meta (payment cards, exchange rates, purchase limits & transactions)
+     *
+     * @method fetchMeta
+     *
+     * @param {string} currencyCode
+     *
+     * @returns {Promise}
+     */
+    fetchMeta(currencyCode) {
+        return Promise.all([
+            this.fetchCustomerPurchaseLimits(),
+            this.fetchPaymentCards(),
+            this.fetchExchangeRates(currencyCode),
+            this.fetchTransactions(),
+        ]).then((meta) => {
+            const [purchaseLimits, paymentCards, exchangeRates, transactions] = meta;
+
+            return {
+                purchaseLimits,
+                paymentCards,
+                exchangeRates,
+                transactions,
+            };
         });
     }
 }
