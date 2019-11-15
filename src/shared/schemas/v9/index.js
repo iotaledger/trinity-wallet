@@ -1,5 +1,6 @@
 import map from 'lodash/map';
 import merge from 'lodash/merge';
+import each from 'lodash/each';
 import v8Schema from '../v8';
 
 const migration = (_, newRealm) => {
@@ -8,9 +9,10 @@ const migration = (_, newRealm) => {
 
     // Bump wallet version.
     walletData.version = 9;
-
-    newWalletSettings.settings.chartTimeframe = '24h';
-    newWalletSettings.settings.chartCurrency = 'USD';
+    each(newWalletSettings, (settings) => {
+        settings.chartTimeframe = '24h';
+        settings.chartCurrency = 'USD';
+    });
 };
 
 export default map(v8Schema, (schema) => {
@@ -22,14 +24,14 @@ export default map(v8Schema, (schema) => {
                  */
                 chartTimeframe: {
                     type: 'string',
-                    default: '24h',
+                    default: '',
                 },
                 /*
                  * Selected chart currency
                  */
                 chartCurrency: {
                     type: 'string',
-                    default: 'USD',
+                    default: '',
                 },
             },
         });
