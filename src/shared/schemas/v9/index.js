@@ -1,6 +1,5 @@
 import map from 'lodash/map';
 import merge from 'lodash/merge';
-import each from 'lodash/each';
 import v8Schema from '../v8';
 
 const migration = (_, newRealm) => {
