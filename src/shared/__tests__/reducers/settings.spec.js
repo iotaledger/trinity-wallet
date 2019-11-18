@@ -42,6 +42,8 @@ describe('Reducer: settings', () => {
                 },
                 nodeAutoSwitch: true,
                 autoNodeList: true,
+                chartCurrency: 'USD',
+                chartTimeframe: '24h',
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -755,6 +757,46 @@ describe('Reducer: settings', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 nodes: [],
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('SET_CHART_CURRENCY', () => {
+        it('should set chart currency to payload', () => {
+            const initialState = {
+                chartCurrency: 'USD',
+            };
+
+            const action = {
+                type: SettingsActionTypes.SET_CHART_CURRENCY,
+                payload: 'EUR',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                chartCurrency: 'EUR',
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('SET_CHART_TIMEFRAME', () => {
+        it('should set chart timeframe to payload', () => {
+            const initialState = {
+                chartTimeframe: '24h',
+            };
+
+            const action = {
+                type: SettingsActionTypes.SET_CHART_TIMEFRAME,
+                payload: '7d',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                chartTimeframe: '7d',
             };
 
             expect(newState).to.eql(expectedState);
