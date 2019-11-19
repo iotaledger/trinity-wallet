@@ -41,7 +41,7 @@ import MoonPayUserBasicInfo from 'ui/views/wallet/exchanges/MoonPay/UserBasicInf
 import MoonPayUserAdvancedInfo from 'ui/views/wallet/exchanges/MoonPay/UserAdvancedInfo';
 import MoonPayAddPaymentMethod from 'ui/views/wallet/exchanges/MoonPay/AddPaymentMethod';
 import MoonPayReviewPurchase from 'ui/views/wallet/exchanges/MoonPay/ReviewPurchase';
-import MoonPayPurchaseReceipt from 'ui/views/wallet/exchanges/MoonPay/MoonPayPurchaseReceipt';
+import MoonPayPurchaseReceipt from 'ui/views/wallet/exchanges/MoonPay/PurchaseReceipt';
 import MoonPayPurchaseLimitWarning from 'ui/views/wallet/exchanges/MoonPay/PurchaseLimitWarning';
 import MoonPayIdentityConfirmationWarning from 'ui/views/wallet/exchanges/MoonPay/IdentityConfirmationWarning';
 import MoonPaySelectPaymentCard from 'ui/views/wallet/exchanges/MoonPay/SelectPaymentCard';
