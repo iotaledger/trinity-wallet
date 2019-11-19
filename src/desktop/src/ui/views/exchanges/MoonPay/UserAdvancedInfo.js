@@ -12,10 +12,11 @@ import {
     getCustomerDailyLimits,
     getCustomerMonthlyLimits,
     shouldRequireStateInput,
+    hasStoredAnyPaymentCards
 } from 'selectors/exchanges/MoonPay';
 import { getAmountInFiat, convertFiatCurrency } from 'exchanges/MoonPay/utils';
 import { generateAlert } from 'actions/alerts';
-import { updateCustomer } from 'actions/exchanges/MoonPay';
+import { updateCustomer, updateCustomerInfo } from 'actions/exchanges/MoonPay';
 
 import Button from 'ui/components/Button';
 import Input from 'ui/components/input/Text';
@@ -44,24 +45,6 @@ class UserAdvancedInfo extends React.PureComponent {
         /** @ignore */
         updateCustomer: PropTypes.func.isRequired,
         /** @ignore */
-        amount: PropTypes.string.isRequired,
-        /** @ignore */
-        denomination: PropTypes.string.isRequired,
-        /** @ignore */
-        exchangeRates: PropTypes.object.isRequired,
-        /** @ignore */
-        hasCompletedBasicIdentityVerification: PropTypes.bool.isRequired,
-        /** @ignore */
-        hasCompletedAdvancedIdentityVerification: PropTypes.bool.isRequired,
-        /** @ignore */
-        isPurchaseLimitIncreaseAllowed: PropTypes.bool.isRequired,
-        /** @ignore */
-        dailyLimits: PropTypes.object.isRequired,
-        /** @ignore */
-        monthlyLimits: PropTypes.object.isRequired,
-        /** @ignore */
-        defaultCurrencyCode: PropTypes.string.isRequired,
-        /** @ignore */
         shouldRequireStateInput: PropTypes.bool.isRequired,
         /** @ignore */
         history: PropTypes.shape({
@@ -70,6 +53,10 @@ class UserAdvancedInfo extends React.PureComponent {
         }).isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        hasAnyPaymentCards: PropTypes.bool.isRequired,
+        /** @ignore */
+        updateCustomerInfo: PropTypes.func.isRequired,
     };
 
     state = {
@@ -81,40 +68,49 @@ class UserAdvancedInfo extends React.PureComponent {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isUpdatingCustomer && !nextProps.isUpdatingCustomer && !nextProps.hasErrorUpdatingCustomer) {
-            const {
-                amount,
-                denomination,
-                exchangeRates,
-                defaultCurrencyCode,
-                isPurchaseLimitIncreaseAllowed,
-                hasCompletedBasicIdentityVerification,
-                hasCompletedAdvancedIdentityVerification,
-                dailyLimits,
-                monthlyLimits,
-            } = nextProps;
-
-            const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
-
-            const purchaseAmount = convertFiatCurrency(
-                fiatAmount,
-                exchangeRates,
-                denomination,
-                // Convert to currency code set by user (not in the app) but what it is set on MoonPay servers
-                defaultCurrencyCode,
-            );
-
-            const nextRoute = `/exchanges/moonpay/${
-                hasCompletedBasicIdentityVerification &&
-                !isPurchaseLimitIncreaseAllowed &&
-                hasCompletedAdvancedIdentityVerification &&
-                (purchaseAmount > dailyLimits.dailyLimitRemaining ||
-                    purchaseAmount > monthlyLimits.monthlyLimitRemaining)
-                    ? 'purchase-limit-warning'
-                    : 'add-payment-method'
-            }`;
-
-            this.props.history.push(nextRoute);
+            this.redirect(nextProps);
         }
+    }
+
+    /**
+     * Navigates to the relevant screen
+     *
+     * @method redirect
+     */
+    redirect(props) {
+        const {
+            isPurchaseLimitIncreaseAllowed,
+            hasCompletedBasicIdentityVerification,
+            hasCompletedAdvancedIdentityVerification,
+            dailyLimits,
+            monthlyLimits,
+            amount,
+            denomination,
+            exchangeRates,
+            defaultCurrencyCode,
+        } = props;
+
+        const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
+
+        const purchaseAmount = convertFiatCurrency(
+            fiatAmount,
+            exchangeRates,
+            denomination,
+            // Convert to currency code set by user (not in the app) but what it is set on MoonPay servers
+            defaultCurrencyCode,
+        );
+
+        const nextRoute = `/exchanges/moonpay/${
+            hasCompletedBasicIdentityVerification &&
+            !isPurchaseLimitIncreaseAllowed &&
+            hasCompletedAdvancedIdentityVerification &&
+            (purchaseAmount > dailyLimits.dailyLimitRemaining ||
+                purchaseAmount > monthlyLimits.monthlyLimitRemaining)
+                ? 'purchase-limit-warning'
+                : 'add-payment-method'
+        }`;
+
+        this.props.history.push(nextRoute);
     }
 
     /**
@@ -125,7 +121,7 @@ class UserAdvancedInfo extends React.PureComponent {
      * @returns {function}
      */
     updateCustomer() {
-        const { shouldRequireStateInput, country, t } = this.props;
+        const { hasAnyPaymentCards, shouldRequireStateInput, country, t } = this.props;
 
         if (!this.state.address) {
             return this.props.generateAlert(
@@ -151,14 +147,21 @@ class UserAdvancedInfo extends React.PureComponent {
             );
         }
 
+        const data = { address: {
+            country,
+            street: this.state.address,
+            town: this.state.city,
+            postCode: this.state.zipCode,
+            ...(shouldRequireStateInput && { state: this.state.state }),
+        }};
+
+        if (hasAnyPaymentCards) {
+            this.props.updateCustomerInfo(data);
+            return this.redirect(this.props);
+        }
+
         return this.props.updateCustomer({
-            address: {
-                country,
-                street: this.state.address,
-                town: this.state.city,
-                postCode: this.state.zipCode,
-                ...(shouldRequireStateInput && { state: this.state.state }),
-            },
+
         });
     }
 
@@ -258,11 +261,13 @@ const mapStateToProps = (state) => ({
     monthlyLimits: getCustomerMonthlyLimits(state),
     defaultCurrencyCode: getDefaultCurrencyCode(state),
     shouldRequireStateInput: shouldRequireStateInput(state),
+    hasAnyPaymentCards: hasStoredAnyPaymentCards(state),
 });
 
 const mapDispatchToProps = {
     generateAlert,
     updateCustomer,
+    updateCustomerInfo,
 };
 
 export default connect(
