@@ -320,7 +320,7 @@
         "purchaseComplete": "Purchase complete",
         "transactionMayTakeAFewMinutes": "Your purchase may take a few minutes. Check your email for updates.",
         "limitExceeded": "Limit Exceeded :(",
-        "limitExceededExplanation": "Unfortunately you have exceeded your Moonpay purchase limit. You may only purchase {{amount}} of IOTA per {{limitBracket}}.",
+        "limitExceededExplanation": "Unfortunately you have exceeded your MoonPay purchase limit. You may only purchase {{amount}} of IOTA per {{limitBracket}}.",
         "limitResetExplanation": "Your limit will reset at {{time}} on {{date}}.",
         "invalidCardNumber": "Invalid card number",
         "invalidCardNumberExplanation": "Please enter a valid card number",
@@ -332,7 +332,7 @@
         "confirmIdentity": "We need to confirm your identity",
         "kycRequired": "KYC required for an amount greater than {{limit}}",
         "confirmIdentityExplanation": "Your purchase exceeds the monthly limit of {{amount}}. In order to continue your purchase you will need to confirm your identity (KYC).",
-        "moonpayRedirect": "You will now be navigated to Moonpay to complete the KYC process and continue with your purchase.",
+        "moonpayRedirect": "You will now be navigated to MoonPay to complete the KYC process and continue with your purchase.",
         "authenticateEmailError": "Error authenticating email",
         "authenticateEmailErrorExplanation": "There was an error authenticating your email address. Please try again.",
         "emailVerificationError": "Error verifying email",
@@ -351,7 +351,9 @@
         "addACreditOrDebitCard": "Add a Credit or Debit Card",
         "card": "Card",
         "duplicateCard": "Duplicate card",
-        "duplicateCardExplanation": "The card number you provided already exists."
+        "duplicateCardExplanation": "The card number you provided already exists.",
+        "moonpayPurchase": "MoonPay Purchase",
+        "emptyHistory": "You have no MoonPay purchase history"
     },
     "home": {
         "balance": "BALANCE",
@@ -598,7 +600,9 @@
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "Find transactions with a value greater than X",
-        "searchHelpLess": "Find transactions with a value less than X"
+        "searchHelpLess": "Find transactions with a value less than X",
+        "transactions": "Transactions",
+        "purchases": "Purchases"
     },
     "accountManagement": {
         "viewSeed": "View seed",

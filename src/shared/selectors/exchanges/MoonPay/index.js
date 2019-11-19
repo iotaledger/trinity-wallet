@@ -247,6 +247,22 @@ export const getMostRecentTransaction = createSelector(
 );
 
 /**
+ * Gets all Moonpay transactions
+ *
+ * @method getAllTransactions
+ *
+ * @param {object} state
+ *
+ * @returns {object}
+ */
+export const getAllTransactions = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        return exchanges.moonpay.transactions;
+    },
+);
+
+/**
  * Selects active transaction
  *
  * @method getActiveTransaction
