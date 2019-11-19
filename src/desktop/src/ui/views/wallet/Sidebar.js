@@ -9,8 +9,12 @@ import { shorten, capitalize } from 'libs/iota/converter';
 import { formatIotas } from 'libs/iota/utils';
 import { accumulateBalance } from 'libs/iota/addresses';
 
+import { setAuthenticationStatus as setMoonPayAuthenticationStatus } from 'actions/exchanges/MoonPay';
 import { clearWalletData, setSeedIndex } from 'actions/wallet';
 import { getAccountNamesFromState } from 'selectors/accounts';
+
+import MoonPayKeychainAdapter from 'libs/MoonPay';
+import { __DEV__ } from 'config';
 
 import Logo from 'ui/components/Logo';
 import Icon from 'ui/components/Icon';
@@ -45,6 +49,8 @@ class Sidebar extends React.PureComponent {
         /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
+        setMoonPayAuthenticationStatus: PropTypes.func.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         themeName: PropTypes.string.isRequired,
@@ -73,8 +79,20 @@ class Sidebar extends React.PureComponent {
         this.setState({
             modalLogout: false,
         });
-        this.props.clearWalletData();
-        this.props.history.push('/onboarding/');
+
+        MoonPayKeychainAdapter.clear()
+            .then(() => {
+                this.props.setMoonPayAuthenticationStatus(false);
+                this.props.clearWalletData();
+                this.props.history.push('/onboarding/');
+            })
+            .catch((error) => {
+                if (__DEV__) {
+                    /* eslint-disable no-console */
+                    console.log(error);
+                    /* eslint-enable no-console */
+                }
+            });
     };
 
     render() {
@@ -190,6 +208,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     clearWalletData,
     setSeedIndex,
+    setMoonPayAuthenticationStatus,
 };
 
 export default connect(

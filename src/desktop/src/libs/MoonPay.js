@@ -31,4 +31,12 @@ export default {
     set(credentials) {
         return Electron.setKeychain(ALIAS_MOONPAY_CREDENTIALS, serialise(credentials));
     },
+    /**
+     * Clears MoonPay credentials (jwt & csrf) in keychain
+     *
+     * @returns {Promise}
+     */
+    clear() {
+        return Electron.removeKeychain(ALIAS_MOONPAY_CREDENTIALS);
+    },
 };
