@@ -338,7 +338,7 @@ class History extends Component {
      */
     prepMoonPayPurchases() {
         const {
-            theme: { primary, secondary, body, bar, dark },
+            theme: { moonPayPurchases, primary, secondary, body, bar, dark },
             t,
         } = this.props;
 

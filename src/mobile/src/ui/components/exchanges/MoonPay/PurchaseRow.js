@@ -1,9 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
-import LottieView from 'lottie-react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
-import spinner from 'shared-modules/animations/spinner.json';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { locale, timezone } from 'libs/device';
@@ -119,7 +117,7 @@ export default class TransactionRow extends PureComponent {
 
     render() {
         const { status, value, unit, time, t, style, onPress } = this.props;
-        console.log(style)
+
         return (
             <TouchableOpacity onPress={() => onPress(this.props)}>
                 <View style={styles.container}>
