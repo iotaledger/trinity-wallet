@@ -21,11 +21,11 @@ class UserBasicInfo extends React.PureComponent {
         /** @ignore */
         hasErrorUpdatingCustomer: PropTypes.bool.isRequired,
         /** @ignore */
-        firstName: PropTypes.string.isRequired,
+        firstName: PropTypes.string,
         /** @ignore */
-        lastName: PropTypes.string.isRequired,
+        lastName: PropTypes.string,
         /** @ignore */
-        dateOfBirth: PropTypes.string.isRequired,
+        dateOfBirth: PropTypes.string,
         /** @ignore */
         history: PropTypes.shape({
             goBack: PropTypes.func.isRequired,
