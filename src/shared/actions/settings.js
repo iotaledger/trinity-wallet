@@ -826,3 +826,37 @@ export const changeAutoNodeListSetting = (payload) => (dispatch, getState) => {
 
     quorum.setNodes(nodes);
 };
+
+/**
+ * Dispatch to set timeframe for IOTA time series price information
+ *
+ * @method setTimeframe
+ * @param {string} timeframe
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const setChartTimeframe = (timeframe) => {
+    Wallet.updateTimeframe(timeframe);
+
+    return {
+        type: SettingsActionTypes.SET_CHART_TIMEFRAME,
+        payload: timeframe,
+    };
+};
+
+/**
+ * Dispatch to set currency in state
+ *
+ * @method setCurrency
+ * @param {string} currency
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const setChartCurrency = (currency) => {
+    Wallet.updateCurrency(currency);
+
+    return {
+        type: SettingsActionTypes.SET_CHART_CURRENCY,
+        payload: currency,
+    };
+};

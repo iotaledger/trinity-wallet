@@ -793,6 +793,7 @@ const mapStateToProps = (state) => ({
     usdPrice: state.marketData.usdPrice,
     conversionRate: state.settings.conversionRate,
     hadErrorGeneratingNewAddress: state.ui.hadErrorGeneratingNewAddress,
+    isViewingMoonpayPurchases: state.ui.isViewingMoonpayPurchases,
 });
 
 const mapDispatchToProps = {

@@ -6,8 +6,6 @@ describe('Reducer: marketData', () => {
     describe('initial state', () => {
         it('should have an initial state', () => {
             const initialState = {
-                currency: 'USD',
-                timeframe: '24h',
                 chartData: {},
                 mcap: '0',
                 volume: '0',
@@ -20,46 +18,6 @@ describe('Reducer: marketData', () => {
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
-        });
-    });
-
-    describe('IOTA/MARKET_DATA/SET_CURRENCY', () => {
-        it('should assign "payload" to "currency" state prop', () => {
-            const initialState = {
-                currency: 'USD',
-            };
-
-            const action = {
-                type: 'IOTA/MARKET_DATA/SET_CURRENCY',
-                payload: 'EUR',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                currency: 'EUR',
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/MARKET_DATA/SET_TIMEFRAME', () => {
-        it('should assign "payload" to "currency" state prop', () => {
-            const initialState = {
-                timeframe: '24h',
-            };
-
-            const action = {
-                type: 'IOTA/MARKET_DATA/SET_TIMEFRAME',
-                payload: '1h',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                timeframe: '1h',
-            };
-
-            expect(newState).to.eql(expectedState);
         });
     });
 
