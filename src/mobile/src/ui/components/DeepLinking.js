@@ -7,7 +7,10 @@ import PropTypes from 'prop-types';
 import { initiateDeepLinkRequest, setDeepLinkContent, setSetting } from 'shared-modules/actions/wallet';
 import { parseAddress, ADDRESS_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getActiveTransaction } from 'shared-modules/selectors/exchanges/MoonPay';
+import { fetchTransactionDetails } from 'shared-modules/actions/exchanges/MoonPay';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
+import { MOONPAY_RETURN_URL } from 'shared-modules/exchanges/MoonPay';
 import { isAndroid } from 'libs/device';
 import navigator from 'libs/navigation';
 
@@ -38,9 +41,10 @@ export default () => (C) => {
          * @param {Object} data
          */
         setDeepUrl(data) {
-            const { t, generateAlert, deepLinking } = this.props;
-            if (get(data, 'url').includes('iota://moonpay-purchase-complete')){
-                return navigator.setStackRoot('purchaseComplete');
+            const { activeTransaction, t, generateAlert, deepLinking } = this.props;
+            if (get(data, 'url').includes(MOONPAY_RETURN_URL)) {
+                this.props.fetchTransactionDetails(get(activeTransaction, 'id'));
+                return navigator.setStackRoot('reviewPurchase');
             }
             this.props.initiateDeepLinkRequest();
             if (!deepLinking) {
@@ -91,11 +95,16 @@ export default () => (C) => {
         /** @ignore */
         changeHomeScreenRoute: PropTypes.func.isRequired,
         /** @ignore */
+        fetchTransactionDetails: PropTypes.func.isRequired,
+        /** @ignore */
         deepLinking: PropTypes.bool.isRequired,
+        /** @ignore */
+        activeTransaction: PropTypes.object,
     };
 
     const mapStateToProps = (state) => ({
         deepLinking: state.settings.deepLinking,
+        activeTransaction: getActiveTransaction(state),
     });
 
     const mapDispatchToProps = {
@@ -104,6 +113,7 @@ export default () => (C) => {
         generateAlert,
         changeHomeScreenRoute,
         setSetting,
+        fetchTransactionDetails,
     };
 
     return withTranslation(['global'])(

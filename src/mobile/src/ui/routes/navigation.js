@@ -41,10 +41,14 @@ import MoonPayUserBasicInfo from 'ui/views/wallet/exchanges/MoonPay/UserBasicInf
 import MoonPayUserAdvancedInfo from 'ui/views/wallet/exchanges/MoonPay/UserAdvancedInfo';
 import MoonPayAddPaymentMethod from 'ui/views/wallet/exchanges/MoonPay/AddPaymentMethod';
 import MoonPayReviewPurchase from 'ui/views/wallet/exchanges/MoonPay/ReviewPurchase';
-import MoonPayPurchaseComplete from 'ui/views/wallet/exchanges/MoonPay/PurchaseComplete';
+import MoonPayPurchaseReceipt from 'ui/views/wallet/exchanges/MoonPay/MoonPayPurchaseReceipt';
 import MoonPayPurchaseLimitWarning from 'ui/views/wallet/exchanges/MoonPay/PurchaseLimitWarning';
 import MoonPayIdentityConfirmationWarning from 'ui/views/wallet/exchanges/MoonPay/IdentityConfirmationWarning';
 import MoonPaySelectPaymentCard from 'ui/views/wallet/exchanges/MoonPay/SelectPaymentCard';
+
+import MoonPayPaymentSuccess from 'ui/views/wallet/exchanges/MoonPay/PaymentSuccess';
+import MoonPayPaymentFailure from 'ui/views/wallet/exchanges/MoonPay/PaymentFailure';
+import MoonPayPaymentPending from 'ui/views/wallet/exchanges/MoonPay/PaymentPending';
 
 import { isIPhoneX, isAndroid } from 'libs/device';
 
@@ -80,12 +84,7 @@ export default function registerScreens(store, Provider) {
         store,
     );
     Navigation.registerComponentWithRedux('reviewPurchase', () => applyHOCs(MoonPayReviewPurchase), Provider, store);
-    Navigation.registerComponentWithRedux(
-        'purchaseComplete',
-        () => applyHOCs(MoonPayPurchaseComplete),
-        Provider,
-        store,
-    );
+    Navigation.registerComponentWithRedux('purchaseReceipt', () => applyHOCs(MoonPayPurchaseReceipt), Provider, store);
     Navigation.registerComponentWithRedux(
         'purchaseLimitWarning',
         () => applyHOCs(MoonPayPurchaseLimitWarning),
@@ -104,6 +103,9 @@ export default function registerScreens(store, Provider) {
         Provider,
         store,
     );
+    Navigation.registerComponentWithRedux('paymentSuccess', () => applyHOCs(MoonPayPaymentSuccess), Provider, store);
+    Navigation.registerComponentWithRedux('paymentFailure', () => applyHOCs(MoonPayPaymentFailure), Provider, store);
+    Navigation.registerComponentWithRedux('paymentPending', () => applyHOCs(MoonPayPaymentPending), Provider, store);
 
     Navigation.registerComponentWithRedux('migration', () => applyHOCs(MigrationComponent), Provider, store);
     Navigation.registerComponentWithRedux('home', () => applyHOCs(Home), Provider, store);

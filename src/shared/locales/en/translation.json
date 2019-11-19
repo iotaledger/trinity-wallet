@@ -351,7 +351,14 @@
         "addACreditOrDebitCard": "Add a Credit or Debit Card",
         "card": "Card",
         "duplicateCard": "Duplicate card",
-        "duplicateCardExplanation": "The card number you provided already exists."
+        "duplicateCardExplanation": "The card number you provided already exists.",
+        "paymentPending": "Payment Pending",
+        "paymentPendingExplanation": "Your purchase is pending. You can check purchase history in Trinity (or email) for updates",
+        "paymentSuccess": "Payment Success",
+        "paymentSuccessExplanation": "Your payment has been accepted",
+        "paymentFailure": "Payment Failure",
+        "paymentFailureExplanation": "We're sorry, your payment has been rejected",
+        "viewReceipt": "View receipt"
     },
     "home": {
         "balance": "BALANCE",

@@ -47,7 +47,17 @@ class PurchaseComplete extends Component {
      */
     redirectToHome() {
         const { t } = this.props;
-        timer.setTimeout('delayAlert', () => this.props.generateAlert('success', t('moonpay:purchaseComplete'), t('moonpay:transactionMayTakeAFewMinutes'), 12000), 2000);
+        timer.setTimeout(
+            'delayAlert',
+            () =>
+                this.props.generateAlert(
+                    'success',
+                    t('moonpay:purchaseComplete'),
+                    t('moonpay:transactionMayTakeAFewMinutes'),
+                    12000,
+                ),
+            2000,
+        );
         navigator.setStackRoot('home');
     }
 

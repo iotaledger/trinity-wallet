@@ -18,7 +18,10 @@ import VerifyEmail from 'ui/views/exchanges/MoonPay/VerifyEmail';
 import UserBasicInfo from 'ui/views/exchanges/MoonPay/UserBasicInfo';
 import UserAdvancedInfo from 'ui/views/exchanges/MoonPay/UserAdvancedInfo';
 import ReviewPurchase from 'ui/views/exchanges/MoonPay/ReviewPurchase';
-import PurchaseComplete from 'ui/views/exchanges/MoonPay/PurchaseComplete';
+import PurchaseReceipt from 'ui/views/exchanges/MoonPay/PurchaseReceipt';
+import PaymentSuccess from 'ui/views/exchanges/MoonPay/PaymentSuccess';
+import PaymentFailure from 'ui/views/exchanges/MoonPay/PaymentFailure';
+import PaymentPending from 'ui/views/exchanges/MoonPay/PaymentPending';
 
 import css from './index.scss';
 
@@ -53,7 +56,10 @@ class MoonPay extends React.PureComponent {
                                 <Route path="/exchanges/moonpay/user-advanced-info" component={UserAdvancedInfo} />
                                 <Route path="/exchanges/moonpay/add-payment-method" component={AddPaymentMethod} />
                                 <Route path="/exchanges/moonpay/review-purchase" component={ReviewPurchase} />
-                                <Route path="/exchanges/moonpay/purchase-complete" component={PurchaseComplete} />
+                                <Route path="/exchanges/moonpay/purchase-receipt" component={PurchaseReceipt} />
+                                <Route path="/exchanges/moonpay/payment-success" component={PaymentSuccess} />
+                                <Route path="/exchanges/moonpay/payment-failure" component={PaymentFailure} />
+                                <Route path="/exchanges/moonpay/payment-pending" component={PaymentPending} />
 
                                 <Route
                                     path="/exchanges/moonpay/purchase-limit-warning"

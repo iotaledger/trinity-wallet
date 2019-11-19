@@ -97,6 +97,14 @@ const initialState = {
      */
     hasErrorCreatingPaymentCard: false,
     /**
+     * Determines if a network call is in progress for fetching transaction details
+     */
+    isFetchingTransactionDetails: false,
+    /**
+     * Determines if there was an error while fetching transaction details
+     */
+    hasErrorFetchingTransactionDetails: false,
+    /**
      * Determines if the user is authenticated
      */
     isAuthenticated: false,
@@ -271,6 +279,34 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isAuthenticated: action.payload,
+            };
+        case MoonPayExchangeActionTypes.TRANSACTION_DETAILS_FETCH_REQUEST:
+            return {
+                ...state,
+                isFetchingTransactionDetails: true,
+                hasErrorFetchingTransactionDetails: false,
+            };
+        case MoonPayExchangeActionTypes.TRANSACTION_DETAILS_FETCH_SUCCESS:
+            return {
+                ...state,
+                isFetchingTransactionDetails: false,
+            };
+        case MoonPayExchangeActionTypes.TRANSACTION_DETAILS_FETCH_ERROR:
+            return {
+                ...state,
+                isFetchingTransactionDetails: false,
+                hasErrorFetchingTransactionDetails: true,
+            };
+        case MoonPayExchangeActionTypes.UPDATE_TRANSACTION_DETAILS:
+            return {
+                ...state,
+                transactions: map(state.transactions, (transaction) => {
+                    if (transaction.id === action.payload.id) {
+                        return merge({}, transaction, action.payload);
+                    }
+
+                    return transaction;
+                }),
             };
         default:
             return state;

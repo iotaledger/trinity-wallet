@@ -344,4 +344,23 @@ export class MoonPayApi {
             };
         });
     }
+
+    /**
+     * Fetches transaction details for provided id
+     *
+     * See: https://www.moonpay.io/api_reference/v3#retrieve_transaction
+     *
+     * @method fetchTransactionDetails
+     *
+     * @returns {Promise}
+     */
+    fetchTransactionDetails(id) {
+        return this._fetch(
+            `${this.url}/transactions/${id}`,
+            {
+                method: 'get',
+            },
+            true,
+        );
+    }
 }

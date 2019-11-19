@@ -7,7 +7,7 @@ const supportedNetworks = {
 };
 
 /** Active MoonPay network. */
-const ACTIVE_NETWORK = supportedNetworks.live;
+const ACTIVE_NETWORK = supportedNetworks.test;
 
 /**
  * MoonPay test mode API key
@@ -35,15 +35,12 @@ export const API_KEY = ACTIVE_NETWORK === supportedNetworks.live ? LIVE_MODE_API
 /** MoonPay currency code for IOTA */
 export const IOTA_CURRENCY_CODE = 'miota';
 
-/** MoonPay transaction status for transactions that are protected by 3D secure */
-export const TRANSACTION_STATUS_WAITING_AUTHORIZATION = 'waitingAuthorization';
-
 /**
  * The URL the customer is returned to after they authenticate or cancel their payment on the payment method’s app or site.
  *
  * See: https://www.moonpay.io/api_reference/v3#transaction_object
  */
-export const MOONPAY_RETURN_URL = 'iota://moonpay-purchase-complete';
+export const MOONPAY_RETURN_URL = 'iota://moonpay-review-purchase';
 
 /**
  * The URL provided to you, when required, to which to redirect the customer as part of a redirect authentication flow.
@@ -108,5 +105,17 @@ export const DEFAULT_FIAT_CURRENCY = 'USD';
  * See: https://www.moonpay.io/api_reference/v3#migration_guide
  */
 export const COUNTRY_CODES_REQUIRING_STATE = ['USA', 'CAN'];
+
+/**
+ * Supported transaction statuses
+ *
+ * See: https://www.moonpay.io/api_reference/v3#transaction_object
+ */
+export const MOONPAY_TRANSACTION_STATUSES = {
+    pending: 'pending',
+    waitingAuthorization: 'waitingAuthorization',
+    failed: 'failed',
+    completed: 'completed',
+};
 
 export default new MoonPayApi(API_KEY);

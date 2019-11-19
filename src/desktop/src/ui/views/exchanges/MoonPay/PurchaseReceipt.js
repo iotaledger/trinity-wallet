@@ -6,8 +6,8 @@ import withPurchaseSummary from 'ui/views/exchanges/MoonPay/WithPurchaseSummary'
 
 import css from './index.scss';
 
-/** MoonPay purchase complete screen component */
-class PurchaseComplete extends React.PureComponent {
+/** MoonPay purchase receipt screen component */
+class PurchaseReceipt extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         history: PropTypes.shape({
@@ -65,4 +65,4 @@ class PurchaseComplete extends React.PureComponent {
     }
 }
 
-export default withPurchaseSummary(PurchaseComplete);
+export default withPurchaseSummary(PurchaseReceipt);

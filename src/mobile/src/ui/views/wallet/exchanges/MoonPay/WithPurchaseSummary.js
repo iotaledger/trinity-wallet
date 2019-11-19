@@ -106,6 +106,10 @@ export default function withPurchaseSummary(WrappedComponent, config) {
             /** @ignore */
             isPurchaseLimitIncreaseAllowed: PropTypes.bool.isRequired,
             /** @ignore */
+            isFetchingTransactionDetails: PropTypes.bool.isRequired,
+            /** @ignore */
+            hasErrorFetchingTransactionDetails: PropTypes.bool.isRequired,
+            /** @ignore */
             createTransaction: PropTypes.func.isRequired,
             /** Component ID */
             componentId: PropTypes.string.isRequired,
@@ -213,6 +217,8 @@ export default function withPurchaseSummary(WrappedComponent, config) {
 
         render() {
             const {
+                isFetchingTransactionDetails,
+                hasErrorFetchingTransactionDetails,
                 isCreatingTransaction,
                 hasErrorCreatingTransaction,
                 amount,
@@ -246,6 +252,8 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                     theme={theme}
                     componentId={componentId}
                     generateAlert={generateAlert}
+                    isFetchingTransactionDetails={isFetchingTransactionDetails}
+                    hasErrorFetchingTransactionDetails={hasErrorFetchingTransactionDetails}
                 >
                     <View style={styles.container}>
                         <View style={{ flex: 0.2 }} />
@@ -390,6 +398,8 @@ export default function withPurchaseSummary(WrappedComponent, config) {
         expiryInfo: getPaymentCardExpiryInfo(state),
         isCreatingTransaction: state.exchanges.moonpay.isCreatingTransaction,
         hasErrorCreatingTransaction: state.exchanges.moonpay.hasErrorCreatingTransaction,
+        isFetchingTransactionDetails: state.exchanges.moonpay.isFetchingTransactionDetails,
+        hasErrorFetchingTransactionDetails: state.exchanges.moonpay.hasErrorFetchingTransactionDetails,
         dailyLimits: getCustomerDailyLimits(state),
         monthlyLimits: getCustomerMonthlyLimits(state),
         defaultCurrencyCode: getDefaultCurrencyCode(state),

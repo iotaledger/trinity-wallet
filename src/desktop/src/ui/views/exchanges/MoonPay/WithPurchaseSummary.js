@@ -56,6 +56,10 @@ export default function withPurchaseSummary(WrappedComponent) {
             /** @ignore */
             hasErrorCreatingTransaction: PropTypes.bool.isRequired,
             /** @ignore */
+            isFetchingTransactionDetails: PropTypes.bool.isRequired,
+            /** @ignore */
+            hasErrorFetchingTransactionDetails: PropTypes.bool.isRequired,
+            /** @ignore */
             dailyLimits: PropTypes.object.isRequired,
             /** @ignore */
             monthlyLimits: PropTypes.object.isRequired,
@@ -168,6 +172,8 @@ export default function withPurchaseSummary(WrappedComponent) {
             const {
                 isCreatingTransaction,
                 hasErrorCreatingTransaction,
+                isFetchingTransactionDetails,
+                hasErrorFetchingTransactionDetails,
                 amount,
                 address,
                 brand,
@@ -194,6 +200,8 @@ export default function withPurchaseSummary(WrappedComponent) {
                     createTransaction={this.createTransaction}
                     isCreatingTransaction={isCreatingTransaction}
                     hasErrorCreatingTransaction={hasErrorCreatingTransaction}
+                    isFetchingTransactionDetails={isFetchingTransactionDetails}
+                    hasErrorFetchingTransactionDetails={hasErrorFetchingTransactionDetails}
                     generateAlert={generateAlert}
                 >
                     <div className={css.summary}>
@@ -262,6 +270,8 @@ export default function withPurchaseSummary(WrappedComponent) {
         expiryInfo: getPaymentCardExpiryInfo(state),
         isCreatingTransaction: state.exchanges.moonpay.isCreatingTransaction,
         hasErrorCreatingTransaction: state.exchanges.moonpay.hasErrorCreatingTransaction,
+        isFetchingTransactionDetails: state.exchanges.moonpay.isFetchingTransactionDetails,
+        hasErrorFetchingTransactionDetails: state.exchanges.moonpay.hasErrorFetchingTransactionDetails,
         dailyLimits: getCustomerDailyLimits(state),
         monthlyLimits: getCustomerMonthlyLimits(state),
         defaultCurrencyCode: getDefaultCurrencyCode(state),

@@ -384,6 +384,51 @@ export const setAuthenticationStatus = (payload) => ({
 });
 
 /**
+ * Dispatch when request for fetching transaction details is about to be made
+ *
+ * @method fetchTransactionDetailsRequest
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchTransactionDetailsRequest = () => ({
+    type: MoonPayExchangeActionTypes.TRANSACTION_DETAILS_FETCH_REQUEST,
+});
+
+/**
+ * Dispatch when request for fetching transaction details is successfully made
+ *
+ * @method fetchTransactionDetailsSuccess
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchTransactionDetailsSuccess = () => ({
+    type: MoonPayExchangeActionTypes.TRANSACTION_DETAILS_FETCH_SUCCESS,
+});
+
+/**
+ * Dispatch when request for fetching transaction details is not successful
+ *
+ * @method fetchTransactionDetailsError
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchTransactionDetailsError = () => ({
+    type: MoonPayExchangeActionTypes.TRANSACTION_DETAILS_FETCH_ERROR,
+});
+
+/**
+ * Dispatch to update transaction details
+ *
+ * @method updateTransactionDetails
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const updateTransactionDetails = (payload) => ({
+    type: MoonPayExchangeActionTypes.UPDATE_TRANSACTION_DETAILS,
+    payload,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -737,6 +782,36 @@ export const refreshCredentialsAndFetchMeta = (jwt, csrfToken, keychainAdapter) 
         })
         .catch((error) => {
             dispatch(setAuthenticationStatus(false));
+
+            if (__DEV__) {
+                /* eslint-disable no-console */
+                console.log(error);
+                /* eslint-enable no-console */
+            }
+        });
+};
+
+/**
+ * Fetches transaction details
+ *
+ * See: https://www.moonpay.io/api_reference/v3#retrieve_transaction
+ *
+ * @method fetchTransactionDetails
+ *
+ * @param {string} id
+ *
+ * @returns {function}
+ */
+export const fetchTransactionDetails = (id) => (dispatch) => {
+    dispatch(fetchTransactionDetailsRequest());
+
+    api.fetchTransactionDetails(id)
+        .then((transaction) => {
+            dispatch(updateTransactionDetails(transaction));
+            dispatch(fetchTransactionDetailsSuccess());
+        })
+        .catch((error) => {
+            dispatch(fetchTransactionDetailsError());
 
             if (__DEV__) {
                 /* eslint-disable no-console */
