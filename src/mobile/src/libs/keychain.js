@@ -60,6 +60,14 @@ export const MoonPayKeychainAdapter = {
     set(credentials) {
         return keychain.set(ALIAS_MOONPAY_CREDENTIALS, MOONPAY_API_VERSION, serialise(credentials));
     },
+    /**
+     * Clears MoonPay credentials (jwt & csrf) in keychain
+     *
+     * @returns {Promise}
+     */
+    clear() {
+        return keychain.clear(ALIAS_MOONPAY_CREDENTIALS);
+    },
 };
 
 export const keychain = {

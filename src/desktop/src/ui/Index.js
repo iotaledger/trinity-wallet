@@ -24,9 +24,14 @@ import {
     forceUpdate,
     displayTestWarning,
 } from 'actions/wallet';
+import { setAuthenticationStatus as setMoonPayAuthenticationStatus } from 'actions/exchanges/MoonPay';
+import { __DEV__ } from 'config';
+
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { dismissAlert, generateAlert } from 'actions/alerts';
+
+import MoonPayKeychainAdapter from 'libs/MoonPay';
 
 import Theme from 'ui/global/Theme';
 import Idle from 'ui/global/Idle';
@@ -104,6 +109,8 @@ class App extends React.Component {
         initiateDeepLinkRequest: PropTypes.func.isRequired,
         /** @ignore */
         setDeepLinkContent: PropTypes.func.isRequired,
+        /** @ignore */
+        setMoonPayAuthenticationStatus: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -279,16 +286,28 @@ class App extends React.Component {
                 this.props.history.push('/onboarding/seed-intro');
                 break;
             case 'logout':
-                this.props.clearWalletData();
-                this.props.setPassword({});
-                this.props.setAccountInfoDuringSetup({
-                    name: '',
-                    meta: {},
-                    completed: false,
-                    usedExistingSeed: false,
-                });
-                Electron.setOnboardingSeed(null);
-                this.props.history.push('/onboarding/login');
+                MoonPayKeychainAdapter.clear()
+                    .then(() => {
+                        this.props.setMoonPayAuthenticationStatus(false);
+                        this.props.clearWalletData();
+                        this.props.setPassword({});
+                        this.props.setAccountInfoDuringSetup({
+                            name: '',
+                            meta: {},
+                            completed: false,
+                            usedExistingSeed: false,
+                        });
+                        Electron.setOnboardingSeed(null);
+                        this.props.history.push('/onboarding/login');
+                    })
+                    .catch((error) => {
+                        if (__DEV__) {
+                            /* eslint-disable no-console */
+                            console.log(error);
+                            /* eslint-enable no-console */
+                        }
+                    });
+
                 break;
             default:
                 if (item.indexOf('settings/account') === 0) {
@@ -376,6 +395,7 @@ const mapDispatchToProps = {
     shouldUpdate,
     forceUpdate,
     displayTestWarning,
+    setMoonPayAuthenticationStatus,
 };
 
 export default withRouter(
