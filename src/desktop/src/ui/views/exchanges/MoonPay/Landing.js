@@ -91,7 +91,7 @@ class Landing extends React.PureComponent {
                             <Lottie
                                 width={180}
                                 height={180}
-                                data={getAnimation('welcome', themeName)}
+                                data={getAnimation('sendingDesktop', themeName)}
                                 segments={[161, 395]}
                                 loop
                             />
