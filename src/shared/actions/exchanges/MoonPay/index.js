@@ -4,6 +4,7 @@ import merge from 'lodash/merge';
 import get from 'lodash/get';
 import find from 'lodash/find';
 import toUpper from 'lodash/toUpper';
+import some from 'lodash/some';
 import { MoonPayExchangeActionTypes } from '../../../types';
 import { generateAlert } from '../../alerts';
 import api, { IOTA_CURRENCY_CODE, MOONPAY_RETURN_URL } from '../../../exchanges/MoonPay';
@@ -429,6 +430,18 @@ export const updateTransactionDetails = (payload) => ({
 });
 
 /**
+ * Dispatch to add new transaction
+ *
+ * @method addTransaction
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const addTransaction = (payload) => ({
+    type: MoonPayExchangeActionTypes.ADD_TRANSACTION,
+    payload,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -812,19 +825,22 @@ export const fetchTransactionDetails = (id) => (dispatch, getState) => {
 
     api.fetchTransactionDetails(id)
         .then((transaction) => {
-            const { currencies } = getState().exchanges.moonpay;
+            const { currencies, transactions } = getState().exchanges.moonpay;
 
-            dispatch(
-                updateTransactionDetails(
-                    assign({}, transaction, {
-                        // Make transaction active
-                        active: true,
-                        currencyCode: toUpper(
-                            get(find(currencies, (currency) => currency.id === transaction.baseCurrencyId), 'code'),
-                        ),
-                    }),
+            const updatedTransaction = assign({}, transaction, {
+                // Make transaction active
+                active: true,
+                currencyCode: toUpper(
+                    get(find(currencies, (currency) => currency.id === transaction.baseCurrencyId), 'code'),
                 ),
-            );
+            });
+
+            if (some(transactions, (transaction) => transaction.id === id)) {
+                dispatch(updateTransactionDetails(updatedTransaction));
+            } else {
+                dispatch(addTransaction(updatedTransaction));
+            }
+
             dispatch(fetchTransactionDetailsSuccess());
         })
         .catch((error) => {

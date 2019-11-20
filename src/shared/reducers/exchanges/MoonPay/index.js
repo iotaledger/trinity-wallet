@@ -308,6 +308,11 @@ export default (state = initialState, action) => {
                     return transaction;
                 }),
             };
+        case MoonPayExchangeActionTypes.ADD_TRANSACTION:
+            return {
+                ...state,
+                transactions: [...state.transactions, action.payload],
+            };
         default:
             return state;
     }

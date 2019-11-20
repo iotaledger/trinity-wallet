@@ -1,4 +1,7 @@
 import get from 'lodash/get';
+import last from 'lodash/last';
+import split from 'lodash/split';
+import isString from 'lodash/isString';
 import React, { Component } from 'react';
 import { Linking } from 'react-native';
 import { withTranslation } from 'react-i18next';
@@ -7,7 +10,6 @@ import PropTypes from 'prop-types';
 import { initiateDeepLinkRequest, setDeepLinkContent, setSetting } from 'shared-modules/actions/wallet';
 import { parseAddress, ADDRESS_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { getActiveTransaction } from 'shared-modules/selectors/exchanges/MoonPay';
 import { fetchTransactionDetails } from 'shared-modules/actions/exchanges/MoonPay';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
 import { MOONPAY_RETURN_URL } from 'shared-modules/exchanges/MoonPay';
@@ -41,11 +43,16 @@ export default () => (C) => {
          * @param {Object} data
          */
         setDeepUrl(data) {
-            const { activeTransaction, t, generateAlert, deepLinking } = this.props;
-            if (get(data, 'url').includes(MOONPAY_RETURN_URL)) {
-                this.props.fetchTransactionDetails(get(activeTransaction, 'id'));
-                return navigator.setStackRoot('reviewPurchase');
+            const { t, generateAlert, deepLinking } = this.props;
+
+            const url = get(data, 'url');
+            const transactionId = last(split(url, '='));
+
+            if (url.includes(MOONPAY_RETURN_URL) && isString(transactionId)) {
+                this.props.fetchTransactionDetails(transactionId);
+                return navigator.setStackRoot('paymentPending', { passProps: { transactionId } });
             }
+
             this.props.initiateDeepLinkRequest();
             if (!deepLinking) {
                 this.navigateToSettings();
@@ -99,12 +106,12 @@ export default () => (C) => {
         /** @ignore */
         deepLinking: PropTypes.bool.isRequired,
         /** @ignore */
-        activeTransaction: PropTypes.object,
+        isAuthenticatedForMoonPay: PropTypes.bool.isRequired,
     };
 
     const mapStateToProps = (state) => ({
         deepLinking: state.settings.deepLinking,
-        activeTransaction: getActiveTransaction(state),
+        isAuthenticatedForMoonPay: state.exchanges.moonpay.isAuthenticated,
     });
 
     const mapDispatchToProps = {
