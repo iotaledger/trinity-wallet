@@ -1,5 +1,6 @@
 {
     "global": {
+        "address": "Address",
         "and": "and",
         "send": "SEND",
         "cancel": "Cancel",
@@ -360,7 +361,14 @@
         "paymentFailureExplanation": "We're sorry, your payment has been rejected",
         "viewReceipt": "View receipt",
         "moonpayPurchase": "MoonPay Purchase",
-        "emptyHistory": "You have no MoonPay purchase history"
+        "emptyHistory": "You have no MoonPay purchase history",
+        "loginToViewPurchaseHistory": "Log in or register as a user to view purchase history",
+        "loginToMoonPay": "Login to MoonPay",
+        "pending": "Pending",
+        "completed": "Completed",
+        "failed": "Failed",
+        "waitingAuthorization": "Waiting Authorization",
+        "authorize": "Authorize"
     },
     "home": {
         "balance": "BALANCE",

@@ -253,7 +253,7 @@ export const getMostRecentTransaction = createSelector(
  *
  * @param {object} state
  *
- * @returns {object}
+ * @returns {array}
  */
 export const getAllTransactions = createSelector(
     getExchangesFromState,

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
-import { formatTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
+import { formatTime } from 'shared-modules/libs/date';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { locale, timezone } from 'libs/device';
@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: height / 60,
         height: height / 10,
+    },
+    innerRowContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     iconWrapper: {
         alignItems: 'center',
@@ -71,10 +75,6 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 28,
     },
-    animation: {
-        width: width / 14,
-        height: width / 17,
-    },
     messageWrapper: {
         flex: 3,
         flexDirection: 'row',
@@ -87,7 +87,8 @@ const styles = StyleSheet.create({
     },
 });
 
-export default class TransactionRow extends PureComponent {
+/** MoonPay purchase history row item */
+export default class PurchaseRow extends PureComponent {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -98,17 +99,14 @@ export default class TransactionRow extends PureComponent {
         /** Transaction unit */
         unit: PropTypes.string.isRequired,
         /** Transaction time */
-        time: PropTypes.number.isRequired,
+        time: PropTypes.string.isRequired,
         /** Content styles */
         style: PropTypes.shape({
+            backgroundColor: PropTypes.string.isRequired,
+            defaultTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
             titleColor: PropTypes.string.isRequired,
             containerBackgroundColor: PropTypes.shape({ backgroundColor: PropTypes.string.isRequired }).isRequired,
             rowTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
-            rowBorderColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
-            backgroundColor: PropTypes.string.isRequired,
-            borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
-            barColor: PropTypes.string.isRequired,
-            barBg: PropTypes.string.isRequired,
             primaryColor: PropTypes.string.isRequired,
         }).isRequired,
         /** Container element press event callback function */
@@ -122,11 +120,11 @@ export default class TransactionRow extends PureComponent {
             <TouchableOpacity onPress={() => onPress(this.props)}>
                 <View style={styles.container}>
                     <View style={[styles.row, style.containerBackgroundColor]}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <View style={styles.innerRowContainer}>
                             <View style={styles.iconWrapper}>
                                 <Icon
-                                    name="moonpay"
-                                    size={width / 22}
+                                    name="moonpayEmblem"
+                                    size={width / 18}
                                     color={style.titleColor}
                                     iconStyle={{ position: 'absolute' }}
                                 />
@@ -146,7 +144,7 @@ export default class TransactionRow extends PureComponent {
                                     </View>
                                     <View style={styles.timestampWrapper}>
                                         <Text style={[styles.timestamp, style.rowTextColor]}>
-                                            {formatTime(locale, timezone, convertUnixTimeToJSDate(time))}
+                                            {formatTime(locale, timezone, time)}
                                         </Text>
                                     </View>
                                 </View>

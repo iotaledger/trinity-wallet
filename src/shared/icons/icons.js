@@ -23,6 +23,7 @@ module.exports = {
     advanced: '🔬',
     mode: '🔣',
     moonpay: '🐧',
+    moonpayEmblem: '☀️',
     logout: '🖐',
     currency: '💵',
     send: '📤',

@@ -425,6 +425,6 @@ export const getLatestAddressForMoonPaySelectedAccount = createSelector(
     getAccountInfoFromState,
     getSelectedAccountNameForMoonPay,
     (accountInfo, accountName) => {
-        return getLatestAddress(accountInfo[accountName].addressData, true);
+        return getLatestAddress(get(accountInfo[accountName], 'addressData'), true);
     },
 );

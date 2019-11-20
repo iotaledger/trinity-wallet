@@ -35,6 +35,9 @@ export const API_KEY = ACTIVE_NETWORK === supportedNetworks.live ? LIVE_MODE_API
 /** MoonPay currency code for IOTA */
 export const IOTA_CURRENCY_CODE = 'miota';
 
+/** Short IOTA currency code*/
+export const SHORT_IOTA_CURRENCY_CODE = 'Mi';
+
 /**
  * The URL the customer is returned to after they authenticate or cancel their payment on the payment method’s app or site.
  *
@@ -94,7 +97,7 @@ export const MAXIMUM_TRANSACTION_SIZE = 2000;
 export const BASIC_MONTHLY_LIMIT = 150;
 
 /** Allowed IOTA denominations in MoonPay implementation. */
-export const ALLOWED_IOTA_DENOMINATIONS = ['Mi'];
+export const ALLOWED_IOTA_DENOMINATIONS = [SHORT_IOTA_CURRENCY_CODE];
 
 /** MoonPay fallback fiat currency. Will display purchase amount in this format if denomination is in Miota */
 export const DEFAULT_FIAT_CURRENCY = 'USD';

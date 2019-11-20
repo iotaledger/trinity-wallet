@@ -743,7 +743,12 @@ export const setMeta = (meta) => (dispatch, getState) => {
                     // "active" property determines if the transaction is active on user screen
                     // i.e., the acive transaction user made from Trinity after authenticating himself/herself
                     // Also, see #createTransaction action where we set the new transaction to "active"
-                    { active: false },
+                    {
+                        active: false,
+                        currencyCode: toUpper(
+                            get(find(currencies, (currency) => currency.id === transaction.baseCurrencyId), 'code'),
+                        ),
+                    },
                 ),
             ),
         ),
@@ -802,12 +807,24 @@ export const refreshCredentialsAndFetchMeta = (jwt, csrfToken, keychainAdapter) 
  *
  * @returns {function}
  */
-export const fetchTransactionDetails = (id) => (dispatch) => {
+export const fetchTransactionDetails = (id) => (dispatch, getState) => {
     dispatch(fetchTransactionDetailsRequest());
 
     api.fetchTransactionDetails(id)
         .then((transaction) => {
-            dispatch(updateTransactionDetails(transaction));
+            const { currencies } = getState().exchanges.moonpay;
+
+            dispatch(
+                updateTransactionDetails(
+                    assign({}, transaction, {
+                        // Make transaction active
+                        active: true,
+                        currencyCode: toUpper(
+                            get(find(currencies, (currency) => currency.id === transaction.baseCurrencyId), 'code'),
+                        ),
+                    }),
+                ),
+            );
             dispatch(fetchTransactionDetailsSuccess());
         })
         .catch((error) => {
