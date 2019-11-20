@@ -1,4 +1,5 @@
 import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
 import toLower from 'lodash/toLower';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -105,10 +106,6 @@ export default function withPurchaseSummary(WrappedComponent, config) {
             hasCompletedAdvancedIdentityVerification: PropTypes.bool.isRequired,
             /** @ignore */
             isPurchaseLimitIncreaseAllowed: PropTypes.bool.isRequired,
-            /** @ignore */
-            isFetchingTransactionDetails: PropTypes.bool.isRequired,
-            /** @ignore */
-            hasErrorFetchingTransactionDetails: PropTypes.bool.isRequired,
             /** @ignore */
             createTransaction: PropTypes.func.isRequired,
             /** Component ID */
@@ -217,8 +214,6 @@ export default function withPurchaseSummary(WrappedComponent, config) {
 
         render() {
             const {
-                isFetchingTransactionDetails,
-                hasErrorFetchingTransactionDetails,
                 isCreatingTransaction,
                 hasErrorCreatingTransaction,
                 amount,
@@ -252,8 +247,6 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                     theme={theme}
                     componentId={componentId}
                     generateAlert={generateAlert}
-                    isFetchingTransactionDetails={isFetchingTransactionDetails}
-                    hasErrorFetchingTransactionDetails={hasErrorFetchingTransactionDetails}
                 >
                     <View style={styles.container}>
                         <View style={{ flex: 0.2 }} />
@@ -309,7 +302,9 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                             delay={200}
                         >
                             <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextLight, textColor]}>{address}</Text>
+                                <Text style={[styles.infoTextLight, textColor]}>
+                                    {isEmpty(activeTransaction) ? address : activeTransaction.walletAddress}
+                                </Text>
                             </View>
                         </AnimatedComponent>
                         <View style={{ flex: 0.4 }} />
@@ -337,7 +332,6 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                             </View>
                         </AnimatedComponent>
                         <View style={{ flex: 0.4 }} />
-
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}
@@ -398,8 +392,6 @@ export default function withPurchaseSummary(WrappedComponent, config) {
         expiryInfo: getPaymentCardExpiryInfo(state),
         isCreatingTransaction: state.exchanges.moonpay.isCreatingTransaction,
         hasErrorCreatingTransaction: state.exchanges.moonpay.hasErrorCreatingTransaction,
-        isFetchingTransactionDetails: state.exchanges.moonpay.isFetchingTransactionDetails,
-        hasErrorFetchingTransactionDetails: state.exchanges.moonpay.hasErrorFetchingTransactionDetails,
         dailyLimits: getCustomerDailyLimits(state),
         monthlyLimits: getCustomerMonthlyLimits(state),
         defaultCurrencyCode: getDefaultCurrencyCode(state),

@@ -42,10 +42,6 @@ class ReviewPurchase extends Component {
         /** @ignore */
         hasErrorCreatingTransaction: PropTypes.bool.isRequired,
         /** @ignore */
-        isFetchingTransactionDetails: PropTypes.bool.isRequired,
-        /** @ignore */
-        hasErrorFetchingTransactionDetails: PropTypes.bool.isRequired,
-        /** @ignore */
         createTransaction: PropTypes.func.isRequired,
         /** @ignore */
         activeTransaction: PropTypes.object,
@@ -72,21 +68,10 @@ class ReviewPurchase extends Component {
             // See https://www.moonpay.io/api_reference/v3#three_d_secure
             if (get(activeTransaction, 'status') === MOONPAY_TRANSACTION_STATUSES.waitingAuthorization) {
                 Linking.openURL(get(activeTransaction, 'redirectUrl'));
+                this.redirectToScreen(_getNextScreenName(MOONPAY_TRANSACTION_STATUSES.pending));
             } else {
                 this.redirectToScreen(_getNextScreenName(get(activeTransaction, 'status')));
             }
-        }
-
-        if (this.props.isFetchingTransactionDetails && !nextProps.isFetchingTransactionDetails) {
-            const { activeTransaction } = nextProps;
-
-            this.redirectToScreen(
-                _getNextScreenName(
-                    nextProps.hasErrorFetchingTransactionDetails
-                        ? MOONPAY_TRANSACTION_STATUSES.failed
-                        : get(activeTransaction, 'status'),
-                ),
-            );
         }
     }
 
@@ -108,7 +93,7 @@ class ReviewPurchase extends Component {
     }
 
     render() {
-        const { isCreatingTransaction, isFetchingTransactionDetails, t, theme } = this.props;
+        const { isCreatingTransaction, t, theme } = this.props;
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
@@ -127,8 +112,8 @@ class ReviewPurchase extends Component {
                         <DualFooterButtons
                             onLeftButtonPress={() => this.goBack()}
                             onRightButtonPress={() => this.props.createTransaction()}
-                            isRightButtonLoading={isCreatingTransaction || isFetchingTransactionDetails}
-                            disableLeftButton={isCreatingTransaction || isFetchingTransactionDetails}
+                            isRightButtonLoading={isCreatingTransaction}
+                            disableLeftButton={isCreatingTransaction}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:confirm')}
                             leftButtonTestID="moonpay-back"

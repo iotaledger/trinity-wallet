@@ -4,6 +4,7 @@
         "and": "and",
         "send": "SEND",
         "cancel": "Cancel",
+        "complete": "Complete",
         "continue?": "Are you sure you want to continue?",
         "noTransactions": "NO RECENT HISTORY",
         "refresh": "Refresh",
@@ -179,7 +180,8 @@
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again.",
         "total": "Total",
-        "submit": "Submit"
+        "submit": "Submit",
+        "tryAgain": "Try again"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -354,7 +356,7 @@
         "duplicateCard": "Duplicate card",
         "duplicateCardExplanation": "The card number you provided already exists.",
         "paymentPending": "Payment Pending",
-        "paymentPendingExplanation": "Your purchase is pending. You can check purchase history in Trinity (or email) for updates",
+        "paymentPendingExplanation": "Your purchase is pending. You can check purchase history in Trinity (or your email) for updates",
         "paymentSuccess": "Payment Success",
         "paymentSuccessExplanation": "Your payment has been accepted",
         "paymentFailure": "Payment Failure",
@@ -374,7 +376,10 @@
         "paymentStatus": "Payment Status",
         "purchaseAmount": "Purchase Amount",
         "help": "Need help with your purchase?",
-        "faq": "Visit MoonPay's FAQs"
+        "faq": "Visit MoonPay's FAQs",
+        "gettingTransactionDetails": "Getting latest transaction details",
+        "errorGettingTransactionDetails": "Error getting transaction details",
+        "pleaseComplete3DSecure": "Please complete 3-D secure to process your payment"
     },
     "home": {
         "balance": "BALANCE",

@@ -317,6 +317,11 @@ export default (state = initialState, action) => {
                     ...state,
                     isLoggingIn: action.payload,
                 };
+        case MoonPayExchangeActionTypes.ADD_TRANSACTION:
+            return {
+                ...state,
+                transactions: [...state.transactions, action.payload],
+            };
         default:
             return state;
     }
