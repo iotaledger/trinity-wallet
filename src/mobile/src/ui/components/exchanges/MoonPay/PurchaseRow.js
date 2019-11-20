@@ -92,8 +92,10 @@ export default class PurchaseRow extends PureComponent {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Transaction confirmation state */
+        /** Purchase confirmation state */
         status: PropTypes.string.isRequired,
+        /** Purchase confirmation status text */
+        statusText: PropTypes.string.isRequired,
         /** Transaction value */
         value: PropTypes.number.isRequired,
         /** Transaction unit */
@@ -108,30 +110,36 @@ export default class PurchaseRow extends PureComponent {
             containerBackgroundColor: PropTypes.shape({ backgroundColor: PropTypes.string.isRequired }).isRequired,
             rowTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
             primaryColor: PropTypes.string.isRequired,
+            failedColor: PropTypes.string.isRequired,
         }).isRequired,
         /** Container element press event callback function */
         onPress: PropTypes.func.isRequired,
     };
 
+    getOpacity() {
+        const { status } = this.props;
+        return status === 'pending' || status === 'waitingAuthorization' ? 0.55 : 1;
+    }
+
     render() {
-        const { status, value, unit, time, t, style, onPress } = this.props;
+        const { status, statusText, value, unit, time, t, style, onPress } = this.props;
 
         return (
             <TouchableOpacity onPress={() => onPress(this.props)}>
-                <View style={styles.container}>
+                <View style={[ styles.container, { opacity: this.getOpacity() } ]}>
                     <View style={[styles.row, style.containerBackgroundColor]}>
                         <View style={styles.innerRowContainer}>
                             <View style={styles.iconWrapper}>
                                 <Icon
                                     name="moonpayEmblem"
-                                    size={width / 18}
+                                    size={width / 22}
                                     color={style.titleColor}
                                     iconStyle={{ position: 'absolute' }}
                                 />
                             </View>
                             <View style={styles.textWrapper}>
                                 <View style={styles.topWrapper}>
-                                    <Text style={[styles.statusText, { color: style.titleColor }]}>{status}</Text>
+                                    <Text style={[styles.statusText, { color: status === 'failed' ? style.failedColor : style.titleColor }]}>{statusText}</Text>
                                     <Text style={[styles.confirmationStatus, { color: style.titleColor }]}>
                                         {value} {unit}
                                     </Text>

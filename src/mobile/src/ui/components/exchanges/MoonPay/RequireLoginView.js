@@ -7,8 +7,8 @@ import { getAnimation } from 'shared-modules/animations';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import { setLoggingIn } from 'shared-modules/actions/exchanges/MoonPay';
 import { Styling } from 'ui/theme/general';
-import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { height, width } from 'libs/dimensions';
 import navigator from 'libs/navigation';
 import CtaButton from 'ui/components/CtaButton';
@@ -20,12 +20,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1.8,
+        flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
     midContainer: {
-        flex: 3.5,
+        flex: 3.8,
         alignItems: 'center',
         justifyContent: 'space-between',
     },
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     text: {
         fontFamily: 'SourceSansPro-Light',
         textAlign: 'center',
-        width: Styling.contentWidth,
-        fontSize: Styling.fontSize6,
+        width: Styling.contentWidth * 0.8,
+        fontSize: Styling.fontSize5,
         alignItems: 'center',
     },
 });
@@ -56,61 +56,47 @@ class RequireLoginView extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         themeName: PropTypes.string.isRequired,
+        /** @ignore */
+        setLoggingIn: PropTypes.func.isRequired,
     };
 
     render() {
-        const { t, theme, themeName } = this.props;
+        const { t, theme, themeName, setLoggingIn } = this.props;
 
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
-                    <AnimatedComponent
-                        animationInType={['fadeIn']}
-                        animationOutType={['fadeOut', 'slideOutLeft']}
-                        delay={400}
-                    >
-                        <Text style={[styles.text, { color: theme.body.color }]}>
-                            {t('moonpay:loginToViewPurchaseHistory')}
-                        </Text>
-                    </AnimatedComponent>
+                    <Text style={[styles.text, { color: theme.body.color }]}>
+                        {t('moonpay:loginToViewPurchaseHistory')}
+                    </Text>
                 </View>
                 <View style={styles.midContainer}>
-                    <AnimatedComponent
-                        animationInType={['fadeIn']}
-                        animationOutType={['fadeOut', 'slideOutLeft']}
-                        delay={200}
+                    <LottieView
+                        source={getAnimation('welcome', themeName)}
                         style={styles.animation}
-                    >
-                        <LottieView
-                            source={getAnimation('language', themeName)}
-                            style={styles.animation}
-                            loop={false}
-                            autoPlay
-                            ref={(ref) => {
-                                this.animation = ref;
-                            }}
-                            onAnimationFinish={() => this.animation.play(52, 431)}
-                        />
-                    </AnimatedComponent>
+                        loop={false}
+                        autoPlay
+                        ref={(ref) => {
+                            this.animation = ref;
+                        }}
+                        onAnimationFinish={() => this.animation.play(52, 431)}
+                    />
                 </View>
                 <View style={{ flex: 0.3 }} />
                 <View style={styles.bottomContainer}>
-                    <AnimatedComponent
-                        animationInType={['fadeIn']}
-                        animationOutType={['fadeOut', 'slideOutLeft']}
-                        delay={0}
-                    >
-                        <CtaButton
-                            ctaColor={theme.primary.color}
-                            ctaBorderColor={theme.primary.color}
-                            secondaryCtaColor={theme.primary.body}
-                            text={t('moonpay:loginToMoonPay')}
-                            onPress={() => navigator.push('landing')}
-                            ctaWidth={width / 1.4}
-                            ctaHeight={height / 12}
-                            displayActivityIndicator={false}
-                        />
-                    </AnimatedComponent>
+                    <CtaButton
+                        ctaColor={theme.primary.color}
+                        ctaBorderColor={theme.primary.color}
+                        secondaryCtaColor={theme.primary.body}
+                        text={t('moonpay:loginToMoonPay')}
+                        onPress={() => {
+                            setLoggingIn(true);
+                            navigator.push('landing');
+                        }}
+                        ctaWidth={width / 1.4}
+                        ctaHeight={height / 12}
+                        displayActivityIndicator={false}
+                    />
                 </View>
             </View>
         );
@@ -125,6 +111,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     setSetting,
+    setLoggingIn
 };
 
 export default withTranslation(['languageSetup', 'global'])(

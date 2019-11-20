@@ -108,6 +108,10 @@ const initialState = {
      * Determines if the user is authenticated
      */
     isAuthenticated: false,
+    /**
+     * Dertermines if user is logging into Moonpay from their History
+     */
+    isLoggingIn: false
 };
 
 export default (state = initialState, action) => {
@@ -308,6 +312,11 @@ export default (state = initialState, action) => {
                     return transaction;
                 }),
             };
+        case MoonPayExchangeActionTypes.SET_LOGGING_IN:
+                return {
+                    ...state,
+                    isLoggingIn: action.payload,
+                };
         default:
             return state;
     }

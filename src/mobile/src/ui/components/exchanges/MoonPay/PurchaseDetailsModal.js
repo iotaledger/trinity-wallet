@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Clipboard, TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import { Linking, Clipboard, TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import { formatModalTime } from 'shared-modules/libs/date';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     content: {
         width: contentWidth,
         alignItems: 'flex-start',
+        flex: 1,
     },
     header: {
         alignItems: 'center',
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     rowInnerWrapper: {
-        flex: 7,
+        flex: 5,
     },
     rowText: {
         backgroundColor: 'transparent',
@@ -67,7 +68,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Bold',
         fontSize: Styling.fontSize3,
-        paddingTop: height / 50,
         paddingBottom: height / 300,
     },
     addressRowContainer: {
@@ -109,7 +109,7 @@ export default class PurchaseDetailsModal extends PureComponent {
         /** Wallet address (where the funds were transferred to) */
         address: PropTypes.string.isRequired,
         /** @ignore */
-        status: PropTypes.string.isRequired,
+        statusText: PropTypes.string.isRequired,
         /** @ignore */
         shouldDisplayAuthorizationOption: PropTypes.bool.isRequired,
         /** IOTA unit */
@@ -120,6 +120,8 @@ export default class PurchaseDetailsModal extends PureComponent {
         bundle: PropTypes.string,
         /** Transaction currency code */
         currencyCode: PropTypes.string.isRequired,
+        /** Transaction currency code */
+        fiatValue: PropTypes.number.isRequired,
         /** Content styles */
         style: PropTypes.shape({
             backgroundColor: PropTypes.string.isRequired,
@@ -212,7 +214,7 @@ export default class PurchaseDetailsModal extends PureComponent {
     render() {
         const {
             shouldDisplayAuthorizationOption,
-            status,
+            statusText,
             currencyCode,
             address,
             hideModal,
@@ -223,6 +225,7 @@ export default class PurchaseDetailsModal extends PureComponent {
             time,
             t,
             style,
+            fiatValue
         } = this.props;
 
         return (
@@ -237,58 +240,67 @@ export default class PurchaseDetailsModal extends PureComponent {
                 displayTopBar
             >
                 <View style={styles.content}>
+                    <View style={{ flex: 1 }} />
                     <View style={styles.wrapper}>
                         <View style={styles.header}>
                             <Text style={[styles.headerText, { color: style.titleColor }]}>
-                                {t('moonpay:moonpayPurchase')}
+                                {t('moonpay:purchase')} {value} {unit}
                             </Text>
-                            <View style={styles.valueContainer}>
-                                <Text style={[styles.headerText, { color: style.titleColor }]}>{value}</Text>
-                                <Text style={[styles.unitText, { color: style.titleColor }]}>{unit}</Text>
-                            </View>
                         </View>
                         <Text style={[styles.timestamp, style.defaultTextColor]}>
                             {' '}
                             {formatModalTime(locale, timezone, time)}
                         </Text>
                     </View>
-                    <View style={styles.rowContainer}>
-                        <Text style={[styles.label, style.defaultTextColor]}>{t('fingerprintSetup:status')}:</Text>
+                    <View style={[ styles.rowContainer, { paddingTop: height / 50 } ]}>
+                        <Text style={[styles.label, style.defaultTextColor]}>{t('moonpay:paymentStatus')}:</Text>
                         <View style={styles.rowWrapper}>
-                            <TouchableOpacity style={styles.rowInnerWrapper}>
+                            <Text
+                                style={[styles.rowText, style.defaultTextColor]}
+                                numberOfLines={2}
+                                ellipsizeMode="middle"
+                            >
+                                {statusText}
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={styles.rowContainer}>
+                        <Text style={[styles.label, style.defaultTextColor]}>{t('moonpay:purchaseAmount')}:</Text>
+                        <View style={styles.rowWrapper}>
+                            <Text
+                                style={[styles.rowText, style.defaultTextColor]}
+                                numberOfLines={2}
+                                ellipsizeMode="middle"
+                            >
+                                {getCurrencySymbol(currencyCode)}
+                                {(fiatValue + fee).toFixed(2)}
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={styles.rowContainer}>
+                        <Text style={[styles.label, style.defaultTextColor]}>{t('bundleHash')}:</Text>
+                        <View style={styles.rowWrapper}>
+                            <TouchableOpacity
+                                onPress={() => bundle && this.copy(bundle, 'bundle')}
+                                style={styles.rowInnerWrapper}
+                            >
                                 <Text
                                     style={[styles.rowText, style.defaultTextColor]}
                                     numberOfLines={2}
                                     ellipsizeMode="middle"
                                 >
-                                    {status}
+                                    {bundle ? bundle : t('moonpay:awaitingIOTATransaction')}
                                 </Text>
                             </TouchableOpacity>
                         </View>
                     </View>
-                    {bundle && (
-                        <View style={styles.rowContainer}>
-                            <Text style={[styles.label, style.defaultTextColor]}>{t('bundleHash')}:</Text>
-                            <View style={styles.rowWrapper}>
-                                <TouchableOpacity
-                                    onPress={() => this.copy(bundle, 'bundle')}
-                                    style={styles.rowInnerWrapper}
-                                >
-                                    <Text
-                                        style={[styles.rowText, style.defaultTextColor]}
-                                        numberOfLines={2}
-                                        ellipsizeMode="middle"
-                                    >
-                                        {bundle}
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    )}
                     <View style={styles.rowContainer}>
                         <Text style={[styles.label, style.defaultTextColor]}>{t('address')}:</Text>
                         <View style={styles.rowWrapper}>
-                            <TouchableOpacity style={styles.rowInnerWrapper}>
+                            <TouchableOpacity
+                                onPress={() => this.copy(address, 'address')}
+                                style={styles.rowInnerWrapper}
+                            >
                                 <Text
                                     style={[styles.rowText, style.defaultTextColor]}
                                     numberOfLines={2}
@@ -299,25 +311,21 @@ export default class PurchaseDetailsModal extends PureComponent {
                             </TouchableOpacity>
                         </View>
                     </View>
-
                     <View style={styles.rowContainer}>
-                        <Text style={[styles.label, style.defaultTextColor]}>{t('moonpay:moonpayFee')}:</Text>
-                        <View style={styles.rowWrapper}>
-                            <TouchableOpacity
-                                onPress={() => this.copy(bundle, 'bundle')}
-                                style={styles.rowInnerWrapper}
+                        <Text style={[styles.label, style.defaultTextColor]}>{t('moonpay:help')}</Text>
+                        <TouchableOpacity
+                                onPress={() => Linking.openURL('https://help.moonpay.io/')}
+                        >
+                            <Text
+                                style={[styles.rowText, style.defaultTextColor, { textDecorationLine: 'underline' }]}
+                                numberOfLines={2}
+                                ellipsizeMode="middle"
                             >
-                                <Text
-                                    style={[styles.rowText, style.defaultTextColor]}
-                                    numberOfLines={2}
-                                    ellipsizeMode="middle"
-                                >
-                                    {getCurrencySymbol(currencyCode)}
-                                    {fee}
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
+                                {t('moonpay:faq')}
+                            </Text>
+                        </TouchableOpacity>
                     </View>
+                    <View style={{ flex: 1 }} />
                 </View>
             </ModalView>
         );

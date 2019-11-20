@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { isIPAddressAllowed, getAlpha3CodeForIPAddress } from 'shared-modules/selectors/exchanges/MoonPay';
-import { updateCustomerInfo } from 'shared-modules/actions/exchanges/MoonPay';
+import { updateCustomerInfo, setLoggingIn } from 'shared-modules/actions/exchanges/MoonPay';
 import { getAnimation } from 'shared-modules/animations';
 import navigator from 'libs/navigation';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
@@ -83,6 +83,10 @@ class Landing extends Component {
         alpha3CodeForIPAddress: PropTypes.string.isRequired,
         /** @ignore */
         updateCustomerInfo: PropTypes.func.isRequired,
+        /** @ignore */
+        setLoggingIn: PropTypes.func.isRequired,
+        /** @ignore */
+        isLoggingIn: PropTypes.bool.isRequired
     };
 
     constructor(props) {
@@ -132,6 +136,7 @@ class Landing extends Component {
      * @method goBack
      */
     goBack() {
+        this.props.setLoggingIn(false);
         navigator.pop(this.props.componentId);
     }
 
@@ -141,6 +146,7 @@ class Landing extends Component {
             theme: { body },
             themeName,
             countries,
+            isLoggingIn
         } = this.props;
         const textColor = { color: body.color };
         const countryNames = map(filter(countries, (country) => country.isAllowed), (country) => country.name);
@@ -164,7 +170,7 @@ class Landing extends Component {
                         delay={266}
                     >
                         <InfoBox>
-                            <Text style={[styles.infoText, textColor]}>{t('moonpay:buyIOTA')}</Text>
+                            <Text style={[styles.infoText, textColor]}>{isLoggingIn ? t('moonpay:loginToMoonPay') : t('moonpay:buyIOTA')}</Text>
                             <AnimatedComponent
                                 animationInType={['fadeIn', 'slideInRight']}
                                 animationOutType={['fadeOut', 'slideOutLeft']}
@@ -246,10 +252,12 @@ const mapStateToProps = (state) => ({
     country: state.exchanges.moonpay.customer.address.country,
     isIPAddressAllowed: isIPAddressAllowed(state),
     alpha3CodeForIPAddress: getAlpha3CodeForIPAddress(state),
+    isLoggingIn: state.exchanges.moonpay.isLoggingIn,
 });
 
 const mapDispatchToProps = {
     updateCustomerInfo,
+    setLoggingIn
 };
 
 export default withTranslation()(

@@ -360,7 +360,7 @@ class History extends Component {
     prepMoonPayPurchases() {
         const {
             moonpayPurchases,
-            theme: { primary, body, dark },
+            theme: { primary, body, dark, negative },
             t,
             exchangeRates,
         } = this.props;
@@ -387,12 +387,14 @@ class History extends Component {
             return {
                 time: createdAt,
                 address: walletAddress,
-                status: t(`moonpay:${status}`),
+                statusText: t(`moonpay:${status}`),
+                status,
                 fee: feeAmount,
                 currencyCode,
                 t,
                 value: round(formatValue(amount), 1),
                 fullValue: formatValue(amount),
+                fiatValue: baseCurrencyAmount,
                 unit: SHORT_IOTA_CURRENCY_CODE,
                 onPress: (props) => {
                     this.props.toggleModalActivity(
@@ -417,6 +419,7 @@ class History extends Component {
                     containerBackgroundColor: { backgroundColor: dark.color },
                     rowTextColor: { color: dark.body },
                     primaryColor: primary.color,
+                    failedColor: negative.color,
                 },
             };
         });
@@ -462,7 +465,9 @@ class History extends Component {
                                     ctaBorderColor={primary.color}
                                     secondaryCtaColor={primary.body}
                                     text={t('moonpay:buyIOTA')}
-                                    onPress={() => navigator.push('selectAccount')}
+                                    onPress={() => {
+                                        navigator.push('selectAccount');
+                                    }}
                                     ctaWidth={width / 2}
                                     ctaHeight={height / 12}
                                 />

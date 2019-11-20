@@ -3,7 +3,7 @@ import { withTranslation } from 'react-i18next';
 import { Linking, Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import navigator from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { verifyEmailAndFetchMeta } from 'shared-modules/actions/exchanges/MoonPay';
+import { verifyEmailAndFetchMeta, setLoggingIn } from 'shared-modules/actions/exchanges/MoonPay';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -106,6 +106,10 @@ class VerifyEmail extends React.Component {
         verifyEmailAndFetchMeta: PropTypes.func.isRequired,
         /** Component ID */
         componentId: PropTypes.string.isRequired,
+        /** @ignore */
+        setLoggingIn: PropTypes.func.isRequired,
+        /** @ignore */
+        isLoggingIn: PropTypes.bool.isRequired
     };
 
     constructor(props) {
@@ -121,6 +125,10 @@ class VerifyEmail extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isVerifyingEmail && !nextProps.isVerifyingEmail && !nextProps.hasErrorVerifyingEmail) {
+            if (this.props.isLoggingIn) {
+                this.props.setLoggingIn(false);
+                return navigator.setStackRoot('home');
+            }
             this.redirectToScreen('selectAccount');
         }
     }
@@ -312,11 +320,13 @@ const mapStateToProps = (state) => ({
     email: getCustomerEmail(state),
     isVerifyingEmail: state.exchanges.moonpay.isVerifyingEmail,
     hasErrorVerifyingEmail: state.exchanges.moonpay.hasErrorVerifyingEmail,
+    isLoggingIn: state.exchanges.moonpay.isLoggingIn,
 });
 
 const mapDispatchToProps = {
     generateAlert,
     verifyEmailAndFetchMeta,
+    setLoggingIn
 };
 
 export default WithUserActivity()(

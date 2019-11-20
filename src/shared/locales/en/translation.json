@@ -259,7 +259,7 @@
         "selectAccount": "Select your Trinity account",
         "selectAccountExplanation": "Your MoonPay purchase will be transferred automatically to your selected account.",
         "setupEmail": "First, let's get setup quickly",
-        "setupEmailExplanation": "Provide your email address for account creation.",
+        "setupEmailExplanation": "Provide the email address for your account.",
         "yourEmail": "YOUR EMAIL",
         "checkInbox": "Please check your inbox to verify your email",
         "verificationCodeSent": "We've sent a verification code to {{email}}.",
@@ -361,14 +361,20 @@
         "paymentFailureExplanation": "We're sorry, your payment has been rejected",
         "viewReceipt": "View receipt",
         "moonpayPurchase": "MoonPay Purchase",
+        "purchase": "Purchase",
         "emptyHistory": "You have no MoonPay purchase history",
         "loginToViewPurchaseHistory": "Log in or register as a user to view purchase history",
         "loginToMoonPay": "Login to MoonPay",
         "pending": "Pending",
-        "completed": "Completed",
+        "completed": "Complete",
         "failed": "Failed",
-        "waitingAuthorization": "Waiting Authorization",
-        "authorize": "Authorize"
+        "waitingAuthorization": "Waiting for 3D Secure",
+        "authorize": "Authorize",
+        "awaitingIOTATransaction": "Awaiting IOTA Transaction",
+        "paymentStatus": "Payment Status",
+        "purchaseAmount": "Purchase Amount",
+        "help": "Need help with your purchase?",
+        "faq": "Visit MoonPay's FAQs"
     },
     "home": {
         "balance": "BALANCE",
@@ -1008,6 +1014,6 @@
     "help": {
         "docsSite": "Trinity Docs Site",
         "commonIssues": "Common Wallet Issues",
-        "buyingIOTA": "Problems Buying IOTA"
+        "buyingIOTA": "Problems Buying IOTA",
     }
 }

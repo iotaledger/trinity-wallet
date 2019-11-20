@@ -837,3 +837,17 @@ export const fetchTransactionDetails = (id) => (dispatch, getState) => {
             }
         });
 };
+
+/**
+ * Dispatch to set logging in status
+ *
+ * @method setLoggingIn
+ *
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const setLoggingIn = (payload) => ({
+    type: MoonPayExchangeActionTypes.SET_LOGGING_IN,
+    payload,
+});
