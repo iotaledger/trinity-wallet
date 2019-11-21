@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default function withPurchaseSummary(WrappedComponent, config) {
+export default function withPurchaseSummary(WrappedComponent) {
     /** MoonPay purchase summary screen component */
     class PurchaseSummary extends Component {
         static propTypes = {
@@ -211,11 +211,8 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 );
             }
         }
-
-        render() {
+        renderChildren(config) {
             const {
-                isCreatingTransaction,
-                hasErrorCreatingTransaction,
                 amount,
                 address,
                 brand,
@@ -223,19 +220,158 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                 lastDigits,
                 fee,
                 totalAmount,
-                t,
-                theme,
                 exchangeRates,
                 expiryInfo,
-                componentId,
+                t,
+                theme,
                 activeTransaction,
-                generateAlert,
             } = this.props;
 
             const textColor = { color: theme.body.color };
 
             const receiveAmount = this.getReceiveAmount();
             const activeFiatCurrency = getActiveFiatCurrency(denomination);
+            return (
+                <View style={styles.container}>
+                    <View style={{ flex: 0.2 }} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={350}
+                    >
+                        <InfoBox>
+                            <Text style={[styles.infoText, textColor]}>{t(config.header)}</Text>
+                            <Text
+                                style={[
+                                    styles.infoTextRegular,
+                                    textColor,
+                                    { paddingTop: height / 60, textAlign: 'center' },
+                                ]}
+                            >
+                                {t(config.subtitle)}
+                            </Text>
+                        </InfoBox>
+                    </AnimatedComponent>
+                    <View style={{ flex: 0.3 }} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={300}
+                    >
+                        <View style={styles.summaryRowContainer}>
+                            <Text style={[styles.infoTextRegular, textColor, { fontSize: Styling.fontSize5 }]}>
+                                {t('moonpay:order')}
+                            </Text>
+                            <Text style={[styles.infoTextBold, textColor, { fontSize: Styling.fontSize5 }]}>
+                                {receiveAmount}
+                            </Text>
+                        </View>
+                    </AnimatedComponent>
+                    <View style={{ flex: 0.4 }} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={250}
+                    >
+                        <View style={styles.summaryRowContainer}>
+                            <Text style={[styles.infoTextRegular, textColor]}>
+                                {t('moonpay:trinityWalletAddress')}
+                            </Text>
+                        </View>
+                    </AnimatedComponent>
+                    <View style={{ flex: 0.1 }} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={200}
+                    >
+                        <View style={styles.summaryRowContainer}>
+                            <Text style={[styles.infoTextLight, textColor]}>
+                                {isEmpty(activeTransaction) ? address : activeTransaction.walletAddress}
+                            </Text>
+                        </View>
+                    </AnimatedComponent>
+                    <View style={{ flex: 0.4 }} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={150}
+                    >
+                        <View style={styles.summaryRowContainer}>
+                            <Text style={[styles.infoTextLight, textColor]}>
+                                {t('moonpay:debitCard', { brand })}
+                            </Text>
+                            <Text style={[styles.infoTextLight, textColor]}>**** **** **** {lastDigits}</Text>
+                        </View>
+                    </AnimatedComponent>
+                    <View style={{ flex: 0.05 }} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={100}
+                    >
+                        <View style={styles.summaryRowContainer}>
+                            <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:cardExpiry')}</Text>
+                            <Text style={[styles.infoTextLight, textColor]}>{expiryInfo}</Text>
+                        </View>
+                    </AnimatedComponent>
+                    <View style={{ flex: 0.4 }} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={50}
+                    >
+                        <View style={styles.summaryRowContainer}>
+                            <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:youWillReceive')}</Text>
+                            <Text style={[styles.infoTextLight, textColor]}>{receiveAmount}</Text>
+                        </View>
+                        <View style={styles.summaryRowContainer}>
+                            <Text style={[styles.infoTextLight, textColor]}>
+                                {t('moonpay:marketPrice')}: {receiveAmount} @{' '}
+                                {getCurrencySymbol(activeFiatCurrency)}
+                                {exchangeRates[activeFiatCurrency]}
+                            </Text>
+                            <Text style={[styles.infoTextLight, textColor]}>
+                                {this.getStringifiedFiatAmount(
+                                    getAmountInFiat(Number(amount), denomination, exchangeRates),
+                                )}
+                            </Text>
+                        </View>
+                        <View style={{ flex: 0.05 }} />
+                        <View style={styles.summaryRowContainer}>
+                            <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:moonpayFee')}</Text>
+                            <Text style={[styles.infoTextLight, textColor]}>
+                                {getCurrencySymbol(activeFiatCurrency)}
+                                {fee}
+                            </Text>
+                        </View>
+                        <View style={{ flex: 0.4 }} />
+                        <View style={styles.summaryRowContainer}>
+                            <Text style={[styles.infoTextRegular, textColor, { fontSize: Styling.fontSize5 }]}>
+                                {t('global:total')}
+                            </Text>
+                            <Text style={[styles.infoTextBold, textColor, { fontSize: Styling.fontSize5 }]}>
+                                {getCurrencySymbol(activeFiatCurrency)}
+                                {totalAmount}
+                            </Text>
+                        </View>
+                    </AnimatedComponent>
+                    <View style={{ flex: 0.3 }} />
+                </View>
+            );
+        }
+
+
+        render() {
+            const {
+                isCreatingTransaction,
+                hasErrorCreatingTransaction,
+                t,
+                theme,
+                componentId,
+                activeTransaction,
+                generateAlert,
+            } = this.props;
 
             return (
                 <WrappedComponent
@@ -247,134 +383,8 @@ export default function withPurchaseSummary(WrappedComponent, config) {
                     theme={theme}
                     componentId={componentId}
                     generateAlert={generateAlert}
-                >
-                    <View style={styles.container}>
-                        <View style={{ flex: 0.2 }} />
-                        <AnimatedComponent
-                            animationInType={['slideInRight', 'fadeIn']}
-                            animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={350}
-                        >
-                            <InfoBox>
-                                <Text style={[styles.infoText, textColor]}>{t(config.header)}</Text>
-                                <Text
-                                    style={[
-                                        styles.infoTextRegular,
-                                        textColor,
-                                        { paddingTop: height / 60, textAlign: 'center' },
-                                    ]}
-                                >
-                                    {t(config.subtitle)}
-                                </Text>
-                            </InfoBox>
-                        </AnimatedComponent>
-                        <View style={{ flex: 0.3 }} />
-                        <AnimatedComponent
-                            animationInType={['slideInRight', 'fadeIn']}
-                            animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={300}
-                        >
-                            <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextRegular, textColor, { fontSize: Styling.fontSize5 }]}>
-                                    {t('moonpay:order')}
-                                </Text>
-                                <Text style={[styles.infoTextBold, textColor, { fontSize: Styling.fontSize5 }]}>
-                                    {receiveAmount}
-                                </Text>
-                            </View>
-                        </AnimatedComponent>
-                        <View style={{ flex: 0.4 }} />
-                        <AnimatedComponent
-                            animationInType={['slideInRight', 'fadeIn']}
-                            animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={250}
-                        >
-                            <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextRegular, textColor]}>
-                                    {t('moonpay:trinityWalletAddress')}
-                                </Text>
-                            </View>
-                        </AnimatedComponent>
-                        <View style={{ flex: 0.1 }} />
-                        <AnimatedComponent
-                            animationInType={['slideInRight', 'fadeIn']}
-                            animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={200}
-                        >
-                            <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextLight, textColor]}>
-                                    {isEmpty(activeTransaction) ? address : activeTransaction.walletAddress}
-                                </Text>
-                            </View>
-                        </AnimatedComponent>
-                        <View style={{ flex: 0.4 }} />
-                        <AnimatedComponent
-                            animationInType={['slideInRight', 'fadeIn']}
-                            animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={150}
-                        >
-                            <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextLight, textColor]}>
-                                    {t('moonpay:debitCard', { brand })}
-                                </Text>
-                                <Text style={[styles.infoTextLight, textColor]}>**** **** **** {lastDigits}</Text>
-                            </View>
-                        </AnimatedComponent>
-                        <View style={{ flex: 0.05 }} />
-                        <AnimatedComponent
-                            animationInType={['slideInRight', 'fadeIn']}
-                            animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={100}
-                        >
-                            <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:cardExpiry')}</Text>
-                                <Text style={[styles.infoTextLight, textColor]}>{expiryInfo}</Text>
-                            </View>
-                        </AnimatedComponent>
-                        <View style={{ flex: 0.4 }} />
-                        <AnimatedComponent
-                            animationInType={['slideInRight', 'fadeIn']}
-                            animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={50}
-                        >
-                            <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:youWillReceive')}</Text>
-                                <Text style={[styles.infoTextLight, textColor]}>{receiveAmount}</Text>
-                            </View>
-                            <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextLight, textColor]}>
-                                    {t('moonpay:marketPrice')}: {receiveAmount} @{' '}
-                                    {getCurrencySymbol(activeFiatCurrency)}
-                                    {exchangeRates[activeFiatCurrency]}
-                                </Text>
-                                <Text style={[styles.infoTextLight, textColor]}>
-                                    {this.getStringifiedFiatAmount(
-                                        getAmountInFiat(Number(amount), denomination, exchangeRates),
-                                    )}
-                                </Text>
-                            </View>
-                            <View style={{ flex: 0.05 }} />
-                            <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:moonpayFee')}</Text>
-                                <Text style={[styles.infoTextLight, textColor]}>
-                                    {getCurrencySymbol(activeFiatCurrency)}
-                                    {fee}
-                                </Text>
-                            </View>
-                            <View style={{ flex: 0.4 }} />
-                            <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextRegular, textColor, { fontSize: Styling.fontSize5 }]}>
-                                    {t('global:total')}
-                                </Text>
-                                <Text style={[styles.infoTextBold, textColor, { fontSize: Styling.fontSize5 }]}>
-                                    {getCurrencySymbol(activeFiatCurrency)}
-                                    {totalAmount}
-                                </Text>
-                            </View>
-                        </AnimatedComponent>
-                        <View style={{ flex: 0.3 }} />
-                    </View>
-                </WrappedComponent>
+                    renderChildren={(config) => this.renderChildren(config)}
+                />
             );
         }
     }

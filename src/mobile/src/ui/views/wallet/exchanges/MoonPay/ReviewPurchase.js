@@ -36,7 +36,7 @@ class ReviewPurchase extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        children: PropTypes.node.isRequired,
+        renderChildren: PropTypes.func.isRequired,
         /** @ignore */
         isCreatingTransaction: PropTypes.bool.isRequired,
         /** @ignore */
@@ -76,6 +76,18 @@ class ReviewPurchase extends Component {
     }
 
     /**
+     * Returns config for HOC
+     *
+     * @method getConfig
+     */
+    getConfig() {
+        return {
+            header: 'moonpay:reviewYourPurchase',
+            subtitle: 'moonpay:pleaseCarefullyCheckOrder',
+        };
+    }
+
+    /**
      * Navigates to chosen screen
      *
      * @method redirectToScreen
@@ -106,7 +118,7 @@ class ReviewPurchase extends Component {
                         <Header iconSize={width / 3} iconName="moonpay" textColor={theme.body.color} />
                     </AnimatedComponent>
                 </View>
-                {this.props.children}
+                {this.props.renderChildren(this.getConfig())}
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
@@ -126,9 +138,4 @@ class ReviewPurchase extends Component {
     }
 }
 
-const config = {
-    header: 'moonpay:reviewYourPurchase',
-    subtitle: 'moonpay:pleaseCarefullyCheckOrder',
-};
-
-export default withPurchaseSummary(ReviewPurchase, config);
+export default withPurchaseSummary(ReviewPurchase);

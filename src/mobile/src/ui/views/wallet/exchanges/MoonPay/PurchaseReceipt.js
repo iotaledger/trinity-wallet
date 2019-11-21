@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
@@ -8,6 +9,7 @@ import navigator from 'libs/navigation';
 import { width } from 'libs/dimensions';
 import Header from 'ui/components/Header';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
+import { MOONPAY_TRANSACTION_STATUSES } from 'shared-modules/exchanges/MoonPay';
 
 const styles = StyleSheet.create({
     container: {
@@ -35,10 +37,24 @@ class PurchaseComplete extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        children: PropTypes.node.isRequired,
+        renderChildren: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
+        /** @ignore */
+        activeTransaction: PropTypes.object,
     };
+
+    /**
+     * Returns config for HOC
+     *
+     * @method getConfig
+     */
+    getConfig() {
+        return {
+            header: 'moonpay:purchaseReceipt',
+            subtitle: get(this.props.activeTransaction, 'status') === MOONPAY_TRANSACTION_STATUSES.completed ? 'moonpay:transactionMayTakeAFewMinutes' : 'moonpay:purchaseMayTakeAFewMinutes'
+        };
+    }
 
     /**
      * Navigates to chosen screen
@@ -46,16 +62,28 @@ class PurchaseComplete extends Component {
      * @method redirectToScreen
      */
     redirectToHome() {
-        const { t } = this.props;
+        const { t , activeTransaction} = this.props;
+
+        const transactionStatus = get(activeTransaction, 'status');
         timer.setTimeout(
             'delayAlert',
-            () =>
-                this.props.generateAlert(
-                    'success',
-                    t('moonpay:purchaseComplete'),
-                    t('moonpay:transactionMayTakeAFewMinutes'),
-                    12000,
-                ),
+            () => {
+                if (transactionStatus === MOONPAY_TRANSACTION_STATUSES.completed) {
+                    this.props.generateAlert(
+                        'success',
+                        t('moonpay:purchaseComplete'),
+                        t('moonpay:transactionMayTakeAFewMinutes'),
+                        12000,
+                    );
+                } else if (transactionStatus === MOONPAY_TRANSACTION_STATUSES.pending) {
+                    this.props.generateAlert(
+                        'info',
+                        t('moonpay:paymentPending'),
+                        t('moonpay:purchaseMayTakeAFewMinutes'),
+                        12000,
+                    );
+                }
+            },
             2000,
         );
         navigator.setStackRoot('home');
@@ -75,7 +103,7 @@ class PurchaseComplete extends Component {
                         <Header iconSize={width / 3} iconName="moonpay" textColor={theme.body.color} />
                     </AnimatedComponent>
                 </View>
-                {this.props.children}
+                {this.props.renderChildren(this.getConfig())}
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <SingleFooterButton onButtonPress={() => this.redirectToHome()} buttonText={t('global:done')} />
@@ -86,9 +114,4 @@ class PurchaseComplete extends Component {
     }
 }
 
-const config = {
-    header: 'moonpay:purchaseComplete',
-    subtitle: 'moonpay:transactionMayTakeAFewMinutes',
-};
-
-export default withPurchaseSummary(PurchaseComplete, config);
+export default withPurchaseSummary(PurchaseComplete);
