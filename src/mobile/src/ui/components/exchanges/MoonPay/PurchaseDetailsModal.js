@@ -130,7 +130,7 @@ export default class PurchaseDetailsModal extends PureComponent {
         /** Transaction currency code */
         fiatValue: PropTypes.number.isRequired,
         /** Transaction failure reason */
-        failureReason: PropTypes.string.isRequired,
+        failureReason: PropTypes.string,
         /** Content styles */
         style: PropTypes.shape({
             backgroundColor: PropTypes.string.isRequired,
