@@ -1,7 +1,7 @@
 import findIndex from 'lodash/findIndex';
 import isNumber from 'lodash/isNumber';
 import size from 'lodash/size';
-import { PollingActionTypes, TransfersActionTypes } from '../types';
+import { PollingActionTypes, TransfersActionTypes, MoonPayExchangeActionTypes } from '../types';
 
 export const setNextPollIfSuccessful = (state) => {
     const { allPollingServices, pollFor } = state;
@@ -44,7 +44,7 @@ const polling = (
         /**
          * Polling service names
          */
-        allPollingServices: ['promotion', 'broadcast', 'marketData', 'price', 'chartData', 'nodeList', 'accountInfo'],
+        allPollingServices: ['promotion', 'broadcast', 'marketData', 'nodeList', 'accountInfo', 'moonpayTransactions'],
         /**
          * Determines the service currently being run during the poll cycle
          */
@@ -77,6 +77,10 @@ const polling = (
          * Determines if poll cycle is promoting an unconfirmed transaction
          */
         isAutoPromoting: false,
+        /**
+         * Determines if poll cycle is fetching MoonPay transaction history
+         */
+        isFetchingMoonPayTransactions: false,
     },
     action,
 ) => {
@@ -163,6 +167,23 @@ const polling = (
             return {
                 ...state,
                 pollFor: action.payload,
+            };
+        case MoonPayExchangeActionTypes.TRANSACTIONS_FETCH_REQUEST:
+            return {
+                ...state,
+                isFetchingMoonPayTransactions: true,
+            };
+        case MoonPayExchangeActionTypes.TRANSACTIONS_FETCH_SUCCESS:
+            return {
+                ...state,
+                isFetchingMoonPayTransactions: false,
+                ...setNextPollIfSuccessful(state),
+            };
+        case MoonPayExchangeActionTypes.TRANSACTIONS_FETCH_ERROR:
+            return {
+                ...state,
+                isFetchingMoonPayTransactions: false,
+                ...setNextPollIfUnsuccessful(state),
             };
         default:
             return state;
