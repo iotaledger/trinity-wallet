@@ -82,7 +82,7 @@ export class ModalViewComponent extends PureComponent {
         }
         return {
             height: isIPhoneX
-                ? height - Styling.topBarHeight + 20 - Styling.footerButtonHeight
+                ? height - Styling.topBarHeight - Styling.footerButtonHeight + Styling.iPhoneXBottomInsetHeight + 10
                 : height - Styling.topBarHeight - Styling.footerButtonHeight,
         };
     }

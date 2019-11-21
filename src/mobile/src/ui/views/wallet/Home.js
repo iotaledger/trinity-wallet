@@ -24,7 +24,7 @@ import Tabs from 'ui/components/Tabs';
 import Tab from 'ui/components/Tab';
 import TabContent from 'ui/components/TabContent';
 import navigator from 'libs/navigation';
-import { isAndroid } from 'libs/device';
+import { isAndroid, isIPhone11, isIPhoneX } from 'libs/device';
 
 const styles = StyleSheet.create({
     midContainer: {
@@ -259,7 +259,7 @@ class Home extends Component {
                                 behavior="padding"
                             >
                                 <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
-                                <View style={{ flex: 4.27 }}>
+                                <View style={{ flex: isIPhoneX ? 4.81 : 4.27 }}>
                                     <TabContent
                                         onTabSwitch={(name) => this.onTabSwitch(name)}
                                         handleCloseTopBar={() => this.handleCloseTopBar()}
