@@ -99,7 +99,10 @@ class InactivityLogout extends Component {
                         positiveColor={positive.color}
                         bodyColor={body.color}
                         textColor={textColor}
-                        setUserActive={() => this.props.setUserActivity({ inactive: false })}
+                        setUserActive={() => {
+                            this.props.setUserActivity({ inactive: false });
+                            navigator.pop(this.props.componentId);
+                        }}
                         generateAlert={(error, title, explanation) =>
                             this.props.generateAlert(error, title, explanation)
                         }
