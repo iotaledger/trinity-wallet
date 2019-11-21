@@ -259,7 +259,7 @@ class Home extends Component {
                                 behavior="padding"
                             >
                                 <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
-                                <View style={{ flex: 4.72 }}>
+                                <View style={{ flex: 4.27 }}>
                                     <TabContent
                                         onTabSwitch={(name) => this.onTabSwitch(name)}
                                         handleCloseTopBar={() => this.handleCloseTopBar()}

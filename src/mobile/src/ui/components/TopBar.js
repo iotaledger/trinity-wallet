@@ -505,7 +505,6 @@ class TopBar extends Component {
                             {children}
                         </View>
                     </View>
-                    <View style={{ flex: 1 }} />
                 </View>
             </TouchableWithoutFeedback>
         );
