@@ -424,7 +424,7 @@ class History extends Component {
             };
         });
 
-        return orderBy(formattedTransfers, 'createdAt', ['desc']);
+        return orderBy(formattedTransfers, 'createdAt', ['asc']);
     }
 
     /**
