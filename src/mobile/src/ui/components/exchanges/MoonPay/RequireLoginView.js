@@ -79,7 +79,7 @@ class RequireLoginView extends Component {
                         ref={(ref) => {
                             this.animation = ref;
                         }}
-                        onAnimationFinish={() => this.animation.play(52, 431)}
+                        onAnimationFinish={() => this.animation.play(161, 395)}
                     />
                 </View>
                 <View style={{ flex: 0.3 }} />

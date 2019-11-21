@@ -180,12 +180,12 @@ class Landing extends Component {
                                 <LottieView
                                     source={getAnimation('sending', themeName)}
                                     style={styles.animation}
-                                    loop={false}
+                                    loop
                                     autoPlay
                                     ref={(ref) => {
                                         this.animation = ref;
                                     }}
-                                    onAnimationFinish={() => this.animation.play(161, 395)}
+                                    onAnimationFinish={() => this.animation.play(89, 624)}
                                 />
                             </AnimatedComponent>
                             <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 60 }]}>
