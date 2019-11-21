@@ -10,6 +10,7 @@ import { locale, timezone } from 'libs/device';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
+import { getPurchaseFailureReason } from 'shared-modules/exchanges/MoonPay/utils';
 
 const contentWidth = width - width / 10;
 
@@ -51,6 +52,12 @@ const styles = StyleSheet.create({
     },
     rowInnerWrapper: {
         flex: 5,
+    },
+    statusText: {
+        backgroundColor: 'transparent',
+        fontFamily: 'SourceCodePro-Medium',
+        fontSize: Styling.fontSize2,
+        marginTop: 2,
     },
     rowText: {
         backgroundColor: 'transparent',
@@ -122,6 +129,8 @@ export default class PurchaseDetailsModal extends PureComponent {
         currencyCode: PropTypes.string.isRequired,
         /** Transaction currency code */
         fiatValue: PropTypes.number.isRequired,
+        /** Transaction failure reason */
+        failureReason: PropTypes.string.isRequired,
         /** Content styles */
         style: PropTypes.shape({
             backgroundColor: PropTypes.string.isRequired,
@@ -215,6 +224,7 @@ export default class PurchaseDetailsModal extends PureComponent {
         const {
             shouldDisplayAuthorizationOption,
             statusText,
+            failureReason,
             currencyCode,
             address,
             hideModal,
@@ -256,11 +266,11 @@ export default class PurchaseDetailsModal extends PureComponent {
                         <Text style={[styles.label, style.defaultTextColor]}>{t('moonpay:paymentStatus')}:</Text>
                         <View style={styles.rowWrapper}>
                             <Text
-                                style={[styles.rowText, style.defaultTextColor]}
+                                style={[styles.statusText, style.defaultTextColor]}
                                 numberOfLines={2}
                                 ellipsizeMode="middle"
                             >
-                                {statusText}
+                                {statusText}{failureReason && (': ' + getPurchaseFailureReason(failureReason))}
                             </Text>
                         </View>
                     </View>

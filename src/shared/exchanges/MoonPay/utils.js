@@ -1,4 +1,5 @@
 import includes from 'lodash/includes';
+import get from 'lodash/get';
 import {
     ALLOWED_IOTA_DENOMINATIONS,
     DEFAULT_FIAT_CURRENCY,
@@ -6,6 +7,7 @@ import {
     IOTA_CURRENCY_CODE,
     MOONPAY_REDIRECT_URL,
 } from './index';
+import i18next from '../../libs/i18next';
 
 /**
  * Gets active fiat currency.
@@ -98,3 +100,27 @@ export const convertFiatCurrency = (fiatAmount, exchangeRates, activeDenominatio
 export const prepareMoonPayExternalLink = (email, address, baseCurrencyAmount, baseCurrencyCode) => {
     return `${MOONPAY_EXTERNAL_URL}&email=${email}&currencyCode=${IOTA_CURRENCY_CODE}&walletAddress=${address}&baseCurrencyAmount=${baseCurrencyAmount}&baseCurrencyCode=${baseCurrencyCode}&redirectURL=${MOONPAY_REDIRECT_URL}`;
 };
+
+/**
+ * Returns purchase failure reason string
+ *
+ * @method getPurchaseFailureReason
+ *
+ * @param {string} failure reason
+ *
+ * @return {string}
+ */
+export const getPurchaseFailureReason = (failureReason) => {
+    const failureReasons = {
+        'Payment authorization declined': i18next.t('moonpay:paymentAuthorisationDeclined'),
+        '3D Secure timeout': i18next.t('moonpay:3DSecureTimeout'),
+        'Transaction declined': i18next.t('moonpay:transactionDeclined'),
+        'Internal error': i18next.t('moonpay:internalError'),
+        'Identity check timeout': i18next.t('moonpay:identityCheckTimeout'),
+        'Refund': i18next.t('moonpay:refund'),
+        'Rejection is final for user identity check': i18next.t('moonpay:idRejection'),
+        'Card not supported': i18next.t('moonpay:cardNotSupported'),
+        'Cancelled': i18next.t('moonpay:cancelled')
+    }
+    return get(failureReasons, failureReason);
+}

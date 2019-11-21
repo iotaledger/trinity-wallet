@@ -372,6 +372,7 @@ class History extends Component {
                 walletAddress,
                 createdAt,
                 feeAmount,
+                failureReason,
                 baseCurrencyAmount,
                 quoteCurrencyAmount,
                 cryptoTransactionId,
@@ -395,6 +396,7 @@ class History extends Component {
                 value: round(formatValue(amount), 1),
                 fullValue: formatValue(amount),
                 fiatValue: baseCurrencyAmount,
+                failureReason,
                 unit: SHORT_IOTA_CURRENCY_CODE,
                 onPress: (props) => {
                     this.props.toggleModalActivity(

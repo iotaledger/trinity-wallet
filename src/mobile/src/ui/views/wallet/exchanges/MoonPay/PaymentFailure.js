@@ -1,11 +1,12 @@
+import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import LottieView from 'lottie-react-native';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { getAnimation } from 'shared-modules/animations';
+import { getActiveTransaction } from 'shared-modules/selectors/exchanges/MoonPay';
+import { getPurchaseFailureReason } from 'shared-modules/exchanges/MoonPay/utils';
 import navigator from 'libs/navigation';
 import InfoBox from 'ui/components/InfoBox';
 import { width, height } from 'libs/dimensions';
@@ -60,10 +61,10 @@ class PaymentFailure extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** @ignore */
-        themeName: PropTypes.string.isRequired,
         /** Component ID */
         componentId: PropTypes.string.isRequired,
+        /** Transaction failure reason */
+        failureReason: PropTypes.object.isRequired
     };
 
     /**
@@ -78,9 +79,10 @@ class PaymentFailure extends Component {
         const {
             t,
             theme: { body, negative },
-            themeName,
+            failureReason
         } = this.props;
         const textColor = { color: body.color };
+
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -90,11 +92,11 @@ class PaymentFailure extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
                     >
-                        <Header iconSize={width / 3} iconName="moonpay" textColor={body.color} />
+                        <Header iconSize={width / 3} iconName='moonpay' textColor={body.color} />
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 0.2 }} />
+                    <View style={{ flex: 1 }} />
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
@@ -105,22 +107,13 @@ class PaymentFailure extends Component {
                             <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 60 }]}>
                                 {t('moonpay:paymentFailureExplanation')}
                             </Text>
+                            { failureReason && <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 60 }]}>
+                                {getPurchaseFailureReason(failureReason, t)}
+                            </Text>
+                            }
                         </InfoBox>
                     </AnimatedComponent>
-                    <View style={{ flex: 0.4 }} />
-                    <AnimatedComponent
-                        animationInType={['fadeIn', 'slideInRight']}
-                        animationOutType={['fadeOut', 'slideOutLeft']}
-                        delay={200}
-                        style={styles.animation}
-                    >
-                        <LottieView
-                            source={getAnimation('sending', themeName)}
-                            loop={false}
-                            autoPlay
-                            style={styles.animation}
-                        />
-                    </AnimatedComponent>
+                    <View style={{ flex: 1.5 }} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
@@ -135,6 +128,7 @@ class PaymentFailure extends Component {
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     themeName: state.settings.themeName,
+    failureReason: get(getActiveTransaction(state), 'failureReason'),
 });
 
 export default withTranslation()(connect(mapStateToProps)(PaymentFailure));
