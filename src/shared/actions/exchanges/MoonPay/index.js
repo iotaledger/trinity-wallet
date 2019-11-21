@@ -442,6 +442,53 @@ export const addTransaction = (payload) => ({
 });
 
 /**
+ * Dispatch when request for fetching transactions is about to be made
+ *
+ * @method fetchTransactionsRequest
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchTransactionsRequest = () => ({
+    type: MoonPayExchangeActionTypes.TRANSACTIONS_FETCH_REQUEST,
+});
+
+/**
+ * Dispatch when request for fetching transactions is successfully made
+ *
+ * @method fetchTransactionsSuccess
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchTransactionsSuccess = () => ({
+    type: MoonPayExchangeActionTypes.TRANSACTIONS_FETCH_SUCCESS,
+});
+
+/**
+ * Dispatch when request for fetching transactions is not successful
+ *
+ * @method fetchTransactionsError
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchTransactionsError = () => ({
+    type: MoonPayExchangeActionTypes.TRANSACTIONS_FETCH_ERROR,
+});
+
+/**
+ * Dispatch to set logging in status
+ *
+ * @method setLoggingIn
+ *
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const setLoggingIn = (payload) => ({
+    type: MoonPayExchangeActionTypes.SET_LOGGING_IN,
+    payload,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -855,15 +902,50 @@ export const fetchTransactionDetails = (id) => (dispatch, getState) => {
 };
 
 /**
- * Dispatch to set logging in status
+ * Fetch transaction history from Moonpay servers
  *
- * @method setLoggingIn
+ * @method fetchTransactions
  *
- * @param {string} payload
- *
- * @returns {{type: {string}, payload: {string} }}
+ * @returns {function}
  */
-export const setLoggingIn = (payload) => ({
-    type: MoonPayExchangeActionTypes.SET_LOGGING_IN,
-    payload,
-});
+export const fetchTransactions = () => (dispatch, getState) => {
+    dispatch(fetchTransactionsRequest());
+
+    api.fetchTransactions()
+        .then((transactions) => {
+            const { currencies } = getState().exchanges.moonpay;
+            dispatch(fetchTransactionsSuccess());
+
+            dispatch(
+                setTransactions(
+                    map(transactions, (transaction) =>
+                        assign(
+                            {},
+                            transaction,
+                            // "active" property determines if the transaction is active on user screen
+                            // i.e., the acive transaction user made from Trinity after authenticating himself/herself
+                            // Also, see #createTransaction action where we set the new transaction to "active"
+                            {
+                                active: false,
+                                currencyCode: toUpper(
+                                    get(
+                                        find(currencies, (currency) => currency.id === transaction.baseCurrencyId),
+                                        'code',
+                                    ),
+                                ),
+                            },
+                        ),
+                    ),
+                ),
+            );
+        })
+        .catch((error) => {
+            dispatch(fetchTransactionsError());
+
+            if (__DEV__) {
+                /* eslint-disable no-console */
+                console.log(error);
+                /* eslint-enable no-console */
+            }
+        });
+};
