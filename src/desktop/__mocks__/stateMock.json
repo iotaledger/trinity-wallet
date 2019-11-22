@@ -144,7 +144,8 @@
         "usdPrice": 0.2547,
         "eurPrice": 0.223,
         "btcPrice": 0.00007332,
-        "ethPrice": 0.002356798457087753
+        "ethPrice": 0.002356798457087753,
+        "rates": {}
     },
     "accounts": {
         "accountInfoDuringSetup": {

@@ -20,8 +20,6 @@ import {
 } from 'shared-modules/selectors/accounts';
 import {
     fetchMarketData,
-    fetchChartData,
-    fetchPrice,
     fetchNodeList,
     setPollFor,
     getAccountInfoForAllAccounts,
@@ -50,11 +48,7 @@ export class Poll extends Component {
         /** @ignore */
         fetchMarketData: PropTypes.func.isRequired,
         /** @ignore */
-        fetchPrice: PropTypes.func.isRequired,
-        /** @ignore */
         fetchNodeList: PropTypes.func.isRequired,
-        /** @ignore */
-        fetchChartData: PropTypes.func.isRequired,
         /** @ignore */
         getAccountInfoForAllAccounts: PropTypes.func.isRequired,
         /** @ignore */
@@ -174,8 +168,6 @@ export class Poll extends Component {
         const dict = {
             promotion: this.promote,
             marketData: this.props.fetchMarketData,
-            price: this.props.fetchPrice,
-            chartData: this.props.fetchChartData,
             nodeList: this.props.fetchNodeList,
             accountInfo: this.fetchLatestAccountInfo,
             broadcast: this.retryFailedTransaction,
@@ -288,8 +280,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     fetchMarketData,
-    fetchChartData,
-    fetchPrice,
     fetchNodeList,
     setPollFor,
     getAccountInfoForAllAccounts,

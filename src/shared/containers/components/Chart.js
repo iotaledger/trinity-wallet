@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { round } from '../../libs/utils';
 
-import { setCurrency, setTimeframe } from '../../actions/marketData';
+import { setChartCurrency, setChartTimeframe } from '../../actions/settings';
 import { getCurrencySymbol } from '../../libs/currency';
 
 import { getThemeFromState } from '../../selectors/global';
@@ -19,8 +19,8 @@ export default function withChartData(ChartComponent) {
         static propTypes = {
             settings: PropTypes.object.isRequired,
             marketData: PropTypes.object.isRequired,
-            setTimeframe: PropTypes.func.isRequired,
-            setCurrency: PropTypes.func.isRequired,
+            setChartTimeframe: PropTypes.func.isRequired,
+            setChartCurrency: PropTypes.func.isRequired,
             t: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
         };
@@ -29,8 +29,8 @@ export default function withChartData(ChartComponent) {
         timeframes = ['24h', '7d', '1m', '1h'];
 
         getPriceFormat = (x) => {
-            const { marketData } = this.props;
-            return marketData.currency === 'USD' || marketData.currency === 'EUR'
+            const { settings } = this.props;
+            return settings.chartCurrency === 'USD' || settings.chartCurrency === 'EUR'
                 ? parseFloat(x).toFixed(3)
                 : parseFloat(x).toFixed(6);
         };
@@ -68,47 +68,52 @@ export default function withChartData(ChartComponent) {
         }
 
         changeCurrency = () => {
-            const { marketData, setCurrency } = this.props;
+            const { settings, setChartCurrency } = this.props;
             const nextCurrency = this.currencies[
-                this.currencies.indexOf(marketData.currency) < this.currencies.length - 1
-                    ? this.currencies.indexOf(marketData.currency) + 1
+                this.currencies.indexOf(settings.chartCurrency) < this.currencies.length - 1
+                    ? this.currencies.indexOf(settings.chartCurrency) + 1
                     : 0
             ];
-            setCurrency(nextCurrency);
+            setChartCurrency(nextCurrency);
         };
 
         changeTimeframe = () => {
-            const { marketData, setTimeframe } = this.props;
+            const { settings, setChartTimeframe } = this.props;
             const nextTimeframe = this.timeframes[
-                this.timeframes.indexOf(marketData.timeframe) < this.timeframes.length - 1
-                    ? this.timeframes.indexOf(marketData.timeframe) + 1
+                this.timeframes.indexOf(settings.chartTimeframe) < this.timeframes.length - 1
+                    ? this.timeframes.indexOf(settings.chartTimeframe) + 1
                     : 0
             ];
-            setTimeframe(nextTimeframe);
+            setChartTimeframe(nextTimeframe);
         };
 
         render() {
             const { marketData, settings, theme, t } = this.props;
 
-            const currencyData = get(marketData.chartData, marketData.currency);
-            const dataSet = get(currencyData, marketData.timeframe) || [];
+            const currencyData = get(marketData.chartData, settings.chartCurrency.toLowerCase());
+            const rawData = get(currencyData, settings.chartTimeframe) || [];
 
+            rawData.sort((a, b) => a[0] - b[0]);
+
+            const dataSet = rawData.map(([time, price], index) => {
+                return { x: index, y: parseFloat(price), time: time };
+            });
             const chartProps = {
                 setCurrency: this.changeCurrency,
                 setTimeframe: this.changeTimeframe,
                 getPriceFormat: this.getPriceFormat,
                 getPriceForCurrency: this.getPriceForCurrency,
                 priceData: {
-                    currency: marketData.currency,
-                    symbol: getCurrencySymbol(marketData.currency),
+                    currency: settings.chartCurrency,
+                    symbol: getCurrencySymbol(settings.chartCurrency),
                     price: this.props.marketData.usdPrice,
                     volume: round(marketData.volume * settings.conversionRate).toLocaleString('en'),
                     change24h: marketData.change24h,
                     mcap: round(marketData.mcap * settings.conversionRate).toLocaleString('en'),
-                    globalSymbol: getCurrencySymbol(settings.currency),
+                    globalSymbol: getCurrencySymbol(settings.chartCurrency),
                 },
                 chartData: {
-                    timeframe: marketData.timeframe,
+                    timeframe: settings.chartTimeframe,
                     data: dataSet,
                     yAxis: {
                         ticks: this.getTicks(dataSet),
@@ -131,8 +136,8 @@ export default function withChartData(ChartComponent) {
     });
 
     const mapDispatchToProps = {
-        setCurrency,
-        setTimeframe,
+        setChartCurrency,
+        setChartTimeframe,
     };
 
     return connect(

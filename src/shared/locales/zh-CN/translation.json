@@ -457,7 +457,7 @@
     },
     "welcome": {
         "thankYou": "感谢您下载 Trinity 钱包",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "感谢您下载 Trinity Demo"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>写下您的种子和校验和并</0><1>多次检查</1><2>以确保他们是正确的。</2>",
@@ -510,9 +510,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "添加更多自定义节点或启用远程节点列表。",
         "nodeSettingsUpdatedTitle": "节点设置已更新",
         "nodeSettingsUpdatedExplanation": "您已成功更新了您的节点设置。",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "外包工作量",
+        "autoSelectPowNode": "自动选择工作量节点",
+        "nodeForPow": "工作量节点"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "无法添加自定义节点",

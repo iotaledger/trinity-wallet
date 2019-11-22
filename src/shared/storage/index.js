@@ -452,6 +452,30 @@ class Wallet {
     }
 
     /**
+     * Updates chart currency.
+     *
+     * @method updateCurrency
+     * @param {string} payload
+     */
+    static updateCurrency(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.currency = payload;
+        });
+    }
+
+    /**
+     * Updates chart timeframe.
+     *
+     * @method updateTimeframe
+     * @param {string} payload
+     */
+    static updateTimeframe(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.timeframe = payload;
+        });
+    }
+
+    /**
      * Updates wallet's node.
      *
      * @method updateNode
@@ -477,18 +501,16 @@ class Wallet {
     }
 
     /**
-     * Updates currency related data (conversionRate, currency, availableCurrencies)
+     * Updates currency related data (currency)
      *
      * @method updateCurrencyData
      * @param {object} payload
      */
     static updateCurrencyData(payload) {
-        const { conversionRate, currency, availableCurrencies } = payload;
+        const { currency } = payload;
 
         realm.write(() => {
             Wallet.latestSettings.currency = currency;
-            Wallet.latestSettings.conversionRate = conversionRate;
-            Wallet.latestSettings.availableCurrencies = availableCurrencies;
         });
     }
 
@@ -960,9 +982,7 @@ const initialise = (getEncryptionKeyPromise) => {
             const migratedRealm = new Realm(assign({}, schemas[nextSchemaIndex++], { encryptionKey }));
             migratedRealm.close();
         }
-
         realm = new Realm(assign({}, schemas[schemasSize - 1], { encryptionKey }));
-
         initialiseSync();
     });
 };

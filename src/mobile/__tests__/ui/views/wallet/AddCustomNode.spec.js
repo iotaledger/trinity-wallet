@@ -3,6 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import { shallow } from 'enzyme';
 import { AddCustomNode } from 'ui/views/wallet/AddCustomNode';
+import theme from '../../../../__mocks__/theme';
 
 jest.mock('bugsnag-react-native', () => ({
     Configuration: jest.fn(),
@@ -14,7 +15,7 @@ const getProps = (overrides) =>
         {},
         {
             node: 'https://foo.baz',
-            theme: { body: {} },
+            theme,
             t: () => '',
             setNode: noop,
             loading: false,
