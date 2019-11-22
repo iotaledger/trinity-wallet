@@ -10,10 +10,9 @@ describe('Reducer: polling', () => {
                 'promotion',
                 'broadcast',
                 'marketData',
-                'price',
-                'chartData',
                 'nodeList',
                 'accountInfo',
+                'moonpayTransactions',
             ],
             pollFor: 'promotion',
             retryCount: 0,
@@ -23,6 +22,7 @@ describe('Reducer: polling', () => {
             isFetchingMarketData: false,
             isFetchingAccountInfo: false,
             isAutoPromoting: false,
+            isFetchingMoonPayTransactions: false,
         };
 
         expect(reducer(undefined, {})).to.eql(initialState);
