@@ -24,7 +24,7 @@ import Tabs from 'ui/components/Tabs';
 import Tab from 'ui/components/Tab';
 import TabContent from 'ui/components/TabContent';
 import navigator from 'libs/navigation';
-import { isAndroid, isIPhone11, isIPhoneX } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 
 const styles = StyleSheet.create({
     midContainer: {
@@ -85,7 +85,7 @@ class Home extends Component {
         /** Clears temporary wallet data and navigates to login screen */
         logout: PropTypes.func.isRequired,
         /** @ignore */
-        navStack: PropTypes.array.isRequired
+        navStack: PropTypes.array.isRequired,
     };
 
     constructor(props) {
@@ -321,7 +321,7 @@ const mapStateToProps = (state) => ({
     hasDisplayedSnapshotTransitionGuide: hasDisplayedSnapshotTransitionGuide(state),
     selectedAccountName: getSelectedAccountName(state),
     isKeyboardActive: state.ui.isKeyboardActive,
-    navStack: state.wallet.navStack
+    navStack: state.wallet.navStack,
 });
 
 const mapDispatchToProps = {
