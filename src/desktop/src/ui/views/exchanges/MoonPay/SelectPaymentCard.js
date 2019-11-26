@@ -41,7 +41,7 @@ class SelectPaymentCard extends React.PureComponent {
         },
         {
             title: 'moonpay:addACreditOrDebitCard',
-            redirectUrl: 'user-advanced-info',
+            redirectUrl: 'user-basic-info',
         },
     ];
 
@@ -174,7 +174,9 @@ class SelectPaymentCard extends React.PureComponent {
                             onClick={() => {
                                 this.props.selectPaymentCard(this.state.selectedPaymentCard.id);
                                 this.props.history.push(
-                                    `/exchanges/moonpay/${SelectPaymentCard.options[this.state.selectedOptionIndex].redirectUrl}`,
+                                    `/exchanges/moonpay/${
+                                        SelectPaymentCard.options[this.state.selectedOptionIndex].redirectUrl
+                                    }`,
                                 );
                             }}
                             className="square"
@@ -200,7 +202,4 @@ const mapDispatchToProps = {
     selectPaymentCard,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(SelectPaymentCard));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(SelectPaymentCard));
