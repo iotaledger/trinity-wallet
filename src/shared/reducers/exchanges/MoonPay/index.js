@@ -105,13 +105,17 @@ const initialState = {
      */
     hasErrorFetchingTransactionDetails: false,
     /**
+     * Determines if a network call is in progress for fetching transactions
+     */
+    isFetchingTransactions: false,
+    /**
      * Determines if the user is authenticated
      */
     isAuthenticated: false,
     /**
      * Dertermines if user is logging into Moonpay from their History
      */
-    isLoggingIn: false
+    isLoggingIn: false,
 };
 
 export default (state = initialState, action) => {
@@ -313,14 +317,25 @@ export default (state = initialState, action) => {
                 }),
             };
         case MoonPayExchangeActionTypes.SET_LOGGING_IN:
-                return {
-                    ...state,
-                    isLoggingIn: action.payload,
-                };
+            return {
+                ...state,
+                isLoggingIn: action.payload,
+            };
         case MoonPayExchangeActionTypes.ADD_TRANSACTION:
             return {
                 ...state,
                 transactions: [...state.transactions, action.payload],
+            };
+        case MoonPayExchangeActionTypes.TRANSACTIONS_FETCH_REQUEST:
+            return {
+                ...state,
+                isFetchingTransactions: true,
+            };
+        case MoonPayExchangeActionTypes.TRANSACTIONS_FETCH_SUCCESS:
+        case MoonPayExchangeActionTypes.TRANSACTIONS_FETCH_ERROR:
+            return {
+                ...state,
+                isFetchingTransactions: false,
             };
         default:
             return state;

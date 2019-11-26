@@ -12,6 +12,7 @@ $footer: 70px;
 }
 
 .summary {
+    height: 100%;
     div {
         display: flex;
         justify-content: space-between;
@@ -56,7 +57,8 @@ $footer: 70px;
         border-bottom: 1px solid var(--box-body);
 
         div:nth-child(2) {
-            margin: 0px 14px;
+            margin-left: 14px;
+            padding-right: 20px;
         }
     }
 }
@@ -76,7 +78,8 @@ $footer: 70px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
+    padding-bottom: 35px;
+    
     small {
         text-transform: uppercase;
         transition: color 0.2s ease-out;
@@ -140,7 +143,7 @@ $footer: 70px;
                     padding-top: 150px;
                 }
 
-                > div {
+                > div:first-child {
                     text-align: center;
                     padding-top: 35px;
 
@@ -158,7 +161,7 @@ $footer: 70px;
                     }
 
                     p:last-child {
-                        margin-bottom: 80px;
+                        margin-bottom: 60px;
                     }
                 }
 
