@@ -41,7 +41,7 @@ class SelectPaymentCard extends React.PureComponent {
         },
         {
             title: 'moonpay:addACreditOrDebitCard',
-            redirectUrl: 'user-basic-info',
+            redirectUrl: 'user-advanced-info',
         },
     ];
 
