@@ -10,6 +10,8 @@ import SeedStore from 'libs/SeedStore';
 import { capitalize } from 'libs/iota/converter';
 
 import { getAccountInfo } from 'actions/accounts';
+import { setViewingMoonpayPurchases } from 'actions/ui';
+import { fetchTransactions as fetchMoonPayTransactions } from 'actions/exchanges/MoonPay';
 
 import { getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
 
@@ -17,6 +19,10 @@ import Icon from 'ui/components/Icon';
 import List from 'ui/components/List';
 import Chart from 'ui/components/Chart';
 import Balance from 'ui/components/Balance';
+import Tab from 'ui/components/Tab';
+
+import PurchaseList from 'ui/components/exchanges/MoonPay/PurchaseList';
+import RequireLoginView from 'ui/components/exchanges/MoonPay/RequireLogin';
 
 import Receive from 'ui/views/wallet/Receive';
 import Send from 'ui/views/wallet/Send';
@@ -44,6 +50,14 @@ class Dashboard extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
+        themeName: PropTypes.string.isRequired,
+
+        /** @ignore */
+        isAuthenticatedForMoonPay: PropTypes.bool.isRequired,
+        /** @ignore */
+        isViewingMoonpayPurchases: PropTypes.bool.isRequired,
+        /** @ignore */
+        setViewingMoonpayPurchases: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -67,8 +81,34 @@ class Dashboard extends React.PureComponent {
         );
     };
 
+    /**
+     * Renders MoonPay purchase history view(s)
+     *
+     * @method renderMoonPayPurchaseHistory
+     *
+     * @param {string} subroute
+     *
+     * @returns {object}
+     */
+    renderMoonPayPurchaseHistory = (subroute) => {
+        const { history, t, themeName, isAuthenticatedForMoonPay } = this.props;
+
+        if (isAuthenticatedForMoonPay) {
+            return (
+                <PurchaseList
+                    setItem={(item) =>
+                        item !== null ? history.push(`/wallet/history/${item}`) : history.push('/wallet/')
+                    }
+                    currentItem={subroute}
+                />
+            );
+        }
+
+        return <RequireLoginView history={history} t={t} themeName={themeName} />;
+    };
+
     render() {
-        const { t, history, location } = this.props;
+        const { isViewingMoonpayPurchases, t, history, location } = this.props;
 
         const route = location.pathname.split('/')[2] || '/';
         const subroute = location.pathname.split('/')[3] || null;
@@ -111,13 +151,31 @@ class Dashboard extends React.PureComponent {
                 </div>
                 <div className={historyOpen || balanceOpen ? css.history : null}>
                     <section>
-                        <List
-                            updateAccount={() => this.updateAccount()}
-                            setItem={(item) =>
-                                item !== null ? history.push(`/wallet/history/${item}`) : history.push('/wallet/')
-                            }
-                            currentItem={subroute}
-                        />
+                        <div className={css.tabs}>
+                            <Tab
+                                active={!isViewingMoonpayPurchases}
+                                onClick={() => this.props.setViewingMoonpayPurchases(false)}
+                            >
+                                {t('history:transactions')}
+                            </Tab>
+                            <Tab
+                                active={isViewingMoonpayPurchases}
+                                onClick={() => this.props.setViewingMoonpayPurchases(true)}
+                            >
+                                {t('history:purchases')}
+                            </Tab>
+                        </div>
+                        {isViewingMoonpayPurchases ? (
+                            this.renderMoonPayPurchaseHistory(subroute)
+                        ) : (
+                            <List
+                                updateAccount={() => this.updateAccount()}
+                                setItem={(item) =>
+                                    item !== null ? history.push(`/wallet/history/${item}`) : history.push('/wallet/')
+                                }
+                                currentItem={subroute}
+                            />
+                        )}
                     </section>
                     <section>
                         <Chart />
@@ -133,15 +191,15 @@ const mapStateToProps = (state) => ({
     accountMeta: getSelectedAccountMeta(state),
     password: state.wallet.password,
     isDeepLinkActive: state.wallet.deepLinkRequestActive,
+    isViewingMoonpayPurchases: state.ui.isViewingMoonpayPurchases,
+    isAuthenticatedForMoonPay: state.exchanges.moonpay.isAuthenticated,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {
     getAccountInfo,
+    setViewingMoonpayPurchases,
+    fetchMoonPayTransactions,
 };
 
-export default withTranslation()(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(Dashboard),
-);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));

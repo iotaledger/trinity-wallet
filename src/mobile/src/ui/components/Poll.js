@@ -24,8 +24,8 @@ import {
     setPollFor,
     getAccountInfoForAllAccounts,
     promoteTransfer,
+    fetchTransactions as fetchMoonPayTransactions,
 } from 'shared-modules/actions/polling';
-import { fetchTransactions as fetchMoonPayTransactions } from 'shared-modules/actions/exchanges/MoonPay';
 import { retryFailedTransaction } from 'shared-modules/actions/transfers';
 
 export class Poll extends Component {
@@ -317,7 +317,4 @@ const mapDispatchToProps = {
     fetchMoonPayTransactions,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Poll);
+export default connect(mapStateToProps, mapDispatchToProps)(Poll);

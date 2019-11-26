@@ -1,0 +1,17 @@
+.container {
+    height: calc(100% - 90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        text-align: center;
+        font-size: 18px;
+        margin: 0;
+    }
+
+    div {
+        margin-top: 40px;
+    }
+}

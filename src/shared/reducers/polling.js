@@ -1,7 +1,7 @@
 import findIndex from 'lodash/findIndex';
 import isNumber from 'lodash/isNumber';
 import size from 'lodash/size';
-import { PollingActionTypes, TransfersActionTypes, MoonPayExchangeActionTypes } from '../types';
+import { PollingActionTypes, TransfersActionTypes } from '../types';
 
 export const setNextPollIfSuccessful = (state) => {
     const { allPollingServices, pollFor } = state;
@@ -168,18 +168,18 @@ const polling = (
                 ...state,
                 pollFor: action.payload,
             };
-        case MoonPayExchangeActionTypes.TRANSACTIONS_FETCH_REQUEST:
+        case PollingActionTypes.MOONPAY_TRANSACTIONS_FETCH_REQUEST:
             return {
                 ...state,
                 isFetchingMoonPayTransactions: true,
             };
-        case MoonPayExchangeActionTypes.TRANSACTIONS_FETCH_SUCCESS:
+        case PollingActionTypes.MOONPAY_TRANSACTIONS_FETCH_SUCCESS:
             return {
                 ...state,
                 isFetchingMoonPayTransactions: false,
                 ...setNextPollIfSuccessful(state),
             };
-        case MoonPayExchangeActionTypes.TRANSACTIONS_FETCH_ERROR:
+        case PollingActionTypes.MOONPAY_TRANSACTIONS_FETCH_ERROR:
             return {
                 ...state,
                 isFetchingMoonPayTransactions: false,

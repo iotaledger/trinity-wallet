@@ -12,7 +12,7 @@ import {
     getCustomerDailyLimits,
     getCustomerMonthlyLimits,
     shouldRequireStateInput,
-    hasStoredAnyPaymentCards
+    hasStoredAnyPaymentCards,
 } from 'selectors/exchanges/MoonPay';
 import { getAmountInFiat, convertFiatCurrency } from 'exchanges/MoonPay/utils';
 import { generateAlert } from 'actions/alerts';
@@ -104,8 +104,7 @@ class UserAdvancedInfo extends React.PureComponent {
             hasCompletedBasicIdentityVerification &&
             !isPurchaseLimitIncreaseAllowed &&
             hasCompletedAdvancedIdentityVerification &&
-            (purchaseAmount > dailyLimits.dailyLimitRemaining ||
-                purchaseAmount > monthlyLimits.monthlyLimitRemaining)
+            (purchaseAmount > dailyLimits.dailyLimitRemaining || purchaseAmount > monthlyLimits.monthlyLimitRemaining)
                 ? 'purchase-limit-warning'
                 : 'add-payment-method'
         }`;
@@ -147,22 +146,22 @@ class UserAdvancedInfo extends React.PureComponent {
             );
         }
 
-        const data = { address: {
-            country,
-            street: this.state.address,
-            town: this.state.city,
-            postCode: this.state.zipCode,
-            ...(shouldRequireStateInput && { state: this.state.state }),
-        }};
+        const data = {
+            address: {
+                country,
+                street: this.state.address,
+                town: this.state.city,
+                postCode: this.state.zipCode,
+                ...(shouldRequireStateInput && { state: this.state.state }),
+            },
+        };
 
         if (hasAnyPaymentCards) {
             this.props.updateCustomerInfo(data);
             return this.redirect(this.props);
         }
 
-        return this.props.updateCustomer({
-
-        });
+        return this.props.updateCustomer(data);
     }
 
     render() {
@@ -270,7 +269,4 @@ const mapDispatchToProps = {
     updateCustomerInfo,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(UserAdvancedInfo));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(UserAdvancedInfo));
