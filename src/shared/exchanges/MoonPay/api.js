@@ -84,7 +84,7 @@ export class MoonPayApi {
         }
 
         return this._fetch(`${this.url}/customers/email_login?apiKey=${this.apiKey}`, {
-            method: 'post',
+            method: 'POST',
             body,
         }).then((result) => {
             if (result.csrfToken && result.token) {
@@ -110,7 +110,7 @@ export class MoonPayApi {
         return this._fetch(
             `${this.url}/customers/me/`,
             {
-                method: 'patch',
+                method: 'PATCH',
                 body: info,
             },
             true,
@@ -182,7 +182,7 @@ export class MoonPayApi {
         return this._fetch(
             `${this.url}/transactions/`,
             {
-                method: 'post',
+                method: 'POST',
                 body: transaction,
             },
             true,
@@ -200,7 +200,7 @@ export class MoonPayApi {
         return this._fetch(
             `${this.url}/transactions/`,
             {
-                method: 'get',
+                method: 'GET',
             },
             true,
         );
@@ -220,7 +220,7 @@ export class MoonPayApi {
         return this._fetch(
             `${this.url}/cards/`,
             {
-                method: 'post',
+                method: 'POST',
                 body: {
                     tokenId,
                 },
@@ -243,7 +243,7 @@ export class MoonPayApi {
         return this._fetch(
             `${this.url}/cards/`,
             {
-                method: 'get',
+                method: 'GET',
             },
             true,
         );
@@ -260,7 +260,7 @@ export class MoonPayApi {
         return this._fetch(
             `${this.url}/customers/me/limits`,
             {
-                method: 'get',
+                method: 'GET',
             },
             true,
         );
@@ -277,7 +277,7 @@ export class MoonPayApi {
      */
     checkIPAddress() {
         return this._fetch(`${this.url}/ip_address?apiKey=${this.apiKey}`, {
-            method: 'get',
+            method: 'GET',
         });
     }
 
@@ -300,7 +300,7 @@ export class MoonPayApi {
         return this._fetch(
             `${this.url}/customers/refresh_token?apiKey=${this.apiKey}`,
             {
-                method: 'get',
+                method: 'GET',
             },
             true,
         )
@@ -358,7 +358,7 @@ export class MoonPayApi {
         return this._fetch(
             `${this.url}/transactions/${id}`,
             {
-                method: 'get',
+                method: 'GET',
             },
             true,
         );
