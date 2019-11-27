@@ -22,10 +22,12 @@ export default class RequireLogin extends React.PureComponent {
         themeName: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        setLoggingIn: PropTypes.func.isRequired,
     };
 
     render() {
-        const { history, t, themeName } = this.props;
+        const { setLoggingIn, history, t, themeName } = this.props;
 
         return (
             <Scrollbar>
@@ -41,7 +43,10 @@ export default class RequireLogin extends React.PureComponent {
                         />
                     </div>
                     <div>
-                        <Button className="small" onClick={() => history.push('/exchanges/moonpay')}>
+                        <Button className="small" onClick={() => {
+                            setLoggingIn(true);
+                            history.push('/exchanges/moonpay')}
+                        }>
                             {t('moonpay:loginToMoonPay')}
                         </Button>
                     </div>

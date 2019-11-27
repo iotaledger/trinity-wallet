@@ -11,7 +11,7 @@ import { capitalize } from 'libs/iota/converter';
 
 import { getAccountInfo } from 'actions/accounts';
 import { setViewingMoonpayPurchases } from 'actions/ui';
-import { fetchTransactions as fetchMoonPayTransactions } from 'actions/exchanges/MoonPay';
+import { fetchTransactions as fetchMoonPayTransactions, setLoggingIn as setLoggingInToMoonPay } from 'actions/exchanges/MoonPay';
 
 import { getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
 
@@ -60,6 +60,8 @@ class Dashboard extends React.PureComponent {
         setViewingMoonpayPurchases: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        setLoggingInToMoonPay: PropTypes.func.isRequired,
     };
 
     componentWillMount() {
@@ -91,7 +93,7 @@ class Dashboard extends React.PureComponent {
      * @returns {object}
      */
     renderMoonPayPurchaseHistory = (subroute) => {
-        const { history, t, themeName, isAuthenticatedForMoonPay } = this.props;
+        const { setLoggingInToMoonPay, history, t, themeName, isAuthenticatedForMoonPay } = this.props;
 
         if (isAuthenticatedForMoonPay) {
             return (
@@ -104,7 +106,7 @@ class Dashboard extends React.PureComponent {
             );
         }
 
-        return <RequireLoginView history={history} t={t} themeName={themeName} />;
+        return <RequireLoginView setLoggingIn={setLoggingInToMoonPay} history={history} t={t} themeName={themeName} />;
     };
 
     render() {
@@ -200,6 +202,7 @@ const mapDispatchToProps = {
     getAccountInfo,
     setViewingMoonpayPurchases,
     fetchMoonPayTransactions,
+    setLoggingInToMoonPay
 };
 
 export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
