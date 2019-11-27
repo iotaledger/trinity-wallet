@@ -47,7 +47,7 @@ export default class RequireLogin extends React.PureComponent {
                             setLoggingIn(true);
                             history.push('/exchanges/moonpay')}
                         }>
-                            {t('moonpay:loginToMoonPay')}
+                            {t('moonpay:openMoonPay')}
                         </Button>
                     </div>
                 </div>

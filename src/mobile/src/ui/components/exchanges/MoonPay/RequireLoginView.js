@@ -88,7 +88,7 @@ class RequireLoginView extends Component {
                         ctaColor={theme.primary.color}
                         ctaBorderColor={theme.primary.color}
                         secondaryCtaColor={theme.primary.body}
-                        text={t('moonpay:loginToMoonPay')}
+                        text={t('moonpay:openMoonPay')}
                         onPress={() => {
                             setLoggingIn(true);
                             navigator.push('landing');

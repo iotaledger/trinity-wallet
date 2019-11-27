@@ -48,7 +48,7 @@ class PurchaseReceipt extends React.PureComponent {
 
         return (
             <form onSubmit={this.redirectToDashboard}>
-                <section className={css.long}>
+                <section className={css.withSummary}>
                     <div>
                         <p>{t('moonpay:purchaseComplete')}</p>
                         <p>{t('moonpay:transactionMayTakeAFewMinutes')}</p>

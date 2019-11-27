@@ -82,7 +82,7 @@ class ReviewPurchase extends React.PureComponent {
 
         return (
             <form onSubmit={createTransaction}>
-                <section className={css.long}>
+                <section className={css.withSummary}>
                     <div>
                         <p>{t('moonpay:reviewYourPurchase')}</p>
                         <p>{t('moonpay:pleaseCarefullyCheckOrder')}</p>

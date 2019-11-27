@@ -33,8 +33,8 @@ class PaymentSuccess extends React.PureComponent {
                         <React.Fragment>
                             <p>{t('moonpay:paymentSuccess')}</p>
                             <Lottie
-                                width={180}
-                                height={180}
+                                width={250}
+                                height={250}
                                 data={getAnimation('onboardingComplete', themeName)}
                                 loop={false}
                             />
