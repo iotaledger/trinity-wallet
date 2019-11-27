@@ -202,6 +202,7 @@ class PaymentPending extends Component {
 
     render() {
         const {
+            activeTransaction,
             transactionId,
             t,
             theme: { body },
@@ -258,7 +259,7 @@ class PaymentPending extends Component {
                             <DualFooterButtons
                                 onLeftButtonPress={() => navigator.setStackRoot('home')}
                                 onRightButtonPress={() => {
-                                    this.props.fetchTransactionDetails(transactionId);
+                                    this.props.fetchTransactionDetails(transactionId || get(activeTransaction, 'id'));
                                     this.setState({
                                         hasErrorFetchingTransactionDetails: false,
                                     });
@@ -294,9 +295,4 @@ const mapDispatchToProps = {
     fetchTransactionDetails,
 };
 
-export default withTranslation()(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(PaymentPending),
-);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(PaymentPending));

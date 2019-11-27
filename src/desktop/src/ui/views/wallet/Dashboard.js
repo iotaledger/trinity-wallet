@@ -178,7 +178,7 @@ class Dashboard extends React.PureComponent {
                         )}
                     </section>
                     <section>
-                        <Chart />
+                        <Chart history={history} />
                     </section>
                 </div>
             </div>

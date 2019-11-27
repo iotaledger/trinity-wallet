@@ -56,6 +56,9 @@ class ReviewPurchase extends React.PureComponent {
             // See https://www.moonpay.io/api_reference/v3#three_d_secure
             if (get(activeTransaction, 'status') === MOONPAY_TRANSACTION_STATUSES.waitingAuthorization) {
                 window.open(get(activeTransaction, 'redirectUrl'));
+                this.props.history.push(
+                    `/exchanges/moonpay/${_getNextScreenName(MOONPAY_TRANSACTION_STATUSES.pending)}`,
+                );
             } else {
                 this.props.history.push(`/exchanges/moonpay/${_getNextScreenName(get(activeTransaction, 'status'))}`);
             }

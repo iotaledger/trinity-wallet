@@ -45,8 +45,6 @@ class Sidebar extends React.PureComponent {
         /** @ignore */
         isBusy: PropTypes.bool.isRequired,
         /** @ignore */
-        isAuthenticatedForMoonPay: PropTypes.bool.isRequired,
-        /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
         setMoonPayAuthenticationStatus: PropTypes.func.isRequired,
@@ -97,18 +95,7 @@ class Sidebar extends React.PureComponent {
 
     render() {
         // Use accountNames prop for displaying account names here because accountNames prop preserves the account index
-        const {
-            isAuthenticatedForMoonPay,
-            accountNames,
-            accounts,
-            seedIndex,
-            setSeedIndex,
-            t,
-            location,
-            history,
-            isBusy,
-            themeName,
-        } = this.props;
+        const { accountNames, accounts, seedIndex, setSeedIndex, t, location, history, isBusy, themeName } = this.props;
         const { modalLogout } = this.state;
 
         return (
@@ -160,12 +147,6 @@ class Sidebar extends React.PureComponent {
                     </div>
                 </nav>
                 <nav className={isBusy ? css.disabled : null}>
-                    <NavLink
-                        to={isAuthenticatedForMoonPay ? '/exchanges/moonpay/select-account' : '/exchanges/moonpay'}
-                    >
-                        <Icon icon="iota" size={20} />
-                        <strong>{t('moonpay:buyIOTA')}</strong>
-                    </NavLink>
                     <NavLink to="/settings">
                         <Icon icon="settings" size={20} />
                         <strong>{capitalize(t('home:settings'))}</strong>
@@ -202,7 +183,6 @@ const mapStateToProps = (state) => ({
         state.ui.isGeneratingReceiveAddress ||
         state.ui.isFetchingAccountInfo,
     themeName: state.settings.themeName,
-    isAuthenticatedForMoonPay: state.exchanges.moonpay.isAuthenticated,
 });
 
 const mapDispatchToProps = {
@@ -211,7 +191,4 @@ const mapDispatchToProps = {
     setMoonPayAuthenticationStatus,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Sidebar));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Sidebar));

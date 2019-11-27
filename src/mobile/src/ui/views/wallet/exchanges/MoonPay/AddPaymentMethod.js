@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import some from 'lodash/some';
 import React, { PureComponent } from 'react';
-import { View } from 'react-native';
+import { Keyboard, View } from 'react-native';
 import { withTranslation } from 'react-i18next';
 import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
@@ -433,6 +433,14 @@ class AddPaymentMethod extends PureComponent {
         this.state = {
             loaded: false,
         };
+
+        this.keyboardDidShow = this.keyboardDidShow.bind(this);
+        this.keyboardDidHide = this.keyboardDidHide.bind(this);
+    }
+
+    componentDidMount() {
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -447,8 +455,42 @@ class AddPaymentMethod extends PureComponent {
                   )
                 : this.redirectToScreen('reviewPurchase');
 
-            this.webView.injectJavaScript(this.getJavaScriptToInject());
+            this.webView.injectJavaScript(this.getJavaScriptToInject().buttons());
         }
+    }
+
+    componentWillUnmount() {
+        this.keyboardDidShowListener.remove();
+        this.keyboardDidHideListener.remove();
+    }
+
+    /**
+     * keyboardDidShow event callback handler
+     *
+     * @method keyboardDidShow
+     *
+     * @param {object} frames
+     *
+     * @returns {void}
+     */
+    keyboardDidShow(frames) {
+        this.webView.injectJavaScript(
+            this.getJavaScriptToInject().keyboard(
+                height - frames.endCoordinates.height - Styling.footerButtonHeight - 150,
+            ),
+        );
+    }
+
+    /**
+     * keyboardDidHide event callback handler
+     *
+     * @method keyboardDidHide
+     *
+     *
+     * @returns {void}
+     */
+    keyboardDidHide() {
+        this.webView.injectJavaScript(this.getJavaScriptToInject().keyboard(height));
     }
 
     /**
@@ -461,11 +503,18 @@ class AddPaymentMethod extends PureComponent {
     getJavaScriptToInject() {
         const { t } = this.props;
 
-        return `
+        return {
+            buttons: () => `
           document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
           document.getElementsByClassName('button-left')[0].disabled = false;
           true
-        `;
+        `,
+            keyboard: (height) => `
+          document.getElementsByClassName('container')[0].style.height = "${height}px";
+          document.getElementsByClassName('container')[0].style.webkitTransition = "0.5s height";
+          true
+        `,
+        };
     }
 
     /**
@@ -493,7 +542,7 @@ class AddPaymentMethod extends PureComponent {
                     );
                 })
             ) {
-                this.webView.injectJavaScript(this.getJavaScriptToInject());
+                this.webView.injectJavaScript(this.getJavaScriptToInject().buttons());
                 this.props.generateAlert('error', t('moonpay:duplicateCard'), t('moonpay:duplicateCardExplanation'));
             } else {
                 this.props.createPaymentCard(get(message, 'data.id'));
@@ -581,9 +630,4 @@ const mapDispatchToProps = {
     createPaymentCard,
 };
 
-export default withTranslation(['global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(AddPaymentMethod),
-);
+export default withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(AddPaymentMethod));

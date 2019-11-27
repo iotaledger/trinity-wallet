@@ -1,4 +1,7 @@
 /* global Electron */
+import last from 'lodash/last';
+import split from 'lodash/split';
+import isString from 'lodash/isString';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -24,7 +27,11 @@ import {
     forceUpdate,
     displayTestWarning,
 } from 'actions/wallet';
-import { setAuthenticationStatus as setMoonPayAuthenticationStatus } from 'actions/exchanges/MoonPay';
+import {
+    fetchTransactionDetails as fetchMoonPayTransactionDetails,
+    setAuthenticationStatus as setMoonPayAuthenticationStatus,
+} from 'actions/exchanges/MoonPay';
+import { MOONPAY_RETURN_URL } from 'exchanges/MoonPay';
 import { __DEV__ } from 'config';
 
 import { updateTheme } from 'actions/settings';
@@ -111,6 +118,8 @@ class App extends React.Component {
         setDeepLinkContent: PropTypes.func.isRequired,
         /** @ignore */
         setMoonPayAuthenticationStatus: PropTypes.func.isRequired,
+        /** @ignore */
+        fetchMoonPayTransactionDetails: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -191,6 +200,14 @@ class App extends React.Component {
      */
     setDeepUrl(data) {
         const { deepLinking, generateAlert, t } = this.props;
+
+        const transactionId = last(split(data, '='));
+
+        if (data.includes(MOONPAY_RETURN_URL) && isString(transactionId)) {
+            this.props.fetchMoonPayTransactionDetails(transactionId);
+            return this.props.history.push('/exchanges/moonpay/payment-pending');
+        }
+
         this.props.initiateDeepLinkRequest();
         if (!deepLinking) {
             this.props.history.push('/settings/advanced');
@@ -325,7 +342,7 @@ class App extends React.Component {
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
-        if (fatalError && (fatalError === 'Found old data' && currentKey !== 'settings')) {
+        if (fatalError && fatalError === 'Found old data' && currentKey !== 'settings') {
             return (
                 <div>
                     <Theme history={history} />
@@ -396,11 +413,7 @@ const mapDispatchToProps = {
     forceUpdate,
     displayTestWarning,
     setMoonPayAuthenticationStatus,
+    fetchMoonPayTransactionDetails,
 };
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(withTranslation()(App)),
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(App)));

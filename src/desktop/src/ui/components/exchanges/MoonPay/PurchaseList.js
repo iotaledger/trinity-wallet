@@ -301,7 +301,7 @@ export class PurchaseListComponent extends React.PureComponent {
                                 <p className={css.hash}>
                                     <a href="https://help.moonpay.io/">{t('moonpay:faq')}</a>
                                 </p>
-                                {status === MOONPAY_TRANSACTION_STATUSES.waitingAuthorization && (
+                                {activePurchase.status === MOONPAY_TRANSACTION_STATUSES.waitingAuthorization && (
                                     <nav>
                                         <Button
                                             className="small"

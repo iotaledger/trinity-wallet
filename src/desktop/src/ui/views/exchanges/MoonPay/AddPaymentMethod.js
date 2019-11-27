@@ -141,7 +141,7 @@ class AddPaymentMethod extends React.PureComponent {
 
         if (this.isFormValid()) {
             this.setState({ isCreatingToken: true });
-            
+
             this.form.submit(
                 address,
                 (status, response) => {
@@ -172,7 +172,8 @@ class AddPaymentMethod extends React.PureComponent {
                         );
                     }
                 },
-                () => {
+                (error) => {
+                    console.log('Error', error);
                     this.setState({ isCreatingToken: false });
                     this.props.generateAlert(
                         'error',
@@ -265,7 +266,4 @@ const mapDispatchToProps = {
     createPaymentCard,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(AddPaymentMethod));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AddPaymentMethod));
