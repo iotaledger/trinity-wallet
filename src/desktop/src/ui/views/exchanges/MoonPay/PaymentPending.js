@@ -169,8 +169,7 @@ class PaymentPending extends React.PureComponent {
                                 width={180}
                                 height={180}
                                 data={getAnimation('onboardingComplete', themeName)}
-                                segments={[161, 395]}
-                                loop
+                                loop={false}
                             />
                         </React.Fragment>
                         <p>{subtitle}</p>

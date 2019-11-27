@@ -37,8 +37,8 @@ export default class RequireLogin extends React.PureComponent {
                         <Lottie
                             width={150}
                             height={150}
-                            data={getAnimation('language', themeName)}
-                            segments={[52, 431]}
+                            data={getAnimation('welcome', themeName)}
+                            segments={[161, 395]}
                             loop
                         />
                     </div>
