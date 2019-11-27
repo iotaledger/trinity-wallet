@@ -700,7 +700,21 @@ export const createTransaction = (
         currencyCode: IOTA_CURRENCY_CODE,
     })
         .then((data) => {
-            dispatch(createTransactionSuccess(assign({}, data, { active: true })));
+            const { currencies } = getState().exchanges.moonpay;
+
+            dispatch(
+                createTransactionSuccess(
+                    assign({}, data, {
+                        active: true,
+                        currencyCode: toUpper(
+                            get(
+                                find(currencies, (currency) => currency.id === data.baseCurrencyId),
+                                'code',
+                            ),
+                        ),
+                    }),
+                ),
+            );
         })
         .catch(() => {
             dispatch(
@@ -781,10 +795,16 @@ export const setMeta = (meta) => (dispatch, getState) => {
         updateCustomerInfo(
             merge({}, customer, {
                 defaultCurrencyCode: toUpper(
-                    get(find(currencies, (currency) => currency.id === defaultCurrencyId), 'code'),
+                    get(
+                        find(currencies, (currency) => currency.id === defaultCurrencyId),
+                        'code',
+                    ),
                 ),
                 address: {
-                    country: getCustomerCountryCode(getState()),
+                    // If a user is new, he/she will have to choose country from the landing screen
+                    // But the selected country is only stored locally until the point we allow user to update his/her information
+                    // Therefore, first try to keep the locally stored country. If it's not set, default to the one returned by MoonPay servers.
+                    country: getCustomerCountryCode(getState()) || get(customer, 'address.country'),
                 },
                 purchaseLimits,
                 paymentCards: map(paymentCards, (card) => assign({}, card, { selected: false })),
@@ -806,7 +826,10 @@ export const setMeta = (meta) => (dispatch, getState) => {
                     {
                         active: false,
                         currencyCode: toUpper(
-                            get(find(currencies, (currency) => currency.id === transaction.baseCurrencyId), 'code'),
+                            get(
+                                find(currencies, (currency) => currency.id === transaction.baseCurrencyId),
+                                'code',
+                            ),
                         ),
                     },
                 ),
@@ -878,7 +901,10 @@ export const fetchTransactionDetails = (id) => (dispatch, getState) => {
                 // Make transaction active
                 active: true,
                 currencyCode: toUpper(
-                    get(find(currencies, (currency) => currency.id === transaction.baseCurrencyId), 'code'),
+                    get(
+                        find(currencies, (currency) => currency.id === transaction.baseCurrencyId),
+                        'code',
+                    ),
                 ),
             });
 

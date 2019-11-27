@@ -1,4 +1,5 @@
 import merge from 'lodash/merge';
+import orderBy from 'lodash/orderBy';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -104,7 +105,7 @@ export class PurchaseListComponent extends React.PureComponent {
             // Hence compute it locally
             convertFiatToMiota(purchase.baseCurrencyAmount, purchase.currencyCode, exchangeRates);
 
-        const filteredPurchases = purchaseHistory.filter((purchase) => {
+        const filteredPurchases = orderBy(purchaseHistory, 'createdAt', ['desc']).filter((purchase) => {
             const amount = _getAmount(purchase);
 
             if (
