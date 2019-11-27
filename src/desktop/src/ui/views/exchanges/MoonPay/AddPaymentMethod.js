@@ -172,8 +172,7 @@ class AddPaymentMethod extends React.PureComponent {
                         );
                     }
                 },
-                (error) => {
-                    console.log('Error', error);
+                () => {
                     this.setState({ isCreatingToken: false });
                     this.props.generateAlert(
                         'error',
