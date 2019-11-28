@@ -363,7 +363,7 @@
         "viewReceipt": "View receipt",
         "moonpayPurchase": "MoonPay Purchase",
         "purchase": "Kup",
-        "emptyHistory": "You have no MoonPay purchase history",
+        "emptyHistory": "Twoja historia zakupów MoonPay jest pusta",
         "loginToViewPurchaseHistory": "View purchase history",
         "openMoonPay": "Open MoonPay",
         "loginToMoonPay": "Login to MoonPay",
@@ -382,13 +382,13 @@
         "pleaseComplete3DSecure": "Please complete 3-D secure to process your payment",
         "paymentAuthorisationDeclined": "The payment was not authorised by your bank.",
         "3DSecureTimeout": "3D Secure Timed Out. Please try again.",
-        "transactionDeclined": "Your transaction was declined.",
-        "internalError": "Internal processing error. Please try again.",
-        "identityCheckTimeout": "Identity check timed out. Please try again.",
-        "refund": "Your payment was refunded.",
-        "idRejection": "Your identity check was rejected.",
-        "cardNotSupported": "Your card is not supported. Please try again with a different card.",
-        "cancelled": "The payment was cancelled."
+        "transactionDeclined": "Twoja transakcja została anulowana.",
+        "internalError": "Wewnętrzny błąd przetwarzania. Spróbuj ponownie.",
+        "identityCheckTimeout": "Upłynął limit czasu sprawdzania tożsamości. Spróbuj ponownie.",
+        "refund": "Twoja płatność została zwrócona.",
+        "idRejection": "Twoja kontrola tożsamości została odrzucona.",
+        "cardNotSupported": "Twoja karta nie jest obsługiwana. Spróbuj ponownie używając innej karty.",
+        "cancelled": "Płatność została anulowana."
     },
     "home": {
         "balance": "SALDO",
@@ -635,7 +635,7 @@
         "searchHelpMore": "Znajdź transakcje o wartości większej niż X",
         "searchHelpLess": "Znajdź transakcje o wartości mniejszej niż X",
         "transactions": "Transakcje",
-        "purchases": "Purchases"
+        "purchases": "Zakupy"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
