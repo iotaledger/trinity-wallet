@@ -166,11 +166,10 @@ class PaymentPending extends React.PureComponent {
                         <React.Fragment>
                             <p>{t('moonpay:paymentPending')}</p>
                             <Lottie
-                                width={180}
-                                height={180}
+                                width={250}
+                                height={250}
                                 data={getAnimation('onboardingComplete', themeName)}
-                                segments={[161, 395]}
-                                loop
+                                loop={false}
                             />
                         </React.Fragment>
                         <p>{subtitle}</p>

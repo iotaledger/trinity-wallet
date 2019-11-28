@@ -6,7 +6,7 @@ import { withTranslation } from 'react-i18next';
 import { MOONPAY_PRIVACY_POLICY_LINK, MOONPAY_TERMS_OF_USE_LINK } from 'exchanges/MoonPay';
 import { getCustomerEmail } from 'selectors/exchanges/MoonPay';
 import { generateAlert } from 'actions/alerts';
-import { verifyEmailAndFetchMeta } from 'actions/exchanges/MoonPay';
+import { verifyEmailAndFetchMeta, setLoggingIn } from 'actions/exchanges/MoonPay';
 import MoonPayKeychainAdapter from 'libs/MoonPay';
 
 import Button from 'ui/components/Button';
@@ -35,6 +35,10 @@ class VerifyEmail extends React.PureComponent {
         verifyEmailAndFetchMeta: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        setLoggingIn: PropTypes.func.isRequired,
+        /** @ignore */
+        isLoggingIn: PropTypes.bool.isRequired
     };
 
     constructor(props) {
@@ -50,6 +54,10 @@ class VerifyEmail extends React.PureComponent {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isVerifyingEmail && !nextProps.isVerifyingEmail && !nextProps.hasErrorVerifyingEmail) {
+            if (this.props.isLoggingIn) {
+                this.props.setLoggingIn(false);
+                return this.props.history.push('/wallet');
+            }
             this.props.history.push('/exchanges/moonpay/select-account');
         }
     }
@@ -146,11 +154,13 @@ const mapStateToProps = (state) => ({
     email: getCustomerEmail(state),
     isVerifyingEmail: state.exchanges.moonpay.isVerifyingEmail,
     hasErrorVerifyingEmail: state.exchanges.moonpay.hasErrorVerifyingEmail,
+    isLoggingIn: state.exchanges.moonpay.isLoggingIn,
 });
 
 const mapDispatchToProps = {
     generateAlert,
     verifyEmailAndFetchMeta,
+    setLoggingIn
 };
 
 export default connect(

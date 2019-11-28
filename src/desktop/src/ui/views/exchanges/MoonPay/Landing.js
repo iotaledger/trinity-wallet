@@ -12,7 +12,7 @@ import { withTranslation } from 'react-i18next';
 import { getAnimation } from 'animations';
 
 import { isIPAddressAllowed, getAlpha3CodeForIPAddress } from 'selectors/exchanges/MoonPay';
-import { updateCustomerInfo } from 'actions/exchanges/MoonPay';
+import { updateCustomerInfo, setLoggingIn } from 'actions/exchanges/MoonPay';
 
 import Select from 'ui/components/input/Select';
 import Button from 'ui/components/Button';
@@ -42,6 +42,10 @@ class Landing extends React.PureComponent {
         updateCustomerInfo: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        setLoggingIn: PropTypes.func.isRequired,
+        /** @ignore */
+        isLoggingIn: PropTypes.bool.isRequired
     };
 
     constructor(props) {
@@ -78,7 +82,7 @@ class Landing extends React.PureComponent {
     }
 
     render() {
-        const { countries, t, themeName } = this.props;
+        const { isLoggingIn, countries, t, themeName } = this.props;
 
         const countryNames = map(filter(countries, (country) => country.isAllowed), (country) => country.name);
 
@@ -87,12 +91,12 @@ class Landing extends React.PureComponent {
                 <section className={css.long}>
                     <div>
                         <React.Fragment>
-                            <p>{t('moonpay:buyIOTA')}</p>
+                            <p>{isLoggingIn ? t('moonpay:loginToMoonPay') : t('moonpay:buyIOTA')}</p>
                             <Lottie
                                 width={180}
                                 height={180}
                                 data={getAnimation('sendingDesktop', themeName)}
-                                segments={[161, 395]}
+                                segments={[89, 624]}
                                 loop
                             />
                         </React.Fragment>
@@ -123,7 +127,10 @@ class Landing extends React.PureComponent {
                     <div>
                         <Button
                             id="to-cancel"
-                            onClick={() => this.props.history.goBack()}
+                            onClick={() => {
+                                this.props.setLoggingIn(false);
+                                this.props.history.goBack();
+                            }}
                             className="square"
                             variant="dark"
                         >
@@ -157,10 +164,12 @@ const mapStateToProps = (state) => ({
     country: state.exchanges.moonpay.customer.address.country,
     isIPAddressAllowed: isIPAddressAllowed(state),
     alpha3CodeForIPAddress: getAlpha3CodeForIPAddress(state),
+    isLoggingIn: state.exchanges.moonpay.isLoggingIn,
 });
 
 const mapDispatchToProps = {
     updateCustomerInfo,
+    setLoggingIn
 };
 
 export default connect(

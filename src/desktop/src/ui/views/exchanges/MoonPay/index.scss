@@ -79,7 +79,7 @@ $footer: 70px;
     flex-direction: column;
     align-items: flex-start;
     padding-bottom: 35px;
-    
+
     small {
         text-transform: uppercase;
         transition: color 0.2s ease-out;
@@ -140,6 +140,16 @@ $footer: 70px;
                 }
 
                 &.long {
+                    padding-top: 150px;
+                    > div {
+                        p {
+                            text-align: center;
+                            padding-top: 20px;
+                        }
+                    }
+                }
+
+                &.withSummary {
                     padding-top: 150px;
                 }
 

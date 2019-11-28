@@ -36,7 +36,7 @@ class PaymentFailure extends React.PureComponent {
                                 width={180}
                                 height={180}
                                 data={getAnimation('sendingDesktop', themeName)}
-                                segments={[161, 395]}
+                                segments={[89, 624]}
                                 loop
                             />
                         </React.Fragment>
