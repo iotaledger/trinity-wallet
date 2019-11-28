@@ -690,9 +690,9 @@
         "key": "Cheie"
     },
     "stateExport": {
-        "stateExportExplanation": "State export will store a txt file on your device with your account (transactions, addresses) information, wallet version, and names of storage files.",
+        "stateExportExplanation": "Exportul de stare va salva un fișier text pe dispozitivul tău cu informația contului tău (tranzacții, adrese), versiune portofel, și numele fișierelor de stocare.",
         "exportSuccess": "Stare exportată",
-        "exportSuccessExplanation": "Your state file was exported successfully."
+        "exportSuccessExplanation": "Fișierul tău de stare a fost exportat cu succes."
     },
     "chart": {
         "mcap": "MCAP",
