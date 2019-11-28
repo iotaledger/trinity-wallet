@@ -848,17 +848,17 @@
         "mcap": "MCAP",
         "change": "Schimbare (24)",
         "volume": "Volum (24h)",
-        "error": "Error fetching chart data",
+        "error": "Eroare la preluarea diagramei datelor",
         "currentValue": "Current Value"
     },
     "rootDetection": {
         "warning": "AVERTISMENT",
         "appearsRooted": "Dispozitivul dumneavoastră apare ca rootat.",
         "securityRisk": "Lucrul acesta poate reprezenta un risc semnificativ pentru securitatea portofelului dumneavoastră.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "continueDepsiteRisk": "Dorești să continui chiar dacă ai acest risc?"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "feeless": "Este necesar să efectuezi puțină dovadă de lucru pentru a trimite tranzacții fără cost în IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
         "remote": "La distanţă",
