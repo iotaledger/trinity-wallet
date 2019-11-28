@@ -863,14 +863,14 @@
         "local": "Local",
         "remote": "La distanţă",
         "powUpdated": "Setările Dovezii de lucru",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated."
+        "powUpdatedExplanation": "Configurația dovezii tale de lucru a fost actualizată."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Setări auto-promovare",
+        "autoPromotionUpdatedExplanation": "Configurația auto-promovării tale a fost actualizată."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "Verificarea sănătății nodului",
         "validatingReceiveAddress": "Validating receive address",
         "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Syncing account",
