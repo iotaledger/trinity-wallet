@@ -859,7 +859,7 @@
     },
     "pow": {
         "feeless": "Este necesar să efectuezi puțină dovadă de lucru pentru a trimite tranzacții fără cost în IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "localOrRemote": "Dovada de lucru poate fi facută local pe dispozitivul tău sau atribuită unui nod.",
         "local": "Local",
         "remote": "La distanţă",
         "powUpdated": "Setările Dovezii de lucru",
