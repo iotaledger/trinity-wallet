@@ -255,8 +255,8 @@
         "addAmount": "Choose the amount of MIOTA for purchase",
         "addAmountExplanation": "Select the amount you wish to purchase in your currency, or specify the amount of MIOTA.",
         "enterAmount": "ENTER AMOUNT",
-        "selectAccount": "Select your Trinity account",
-        "selectAccountExplanation": "Your MoonPay purchase will be transferred automatically to your selected account.",
+        "selectAccount": "Wybierz swoje konto Trinity",
+        "selectAccountExplanation": "Twój zakup MoonPay zostanie automatycznie przetransferowany na wybrane konto.",
         "setupEmail": "First, let's get setup quickly",
         "setupEmailExplanation": "Provide the email address for your account.",
         "yourEmail": "YOUR EMAIL",
@@ -849,7 +849,7 @@
         "change": "Zmiana (24h)",
         "volume": "Wolumen (24h)",
         "error": "Nie można pobrać danych do wykresu",
-        "currentValue": "Current Value"
+        "currentValue": "Bieżąca wartość"
     },
     "rootDetection": {
         "warning": "OSTRZEŻENIE",
