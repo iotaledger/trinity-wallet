@@ -1,7 +1,7 @@
 {
     "global": {
         "address": "Adress",
-        "and": "and",
+        "and": "och",
         "send": "SKICKA",
         "cancel": "Avbryt",
         "complete": "Complete",
@@ -177,9 +177,9 @@
         "expert": "Avancerat",
         "notEnoughSyncedNodes": "För få noder synkade",
         "notEnoughSyncedNodesExplanation": "Ett kvorum kunde inte nås. Stäng av kvorum eller försök igen.",
-        "total": "Total",
-        "submit": "Submit",
-        "tryAgain": "Try again"
+        "total": "Totalt",
+        "submit": "Skicka",
+        "tryAgain": "Försök igen"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -250,10 +250,10 @@
         "neverShare": "DELA ALDRIG DIN SEED MED NÅGON"
     },
     "moonpay": {
-        "buyIOTA": "Buy IOTA",
-        "supportExplanation": "Purchase IOTA with all major credit and debit cards, securely sent to your Trinity account.",
-        "addAmount": "Choose the amount of MIOTA for purchase",
-        "addAmountExplanation": "Select the amount you wish to purchase in your currency, or specify the amount of MIOTA.",
+        "buyIOTA": "Köp IOTA",
+        "supportExplanation": "Köp IOTA med alla större kredit- och betalkort, som skickas säkert till ditt Trinity-konto.",
+        "addAmount": "Välj mängden MIOTA för köp",
+        "addAmountExplanation": "Välj det belopp du vill köpa i din valuta eller ange mängden MIOTA.",
         "enterAmount": "ENTER AMOUNT",
         "selectAccount": "Select your Trinity account",
         "selectAccountExplanation": "Your MoonPay purchase will be transferred automatically to your selected account.",
