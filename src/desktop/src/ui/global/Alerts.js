@@ -101,7 +101,7 @@ export class AlertsComponent extends React.PureComponent {
 
         return (
             <div className={css.wrapper}>
-                {!dismissUpdate &&
+                {/*{!dismissUpdate &&
                     displayTestWarning &&
                     this.renderFullWidthAlert(`${t('rootDetection:warning')}:`, t('global:testVersionWarning'), true)}
                 {!isUpdating &&
@@ -114,7 +114,7 @@ export class AlertsComponent extends React.PureComponent {
                     forceUpdate &&
                     this.renderFullWidthAlert(t('global:forceUpdate'), t('global:forceUpdateExplanation'), false, () =>
                         Electron.autoUpdate(),
-                    )}
+                    )}*/}
                 {(!dismissUpdate && (forceUpdate || shouldUpdate)) || (
                     <div
                         onClick={() => dismissAlert()}
