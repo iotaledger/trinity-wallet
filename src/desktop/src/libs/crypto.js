@@ -219,8 +219,5 @@ const bufferToHex = (buffer) => {
  */
 export const checkActivationCode = (code, uuid) => {
     const key = 'LURGzCPEHqhjvYLwAJXRv5Fc';
-    console.log(code)
-    console.log(uuid)
-    console.log(sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(key + uuid)))
     return code === sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(key + uuid));
 };
