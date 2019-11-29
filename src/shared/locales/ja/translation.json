@@ -355,7 +355,7 @@
         "duplicateCard": "カードが重複しています。",
         "duplicateCardExplanation": "指定したカード番号は既に存在します。",
         "paymentPending": "お支払を処理しています",
-        "paymentPendingExplanation": "Your purchase is being processed by MoonPay.",
+        "paymentPendingExplanation": "購入はMoonPayで処理中です。",
         "paymentSuccess": "Payment Success",
         "paymentSuccessExplanation": "Congratulations. Your payment has been accepted.",
         "paymentFailure": "Payment Failure",
