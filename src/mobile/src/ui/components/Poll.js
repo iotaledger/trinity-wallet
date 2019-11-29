@@ -66,7 +66,7 @@ export class Poll extends Component {
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */
-        isFetchingMoonPayTransactions: PropTypes.bool.isRequired,
+        isPollingMoonPayTransactions: PropTypes.bool.isRequired,
         /** @ignore */
         isPollingPrice: PropTypes.bool.isRequired,
         /** @ignore */
@@ -148,7 +148,7 @@ export class Poll extends Component {
             this.props.isPollingMarketData ||
             this.props.isPollingAccountInfo ||
             this.props.isAutoPromoting ||
-            this.props.isFetchingMoonPayTransactions;
+            this.props.isPollingMoonPayTransactions;
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
@@ -286,7 +286,7 @@ const mapStateToProps = (state) => ({
     isPollingChartData: state.polling.isFetchingChartData,
     isPollingMarketData: state.polling.isFetchingMarketData,
     isPollingAccountInfo: state.polling.isFetchingAccountInfo,
-    isFetchingMoonPayTransactions: state.polling.isFetchingMoonPayTransactions,
+    isPollingMoonPayTransactions: state.polling.isFetchingMoonPayTransactions,
     isAutoPromoting: state.polling.isAutoPromoting,
     isAutoPromotionEnabled: state.settings.autoPromotion,
     isPromotingTransaction: state.ui.isPromotingTransaction,
