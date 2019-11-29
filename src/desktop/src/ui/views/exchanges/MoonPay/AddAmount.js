@@ -7,6 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
+import classNames from 'classnames';
 
 import {
     ALLOWED_IOTA_DENOMINATIONS,
@@ -236,18 +237,11 @@ class AddAmount extends React.PureComponent {
         if (amount) {
             const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
 
-            const amountInEuros = convertFiatCurrency(
-                fiatAmount,
-                exchangeRates,
-                denomination,
-                // Skipping the last parameter (target denomination) as it is already set to EUR as default parameter
-            );
-
-            if (amountInEuros < MINIMUM_TRANSACTION_SIZE) {
+            if (fiatAmount < MINIMUM_TRANSACTION_SIZE) {
                 return t('moonpay:minimumTransactionAmount', { amount: `€${MINIMUM_TRANSACTION_SIZE}` });
             }
 
-            if (amountInEuros > MAXIMUM_TRANSACTION_SIZE) {
+            if (fiatAmount > MAXIMUM_TRANSACTION_SIZE) {
                 return t('moonpay:maximumTransactionAmount', { amount: `€${MAXIMUM_TRANSACTION_SIZE}` });
             }
 
@@ -256,7 +250,7 @@ class AddAmount extends React.PureComponent {
                 !hasCompletedAdvancedIdentityVerification &&
                 isPurchaseLimitIncreaseAllowed
             ) {
-                return amountInEuros > BASIC_MONTHLY_LIMIT
+                return fiatAmount > BASIC_MONTHLY_LIMIT
                     ? t('moonpay:kycRequired', { limit: `€${BASIC_MONTHLY_LIMIT}` })
                     : null;
             } else if (
@@ -339,15 +333,14 @@ class AddAmount extends React.PureComponent {
         const { shouldGetLatestCurrencyQuote } = this.state;
 
         const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
-        const amountInEuros = convertFiatCurrency(fiatAmount, exchangeRates, denomination);
 
-        if (amountInEuros < MINIMUM_TRANSACTION_SIZE) {
+        if (fiatAmount < MINIMUM_TRANSACTION_SIZE) {
             this.props.generateAlert(
                 'error',
                 t('moonpay:notEnoughAmount'),
                 t('moonpay:notEnoughAmountExplanation', { amount: `€${MINIMUM_TRANSACTION_SIZE}` }),
             );
-        } else if (amountInEuros > MAXIMUM_TRANSACTION_SIZE) {
+        } else if (fiatAmount > MAXIMUM_TRANSACTION_SIZE) {
             this.props.generateAlert(
                 'error',
                 t('moonpay:amountTooHigh'),
@@ -398,7 +391,7 @@ class AddAmount extends React.PureComponent {
         const { denomination, exchangeRates } = this.props;
 
         return (
-            <div className={defaultTextFieldCss.input}>
+            <div className={classNames(defaultTextFieldCss.input, defaultTextFieldCss.noPadding)}>
                 <fieldset>
                     <a>
                         <strong>
@@ -421,7 +414,7 @@ class AddAmount extends React.PureComponent {
                     </a>
                     <input
                         autoFocus
-                        type="text"
+                        type="number"
                         value={value}
                         onChange={(e) => {
                             const newAmount = e.target.value;
@@ -450,6 +443,9 @@ class AddAmount extends React.PureComponent {
                         <p>{t('moonpay:addAmountExplanation')}</p>
                     </div>
                     <fieldset>{this.renderTextField(t('moonpay:enterAmount'), amount)}</fieldset>
+                    <div className={css.warning}>
+                        <span>{this.getWarningText()}</span>
+                    </div>
                     <div className={css.summary}>
                         <div>
                             <span>{t('moonpay:youWillReceive')}</span>

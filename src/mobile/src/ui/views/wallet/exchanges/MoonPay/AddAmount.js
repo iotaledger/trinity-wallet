@@ -295,19 +295,11 @@ class AddAmount extends Component {
         if (amount) {
             const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
 
-            const amountInEuros = convertFiatCurrency(
-                fiatAmount,
-                exchangeRates,
-                denomination,
-                // Skipping the last parameter (target denomination) as it is already set to EUR as default parameter
-            );
-
-
-            if (amountInEuros < MINIMUM_TRANSACTION_SIZE) {
+            if (fiatAmount < MINIMUM_TRANSACTION_SIZE) {
                 return t('moonpay:minimumTransactionAmount', { amount: this.getCurrencySymbol() + MINIMUM_TRANSACTION_SIZE });
             }
 
-            if (amountInEuros > MAXIMUM_TRANSACTION_SIZE) {
+            if (fiatAmount > MAXIMUM_TRANSACTION_SIZE) {
                 return t('moonpay:maximumTransactionAmount', { amount: this.getCurrencySymbol() + MAXIMUM_TRANSACTION_SIZE });
             }
 
@@ -316,7 +308,7 @@ class AddAmount extends Component {
                 !hasCompletedAdvancedIdentityVerification &&
                 isPurchaseLimitIncreaseAllowed
             ) {
-                return amountInEuros > BASIC_MONTHLY_LIMIT
+                return fiatAmount > BASIC_MONTHLY_LIMIT
                     ? t('moonpay:kycRequired', { limit: `€${BASIC_MONTHLY_LIMIT}` })
                     : null;
             } else if (
@@ -416,15 +408,14 @@ class AddAmount extends Component {
         const { shouldGetLatestCurrencyQuote } = this.state;
 
         const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
-        const amountInEuros = convertFiatCurrency(fiatAmount, exchangeRates, denomination);
 
-        if (amountInEuros < MINIMUM_TRANSACTION_SIZE) {
+        if (fiatAmount < MINIMUM_TRANSACTION_SIZE) {
             this.props.generateAlert(
                 'error',
                 t('moonpay:notEnoughAmount'),
                 t('moonpay:notEnoughAmountExplanation', { amount: this.getCurrencySymbol() + MINIMUM_TRANSACTION_SIZE }),
             );
-        } else if (amountInEuros > MAXIMUM_TRANSACTION_SIZE) {
+        } else if (fiatAmount > MAXIMUM_TRANSACTION_SIZE) {
             this.props.generateAlert(
                 'error',
                 t('moonpay:amountTooHigh'),
@@ -541,11 +532,11 @@ class AddAmount extends Component {
                         >
                             <View style={styles.summaryRowContainer}>
                                 <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:youWillReceive')}</Text>
-                                <Text style={[styles.infoTextLight, textColor]}>{receiveAmount}</Text>
+                                <Text numberOfLines={1} style={[styles.infoTextLight, textColor, { maxWidth: Styling.contentWidth * 0.5}]}>{receiveAmount}</Text>
                             </View>
                             <View style={{ flex: 0.05 }} />
                             <View style={styles.summaryRowContainer}>
-                                <Text style={[styles.infoTextLight, textColor]}>
+                                <Text numberOfLines={1} style={[styles.infoTextLight, textColor, { maxWidth: Styling.contentWidth * 0.4}]}>
                                     {t('moonpay:marketPrice')}: {receiveAmount} @{' '}
                                     {getCurrencySymbol(activeFiatCurrency)}
                                     {exchangeRates[activeFiatCurrency]}

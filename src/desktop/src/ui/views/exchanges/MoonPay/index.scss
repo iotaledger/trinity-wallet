@@ -225,3 +225,17 @@ $footer: 70px;
         }
     }
 }
+
+.warning {
+    height: 40px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 10px;
+        span {
+            text-align: left;
+            font-weight: 500;
+            font-size: 16px;
+            color: var(--negative);
+        }
+}

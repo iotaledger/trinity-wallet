@@ -251,6 +251,11 @@
             background: var(--input-bg);
         }
     }
+
+    &.noPadding {
+        padding: 0px 0 0px;
+    }
+
 }
 
 .info {
