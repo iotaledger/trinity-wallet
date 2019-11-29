@@ -56,7 +56,7 @@ class Activation extends React.PureComponent {
                 uuid: uuid,
             };
 
-            fetch('https://trinity-desktop-activation-ytcqbqcbbp.now.sh', {
+            fetch('https://trinity-desktop-activation.tangle.works', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
