@@ -186,7 +186,8 @@
     "react-transition-group": "4.2.1",
     "realm": "2.29.2",
     "recharts": "1.6.2",
-    "redux": "4.0.4"
+    "redux": "4.0.4",
+    "sjcl": "^1.0.8"
   },
   "jest": {
     "runner": "@jest-runner/electron",

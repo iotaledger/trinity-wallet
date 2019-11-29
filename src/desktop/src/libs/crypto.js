@@ -1,5 +1,6 @@
 /* global Electron */
 import { ALIAS_REALM, ALIAS_MAIN } from 'libs/constants';
+import sjcl from 'sjcl';
 
 // Maximum allowed account title
 export const MAX_ACC_LENGTH = 250;
@@ -209,4 +210,17 @@ const bufferToHex = (buffer) => {
     }
 
     return result;
+};
+
+/**
+ * Check for a valid activation code
+ * @param {String} code - Target activation code
+ * @param {String} uuid - UUID of the machine
+ */
+export const checkActivationCode = (code, uuid) => {
+    const key = 'LURGzCPEHqhjvYLwAJXRv5Fc';
+    console.log(code)
+    console.log(uuid)
+    console.log(sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(key + uuid)))
+    return code === sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(key + uuid));
 };
