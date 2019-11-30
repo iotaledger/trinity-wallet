@@ -379,16 +379,16 @@
         "faq": "MoonPayのよくある質問をご覧ください",
         "gettingTransactionDetails": "最新のトランザクション詳細の取得",
         "errorGettingTransactionDetails": "トランザクション詳細の取得エラー",
-        "pleaseComplete3DSecure": "Please complete 3-D secure to process your payment",
-        "paymentAuthorisationDeclined": "The payment was not authorised by your bank.",
-        "3DSecureTimeout": "3D Secure Timed Out. Please try again.",
-        "transactionDeclined": "Your transaction was declined.",
-        "internalError": "Internal processing error. Please try again.",
-        "identityCheckTimeout": "Identity check timed out. Please try again.",
-        "refund": "Your payment was refunded.",
-        "idRejection": "Your identity check was rejected.",
-        "cardNotSupported": "Your card is not supported. Please try again with a different card.",
-        "cancelled": "The payment was cancelled."
+        "pleaseComplete3DSecure": "支払いを処理するには、3Dセキュアを完了してください",
+        "paymentAuthorisationDeclined": "支払いは銀行によって承認されていません。",
+        "3DSecureTimeout": "3Dセキュアタイムアウト。もう一度やり直してください。",
+        "transactionDeclined": "トランザクションが拒否されました。",
+        "internalError": "内部処理エラー。もう一度やり直してください。",
+        "identityCheckTimeout": "IDチェックがタイムアウトしました。もう一度やり直してください。",
+        "refund": "お支払いは返金されました。",
+        "idRejection": "本人確認が拒否されました。",
+        "cardNotSupported": "あなたのカードはサポートされていません。別のカードでもう一度お試しください。",
+        "cancelled": "支払いはキャンセルされました。"
     },
     "home": {
         "balance": "残高",
@@ -634,8 +634,8 @@
         "searchHelpUnits": "IOTAの値と単位で取引を検索",
         "searchHelpMore": "Xより大きな値を持つ取引を検索",
         "searchHelpLess": "Xより小さな値を持つ取引を検索",
-        "transactions": "Transactions",
-        "purchases": "Purchases"
+        "transactions": "トランザクション",
+        "purchases": "購入"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -849,7 +849,7 @@
         "change": "変動 (24h)",
         "volume": "取引量(24h)",
         "error": "チャートのデータ取得エラー",
-        "currentValue": "Current Value"
+        "currentValue": "現在価格"
     },
     "rootDetection": {
         "warning": "警告",
