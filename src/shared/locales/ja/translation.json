@@ -1020,8 +1020,8 @@
         "writtenDownInfoExplanation": "将来アカウントを復元する時に、インデックス番号が必要になります。インデックス番号を紛失すると、IOTAを失うことになります。決して紛失しないでください。"
     },
     "help": {
-        "docsSite": "Trinity Docs Site",
-        "commonIssues": "Common Wallet Issues",
-        "buyingIOTA": "Problems Buying IOTA"
+        "docsSite": "Trinityのドキュメントサイト",
+        "commonIssues": "ウォレットの一般的な問題",
+        "buyingIOTA": "IOTAの購入に関する問題"
     }
 }
