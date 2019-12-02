@@ -157,11 +157,6 @@
     }
   },
   "dependencies": {
-    "@iota/bundle": "^1.0.0-beta.21",
-    "@iota/bundle-miner": "https://github.com/chrisdukakis/iota.js#feat/bundle-miner",
-    "@iota/converter": "^1.0.0-beta.21",
-    "@iota/core": "^1.0.0-beta.20",
-    "@iota/transaction": "^1.0.0-beta.21",
     "@babel/register": "7.4.4",
     "@bugsnag/js": "6.3.2",
     "@bugsnag/plugin-react": "^6.2.0",
@@ -171,7 +166,7 @@
     "classnames": "2.2.6",
     "electron-settings": "3.2.0",
     "electron-updater": "4.0.14",
-    "entangled-node": "rihardsgravis/entangled-node#a39bfbf",
+    "entangled-node": "laumair/entangled-node#014db24",
     "hw-app-iota": "0.6.1",
     "i18next": "17.0.6",
     "iota.lib.js": "0.5.2",

@@ -18,7 +18,7 @@ import { formatUnit, formatIotas } from 'libs/iota/utils';
 import {
     getSelectedAccountName,
     getSelectedAccountMeta,
-    getSpentAddressDataWithBalanceForSelectedAccount,
+    getFilteredSpentAddressDataForSelectedAccount,
     getBroadcastedTransactionsForSelectedAccount,
     selectLatestAddressFromAccountFactory,
 } from 'selectors/accounts';
@@ -282,7 +282,7 @@ class TransferFunds extends React.PureComponent {
 const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
     accountMeta: getSelectedAccountMeta(state),
-    spentAddressDataWithBalance: getSpentAddressDataWithBalanceForSelectedAccount(state),
+    spentAddressDataWithBalance: getFilteredSpentAddressDataForSelectedAccount(state),
     broadcastedTransactions: getBroadcastedTransactionsForSelectedAccount(state),
     latestAddress: selectLatestAddressFromAccountFactory()(state),
     sweepsStatuses: state.wallet.sweepsStatuses,
@@ -300,7 +300,4 @@ const mapDispatchToProps = {
     resetProgress,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(TransferFunds));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(TransferFunds));

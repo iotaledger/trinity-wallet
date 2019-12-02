@@ -22,13 +22,15 @@ const exec = (payload) => {
             child.kill();
         });
 
-        timeout = setTimeout(
-            () => {
-                reject(`Timeout: Entangled job: ${job}`);
-                child.kill();
-            },
-            job === 'batchedPow' ? 180 * 1000 : 30 * 1000,
-        );
+        const timeoutsMap = {
+            batchedPow: 180 * 1000,
+            bundleMiner: 30 * 60 * 1000,
+        };
+
+        timeout = setTimeout(() => {
+            reject(`Timeout: Entangled job: ${job}`);
+            child.kill();
+        }, timeoutsMap[job] || 30 * 1000);
 
         child.send(payload);
     });
@@ -59,6 +61,19 @@ process.on('message', async (data) => {
         const address = await EntangledNode.genAddressTritsFunc(payload.seed, payload.index, payload.security);
         process.send(address);
     }
+
+    if (payload.job === 'bundleMiner') {
+        const index = await EntangledNode.bundleMiner(
+            payload.bundleNormalizedMax,
+            payload.security,
+            payload.essence,
+            payload.essenceLength,
+            payload.count,
+            payload.nprocs,
+            payload.miningThreshold,
+        );
+        process.send(index);
+    }
 });
 
 const Entangled = {
@@ -70,6 +85,20 @@ const Entangled = {
     },
     genFn: async (seed, index, security) => {
         return await exec(JSON.stringify({ job: 'gen', seed, index, security }));
+    },
+    bundleMinerFn: async (bundleNormalizedMax, security, essence, essenceLength, count, nprocs, miningThreshold) => {
+        return await exec(
+            JSON.stringify({
+                job: 'bundleMiner',
+                bundleNormalizedMax,
+                security,
+                essence,
+                essenceLength,
+                count,
+                nprocs,
+                miningThreshold,
+            }),
+        );
     },
 };
 

@@ -1,7 +1,6 @@
 /* global Electron */
 import { iota } from 'libs/iota';
 import { performPow } from 'libs/iota/transfers';
-import { createBundleMiner } from '@iota/bundle-miner/packages/bundle-miner';
 
 export default class SeedStoreCore {
     /**
@@ -54,28 +53,27 @@ export default class SeedStoreCore {
      * @param {number} [essenceLength]
      * @param {number} [count]
      * @param {number} [procs]
+     * @param {number} [miningThreshold]
      *
      * @returns {Promise<number>}
      */
     mineBundle(
         normalizedBundle,
-        numberOfFragments,
         bundleEssence,
-        /* eslint-disable no-unused-vars */
+        security = 2,
         essenceLength = 486 * 4,
-        count = 10 ** 3,
+        count = 10 ** 8,
         procs = 0,
-        /* eslint-enable no-unused-vars */
+        miningThreshold = 3 ** 40,
     ) {
-        // TODO: Replace this method with entangled native method
-        const result = createBundleMiner({
-            signedNormalizedBundle: normalizedBundle,
-            essence: bundleEssence,
-            numberOfFragments,
-            offset: 0,
+        return Electron.getBundleMinerFn()(
+            Array.from(normalizedBundle),
+            security,
+            Array.from(bundleEssence),
+            essenceLength,
             count,
-        }).start();
-
-        return Promise.resolve(result.index);
+            procs,
+            miningThreshold,
+        );
     }
 }

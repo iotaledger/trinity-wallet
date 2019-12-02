@@ -55,7 +55,7 @@ export const createUnsignedBundle = (outputAddress, inputAddress, value, securit
  * @returns {function(object, object, string, array): Promise<object>}
  **/
 export const sweep = (settings, withQuorum) => (seedStore, input, outputAddress, knownBundleHashes) => {
-    const numberOfFragments = 2;
+    const security = 2;
 
     const unsignedBundle = createUnsignedBundle(
         trytesToTrits(outputAddress),
@@ -71,11 +71,7 @@ export const sweep = (settings, withQuorum) => (seedStore, input, outputAddress,
     };
 
     return seedStore
-        .mineBundle(
-            minNormalizedBundle(normalizedBundles, numberOfFragments),
-            numberOfFragments,
-            bundleEssence(unsignedBundle),
-        )
+        .mineBundle(minNormalizedBundle(normalizedBundles, security), bundleEssence(unsignedBundle))
         .then((index) => {
             unsignedBundle.set(valueToTrits(index), Transaction.OBSOLETE_TAG_OFFSET);
 
@@ -85,7 +81,7 @@ export const sweep = (settings, withQuorum) => (seedStore, input, outputAddress,
             return seedStore
                 .getSeed(true)
                 .then((seed) => {
-                    return signatureFragments(seed, input.index, numberOfFragments, Transaction.bundle(bundle));
+                    return signatureFragments(seed, input.index, security, Transaction.bundle(bundle));
                 })
                 .then((_signatureFragments) => {
                     bundle.set(addSignatureOrMessage(bundle, _signatureFragments, 1));
