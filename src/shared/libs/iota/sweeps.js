@@ -5,7 +5,6 @@ import { tritsToTrytes, trytesToTrits, valueToTrits } from '@iota/converter';
 import * as Transaction from '@iota/transaction';
 import { normalizedBundle, signatureFragments } from '@iota/signing';
 import Errors from '../errors';
-/* eslint-disable */
 import { attachToTangleAsync, getTransactionsToApproveAsync, storeAndBroadcastAsync } from './extendedApi';
 import { isBundle } from './transfers';
 import { iota } from './index';
@@ -54,7 +53,7 @@ export const createUnsignedBundle = (outputAddress, inputAddress, value, securit
  *
  * @returns {function(object, object, string, array): Promise<object>}
  **/
-export const sweep = (settings, withQuorum) => (seedStore, input, outputAddress, knownBundleHashes) => {
+export const sweep = (settings) => (seedStore, input, outputAddress, knownBundleHashes) => {
     const security = 2;
 
     const unsignedBundle = createUnsignedBundle(
@@ -110,8 +109,7 @@ export const sweep = (settings, withQuorum) => (seedStore, input, outputAddress,
             cached.trytes = trytes;
             cached.transactionObjects = transactionObjects;
 
-            return Promise.resolve();
-            // return storeAndBroadcastAsync(settings)(cached.trytes);
+            return storeAndBroadcastAsync(settings)(cached.trytes);
         })
         .then(() => cached);
 };

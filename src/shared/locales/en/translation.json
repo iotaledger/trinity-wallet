@@ -914,7 +914,8 @@
         "transferComplete": "Transfer complete",
         "sweepingFunds": "Sweeping funds",
         "syncingAccountAfterSpending": "Syncing account after spending",
-        "fundsSweptSuccessfully": "Funds swept successfully"
+        "fundsSweptSuccessfully": "Funds swept successfully",
+        "promotingTransaction": "Promoting transaction"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",

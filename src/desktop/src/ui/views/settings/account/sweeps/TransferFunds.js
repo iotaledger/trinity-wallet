@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import isEmpty from 'lodash/isEmpty';
@@ -12,6 +13,10 @@ import SeedStore from 'libs/SeedStore';
 
 import { reset as resetProgress } from 'actions/progress';
 import { recoverLockedFunds, setSweepsStatuses } from 'actions/sweeps';
+
+import { getActiveSweepAddress, getActiveSweepInitialisationTime } from 'selectors/global';
+
+import { moment } from 'libs/exports';
 
 import { formatUnit, formatIotas } from 'libs/iota/utils';
 
@@ -63,10 +68,22 @@ class TransferFunds extends React.PureComponent {
         /** @ignore */
         resetProgress: PropTypes.func.isRequired,
         /** @ignore */
-        currentSweepIteration: PropTypes.number.isRequired,
+        activeSweepAddress: PropTypes.string.isRequired,
         /** @ignore */
-        totalSweepIterations: PropTypes.number.isRequired,
+        activeSweepInitialisationTime: PropTypes.number.isRequired,
     };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            timeElapsed: {},
+        };
+    }
+
+    componentDidMount() {
+        this.interval = setInterval(() => this.trackTime(), 1000);
+    }
 
     componentWillReceiveProps(newProps) {
         if (this.props.isRecoveringFunds && !newProps.isRecoveringFunds && !this.hasFailedAnySweep()) {
@@ -77,6 +94,17 @@ class TransferFunds extends React.PureComponent {
     componentWillUnmount() {
         this.props.setSweepsStatuses({});
         this.props.resetProgress();
+        clearInterval(this.interval);
+    }
+
+    trackTime() {
+        if (!isEmpty(this.props.activeSweepAddress) && this.props.activeSweepInitialisationTime !== -1) {
+            this.setState((prevState) => ({
+                timeElapsed: assign({}, prevState.timeElapsed, {
+                    [this.props.activeSweepAddress]: this.getTimeElapsed(this.props.activeSweepInitialisationTime),
+                }),
+            }));
+        }
     }
 
     /**
@@ -90,10 +118,12 @@ class TransferFunds extends React.PureComponent {
      * @returns {string}
      */
     getSweepStatus(hasFailed, isInProgress) {
+        const { activeSteps, activeStepIndex } = this.props;
+
         if (hasFailed) {
             return 'Failed';
         } else if (isInProgress) {
-            return 'In Progress';
+            return activeSteps[activeStepIndex];
         }
 
         return 'Completed';
@@ -129,7 +159,7 @@ class TransferFunds extends React.PureComponent {
     hasFailedAnySweep() {
         const { sweepsStatuses } = this.props;
 
-        return !isEmpty(sweepsStatuses) && some(Object.values(sweepsStatuses), (status) => status === -1);
+        return !isEmpty(sweepsStatuses) && some(Object.values(sweepsStatuses), (status) => status.status === -1);
     }
 
     /**
@@ -148,16 +178,19 @@ class TransferFunds extends React.PureComponent {
         this.props.recoverLockedFunds(accountName, seedStore, addressData);
     }
 
+    getTimeElapsed(initialisationTime) {
+        const startTime = moment(initialisationTime);
+        const diff = moment().diff(startTime, 'minutes');
+
+        if (diff === 0) {
+            return `${moment().diff(startTime, 'seconds')} seconds`;
+        }
+
+        return diff > 1 ? `${diff} minutes` : `${diff} minute`;
+    }
+
     render() {
-        const {
-            currentSweepIteration,
-            totalSweepIterations,
-            spentAddressDataWithBalance,
-            isRecoveringFunds,
-            latestAddress,
-            sweepsStatuses,
-            t,
-        } = this.props;
+        const { spentAddressDataWithBalance, isRecoveringFunds, latestAddress, sweepsStatuses, t } = this.props;
 
         const hasFailedAnySweep = this.hasFailedAnySweep();
 
@@ -177,7 +210,9 @@ class TransferFunds extends React.PureComponent {
                         }}
                     >
                         {spentAddressDataWithBalance.map((object, index) => {
-                            const status = get(sweepsStatuses, object.address);
+                            const statusObject = get(sweepsStatuses, object.address);
+                            const status = get(statusObject, 'status');
+                            const initialisationTime = get(statusObject, 'initialisationTime');
 
                             const hasFailed = status === -1;
                             const isInProgress = status === 0;
@@ -209,7 +244,16 @@ class TransferFunds extends React.PureComponent {
                                                     marginRight: '40px',
                                                 }}
                                             >
-                                                <Progress progress={this.getProgress(hasFailed, hasCompleted)} />
+                                                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                    <Progress progress={this.getProgress(hasFailed, hasCompleted)} />
+                                                    {get(sweepsStatuses[object.address], 'status') === 0 && (
+                                                        <strong>
+                                                            Time elapsed:{' '}
+                                                            {this.state.timeElapsed[object.address] ||
+                                                                this.getTimeElapsed(initialisationTime)}
+                                                        </strong>
+                                                    )}
+                                                </div>
                                             </span>
                                         )}
                                         {has(sweepsStatuses, object.address) && (
@@ -240,15 +284,6 @@ class TransferFunds extends React.PureComponent {
                                 </div>
                             );
                         })}
-                        {isRecoveringFunds && (
-                            <div
-                                style={{
-                                    display: 'flex',
-                                }}
-                            >
-                                <span>Bundles mined {`${currentSweepIteration}/${totalSweepIterations}`}</span>
-                            </div>
-                        )}
                     </div>
                 </section>
                 <footer>
@@ -290,8 +325,8 @@ const mapStateToProps = (state) => ({
     isRecoveringFunds: state.ui.isRecoveringFunds,
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
-    currentSweepIteration: state.wallet.currentSweepIteration,
-    totalSweepIterations: state.wallet.totalSweepIterations,
+    activeSweepAddress: getActiveSweepAddress(state),
+    activeSweepInitialisationTime: getActiveSweepInitialisationTime(state),
 });
 
 const mapDispatchToProps = {
