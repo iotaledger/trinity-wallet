@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+import find from 'lodash/find';
 import isNull from 'lodash/isNull';
 import React from 'react';
 import { withTranslation } from 'react-i18next';
@@ -18,6 +20,7 @@ import {
     getCustomerMonthlyLimits,
     shouldRequireStateInput,
     hasStoredAnyPaymentCards,
+    getStatesForSelectedCountry,
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -115,17 +118,23 @@ class UserAdvancedInfo extends React.Component {
         /** @ignore */
         hasAnyPaymentCards: PropTypes.bool.isRequired,
         /** @ignore */
+        statesForSelectedCountry: PropTypes.array.isRequired,
+        /** @ignore */
         updateCustomerInfo: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
 
+        const _setState = (selectedState) => {
+            return get(find(props.statesForSelectedCountry, { code: selectedState }), 'name') || '';
+        };
+
         this.state = {
             address: isNull(props.address) ? '' : props.address,
             city: isNull(props.city) ? '' : props.city,
             zipCode: isNull(props.zipCode) ? '' : props.zipCode,
-            state: isNull(props.state) ? '' : props.state,
+            state: isNull(props.state) ? '' : _setState(props.state),
         };
     }
 
@@ -198,7 +207,7 @@ class UserAdvancedInfo extends React.Component {
      * @returns {function}
      */
     updateCustomer() {
-        const { hasAnyPaymentCards, shouldRequireStateInput, country, t } = this.props;
+        const { statesForSelectedCountry, hasAnyPaymentCards, shouldRequireStateInput, country, t } = this.props;
 
         if (!this.state.address) {
             return this.props.generateAlert(
@@ -224,13 +233,17 @@ class UserAdvancedInfo extends React.Component {
             );
         }
 
+        const _getStateCode = (selectedStateName) => {
+            return get(find(statesForSelectedCountry, { name: selectedStateName }), 'code');
+        };
+
         const data = {
             address: {
                 country,
                 street: this.state.address,
                 town: this.state.city,
                 postCode: this.state.zipCode,
-                ...(shouldRequireStateInput && { state: this.state.state }),
+                ...(shouldRequireStateInput && { state: _getStateCode(this.state.state) }),
             },
         };
 
@@ -454,6 +467,7 @@ const mapStateToProps = (state) => ({
     defaultCurrencyCode: getDefaultCurrencyCode(state),
     shouldRequireStateInput: shouldRequireStateInput(state),
     hasAnyPaymentCards: hasStoredAnyPaymentCards(state),
+    statesForSelectedCountry: getStatesForSelectedCountry(state),
 });
 
 const mapDispatchToProps = {
@@ -462,11 +476,4 @@ const mapDispatchToProps = {
     updateCustomerInfo,
 };
 
-export default WithUserActivity()(
-    withTranslation()(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(UserAdvancedInfo),
-    ),
-);
+export default WithUserActivity()(withTranslation()(connect(mapStateToProps, mapDispatchToProps)(UserAdvancedInfo)));

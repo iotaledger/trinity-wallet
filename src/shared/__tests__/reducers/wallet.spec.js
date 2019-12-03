@@ -19,6 +19,7 @@ describe('Reducer: wallet', () => {
                 forceUpdate: false,
                 shouldUpdate: false,
                 displayTestWarning: false,
+                activationCode: null,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

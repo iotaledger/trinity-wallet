@@ -88,8 +88,10 @@ export class AlertsComponent extends React.PureComponent {
     }
 
     render() {
+        /* eslint-disable no-unused-vars */
         const { alerts, dismissAlert, forceUpdate, shouldUpdate, displayTestWarning, t } = this.props;
         const { isUpdating, dismissUpdate } = this.state;
+        /* eslint-enable no-unused-vars */
 
         /**
          * Temporarily override account fetch error by adding Proxy setting suggestion
