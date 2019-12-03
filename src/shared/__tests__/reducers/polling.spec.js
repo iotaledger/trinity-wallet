@@ -6,14 +6,7 @@ import { PollingActionTypes } from '../../types';
 describe('Reducer: polling', () => {
     it('should have an initial state', () => {
         const initialState = {
-            allPollingServices: [
-                'promotion',
-                'broadcast',
-                'marketData',
-                'nodeList',
-                'accountInfo',
-                'moonpayTransactions',
-            ],
+            allPollingServices: ['promotion', 'broadcast', 'marketData', 'nodeList', 'accountInfo', 'moonpayMeta'],
             pollFor: 'promotion',
             retryCount: 0,
             isFetchingPrice: false,
@@ -22,7 +15,7 @@ describe('Reducer: polling', () => {
             isFetchingMarketData: false,
             isFetchingAccountInfo: false,
             isAutoPromoting: false,
-            isFetchingMoonPayTransactions: false,
+            isFetchingMoonPayMeta: false,
         };
 
         expect(reducer(undefined, {})).to.eql(initialState);

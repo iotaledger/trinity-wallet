@@ -118,6 +118,23 @@ export class MoonPayApi {
     }
 
     /**
+     * Gets customer info
+     *
+     * @method getCustomerInfo
+     *
+     * @returns {Promise}
+     */
+    getCustomerInfo() {
+        return this._fetch(
+            `${this.url}/customers/me/`,
+            {
+                method: 'GET',
+            },
+            true,
+        );
+    }
+
+    /**
      * Fetches list of all countries supported by MoonPay
      *
      * @method fetchCountries
