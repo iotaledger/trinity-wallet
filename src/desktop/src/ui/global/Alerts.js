@@ -101,35 +101,19 @@ export class AlertsComponent extends React.PureComponent {
 
         return (
             <div className={css.wrapper}>
-                {!dismissUpdate &&
-                    displayTestWarning &&
-                    this.renderFullWidthAlert(`${t('rootDetection:warning')}:`, t('global:testVersionWarning'), true)}
-                {!isUpdating &&
-                    !dismissUpdate &&
-                    shouldUpdate &&
-                    this.renderFullWidthAlert(t('global:shouldUpdate'), t('global:shouldUpdateExplanation'), true, () =>
-                        Electron.autoUpdate(),
+                <div
+                    onClick={() => dismissAlert()}
+                    className={classNames(
+                        alerts.category && alerts.category.length ? css.visible : null,
+                        css[`${alerts.category}`],
                     )}
-                {!isUpdating &&
-                    forceUpdate &&
-                    this.renderFullWidthAlert(t('global:forceUpdate'), t('global:forceUpdateExplanation'), false, () =>
-                        Electron.autoUpdate(),
-                    )}
-                {(!dismissUpdate && (forceUpdate || shouldUpdate)) || (
-                    <div
-                        onClick={() => dismissAlert()}
-                        className={classNames(
-                            alerts.category && alerts.category.length ? css.visible : null,
-                            css[`${alerts.category}`],
-                        )}
-                    >
-                        <span>
-                            <Icon icon="cross" size={14} />
-                        </span>
-                        {alerts.title && <h2>{alerts.title}</h2>}
-                        {message && <p>{message}</p>}
-                    </div>
-                )}
+                >
+                    <span>
+                        <Icon icon="cross" size={14} />
+                    </span>
+                    {alerts.title && <h2>{alerts.title}</h2>}
+                    {message && <p>{message}</p>}
+                </div>
             </div>
         );
     }

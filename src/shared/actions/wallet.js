@@ -640,3 +640,15 @@ export const forceUpdate = () => ({
 export const displayTestWarning = () => ({
     type: WalletActionTypes.DISPLAY_TEST_WARNING,
 });
+
+/**
+ * Dispatch to set activation code
+ *
+ * @method setActivationCode
+ *
+ * @returns {{type: {string} }}
+ */
+export const setActivationCode = (code) => ({
+    type: WalletActionTypes.SET_ACTIVATION_CODE,
+    payload: code,
+});
