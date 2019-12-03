@@ -121,7 +121,7 @@ class UserBasicInfo extends React.PureComponent {
             <form>
                 <section className={css.long}>
                     <div>
-                        <p>{t('moonpay:tellUsMore')}</p>
+                        <p>{t('moonpay:tellUsAbout')}</p>
                         <p>{t('moonpay:cardRegistrationName')}</p>
                     </div>
                     <fieldset>

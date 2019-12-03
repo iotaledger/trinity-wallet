@@ -313,7 +313,7 @@
         "amountTooHigh": "Amount is too high",
         "amountTooHighExplanation": "Maximum transaction amount is {{amount}} per day.",
         "addPaymentMethod": "Add a payment method",
-        "pleaseEnterYourBillingDetails": "Please enter your billing details below",
+        "pleaseEnterYourBillingDetails": "Please enter your card details below.",
         "cardNumber": "CARD NUMBER",
         "cvc": "CVC",
         "expirationDate": "EXPIRATION DATE",

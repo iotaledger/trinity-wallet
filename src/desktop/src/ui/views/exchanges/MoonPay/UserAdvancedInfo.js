@@ -190,7 +190,7 @@ class UserAdvancedInfo extends React.PureComponent {
                 <section className={css.long}>
                     <div>
                         <p> {t('moonpay:tellUsMore')}</p>
-                        <p>{t('moonpay:cardRegistrationName')}</p>
+                        <p>{t('moonpay:cardBillingAddress')}</p>
                     </div>
                     <fieldset>
                         <Input
