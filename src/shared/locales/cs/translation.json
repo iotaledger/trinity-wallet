@@ -256,7 +256,7 @@
         "addAmountExplanation": "Zadejte částku za kterou chcete nakoupit ve své měně, nebo zadejte množství MIOTA.",
         "enterAmount": "ZADEJTE ČÁSTKU",
         "selectAccount": "Vyberte svůj Trinity účet",
-        "selectAccountExplanation": "Your MoonPay purchase will be transferred automatically to your selected account.",
+        "selectAccountExplanation": "Váš nákup MoonPay bude automaticky převeden na vybraný účet.",
         "setupEmail": "First, let's get setup quickly",
         "setupEmailExplanation": "Provide the email address for your account.",
         "yourEmail": "YOUR EMAIL",
