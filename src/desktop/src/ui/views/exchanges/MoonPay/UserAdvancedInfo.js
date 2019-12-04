@@ -137,8 +137,8 @@ class UserAdvancedInfo extends React.PureComponent {
         if (!this.state.zipCode) {
             return this.props.generateAlert(
                 'error',
-                t('moonpay:invalidZipCode'),
-                t('moonpay:invalidZipCodeExplanation'),
+                country === 'USA' ? 'Invalid zip code' : t('moonpay:invalidZipCode'),
+                country === 'USA' ? 'Please enter a valid zip code.' : t('moonpay:invalidZipCodeExplanation'),
             );
         }
 
@@ -160,7 +160,7 @@ class UserAdvancedInfo extends React.PureComponent {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, country } = this.props;
         const { address, city, zipCode } = this.state;
 
         return (
@@ -183,7 +183,7 @@ class UserAdvancedInfo extends React.PureComponent {
                         />
                         <Input
                             value={zipCode}
-                            label={t('moonpay:zipCode')}
+                            label={country === 'USA' ? "ZIP CODE" : t('moonpay:zipCode')}
                             onChange={(newZipCode) => this.setState({ zipCode: newZipCode })}
                         />
                     </fieldset>
