@@ -28,6 +28,7 @@ import {
     displayTestWarning,
 } from 'actions/wallet';
 import {
+    clearData as clearMoonPayData,
     fetchTransactionDetails as fetchMoonPayTransactionDetails,
     setAuthenticationStatus as setMoonPayAuthenticationStatus,
 } from 'actions/exchanges/MoonPay';
@@ -104,6 +105,8 @@ class App extends React.Component {
         shouldUpdate: PropTypes.func.isRequired,
         /** @ignore */
         deepLinking: PropTypes.bool.isRequired,
+        /** @ignore */
+        clearMoonPayData: PropTypes.func.isRequired,
         /** @ignore */
         forceUpdate: PropTypes.func.isRequired,
         /** @ignore */
@@ -305,6 +308,7 @@ class App extends React.Component {
             case 'logout':
                 MoonPayKeychainAdapter.clear()
                     .then(() => {
+                        this.props.clearMoonPayData();
                         this.props.setMoonPayAuthenticationStatus(false);
                         this.props.clearWalletData();
                         this.props.setPassword({});
@@ -398,6 +402,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
+    clearMoonPayData,
     clearWalletData,
     setPassword,
     initiateDeepLinkRequest,

@@ -491,6 +491,17 @@ export const setLoggingIn = (payload) => ({
 });
 
 /**
+ * Dispatch to clear moonpay reducers data
+ *
+ * @method clearData
+ *
+ * @returns {{type: {string} }}
+ */
+export const clearData = () => ({
+    type: MoonPayExchangeActionTypes.CLEAR_DATA,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
