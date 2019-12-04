@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
+import isUndefined from 'lodash/isUndefined';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import map from 'lodash/map';
@@ -45,47 +47,75 @@ class Landing extends React.PureComponent {
         /** @ignore */
         setLoggingIn: PropTypes.func.isRequired,
         /** @ignore */
-        isLoggingIn: PropTypes.bool.isRequired
+        isLoggingIn: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
         super(props);
 
         const allowedCountries = filter(props.countries, (country) => country.isAllowed);
-        const _setCountryBasedOnIPAddress = () => {
+        const _setInfoBasedOnIPAddress = () => {
             const fallbackCountryName = get(head(allowedCountries), 'name');
             const fallbackCountryAlpha3 = get(head(allowedCountries), 'alpha3');
+            const allowedStates = this.getStates(allowedCountries, fallbackCountryAlpha3);
+
+            const state = {
+                name: get(head(allowedStates, 'name')) || '',
+                code: get(head(allowedStates, 'code')) || '',
+            }
 
             if (props.isIPAddressAllowed) {
                 return {
-                    name:
-                        get(find(props.countries, { alpha3: props.alpha3CodeForIPAddress }), 'name') ||
-                        fallbackCountryName,
-                    alpha3: props.alpha3CodeForIPAddress || fallbackCountryAlpha3,
+                    country: {
+                        name:
+                            get(find(props.countries, { alpha3: props.alpha3CodeForIPAddress }), 'name') ||
+                            fallbackCountryName,
+                        alpha3: props.alpha3CodeForIPAddress || fallbackCountryAlpha3,
+                    },
+                    state
                 };
             }
 
             return {
-                name: fallbackCountryName,
-                alpha3: fallbackCountryAlpha3,
+                country: {
+                    name: fallbackCountryName,
+                    alpha3: fallbackCountryAlpha3,
+                },
+                state
             };
         };
-
-        this.state = {
-            country: isNull(props.country)
-                ? _setCountryBasedOnIPAddress()
+        const storedCountry = find(props.countries, { alpha3: props.country });
+        this.state =
+            isNull(props.country) || isUndefined(props.country)
+                ? _setInfoBasedOnIPAddress()
                 : {
-                      name: get(find(props.countries, { alpha3: props.country }), 'name'),
-                      alpha3: props.country,
-                  },
-        };
+                      country: {
+                          name: get(storedCountry, 'name'),
+                          alpha3: get(storedCountry, 'alpha3'),
+                      },
+                      state: {
+                          name: get(head(get(storedCountry, 'states')), 'name') || '',
+                          code: get(head(get(storedCountry, 'states')), 'code') || ''
+                      }
+                  };
+    }
+
+    /**
+     * Return states for a given country
+     *
+     * @method getStates
+     *
+     * @returns {function}
+     */
+    getStates(countries, countryCode) {
+        return get(find(countries, { alpha3: countryCode }), 'states') || [];
     }
 
     render() {
         const { isLoggingIn, countries, t, themeName } = this.props;
 
+        const states = this.getStates(this.props.countries, this.state.country.alpha3);
         const countryNames = map(filter(countries, (country) => country.isAllowed), (country) => country.name);
-
         return (
             <form>
                 <section className={css.long}>
@@ -93,8 +123,8 @@ class Landing extends React.PureComponent {
                         <React.Fragment>
                             <p>{isLoggingIn ? t('moonpay:loginToMoonPay') : t('moonpay:buyIOTA')}</p>
                             <Lottie
-                                width={180}
-                                height={180}
+                                width={140}
+                                height={140}
                                 data={getAnimation('sendingDesktop', themeName)}
                                 segments={[89, 624]}
                                 loop
@@ -114,6 +144,10 @@ class Landing extends React.PureComponent {
                                         name: country.name,
                                         alpha3: country.alpha3,
                                     },
+                                    state: {
+                                        name: get(head(get(country, 'states')), 'name') || '',
+                                        code: get(head(get(country, 'states')), 'code') || ''
+                                    }
                                 });
                             }}
                             options={map(countryNames, (countryName) => ({
@@ -122,6 +156,28 @@ class Landing extends React.PureComponent {
                             }))}
                         />
                     </fieldset>
+                    {!isEmpty(states) &&
+                        <fieldset>
+                            <Select
+                                value={this.state.state.name}
+                                label={t('moonpay:selectCountry')}
+                                onChange={(name) => {
+                                    const state = find(states, { name });
+
+                                    this.setState({
+                                        state: {
+                                            name: state.name,
+                                            code: state.code
+                                        }
+                                    });
+                                }}
+                                options={map(states, (state) => ({
+                                    value: state.name,
+                                    label: state.name,
+                                }))}
+                            />
+                        </fieldset>
+                    }
                 </section>
                 <footer className={css.choiceDefault}>
                     <div>
@@ -142,6 +198,7 @@ class Landing extends React.PureComponent {
                                 this.props.updateCustomerInfo({
                                     address: {
                                         country: this.state.country.alpha3,
+                                        state: this.state.state.code
                                     },
                                 });
                                 this.props.history.push('/exchanges/moonpay/setup-email');
@@ -169,7 +226,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     updateCustomerInfo,
-    setLoggingIn
+    setLoggingIn,
 };
 
 export default connect(
