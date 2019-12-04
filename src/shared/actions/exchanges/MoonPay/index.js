@@ -11,6 +11,7 @@ import api, { IOTA_CURRENCY_CODE, MOONPAY_RETURN_URL } from '../../../exchanges/
 import { getCustomerEmail, getSelectedPaymentCard, getCustomerCountryCode } from '../../../selectors/exchanges/MoonPay';
 import { __DEV__ } from '../../../config';
 import i18next from '../../../libs/i18next';
+import { mergeOmittingNull } from '../../../libs/utils';
 
 /**
  * Dispatch to set supported currencies by MoonPay
@@ -638,22 +639,19 @@ export const verifyEmailAndFetchMeta = (securityCode, keychainAdapter) => (dispa
  *
  * @returns {function}
  */
-export const updateCustomer = (info) => (dispatch, getState) => {
+export const updateCustomer = (info) => (dispatch) => {
     dispatch(updateCustomerRequest());
-
     api.updateUserInfo(info)
         .then((data) => {
             return api.fetchCustomerPurchaseLimits().then((purchaseLimits) => {
                 dispatch(
                     updateCustomerInfo(
-                        merge({}, data, {
+                        mergeOmittingNull({
                             address: {
-                                country: get(info, 'address.country')
-                                    ? get(data, 'address.country')
-                                    : getCustomerCountryCode(getState()),
+                                country: get(info, 'address.country'),
+                                state: get(info, 'address.state')
                             },
-                            purchaseLimits,
-                        }),
+                        }, merge(purchaseLimits, data)),
                     ),
                 );
                 dispatch(updateCustomerSuccess());

@@ -4,6 +4,8 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import map from 'lodash/map';
 import isNull from 'lodash/isNull';
+import isUndefined from 'lodash/isUndefined';
+import isEmpty from 'lodash/isEmpty';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
@@ -93,33 +95,51 @@ class Landing extends Component {
         super(props);
 
         const allowedCountries = filter(props.countries, (country) => country.isAllowed);
-        const _setCountryBasedOnIPAddress = () => {
+        const _setInfoBasedOnIPAddress = () => {
             const fallbackCountryName = get(head(allowedCountries), 'name');
             const fallbackCountryAlpha3 = get(head(allowedCountries), 'alpha3');
+            const allowedStates = this.getStates(allowedCountries, fallbackCountryAlpha3);
+
+            const state = {
+                name: get(head(allowedStates, 'name')) || '',
+                code: get(head(allowedStates, 'code')) || '',
+            }
 
             if (props.isIPAddressAllowed) {
                 return {
-                    name:
-                        get(find(props.countries, { alpha3: props.alpha3CodeForIPAddress }), 'name') ||
-                        fallbackCountryName,
-                    alpha3: props.alpha3CodeForIPAddress || fallbackCountryAlpha3,
+                    country: {
+                        name:
+                            get(find(props.countries, { alpha3: props.alpha3CodeForIPAddress }), 'name') ||
+                            fallbackCountryName,
+                        alpha3: props.alpha3CodeForIPAddress || fallbackCountryAlpha3,
+                    },
+                    state
                 };
             }
 
             return {
-                name: fallbackCountryName,
-                alpha3: fallbackCountryAlpha3,
+                country: {
+                    name: fallbackCountryName,
+                    alpha3: fallbackCountryAlpha3,
+                },
+                state
             };
         };
+        const storedCountry = find(props.countries, { alpha3: props.country });
 
-        this.state = {
-            country: isNull(props.country)
-                ? _setCountryBasedOnIPAddress()
+        this.state =
+            isNull(props.country) || isUndefined(props.country)
+                ? _setInfoBasedOnIPAddress()
                 : {
-                      name: get(find(props.countries, { alpha3: props.country }), 'name'),
-                      alpha3: props.country,
-                  },
-        };
+                      country: {
+                          name: get(storedCountry, 'name'),
+                          alpha3: get(storedCountry, 'alpha3'),
+                      },
+                      state: {
+                          name: get(head(get(storedCountry, 'states')), 'name') || '',
+                          code: get(head(get(storedCountry, 'states')), 'code') || ''
+                      }
+                  };
     }
 
     /**
@@ -140,6 +160,17 @@ class Landing extends Component {
         navigator.pop(this.props.componentId);
     }
 
+    /**
+     * Return states for a given country
+     *
+     * @method getStates
+     *
+     * @returns {array}
+     */
+    getStates(countries, countryCode) {
+        return get(find(countries, { alpha3: countryCode }), 'states') || [];
+    }
+
     render() {
         const {
             t,
@@ -149,6 +180,8 @@ class Landing extends Component {
             isLoggingIn
         } = this.props;
         const textColor = { color: body.color };
+        const states = this.getStates(this.props.countries, this.state.country.alpha3);
+
         const countryNames = map(filter(countries, (country) => country.isAllowed), (country) => country.name);
 
         return (
@@ -167,7 +200,7 @@ class Landing extends Component {
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
-                        delay={266}
+                        delay={300}
                     >
                         <InfoBox>
                             <Text style={[styles.infoText, textColor]}>{isLoggingIn ? t('moonpay:loginToMoonPay') : t('moonpay:buyIOTA')}</Text>
@@ -197,7 +230,7 @@ class Landing extends Component {
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
-                        delay={80}
+                        delay={200}
                     >
                         <DropdownComponent
                             title={t('moonpay:selectCountry')}
@@ -215,10 +248,42 @@ class Landing extends Component {
                                         name: country.name,
                                         alpha3: country.alpha3,
                                     },
+                                    state: {
+                                        name: get(head(get(country, 'states')), 'name') || '',
+                                        code: get(head(get(country, 'states')), 'code') || ''
+                                    }
                                 });
                             }}
                         />
                     </AnimatedComponent>
+                    {!isEmpty(states) && <View style={{ flex: 0.1 }} />}
+                    {!isEmpty(states) &&
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={100}
+                    >
+                        <DropdownComponent
+                            title={t('moonpay:selectState')}
+                            onRef={(c) => {
+                                this.dropdown = c;
+                            }}
+                            value={this.state.state.name}
+                            options={map(states, state => state.name)}
+                            dropdownWidth={{ width: Styling.contentWidth }}
+                            saveSelection={(name) => {
+                                const state = find(states, { name });
+
+                                this.setState({
+                                    state: {
+                                        state: state.name,
+                                        code: state.code,
+                                    },
+                                });
+                            }}
+                        />
+                    </AnimatedComponent>
+                    }
                 </View>
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
@@ -228,6 +293,7 @@ class Landing extends Component {
                                 this.props.updateCustomerInfo({
                                     address: {
                                         country: this.state.country.alpha3,
+                                        state: this.state.state.code
                                     },
                                 });
 

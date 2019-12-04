@@ -423,20 +423,3 @@ export const getAlpha3CodeForIPAddress = createSelector(getExchangesFromState, (
 
     return get(ipAddress, 'alpha3');
 });
-
-/**
- * Gets states for selected country
- *
- * @method getStatesForSelectedCountry
- *
- * @param {object} state
- *
- * @returns {string}
- */
-export const getStatesForSelectedCountry = createSelector(getExchangesFromState, (exchanges) => {
-    const customer = exchanges.moonpay.customer;
-    const countries = exchanges.moonpay.countries;
-    const selectedCountryCode = get(customer, 'address.country');
-
-    return get(find(countries, { alpha3: selectedCountryCode }), 'states') || [];
-});

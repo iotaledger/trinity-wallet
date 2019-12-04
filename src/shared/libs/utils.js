@@ -8,6 +8,7 @@ import isString from 'lodash/isString';
 import keys from 'lodash/keys';
 import filter from 'lodash/filter';
 import transform from 'lodash/transform';
+import mergeWith from 'lodash/mergeWith';
 import validUrl from 'valid-url';
 import { VERSIONS_URL } from '../config';
 
@@ -361,3 +362,19 @@ export const isValidEmail = (email) => {
 
     return regex.test(email);
 };
+
+/**
+ * Merges objects while ignoring null values
+ *
+ * @method mergeOmittingNull
+ *
+ * @param {string} email
+ *
+ * @returns {object}
+ */
+export const mergeOmittingNull = (object, source) => {
+    return mergeWith(
+        {}, object, source,
+        (a, b) => b === null ? a : undefined
+    )
+}

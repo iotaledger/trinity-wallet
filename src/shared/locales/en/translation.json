@@ -348,6 +348,7 @@
         "paymentCardCreationError": "Error creating payment card",
         "paymentCardCreationErrorExplanation": "There was a problem creating your payment card. Please try again.",
         "selectCountry": "Select Country",
+        "selectState": "Select State",
         "state": "STATE",
         "selectPaymentMethod": "Select Payment Method",
         "pleaseChooseFromTheOptionsBelow": "Please choose from the options below.",

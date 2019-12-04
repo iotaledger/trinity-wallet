@@ -1,6 +1,7 @@
 import assign from 'lodash/assign';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
+import { mergeOmittingNull } from '../../../libs/utils';
 import { MoonPayExchangeActionTypes } from '../../../types';
 
 const initialState = {
@@ -38,6 +39,7 @@ const initialState = {
     customer: {
         address: {
             country: null,
+            state: null
         },
     },
     /**
@@ -158,7 +160,7 @@ export default (state = initialState, action) => {
         case MoonPayExchangeActionTypes.UPDATE_CUSTOMER_INFO:
             return {
                 ...state,
-                customer: merge({}, state.customer, action.payload),
+                customer: mergeOmittingNull(state.customer, action.payload),
             };
         case MoonPayExchangeActionTypes.AUTHENTICATE_EMAIL_REQUEST:
             return {
