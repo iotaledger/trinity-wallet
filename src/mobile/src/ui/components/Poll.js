@@ -24,7 +24,7 @@ import {
     setPollFor,
     getAccountInfoForAllAccounts,
     promoteTransfer,
-    fetchTransactions as fetchMoonPayTransactions,
+    fetchMeta as fetchMoonPayMeta,
 } from 'shared-modules/actions/polling';
 import { retryFailedTransaction } from 'shared-modules/actions/transfers';
 
@@ -62,11 +62,11 @@ export class Poll extends Component {
         /** @ignore */
         retryFailedTransaction: PropTypes.func.isRequired,
         /** @ignore */
-        fetchMoonPayTransactions: PropTypes.func.isRequired,
+        fetchMoonPayMeta: PropTypes.func.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */
-        isPollingMoonPayTransactions: PropTypes.bool.isRequired,
+        isPollingMoonPayMeta: PropTypes.bool.isRequired,
         /** @ignore */
         isPollingPrice: PropTypes.bool.isRequired,
         /** @ignore */
@@ -105,7 +105,7 @@ export class Poll extends Component {
         this.fetchLatestAccountInfo = this.fetchLatestAccountInfo.bind(this);
         this.promote = this.promote.bind(this);
         this.retryFailedTransaction = this.retryFailedTransaction.bind(this);
-        this.fetchMoonPayTransactions = this.fetchMoonPayTransactions.bind(this);
+        this.fetchMoonPayMeta = this.fetchMoonPayMeta.bind(this);
 
         this.state = {
             autoPromoteSkips: 0,
@@ -148,7 +148,7 @@ export class Poll extends Component {
             this.props.isPollingMarketData ||
             this.props.isPollingAccountInfo ||
             this.props.isAutoPromoting ||
-            this.props.isPollingMoonPayTransactions;
+            this.props.isPollingMoonPayMeta;
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
@@ -180,7 +180,7 @@ export class Poll extends Component {
             nodeList: this.props.fetchNodeList,
             accountInfo: this.fetchLatestAccountInfo,
             broadcast: this.retryFailedTransaction,
-            moonpayTransactions: this.fetchMoonPayTransactions,
+            moonpayMeta: this.fetchMoonPayMeta,
         };
 
         // In case something messed up, reinitialize
@@ -203,11 +203,11 @@ export class Poll extends Component {
      *
      * @returns {void}
      */
-    fetchMoonPayTransactions() {
+    fetchMoonPayMeta() {
         const { isAuthenticatedForMoonPay } = this.props;
 
         if (isAuthenticatedForMoonPay) {
-            this.props.fetchMoonPayTransactions();
+            this.props.fetchMoonPayMeta();
         } else {
             this.moveToNextPollService();
         }
@@ -286,7 +286,7 @@ const mapStateToProps = (state) => ({
     isPollingChartData: state.polling.isFetchingChartData,
     isPollingMarketData: state.polling.isFetchingMarketData,
     isPollingAccountInfo: state.polling.isFetchingAccountInfo,
-    isPollingMoonPayTransactions: state.polling.isFetchingMoonPayTransactions,
+    isPollingMoonPayMeta: state.polling.isFetchingMoonPayMeta,
     isAutoPromoting: state.polling.isAutoPromoting,
     isAutoPromotionEnabled: state.settings.autoPromotion,
     isPromotingTransaction: state.ui.isPromotingTransaction,
@@ -314,7 +314,7 @@ const mapDispatchToProps = {
     getAccountInfoForAllAccounts,
     promoteTransfer,
     retryFailedTransaction,
-    fetchMoonPayTransactions,
+    fetchMoonPayMeta,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Poll);

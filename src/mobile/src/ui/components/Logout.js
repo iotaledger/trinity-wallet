@@ -5,7 +5,10 @@ import timer from 'react-native-timer';
 import { connect } from 'react-redux';
 import { setUserActivity } from 'shared-modules/actions/ui';
 import { clearWalletData } from 'shared-modules/actions/wallet';
-import { setAuthenticationStatus as setMoonPayAuthenticationStatus } from 'shared-modules/actions/exchanges/MoonPay';
+import {
+    setAuthenticationStatus as setMoonPayAuthenticationStatus,
+    clearData as clearMoonPayData,
+} from 'shared-modules/actions/exchanges/MoonPay';
 import { __DEV__ } from 'shared-modules/config';
 import { MoonPayKeychainAdapter } from 'libs/keychain';
 import navigator from 'libs/navigation';
@@ -29,6 +32,8 @@ export default () => (C) => {
                         .then(() => {
                             navigator.setStackRoot('login');
                             delete global.passwordHash;
+
+                            this.props.clearMoonPayData();
                             this.props.clearWalletData();
                             this.props.setMoonPayAuthenticationStatus(false);
                         })
@@ -56,18 +61,16 @@ export default () => (C) => {
         setUserActivity: PropTypes.func.isRequired,
         /** @ignore */
         setMoonPayAuthenticationStatus: PropTypes.func.isRequired,
+        /** @ignore */
+        clearMoonPayData: PropTypes.func.isRequired,
     };
 
     const mapDispatchToProps = {
         clearWalletData,
         setUserActivity,
         setMoonPayAuthenticationStatus,
+        clearMoonPayData,
     };
 
-    return withTranslation(['global'])(
-        connect(
-            null,
-            mapDispatchToProps,
-        )(WithLogout),
-    );
+    return withTranslation(['global'])(connect(null, mapDispatchToProps)(WithLogout));
 };

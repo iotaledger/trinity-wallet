@@ -7,10 +7,6 @@ import some from 'lodash/some';
 import reduce from 'lodash/reduce';
 import unionBy from 'lodash/unionBy';
 import assign from 'lodash/assign';
-import map from 'lodash/map';
-import get from 'lodash/get';
-import find from 'lodash/find';
-import toUpper from 'lodash/toUpper';
 import { getMarketData } from './marketData';
 import { quorum } from '../libs/iota';
 import { setNodeList, setAutoPromotion } from './settings';
@@ -21,14 +17,14 @@ import { selectedAccountStateFactory } from '../selectors/accounts';
 import { nodesConfigurationFactory, getCustomNodesFromState, getNodesFromState } from '../selectors/global';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import { setTransactions as setMoonPayTransactions } from './exchanges/MoonPay';
+import { setMeta as setMoonPayMeta } from './exchanges/MoonPay';
 import { __DEV__, DEFAULT_NODES } from '../config';
 import Errors from '../libs/errors';
 import i18next from '../libs/i18next';
 import { Account } from '../storage';
 import { PollingActionTypes } from '../types';
 import NodesManager from '../libs/iota/NodesManager';
-import api from '../exchanges/MoonPay';
+import api, { IOTA_CURRENCY_CODE } from '../exchanges/MoonPay';
 
 /**
  * Dispatch when list of IRI nodes are about to be fetched from a remote server
@@ -205,36 +201,36 @@ export const syncAccountWhilePolling = (payload) => ({
 });
 
 /**
- * Dispatch when request for fetching transactions is about to be made
+ * Dispatch when request for fetching meta is about to be made
  *
- * @method fetchTransactionsRequest
+ * @method fetchMetaRequest
  *
  * @returns {{type: {string} }}
  */
-export const fetchTransactionsRequest = () => ({
-    type: PollingActionTypes.MOONPAY_TRANSACTIONS_FETCH_REQUEST,
+export const fetchMetaRequest = () => ({
+    type: PollingActionTypes.MOONPAY_META_FETCH_REQUEST,
 });
 
 /**
- * Dispatch when request for fetching transactions is successfully made
+ * Dispatch when request for fetching meta is successfully made
  *
- * @method fetchTransactionsSuccess
+ * @method fetchMetaSuccess
  *
  * @returns {{type: {string} }}
  */
-export const fetchTransactionsSuccess = () => ({
-    type: PollingActionTypes.MOONPAY_TRANSACTIONS_FETCH_SUCCESS,
+export const fetchMetaSuccess = () => ({
+    type: PollingActionTypes.MOONPAY_META_FETCH_SUCCESS,
 });
 
 /**
- * Dispatch when request for fetching transactions is not successful
+ * Dispatch when request for fetching meta is not successful
  *
- * @method fetchTransactionsError
+ * @method fetchMetaError
  *
  * @returns {{type: {string} }}
  */
-export const fetchTransactionsError = () => ({
-    type: PollingActionTypes.MOONPAY_TRANSACTIONS_FETCH_ERROR,
+export const fetchMetaError = () => ({
+    type: PollingActionTypes.MOONPAY_META_FETCH_ERROR,
 });
 
 /**
@@ -447,45 +443,31 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
 };
 
 /**
- * Fetch transaction history from Moonpay servers
+ * Fetch customer metadata from MoonPay servers
  *
- * @method fetchTransactions
+ * @method fetchMeta
  *
  * @returns {function}
  */
-export const fetchTransactions = () => (dispatch, getState) => {
-    dispatch(fetchTransactionsRequest());
+export const fetchMeta = () => (dispatch) => {
+    dispatch(fetchMetaRequest());
 
-    api.fetchTransactions()
-        .then((transactions) => {
-            const { currencies } = getState().exchanges.moonpay;
-            dispatch(fetchTransactionsSuccess());
+    Promise.all([api.getCustomerInfo(), api.fetchMeta(IOTA_CURRENCY_CODE)])
+        .then((response) => {
+            const [customer, meta] = response;
+
+            dispatch(fetchMetaSuccess());
 
             dispatch(
-                setMoonPayTransactions(
-                    map(transactions, (transaction) =>
-                        assign(
-                            {},
-                            transaction,
-                            // "active" property determines if the transaction is active on user screen
-                            // i.e., the acive transaction user made from Trinity after authenticating himself/herself
-                            // Also, see #createTransaction action where we set the new transaction to "active"
-                            {
-                                active: false,
-                                currencyCode: toUpper(
-                                    get(
-                                        find(currencies, (currency) => currency.id === transaction.baseCurrencyId),
-                                        'code',
-                                    ),
-                                ),
-                            },
-                        ),
-                    ),
+                setMoonPayMeta(
+                    assign({}, meta, {
+                        customer,
+                    }),
                 ),
             );
         })
         .catch((error) => {
-            dispatch(fetchTransactionsError());
+            dispatch(fetchMetaError());
 
             if (__DEV__) {
                 /* eslint-disable no-console */

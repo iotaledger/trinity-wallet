@@ -23,7 +23,7 @@ import {
     setPollFor,
     promoteTransfer,
     getAccountInfoForAllAccounts,
-    fetchTransactions as fetchMoonPayTransactions,
+    fetchMeta as fetchMoonPayMeta,
 } from 'actions/polling';
 import { retryFailedTransaction } from 'actions/transfers';
 
@@ -59,7 +59,7 @@ class Polling extends React.PureComponent {
         /** @ignore */
         promoteTransfer: PropTypes.func.isRequired,
         /** @ignore */
-        fetchMoonPayTransactions: PropTypes.func.isRequired,
+        fetchMoonPayMeta: PropTypes.func.isRequired,
         /** Bundle hashes for failed transactions categorised by account name & type */
         failedBundleHashes: PropTypes.shape({
             name: PropTypes.string,
@@ -76,7 +76,7 @@ class Polling extends React.PureComponent {
         /** @ignore */
         isPollingAccountInfo: PropTypes.bool.isRequired,
         /** @ignore */
-        isPollingMoonPayTransactions: PropTypes.bool.isRequired,
+        isPollingMoonPayMeta: PropTypes.bool.isRequired,
         /** @ignore */
         isAutoPromoting: PropTypes.bool.isRequired,
         /** @ignore */
@@ -136,7 +136,7 @@ class Polling extends React.PureComponent {
             nodeList: this.props.fetchNodeList,
             accountInfo: this.fetchLatestAccountInfo,
             broadcast: this.retryFailedTransaction,
-            moonpayTransactions: this.fetchMoonPayTransactions,
+            moonpayMeta: this.fetchMoonPayMeta,
         };
 
         dict[service] ? dict[service]() : this.props.setPollFor(this.props.allPollingServices[0]);
@@ -157,11 +157,11 @@ class Polling extends React.PureComponent {
      *
      * @returns {void}
      */
-    fetchMoonPayTransactions = () => {
+    fetchMoonPayMeta = () => {
         const { isAuthenticatedForMoonPay } = this.props;
 
         if (isAuthenticatedForMoonPay) {
-            this.props.fetchMoonPayTransactions();
+            this.props.fetchMoonPayMeta();
         } else {
             this.moveToNextPollService();
         }
@@ -231,7 +231,7 @@ class Polling extends React.PureComponent {
             this.props.isPollingMarketData ||
             this.props.isPollingAccountInfo ||
             this.props.isAutoPromoting ||
-            this.props.isPollingMoonPayTransactions;
+            this.props.isPollingMoonPayMeta;
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
@@ -249,7 +249,7 @@ const mapStateToProps = (state) => ({
     isPollingMarketData: state.polling.isFetchingMarketData,
     isPollingAccountInfo: state.polling.isFetchingAccountInfo,
     isAutoPromoting: state.polling.isAutoPromoting,
-    isPollingMoonPayTransactions: state.polling.isFetchingMoonPayTransactions,
+    isPollingMoonPayMeta: state.polling.isFetchingMoonPayMeta,
     isSyncing: state.ui.isSyncing,
     addingAdditionalAccount: isSettingUpNewAccount(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
@@ -274,7 +274,7 @@ const mapDispatchToProps = {
     promoteTransfer,
     getAccountInfoForAllAccounts,
     retryFailedTransaction,
-    fetchMoonPayTransactions,
+    fetchMoonPayMeta,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Polling);

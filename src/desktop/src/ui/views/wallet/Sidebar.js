@@ -9,7 +9,10 @@ import { shorten, capitalize } from 'libs/iota/converter';
 import { formatIotas } from 'libs/iota/utils';
 import { accumulateBalance } from 'libs/iota/addresses';
 
-import { setAuthenticationStatus as setMoonPayAuthenticationStatus } from 'actions/exchanges/MoonPay';
+import {
+    setAuthenticationStatus as setMoonPayAuthenticationStatus,
+    clearData as clearMoonPayData,
+} from 'actions/exchanges/MoonPay';
 import { clearWalletData, setSeedIndex } from 'actions/wallet';
 import { getAccountNamesFromState } from 'selectors/accounts';
 
@@ -47,6 +50,8 @@ class Sidebar extends React.PureComponent {
         /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
+        clearMoonPayData: PropTypes.func.isRequired,
+        /** @ignore */
         setMoonPayAuthenticationStatus: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -80,6 +85,7 @@ class Sidebar extends React.PureComponent {
 
         MoonPayKeychainAdapter.clear()
             .then(() => {
+                this.props.clearMoonPayData();
                 this.props.setMoonPayAuthenticationStatus(false);
                 this.props.clearWalletData();
                 this.props.history.push('/onboarding/');
@@ -189,6 +195,7 @@ const mapDispatchToProps = {
     clearWalletData,
     setSeedIndex,
     setMoonPayAuthenticationStatus,
+    clearMoonPayData,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Sidebar));

@@ -339,6 +339,8 @@ export default (state = initialState, action) => {
                 ...state,
                 isFetchingTransactions: false,
             };
+        case MoonPayExchangeActionTypes.CLEAR_DATA:
+            return initialState;
         default:
             return state;
     }
