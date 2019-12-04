@@ -504,14 +504,16 @@ class AddPaymentMethod extends PureComponent {
         const { t } = this.props;
 
         return {
-            buttons: () => `
+            buttons: () => `  
           document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
           document.getElementsByClassName('button-left')[0].disabled = false;
           true
         `,
             keyboard: (height) => `
-          document.getElementsByClassName('container')[0].style.height = "${height}px";
-          document.getElementsByClassName('container')[0].style.webkitTransition = "0.5s height";
+          setTimeout(function() {
+            document.getElementsByClassName('container')[0].style.height = "${height}px";
+            document.getElementsByClassName('container')[0].style.webkitTransition = "0.5s height";
+          }, 100);  
           true
         `,
         };
