@@ -115,6 +115,21 @@ export const getCustomerCountryCode = createSelector(getExchangesFromState, (exc
 });
 
 /**
+ * Selects customer state code
+ *
+ * @method getCustomerStateCode
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getCustomerStateCode = createSelector(getExchangesFromState, (exchanges) => {
+    const customer = exchanges.moonpay.customer;
+
+    return get(customer, 'address.state');
+});
+
+/**
  * Determines whether state should be taken as input from user
  *
  * @method shouldRequireStateInput

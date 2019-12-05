@@ -9,11 +9,15 @@ import some from 'lodash/some';
 import { MoonPayExchangeActionTypes } from '../../../types';
 import { generateAlert } from '../../alerts';
 import api, { IOTA_CURRENCY_CODE, MOONPAY_RETURN_URL } from '../../../exchanges/MoonPay';
-import { getCustomerEmail, getSelectedPaymentCard, getCustomerCountryCode } from '../../../selectors/exchanges/MoonPay';
+import {
+    getCustomerEmail,
+    getSelectedPaymentCard,
+    getCustomerCountryCode,
+    getCustomerStateCode,
+} from '../../../selectors/exchanges/MoonPay';
 import { __DEV__ } from '../../../config';
 import i18next from '../../../libs/i18next';
 import Errors from '../../../libs/errors';
-import { mergeOmittingNull } from '../../../libs/utils';
 
 /**
  * Dispatch to set supported currencies by MoonPay
@@ -652,19 +656,24 @@ export const verifyEmailAndFetchMeta = (securityCode, keychainAdapter) => (dispa
  *
  * @returns {function}
  */
-export const updateCustomer = (info) => (dispatch) => {
+export const updateCustomer = (info) => (dispatch, getState) => {
     dispatch(updateCustomerRequest());
     api.updateUserInfo(info)
         .then((data) => {
             return api.fetchCustomerPurchaseLimits().then((purchaseLimits) => {
                 dispatch(
                     updateCustomerInfo(
-                        mergeOmittingNull({
+                        merge({}, data, {
                             address: {
-                                country: get(info, 'address.country'),
+                                country: get(info, 'address.country')
+                                    ? get(data, 'address.country')
+                                    : getCustomerCountryCode(getState()),
                                 state: get(info, 'address.state')
+                                    ? get(data, 'address.state')
+                                    : getCustomerStateCode(getState()),
                             },
-                        }, merge(purchaseLimits, data)),
+                            purchaseLimits,
+                        }),
                     ),
                 );
                 dispatch(updateCustomerSuccess());
@@ -816,6 +825,7 @@ export const setMeta = (meta) => (dispatch, getState) => {
                     // But the selected country is only stored locally until the point we allow user to update his/her information
                     // Therefore, first try to keep the locally stored country. If it's not set, default to the one returned by MoonPay servers.
                     country: getCustomerCountryCode(getState()) || get(customer, 'address.country'),
+                    state: getCustomerStateCode(getState()) || get(customer, 'address.state'),
                 },
                 purchaseLimits,
                 paymentCards: map(paymentCards, (card) => assign({}, card, { selected: false })),
