@@ -86,6 +86,8 @@ class PaymentPending extends React.PureComponent {
                 } else if (status === MOONPAY_TRANSACTION_STATUSES.failed) {
                     this.props.history.push('/exchanges/moonpay/payment-failure');
                 } else if (status === MOONPAY_TRANSACTION_STATUSES.waitingAuthorization) {
+                    window.open(get(activeTransaction, 'redirectUrl'));
+
                     this.setState({
                         subtitle: t('moonpay:pleaseComplete3DSecure'),
                         buttonText: t('global:complete'),
@@ -122,7 +124,7 @@ class PaymentPending extends React.PureComponent {
                     {t('global:close')}
                 </Button>
                 <Button
-                    id="to-purchase-receipt"
+                    id="try-again"
                     onClick={() => {
                         this.props.fetchTransactionDetails(transactionId || get(activeTransaction, 'id'));
                         this.setState({
@@ -147,9 +149,10 @@ class PaymentPending extends React.PureComponent {
      */
     onButtonPress() {
         const { activeTransaction } = this.props;
+        const transactionId = get(history.location, 'state.transactionId');
 
         if (get(activeTransaction, 'status') === MOONPAY_TRANSACTION_STATUSES.waitingAuthorization) {
-            window.open(get(activeTransaction, 'redirectUrl'));
+            this.props.fetchTransactionDetails(transactionId || get(activeTransaction, 'id'));
         } else {
             this.props.history.push('/exchanges/moonpay/purchase-receipt');
         }
