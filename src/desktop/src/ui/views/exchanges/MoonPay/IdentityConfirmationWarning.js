@@ -17,7 +17,6 @@ class IdentityConfirmationWarning extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         history: PropTypes.shape({
-            goBack: PropTypes.func.isRequired,
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** @ignore */
@@ -75,7 +74,7 @@ class IdentityConfirmationWarning extends React.PureComponent {
                     <div>
                         <Button
                             id="to-cancel"
-                            onClick={() => this.props.history.goBack()}
+                            onClick={() => this.props.history.push('/exchanges/moonpay/review-purchase')}
                             className="square"
                             variant="dark"
                         >

@@ -90,7 +90,7 @@ class PaymentPending extends React.PureComponent {
 
                     this.setState({
                         subtitle: t('moonpay:pleaseComplete3DSecure'),
-                        buttonText: t('global:complete'),
+                        buttonText: t('global:continue'),
                     });
                 } else if (status === MOONPAY_TRANSACTION_STATUSES.pending) {
                     this.setState({

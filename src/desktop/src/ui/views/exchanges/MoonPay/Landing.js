@@ -29,7 +29,6 @@ class Landing extends React.PureComponent {
         themeName: PropTypes.string.isRequired,
         /** @ignore */
         history: PropTypes.shape({
-            goBack: PropTypes.func.isRequired,
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** @ignore */
@@ -185,7 +184,7 @@ class Landing extends React.PureComponent {
                             id="to-cancel"
                             onClick={() => {
                                 this.props.setLoggingIn(false);
-                                this.props.history.goBack();
+                                this.props.history.push('/wallet');
                             }}
                             className="square"
                             variant="dark"

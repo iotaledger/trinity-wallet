@@ -22,7 +22,6 @@ class VerifyEmail extends React.PureComponent {
         email: PropTypes.string.isRequired,
         /** @ignore */
         history: PropTypes.shape({
-            goBack: PropTypes.func.isRequired,
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** @ignore */
@@ -128,7 +127,7 @@ class VerifyEmail extends React.PureComponent {
                         <Button
                             id="to-cancel"
                             disabled={isVerifyingEmail}
-                            onClick={() => this.props.history.goBack()}
+                            onClick={() => this.props.history.push('/exchanges/moonpay/setup-email')}
                             className="square"
                             variant="dark"
                         >

@@ -181,7 +181,8 @@
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again.",
         "total": "Total",
         "submit": "Submit",
-        "tryAgain": "Try again"
+        "tryAgain": "Try again",
+        "unknown": "Unknown"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",

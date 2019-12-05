@@ -32,7 +32,6 @@ export default function withPurchaseSummary(WrappedComponent) {
         static propTypes = {
             /** @ignore */
             history: PropTypes.shape({
-                goBack: PropTypes.func.isRequired,
                 push: PropTypes.func.isRequired,
             }).isRequired,
             /** @ignore */

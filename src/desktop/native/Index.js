@@ -273,7 +273,7 @@ function createWindow() {
                 'privacy@iota.org',
             ];
             const ledgerOnboarding = ['support.ledger.com'];
-            const exchanges = ['moonpay.io'];
+            const exchanges = ['help.moonpay.io', 'moonpay.io'];
 
             const externalWhitelist = [
                 ...privacyPolicyLinks,
@@ -298,7 +298,7 @@ function createWindow() {
         }
     });
 
-    /** 
+    /**
      Prevent creating more than one window
      */
     windows.main.webContents.on('new-window', (e, url) => {

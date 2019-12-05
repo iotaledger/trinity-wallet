@@ -28,20 +28,17 @@ class SelectAccount extends React.PureComponent {
         t: PropTypes.func.isRequired,
         /** @ignore */
         setAccountName: PropTypes.func.isRequired,
-        /** @ignore */
-        isAuthenticatedForMoonPay: PropTypes.bool.isRequired
     };
 
     constructor(props) {
         super(props);
-
         this.state = {
             accountName: props.accountName || head(props.accountNames),
         };
     }
 
     render() {
-        const { isAuthenticatedForMoonPay, accountNames, t } = this.props;
+        const { accountNames, t } = this.props;
 
         return (
             <form>
@@ -67,7 +64,7 @@ class SelectAccount extends React.PureComponent {
                     <div>
                         <Button
                             id="to-cancel"
-                            onClick={() => this.props.history.go(isAuthenticatedForMoonPay ? -1 : -2)}
+                            onClick={() => this.props.history.push('/wallet')}
                             className="square"
                             variant="dark"
                         >
@@ -94,7 +91,6 @@ class SelectAccount extends React.PureComponent {
 const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
     accountName: state.exchanges.moonpay.accountName,
-    isAuthenticatedForMoonPay: state.exchanges.moonpay.isAuthenticated,
 });
 
 const mapDispatchToProps = {
