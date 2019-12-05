@@ -122,5 +122,5 @@ export const getPurchaseFailureReason = (failureReason) => {
         'Card not supported': i18next.t('moonpay:cardNotSupported'),
         'Cancelled': i18next.t('moonpay:cancelled')
     }
-    return get(failureReasons, failureReason);
+    return get(failureReasons, failureReason, i18next.t('global:unknown'));
 }
