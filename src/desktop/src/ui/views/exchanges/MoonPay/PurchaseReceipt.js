@@ -11,7 +11,6 @@ class PurchaseReceipt extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         history: PropTypes.shape({
-            goBack: PropTypes.func.isRequired,
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** @ignore */

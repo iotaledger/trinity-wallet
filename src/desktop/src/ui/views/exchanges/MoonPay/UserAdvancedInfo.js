@@ -45,7 +45,6 @@ class UserAdvancedInfo extends React.PureComponent {
         updateCustomer: PropTypes.func.isRequired,
         /** @ignore */
         history: PropTypes.shape({
-            goBack: PropTypes.func.isRequired,
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** @ignore */
@@ -160,7 +159,7 @@ class UserAdvancedInfo extends React.PureComponent {
     }
 
     render() {
-        const { t, country } = this.props;
+        const { t, country, hasAnyPaymentCards } = this.props;
         const { address, city, zipCode } = this.state;
 
         return (
@@ -192,7 +191,7 @@ class UserAdvancedInfo extends React.PureComponent {
                     <div>
                         <Button
                             id="to-cancel"
-                            onClick={() => this.props.history.goBack()}
+                            onClick={() => this.props.history.push(hasAnyPaymentCards ? '/exchanges/moonpay/select-payment-card' : '/exchanges/moonpay/user-basic-info')}
                             className="square"
                             variant="dark"
                         >

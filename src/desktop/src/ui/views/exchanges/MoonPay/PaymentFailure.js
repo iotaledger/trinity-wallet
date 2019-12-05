@@ -17,7 +17,7 @@ class PaymentFailure extends React.PureComponent {
         themeName: PropTypes.string.isRequired,
         /** @ignore */
         history: PropTypes.shape({
-            goBack: PropTypes.func.isRequired,
+            push: PropTypes.func.isRequired,
         }).isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -48,7 +48,7 @@ class PaymentFailure extends React.PureComponent {
                         <Button
                             id="to-review-purchase"
                             onClick={() => {
-                                this.props.history.goBack();
+                                this.props.history.push('/exchanges/moonpay/review-purchase');
                             }}
                             className="square"
                             variant="primary"

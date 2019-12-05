@@ -14,7 +14,6 @@ class ReviewPurchase extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         history: PropTypes.shape({
-            goBack: PropTypes.func.isRequired,
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** @ignore */
@@ -94,7 +93,7 @@ class ReviewPurchase extends React.PureComponent {
                         <Button
                             disabled={isCreatingTransaction}
                             id="to-cancel"
-                            onClick={() => this.props.history.goBack()}
+                            onClick={() => this.props.history.push('/exchanges/moonpay/select-payment-card')}
                             className="square"
                             variant="dark"
                         >
@@ -107,7 +106,7 @@ class ReviewPurchase extends React.PureComponent {
                             className="square"
                             variant="primary"
                         >
-                            {t('global:continue')}
+                            {t('moonpay:purchase')}
                         </Button>
                     </div>
                 </footer>

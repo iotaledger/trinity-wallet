@@ -28,7 +28,6 @@ class UserBasicInfo extends React.PureComponent {
         dateOfBirth: PropTypes.string,
         /** @ignore */
         history: PropTypes.shape({
-            goBack: PropTypes.func.isRequired,
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** @ignore */
@@ -148,7 +147,7 @@ class UserBasicInfo extends React.PureComponent {
                         <Button
                             disabled={isUpdatingCustomer}
                             id="to-cancel"
-                            onClick={() => this.props.history.goBack()}
+                            onClick={() => this.props.history.push('/exchanges/moonpay/add-amount')}
                             className="square"
                             variant="dark"
                         >

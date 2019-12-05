@@ -25,7 +25,6 @@ class AddPaymentMethod extends React.PureComponent {
         address: PropTypes.object.isRequired,
         /** @ignore */
         history: PropTypes.shape({
-            goBack: PropTypes.func.isRequired,
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** @ignore */
@@ -229,7 +228,7 @@ class AddPaymentMethod extends React.PureComponent {
                         <Button
                             disabled={isCreatingToken || isCreatingPaymentCard}
                             id="to-cancel"
-                            onClick={() => this.props.history.goBack()}
+                            onClick={() => this.props.history.push('/exchanges/moonpay/user-advanced-info')}
                             className="square"
                             variant="dark"
                         >
