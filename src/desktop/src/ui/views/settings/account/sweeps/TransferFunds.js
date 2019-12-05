@@ -1,7 +1,11 @@
 import assign from 'lodash/assign';
+import cloneDeep from 'lodash/cloneDeep';
 import get from 'lodash/get';
 import has from 'lodash/has';
+import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
+import keys from 'lodash/keys';
+import filter from 'lodash/filter';
 import some from 'lodash/some';
 import size from 'lodash/size';
 import React from 'react';
@@ -78,6 +82,7 @@ class TransferFunds extends React.PureComponent {
 
         this.state = {
             timeElapsed: {},
+            spentAddressData: cloneDeep(props.spentAddressDataWithBalance),
         };
     }
 
@@ -97,6 +102,13 @@ class TransferFunds extends React.PureComponent {
         clearInterval(this.interval);
     }
 
+    /**
+     * Tracks total time taken for a sweep process
+     *
+     * @method trackTime
+     *
+     * @returns {void}
+     */
     trackTime() {
         if (!isEmpty(this.props.activeSweepAddress) && this.props.activeSweepInitialisationTime !== -1) {
             this.setState((prevState) => ({
@@ -178,6 +190,13 @@ class TransferFunds extends React.PureComponent {
         this.props.recoverLockedFunds(accountName, seedStore, addressData);
     }
 
+    /**
+     * Gets elapsed time for a single sweep process
+     *
+     * @method getTimeElapsed
+     *
+     * @returns {string}
+     */
     getTimeElapsed(initialisationTime) {
         const startTime = moment(initialisationTime);
         const diff = moment().diff(startTime, 'minutes');
@@ -189,8 +208,25 @@ class TransferFunds extends React.PureComponent {
         return diff > 1 ? `${diff} minutes` : `${diff} minute`;
     }
 
+    /**
+     * Gets address data for failed sweeps
+     *
+     * @method getSpentAddressDataForFailedSweeps
+     *
+     * @returns {array}
+     */
+    getSpentAddressDataForFailedSweeps() {
+        const { sweepsStatuses } = this.props;
+        const { spentAddressData } = this.state;
+
+        const failedSweepAddresses = filter(keys(sweepsStatuses), (address) => sweepsStatuses[address].status === -1);
+
+        return filter(spentAddressData, (addressObject) => includes(failedSweepAddresses, addressObject.address));
+    }
+
     render() {
-        const { spentAddressDataWithBalance, isRecoveringFunds, latestAddress, sweepsStatuses, t } = this.props;
+        const { isRecoveringFunds, latestAddress, sweepsStatuses, t } = this.props;
+        const { spentAddressData } = this.state;
 
         const hasFailedAnySweep = this.hasFailedAnySweep();
 
@@ -209,7 +245,7 @@ class TransferFunds extends React.PureComponent {
                             flexDirection: 'column',
                         }}
                     >
-                        {spentAddressDataWithBalance.map((object, index) => {
+                        {spentAddressData.map((object, index) => {
                             const statusObject = get(sweepsStatuses, object.address);
                             const status = get(statusObject, 'status');
                             const initialisationTime = get(statusObject, 'initialisationTime');
@@ -235,7 +271,7 @@ class TransferFunds extends React.PureComponent {
                                             style={{
                                                 marginRight: '40px',
                                             }}
-                                        >{`Sweep ${index + 1} of ${spentAddressDataWithBalance.length}`}</strong>
+                                        >{`Sweep ${index + 1} of ${spentAddressData.length}`}</strong>
                                         {has(sweepsStatuses, object.address) && (
                                             <span
                                                 style={{
@@ -289,9 +325,7 @@ class TransferFunds extends React.PureComponent {
                 <footer>
                     <Button
                         id="sweep-funds-complete"
-                        onClick={() =>
-                            hasFailedAnySweep ? this.props.history.goBack() : this.sweep(spentAddressDataWithBalance)
-                        }
+                        onClick={() => (hasFailedAnySweep ? this.props.history.goBack() : this.sweep(spentAddressData))}
                         disabled={isRecoveringFunds}
                         className="square"
                         variant={hasFailedAnySweep ? 'secondary' : 'primary'}
@@ -301,7 +335,7 @@ class TransferFunds extends React.PureComponent {
                     {hasFailedAnySweep && (
                         <Button
                             id="try-again"
-                            onClick={() => this.sweep(spentAddressDataWithBalance)}
+                            onClick={() => this.sweep(this.getSpentAddressDataForFailedSweeps())}
                             className="square"
                             variant="primary"
                         >
