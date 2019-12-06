@@ -182,7 +182,8 @@
         "total": "Total",
         "submit": "Submit",
         "tryAgain": "Try again",
-        "unknown": "Unknown"
+        "unknown": "Unknown",
+        "goToDashboard": "Go to dashboard"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",

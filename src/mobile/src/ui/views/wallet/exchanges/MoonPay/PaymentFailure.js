@@ -61,18 +61,16 @@ class PaymentFailure extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Component ID */
-        componentId: PropTypes.string.isRequired,
         /** Transaction failure reason */
         failureReason: PropTypes.object.isRequired
     };
 
     /**
-     * Pops the active screen from the navigation stack
+     * Navigates to dashboard
      * @method goBack
      */
-    goBack() {
-        navigator.pop(this.props.componentId);
+    goToDashboard() {
+        navigator.setStackRoot('home');
     }
 
     render() {
@@ -117,7 +115,7 @@ class PaymentFailure extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
-                        <SingleFooterButton onButtonPress={() => this.goBack()} buttonText={t('global:goBack')} />
+                        <SingleFooterButton onButtonPress={() => this.goToDashboard()} buttonText={t('global:goToDashboard')} />
                     </AnimatedComponent>
                 </View>
             </View>
