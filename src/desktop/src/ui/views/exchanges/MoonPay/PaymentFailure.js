@@ -48,12 +48,12 @@ class PaymentFailure extends React.PureComponent {
                         <Button
                             id="to-review-purchase"
                             onClick={() => {
-                                this.props.history.push('/exchanges/moonpay/review-purchase');
+                                this.props.history.push('/wallet');
                             }}
                             className="square"
                             variant="primary"
                         >
-                            {t('global:goBack')}
+                            {t('global:goToDashboard')}
                         </Button>
                     </div>
                 </footer>
