@@ -115,7 +115,13 @@ class Sidebar extends React.PureComponent {
                                                     true,
                                                 )}
                                             </small>
-                                            <div onClick={(e) => this.accountSettings(e, index)}>
+                                            <div
+                                                onClick={(e) => {
+                                                    // Change account if settings icon is clicked
+                                                    setSeedIndex(index);
+                                                    this.accountSettings(e, index);
+                                                }}
+                                            >
                                                 <Icon icon="settingsAlt" size={16} />
                                             </div>
                                         </a>
@@ -143,7 +149,7 @@ class Sidebar extends React.PureComponent {
                             title: t('logoutConfirmationModal:logoutConfirmation'),
                             confirm: t('yes'),
                             cancel: t('no'),
-                            animation: { name: 'logout', loop: false }
+                            animation: { name: 'logout', loop: false },
                         }}
                         themeName={themeName}
                         onCancel={this.toggleLogout}
@@ -172,7 +178,4 @@ const mapDispatchToProps = {
     setSeedIndex,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Sidebar));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Sidebar));
