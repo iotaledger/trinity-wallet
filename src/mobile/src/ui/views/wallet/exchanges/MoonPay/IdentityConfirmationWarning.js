@@ -1,16 +1,31 @@
+import cloneDeep from 'lodash/cloneDeep';
+import difference from 'lodash/difference';
+import head from 'lodash/head';
+import map from 'lodash/map';
 import toLower from 'lodash/toLower';
+import size from 'lodash/size';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import { Linking, StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { fetchMeta, setTransactionActive } from 'shared-modules/actions/exchanges/MoonPay';
 import { getLatestAddressForMoonPaySelectedAccount } from 'shared-modules/selectors/accounts';
-import { getCustomerEmail } from 'shared-modules/selectors/exchanges/MoonPay';
+import {
+    getCustomerEmail,
+    getDefaultCurrencyCode,
+    getCustomerDailyLimits,
+    getCustomerMonthlyLimits,
+    hasCompletedAdvancedIdentityVerification,
+    isLimitIncreaseAllowed,
+    getAllTransactions,
+} from 'shared-modules/selectors/exchanges/MoonPay';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import {
+    prepareMoonPayExternalLink,
     getAmountInFiat,
     getActiveFiatCurrency,
-    prepareMoonPayExternalLink,
+    convertFiatCurrency,
 } from 'shared-modules/exchanges/MoonPay/utils';
 import navigator from 'libs/navigation';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
@@ -73,8 +88,104 @@ class IdentityConfirmationWarning extends Component {
         /** @ignore */
         exchangeRates: PropTypes.object.isRequired,
         /** @ignore */
+        isPurchaseLimitIncreaseAllowed: PropTypes.bool.isRequired,
+        /** @ignore */
+        hasCompletedAdvancedIdentityVerification: PropTypes.bool.isRequired,
+        /** @ignore */
+        dailyLimits: PropTypes.object.isRequired,
+        /** @ignore */
+        monthlyLimits: PropTypes.object.isRequired,
+        /** @ignore */
+        defaultCurrencyCode: PropTypes.string.isRequired,
+        /** @ignore */
+        moonpayPurchases: PropTypes.array.isRequired,
+        /** @ignore */
+        isFetchingMoonPayMeta: PropTypes.bool.isRequired,
+        /** @ignore */
+        hasErrorFetchingMoonPayMeta: PropTypes.bool.isRequired,
+        /** @ignore */
+        fetchMeta: PropTypes.func.isRequired,
+        /** @ignore */
+        setTransactionActive: PropTypes.func.isRequired,
+        /** @ignore */
         email: PropTypes.string.isRequired,
     };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            moonpayPurchases: cloneDeep(props.moonpayPurchases),
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (
+            this.props.isFetchingMoonPayMeta &&
+            !nextProps.isFetchingMoonPayMeta &&
+            !nextProps.hasErrorFetchingMoonPayMeta
+        ) {
+            const {
+                address,
+                amount,
+                denomination,
+                dailyLimits,
+                monthlyLimits,
+                isPurchaseLimitIncreaseAllowed,
+                hasCompletedAdvancedIdentityVerification,
+                defaultCurrencyCode,
+                email,
+                exchangeRates,
+                moonpayPurchases,
+            } = nextProps;
+
+            const purchaseAmount = convertFiatCurrency(
+                getAmountInFiat(Number(amount), denomination, exchangeRates),
+                exchangeRates,
+                denomination,
+                // Convert to currency code set by user (not in the app) but what it is set on MoonPay servers
+                defaultCurrencyCode,
+            );
+
+            if (
+                isPurchaseLimitIncreaseAllowed &&
+                !hasCompletedAdvancedIdentityVerification &&
+                (purchaseAmount > dailyLimits.dailyLimitRemaining ||
+                    purchaseAmount > monthlyLimits.monthlyLimitRemaining)
+            ) {
+                Linking.openURL(
+                    prepareMoonPayExternalLink(
+                        email,
+                        address,
+                        getAmountInFiat(Number(amount), denomination, exchangeRates),
+                        toLower(getActiveFiatCurrency(denomination)),
+                    ),
+                );
+            } else {
+                if (size(moonpayPurchases) > size(this.state.moonpayPurchases)) {
+                    const oldTransactionIds = map(this.state.moonpayPurchases, (purchase) => purchase.id);
+                    const newTransactionIds = map(moonpayPurchases, (purchase) => purchase.id);
+
+                    const diff = difference(oldTransactionIds, newTransactionIds);
+                    const newTransactionId = head(diff);
+
+                    this.props.setTransactionActive(newTransactionId);
+                    this.redirectToScreen('paymentPending');
+                } else {
+                    this.redirectToScreen('reviewPurchase');
+                }
+            }
+        }
+    }
+
+    /**
+     * Navigates to chosen screen
+     *
+     * @method redirectToScreen
+     */
+    redirectToScreen(screen) {
+        navigator.push(screen);
+    }
 
     /**
      * Pops the active screen from the navigation stack
@@ -86,13 +197,9 @@ class IdentityConfirmationWarning extends Component {
 
     render() {
         const {
-            address,
-            email,
-            exchangeRates,
             t,
             theme: { body },
-            amount,
-            denomination,
+            isFetchingMoonPayMeta,
         } = this.props;
         const textColor = { color: body.color };
 
@@ -128,17 +235,10 @@ class IdentityConfirmationWarning extends Component {
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
+                            isRightButtonLoading={isFetchingMoonPayMeta}
+                            disableLeftButton={isFetchingMoonPayMeta}
                             onLeftButtonPress={() => this.goBack()}
-                            onRightButtonPress={() => {
-                                Linking.openURL(
-                                    prepareMoonPayExternalLink(
-                                        email,
-                                        address,
-                                        getAmountInFiat(Number(amount), denomination, exchangeRates),
-                                        toLower(getActiveFiatCurrency(denomination)),
-                                    ),
-                                );
-                            }}
+                            onRightButtonPress={() => this.props.fetchMeta()}
                             leftButtonText={t('global:goBack')}
                             rightButtonText={t('global:okay')}
                             leftButtonTestID="moonpay-back-to-home"
@@ -158,6 +258,19 @@ const mapStateToProps = (state) => ({
     exchangeRates: state.exchanges.moonpay.exchangeRates,
     address: getLatestAddressForMoonPaySelectedAccount(state),
     email: getCustomerEmail(state),
+    isPurchaseLimitIncreaseAllowed: isLimitIncreaseAllowed(state),
+    hasCompletedAdvancedIdentityVerification: hasCompletedAdvancedIdentityVerification(state),
+    dailyLimits: getCustomerDailyLimits(state),
+    monthlyLimits: getCustomerMonthlyLimits(state),
+    moonpayPurchases: getAllTransactions(state),
+    defaultCurrencyCode: getDefaultCurrencyCode(state),
+    isFetchingMoonPayMeta: state.exchanges.moonpay.isFetchingMoonPayMeta,
+    hasErrorFetchingMoonPayMeta: state.exchanges.moonpay.hasErrorFetchingMoonPayMeta,
 });
 
-export default withTranslation()(connect(mapStateToProps)(IdentityConfirmationWarning));
+const mapDispatchToProps = {
+    fetchMeta,
+    setTransactionActive,
+};
+
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(IdentityConfirmationWarning));
