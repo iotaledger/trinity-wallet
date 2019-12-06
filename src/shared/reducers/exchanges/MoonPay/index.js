@@ -110,6 +110,14 @@ const initialState = {
      */
     isFetchingTransactions: false,
     /**
+     * Determines if a network call is in progress for fetching MoonPay meta
+     */
+    isFetchingMoonPayMeta: false,
+    /**
+     * Determines if there was an error while fetching MoonPay meta
+     */
+    hasErrorFetchingMoonPayMeta: false,
+    /**
      * Determines if the user is authenticated
      */
     isAuthenticated: false,
@@ -337,6 +345,30 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isFetchingTransactions: false,
+            };
+        case MoonPayExchangeActionTypes.MOONPAY_META_FETCH_REQUEST:
+            return {
+                ...state,
+                isFetchingMoonPayMeta: true,
+                hasErrorFetchingMoonPayMeta: false,
+            };
+        case MoonPayExchangeActionTypes.MOONPAY_META_FETCH_SUCCESS:
+            return {
+                ...state,
+                isFetchingMoonPayMeta: false,
+            };
+        case MoonPayExchangeActionTypes.MOONPAY_META_FETCH_ERROR:
+            return {
+                ...state,
+                isFetchingMoonPayMeta: false,
+                hasErrorFetchingMoonPayMeta: true,
+            };
+        case MoonPayExchangeActionTypes.SET_TRANSACTION_ACTIVE:
+            return {
+                ...state,
+                transactions: map(state.transactions, (transaction) =>
+                    assign({}, transaction, { active: transaction.id === action.payload }),
+                ),
             };
         case MoonPayExchangeActionTypes.CLEAR_DATA:
             return initialState;

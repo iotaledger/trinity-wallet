@@ -1,5 +1,6 @@
 import assign from 'lodash/assign';
 import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
 import get from 'lodash/get';
@@ -10,6 +11,7 @@ import { MoonPayExchangeActionTypes } from '../../../types';
 import { generateAlert } from '../../alerts';
 import api, { IOTA_CURRENCY_CODE, MOONPAY_RETURN_URL } from '../../../exchanges/MoonPay';
 import {
+    getActiveTransaction,
     getCustomerEmail,
     getSelectedPaymentCard,
     getCustomerCountryCode,
@@ -449,6 +451,18 @@ export const addTransaction = (payload) => ({
 });
 
 /**
+ * Dispatch to set transaction as active
+ *
+ * @method setTransactionActive
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const setTransactionActive = (payload) => ({
+    type: MoonPayExchangeActionTypes.SET_TRANSACTION_ACTIVE,
+    payload,
+});
+
+/**
  * Dispatch when request for fetching transactions is about to be made
  *
  * @method fetchTransactionsRequest
@@ -504,6 +518,39 @@ export const setLoggingIn = (payload) => ({
  */
 export const clearData = () => ({
     type: MoonPayExchangeActionTypes.CLEAR_DATA,
+});
+
+/**
+ * Dispatch when request for fetching meta is about to be made
+ *
+ * @method fetchMetaRequest
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchMetaRequest = () => ({
+    type: MoonPayExchangeActionTypes.MOONPAY_META_FETCH_REQUEST,
+});
+
+/**
+ * Dispatch when request for fetching meta is successfully made
+ *
+ * @method fetchMetaSuccess
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchMetaSuccess = () => ({
+    type: MoonPayExchangeActionTypes.MOONPAY_META_FETCH_SUCCESS,
+});
+
+/**
+ * Dispatch when request for fetching meta is not successful
+ *
+ * @method fetchMetaError
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchMetaError = () => ({
+    type: MoonPayExchangeActionTypes.MOONPAY_META_FETCH_ERROR,
 });
 
 /**
@@ -828,12 +875,18 @@ export const setMeta = (meta) => (dispatch, getState) => {
                     state: getCustomerStateCode(getState()) || get(customer, 'address.state'),
                 },
                 purchaseLimits,
-                paymentCards: map(paymentCards, (card) => assign({}, card, { selected: false })),
+                paymentCards: map(paymentCards, (card) =>
+                    assign({}, card, {
+                        selected: isString(card.id) && get(getSelectedPaymentCard(getState()), 'id') === card.id,
+                    }),
+                ),
             }),
         ),
     );
 
     dispatch(setIotaExchangeRates(exchangeRates));
+
+    const activeTransaction = getActiveTransaction(getState());
 
     dispatch(
         setTransactions(
@@ -845,7 +898,7 @@ export const setMeta = (meta) => (dispatch, getState) => {
                     // i.e., the acive transaction user made from Trinity after authenticating himself/herself
                     // Also, see #createTransaction action where we set the new transaction to "active"
                     {
-                        active: false,
+                        active: isString(transaction.id) && get(activeTransaction, 'id') === transaction.id,
                         currencyCode: toUpper(
                             get(
                                 find(currencies, (currency) => currency.id === transaction.baseCurrencyId),
@@ -992,6 +1045,41 @@ export const fetchTransactions = () => (dispatch, getState) => {
         })
         .catch((error) => {
             dispatch(fetchTransactionsError());
+
+            if (__DEV__) {
+                /* eslint-disable no-console */
+                console.log(error);
+                /* eslint-enable no-console */
+            }
+        });
+};
+
+/**
+ * Fetch customer metadata from MoonPay servers
+ *
+ * @method fetchMeta
+ *
+ * @returns {function}
+ */
+export const fetchMeta = () => (dispatch) => {
+    dispatch(fetchMetaRequest());
+
+    Promise.all([api.getCustomerInfo(), api.fetchMeta(IOTA_CURRENCY_CODE)])
+        .then((response) => {
+            const [customer, meta] = response;
+
+            dispatch(
+                setMeta(
+                    assign({}, meta, {
+                        customer,
+                    }),
+                ),
+            );
+
+            dispatch(fetchMetaSuccess());
+        })
+        .catch((error) => {
+            dispatch(fetchMetaError());
 
             if (__DEV__) {
                 /* eslint-disable no-console */
