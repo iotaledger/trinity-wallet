@@ -26,7 +26,7 @@ import { getRemotePoWFromState, nodesConfigurationFactory } from '../selectors/g
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { isLastTritZero } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
-import { clearSendFields } from './ui';
+import { clearSendFields, setCDAContent } from './ui';
 import {
     findPromotableTail,
     prepareTransferArray,
@@ -787,6 +787,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     dispatch(updateAccountInfoAfterSpending(newState));
                     // Clear send screen text fields
                     dispatch(clearSendFields());
+                    dispatch(setCDAContent({}));
 
                     return dispatch(
                         generateAlert(

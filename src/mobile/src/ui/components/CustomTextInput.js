@@ -160,6 +160,8 @@ class CustomTextInput extends Component {
         secureTextEntry: PropTypes.bool,
         /** Determines whether to display loading spinner */
         loading: PropTypes.bool,
+        /** Determines whether to disable the text input */
+        disabled: PropTypes.bool
     };
 
     static defaultProps = {
@@ -184,6 +186,7 @@ class CustomTextInput extends Component {
         isSeedInput: false,
         isPasswordInput: false,
         loading: false,
+        disabled: false
     };
 
     constructor(props) {
@@ -527,6 +530,7 @@ class CustomTextInput extends Component {
             secureTextEntry,
             value,
             loading,
+            disabled,
             ...restProps
         } = this.props;
         const { isFocused, isSecretMasked } = this.state;
@@ -564,6 +568,8 @@ class CustomTextInput extends Component {
                         selectionColor={theme.input.alt}
                         underlineColorAndroid="transparent"
                         value={this.getValue(value)}
+                        editable={!disabled}
+                        selectTextOnFocus={!disabled}
                         {...restProps}
                     />
                     {!loading && widgets.length > 0 && this.renderRightHandWidget()}
