@@ -233,7 +233,7 @@ export const setAnimateChartOnMount = (payload) => {
 /**
  * Dispatch to set CDA content when user opens a CDA
  *
- * @method setCDAActive
+ * @method setCDAContent
  * @param {bool} payload
  *
  * @returns {{type: {string}, payload: {bool} }}
