@@ -14,6 +14,7 @@ import size from 'lodash/size';
 import every from 'lodash/every';
 import includes from 'lodash/includes';
 import uniq from 'lodash/uniq';
+import { verifyCDA } from '@iota/cda';
 import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
@@ -26,7 +27,7 @@ import { getRemotePoWFromState, nodesConfigurationFactory } from '../selectors/g
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { isLastTritZero } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
-import { clearSendFields, setCDAContent } from './ui';
+import { clearSendFields, setCDAContent, setSendAmountField, setSendMessageField, setSendAddressField } from './ui';
 import {
     findPromotableTail,
     prepareTransferArray,
@@ -1022,4 +1023,48 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, quoru
                 dispatch(generateTransferErrorAlert(err));
             }
         });
+};
+
+/**
+ * Verifies CDA content
+ *
+ * @method verifyCDAContent
+ *
+ * @param {object} CDA data
+ *
+ * @returns {function} dispatch
+ */
+export const verifyCDAContent = (data) => {
+    return (dispatch) => {
+      try {
+          verifyCDA(Date.now() / 1000, data);
+          dispatch(setCDAContent(data));
+          dispatch(setSendAddressField(data.address));
+          if (data.expectedAmount) {
+              dispatch(setSendAmountField(data.expectedAmount.toString()));
+          }
+          if (data.message) {
+              dispatch(setSendMessageField(data.message));
+          }
+      } catch (err) {
+          if (err.message === 'Expired timeout.') {
+              return dispatch(generateAlert('error', i18next.t('send:paymentRequestExpired'), i18next.t('send:paymentRequestExpiredExplanation'), undefined, undefined, 500));
+          }
+          dispatch(generateAlert('error', i18next.t('send:invalidAddress'), i18next.t('send:invalidAddressExplanationGeneric'), undefined, undefined, 500));
+      }
+    }
+};
+
+/**
+ * Clears CDA content
+ *
+ * @method clearCDAContent
+ *
+ * @returns {function} dispatch
+ */
+export const clearCDAContent = () => {
+    return (dispatch) => {
+        dispatch(setCDAContent({}));
+        dispatch(clearSendFields());
+    }
 };

@@ -4,7 +4,6 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
-import { verifyCDA } from '@iota/cda';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Clipboard } from 'react-native';
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
@@ -21,7 +20,7 @@ import {
 import { completeDeepLinkRequest } from 'shared-modules/actions/wallet';
 import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
 import { getFromKeychainRequest, getFromKeychainSuccess, getFromKeychainError } from 'shared-modules/actions/keychain';
-import { makeTransaction } from 'shared-modules/actions/transfers';
+import { makeTransaction, verifyCDAContent } from 'shared-modules/actions/transfers';
 import {
     setSendAddressField,
     setSendAmountField,
@@ -29,8 +28,7 @@ import {
     setSendDenomination,
     setDoNotMinimise,
     toggleModalActivity,
-    clearSendFields,
-    setCDAContent
+    clearCDAContent
 } from 'shared-modules/actions/ui';
 import { round, parse } from 'shared-modules/libs/utils';
 import {
@@ -182,11 +180,11 @@ export class Send extends Component {
         /** @ignore */
         themeName: PropTypes.string.isRequired,
         /** @ignore */
-        clearSendFields: PropTypes.func.isRequired,
-        /** @ignore */
-        setCDAContent: PropTypes.func.isRequired,
+        clearCDAContent: PropTypes.func.isRequired,
         /** @ignore */
         CDAContent: PropTypes.bool.isRequired,
+        /** @ignore */
+        verifyCDAContent: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -367,22 +365,7 @@ export class Send extends Component {
         } else if (dataString.startsWith('http')) {
             const parsedLink = parseCDALink(dataString);
             if (parsedLink) {
-                  try {
-                      verifyCDA(Date.now() / 1000, parsedLink);
-                      this.props.setCDAContent(parsedLink);
-                      this.props.setSendAddressField(parsedLink.address);
-                      if (parsedLink.expectedAmount) {
-                          this.props.setSendAmountField(parsedLink.expectedAmount.toString());
-                      }
-                      if (parsedLink.message) {
-                          this.props.setSendMessageField(parsedLink.message);
-                      }
-                  } catch (err) {
-                      if (err.message === 'Expired timeout.') {
-                          return _sendError(t('paymentRequestExpired'), t('paymentRequestExpiredExplanation'));
-                      }
-                      _sendError(t('invalidAddress'), t('invalidAddressExplanationGeneric'));
-                  }
+                  this.props.verifyCDAContent(parsedLink);
             } else {
                 _sendError(t('invalidAddress'), t('invalidAddressExplanation'));
             }
@@ -740,16 +723,6 @@ export class Send extends Component {
         this.messageField.blur();
     }
 
-    /**
-     * Clears CDA content
-     *
-     * @method clearCDA
-     */
-    clearCDA() {
-        this.props.setCDAContent({});
-        this.props.clearSendFields()
-    }
-
     render() {
         const { maxPressed, maxColor, maxText, sending } = this.state;
         const {
@@ -876,7 +849,7 @@ export class Send extends Component {
                         <View style={{ flex: 0.1 }} />
                         { !isEmpty(CDAContent) ?
                             <TouchableOpacity
-                                onPress={() => this.clearCDA()}
+                                onPress={() => this.props.clearCDAContent()}
                                 style={styles.clear}
                                 hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             >
@@ -986,8 +959,8 @@ const mapDispatchToProps = {
     completeDeepLinkRequest,
     setDoNotMinimise,
     toggleModalActivity,
-    clearSendFields,
-    setCDAContent
+    clearCDAContent,
+    verifyCDAContent
 };
 
 export default withTranslation(['send', 'global'])(
