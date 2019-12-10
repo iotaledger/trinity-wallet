@@ -570,7 +570,7 @@ export const parseCDALink = (input) => {
         const { address, message, amount, timeoutAt } = url.query
 
         if (address.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
-            result.address = address.toUpperCase();
+            result.address = address;
         } else {
             return null;
         }
