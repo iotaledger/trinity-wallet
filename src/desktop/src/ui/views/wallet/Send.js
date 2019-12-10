@@ -74,6 +74,8 @@ class Send extends React.PureComponent {
         clearSendFields: PropTypes.func.isRequired,
         /** @ignore */
         CDAContent: PropTypes.object.isRequired,
+        /** @ignore */
+        verifyCDAContent: PropTypes.func.isRequired,
     };
 
     state = {
@@ -175,6 +177,7 @@ class Send extends React.PureComponent {
                         label={t('send:recipientAddress')}
                         closeLabel={t('back')}
                         disabled={!isEmpty(CDAContent)}
+                        verifyCDAContent={(data) => this.props.verifyCDAContent(data)}
                     />
                     <AmountInput
                         id="send-amount"

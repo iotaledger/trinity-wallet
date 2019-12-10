@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateAlert } from '../../actions/alerts';
 import { completeDeepLinkRequest } from '../../actions/wallet';
-import { makeTransaction, clearCDAContent } from '../../actions/transfers';
+import { makeTransaction, clearCDAContent, verifyCDAContent } from '../../actions/transfers';
 import { setSendAddressField, setSendAmountField, setSendMessageField, clearSendFields } from '../../actions/ui';
 import { reset as resetProgress, startTrackingProgress } from '../../actions/progress';
 
@@ -51,6 +51,7 @@ export default function withSendData(SendComponent) {
             clearCDAContent: PropTypes.func.isRequired,
             clearSendFields: PropTypes.func.isRequired,
             CDAContent: PropTypes.object.isRequired,
+            verifyCDAContent: PropTypes.func.isRequired,
         };
 
         componentWillMount() {
@@ -188,7 +189,8 @@ export default function withSendData(SendComponent) {
                 accountMeta,
                 clearCDAContent,
                 clearSendFields,
-                CDAContent
+                CDAContent,
+                verifyCDAContent
             } = this.props;
 
             const progressTitle =
@@ -210,6 +212,7 @@ export default function withSendData(SendComponent) {
                 setSendMessageField,
                 clearCDAContent,
                 clearSendFields,
+                verifyCDAContent,
                 isSending: ui.isSendingTransfer,
                 password: wallet.password,
                 validateInputs: this.validateInputs,
@@ -267,7 +270,8 @@ export default function withSendData(SendComponent) {
         startTrackingProgress,
         resetProgress,
         clearCDAContent,
-        clearSendFields
+        clearSendFields,
+        verifyCDAContent
     };
 
     return connect(

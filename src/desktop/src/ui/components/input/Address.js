@@ -2,7 +2,7 @@ import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { ADDRESS_LENGTH, parseAddress } from 'libs/iota/utils';
+import { ADDRESS_LENGTH, parseAddress, parseCDALink } from 'libs/iota/utils';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -32,7 +32,9 @@ export default class Address extends React.PureComponent {
          */
         onChange: PropTypes.func.isRequired,
         /** Disables text input */
-        disabled: PropTypes.bool
+        disabled: PropTypes.bool,
+        /** Verify CDA Content and set fields */
+        verifyCDAContent: PropTypes.func.isRequired,
     };
 
     state = {
@@ -56,6 +58,14 @@ export default class Address extends React.PureComponent {
             this.setState(() => ({
                 showScanner: false,
             }));
+
+            if (data.startsWith('http')) {
+                const parsedLink = parseCDALink(data);
+                if (parsedLink) {
+                    return this.props.verifyCDAContent(parsedLink);
+                }
+            }
+
             const input = parseAddress(data);
             this.props.onChange(input.address, input.message, input.amount);
         }
