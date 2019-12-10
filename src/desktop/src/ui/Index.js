@@ -1,4 +1,5 @@
 /* global Electron */
+import head from 'lodash/head';
 import last from 'lodash/last';
 import split from 'lodash/split';
 import isString from 'lodash/isString';
@@ -204,7 +205,7 @@ class App extends React.Component {
     setDeepUrl(data) {
         const { deepLinking, generateAlert, t } = this.props;
 
-        const transactionId = last(split(data, '='));
+        const transactionId = last(split(head(split(data, '&')), '='));
 
         if (data.includes(MOONPAY_RETURN_URL) && isString(transactionId)) {
             this.props.fetchMoonPayTransactionDetails(transactionId);
