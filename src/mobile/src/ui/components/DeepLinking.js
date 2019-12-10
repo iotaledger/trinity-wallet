@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import head from 'lodash/head';
 import last from 'lodash/last';
 import split from 'lodash/split';
 import isString from 'lodash/isString';
@@ -46,8 +47,8 @@ export default () => (C) => {
             const { t, generateAlert, deepLinking } = this.props;
 
             const url = get(data, 'url');
-            const transactionId = last(split(url, '='));
-
+            const transactionId = last(split(head(split(url, '&')), '='));
+            
             if (url.includes(MOONPAY_RETURN_URL) && isString(transactionId)) {
                 this.props.fetchTransactionDetails(transactionId);
                 return navigator.setStackRoot('paymentPending', { passProps: { transactionId } });
