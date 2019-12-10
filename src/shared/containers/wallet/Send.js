@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -107,7 +108,7 @@ export default function withSendData(SendComponent) {
         };
 
         validateInputs = () => {
-            const { ui, generateAlert, balance, t } = this.props;
+            const { CDAContent, ui, generateAlert, balance, t } = this.props;
 
             const address = ui.sendAddressFieldText;
             const amount = ui.sendAmountFieldText;
@@ -130,7 +131,7 @@ export default function withSendData(SendComponent) {
             }
 
             // Validate address checksum
-            if (!iota.utils.isValidChecksum(address)) {
+            if (!iota.utils.isValidChecksum(address) && isEmpty(CDAContent)) {
                 generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation3'));
                 return false;
             }
