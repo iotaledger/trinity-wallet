@@ -569,7 +569,7 @@ export const parseCDALink = (input) => {
         const url = new URL(input, true)
         const { address, message, amount, timeoutAt } = url.query
 
-        if (address.match(/^[A-Z9]{90}$/)) {
+        if (address.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
             result.address = address.toUpperCase();
         } else {
             return null;
