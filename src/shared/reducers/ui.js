@@ -264,6 +264,7 @@ export default (state = initialState, action) => {
                 qrTag: '',
                 qrDenomination: 'i',
                 selectedQrTab: 'message',
+                CDAContent: {}
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST:
             return {

@@ -1,6 +1,6 @@
 import size from 'lodash/size';
 import isEmpty from 'lodash/isEmpty';
-import get from 'lodash/get';
+import isUndefined from 'lodash/isUndefined';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
@@ -20,7 +20,7 @@ import {
 import { completeDeepLinkRequest } from 'shared-modules/actions/wallet';
 import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
 import { getFromKeychainRequest, getFromKeychainSuccess, getFromKeychainError } from 'shared-modules/actions/keychain';
-import { makeTransaction, verifyCDAContent } from 'shared-modules/actions/transfers';
+import { makeTransaction, verifyCDAContent, clearCDAContent } from 'shared-modules/actions/transfers';
 import {
     setSendAddressField,
     setSendAmountField,
@@ -28,7 +28,7 @@ import {
     setSendDenomination,
     setDoNotMinimise,
     toggleModalActivity,
-    clearCDAContent
+    clearSendFields
 } from 'shared-modules/actions/ui';
 import { round, parse } from 'shared-modules/libs/utils';
 import {
@@ -49,7 +49,7 @@ import SeedStore from 'libs/SeedStore';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import AmountTextInput from 'ui/components/AmountTextInput';
 import Icon from 'ui/theme/icons';
-import { width } from 'libs/dimensions';
+import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -92,10 +92,27 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    clear: {
-        flex: 0.5,
+    clearContainer: {
+        flex: 1,
+        width,
+        height: height / 15,
+        position: 'absolute',
+        top: 0,
+        zIndex: 100,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    clear: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width
+    },
+    paymentRequestText: {
+        fontFamily: 'SourceSansPro-SemiBold',
+        fontSize: Styling.fontSize3,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
     },
 });
 
@@ -182,9 +199,11 @@ export class Send extends Component {
         /** @ignore */
         clearCDAContent: PropTypes.func.isRequired,
         /** @ignore */
-        CDAContent: PropTypes.bool.isRequired,
+        CDAContent: PropTypes.object.isRequired,
         /** @ignore */
         verifyCDAContent: PropTypes.func.isRequired,
+        /** @ignore */
+        clearSendFields: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -220,7 +239,7 @@ export class Send extends Component {
     }
 
     async componentWillReceiveProps(newProps) {
-        const { seedIndex, isSendingTransfer, address } = this.props;
+        const { t, seedIndex, isSendingTransfer, address } = this.props;
         if (!isSendingTransfer && newProps.isSendingTransfer) {
             KeepAwake.activate();
         } else if (isSendingTransfer && !newProps.isSendingTransfer) {
@@ -238,6 +257,14 @@ export class Send extends Component {
         }
         if (!newProps.deepLinkRequestActive && address.length === 0 && newProps.address.length === 90) {
             this.detectAddressInClipboard();
+        }
+        if (newProps.address.startsWith('http')) {
+            const parsedLink = parseCDALink(newProps.address);
+            if (parsedLink) {
+                  this.props.verifyCDAContent(parsedLink);
+            } else {
+                this.props.generateAlert('error', t('invalidAddress'), t('invalidAddressExplanation'));
+            }
         }
     }
 
@@ -353,6 +380,7 @@ export class Send extends Component {
         this.hideModal();
         // Clear clipboard
         Clipboard.setString(' ');
+
         if (parsedData.address) {
             // For codes containing JSON (iotaledger and Trinity)
             this.props.setSendAddressField(parsedData.address);
@@ -412,8 +440,8 @@ export class Send extends Component {
     }
 
     getSendMaxOpacity() {
-        const { balance } = this.props;
-        if (balance === 0) {
+        const { balance, CDAContent } = this.props;
+        if (balance === 0 || !isEmpty(CDAContent)) {
             return 0.2;
         }
 
@@ -715,12 +743,23 @@ export class Send extends Component {
 
     /**
      * Blurs out address, amount and message text fields
+     *
      * @method blurTextFields
      */
     blurTextFields() {
         this.addressField.blur();
         this.amountField.blur();
         this.messageField.blur();
+    }
+
+    /**
+     * Clear payment request details
+     *
+     * @method clearPaymentRequest
+     */
+    clearPaymentRequest() {
+        this.props.clearCDAContent();
+        this.props.clearSendFields();
     }
 
     render() {
@@ -735,7 +774,8 @@ export class Send extends Component {
             theme,
             isKeyboardActive,
             themeName,
-            CDAContent
+            CDAContent,
+            theme: { primary, body }
         } = this.props;
         const textColor = { color: theme.body.color };
         const opacity = this.getSendMaxOpacity();
@@ -744,19 +784,27 @@ export class Send extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <View style={{ flex: 0.5 }} />
+                        { !isEmpty(CDAContent) &&
+                            <View style={[ styles.clearContainer, { backgroundColor: primary.color } ]}>
+                                <TouchableWithoutFeedback onPress={() => this.clearPaymentRequest()}>
+                                    <View style={styles.clear}>
+                                        <Text>
+                                            <Text style={[styles.paymentRequestText, { color: body.bg }]}>{t('send:paymentRequest')}</Text>
+                                            <Text style={[styles.clearText, { color: body.bg }]}> | </Text>
+                                            <Text style={[styles.clearText, { color: body.bg, textDecorationLine: 'underline' }]}>{t('send:clear')}</Text>
+                                        </Text>
+                                    </View>
+                                </TouchableWithoutFeedback>
+                            </View>
+                        }
+                    <View style={{ flex: 0.8 }} />
                     <View style={styles.topContainer}>
                         <CustomTextInput
                             onRef={(c) => {
                                 this.addressField = c;
                             }}
-                            maxLength={90}
                             label={t('recipientAddress')}
-                            onValidTextChange={(text) => {
-                                if (text.match(VALID_SEED_REGEX) || text.length === 0) {
-                                    this.props.setSendAddressField(text);
-                                }
-                            }}
+                            onValidTextChange={(text) => this.props.setSendAddressField(text)}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="next"
@@ -767,7 +815,7 @@ export class Send extends Component {
                             }}
                             widgets={['qr']}
                             onQRPress={() => {
-                                if (!isSending) {
+                                if (!isSending && isEmpty(CDAContent)) {
                                     this.showModal('qrScanner');
                                 }
                             }}
@@ -781,7 +829,7 @@ export class Send extends Component {
                             amount={amount}
                             denomination={denomination}
                             multiplier={this.getUnitMultiplier()}
-                            disabled={get(CDAContent, 'expectedAmount') || isSending}
+                            disabled={!isUndefined(CDAContent.expectedAmount) || isSending}
                             setAmount={(text) => this.props.setSendAmountField(text)}
                             setDenomination={(text) => {
                                 this.props.setSendDenomination(text);
@@ -805,7 +853,7 @@ export class Send extends Component {
                         >
                             <TouchableOpacity
                                 onPress={() => {
-                                    if (!isSending && !get(CDAContent, 'expectedAmount')) {
+                                    if (!isSending && isUndefined(CDAContent, 'expectedAmount')) {
                                         this.onMaxPress();
                                     }
                                 }}
@@ -844,22 +892,9 @@ export class Send extends Component {
                             theme={theme}
                             value={message}
                             multiplier={this.getUnitMultiplier()}
-                            disabled={get(CDAContent, 'message') || isSending}
+                            disabled={!isUndefined(CDAContent.message) || isSending}
                         />
                         <View style={{ flex: 0.1 }} />
-                        { !isEmpty(CDAContent) ?
-                            <TouchableOpacity
-                                onPress={() => this.props.clearCDAContent()}
-                                style={styles.clear}
-                                hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
-                            >
-                                <View style={styles.clear}>
-                                    <Text style={[styles.infoText, textColor]}>{t('send:clearPaymentRequest')}</Text>
-                                </View>
-                            </TouchableOpacity>
-                            :
-                            <View style={styles.clear}/>
-                        }
                     </View>
                     <View style={styles.bottomContainer}>
                         <View style={{ flex: 0.25 }}/>
@@ -960,7 +995,8 @@ const mapDispatchToProps = {
     setDoNotMinimise,
     toggleModalActivity,
     clearCDAContent,
-    verifyCDAContent
+    verifyCDAContent,
+    clearSendFields
 };
 
 export default withTranslation(['send', 'global'])(

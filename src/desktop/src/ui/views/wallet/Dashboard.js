@@ -84,6 +84,7 @@ class Dashboard extends React.PureComponent {
         const parsedCDALink = parseCDALink(data);
         if (parsedCDALink){
             this.props.verifyCDAContent(parsedCDALink);
+            this.props.history.push('/wallet/send');
             return e.preventDefault();
         }
     };

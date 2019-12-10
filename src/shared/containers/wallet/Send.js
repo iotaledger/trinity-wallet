@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateAlert } from '../../actions/alerts';
 import { completeDeepLinkRequest } from '../../actions/wallet';
-import { makeTransaction } from '../../actions/transfers';
-import { setSendAddressField, setSendAmountField, setSendMessageField } from '../../actions/ui';
+import { makeTransaction, clearCDAContent } from '../../actions/transfers';
+import { setSendAddressField, setSendAmountField, setSendMessageField, clearSendFields } from '../../actions/ui';
 import { reset as resetProgress, startTrackingProgress } from '../../actions/progress';
 
 import {
@@ -14,6 +14,7 @@ import {
     getAvailableBalanceForSelectedAccount,
 } from '../../selectors/accounts';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH, isValidMessage } from '../../libs/iota/utils';
+
 import { iota } from '../../libs/iota';
 
 import { getThemeFromState } from '../../selectors/global';
@@ -47,6 +48,9 @@ export default function withSendData(SendComponent) {
             startTrackingProgress: PropTypes.func.isRequired,
             completeDeepLinkRequest: PropTypes.func.isRequired,
             resetProgress: PropTypes.func.isRequired,
+            clearCDAContent: PropTypes.func.isRequired,
+            clearSendFields: PropTypes.func.isRequired,
+            CDAContent: PropTypes.object.isRequired,
         };
 
         componentWillMount() {
@@ -182,6 +186,9 @@ export default function withSendData(SendComponent) {
                 progress,
                 accountName,
                 accountMeta,
+                clearCDAContent,
+                clearSendFields,
+                CDAContent
             } = this.props;
 
             const progressTitle =
@@ -197,9 +204,12 @@ export default function withSendData(SendComponent) {
                     amount: ui.sendAmountFieldText,
                     message: ui.sendMessageFieldText,
                 },
+                CDAContent,
                 setSendAddressField,
                 setSendAmountField,
                 setSendMessageField,
+                clearCDAContent,
+                clearSendFields,
                 isSending: ui.isSendingTransfer,
                 password: wallet.password,
                 validateInputs: this.validateInputs,
@@ -244,6 +254,7 @@ export default function withSendData(SendComponent) {
         progress: state.progress,
         ui: state.ui,
         deepLinkRequestActive: state.wallet.deepLinkRequestActive,
+        CDAContent: state.ui.CDAContent
     });
 
     const mapDispatchToProps = {
@@ -255,6 +266,8 @@ export default function withSendData(SendComponent) {
         setSendMessageField,
         startTrackingProgress,
         resetProgress,
+        clearCDAContent,
+        clearSendFields
     };
 
     return connect(

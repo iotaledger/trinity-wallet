@@ -50,6 +50,7 @@ export default class Text extends React.PureComponent {
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
                         maxLength={maxLength}
+                        readOnly={disabled}
                     />
                     <small>{label}</small>
                 </fieldset>

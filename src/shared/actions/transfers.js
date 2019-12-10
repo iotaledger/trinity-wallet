@@ -186,6 +186,7 @@ export const retryFailedTransactionError = (payload) => ({
 export const completeTransfer = () => {
     return (dispatch) => {
         dispatch(clearSendFields());
+        dispatch(clearCDAContent());
         dispatch(sendTransferSuccess());
     };
 };
@@ -1065,6 +1066,5 @@ export const verifyCDAContent = (data) => {
 export const clearCDAContent = () => {
     return (dispatch) => {
         dispatch(setCDAContent({}));
-        dispatch(clearSendFields());
     }
 };

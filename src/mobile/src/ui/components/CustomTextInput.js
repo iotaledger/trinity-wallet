@@ -536,7 +536,7 @@ class CustomTextInput extends Component {
         const { isFocused, isSecretMasked } = this.state;
 
         return (
-            <View style={[styles.fieldContainer, containerStyle, isSeedInput && styles.seedInput]}>
+            <View style={[styles.fieldContainer, containerStyle, isSeedInput && styles.seedInput, { opacity: disabled ? 0.4 : 1}]}>
                 {label && (
                     <View style={styles.labelContainer}>
                         <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>

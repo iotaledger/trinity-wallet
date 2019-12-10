@@ -1,6 +1,7 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { ADDRESS_LENGTH, parseAddress } from 'libs/iota/utils';
 
 import Modal from 'ui/components/modal/Modal';
@@ -30,6 +31,8 @@ export default class Address extends React.PureComponent {
          * @param {string} value - Current value
          */
         onChange: PropTypes.func.isRequired,
+        /** Disables text input */
+        disabled: PropTypes.bool
     };
 
     state = {
@@ -82,11 +85,11 @@ export default class Address extends React.PureComponent {
     };
 
     render() {
-        const { address, id, label, closeLabel } = this.props;
+        const { address, id, label, closeLabel, disabled } = this.props;
         const { showScanner } = this.state;
 
         return (
-            <div className={css.input}>
+            <div className={classNames(css.input, disabled ? css.disabled : null)}>
                 <fieldset>
                     <a onClick={this.openScanner}>
                         <Icon icon="camera" size={16} />
@@ -101,6 +104,7 @@ export default class Address extends React.PureComponent {
                         onChange={(e) => this.props.onChange(e.target.value)}
                         maxLength={ADDRESS_LENGTH}
                         data-tip={address}
+                        readOnly={disabled}
                     />
                     {this.isInputScrolling() && (
                         <div className={css.tooltip}>
