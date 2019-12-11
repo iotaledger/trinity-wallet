@@ -18,6 +18,7 @@ import { fetchVersions } from 'libs/utils';
 import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
 
 import { setOnboardingComplete, setAccountInfoDuringSetup } from 'actions/accounts';
+import { setViewingMoonpayPurchases } from 'actions/ui';
 import {
     setPassword,
     clearWalletData,
@@ -124,6 +125,8 @@ class App extends React.Component {
         setMoonPayAuthenticationStatus: PropTypes.func.isRequired,
         /** @ignore */
         fetchMoonPayTransactionDetails: PropTypes.func.isRequired,
+        /** @ignore */
+        setViewingMoonpayPurchases: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -208,8 +211,16 @@ class App extends React.Component {
         const transactionId = last(split(head(split(data, '&')), '='));
 
         if (data.includes(MOONPAY_RETURN_URL) && isString(transactionId)) {
-            this.props.fetchMoonPayTransactionDetails(transactionId);
-            return this.props.history.push('/exchanges/moonpay/payment-pending');
+            // Check if wallet is ready i.e., user has logged in.
+            // If not, then redirect user to login screen
+            if (this.props.wallet.ready === true) {
+                this.props.fetchMoonPayTransactionDetails(transactionId);
+                return this.props.history.push('/exchanges/moonpay/payment-pending');
+            }
+
+            // Make the MoonPay purchase tab active, so the users can see their new transaction
+            this.props.setViewingMoonpayPurchases(true);
+            return this.props.history.push('/onboarding/');
         }
 
         this.props.initiateDeepLinkRequest();
@@ -420,6 +431,7 @@ const mapDispatchToProps = {
     displayTestWarning,
     setMoonPayAuthenticationStatus,
     fetchMoonPayTransactionDetails,
+    setViewingMoonpayPurchases,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(App)));
