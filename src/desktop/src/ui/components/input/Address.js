@@ -1,7 +1,8 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
-import { ADDRESS_LENGTH, parseAddress } from 'libs/iota/utils';
+import classNames from 'classnames';
+import { ADDRESS_LENGTH, parseAddress, parseCDALink } from 'libs/iota/utils';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -30,6 +31,10 @@ export default class Address extends React.PureComponent {
          * @param {string} value - Current value
          */
         onChange: PropTypes.func.isRequired,
+        /** Disables text input */
+        disabled: PropTypes.bool,
+        /** Verify CDA Content and set fields */
+        verifyCDAContent: PropTypes.func.isRequired,
     };
 
     state = {
@@ -53,6 +58,14 @@ export default class Address extends React.PureComponent {
             this.setState(() => ({
                 showScanner: false,
             }));
+
+            if (data.startsWith('http')) {
+                const parsedLink = parseCDALink(data);
+                if (parsedLink) {
+                    return this.props.verifyCDAContent(parsedLink);
+                }
+            }
+
             const input = parseAddress(data);
             this.props.onChange(input.address, input.message, input.amount);
         }
@@ -82,11 +95,11 @@ export default class Address extends React.PureComponent {
     };
 
     render() {
-        const { address, id, label, closeLabel } = this.props;
+        const { address, id, label, closeLabel, disabled } = this.props;
         const { showScanner } = this.state;
 
         return (
-            <div className={css.input}>
+            <div className={classNames(css.input, disabled ? css.disabled : null)}>
                 <fieldset>
                     <a onClick={this.openScanner}>
                         <Icon icon="camera" size={16} />
@@ -101,6 +114,7 @@ export default class Address extends React.PureComponent {
                         onChange={(e) => this.props.onChange(e.target.value)}
                         maxLength={ADDRESS_LENGTH}
                         data-tip={address}
+                        readOnly={disabled}
                     />
                     {this.isInputScrolling() && (
                         <div className={css.tooltip}>

@@ -11,9 +11,14 @@ import { capitalize } from 'libs/iota/converter';
 
 import { getAccountInfo } from 'actions/accounts';
 import { setViewingMoonpayPurchases } from 'actions/ui';
-import { fetchTransactions as fetchMoonPayTransactions, setLoggingIn as setLoggingInToMoonPay } from 'actions/exchanges/MoonPay';
+import {
+    fetchTransactions as fetchMoonPayTransactions,
+    setLoggingIn as setLoggingInToMoonPay,
+} from 'actions/exchanges/MoonPay';
+import { verifyCDAContent } from 'actions/transfers';
 
 import { getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
+import { parseCDALink } from 'libs/iota/utils';
 
 import Icon from 'ui/components/Icon';
 import List from 'ui/components/List';
@@ -36,6 +41,8 @@ class Dashboard extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
+        /** @ignore */
+        verifyCDAContent: PropTypes.func.isRequired,
         /** @ignore */
         accountName: PropTypes.string,
         /** @ignore */
@@ -70,6 +77,14 @@ class Dashboard extends React.PureComponent {
         }
     }
 
+    componentDidMount() {
+        window.addEventListener('paste', this.onPaste);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('paste', this.onPaste);
+    }
+
     updateAccount = async () => {
         const { password, accountName, accountMeta } = this.props;
 
@@ -81,6 +96,16 @@ class Dashboard extends React.PureComponent {
             Electron.notify,
             true, // Sync with quorum enabled
         );
+    };
+
+    onPaste = (e) => {
+        const data = (event.clipboardData || window.clipboardData).getData('text');
+        const parsedCDALink = parseCDALink(data);
+        if (parsedCDALink) {
+            this.props.verifyCDAContent(parsedCDALink);
+            this.props.history.push('/wallet/send');
+            return e.preventDefault();
+        }
     };
 
     /**
@@ -122,7 +147,7 @@ class Dashboard extends React.PureComponent {
         const os = Electron.getOS();
 
         return (
-            <div className={classNames(css.dashboard, os === 'win32' ? css.windows : null)}>
+            <div onPaste={this.onPaste} className={classNames(css.dashboard, os === 'win32' ? css.windows : null)}>
                 <div className={balanceOpen ? css.balanceOpen : null}>
                     <section className={css.balance}>
                         <Balance />
@@ -202,7 +227,13 @@ const mapDispatchToProps = {
     getAccountInfo,
     setViewingMoonpayPurchases,
     fetchMoonPayTransactions,
-    setLoggingInToMoonPay
+    setLoggingInToMoonPay,
+    verifyCDAContent,
 };
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
+export default withTranslation()(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Dashboard),
+);

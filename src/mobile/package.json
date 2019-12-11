@@ -21,7 +21,7 @@
     "ios:dev": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/react-native run-ios",
     "test": "REALM_DISABLE_ANALYTICS=true NODE_ENV=test ./node_modules/.bin/jest --forceExit --detectOpenHandles --maxWorkers=10",
     "nodejs-deps": "yarn --cwd nodejs-assets/nodejs-project",
-    "postinstall": "./node_modules/.bin/rn-nodeify --install crypto,http,os,path,stream,vm --hack --yarn && yarn nodejs-deps && patch-package && npm run fix-modal && react-native-schemes-manager all",
+    "postinstall": "./node_modules/.bin/rn-nodeify --install crypto,http,os,path,stream,vm,querystring --hack --yarn && yarn nodejs-deps && patch-package && npm run fix-modal && react-native-schemes-manager all",
     "prepare-release": "yarn version && cd ios && bundle exec fastlane release && cd ../android && bundle exec fastlane release && cd .. && echo Successfully incremented version and build numbers! Please remember to run git add ., git commit, git push --tags, and git push",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect",
@@ -49,6 +49,7 @@
     "prop-types": "^15.6.0",
     "punycode": "^1.4.1",
     "qr.js": "https://github.com/defunctzombie/qr.js",
+    "querystring-es3": "~0.2.0",
     "react": "16.8.3",
     "react-i18next": "^11.0.0",
     "react-native": "0.59.10",
@@ -163,7 +164,8 @@
     "_stream_duplex": "readable-stream/duplex",
     "_stream_passthrough": "readable-stream/passthrough",
     "stream": "stream-browserify",
-    "vm": "vm-browserify"
+    "vm": "vm-browserify",
+    "querystring": "querystring-es3"
   },
   "browser": {
     "crypto": "react-native-crypto",
@@ -176,7 +178,8 @@
     "_stream_duplex": "readable-stream/duplex",
     "_stream_passthrough": "readable-stream/passthrough",
     "stream": "stream-browserify",
-    "vm": "vm-browserify"
+    "vm": "vm-browserify",
+    "querystring": "querystring-es3"
   },
   "rnpm": {
     "android": {

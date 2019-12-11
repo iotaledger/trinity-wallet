@@ -244,3 +244,18 @@ export const setViewingMoonpayPurchases = (payload) => {
         payload,
     };
 };
+
+/**
+ * Dispatch to set CDA content when user opens a CDA
+ *
+ * @method setCDAContent
+ * @param {bool} payload
+ *
+ * @returns {{type: {string}, payload: {bool} }}
+ */
+export const setCDAContent = (payload) => {
+    return {
+        type: UiActionTypes.SET_CDA_CONTENT,
+        payload,
+    };
+};

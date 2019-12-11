@@ -44,12 +44,12 @@ class MultiTextInput extends Component {
         containerStyle: PropTypes.object,
         /** On submit editing event callback */
         onSubmitEditing: PropTypes.func,
-        /** Determines if the text field is editable */
-        editable: PropTypes.bool,
+        /** Determines if the text field is disabled */
+        disabled: PropTypes.bool,
     };
 
     static defaultProps = {
-        editable: true,
+        disabled: false,
         onSubmitEditing: () => {},
         onRef: () => {},
         label: null,
@@ -130,8 +130,7 @@ class MultiTextInput extends Component {
     }
 
     render() {
-        const { theme, amount, denomination, onRef, label, containerStyle, onSubmitEditing, editable } = this.props;
-
+        const { theme, amount, denomination, onRef, label, containerStyle, onSubmitEditing, disabled } = this.props;
         return (
             <CustomTextInput
                 keyboardType="numeric"
@@ -147,13 +146,12 @@ class MultiTextInput extends Component {
                 theme={theme}
                 denominationText={denomination}
                 onDenominationPress={() => {
-                    if (editable) {
+                    if (!disabled) {
                         this.onDenominationPress();
                     }
                 }}
                 value={amount}
-                editable={editable}
-                selectTextOnFocus={editable}
+                disabled={disabled}
                 onSubmitEditing={() => onSubmitEditing()}
             />
         );
