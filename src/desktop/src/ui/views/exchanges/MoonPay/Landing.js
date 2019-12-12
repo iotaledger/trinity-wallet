@@ -107,7 +107,8 @@ class Landing extends React.PureComponent {
      * @returns {function}
      */
     getStates(countries, countryCode) {
-        return get(find(countries, { alpha3: countryCode }), 'states') || [];
+        const states = get(find(countries, { alpha3: countryCode }), 'states');
+        return filter(states, { isAllowed: true }) || [];
     }
 
     render() {

@@ -457,7 +457,6 @@
 
 .select {
     position: relative;
-    z-index: 9;
     ul {
         display: none;
     }
@@ -473,7 +472,7 @@
             background: var(--box-bg);
             border-radius: 5px;
             padding: 10px 0px 10px 0;
-            z-index: 2;
+            z-index: 5;
 
             :global {
                 .ps {

@@ -167,9 +167,10 @@ class Landing extends Component {
      *
      * @returns {array}
      */
-    getStates(countries, countryCode) {
-        return get(find(countries, { alpha3: countryCode }), 'states') || [];
-    }
+     getStates(countries, countryCode) {
+         const states = get(find(countries, { alpha3: countryCode }), 'states');
+         return filter(states, { isAllowed: true }) || [];
+     }
 
     render() {
         const {
