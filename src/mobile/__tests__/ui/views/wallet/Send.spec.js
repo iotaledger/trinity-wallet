@@ -56,6 +56,7 @@ const getProps = (overrides) =>
             makeTransaction: noop,
             generateTransferErrorAlert: noop,
             availableBalance: 100,
+            CDAContent: {},
             deepLinkActive: false,
             setDeepLinkInactive: noop,
             isFingerprintEnabled: false,
@@ -68,6 +69,9 @@ const getProps = (overrides) =>
             deepLinkRequestActive: false,
             deepLinking: false,
             completeDeepLinkRequest: noop,
+            clearCDAContent: noop,
+            verifyCDAContent: noop,
+            clearSendFields: noop,
         },
         overrides,
     );

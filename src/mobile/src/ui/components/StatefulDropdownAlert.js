@@ -128,7 +128,7 @@ class StatefulDropdownAlert extends Component {
             dismissAlert,
             forceUpdate,
         } = this.props;
-        const closeAfter = closeInterval;
+        const closeAfter = closeInterval || 0;
         return (
             <DropdownAlert
                 ref={onRef || this.refFunc}

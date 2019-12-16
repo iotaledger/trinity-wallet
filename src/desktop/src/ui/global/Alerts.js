@@ -47,7 +47,7 @@ export class AlertsComponent extends React.PureComponent {
         if (nextProps.alerts.category && nextProps.alerts.category.length && nextProps.alerts.closeInterval > 0) {
             this.timeout = setTimeout(() => {
                 this.props.dismissAlert();
-            }, nextProps.alerts.closeInterval);
+            }, nextProps.alerts.closeInterval || 0);
         }
     }
 

@@ -20,6 +20,7 @@
   },
   "license": "Apache-2.0 OR EPL-2.0",
   "dependencies": {
+    "@iota/cda": "^1.0.0-beta.23",
     "@iota/core": "^1.0.0-beta.20",
     "bignumber.js": "^9.0.0",
     "i18next": "^19.0.0",
@@ -28,6 +29,7 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
     "proxy-polyfill": "^0.3.0",
+    "querystring": "^0.2.0",
     "react": "16.8.6",
     "react-i18next": "^11.0.1",
     "react-redux": "^5.1.1",

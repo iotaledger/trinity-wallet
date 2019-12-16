@@ -38,6 +38,7 @@ describe('Reducer: ui', () => {
                 hadErrorGeneratingNewAddress: false,
                 isKeyboardActive: false,
                 animateChartOnMount: true,
+                CDAContent: {},
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
