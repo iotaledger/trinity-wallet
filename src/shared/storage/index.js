@@ -855,7 +855,7 @@ const purge = () =>
         try {
             realm.removeAllListeners();
             realm.write(() => realm.deleteAll());
-
+            realm.close();
             Realm.deleteFile(schemas[size(schemas) - 1]);
 
             resolve();
