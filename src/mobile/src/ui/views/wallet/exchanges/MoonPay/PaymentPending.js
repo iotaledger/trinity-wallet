@@ -108,7 +108,7 @@ class PaymentPending extends Component {
         } else if (status === MOONPAY_TRANSACTION_STATUSES.waitingAuthorization) {
             this.setState({
                 subtitle: t('moonpay:pleaseComplete3DSecure'),
-                buttonText: t('global:complete'),
+                buttonText: t('global:continue'),
             });
         }
     }
