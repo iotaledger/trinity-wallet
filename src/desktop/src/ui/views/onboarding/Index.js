@@ -20,7 +20,6 @@ import SeedEnter from 'ui/views/onboarding/SeedVerify';
 import SeedName from 'ui/views/onboarding/AccountName';
 import SecurityEnter from 'ui/views/onboarding/AccountPassword';
 import Done from 'ui/views/onboarding/Done';
-import Activation from 'ui/views/onboarding/Activation';
 
 import Ledger from 'ui/views/onboarding/seedStore/Ledger';
 
@@ -41,14 +40,7 @@ class Onboarding extends React.PureComponent {
         history: PropTypes.object,
         /** @ignore */
         setAccountInfoDuringSetup: PropTypes.func.isRequired,
-        /** Alpha versiona ctivation code */
-        activationCode: PropTypes.string,
     };
-
-    constructor(props) {
-        super(props);
-        this.state = { uuid: Electron.getUuid() };
-    }
 
     state = {
         waveIndex: 0,
@@ -113,21 +105,11 @@ class Onboarding extends React.PureComponent {
     }
 
     render() {
-        const { history, location, complete, isAuthorised, activationCode } = this.props;
+        const { history, location, complete, isAuthorised } = this.props;
 
         const indexComponent = complete ? Login : Welcome;
 
         const currentKey = location.pathname.split('/')[2] || '/';
-
-        if (!this.state.uuid) {
-            return null;
-        }
-
-        if (!activationCode) {
-            return (
-                <Activation uuid={this.state.uuid} />
-            );
-        }
 
         return (
             <main className={css.onboarding}>
@@ -167,16 +149,10 @@ class Onboarding extends React.PureComponent {
 const mapStateToProps = (state) => ({
     complete: state.accounts.onboardingComplete || isSettingUpNewAccount(state),
     isAuthorised: state.wallet.ready,
-    activationCode: state.wallet.activationCode
 });
 
 const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(Onboarding),
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Onboarding));

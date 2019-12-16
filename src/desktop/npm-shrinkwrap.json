@@ -14855,11 +14855,6 @@
       "integrity": "sha512-N+z4pHB4AmUv0SjveWRd6q1Nj5w62m5jodv+GD8lvmbY/83T/rpbJGZOnK5T149OldDj4Db07BSv9xY4K6NTPQ==",
       "dev": true
     },
-    "sjcl": {
-      "version": "1.0.8",
-      "resolved": "https://registry.npmjs.org/sjcl/-/sjcl-1.0.8.tgz",
-      "integrity": "sha512-LzIjEQ0S0DpIgnxMEayM1rq9aGwGRG4OnZhCdjx7glTaJtf4zRfpg87ImfjSJjoW9vKpagd82McDOwbRT5kQKQ=="
-    },
     "slash": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/slash/-/slash-1.0.0.tgz",

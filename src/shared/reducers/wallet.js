@@ -59,7 +59,6 @@ const initialState = {
      * Determines whether to display test version warning
      */
     displayTestWarning: false,
-    activationCode: null,
 };
 
 export default (state = initialState, action) => {
@@ -207,11 +206,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 displayTestWarning: true,
-            };
-        case WalletActionTypes.SET_ACTIVATION_CODE:
-            return {
-                ...state,
-                activationCode: action.payload,
             };
         default:
             return state;
