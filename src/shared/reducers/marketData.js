@@ -1,14 +1,7 @@
 import { MarketDataActionTypes } from '../types';
+import { availableCurrencies } from '../libs/currency';
 
 const initialState = {
-    /**
-     * Wallet selected currency
-     */
-    currency: 'USD',
-    /**
-     * Time frame for price
-     */
-    timeframe: '24h',
     /**
      * Price data points for mapping on chart
      */
@@ -41,20 +34,14 @@ const initialState = {
      * Ethereum equivalent price of IOTA token
      */
     ethPrice: 0,
+    /**
+     * Exchange rates
+     */
+    rates: availableCurrencies,
 };
 
 const marketData = (state = initialState, action) => {
     switch (action.type) {
-        case MarketDataActionTypes.SET_CURRENCY:
-            return {
-                ...state,
-                currency: action.payload,
-            };
-        case MarketDataActionTypes.SET_TIMEFRAME:
-            return {
-                ...state,
-                timeframe: action.payload,
-            };
         case MarketDataActionTypes.SET_PRICE:
             return {
                 ...state,
@@ -66,7 +53,6 @@ const marketData = (state = initialState, action) => {
         case MarketDataActionTypes.SET_STATISTICS:
             return {
                 ...state,
-                usdPrice: action.usdPrice,
                 mcap: action.mcap,
                 volume: action.volume,
                 change24h: action.change24h,
@@ -75,6 +61,11 @@ const marketData = (state = initialState, action) => {
             return {
                 ...state,
                 chartData: action.chartData,
+            };
+        case MarketDataActionTypes.SET_RATES_DATA:
+            return {
+                ...state,
+                rates: action.payload,
             };
         default:
             return state;

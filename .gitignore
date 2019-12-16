@@ -129,3 +129,6 @@ realm-object-server/
 
 # NPM lockfiles
 package-lock.json
+
+# tests
+__diff_output__
