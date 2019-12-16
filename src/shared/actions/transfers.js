@@ -1048,7 +1048,7 @@ export const verifyCDAContent = (data) => {
               dispatch(setSendMessageField(data.message));
           }
       } catch (err) {
-          if (err.message === 'Expired timeout.') {
+          if (err.message === Errors.EXPIRED_TIMEOUT) {
               return dispatch(generateAlert('error', i18next.t('send:paymentRequestExpired'), i18next.t('send:paymentRequestExpiredExplanation'), undefined, undefined, 500));
           }
           dispatch(generateAlert('error', i18next.t('send:invalidAddress'), i18next.t('send:invalidAddressExplanationGeneric'), undefined, undefined, 500));
