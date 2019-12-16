@@ -522,7 +522,10 @@
         "addressPasteDetected": "تم اكتشاف لصق العنوان",
         "addressPasteExplanation": "يبدو أنك قمت بلصق عنوان. تأكد من أن العنوان يطابق العنوان الذي تريد الإرسال إليه.",
         "invalid": "غير صحيح",
-        "swipeToSend": "إمسح للإرسال"
+        "swipeToSend": "إمسح للإرسال",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "لنضف إسما",
