@@ -522,7 +522,10 @@
         "addressPasteDetected": "Detektirana kopija adrese u međuspremniku",
         "addressPasteExplanation": "Izgleda da ste zalijepili adresu. Provjerite da li je adresa istovjetna onoj na koju želite poslati.",
         "invalid": "NEISPRAVNO",
-        "swipeToSend": "Kliznite po ekranu za slanje"
+        "swipeToSend": "Kliznite po ekranu za slanje",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "Dodajte naziv",
