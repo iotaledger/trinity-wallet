@@ -39,6 +39,7 @@ describe('Reducer: ui', () => {
                 isKeyboardActive: false,
                 animateChartOnMount: true,
                 isViewingMoonpayPurchases: false,
+                CDAContent: {},
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
