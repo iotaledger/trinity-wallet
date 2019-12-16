@@ -4,6 +4,12 @@ $footer: 70px;
 .agreement {
     display: flex;
 
+
+    span {
+        cursor: pointer;
+        line-height: 16px;
+    }
+
     a {
         color: var(--bar-body);
         font-weight: 600;
@@ -111,6 +117,13 @@ $footer: 70px;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
+    > header > a {
+        position: absolute;
+        top: 60px;
+        right: 40px;
+        cursor: pointer;
+    }
 
     > div:first-of-type > div {
         position: absolute;

@@ -37,7 +37,7 @@ class VerifyEmail extends React.PureComponent {
         /** @ignore */
         setLoggingIn: PropTypes.func.isRequired,
         /** @ignore */
-        isLoggingIn: PropTypes.bool.isRequired
+        isLoggingIn: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -115,10 +115,15 @@ class VerifyEmail extends React.PureComponent {
                             className="small"
                             onChange={(value) => this.setState({ agreeWithMoonPayTerms: value })}
                         />
-                        <span>
+                        <span onClick={() => this.setState({ agreeWithMoonPayTerms: !agreeWithMoonPayTerms })}>
                             {t('moonpay:agreeWithMoonPay')}{' '}
-                            <a href={MOONPAY_TERMS_OF_USE_LINK}>{t('moonpay:termsOfUse')}</a> {t('global:and')}{' '}
-                            <a href={MOONPAY_PRIVACY_POLICY_LINK}>{t('privacyPolicy:privacyPolicy')}</a>
+                            <a href={MOONPAY_TERMS_OF_USE_LINK} onClick={(e) => e.stopPropagation()}>
+                                {t('moonpay:termsOfUse')}
+                            </a>{' '}
+                            {t('global:and')}{' '}
+                            <a href={MOONPAY_PRIVACY_POLICY_LINK} onClick={(e) => e.stopPropagation()}>
+                                {t('privacyPolicy:privacyPolicy')}
+                            </a>
                         </span>
                     </div>
                 </section>
@@ -159,7 +164,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     verifyEmailAndFetchMeta,
-    setLoggingIn
+    setLoggingIn,
 };
 
 export default connect(

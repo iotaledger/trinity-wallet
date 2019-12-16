@@ -32,16 +32,23 @@ class MoonPay extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         location: PropTypes.object,
+        /** @ignore */
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
     };
 
     render() {
-        const { location } = this.props;
+        const { history, location } = this.props;
         const currentKey = location.pathname.split('/')[3] || '/';
 
         return (
             <main className={css.main}>
                 <header>
                     <Icon icon="moonpay" size={200} />
+                    <a onClick={() => history.push('/wallet/')}>
+                        <Icon icon="cross" size={24} />
+                    </a>
                 </header>
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="slide" timeout={1000} mountOnEnter unmountOnExit>
