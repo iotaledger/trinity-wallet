@@ -69,4 +69,5 @@ export default {
     REQUEST_FAILED_WITH: (status) => `Request failed with status ${status}`,
     MARKET_DATA_FAILURE: 'Could not fetch market data',
     NO_PAYMENT_CARDS: 'No payment cards',
+    EXPIRED_TIMEOUT: 'Expired timeout.',
 };
