@@ -522,7 +522,10 @@
         "addressPasteDetected": "檢測到地址貼上",
         "addressPasteExplanation": "看起來您已貼上地址，請確認貼上的地址與您想送出去的相符。",
         "invalid": "無效",
-        "swipeToSend": "滑動來發送"
+        "swipeToSend": "滑動來發送",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "請輸入名稱",
