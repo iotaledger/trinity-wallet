@@ -441,8 +441,8 @@ class History extends Component {
             isAuthenticatedForMoonPay,
             theme: { primary, body },
             t,
+            isRefreshing
         } = this.props;
-
         if (isAuthenticatedForMoonPay) {
             const purchaseHistory = this.prepMoonPayPurchases();
             const noPurchases = purchaseHistory.length === 0;
@@ -456,6 +456,13 @@ class History extends Component {
                     keyExtractor={(_, index) => index.toString()}
                     renderItem={({ item }) => <MoonPayPurchaseRow {...item} />}
                     scrollEnabled={purchaseHistory.length > 0}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={isRefreshing && !noPurchases}
+                            onRefresh={this.props.onRefresh}
+                            tintColor={primary.color}
+                        />
+                    }
                     ListEmptyComponent={
                         <View style={styles.noTransactionsContainer}>
                             <InfoBox>
