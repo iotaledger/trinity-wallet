@@ -127,7 +127,7 @@ class Keychain extends SeedStoreCore {
         for (let i = 0; i < accounts.length; i++) {
             const account = vault[i];
 
-            if (account.account === `${ALIAS_MAIN}-salt` || account.account === ALIAS_REALM) {
+            if (account.account === `${ALIAS_MAIN}-salt` || account.account === ALIAS_REALM || account.account !== ALIAS_MOONPAY_CREDENTIALS) {
                 continue;
             }
 
