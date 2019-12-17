@@ -522,7 +522,10 @@
         "addressPasteDetected": "Adres plakken gedetecteerd",
         "addressPasteExplanation": "Het lijkt erop dat u een adres wil plakken. Zorg ervoor dat dit adres overeenkomt met het adres waarnaar u wilt zenden.",
         "invalid": "ONGELDIG",
-        "swipeToSend": "Swipe om te verzenden"
+        "swipeToSend": "Swipe om te verzenden",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "Laten we een naam toevoegen",

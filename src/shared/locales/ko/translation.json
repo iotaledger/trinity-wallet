@@ -522,7 +522,10 @@
         "addressPasteDetected": "주소 붙여넣기가 확인됨",
         "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요.",
         "invalid": "유효하지 않음",
-        "swipeToSend": "밀어서 보내기"
+        "swipeToSend": "밀어서 보내기",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "이름을 지정해 주세요",

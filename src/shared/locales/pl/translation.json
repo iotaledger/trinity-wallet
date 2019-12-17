@@ -322,7 +322,7 @@
         "purchaseMayTakeAFewMinutes": "Twój zakup może potrwać kilka minut. Sprawdź historię zakupów (lub adres e-mail) po więcej informacji.",
         "transactionMayTakeAFewMinutes": "Twoja transakcja może zająć kilka minut. Sprawdź historię zakupów (lub adres e-mail) po więcej informacji.",
         "limitExceeded": "Przekroczono limit :(",
-        "limitExceededExplanation": "Niestety przekroczyłeś limit zakupu MoonPay. Możesz kupić jedynie {{amount}} MIOTA na {{limitBracket}}.",
+        "limitExceededExplanation": "Niestety przekroczyłeś limit zakupu MoonPay. Na zakup IOTA możesz wydać jedynie {{amount}} na {{limitBracket}}.",
         "limitResetExplanation": "Twój limit zostanie zresetowany {{date}} o godzinie {{time}}.",
         "invalidCardNumber": "Nieprawidłowy numer karty",
         "invalidCardNumberExplanation": "Wprowadź prawidłowy numer karty",
@@ -522,7 +522,10 @@
         "addressPasteDetected": "Wykryto wklejenie adresu",
         "addressPasteExplanation": "Wygląda na to, że wkleiłeś adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać.",
         "invalid": "BŁĄD",
-        "swipeToSend": "Przesuń, aby wysłać"
+        "swipeToSend": "Przesuń, aby wysłać",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "Nazwij swoje konto",
