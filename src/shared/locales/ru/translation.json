@@ -522,7 +522,10 @@
         "addressPasteDetected": "Обнаружена вставка адреса",
         "addressPasteExplanation": "Похоже, что Вы вставили адрес. Убедитесь, что этот адрес соответствует тому, на который Вы хотите отправить.",
         "invalid": "НЕКОРРЕКТНО",
-        "swipeToSend": "Свайп для того чтобы отправить"
+        "swipeToSend": "Свайп для того чтобы отправить",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "Пожалуйста, добавьте название",

@@ -522,7 +522,10 @@
         "addressPasteDetected": "Cím másolás érzékelve",
         "addressPasteExplanation": "Úgy tűnik bemásolt egy címet. Kérjük, győződjön meg arról, hogy valóban erre a címre kíván küldeni.",
         "invalid": "Érvénytelen",
-        "swipeToSend": "A küldéshez húzza el a csúszkát"
+        "swipeToSend": "A küldéshez húzza el a csúszkát",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "Kérjük, adjon meg egy nevet",
