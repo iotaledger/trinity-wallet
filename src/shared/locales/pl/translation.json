@@ -523,9 +523,9 @@
         "addressPasteExplanation": "Wygląda na to, że wkleiłeś adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać.",
         "invalid": "BŁĄD",
         "swipeToSend": "Przesuń, aby wysłać",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "To jest żądanie płatności",
+        "paymentRequestExpired": "Żądanie płatności wygasło",
+        "paymentRequestExpiredExplanation": "To żądanie płatności wygasło. Poproś odbiorcę o nowe."
     },
     "setSeedName": {
         "letsAddName": "Nazwij swoje konto",
