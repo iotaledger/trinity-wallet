@@ -22,7 +22,7 @@ RCT_EXPORT_METHOD(getDigest:(NSString *)trytes resolver:(RCTPromiseResolveBlock)
 }
 
 // Trytes String Proof of Work
-RCT_EXPORT_METHOD(trytesPow:(NSString *)trytes minWeightMagnitude:(NSNumber * _Nonnull)minWeightMagnitude resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(trytesPow:(NSString *)trytes minWeightMagnitude:(int)minWeightMagnitude resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSString * nonce = [EntangledIOSBindings iota_ios_pow_trytes:trytes mwm:minWeightMagnitude];
@@ -31,7 +31,7 @@ RCT_EXPORT_METHOD(trytesPow:(NSString *)trytes minWeightMagnitude:(NSNumber * _N
 }
 
 // Bundle Proof of Work
-RCT_EXPORT_METHOD(bundlePow:(NSArray *)trytes trunk:(NSString*)trunk branch:(NSString*)branch minWeightMagnitude:(NSNumber * _Nonnull)minWeightMagnitude resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(bundlePow:(NSArray *)trytes trunk:(NSString*)trunk branch:(NSString*)branch minWeightMagnitude:(int)minWeightMagnitude resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSArray * attachedTrytes = [EntangledIOSBindings iota_ios_pow_bundle:trytes trunk:trunk branch:branch mwm:minWeightMagnitude];
