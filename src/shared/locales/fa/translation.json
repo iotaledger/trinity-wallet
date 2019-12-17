@@ -522,7 +522,10 @@
         "addressPasteDetected": "آدرس جایگذاری تشخیص داده شد",
         "addressPasteExplanation": "به نظر می رسد که یک آدرس را جاگذاری کرده اید. اطمینان حاصل کنید که آدرس جایگذاری شده با آدرسی که شما می خواهید به آن ارسال کنید یکسان باشد.",
         "invalid": "نامعتبر",
-        "swipeToSend": "بکشید تا ارسال شود"
+        "swipeToSend": "بکشید تا ارسال شود",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "لطفا یک نام اضافه کنید",

@@ -522,7 +522,10 @@
         "addressPasteDetected": "Eingefügte Adresse erkannt",
         "addressPasteExplanation": "Scheinbar hast du eine Adresse eingefügt. Stelle sicher, dass es tatsächlich die korrekte Adresse ist, an die du senden möchtest.",
         "invalid": "UNGÜLTIG",
-        "swipeToSend": "Wischen um zu senden"
+        "swipeToSend": "Wischen um zu senden",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "Vergib einen Kontonamen",
@@ -605,7 +608,7 @@
     },
     "welcome": {
         "thankYou": "Danke, dass du Trinity heruntergeladen hast",
-        "demoThankYou": "Danke, dass du Demoversion von Trinity heruntergeladen hast"
+        "demoThankYou": "Danke, dass du die Demoversion von Trinity heruntergeladen hast"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Schreibe deinen Seed und deine Prüfsumme auf und </0><1>versichere dich</1><2>, dass diese korrekt sind.</2>",

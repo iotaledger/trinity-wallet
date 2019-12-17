@@ -522,7 +522,10 @@
         "addressPasteDetected": "检测到地址粘贴",
         "addressPasteExplanation": "看起来你已经粘贴了地址。请确保该地址与您想要发送的地址是一致的。",
         "invalid": "无效",
-        "swipeToSend": "滑动以发送。"
+        "swipeToSend": "滑动以发送。",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "让我们加上一个名字",

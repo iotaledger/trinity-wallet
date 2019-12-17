@@ -522,7 +522,10 @@
         "addressPasteDetected": "Zistené kopírovanie adresy",
         "addressPasteExplanation": "Vyzerá to, že ste skopírovali adresu zo schránky. Uistite sa, že vložená adresa je naozaj tá, na ktorú chcete odoslať prostriedky.",
         "invalid": "NEPLATNÝ",
-        "swipeToSend": "Potiahnutím pošli"
+        "swipeToSend": "Potiahnutím pošli",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "Zadajte názov",
