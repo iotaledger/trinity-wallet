@@ -15,13 +15,13 @@
 @interface EntangledIOSBindings : NSObject
 
 + (NSString*)iota_ios_digest:(NSString*)trytes;
-+ (NSString*)iota_ios_pow_trytes:(NSString*)trytes mwm:(NSNumber*)mwm;
++ (NSString*)iota_ios_pow_trytes:(NSString*)trytes mwm:(int)mwm;
 + (int8_t*)iota_ios_sign_address_gen_trits:(int8_t*)seed index:(const int)index security:(const int)security;
 + (int8_t*)iota_ios_sign_signature_gen_trits:(int8_t*)seed
                                        index:(const int)index
                                     security:(const int)security
                                   bundleHash:(int8_t*)bundleHash;
-+ (NSArray*)iota_ios_pow_bundle:(NSArray*)txsTrytes trunk:(NSString*)trunk branch:(NSString*)branch mwm:(NSNumber*)mwm;
++ (NSArray*)iota_ios_pow_bundle:(NSArray*)txsTrytes trunk:(NSString*)trunk branch:(NSString*)branch mwm:(int)mwm;
 
 @end
 
