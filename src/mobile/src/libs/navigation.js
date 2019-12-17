@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import last from 'lodash/last';
 import merge from 'lodash/merge';
 import { Navigation } from 'react-native-navigation';
@@ -35,6 +36,7 @@ const navigator = {
     push: (nextScreen, options = {}, delay = 300) => {
         const currentScreen = last(store.getState().wallet.navStack);
         store.dispatch({ type: WalletActionTypes.PUSH_ROUTE, payload: nextScreen });
+
         return timer.setTimeout(
             currentScreen,
             () =>
@@ -55,12 +57,15 @@ const navigator = {
     },
     popTo: (componentId, delay = 300) => {
         const currentScreen = last(store.getState().wallet.navStack);
-        store.dispatch({ type: WalletActionTypes.POP_TO_ROUTE });
+        store.dispatch({ type: WalletActionTypes.POP_TO_ROUTE, payload: componentId });
         return timer.setTimeout(currentScreen, () => Navigation.popTo(componentId), delay);
     },
     setStackRoot: (nextScreen, options = {}, delay = 300) => {
         const currentScreen = last(store.getState().wallet.navStack);
         store.dispatch({ type: WalletActionTypes.RESET_ROUTE, payload: nextScreen });
+
+        const passProps = get(options, 'passProps');
+
         return timer.setTimeout(
             currentScreen,
             () =>
@@ -69,6 +74,7 @@ const navigator = {
                         name: nextScreen,
                         id: nextScreen,
                         options: merge({}, options, getDefaultOptions(nextScreen)),
+                        passProps,
                     },
                 }),
             delay,

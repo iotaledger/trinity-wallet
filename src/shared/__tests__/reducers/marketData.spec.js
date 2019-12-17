@@ -1,12 +1,11 @@
 import { expect } from 'chai';
 import reducer from '../../reducers/marketData';
+import { availableCurrencies } from '../../libs/currency';
 
 describe('Reducer: marketData', () => {
     describe('initial state', () => {
         it('should have an initial state', () => {
             const initialState = {
-                currency: 'USD',
-                timeframe: '24h',
                 chartData: {},
                 mcap: '0',
                 volume: '0',
@@ -15,49 +14,10 @@ describe('Reducer: marketData', () => {
                 eurPrice: 0,
                 btcPrice: 0,
                 ethPrice: 0,
+                rates: availableCurrencies,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
-        });
-    });
-
-    describe('IOTA/MARKET_DATA/SET_CURRENCY', () => {
-        it('should assign "payload" to "currency" state prop', () => {
-            const initialState = {
-                currency: 'USD',
-            };
-
-            const action = {
-                type: 'IOTA/MARKET_DATA/SET_CURRENCY',
-                payload: 'EUR',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                currency: 'EUR',
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/MARKET_DATA/SET_TIMEFRAME', () => {
-        it('should assign "payload" to "currency" state prop', () => {
-            const initialState = {
-                timeframe: '24h',
-            };
-
-            const action = {
-                type: 'IOTA/MARKET_DATA/SET_TIMEFRAME',
-                payload: '1h',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                timeframe: '1h',
-            };
-
-            expect(newState).to.eql(expectedState);
         });
     });
 
@@ -136,24 +96,6 @@ describe('Reducer: marketData', () => {
     });
 
     describe('IOTA/MARKET_DATA/SET_STATISTICS', () => {
-        it('should assign "usdPrice" to "usdPrice" state prop', () => {
-            const initialState = {
-                usdPrice: 0,
-            };
-
-            const action = {
-                type: 'IOTA/MARKET_DATA/SET_STATISTICS',
-                usdPrice: 2,
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                usdPrice: 2,
-            };
-
-            expect(newState.usdPrice).to.eql(expectedState.usdPrice);
-        });
-
         it('should assign "mcap" to "mcap" state prop', () => {
             const initialState = {
                 mcap: '0',

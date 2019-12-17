@@ -36,6 +36,11 @@ const init = () => {
     modalEl.id = 'modal';
     document.body.appendChild(modalEl);
 
+    const script = document.createElement('script');
+    script.src = 'https://cdn.moonpay.io/moonpay-sdk.js';
+
+    document.write(script.outerHTML);
+
     if (typeof Electron === 'undefined') {
         return render(<FatalError error="Failed to load Electron preload script" />, rootEl);
     }
@@ -46,18 +51,25 @@ const init = () => {
             store.dispatch(mapStorageToState(data));
         });
 
-        render(
-            <ErrorBoundary>
-                <Redux store={store}>
-                    <I18nextProvider i18n={i18next}>
-                        <Router>
-                            <Tray />
-                        </Router>
-                    </I18nextProvider>
-                </Redux>
-            </ErrorBoundary>,
-            rootEl,
-        );
+        const renderTray = async () => {
+            // Initialize i18next
+            await i18nextInit();
+
+            render(
+                <ErrorBoundary>
+                    <Redux store={store}>
+                        <I18nextProvider i18n={i18next}>
+                            <Router>
+                                <Tray />
+                            </Router>
+                        </I18nextProvider>
+                    </Redux>
+                </ErrorBoundary>,
+                rootEl,
+            );
+        };
+
+        renderTray();
     } else {
         getEncryptionKey()
             .then(async (key) => {

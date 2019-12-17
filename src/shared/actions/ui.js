@@ -229,3 +229,33 @@ export const setAnimateChartOnMount = (payload) => {
         payload,
     };
 };
+
+/**
+ * Dispatch to set whether the Moonpay history tab should be displayed
+ *
+ * @method setViewingMoonpayPurchases
+ * @param {bool} payload
+ *
+ * @returns {{type: {string}, payload: {bool} }}
+ */
+export const setViewingMoonpayPurchases = (payload) => {
+    return {
+        type: UiActionTypes.SET_VIEWING_MOONPAY_PURCHASES,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to set CDA content when user opens a CDA
+ *
+ * @method setCDAContent
+ * @param {bool} payload
+ *
+ * @returns {{type: {string}, payload: {bool} }}
+ */
+export const setCDAContent = (payload) => {
+    return {
+        type: UiActionTypes.SET_CDA_CONTENT,
+        payload,
+    };
+};

@@ -39,10 +39,6 @@ describe('Testing SimpleTransactionRow component', () => {
         it('should require a unit string as a prop', () => {
             expect(SimpleTransactionRow.propTypes.unit).toEqual(PropTypes.string.isRequired);
         });
-
-        it('should require a sign string as a prop', () => {
-            expect(SimpleTransactionRow.propTypes.sign).toEqual(PropTypes.string.isRequired);
-        });
     });
 
     describe('when renders', () => {
@@ -62,44 +58,30 @@ describe('Testing SimpleTransactionRow component', () => {
             expect(text.children().text()).toEqual('pending');
         });
 
-        it('should return "sign" prop as a child to third Text component', () => {
+        it('should return "value" prop as a child to first Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<SimpleTransactionRow {...props} />);
-            const text = wrapper.find('Text').at(2);
+            const text = wrapper.find('Text').at(0);
 
             expect(
                 text
                     .children()
                     .at(0)
                     .text(),
-            ).toEqual('+');
+            ).toEqual('100');
         });
 
-        it('should return "value" prop as a child to third Text component', () => {
+        it('should return "unit" prop as a child to first Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<SimpleTransactionRow {...props} />);
-            const text = wrapper.find('Text').at(2);
+            const text = wrapper.find('Text').at(0);
 
             expect(
                 text
                     .children()
                     .at(2)
-                    .text(),
-            ).toEqual('100');
-        });
-
-        it('should return "unit" prop as a child to third Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<SimpleTransactionRow {...props} />);
-            const text = wrapper.find('Text').at(2);
-
-            expect(
-                text
-                    .children()
-                    .at(4)
                     .text(),
             ).toEqual('i');
         });

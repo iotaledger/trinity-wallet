@@ -33,6 +33,12 @@ export class ChartComponent extends PureComponent {
                 ticks: PropTypes.array,
             }),
         }).isRequired,
+        /** @ignore */
+        isAuthenticatedForMoonPay: PropTypes.bool.isRequired,
+        /** @ignore */
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
         /** Change chart currency */
         setCurrency: PropTypes.func.isRequired,
         /** Change chart time frame */
@@ -68,6 +74,8 @@ export class ChartComponent extends PureComponent {
 
     render() {
         const {
+            isAuthenticatedForMoonPay,
+            history,
             priceData,
             chartData,
             theme,
@@ -120,9 +128,19 @@ export class ChartComponent extends PureComponent {
                         <Button variant="secondary" className="outline" onClick={() => setCurrency()}>
                             {priceData.currency}
                         </Button>
-                        <p>
-                            {priceData.symbol} {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
-                        </p>
+                        <Button
+                            variant="secondary"
+                            className="outline"
+                            onClick={() =>
+                                history.push(
+                                    isAuthenticatedForMoonPay
+                                        ? '/exchanges/moonpay/select-account'
+                                        : '/exchanges/moonpay',
+                                )
+                            }
+                        >
+                            {t('moonpay:buyIOTA')}
+                        </Button>
                         <Button variant="secondary" className="outline" onClick={() => setTimeframe()}>
                             {chartData.timeframe.replace('1m', '28d')}
                         </Button>
@@ -133,11 +151,11 @@ export class ChartComponent extends PureComponent {
                             {priceData.globalSymbol} {priceData.mcap}
                         </li>
                         <li>
-                            <strong>{t('chart:change')}:</strong> {priceData.change24h}%
+                            <strong>{t('chart:currentValue')}: </strong>
+                            {priceData.symbol} {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
                         </li>
                         <li>
-                            <strong>{t('chart:volume')}: </strong>
-                            {priceData.globalSymbol} {priceData.volume}
+                            <strong>{t('chart:change')}:</strong> {priceData.change24h}%
                         </li>
                     </ul>
                 </footer>

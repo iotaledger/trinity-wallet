@@ -57,13 +57,14 @@ const mapStorageToState = () => {
             node: find(nodes, { url: settings.node }) || DEFAULT_NODE,
             powNode: settings.powNode,
             nodes: map(nodes, ({ url, pow, username, password }) => ({ url, pow, username, password })),
-            availableCurrencies: map(settings.availableCurrencies, (currency) => currency),
             customNodes: map(filter(nodes, (node) => node.custom === true), ({ url, pow, username, password }) => ({
                 url,
                 pow,
                 username,
                 password,
             })),
+            chartTimeframe: '24h',
+            chartCurrency: 'USD',
         }),
         alerts: { notificationLog: map(errorLog, (error) => error) },
     };

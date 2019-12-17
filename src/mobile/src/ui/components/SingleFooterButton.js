@@ -23,6 +23,8 @@ class SingleFooterButton extends PureComponent {
     static propTypes = {
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        isLoading: PropTypes.bool,
         /** Id for automated screenshots */
         buttonTestID: PropTypes.string,
         /** Child content */
@@ -47,7 +49,13 @@ class SingleFooterButton extends PureComponent {
     }
 
     render() {
-        const { theme: { primary }, buttonText, buttonTestID, buttonStyle } = this.props;
+        const {
+            isLoading,
+            theme: { primary },
+            buttonText,
+            buttonTestID,
+            buttonStyle,
+        } = this.props;
 
         return (
             <View style={[styles.container]}>
@@ -64,9 +72,13 @@ class SingleFooterButton extends PureComponent {
                             children: {
                                 color: primary.body,
                             },
+                            loading: {
+                                color: primary.body,
+                            },
                         },
                         buttonStyle,
                     )}
+                    isLoading={isLoading}
                     testID={buttonTestID}
                 >
                     {buttonText}

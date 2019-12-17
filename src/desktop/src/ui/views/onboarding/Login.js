@@ -1,19 +1,28 @@
 /* global Electron */
+import get from 'lodash/get';
+import isNull from 'lodash/isNull';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { generateAlert } from 'actions/alerts';
-import { getMarketData, getChartData, getPrice } from 'actions/marketData';
-import { getCurrencyData } from 'actions/settings';
+import { fetchMarketData } from 'actions/polling';
 import { getAccountInfo, getFullAccountInfo } from 'actions/accounts';
 import { clearWalletData, setPassword } from 'actions/wallet';
+import {
+    fetchCountries as fetchMoonPayCountries,
+    fetchCurrencies as fetchMoonPayCurrencies,
+    checkIPAddress,
+    refreshCredentialsAndFetchMeta,
+} from 'actions/exchanges/MoonPay';
 
 import { getSelectedAccountName, getSelectedAccountMeta, isSettingUpNewAccount } from 'selectors/accounts';
+import { __DEV__ } from 'config';
 
 import { capitalize } from 'libs/iota/converter';
 import { hash, authorize } from 'libs/crypto';
+import MoonPayKeychainAdapter from 'libs/MoonPay';
 import SeedStore from 'libs/SeedStore';
 
 import PasswordInput from 'ui/components/input/Password';
@@ -50,23 +59,23 @@ class Login extends React.Component {
         /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
-        currency: PropTypes.string.isRequired,
-        /** @ignore */
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
-        getChartData: PropTypes.func.isRequired,
-        /** @ignore */
-        getPrice: PropTypes.func.isRequired,
-        /** @ignore */
-        getMarketData: PropTypes.func.isRequired,
-        /** @ignore */
-        getCurrencyData: PropTypes.func.isRequired,
+        fetchMarketData: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         getFullAccountInfo: PropTypes.func.isRequired,
+        /** @ignore */
+        fetchMoonPayCountries: PropTypes.func.isRequired,
+        /** @ignore */
+        fetchMoonPayCurrencies: PropTypes.func.isRequired,
+        /** @ignore */
+        checkIPAddress: PropTypes.func.isRequired,
+        /** @ignore */
+        refreshCredentialsAndFetchMeta: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -89,6 +98,8 @@ class Login extends React.Component {
             this.props.clearWalletData();
             this.props.setPassword({});
         }
+
+        this.props.fetchMarketData();
     }
 
     componentDidUpdate(prevProps) {
@@ -122,7 +133,6 @@ class Login extends React.Component {
             addingAdditionalAccount,
             additionalAccountName,
             additionalAccountMeta,
-            currency,
             currentAccountName,
             currentAccountMeta,
         } = this.props;
@@ -138,10 +148,7 @@ class Login extends React.Component {
             throw e;
         }
 
-        this.props.getPrice();
-        this.props.getChartData();
-        this.props.getMarketData();
-        this.props.getCurrencyData(currency);
+        this.fetchMoonPayData();
 
         if (addingAdditionalAccount) {
             this.props.getFullAccountInfo(seedStore, accountName);
@@ -149,6 +156,37 @@ class Login extends React.Component {
             this.props.getAccountInfo(seedStore, accountName, Electron.notify);
         }
     };
+
+    /**
+     * Fetches MoonPay data from their servers
+     *
+     * @method fetchMoonPayData
+     *
+     * @returns {void}
+     */
+    fetchMoonPayData() {
+        this.props.fetchMoonPayCountries();
+        this.props.fetchMoonPayCurrencies();
+        this.props.checkIPAddress();
+
+        MoonPayKeychainAdapter.get()
+            .then((credentials) => {
+                if (!isNull(credentials)) {
+                    this.props.refreshCredentialsAndFetchMeta(
+                        get(credentials, 'jwt'),
+                        get(credentials, 'csrfToken'),
+                        MoonPayKeychainAdapter,
+                    );
+                }
+            })
+            .catch((error) => {
+                if (__DEV__) {
+                    /* eslint-disable no-console */
+                    console.log(error);
+                    /* eslint-enable no-console */
+                }
+            });
+    }
 
     /**
      * Verify password and trigger account setup
@@ -256,7 +294,6 @@ const mapStateToProps = (state) => ({
     additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
     additionalAccountName: state.accounts.accountInfoDuringSetup.name,
     ui: state.ui,
-    currency: state.settings.currency,
     forceUpdate: state.wallet.forceUpdate,
     completedMigration: state.settings.completedMigration,
     themeName: state.settings.themeName,
@@ -266,12 +303,13 @@ const mapDispatchToProps = {
     generateAlert,
     setPassword,
     clearWalletData,
-    getChartData,
-    getPrice,
-    getMarketData,
-    getCurrencyData,
+    fetchMarketData,
     getFullAccountInfo,
     getAccountInfo,
+    fetchMoonPayCountries,
+    fetchMoonPayCurrencies,
+    checkIPAddress,
+    refreshCredentialsAndFetchMeta,
 };
 
 export default connect(

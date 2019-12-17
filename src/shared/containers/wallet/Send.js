@@ -1,10 +1,11 @@
+import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateAlert } from '../../actions/alerts';
 import { completeDeepLinkRequest } from '../../actions/wallet';
-import { makeTransaction } from '../../actions/transfers';
-import { setSendAddressField, setSendAmountField, setSendMessageField } from '../../actions/ui';
+import { makeTransaction, clearCDAContent, verifyCDAContent } from '../../actions/transfers';
+import { setSendAddressField, setSendAmountField, setSendMessageField, clearSendFields } from '../../actions/ui';
 import { reset as resetProgress, startTrackingProgress } from '../../actions/progress';
 
 import {
@@ -14,6 +15,7 @@ import {
     getAvailableBalanceForSelectedAccount,
 } from '../../selectors/accounts';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH, isValidMessage } from '../../libs/iota/utils';
+
 import { iota } from '../../libs/iota';
 
 import { getThemeFromState } from '../../selectors/global';
@@ -47,6 +49,10 @@ export default function withSendData(SendComponent) {
             startTrackingProgress: PropTypes.func.isRequired,
             completeDeepLinkRequest: PropTypes.func.isRequired,
             resetProgress: PropTypes.func.isRequired,
+            clearCDAContent: PropTypes.func.isRequired,
+            clearSendFields: PropTypes.func.isRequired,
+            CDAContent: PropTypes.object.isRequired,
+            verifyCDAContent: PropTypes.func.isRequired,
         };
 
         componentWillMount() {
@@ -102,7 +108,7 @@ export default function withSendData(SendComponent) {
         };
 
         validateInputs = () => {
-            const { ui, generateAlert, balance, t } = this.props;
+            const { CDAContent, ui, generateAlert, balance, t } = this.props;
 
             const address = ui.sendAddressFieldText;
             const amount = ui.sendAmountFieldText;
@@ -125,7 +131,7 @@ export default function withSendData(SendComponent) {
             }
 
             // Validate address checksum
-            if (!iota.utils.isValidChecksum(address)) {
+            if (!iota.utils.isValidChecksum(address) && isEmpty(CDAContent)) {
                 generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation3'));
                 return false;
             }
@@ -182,6 +188,10 @@ export default function withSendData(SendComponent) {
                 progress,
                 accountName,
                 accountMeta,
+                clearCDAContent,
+                clearSendFields,
+                CDAContent,
+                verifyCDAContent,
             } = this.props;
 
             const progressTitle =
@@ -197,9 +207,13 @@ export default function withSendData(SendComponent) {
                     amount: ui.sendAmountFieldText,
                     message: ui.sendMessageFieldText,
                 },
+                CDAContent,
                 setSendAddressField,
                 setSendAmountField,
                 setSendMessageField,
+                clearCDAContent,
+                clearSendFields,
+                verifyCDAContent,
                 isSending: ui.isSendingTransfer,
                 password: wallet.password,
                 validateInputs: this.validateInputs,
@@ -244,6 +258,7 @@ export default function withSendData(SendComponent) {
         progress: state.progress,
         ui: state.ui,
         deepLinkRequestActive: state.wallet.deepLinkRequestActive,
+        CDAContent: state.ui.CDAContent,
     });
 
     const mapDispatchToProps = {
@@ -255,6 +270,9 @@ export default function withSendData(SendComponent) {
         setSendMessageField,
         startTrackingProgress,
         resetProgress,
+        clearCDAContent,
+        clearSendFields,
+        verifyCDAContent,
     };
 
     return connect(

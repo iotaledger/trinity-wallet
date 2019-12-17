@@ -20,6 +20,7 @@ import Checksum from 'ui/components/ChecksumModal';
 import QrScanner from 'ui/components/QrScanner';
 import Print from 'ui/components/PrintModal';
 import BiometricInfo from 'ui/components/BiometricInfoModal';
+import MoonPayPurchaseDetails from 'ui/components/exchanges/MoonPay/PurchaseDetailsModal';
 import NotificationLog from 'ui/components/NotificationLogModal';
 import { isAndroid, isIPhoneX } from 'libs/device';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -56,6 +57,7 @@ const MODAL_CONTENT = {
     biometricInfo: BiometricInfo,
     notificationLog: NotificationLog,
     checksum: Checksum,
+    moonpayPurchaseDetails: MoonPayPurchaseDetails,
 };
 
 const fadeInUpCustom = {
@@ -136,7 +138,13 @@ export default function withSafeAreaView(WrappedComponent) {
         }
 
         render() {
-            const { modalProps, isModalActive, modalContent, theme: { body }, navStack } = this.props;
+            const {
+                modalProps,
+                isModalActive,
+                modalContent,
+                theme: { body },
+                navStack,
+            } = this.props;
             const ModalContent = MODAL_CONTENT[modalContent];
 
             return (
@@ -188,5 +196,8 @@ export default function withSafeAreaView(WrappedComponent) {
         toggleModalActivity,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(EnhancedComponent);
+    return connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(EnhancedComponent);
 }

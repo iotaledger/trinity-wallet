@@ -1,9 +1,7 @@
 import merge from 'lodash/merge';
 import unionBy from 'lodash/unionBy';
-import sortBy from 'lodash/sortBy';
-import { SettingsActionTypes, MigrationsActionTypes } from '../types';
+import { SettingsActionTypes, MarketDataActionTypes, MigrationsActionTypes } from '../types';
 import { DEFAULT_NODE, DEFAULT_NODES, QUORUM_SIZE } from '../config';
-import { availableCurrencies } from '../libs/currency';
 
 export const initialState = {
     /**
@@ -35,10 +33,6 @@ export const initialState = {
      * Selected currency for conversions in wallet
      */
     currency: 'USD',
-    /**
-     * Wallet's available currencies
-     */
-    availableCurrencies,
     /**
      * Conversion rate for IOTA token
      */
@@ -137,6 +131,14 @@ export const initialState = {
      * Determines if (proof of work) node should be auto-switched
      */
     powNodeAutoSwitch: true,
+    /**
+     * Wallet selected currency
+     */
+    chartCurrency: 'USD',
+    /**
+     * Time frame for price
+     */
+    chartTimeframe: '24h',
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -195,16 +197,6 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 language: action.payload,
-            };
-        case SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS:
-            return {
-                ...state,
-                currency: action.payload.currency,
-                conversionRate: action.payload.conversionRate,
-                availableCurrencies:
-                    action.payload.availableCurrencies.length > 0
-                        ? sortBy(action.payload.availableCurrencies, ['desc'])
-                        : state.availableCurrencies,
             };
         case SettingsActionTypes.UPDATE_THEME:
             return {
@@ -310,6 +302,26 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 autoNodeList: action.payload,
+            };
+        case SettingsActionTypes.SET_CURRENCY:
+            return {
+                ...state,
+                ...action.payload,
+            };
+        case MarketDataActionTypes.SET_RATES_DATA:
+            return {
+                ...state,
+                conversionRate: action.payload[state.currency] || state.conversionRate,
+            };
+        case SettingsActionTypes.SET_CHART_CURRENCY:
+            return {
+                ...state,
+                chartCurrency: action.payload,
+            };
+        case SettingsActionTypes.SET_CHART_TIMEFRAME:
+            return {
+                ...state,
+                chartTimeframe: action.payload,
             };
     }
 

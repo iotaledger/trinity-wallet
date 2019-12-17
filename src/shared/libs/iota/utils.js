@@ -546,3 +546,50 @@ export const withRequestTimeoutsHandler = (timeout) => {
 
     return handleTimeout;
 };
+
+/**
+ * Parses Conditional Deposit Address Link
+ *
+ * @method parseCDALink
+ *
+ * @param {string} cdaLink
+ *
+ * @returns {object}
+ */
+export const parseCDALink = (input) => {
+    const result = {
+        address: undefined,
+        message: undefined,
+        expectedAmount: undefined,
+        timeoutAt: undefined,
+    };
+
+    try {
+        const url = new URL(input, true);
+        const { address, message, amount, timeoutAt } = url.query;
+
+        if (address.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
+            result.address = address;
+        } else {
+            return null;
+        }
+
+        if (timeoutAt && String(timeoutAt) === String(parseInt(timeoutAt, 10))) {
+            result.timeoutAt = Math.abs(parseInt(timeoutAt, 10));
+        } else {
+            return null;
+        }
+
+        if (amount && String(amount) === String(parseInt(amount, 10))) {
+            result.expectedAmount = Math.abs(parseInt(amount, 10));
+        }
+
+        if (message && typeof message === 'string') {
+            result.message = message;
+        }
+    } catch (error) {
+        return null;
+    }
+
+    return result;
+};

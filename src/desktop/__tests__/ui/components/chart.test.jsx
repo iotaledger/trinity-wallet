@@ -14,6 +14,7 @@ const props = {
         volume: '100',
         change24h: '3',
         mcap: '1000000',
+        rates: {}
     },
     chartData: {
         data: [{ x: 0, y: 0, time: 0 }],

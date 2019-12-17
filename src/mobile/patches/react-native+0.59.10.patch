@@ -13,3 +13,906 @@ index 08a5d74..65c41e0 100644
  
  const ModalEventEmitter =
    Platform.OS === 'ios' && NativeModules.ModalManager
+diff --git a/node_modules/react-native/Libraries/WebSocket/RCTReconnectingWebSocket.m b/node_modules/react-native/Libraries/WebSocket/RCTReconnectingWebSocket.m
+index cbd22a6..e26ebfa 100644
+--- a/node_modules/react-native/Libraries/WebSocket/RCTReconnectingWebSocket.m
++++ b/node_modules/react-native/Libraries/WebSocket/RCTReconnectingWebSocket.m
+@@ -10,72 +10,10 @@
+ #import <React/RCTConvert.h>
+ #import <React/RCTDefines.h>
+ 
+-#if __has_include(<React/fishhook.h>)
+-#import <React/fishhook.h>
+-#else
+-#import <fishhook/fishhook.h>
+-#endif
+-
+-#if __has_include(<os/log.h>) && defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100300 /* __IPHONE_10_3 */
+-#import <os/log.h>
+-#endif /* __IPHONE_10_3 */
+-
+ #import "RCTSRWebSocket.h"
+ 
+ #if RCT_DEV // Only supported in dev mode
+ 
+-#if __has_include(<os/log.h>) && defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100300 /* __IPHONE_10_3 */
+-
+-// From https://github.com/apple/swift/blob/ad40c770bfe372f879b530443a3d94761fe258a6/stdlib/public/SDK/os/os_log.m
+-typedef struct os_log_pack_s {
+-  uint64_t olp_continuous_time;
+-  struct timespec olp_wall_time;
+-  const void *olp_mh;
+-  const void *olp_pc;
+-  const char *olp_format;
+-  uint8_t olp_data[0];
+-} os_log_pack_s, *os_log_pack_t;
+-
+-static void (*orig__nwlog_pack)(os_log_pack_t pack, os_log_type_t logType);
+-
+-static void my__nwlog_pack(os_log_pack_t pack, os_log_type_t logType)
+-{
+-  if (logType == OS_LOG_TYPE_ERROR && strstr(pack->olp_format, "Connection has no connected handler") == NULL) {
+-    orig__nwlog_pack(pack, logType);
+-  }
+-}
+-
+-#endif /* __IPHONE_10_3 */
+-
+-static void (*orig_nwlog_legacy_v)(int, char*, va_list);
+-
+-static void my_nwlog_legacy_v(int level, char *format, va_list args) {
+-  static const uint buffer_size = 256;
+-  static char buffer[buffer_size];
+-  va_list copy;
+-  va_copy(copy, args);
+-  vsnprintf(buffer, buffer_size, format, copy);
+-  va_end(copy);
+-
+-  if (strstr(buffer, "nw_connection_get_connected_socket_block_invoke") == NULL &&
+-      strstr(buffer, "Connection has no connected handler") == NULL) {
+-    orig_nwlog_legacy_v(level, format, args);
+-  }
+-}
+-
+-#if defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000 /* __IPHONE_11_0 */
+-
+-static void (*orig_os_log_error_impl)(void *dso, os_log_t log, os_log_type_t type, const char *format, uint8_t *buf, uint32_t size);
+-
+-static void my_os_log_error_impl(void *dso, os_log_t log, os_log_type_t type, const char *format, uint8_t *buf, uint32_t size)
+-{
+-  if (strstr(format, "TCP Conn %p Failed : error %ld:%d") == NULL) {
+-    orig_os_log_error_impl(dso, log, type, format, buf, size);
+-  }
+-}
+-
+-#endif /* __IPHONE_11_0 */
+-
+ @interface RCTReconnectingWebSocket () <RCTSRWebSocketDelegate>
+ @end
+ 
+@@ -84,26 +22,6 @@ @implementation RCTReconnectingWebSocket {
+   RCTSRWebSocket *_socket;
+ }
+ 
+-+ (void)load
+-{
+-  static dispatch_once_t onceToken;
+-  dispatch_once(&onceToken, ^{
+-    rebind_symbols((struct rebinding[1]){
+-      {"nwlog_legacy_v", my_nwlog_legacy_v, (void *)&orig_nwlog_legacy_v}
+-    }, 1);
+-#if __has_include(<os/log.h>) && defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100300 /* __IPHONE_10_3 */
+-    rebind_symbols((struct rebinding[1]){
+-      {"__nwlog_pack", my__nwlog_pack, (void *)&orig__nwlog_pack}
+-    }, 1);
+-#endif /* __IPHONE_10_3 */
+-#if defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000 /* __IPHONE_11_0 */
+-    rebind_symbols((struct rebinding[1]){
+-      {"_os_log_error_impl", my_os_log_error_impl, (void *)&orig_os_log_error_impl}
+-    }, 1);
+-#endif /* __IPHONE_11_0 */
+-  });
+-}
+-
+ - (instancetype)initWithURL:(NSURL *)url queue:(dispatch_queue_t)queue
+ {
+   if (self = [super init]) {
+diff --git a/node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj/project.pbxproj b/node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj/project.pbxproj
+index 2fa1829..f44d7c8 100644
+--- a/node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj/project.pbxproj
++++ b/node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj/project.pbxproj
+@@ -9,113 +9,31 @@
+ /* Begin PBXBuildFile section */
+ 		1338BBE01B04ACC80064A9C9 /* RCTSRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1338BBDD1B04ACC80064A9C9 /* RCTSRWebSocket.m */; };
+ 		1338BBE11B04ACC80064A9C9 /* RCTWebSocketExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1338BBDF1B04ACC80064A9C9 /* RCTWebSocketExecutor.m */; };
+-		2D3ABDC220C7206E00DF56E9 /* libfishhook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DBE0D001F3B181A0099AA32 /* libfishhook.a */; };
+ 		2D3B5F3D1D9B165B00451313 /* RCTSRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1338BBDD1B04ACC80064A9C9 /* RCTSRWebSocket.m */; };
+ 		2D3B5F3E1D9B165B00451313 /* RCTWebSocketExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1338BBDF1B04ACC80064A9C9 /* RCTWebSocketExecutor.m */; };
+ 		2D3B5F401D9B165B00451313 /* RCTWebSocketModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C86DF7B1ADF695F0047B81A /* RCTWebSocketModule.m */; };
+ 		3C86DF7C1ADF695F0047B81A /* RCTWebSocketModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C86DF7B1ADF695F0047B81A /* RCTWebSocketModule.m */; };
+-		3DBE0D141F3B185A0099AA32 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DBE0D121F3B185A0099AA32 /* fishhook.c */; };
+-		3DBE0D151F3B185A0099AA32 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DBE0D121F3B185A0099AA32 /* fishhook.c */; };
+-		3DBE0D801F3B1AF00099AA32 /* fishhook.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DBE0D131F3B185A0099AA32 /* fishhook.h */; };
+-		3DBE0D821F3B1B0C0099AA32 /* fishhook.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DBE0D131F3B185A0099AA32 /* fishhook.h */; };
+ 		A12E9E2E1E5DEC4E0029001B /* RCTReconnectingWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A12E9E2D1E5DEC4E0029001B /* RCTReconnectingWebSocket.m */; };
+ 		A12E9E2F1E5DEC550029001B /* RCTReconnectingWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A12E9E2D1E5DEC4E0029001B /* RCTReconnectingWebSocket.m */; };
+-		ED297176215062BA00B7C4FE /* libfishhook-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DBE0D0D1F3B181C0099AA32 /* libfishhook-tvOS.a */; };
+ /* End PBXBuildFile section */
+ 
+-/* Begin PBXContainerItemProxy section */
+-		3DBE0D0E1F3B18490099AA32 /* PBXContainerItemProxy */ = {
+-			isa = PBXContainerItemProxy;
+-			containerPortal = 3C86DF3E1ADF2C930047B81A /* Project object */;
+-			proxyType = 1;
+-			remoteGlobalIDString = 3DBE0CF41F3B181A0099AA32;
+-			remoteInfo = fishhook;
+-		};
+-		3DBE0D101F3B184D0099AA32 /* PBXContainerItemProxy */ = {
+-			isa = PBXContainerItemProxy;
+-			containerPortal = 3C86DF3E1ADF2C930047B81A /* Project object */;
+-			proxyType = 1;
+-			remoteGlobalIDString = 3DBE0D011F3B181C0099AA32;
+-			remoteInfo = "fishhook-tvOS";
+-		};
+-/* End PBXContainerItemProxy section */
+-
+-/* Begin PBXCopyFilesBuildPhase section */
+-		3DBE0D7F1F3B1AEC0099AA32 /* CopyFiles */ = {
+-			isa = PBXCopyFilesBuildPhase;
+-			buildActionMask = 2147483647;
+-			dstPath = include/fishhook;
+-			dstSubfolderSpec = 16;
+-			files = (
+-				3DBE0D801F3B1AF00099AA32 /* fishhook.h in CopyFiles */,
+-			);
+-			runOnlyForDeploymentPostprocessing = 0;
+-		};
+-		3DBE0D811F3B1B010099AA32 /* CopyFiles */ = {
+-			isa = PBXCopyFilesBuildPhase;
+-			buildActionMask = 2147483647;
+-			dstPath = include/fishhook;
+-			dstSubfolderSpec = 16;
+-			files = (
+-				3DBE0D821F3B1B0C0099AA32 /* fishhook.h in CopyFiles */,
+-			);
+-			runOnlyForDeploymentPostprocessing = 0;
+-		};
+-/* End PBXCopyFilesBuildPhase section */
+-
+ /* Begin PBXFileReference section */
+ 		1338BBDC1B04ACC80064A9C9 /* RCTSRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTSRWebSocket.h; sourceTree = "<group>"; };
+ 		1338BBDD1B04ACC80064A9C9 /* RCTSRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTSRWebSocket.m; sourceTree = "<group>"; };
+ 		1338BBDE1B04ACC80064A9C9 /* RCTWebSocketExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTWebSocketExecutor.h; sourceTree = "<group>"; };
+ 		1338BBDF1B04ACC80064A9C9 /* RCTWebSocketExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTWebSocketExecutor.m; sourceTree = "<group>"; };
+-		13526A511F362F7F0008EF00 /* libfishhook.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfishhook.a; sourceTree = "<group>"; };
+ 		2D2A28881D9B049200D4039D /* libRCTWebSocket-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libRCTWebSocket-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+-		2DC5E5271F3A6CFD000EE84B /* libfishhook-tvOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libfishhook-tvOS.a"; path = "../fishhook/build/Debug-appletvos/libfishhook-tvOS.a"; sourceTree = "<group>"; };
+ 		3C86DF461ADF2C930047B81A /* libRCTWebSocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTWebSocket.a; sourceTree = BUILT_PRODUCTS_DIR; };
+ 		3C86DF7A1ADF695F0047B81A /* RCTWebSocketModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTWebSocketModule.h; sourceTree = "<group>"; };
+ 		3C86DF7B1ADF695F0047B81A /* RCTWebSocketModule.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = RCTWebSocketModule.m; sourceTree = "<group>"; tabWidth = 2; };
+-		3DBE0D001F3B181A0099AA32 /* libfishhook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfishhook.a; sourceTree = BUILT_PRODUCTS_DIR; };
+-		3DBE0D0D1F3B181C0099AA32 /* libfishhook-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libfishhook-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+-		3DBE0D121F3B185A0099AA32 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fishhook.c; path = ../fishhook/fishhook.c; sourceTree = "<group>"; };
+-		3DBE0D131F3B185A0099AA32 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fishhook.h; path = ../fishhook/fishhook.h; sourceTree = "<group>"; };
+ 		A12E9E2C1E5DEC4E0029001B /* RCTReconnectingWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTReconnectingWebSocket.h; sourceTree = "<group>"; };
+ 		A12E9E2D1E5DEC4E0029001B /* RCTReconnectingWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTReconnectingWebSocket.m; sourceTree = "<group>"; };
+ /* End PBXFileReference section */
+ 
+-/* Begin PBXFrameworksBuildPhase section */
+-		13526A4F1F362F770008EF00 /* Frameworks */ = {
+-			isa = PBXFrameworksBuildPhase;
+-			buildActionMask = 2147483647;
+-			files = (
+-				2D3ABDC220C7206E00DF56E9 /* libfishhook.a in Frameworks */,
+-			);
+-			runOnlyForDeploymentPostprocessing = 0;
+-		};
+-		2DC5E5151F3A6C39000EE84B /* Frameworks */ = {
+-			isa = PBXFrameworksBuildPhase;
+-			buildActionMask = 2147483647;
+-			files = (
+-				ED297176215062BA00B7C4FE /* libfishhook-tvOS.a in Frameworks */,
+-			);
+-			runOnlyForDeploymentPostprocessing = 0;
+-		};
+-/* End PBXFrameworksBuildPhase section */
+-
+ /* Begin PBXGroup section */
+-		13526A501F362F7F0008EF00 /* Frameworks */ = {
+-			isa = PBXGroup;
+-			children = (
+-				2DC5E5271F3A6CFD000EE84B /* libfishhook-tvOS.a */,
+-				13526A511F362F7F0008EF00 /* libfishhook.a */,
+-			);
+-			name = Frameworks;
+-			sourceTree = "<group>";
+-		};
+ 		3C86DF3D1ADF2C930047B81A = {
+ 			isa = PBXGroup;
+ 			children = (
+-				3DBE0D121F3B185A0099AA32 /* fishhook.c */,
+-				3DBE0D131F3B185A0099AA32 /* fishhook.h */,
+ 				A12E9E2C1E5DEC4E0029001B /* RCTReconnectingWebSocket.h */,
+ 				A12E9E2D1E5DEC4E0029001B /* RCTReconnectingWebSocket.m */,
+ 				1338BBDC1B04ACC80064A9C9 /* RCTSRWebSocket.h */,
+@@ -137,8 +55,6 @@
+ 			children = (
+ 				3C86DF461ADF2C930047B81A /* libRCTWebSocket.a */,
+ 				2D2A28881D9B049200D4039D /* libRCTWebSocket-tvOS.a */,
+-				3DBE0D001F3B181A0099AA32 /* libfishhook.a */,
+-				3DBE0D0D1F3B181C0099AA32 /* libfishhook-tvOS.a */,
+ 			);
+ 			name = Products;
+ 			sourceTree = "<group>";
+@@ -180,38 +96,6 @@
+ 			productReference = 3C86DF461ADF2C930047B81A /* libRCTWebSocket.a */;
+ 			productType = "com.apple.product-type.library.static";
+ 		};
+-		3DBE0CF41F3B181A0099AA32 /* fishhook */ = {
+-			isa = PBXNativeTarget;
+-			buildConfigurationList = 3DBE0CFD1F3B181A0099AA32 /* Build configuration list for PBXNativeTarget "fishhook" */;
+-			buildPhases = (
+-				3DBE0D7F1F3B1AEC0099AA32 /* CopyFiles */,
+-				3DBE0CF51F3B181A0099AA32 /* Sources */,
+-			);
+-			buildRules = (
+-			);
+-			dependencies = (
+-			);
+-			name = fishhook;
+-			productName = WebSocket;
+-			productReference = 3DBE0D001F3B181A0099AA32 /* libfishhook.a */;
+-			productType = "com.apple.product-type.library.static";
+-		};
+-		3DBE0D011F3B181C0099AA32 /* fishhook-tvOS */ = {
+-			isa = PBXNativeTarget;
+-			buildConfigurationList = 3DBE0D0A1F3B181C0099AA32 /* Build configuration list for PBXNativeTarget "fishhook-tvOS" */;
+-			buildPhases = (
+-				3DBE0D811F3B1B010099AA32 /* CopyFiles */,
+-				3DBE0D021F3B181C0099AA32 /* Sources */,
+-			);
+-			buildRules = (
+-			);
+-			dependencies = (
+-			);
+-			name = "fishhook-tvOS";
+-			productName = "RCTWebSocket-tvOS";
+-			productReference = 3DBE0D0D1F3B181C0099AA32 /* libfishhook-tvOS.a */;
+-			productType = "com.apple.product-type.library.static";
+-		};
+ /* End PBXNativeTarget section */
+ 
+ /* Begin PBXProject section */
+@@ -244,8 +128,6 @@
+ 			targets = (
+ 				3C86DF451ADF2C930047B81A /* RCTWebSocket */,
+ 				2D2A28871D9B049200D4039D /* RCTWebSocket-tvOS */,
+-				3DBE0CF41F3B181A0099AA32 /* fishhook */,
+-				3DBE0D011F3B181C0099AA32 /* fishhook-tvOS */,
+ 			);
+ 		};
+ /* End PBXProject section */
+@@ -273,37 +155,8 @@
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+ 		};
+-		3DBE0CF51F3B181A0099AA32 /* Sources */ = {
+-			isa = PBXSourcesBuildPhase;
+-			buildActionMask = 2147483647;
+-			files = (
+-				3DBE0D141F3B185A0099AA32 /* fishhook.c in Sources */,
+-			);
+-			runOnlyForDeploymentPostprocessing = 0;
+-		};
+-		3DBE0D021F3B181C0099AA32 /* Sources */ = {
+-			isa = PBXSourcesBuildPhase;
+-			buildActionMask = 2147483647;
+-			files = (
+-				3DBE0D151F3B185A0099AA32 /* fishhook.c in Sources */,
+-			);
+-			runOnlyForDeploymentPostprocessing = 0;
+-		};
+ /* End PBXSourcesBuildPhase section */
+ 
+-/* Begin PBXTargetDependency section */
+-		3DBE0D0F1F3B18490099AA32 /* PBXTargetDependency */ = {
+-			isa = PBXTargetDependency;
+-			target = 3DBE0CF41F3B181A0099AA32 /* fishhook */;
+-			targetProxy = 3DBE0D0E1F3B18490099AA32 /* PBXContainerItemProxy */;
+-		};
+-		3DBE0D111F3B184D0099AA32 /* PBXTargetDependency */ = {
+-			isa = PBXTargetDependency;
+-			target = 3DBE0D011F3B181C0099AA32 /* fishhook-tvOS */;
+-			targetProxy = 3DBE0D101F3B184D0099AA32 /* PBXContainerItemProxy */;
+-		};
+-/* End PBXTargetDependency section */
+-
+ /* Begin XCBuildConfiguration section */
+ 		2D2A288E1D9B049200D4039D /* Debug */ = {
+ 			isa = XCBuildConfiguration;
+@@ -554,24 +407,6 @@
+ 			defaultConfigurationIsVisible = 0;
+ 			defaultConfigurationName = Release;
+ 		};
+-		3DBE0CFD1F3B181A0099AA32 /* Build configuration list for PBXNativeTarget "fishhook" */ = {
+-			isa = XCConfigurationList;
+-			buildConfigurations = (
+-				3DBE0CFE1F3B181A0099AA32 /* Debug */,
+-				3DBE0CFF1F3B181A0099AA32 /* Release */,
+-			);
+-			defaultConfigurationIsVisible = 0;
+-			defaultConfigurationName = Release;
+-		};
+-		3DBE0D0A1F3B181C0099AA32 /* Build configuration list for PBXNativeTarget "fishhook-tvOS" */ = {
+-			isa = XCConfigurationList;
+-			buildConfigurations = (
+-				3DBE0D0B1F3B181C0099AA32 /* Debug */,
+-				3DBE0D0C1F3B181C0099AA32 /* Release */,
+-			);
+-			defaultConfigurationIsVisible = 0;
+-			defaultConfigurationName = Release;
+-		};
+ /* End XCConfigurationList section */
+ 	};
+ 	rootObject = 3C86DF3E1ADF2C930047B81A /* Project object */;
+diff --git a/node_modules/react-native/Libraries/WebSocket/React-RCTWebSocket.podspec b/node_modules/react-native/Libraries/WebSocket/React-RCTWebSocket.podspec
+new file mode 100644
+index 0000000..8f2ec71
+--- /dev/null
++++ b/node_modules/react-native/Libraries/WebSocket/React-RCTWebSocket.podspec
+@@ -0,0 +1,35 @@
++# coding: utf-8
++# Copyright (c) Facebook, Inc. and its affiliates.
++#
++# This source code is licensed under the MIT license found in the
++# LICENSE file in the root directory of this source tree.
++
++require "json"
++
++package = JSON.parse(File.read(File.join(__dir__, "..", "..", "package.json")))
++version = package['version']
++
++source = { :git => 'https://github.com/facebook/react-native.git' }
++if version == '1000.0.0'
++  # This is an unpublished version, use the latest commit hash of the react-native repo, which we’re presumably in.
++  source[:commit] = `git rev-parse HEAD`.strip
++else
++  source[:tag] = "v#{version}"
++end
++
++Pod::Spec.new do |s|
++  s.name                   = "React-RCTWebSocket"
++  s.version                = version
++  s.summary                = "A library for supporting WebSockets, a protocol which provides full-duplex communication channels over a single TCP connection." 
++  s.homepage               = "http://facebook.github.io/react-native/"
++  s.documentation_url      = "https://facebook.github.io/react-native/docs/network#websocket-support"
++  s.license                = package["license"]
++  s.author                 = "Facebook, Inc. and its affiliates"
++  s.platforms              = { :ios => "9.0", :tvos => "9.2" }
++  s.source                 = source
++  s.source_files           = "*.{h,m}"
++  s.preserve_paths         = "package.json", "LICENSE", "LICENSE-docs"
++  s.header_dir             = "React"
++
++  s.dependency "React-Core", version
++end
+diff --git a/node_modules/react-native/Libraries/fishhook/LICENSE b/node_modules/react-native/Libraries/fishhook/LICENSE
+deleted file mode 100755
+index c45bb7c..0000000
+--- a/node_modules/react-native/Libraries/fishhook/LICENSE
++++ /dev/null
+@@ -1,22 +0,0 @@
+-// Copyright (c) 2013, Facebook, Inc.
+-// All rights reserved.
+-// Redistribution and use in source and binary forms, with or without
+-// modification, are permitted provided that the following conditions are met:
+-//   * Redistributions of source code must retain the above copyright notice,
+-//     this list of conditions and the following disclaimer.
+-//   * Redistributions in binary form must reproduce the above copyright notice,
+-//     this list of conditions and the following disclaimer in the documentation
+-//     and/or other materials provided with the distribution.
+-//   * Neither the name Facebook nor the names of its contributors may be used to
+-//     endorse or promote products derived from this software without specific
+-//     prior written permission.
+-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+-// DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+-// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+-// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+-// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+-// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+-// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+-// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+\ No newline at end of file
+diff --git a/node_modules/react-native/Libraries/fishhook/README.md b/node_modules/react-native/Libraries/fishhook/README.md
+deleted file mode 100755
+index 1374fba..0000000
+--- a/node_modules/react-native/Libraries/fishhook/README.md
++++ /dev/null
+@@ -1,75 +0,0 @@
+-# fishhook
+-
+-__fishhook__ is a very simple library that enables dynamically rebinding symbols in Mach-O binaries running on iOS in the simulator and on device. This provides functionality that is similar to using [`DYLD_INTERPOSE`][interpose] on OS X. At Facebook, we've found it useful as a way to hook calls in libSystem for debugging/tracing purposes (for example, auditing for double-close issues with file descriptors).
+-
+-[interpose]: http://opensource.apple.com/source/dyld/dyld-210.2.3/include/mach-o/dyld-interposing.h "<mach-o/dyld-interposing.h>"
+-
+-## Usage
+-
+-Once you add `fishhook.h`/`fishhook.c` to your project, you can rebind symbols as follows:
+-```Objective-C
+-#import <dlfcn.h>
+-
+-#import <UIKit/UIKit.h>
+-
+-#import "AppDelegate.h"
+-#import "fishhook.h"
+- 
+-static int (*orig_close)(int);
+-static int (*orig_open)(const char *, int, ...);
+- 
+-int my_close(int fd) {
+-  printf("Calling real close(%d)\n", fd);
+-  return orig_close(fd);
+-}
+- 
+-int my_open(const char *path, int oflag, ...) {
+-  va_list ap = {0};
+-  mode_t mode = 0;
+- 
+-  if ((oflag & O_CREAT) != 0) {
+-    // mode only applies to O_CREAT
+-    va_start(ap, oflag);
+-    mode = va_arg(ap, int);
+-    va_end(ap);
+-    printf("Calling real open('%s', %d, %d)\n", path, oflag, mode);
+-    return orig_open(path, oflag, mode);
+-  } else {
+-    printf("Calling real open('%s', %d)\n", path, oflag);
+-    return orig_open(path, oflag, mode);
+-  }
+-}
+- 
+-int main(int argc, char * argv[])
+-{
+-  @autoreleasepool {
+-    rebind_symbols((struct rebinding[2]){{"close", my_close, (void *)&orig_close}, {"open", my_open, (void *)&orig_open}}, 2);
+- 
+-    // Open our own binary and print out first 4 bytes (which is the same
+-    // for all Mach-O binaries on a given architecture)
+-    int fd = open(argv[0], O_RDONLY);
+-    uint32_t magic_number = 0;
+-    read(fd, &magic_number, 4);
+-    printf("Mach-O Magic Number: %x \n", magic_number);
+-    close(fd);
+- 
+-    return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+-  }
+-}
+-```
+-### Sample output
+-```
+-Calling real open('/var/mobile/Applications/161DA598-5B83-41F5-8A44-675491AF6A2C/Test.app/Test', 0)
+-Mach-O Magic Number: feedface 
+-Calling real close(3)
+-...
+-```
+-
+-## How it works
+-
+-`dyld` binds lazy and non-lazy symbols by updating pointers in particular sections of the `__DATA` segment of a Mach-O binary. __fishhook__ re-binds these symbols by determining the locations to update for each of the symbol names passed to `rebind_symbols` and then writing out the corresponding replacements.
+-
+-For a given image, the `__DATA` segment may contain two sections that are relevant for dynamic symbol bindings: `__nl_symbol_ptr` and `__la_symbol_ptr`. `__nl_symbol_ptr` is an array of pointers to non-lazily bound data (these are bound at the time a library is loaded) and `__la_symbol_ptr` is an array of pointers to imported functions that is generally filled by a routine called `dyld_stub_binder` during the first call to that symbol (it's also possible to tell `dyld` to bind these at launch). In order to find the name of the symbol that corresponds to a particular location in one of these sections, we have to jump through several layers of indirection. For the two relevant sections, the section headers (`struct section`s from `<mach-o/loader.h>`) provide an offset (in the `reserved1` field) into what is known as the indirect symbol table. The indirect symbol table, which is located in the `__LINKEDIT` segment of the binary, is just an array of indexes into the symbol table (also in `__LINKEDIT`) whose order is identical to that of the pointers in the non-lazy and lazy symbol sections. So, given `struct section nl_symbol_ptr`, the corresponding index in the symbol table of the first address in that section is `indirect_symbol_table[nl_symbol_ptr->reserved1]`. The symbol table itself is an array of `struct nlist`s (see `<mach-o/nlist.h>`), and each `nlist` contains an index into the string table in `__LINKEDIT` which where the actual symbol names are stored. So, for each pointer `__nl_symbol_ptr` and `__la_symbol_ptr`, we are able to find the corresponding symbol and then the corresponding string to compare against the requested symbol names, and if there is a match, we replace the pointer in the section with the replacement.
+-
+-The process of looking up the name of a given entry in the lazy or non-lazy pointer tables looks like this:
+-![Visual explanation](http://i.imgur.com/HVXqHCz.png)
+\ No newline at end of file
+diff --git a/node_modules/react-native/Libraries/fishhook/fishhook.c b/node_modules/react-native/Libraries/fishhook/fishhook.c
+deleted file mode 100755
+index 205ee82..0000000
+--- a/node_modules/react-native/Libraries/fishhook/fishhook.c
++++ /dev/null
+@@ -1,210 +0,0 @@
+-// Copyright (c) 2013, Facebook, Inc.
+-// All rights reserved.
+-// Redistribution and use in source and binary forms, with or without
+-// modification, are permitted provided that the following conditions are met:
+-//   * Redistributions of source code must retain the above copyright notice,
+-//     this list of conditions and the following disclaimer.
+-//   * Redistributions in binary form must reproduce the above copyright notice,
+-//     this list of conditions and the following disclaimer in the documentation
+-//     and/or other materials provided with the distribution.
+-//   * Neither the name Facebook nor the names of its contributors may be used to
+-//     endorse or promote products derived from this software without specific
+-//     prior written permission.
+-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+-// DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+-// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+-// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+-// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+-// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+-// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+-// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-
+-#import "fishhook.h"
+-
+-#import <dlfcn.h>
+-#import <stdlib.h>
+-#import <string.h>
+-#import <sys/types.h>
+-#import <mach-o/dyld.h>
+-#import <mach-o/loader.h>
+-#import <mach-o/nlist.h>
+-
+-#ifdef __LP64__
+-typedef struct mach_header_64 mach_header_t;
+-typedef struct segment_command_64 segment_command_t;
+-typedef struct section_64 section_t;
+-typedef struct nlist_64 nlist_t;
+-#define LC_SEGMENT_ARCH_DEPENDENT LC_SEGMENT_64
+-#else
+-typedef struct mach_header mach_header_t;
+-typedef struct segment_command segment_command_t;
+-typedef struct section section_t;
+-typedef struct nlist nlist_t;
+-#define LC_SEGMENT_ARCH_DEPENDENT LC_SEGMENT
+-#endif
+-
+-#ifndef SEG_DATA_CONST
+-#define SEG_DATA_CONST  "__DATA_CONST"
+-#endif
+-
+-struct rebindings_entry {
+-  struct rebinding *rebindings;
+-  size_t rebindings_nel;
+-  struct rebindings_entry *next;
+-};
+-
+-static struct rebindings_entry *_rebindings_head;
+-
+-static int prepend_rebindings(struct rebindings_entry **rebindings_head,
+-                              struct rebinding rebindings[],
+-                              size_t nel) {
+-  struct rebindings_entry *new_entry = (struct rebindings_entry *) malloc(sizeof(struct rebindings_entry));
+-  if (!new_entry) {
+-    return -1;
+-  }
+-  new_entry->rebindings = (struct rebinding *) malloc(sizeof(struct rebinding) * nel);
+-  if (!new_entry->rebindings) {
+-    free(new_entry);
+-    return -1;
+-  }
+-  memcpy(new_entry->rebindings, rebindings, sizeof(struct rebinding) * nel);
+-  new_entry->rebindings_nel = nel;
+-  new_entry->next = *rebindings_head;
+-  *rebindings_head = new_entry;
+-  return 0;
+-}
+-
+-static void perform_rebinding_with_section(struct rebindings_entry *rebindings,
+-                                           section_t *section,
+-                                           intptr_t slide,
+-                                           nlist_t *symtab,
+-                                           char *strtab,
+-                                           uint32_t *indirect_symtab) {
+-  uint32_t *indirect_symbol_indices = indirect_symtab + section->reserved1;
+-  void **indirect_symbol_bindings = (void **)((uintptr_t)slide + section->addr);
+-  for (uint i = 0; i < section->size / sizeof(void *); i++) {
+-    uint32_t symtab_index = indirect_symbol_indices[i];
+-    if (symtab_index == INDIRECT_SYMBOL_ABS || symtab_index == INDIRECT_SYMBOL_LOCAL ||
+-        symtab_index == (INDIRECT_SYMBOL_LOCAL   | INDIRECT_SYMBOL_ABS)) {
+-      continue;
+-    }
+-    uint32_t strtab_offset = symtab[symtab_index].n_un.n_strx;
+-    char *symbol_name = strtab + strtab_offset;
+-    if (strnlen(symbol_name, 2) < 2) {
+-      continue;
+-    }
+-    struct rebindings_entry *cur = rebindings;
+-    while (cur) {
+-      for (uint j = 0; j < cur->rebindings_nel; j++) {
+-        if (strcmp(&symbol_name[1], cur->rebindings[j].name) == 0) {
+-          if (cur->rebindings[j].replaced != NULL &&
+-              indirect_symbol_bindings[i] != cur->rebindings[j].replacement) {
+-            *(cur->rebindings[j].replaced) = indirect_symbol_bindings[i];
+-          }
+-          indirect_symbol_bindings[i] = cur->rebindings[j].replacement;
+-          goto symbol_loop;
+-        }
+-      }
+-      cur = cur->next;
+-    }
+-  symbol_loop:;
+-  }
+-}
+-
+-static void rebind_symbols_for_image(struct rebindings_entry *rebindings,
+-                                     const struct mach_header *header,
+-                                     intptr_t slide) {
+-  Dl_info info;
+-  if (dladdr(header, &info) == 0) {
+-    return;
+-  }
+-
+-  segment_command_t *cur_seg_cmd;
+-  segment_command_t *linkedit_segment = NULL;
+-  struct symtab_command* symtab_cmd = NULL;
+-  struct dysymtab_command* dysymtab_cmd = NULL;
+-
+-  uintptr_t cur = (uintptr_t)header + sizeof(mach_header_t);
+-  for (uint i = 0; i < header->ncmds; i++, cur += cur_seg_cmd->cmdsize) {
+-    cur_seg_cmd = (segment_command_t *)cur;
+-    if (cur_seg_cmd->cmd == LC_SEGMENT_ARCH_DEPENDENT) {
+-      if (strcmp(cur_seg_cmd->segname, SEG_LINKEDIT) == 0) {
+-        linkedit_segment = cur_seg_cmd;
+-      }
+-    } else if (cur_seg_cmd->cmd == LC_SYMTAB) {
+-      symtab_cmd = (struct symtab_command*)cur_seg_cmd;
+-    } else if (cur_seg_cmd->cmd == LC_DYSYMTAB) {
+-      dysymtab_cmd = (struct dysymtab_command*)cur_seg_cmd;
+-    }
+-  }
+-
+-  if (!symtab_cmd || !dysymtab_cmd || !linkedit_segment ||
+-      !dysymtab_cmd->nindirectsyms) {
+-    return;
+-  }
+-
+-  // Find base symbol/string table addresses
+-  uintptr_t linkedit_base = (uintptr_t)slide + linkedit_segment->vmaddr - linkedit_segment->fileoff;
+-  nlist_t *symtab = (nlist_t *)(linkedit_base + symtab_cmd->symoff);
+-  char *strtab = (char *)(linkedit_base + symtab_cmd->stroff);
+-
+-  // Get indirect symbol table (array of uint32_t indices into symbol table)
+-  uint32_t *indirect_symtab = (uint32_t *)(linkedit_base + dysymtab_cmd->indirectsymoff);
+-
+-  cur = (uintptr_t)header + sizeof(mach_header_t);
+-  for (uint i = 0; i < header->ncmds; i++, cur += cur_seg_cmd->cmdsize) {
+-    cur_seg_cmd = (segment_command_t *)cur;
+-    if (cur_seg_cmd->cmd == LC_SEGMENT_ARCH_DEPENDENT) {
+-      if (strcmp(cur_seg_cmd->segname, SEG_DATA) != 0 &&
+-          strcmp(cur_seg_cmd->segname, SEG_DATA_CONST) != 0) {
+-        continue;
+-      }
+-      for (uint j = 0; j < cur_seg_cmd->nsects; j++) {
+-        section_t *sect =
+-          (section_t *)(cur + sizeof(segment_command_t)) + j;
+-        if ((sect->flags & SECTION_TYPE) == S_LAZY_SYMBOL_POINTERS) {
+-          perform_rebinding_with_section(rebindings, sect, slide, symtab, strtab, indirect_symtab);
+-        }
+-        if ((sect->flags & SECTION_TYPE) == S_NON_LAZY_SYMBOL_POINTERS) {
+-          perform_rebinding_with_section(rebindings, sect, slide, symtab, strtab, indirect_symtab);
+-        }
+-      }
+-    }
+-  }
+-}
+-
+-static void _rebind_symbols_for_image(const struct mach_header *header,
+-                                      intptr_t slide) {
+-    rebind_symbols_for_image(_rebindings_head, header, slide);
+-}
+-
+-int rebind_symbols_image(void *header,
+-                         intptr_t slide,
+-                         struct rebinding rebindings[],
+-                         size_t rebindings_nel) {
+-    struct rebindings_entry *rebindings_head = NULL;
+-    int retval = prepend_rebindings(&rebindings_head, rebindings, rebindings_nel);
+-    rebind_symbols_for_image(rebindings_head, (const struct mach_header *) header, slide);
+-    free(rebindings_head);
+-    return retval;
+-}
+-
+-int rebind_symbols(struct rebinding rebindings[], size_t rebindings_nel) {
+-  int retval = prepend_rebindings(&_rebindings_head, rebindings, rebindings_nel);
+-  if (retval < 0) {
+-    return retval;
+-  }
+-  // If this was the first call, register callback for image additions (which is also invoked for
+-  // existing images, otherwise, just run on existing images
+-  if (!_rebindings_head->next) {
+-    _dyld_register_func_for_add_image(_rebind_symbols_for_image);
+-  } else {
+-    uint32_t c = _dyld_image_count();
+-    for (uint32_t i = 0; i < c; i++) {
+-      _rebind_symbols_for_image(_dyld_get_image_header(i), _dyld_get_image_vmaddr_slide(i));
+-    }
+-  }
+-  return retval;
+-}
+diff --git a/node_modules/react-native/Libraries/fishhook/fishhook.h b/node_modules/react-native/Libraries/fishhook/fishhook.h
+deleted file mode 100755
+index 0d8e36a..0000000
+--- a/node_modules/react-native/Libraries/fishhook/fishhook.h
++++ /dev/null
+@@ -1,76 +0,0 @@
+-// Copyright (c) 2013, Facebook, Inc.
+-// All rights reserved.
+-// Redistribution and use in source and binary forms, with or without
+-// modification, are permitted provided that the following conditions are met:
+-//   * Redistributions of source code must retain the above copyright notice,
+-//     this list of conditions and the following disclaimer.
+-//   * Redistributions in binary form must reproduce the above copyright notice,
+-//     this list of conditions and the following disclaimer in the documentation
+-//     and/or other materials provided with the distribution.
+-//   * Neither the name Facebook nor the names of its contributors may be used to
+-//     endorse or promote products derived from this software without specific
+-//     prior written permission.
+-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+-// DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+-// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+-// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+-// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+-// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+-// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+-// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-
+-#ifndef fishhook_h
+-#define fishhook_h
+-
+-#include <stddef.h>
+-#include <stdint.h>
+-
+-#if !defined(FISHHOOK_EXPORT)
+-#define FISHHOOK_VISIBILITY __attribute__((visibility("hidden")))
+-#else
+-#define FISHHOOK_VISIBILITY __attribute__((visibility("default")))
+-#endif
+-
+-#ifdef __cplusplus
+-extern "C" {
+-#endif //__cplusplus
+-
+-/*
+- * A structure representing a particular intended rebinding from a symbol
+- * name to its replacement
+- */
+-struct rebinding {
+-  const char *name;
+-  void *replacement;
+-  void **replaced;
+-};
+-
+-/*
+- * For each rebinding in rebindings, rebinds references to external, indirect
+- * symbols with the specified name to instead point at replacement for each
+- * image in the calling process as well as for all future images that are loaded
+- * by the process. If rebind_functions is called more than once, the symbols to
+- * rebind are added to the existing list of rebindings, and if a given symbol
+- * is rebound more than once, the later rebinding will take precedence.
+- */
+-FISHHOOK_VISIBILITY
+-int rebind_symbols(struct rebinding rebindings[], size_t rebindings_nel);
+-
+-/*
+- * Rebinds as above, but only in the specified image. The header should point
+- * to the mach-o header, the slide should be the slide offset. Others as above.
+- */
+-FISHHOOK_VISIBILITY
+-int rebind_symbols_image(void *header,
+-                         intptr_t slide,
+-                         struct rebinding rebindings[],
+-                         size_t rebindings_nel);
+-
+-#ifdef __cplusplus
+-}
+-#endif //__cplusplus
+-
+-#endif //fishhook_h
+-
+diff --git a/node_modules/react-native/scripts/autolink-ios.rb b/node_modules/react-native/scripts/autolink-ios.rb
+new file mode 100644
+index 0000000..fde0d55
+--- /dev/null
++++ b/node_modules/react-native/scripts/autolink-ios.rb
+@@ -0,0 +1,55 @@
++def use_react_native! (options={})
++
++  # The prefix to the react-native
++  prefix = options[:path] ||= "../node_modules/react-native"
++  
++  # Include Fabric dependencies
++  fabric_enabled = options[:fabric_enabled] ||= false
++  
++  # Include Turbo Modules dependencies
++  turbo_modules_enabled = options[:turbo_modules_enabled] ||= false
++
++  # Include DevSupport dependency
++  production = options[:production] ||= false
++
++  # The Pods which should be included in all projects
++  pod 'React', :path => "#{prefix}/"
++  pod 'React-Core', :path => "#{prefix}/React"
++  pod 'React-RCTActionSheet', :path => "#{prefix}/Libraries/ActionSheetIOS"
++  pod 'React-RCTAnimation', :path => "#{prefix}/Libraries/NativeAnimation"
++  pod 'React-RCTBlob', :path => "#{prefix}/Libraries/Blob"
++  pod 'React-RCTImage', :path => "#{prefix}/Libraries/Image"
++  pod 'React-RCTLinking', :path => "#{prefix}/Libraries/LinkingIOS"
++  pod 'React-RCTNetwork', :path => "#{prefix}/Libraries/Network"
++  pod 'React-RCTSettings', :path => "#{prefix}/Libraries/Settings"
++  pod 'React-RCTText', :path => "#{prefix}/Libraries/Text"
++  pod 'React-RCTVibration', :path => "#{prefix}/Libraries/Vibration"
++  pod 'React-RCTWebSocket', :path => "#{prefix}/Libraries/WebSocket"
++
++  unless production
++    pod 'React-DevSupport', :path => "#{prefix}/React"
++  end
++
++  pod 'React-cxxreact', :path => "#{prefix}/ReactCommon/cxxreact"
++  pod 'React-jscallinvoker', :path => "#{prefix}/ReactCommon/jscallinvoker"
++  pod 'React-jsi', :path => "#{prefix}/ReactCommon/jsi"
++  pod 'React-jsiexecutor', :path => "#{prefix}/ReactCommon/jsiexecutor"
++  pod 'React-jsinspector', :path => "#{prefix}/ReactCommon/jsinspector"
++  pod 'yoga', :path => "#{prefix}/ReactCommon/yoga"
++
++  pod 'DoubleConversion', :podspec => "#{prefix}/third-party-podspecs/DoubleConversion.podspec"
++  pod 'glog', :podspec => "#{prefix}/third-party-podspecs/glog.podspec"
++  pod 'Folly', :podspec => "#{prefix}/third-party-podspecs/Folly.podspec"
++
++  if fabric_enabled
++    pod 'React-Fabric', :path => "#{prefix}/ReactCommon"
++    pod 'React-graphics', :path => "#{prefix}/ReactCommon/fabric/graphics"
++    pod 'React-jsi/Fabric', :path => "#{prefix}/ReactCommon/jsi"
++    pod 'React-RCTFabric', :path => "#{prefix}/React"
++    pod 'Folly/Fabric', :podspec => "#{prefix}/third-party-podspecs/Folly.podspec"
++  end
++  
++  if turbo_modules_enabled
++    pod 'React-turbomodule-core', :path => "#{prefix}/ReactCommon/turbomodule/core"
++  end
++end
+diff --git a/node_modules/react-native/template/ios/Podfile b/node_modules/react-native/template/ios/Podfile
+new file mode 100644
+index 0000000..74aa6b8
+--- /dev/null
++++ b/node_modules/react-native/template/ios/Podfile
+@@ -0,0 +1,44 @@
++platform :ios, '9.0'
++
++target 'HelloWorld' do
++  # Pods for HelloWorld
++  pod 'React', :path => '../node_modules/react-native/'
++  pod 'React-Core', :path => '../node_modules/react-native/React'
++  pod 'React-DevSupport', :path => '../node_modules/react-native/React'
++  pod 'React-RCTActionSheet', :path => '../node_modules/react-native/Libraries/ActionSheetIOS'
++  pod 'React-RCTAnimation', :path => '../node_modules/react-native/Libraries/NativeAnimation'
++  pod 'React-RCTBlob', :path => '../node_modules/react-native/Libraries/Blob'
++  pod 'React-RCTImage', :path => '../node_modules/react-native/Libraries/Image'
++  pod 'React-RCTLinking', :path => '../node_modules/react-native/Libraries/LinkingIOS'
++  pod 'React-RCTNetwork', :path => '../node_modules/react-native/Libraries/Network'
++  pod 'React-RCTSettings', :path => '../node_modules/react-native/Libraries/Settings'
++  pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
++  pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
++  pod 'React-RCTWebSocket', :path => '../node_modules/react-native/Libraries/WebSocket'
++
++  pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
++  pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
++  pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
++  pod 'React-jsinspector', :path => '../node_modules/react-native/ReactCommon/jsinspector'
++  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
++
++  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
++  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
++  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
++
++  target 'HelloWorldTests' do
++    inherit! :search_paths
++    # Pods for testing
++  end
++
++end
++
++target 'HelloWorld-tvOS' do
++  # Pods for HelloWorld-tvOS
++
++  target 'HelloWorld-tvOSTests' do
++    inherit! :search_paths
++    # Pods for testing
++  end
++
++end

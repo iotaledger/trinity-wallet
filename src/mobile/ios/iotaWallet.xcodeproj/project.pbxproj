@@ -58,6 +58,7 @@
 		BA960278C14E736AFA2379DE03059CB8 /* libRCTImage-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E75E2AC8AE8B6798A4135FCB59B0D2EB /* libRCTImage-tvOS.a */; };
 		BC0B4879EC021013E3B1766E92C2A64B /* libRNPrint.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD01F1FBF0A65DE7C0418215A512138 /* libRNPrint.a */; };
 		BDAE8ABE8DEB4C2EB82EE79A3A5230C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */; };
+		BE127CEEE8CA46CCA605A624 /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 797C3406F47643389B03ABFB /* libRNCWebView.a */; };
 		C2F42249DD5989B1962B809D5CCC00F3 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A85B009F6629191C78D363005BC5C04B /* libART.a */; };
 		C4646F689AA9CF8E8FFC65C04944FF13 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD2F7585D01863B8EC256EC6A922693 /* libRCTImage.a */; };
 		C587195E6E354DE7A8A206B1 /* libRNReactNativeQrcodeNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F1AAFBAC3F4CD7A8A4BD4A /* libRNReactNativeQrcodeNative.a */; };
@@ -96,13 +97,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0124B2E98998F35F47D1A86641804DBA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BC3F9601D8757C3A48CF2AD9CF58F3EA /* RCTWebSocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D3C0CD0CC2A0DCF35402F761CE87C921;
-			remoteInfo = "fishhook-tvOS";
-		};
 		01E9A97EB148F57A77EB8C51C72DF720 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */;
@@ -375,6 +369,27 @@
 			proxyType = 2;
 			remoteGlobalIDString = 05DCE99E5CDB80B53B40FFB5818D5E46;
 			remoteInfo = RNPrintTests;
+		};
+		80542E7B234E06CF00DBBA7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA959792AD9A5C3642835114D50DE868 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0E7C341FA544E64E23E052A68E4A0A5E;
+			remoteInfo = React;
+		};
+		80542E7D234E06CF00DBBA7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA959792AD9A5C3642835114D50DE868 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DF63376066E2275FF26820B3A512A9B;
+			remoteInfo = "react-native-webview";
+		};
+		80542EBF234E06CF00DBBA7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A589967AE9D54EC591F31958 /* RNCWebView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCWebView;
 		};
 		896DF047E1C2AB724B776DE78051C2CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -649,13 +664,6 @@
 			remoteGlobalIDString = 78510E1974839EACED295CFC857494F6;
 			remoteInfo = KCKeepAwake;
 		};
-		DCEAB2C2F040EC0C0BEAA70FB12BFF84 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BC3F9601D8757C3A48CF2AD9CF58F3EA /* RCTWebSocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D40EE680EAD499E5F218A7D52844D890;
-			remoteInfo = fishhook;
-		};
 		E1B37F619C11EA96BF3D3EF5382A8D08 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6F63CB3492A71A3A73B8764893BE0F6F /* RNFS.xcodeproj */;
@@ -772,6 +780,7 @@
 		78457F3624D0D3C241289BCB545E290E /* ReactNativeFingerprintScanner.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeFingerprintScanner.xcodeproj; path = "../node_modules/react-native-fingerprint-scanner/ios/ReactNativeFingerprintScanner.xcodeproj"; sourceTree = "<group>"; };
 		78890E2D6D34AE7E540EA17AF52C9982 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		78C6D5537D50D3BB1309E66D /* Pods-iotaWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet/Pods-iotaWallet.release.xcconfig"; sourceTree = "<group>"; };
+		797C3406F47643389B03ABFB /* libRNCWebView.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCWebView.a; sourceTree = "<group>"; };
 		79A46F4458348360C0DFE21018DAAF14 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
 		7C67701E97DD418C82AE0819 /* RNReactNativeQrcodeNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNReactNativeQrcodeNative.xcodeproj; path = "../node_modules/react-native-qr-generator/ios/RNReactNativeQrcodeNative.xcodeproj"; sourceTree = "<group>"; };
 		7E0F74EC093A52113A8EC89B /* Pods_iotaWalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iotaWalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -788,6 +797,7 @@
 		9EE76A96BDAFEB3F2332A2982168E1CE /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
 		A1FAED857304034D3DCD87D13F961C48 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A402C8584E5EA99F404511B6FE64D661 /* iotaWallet-release-config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iotaWallet-release-config.xcconfig"; sourceTree = "<group>"; };
+		A589967AE9D54EC591F31958 /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCWebView.xcodeproj; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; };
 		A691184951D73974D740D5C9 /* Pods-iotaWallet-tvOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet-tvOS.beta.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet-tvOS/Pods-iotaWallet-tvOS.beta.xcconfig"; sourceTree = "<group>"; };
 		A9DBF0EEB7DBFA315A0D6839E79A5924 /* iotaWalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iotaWalletUITests.swift; sourceTree = "<group>"; };
 		AA7E2CA57E62FCA5FD7C3C38C40F7603 /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -905,6 +915,7 @@
 				653C5DB7CF56434CA39B6922 /* libRNNodeJsMobile.a in Frameworks */,
 				F19CAE1462E2409387028CD1 /* NodeMobile.framework in Frameworks */,
 				C587195E6E354DE7A8A206B1 /* libRNReactNativeQrcodeNative.a in Frameworks */,
+				BE127CEEE8CA46CCA605A624 /* libRNCWebView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1187,6 +1198,7 @@
 				6BA32972BAD24F7ABBA45866 /* RealmReact.xcodeproj */,
 				9B7786DA8E9F4FBCA1CD37AF /* QrCode.xcodeproj */,
 				7C67701E97DD418C82AE0819 /* RNReactNativeQrcodeNative.xcodeproj */,
+				A589967AE9D54EC591F31958 /* RNCWebView.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1211,6 +1223,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		80542EBC234E06CF00DBBA7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				80542EC0234E06CF00DBBA7B /* libRNCWebView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		8ADF7BC563A33720DC2F2399EFC83064 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1228,6 +1248,8 @@
 				73DE2893421CB79475DA9ABBFC68EF31 /* libPods-iotaWallet-tvOS.a */,
 				75741D422FC234226BD97F79574086A2 /* libPods-iotaWallet-tvOSTests.a */,
 				8194F08C899A4B07E4F0D7C10D8A04CE /* Pods_iotaWalletTests.framework */,
+				80542E7C234E06CF00DBBA7B /* React.framework */,
+				80542E7E234E06CF00DBBA7B /* react_native_webview.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1322,6 +1344,7 @@
 				B090D59389CE4890A17E787A /* libQRCode.a */,
 				0CF5B6434CE94452810783E0 /* libSigning.a */,
 				B7F1AAFBAC3F4CD7A8A4BD4A /* libRNReactNativeQrcodeNative.a */,
+				797C3406F47643389B03ABFB /* libRNCWebView.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1513,8 +1536,6 @@
 			children = (
 				0DF165D1193E4B4962DABF4E7264F91B /* libRCTWebSocket.a */,
 				41ABB0EEDDF4C638791186862B6FCA44 /* libRCTWebSocket-tvOS.a */,
-				305530A98AC420D34A3E19B2E9293E19 /* libfishhook.a */,
-				BE82952CCA102FD663897F7A37DC8849 /* libfishhook-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1663,7 +1684,7 @@
 								enabled = 1;
 							};
 							com.apple.Keychain = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.iCloud = {
 								enabled = 1;
@@ -1819,6 +1840,10 @@
 					ProjectRef = 6056CF4F20827D2F0006A2F3 /* RNCamera.xcodeproj */;
 				},
 				{
+					ProductGroup = 80542EBC234E06CF00DBBA7B /* Products */;
+					ProjectRef = A589967AE9D54EC591F31958 /* RNCWebView.xcodeproj */;
+				},
+				{
 					ProductGroup = 2FE9795D77E1EEB677D548CDD97FF948 /* Products */;
 					ProjectRef = C39F11B2595A5CFD8F2D51D3B914CD41 /* RNDeviceInfo.xcodeproj */;
 				},
@@ -1960,13 +1985,6 @@
 			fileType = archive.ar;
 			path = libRCTVibration.a;
 			remoteRef = BB0F29560ABE8B2A22B932FA4F9EB13B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		305530A98AC420D34A3E19B2E9293E19 /* libfishhook.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libfishhook.a;
-			remoteRef = DCEAB2C2F040EC0C0BEAA70FB12BFF84 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		35204E4DC183F014F73FABC7F779792B /* libRNFS.a */ = {
@@ -2123,6 +2141,27 @@
 			remoteRef = EFC046C4FF8A48212FB2D5FCA41020D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		80542E7C234E06CF00DBBA7B /* React.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = React.framework;
+			remoteRef = 80542E7B234E06CF00DBBA7B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		80542E7E234E06CF00DBBA7B /* react_native_webview.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = react_native_webview.framework;
+			remoteRef = 80542E7D234E06CF00DBBA7B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		80542EC0234E06CF00DBBA7B /* libRNCWebView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCWebView.a;
+			remoteRef = 80542EBF234E06CF00DBBA7B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		8194F08C899A4B07E4F0D7C10D8A04CE /* Pods_iotaWalletTests.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -2205,13 +2244,6 @@
 			fileType = archive.ar;
 			path = libRCTAnimation.a;
 			remoteRef = 77988E9E486F13DB1441A107E9B8BE7D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		BE82952CCA102FD663897F7A37DC8849 /* libfishhook-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libfishhook-tvOS.a";
-			remoteRef = 0124B2E98998F35F47D1A86641804DBA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		C983FC068C0763B06409D31B23F70974 /* libRNSecureRandom.a */ = {
@@ -2883,7 +2915,10 @@
 				INFOPLIST_FILE = iotaWalletUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iota.iotaWalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2918,7 +2953,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "iotaWallet-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.iotaWallet-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2942,7 +2980,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 82;
+				CURRENT_PROJECT_VERSION = 95;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
@@ -2960,6 +2998,7 @@
 					"$(SRCROOT)/../node_modules/react-native-qr-scanner/ios/QrCode",
 					"$(SRCROOT)/../node_modules/shared-modules/node_modules/@iota/signing/**",
 					"$(SRCROOT)/../node_modules/react-native-qr-generator/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
@@ -3022,7 +3061,10 @@
 				INFOPLIST_FILE = iotaWalletUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iota.iotaWalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3068,10 +3110,14 @@
 					"$(SRCROOT)/../node_modules/react-native-qr-scanner/ios/QrCode",
 					"$(SRCROOT)/../node_modules/shared-modules/node_modules/@iota/signing/**",
 					"$(SRCROOT)/../node_modules/react-native-qr-generator/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 				);
 				INFOPLIST_FILE = "iotaWallet-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -3108,7 +3154,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "iotaWallet-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.iotaWallet-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3147,11 +3196,15 @@
 					"$(SRCROOT)/../node_modules/react-native-qr-scanner/ios/QrCode",
 					"$(SRCROOT)/../node_modules/shared-modules/node_modules/@iota/signing/**",
 					"$(SRCROOT)/../node_modules/react-native-qr-generator/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 				);
 				INFOPLIST_FILE = iotaWalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				MACH_O_TYPE = mh_bundle;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3257,10 +3310,14 @@
 					"$(SRCROOT)/../node_modules/react-native-qr-scanner/ios/QrCode",
 					"$(SRCROOT)/../node_modules/shared-modules/node_modules/@iota/signing/**",
 					"$(SRCROOT)/../node_modules/react-native-qr-generator/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 				);
 				INFOPLIST_FILE = "iotaWallet-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -3340,7 +3397,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 82;
+				CURRENT_PROJECT_VERSION = 95;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3356,6 +3413,7 @@
 					"$(SRCROOT)/../node_modules/react-native-qr-scanner/ios/QrCode",
 					"$(SRCROOT)/../node_modules/shared-modules/node_modules/@iota/signing/**",
 					"$(SRCROOT)/../node_modules/react-native-qr-generator/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
@@ -3421,11 +3479,15 @@
 					"$(SRCROOT)/../node_modules/react-native-qr-scanner/ios/QrCode",
 					"$(SRCROOT)/../node_modules/shared-modules/node_modules/@iota/signing/**",
 					"$(SRCROOT)/../node_modules/react-native-qr-generator/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 				);
 				INFOPLIST_FILE = iotaWalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				MACH_O_TYPE = mh_bundle;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3471,10 +3533,14 @@
 					"$(SRCROOT)/../node_modules/react-native-qr-scanner/ios/QrCode",
 					"$(SRCROOT)/../node_modules/shared-modules/node_modules/@iota/signing/**",
 					"$(SRCROOT)/../node_modules/react-native-qr-generator/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 				);
 				INFOPLIST_FILE = "iotaWallet-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -3511,7 +3577,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "iotaWallet-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.iotaWallet-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3545,7 +3614,10 @@
 				INFOPLIST_FILE = iotaWalletUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iota.iotaWalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3584,11 +3656,15 @@
 					"$(SRCROOT)/../node_modules/react-native-qr-scanner/ios/QrCode",
 					"$(SRCROOT)/../node_modules/shared-modules/node_modules/@iota/signing/**",
 					"$(SRCROOT)/../node_modules/react-native-qr-generator/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 				);
 				INFOPLIST_FILE = iotaWalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				MACH_O_TYPE = mh_bundle;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3614,7 +3690,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 82;
+				CURRENT_PROJECT_VERSION = 95;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3630,6 +3706,7 @@
 					"$(SRCROOT)/../node_modules/react-native-qr-scanner/ios/QrCode",
 					"$(SRCROOT)/../node_modules/shared-modules/node_modules/@iota/signing/**",
 					"$(SRCROOT)/../node_modules/react-native-qr-generator/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;

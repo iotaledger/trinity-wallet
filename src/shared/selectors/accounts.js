@@ -10,6 +10,7 @@ import filter from 'lodash/filter';
 import transform from 'lodash/transform';
 import { createSelector } from 'reselect';
 import { getSeedIndexFromState } from './global';
+import { getSelectedAccountName as getSelectedAccountNameForMoonPay } from './exchanges/MoonPay';
 import { accumulateBalance, getLatestAddress } from '../libs/iota/addresses';
 import { categoriseInclusionStatesByBundleHash, mapNormalisedTransactions } from '../libs/iota/transfers';
 
@@ -409,4 +410,21 @@ export const getFailedBundleHashes = createSelector(
             },
             {},
         ),
+);
+
+/**
+ * Selects latest address for MoonPay selected account
+ *
+ * @method getLatestAddressForMoonPaySelectedAccount
+ *
+ * @param {string} accountName
+ *
+ * @returns {function}
+ */
+export const getLatestAddressForMoonPaySelectedAccount = createSelector(
+    getAccountInfoFromState,
+    getSelectedAccountNameForMoonPay,
+    (accountInfo, accountName) => {
+        return getLatestAddress(get(accountInfo[accountName], 'addressData'), true);
+    },
 );

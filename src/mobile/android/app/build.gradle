@@ -71,7 +71,6 @@ import com.android.build.OutputFile
  */
 project.ext.react = [
         entryFile: "index.js",
-        jsBundleDirRelease: "$buildDir/intermediates/merged_assets/release/mergeReleaseAssets/out"
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -95,8 +94,8 @@ android {
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
-        versionCode 82
-        versionName "1.1.0"
+        versionCode 95
+        versionName "1.2.0"
         minSdkVersion 21
         targetSdkVersion 28
         multiDexEnabled true
@@ -125,7 +124,7 @@ android {
         }
     }
     repositories {
-        maven { url "https://jitpack.io" }
+        maven { url "https://www.jitpack.io" }
     }
     buildTypes {
         release {
@@ -169,6 +168,7 @@ dependencies {
 
 
     compile project(':react-native-qr-generator')
+    implementation project(':react-native-webview')
     implementation project(':react-native-modal-translucent')
     implementation project(':react-native-qr-scanner')
     implementation 'com.github.laumair:argon2jni:jitpack-SNAPSHOT'

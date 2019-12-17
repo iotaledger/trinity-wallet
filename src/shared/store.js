@@ -14,6 +14,7 @@ import home from './reducers/home';
 import keychain from './reducers/keychain';
 import polling from './reducers/polling';
 import progress from './reducers/progress';
+import exchanges from './reducers/exchanges';
 import ui from './reducers/ui';
 import { SettingsActionTypes, WalletActionTypes } from './types';
 import networkMiddleware from './middlewares/network';
@@ -35,6 +36,7 @@ const reducers = combineReducers({
     alerts,
     marketData,
     accounts,
+    exchanges,
     settings,
     home,
     keychain,

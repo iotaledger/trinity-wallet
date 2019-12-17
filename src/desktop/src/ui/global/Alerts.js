@@ -47,7 +47,7 @@ export class AlertsComponent extends React.PureComponent {
         if (nextProps.alerts.category && nextProps.alerts.category.length && nextProps.alerts.closeInterval > 0) {
             this.timeout = setTimeout(() => {
                 this.props.dismissAlert();
-            }, nextProps.alerts.closeInterval);
+            }, nextProps.alerts.closeInterval || 0);
         }
     }
 
@@ -88,8 +88,10 @@ export class AlertsComponent extends React.PureComponent {
     }
 
     render() {
+        /* eslint-disable no-unused-vars */
         const { alerts, dismissAlert, forceUpdate, shouldUpdate, displayTestWarning, t } = this.props;
         const { isUpdating, dismissUpdate } = this.state;
+        /* eslint-enable no-unused-vars */
 
         /**
          * Temporarily override account fetch error by adding Proxy setting suggestion
@@ -101,35 +103,19 @@ export class AlertsComponent extends React.PureComponent {
 
         return (
             <div className={css.wrapper}>
-                {!dismissUpdate &&
-                    displayTestWarning &&
-                    this.renderFullWidthAlert(`${t('rootDetection:warning')}:`, t('global:testVersionWarning'), true)}
-                {!isUpdating &&
-                    !dismissUpdate &&
-                    shouldUpdate &&
-                    this.renderFullWidthAlert(t('global:shouldUpdate'), t('global:shouldUpdateExplanation'), true, () =>
-                        Electron.autoUpdate(),
+                <div
+                    onClick={() => dismissAlert()}
+                    className={classNames(
+                        alerts.category && alerts.category.length ? css.visible : null,
+                        css[`${alerts.category}`],
                     )}
-                {!isUpdating &&
-                    forceUpdate &&
-                    this.renderFullWidthAlert(t('global:forceUpdate'), t('global:forceUpdateExplanation'), false, () =>
-                        Electron.autoUpdate(),
-                    )}
-                {(!dismissUpdate && (forceUpdate || shouldUpdate)) || (
-                    <div
-                        onClick={() => dismissAlert()}
-                        className={classNames(
-                            alerts.category && alerts.category.length ? css.visible : null,
-                            css[`${alerts.category}`],
-                        )}
-                    >
-                        <span>
-                            <Icon icon="cross" size={14} />
-                        </span>
-                        {alerts.title && <h2>{alerts.title}</h2>}
-                        {message && <p>{message}</p>}
-                    </div>
-                )}
+                >
+                    <span>
+                        <Icon icon="cross" size={14} />
+                    </span>
+                    {alerts.title && <h2>{alerts.title}</h2>}
+                    {message && <p>{message}</p>}
+                </div>
             </div>
         );
     }

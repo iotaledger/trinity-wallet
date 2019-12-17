@@ -604,8 +604,8 @@ class Receive extends Component {
                                         <Text style={[styles.buttonText, { color: 'black' }]}>{t('yourAddress')}</Text>
                                     </View>
                                     <TouchableWithoutFeedback onPress={this.flipCard}>
-                                        <View style={[styles.rightHeaderButton, { backgroundColor: primary.color }]}>
-                                            <Text style={[styles.buttonText, { color: primary.body }]}>
+                                        <View style={[styles.rightHeaderButton, { backgroundColor: dark.color }]}>
+                                            <Text style={[styles.buttonText, { color: dark.body }]}>
                                                 {t('qrOptions')}
                                             </Text>
                                         </View>
@@ -733,8 +733,8 @@ class Receive extends Component {
                                 )}
                                 <View style={styles.headerButtonsContainer}>
                                     <TouchableWithoutFeedback onPress={this.flipCard}>
-                                        <View style={[styles.leftHeaderButton, { backgroundColor: primary.color }]}>
-                                            <Text style={[styles.buttonText, { color: primary.body }]}>
+                                        <View style={[styles.leftHeaderButton, { backgroundColor: dark.color }]}>
+                                            <Text style={[styles.buttonText, { color: dark.body }]}>
                                                 {t('yourAddress')}
                                             </Text>
                                         </View>
@@ -793,6 +793,7 @@ const mapStateToProps = (state) => ({
     usdPrice: state.marketData.usdPrice,
     conversionRate: state.settings.conversionRate,
     hadErrorGeneratingNewAddress: state.ui.hadErrorGeneratingNewAddress,
+    isViewingMoonpayPurchases: state.ui.isViewingMoonpayPurchases,
 });
 
 const mapDispatchToProps = {

@@ -11,6 +11,8 @@ import v4Schema, { migration as v4Migration } from './v4';
 import v5Schema, { migration as v5Migration } from './v5';
 import v6Schema, { migration as v6Migration } from './v6';
 import v7Schema, { migration as v7Migration } from './v7';
+import v8Schema, { migration as v8Migration } from './v8';
+import v9Schema, { migration as v9Migration } from './v9';
 import { __MOBILE__, __TEST__, __DEV__ } from '../config';
 import { initialState as reduxSettingsState } from '../reducers/settings';
 import { initialState as reduxAccountsState } from '../reducers/accounts';
@@ -171,6 +173,18 @@ export default [
         schemaVersion: 7,
         path: STORAGE_PATH,
         migration: v7Migration,
+    },
+    {
+        schema: v8Schema,
+        schemaVersion: 8,
+        path: STORAGE_PATH,
+        migration: v8Migration,
+    },
+    {
+        schema: v9Schema,
+        schemaVersion: 9,
+        path: STORAGE_PATH,
+        migration: v9Migration,
     },
 ];
 

@@ -30,6 +30,7 @@ const getProps = (overrides) =>
             openPasswordValidationModal: noop,
             onSeedImport: noop,
             onRef: noop,
+            setAccountInfoDuringSetup: noop,
         },
         overrides,
     );

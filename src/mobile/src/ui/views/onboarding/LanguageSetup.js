@@ -82,6 +82,7 @@ class LanguageSetup extends Component {
     componentWillUnmount() {
         timer.clearTimeout('delayReset');
     }
+
     onNextPress() {
         const { forceUpdate } = this.props;
         if (forceUpdate) {

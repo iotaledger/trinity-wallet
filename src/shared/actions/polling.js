@@ -1,63 +1,30 @@
-import each from 'lodash/each';
 import extend from 'lodash/extend';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
-import map from 'lodash/map';
 import some from 'lodash/some';
 import reduce from 'lodash/reduce';
 import unionBy from 'lodash/unionBy';
-import { setPrice, setChartData, setMarketData } from './marketData';
+import assign from 'lodash/assign';
+import { getMarketData } from './marketData';
 import { quorum } from '../libs/iota';
 import { setNodeList, setAutoPromotion } from './settings';
 import { fetchRemoteNodes } from '../libs/iota/utils';
-import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/utils';
-import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
+import { generateAccountInfoErrorAlert, generateAlert, prepareLogUpdate } from './alerts';
 import { constructBundlesFromTransactions, findPromotableTail, isFundedBundle } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { nodesConfigurationFactory, getCustomNodesFromState, getNodesFromState } from '../selectors/global';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import { DEFAULT_NODES } from '../config';
+import { setMeta as setMoonPayMeta } from './exchanges/MoonPay';
+import { __DEV__, DEFAULT_NODES } from '../config';
 import Errors from '../libs/errors';
 import i18next from '../libs/i18next';
 import { Account } from '../storage';
 import { PollingActionTypes } from '../types';
 import NodesManager from '../libs/iota/NodesManager';
-
-/**
- * Dispatch when IOTA price information is about to be fetched
- *
- * @method fetchPriceRequest
- *
- * @returns {{type: {string} }}
- */
-const fetchPriceRequest = () => ({
-    type: PollingActionTypes.FETCH_PRICE_REQUEST,
-});
-
-/**
- * Dispatch when IOTA price information is successfully fetched
- *
- * @method fetchPriceSuccess
- *
- * @returns {{type: {string} }}
- */
-const fetchPriceSuccess = () => ({
-    type: PollingActionTypes.FETCH_PRICE_SUCCESS,
-});
-
-/**
- * Dispatch when an error occurs when fetching IOTA price information
- *
- * @method fetchPriceError
- *
- * @returns {{type: {string} }}
- */
-const fetchPriceError = () => ({
-    type: PollingActionTypes.FETCH_PRICE_ERROR,
-});
+import api, { IOTA_CURRENCY_CODE } from '../exchanges/MoonPay';
 
 /**
  * Dispatch when list of IRI nodes are about to be fetched from a remote server
@@ -90,39 +57,6 @@ const fetchNodeListSuccess = () => ({
  */
 const fetchNodeListError = () => ({
     type: PollingActionTypes.FETCH_NODELIST_ERROR,
-});
-
-/**
- * Dispatch when data points for IOTA time series price information are about to be fetched
- *
- * @method fetchChartDataRequest
- *
- * @returns {{type: {string} }}
- */
-const fetchChartDataRequest = () => ({
-    type: PollingActionTypes.FETCH_CHART_DATA_REQUEST,
-});
-
-/**
- * Dispatch when data points for IOTA time series price information are successfully fetched
- *
- * @method fetchChartDataSuccess
- *
- * @returns {{type: {string} }}
- */
-const fetchChartDataSuccess = () => ({
-    type: PollingActionTypes.FETCH_CHART_DATA_SUCCESS,
-});
-
-/**
- * Dispatch when an error occurs while fetching IOTA time series price information
- *
- * @method fetchChartDataError
- *
- * @returns {{type: {string} }}
- */
-const fetchChartDataError = () => ({
-    type: PollingActionTypes.FETCH_CHART_DATA_ERROR,
 });
 
 /**
@@ -267,6 +201,39 @@ export const syncAccountWhilePolling = (payload) => ({
 });
 
 /**
+ * Dispatch when request for fetching meta is about to be made
+ *
+ * @method fetchMetaRequest
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchMetaRequest = () => ({
+    type: PollingActionTypes.MOONPAY_META_FETCH_REQUEST,
+});
+
+/**
+ * Dispatch when request for fetching meta is successfully made
+ *
+ * @method fetchMetaSuccess
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchMetaSuccess = () => ({
+    type: PollingActionTypes.MOONPAY_META_FETCH_SUCCESS,
+});
+
+/**
+ * Dispatch when request for fetching meta is not successful
+ *
+ * @method fetchMetaError
+ *
+ * @returns {{type: {string} }}
+ */
+export const fetchMetaError = () => ({
+    type: PollingActionTypes.MOONPAY_META_FETCH_ERROR,
+});
+
+/**
  *  Fetch IOTA market information
  *
  *   @method fetchMarketData
@@ -276,48 +243,17 @@ export const syncAccountWhilePolling = (payload) => ({
 export const fetchMarketData = () => {
     return (dispatch) => {
         dispatch(fetchMarketDataRequest());
-        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=MIOTA&tsyms=USD')
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
+        getMarketData(dispatch)
+            .then((successful) => {
+                if (successful) {
+                    dispatch(fetchMarketDataSuccess());
+                } else {
+                    dispatch(fetchMarketDataError());
                 }
-
-                throw response;
             })
-            .then((json) => {
-                dispatch(setMarketData(json));
-                dispatch(fetchMarketDataSuccess());
-            })
-            .catch(() => {
+            .catch((err) => {
                 dispatch(fetchMarketDataError());
-            });
-    };
-};
-
-/**
- *  Fetch IOTA price information
- *
- *   @method fetchPrice
- *
- *   @returns {function} - dispatch
- **/
-export const fetchPrice = () => {
-    return (dispatch) => {
-        dispatch(fetchPriceRequest());
-        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=MIOTA&tsyms=USD,EUR,BTC,ETH')
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-
-                throw response;
-            })
-            .then((json) => {
-                dispatch(setPrice(json));
-                dispatch(fetchPriceSuccess());
-            })
-            .catch(() => {
-                dispatch(fetchPriceError());
+                dispatch(prepareLogUpdate(err));
             });
     };
 };
@@ -356,75 +292,6 @@ export const fetchNodeList = () => {
             .catch(() => {
                 dispatch(fetchNodeListError());
             });
-    };
-};
-
-/**
- * Fetch data points for time series price information
- *
- * @method fetchChartData
- *
- * @returns {function} - dispatch
- */
-export const fetchChartData = () => {
-    return (dispatch) => {
-        dispatch(fetchChartDataRequest());
-
-        const arrayCurrenciesTimeFrames = [];
-        //If you want a new currency just add it in this array, the function will handle the rest.
-        const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
-        const timeframes = ['24h', '7d', '1m', '1h'];
-        const chartData = {};
-
-        each(currencies, (itemCurrency) => {
-            chartData[itemCurrency] = {};
-            each(timeframes, (timeFrameItem) => {
-                arrayCurrenciesTimeFrames.push({ currency: itemCurrency, timeFrame: timeFrameItem });
-            });
-        });
-
-        const urls = [];
-        const grabContent = (url) =>
-            fetch(url).then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-
-                throw response;
-            });
-
-        each(arrayCurrenciesTimeFrames, (currencyTimeFrameArrayItem) => {
-            const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
-                currencyTimeFrameArrayItem.timeFrame,
-            )}?fsym=MIOTA&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat(
-                currencyTimeFrameArrayItem.timeFrame,
-            )}`;
-
-            urls.push(url);
-        });
-
-        Promise.all(map(urls, grabContent))
-            .then((results) => {
-                const chartData = { USD: {}, EUR: {}, BTC: {}, ETH: {} };
-                let actualCurrency = '';
-                let currentTimeFrame = '';
-                let currentCurrency = '';
-
-                each(results, (resultItem, index) => {
-                    currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
-                    currentCurrency = arrayCurrenciesTimeFrames[index].currency;
-                    const formattedData = formatChartData(resultItem, currentTimeFrame);
-
-                    if (actualCurrency !== currentCurrency) {
-                        actualCurrency = currentCurrency;
-                    }
-                    chartData[currentCurrency][currentTimeFrame] = formattedData;
-                });
-
-                dispatch(setChartData(chartData));
-                dispatch(fetchChartDataSuccess());
-            })
-            .catch(() => dispatch(fetchChartDataError()));
     };
 };
 
@@ -569,5 +436,40 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
                 dispatch(setAutoPromotion(false));
             }
             dispatch(promoteTransactionError());
+        });
+};
+
+/**
+ * Fetch customer metadata from MoonPay servers
+ *
+ * @method fetchMeta
+ *
+ * @returns {function}
+ */
+export const fetchMeta = () => (dispatch) => {
+    dispatch(fetchMetaRequest());
+
+    Promise.all([api.getCustomerInfo(), api.fetchMeta(IOTA_CURRENCY_CODE)])
+        .then((response) => {
+            const [customer, meta] = response;
+
+            dispatch(fetchMetaSuccess());
+
+            dispatch(
+                setMoonPayMeta(
+                    assign({}, meta, {
+                        customer,
+                    }),
+                ),
+            );
+        })
+        .catch((error) => {
+            dispatch(fetchMetaError());
+
+            if (__DEV__) {
+                /* eslint-disable no-console */
+                console.log(error);
+                /* eslint-enable no-console */
+            }
         });
 };

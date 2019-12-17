@@ -66,4 +66,8 @@ export default {
     FOUND_INVALID_SEED_IN_KEYCHAIN: 'Found an invalid seed in the keychain.',
     MISSING_FROM_KEYCHAIN: (alias) => `Missing ${alias} from keychain.`,
     EXPORT_CANCELLED: 'Export cancelled',
+    REQUEST_FAILED_WITH: (status) => `Request failed with status ${status}`,
+    MARKET_DATA_FAILURE: 'Could not fetch market data',
+    NO_PAYMENT_CARDS: 'No payment cards',
+    EXPIRED_TIMEOUT: 'Expired timeout.',
 };
