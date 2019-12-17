@@ -40,6 +40,8 @@ export default class AmountInput extends React.PureComponent {
          * @param {string} value - Current amount value
          */
         onChange: PropTypes.func.isRequired,
+        /** Disables text input */
+        disabled: PropTypes.bool,
     };
 
     state = {
@@ -150,11 +152,11 @@ export default class AmountInput extends React.PureComponent {
     };
 
     render() {
-        const { amount, balance, id, settings, label, labelMax } = this.props;
+        const { amount, balance, id, settings, label, labelMax, disabled } = this.props;
         const { value, unit } = this.state;
 
         return (
-            <div className={css.input}>
+            <div className={classNames(css.input, disabled ? css.disabled : null)}>
                 <fieldset>
                     <a>
                         <strong>
@@ -186,7 +188,13 @@ export default class AmountInput extends React.PureComponent {
                         ) : null}
                         {amount > 0 && unit === '$' ? <p>= {formatIotas(amount, false, true)}</p> : null}
                     </a>
-                    <input id={id} type="text" value={value} onChange={(e) => this.onChange(e.target.value)} />
+                    <input
+                        id={id}
+                        type="text"
+                        value={value}
+                        readOnly={disabled}
+                        onChange={(e) => this.onChange(e.target.value)}
+                    />
                     <small>{label}</small>
                 </fieldset>
                 {balance > 0 && (

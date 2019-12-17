@@ -67,4 +67,5 @@ export default {
     MISSING_FROM_KEYCHAIN: (alias) => `Missing ${alias} from keychain.`,
     EXPORT_CANCELLED: 'Export cancelled',
     MARKET_DATA_FAILURE: 'Could not fetch market data',
+    EXPIRED_TIMEOUT: 'Expired timeout.',
 };

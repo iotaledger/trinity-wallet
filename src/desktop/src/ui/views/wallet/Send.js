@@ -1,3 +1,5 @@
+import isUndefined from 'lodash/isUndefined';
+import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
@@ -66,6 +68,14 @@ class Send extends React.PureComponent {
         t: PropTypes.func.isRequired,
         /** @ignore */
         themeName: PropTypes.string.isRequired,
+        /** @ignore */
+        clearCDAContent: PropTypes.func.isRequired,
+        /** @ignore */
+        clearSendFields: PropTypes.func.isRequired,
+        /** @ignore */
+        CDAContent: PropTypes.object.isRequired,
+        /** @ignore */
+        verifyCDAContent: PropTypes.func.isRequired,
     };
 
     state = {
@@ -113,8 +123,23 @@ class Send extends React.PureComponent {
         }
     }
 
+    clearPaymentRequest() {
+        this.props.clearCDAContent();
+        this.props.clearSendFields();
+    }
+
     render() {
-        const { themeName, accountMeta, fields, isSending, availableBalance, settings, progress, t } = this.props;
+        const {
+            CDAContent,
+            themeName,
+            accountMeta,
+            fields,
+            isSending,
+            availableBalance,
+            settings,
+            progress,
+            t,
+        } = this.props;
         const { isTransferModalVisible, isUnitsVisible } = this.state;
 
         const transferContents =
@@ -161,6 +186,8 @@ class Send extends React.PureComponent {
                         }}
                         label={t('send:recipientAddress')}
                         closeLabel={t('back')}
+                        disabled={!isEmpty(CDAContent)}
+                        verifyCDAContent={(data) => this.props.verifyCDAContent(data)}
                     />
                     <AmountInput
                         id="send-amount"
@@ -170,19 +197,27 @@ class Send extends React.PureComponent {
                         labelMax={t('send:max')}
                         balance={availableBalance}
                         onChange={(value) => this.props.setSendAmountField(value)}
+                        disabled={!isUndefined(CDAContent.expectedAmount)}
                     />
                     <TextInput
                         value={isMessageAvailable || parseInt(fields.amount || '0') === 0 ? fields.message : ''}
                         label={t('send:message')}
-                        disabled={!isMessageAvailable && parseInt(fields.amount) > 0}
+                        disabled={
+                            (!isMessageAvailable && parseInt(fields.amount) > 0) || !isUndefined(CDAContent.message)
+                        }
                         onChange={(value) => this.props.setSendMessageField(value)}
                         maxLength={MAX_MESSAGE_LENGTH}
                     />
                     <footer>
                         {!isSending ? (
                             <React.Fragment>
-                                <Button to="/wallet/" variant="secondary" className="outlineSmall">
-                                    {t('close')}
+                                <Button
+                                    onClick={!isEmpty(CDAContent) ? () => this.clearPaymentRequest() : null}
+                                    to="/wallet/"
+                                    variant="secondary"
+                                    className="outlineSmall"
+                                >
+                                    {!isEmpty(CDAContent) ? t('clear') : t('close')}
                                 </Button>
 
                                 <Button id="send-transaction" type="submit" className="small" variant="primary">
