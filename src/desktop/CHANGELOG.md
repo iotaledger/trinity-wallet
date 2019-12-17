@@ -1,10 +1,17 @@
+### 1.2.0
+
+- New: Add the ability to purchase IOTA in app through MoonPay
+- Fix: Resolve issues with market data
+- Update: Parse payment requests (CDAs) when pasted via url or scanned via QR
+- Update: Persist chart settings
+
 ### 1.1.0
 
 -   New: Basic auth for custom nodes (#2088)
 -   New: Add ability to set a specific node for Proof of Work (#2130)
 -   Update: Enable Hardened Runtime and Notarisation on macOS (#1931)
 -   Update: Improved Dark theme (#2035) by @MatthewScheuerman
--   Update: Localise balance depending on language and currency (#1951) 
+-   Update: Localise balance depending on language and currency (#1951)
 -   Update: Revise node settings layout and relocate PoW setting (#2130)
 -   Fix: Change password not working when user has only Ledger accounts (#1910)
 -   Fix: Inability to add Ledger accounts with index over 999 (#1875)
@@ -14,8 +21,8 @@
 -   Fix: Mac tray app showing zero fiat balance (#1970)
 -   Fix: Snapshot transition failure (#2042)
 -   Fix: Various issues with light theme, dark theme, and all theme text inputs (#2114)
--   Fix: Trinity docs link returning 404 (#2092) by @CrashTD 
--   Issues closed: #272, #685, #1009, #1876, #1914, #1930, #1959, #1967 
+-   Fix: Trinity docs link returning 404 (#2092) by @CrashTD
+-   Issues closed: #272, #685, #1009, #1876, #1914, #1930, #1959, #1967
 
 ### 1.0.0
 
