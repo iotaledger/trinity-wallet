@@ -1,7 +1,7 @@
 {
     "global": {
         "address": "Adres",
-        "and": "oraz",
+        "and": "i",
         "send": "WYŚLIJ",
         "cancel": "Anuluj",
         "complete": "Zakończono",
@@ -263,7 +263,7 @@
         "checkInbox": "Sprawdź swoją skrzynkę mailową, aby zweryfikować swój adres e-mail",
         "verificationCodeSent": "Wysłaliśmy kod weryfikacyjny na adres {{email}}.",
         "verificationCode": "KOD WERYFIKACYJNY",
-        "agreeWithMoonPay": "MoonPay: Zgadzam się z",
+        "agreeWithMoonPay": "MoonPay: Akceptuję",
         "termsOfUse": "Warunki użytkowania",
         "tellUsAbout": "Powiedz coś o sobie",
         "tellUsMore": "Powiedz nam coś jeszcze",
