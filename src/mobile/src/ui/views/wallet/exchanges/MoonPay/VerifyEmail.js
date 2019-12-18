@@ -67,6 +67,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        width
+    },
+    checkboxTextContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        width: width / 1.2
     },
     checkbox: {
         width: width / 22,
@@ -273,7 +281,7 @@ class VerifyEmail extends React.Component {
                                 >
                                     <Image source={this.state.checkboxImage} style={styles.checkbox} />
                                 </TouchableOpacity>
-                                <View style={styles.checkboxContainer}>
+                                <View style={styles.checkboxTextContainer}>
                                     <Text style={[styles.checkboxText, textColor]}>
                                         {t('moonpay:agreeWithMoonPay')}{' '}
                                     </Text>

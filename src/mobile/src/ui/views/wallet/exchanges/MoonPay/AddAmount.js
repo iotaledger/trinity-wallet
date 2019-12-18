@@ -84,6 +84,11 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
     },
+    warningContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: width / 1.2,
+    },
     summaryRowContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -516,9 +521,9 @@ class AddAmount extends Component {
                                 value={amount}
                             />
                             <View
-                                style={[styles.summaryRowContainer, { paddingTop: height / 90, height: height / 25 }]}
+                                style={[styles.warningContainer, { paddingTop: height / 90, height: height / 15 }]}
                             >
-                                <Text style={[styles.infoTextRegular, { color: theme.negative.color }]}>
+                                <Text style={[styles.infoTextRegular, { flexWrap: 'wrap', color: theme.negative.color }]}>
                                     {this.getWarningText()}
                                 </Text>
                             </View>
