@@ -141,7 +141,7 @@ export default class PurchaseRow extends PureComponent {
                                 <View style={styles.topWrapper}>
                                     <Text style={[styles.statusText, { color: status === 'failed' ? style.failedColor : style.titleColor }]}>{statusText}</Text>
                                     <Text style={[styles.confirmationStatus, { color: style.titleColor }]}>
-                                        {value} {unit}
+                                        {value > 0 && `${value} ${unit}`}
                                     </Text>
                                 </View>
                                 <View style={styles.bottomWrapper}>

@@ -17,7 +17,6 @@ import { withTranslation } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { computeStatusText, formatRelevantTransactions } from 'shared-modules/libs/iota/transfers';
 import { promoteTransaction, retryFailedTransaction } from 'shared-modules/actions/transfers';
-import { convertFiatToMiota } from 'shared-modules/exchanges/MoonPay/utils';
 import {
     getTransactionsForSelectedAccount,
     getSelectedAccountName,
@@ -166,8 +165,6 @@ class History extends Component {
         modalContent: PropTypes.string,
         /** @ignore */
         password: PropTypes.object.isRequired,
-        /** @ignore */
-        exchangeRates: PropTypes.object.isRequired,
         /** @ignore */
         moonpayPurchases: PropTypes.array.isRequired,
         /** @ignore */
@@ -362,7 +359,6 @@ class History extends Component {
             moonpayPurchases,
             theme: { primary, body, dark, negative },
             t,
-            exchangeRates,
         } = this.props;
 
         const formattedTransfers = map(moonpayPurchases, (purchase) => {
@@ -379,11 +375,8 @@ class History extends Component {
                 redirectUrl,
             } = purchase;
 
-            const amount =
-                quoteCurrencyAmount ||
-                // quoteCurrencyAmount is set to null for failed transactions,
-                // Hence compute it locally
-                convertFiatToMiota(baseCurrencyAmount, currencyCode, exchangeRates);
+            const amount = quoteCurrencyAmount || 0;
+
 
             return {
                 time: createdAt,
@@ -393,7 +386,7 @@ class History extends Component {
                 fee: feeAmount,
                 currencyCode,
                 t,
-                value: round(formatValue(amount), 1),
+                value: round(formatValue(amount), 2),
                 fullValue: formatValue(amount),
                 fiatValue: baseCurrencyAmount,
                 failureReason,
@@ -602,7 +595,6 @@ const mapStateToProps = (state) => ({
     moonpayPurchases: getAllTransactions(state),
     isViewingMoonpayPurchases: state.ui.isViewingMoonpayPurchases,
     isAuthenticatedForMoonPay: state.exchanges.moonpay.isAuthenticated,
-    exchangeRates: state.exchanges.moonpay.exchangeRates,
 });
 
 const mapDispatchToProps = {

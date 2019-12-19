@@ -254,7 +254,7 @@ export default class PurchaseDetailsModal extends PureComponent {
                     <View style={styles.wrapper}>
                         <View style={styles.header}>
                             <Text style={[styles.headerText, { color: style.titleColor }]}>
-                                {t('moonpay:purchase')} {value} {unit}
+                                {t('moonpay:purchase')} { value > 0 && `${value} ${unit}`}
                             </Text>
                         </View>
                         <Text style={[styles.timestamp, style.defaultTextColor]}>
