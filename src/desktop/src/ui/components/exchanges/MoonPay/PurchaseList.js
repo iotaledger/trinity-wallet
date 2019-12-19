@@ -99,11 +99,7 @@ export class PurchaseListComponent extends React.PureComponent {
 
         const filters = Object.keys(totals);
 
-        const _getAmount = (purchase) =>
-            purchase.quoteCurrencyAmount ||
-            // quoteCurrencyAmount is set to null for failed transactions,
-            // Hence compute it locally
-            convertFiatToMiota(purchase.baseCurrencyAmount, purchase.currencyCode, exchangeRates);
+        const _getAmount = (purchase) => purchase.quoteCurrencyAmount || 0;
 
         const filteredPurchases = orderBy(purchaseHistory, 'createdAt', ['desc']).filter((purchase) => {
             const amount = _getAmount(purchase);
@@ -230,7 +226,7 @@ export class PurchaseListComponent extends React.PureComponent {
                                             </span>
                                             <span>{t(`moonpay:${purchase.status}`)}</span>
                                             <span>
-                                                {round(formatValue(amount), 1)} {SHORT_IOTA_CURRENCY_CODE}
+                                                {amount > 0 && `${round(formatValue(amount), 1)} ${SHORT_IOTA_CURRENCY_CODE}`}
                                             </span>
                                         </div>
                                     </a>
@@ -256,8 +252,7 @@ export class PurchaseListComponent extends React.PureComponent {
                                     <strong>
                                         {t('moonpay:purchase')}{' '}
                                         <span>
-                                            {round(formatValue(_getAmount(activePurchase)), 1)}{' '}
-                                            {SHORT_IOTA_CURRENCY_CODE}
+                                            {_getAmount(activePurchase) > 0 && `${round(formatValue(_getAmount(activePurchase)), 2)} ${SHORT_IOTA_CURRENCY_CODE}`}
                                         </span>
                                     </strong>
                                     <small>
