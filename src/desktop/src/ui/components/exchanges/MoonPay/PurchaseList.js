@@ -8,6 +8,7 @@ import { withTranslation } from 'react-i18next';
 import { round } from 'libs/utils';
 import { formatValue, unitStringToValue } from 'libs/iota/utils';
 import { formatModalTime, formatTime, detectedTimezone } from 'libs/date';
+/* eslint-disable no-unused-vars */
 import { getPurchaseFailureReason, convertFiatToMiota } from 'exchanges/MoonPay/utils';
 import { MOONPAY_TRANSACTION_STATUSES, SHORT_IOTA_CURRENCY_CODE } from 'exchanges/MoonPay';
 import { getCurrencySymbol } from 'libs/currency';
@@ -226,7 +227,8 @@ export class PurchaseListComponent extends React.PureComponent {
                                             </span>
                                             <span>{t(`moonpay:${purchase.status}`)}</span>
                                             <span>
-                                                {amount > 0 && `${round(formatValue(amount), 1)} ${SHORT_IOTA_CURRENCY_CODE}`}
+                                                {amount > 0 &&
+                                                    `${round(formatValue(amount), 1)} ${SHORT_IOTA_CURRENCY_CODE}`}
                                             </span>
                                         </div>
                                     </a>
@@ -252,7 +254,11 @@ export class PurchaseListComponent extends React.PureComponent {
                                     <strong>
                                         {t('moonpay:purchase')}{' '}
                                         <span>
-                                            {_getAmount(activePurchase) > 0 && `${round(formatValue(_getAmount(activePurchase)), 2)} ${SHORT_IOTA_CURRENCY_CODE}`}
+                                            {_getAmount(activePurchase) > 0 &&
+                                                `${round(
+                                                    formatValue(_getAmount(activePurchase)),
+                                                    2,
+                                                )} ${SHORT_IOTA_CURRENCY_CODE}`}
                                         </span>
                                     </strong>
                                     <small>

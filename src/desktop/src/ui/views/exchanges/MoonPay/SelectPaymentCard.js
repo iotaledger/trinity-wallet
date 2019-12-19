@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 
-import { removeActiveTokenId, selectPaymentCard } from 'actions/exchanges/MoonPay';
+import { removeActiveToken, selectPaymentCard } from 'actions/exchanges/MoonPay';
 import { getCustomerPaymentCards, getSelectedPaymentCard } from 'selectors/exchanges/MoonPay';
 
 import Button from 'ui/components/Button';
@@ -30,7 +30,7 @@ class SelectPaymentCard extends React.PureComponent {
         /** @ignore */
         selectPaymentCard: PropTypes.func.isRequired,
         /** @ignore */
-        removeActiveTokenId: PropTypes.func.isRequired,
+        removeActiveToken: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -58,7 +58,7 @@ class SelectPaymentCard extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.props.removeActiveTokenId();
+        this.props.removeActiveToken();
     }
 
     /**
@@ -205,7 +205,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     selectPaymentCard,
-    removeActiveTokenId,
+    removeActiveToken,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(SelectPaymentCard));

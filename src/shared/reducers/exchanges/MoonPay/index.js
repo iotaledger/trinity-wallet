@@ -374,7 +374,7 @@ export default (state = initialState, action) => {
         case MoonPayExchangeActionTypes.REMOVE_ACTIVE_TOKEN_ID:
             return {
                 ...state,
-                customer: omit(state.customer, 'tokenId'),
+                customer: omit(state.customer, 'token'),
             };
         case MoonPayExchangeActionTypes.CLEAR_DATA:
             return initialState;

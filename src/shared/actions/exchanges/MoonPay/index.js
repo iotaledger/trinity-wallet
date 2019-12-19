@@ -16,7 +16,7 @@ import {
     getSelectedPaymentCard,
     getCustomerCountryCode,
     getCustomerStateCode,
-    getActiveTokenId,
+    getActiveToken,
 } from '../../../selectors/exchanges/MoonPay';
 import { __DEV__ } from '../../../config';
 import i18next from '../../../libs/i18next';
@@ -555,14 +555,14 @@ export const fetchMetaError = () => ({
 });
 
 /**
- * Dispatch to remove active tokenId from store
+ * Dispatch to remove active token from store
  *
- * @method removeActiveTokenId
+ * @method removeActiveToken
  *
  * @returns {{type: {string} }}
  */
-export const removeActiveTokenId = () => ({
-    type: MoonPayExchangeActionTypes.REMOVE_ACTIVE_TOKEN_ID,
+export const removeActiveToken = () => ({
+    type: MoonPayExchangeActionTypes.REMOVE_ACTIVE_TOKEN,
 });
 
 /**
@@ -769,7 +769,7 @@ export const createTransaction = (
 ) => (dispatch, getState) => {
     dispatch(createTransactionRequest());
 
-    const tokenId = getActiveTokenId(getState());
+    const token = getActiveToken(getState());
 
     api.createTransaction({
         baseCurrencyAmount,
@@ -778,8 +778,8 @@ export const createTransaction = (
         extraFeePercentage,
         returnUrl,
         currencyCode: IOTA_CURRENCY_CODE,
-        ...(tokenId
-            ? { tokenId }
+        ...(token
+            ? { tokenId: get(token, 'id') }
             : {
                   cardId: get(getSelectedPaymentCard(getState()), 'id'),
               }),

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 
 import { generateAlert } from 'actions/alerts';
-import { createPaymentCard, updateCustomerInfo } from 'actions/exchanges/MoonPay';
+import { removeActiveToken, createPaymentCard, updateCustomerInfo } from 'actions/exchanges/MoonPay';
 import { getThemeFromState } from 'selectors/global';
 import { API_KEY } from 'exchanges/MoonPay';
 import { getCustomerAddress, getCustomerPaymentCards, getCustomerId } from 'selectors/exchanges/MoonPay';
@@ -44,6 +44,8 @@ class AddPaymentMethod extends React.PureComponent {
         createPaymentCard: PropTypes.func.isRequired,
         /** @ignore */
         updateCustomerInfo: PropTypes.func.isRequired,
+        /** @ignore */
+        removeActiveToken: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -65,6 +67,8 @@ class AddPaymentMethod extends React.PureComponent {
 
     componentDidMount() {
         const { theme, customerId } = this.props;
+
+        this.props.removeActiveToken();
 
         window.moonpay.initialize(API_KEY, customerId);
         window.moonpay.trackPageView();
@@ -288,6 +292,7 @@ const mapDispatchToProps = {
     generateAlert,
     createPaymentCard,
     updateCustomerInfo,
+    removeActiveToken,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AddPaymentMethod));
