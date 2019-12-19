@@ -6,10 +6,10 @@ import classNames from 'classnames';
 import { withTranslation } from 'react-i18next';
 
 import { round } from 'libs/utils';
-import { formatValue, unitStringToValue } from 'libs/iota/utils';
+import { formatValue, formatUnit, unitStringToValue } from 'libs/iota/utils';
 import { formatModalTime, formatTime, detectedTimezone } from 'libs/date';
-import { getPurchaseFailureReason, convertFiatToMiota } from 'exchanges/MoonPay/utils';
-import { MOONPAY_TRANSACTION_STATUSES, SHORT_IOTA_CURRENCY_CODE } from 'exchanges/MoonPay';
+import { getPurchaseFailureReason } from 'exchanges/MoonPay/utils';
+import { MOONPAY_TRANSACTION_STATUSES } from 'exchanges/MoonPay';
 import { getCurrencySymbol } from 'libs/currency';
 
 import Clipboard from 'ui/components/Clipboard';
@@ -32,8 +32,6 @@ export class PurchaseListComponent extends React.PureComponent {
         isLoading: PropTypes.bool.isRequired,
         /** Purchase history */
         purchaseHistory: PropTypes.array.isRequired,
-        /** @ignore */
-        exchangeRates: PropTypes.object.isRequired,
         /** Set active history item */
         setItem: PropTypes.func.isRequired,
         /** Current active history item */
@@ -78,7 +76,6 @@ export class PurchaseListComponent extends React.PureComponent {
 
     render() {
         const {
-            exchangeRates,
             isLoading,
             isBusy,
             purchaseHistory,
@@ -99,7 +96,7 @@ export class PurchaseListComponent extends React.PureComponent {
 
         const filters = Object.keys(totals);
 
-        const _getAmount = (purchase) => purchase.quoteCurrencyAmount || 0;
+        const _getAmount = (purchase) => purchase.quoteCurrencyAmount * 1000000 || 0;
 
         const filteredPurchases = orderBy(purchaseHistory, 'createdAt', ['desc']).filter((purchase) => {
             const amount = _getAmount(purchase);
@@ -226,7 +223,7 @@ export class PurchaseListComponent extends React.PureComponent {
                                             </span>
                                             <span>{t(`moonpay:${purchase.status}`)}</span>
                                             <span>
-                                                {amount > 0 && `${round(formatValue(amount), 1)} ${SHORT_IOTA_CURRENCY_CODE}`}
+                                                {amount > 0 && `${round(formatValue(amount), 1)} ${formatUnit(amount)}`}
                                             </span>
                                         </div>
                                     </a>
@@ -252,7 +249,7 @@ export class PurchaseListComponent extends React.PureComponent {
                                     <strong>
                                         {t('moonpay:purchase')}{' '}
                                         <span>
-                                            {_getAmount(activePurchase) > 0 && `${round(formatValue(_getAmount(activePurchase)), 2)} ${SHORT_IOTA_CURRENCY_CODE}`}
+                                            {_getAmount(activePurchase) > 0 && `${round(formatValue(_getAmount(activePurchase)), 2)} ${formatUnit(_getAmount(activePurchase))}`}
                                         </span>
                                     </strong>
                                     <small>

@@ -23,7 +23,7 @@ import {
     getSelectedAccountMeta,
     getAddressesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
-import { MOONPAY_TRANSACTION_STATUSES, SHORT_IOTA_CURRENCY_CODE } from 'shared-modules/exchanges/MoonPay';
+import { MOONPAY_TRANSACTION_STATUSES } from 'shared-modules/exchanges/MoonPay';
 import { updateTransactionDetails as updateMoonPayTransactionDetails } from 'shared-modules/actions/exchanges/MoonPay';
 import { getAllTransactions } from 'shared-modules/selectors/exchanges/MoonPay';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -375,7 +375,7 @@ class History extends Component {
                 redirectUrl,
             } = purchase;
 
-            const amount = quoteCurrencyAmount || 0;
+            const amount = quoteCurrencyAmount * 1000000 || 0;
 
 
             return {
@@ -390,7 +390,7 @@ class History extends Component {
                 fullValue: formatValue(amount),
                 fiatValue: baseCurrencyAmount,
                 failureReason,
-                unit: SHORT_IOTA_CURRENCY_CODE,
+                unit: formatUnit(amount),
                 onPress: (props) => {
                     this.props.toggleModalActivity(
                         'moonpayPurchaseDetails',
