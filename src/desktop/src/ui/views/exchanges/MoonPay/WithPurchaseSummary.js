@@ -18,7 +18,7 @@ import {
     getPaymentCardLastDigits,
     getActiveTransaction,
 } from 'selectors/exchanges/MoonPay';
-import { createTransaction } from 'actions/exchanges/MoonPay';
+import { createTransaction, removeActiveTokenId } from 'actions/exchanges/MoonPay';
 import { generateAlert } from 'actions/alerts';
 import { getCurrencySymbol } from 'libs/currency';
 import { ALLOWED_IOTA_DENOMINATIONS } from 'exchanges/MoonPay';
@@ -76,6 +76,8 @@ export default function withPurchaseSummary(WrappedComponent) {
             activeTransaction: PropTypes.object,
             /** @ignore */
             generateAlert: PropTypes.func.isRequired,
+            /** @ignore */
+            removeActiveTokenId: PropTypes.func.isRequired,
             /** @ignore */
             t: PropTypes.func.isRequired,
         };
@@ -202,6 +204,7 @@ export default function withPurchaseSummary(WrappedComponent) {
                     isFetchingTransactionDetails={isFetchingTransactionDetails}
                     hasErrorFetchingTransactionDetails={hasErrorFetchingTransactionDetails}
                     generateAlert={generateAlert}
+                    removeActiveTokenId={this.props.removeActiveTokenId}
                 >
                     <div className={css.summary}>
                         <div>
@@ -282,10 +285,8 @@ export default function withPurchaseSummary(WrappedComponent) {
     const mapDispatchToProps = {
         createTransaction,
         generateAlert,
+        removeActiveTokenId,
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(withTranslation()(PurchaseSummary));
+    return connect(mapStateToProps, mapDispatchToProps)(withTranslation()(PurchaseSummary));
 }

@@ -29,6 +29,8 @@ class ReviewPurchase extends React.PureComponent {
         /** @ignore */
         createTransaction: PropTypes.func.isRequired,
         /** @ignore */
+        removeActiveTokenId: PropTypes.func.isRequired,
+        /** @ignore */
         activeTransaction: PropTypes.object,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -50,6 +52,9 @@ class ReviewPurchase extends React.PureComponent {
             !nextProps.isCreatingTransaction &&
             !nextProps.hasErrorCreatingTransaction
         ) {
+            // Once transaction is successful, remove the active tokenId from store
+            this.props.removeActiveTokenId();
+
             const { activeTransaction } = nextProps;
 
             // See https://www.moonpay.io/api_reference/v3#three_d_secure

@@ -393,7 +393,8 @@
         "refund": "Your payment was refunded.",
         "idRejection": "Your identity check was rejected.",
         "cardNotSupported": "Your card is not supported. Please try again with a different card.",
-        "cancelled": "The payment was cancelled."
+        "cancelled": "The payment was cancelled.",
+        "storeCardDetails": "Store card details in MoonPay for faster checkout."
     },
     "home": {
         "balance": "BALANCE",

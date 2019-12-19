@@ -353,6 +353,21 @@ export const getSelectedPaymentCard = createSelector(getExchangesFromState, (exc
 });
 
 /**
+ * Gets active token id
+ *
+ * @method getActiveTokenId
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getActiveTokenId = createSelector(getExchangesFromState, (exchanges) => {
+    const customer = exchanges.moonpay.customer;
+
+    return get(customer, 'tokenId');
+});
+
+/**
  * Gets customer payment cards
  *
  * @method getCustomerPaymentCards
