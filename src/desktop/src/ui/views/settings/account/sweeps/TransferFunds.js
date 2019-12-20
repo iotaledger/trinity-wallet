@@ -130,15 +130,15 @@ class TransferFunds extends React.PureComponent {
      * @returns {string}
      */
     getSweepStatus(hasFailed, isInProgress) {
-        const { activeSteps, activeStepIndex } = this.props;
+        const { activeSteps, activeStepIndex, t } = this.props;
 
         if (hasFailed) {
-            return 'Failed';
+            return t('global:failed');
         } else if (isInProgress) {
             return activeSteps[activeStepIndex];
         }
 
-        return 'Completed';
+        return t('global:complete');
     }
 
     /**
@@ -271,7 +271,11 @@ class TransferFunds extends React.PureComponent {
                                             style={{
                                                 marginRight: '40px',
                                             }}
-                                        >{`Sweep ${index + 1} of ${spentAddressData.length}`}</strong>
+                                        >
+                                            {`${t('sweeps:sweep')} ${index + 1} ${t('global:of')} ${
+                                                spentAddressData.length
+                                            }`}
+                                        </strong>
                                         {has(sweepsStatuses, object.address) && (
                                             <span
                                                 style={{
@@ -284,7 +288,7 @@ class TransferFunds extends React.PureComponent {
                                                     <Progress progress={this.getProgress(hasFailed, hasCompleted)} />
                                                     {get(sweepsStatuses[object.address], 'status') === 0 && (
                                                         <strong>
-                                                            Time elapsed:{' '}
+                                                            {t('global:timeElapsed')}:{' '}
                                                             {this.state.timeElapsed[object.address] ||
                                                                 this.getTimeElapsed(initialisationTime)}
                                                         </strong>
@@ -307,11 +311,11 @@ class TransferFunds extends React.PureComponent {
                                             <strong>
                                                 {formatIotas(object.balance)} {formatUnit(object.balance)}{' '}
                                             </strong>{' '}
-                                            from the locked address{' '}
+                                            {t('sweeps:fromLockedAddress')}{' '}
                                             <strong title={object.inputAddress}>
                                                 {object.address.slice(0, 9)} ... {object.address.slice(-3)}
                                             </strong>{' '}
-                                            to the safe address{' '}
+                                            {t('sweeps:toSafeAddress')}{' '}
                                             <strong title={object.outputAddress}>
                                                 {latestAddress.slice(0, 9)} ... {latestAddress.slice(-3)}
                                             </strong>

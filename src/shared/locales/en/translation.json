@@ -5,6 +5,7 @@
         "and": "and",
         "send": "SEND",
         "cancel": "Cancel",
+        "failed": "Failed",
         "complete": "Complete",
         "continue?": "Are you sure you want to continue?",
         "noTransactions": "NO RECENT HISTORY",
@@ -58,6 +59,7 @@
         "share": "Share",
         "proceed": "Proceed",
         "qr": "QR",
+        "of": "of",
         "enterSeed": "Please enter your seed.",
         "yes": "Yes",
         "no": "No",
@@ -183,7 +185,8 @@
         "success": "Success",
         "total": "Total",
         "submit": "Submit",
-        "tryAgain": "Try again"
+        "tryAgain": "Try again",
+        "timeElapsed": "Time elapsed"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -613,8 +616,10 @@
         "transferYourFundsExplanation": "Trinity will attempt to recover your funds by moving them to a new address, but it may take some time. Press continue to commence the sweep.",
         "doNotCloseTrinity": "Do not close Trinity or turn off your computer during this process.",
         "fundsUnlockedExplanation": "Your funds have been successfully unlocked. Promote the transactions to help them confirm.",
-        "tryAgain": "Try again"
-
+        "tryAgain": "Try again",
+        "sweep": "Sweep",
+        "fromLockedAddress": "from the locked address",
+        "toSafeAddress": "to the safe address"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
