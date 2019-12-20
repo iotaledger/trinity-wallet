@@ -7,12 +7,13 @@ import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 
 import { generateAlert } from 'actions/alerts';
-import { createPaymentCard } from 'actions/exchanges/MoonPay';
+import { removeActiveToken, createPaymentCard, updateCustomerInfo } from 'actions/exchanges/MoonPay';
 import { getThemeFromState } from 'selectors/global';
 import { API_KEY } from 'exchanges/MoonPay';
 import { getCustomerAddress, getCustomerPaymentCards, getCustomerId } from 'selectors/exchanges/MoonPay';
 
 import Button from 'ui/components/Button';
+import Checkbox from 'ui/components/Checkbox';
 
 import css from './index.scss';
 
@@ -41,6 +42,10 @@ class AddPaymentMethod extends React.PureComponent {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         createPaymentCard: PropTypes.func.isRequired,
+        /** @ignore */
+        updateCustomerInfo: PropTypes.func.isRequired,
+        /** @ignore */
+        removeActiveToken: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -53,11 +58,17 @@ class AddPaymentMethod extends React.PureComponent {
              * Determines if a network call is in progress for token creation
              */
             isCreatingToken: false,
+            /**
+             * Determines if a user wants his/her card details stored on MoonPay servers
+             */
+            shouldStoreCardDetails: false,
         };
     }
 
     componentDidMount() {
         const { theme, customerId } = this.props;
+
+        this.props.removeActiveToken();
 
         window.moonpay.initialize(API_KEY, customerId);
         window.moonpay.trackPageView();
@@ -137,6 +148,7 @@ class AddPaymentMethod extends React.PureComponent {
         event.preventDefault();
 
         const { address, paymentCards, t } = this.props;
+        const { shouldStoreCardDetails } = this.state;
 
         if (this.isFormValid()) {
             this.setState({ isCreatingToken: true });
@@ -161,7 +173,14 @@ class AddPaymentMethod extends React.PureComponent {
                                 t('moonpay:duplicateCardExplanation'),
                             );
                         } else {
-                            this.props.createPaymentCard(get(response, 'id'));
+                            const tokenId = get(response, 'id');
+
+                            if (shouldStoreCardDetails) {
+                                this.props.createPaymentCard(tokenId);
+                            } else {
+                                this.props.updateCustomerInfo({ tokenId });
+                                this.props.history.push('/exchanges/moonpay/review-purchase');
+                            }
                         }
                     } else {
                         this.props.generateAlert(
@@ -201,7 +220,7 @@ class AddPaymentMethod extends React.PureComponent {
 
     render() {
         const { isCreatingPaymentCard, t } = this.props;
-        const { isCreatingToken } = this.state;
+        const { isCreatingToken, shouldStoreCardDetails } = this.state;
 
         return (
             <form onSubmit={this.handleSubmit}>
@@ -221,6 +240,16 @@ class AddPaymentMethod extends React.PureComponent {
                     <div className={css.input}>
                         <small>{t('moonpay:expirationDate')}</small>
                         <span id="cc-expiration-date" />
+                    </div>
+                    <div className={css.agreement}>
+                        <Checkbox
+                            checked={shouldStoreCardDetails}
+                            className="small"
+                            onChange={(value) => this.setState({ shouldStoreCardDetails: value })}
+                        />
+                        <span onClick={() => this.setState({ shouldStoreCardDetails: !shouldStoreCardDetails })}>
+                            {t('moonpay:storeCardDetails')}
+                        </span>
                     </div>
                 </section>
                 <footer className={css.choiceDefault}>
@@ -262,6 +291,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     createPaymentCard,
+    updateCustomerInfo,
+    removeActiveToken,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AddPaymentMethod));

@@ -284,8 +284,5 @@ export default function withPurchaseSummary(WrappedComponent) {
         generateAlert,
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(withTranslation()(PurchaseSummary));
+    return connect(mapStateToProps, mapDispatchToProps)(withTranslation()(PurchaseSummary));
 }

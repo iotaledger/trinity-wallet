@@ -353,6 +353,21 @@ export const getSelectedPaymentCard = createSelector(getExchangesFromState, (exc
 });
 
 /**
+ * Gets active token
+ *
+ * @method getActiveToken
+ *
+ * @param {object} state
+ *
+ * @returns {string}
+ */
+export const getActiveToken = createSelector(getExchangesFromState, (exchanges) => {
+    const customer = exchanges.moonpay.customer;
+
+    return get(customer, 'token');
+});
+
+/**
  * Gets customer payment cards
  *
  * @method getCustomerPaymentCards
@@ -379,9 +394,15 @@ export const getCustomerPaymentCards = createSelector(getExchangesFromState, (ex
  *
  * @returns {string}
  */
-export const getPaymentCardExpiryInfo = createSelector(getSelectedPaymentCard, (paymentCard) => {
-    return `${get(paymentCard, 'expiryMonth')}/${get(paymentCard, 'expiryYear')}`;
-});
+export const getPaymentCardExpiryInfo = createSelector(
+    getActiveToken,
+    getSelectedPaymentCard,
+    (activeToken, paymentCard) => {
+        const info = activeToken || paymentCard;
+
+        return `${get(info, 'expiryMonth')}/${get(info, 'expiryYear')}`;
+    },
+);
 
 /**
  * Gets payment card brand e.g., Visa
@@ -392,9 +413,15 @@ export const getPaymentCardExpiryInfo = createSelector(getSelectedPaymentCard, (
  *
  * @returns {string}
  */
-export const getPaymentCardBrand = createSelector(getSelectedPaymentCard, (paymentCard) => {
-    return get(paymentCard, 'brand');
-});
+export const getPaymentCardBrand = createSelector(
+    getActiveToken,
+    getSelectedPaymentCard,
+    (activeToken, paymentCard) => {
+        const info = activeToken || paymentCard;
+
+        return get(info, 'brand');
+    },
+);
 
 /**
  * Gets payment card last digits
@@ -405,9 +432,15 @@ export const getPaymentCardBrand = createSelector(getSelectedPaymentCard, (payme
  *
  * @returns {string}
  */
-export const getPaymentCardLastDigits = createSelector(getSelectedPaymentCard, (paymentCard) => {
-    return get(paymentCard, 'lastDigits');
-});
+export const getPaymentCardLastDigits = createSelector(
+    getActiveToken,
+    getSelectedPaymentCard,
+    (activeToken, paymentCard) => {
+        const info = activeToken || paymentCard;
+
+        return get(info, 'lastDigits');
+    },
+);
 
 /**
  * Determines if user IP address is allowed

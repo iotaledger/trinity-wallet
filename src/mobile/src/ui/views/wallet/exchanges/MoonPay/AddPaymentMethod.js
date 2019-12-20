@@ -7,7 +7,7 @@ import navigator from 'libs/navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { WebView } from 'react-native-webview';
-import { createPaymentCard } from 'shared-modules/actions/exchanges/MoonPay';
+import { createPaymentCard, removeActiveToken, updateCustomerInfo } from 'shared-modules/actions/exchanges/MoonPay';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { API_KEY } from 'shared-modules/exchanges/MoonPay';
@@ -40,7 +40,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 
     <style>
     body {
@@ -209,6 +209,31 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
         align-items: flex-end;
         align-content: flex-end;
       }
+
+      .checkbox-wrapper {
+        margin-right: ${width / 40}px;
+      }
+
+      .checkbox-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: ${height / 50}px;
+        margin-left: ${width / 15}px;
+        margin-right: ${width / 15}px;
+      }
+
+      .checkbox-text {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
+        font-size: ${Styling.fontSize2}px;
+        color: ${theme.body.color};
+      }
+
+      .checkbox {
+        color: ${theme.isDark ? '#fff' : '#000'};
+      }
+
     </style>
   </head>
   <body>
@@ -252,6 +277,12 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
             </span>
         </div>
 
+        <div class="checkbox-container">
+          <span class="checkbox-wrapper" onclick="handleCheckbox()">
+            <i class="far fa-square fa-lg checkbox"></i>
+          </span>
+          <span class="checkbox-text" onclick="handleCheckbox()">${t('moonpay:storeCardDetails')}</span>
+      </div>
     </div>
 
     <div class="bottom-container">
@@ -271,9 +302,18 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
     }));
   }
 
+  function handleCheckbox() {
+    document.getElementsByClassName('checkbox-wrapper')[0].innerHTML = !shouldStoreCardDetails ? 
+    '<i class="far fa-check-square fa-lg checkbox"></i>' : '<i class="far fa-square fa-lg checkbox"></i>';
+
+    shouldStoreCardDetails = !shouldStoreCardDetails;
+  }
+
     moonpay.initialize("${API_KEY}", "${customerId}");
 
     moonpay.trackPageView();
+
+    var shouldStoreCardDetails = false;
 
     var isFormValid = false;
     var formState = {};
@@ -358,6 +398,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
                         JSON.stringify({
                             type: 'success',
                             data: data,
+                            shouldStoreCardDetails: shouldStoreCardDetails
                         }),
                     );
                 } else {
@@ -413,6 +454,10 @@ class AddPaymentMethod extends PureComponent {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         createPaymentCard: PropTypes.func.isRequired,
+        /** @ignore */
+        removeActiveToken: PropTypes.func.isRequired,
+        /** @ignore */
+        updateCustomerInfo: PropTypes.func.isRequired,
         /** Component ID */
         componentId: PropTypes.string.isRequired,
         /** @ignore */
@@ -441,6 +486,8 @@ class AddPaymentMethod extends PureComponent {
     componentDidMount() {
         this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
         this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
+
+        this.props.removeActiveToken();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -547,7 +594,15 @@ class AddPaymentMethod extends PureComponent {
                 this.webView.injectJavaScript(this.getJavaScriptToInject().buttons());
                 this.props.generateAlert('error', t('moonpay:duplicateCard'), t('moonpay:duplicateCardExplanation'));
             } else {
-                this.props.createPaymentCard(get(message, 'data.id'));
+                const token = get(message, 'data');
+
+                if (get(message, 'shouldStoreCardDetails') === true) {
+                    this.props.createPaymentCard(token.id);
+                } else {
+                    this.props.updateCustomerInfo({ token });
+                    this.redirectToScreen('reviewPurchase');
+                    this.webView.injectJavaScript(this.getJavaScriptToInject().buttons());
+                }
             }
         } else if (type === 'error') {
             this.props.generateAlert(
@@ -630,6 +685,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     createPaymentCard,
+    updateCustomerInfo,
+    removeActiveToken,
 };
 
 export default withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(AddPaymentMethod));
