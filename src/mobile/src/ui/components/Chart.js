@@ -181,7 +181,6 @@ class Chart extends PureComponent {
             getPriceForCurrency,
         } = this.props;
         const volumeFormatted = priceData.volume.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        const mcapFormatted = priceData.mcap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
         const textColor = { color: theme.body.color };
         const borderColor = { borderColor: theme.secondary.color };
@@ -262,9 +261,7 @@ class Chart extends PureComponent {
                 <View style={styles.marketDataContainer}>
                     <View style={{ alignItems: 'flex-start' }}>
                         <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text>
-                        <Text style={[styles.marketFigure, textColor]}>
-                            {`$ ${priceData.mcap}`}
-                        </Text>
+                        <Text style={[styles.marketFigure, textColor]}>{`$ ${priceData.mcap}`}</Text>
                     </View>
                     <View style={{ alignItems: 'center' }}>
                         <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:change')}</Text>
