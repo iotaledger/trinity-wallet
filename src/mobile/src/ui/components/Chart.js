@@ -263,7 +263,7 @@ class Chart extends PureComponent {
                     <View style={{ alignItems: 'flex-start' }}>
                         <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text>
                         <Text style={[styles.marketFigure, textColor]}>
-                            {priceData.globalSymbol} {mcapFormatted}
+                            {`$ ${priceData.mcap}`}
                         </Text>
                     </View>
                     <View style={{ alignItems: 'center' }}>
