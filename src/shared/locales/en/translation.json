@@ -529,7 +529,10 @@
         "addressPasteExplanation":
             "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
         "invalid": "INVALID",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Swipe to send",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "Let's add a name",

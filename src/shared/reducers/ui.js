@@ -67,6 +67,10 @@ const initialState = {
      */
     sendMessageFieldText: '',
     /**
+     * An opened CDA's content
+     */
+    CDAContent: {},
+    /**
      * Active denomination on send screen
      */
     sendDenomination: 'i',
@@ -265,6 +269,7 @@ export default (state = initialState, action) => {
                 qrTag: '',
                 qrDenomination: 'i',
                 selectedQrTab: 'message',
+                CDAContent: {},
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST:
             return {
@@ -449,6 +454,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isRecoveringFunds: false,
+            };
+        case UiActionTypes.SET_CDA_CONTENT:
+            return {
+                ...state,
+                CDAContent: action.payload,
             };
         default:
             return state;
