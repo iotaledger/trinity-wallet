@@ -525,7 +525,7 @@
         "swipeToSend": "スワイプして送金する",
         "paymentRequest": "これは支払請求です",
         "paymentRequestExpired": "支払請求の期限が切れました",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequestExpiredExplanation": "この支払請求は期限切れです。新しい支払請求を受信者に依頼してください。"
     },
     "setSeedName": {
         "letsAddName": "アカウント名を追加してください。",
