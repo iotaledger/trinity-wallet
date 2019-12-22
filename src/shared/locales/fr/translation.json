@@ -250,7 +250,7 @@
         "neverShare": "NE PARTAGEZ JAMAIS VOTRE SEED"
     },
     "moonpay": {
-        "buyIOTA": "Buy IOTA",
+        "buyIOTA": "Acheter IOTA",
         "supportExplanation": "Purchase IOTA with all major credit and debit cards, securely sent to your Trinity account.",
         "addAmount": "Choose the amount of MIOTA for purchase",
         "addAmountExplanation": "Select the amount you wish to purchase in your currency, or specify the amount of MIOTA.",
@@ -334,7 +334,7 @@
         "confirmIdentity": "We need to confirm your identity",
         "kycRequired": "KYC required for an amount greater than {{limit}}",
         "confirmIdentityExplanation": "Your purchase exceeds the monthly limit of {{amount}}. In order to continue your purchase you will need to confirm your identity (KYC).",
-        "moonpayRedirect": "You will now be navigated to MoonPay to complete the KYC process and continue with your purchase.",
+        "moonpayRedirect": "Vous allez être redirigés vers MoonPay pour compléter le processus de KYC (Know Your Customer = Connaître son client) et continuer votre achat.",
         "authenticateEmailError": "Error authenticating email",
         "authenticateEmailErrorExplanation": "There was an error authenticating your email address. Please try again.",
         "emailVerificationError": "Error verifying email",
@@ -361,10 +361,10 @@
         "paymentFailure": "Payment Failure",
         "paymentFailureExplanation": "We're sorry, your payment has failed.",
         "viewReceipt": "View receipt",
-        "moonpayPurchase": "MoonPay Purchase",
+        "moonpayPurchase": "Achat via Moonpay",
         "purchase": "Acheter",
         "emptyHistory": "Vous n'avez pas d'historique d'achat avec MoonPay",
-        "loginToViewPurchaseHistory": "View purchase history",
+        "loginToViewPurchaseHistory": "Voir l'historique des achats",
         "openMoonPay": "Open MoonPay",
         "loginToMoonPay": "Login to MoonPay",
         "pending": "En cours",
@@ -372,9 +372,9 @@
         "failed": "Failed",
         "waitingAuthorization": "Waiting for 3D Secure",
         "authorize": "Authorize",
-        "awaitingIOTATransaction": "Awaiting IOTA Transaction",
+        "awaitingIOTATransaction": "En attente de la transaction IOTA",
         "paymentStatus": "Payment Status",
-        "purchaseAmount": "Purchase Amount",
+        "purchaseAmount": "Montant de l'achat",
         "help": "Besoin d'aide pour votre achat ?",
         "faq": "Visit MoonPay's FAQs",
         "gettingTransactionDetails": "Getting latest transaction details",
@@ -638,7 +638,7 @@
         "searchHelpMore": "Trouver des transactions avec une valeur supérieure à X",
         "searchHelpLess": "Trouver des transactions avec une valeur inférieure à X",
         "transactions": "Transactions",
-        "purchases": "Purchases"
+        "purchases": "Achats"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -1025,6 +1025,6 @@
     "help": {
         "docsSite": "Trinity Docs Site",
         "commonIssues": "Common Wallet Issues",
-        "buyingIOTA": "Problems Buying IOTA"
+        "buyingIOTA": "Problèmes lors de l'achat de IOTA"
     }
 }
