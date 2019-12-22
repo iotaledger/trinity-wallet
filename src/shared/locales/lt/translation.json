@@ -637,8 +637,8 @@
         "searchHelpUnits": "Rasti pavedimus pagal iota vertę ir vienetą",
         "searchHelpMore": "Rasti pavedimus su verte didesne nei X",
         "searchHelpLess": "Rasti pavedimus su verte mažesne nei X",
-        "transactions": "Transactions",
-        "purchases": "Purchases"
+        "transactions": "Pavedimai",
+        "purchases": "Pirkimai"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -852,7 +852,7 @@
         "change": "Pokytis (24val.)",
         "volume": "Apyvarta (24val.)",
         "error": "Klaida užkraunant grafiko duomenis",
-        "currentValue": "Current Value"
+        "currentValue": "Dabartinė vertė"
     },
     "rootDetection": {
         "warning": "DĖMESIO",
