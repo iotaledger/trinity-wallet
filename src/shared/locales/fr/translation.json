@@ -369,26 +369,26 @@
         "loginToMoonPay": "Se connecter à MoonPay",
         "pending": "En cours",
         "completed": "Terminé",
-        "failed": "Failed",
-        "waitingAuthorization": "Waiting for 3D Secure",
-        "authorize": "Authorize",
+        "failed": "Echoué",
+        "waitingAuthorization": "En attente de 3D Secure",
+        "authorize": "Autoriser",
         "awaitingIOTATransaction": "En attente de la transaction IOTA",
-        "paymentStatus": "Payment Status",
+        "paymentStatus": "Statut du paiement",
         "purchaseAmount": "Montant de l'achat",
         "help": "Besoin d'aide pour votre achat ?",
-        "faq": "Visit MoonPay's FAQs",
-        "gettingTransactionDetails": "Getting latest transaction details",
+        "faq": "Visitez la FAQ de MoonPay",
+        "gettingTransactionDetails": "Obtention des dernières informations de la transaction",
         "errorGettingTransactionDetails": "Erreur de récupération des informations de la transaction",
-        "pleaseComplete3DSecure": "Please complete 3-D secure to process your payment",
-        "paymentAuthorisationDeclined": "The payment was not authorised by your bank.",
-        "3DSecureTimeout": "3D Secure Timed Out. Please try again.",
+        "pleaseComplete3DSecure": "Veuillez compléter le code 3-D secure pour finaliser votre paiement",
+        "paymentAuthorisationDeclined": "Le paiement n'a pas été autorisé par votre banque.",
+        "3DSecureTimeout": "Le délai 3D Secure a expiré. Veuillez réessayer.",
         "transactionDeclined": "Votre transaction a été refusée.",
         "internalError": "Erreur de traitement interne. Veuillez réessayer.",
-        "identityCheckTimeout": "Identity check timed out. Please try again.",
-        "refund": "Your payment was refunded.",
-        "idRejection": "Your identity check was rejected.",
-        "cardNotSupported": "Your card is not supported. Please try again with a different card.",
-        "cancelled": "The payment was cancelled."
+        "identityCheckTimeout": "La vérification d'identité a expiré. Veuillez réessayer.",
+        "refund": "Votre paiement a été remboursé.",
+        "idRejection": "Votre vérification d'identité a été rejetée.",
+        "cardNotSupported": "Votre carte n'est pas prise en charge. Veuillez réessayer avec une autre carte.",
+        "cancelled": "Le paiement a été annulé."
     },
     "home": {
         "balance": "SOLDE",
@@ -523,9 +523,9 @@
         "addressPasteExplanation": "On dirait que vous avez collé une adresse. Assurez-vous que l’adresse collée corresponde à celle que vous voulez utiliser.",
         "invalid": "INVALIDE",
         "swipeToSend": "Balayez pour envoyer",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "Ceci est une demande de paiement",
+        "paymentRequestExpired": "Demande de paiement expirée",
+        "paymentRequestExpiredExplanation": "Cette demande de paiement a expiré. Veuillez en demander une nouvelle au bénéficiaire."
     },
     "setSeedName": {
         "letsAddName": "Veuillez ajouter un nom",
@@ -852,7 +852,7 @@
         "change": "Variation (24h)",
         "volume": "Volume (24h)",
         "error": "Erreur de récupération des données du graphique",
-        "currentValue": "Current Value"
+        "currentValue": "Valeur actuelle"
     },
     "rootDetection": {
         "warning": "ATTENTION",
