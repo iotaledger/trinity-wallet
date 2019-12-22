@@ -320,7 +320,7 @@
         "purchaseComplete": "Achat terminé",
         "purchaseReceipt": "Reçu d'achat",
         "purchaseMayTakeAFewMinutes": "Votre achat peut prendre quelques minutes. Vérifiez votre historique d'achat (ou votre e-mail) pour suivre son avancement.",
-        "transactionMayTakeAFewMinutes": "Your transaction may take a few minutes. Check your transaction history (or your email) for updates.",
+        "transactionMayTakeAFewMinutes": "Votre transaction peut prendre quelques minutes. Vérifiez l'historique de vos transactions (ou votre e-mail) pour les mises à jour.",
         "limitExceeded": "Limite dépassée :(",
         "limitExceededExplanation": "Malheureusement, vous avez dépassé votre limite d'achat via MoonPay. Vous ne pouvez acheter que {{amount}} IOTA par {{limitBracket}}.",
         "limitResetExplanation": "Votre limite sera réinitialisée à {{time}} le {{date}}.",
@@ -332,8 +332,8 @@
         "invalidExpiryDateExplanation": "Veuillez saisir une date d'expiration valide",
         "waitForCurrencyQuote": "Récupération des derniers taux de frais de MoonPay. Veuillez patienter.",
         "confirmIdentity": "Nous devons confirmer votre identité",
-        "kycRequired": "KYC required for an amount greater than {{limit}}",
-        "confirmIdentityExplanation": "Your purchase exceeds the monthly limit of {{amount}}. In order to continue your purchase you will need to confirm your identity (KYC).",
+        "kycRequired": "KYC (Know Your Customer = Connaître son client) requis pour un montant supérieur à {{limit}}",
+        "confirmIdentityExplanation": "Votre achat dépasse la limite mensuelle de {{amount}}. Pour continuer votre achat, vous allez devoir confirmer votre identité (KYC).",
         "moonpayRedirect": "Vous allez être redirigés vers MoonPay pour compléter le processus de KYC (Know Your Customer = Connaître son client) et continuer votre achat.",
         "authenticateEmailError": "Error authenticating email",
         "authenticateEmailErrorExplanation": "There was an error authenticating your email address. Please try again.",
@@ -342,7 +342,7 @@
         "updateCustomerError": "Error updating user details",
         "updateCustomerErrorExplanation": "An unknown error has occurred updating user details. Please try again.",
         "transactionCreationError": "Error creating transaction",
-        "transactionCreationErrorExplanation": "There was a problem sending your transaction. Please try again.",
+        "transactionCreationErrorExplanation": "Une erreur s'est produite lors de l'envoi de votre transaction. Veuillez réessayer.",
         "paymentCardCreationError": "Error creating payment card",
         "paymentCardCreationErrorExplanation": "There was a problem creating your payment card. Please try again.",
         "selectCountry": "Select Country",
@@ -382,7 +382,7 @@
         "pleaseComplete3DSecure": "Please complete 3-D secure to process your payment",
         "paymentAuthorisationDeclined": "The payment was not authorised by your bank.",
         "3DSecureTimeout": "3D Secure Timed Out. Please try again.",
-        "transactionDeclined": "Your transaction was declined.",
+        "transactionDeclined": "Votre transaction a été refusée.",
         "internalError": "Internal processing error. Please try again.",
         "identityCheckTimeout": "Identity check timed out. Please try again.",
         "refund": "Your payment was refunded.",
@@ -1023,8 +1023,8 @@
         "writtenDownInfoExplanation": "Vous avez besoin de votre numéro d'index pour restaurer votre compte à l'avenir. Si vous perdez votre numéro d'index, vous perdrez vos IOTA. Veuillez vous en souvenir."
     },
     "help": {
-        "docsSite": "Trinity Docs Site",
-        "commonIssues": "Common Wallet Issues",
+        "docsSite": "Documentation de Trinity en ligne",
+        "commonIssues": "Problèmes courants de portefeuille",
         "buyingIOTA": "Problèmes lors de l'achat de IOTA"
     }
 }
