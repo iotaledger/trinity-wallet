@@ -385,10 +385,10 @@
         "transactionDeclined": "Your transaction was declined.",
         "internalError": "Internal processing error. Please try again.",
         "identityCheckTimeout": "Identity check timed out. Please try again.",
-        "refund": "Your payment was refunded.",
-        "idRejection": "Your identity check was rejected.",
-        "cardNotSupported": "Your card is not supported. Please try again with a different card.",
-        "cancelled": "The payment was cancelled."
+        "refund": "Jūsų mokėjimas buvo grąžintas.",
+        "idRejection": "Jūsų tapatybės patikrinimas buvo atmestas.",
+        "cardNotSupported": "Jūsų kortelė netinkama. Prašome bandyti dar kartą su kita kortele.",
+        "cancelled": "Mokėjimas buvo atmestas."
     },
     "home": {
         "balance": "BALANSAS",
