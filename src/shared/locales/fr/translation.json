@@ -178,8 +178,8 @@
         "notEnoughSyncedNodes": "Pas assez de serveurs synchronisés",
         "notEnoughSyncedNodesExplanation": "Un quorum n'a pas pu être atteint. Désactivez quorum ou réessayez.",
         "total": "Total",
-        "submit": "Submit",
-        "tryAgain": "Try again"
+        "submit": "Valider",
+        "tryAgain": "Réessayez"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -250,14 +250,14 @@
         "neverShare": "NE PARTAGEZ JAMAIS VOTRE SEED"
     },
     "moonpay": {
-        "buyIOTA": "Acheter IOTA",
-        "supportExplanation": "Purchase IOTA with all major credit and debit cards, securely sent to your Trinity account.",
-        "addAmount": "Choose the amount of MIOTA for purchase",
-        "addAmountExplanation": "Select the amount you wish to purchase in your currency, or specify the amount of MIOTA.",
-        "enterAmount": "ENTER AMOUNT",
-        "selectAccount": "Select your Trinity account",
-        "selectAccountExplanation": "Your MoonPay purchase will be transferred automatically to your selected account.",
-        "setupEmail": "First, let's get setup quickly",
+        "buyIOTA": "Acheter du IOTA",
+        "supportExplanation": "Achetez du IOTA avec toutes les principales cartes de crédit et de débit, envoyés de manière sécurisée sur votre compte Trinity.",
+        "addAmount": "Choisissez le montant de MIOTA à acheter",
+        "addAmountExplanation": "Sélectionnez le montant que vous souhaitez acheter dans votre devise ou indiquez la quantité de MIOTA.",
+        "enterAmount": "ENTREZ LE MONTANT",
+        "selectAccount": "Sélectionnez votre compte Trinity",
+        "selectAccountExplanation": "Votre achat via MoonPay sera automatiquement transféré sur votre compte sélectionné.",
+        "setupEmail": "Tout d'abord, nous allons rapidement procéder à l'installation",
         "setupEmailExplanation": "Provide the email address for your account.",
         "yourEmail": "YOUR EMAIL",
         "checkInbox": "Please check your inbox to verify your email",
@@ -322,7 +322,7 @@
         "purchaseMayTakeAFewMinutes": "Votre achat peut prendre quelques minutes. Vérifiez votre historique d'achat (ou votre e-mail) pour suivre son avancement.",
         "transactionMayTakeAFewMinutes": "Your transaction may take a few minutes. Check your transaction history (or your email) for updates.",
         "limitExceeded": "Limit Exceeded :(",
-        "limitExceededExplanation": "Unfortunately you have exceeded your MoonPay purchase limit. You may only purchase {{amount}} of IOTA per {{limitBracket}}.",
+        "limitExceededExplanation": "Malheureusement, vous avez dépassé votre limite d'achat via MoonPay. Vous ne pouvez acheter que {{amount}} IOTA par {{limitBracket}}.",
         "limitResetExplanation": "Your limit will reset at {{time}} on {{date}}.",
         "invalidCardNumber": "Invalid card number",
         "invalidCardNumberExplanation": "Please enter a valid card number",
