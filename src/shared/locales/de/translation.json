@@ -180,8 +180,8 @@
         "total": "Gesamt",
         "submit": "Senden",
         "tryAgain": "Erneut versuchen",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "unknown": "Unbekannt",
+        "goToDashboard": "Zur Übersichtsseite"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -276,7 +276,7 @@
         "dateOfBirth": "Geburtsdatum",
         "address": "Straße",
         "city": "Stadt",
-        "zipCode": "POST CODE",
+        "zipCode": "Postleitzahl",
         "reviewYourPurchase": "Überprüfe deinen Einkauf",
         "pleaseCarefullyCheckOrder": "Bitte überprüfe die Eingaben sorgfältig.",
         "order": "Bestellung",
@@ -302,8 +302,8 @@
         "invalidAddressExplanation": "Bitte gib eine gültige Adresse ein",
         "invalidCity": "Ungültige Stadt",
         "invalidCityExplanation": "Bitte gib eine gültige Stadt ein",
-        "invalidZipCode": "Invalid post code",
-        "invalidZipCodeExplanation": "Please enter a valid post code",
+        "invalidZipCode": "Ungültige Postleitzahl",
+        "invalidZipCodeExplanation": "Bitte gib eine gültige Postleitzahl ein",
         "invalidState": "Ungültiges Bundesland",
         "invalidStateExplanation": "Bitte gib ein gültiges Bundesland ein",
         "somethingWentWrongProcessingCardInfo": "Die Daten deiner Karte konnten nicht übermittelt werden. Prüfe deine Eingaben und versuche es erneut.",
@@ -312,7 +312,7 @@
         "amountTooHigh": "Betrag zu hoch",
         "amountTooHighExplanation": "Maximaler Betrag: {{amount}} pro Tag.",
         "addPaymentMethod": "Zahlungsmethode hinzufügen",
-        "pleaseEnterYourBillingDetails": "Please enter your card details below.",
+        "pleaseEnterYourBillingDetails": "Bitte gib die Details der Karte ein.",
         "cardNumber": "Kartennummer",
         "cvc": "Prüfziffer",
         "expirationDate": "Ablaufdatum",
@@ -347,7 +347,7 @@
         "paymentCardCreationError": "Fehler beim Hinzufügen der Karte",
         "paymentCardCreationErrorExplanation": "Beim Hinzufügen der Karte ist ein Fehler aufgetreten. Bitte versuche es erneut.",
         "selectCountry": "Land wählen",
-        "selectState": "Select State",
+        "selectState": "Bundesland auswählen",
         "state": "Bundesland",
         "selectPaymentMethod": "Zahlungsmethode wählen",
         "pleaseChooseFromTheOptionsBelow": "Bitte wähle eine der folgenden Möglichkeiten.",
@@ -391,7 +391,7 @@
         "idRejection": "Deine Identitätsprüfung wurde abgelehnt.",
         "cardNotSupported": "Diese Karte wird nicht unterstützt. Bitte versuche es erneut mit einer anderen Karte.",
         "cancelled": "Der Bezahlvorgang wurde abgebrochen.",
-        "storeCardDetails": "Store card details in MoonPay for faster checkout."
+        "storeCardDetails": "Die Informationen der Karte bei MoonPay speichern, um neue Bestellungen schneller abschließen zu können."
     },
     "home": {
         "balance": "ÜBERSICHT",
