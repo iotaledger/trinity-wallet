@@ -1,6 +1,8 @@
 ### 1.2.1
 
-- Minor MoonPay fixes
+- New: Increase Proof of Work speed by 2-3x
+- Fix: Incorrect market cap
+- Fix: Minor MoonPay fixes
 
 ### 1.2.0
 
