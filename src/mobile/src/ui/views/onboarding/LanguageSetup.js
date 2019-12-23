@@ -192,8 +192,5 @@ const mapDispatchToProps = {
 };
 
 export default withTranslation(['languageSetup', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(LanguageSetup),
+    connect(mapStateToProps, mapDispatchToProps)(LanguageSetup),
 );

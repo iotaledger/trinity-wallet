@@ -57,7 +57,7 @@ const SETTINGS_COMPONENTS = {
     about: About,
     exportSeedVault: SeedVaultSettings,
     stateExport: StateExportComponent,
-    help: Help
+    help: Help,
 };
 
 const SettingsContent = ({ component, ...props }) => {

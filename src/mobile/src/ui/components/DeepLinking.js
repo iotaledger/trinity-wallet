@@ -48,7 +48,7 @@ export default () => (C) => {
 
             const url = get(data, 'url');
             const transactionId = last(split(head(split(url, '&')), '='));
-            
+
             if (url.includes(MOONPAY_RETURN_URL) && isString(transactionId)) {
                 this.props.fetchTransactionDetails(transactionId);
                 return navigator.setStackRoot('paymentPending', { passProps: { transactionId } });
@@ -124,10 +124,5 @@ export default () => (C) => {
         fetchTransactionDetails,
     };
 
-    return withTranslation(['global'])(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(WithDeepLinking),
-    );
+    return withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithDeepLinking));
 };

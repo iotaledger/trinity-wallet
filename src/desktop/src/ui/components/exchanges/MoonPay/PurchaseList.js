@@ -75,15 +75,7 @@ export class PurchaseListComponent extends React.PureComponent {
     }
 
     render() {
-        const {
-            isLoading,
-            isBusy,
-            purchaseHistory,
-            setItem,
-            currentItem,
-            fetchPurchaseHistory,
-            t,
-        } = this.props;
+        const { isLoading, isBusy, purchaseHistory, setItem, currentItem, fetchPurchaseHistory, t } = this.props;
         const { filter, loaded, search } = this.state;
 
         const totals = {
@@ -249,7 +241,10 @@ export class PurchaseListComponent extends React.PureComponent {
                                     <strong>
                                         {t('moonpay:purchase')}{' '}
                                         <span>
-                                            {_getAmount(activePurchase) > 0 && `${round(formatValue(_getAmount(activePurchase)), 2)} ${formatUnit(_getAmount(activePurchase))}`}
+                                            {_getAmount(activePurchase) > 0 &&
+                                                `${round(formatValue(_getAmount(activePurchase)), 2)} ${formatUnit(
+                                                    _getAmount(activePurchase),
+                                                )}`}
                                         </span>
                                     </strong>
                                     <small>

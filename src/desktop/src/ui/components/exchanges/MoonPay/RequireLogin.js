@@ -43,10 +43,13 @@ export default class RequireLogin extends React.PureComponent {
                         />
                     </div>
                     <div>
-                        <Button className="small" onClick={() => {
-                            setLoggingIn(true);
-                            history.push('/exchanges/moonpay')}
-                        }>
+                        <Button
+                            className="small"
+                            onClick={() => {
+                                setLoggingIn(true);
+                                history.push('/exchanges/moonpay');
+                            }}
+                        >
                             {t('moonpay:openMoonPay')}
                         </Button>
                     </div>

@@ -122,7 +122,8 @@ class PurchaseLimitWarning extends Component {
         const { createdAt } = mostRecentTransaction;
         const oneDayFromCreatedAt = moment(createdAt).add(1, 'days');
         const oneMonthFromCreatedAt = moment(createdAt).add(1, 'months');
-        const exceedsDaily = purchaseAmount > dailyLimits.dailyLimitRemaining && purchaseAmount < monthlyLimits.monthlyLimitRemaining;
+        const exceedsDaily =
+            purchaseAmount > dailyLimits.dailyLimitRemaining && purchaseAmount < monthlyLimits.monthlyLimitRemaining;
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -152,14 +153,12 @@ class PurchaseLimitWarning extends Component {
                             </Text>
                             <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 30 }]}>
                                 {t('moonpay:limitResetExplanation', {
-                                    time:
-                                        exceedsDaily
-                                            ? oneDayFromCreatedAt.format('hh:mm')
-                                            : oneMonthFromCreatedAt.format('hh:mm'),
-                                    date:
-                                        exceedsDaily
-                                            ? oneDayFromCreatedAt.format('Do MMM YYYY')
-                                            : oneMonthFromCreatedAt.format('Do MMM YYYY'),
+                                    time: exceedsDaily
+                                        ? oneDayFromCreatedAt.format('hh:mm')
+                                        : oneMonthFromCreatedAt.format('hh:mm'),
+                                    date: exceedsDaily
+                                        ? oneDayFromCreatedAt.format('Do MMM YYYY')
+                                        : oneMonthFromCreatedAt.format('Do MMM YYYY'),
                                 })}
                             </Text>
                         </InfoBox>

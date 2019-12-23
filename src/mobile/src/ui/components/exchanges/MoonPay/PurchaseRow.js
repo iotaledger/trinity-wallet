@@ -126,7 +126,7 @@ export default class PurchaseRow extends PureComponent {
 
         return (
             <TouchableOpacity onPress={() => onPress(this.props)}>
-                <View style={[ styles.container, { opacity: this.getOpacity() } ]}>
+                <View style={[styles.container, { opacity: this.getOpacity() }]}>
                     <View style={[styles.row, style.containerBackgroundColor]}>
                         <View style={styles.innerRowContainer}>
                             <View style={styles.iconWrapper}>
@@ -139,7 +139,14 @@ export default class PurchaseRow extends PureComponent {
                             </View>
                             <View style={styles.textWrapper}>
                                 <View style={styles.topWrapper}>
-                                    <Text style={[styles.statusText, { color: status === 'failed' ? style.failedColor : style.titleColor }]}>{statusText}</Text>
+                                    <Text
+                                        style={[
+                                            styles.statusText,
+                                            { color: status === 'failed' ? style.failedColor : style.titleColor },
+                                        ]}
+                                    >
+                                        {statusText}
+                                    </Text>
                                     <Text style={[styles.confirmationStatus, { color: style.titleColor }]}>
                                         {value > 0 && `${value} ${unit}`}
                                     </Text>

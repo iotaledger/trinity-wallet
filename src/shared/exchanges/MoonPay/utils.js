@@ -117,10 +117,10 @@ export const getPurchaseFailureReason = (failureReason) => {
         'Transaction declined': i18next.t('moonpay:transactionDeclined'),
         'Internal error': i18next.t('moonpay:internalError'),
         'Identity check timeout': i18next.t('moonpay:identityCheckTimeout'),
-        'Refund': i18next.t('moonpay:refund'),
+        Refund: i18next.t('moonpay:refund'),
         'Rejection is final for user identity check': i18next.t('moonpay:idRejection'),
         'Card not supported': i18next.t('moonpay:cardNotSupported'),
-        'Cancelled': i18next.t('moonpay:cancelled')
-    }
+        Cancelled: i18next.t('moonpay:cancelled'),
+    };
     return get(failureReasons, failureReason, i18next.t('global:unknown'));
-}
+};

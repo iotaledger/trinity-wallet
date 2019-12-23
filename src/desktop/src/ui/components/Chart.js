@@ -148,7 +148,7 @@ export class ChartComponent extends PureComponent {
                     <ul>
                         <li>
                             <strong>{t('chart:mcap')}: </strong>
-                            {priceData.globalSymbol} {priceData.mcap}
+                            {`$ ${priceData.mcap}`}
                         </li>
                         <li>
                             <strong>{t('chart:currentValue')}: </strong>

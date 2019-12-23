@@ -183,11 +183,4 @@ const mapDispatchToProps = {
     setAccountName,
 };
 
-export default WithUserActivity()(
-    withTranslation()(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(SelectAccount),
-    ),
-);
+export default WithUserActivity()(withTranslation()(connect(mapStateToProps, mapDispatchToProps)(SelectAccount)));

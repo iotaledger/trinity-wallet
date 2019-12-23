@@ -129,7 +129,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(SetupEmail));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(SetupEmail));

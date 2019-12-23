@@ -274,9 +274,7 @@ export default function withPurchaseSummary(WrappedComponent) {
                         delay={250}
                     >
                         <View style={styles.summaryRowContainer}>
-                            <Text style={[styles.infoTextRegular, textColor]}>
-                                {t('moonpay:trinityWalletAddress')}
-                            </Text>
+                            <Text style={[styles.infoTextRegular, textColor]}>{t('moonpay:trinityWalletAddress')}</Text>
                         </View>
                     </AnimatedComponent>
                     <View style={{ flex: 0.1 }} />
@@ -298,9 +296,7 @@ export default function withPurchaseSummary(WrappedComponent) {
                         delay={150}
                     >
                         <View style={styles.summaryRowContainer}>
-                            <Text style={[styles.infoTextLight, textColor]}>
-                                {t('moonpay:debitCard', { brand })}
-                            </Text>
+                            <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:debitCard', { brand })}</Text>
                             <Text style={[styles.infoTextLight, textColor]}>**** **** **** {lastDigits}</Text>
                         </View>
                     </AnimatedComponent>
@@ -327,8 +323,7 @@ export default function withPurchaseSummary(WrappedComponent) {
                         </View>
                         <View style={styles.summaryRowContainer}>
                             <Text style={[styles.infoTextLight, textColor]}>
-                                {t('moonpay:marketPrice')}: {receiveAmount} @{' '}
-                                {getCurrencySymbol(activeFiatCurrency)}
+                                {t('moonpay:marketPrice')}: {receiveAmount} @ {getCurrencySymbol(activeFiatCurrency)}
                                 {exchangeRates[activeFiatCurrency]}
                             </Text>
                             <Text style={[styles.infoTextLight, textColor]}>
@@ -360,7 +355,6 @@ export default function withPurchaseSummary(WrappedComponent) {
                 </View>
             );
         }
-
 
         render() {
             const {
@@ -415,12 +409,5 @@ export default function withPurchaseSummary(WrappedComponent) {
         generateAlert,
     };
 
-    return WithUserActivity()(
-        withTranslation()(
-            connect(
-                mapStateToProps,
-                mapDispatchToProps,
-            )(PurchaseSummary),
-        ),
-    );
+    return WithUserActivity()(withTranslation()(connect(mapStateToProps, mapDispatchToProps)(PurchaseSummary)));
 }

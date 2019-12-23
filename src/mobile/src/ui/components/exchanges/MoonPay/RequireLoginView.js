@@ -111,12 +111,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     setSetting,
-    setLoggingIn
+    setLoggingIn,
 };
 
 export default withTranslation(['languageSetup', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(RequireLoginView),
+    connect(mapStateToProps, mapDispatchToProps)(RequireLoginView),
 );

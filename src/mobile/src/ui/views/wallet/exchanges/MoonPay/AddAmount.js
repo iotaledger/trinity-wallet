@@ -301,11 +301,15 @@ class AddAmount extends Component {
             const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
 
             if (fiatAmount < MINIMUM_TRANSACTION_SIZE) {
-                return t('moonpay:minimumTransactionAmount', { amount: this.getCurrencySymbol() + MINIMUM_TRANSACTION_SIZE });
+                return t('moonpay:minimumTransactionAmount', {
+                    amount: this.getCurrencySymbol() + MINIMUM_TRANSACTION_SIZE,
+                });
             }
 
             if (fiatAmount > MAXIMUM_TRANSACTION_SIZE) {
-                return t('moonpay:maximumTransactionAmount', { amount: this.getCurrencySymbol() + MAXIMUM_TRANSACTION_SIZE });
+                return t('moonpay:maximumTransactionAmount', {
+                    amount: this.getCurrencySymbol() + MAXIMUM_TRANSACTION_SIZE,
+                });
             }
 
             if (
@@ -418,7 +422,9 @@ class AddAmount extends Component {
             this.props.generateAlert(
                 'error',
                 t('moonpay:notEnoughAmount'),
-                t('moonpay:notEnoughAmountExplanation', { amount: this.getCurrencySymbol() + MINIMUM_TRANSACTION_SIZE }),
+                t('moonpay:notEnoughAmountExplanation', {
+                    amount: this.getCurrencySymbol() + MINIMUM_TRANSACTION_SIZE,
+                }),
             );
         } else if (fiatAmount > MAXIMUM_TRANSACTION_SIZE) {
             this.props.generateAlert(
@@ -520,10 +526,10 @@ class AddAmount extends Component {
                                 }}
                                 value={amount}
                             />
-                            <View
-                                style={[styles.warningContainer, { paddingTop: height / 90, height: height / 15 }]}
-                            >
-                                <Text style={[styles.infoTextRegular, { flexWrap: 'wrap', color: theme.negative.color }]}>
+                            <View style={[styles.warningContainer, { paddingTop: height / 90, height: height / 15 }]}>
+                                <Text
+                                    style={[styles.infoTextRegular, { flexWrap: 'wrap', color: theme.negative.color }]}
+                                >
                                     {this.getWarningText()}
                                 </Text>
                             </View>
@@ -537,11 +543,19 @@ class AddAmount extends Component {
                         >
                             <View style={styles.summaryRowContainer}>
                                 <Text style={[styles.infoTextLight, textColor]}>{t('moonpay:youWillReceive')}</Text>
-                                <Text numberOfLines={1} style={[styles.infoTextLight, textColor, { maxWidth: Styling.contentWidth * 0.5}]}>{receiveAmount}</Text>
+                                <Text
+                                    numberOfLines={1}
+                                    style={[styles.infoTextLight, textColor, { maxWidth: Styling.contentWidth * 0.5 }]}
+                                >
+                                    {receiveAmount}
+                                </Text>
                             </View>
                             <View style={{ flex: 0.05 }} />
                             <View style={styles.summaryRowContainer}>
-                                <Text numberOfLines={1} style={[styles.infoTextLight, textColor, { maxWidth: Styling.contentWidth * 0.4}]}>
+                                <Text
+                                    numberOfLines={1}
+                                    style={[styles.infoTextLight, textColor, { maxWidth: Styling.contentWidth * 0.4 }]}
+                                >
                                     {t('moonpay:marketPrice')}: {receiveAmount} @{' '}
                                     {getCurrencySymbol(activeFiatCurrency)}
                                     {exchangeRates[activeFiatCurrency]}
@@ -614,9 +628,4 @@ const mapDispatchToProps = {
     setDenomination,
 };
 
-export default withTranslation()(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(AddAmount),
-);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(AddAmount));

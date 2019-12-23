@@ -315,11 +315,4 @@ const mapDispatchToProps = {
     setAnimateChartOnMount,
 };
 
-export default WithManualRefresh()(
-    withTranslation(['global'])(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(Balance),
-    ),
-);
+export default WithManualRefresh()(withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(Balance)));

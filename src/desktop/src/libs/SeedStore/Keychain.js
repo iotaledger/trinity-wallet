@@ -127,7 +127,11 @@ class Keychain extends SeedStoreCore {
         for (let i = 0; i < accounts.length; i++) {
             const account = vault[i];
 
-            if (account.account === `${ALIAS_MAIN}-salt` || account.account === ALIAS_REALM || account.account === ALIAS_MOONPAY_CREDENTIALS) {
+            if (
+                account.account === `${ALIAS_MAIN}-salt` ||
+                account.account === ALIAS_REALM ||
+                account.account === ALIAS_MOONPAY_CREDENTIALS
+            ) {
                 continue;
             }
 
@@ -222,7 +226,11 @@ class Keychain extends SeedStoreCore {
         }
         try {
             const accounts = vault.filter(
-                (acc) => acc.account !== ALIAS_MOONPAY_CREDENTIALS && acc.account !== ALIAS_MAIN && acc.account !== `${ALIAS_MAIN}-salt` && acc.account !== ALIAS_REALM,
+                (acc) =>
+                    acc.account !== ALIAS_MOONPAY_CREDENTIALS &&
+                    acc.account !== ALIAS_MAIN &&
+                    acc.account !== `${ALIAS_MAIN}-salt` &&
+                    acc.account !== ALIAS_REALM,
             );
 
             for (let i = 0; i < accounts.length; i++) {

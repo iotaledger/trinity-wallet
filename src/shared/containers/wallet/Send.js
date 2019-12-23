@@ -275,8 +275,5 @@ export default function withSendData(SendComponent) {
         verifyCDAContent,
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(SendData);
+    return connect(mapStateToProps, mapDispatchToProps)(SendData);
 }

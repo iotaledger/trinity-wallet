@@ -196,8 +196,5 @@ export default function withSafeAreaView(WrappedComponent) {
         toggleModalActivity,
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(EnhancedComponent);
+    return connect(mapStateToProps, mapDispatchToProps)(EnhancedComponent);
 }

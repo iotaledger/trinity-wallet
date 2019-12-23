@@ -52,7 +52,10 @@ class PurchaseComplete extends Component {
     getConfig() {
         return {
             header: 'moonpay:purchaseReceipt',
-            subtitle: get(this.props.activeTransaction, 'status') === MOONPAY_TRANSACTION_STATUSES.completed ? 'moonpay:transactionMayTakeAFewMinutes' : 'moonpay:purchaseMayTakeAFewMinutes'
+            subtitle:
+                get(this.props.activeTransaction, 'status') === MOONPAY_TRANSACTION_STATUSES.completed
+                    ? 'moonpay:transactionMayTakeAFewMinutes'
+                    : 'moonpay:purchaseMayTakeAFewMinutes',
         };
     }
 
@@ -62,7 +65,7 @@ class PurchaseComplete extends Component {
      * @method redirectToScreen
      */
     redirectToHome() {
-        const { t , activeTransaction} = this.props;
+        const { t, activeTransaction } = this.props;
 
         const transactionStatus = get(activeTransaction, 'status');
         timer.setTimeout(

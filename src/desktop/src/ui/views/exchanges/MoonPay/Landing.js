@@ -61,7 +61,7 @@ class Landing extends React.PureComponent {
             const state = {
                 name: get(head(allowedStates, 'name')) || '',
                 code: get(head(allowedStates, 'code')) || '',
-            }
+            };
 
             if (props.isIPAddressAllowed) {
                 return {
@@ -71,7 +71,7 @@ class Landing extends React.PureComponent {
                             fallbackCountryName,
                         alpha3: props.alpha3CodeForIPAddress || fallbackCountryAlpha3,
                     },
-                    state
+                    state,
                 };
             }
 
@@ -80,7 +80,7 @@ class Landing extends React.PureComponent {
                     name: fallbackCountryName,
                     alpha3: fallbackCountryAlpha3,
                 },
-                state
+                state,
             };
         };
         const storedCountry = find(props.countries, { alpha3: props.country });
@@ -94,8 +94,8 @@ class Landing extends React.PureComponent {
                       },
                       state: {
                           name: get(head(get(storedCountry, 'states')), 'name') || '',
-                          code: get(head(get(storedCountry, 'states')), 'code') || ''
-                      }
+                          code: get(head(get(storedCountry, 'states')), 'code') || '',
+                      },
                   };
     }
 
@@ -115,7 +115,10 @@ class Landing extends React.PureComponent {
         const { isLoggingIn, countries, t, themeName } = this.props;
 
         const states = this.getStates(this.props.countries, this.state.country.alpha3);
-        const countryNames = map(filter(countries, (country) => country.isAllowed), (country) => country.name);
+        const countryNames = map(
+            filter(countries, (country) => country.isAllowed),
+            (country) => country.name,
+        );
         return (
             <form>
                 <section className={css.long}>
@@ -146,8 +149,8 @@ class Landing extends React.PureComponent {
                                     },
                                     state: {
                                         name: get(head(get(country, 'states')), 'name') || '',
-                                        code: get(head(get(country, 'states')), 'code') || ''
-                                    }
+                                        code: get(head(get(country, 'states')), 'code') || '',
+                                    },
                                 });
                             }}
                             options={map(countryNames, (countryName) => ({
@@ -156,7 +159,7 @@ class Landing extends React.PureComponent {
                             }))}
                         />
                     </fieldset>
-                    {!isEmpty(states) &&
+                    {!isEmpty(states) && (
                         <fieldset>
                             <Select
                                 value={this.state.state.name}
@@ -167,8 +170,8 @@ class Landing extends React.PureComponent {
                                     this.setState({
                                         state: {
                                             name: state.name,
-                                            code: state.code
-                                        }
+                                            code: state.code,
+                                        },
                                     });
                                 }}
                                 options={map(states, (state) => ({
@@ -177,7 +180,7 @@ class Landing extends React.PureComponent {
                                 }))}
                             />
                         </fieldset>
-                    }
+                    )}
                 </section>
                 <footer className={css.choiceDefault}>
                     <div>
@@ -198,7 +201,7 @@ class Landing extends React.PureComponent {
                                 this.props.updateCustomerInfo({
                                     address: {
                                         country: this.state.country.alpha3,
-                                        state: this.state.state.code
+                                        state: this.state.state.code,
                                     },
                                 });
                                 this.props.history.push('/exchanges/moonpay/setup-email');
@@ -229,7 +232,4 @@ const mapDispatchToProps = {
     setLoggingIn,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Landing));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Landing));

@@ -182,7 +182,7 @@ class UserAdvancedInfo extends React.PureComponent {
                         />
                         <Input
                             value={zipCode}
-                            label={country === 'USA' ? "ZIP CODE" : t('moonpay:zipCode')}
+                            label={country === 'USA' ? 'ZIP CODE' : t('moonpay:zipCode')}
                             onChange={(newZipCode) => this.setState({ zipCode: newZipCode })}
                         />
                     </fieldset>
@@ -191,7 +191,13 @@ class UserAdvancedInfo extends React.PureComponent {
                     <div>
                         <Button
                             id="to-cancel"
-                            onClick={() => this.props.history.push(hasAnyPaymentCards ? '/exchanges/moonpay/select-payment-card' : '/exchanges/moonpay/user-basic-info')}
+                            onClick={() =>
+                                this.props.history.push(
+                                    hasAnyPaymentCards
+                                        ? '/exchanges/moonpay/select-payment-card'
+                                        : '/exchanges/moonpay/user-basic-info',
+                                )
+                            }
                             className="square"
                             variant="dark"
                         >

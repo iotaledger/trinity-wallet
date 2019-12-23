@@ -62,7 +62,7 @@ class PaymentFailure extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Transaction failure reason */
-        failureReason: PropTypes.object.isRequired
+        failureReason: PropTypes.object.isRequired,
     };
 
     /**
@@ -77,10 +77,9 @@ class PaymentFailure extends Component {
         const {
             t,
             theme: { body, negative },
-            failureReason
+            failureReason,
         } = this.props;
         const textColor = { color: body.color };
-
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -90,7 +89,7 @@ class PaymentFailure extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
                     >
-                        <Header iconSize={width / 3} iconName='moonpay' textColor={body.color} />
+                        <Header iconSize={width / 3} iconName="moonpay" textColor={body.color} />
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
@@ -105,17 +104,21 @@ class PaymentFailure extends Component {
                             <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 60 }]}>
                                 {t('moonpay:paymentFailureExplanation')}
                             </Text>
-                            { failureReason && <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 60 }]}>
-                                {getPurchaseFailureReason(failureReason, t)}
-                            </Text>
-                            }
+                            {failureReason && (
+                                <Text style={[styles.infoTextRegular, textColor, { paddingTop: height / 60 }]}>
+                                    {getPurchaseFailureReason(failureReason, t)}
+                                </Text>
+                            )}
                         </InfoBox>
                     </AnimatedComponent>
                     <View style={{ flex: 1.5 }} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
-                        <SingleFooterButton onButtonPress={() => this.goToDashboard()} buttonText={t('global:goToDashboard')} />
+                        <SingleFooterButton
+                            onButtonPress={() => this.goToDashboard()}
+                            buttonText={t('global:goToDashboard')}
+                        />
                     </AnimatedComponent>
                 </View>
             </View>

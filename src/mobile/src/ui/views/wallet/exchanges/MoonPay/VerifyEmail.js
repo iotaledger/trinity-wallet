@@ -67,14 +67,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        width
+        width,
     },
     checkboxTextContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap',
-        width: width / 1.2
+        width: width / 1.2,
     },
     checkbox: {
         width: width / 22,
@@ -117,7 +117,7 @@ class VerifyEmail extends React.Component {
         /** @ignore */
         setLoggingIn: PropTypes.func.isRequired,
         /** @ignore */
-        isLoggingIn: PropTypes.bool.isRequired
+        isLoggingIn: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -334,14 +334,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     verifyEmailAndFetchMeta,
-    setLoggingIn
+    setLoggingIn,
 };
 
-export default WithUserActivity()(
-    withTranslation()(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(VerifyEmail),
-    ),
-);
+export default WithUserActivity()(withTranslation()(connect(mapStateToProps, mapDispatchToProps)(VerifyEmail)));

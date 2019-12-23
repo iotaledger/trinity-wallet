@@ -235,7 +235,7 @@ export default class PurchaseDetailsModal extends PureComponent {
             time,
             t,
             style,
-            fiatValue
+            fiatValue,
         } = this.props;
 
         return (
@@ -254,7 +254,7 @@ export default class PurchaseDetailsModal extends PureComponent {
                     <View style={styles.wrapper}>
                         <View style={styles.header}>
                             <Text style={[styles.headerText, { color: style.titleColor }]}>
-                                {t('moonpay:purchase')} { value > 0 && `${value} ${unit}`}
+                                {t('moonpay:purchase')} {value > 0 && `${value} ${unit}`}
                             </Text>
                         </View>
                         <Text style={[styles.timestamp, style.defaultTextColor]}>
@@ -262,7 +262,7 @@ export default class PurchaseDetailsModal extends PureComponent {
                             {formatModalTime(locale, timezone, time)}
                         </Text>
                     </View>
-                    <View style={[ styles.rowContainer, { paddingTop: height / 50 } ]}>
+                    <View style={[styles.rowContainer, { paddingTop: height / 50 }]}>
                         <Text style={[styles.label, style.defaultTextColor]}>{t('moonpay:paymentStatus')}:</Text>
                         <View style={styles.rowWrapper}>
                             <Text
@@ -270,7 +270,8 @@ export default class PurchaseDetailsModal extends PureComponent {
                                 numberOfLines={2}
                                 ellipsizeMode="middle"
                             >
-                                {statusText}{failureReason && (': ' + getPurchaseFailureReason(failureReason))}
+                                {statusText}
+                                {failureReason && ': ' + getPurchaseFailureReason(failureReason)}
                             </Text>
                         </View>
                     </View>
@@ -323,9 +324,7 @@ export default class PurchaseDetailsModal extends PureComponent {
                     </View>
                     <View style={styles.rowContainer}>
                         <Text style={[styles.label, style.defaultTextColor]}>{t('moonpay:help')}</Text>
-                        <TouchableOpacity
-                                onPress={() => Linking.openURL('https://help.moonpay.io/')}
-                        >
+                        <TouchableOpacity onPress={() => Linking.openURL('https://help.moonpay.io/')}>
                             <Text
                                 style={[styles.rowText, style.defaultTextColor, { textDecorationLine: 'underline' }]}
                                 numberOfLines={2}

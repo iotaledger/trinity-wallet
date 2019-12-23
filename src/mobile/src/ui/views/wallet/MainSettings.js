@@ -125,9 +125,4 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withTranslation(['settings', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(MainSettings),
-);
+export default withTranslation(['settings', 'global'])(connect(mapStateToProps, mapDispatchToProps)(MainSettings));

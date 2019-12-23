@@ -211,7 +211,7 @@ class UserAdvancedInfo extends React.Component {
             return this.props.generateAlert(
                 'error',
                 country === 'USA' ? 'Invalid zip code' : t('moonpay:invalidZipCode'),
-                country === 'USA' ? 'Please enter a valid zip code.' :t('moonpay:invalidZipCodeExplanation'),
+                country === 'USA' ? 'Please enter a valid zip code.' : t('moonpay:invalidZipCodeExplanation'),
             );
         }
 
@@ -282,7 +282,7 @@ class UserAdvancedInfo extends React.Component {
                     },
                 })}
                 <View style={{ flex: 0.6 }} />
-                {this.renderTextField(country === 'USA' ? "ZIP CODE" : t('moonpay:zipCode'), this.state.zipCode, {
+                {this.renderTextField(country === 'USA' ? 'ZIP CODE' : t('moonpay:zipCode'), this.state.zipCode, {
                     onValidTextChange: (zipCode) => this.setState({ zipCode }),
                     onRef: (c) => {
                         this.zipCode = c;

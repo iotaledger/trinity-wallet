@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
-        textDecorationLine: 'underline'
+        textDecorationLine: 'underline',
     },
 });
 
@@ -41,7 +41,7 @@ class Help extends PureComponent {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -67,10 +67,12 @@ class Help extends PureComponent {
             <View style={styles.container}>
                 <View style={styles.topContainer}>
                     <View style={{ alignItems: 'center' }}>
-                        <TouchableOpacity onPress={() => Linking.openURL('https://docs.iota.org/docs/wallets/0.1/trinity/introduction/overview')}>
-                            <Text style={[styles.titleText, textColor]}>
-                                {t('help:docsSite')}
-                            </Text>
+                        <TouchableOpacity
+                            onPress={() =>
+                                Linking.openURL('https://docs.iota.org/docs/wallets/0.1/trinity/introduction/overview')
+                            }
+                        >
+                            <Text style={[styles.titleText, textColor]}>{t('help:docsSite')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => Linking.openURL('https://trinity.iota.org/help/')}>
                             <Text style={[styles.titleText, textColor, { paddingTop: height / 25 }]}>
@@ -100,9 +102,4 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withTranslation(['global', 'help'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(Help),
-);
+export default withTranslation(['global', 'help'])(connect(mapStateToProps, mapDispatchToProps)(Help));

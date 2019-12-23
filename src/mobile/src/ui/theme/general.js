@@ -40,7 +40,7 @@ const screens = [
     'setupEmail',
     'userAdvancedInfo',
     'userBasicInfo',
-    'verifyEmail'
+    'verifyEmail',
 ];
 
 export const Styling = {

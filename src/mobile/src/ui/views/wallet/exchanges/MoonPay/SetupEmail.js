@@ -178,9 +178,9 @@ class SetupEmail extends React.Component {
                                 autoCapitalize="none"
                                 returnKeyType="done"
                                 value={this.state.email}
-                                keyboardType='email-address'
-                                autoCompleteType='email'
-                                textContentType='emailAddress'
+                                keyboardType="email-address"
+                                autoCompleteType="email"
+                                textContentType="emailAddress"
                             />
                         </AnimatedComponent>
                         <View style={{ flex: 0.6 }} />
@@ -216,11 +216,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default WithUserActivity()(
-    withTranslation()(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(SetupEmail),
-    ),
-);
+export default WithUserActivity()(withTranslation()(connect(mapStateToProps, mapDispatchToProps)(SetupEmail)));

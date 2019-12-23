@@ -321,11 +321,4 @@ const mapDispatchToProps = {
     updateCustomer,
 };
 
-export default WithUserActivity()(
-    withTranslation()(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(UserBasicInfo),
-    ),
-);
+export default WithUserActivity()(withTranslation()(connect(mapStateToProps, mapDispatchToProps)(UserBasicInfo)));

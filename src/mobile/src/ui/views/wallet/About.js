@@ -89,9 +89,4 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withTranslation(['global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(About),
-);
+export default withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(About));

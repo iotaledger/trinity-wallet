@@ -11,7 +11,7 @@ import SeedStore from 'libs/SeedStore';
 const mapDispatchToProps = {
     generateAlert,
     getAccountInfo,
-    fetchMoonPayMeta
+    fetchMoonPayMeta,
 };
 
 const mapStateToProps = (state) => ({
@@ -145,13 +145,8 @@ export default () => (C) => {
         /** @ignore */
         isFetchingMoonPayMeta: PropTypes.bool.isRequired,
         /** @ignore */
-        fetchMoonPayMeta: PropTypes.func.isRequired
+        fetchMoonPayMeta: PropTypes.func.isRequired,
     };
 
-    return withTranslation(['global'])(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(WithManualRefresh),
-    );
+    return withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithManualRefresh));
 };

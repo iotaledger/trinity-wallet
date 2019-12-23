@@ -377,7 +377,6 @@ class History extends Component {
 
             const amount = quoteCurrencyAmount * 1000000 || 0;
 
-
             return {
                 time: createdAt,
                 address: walletAddress,
@@ -434,7 +433,7 @@ class History extends Component {
             isAuthenticatedForMoonPay,
             theme: { primary, body },
             t,
-            isRefreshing
+            isRefreshing,
         } = this.props;
         if (isAuthenticatedForMoonPay) {
             const purchaseHistory = this.prepMoonPayPurchases();
@@ -608,10 +607,5 @@ const mapDispatchToProps = {
 };
 
 export default WithManualRefresh()(
-    withTranslation(['history', 'global'])(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(History),
-    ),
+    withTranslation(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History)),
 );

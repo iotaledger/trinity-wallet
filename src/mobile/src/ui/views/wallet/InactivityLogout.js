@@ -124,9 +124,4 @@ const mapDispatchToProps = {
     setUserActivity,
 };
 
-export default withTranslation(['global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(InactivityLogout),
-);
+export default withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(InactivityLogout));

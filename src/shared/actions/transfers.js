@@ -223,7 +223,10 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
         filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
 
     const executePrePromotionChecks = (settings, withQuorum) => () => {
-        return syncAccount(settings, withQuorum)(accountState)
+        return syncAccount(
+            settings,
+            withQuorum,
+        )(accountState)
             .then((newAccountState) => {
                 accountState = newAccountState;
 
@@ -368,7 +371,10 @@ export const forceTransactionPromotion = (
 
         promotionAttempt += 1;
 
-        return promoteTransactionAsync(settings, seedStore)(hash).catch((error) => {
+        return promoteTransactionAsync(
+            settings,
+            seedStore,
+        )(hash).catch((error) => {
             const isTransactionInconsistent = includes(error.message, Errors.TRANSACTION_IS_INCONSISTENT);
 
             if (
@@ -405,7 +411,10 @@ export const forceTransactionPromotion = (
         const tailTransaction = head(tailTransactionHashes);
         const hash = tailTransaction.hash;
 
-        return replayBundleAsync(settings, seedStore)(hash).then((reattachment) => {
+        return replayBundleAsync(
+            settings,
+            seedStore,
+        )(hash).then((reattachment) => {
             if (shouldGenerateAlert) {
                 dispatch(
                     generateAlert(
@@ -504,7 +513,10 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 maxInputs = maxInputResponse;
 
                 // Make sure that the address a user is about to send to is not already used.
-                return isAnyAddressSpent(settings, withQuorum)([address]).then((isSpent) => {
+                return isAnyAddressSpent(
+                    settings,
+                    withQuorum,
+                )([address]).then((isSpent) => {
                     if (isSpent) {
                         throw new Error(Errors.KEY_REUSE);
                     }
@@ -950,9 +962,10 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, quoru
     const retryFn = (settings, withQuorum) => () => {
         return (
             // First check spent statuses against transaction addresses
-            categoriseAddressesBySpentStatus(settings, withQuorum)(
-                map(failedTransactionsForThisBundleHash, (tx) => tx.address),
-            )
+            categoriseAddressesBySpentStatus(
+                settings,
+                withQuorum,
+            )(map(failedTransactionsForThisBundleHash, (tx) => tx.address))
                 // If any address (input, remainder, receive) is spent, error out
                 .then(({ spent }) => {
                     if (size(spent)) {
