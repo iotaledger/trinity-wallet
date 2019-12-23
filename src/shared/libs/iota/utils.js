@@ -491,7 +491,10 @@ export const getRandomNodes = (nodes, size = 5, blacklistedNodes = [], PoW = fal
     if (PoW) {
         nodesToSample = filter(nodes, (node) => node.pow === true);
     }
-    return sampleSize(filter(nodesToSample, (node) => !find(blacklistedNodes, { url: node.url })), size);
+    return sampleSize(
+        filter(nodesToSample, (node) => !find(blacklistedNodes, { url: node.url })),
+        size,
+    );
 };
 
 /**
@@ -557,7 +560,6 @@ export const withRequestTimeoutsHandler = (timeout) => {
  * @returns {object}
  */
 export const parseCDALink = (input) => {
-
     const result = {
         address: undefined,
         message: undefined,
@@ -566,8 +568,8 @@ export const parseCDALink = (input) => {
     };
 
     try {
-        const url = new URL(input, true)
-        const { address, message, amount, timeoutAt } = url.query
+        const url = new URL(input, true);
+        const { address, message, amount, timeoutAt } = url.query;
 
         if (address.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
             result.address = address;
@@ -588,10 +590,9 @@ export const parseCDALink = (input) => {
         if (message && typeof message === 'string') {
             result.message = message;
         }
-
     } catch (error) {
-        return null
+        return null;
     }
 
-    return result
-}
+    return result;
+};

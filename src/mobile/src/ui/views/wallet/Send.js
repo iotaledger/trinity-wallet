@@ -15,7 +15,7 @@ import {
     VALID_SEED_REGEX,
     ADDRESS_LENGTH,
     MAX_MESSAGE_LENGTH,
-    parseCDALink
+    parseCDALink,
 } from 'shared-modules/libs/iota/utils';
 import { completeDeepLinkRequest } from 'shared-modules/actions/wallet';
 import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
@@ -28,7 +28,7 @@ import {
     setSendDenomination,
     setDoNotMinimise,
     toggleModalActivity,
-    clearSendFields
+    clearSendFields,
 } from 'shared-modules/actions/ui';
 import { round, parse } from 'shared-modules/libs/utils';
 import {
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width
+        width,
     },
     paymentRequestText: {
         fontFamily: 'SourceSansPro-SemiBold',
@@ -261,7 +261,7 @@ export class Send extends Component {
         if (newProps.address.startsWith('http')) {
             const parsedLink = parseCDALink(newProps.address);
             if (parsedLink) {
-                  this.props.verifyCDAContent(parsedLink);
+                this.props.verifyCDAContent(parsedLink);
             } else {
                 this.props.generateAlert('error', t('invalidAddress'), t('invalidAddressExplanation'));
             }
@@ -371,12 +371,8 @@ export class Send extends Component {
         const dataSubstring = data.substring(5);
 
         const _sendError = (title, explanation) => {
-            timer.setTimeout(
-                'invalidAddressAlert',
-                () => this.props.generateAlert('error', title, explanation),
-                500,
-            );
-        }
+            timer.setTimeout('invalidAddressAlert', () => this.props.generateAlert('error', title, explanation), 500);
+        };
         this.hideModal();
         // Clear clipboard
         Clipboard.setString(' ');
@@ -393,7 +389,7 @@ export class Send extends Component {
         } else if (dataString.startsWith('http')) {
             const parsedLink = parseCDALink(dataString);
             if (parsedLink) {
-                  this.props.verifyCDAContent(parsedLink);
+                this.props.verifyCDAContent(parsedLink);
             } else {
                 _sendError(t('invalidAddress'), t('invalidAddressExplanation'));
             }
@@ -775,7 +771,7 @@ export class Send extends Component {
             isKeyboardActive,
             themeName,
             CDAContent,
-            theme: { primary, body }
+            theme: { primary, body },
         } = this.props;
         const textColor = { color: theme.body.color };
         const opacity = this.getSendMaxOpacity();
@@ -784,19 +780,28 @@ export class Send extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                        { !isEmpty(CDAContent) &&
-                            <View style={[ styles.clearContainer, { backgroundColor: primary.color } ]}>
-                                <TouchableWithoutFeedback onPress={() => this.clearPaymentRequest()}>
-                                    <View style={styles.clear}>
-                                        <Text>
-                                            <Text style={[styles.paymentRequestText, { color: body.bg }]}>{t('send:paymentRequest')}</Text>
-                                            <Text style={[styles.clearText, { color: body.bg }]}> | </Text>
-                                            <Text style={[styles.clearText, { color: body.bg, textDecorationLine: 'underline' }]}>{t('send:clear')}</Text>
+                    {!isEmpty(CDAContent) && (
+                        <View style={[styles.clearContainer, { backgroundColor: primary.color }]}>
+                            <TouchableWithoutFeedback onPress={() => this.clearPaymentRequest()}>
+                                <View style={styles.clear}>
+                                    <Text>
+                                        <Text style={[styles.paymentRequestText, { color: body.bg }]}>
+                                            {t('send:paymentRequest')}
                                         </Text>
-                                    </View>
-                                </TouchableWithoutFeedback>
-                            </View>
-                        }
+                                        <Text style={[styles.clearText, { color: body.bg }]}> | </Text>
+                                        <Text
+                                            style={[
+                                                styles.clearText,
+                                                { color: body.bg, textDecorationLine: 'underline' },
+                                            ]}
+                                        >
+                                            {t('send:clear')}
+                                        </Text>
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    )}
                     <View style={{ flex: 0.8 }} />
                     <View style={styles.topContainer}>
                         <CustomTextInput
@@ -897,7 +902,7 @@ export class Send extends Component {
                         <View style={{ flex: 0.1 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <View style={{ flex: 0.25 }}/>
+                        <View style={{ flex: 0.25 }} />
                         <View
                             style={{
                                 flex: 1,
@@ -976,7 +981,7 @@ const mapStateToProps = (state) => ({
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     isKeyboardActive: state.ui.isKeyboardActive,
     themeName: state.settings.themeName,
-    CDAContent: state.ui.CDAContent
+    CDAContent: state.ui.CDAContent,
 });
 
 const mapDispatchToProps = {
@@ -996,12 +1001,7 @@ const mapDispatchToProps = {
     toggleModalActivity,
     clearCDAContent,
     verifyCDAContent,
-    clearSendFields
+    clearSendFields,
 };
 
-export default withTranslation(['send', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(Send),
-);
+export default withTranslation(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));

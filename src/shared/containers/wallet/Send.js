@@ -191,7 +191,7 @@ export default function withSendData(SendComponent) {
                 clearCDAContent,
                 clearSendFields,
                 CDAContent,
-                verifyCDAContent
+                verifyCDAContent,
             } = this.props;
 
             const progressTitle =
@@ -258,7 +258,7 @@ export default function withSendData(SendComponent) {
         progress: state.progress,
         ui: state.ui,
         deepLinkRequestActive: state.wallet.deepLinkRequestActive,
-        CDAContent: state.ui.CDAContent
+        CDAContent: state.ui.CDAContent,
     });
 
     const mapDispatchToProps = {
@@ -272,11 +272,8 @@ export default function withSendData(SendComponent) {
         resetProgress,
         clearCDAContent,
         clearSendFields,
-        verifyCDAContent
+        verifyCDAContent,
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(SendData);
+    return connect(mapStateToProps, mapDispatchToProps)(SendData);
 }

@@ -180,17 +180,15 @@ describe('Testing Balance component', () => {
                     expect(Array.isArray(returnValue)).toEqual(true);
                 });
 
-                it('should have "time", "icon", "confirmationStatus", "value", "unit", "sign", and "style" props in each item in array', () => {
+                it('should have "time", "icon", "confirmationStatus", "value", "unit" and "style" props in each item in array', () => {
                     const props = getProps({ transactions });
 
                     const instance = shallow(<Balance {...props} />).instance();
                     const returnValueHead = instance.prepTransactions()[0];
 
-                    ['time', 'confirmationStatus', 'value', 'unit', 'sign', 'style', 'icon'].forEach((prop) =>
+                    ['time', 'confirmationStatus', 'value', 'unit', 'style', 'icon'].forEach((prop) =>
                         expect(Object.keys(returnValueHead).includes(prop)).toEqual(true),
                     );
-
-                    expect(Object.keys(returnValueHead).length).toEqual(8);
                 });
 
                 it('should have confirmationStatus prop equals "Received" if the transfer is incoming and persistence is true', () => {

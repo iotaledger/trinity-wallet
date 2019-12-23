@@ -505,7 +505,6 @@ class TopBar extends Component {
                             {children}
                         </View>
                     </View>
-                    <View style={{ flex: 1 }} />
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -540,9 +539,4 @@ const mapDispatchToProps = {
     setPollFor,
 };
 
-export default withTranslation('global')(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(TopBar),
-);
+export default withTranslation('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));

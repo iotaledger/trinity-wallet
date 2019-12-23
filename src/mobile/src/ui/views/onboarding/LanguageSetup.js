@@ -82,6 +82,7 @@ class LanguageSetup extends Component {
     componentWillUnmount() {
         timer.clearTimeout('delayReset');
     }
+
     onNextPress() {
         const { forceUpdate } = this.props;
         if (forceUpdate) {
@@ -191,8 +192,5 @@ const mapDispatchToProps = {
 };
 
 export default withTranslation(['languageSetup', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(LanguageSetup),
+    connect(mapStateToProps, mapDispatchToProps)(LanguageSetup),
 );

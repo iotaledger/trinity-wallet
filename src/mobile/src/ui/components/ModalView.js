@@ -77,12 +77,9 @@ export class ModalViewComponent extends PureComponent {
      * @returns {any}
      */
     getStylingWhenDisplayingTopBar() {
-        if (isAndroid) {
-            return { flex: 1 - Styling.topBarHeightRatio };
-        }
         return {
             height: isIPhoneX
-                ? height - Styling.topBarHeight + 20 - Styling.footerButtonHeight
+                ? height - Styling.topBarHeight - Styling.footerButtonHeight + Styling.iPhoneXBottomInsetHeight + 10
                 : height - Styling.topBarHeight - Styling.footerButtonHeight,
         };
     }
@@ -125,7 +122,7 @@ export class ModalViewComponent extends PureComponent {
                 </View>
                 <View style={[styles.buttonContainer, { backgroundColor: body.bg }]}>
                     {modalButtons ||
-                        ((dualButtons && (
+                        (dualButtons && (
                             <DualFooterButtons
                                 onLeftButtonPress={() => onLeftButtonPress()}
                                 onRightButtonPress={() => onRightButtonPress()}
@@ -133,7 +130,7 @@ export class ModalViewComponent extends PureComponent {
                                 rightButtonText={rightButtonText}
                                 disableRightButton={disableRightButton}
                             />
-                        )) || <SingleFooterButton onButtonPress={() => onButtonPress()} buttonText={buttonText} />)}
+                        )) || <SingleFooterButton onButtonPress={() => onButtonPress()} buttonText={buttonText} />}
                 </View>
             </KeyboardAwareScrollView>
         );

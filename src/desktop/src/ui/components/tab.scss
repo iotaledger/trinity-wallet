@@ -1,0 +1,17 @@
+.tab {
+    cursor: pointer;
+    width: 100%;
+    padding: 12px 0;
+    font-weight: 400;
+    border: 1px solid var(--input-bg);
+    box-sizing: border-box;
+    text-align: center;
+    background: var(--dark-color);
+    opacity: 0.5;
+}
+
+.active {
+    border: none;
+    opacity: 1;
+    background: var(--body-bg);
+}

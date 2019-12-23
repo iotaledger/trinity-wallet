@@ -80,7 +80,7 @@ class Settings extends Component {
 
     /**
      * Gets settings animation according to current and next menu tier
-     * 0 = main settings menu, 1 = first tier settings menu, 2 = second tier settings menu, 3 = final tier settings menu
+     * 0 = main settings menu, 1 = first tier settings menu, 2 = second tier settings menu, 4 = final tier settings menu
      *
      * @param {string} currentSetting
      * @param {string} nextSetting
@@ -93,12 +93,13 @@ class Settings extends Component {
             accountManagement: 1,
             securitySettings: 1,
             advancedSettings: 1,
+            themeCustomisation: 1,
+            currencySelection: 1,
+            languageSelection: 1,
+            help: 1,
             addNewAccount: 2,
             addExistingSeed: 3,
             modeSelection: 3,
-            themeCustomisation: 3,
-            currencySelection: 3,
-            languageSelection: 3,
             viewAddresses: 3,
             editAccountName: 3,
             deleteAccount: 3,

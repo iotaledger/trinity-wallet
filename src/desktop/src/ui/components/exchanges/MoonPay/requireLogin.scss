@@ -1,0 +1,24 @@
+.container {
+    height: calc(100% - 90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 940px) {
+        height: calc(100vh - 200px);
+        background: var(--box-bg);
+    }
+
+    p {
+        text-align: center;
+        font-size: 18px;
+        margin: 0;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    div {
+        margin-top: 40px;
+    }
+}

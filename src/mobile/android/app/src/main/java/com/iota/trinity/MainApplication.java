@@ -39,6 +39,7 @@ import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
 import com.facebook.react.ReactNativeHost;
 import com.zapper.QRCodePackage;
+import com.reactnativecommunity.webview.RNCWebViewPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -95,7 +96,8 @@ public class MainApplication extends NavigationApplication implements ShareAppli
                 new RNSharePackage(),
                 new RNViewShotPackage(),
                 new RealmReactPackage(),
-                new RNFetchBlobPackage()
+                new RNFetchBlobPackage(),
+                new RNCWebViewPackage()
         );
     }
 

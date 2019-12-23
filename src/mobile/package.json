@@ -1,6 +1,6 @@
 {
   "name": "trinity-mobile",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -92,6 +92,7 @@
     "react-native-triangle": "0.0.8",
     "react-native-vector-icons": "^6.4.1",
     "react-native-view-shot": "git+https://github.com/cvarley100/react-native-view-shot#master",
+    "react-native-webview": "5.8.2",
     "react-redux": "^5.0.6",
     "readable-stream": "^1.0.33",
     "realm": "2.29.0",

@@ -1,44 +1,23 @@
-import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
-import { generateAlert } from 'shared-modules/actions/alerts';
-import { hash } from 'libs/keychain';
 import { setUserActivity } from 'shared-modules/actions/ui';
 import { clearWalletData } from 'shared-modules/actions/wallet';
-import { getThemeFromState } from 'shared-modules/selectors/global';
+import {
+    setAuthenticationStatus as setMoonPayAuthenticationStatus,
+    clearData as clearMoonPayData,
+} from 'shared-modules/actions/exchanges/MoonPay';
+import { __DEV__ } from 'shared-modules/config';
+import { MoonPayKeychainAdapter } from 'libs/keychain';
 import navigator from 'libs/navigation';
 
 export default () => (C) => {
     class WithLogout extends Component {
         constructor() {
             super();
-            this.onInactivityLoginPress = this.onInactivityLoginPress.bind(this);
             this.logout = this.logout.bind(this);
-        }
-
-        /**
-         * Validates user provided password and sets wallet state as active
-         * @param {string} password
-         * @returns {Promise<void>}
-         */
-        async onInactivityLoginPress(password) {
-            const { t } = this.props;
-            if (!password) {
-                return this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
-            }
-            const passwordHash = await hash(password);
-            if (!isEqual(passwordHash, global.passwordHash)) {
-                this.props.generateAlert(
-                    'error',
-                    t('global:unrecognisedPassword'),
-                    t('global:unrecognisedPasswordExplanation'),
-                );
-            } else {
-                this.props.setUserActivity({ inactive: false });
-            }
         }
 
         /**
@@ -49,46 +28,49 @@ export default () => (C) => {
             timer.setTimeout(
                 'delayLogout',
                 () => {
-                    navigator.setStackRoot('login');
-                    delete global.passwordHash;
-                    this.props.clearWalletData();
+                    MoonPayKeychainAdapter.clear()
+                        .then(() => {
+                            navigator.setStackRoot('login');
+                            delete global.passwordHash;
+
+                            this.props.clearMoonPayData();
+                            this.props.clearWalletData();
+                            this.props.setMoonPayAuthenticationStatus(false);
+                        })
+                        .catch((error) => {
+                            if (__DEV__) {
+                                /* eslint-disable no-console */
+                                console.log(error);
+                                /* eslint-enable no-console */
+                            }
+                        });
                 },
                 500,
             );
         }
 
         render() {
-            return <C {...this.props} logout={this.logout} onInactivityLoginPress={this.onInactivityLoginPress} />;
+            return <C {...this.props} logout={this.logout} />;
         }
     }
 
     WithLogout.propTypes = {
         /** @ignore */
-        generateAlert: PropTypes.func.isRequired,
-        /** @ignore */
-        theme: PropTypes.object.isRequired,
-        /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
         setUserActivity: PropTypes.func.isRequired,
-        /**@ignore */
-        t: PropTypes.func.isRequired,
+        /** @ignore */
+        setMoonPayAuthenticationStatus: PropTypes.func.isRequired,
+        /** @ignore */
+        clearMoonPayData: PropTypes.func.isRequired,
     };
 
     const mapDispatchToProps = {
-        generateAlert,
         clearWalletData,
         setUserActivity,
+        setMoonPayAuthenticationStatus,
+        clearMoonPayData,
     };
 
-    const mapStateToProps = (state) => ({
-        theme: getThemeFromState(state),
-    });
-
-    return withTranslation(['global'])(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(WithLogout),
-    );
+    return withTranslation(['global'])(connect(null, mapDispatchToProps)(WithLogout));
 };

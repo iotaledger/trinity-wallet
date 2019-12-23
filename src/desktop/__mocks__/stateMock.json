@@ -219,9 +219,9 @@
     "settings": {
         "locale": "en",
         "node": {
-            "url": "https://foo.bar:443",
+            "url": "http://localhost:14265",
             "pow": false,
-            "token": "",
+            "username": "",
             "password": ""
         },
         "nodes": [
@@ -232,7 +232,10 @@
                 "password": ""
             }
         ],
+        "powNode": "",
         "customNodes": [],
+        "autoNodeList": true,
+        "powNodeAutoSwitch": true,
         "mode": "Standard",
         "language": "English (International)",
         "currency": "USD",
@@ -262,8 +265,8 @@
         },
         "ignoreProxy": false,
         "quorum": {
-            "size": 4,
-            "enabled": false
+            "size": 3,
+            "enabled": true
         }
     },
     "home": {

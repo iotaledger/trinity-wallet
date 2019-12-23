@@ -1,7 +1,7 @@
 {
     "global": {
         "address": "Adres",
-        "and": "oraz",
+        "and": "i",
         "send": "WYŚLIJ",
         "cancel": "Anuluj",
         "complete": "Zakończono",
@@ -263,7 +263,7 @@
         "checkInbox": "Sprawdź swoją skrzynkę mailową, aby zweryfikować swój adres e-mail",
         "verificationCodeSent": "Wysłaliśmy kod weryfikacyjny na adres {{email}}.",
         "verificationCode": "KOD WERYFIKACYJNY",
-        "agreeWithMoonPay": "MoonPay: Zgadzam się z",
+        "agreeWithMoonPay": "MoonPay: Akceptuję",
         "termsOfUse": "Warunki użytkowania",
         "tellUsAbout": "Powiedz coś o sobie",
         "tellUsMore": "Powiedz nam coś jeszcze",
@@ -523,9 +523,9 @@
         "addressPasteExplanation": "Wygląda na to, że wkleiłeś adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać.",
         "invalid": "BŁĄD",
         "swipeToSend": "Przesuń, aby wysłać",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "To jest żądanie płatności",
+        "paymentRequestExpired": "Żądanie płatności wygasło",
+        "paymentRequestExpiredExplanation": "To żądanie płatności wygasło. Poproś odbiorcę o nowe."
     },
     "setSeedName": {
         "letsAddName": "Nazwij swoje konto",

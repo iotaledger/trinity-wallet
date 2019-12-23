@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 /**
  * Advanced Settings component
  */
-class AdvancedSettings extends PureComponent {
+class About extends PureComponent {
     static propTypes = {
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
@@ -89,9 +89,4 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withTranslation(['global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(AdvancedSettings),
-);
+export default withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(About));

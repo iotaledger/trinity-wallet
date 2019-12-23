@@ -129,7 +129,17 @@ class Send extends React.PureComponent {
     }
 
     render() {
-        const { CDAContent, themeName, accountMeta, fields, isSending, availableBalance, settings, progress, t } = this.props;
+        const {
+            CDAContent,
+            themeName,
+            accountMeta,
+            fields,
+            isSending,
+            availableBalance,
+            settings,
+            progress,
+            t,
+        } = this.props;
         const { isTransferModalVisible, isUnitsVisible } = this.state;
 
         const transferContents =
@@ -192,14 +202,21 @@ class Send extends React.PureComponent {
                     <TextInput
                         value={isMessageAvailable || parseInt(fields.amount || '0') === 0 ? fields.message : ''}
                         label={t('send:message')}
-                        disabled={!isMessageAvailable && parseInt(fields.amount) > 0 || !isUndefined(CDAContent.message)}
+                        disabled={
+                            (!isMessageAvailable && parseInt(fields.amount) > 0) || !isUndefined(CDAContent.message)
+                        }
                         onChange={(value) => this.props.setSendMessageField(value)}
                         maxLength={MAX_MESSAGE_LENGTH}
                     />
                     <footer>
                         {!isSending ? (
                             <React.Fragment>
-                                <Button onClick={!isEmpty(CDAContent) ? () => this.clearPaymentRequest() : null} to="/wallet/" variant="secondary" className="outlineSmall">
+                                <Button
+                                    onClick={!isEmpty(CDAContent) ? () => this.clearPaymentRequest() : null}
+                                    to="/wallet/"
+                                    variant="secondary"
+                                    className="outlineSmall"
+                                >
                                     {!isEmpty(CDAContent) ? t('clear') : t('close')}
                                 </Button>
 

@@ -44,7 +44,7 @@ const polling = (
         /**
          * Polling service names
          */
-        allPollingServices: ['promotion', 'broadcast', 'marketData', 'price', 'chartData', 'nodeList', 'accountInfo'],
+        allPollingServices: ['promotion', 'broadcast', 'marketData', 'nodeList', 'accountInfo', 'moonpayMeta'],
         /**
          * Determines the service currently being run during the poll cycle
          */
@@ -77,6 +77,10 @@ const polling = (
          * Determines if poll cycle is promoting an unconfirmed transaction
          */
         isAutoPromoting: false,
+        /**
+         * Determines if poll cycle is fetching MoonPay meta
+         */
+        isFetchingMoonPayMeta: false,
     },
     action,
 ) => {
@@ -163,6 +167,23 @@ const polling = (
             return {
                 ...state,
                 pollFor: action.payload,
+            };
+        case PollingActionTypes.MOONPAY_META_FETCH_REQUEST:
+            return {
+                ...state,
+                isFetchingMoonPayMeta: true,
+            };
+        case PollingActionTypes.MOONPAY_META_FETCH_SUCCESS:
+            return {
+                ...state,
+                isFetchingMoonPayMeta: false,
+                ...setNextPollIfSuccessful(state),
+            };
+        case PollingActionTypes.MOONPAY_META_FETCH_ERROR:
+            return {
+                ...state,
+                isFetchingMoonPayMeta: false,
+                ...setNextPollIfUnsuccessful(state),
             };
         default:
             return state;
