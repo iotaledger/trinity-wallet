@@ -317,7 +317,4 @@ const mapDispatchToProps = {
     fetchMoonPayMeta,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Poll);
+export default connect(mapStateToProps, mapDispatchToProps)(Poll);

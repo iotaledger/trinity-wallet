@@ -212,7 +212,4 @@ const mapDispatchToProps = {
     setTransactionActive,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(IdentityConfirmationWarning));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(IdentityConfirmationWarning));

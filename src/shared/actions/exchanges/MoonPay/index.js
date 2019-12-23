@@ -16,6 +16,7 @@ import {
     getSelectedPaymentCard,
     getCustomerCountryCode,
     getCustomerStateCode,
+    getActiveToken,
 } from '../../../selectors/exchanges/MoonPay';
 import { __DEV__ } from '../../../config';
 import i18next from '../../../libs/i18next';
@@ -554,6 +555,17 @@ export const fetchMetaError = () => ({
 });
 
 /**
+ * Dispatch to remove active token from store
+ *
+ * @method removeActiveToken
+ *
+ * @returns {{type: {string} }}
+ */
+export const removeActiveToken = () => ({
+    type: MoonPayExchangeActionTypes.REMOVE_ACTIVE_TOKEN,
+});
+
+/**
  * Fetches list of all currencies supported by MoonPay
  *
  * @method fetchCurrencies
@@ -757,14 +769,20 @@ export const createTransaction = (
 ) => (dispatch, getState) => {
     dispatch(createTransactionRequest());
 
+    const token = getActiveToken(getState());
+
     api.createTransaction({
         baseCurrencyAmount,
         baseCurrencyCode,
         walletAddress,
         extraFeePercentage,
         returnUrl,
-        cardId: get(getSelectedPaymentCard(getState()), 'id'),
         currencyCode: IOTA_CURRENCY_CODE,
+        ...(token
+            ? { tokenId: get(token, 'id') }
+            : {
+                  cardId: get(getSelectedPaymentCard(getState()), 'id'),
+              }),
     })
         .then((data) => {
             const { currencies } = getState().exchanges.moonpay;
@@ -774,7 +792,10 @@ export const createTransaction = (
                     assign({}, data, {
                         active: true,
                         currencyCode: toUpper(
-                            get(find(currencies, (currency) => currency.id === data.baseCurrencyId), 'code'),
+                            get(
+                                find(currencies, (currency) => currency.id === data.baseCurrencyId),
+                                'code',
+                            ),
                         ),
                     }),
                 ),
@@ -859,7 +880,10 @@ export const setMeta = (meta) => (dispatch, getState) => {
         updateCustomerInfo(
             merge({}, customer, {
                 defaultCurrencyCode: toUpper(
-                    get(find(currencies, (currency) => currency.id === defaultCurrencyId), 'code'),
+                    get(
+                        find(currencies, (currency) => currency.id === defaultCurrencyId),
+                        'code',
+                    ),
                 ),
                 address: {
                     // If a user is new, he/she will have to choose country from the landing screen
@@ -894,7 +918,10 @@ export const setMeta = (meta) => (dispatch, getState) => {
                     {
                         active: isString(transaction.id) && get(activeTransaction, 'id') === transaction.id,
                         currencyCode: toUpper(
-                            get(find(currencies, (currency) => currency.id === transaction.baseCurrencyId), 'code'),
+                            get(
+                                find(currencies, (currency) => currency.id === transaction.baseCurrencyId),
+                                'code',
+                            ),
                         ),
                     },
                 ),
@@ -970,7 +997,10 @@ export const fetchTransactionDetails = (id) => (dispatch, getState) => {
                 // Make transaction active
                 active: true,
                 currencyCode: toUpper(
-                    get(find(currencies, (currency) => currency.id === transaction.baseCurrencyId), 'code'),
+                    get(
+                        find(currencies, (currency) => currency.id === transaction.baseCurrencyId),
+                        'code',
+                    ),
                 ),
             });
 

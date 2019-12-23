@@ -1,6 +1,7 @@
 import assign from 'lodash/assign';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
+import omit from 'lodash/omit';
 import { MoonPayExchangeActionTypes } from '../../../types';
 
 const initialState = {
@@ -369,6 +370,11 @@ export default (state = initialState, action) => {
                 transactions: map(state.transactions, (transaction) =>
                     assign({}, transaction, { active: transaction.id === action.payload }),
                 ),
+            };
+        case MoonPayExchangeActionTypes.REMOVE_ACTIVE_TOKEN_ID:
+            return {
+                ...state,
+                customer: omit(state.customer, 'token'),
             };
         case MoonPayExchangeActionTypes.CLEAR_DATA:
             return initialState;

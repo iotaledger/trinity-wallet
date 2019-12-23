@@ -112,9 +112,9 @@ export default function withChartData(ChartComponent) {
                     currency: settings.chartCurrency,
                     symbol: getCurrencySymbol(settings.chartCurrency),
                     price: this.props.marketData.usdPrice,
-                    volume: round(marketData.volume * settings.conversionRate).toLocaleString('en'),
+                    volume: round(marketData.volume).toLocaleString('en'),
                     change24h: marketData.change24h,
-                    mcap: round(marketData.mcap * settings.conversionRate).toLocaleString('en'),
+                    mcap: round(marketData.mcap).toLocaleString('en'),
                     globalSymbol: getCurrencySymbol(settings.chartCurrency),
                 },
                 chartData: {
@@ -146,8 +146,5 @@ export default function withChartData(ChartComponent) {
         setChartTimeframe,
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(ChartData);
+    return connect(mapStateToProps, mapDispatchToProps)(ChartData);
 }

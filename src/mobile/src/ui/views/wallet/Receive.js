@@ -804,9 +804,4 @@ const mapDispatchToProps = {
     getFromKeychainError,
 };
 
-export default withTranslation(['receive', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(Receive),
-);
+export default withTranslation(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Receive));

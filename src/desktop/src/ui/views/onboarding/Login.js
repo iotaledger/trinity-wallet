@@ -312,7 +312,4 @@ const mapDispatchToProps = {
     refreshCredentialsAndFetchMeta,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Login));

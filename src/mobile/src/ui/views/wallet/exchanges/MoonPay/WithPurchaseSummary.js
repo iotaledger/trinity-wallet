@@ -409,12 +409,5 @@ export default function withPurchaseSummary(WrappedComponent) {
         generateAlert,
     };
 
-    return WithUserActivity()(
-        withTranslation()(
-            connect(
-                mapStateToProps,
-                mapDispatchToProps,
-            )(PurchaseSummary),
-        ),
-    );
+    return WithUserActivity()(withTranslation()(connect(mapStateToProps, mapDispatchToProps)(PurchaseSummary)));
 }

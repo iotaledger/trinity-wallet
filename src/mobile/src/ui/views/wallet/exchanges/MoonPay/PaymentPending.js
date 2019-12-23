@@ -295,9 +295,4 @@ const mapDispatchToProps = {
     fetchTransactionDetails,
 };
 
-export default withTranslation()(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(PaymentPending),
-);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(PaymentPending));

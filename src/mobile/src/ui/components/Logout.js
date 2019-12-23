@@ -72,10 +72,5 @@ export default () => (C) => {
         clearMoonPayData,
     };
 
-    return withTranslation(['global'])(
-        connect(
-            null,
-            mapDispatchToProps,
-        )(WithLogout),
-    );
+    return withTranslation(['global'])(connect(null, mapDispatchToProps)(WithLogout));
 };

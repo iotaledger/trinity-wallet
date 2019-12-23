@@ -523,9 +523,9 @@
         "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。",
         "invalid": "無効",
         "swipeToSend": "スワイプして送金する",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "これは支払請求です",
+        "paymentRequestExpired": "支払請求の期限が切れました",
+        "paymentRequestExpiredExplanation": "この支払請求は期限切れです。新しい支払請求を受信者に依頼してください。"
     },
     "setSeedName": {
         "letsAddName": "アカウント名を追加してください。",

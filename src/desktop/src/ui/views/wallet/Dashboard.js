@@ -231,9 +231,4 @@ const mapDispatchToProps = {
     verifyCDAContent,
 };
 
-export default withTranslation()(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(Dashboard),
-);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));

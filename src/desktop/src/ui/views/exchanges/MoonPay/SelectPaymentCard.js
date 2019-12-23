@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 
-import { selectPaymentCard } from 'actions/exchanges/MoonPay';
+import { removeActiveToken, selectPaymentCard } from 'actions/exchanges/MoonPay';
 import { getCustomerPaymentCards, getSelectedPaymentCard } from 'selectors/exchanges/MoonPay';
 
 import Button from 'ui/components/Button';
@@ -29,6 +29,8 @@ class SelectPaymentCard extends React.PureComponent {
         paymentCards: PropTypes.array.isRequired,
         /** @ignore */
         selectPaymentCard: PropTypes.func.isRequired,
+        /** @ignore */
+        removeActiveToken: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -53,6 +55,10 @@ class SelectPaymentCard extends React.PureComponent {
                 : props.selectedPaymentCard,
             selectedOptionIndex: 0,
         };
+    }
+
+    componentDidMount() {
+        this.props.removeActiveToken();
     }
 
     /**
@@ -173,7 +179,9 @@ class SelectPaymentCard extends React.PureComponent {
                             onClick={() => {
                                 this.props.selectPaymentCard(this.state.selectedPaymentCard.id);
                                 this.props.history.push(
-                                    `/exchanges/moonpay/${SelectPaymentCard.options[this.state.selectedOptionIndex].redirectUrl}`,
+                                    `/exchanges/moonpay/${
+                                        SelectPaymentCard.options[this.state.selectedOptionIndex].redirectUrl
+                                    }`,
                                 );
                             }}
                             className="square"
@@ -197,9 +205,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     selectPaymentCard,
+    removeActiveToken,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(SelectPaymentCard));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(SelectPaymentCard));

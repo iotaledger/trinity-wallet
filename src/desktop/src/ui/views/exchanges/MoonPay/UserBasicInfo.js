@@ -182,7 +182,4 @@ const mapDisaptchToProps = {
     updateCustomer,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDisaptchToProps,
-)(withTranslation()(UserBasicInfo));
+export default connect(mapStateToProps, mapDisaptchToProps)(withTranslation()(UserBasicInfo));

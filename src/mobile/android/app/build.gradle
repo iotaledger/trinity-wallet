@@ -94,8 +94,8 @@ android {
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
-        versionCode 95
-        versionName "1.2.0"
+        versionCode 97
+        versionName "1.2.1"
         minSdkVersion 21
         targetSdkVersion 28
         multiDexEnabled true

@@ -1,7 +1,7 @@
 {
   "name": "trinity-desktop",
   "productName": "Trinity",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
   "description": "Desktop wallet for IOTA",
@@ -166,7 +166,7 @@
     "classnames": "2.2.6",
     "electron-settings": "3.2.0",
     "electron-updater": "4.0.14",
-    "entangled-node": "rihardsgravis/entangled-node#a39bfbf",
+    "entangled-node": "rihardsgravis/entangled-node#8e86e4c",
     "hw-app-iota": "0.6.1",
     "i18next": "17.0.6",
     "iota.lib.js": "0.5.2",

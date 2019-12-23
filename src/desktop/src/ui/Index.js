@@ -445,9 +445,4 @@ const mapDispatchToProps = {
     setViewingMoonpayPurchases,
 };
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(withTranslation()(App)),
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(App)));

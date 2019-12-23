@@ -183,7 +183,10 @@ class Landing extends Component {
         const textColor = { color: body.color };
         const states = this.getStates(this.props.countries, this.state.country.alpha3);
 
-        const countryNames = map(filter(countries, (country) => country.isAllowed), (country) => country.name);
+        const countryNames = map(
+            filter(countries, (country) => country.isAllowed),
+            (country) => country.name,
+        );
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -329,9 +332,4 @@ const mapDispatchToProps = {
     setLoggingIn,
 };
 
-export default withTranslation()(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(Landing),
-);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Landing));

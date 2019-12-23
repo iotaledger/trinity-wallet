@@ -216,11 +216,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default WithUserActivity()(
-    withTranslation()(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(SetupEmail),
-    ),
-);
+export default WithUserActivity()(withTranslation()(connect(mapStateToProps, mapDispatchToProps)(SetupEmail)));

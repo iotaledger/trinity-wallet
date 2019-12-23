@@ -7,7 +7,7 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 import { TouchableOpacity, StyleSheet, View, Text, Image } from 'react-native';
 import navigator from 'libs/navigation';
-import { selectPaymentCard } from 'shared-modules/actions/exchanges/MoonPay';
+import { removeActiveToken, selectPaymentCard } from 'shared-modules/actions/exchanges/MoonPay';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -95,6 +95,8 @@ class SelectPaymentCard extends React.Component {
         paymentCards: PropTypes.array.isRequired,
         /** @ignore */
         selectPaymentCard: PropTypes.func.isRequired,
+        /** @ignore */
+        removeActiveToken: PropTypes.func.isRequired,
     };
 
     static options = [
@@ -117,6 +119,10 @@ class SelectPaymentCard extends React.Component {
                 : props.selectedPaymentCard,
             selectedOptionIndex: 0,
         };
+    }
+
+    componentDidMount() {
+        this.props.removeActiveToken();
     }
 
     /**
@@ -351,13 +357,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     selectPaymentCard,
+    removeActiveToken,
 };
 
-export default WithUserActivity()(
-    withTranslation()(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(SelectPaymentCard),
-    ),
-);
+export default WithUserActivity()(withTranslation()(connect(mapStateToProps, mapDispatchToProps)(SelectPaymentCard)));

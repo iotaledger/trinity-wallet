@@ -124,10 +124,5 @@ export default () => (C) => {
         fetchTransactionDetails,
     };
 
-    return withTranslation(['global'])(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(WithDeepLinking),
-    );
+    return withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithDeepLinking));
 };

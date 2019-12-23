@@ -539,9 +539,4 @@ const mapDispatchToProps = {
     setPollFor,
 };
 
-export default withTranslation('global')(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(TopBar),
-);
+export default withTranslation('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));

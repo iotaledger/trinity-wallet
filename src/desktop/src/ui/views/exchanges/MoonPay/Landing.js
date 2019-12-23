@@ -115,7 +115,10 @@ class Landing extends React.PureComponent {
         const { isLoggingIn, countries, t, themeName } = this.props;
 
         const states = this.getStates(this.props.countries, this.state.country.alpha3);
-        const countryNames = map(filter(countries, (country) => country.isAllowed), (country) => country.name);
+        const countryNames = map(
+            filter(countries, (country) => country.isAllowed),
+            (country) => country.name,
+        );
         return (
             <form>
                 <section className={css.long}>
@@ -229,7 +232,4 @@ const mapDispatchToProps = {
     setLoggingIn,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Landing));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Landing));

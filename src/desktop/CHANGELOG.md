@@ -1,3 +1,7 @@
+### 1.2.1
+
+- Minor MoonPay fixes
+
 ### 1.2.0
 
 - New: Add the ability to purchase IOTA in app through MoonPay

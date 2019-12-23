@@ -335,13 +335,6 @@ const mapDispatchToProps = {
 
 export default WithUserActivity()(
     WithDeepLinking()(
-        WithLogout()(
-            withTranslation(['home', 'global', 'login'])(
-                connect(
-                    mapStateToProps,
-                    mapDispatchToProps,
-                )(Home),
-            ),
-        ),
+        WithLogout()(withTranslation(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
     ),
 );

@@ -244,7 +244,4 @@ const mapDispatchToProps = {
     updateCustomerInfo,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(UserAdvancedInfo));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(UserAdvancedInfo));

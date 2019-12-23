@@ -273,9 +273,4 @@ const mapDispatchToProps = {
     setTransactionActive,
 };
 
-export default withTranslation()(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(IdentityConfirmationWarning),
-);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(IdentityConfirmationWarning));

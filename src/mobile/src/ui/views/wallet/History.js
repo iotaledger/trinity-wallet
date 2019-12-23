@@ -17,14 +17,13 @@ import { withTranslation } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { computeStatusText, formatRelevantTransactions } from 'shared-modules/libs/iota/transfers';
 import { promoteTransaction, retryFailedTransaction } from 'shared-modules/actions/transfers';
-import { convertFiatToMiota } from 'shared-modules/exchanges/MoonPay/utils';
 import {
     getTransactionsForSelectedAccount,
     getSelectedAccountName,
     getSelectedAccountMeta,
     getAddressesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
-import { MOONPAY_TRANSACTION_STATUSES, SHORT_IOTA_CURRENCY_CODE } from 'shared-modules/exchanges/MoonPay';
+import { MOONPAY_TRANSACTION_STATUSES } from 'shared-modules/exchanges/MoonPay';
 import { updateTransactionDetails as updateMoonPayTransactionDetails } from 'shared-modules/actions/exchanges/MoonPay';
 import { getAllTransactions } from 'shared-modules/selectors/exchanges/MoonPay';
 import { getThemeFromState } from 'shared-modules/selectors/global';
@@ -166,8 +165,6 @@ class History extends Component {
         modalContent: PropTypes.string,
         /** @ignore */
         password: PropTypes.object.isRequired,
-        /** @ignore */
-        exchangeRates: PropTypes.object.isRequired,
         /** @ignore */
         moonpayPurchases: PropTypes.array.isRequired,
         /** @ignore */
@@ -362,7 +359,6 @@ class History extends Component {
             moonpayPurchases,
             theme: { primary, body, dark, negative },
             t,
-            exchangeRates,
         } = this.props;
 
         const formattedTransfers = map(moonpayPurchases, (purchase) => {
@@ -379,11 +375,7 @@ class History extends Component {
                 redirectUrl,
             } = purchase;
 
-            const amount =
-                quoteCurrencyAmount ||
-                // quoteCurrencyAmount is set to null for failed transactions,
-                // Hence compute it locally
-                convertFiatToMiota(baseCurrencyAmount, currencyCode, exchangeRates);
+            const amount = quoteCurrencyAmount * 1000000 || 0;
 
             return {
                 time: createdAt,
@@ -393,11 +385,11 @@ class History extends Component {
                 fee: feeAmount,
                 currencyCode,
                 t,
-                value: round(formatValue(amount), 1),
+                value: round(formatValue(amount), 2),
                 fullValue: formatValue(amount),
                 fiatValue: baseCurrencyAmount,
                 failureReason,
-                unit: SHORT_IOTA_CURRENCY_CODE,
+                unit: formatUnit(amount),
                 onPress: (props) => {
                     this.props.toggleModalActivity(
                         'moonpayPurchaseDetails',
@@ -602,7 +594,6 @@ const mapStateToProps = (state) => ({
     moonpayPurchases: getAllTransactions(state),
     isViewingMoonpayPurchases: state.ui.isViewingMoonpayPurchases,
     isAuthenticatedForMoonPay: state.exchanges.moonpay.isAuthenticated,
-    exchangeRates: state.exchanges.moonpay.exchangeRates,
 });
 
 const mapDispatchToProps = {
@@ -616,10 +607,5 @@ const mapDispatchToProps = {
 };
 
 export default WithManualRefresh()(
-    withTranslation(['history', 'global'])(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(History),
-    ),
+    withTranslation(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History)),
 );

@@ -491,7 +491,10 @@ export const getRandomNodes = (nodes, size = 5, blacklistedNodes = [], PoW = fal
     if (PoW) {
         nodesToSample = filter(nodes, (node) => node.pow === true);
     }
-    return sampleSize(filter(nodesToSample, (node) => !find(blacklistedNodes, { url: node.url })), size);
+    return sampleSize(
+        filter(nodesToSample, (node) => !find(blacklistedNodes, { url: node.url })),
+        size,
+    );
 };
 
 /**

@@ -122,7 +122,7 @@ export class ModalViewComponent extends PureComponent {
                 </View>
                 <View style={[styles.buttonContainer, { backgroundColor: body.bg }]}>
                     {modalButtons ||
-                        ((dualButtons && (
+                        (dualButtons && (
                             <DualFooterButtons
                                 onLeftButtonPress={() => onLeftButtonPress()}
                                 onRightButtonPress={() => onRightButtonPress()}
@@ -130,7 +130,7 @@ export class ModalViewComponent extends PureComponent {
                                 rightButtonText={rightButtonText}
                                 disableRightButton={disableRightButton}
                             />
-                        )) || <SingleFooterButton onButtonPress={() => onButtonPress()} buttonText={buttonText} />)}
+                        )) || <SingleFooterButton onButtonPress={() => onButtonPress()} buttonText={buttonText} />}
                 </View>
             </KeyboardAwareScrollView>
         );

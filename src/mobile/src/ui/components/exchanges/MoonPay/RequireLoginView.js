@@ -115,8 +115,5 @@ const mapDispatchToProps = {
 };
 
 export default withTranslation(['languageSetup', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(RequireLoginView),
+    connect(mapStateToProps, mapDispatchToProps)(RequireLoginView),
 );

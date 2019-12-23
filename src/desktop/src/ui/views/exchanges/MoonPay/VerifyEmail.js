@@ -167,7 +167,4 @@ const mapDispatchToProps = {
     setLoggingIn,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(VerifyEmail));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(VerifyEmail));

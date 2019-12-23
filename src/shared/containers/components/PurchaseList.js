@@ -78,8 +78,5 @@ export default function withPurchaseListData(ListComponent) {
         updateMoonPayTransactionDetails,
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(PurchaseListData);
+    return connect(mapStateToProps, mapDispatchToProps)(PurchaseListData);
 }

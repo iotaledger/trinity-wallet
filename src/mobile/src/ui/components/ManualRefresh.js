@@ -148,10 +148,5 @@ export default () => (C) => {
         fetchMoonPayMeta: PropTypes.func.isRequired,
     };
 
-    return withTranslation(['global'])(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(WithManualRefresh),
-    );
+    return withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithManualRefresh));
 };

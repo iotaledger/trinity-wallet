@@ -410,9 +410,4 @@ const mapDispatchToProps = {
     refreshCredentialsAndFetchMeta,
 };
 
-export default withTranslation(['loading', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(Loading),
-);
+export default withTranslation(['loading', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Loading));

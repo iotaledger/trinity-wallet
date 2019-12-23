@@ -361,7 +361,10 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
         filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
 
     const executePrePromotionChecks = (settings, withQuorum) => () => {
-        return syncAccount(settings, withQuorum)(accountState)
+        return syncAccount(
+            settings,
+            withQuorum,
+        )(accountState)
             .then((newState) => {
                 accountState = newState;
 
