@@ -41,7 +41,7 @@ export default class AmountInput extends React.PureComponent {
          */
         onChange: PropTypes.func.isRequired,
         /** Disables text input */
-        disabled: PropTypes.bool
+        disabled: PropTypes.bool,
     };
 
     state = {
@@ -188,7 +188,13 @@ export default class AmountInput extends React.PureComponent {
                         ) : null}
                         {amount > 0 && unit === '$' ? <p>= {formatIotas(amount, false, true)}</p> : null}
                     </a>
-                    <input id={id} type="text" value={value} readOnly={disabled} onChange={(e) => this.onChange(e.target.value)} />
+                    <input
+                        id={id}
+                        type="text"
+                        value={value}
+                        readOnly={disabled}
+                        onChange={(e) => this.onChange(e.target.value)}
+                    />
                     <small>{label}</small>
                 </fieldset>
                 {balance > 0 && (

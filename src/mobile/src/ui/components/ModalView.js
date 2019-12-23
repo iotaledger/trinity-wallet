@@ -77,12 +77,10 @@ export class ModalViewComponent extends PureComponent {
      * @returns {any}
      */
     getStylingWhenDisplayingTopBar() {
-        if (isAndroid) {
-            return { flex: 1 - Styling.topBarHeightRatio };
-        }
+      
         return {
             height: isIPhoneX
-                ? height - Styling.topBarHeight + 20 - Styling.footerButtonHeight
+                ? height - Styling.topBarHeight - Styling.footerButtonHeight + Styling.iPhoneXBottomInsetHeight + 10
                 : height - Styling.topBarHeight - Styling.footerButtonHeight,
         };
     }

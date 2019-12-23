@@ -12,6 +12,10 @@ export default class Info extends React.PureComponent {
         children: PropTypes.node.isRequired,
     };
 
+    static defaultProps = {
+        displayIcon: true,
+    };
+
     render() {
         const { children } = this.props;
 

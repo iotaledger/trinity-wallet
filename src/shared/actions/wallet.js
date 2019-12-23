@@ -377,7 +377,10 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, qu
 
         const snapshotTransitionFn = (settings, withQuorum) => () => {
             return (
-                getBalancesAsync(settings, withQuorum)(addresses)
+                getBalancesAsync(
+                    settings,
+                    withQuorum,
+                )(addresses)
                     // Find balance on all addresses
                     .then((balances) => {
                         const allBalances = map(balances.balances, Number);

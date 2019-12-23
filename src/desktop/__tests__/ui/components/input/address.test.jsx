@@ -8,6 +8,7 @@ const props = {
     label: 'Foo',
     closeLabel: 'Bar',
     onChange: jest.fn(),
+    verifyCDAContent: jest.fn()
 };
 
 describe('Address component', () => {

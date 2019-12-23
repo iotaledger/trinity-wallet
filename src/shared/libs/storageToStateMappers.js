@@ -64,7 +64,7 @@ const mapStorageToState = () => {
                 password,
             })),
             chartTimeframe: '24h',
-            chartCurrency: 'USD'
+            chartCurrency: 'USD',
         }),
         alerts: { notificationLog: map(errorLog, (error) => error) },
     };

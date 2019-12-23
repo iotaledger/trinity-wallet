@@ -12,7 +12,6 @@ import { changeHomeScreenRoute, toggleTopBarDisplay } from 'shared-modules/actio
 import { markTaskAsDone } from 'shared-modules/actions/accounts';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { setUserActivity, toggleModalActivity } from 'shared-modules/actions/ui';
-import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import timer from 'react-native-timer';
 import UserInactivity from 'ui/components/UserInactivity';
@@ -24,8 +23,8 @@ import PollComponent from 'ui/components/Poll';
 import Tabs from 'ui/components/Tabs';
 import Tab from 'ui/components/Tab';
 import TabContent from 'ui/components/TabContent';
-import EnterPassword from 'ui/components/EnterPassword';
-import { isAndroid } from 'libs/device';
+import navigator from 'libs/navigation';
+import { isAndroid, isIPhoneX } from 'libs/device';
 
 const styles = StyleSheet.create({
     midContainer: {
@@ -35,11 +34,6 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 0.68,
     },
-    inactivityLogoutContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
 });
 
 class Home extends Component {
@@ -48,8 +42,6 @@ class Home extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         changeHomeScreenRoute: PropTypes.func.isRequired,
-        /** @ignore */
-        generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         setUserActivity: PropTypes.func.isRequired,
         /** @ignore */
@@ -66,8 +58,6 @@ class Home extends Component {
         isSendingTransfer: PropTypes.bool.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** @ignore */
-        isFingerprintEnabled: PropTypes.bool.isRequired,
         /** @ignore */
         currentSetting: PropTypes.string.isRequired,
         /** @ignore */
@@ -92,10 +82,10 @@ class Home extends Component {
         currentRoute: PropTypes.string.isRequired,
         /** @ignore */
         isKeyboardActive: PropTypes.bool.isRequired,
-        /** Triggered when login from inactivity is pressed */
-        onInactivityLoginPress: PropTypes.func.isRequired,
         /** Clears temporary wallet data and navigates to login screen */
         logout: PropTypes.func.isRequired,
+        /** @ignore */
+        navStack: PropTypes.array.isRequired,
     };
 
     constructor(props) {
@@ -123,6 +113,9 @@ class Home extends Component {
             }).start();
         }
         if (this.props.inactive && !newProps.inactive) {
+            this.userInactivity.setActiveFromComponent();
+        }
+        if (this.props.navStack.length !== !newProps.navStack.length) {
             this.userInactivity.setActiveFromComponent();
         }
     }
@@ -192,6 +185,7 @@ class Home extends Component {
             }
             this.resetSettings();
             this.props.setUserActivity({ inactive: true });
+            navigator.push('inactivityLogout');
         }
     };
 
@@ -239,14 +233,11 @@ class Home extends Component {
     render() {
         const {
             t,
-            inactive,
             minimised,
-            isFingerprintEnabled,
-            theme: { body, negative, positive },
+            theme: { body },
             theme,
             isKeyboardActive,
         } = this.props;
-        const textColor = { color: body.color };
 
         return (
             <UserInactivity
@@ -260,71 +251,53 @@ class Home extends Component {
                 logout={this.props.logout}
             >
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
-                    {(!inactive && (
-                        <View style={{ flex: 1 }}>
-                            {(!minimised && (
-                                <KeyboardAvoidingView
-                                    enabled={isKeyboardActive}
-                                    style={styles.midContainer}
-                                    behavior="padding"
-                                >
-                                    <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
-                                    <View style={{ flex: 4.72 }}>
-                                        <TabContent
-                                            onTabSwitch={(name) => this.onTabSwitch(name)}
-                                            handleCloseTopBar={() => this.handleCloseTopBar()}
-                                        />
-                                    </View>
-                                </KeyboardAvoidingView>
-                            )) || <View style={styles.midContainer} />}
-                            <View style={styles.bottomContainer}>
-                                <Tabs onPress={(name) => this.onTabSwitch(name)} theme={theme}>
-                                    <Tab
-                                        name="balance"
-                                        icon="wallet"
-                                        theme={theme}
-                                        text={t('home:balance').toUpperCase()}
+                    <View style={{ flex: 1 }}>
+                        {(!minimised && (
+                            <KeyboardAvoidingView
+                                enabled={isKeyboardActive}
+                                style={styles.midContainer}
+                                behavior="padding"
+                            >
+                                <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
+                                <View style={{ flex: isIPhoneX ? 4.81 : 4.27 }}>
+                                    <TabContent
+                                        onTabSwitch={(name) => this.onTabSwitch(name)}
+                                        handleCloseTopBar={() => this.handleCloseTopBar()}
                                     />
-                                    <Tab name="send" icon="send" theme={theme} text={t('home:send').toUpperCase()} />
-                                    <Tab
-                                        name="receive"
-                                        icon="receive"
-                                        theme={theme}
-                                        text={t('home:receive').toUpperCase()}
-                                    />
-                                    <Tab
-                                        name="history"
-                                        icon="history"
-                                        theme={theme}
-                                        text={t('home:history').toUpperCase()}
-                                    />
-                                    <Tab
-                                        name="settings"
-                                        icon="settings"
-                                        theme={theme}
-                                        text={t('home:settings').toUpperCase()}
-                                    />
-                                </Tabs>
-                            </View>
-                            <TopBar minimised={minimised} />
+                                </View>
+                            </KeyboardAvoidingView>
+                        )) || <View style={styles.midContainer} />}
+                        <View style={styles.bottomContainer}>
+                            <Tabs onPress={(name) => this.onTabSwitch(name)} theme={theme}>
+                                <Tab
+                                    name="balance"
+                                    icon="wallet"
+                                    theme={theme}
+                                    text={t('home:balance').toUpperCase()}
+                                />
+                                <Tab name="send" icon="send" theme={theme} text={t('home:send').toUpperCase()} />
+                                <Tab
+                                    name="receive"
+                                    icon="receive"
+                                    theme={theme}
+                                    text={t('home:receive').toUpperCase()}
+                                />
+                                <Tab
+                                    name="history"
+                                    icon="history"
+                                    theme={theme}
+                                    text={t('home:history').toUpperCase()}
+                                />
+                                <Tab
+                                    name="settings"
+                                    icon="settings"
+                                    theme={theme}
+                                    text={t('home:settings').toUpperCase()}
+                                />
+                            </Tabs>
                         </View>
-                    )) || (
-                        <View style={[styles.inactivityLogoutContainer, { backgroundColor: body.bg }]}>
-                            <EnterPassword
-                                onLoginPress={this.props.onInactivityLoginPress}
-                                backgroundColor={body.bg}
-                                negativeColor={negative.color}
-                                positiveColor={positive.color}
-                                bodyColor={body.color}
-                                textColor={textColor}
-                                setUserActive={() => this.props.setUserActivity({ inactive: false })}
-                                generateAlert={(error, title, explanation) =>
-                                    this.props.generateAlert(error, title, explanation)
-                                }
-                                isFingerprintEnabled={isFingerprintEnabled}
-                            />
-                        </View>
-                    )}
+                        <TopBar minimised={minimised} />
+                    </View>
                     <PollComponent />
                 </View>
             </UserInactivity>
@@ -343,17 +316,16 @@ const mapStateToProps = (state) => ({
     currentSetting: state.wallet.currentSetting,
     isTopBarActive: state.home.isTopBarActive,
     currentRoute: state.home.childRoute,
-    isFingerprintEnabled: state.settings.isFingerprintEnabled,
     isModalActive: state.ui.isModalActive,
     shouldTransitionForSnapshot: shouldTransitionForSnapshot(state),
     hasDisplayedSnapshotTransitionGuide: hasDisplayedSnapshotTransitionGuide(state),
     selectedAccountName: getSelectedAccountName(state),
     isKeyboardActive: state.ui.isKeyboardActive,
+    navStack: state.wallet.navStack,
 });
 
 const mapDispatchToProps = {
     changeHomeScreenRoute,
-    generateAlert,
     setUserActivity,
     setSetting,
     toggleTopBarDisplay,

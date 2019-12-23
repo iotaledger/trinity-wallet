@@ -161,7 +161,7 @@ class CustomTextInput extends Component {
         /** Determines whether to display loading spinner */
         loading: PropTypes.bool,
         /** Determines whether to disable the text input */
-        disabled: PropTypes.bool
+        disabled: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -186,7 +186,7 @@ class CustomTextInput extends Component {
         isSeedInput: false,
         isPasswordInput: false,
         loading: false,
-        disabled: false
+        disabled: false,
     };
 
     constructor(props) {
@@ -536,7 +536,14 @@ class CustomTextInput extends Component {
         const { isFocused, isSecretMasked } = this.state;
 
         return (
-            <View style={[styles.fieldContainer, containerStyle, isSeedInput && styles.seedInput, { opacity: disabled ? 0.4 : 1}]}>
+            <View
+                style={[
+                    styles.fieldContainer,
+                    containerStyle,
+                    isSeedInput && styles.seedInput,
+                    { opacity: disabled ? 0.4 : 1 },
+                ]}
+            >
                 {label && (
                     <View style={styles.labelContainer}>
                         <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>

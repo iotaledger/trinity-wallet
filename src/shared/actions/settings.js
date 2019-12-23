@@ -842,7 +842,7 @@ export const setChartTimeframe = (timeframe) => {
         type: SettingsActionTypes.SET_CHART_TIMEFRAME,
         payload: timeframe,
     };
-}
+};
 
 /**
  * Dispatch to set currency in state
@@ -859,4 +859,4 @@ export const setChartCurrency = (currency) => {
         type: SettingsActionTypes.SET_CHART_CURRENCY,
         payload: currency,
     };
-}
+};

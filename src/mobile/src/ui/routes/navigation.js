@@ -29,6 +29,27 @@ import PrivacyPolicy from 'ui/views/onboarding/PrivacyPolicy';
 import ForceChangePassword from 'ui/views/wallet/ForceChangePassword';
 import SeedVaultBackupComponent from 'ui/views/onboarding/SeedVaultBackup';
 import MigrationComponent from 'ui/components/Migration';
+import InactivityLogout from 'ui/views/wallet/InactivityLogout';
+
+// MoonPay routes
+import MoonPayLandingComponent from 'ui/views/wallet/exchanges/MoonPay/Landing';
+import MoonPayAddAmountComponent from 'ui/views/wallet/exchanges/MoonPay/AddAmount';
+import MoonPaySelectAccount from 'ui/views/wallet/exchanges/MoonPay/SelectAccount';
+import MoonPaySetupEmail from 'ui/views/wallet/exchanges/MoonPay/SetupEmail';
+import MoonPayVerifyEmail from 'ui/views/wallet/exchanges/MoonPay/VerifyEmail';
+import MoonPayUserBasicInfo from 'ui/views/wallet/exchanges/MoonPay/UserBasicInfo';
+import MoonPayUserAdvancedInfo from 'ui/views/wallet/exchanges/MoonPay/UserAdvancedInfo';
+import MoonPayAddPaymentMethod from 'ui/views/wallet/exchanges/MoonPay/AddPaymentMethod';
+import MoonPayReviewPurchase from 'ui/views/wallet/exchanges/MoonPay/ReviewPurchase';
+import MoonPayPurchaseReceipt from 'ui/views/wallet/exchanges/MoonPay/PurchaseReceipt';
+import MoonPayPurchaseLimitWarning from 'ui/views/wallet/exchanges/MoonPay/PurchaseLimitWarning';
+import MoonPayIdentityConfirmationWarning from 'ui/views/wallet/exchanges/MoonPay/IdentityConfirmationWarning';
+import MoonPaySelectPaymentCard from 'ui/views/wallet/exchanges/MoonPay/SelectPaymentCard';
+
+import MoonPayPaymentSuccess from 'ui/views/wallet/exchanges/MoonPay/PaymentSuccess';
+import MoonPayPaymentFailure from 'ui/views/wallet/exchanges/MoonPay/PaymentFailure';
+import MoonPayPaymentPending from 'ui/views/wallet/exchanges/MoonPay/PaymentPending';
+
 import { isIPhoneX, isAndroid } from 'libs/device';
 
 function applyHOCs(screen) {
@@ -43,8 +64,52 @@ function applyHOCs(screen) {
 }
 
 export default function registerScreens(store, Provider) {
+    // MoonPay routes registration
+    Navigation.registerComponentWithRedux('landing', () => applyHOCs(MoonPayLandingComponent), Provider, store);
+    Navigation.registerComponentWithRedux('addAmount', () => applyHOCs(MoonPayAddAmountComponent), Provider, store);
+    Navigation.registerComponentWithRedux('selectAccount', () => applyHOCs(MoonPaySelectAccount), Provider, store);
+    Navigation.registerComponentWithRedux('setupEmail', () => applyHOCs(MoonPaySetupEmail), Provider, store);
+    Navigation.registerComponentWithRedux('verifyEmail', () => applyHOCs(MoonPayVerifyEmail), Provider, store);
+    Navigation.registerComponentWithRedux('userBasicInfo', () => applyHOCs(MoonPayUserBasicInfo), Provider, store);
+    Navigation.registerComponentWithRedux(
+        'userAdvancedInfo',
+        () => applyHOCs(MoonPayUserAdvancedInfo),
+        Provider,
+        store,
+    );
+    Navigation.registerComponentWithRedux(
+        'addPaymentMethod',
+        () => applyHOCs(MoonPayAddPaymentMethod),
+        Provider,
+        store,
+    );
+    Navigation.registerComponentWithRedux('reviewPurchase', () => applyHOCs(MoonPayReviewPurchase), Provider, store);
+    Navigation.registerComponentWithRedux('purchaseReceipt', () => applyHOCs(MoonPayPurchaseReceipt), Provider, store);
+    Navigation.registerComponentWithRedux(
+        'purchaseLimitWarning',
+        () => applyHOCs(MoonPayPurchaseLimitWarning),
+        Provider,
+        store,
+    );
+    Navigation.registerComponentWithRedux(
+        'identityConfirmationWarning',
+        () => applyHOCs(MoonPayIdentityConfirmationWarning),
+        Provider,
+        store,
+    );
+    Navigation.registerComponentWithRedux(
+        'selectPaymentCard',
+        () => applyHOCs(MoonPaySelectPaymentCard),
+        Provider,
+        store,
+    );
+    Navigation.registerComponentWithRedux('paymentSuccess', () => applyHOCs(MoonPayPaymentSuccess), Provider, store);
+    Navigation.registerComponentWithRedux('paymentFailure', () => applyHOCs(MoonPayPaymentFailure), Provider, store);
+    Navigation.registerComponentWithRedux('paymentPending', () => applyHOCs(MoonPayPaymentPending), Provider, store);
+
     Navigation.registerComponentWithRedux('migration', () => applyHOCs(MigrationComponent), Provider, store);
     Navigation.registerComponentWithRedux('home', () => applyHOCs(Home), Provider, store);
+    Navigation.registerComponentWithRedux('inactivityLogout', () => applyHOCs(InactivityLogout), Provider, store);
     Navigation.registerComponentWithRedux('loading', () => applyHOCs(Loading), Provider, store);
     Navigation.registerComponentWithRedux('newSeedSetup', () => applyHOCs(NewSeedSetup), Provider, store);
     Navigation.registerComponentWithRedux('welcome', () => applyHOCs(Welcome), Provider, store);

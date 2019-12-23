@@ -189,12 +189,6 @@ export class Balance extends Component {
         const recentTransactions = orderedTransfers.slice(0, 4);
         const relevantTransactions = formatRelevantRecentTransactions(recentTransactions, addresses);
 
-        const getSign = (value, incoming) => {
-            if (value === 0) {
-                return '';
-            }
-            return incoming ? '+' : '-';
-        };
         const formattedTransfers = map(relevantTransactions, (transfer) => {
             const { outputs, timestamp, incoming, persistence, transferValue } = transfer;
 
@@ -203,7 +197,6 @@ export class Balance extends Component {
                 confirmationStatus: computeStatusText(outputs, persistence, incoming),
                 value: round(formatValue(transferValue), 1),
                 unit: formatUnit(transferValue),
-                sign: getSign(transferValue, incoming),
                 icon: incoming ? 'plus' : 'minus',
                 incoming,
                 style: {

@@ -46,17 +46,15 @@ export default class SimpleTransactionRow extends PureComponent {
             titleColor: PropTypes.string.isRequired,
             defaultTextColor: PropTypes.string.isRequired,
         }).isRequired,
-        /** Sign for value */
-        sign: PropTypes.string.isRequired,
         /** Icon symbol */
         icon: PropTypes.string.isRequired,
     };
 
     render() {
-        const { time, confirmationStatus, value, unit, sign, style, icon } = this.props;
+        const { time, confirmationStatus, value, unit, style, icon } = this.props;
         return (
             <View style={styles.container}>
-                <View style={{ flex: 0.6, alignItems: 'flex-start', justifyContent: 'center' }}>
+                <View style={{ flex: 0.7, alignItems: 'flex-start', justifyContent: 'center' }}>
                     <View style={styles.iconContainer}>
                         <Icon
                             name={icon}
@@ -66,17 +64,17 @@ export default class SimpleTransactionRow extends PureComponent {
                         />
                     </View>
                 </View>
-                <View style={{ flex: 3.2, alignItems: 'flex-start', justifyContent: 'center' }}>
+                <View style={{ flex: 2.3, alignItems: 'flex-start', justifyContent: 'center' }}>
                     <Text style={[styles.text, { color: style.defaultTextColor }]}>
-                        {formatTime(locale, timezone, convertUnixTimeToJSDate(time))}
+                        {value} {unit}
                     </Text>
                 </View>
-                <View style={{ flex: 2, alignItems: 'flex-start', justifyContent: 'center' }}>
+                <View style={{ flex: 3, alignItems: 'center', justifyContent: 'center' }}>
                     <Text style={[styles.text, { color: style.defaultTextColor }]}>{confirmationStatus}</Text>
                 </View>
-                <View style={{ flex: 2, alignItems: 'flex-end', justifyContent: 'center' }}>
-                    <Text style={[styles.text, { color: style.titleColor }]}>
-                        {sign} {value} {unit}
+                <View style={{ flex: 3, alignItems: 'flex-end', justifyContent: 'center' }}>
+                    <Text style={[styles.text, { color: style.defaultTextColor }]}>
+                        {formatTime(locale, timezone, convertUnixTimeToJSDate(time))}
                     </Text>
                 </View>
             </View>
