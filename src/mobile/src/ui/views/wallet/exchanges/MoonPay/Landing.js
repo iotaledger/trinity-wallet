@@ -248,15 +248,15 @@ class Landing extends Component {
                             dropdownWidth={{ width: Styling.contentWidth }}
                             saveSelection={(name) => {
                                 const country = find(countries, { name });
-
+                                const states = this.getStates(countries, country.alpha3)
                                 this.setState({
                                     country: {
                                         name: country.name,
                                         alpha3: country.alpha3,
                                     },
                                     state: {
-                                        name: get(head(get(country, 'states')), 'name') || '',
-                                        code: get(head(get(country, 'states')), 'code') || '',
+                                        name: get(head(states), 'name') || '',
+                                        code: get(head(states), 'code') || '',
                                     },
                                 });
                             }}
