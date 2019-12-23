@@ -179,7 +179,9 @@
         "notEnoughSyncedNodesExplanation": "定足数を満たしていません。定足数をオフにするかもう一度やり直してください。",
         "total": "合計",
         "submit": "送信",
-        "tryAgain": "やり直す"
+        "tryAgain": "やり直す",
+        "unknown": "Unknown",
+        "goToDashboard": "Go to dashboard"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -274,14 +276,13 @@
         "dateOfBirth": "生年月日",
         "address": "住所",
         "city": "市",
-        "zipCode": "郵便番号",
+        "zipCode": "POST CODE",
         "reviewYourPurchase": "購入を確認する",
         "pleaseCarefullyCheckOrder": "以下の注文を注意深く確認してください。",
         "order": "注文",
         "trinityWalletAddress": "Trinityウォレットのアドレス",
         "debitCard": "{{brand}} デビットカード",
         "cardExpiry": "カードの有効期限",
-        "termsAndConditionsApply": "利用規約が適用されます",
         "youWillReceive": "受け取ります",
         "marketPrice": "市場価格",
         "moonpayFee": "MoonPayの手数料",
@@ -301,8 +302,8 @@
         "invalidAddressExplanation": "有効な住所を入力してください",
         "invalidCity": "無効な市です",
         "invalidCityExplanation": "有効な市を入力してください",
-        "invalidZipCode": "無効な郵便番号です",
-        "invalidZipCodeExplanation": "有効な郵便番号を入力してください",
+        "invalidZipCode": "Invalid post code",
+        "invalidZipCodeExplanation": "Please enter a valid post code",
         "invalidState": "無効な都道府県です",
         "invalidStateExplanation": "有効な都道府県を入力してください",
         "somethingWentWrongProcessingCardInfo": "カード情報の処理中に問題が発生しました。もう一度やり直してください。",
@@ -311,7 +312,7 @@
         "amountTooHigh": "金額が高すぎます",
         "amountTooHighExplanation": "1日の最大取引額は {{amount}} です。",
         "addPaymentMethod": "支払い方法を追加する",
-        "pleaseEnterYourBillingDetails": "お支払い情報を下に入力してください",
+        "pleaseEnterYourBillingDetails": "Please enter your card details below.",
         "cardNumber": "カード番号",
         "cvc": "CVC",
         "expirationDate": "有効期限",
@@ -346,6 +347,7 @@
         "paymentCardCreationError": "支払いカードの作成エラー",
         "paymentCardCreationErrorExplanation": "支払いカードの作成中に問題が発生しました。もう一度やり直してください。",
         "selectCountry": "国を選択する",
+        "selectState": "Select State",
         "state": "都道府県",
         "selectPaymentMethod": "支払い方法を選択してください",
         "pleaseChooseFromTheOptionsBelow": "以下のオプションから選択してください。",
@@ -388,7 +390,8 @@
         "refund": "お支払いは返金されました。",
         "idRejection": "本人確認が拒否されました。",
         "cardNotSupported": "あなたのカードはサポートされていません。別のカードでもう一度お試しください。",
-        "cancelled": "支払いはキャンセルされました。"
+        "cancelled": "支払いはキャンセルされました。",
+        "storeCardDetails": "Store card details in MoonPay for faster checkout."
     },
     "home": {
         "balance": "残高",
@@ -523,9 +526,9 @@
         "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。",
         "invalid": "無効",
         "swipeToSend": "スワイプして送金する",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "これは支払請求です",
+        "paymentRequestExpired": "支払請求の期限が切れました",
+        "paymentRequestExpiredExplanation": "この支払請求は期限切れです。新しい支払請求を受信者に依頼してください。"
     },
     "setSeedName": {
         "letsAddName": "アカウント名を追加してください。",

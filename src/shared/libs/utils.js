@@ -346,3 +346,18 @@ export const fetchVersions = (url = VERSIONS_URL) => {
         })
         .catch(() => Promise.resolve({}));
 };
+
+/**
+ * Checks if valid email
+ *
+ * @method isValidEmail
+ *
+ * @param {string} email
+ *
+ * @returns {boolean}
+ */
+export const isValidEmail = (email) => {
+    const regex = /\S+@\S+\.\S+/;
+
+    return regex.test(email);
+};

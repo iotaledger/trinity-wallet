@@ -108,7 +108,6 @@ export default class TransactionRow extends PureComponent {
             titleColor: PropTypes.string.isRequired,
             containerBackgroundColor: PropTypes.shape({ backgroundColor: PropTypes.string.isRequired }).isRequired,
             rowTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
-            rowBorderColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
             backgroundColor: PropTypes.string.isRequired,
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
             barColor: PropTypes.string.isRequired,

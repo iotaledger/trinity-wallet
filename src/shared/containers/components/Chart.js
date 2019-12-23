@@ -23,6 +23,9 @@ export default function withChartData(ChartComponent) {
             setChartCurrency: PropTypes.func.isRequired,
             t: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
+            /** @ignore */
+            isAuthenticated: PropTypes.bool.isRequired,
+            history: PropTypes.object.isRequired,
         };
 
         currencies = ['USD', 'EUR', 'BTC', 'ETH']; // eslint-disable-line react/sort-comp
@@ -88,7 +91,7 @@ export default function withChartData(ChartComponent) {
         };
 
         render() {
-            const { marketData, settings, theme, t } = this.props;
+            const { history, isAuthenticated, marketData, settings, theme, t } = this.props;
 
             const currencyData = get(marketData.chartData, settings.chartCurrency.toLowerCase());
             const rawData = get(currencyData, settings.chartTimeframe) || [];
@@ -99,6 +102,8 @@ export default function withChartData(ChartComponent) {
                 return { x: index, y: parseFloat(price), time: time };
             });
             const chartProps = {
+                history,
+                isAuthenticatedForMoonPay: isAuthenticated,
                 setCurrency: this.changeCurrency,
                 setTimeframe: this.changeTimeframe,
                 getPriceFormat: this.getPriceFormat,
@@ -107,9 +112,9 @@ export default function withChartData(ChartComponent) {
                     currency: settings.chartCurrency,
                     symbol: getCurrencySymbol(settings.chartCurrency),
                     price: this.props.marketData.usdPrice,
-                    volume: round(marketData.volume * settings.conversionRate).toLocaleString('en'),
+                    volume: round(marketData.volume).toLocaleString('en'),
                     change24h: marketData.change24h,
-                    mcap: round(marketData.mcap * settings.conversionRate).toLocaleString('en'),
+                    mcap: round(marketData.mcap).toLocaleString('en'),
                     globalSymbol: getCurrencySymbol(settings.chartCurrency),
                 },
                 chartData: {
@@ -133,6 +138,7 @@ export default function withChartData(ChartComponent) {
         marketData: state.marketData,
         settings: state.settings,
         theme: getThemeFromState(state),
+        isAuthenticated: state.exchanges.moonpay.isAuthenticated,
     });
 
     const mapDispatchToProps = {
@@ -140,8 +146,5 @@ export default function withChartData(ChartComponent) {
         setChartTimeframe,
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(ChartData);
+    return connect(mapStateToProps, mapDispatchToProps)(ChartData);
 }

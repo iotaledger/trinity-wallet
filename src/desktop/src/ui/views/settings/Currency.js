@@ -51,11 +51,7 @@ class SetCurrency extends PureComponent {
                     />
                 </fieldset>
                 <footer>
-                    <Button
-                        className="square"
-                        disabled={!selection || selection === currency}
-                        type="submit"
-                    >
+                    <Button className="square" disabled={!selection || selection === currency} type="submit">
                         {t('save')}
                     </Button>
                 </footer>

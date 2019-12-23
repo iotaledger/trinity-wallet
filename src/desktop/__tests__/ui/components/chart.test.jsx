@@ -21,6 +21,10 @@ const props = {
         timeframe: '24h',
         yAxis: { ticks: [0] },
     },
+    isAuthenticatedForMoonPay: false,
+    history: {
+        push: jest.fn(),
+    },
     setCurrency: jest.fn(),
     setTimeframe: jest.fn(),
     getPriceForCurrency: (str) => str,
@@ -52,7 +56,7 @@ describe('Chart component', () => {
         const wrapper = shallow(<Chart {...props} />);
 
         const buttonItems = wrapper.find('Button');
-        const callbacks = [props.setCurrency, props.setTimeframe];
+        const callbacks = [props.setCurrency, props.history.push, props.setTimeframe];
 
         buttonItems.forEach((item, index) => {
             item.simulate('click');
@@ -64,7 +68,7 @@ describe('Chart component', () => {
         const wrapper = shallow(<Chart {...props} />);
 
         const listItems = wrapper.find('ul li');
-        const listValues = ['chart:mcap: $ 1000000', 'chart:change: 3%', 'chart:volume: $ 100'];
+        const listValues = ['chart:mcap: $ 1000000', 'chart:currentValue: $ USD / Mi', 'chart:change: 3%'];
 
         listItems.forEach((item, index) => {
             expect(item.text()).toEqual(listValues[index]);

@@ -4,8 +4,9 @@ import isEmpty from 'lodash/isEmpty';
 import isNull from 'lodash/isNull';
 import * as Keychain from 'react-native-keychain';
 import { getVersion } from 'react-native-device-info';
-import { serialise } from 'shared-modules/libs/utils';
+import { parse, serialise } from 'shared-modules/libs/utils';
 import { trytesToTrits } from 'shared-modules/libs/iota/converter';
+import { API_VERSION as MOONPAY_API_VERSION } from 'shared-modules/exchanges/MoonPay/api';
 import Errors from 'shared-modules/libs/errors';
 import {
     getNonce,
@@ -22,6 +23,52 @@ export const ALIAS_SEEDS = 'seeds';
 const ALIAS_AUTH = 'authKey';
 export const ALIAS_SALT = 'salt';
 export const ALIAS_REALM = 'realm_enc_key';
+
+/**
+ * MoonPay credentials key alias
+ */
+export const ALIAS_MOONPAY_CREDENTIALS = 'moonpay_credentials';
+
+/**
+ * MoonPay keychain adapter
+ */
+export const MoonPayKeychainAdapter = {
+    /**
+     * Gets MoonPay credentials (jwt & csrf) from keychain
+     *
+     * @returns {Promise}
+     */
+    get() {
+        return keychain.get(ALIAS_MOONPAY_CREDENTIALS).then((data) => {
+            const nonce = get(data, 'nonce');
+            const item = get(data, 'item');
+
+            if (nonce && item) {
+                return parse(item);
+            }
+
+            return null;
+        });
+    },
+    /**
+     * Sets MoonPay credentials (jwt & csrf) in keychain
+     *
+     * @param {object} credentials
+     *
+     * @returns {Promise}
+     */
+    set(credentials) {
+        return keychain.set(ALIAS_MOONPAY_CREDENTIALS, MOONPAY_API_VERSION, serialise(credentials));
+    },
+    /**
+     * Clears MoonPay credentials (jwt & csrf) in keychain
+     *
+     * @returns {Promise}
+     */
+    clear() {
+        return keychain.clear(ALIAS_MOONPAY_CREDENTIALS);
+    },
+};
 
 export const keychain = {
     /**
@@ -158,6 +205,7 @@ export const authorize = async (pwdHash) => {
 export const clearKeychain = async () => {
     await keychain.clear(ALIAS_SEEDS);
     await keychain.clear(ALIAS_AUTH);
+    await keychain.clear(ALIAS_MOONPAY_CREDENTIALS);
 
     return await keychain.clear(ALIAS_SALT);
 };

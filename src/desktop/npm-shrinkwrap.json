@@ -1,6 +1,6 @@
 {
   "name": "trinity-desktop",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -5208,8 +5208,8 @@
       }
     },
     "entangled-node": {
-      "version": "github:rihardsgravis/entangled-node#b1df6a2123abe6e5ef8b6091a03e5e0440de3564",
-      "from": "github:rihardsgravis/entangled-node#b1df6a2",
+      "version": "github:rihardsgravis/entangled-node#8e86e4c51ff89614a7fda9f3d3d3287655707f29",
+      "from": "github:rihardsgravis/entangled-node#8e86e4c",
       "requires": {
         "nan": "^2.14.0",
         "prebuild-install": "^5.3.2"

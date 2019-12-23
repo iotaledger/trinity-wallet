@@ -153,6 +153,10 @@ const initialState = {
      * Determines manual sweeps is in progress
      */
     isRecoveringFunds: false,
+    /*
+     * Determines whether to display Moonpay purchases tab
+     */
+    isViewingMoonpayPurchases: false,
 };
 
 export default (state = initialState, action) => {
@@ -459,6 +463,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 CDAContent: action.payload,
+            };
+        case UiActionTypes.SET_VIEWING_MOONPAY_PURCHASES:
+            return {
+                ...state,
+                isViewingMoonpayPurchases: action.payload,
             };
         default:
             return state;
