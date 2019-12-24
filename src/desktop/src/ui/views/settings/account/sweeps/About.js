@@ -8,6 +8,9 @@ import Info from 'ui/components/Info';
 
 import css from './index.scss';
 
+/**
+ * Sweep funds about component
+ */
 class About extends React.PureComponent {
     static propTypes = {
         /** @ignore */
@@ -29,7 +32,9 @@ class About extends React.PureComponent {
                     <Info>
                         <p>{t('sweeps:lockedFundsRecoveryExplanation')}</p>
                         <p>{t('sweeps:lockedFundsToolExplanation')}</p>
-                        <p><strong>{t('sweeps:lockedFundsOwnRiskExplanation')}</strong></p>
+                        <p>
+                            <strong>{t('sweeps:lockedFundsOwnRiskExplanation')}</strong>
+                        </p>
                     </Info>
                 </section>
                 <footer className={css.choiceDefault}>

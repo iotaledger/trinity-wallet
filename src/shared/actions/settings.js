@@ -1,7 +1,6 @@
 import unionBy from 'lodash/unionBy';
 import assign from 'lodash/assign';
 import get from 'lodash/get';
-import keys from 'lodash/keys';
 import omit from 'lodash/omit';
 import { changeIotaNode, quorum } from '../libs/iota/index';
 import i18next from '../libs/i18next';
@@ -65,45 +64,6 @@ export const acceptPrivacy = () => {
         type: SettingsActionTypes.ACCEPT_PRIVACY,
     };
 };
-
-/**
- * Dispatch when a network call for fetching currency information (conversion rates) is about to be made
- *
- * @method currencyDataFetchRequest
- *
- * @returns {{type: {string} }}
- */
-const currencyDataFetchRequest = () => ({
-    type: SettingsActionTypes.CURRENCY_DATA_FETCH_REQUEST,
-});
-
-/**
- * Dispatch when currency information (conversion rates) is about to be fetched
- *
- * @method currencyDataFetchSuccess
- * @param {object} payload
- *
- * @returns {{type: {string}, payload: {object} }}
- */
-export const currencyDataFetchSuccess = (payload) => {
-    Wallet.updateCurrencyData(payload);
-
-    return {
-        type: SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
-        payload,
-    };
-};
-
-/**
- * Dispatch when there is an error fetching currency information
- *
- * @method currencyDataFetchError
- *
- * @returns {{type: {string} }}
- */
-const currencyDataFetchError = () => ({
-    type: SettingsActionTypes.CURRENCY_DATA_FETCH_ERROR,
-});
 
 /**
  * Dispatch when a network call is about to be made for checking node's health during node change operation
@@ -379,62 +339,26 @@ export const changeNode = (payload) => (dispatch, getState) => {
 };
 
 /**
- * Fetch currency information (conversion rates) for wallet
+ * Set wallet currency information
  *
- * @method getCurrencyData
+ * @method setCurrency
  *
  * @param {string} currency
- * @param {boolean} withAlerts
  *
- * @returns {function(*): Promise<any>}
+ * @returns {{type: {string}, payload: {string} }}
  */
-export function getCurrencyData(currency, withAlerts = false) {
-    const url = 'https://trinity-exchange-rates.herokuapp.com/api/latest?base=USD';
-    return (dispatch) => {
-        dispatch(currencyDataFetchRequest());
+export const setCurrency = (currency) => (dispatch, getState) => {
+    const { marketData } = getState();
+    const conversionRate = marketData.rates[currency] || 1;
 
-        return fetch(url)
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-
-                throw response;
-            })
-            .then((json) => {
-                const conversionRate = get(json, `rates.${currency}`) || 1;
-                const availableCurrencies = keys(get(json, 'rates'));
-
-                const payload = { conversionRate, currency, availableCurrencies };
-
-                // Update redux
-                dispatch(currencyDataFetchSuccess(payload));
-
-                if (withAlerts) {
-                    dispatch(
-                        generateAlert(
-                            'success',
-                            i18next.t('settings:fetchedConversionRates'),
-                            i18next.t('settings:fetchedConversionRatesExplanation', { currency: currency }),
-                        ),
-                    );
-                }
-            })
-            .catch(() => {
-                dispatch(currencyDataFetchError());
-
-                if (withAlerts) {
-                    dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('settings:couldNotFetchRates'),
-                            i18next.t('settings:couldNotFetchRatesExplanation', { currency: currency }),
-                        ),
-                    );
-                }
-            });
-    };
-}
+    dispatch({
+        type: SettingsActionTypes.SET_CURRENCY,
+        payload: {
+            currency,
+            conversionRate,
+        },
+    });
+};
 
 /**
  * Dispatch to change wallet's active language
@@ -901,4 +825,38 @@ export const changeAutoNodeListSetting = (payload) => (dispatch, getState) => {
     const nodes = payload ? unionBy(remoteNodes, customNodes, 'url') : customNodes;
 
     quorum.setNodes(nodes);
+};
+
+/**
+ * Dispatch to set timeframe for IOTA time series price information
+ *
+ * @method setTimeframe
+ * @param {string} timeframe
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const setChartTimeframe = (timeframe) => {
+    Wallet.updateTimeframe(timeframe);
+
+    return {
+        type: SettingsActionTypes.SET_CHART_TIMEFRAME,
+        payload: timeframe,
+    };
+};
+
+/**
+ * Dispatch to set currency in state
+ *
+ * @method setCurrency
+ * @param {string} currency
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const setChartCurrency = (currency) => {
+    Wallet.updateCurrency(currency);
+
+    return {
+        type: SettingsActionTypes.SET_CHART_CURRENCY,
+        payload: currency,
+    };
 };

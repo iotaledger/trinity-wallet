@@ -15,41 +15,6 @@ describe('Reducer: settings', () => {
                 mode: 'Standard',
                 language: 'English (International)',
                 currency: 'USD',
-                availableCurrencies: [
-                    'USD',
-                    'GBP',
-                    'EUR',
-                    'AUD',
-                    'BGN',
-                    'BRL',
-                    'CAD',
-                    'CHF',
-                    'CNY',
-                    'CZK',
-                    'DKK',
-                    'HKD',
-                    'HRK',
-                    'HUF',
-                    'IDR',
-                    'ILS',
-                    'INR',
-                    'ISK',
-                    'JPY',
-                    'KRW',
-                    'MXN',
-                    'MYR',
-                    'NOK',
-                    'NZD',
-                    'PHP',
-                    'PLN',
-                    'RON',
-                    'RUB',
-                    'SEK',
-                    'SGD',
-                    'THB',
-                    'TRY',
-                    'ZAR',
-                ],
                 conversionRate: 1,
                 themeName: 'Default',
                 remotePoW: false,
@@ -77,6 +42,8 @@ describe('Reducer: settings', () => {
                 },
                 nodeAutoSwitch: true,
                 autoNodeList: true,
+                chartCurrency: 'USD',
+                chartTimeframe: '24h',
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -496,50 +463,6 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe(SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS, () => {
-        it('should set currency to action.payload.currency', () => {
-            const initialState = {
-                currency: 'USD',
-            };
-
-            const action = {
-                type: SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
-                payload: {
-                    currency: 'EUR',
-                    availableCurrencies: [],
-                },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                currency: 'EUR',
-            };
-
-            expect(newState.currency).to.eql(expectedState.currency);
-        });
-
-        it('should set conversionRate action.payload.conversionRate', () => {
-            const initialState = {
-                conversionRate: 1,
-            };
-
-            const action = {
-                type: SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
-                payload: {
-                    conversionRate: 2,
-                    availableCurrencies: [],
-                },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                conversionRate: 2,
-            };
-
-            expect(newState.conversionRate).to.eql(expectedState.conversionRate);
-        });
-    });
-
     describe(SettingsActionTypes.UPDATE_THEME, () => {
         it('should set themeName to payload', () => {
             const initialState = {
@@ -834,6 +757,46 @@ describe('Reducer: settings', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 nodes: [],
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('SET_CHART_CURRENCY', () => {
+        it('should set chart currency to payload', () => {
+            const initialState = {
+                chartCurrency: 'USD',
+            };
+
+            const action = {
+                type: SettingsActionTypes.SET_CHART_CURRENCY,
+                payload: 'EUR',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                chartCurrency: 'EUR',
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('SET_CHART_TIMEFRAME', () => {
+        it('should set chart timeframe to payload', () => {
+            const initialState = {
+                chartTimeframe: '24h',
+            };
+
+            const action = {
+                type: SettingsActionTypes.SET_CHART_TIMEFRAME,
+                payload: '7d',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                chartTimeframe: '7d',
             };
 
             expect(newState).to.eql(expectedState);

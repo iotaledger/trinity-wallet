@@ -148,12 +148,13 @@ exports[`Chart component Render the component 1`] = `
       >
         USD
       </Button>
-      <p>
-        $
-         
-        USD
-         / Mi
-      </p>
+      <Button
+        className="outline"
+        onClick={[Function]}
+        variant="secondary"
+      >
+        moonpay:buyIOTA
+      </Button>
       <Button
         className="outline"
         onClick={[Function]}
@@ -174,21 +175,22 @@ exports[`Chart component Render the component 1`] = `
       </li>
       <li>
         <strong>
+          chart:currentValue
+          : 
+        </strong>
+        $
+         
+        USD
+         / Mi
+      </li>
+      <li>
+        <strong>
           chart:change
           :
         </strong>
          
         3
         %
-      </li>
-      <li>
-        <strong>
-          chart:volume
-          : 
-        </strong>
-        $
-         
-        100
       </li>
     </ul>
   </footer>

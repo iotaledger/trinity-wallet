@@ -44,7 +44,7 @@ const polling = (
         /**
          * Polling service names
          */
-        allPollingServices: ['promotion', 'broadcast', 'marketData', 'price', 'chartData', 'nodeList', 'accountInfo'],
+        allPollingServices: ['promotion', 'broadcast', 'marketData', 'nodeList', 'accountInfo', 'moonpayMeta'],
         /**
          * Determines the service currently being run during the poll cycle
          */
@@ -77,27 +77,14 @@ const polling = (
          * Determines if poll cycle is promoting an unconfirmed transaction
          */
         isAutoPromoting: false,
+        /**
+         * Determines if poll cycle is fetching MoonPay meta
+         */
+        isFetchingMoonPayMeta: false,
     },
     action,
 ) => {
     switch (action.type) {
-        case PollingActionTypes.FETCH_PRICE_REQUEST:
-            return {
-                ...state,
-                isFetchingPrice: true,
-            };
-        case PollingActionTypes.FETCH_PRICE_SUCCESS:
-            return {
-                ...state,
-                isFetchingPrice: false,
-                ...setNextPollIfSuccessful(state),
-            };
-        case PollingActionTypes.FETCH_PRICE_ERROR:
-            return {
-                ...state,
-                isFetchingPrice: false,
-                ...setNextPollIfUnsuccessful(state),
-            };
         case PollingActionTypes.FETCH_NODELIST_REQUEST:
             return {
                 ...state,
@@ -113,23 +100,6 @@ const polling = (
             return {
                 ...state,
                 isFetchingNodeList: false,
-                ...setNextPollIfUnsuccessful(state),
-            };
-        case PollingActionTypes.FETCH_CHART_DATA_REQUEST:
-            return {
-                ...state,
-                isFetchingChartData: true,
-            };
-        case PollingActionTypes.FETCH_CHART_DATA_SUCCESS:
-            return {
-                ...state,
-                isFetchingChartData: false,
-                ...setNextPollIfSuccessful(state),
-            };
-        case PollingActionTypes.FETCH_CHART_DATA_ERROR:
-            return {
-                ...state,
-                isFetchingChartData: false,
                 ...setNextPollIfUnsuccessful(state),
             };
         case PollingActionTypes.FETCH_MARKET_DATA_REQUEST:
@@ -197,6 +167,23 @@ const polling = (
             return {
                 ...state,
                 pollFor: action.payload,
+            };
+        case PollingActionTypes.MOONPAY_META_FETCH_REQUEST:
+            return {
+                ...state,
+                isFetchingMoonPayMeta: true,
+            };
+        case PollingActionTypes.MOONPAY_META_FETCH_SUCCESS:
+            return {
+                ...state,
+                isFetchingMoonPayMeta: false,
+                ...setNextPollIfSuccessful(state),
+            };
+        case PollingActionTypes.MOONPAY_META_FETCH_ERROR:
+            return {
+                ...state,
+                isFetchingMoonPayMeta: false,
+                ...setNextPollIfUnsuccessful(state),
             };
         default:
             return state;

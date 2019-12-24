@@ -112,12 +112,23 @@
             }
             button {
                 display: block;
-                height: 28px;
+                height: 35px;
                 line-height: 26px;
                 font-size: 11px;
+                border-radius: 24px;
+            }
+
+            button:nth-child(odd) {
                 min-width: 60px;
                 background: none;
-                border-radius: 24px;
+            }
+
+            button:nth-child(even) {
+                min-width: 110px;
+                background: var(--secondary);
+                color: var(--body-bg);
+                font-weight: 400;
+                font-size: 12px;
             }
         }
     }

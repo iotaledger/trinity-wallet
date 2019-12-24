@@ -14,6 +14,7 @@ import size from 'lodash/size';
 import every from 'lodash/every';
 import includes from 'lodash/includes';
 import uniq from 'lodash/uniq';
+import { verifyCDA } from '@iota/cda';
 import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
@@ -26,7 +27,7 @@ import { getRemotePoWFromState, nodesConfigurationFactory } from '../selectors/g
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { isLastTritZero } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
-import { clearSendFields } from './ui';
+import { clearSendFields, setCDAContent, setSendAmountField, setSendMessageField, setSendAddressField } from './ui';
 import {
     findPromotableTail,
     prepareTransferArray,
@@ -185,6 +186,7 @@ export const retryFailedTransactionError = (payload) => ({
 export const completeTransfer = () => {
     return (dispatch) => {
         dispatch(clearSendFields());
+        dispatch(clearCDAContent());
         dispatch(sendTransferSuccess());
     };
 };
@@ -221,7 +223,10 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
         filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
 
     const executePrePromotionChecks = (settings, withQuorum) => () => {
-        return syncAccount(settings, withQuorum)(accountState)
+        return syncAccount(
+            settings,
+            withQuorum,
+        )(accountState)
             .then((newAccountState) => {
                 accountState = newAccountState;
 
@@ -366,7 +371,10 @@ export const forceTransactionPromotion = (
 
         promotionAttempt += 1;
 
-        return promoteTransactionAsync(settings, seedStore)(hash).catch((error) => {
+        return promoteTransactionAsync(
+            settings,
+            seedStore,
+        )(hash).catch((error) => {
             const isTransactionInconsistent = includes(error.message, Errors.TRANSACTION_IS_INCONSISTENT);
 
             if (
@@ -403,7 +411,10 @@ export const forceTransactionPromotion = (
         const tailTransaction = head(tailTransactionHashes);
         const hash = tailTransaction.hash;
 
-        return replayBundleAsync(settings, seedStore)(hash).then((reattachment) => {
+        return replayBundleAsync(
+            settings,
+            seedStore,
+        )(hash).then((reattachment) => {
             if (shouldGenerateAlert) {
                 dispatch(
                     generateAlert(
@@ -502,7 +513,10 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 maxInputs = maxInputResponse;
 
                 // Make sure that the address a user is about to send to is not already used.
-                return isAnyAddressSpent(settings, withQuorum)([address]).then((isSpent) => {
+                return isAnyAddressSpent(
+                    settings,
+                    withQuorum,
+                )([address]).then((isSpent) => {
                     if (isSpent) {
                         throw new Error(Errors.KEY_REUSE);
                     }
@@ -787,6 +801,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     dispatch(updateAccountInfoAfterSpending(newState));
                     // Clear send screen text fields
                     dispatch(clearSendFields());
+                    dispatch(setCDAContent({}));
 
                     return dispatch(
                         generateAlert(
@@ -947,9 +962,10 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, quoru
     const retryFn = (settings, withQuorum) => () => {
         return (
             // First check spent statuses against transaction addresses
-            categoriseAddressesBySpentStatus(settings, withQuorum)(
-                map(failedTransactionsForThisBundleHash, (tx) => tx.address),
-            )
+            categoriseAddressesBySpentStatus(
+                settings,
+                withQuorum,
+            )(map(failedTransactionsForThisBundleHash, (tx) => tx.address))
                 // If any address (input, remainder, receive) is spent, error out
                 .then(({ spent }) => {
                     if (size(spent)) {
@@ -1021,4 +1037,65 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, quoru
                 dispatch(generateTransferErrorAlert(err));
             }
         });
+};
+
+/**
+ * Verifies CDA content
+ *
+ * @method verifyCDAContent
+ *
+ * @param {object} CDA data
+ *
+ * @returns {function} dispatch
+ */
+export const verifyCDAContent = (data) => {
+    return (dispatch) => {
+        try {
+            verifyCDA(Date.now() / 1000, data);
+            dispatch(setCDAContent(data));
+            dispatch(setSendAddressField(data.address));
+            if (data.expectedAmount) {
+                dispatch(setSendAmountField(data.expectedAmount.toString()));
+            }
+            if (data.message) {
+                dispatch(setSendMessageField(data.message));
+            }
+        } catch (err) {
+            if (err.message === Errors.EXPIRED_TIMEOUT) {
+                return dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('send:paymentRequestExpired'),
+                        i18next.t('send:paymentRequestExpiredExplanation'),
+                        undefined,
+                        undefined,
+                        500,
+                    ),
+                );
+            }
+            dispatch(
+                generateAlert(
+                    'error',
+                    i18next.t('send:invalidAddress'),
+                    i18next.t('send:invalidAddressExplanationGeneric'),
+                    undefined,
+                    undefined,
+                    500,
+                ),
+            );
+        }
+    };
+};
+
+/**
+ * Clears CDA content
+ *
+ * @method clearCDAContent
+ *
+ * @returns {function} dispatch
+ */
+export const clearCDAContent = () => {
+    return (dispatch) => {
+        dispatch(setCDAContent({}));
+    };
 };

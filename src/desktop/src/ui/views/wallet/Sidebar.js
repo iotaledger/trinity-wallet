@@ -9,8 +9,15 @@ import { shorten, capitalize } from 'libs/iota/converter';
 import { formatIotas } from 'libs/iota/utils';
 import { accumulateBalance } from 'libs/iota/addresses';
 
+import {
+    setAuthenticationStatus as setMoonPayAuthenticationStatus,
+    clearData as clearMoonPayData,
+} from 'actions/exchanges/MoonPay';
 import { clearWalletData, setSeedIndex } from 'actions/wallet';
 import { getAccountNamesFromState } from 'selectors/accounts';
+
+import MoonPayKeychainAdapter from 'libs/MoonPay';
+import { __DEV__ } from 'config';
 
 import Logo from 'ui/components/Logo';
 import Icon from 'ui/components/Icon';
@@ -43,6 +50,10 @@ class Sidebar extends React.PureComponent {
         /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
+        clearMoonPayData: PropTypes.func.isRequired,
+        /** @ignore */
+        setMoonPayAuthenticationStatus: PropTypes.func.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         themeName: PropTypes.string.isRequired,
@@ -71,8 +82,21 @@ class Sidebar extends React.PureComponent {
         this.setState({
             modalLogout: false,
         });
-        this.props.clearWalletData();
-        this.props.history.push('/onboarding/');
+
+        MoonPayKeychainAdapter.clear()
+            .then(() => {
+                this.props.clearMoonPayData();
+                this.props.setMoonPayAuthenticationStatus(false);
+                this.props.clearWalletData();
+                this.props.history.push('/onboarding/');
+            })
+            .catch((error) => {
+                if (__DEV__) {
+                    /* eslint-disable no-console */
+                    console.log(error);
+                    /* eslint-enable no-console */
+                }
+            });
     };
 
     render() {
@@ -115,7 +139,13 @@ class Sidebar extends React.PureComponent {
                                                     true,
                                                 )}
                                             </small>
-                                            <div onClick={(e) => this.accountSettings(e, index)}>
+                                            <div
+                                                onClick={(e) => {
+                                                    // Change account if settings icon is clicked
+                                                    setSeedIndex(index);
+                                                    this.accountSettings(e, index);
+                                                }}
+                                            >
                                                 <Icon icon="settingsAlt" size={16} />
                                             </div>
                                         </a>
@@ -143,7 +173,7 @@ class Sidebar extends React.PureComponent {
                             title: t('logoutConfirmationModal:logoutConfirmation'),
                             confirm: t('yes'),
                             cancel: t('no'),
-                            animation: { name: 'logout', loop: false }
+                            animation: { name: 'logout', loop: false },
                         }}
                         themeName={themeName}
                         onCancel={this.toggleLogout}
@@ -170,9 +200,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     clearWalletData,
     setSeedIndex,
+    setMoonPayAuthenticationStatus,
+    clearMoonPayData,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Sidebar));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Sidebar));

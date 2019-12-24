@@ -12,14 +12,14 @@ const versionMiddleware = () => (next) => (action) => {
         });
         next(action);
     } else if (action.type === WalletActionTypes.SHOULD_UPDATE) {
-        next({
+        /*next({
             type: AlertsActionTypes.SHOW,
             category: 'error',
             title: i18next.t('global:shouldUpdate'),
             message: i18next.t('global:shouldUpdateExplanation'),
             closeInterval: 3600000,
         });
-        next(action);
+        next(action);*/
     } else {
         next(action);
     }

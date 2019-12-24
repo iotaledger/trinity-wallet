@@ -22,6 +22,8 @@ module.exports = {
     vault: '📦',
     advanced: '🔬',
     mode: '🔣',
+    moonpay: '🐧',
+    moonpayEmblem: '🌙',
     logout: '🖐',
     currency: '💵',
     send: '📤',
@@ -58,4 +60,5 @@ module.exports = {
     search: '🔍',
     link: '🔗',
     sweeps: '🤕',
+    help: '🔧',
 };

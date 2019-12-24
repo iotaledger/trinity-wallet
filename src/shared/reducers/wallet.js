@@ -73,7 +73,7 @@ const initialState = {
     /**
      * Total number of iterations for the current sweep
      */
-    totalSweepIterations: 10 ** 7
+    totalSweepIterations: 10 ** 7,
 };
 
 export default (state = initialState, action) => {
@@ -200,7 +200,7 @@ export default (state = initialState, action) => {
         case WalletActionTypes.POP_TO_ROUTE:
             return {
                 ...state,
-                navStack: state.navStack.slice(0, state.navStack.indexOf(action.payload) - 1),
+                navStack: state.navStack.slice(0, state.navStack.indexOf(action.payload) + 1),
             };
         case WalletActionTypes.RESET_ROUTE:
             return {

@@ -31,7 +31,9 @@ const getProps = (overrides) =>
             t: () => '',
             theme,
             autoPromotion: false,
-            remotePoW: false,
+            deepLinking: false,
+            generateAlert: noop,
+            isSendingTransfer: false,
         },
         overrides,
     );

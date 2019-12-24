@@ -16,6 +16,11 @@ import css from './index.scss';
 class Done extends React.PureComponent {
     static propTypes = {
         /** @ignore */
+        history: PropTypes.shape({
+            goBack: PropTypes.func.isRequired,
+            push: PropTypes.func.isRequired,
+        }).isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         themeName: PropTypes.string.isRequired,
@@ -31,7 +36,12 @@ class Done extends React.PureComponent {
                     <Lottie width={340} height={340} data={getAnimation('onboardingComplete', themeName)} />
                 </section>
                 <footer>
-                    <Button id="done-next" onClick={() => {}} className="square" variant="primary">
+                    <Button
+                        id="done-next"
+                        onClick={() => this.props.history.push('/wallet')}
+                        className="square"
+                        variant="primary"
+                    >
                         {t('global:done')}
                     </Button>
                 </footer>

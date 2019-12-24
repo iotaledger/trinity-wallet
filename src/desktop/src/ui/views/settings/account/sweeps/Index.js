@@ -14,7 +14,7 @@ import Icon from 'ui/components/Icon';
 import css from './index.scss';
 
 /**
- * Sweeps functionallity router wrapper component
+ * Sweeps functionality router wrapper component
  */
 class Sweeps extends React.PureComponent {
     static propTypes = {
@@ -32,13 +32,13 @@ class Sweeps extends React.PureComponent {
 
         return (
             <main className={css.sweeps}>
-                { !isRecoveringFunds &&
+                {!isRecoveringFunds && (
                     <header>
-                        <a onClick={() => history.push("/settings/tools")}>
+                        <a onClick={() => history.push('/settings/tools')}>
                             <Icon icon="cross" size={24} />
                         </a>
                     </header>
-                }
+                )}
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="slide" timeout={1000} mountOnEnter unmountOnExit>
                         <div>
@@ -59,4 +59,4 @@ const mapStateToProps = (state) => ({
     isRecoveringFunds: state.ui.isRecoveringFunds,
 });
 
-export default connect(mapStateToProps)((withRouter(withTranslation()(Sweeps))));
+export default connect(mapStateToProps)(withRouter(withTranslation()(Sweeps)));
