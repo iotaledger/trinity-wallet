@@ -180,8 +180,8 @@
         "total": "Łącznie",
         "submit": "Zatwierdź",
         "tryAgain": "Spróbuj ponownie",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "unknown": "Brak informacji",
+        "goToDashboard": "Przejdź do pulpitu"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -391,7 +391,7 @@
         "idRejection": "Twoja kontrola tożsamości została odrzucona.",
         "cardNotSupported": "Twoja karta nie jest obsługiwana. Spróbuj ponownie używając innej karty.",
         "cancelled": "Płatność została anulowana.",
-        "storeCardDetails": "Store card details in MoonPay for faster checkout."
+        "storeCardDetails": "Przechowuj dane karty w MoonPay w celu przyśpieszenia transakcji."
     },
     "home": {
         "balance": "SALDO",
