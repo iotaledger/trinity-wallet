@@ -94,8 +94,8 @@ android {
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
-        versionCode 85
-        versionName "1.1.0"
+        versionCode 97
+        versionName "1.2.1"
         minSdkVersion 21
         targetSdkVersion 28
         multiDexEnabled true
@@ -168,6 +168,7 @@ dependencies {
 
 
     compile project(':react-native-qr-generator')
+    implementation project(':react-native-webview')
     implementation project(':react-native-modal-translucent')
     implementation project(':react-native-qr-scanner')
     implementation 'com.github.laumair:argon2jni:jitpack-SNAPSHOT'

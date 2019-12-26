@@ -10,7 +10,7 @@ export const timezone = DeviceInfo.getTimezone();
 
 export const isAndroid = Platform.OS === 'android';
 export const isIOS = Platform.OS === 'ios';
-export const isIPhoneX = device.includes('iPhone X') || deviceId.includes('iPhone11');
+export const isIPhoneX = device.includes('iPhone X') || deviceId.includes('iPhone11') || deviceId.includes('iPhone12');
 export const isIPhone11 = deviceId.includes('iPhone11');
 
 export const getAndroidFileSystemPermissions = async () => {

@@ -28,19 +28,29 @@ export default class Header extends PureComponent {
         textColor: PropTypes.string.isRequired,
         /* Heading text size */
         textSize: PropTypes.number,
+        /* Icon name */
+        iconName: PropTypes.string,
+        /* Icon size */
+        iconSize: PropTypes.number,
     };
 
     static defaultProps = {
-        textSize: Styling.fontSize6
-    }
+        textSize: Styling.fontSize6,
+        iconName: 'iota',
+        iconSize: width / 8,
+    };
 
     render() {
-        const { children, textSize, textColor } = this.props;
+        const { children, textSize, textColor, iconName, iconSize } = this.props;
 
         return (
             <View style={styles.container}>
-                <Icon name="iota" size={width / 8} color={textColor} />
-                {children && <Text style={[styles.header, { color: textColor, fontSize: textSize, lineHeight: textSize * 1.5 }]}>{children}</Text>}
+                <Icon name={iconName} size={iconSize} color={textColor} />
+                {children && (
+                    <Text style={[styles.header, { color: textColor, fontSize: textSize, lineHeight: textSize * 1.5 }]}>
+                        {children}
+                    </Text>
+                )}
             </View>
         );
     }

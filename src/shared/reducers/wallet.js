@@ -185,7 +185,7 @@ export default (state = initialState, action) => {
         case WalletActionTypes.POP_TO_ROUTE:
             return {
                 ...state,
-                navStack: state.navStack.slice(0, state.navStack.indexOf(action.payload) - 1),
+                navStack: state.navStack.slice(0, state.navStack.indexOf(action.payload) + 1),
             };
         case WalletActionTypes.RESET_ROUTE:
             return {

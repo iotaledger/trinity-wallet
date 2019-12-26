@@ -179,7 +179,9 @@
         "notEnoughSyncedNodesExplanation": "큐럼에 연결할 수 없습니다. 큐럼을 끄거나 다시 시도해주세요.",
         "total": "Total",
         "submit": "Submit",
-        "tryAgain": "Try again"
+        "tryAgain": "Try again",
+        "unknown": "Unknown",
+        "goToDashboard": "Go to dashboard"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -274,14 +276,13 @@
         "dateOfBirth": "DATE OF BIRTH",
         "address": "ADDRESS",
         "city": "CITY",
-        "zipCode": "ZIP CODE",
+        "zipCode": "POST CODE",
         "reviewYourPurchase": "Review your purchase",
         "pleaseCarefullyCheckOrder": "Please carefully check your order below.",
         "order": "Order",
         "trinityWalletAddress": "TRINITY WALLET ADDRESS",
         "debitCard": "{{brand}} Debit Card",
         "cardExpiry": "Card Expiry",
-        "termsAndConditionsApply": "Terms and conditions apply",
         "youWillReceive": "You will receive",
         "marketPrice": "Market price",
         "moonpayFee": "MoonPay fee",
@@ -301,8 +302,8 @@
         "invalidAddressExplanation": "Please enter a valid address",
         "invalidCity": "Invalid city",
         "invalidCityExplanation": "Please enter a valid city",
-        "invalidZipCode": "Invalid zip code",
-        "invalidZipCodeExplanation": "Please enter a valid zip code",
+        "invalidZipCode": "Invalid post code",
+        "invalidZipCodeExplanation": "Please enter a valid post code",
         "invalidState": "Invalid state",
         "invalidStateExplanation": "Please enter a valid state",
         "somethingWentWrongProcessingCardInfo": "Something went wrong while processing your card information. Please try again.",
@@ -311,7 +312,7 @@
         "amountTooHigh": "Amount is too high",
         "amountTooHighExplanation": "Maximum transaction amount is {{amount}} per day.",
         "addPaymentMethod": "Add a payment method",
-        "pleaseEnterYourBillingDetails": "Please enter your billing details below",
+        "pleaseEnterYourBillingDetails": "Please enter your card details below.",
         "cardNumber": "CARD NUMBER",
         "cvc": "CVC",
         "expirationDate": "EXPIRATION DATE",
@@ -346,6 +347,7 @@
         "paymentCardCreationError": "Error creating payment card",
         "paymentCardCreationErrorExplanation": "There was a problem creating your payment card. Please try again.",
         "selectCountry": "Select Country",
+        "selectState": "Select State",
         "state": "STATE",
         "selectPaymentMethod": "Select Payment Method",
         "pleaseChooseFromTheOptionsBelow": "Please choose from the options below.",
@@ -388,7 +390,8 @@
         "refund": "Your payment was refunded.",
         "idRejection": "Your identity check was rejected.",
         "cardNotSupported": "Your card is not supported. Please try again with a different card.",
-        "cancelled": "The payment was cancelled."
+        "cancelled": "The payment was cancelled.",
+        "storeCardDetails": "Store card details in MoonPay for faster checkout."
     },
     "home": {
         "balance": "잔액",
@@ -522,7 +525,10 @@
         "addressPasteDetected": "주소 붙여넣기가 확인됨",
         "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요.",
         "invalid": "유효하지 않음",
-        "swipeToSend": "밀어서 보내기"
+        "swipeToSend": "밀어서 보내기",
+        "paymentRequest": "This is a payment request",
+        "paymentRequestExpired": "Payment request expired",
+        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
         "letsAddName": "이름을 지정해 주세요",
