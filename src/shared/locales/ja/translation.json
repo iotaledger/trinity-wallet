@@ -391,7 +391,7 @@
         "idRejection": "本人確認が拒否されました。",
         "cardNotSupported": "あなたのカードはサポートされていません。別のカードでもう一度お試しください。",
         "cancelled": "支払いはキャンセルされました。",
-        "storeCardDetails": "Store card details in MoonPay for faster checkout."
+        "storeCardDetails": "支払を高速化するために、MoonPay にカード情報を保存します。"
     },
     "home": {
         "balance": "残高",
