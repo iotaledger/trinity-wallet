@@ -161,7 +161,7 @@
     "@bugsnag/js": "6.3.2",
     "@bugsnag/plugin-react": "^6.2.0",
     "@ledgerhq/hw-transport-node-hid": "^4.68.2",
-    "argon2": "0.24.0",
+    "argon2": "0.25.1",
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",
     "electron-settings": "3.2.0",
