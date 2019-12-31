@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
@@ -6,6 +7,7 @@ import { StyleSheet, View } from 'react-native';
 import navigator from 'libs/navigation';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import { getSpentAddressDataWithBalanceForSelectedAccount } from 'shared-modules/selectors/accounts';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
@@ -35,24 +37,12 @@ export class AdvancedSettings extends PureComponent {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         isSendingTransfer: PropTypes.bool.isRequired,
+        /** Spent address data with balance for selected account */
+        spentAddressDataWithBalance: PropTypes.array.isRequired,
     };
-
-    constructor() {
-        super();
-        this.reset = this.reset.bind(this);
-    }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('AdvancedSettings');
-    }
-
-    /**
-     * Navigate to wallet reset confirmation screen
-     *
-     * @method reset
-     */
-    reset() {
-        navigator.push('walletResetConfirm');
     }
 
     /**
@@ -77,7 +67,8 @@ export class AdvancedSettings extends PureComponent {
      * @returns {function}
      */
     renderSettingsContent() {
-        const { theme, t, autoPromotion, deepLinking, isSendingTransfer } = this.props;
+        const { theme, t, autoPromotion, deepLinking, isSendingTransfer, spentAddressDataWithBalance } = this.props;
+        const hasSpentAddressData = !isEmpty(spentAddressDataWithBalance);
         const rows = [
             {
                 name: t('settings:nodeSettings'),
@@ -108,13 +99,18 @@ export class AdvancedSettings extends PureComponent {
                 function: () => this.props.setSetting('snapshotTransition'),
             },
             { name: t('manualSync'), icon: 'sync', function: () => this.props.setSetting('manualSync') },
+            hasSpentAddressData && {
+                name: t('sweeps:recoverLockedFunds'),
+                icon: 'sweeps',
+                function: () => navigator.push('sweepsAbout'),
+            },
             {
                 name: t('stateExport'),
                 icon: 'copy',
                 function: () => this.props.setSetting('stateExport'),
             },
             { name: 'separator' },
-            { name: t('settings:reset'), icon: 'trash', function: this.reset },
+            { name: t('settings:reset'), icon: 'trash', function: () => navigator.push('walletResetConfirm') },
             { name: 'back', function: () => this.props.setSetting('mainSettings') },
         ];
         return renderSettingsRows(rows, theme);
@@ -130,6 +126,8 @@ const mapStateToProps = (state) => ({
     autoPromotion: state.settings.autoPromotion,
     deepLinking: state.settings.deepLinking,
     isSendingTransfer: state.ui.isSendingTransfer,
+    isRecoveringFunds: state.ui.isRecoveringFunds,
+    spentAddressDataWithBalance: getSpentAddressDataWithBalanceForSelectedAccount(state),
 });
 
 const mapDispatchToProps = {

@@ -91,6 +91,15 @@ const Electron = {
     },
 
     /**
+     * Do Proof of Work
+     * @param {boolean} batchedPow - Should return batched PoW function
+     * @returns {function} Proof of Work
+     */
+    getBundleMinerFn: () => {
+        return Entangled.bundleMinerFn;
+    },
+
+    /**
      * Generate address
      * @param {array} seed - Input seed
      * @param {number} index - Address index

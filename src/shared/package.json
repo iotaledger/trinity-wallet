@@ -20,8 +20,12 @@
   },
   "license": "Apache-2.0 OR EPL-2.0",
   "dependencies": {
+    "@iota/bundle": "^1.0.0-beta.21",
+    "@iota/bundle-miner": "https://github.com/chrisdukakis/iota.js#feat/bundle-miner",
+    "@iota/converter": "^1.0.0-beta.21",
     "@iota/cda": "^1.0.0-beta.23",
     "@iota/core": "^1.0.0-beta.20",
+    "@iota/transaction": "^1.0.0-beta.21",
     "bignumber.js": "^9.0.0",
     "i18next": "^19.0.0",
     "iota.lib.js": "^0.5.2",

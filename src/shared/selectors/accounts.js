@@ -7,7 +7,10 @@ import orderBy from 'lodash/orderBy';
 import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
 import filter from 'lodash/filter';
+import assign from 'lodash/assign';
+import every from 'lodash/every';
 import transform from 'lodash/transform';
+import uniq from 'lodash/uniq';
 import { createSelector } from 'reselect';
 import { getSeedIndexFromState } from './global';
 import { getSelectedAccountName as getSelectedAccountNameForMoonPay } from './exchanges/MoonPay';
@@ -375,7 +378,86 @@ export const getFailedBundleHashes = createSelector(getAccountInfoFromState, (ac
 );
 
 /**
- * Selects latest address for MoonPay selected account
+ * Filters spent address data with balance for currently selected account
+ *
+ * @method getSpentAddressDataWithBalanceForSelectedAccount
+ * @param {object} state
+ *
+ * @returns {array}
+ **/
+export const getSpentAddressDataWithBalanceForSelectedAccount = createSelector(selectAccountInfo, (account) => {
+    return filter(account.addressData, (addressObject) => {
+        const isSpent = addressObject.spent.local === true || addressObject.spent.remote === true;
+
+        return isSpent && addressObject.balance > 0;
+    });
+});
+
+/**
+ * Filters broadcasted transactions for currently selected account
+ *
+ * @method getBroadcastedTransactions
+ * @param {object} state
+ *
+ * @returns {array}
+ **/
+export const getBroadcastedTransactionsForSelectedAccount = createSelector(selectAccountInfo, (account) => {
+    return filter(account.transactions, (transaction) => transaction.broadcasted === true);
+});
+
+/**
+ * Filters spent address data, removing addresses for which there is no outgoing broadcasted bundle hash
+ *
+ * @method getFilteredSpentAddressDataForSelectedAccount
+ * @param {object} state
+ *
+ * @returns {array}
+ **/
+export const getFilteredSpentAddressDataForSelectedAccount = createSelector(
+    getSpentAddressDataWithBalanceForSelectedAccount,
+    getBroadcastedTransactionsForSelectedAccount,
+    (spentAddressDataWithBalance, broadcastedTransactions) => {
+        const inputTransactions = filter(broadcastedTransactions, (transaction) => transaction.value < 0);
+
+        const spentAddressData = map(spentAddressDataWithBalance, (addressObject) =>
+            assign({}, addressObject, {
+                bundleHashes: uniq(
+                    map(
+                        filter(inputTransactions, (transaction) => transaction.address === addressObject.address),
+                        (transaction) => transaction.bundle,
+                    ),
+                ),
+            }),
+        );
+
+        const persistenceByBundleHash = transform(
+            inputTransactions,
+            (acc, transaction) => {
+                if (transaction.bundle in acc) {
+                    acc[transaction.bundle] = acc[transaction.bundle] || transaction.persistence;
+                } else {
+                    acc[transaction.bundle] = transaction.persistence;
+                }
+            },
+            {},
+        );
+
+        return filter(spentAddressData, (addressObject) => {
+            const associatedTransactions = filter(
+                inputTransactions,
+                (transaction) => transaction.address === addressObject.address,
+            );
+
+            return (
+                !isEmpty(addressObject.bundleHashes) &&
+                !isEmpty(associatedTransactions) &&
+                every(associatedTransactions, (transaction) => persistenceByBundleHash[transaction.bundle] === true)
+            );
+        });
+    },
+);
+
+/* Selects latest address for MoonPay selected account
  *
  * @method getLatestAddressForMoonPaySelectedAccount
  *

@@ -141,7 +141,7 @@ class Landing extends React.PureComponent {
                             label={t('moonpay:selectCountry')}
                             onChange={(name) => {
                                 const country = find(countries, { name });
-                                const states = this.getStates(countries, country.alpha3)
+                                const states = this.getStates(countries, country.alpha3);
                                 this.setState({
                                     country: {
                                         name: country.name,

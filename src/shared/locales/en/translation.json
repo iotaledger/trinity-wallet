@@ -1,9 +1,11 @@
 {
     "global": {
+        "accept": "Accept",
         "address": "Address",
         "and": "and",
         "send": "SEND",
         "cancel": "Cancel",
+        "failed": "Failed",
         "complete": "Complete",
         "continue?": "Are you sure you want to continue?",
         "noTransactions": "NO RECENT HISTORY",
@@ -57,6 +59,7 @@
         "share": "Share",
         "proceed": "Proceed",
         "qr": "QR",
+        "of": "of",
         "enterSeed": "Please enter your seed.",
         "yes": "Yes",
         "no": "No",
@@ -179,9 +182,11 @@
         "expert": "Expert",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again.",
+        "success": "Success",
         "total": "Total",
         "submit": "Submit",
         "tryAgain": "Try again",
+        "timeElapsed": "Time elapsed",
         "unknown": "Unknown",
         "goToDashboard": "Go to dashboard"
     },
@@ -600,6 +605,26 @@
         "nodeChangeError": "Error changing node",
         "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
+    "sweeps": {
+        "recoverLockedFunds": "Recover locked funds",
+        "recover": "Recover",
+        "pressButtonBelow": "Press the button below to recover your locked funds.",
+        "lockedFundsDetected": "Trinity has detected locked funds on your account.",
+        "lockedFundsRecovery": "Locked Funds Recovery",
+        "aboutLockedFunds": "About Locked Funds",
+        "lockedFundsRecoveryExplanation": "Funds have been detected on one or more addresses that have already been spent from. Spending from an address more than once is insecure.",
+        "lockedFundsToolExplanation": "This tool will attempt to salvage those funds in a way that reduces the risk involved in spending more than once.",
+        "lockedFundsOwnRiskExplanation": "Recovery cannot be guaranteed. Use this tool at your own risk.",
+        "transferYourFunds": "Transfer your funds",
+        "transferYourFundsExplanation": "Trinity will attempt to recover your funds by moving them to a new address, but it may take some time.",
+        "doNotCloseTrinity": "Do not close Trinity or turn off your computer during this process.",
+        "doNotCloseTrinityMobile": "Do not minimise/close Trinity or turn off your device during this process.",
+        "fundsUnlockedExplanation": "Your funds have been successfully unlocked. Promote the transactions to help them confirm.",
+        "tryAgain": "Try again",
+        "sweep": "Sweep",
+        "fromLockedAddress": "from the locked address",
+        "toSafeAddress": "to the safe address"
+    },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
         "reset": "Reset"
@@ -898,7 +923,11 @@
         "migratingAccounts": "Migrating accounts",
         "cleaningUpOldData": "Cleaning up old data",
         "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Transfer complete",
+        "sweepingFunds": "Sweeping funds",
+        "syncingAccountAfterSpending": "Syncing account after spending",
+        "fundsSweptSuccessfully": "Funds swept successfully",
+        "promotingTransaction": "Promoting transaction"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",

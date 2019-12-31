@@ -19,6 +19,9 @@ describe('Reducer: wallet', () => {
                 forceUpdate: false,
                 shouldUpdate: false,
                 displayTestWarning: false,
+                sweepsStatuses: {},
+                currentSweepIteration: 0,
+                totalSweepIterations: 10 ** 7,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

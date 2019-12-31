@@ -1061,7 +1061,7 @@ export const verifyCDAContent = (data) => {
                 dispatch(setSendMessageField(data.message));
             }
         } catch (err) {
-            if (err.message === 'Expired timeout.') {
+            if (err.message === Errors.EXPIRED_TIMEOUT) {
                 return dispatch(
                     generateAlert(
                         'error',

@@ -6,6 +6,7 @@ import {
     TransfersActionTypes,
     UiActionTypes,
     WalletActionTypes,
+    SweepsActionTypes,
 } from '../types';
 
 const initialState = {
@@ -149,6 +150,10 @@ const initialState = {
      */
     animateChartOnMount: true,
     /**
+     * Determines manual sweeps is in progress
+     */
+    isRecoveringFunds: false,
+    /*
      * Determines whether to display Moonpay purchases tab
      */
     isViewingMoonpayPurchases: false,
@@ -443,6 +448,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 animateChartOnMount: action.payload,
+            };
+        case SweepsActionTypes.RECOVER_FUNDS_REQUEST:
+            return {
+                ...state,
+                isRecoveringFunds: true,
+            };
+        case SweepsActionTypes.RECOVER_FUNDS_COMPLETE:
+            return {
+                ...state,
+                isRecoveringFunds: false,
             };
         case UiActionTypes.SET_CDA_CONTENT:
             return {

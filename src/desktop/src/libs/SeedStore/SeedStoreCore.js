@@ -41,4 +41,39 @@ export default class SeedStoreCore {
     getDigest(trytes) {
         return Promise.resolve(iota.utils.transactionObject(trytes).hash);
     }
+
+    /**
+     * Mines bundle
+     *
+     * @method mineBundle
+     *
+     * @param {Int8Array} normalizedBundle
+     * @param {number} numberOfFragments
+     * @param {Int8Array} bundleEssence
+     * @param {number} [essenceLength]
+     * @param {number} [count]
+     * @param {number} [procs]
+     * @param {number} [miningThreshold]
+     *
+     * @returns {Promise<number>}
+     */
+    mineBundle(
+        normalizedBundle,
+        bundleEssence,
+        security = 2,
+        essenceLength = 486 * 4,
+        count = 10 ** 8,
+        procs = 0,
+        miningThreshold = 40,
+    ) {
+        return Electron.getBundleMinerFn()(
+            Array.from(normalizedBundle),
+            security,
+            Array.from(bundleEssence),
+            essenceLength,
+            count,
+            procs,
+            miningThreshold,
+        );
+    }
 }
