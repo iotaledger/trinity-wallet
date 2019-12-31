@@ -1,3 +1,7 @@
+### 1.3.0
+
+- New: Spent address recovery tool
+
 ### 1.2.1
 
 - New: Increase Proof of Work speed by 2-3x
