@@ -14,7 +14,7 @@ import {
     generateAddressesAndGetBalance,
 } from 'actions/wallet';
 
-import { getAddressesForSelectedAccount, getFilteredSpentAddressDataForSelectedAccount } from 'selectors/accounts';
+import { getAddressesForSelectedAccount, getFilteredSpentAddressDataForSelectedAccount, getSelectedAccountType } from 'selectors/accounts';
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
@@ -67,6 +67,8 @@ class Tools extends PureComponent {
         t: PropTypes.func.isRequired,
         /** @ignore */
         themeName: PropTypes.string.isRequired,
+        /** @ignore */
+        accountType: PropTypes.string.isRequired,
     };
 
     static renderProgressChildren(activeStepIndex, sizeOfActiveSteps, t) {
@@ -159,7 +161,7 @@ class Tools extends PureComponent {
     };
 
     render() {
-        const { ui, wallet, t, activeStepIndex, activeSteps, themeName, spentAddressDataWithBalance } = this.props;
+        const { ui, wallet, t, activeStepIndex, activeSteps, themeName, spentAddressDataWithBalance, accountType } = this.props;
         const sizeOfActiveSteps = size(activeSteps);
 
         const hasSpentAddressData = !isEmpty(spentAddressDataWithBalance);
@@ -245,7 +247,7 @@ class Tools extends PureComponent {
                             {t('manualSync:syncAccount')}
                         </Button>
 
-                        {hasSpentAddressData && (
+                        {hasSpentAddressData && accountType === 'keychain' && (
                             <div>
                                 <hr />
 
@@ -274,7 +276,8 @@ const mapStateToProps = (state) => ({
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
     themeName: state.settings.themeName,
-    spentAddressDataWithBalance: getFilteredSpentAddressDataForSelectedAccount(state)
+    spentAddressDataWithBalance: getFilteredSpentAddressDataForSelectedAccount(state),
+    accountType: getSelectedAccountType(state)
 });
 
 const mapDispatchToProps = {
