@@ -150,10 +150,16 @@ class UserBasicInfo extends React.Component {
             );
         }
 
+        const dobMoment = moment(this.state.dateOfBirth, 'DD/MM/YYYY');
+
+        if (!dobMoment.isValid()) {
+            return this.props.generateAlert('error', 'Invalid DOB', 'Invalid DOB');
+        }
+
         return this.props.updateCustomer({
             firstName: this.state.firstName,
             lastName: this.state.lastName,
-            dateOfBirth: moment(this.state.dateOfBirth, 'DD/MM/YYYY').toISOString(),
+            dateOfBirth: dobMoment.toISOString(),
         });
     }
 
