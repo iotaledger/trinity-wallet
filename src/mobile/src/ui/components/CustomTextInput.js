@@ -162,6 +162,8 @@ class CustomTextInput extends Component {
         loading: PropTypes.bool,
         /** Determines whether to disable the text input */
         disabled: PropTypes.bool,
+        /** Text color to use for the placeholder value **/
+        placeholderTextColor: PropTypes.string,
     };
 
     static defaultProps = {
@@ -531,6 +533,7 @@ class CustomTextInput extends Component {
             value,
             loading,
             disabled,
+            placeholderTextColor,
             ...restProps
         } = this.props;
         const { isFocused, isSecretMasked } = this.state;
@@ -577,6 +580,7 @@ class CustomTextInput extends Component {
                         value={this.getValue(value)}
                         editable={!disabled}
                         selectTextOnFocus={!disabled}
+                        placeholderTextColor={placeholderTextColor || theme.input.hover}
                         {...restProps}
                     />
                     {!loading && widgets.length > 0 && this.renderRightHandWidget()}

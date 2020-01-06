@@ -282,6 +282,7 @@ class UserBasicInfo extends React.Component {
                                 blurOnSubmit
                                 onSubmitEditing={() => Keyboard.dismiss()}
                                 value={this.state.dateOfBirth}
+                                placeholder="DD/MM/YYYY"
                             />
                         </AnimatedComponent>
                         <View style={{ flex: 0.6 }} />
