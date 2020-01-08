@@ -376,6 +376,8 @@ export class Send extends Component {
         this.hideModal();
         // Clear clipboard
         Clipboard.setString(' ');
+        // Reset send denomination on QR scan
+        this.props.setSendDenomination('i');
 
         if (parsedData.address) {
             // For codes containing JSON (iotaledger and Trinity)

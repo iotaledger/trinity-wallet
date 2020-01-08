@@ -62,6 +62,7 @@
 		C587195E6E354DE7A8A206B1 /* libRNReactNativeQrcodeNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F1AAFBAC3F4CD7A8A4BD4A /* libRNReactNativeQrcodeNative.a */; };
 		C63F4449914D3D19E3C83C38F602BFB5 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F4F16E746AE853607E2E4D649F9E40 /* libRNDeviceInfo.a */; };
 		CA8AF202D45B7B9C48CB844FE4029B34 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38822DC4E60A1BDF9DF917E7C1541B3D /* libRCTLinking.a */; };
+		CB2DE86D23B64303006483E1 /* EntangledKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB2DE86C23B64303006483E1 /* EntangledKit.framework */; };
 		CB305F0421185EF800657575 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB305F0321185EEC00657575 /* libRNFetchBlob.a */; };
 		CB563C0C21C1470F00AE4437 /* libQRCode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB563C0B21C1435B00AE4437 /* libQRCode.a */; };
 		CB61A46620B89E3B004088AA /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB61A46520B89E3A004088AA /* SourceSansPro-SemiBold.ttf */; };
@@ -77,7 +78,6 @@
 		CBDE11BC21AEFFFE00CA1909 /* Lottie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBC5562C207BA79E00BA0A7F /* Lottie.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CBDE11BF21AF008D00CA1909 /* libLottieReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB5577D5219F221E00B698BF /* libLottieReactNative.a */; };
 		CBEA4C9421494823007DA583 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEA4C912149481F007DA583 /* libReactNativeNavigation.a */; };
-		CBF5351423B00CF10046BBCB /* EntangledKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF5351323B00CF10046BBCB /* EntangledKit.framework */; };
 		CDC76600A03C06457F99259512D7F713 /* libRNIsDeviceRooted.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0431CEEC099BC4CE1F43E0550C4CC291 /* libRNIsDeviceRooted.a */; };
 		CF626DD9FBB494210B780417 /* Pods_iotaWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890341AF0F2DE4E9DCB80928 /* Pods_iotaWallet.framework */; };
 		D07D1D9D21444F2D88F12F73 /* builtin_modules in Resources */ = {isa = PBXBuildFile; fileRef = 42679A0E830D4AD2A0F60146 /* builtin_modules */; };
@@ -793,6 +793,7 @@
 		C76D226F8C33DAB67AA9C4D76FCA89C2 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		C883F8A0B4031CE53D5E48217339975E /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C989B5B2E21BB76597A51E0EFEA9B547 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CB2DE86C23B64303006483E1 /* EntangledKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EntangledKit.framework; sourceTree = "<group>"; };
 		CB2FA6D7221D0CAE00EADBC9 /* EntangledSigning.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EntangledSigning.xcodeproj; path = "../../shared/node_modules/@iota/signing/ios/EntangledSigning.xcodeproj"; sourceTree = "<group>"; };
 		CB305EFE21185EEC00657575 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/rn-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		CB5577D0219F221E00B698BF /* LottieReactNative.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LottieReactNative.xcodeproj; path = "../node_modules/lottie-react-native/src/ios/LottieReactNative.xcodeproj"; sourceTree = "<group>"; };
@@ -808,7 +809,6 @@
 		CBA5F52520CAAB2A00774D4B /* SourceCodePro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Medium.ttf"; path = "../../shared/custom-fonts/SourceCodePro-Medium.ttf"; sourceTree = "<group>"; };
 		CBC214E420CE82DC005D8ACB /* RNReactNativeHapticFeedback.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNReactNativeHapticFeedback.xcodeproj; path = "../node_modules/react-native-haptic-feedback/ios/RNReactNativeHapticFeedback.xcodeproj"; sourceTree = "<group>"; };
 		CBEA4C8B2149481F007DA583 /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/lib/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
-		CBF5351323B00CF10046BBCB /* EntangledKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EntangledKit.framework; sourceTree = "<group>"; };
 		CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iotaWallet/Images.xcassets; sourceTree = "<group>"; };
 		D2C796029F4A68C167C1F1F5176A5819 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D5BA67ADCF3A3E3973DDF764 /* Pods-iotaWallet-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet-tvOSTests/Pods-iotaWallet-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -885,7 +885,7 @@
 				D51793D4E78BCB702D9FFAA1A3356153 /* libRNSVG.a in Frameworks */,
 				412B533C94F35A1287B87CBF50D0679C /* libRNSecureRandom.a in Frameworks */,
 				7EC4E13223F8F69B1629B42AA455DA9F /* libReactNativeFingerprintScanner.a in Frameworks */,
-				CBF5351423B00CF10046BBCB /* EntangledKit.framework in Frameworks */,
+				CB2DE86D23B64303006483E1 /* EntangledKit.framework in Frameworks */,
 				4A4F5E775D301A641C32594E736C0E3A /* libz.tbd in Frameworks */,
 				CF626DD9FBB494210B780417 /* Pods_iotaWallet.framework in Frameworks */,
 				653C5DB7CF56434CA39B6922 /* libRNNodeJsMobile.a in Frameworks */,
@@ -1370,7 +1370,7 @@
 		CB86627A209F36CA00C026E3 /* EntangledIOS */ = {
 			isa = PBXGroup;
 			children = (
-				CBF5351323B00CF10046BBCB /* EntangledKit.framework */,
+				CB2DE86C23B64303006483E1 /* EntangledKit.framework */,
 				CB86627D209F36CA00C026E3 /* EntangledIOS.m */,
 				CB86627F209F36CA00C026E3 /* EntangledIOS.h */,
 				608E4489221B228A005CCFB1 /* EntangledIOSUtils.m */,
@@ -2912,7 +2912,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 98;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
@@ -3310,7 +3310,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 98;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3584,7 +3584,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 98;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
