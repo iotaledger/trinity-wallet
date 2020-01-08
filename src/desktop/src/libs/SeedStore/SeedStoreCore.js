@@ -61,7 +61,7 @@ export default class SeedStoreCore {
         normalizedBundle,
         bundleEssence,
         security = 2,
-        essenceLength = 486 * 4,
+        essenceLength = 486 * 3,
         count = 10 ** 8,
         procs = 0,
         miningThreshold = 40,
