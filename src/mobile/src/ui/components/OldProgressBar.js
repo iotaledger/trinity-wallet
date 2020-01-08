@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 const OldProgressBar = (props) => {
     return (
         <View style={styles.container}>
-            <Text style={[styles.text, { color: props.textColor }]}>{props.children}</Text>
+            {props.children && <Text style={[styles.text, { color: props.textColor }]}>{props.children}</Text>}
             <Progress.Bar
                 indeterminate={props.indeterminate}
                 useNativeDriver={true} // eslint-disable-line react/jsx-boolean-value

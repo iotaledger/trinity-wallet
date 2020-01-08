@@ -64,7 +64,7 @@ export default class SeedStoreCore {
         essenceLength = 486 * 4,
         count = 10 ** 8,
         procs = 0,
-        miningThreshold = 3 ** 40,
+        miningThreshold = 40,
     ) {
         return Electron.getBundleMinerFn()(
             Array.from(normalizedBundle),

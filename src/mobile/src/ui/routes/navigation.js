@@ -20,6 +20,9 @@ import SaveSeedConfirmation from 'ui/views/onboarding/SaveSeedConfirmation';
 import Login from 'ui/views/wallet/Login';
 import WalletResetConfirmation from 'ui/views/wallet/WalletResetConfirmation';
 import WalletResetRequirePassword from 'ui/views/wallet/WalletResetRequirePassword';
+import SweepsAbout from 'ui/views/wallet/sweeps/About';
+import SweepsTransferFunds from 'ui/views/wallet/sweeps/TransferFunds';
+import SweepsDone from 'ui/views/wallet/sweeps/Done';
 import OnboardingComplete from 'ui/views/onboarding/OnboardingComplete';
 import SetAccountNameComponent from 'ui/views/onboarding/SetAccountName';
 import SeedReentry from 'ui/views/onboarding/SeedReentry';
@@ -157,4 +160,7 @@ export default function registerScreens(store, Provider) {
         Provider,
         store,
     );
+    Navigation.registerComponentWithRedux('sweepsAbout', () => applyHOCs(SweepsAbout), Provider, store);
+    Navigation.registerComponentWithRedux('sweepsTransferFunds', () => applyHOCs(SweepsTransferFunds), Provider, store);
+    Navigation.registerComponentWithRedux('sweepsDone', () => applyHOCs(SweepsDone), Provider, store);
 }
