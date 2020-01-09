@@ -6607,8 +6607,8 @@
       }
     },
     "entangled-node": {
-      "version": "github:laumair/entangled-node#e6b9034b8599e0204b085d99ce1db0c4d7ac8d1c",
-      "from": "github:laumair/entangled-node#e6b9034b8599e0204b085d99ce1db0c4d7ac8d1c",
+      "version": "github:laumair/entangled-node#cb74ed6c96fc31448aae087700138bf9a6a1b494",
+      "from": "github:laumair/entangled-node#cb74ed6c96fc31448aae087700138bf9a6a1b494",
       "requires": {
         "nan": "^2.14.0",
         "prebuild-install": "^5.3.2"

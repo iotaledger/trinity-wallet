@@ -166,7 +166,7 @@
     "classnames": "2.2.6",
     "electron-settings": "3.2.0",
     "electron-updater": "4.0.14",
-    "entangled-node": "laumair/entangled-node#e6b9034b8599e0204b085d99ce1db0c4d7ac8d1c",
+    "entangled-node": "laumair/entangled-node#cb74ed6c96fc31448aae087700138bf9a6a1b494",
     "hw-app-iota": "0.6.1",
     "i18next": "17.0.6",
     "iota.lib.js": "0.5.2",
