@@ -146,7 +146,7 @@ export const recoverLockedFunds = (accountName, seedStore, inputs, withQuorum = 
 
                         const receiveAddress = getLatestAddress(newState.addressData);
 
-                        return new Promise((resolve) => {
+                        return new Promise((resolve, reject) => {
                             setTimeout(() => {
                                 sweep(undefined, withQuorum)(
                                     // See: extendedApi#attachToTangle
@@ -162,7 +162,9 @@ export const recoverLockedFunds = (accountName, seedStore, inputs, withQuorum = 
                                     input,
                                     receiveAddress,
                                     input.bundleHashes,
-                                ).then(resolve);
+                                )
+                                    .then(resolve)
+                                    .catch(reject);
                             }, 2000);
                         });
                     })
