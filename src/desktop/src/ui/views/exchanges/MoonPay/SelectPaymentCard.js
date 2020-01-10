@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import head from 'lodash/head';
 import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
@@ -71,7 +72,9 @@ class SelectPaymentCard extends React.PureComponent {
      * @returns {object}
      */
     formatCardInfo(cardInfo) {
-        const { brand, id, lastDigits } = cardInfo;
+        const brand = get(cardInfo, 'brand');
+        const id = get(cardInfo, 'id');
+        const lastDigits = get(cardInfo, 'lastDigits');
 
         return {
             id,
