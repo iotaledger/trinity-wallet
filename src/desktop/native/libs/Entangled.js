@@ -24,7 +24,7 @@ const exec = (payload) => {
 
         const timeoutsMap = {
             batchedPow: 180 * 1000,
-            bundleMiner: 60 * 60 * 1000,
+            bundleMiner: 24 * 60 * 60 * 1000,
         };
 
         timeout = setTimeout(() => {
