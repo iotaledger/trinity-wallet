@@ -320,14 +320,11 @@ class TransferFunds extends React.PureComponent {
                                             safeAddress={formattedToAddress}
                                         >
                                             <span>
-                                                <strong>{{ balance: formattedBalance }}</strong> from the locked address{' '}
-                                                <strong title={object.inputAddress}>
-                                                    {{ fromAddress: formattedFromAddress }}
-                                                </strong>{' '}
-                                                to the safe address{' '}
-                                                <strong title={object.outputAddress}>
-                                                    {{ safeAddress: formattedToAddress }}
-                                                </strong>
+                                                <strong>{{ balance: formattedBalance }}</strong> from the locked
+                                                address&nbsp;
+                                                <strong>{{ fromAddress: formattedFromAddress }}</strong>&nbsp; to the
+                                                safe address&nbsp;
+                                                <strong>{{ safeAddress: formattedToAddress }}</strong>
                                             </span>
                                         </Trans>
                                     </div>
