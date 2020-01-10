@@ -136,8 +136,5 @@ const mapDispatchToProps = {
 };
 
 export default withTranslation(['advancedSettings', 'settings', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(AdvancedSettings),
+    connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings),
 );

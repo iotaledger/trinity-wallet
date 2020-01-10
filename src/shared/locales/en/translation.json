@@ -59,7 +59,6 @@
         "share": "Share",
         "proceed": "Proceed",
         "qr": "QR",
-        "of": "of",
         "enterSeed": "Please enter your seed.",
         "yes": "Yes",
         "no": "No",
@@ -621,9 +620,8 @@
         "doNotCloseTrinityMobile": "Do not minimise/close Trinity or turn off your device during this process.",
         "fundsUnlockedExplanation": "Your funds have been successfully unlocked. Promote the transactions to help them confirm.",
         "tryAgain": "Try again",
-        "sweep": "Sweep",
-        "fromLockedAddress": "from the locked address",
-        "toSafeAddress": "to the safe address"
+        "sweepNumber": "Sweep {{sweepIndex}} of {{totalSweeps}}",
+        "fromLockedAddressToSafeAddress": "<0><0>{{balance}}</0> from the locked address <2>{{fromAddress}}</2> to the safe address <4>{{safeAddress}}</4></0>"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",

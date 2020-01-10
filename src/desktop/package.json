@@ -1,7 +1,7 @@
 {
-  "name": "trinity-desktop",
+  "name": "trinity-desktop-rc",
   "productName": "Trinity",
-  "version": "1.3.0",
+  "version": "1.3.0-rc",
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
   "description": "Desktop wallet for IOTA",
@@ -53,7 +53,7 @@
     "express": "4.17.1",
     "file-loader": "4.1.0",
     "html-webpack-plugin": "3.2.0",
-    "jest": "24.8.0",
+    "jest": "24.9.0",
     "jest-image-snapshot": "^2.11.0",
     "mini-css-extract-plugin": "0.7.0",
     "puppeteer": "2.0.0",
@@ -74,7 +74,7 @@
     "artifactName": "trinity-desktop-${version}.${ext}",
     "copyright": "IOTA Foundation",
     "directories": {
-      "buildResources": "./assets",
+      "buildResources": "./assets/RC",
       "output": "./out"
     },
     "afterSign": "./scripts/notarize.macos.js",
@@ -166,7 +166,7 @@
     "classnames": "2.2.6",
     "electron-settings": "3.2.0",
     "electron-updater": "4.0.14",
-    "entangled-node": "rihardsgravis/entangled-node#00ccb34",
+    "entangled-node": "rihardsgravis/entangled-node#b685472",
     "hw-app-iota": "0.6.1",
     "i18next": "17.0.6",
     "iota.lib.js": "0.5.2",

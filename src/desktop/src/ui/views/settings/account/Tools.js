@@ -14,7 +14,11 @@ import {
     generateAddressesAndGetBalance,
 } from 'actions/wallet';
 
-import { getAddressesForSelectedAccount, getFilteredSpentAddressDataForSelectedAccount, getSelectedAccountType } from 'selectors/accounts';
+import {
+    getAddressesForSelectedAccount,
+    getFilteredSpentAddressDataForSelectedAccount,
+    getSelectedAccountType,
+} from 'selectors/accounts';
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
@@ -161,7 +165,16 @@ class Tools extends PureComponent {
     };
 
     render() {
-        const { ui, wallet, t, activeStepIndex, activeSteps, themeName, spentAddressDataWithBalance, accountType } = this.props;
+        const {
+            ui,
+            wallet,
+            t,
+            activeStepIndex,
+            activeSteps,
+            themeName,
+            spentAddressDataWithBalance,
+            accountType,
+        } = this.props;
         const sizeOfActiveSteps = size(activeSteps);
 
         const hasSpentAddressData = !isEmpty(spentAddressDataWithBalance);
@@ -277,7 +290,7 @@ const mapStateToProps = (state) => ({
     activeSteps: state.progress.activeSteps,
     themeName: state.settings.themeName,
     spentAddressDataWithBalance: getFilteredSpentAddressDataForSelectedAccount(state),
-    accountType: getSelectedAccountType(state)
+    accountType: getSelectedAccountType(state),
 });
 
 const mapDispatchToProps = {
@@ -288,7 +301,4 @@ const mapDispatchToProps = {
     setBalanceCheckFlag,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Tools));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Tools));
