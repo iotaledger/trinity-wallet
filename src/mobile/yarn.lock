@@ -848,10 +848,10 @@
     "@types/warning" "^3.0.0"
     warning "^4.0.3"
 
-"@iota/bundle@^1.0.0-beta.21":
-  version "1.0.0-beta.23"
-  resolved "https://registry.yarnpkg.com/@iota/bundle/-/bundle-1.0.0-beta.23.tgz#b097a14c21de94e5c837d035cc6d9f18df309cf9"
-  integrity sha512-nYX+dS1UjJVixAfee+670jaQLWqnv5rIdfPynvLGyByUx+lUxc4J3Egps3P18KiX2J7aVhxlZCdqw2lgePGjDg==
+"@iota/bundle@^1.0.0-beta.29":
+  version "1.0.0-beta.29"
+  resolved "https://registry.yarnpkg.com/@iota/bundle/-/bundle-1.0.0-beta.29.tgz#1dfe9ce9617e04cc6412524da4eae9b174acbf0d"
+  integrity sha512-KKR/ocMHpErrCxfyujsT3p1RjfE7TxHIsEPBLv7PJv6aHkr8ahaNfIMx07iFixy08+gxFKAnVAOS9mtytSHf3A==
   dependencies:
     "@iota/converter" "^1.0.0-beta.23"
     "@iota/kerl" "^1.0.0-beta.23"
@@ -9162,7 +9162,7 @@ shallow-clone@^0.1.2:
 shared-modules@../shared/:
   version "0.0.0"
   dependencies:
-    "@iota/bundle" "^1.0.0-beta.21"
+    "@iota/bundle" "^1.0.0-beta.29"
     "@iota/bundle-miner" "https://github.com/chrisdukakis/iota.js#feat/bundle-miner"
     "@iota/cda" "^1.0.0-beta.23"
     "@iota/converter" "^1.0.0-beta.21"

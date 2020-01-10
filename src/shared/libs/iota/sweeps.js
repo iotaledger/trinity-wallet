@@ -75,7 +75,7 @@ export const sweep = (settings) => (seedStore, input, outputAddress, knownBundle
             unsignedBundle.set(valueToTrits(index), Transaction.OBSOLETE_TAG_OFFSET);
 
             // Finalize bundle
-            const bundle = finalizeBundle(unsignedBundle);
+            const bundle = finalizeBundle(unsignedBundle, security);
 
             return seedStore
                 .getSeed(true)

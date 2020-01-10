@@ -840,15 +840,15 @@
     "@types/warning" "^3.0.0"
     warning "^4.0.3"
 
-"@iota/bundle@^1.0.0-beta.21":
-  version "1.0.0-beta.21"
-  resolved "https://registry.yarnpkg.com/@iota/bundle/-/bundle-1.0.0-beta.21.tgz#41d6b410b5dd987a58409fcf6078ac323cc9bf57"
-  integrity sha512-3P5xGXDiB/1U59Fl5Mm+tM9lEll43cdgChp7ry/Wca0igfRW20UOpkla+f/ppnbnGeNQkDV7bdvhFxmr2OjuBQ==
+"@iota/bundle@^1.0.0-beta.29":
+  version "1.0.0-beta.29"
+  resolved "https://registry.yarnpkg.com/@iota/bundle/-/bundle-1.0.0-beta.29.tgz#1dfe9ce9617e04cc6412524da4eae9b174acbf0d"
+  integrity sha512-KKR/ocMHpErrCxfyujsT3p1RjfE7TxHIsEPBLv7PJv6aHkr8ahaNfIMx07iFixy08+gxFKAnVAOS9mtytSHf3A==
   dependencies:
-    "@iota/converter" "^1.0.0-beta.21"
-    "@iota/kerl" "^1.0.0-beta.21"
-    "@iota/signing" "^1.0.0-beta.21"
-    "@iota/transaction" "^1.0.0-beta.21"
+    "@iota/converter" "^1.0.0-beta.23"
+    "@iota/kerl" "^1.0.0-beta.23"
+    "@iota/signing" "^1.0.0-beta.23"
+    "@iota/transaction" "^1.0.0-beta.23"
     "@types/warning" "^3.0.0"
     warning "^4.0.3"
 
