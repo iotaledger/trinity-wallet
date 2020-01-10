@@ -6,7 +6,10 @@
             {
                 "cwd": "babelrc",
                 "root": [".", "src"],
-                "extensions": [".ios.js", ".android.js", ".js", ".json"]
+                "extensions": [".ios.js", ".android.js", ".js", ".json"],
+                "alias": {
+                    "shared-modules": "../shared"
+                }
             }
         ],
         "jest-hoist"
