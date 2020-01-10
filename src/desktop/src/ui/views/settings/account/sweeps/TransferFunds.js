@@ -11,7 +11,7 @@ import size from 'lodash/size';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 
 import SeedStore from 'libs/SeedStore';
 
@@ -249,6 +249,11 @@ class TransferFunds extends React.PureComponent {
                             const statusObject = get(sweepsStatuses, object.address);
                             const status = get(statusObject, 'status');
                             const initialisationTime = get(statusObject, 'initialisationTime');
+                            const formattedBalance = `${formatIotas(object.balance)} ${formatUnit(object.balance)}`;
+                            const formattedFromAddress = `${object.address.slice(0, 9)} ... ${object.address.slice(
+                                -3,
+                            )}`;
+                            const formattedToAddress = `${latestAddress.slice(0, 9)} ... ${latestAddress.slice(-3)}`;
 
                             const hasFailed = status === -1;
                             const isInProgress = status === 0;
@@ -272,9 +277,10 @@ class TransferFunds extends React.PureComponent {
                                                 marginRight: '40px',
                                             }}
                                         >
-                                            {`${t('sweeps:sweep')} ${index + 1} ${t('global:of')} ${
-                                                spentAddressData.length
-                                            }`}
+                                            {t('sweeps:sweepNumber', {
+                                                sweepIndex: index + 1,
+                                                totalSweeps: spentAddressData.length,
+                                            })}
                                         </strong>
                                         {has(sweepsStatuses, object.address) && (
                                             <span
@@ -307,19 +313,23 @@ class TransferFunds extends React.PureComponent {
                                             display: 'flex',
                                         }}
                                     >
-                                        <span>
-                                            <strong>
-                                                {formatIotas(object.balance)} {formatUnit(object.balance)}{' '}
-                                            </strong>{' '}
-                                            {t('sweeps:fromLockedAddress')}{' '}
-                                            <strong title={object.inputAddress}>
-                                                {object.address.slice(0, 9)} ... {object.address.slice(-3)}
-                                            </strong>{' '}
-                                            {t('sweeps:toSafeAddress')}{' '}
-                                            <strong title={object.outputAddress}>
-                                                {latestAddress.slice(0, 9)} ... {latestAddress.slice(-3)}
-                                            </strong>
-                                        </span>
+                                        <Trans
+                                            i18nKey="sweeps:fromLockedAddressToSafeAddress"
+                                            balance={formattedBalance}
+                                            fromAddress={formattedFromAddress}
+                                            safeAddress={formattedToAddress}
+                                        >
+                                            <span>
+                                                <strong>{{ balance: formattedBalance }}</strong> from the locked address{' '}
+                                                <strong title={object.inputAddress}>
+                                                    {{ fromAddress: formattedFromAddress }}
+                                                </strong>{' '}
+                                                to the safe address{' '}
+                                                <strong title={object.outputAddress}>
+                                                    {{ safeAddress: formattedToAddress }}
+                                                </strong>
+                                            </span>
+                                        </Trans>
                                     </div>
                                 </div>
                             );

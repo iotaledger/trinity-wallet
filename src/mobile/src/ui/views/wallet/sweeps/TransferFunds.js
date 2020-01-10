@@ -6,7 +6,7 @@ import size from 'lodash/size';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import SeedStore from 'libs/SeedStore';
 import navigator from 'libs/navigation';
@@ -250,12 +250,23 @@ class TransferFunds extends React.PureComponent {
                                 const hasFailed = status === -1;
                                 const isInProgress = status === 0;
                                 const hasCompleted = status === 1;
+                                const formattedBalance = `${formatIotas(object.balance)} ${formatUnit(object.balance)}`;
+                                const formattedFromAddress = `${object.address.slice(0, 9)} ... ${object.address.slice(
+                                    -3,
+                                )}`;
+                                const formattedToAddress = `${latestAddress.slice(0, 9)} ... ${latestAddress.slice(
+                                    -3,
+                                )}`;
 
                                 return (
                                     <View key={index}>
                                         <View style={styles.sweepHeader}>
-                                            <Text style={[styles.infoText, { color: body.color }]}>{`Sweep ${index +
-                                                1} of ${spentAddressDataWithBalance.length}`}</Text>
+                                            <Text style={[styles.infoText, { color: body.color }]}>
+                                                {t('sweeps:sweepNumber', {
+                                                    sweepIndex: index + 1,
+                                                    totalSweeps: spentAddressDataWithBalance.length,
+                                                })}
+                                            </Text>
                                             {has(sweepsStatuses, object.address) && (
                                                 <OldProgressBar
                                                     width={width / 3}
@@ -276,18 +287,27 @@ class TransferFunds extends React.PureComponent {
                                                     { color: body.color, marginBottom: height / 40 },
                                                 ]}
                                             >
-                                                <Text>
-                                                    {formatIotas(object.balance)} {formatUnit(object.balance)} from the
-                                                    locked address{' '}
-                                                </Text>
-                                                <Text title={object.inputAddress}>
-                                                    {object.address.slice(0, 9)} ... {object.address.slice(-3)}
-                                                </Text>
-                                                <Text title={object.outputAddress}>
-                                                    {' '}
-                                                    to the safe address {latestAddress.slice(0, 9)} ...{' '}
-                                                    {latestAddress.slice(-3)}
-                                                </Text>
+                                                {/* The nbsp used below is necessary to ensure elements are spaced properly */}
+                                                {/* Because of the way react-i18next counts elements, regular space strings (' ') cannot be used */}
+                                                {/* Otherwise we cannot use the same translation string on desktop and mobile */}
+                                                <Trans
+                                                    i18nKey="sweeps:fromLockedAddressToSafeAddress"
+                                                    balance={formattedBalance}
+                                                    fromAddress={formattedFromAddress}
+                                                    safeAddress={formattedToAddress}
+                                                >
+                                                    <Text>
+                                                        <Text>{{ balance: formattedBalance }}</Text> from the locked
+                                                        address &nbsp;
+                                                        <Text title={object.inputAddress}>
+                                                            {{ fromAddress: formattedFromAddress }}
+                                                        </Text>{' '}
+                                                        &nbsp; to the safe address &nbsp;
+                                                        <Text title={object.outputAddress}>
+                                                            {{ safeAddress: formattedToAddress }}
+                                                        </Text>
+                                                    </Text>
+                                                </Trans>
                                             </Text>
                                         </View>
                                     </View>
