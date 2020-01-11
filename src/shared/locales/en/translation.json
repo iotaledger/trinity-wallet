@@ -618,7 +618,7 @@
         "transferYourFundsExplanation": "Trinity will attempt to recover your funds by moving them to a new address, but it may take some time.",
         "doNotCloseTrinity": "Do not close Trinity or turn off your computer during this process.",
         "doNotCloseTrinityMobile": "Do not minimise/close Trinity or turn off your device during this process.",
-        "fundsUnlockedExplanation": "Your funds have been successfully unlocked. Promote the transactions to help them confirm.",
+        "fundsUnlockedExplanation": "Your funds have been successfully unlocked.",
         "tryAgain": "Try again",
         "sweepNumber": "Sweep {{sweepIndex}} of {{totalSweeps}}",
         "fromLockedAddressToSafeAddress": "<0><0>{{balance}}</0> from the locked address <2>{{fromAddress}}</2> to the safe address <4>{{safeAddress}}</4></0>"
