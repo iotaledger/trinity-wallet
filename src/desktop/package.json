@@ -185,7 +185,7 @@
     "react-router-dom": "5.0.1",
     "react-transition-group": "4.2.1",
     "realm": "2.29.2",
-    "recharts": "1.6.2",
+    "recharts": "1.8.5",
     "redux": "4.0.4"
   },
   "jest": {
