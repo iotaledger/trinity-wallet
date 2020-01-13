@@ -412,7 +412,7 @@ const mapStateToProps = (state) => ({
     hasErrorFetchingFullAccountInfo: state.ui.hasErrorFetchingFullAccountInfo,
     deepLinking: state.settings.deepLinking,
     isBusy:
-        !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
+        !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress || state.ui.isRecoveringFunds,
 });
 
 const mapDispatchToProps = {
