@@ -114,6 +114,18 @@ class AddAmount extends React.PureComponent {
     }
 
     /**
+     * Gets currency symbol for currently selected currency
+     *
+     * @method getCurrencySymbol
+     *
+     * @returns {string}
+     */
+    getCurrencySymbol() {
+        const { denomination } = this.props;
+        return denomination === 'Mi' ? '$' : getCurrencySymbol(denomination);
+    }
+
+    /**
      * Fetches latest currency quote
      *
      * @method fetchCurrencyQuote
@@ -237,11 +249,11 @@ class AddAmount extends React.PureComponent {
             const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
 
             if (fiatAmount < MINIMUM_TRANSACTION_SIZE) {
-                return t('moonpay:minimumTransactionAmount', { amount: `€${MINIMUM_TRANSACTION_SIZE}` });
+                return t('moonpay:minimumTransactionAmount', { amount: this.getCurrencySymbol() + MINIMUM_TRANSACTION_SIZE });
             }
 
             if (fiatAmount > MAXIMUM_TRANSACTION_SIZE) {
-                return t('moonpay:maximumTransactionAmount', { amount: `€${MAXIMUM_TRANSACTION_SIZE}` });
+                return t('moonpay:maximumTransactionAmount', { amount: this.getCurrencySymbol() + MAXIMUM_TRANSACTION_SIZE });
             }
 
             if (
@@ -250,7 +262,7 @@ class AddAmount extends React.PureComponent {
                 isPurchaseLimitIncreaseAllowed
             ) {
                 return fiatAmount > BASIC_MONTHLY_LIMIT
-                    ? t('moonpay:kycRequired', { limit: `€${BASIC_MONTHLY_LIMIT}` })
+                    ? t('moonpay:kycRequired', { limit: this.getCurrencySymbol() + BASIC_MONTHLY_LIMIT })
                     : null;
             } else if (
                 hasCompletedBasicIdentityVerification &&
