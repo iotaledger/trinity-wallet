@@ -129,7 +129,16 @@
     "set-value": ">=2.0.1"
   },
   "jest": {
-    "preset": "react-native",
+    "testEnvironment": "node",
+    "haste": {
+      "defaultPlatform": "ios",
+      "platforms": ["android", "ios", "native"],
+      "hasteImplModulePath": "./node_modules/react-native/jest/hasteImpl.js",
+      "providesModuleNodeModules": ["react-native"]
+    },
+    "setupFiles": [
+      "<rootDir>/node_modules/react-native/jest/setup.js"
+    ],
     "setupFilesAfterEnv": [
       "./testConfig.js"
     ],
@@ -146,7 +155,13 @@
       "<rootDir>/ios/build/",
       "<rootDir>/android/build/",
       "<rootDir>/nodejs-assets/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^react$": "<rootDir>/../shared/node_modules/react",
+      "^react-dom(.*)$": "<rootDir>/../shared/node_modules/react-dom$1",
+      "^react-i18next(.*)$": "<rootDir>/../shared/node_modules/react-i18next$1",
+      "^react-redux(.*)$": "<rootDir>/../shared/node_modules/react-redux$1"
+    }
   },
   "react-native": {
     "crypto": "react-native-crypto",
