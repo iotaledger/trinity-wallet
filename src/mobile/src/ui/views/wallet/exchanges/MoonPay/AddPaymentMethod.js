@@ -172,12 +172,16 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
         outline:0;
       }
 
+      .single-row-container {
+        display: flex;
+      }
+
       .field-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin-bottom: ${height / 25}px;
-        margin-top: ${height / 25}px;
+        margin-bottom: ${height / 35}px;
+        margin-top: ${height / 35}px;
         margin-left: ${width / 20}px;
         margin-right: ${width / 20}px;
       }
@@ -217,13 +221,16 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
       .checkbox-container {
         display: flex;
         align-items: center;
-        flex-wrap: wrap;
         margin-bottom: ${height / 50}px;
         margin-left: ${width / 15}px;
         margin-right: ${width / 15}px;
       }
 
       .checkbox-text {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
         font-family: 'Source Sans Pro', sans-serif;
         font-weight: 400;
         font-size: ${Styling.fontSize2}px;
@@ -259,22 +266,25 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
             </div>
         </div>
 
+
         <div class="field-container">
             <label for="cc-number" class="field-label">${t('moonpay:cardNumber')}</label>
             <span id="cc-number" class="form-field">
             </span>
         </div>
 
-        <div class="field-container">
+        <div class="single-row-container">
+          <div class="field-container">
             <label for="cc-cvc" class="field-label">${t('moonpay:cvc')}</label>
             <span id="cc-cvc" class="form-field">
             </span>
-        </div>
+          </div>
 
-        <div class="field-container">
-            <label for="cc-expiration-date" class="field-label">${t('moonpay:expirationDate')}</label>
-            <span id="cc-expiration-date" class="form-field">
-            </span>
+          <div class="field-container">
+              <label for="cc-expiration-date" class="field-label">${t('moonpay:expirationDate')}</label>
+              <span id="cc-expiration-date" class="form-field">
+              </span>
+          </div>
         </div>
 
         <div class="checkbox-container">
