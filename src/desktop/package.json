@@ -31,9 +31,9 @@
     "test": "npm run build-app && jest"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "7.7.4",
-    "@babel/preset-env": "7.7.7",
-    "@babel/preset-react": "7.7.4",
+    "@babel/plugin-proposal-class-properties": "7.8.0",
+    "@babel/preset-env": "7.8.2",
+    "@babel/preset-react": "7.8.0",
     "@jest-runner/electron": "2.0.3",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "24.9.0",
@@ -41,7 +41,7 @@
     "bugsnag-build-reporter": "1.0.2",
     "concurrently": "^5.0.2",
     "cross-env": "6.0.3",
-    "css-loader": "3.4.1",
+    "css-loader": "3.4.2",
     "dart-sass": "1.24.4",
     "electron": "6.1.7",
     "electron-builder": "22.1.0",
@@ -61,7 +61,7 @@
     "react-dev-utils": "10.0.0",
     "regenerator-runtime": "0.13.3",
     "rimraf": "3.0.0",
-    "sass-loader": "8.0.0",
+    "sass-loader": "8.0.1",
     "style-loader": "1.1.2",
     "url-loader": "3.0.0",
     "webpack": "4.41.5",
@@ -169,7 +169,7 @@
     }
   },
   "dependencies": {
-    "@babel/register": "7.7.7",
+    "@babel/register": "7.8.0",
     "@bugsnag/js": "6.5.0",
     "@bugsnag/plugin-react": "6.5.0",
     "@ledgerhq/hw-transport-node-hid": "5.3.0",
