@@ -48,6 +48,14 @@ export default class Icon extends React.PureComponent {
             );
         }
 
+        if (icon === 'ledger') {
+            return (
+                <svg width={size} height={size} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M26.941 0H12.176v19.752h19.816V5.139C32 2.364 29.725 0 26.94 0zm-19.3 0H5.164C2.38 0 0 2.26 0 5.147v2.469h7.641V0zM0 12.24h7.641v7.616H0V12.24zm24.36 19.752h2.476c2.784 0 5.164-2.26 5.164-5.147v-2.461h-7.64v7.608zm-12.184-7.608h7.64V32h-7.64v-7.616zM0 24.384v2.469C0 29.627 2.267 32 5.164 32H7.64v-7.616H0z" />
+                </svg>
+            );
+        }
+
         if (icon === 'seedVault') {
             return (
                 <svg width={size} height={size} viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
