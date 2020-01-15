@@ -860,7 +860,7 @@ export class Send extends Component {
                         >
                             <TouchableOpacity
                                 onPress={() => {
-                                    if (!isSending && isUndefined(CDAContent, 'expectedAmount')) {
+                                    if (!isSending && isUndefined(CDAContent.expectedAmount)) {
                                         this.onMaxPress();
                                     }
                                 }}
