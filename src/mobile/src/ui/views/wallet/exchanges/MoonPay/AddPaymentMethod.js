@@ -174,14 +174,23 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
 
       .single-row-container {
         display: flex;
+        margin-bottom: ${width / 15}px;
+      }
+
+      .first-field-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: ${width / 15}px;
+        margin-bottom: ${width / 20}px;
+        margin-left: ${width / 20}px;
+        margin-right: ${width / 20}px;
       }
 
       .field-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin-bottom: ${height / 35}px;
-        margin-top: ${height / 35}px;
         margin-left: ${width / 20}px;
         margin-right: ${width / 20}px;
       }
@@ -267,7 +276,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
         </div>
 
 
-        <div class="field-container">
+        <div class="first-field-container">
             <label for="cc-number" class="field-label">${t('moonpay:cardNumber')}</label>
             <span id="cc-number" class="form-field">
             </span>
@@ -313,7 +322,7 @@ const renderHtml = (theme, t, customerAddress, customerId) => {
   }
 
   function handleCheckbox() {
-    document.getElementsByClassName('checkbox-wrapper')[0].innerHTML = !shouldStoreCardDetails ? 
+    document.getElementsByClassName('checkbox-wrapper')[0].innerHTML = !shouldStoreCardDetails ?
     '<i class="far fa-check-square fa-lg checkbox"></i>' : '<i class="far fa-square fa-lg checkbox"></i>';
 
     shouldStoreCardDetails = !shouldStoreCardDetails;
@@ -561,7 +570,7 @@ class AddPaymentMethod extends PureComponent {
         const { t } = this.props;
 
         return {
-            buttons: () => `  
+            buttons: () => `
           document.getElementsByClassName('button-right')[0].innerHTML = "${t('global:submit')}";
           document.getElementsByClassName('button-left')[0].disabled = false;
           true
@@ -570,7 +579,7 @@ class AddPaymentMethod extends PureComponent {
           setTimeout(function() {
             document.getElementsByClassName('container')[0].style.height = "${height}px";
             document.getElementsByClassName('container')[0].style.webkitTransition = "0.5s height";
-          }, 100);  
+          }, 100);
           true
         `,
         };
