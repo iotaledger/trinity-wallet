@@ -163,7 +163,7 @@ class Landing extends React.PureComponent {
                         <fieldset>
                             <Select
                                 value={this.state.state.name}
-                                label={t('moonpay:selectCountry')}
+                                label={t('moonpay:selectState')}
                                 onChange={(name) => {
                                     const state = find(states, { name });
 
