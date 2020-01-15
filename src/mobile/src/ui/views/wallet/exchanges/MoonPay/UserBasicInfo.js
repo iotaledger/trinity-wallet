@@ -153,7 +153,7 @@ class UserBasicInfo extends React.Component {
         const dobMoment = moment(this.state.dateOfBirth, 'DD/MM/YYYY');
 
         if (!dobMoment.isValid()) {
-            return this.props.generateAlert('error', 'Invalid DOB', 'Invalid DOB');
+            return this.props.generateAlert('error', t('moonpay:invalidDOB'), t('moonpay:invalidDOBExplanation'));
         }
 
         return this.props.updateCustomer({
