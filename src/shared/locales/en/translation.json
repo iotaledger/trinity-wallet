@@ -394,7 +394,9 @@
         "idRejection": "Your identity check was rejected.",
         "cardNotSupported": "Your card is not supported. Please try again with a different card.",
         "cancelled": "The payment was cancelled.",
-        "storeCardDetails": "Store card details in MoonPay for faster checkout."
+        "storeCardDetails": "Store card details in MoonPay for faster checkout.",
+        "purchasesAreSuspended": "Purchases are suspended.",
+        "purchasesAreSuspendedExplanation": "MoonPay purchases are currently suspended. Please try again later."
     },
     "home": {
         "balance": "BALANCE",
