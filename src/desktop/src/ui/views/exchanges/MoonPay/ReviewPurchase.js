@@ -32,6 +32,8 @@ class ReviewPurchase extends React.PureComponent {
         activeTransaction: PropTypes.object,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        hasAnyPaymentCards: PropTypes.bool.isRequired,
     };
 
     componentWillReceiveProps(nextProps) {
@@ -77,7 +79,7 @@ class ReviewPurchase extends React.PureComponent {
     }
 
     render() {
-        const { isCreatingTransaction, createTransaction, children, t } = this.props;
+        const { hasAnyPaymentCards, isCreatingTransaction, createTransaction, children, t } = this.props;
 
         return (
             <form onSubmit={createTransaction}>
@@ -93,7 +95,7 @@ class ReviewPurchase extends React.PureComponent {
                         <Button
                             disabled={isCreatingTransaction}
                             id="to-cancel"
-                            onClick={() => this.props.history.push('/exchanges/moonpay/select-payment-card')}
+                            onClick={() => this.props.history.push(hasAnyPaymentCards ? '/exchanges/moonpay/select-payment-card' : '/exchanges/moonpay/add-payment-method')}
                             className="square"
                             variant="dark"
                         >
