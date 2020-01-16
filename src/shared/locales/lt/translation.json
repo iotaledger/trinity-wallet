@@ -391,7 +391,9 @@
         "idRejection": "Jūsų tapatybės patikrinimas buvo atmestas.",
         "cardNotSupported": "Jūsų kortelė netinkama. Prašome bandyti dar kartą su kita kortele.",
         "cancelled": "Mokėjimas buvo atmestas.",
-        "storeCardDetails": "Store card details in MoonPay for faster checkout."
+        "storeCardDetails": "Store card details in MoonPay for faster checkout.",
+        "purchasesAreSuspended": "Purchases are suspended",
+        "purchasesAreSuspendedExplanation": "Unfortunately, MoonPay purchases are currently suspended. Please try again later."
     },
     "home": {
         "balance": "BALANSAS",
