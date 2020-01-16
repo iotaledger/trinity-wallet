@@ -391,7 +391,9 @@
         "idRejection": "Votre vérification d'identité a été rejetée.",
         "cardNotSupported": "Votre carte n'est pas prise en charge. Veuillez réessayer avec une autre carte.",
         "cancelled": "Le paiement a été annulé.",
-        "storeCardDetails": "Store card details in MoonPay for faster checkout."
+        "storeCardDetails": "Store card details in MoonPay for faster checkout.",
+        "purchasesAreSuspended": "Purchases are suspended",
+        "purchasesAreSuspendedExplanation": "Unfortunately, MoonPay purchases are currently suspended. Please try again later."
     },
     "home": {
         "balance": "SOLDE",
