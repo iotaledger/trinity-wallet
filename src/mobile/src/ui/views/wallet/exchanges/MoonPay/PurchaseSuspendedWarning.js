@@ -52,8 +52,6 @@ class PurchaseLimitWarning extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Component ID */
-        componentId: PropTypes.string.isRequired,
     };
 
     /**
@@ -61,7 +59,7 @@ class PurchaseLimitWarning extends Component {
      * @method goBack
      */
     goBack() {
-        navigator.pop(this.props.componentId);
+        navigator.setStackRoot('home');
     }
 
     render() {
