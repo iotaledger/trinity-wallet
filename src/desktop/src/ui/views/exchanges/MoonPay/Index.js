@@ -22,6 +22,7 @@ import PurchaseReceipt from 'ui/views/exchanges/MoonPay/PurchaseReceipt';
 import PaymentSuccess from 'ui/views/exchanges/MoonPay/PaymentSuccess';
 import PaymentFailure from 'ui/views/exchanges/MoonPay/PaymentFailure';
 import PaymentPending from 'ui/views/exchanges/MoonPay/PaymentPending';
+import PurchaseSuspendedWarning from 'ui/views/exchanges/MoonPay/PurchaseSuspendedWarning';
 
 import css from './index.scss';
 
@@ -67,6 +68,10 @@ class MoonPay extends React.PureComponent {
                                 <Route path="/exchanges/moonpay/payment-success" component={PaymentSuccess} />
                                 <Route path="/exchanges/moonpay/payment-failure" component={PaymentFailure} />
                                 <Route path="/exchanges/moonpay/payment-pending" component={PaymentPending} />
+                                <Route
+                                    path="/exchanges/moonpay/purchase-suspended-warning"
+                                    component={PurchaseSuspendedWarning}
+                                />
 
                                 <Route
                                     path="/exchanges/moonpay/purchase-limit-warning"

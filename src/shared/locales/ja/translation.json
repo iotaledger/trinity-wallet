@@ -180,8 +180,8 @@
         "total": "合計",
         "submit": "送信",
         "tryAgain": "やり直す",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "unknown": "不明",
+        "goToDashboard": "ダッシュボードを開く"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -276,7 +276,7 @@
         "dateOfBirth": "生年月日",
         "address": "住所",
         "city": "市",
-        "zipCode": "POST CODE",
+        "zipCode": "郵便番号",
         "reviewYourPurchase": "購入を確認する",
         "pleaseCarefullyCheckOrder": "以下の注文を注意深く確認してください。",
         "order": "注文",
@@ -302,8 +302,8 @@
         "invalidAddressExplanation": "有効な住所を入力してください",
         "invalidCity": "無効な市です",
         "invalidCityExplanation": "有効な市を入力してください",
-        "invalidZipCode": "Invalid post code",
-        "invalidZipCodeExplanation": "Please enter a valid post code",
+        "invalidZipCode": "無効な郵便番号です",
+        "invalidZipCodeExplanation": "有効な郵便番号を入力してください",
         "invalidState": "無効な都道府県です",
         "invalidStateExplanation": "有効な都道府県を入力してください",
         "somethingWentWrongProcessingCardInfo": "カード情報の処理中に問題が発生しました。もう一度やり直してください。",
@@ -312,7 +312,7 @@
         "amountTooHigh": "金額が高すぎます",
         "amountTooHighExplanation": "1日の最大取引額は {{amount}} です。",
         "addPaymentMethod": "支払い方法を追加する",
-        "pleaseEnterYourBillingDetails": "Please enter your card details below.",
+        "pleaseEnterYourBillingDetails": "カード情報を下に入力してください",
         "cardNumber": "カード番号",
         "cvc": "CVC",
         "expirationDate": "有効期限",
@@ -347,7 +347,7 @@
         "paymentCardCreationError": "支払いカードの作成エラー",
         "paymentCardCreationErrorExplanation": "支払いカードの作成中に問題が発生しました。もう一度やり直してください。",
         "selectCountry": "国を選択する",
-        "selectState": "Select State",
+        "selectState": "都道府県を選択してください",
         "state": "都道府県",
         "selectPaymentMethod": "支払い方法を選択してください",
         "pleaseChooseFromTheOptionsBelow": "以下のオプションから選択してください。",
@@ -391,7 +391,7 @@
         "idRejection": "本人確認が拒否されました。",
         "cardNotSupported": "あなたのカードはサポートされていません。別のカードでもう一度お試しください。",
         "cancelled": "支払いはキャンセルされました。",
-        "storeCardDetails": "Store card details in MoonPay for faster checkout."
+        "storeCardDetails": "支払を高速化するために、MoonPay にカード情報を保存します。"
     },
     "home": {
         "balance": "残高",
