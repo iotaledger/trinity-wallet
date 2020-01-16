@@ -391,7 +391,9 @@
         "idRejection": "Twoja kontrola tożsamości została odrzucona.",
         "cardNotSupported": "Twoja karta nie jest obsługiwana. Spróbuj ponownie używając innej karty.",
         "cancelled": "Płatność została anulowana.",
-        "storeCardDetails": "Przechowuj dane karty w MoonPay w celu przyśpieszenia transakcji."
+        "storeCardDetails": "Przechowuj dane karty w MoonPay w celu przyśpieszenia transakcji.",
+        "purchasesAreSuspended": "Purchases are suspended",
+        "purchasesAreSuspendedExplanation": "Unfortunately, MoonPay purchases are currently suspended. Please try again later."
     },
     "home": {
         "balance": "SALDO",
