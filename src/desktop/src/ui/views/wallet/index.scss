@@ -105,7 +105,16 @@ $sidebar-narrow: 70px;
 
                 a {
                     line-height: 21px;
-                    padding: 14px 0 14px 18px;
+                    padding: 14px 0 14px 28px;
+
+                    svg {
+                        position: absolute;
+                        left: 8px;
+                        top: 18px;
+                        path {
+                            fill: #fff;
+                        }
+                    }
                 }
             }
 

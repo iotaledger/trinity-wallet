@@ -148,4 +148,9 @@ const init = () => {
     }
 };
 
-init();
+// Redirect to index view
+if (window.location.pathname !== '/') {
+    window.location = '/';
+} else {
+    init();
+}
