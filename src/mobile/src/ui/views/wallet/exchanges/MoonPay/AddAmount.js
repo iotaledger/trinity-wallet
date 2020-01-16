@@ -334,7 +334,7 @@ class AddAmount extends Component {
                 isPurchaseLimitIncreaseAllowed
             ) {
                 return fiatAmount > BASIC_MONTHLY_LIMIT
-                    ? t('moonpay:kycRequired', { limit: `€${BASIC_MONTHLY_LIMIT}` })
+                    ? t('moonpay:kycRequired', { limit: this.getCurrencySymbol() + BASIC_MONTHLY_LIMIT })
                     : null;
             } else if (
                 hasCompletedBasicIdentityVerification &&
