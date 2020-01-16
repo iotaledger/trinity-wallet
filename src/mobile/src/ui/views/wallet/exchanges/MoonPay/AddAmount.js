@@ -32,6 +32,7 @@ import {
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import { fetchQuote, setAmount, setDenomination } from 'shared-modules/actions/exchanges/MoonPay';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
+import { parseAmount } from 'shared-modules/libs/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -170,18 +171,6 @@ class AddAmount extends Component {
             }
         }
     }
-    /**
-     * Use periods instead of commas for decimal separation
-     * Example: 22,53 -> 22.53
-     * @method parseAmount
-     *
-     * @param  {string} amount
-     *
-     * @returns {string}
-     */
-    parseAmount(amount) {
-        return amount.replace(/,/g, '.');
-    }
 
     /**
      * Fetches latest currency quote
@@ -202,7 +191,7 @@ class AddAmount extends Component {
             !isFetchingCurrencyQuote
         ) {
             this.props.fetchQuote(
-                Number(getAmountInFiat(Number(this.parseAmount(amount)), denomination, exchangeRates).toFixed(2)),
+                Number(getAmountInFiat(Number(amount), denomination, exchangeRates).toFixed(2)),
                 toLower(getActiveFiatCurrency(denomination)),
             );
         } else {
@@ -236,7 +225,7 @@ class AddAmount extends Component {
 
         this.props.setDenomination(nextDenomination);
 
-        this.fetchCurrencyQuote(this.parseAmount(amount), nextDenomination, exchangeRates);
+        this.fetchCurrencyQuote(amount, nextDenomination, exchangeRates);
     }
 
     /**
@@ -249,14 +238,12 @@ class AddAmount extends Component {
     getReceiveAmount() {
         const { amount, denomination, exchangeRates } = this.props;
 
-        const parsedAmount = this.parseAmount(amount);
-
         if (includes(ALLOWED_IOTA_DENOMINATIONS, denomination)) {
-            return parsedAmount ? `${parsedAmount} Mi` : '0 Mi';
+            return amount ? `${amount} Mi` : '0 Mi';
         }
 
-        return parsedAmount
-            ? `${(Number(parsedAmount) / exchangeRates[getActiveFiatCurrency(denomination)]).toFixed(2)} Mi`
+        return amount
+            ? `${(Number(amount) / exchangeRates[getActiveFiatCurrency(denomination)]).toFixed(2)} Mi`
             : '0 Mi';
     }
 
@@ -311,10 +298,8 @@ class AddAmount extends Component {
             t,
         } = this.props;
 
-        const parsedAmount = this.parseAmount(amount);
-
-        if (parsedAmount) {
-            const fiatAmount = getAmountInFiat(Number(parsedAmount), denomination, exchangeRates);
+        if (amount) {
+            const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
 
             if (fiatAmount < MINIMUM_TRANSACTION_SIZE) {
                 return t('moonpay:minimumTransactionAmount', {
@@ -432,7 +417,7 @@ class AddAmount extends Component {
         } = this.props;
         const { shouldGetLatestCurrencyQuote } = this.state;
 
-        const fiatAmount = getAmountInFiat(Number(this.parseAmount(amount)), denomination, exchangeRates);
+        const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
 
         if (fiatAmount < MINIMUM_TRANSACTION_SIZE) {
             this.props.generateAlert(
@@ -528,7 +513,7 @@ class AddAmount extends Component {
                                     this.amountField = c;
                                 }}
                                 onValidTextChange={(newAmount) => {
-                                    this.props.setAmount(newAmount);
+                                    this.props.setAmount(parseAmount(newAmount));
 
                                     this.fetchCurrencyQuote(newAmount, denomination, exchangeRates);
                                 }}
@@ -578,7 +563,7 @@ class AddAmount extends Component {
                                 </Text>
                                 <Text style={[styles.infoTextLight, textColor]}>
                                     {this.getStringifiedFiatAmount(
-                                        getAmountInFiat(Number(this.parseAmount(amount)), denomination, exchangeRates),
+                                        getAmountInFiat(Number(amount), denomination, exchangeRates),
                                     )}
                                 </Text>
                             </View>
