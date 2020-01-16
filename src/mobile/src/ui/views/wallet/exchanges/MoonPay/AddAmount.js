@@ -513,9 +513,11 @@ class AddAmount extends Component {
                                     this.amountField = c;
                                 }}
                                 onValidTextChange={(newAmount) => {
-                                    this.props.setAmount(parseAmount(newAmount));
+                                    const amount = parseAmount(newAmount);
+                                    const currencyAmount = isNaN(amount) ? 0 : amount;
 
-                                    this.fetchCurrencyQuote(newAmount, denomination, exchangeRates);
+                                    this.props.setAmount(currencyAmount);
+                                    this.fetchCurrencyQuote(currencyAmount, denomination, exchangeRates);
                                 }}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
