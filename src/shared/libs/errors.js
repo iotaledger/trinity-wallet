@@ -25,7 +25,7 @@ export default {
     INVALID_BUNDLE_CONSTRUCTED_WITH_LOCAL_POW: 'Invalid bundle constructed with local proof-of-work.',
     INVALID_PARAMETERS: 'Invalid parameters.',
     ALREADY_SPENT_FROM_ADDRESSES: 'Addresses used in this bundle have already been spent from.',
-    TRANSACTION_IS_INCONSISTENT: 'The transaction you are retrying is inconsistent.',
+    TRANSACTION_IS_INCONSISTENT: 'Transaction is inconsistent',
     ADDRESS_METADATA_LENGTH_MISMATCH: 'Address metadata length mismatch.',
     SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION: 'Something went wrong during input selection.',
     NO_NODE_TO_RETRY: 'No nodes are available to retry the request.',
