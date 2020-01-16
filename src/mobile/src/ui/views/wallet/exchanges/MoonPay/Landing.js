@@ -251,8 +251,8 @@ class Landing extends Component {
                                 const states = this.getStates(countries, get(country, 'alpha3'))
                                 this.setState({
                                     country: {
-                                        name: country.name,
-                                        alpha3: country.alpha3,
+                                        name: get(country, 'name'),
+                                        alpha3: get(country, 'alpha3'),
                                     },
                                     state: {
                                         name: get(head(states), 'name') || '',
