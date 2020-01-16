@@ -145,6 +145,7 @@ class UserBasicInfo extends React.PureComponent {
                             value={dateOfBirth}
                             label={t('moonpay:dateOfBirth')}
                             onChange={(updatedDateOfBirth) => this.updateDateOfBirth(updatedDateOfBirth)}
+                            placeholder="DD/MM/YYYY"
                         />
                     </fieldset>
                 </section>

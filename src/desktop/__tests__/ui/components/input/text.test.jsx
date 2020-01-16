@@ -41,4 +41,11 @@ describe('Text component', () => {
 
         expect(wrapper.hasClass('disabled')).toBeTruthy();
     });
+
+    test('Input placeholder', () => {
+        const mockProps = Object.assign({}, props, { placeholder: 'Bar Foo Placeholder' });
+        const wrapper = shallow(<Text {...mockProps} />);
+
+        expect(wrapper.find('input').props().placeholder).toEqual('Bar Foo Placeholder')
+    })
 });
