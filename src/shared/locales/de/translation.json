@@ -391,7 +391,9 @@
         "idRejection": "Deine Identitätsprüfung wurde abgelehnt.",
         "cardNotSupported": "Diese Karte wird nicht unterstützt. Bitte versuche es erneut mit einer anderen Karte.",
         "cancelled": "Der Bezahlvorgang wurde abgebrochen.",
-        "storeCardDetails": "Die Informationen der Karte bei MoonPay speichern, um neue Bestellungen schneller abschließen zu können."
+        "storeCardDetails": "Die Informationen der Karte bei MoonPay speichern, um neue Bestellungen schneller abschließen zu können.",
+        "purchasesAreSuspended": "Purchases are suspended",
+        "purchasesAreSuspendedExplanation": "Unfortunately, MoonPay purchases are currently suspended. Please try again later."
     },
     "home": {
         "balance": "ÜBERSICHT",
