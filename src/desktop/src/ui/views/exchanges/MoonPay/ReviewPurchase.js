@@ -96,7 +96,7 @@ class ReviewPurchase extends React.PureComponent {
                 onSubmit={() =>
                     arePurchasesSuspended
                         ? history.push('/exchanges/moonpay/purchase-suspended-warning')
-                        : createTransaction
+                        : createTransaction()
                 }
             >
                 <section className={css.withSummary}>
