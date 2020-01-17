@@ -180,7 +180,10 @@ export const prepareTransferArray = (address, value, message, addressData, tag =
     const isZeroValueTransaction = value === 0;
 
     if (isZeroValueTransaction) {
-        return includes(map(addressData, (addressObject) => addressObject.address), iota.utils.noChecksum(address))
+        return includes(
+            map(addressData, (addressObject) => addressObject.address),
+            iota.utils.noChecksum(address),
+        )
             ? [transfer]
             : [transfer, assign({}, transfer, { address: firstAddress })];
     }
@@ -411,10 +414,13 @@ export const normaliseBundle = (bundle, addressData, tailTransactions, persisten
         incoming: isReceivedTransfer(bundle, addresses),
         transferValue: getTransferValue(inputs, outputs, addresses),
         message: computeTransactionMessage(bundle),
-        tailTransactions: map(filter(tailTransactions, (tx) => tx.bundle === bundleHash), (tx) => ({
-            hash: tx.hash,
-            attachmentTimestamp: tx.attachmentTimestamp,
-        })),
+        tailTransactions: map(
+            filter(tailTransactions, (tx) => tx.bundle === bundleHash),
+            (tx) => ({
+                hash: tx.hash,
+                attachmentTimestamp: tx.attachmentTimestamp,
+            }),
+        ),
     };
 };
 
@@ -513,7 +519,7 @@ export const syncTransactions = (settings) => (diff, existingTransactions) => {
  *  @returns {array}
  **/
 export const getTransactionsDiff = (existingHashes, newHashes) => {
-    return xor(existingHashes, newHashes);
+    return filter(xor(existingHashes, newHashes), (hash) => !includes(existingHashes, hash));
 };
 
 /**
@@ -791,9 +797,10 @@ export const isFundedBundle = (settings, withQuorum) => (bundle) => {
         return Promise.reject(new Error(Errors.EMPTY_BUNDLE_PROVIDED));
     }
 
-    return getBalancesAsync(settings, withQuorum)(
-        reduce(bundle, (acc, tx) => (tx.value < 0 ? [...acc, tx.address] : acc), []),
-    ).then((balances) => {
+    return getBalancesAsync(
+        settings,
+        withQuorum,
+    )(reduce(bundle, (acc, tx) => (tx.value < 0 ? [...acc, tx.address] : acc), [])).then((balances) => {
         return (
             reduce(bundle, (acc, tx) => (tx.value < 0 ? acc + Math.abs(tx.value) : acc), 0) <=
             accumulateBalance(map(balances.balances, Number))
@@ -832,7 +839,10 @@ export const filterNonFundedBundles = (settings, withQuorum) => (bundles) => {
         filterZeroValueBundles(bundles),
         (promise, bundle) => {
             return promise.then((result) => {
-                return isFundedBundle(settings, withQuorum)(bundle).then((isFunded) => {
+                return isFundedBundle(
+                    settings,
+                    withQuorum,
+                )(bundle).then((isFunded) => {
                     if (isFunded) {
                         return [...result, bundle];
                     }
@@ -907,7 +917,10 @@ export const promoteTransactionTilConfirmed = (settings, seedStore) => (
             const { hash, attachmentTimestamp } = tailTransaction;
 
             // Promote transaction
-            return promoteTransactionAsync(settings, seedStore)(hash)
+            return promoteTransactionAsync(
+                settings,
+                seedStore,
+            )(hash)
                 .then(() => {
                     return _promote(tailTransaction);
                 })
@@ -931,7 +944,10 @@ export const promoteTransactionTilConfirmed = (settings, seedStore) => (
         const tailTransaction = head(tailTransactionsClone);
         const hash = tailTransaction.hash;
 
-        return replayBundleAsync(settings, seedStore)(hash).then((reattachment) => {
+        return replayBundleAsync(
+            settings,
+            seedStore,
+        )(hash).then((reattachment) => {
             const tailTransaction = find(reattachment, { currentIndex: 0 });
             // Add newly reattached transaction
             tailTransactionsClone.push(tailTransaction);
