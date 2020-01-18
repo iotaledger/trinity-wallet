@@ -392,8 +392,8 @@
         "cardNotSupported": "Twoja karta nie jest obsługiwana. Spróbuj ponownie używając innej karty.",
         "cancelled": "Płatność została anulowana.",
         "storeCardDetails": "Przechowuj dane karty w MoonPay w celu przyśpieszenia transakcji.",
-        "purchasesAreSuspended": "Purchases are suspended",
-        "purchasesAreSuspendedExplanation": "Unfortunately, MoonPay purchases are currently suspended. Please try again later."
+        "purchasesAreSuspended": "Opcja zakupu nieaktywna",
+        "purchasesAreSuspendedExplanation": "Niestety zakupy poprzez platformę MoonPay są obecnie wstrzymane. Spróbuj ponownie później."
     },
     "home": {
         "balance": "SALDO",
