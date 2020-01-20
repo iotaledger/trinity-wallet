@@ -357,8 +357,8 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
 
     let accountState = selectedAccountStateFactory(accountName)(getState());
 
-    const getTailTransactionsForThisBundleHash = (transactions) =>
-        filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
+    const getTransactionsForThisBundleHash = (transactions) =>
+        filter(transactions, (transaction) => transaction.bundle === bundleHash);
 
     const executePrePromotionChecks = (settings, withQuorum) => () => {
         return syncAccount(
@@ -396,7 +396,13 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
                     throw new Error(Errors.BUNDLE_NO_LONGER_FUNDED);
                 }
 
-                return findPromotableTail()(getTailTransactionsForThisBundleHash(accountState.transactions), 0);
+                return findPromotableTail()(
+                    filter(
+                        getTransactionsForThisBundleHash(accountState.transactions),
+                        (transaction) => transaction.currentIndex === 0,
+                    ),
+                    0,
+                );
             });
     };
 
@@ -412,7 +418,7 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
                 forceTransactionPromotion(
                     accountName,
                     result,
-                    getTailTransactionsForThisBundleHash(accountState.transactions),
+                    getTransactionsForThisBundleHash(accountState.transactions),
                     false,
                     // Make sure proof-of-work is offloaded when it comes to auto promotion
                     extend(

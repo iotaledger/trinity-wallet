@@ -1,5 +1,6 @@
 import assign from 'lodash/assign';
 import extend from 'lodash/extend';
+import cloneDeep from 'lodash/cloneDeep';
 import has from 'lodash/has';
 import head from 'lodash/head';
 import find from 'lodash/find';
@@ -9,6 +10,7 @@ import orderBy from 'lodash/orderBy';
 import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
 import some from 'lodash/some';
+import isUndefined from 'lodash/isUndefined';
 import get from 'lodash/get';
 import size from 'lodash/size';
 import every from 'lodash/every';
@@ -17,7 +19,7 @@ import uniq from 'lodash/uniq';
 import { verifyCDA } from '@iota/cda';
 import { iota } from '../libs/iota';
 import {
-    replayBundleAsync,
+    replayLocallyStoredBundleAsync,
     promoteTransactionAsync,
     getTransactionsToApproveAsync,
     attachToTangleAsync,
@@ -219,8 +221,8 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
     }
 
     let accountState = selectedAccountStateFactory(accountName)(getState());
-    const getTailTransactionsForThisBundleHash = (transactions) =>
-        filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
+    const getTransactionsForThisBundleHash = (transactions) =>
+        filter(transactions, (transaction) => transaction.bundle === bundleHash);
 
     const executePrePromotionChecks = (settings, withQuorum) => () => {
         return syncAccount(
@@ -258,7 +260,13 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
                     throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
                 }
 
-                return findPromotableTail()(getTailTransactionsForThisBundleHash(accountState.transactions), 0);
+                return findPromotableTail()(
+                    filter(
+                        getTransactionsForThisBundleHash(accountState.transactions),
+                        (transaction) => transaction.currentIndex === 0,
+                    ),
+                    0,
+                );
             });
     };
 
@@ -275,7 +283,7 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
                 forceTransactionPromotion(
                     accountName,
                     result,
-                    getTailTransactionsForThisBundleHash(accountState.transactions),
+                    getTransactionsForThisBundleHash(accountState.transactions),
                     true,
                     // If proof of work configuration is set to remote,
                     // Extend seedStore object with offloadPow
@@ -346,7 +354,7 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
  *   @method forceTransactionPromotion
  *   @param {string} accountName
  *   @param {boolean | object} consistentTail
- *   @param {array} tailTransactionHashes
+ *   @param {array} transactions
  *   @param {boolean} shouldGenerateAlert
  *   @param {object} seedStore
  *   @param {number} maxReplays - Maximum number of reattachments if promotion fails because of transaction inconsistency
@@ -357,7 +365,7 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
 export const forceTransactionPromotion = (
     accountName,
     consistentTail,
-    tailTransactionHashes,
+    transactions,
     shouldGenerateAlert,
     seedStore,
     maxReplays = 1,
@@ -366,9 +374,10 @@ export const forceTransactionPromotion = (
     let replayCount = 0;
     let promotionAttempt = 0;
 
+    let transactionsCopy = cloneDeep(transactions);
+
     const promote = (settings) => (tailTransaction) => {
         const { hash, attachmentTimestamp } = tailTransaction;
-
         promotionAttempt += 1;
 
         return promoteTransactionAsync(
@@ -382,8 +391,20 @@ export const forceTransactionPromotion = (
                 // If promotion attempt on this reference (hash) hasn't exceeded maximum promotion attempts
                 promotionAttempt < maxPromotionAttempts
             ) {
+                const bundles = constructBundlesFromTransactions(transactionsCopy);
+
+                const trytes = map(
+                    head(
+                        filter(
+                            bundles,
+                            (bundle) => !isUndefined(find(bundle, (transaction) => transaction.hash === hash)),
+                        ),
+                    ),
+                    (transaction) => iota.utils.transactionTrytes(transaction),
+                );
+
                 // Retry promotion on same reference (hash)
-                return promote(settings)(tailTransaction);
+                return storeAndBroadcastAsync(settings)(trytes).then(() => promote(settings)(tailTransaction));
             } else if (
                 isTransactionInconsistent &&
                 promotionAttempt === maxPromotionAttempts &&
@@ -407,20 +428,23 @@ export const forceTransactionPromotion = (
     const reattachAndPromote = (settings) => () => {
         // Increment the reattachment's count
         replayCount += 1;
-        // Grab first tail transaction hash
-        const tailTransaction = head(tailTransactionHashes);
-        const hash = tailTransaction.hash;
 
-        return replayBundleAsync(
+        const bundle = head(constructBundlesFromTransactions(transactionsCopy));
+
+        return replayLocallyStoredBundleAsync(
             settings,
             seedStore,
-        )(hash).then((reattachment) => {
+        )(bundle).then((reattachment) => {
+            transactionsCopy = [...transactionsCopy, ...reattachment];
+
+            const tailTransaction = find(reattachment, { currentIndex: 0 });
+
             if (shouldGenerateAlert) {
                 dispatch(
                     generateAlert(
                         'success',
                         i18next.t('global:reattached'),
-                        i18next.t('global:reattachedExplanation', { hash }),
+                        i18next.t('global:reattachedExplanation', { hash: tailTransaction.hash }),
                         2500,
                     ),
                 );
@@ -434,7 +458,6 @@ export const forceTransactionPromotion = (
 
             // Update redux store
             dispatch(updateAccountAfterReattachment(newState));
-            const tailTransaction = find(reattachment, { currentIndex: 0 });
 
             return promote(settings)(tailTransaction);
         });
@@ -446,16 +469,16 @@ export const forceTransactionPromotion = (
         })(getState()),
     );
 
-    if (has(consistentTail, 'hash')) {
-        return manager
-            .withRetries()(promote)(consistentTail)
-            .then((result) => {
-                return result;
-            });
-    }
+    const _execute = (settings) => () => {
+        if (has(consistentTail, 'hash')) {
+            return promote(settings)(consistentTail);
+        }
+
+        return reattachAndPromote(settings)();
+    };
 
     return manager
-        .withRetries()(reattachAndPromote)()
+        .withRetries()(_execute)()
         .then((result) => {
             return result;
         });
