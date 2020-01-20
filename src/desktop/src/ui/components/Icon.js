@@ -11,7 +11,7 @@ import css from './icon.scss';
 export default class Icon extends React.PureComponent {
     static propTypes = {
         /** Icon type */
-        icon: PropTypes.oneOf(Object.keys(icons).concat(['seedVault', 'seedWrite', 'seedPrint'])).isRequired,
+        icon: PropTypes.oneOf(Object.keys(icons).concat(['seedVault', 'seedWrite', 'seedPrint', 'ledger'])).isRequired,
         /** Icon size in pixels */
         size: PropTypes.number,
         /** Icon fill color */
@@ -44,6 +44,14 @@ export default class Icon extends React.PureComponent {
                         d="M71.265 36c0 19.606-15.894 35.5-35.5 35.5C16.158 71.5.265 55.606.265 36S16.158.5 35.765.5c19.606 0 35.5 15.894 35.5 35.5zm-1 0c0-19.054-15.447-34.5-34.5-34.5-19.054 0-34.5 15.446-34.5 34.5 0 19.054 15.446 34.5 34.5 34.5 19.053 0 34.5-15.446 34.5-34.5z"
                         className="colors-animations-4"
                     />
+                </svg>
+            );
+        }
+
+        if (icon === 'ledger') {
+            return (
+                <svg width={size} height={size} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M26.941 0H12.176v19.752h19.816V5.139C32 2.364 29.725 0 26.94 0zm-19.3 0H5.164C2.38 0 0 2.26 0 5.147v2.469h7.641V0zM0 12.24h7.641v7.616H0V12.24zm24.36 19.752h2.476c2.784 0 5.164-2.26 5.164-5.147v-2.461h-7.64v7.608zm-12.184-7.608h7.64V32h-7.64v-7.616zM0 24.384v2.469C0 29.627 2.267 32 5.164 32H7.64v-7.616H0z" />
                 </svg>
             );
         }

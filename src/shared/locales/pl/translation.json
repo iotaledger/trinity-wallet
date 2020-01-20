@@ -180,8 +180,8 @@
         "total": "Łącznie",
         "submit": "Zatwierdź",
         "tryAgain": "Spróbuj ponownie",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "unknown": "Brak informacji",
+        "goToDashboard": "Przejdź do pulpitu"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -276,7 +276,7 @@
         "dateOfBirth": "DATA URODZENIA",
         "address": "ADRES",
         "city": "MIASTO",
-        "zipCode": "POST CODE",
+        "zipCode": "KOD POCZTOWY",
         "reviewYourPurchase": "Sprawdź swój zakup",
         "pleaseCarefullyCheckOrder": "Proszę dokładnie sprawdzić poniższe zamówienie.",
         "order": "Zamówienie",
@@ -302,8 +302,8 @@
         "invalidAddressExplanation": "Wprowadź prawidłowy adres",
         "invalidCity": "Nieprawidłowe miasto",
         "invalidCityExplanation": "Wprowadź prawidłową nazwę miasta",
-        "invalidZipCode": "Invalid post code",
-        "invalidZipCodeExplanation": "Please enter a valid post code",
+        "invalidZipCode": "Nieprawidłowy kod pocztowy",
+        "invalidZipCodeExplanation": "Podaj prawidłowy kod pocztowy",
         "invalidState": "Nieprawidłowy stan/województwo",
         "invalidStateExplanation": "Wprowadź poprawny stan/województwo",
         "somethingWentWrongProcessingCardInfo": "Coś poszło nie tak podczas przetwarzania danych o Twojej karcie. Proszę spróbować ponownie.",
@@ -312,7 +312,7 @@
         "amountTooHigh": "Zbyt duża kwota transakcji",
         "amountTooHighExplanation": "Maksymalna kwota transakcji wynosi {{amount}} dziennie.",
         "addPaymentMethod": "Dodaj metodę płatności",
-        "pleaseEnterYourBillingDetails": "Please enter your card details below.",
+        "pleaseEnterYourBillingDetails": "Wprowadź dane karty poniżej.",
         "cardNumber": "NUMER KARTY",
         "cvc": "Kod CVC",
         "expirationDate": "TERMIN WAŻNOŚCI",
@@ -347,7 +347,7 @@
         "paymentCardCreationError": "Błąd podczas tworzenia karty płatniczej",
         "paymentCardCreationErrorExplanation": "Wystąpił problem podczas tworzenia karty płatniczej. Spróbuj ponownie.",
         "selectCountry": "Wybierz kraj",
-        "selectState": "Select State",
+        "selectState": "Wybierz stan",
         "state": "STAN/WOJEWÓDZTWO",
         "selectPaymentMethod": "Wybierz metodę płatności",
         "pleaseChooseFromTheOptionsBelow": "Proszę wybrać z poniższych opcji.",
@@ -391,7 +391,7 @@
         "idRejection": "Twoja kontrola tożsamości została odrzucona.",
         "cardNotSupported": "Twoja karta nie jest obsługiwana. Spróbuj ponownie używając innej karty.",
         "cancelled": "Płatność została anulowana.",
-        "storeCardDetails": "Store card details in MoonPay for faster checkout."
+        "storeCardDetails": "Przechowuj dane karty w MoonPay w celu przyśpieszenia transakcji."
     },
     "home": {
         "balance": "SALDO",

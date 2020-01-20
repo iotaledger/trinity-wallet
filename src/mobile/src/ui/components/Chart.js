@@ -156,6 +156,8 @@ class Chart extends PureComponent {
         animateChartOnMount: PropTypes.bool.isRequired,
         /** @ignore */
         isAuthenticatedForMoonPay: PropTypes.bool.isRequired,
+        /** Determines if IOTA purchases are suspended */
+        arePurchasesSuspended: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -177,6 +179,7 @@ class Chart extends PureComponent {
 
     render() {
         const {
+            arePurchasesSuspended,
             isAuthenticatedForMoonPay,
             t,
             priceData,
@@ -202,7 +205,17 @@ class Chart extends PureComponent {
                         <Text style={[styles.buttonText, textColor]}>{priceData.currency}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => navigator.push(isAuthenticatedForMoonPay ? 'selectAccount' : 'landing')}
+                        onPress={() => {
+                            const getRoute = () => {
+                                if (arePurchasesSuspended) {
+                                    return 'purchaseSuspendedWarning';
+                                }
+
+                                return isAuthenticatedForMoonPay ? 'selectAccount' : 'landing';
+                            };
+
+                            navigator.push(getRoute());
+                        }}
                         style={[
                             styles.midButtonContainer,
                             {

@@ -173,12 +173,10 @@ class AddPaymentMethod extends React.PureComponent {
                                 t('moonpay:duplicateCardExplanation'),
                             );
                         } else {
-                            const tokenId = get(response, 'id');
-
                             if (shouldStoreCardDetails) {
-                                this.props.createPaymentCard(tokenId);
+                                this.props.createPaymentCard(response.id);
                             } else {
-                                this.props.updateCustomerInfo({ tokenId });
+                                this.props.updateCustomerInfo({ token: response });
                                 this.props.history.push('/exchanges/moonpay/review-purchase');
                             }
                         }
