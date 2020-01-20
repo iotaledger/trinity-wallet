@@ -349,13 +349,13 @@ class AddAmount extends React.PureComponent {
             this.props.generateAlert(
                 'error',
                 t('moonpay:notEnoughAmount'),
-                t('moonpay:notEnoughAmountExplanation', { amount: `€${MINIMUM_TRANSACTION_SIZE}` }),
+                t('moonpay:notEnoughAmountExplanation', { amount: this.getCurrencySymbol() + MINIMUM_TRANSACTION_SIZE }),
             );
         } else if (fiatAmount > MAXIMUM_TRANSACTION_SIZE) {
             this.props.generateAlert(
                 'error',
                 t('moonpay:amountTooHigh'),
-                t('moonpay:amountTooHighExplanation', { amount: `€${MAXIMUM_TRANSACTION_SIZE}` }),
+                t('moonpay:amountTooHighExplanation', { amount: this.getCurrencySymbol() + MAXIMUM_TRANSACTION_SIZE }),
             );
         } else {
             if (isFetchingCurrencyQuote || shouldGetLatestCurrencyQuote) {
