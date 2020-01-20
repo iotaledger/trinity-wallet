@@ -1,7 +1,7 @@
 {
     "global": {
         "address": "Διεύθυνση",
-        "and": "and",
+        "and": "και",
         "send": "ΑΠΟΣΤΟΛΗ",
         "cancel": "ΑΚΥΡΟ",
         "complete": "Complete",
@@ -174,11 +174,11 @@
         "missingPermissionExplanation": "Για την εκτέλεση αυτής της λειτουργίας απαιτείται πρόσβαση στο αρχείο συστήματος.",
         "swipeToConfirm": "Σύρετε για επιβεβαίωση",
         "congratulations": "Congratulations",
-        "expert": "Expert",
+        "expert": "Ειδικός",
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again.",
         "total": "Total",
-        "submit": "Submit",
+        "submit": "Υποβολή",
         "tryAgain": "Try again",
         "unknown": "Unknown",
         "goToDashboard": "Go to dashboard"
@@ -684,7 +684,7 @@
         "nodeFieldEmptyExplanation": "Εισαγάγετε έναν προσαρμοσμένο κόμβο.",
         "invalidURL": "Εισαγάγετε μια έγκυρη διεύθυνση URL.",
         "addAuthKey": "Add auth key",
-        "username": "Username",
+        "username": "Όνομα χρήστη",
         "couldNotRemove": "Could not remove custom node",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
