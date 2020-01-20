@@ -20,6 +20,7 @@ import {
     getPaymentCardBrand,
     getPaymentCardLastDigits,
     getActiveTransaction,
+    arePurchasesSuspended
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import { createTransaction } from 'shared-modules/actions/exchanges/MoonPay';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -114,6 +115,8 @@ export default function withPurchaseSummary(WrappedComponent) {
             activeTransaction: PropTypes.object,
             /** @ignore */
             generateAlert: PropTypes.func.isRequired,
+            /** @ignore */
+            arePurchasesSuspended: PropTypes.bool.isRequired,
         };
 
         constructor(props) {
@@ -365,6 +368,7 @@ export default function withPurchaseSummary(WrappedComponent) {
                 componentId,
                 activeTransaction,
                 generateAlert,
+                arePurchasesSuspended
             } = this.props;
 
             return (
@@ -378,6 +382,7 @@ export default function withPurchaseSummary(WrappedComponent) {
                     componentId={componentId}
                     generateAlert={generateAlert}
                     renderChildren={(config) => this.renderChildren(config)}
+                    arePurchasesSuspended={arePurchasesSuspended}
                 />
             );
         }
@@ -402,6 +407,7 @@ export default function withPurchaseSummary(WrappedComponent) {
         hasCompletedAdvancedIdentityVerification: hasCompletedAdvancedIdentityVerification(state),
         isPurchaseLimitIncreaseAllowed: isLimitIncreaseAllowed(state),
         activeTransaction: getActiveTransaction(state),
+        arePurchasesSuspended: arePurchasesSuspended(state),
     });
 
     const mapDispatchToProps = {

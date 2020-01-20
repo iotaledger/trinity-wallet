@@ -11,6 +11,7 @@ import {
     BASIC_IDENITY_VERIFICATION_LEVEL_NAME,
     ADVANCED_IDENITY_VERIFICATION_LEVEL_NAME,
     COUNTRY_CODES_REQUIRING_STATE,
+    IOTA_CURRENCY_CODE,
 } from '../../../exchanges/MoonPay';
 
 /**
@@ -470,4 +471,21 @@ export const getAlpha3CodeForIPAddress = createSelector(getExchangesFromState, (
     const ipAddress = exchanges.moonpay.ipAddress;
 
     return get(ipAddress, 'alpha3');
+});
+
+/**
+ * Determines if MoonPay has suspended IOTA purchases
+ *
+ * @method arePurchasesSuspended
+ *
+ * @param {object} state
+ *
+ * @returns {array}
+ */
+export const arePurchasesSuspended = createSelector(getExchangesFromState, (exchanges) => {
+    const currencies = exchanges.moonpay.currencies;
+
+    const currency = find(currencies, (currency) => currency.code === IOTA_CURRENCY_CODE);
+
+    return get(currency, 'isSuspended') === true;
 });

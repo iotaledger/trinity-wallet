@@ -127,6 +127,10 @@ class Sidebar extends React.PureComponent {
                                                 history.push('/wallet/');
                                             }}
                                         >
+                                            {accounts.accountInfo[account].meta &&
+                                                accounts.accountInfo[account].meta.type === 'ledger' && (
+                                                    <Icon size={12} icon="ledger" />
+                                                )}
                                             <strong>{shorten(account, 16)}</strong>
                                             <small>
                                                 {formatIotas(
@@ -198,4 +202,7 @@ const mapDispatchToProps = {
     clearMoonPayData,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Sidebar));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(Sidebar));
