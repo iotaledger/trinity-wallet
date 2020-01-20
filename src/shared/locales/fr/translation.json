@@ -181,7 +181,7 @@
         "submit": "Valider",
         "tryAgain": "Réessayez",
         "unknown": "Inconnu",
-        "goToDashboard": "Go to dashboard"
+        "goToDashboard": "Accéder au tableau de bord"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
