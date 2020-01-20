@@ -1,7 +1,7 @@
 {
     "global": {
         "address": "地址",
-        "and": "and",
+        "and": "和",
         "send": "发送",
         "cancel": "取消",
         "complete": "Complete",
@@ -178,7 +178,7 @@
         "notEnoughSyncedNodes": "同步的节点过少",
         "notEnoughSyncedNodesExplanation": "节点无法达到协同。 请关闭节点协同功能或重试。",
         "total": "Total",
-        "submit": "Submit",
+        "submit": "提交",
         "tryAgain": "Try again",
         "unknown": "Unknown",
         "goToDashboard": "Go to dashboard"
@@ -274,7 +274,7 @@
         "firstName": "FIRST NAME",
         "lastName": "LAST NAME",
         "dateOfBirth": "DATE OF BIRTH",
-        "address": "ADDRESS",
+        "address": "地址",
         "city": "CITY",
         "zipCode": "POST CODE",
         "reviewYourPurchase": "Review your purchase",
