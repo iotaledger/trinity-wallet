@@ -81,7 +81,10 @@
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>
         <note>Copyright (human-readable)</note>
-        <target state="translated">2018 IOTA基金会。版权所有。</target>
+        <target state="translated">2018 IOTA Foundation. All rights reserved.</target>
+        <alt-trans>
+          <target>2018 IOTA基金会。版权所有。</target>
+        </alt-trans>
         <alt-trans>
           <target>2018 IOTA 基金会。保留所有权利。</target>
         </alt-trans>
