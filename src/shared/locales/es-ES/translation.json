@@ -178,7 +178,7 @@
         "notEnoughSyncedNodes": "Demasiados nodos en sincronización",
         "notEnoughSyncedNodesExplanation": "No se pudo alcanzar un quórum. Desactiva quorum o vuelve a intentarlo.",
         "total": "Total",
-        "submit": "Submit",
+        "submit": "Enviar",
         "tryAgain": "Try again",
         "unknown": "Unknown",
         "goToDashboard": "Go to dashboard"
