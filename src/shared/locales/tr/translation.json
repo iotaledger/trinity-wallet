@@ -125,7 +125,7 @@
         "nodeMustUseHTTPSExplanation": "Sadece HTTPS kullanan özel ağlar geçerlidir.",
         "nodeDuplicated": "Yineleyen ağ",
         "nodeDuplicatedExplanation": "Özel ağ zaten listelenmiş.",
-        "customNodeAdded": "Custom node added",
+        "customNodeAdded": "Özel ağ eklendi",
         "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "Ağ otomatik olarak değiştirildi",
         "nodeAutoChangedExplanation": "Seçilen ağ çevrimdışı olduğu için yeni ağa {{- nodeAddress}} geçildi.",
