@@ -125,7 +125,11 @@ class ReviewPurchase extends Component {
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
                             onLeftButtonPress={() => this.goBack()}
-                            onRightButtonPress={() => arePurchasesSuspended ? this.redirectToScreen('purchaseSuspendedWarning') : this.props.createTransaction()}
+                            onRightButtonPress={() =>
+                                arePurchasesSuspended
+                                    ? this.redirectToScreen('purchaseSuspendedWarning')
+                                    : this.props.createTransaction()
+                            }
                             isRightButtonLoading={isCreatingTransaction}
                             disableLeftButton={isCreatingTransaction}
                             leftButtonText={t('global:goBack')}

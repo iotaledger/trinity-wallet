@@ -420,7 +420,4 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(
-    null,
-    mapDispatchToProps,
-)(withTranslation()(SeedComponent));
+export default connect(null, mapDispatchToProps)(withTranslation()(SeedComponent));

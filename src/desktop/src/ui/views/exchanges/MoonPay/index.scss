@@ -84,7 +84,7 @@ $footer: 70px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-bottom: 35px;
+    padding-bottom: 25px;
 
     small {
         text-transform: uppercase;
@@ -155,7 +155,7 @@ $footer: 70px;
                 &.long {
                     padding-top: 150px;
                     > div {
-                        p {
+                        > div:nth-child(0) {
                             text-align: center;
                             padding-top: 20px;
                         }

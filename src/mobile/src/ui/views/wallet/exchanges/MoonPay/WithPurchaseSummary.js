@@ -20,7 +20,7 @@ import {
     getPaymentCardBrand,
     getPaymentCardLastDigits,
     getActiveTransaction,
-    arePurchasesSuspended
+    arePurchasesSuspended,
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import { createTransaction } from 'shared-modules/actions/exchanges/MoonPay';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -368,7 +368,7 @@ export default function withPurchaseSummary(WrappedComponent) {
                 componentId,
                 activeTransaction,
                 generateAlert,
-                arePurchasesSuspended
+                arePurchasesSuspended,
             } = this.props;
 
             return (

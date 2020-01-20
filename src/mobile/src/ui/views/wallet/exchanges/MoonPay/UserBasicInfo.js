@@ -150,10 +150,16 @@ class UserBasicInfo extends React.Component {
             );
         }
 
+        const dobMoment = moment(this.state.dateOfBirth, 'DD/MM/YYYY');
+
+        if (!dobMoment.isValid()) {
+            return this.props.generateAlert('error', t('moonpay:invalidDOB'), t('moonpay:invalidDOBExplanation'));
+        }
+
         return this.props.updateCustomer({
             firstName: this.state.firstName,
             lastName: this.state.lastName,
-            dateOfBirth: moment(this.state.dateOfBirth, 'DD/MM/YYYY').toISOString(),
+            dateOfBirth: dobMoment.toISOString(),
         });
     }
 
@@ -282,6 +288,7 @@ class UserBasicInfo extends React.Component {
                                 blurOnSubmit
                                 onSubmitEditing={() => Keyboard.dismiss()}
                                 value={this.state.dateOfBirth}
+                                placeholder="DD/MM/YYYY"
                             />
                         </AnimatedComponent>
                         <View style={{ flex: 0.6 }} />

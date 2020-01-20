@@ -202,7 +202,4 @@ const mapDispatchToProps = {
     clearMoonPayData,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Sidebar));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Sidebar));
