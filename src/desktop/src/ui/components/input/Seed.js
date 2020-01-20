@@ -150,8 +150,15 @@ export class SeedComponent extends React.PureComponent {
      * @param {array} seed - Target seed byte array
      */
     onTextDrop = (seed) => {
+        const { generateAlert, t } = this.props;
         if (seed.length === MAX_SEED_LENGTH) {
             this.props.onChange(seed);
+        } else {
+            generateAlert(
+                'error',
+                seed.length < MAX_SEED_LENGTH ? t('enterSeed:seedTooShort') : t('enterSeed:seedTooLong'),
+                t('enterSeed:seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
+            );
         }
         Electron.garbageCollect();
     };

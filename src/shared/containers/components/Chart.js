@@ -9,6 +9,7 @@ import { setChartCurrency, setChartTimeframe } from '../../actions/settings';
 import { getCurrencySymbol } from '../../libs/currency';
 
 import { getThemeFromState } from '../../selectors/global';
+import { arePurchasesSuspended } from '../../selectors/exchanges/MoonPay';
 
 /**
  * Chart component container
@@ -26,6 +27,7 @@ export default function withChartData(ChartComponent) {
             /** @ignore */
             isAuthenticated: PropTypes.bool.isRequired,
             history: PropTypes.object.isRequired,
+            arePurchasesSuspended: PropTypes.bool.isRequired,
         };
 
         currencies = ['USD', 'EUR', 'BTC', 'ETH']; // eslint-disable-line react/sort-comp
@@ -91,7 +93,7 @@ export default function withChartData(ChartComponent) {
         };
 
         render() {
-            const { history, isAuthenticated, marketData, settings, theme, t } = this.props;
+            const { arePurchasesSuspended, history, isAuthenticated, marketData, settings, theme, t } = this.props;
 
             const currencyData = get(marketData.chartData, settings.chartCurrency.toLowerCase());
             const rawData = get(currencyData, settings.chartTimeframe) || [];
@@ -102,6 +104,7 @@ export default function withChartData(ChartComponent) {
                 return { x: index, y: parseFloat(price), time: time };
             });
             const chartProps = {
+                arePurchasesSuspended,
                 history,
                 isAuthenticatedForMoonPay: isAuthenticated,
                 setCurrency: this.changeCurrency,
@@ -139,6 +142,7 @@ export default function withChartData(ChartComponent) {
         settings: state.settings,
         theme: getThemeFromState(state),
         isAuthenticated: state.exchanges.moonpay.isAuthenticated,
+        arePurchasesSuspended: arePurchasesSuspended(state),
     });
 
     const mapDispatchToProps = {
@@ -146,5 +150,8 @@ export default function withChartData(ChartComponent) {
         setChartTimeframe,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(ChartData);
+    return connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ChartData);
 }

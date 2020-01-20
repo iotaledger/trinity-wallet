@@ -860,7 +860,7 @@ export class Send extends Component {
                         >
                             <TouchableOpacity
                                 onPress={() => {
-                                    if (!isSending && isUndefined(CDAContent, 'expectedAmount')) {
+                                    if (!isSending && isUndefined(CDAContent.expectedAmount)) {
                                         this.onMaxPress();
                                     }
                                 }}
@@ -1006,4 +1006,9 @@ const mapDispatchToProps = {
     clearSendFields,
 };
 
-export default withTranslation(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
+export default withTranslation(['send', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Send),
+);

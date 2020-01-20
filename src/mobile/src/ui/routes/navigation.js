@@ -49,6 +49,7 @@ import MoonPaySelectPaymentCard from 'ui/views/wallet/exchanges/MoonPay/SelectPa
 import MoonPayPaymentSuccess from 'ui/views/wallet/exchanges/MoonPay/PaymentSuccess';
 import MoonPayPaymentFailure from 'ui/views/wallet/exchanges/MoonPay/PaymentFailure';
 import MoonPayPaymentPending from 'ui/views/wallet/exchanges/MoonPay/PaymentPending';
+import MoonPayPurchaseSuspendedWarning from 'ui/views/wallet/exchanges/MoonPay/PurchaseSuspendedWarning';
 
 import { isIPhoneX, isAndroid } from 'libs/device';
 
@@ -106,6 +107,12 @@ export default function registerScreens(store, Provider) {
     Navigation.registerComponentWithRedux('paymentSuccess', () => applyHOCs(MoonPayPaymentSuccess), Provider, store);
     Navigation.registerComponentWithRedux('paymentFailure', () => applyHOCs(MoonPayPaymentFailure), Provider, store);
     Navigation.registerComponentWithRedux('paymentPending', () => applyHOCs(MoonPayPaymentPending), Provider, store);
+    Navigation.registerComponentWithRedux(
+        'purchaseSuspendedWarning',
+        () => applyHOCs(MoonPayPurchaseSuspendedWarning),
+        Provider,
+        store,
+    );
 
     Navigation.registerComponentWithRedux('migration', () => applyHOCs(MigrationComponent), Provider, store);
     Navigation.registerComponentWithRedux('home', () => applyHOCs(Home), Provider, store);

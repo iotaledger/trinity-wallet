@@ -318,7 +318,7 @@ class AddAmount extends Component {
                 isPurchaseLimitIncreaseAllowed
             ) {
                 return fiatAmount > BASIC_MONTHLY_LIMIT
-                    ? t('moonpay:kycRequired', { limit: `€${BASIC_MONTHLY_LIMIT}` })
+                    ? t('moonpay:kycRequired', { limit: this.getCurrencySymbol() + BASIC_MONTHLY_LIMIT })
                     : null;
             } else if (
                 hasCompletedBasicIdentityVerification &&
@@ -628,4 +628,9 @@ const mapDispatchToProps = {
     setDenomination,
 };
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(AddAmount));
+export default withTranslation()(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(AddAmount),
+);

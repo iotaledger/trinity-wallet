@@ -35,6 +35,8 @@ export class ChartComponent extends PureComponent {
         }).isRequired,
         /** @ignore */
         isAuthenticatedForMoonPay: PropTypes.bool.isRequired,
+        /** Determines if IOTA purchases are suspended */
+        arePurchasesSuspended: PropTypes.bool.isRequired,
         /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -74,6 +76,7 @@ export class ChartComponent extends PureComponent {
 
     render() {
         const {
+            arePurchasesSuspended,
             isAuthenticatedForMoonPay,
             history,
             priceData,
@@ -131,13 +134,19 @@ export class ChartComponent extends PureComponent {
                         <Button
                             variant="secondary"
                             className="outline"
-                            onClick={() =>
-                                history.push(
-                                    isAuthenticatedForMoonPay
+                            onClick={() => {
+                                const getRoute = () => {
+                                    if (arePurchasesSuspended) {
+                                        return '/exchanges/moonpay/purchase-suspended-warning';
+                                    }
+
+                                    return isAuthenticatedForMoonPay
                                         ? '/exchanges/moonpay/select-account'
-                                        : '/exchanges/moonpay',
-                                )
-                            }
+                                        : '/exchanges/moonpay';
+                                };
+
+                                history.push(getRoute());
+                            }}
                         >
                             {t('moonpay:buyIOTA')}
                         </Button>

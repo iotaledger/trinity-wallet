@@ -11,6 +11,7 @@ import {
     BASIC_IDENITY_VERIFICATION_LEVEL_NAME,
     ADVANCED_IDENITY_VERIFICATION_LEVEL_NAME,
     COUNTRY_CODES_REQUIRING_STATE,
+    IOTA_CURRENCY_CODE,
 } from '../../../exchanges/MoonPay';
 
 /**
@@ -33,11 +34,14 @@ export const getExchangesFromState = (state) => state.exchanges || {};
  *
  * @returns {array}
  */
-export const getFiatCurrencies = createSelector(getExchangesFromState, (exchanges) => {
-    const currencies = exchanges.moonpay.currencies;
+export const getFiatCurrencies = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const currencies = exchanges.moonpay.currencies;
 
-    return filter(currencies, (currency) => currency.type === 'fiat');
-});
+        return filter(currencies, (currency) => currency.type === 'fiat');
+    },
+);
 
 /**
  * Selects MoonPay fee
@@ -48,11 +52,14 @@ export const getFiatCurrencies = createSelector(getExchangesFromState, (exchange
  *
  * @returns {number}
  */
-export const getMoonPayFee = createSelector(getExchangesFromState, (exchanges) => {
-    const currencyQuote = exchanges.moonpay.currencyQuote;
+export const getMoonPayFee = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const currencyQuote = exchanges.moonpay.currencyQuote;
 
-    return get(currencyQuote, 'feeAmount') || 0;
-});
+        return get(currencyQuote, 'feeAmount') || 0;
+    },
+);
 
 /**
  * Selects total purchase amount
@@ -63,11 +70,14 @@ export const getMoonPayFee = createSelector(getExchangesFromState, (exchanges) =
  *
  * @returns {number}
  */
-export const getTotalPurchaseAmount = createSelector(getExchangesFromState, (exchanges) => {
-    const currencyQuote = exchanges.moonpay.currencyQuote;
+export const getTotalPurchaseAmount = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const currencyQuote = exchanges.moonpay.currencyQuote;
 
-    return get(currencyQuote, 'totalAmount') || 0;
-});
+        return get(currencyQuote, 'totalAmount') || 0;
+    },
+);
 
 /**
  * Selects customer email from state
@@ -78,11 +88,14 @@ export const getTotalPurchaseAmount = createSelector(getExchangesFromState, (exc
  *
  * @returns {string}
  */
-export const getCustomerEmail = createSelector(getExchangesFromState, (exchanges) => {
-    const customer = exchanges.moonpay.customer;
+export const getCustomerEmail = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
 
-    return get(customer, 'email') || '';
-});
+        return get(customer, 'email') || '';
+    },
+);
 
 /**
  * Selects customer id from state
@@ -93,11 +106,14 @@ export const getCustomerEmail = createSelector(getExchangesFromState, (exchanges
  *
  * @returns {string}
  */
-export const getCustomerId = createSelector(getExchangesFromState, (exchanges) => {
-    const customer = exchanges.moonpay.customer;
+export const getCustomerId = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
 
-    return get(customer, 'id');
-});
+        return get(customer, 'id');
+    },
+);
 
 /**
  * Selects customer country code from state
@@ -108,11 +124,14 @@ export const getCustomerId = createSelector(getExchangesFromState, (exchanges) =
  *
  * @returns {string}
  */
-export const getCustomerCountryCode = createSelector(getExchangesFromState, (exchanges) => {
-    const customer = exchanges.moonpay.customer;
+export const getCustomerCountryCode = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
 
-    return get(customer, 'address.country');
-});
+        return get(customer, 'address.country');
+    },
+);
 
 /**
  * Selects customer state code
@@ -123,11 +142,14 @@ export const getCustomerCountryCode = createSelector(getExchangesFromState, (exc
  *
  * @returns {string}
  */
-export const getCustomerStateCode = createSelector(getExchangesFromState, (exchanges) => {
-    const customer = exchanges.moonpay.customer;
+export const getCustomerStateCode = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
 
-    return get(customer, 'address.state');
-});
+        return get(customer, 'address.state');
+    },
+);
 
 /**
  * Determines whether state should be taken as input from user
@@ -138,11 +160,14 @@ export const getCustomerStateCode = createSelector(getExchangesFromState, (excha
  *
  * @returns {string}
  */
-export const shouldRequireStateInput = createSelector(getExchangesFromState, (exchanges) => {
-    const customer = exchanges.moonpay.customer;
+export const shouldRequireStateInput = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
 
-    return includes(COUNTRY_CODES_REQUIRING_STATE, get(customer, 'address.country'));
-});
+        return includes(COUNTRY_CODES_REQUIRING_STATE, get(customer, 'address.country'));
+    },
+);
 
 /**
  * Selects customer daily limits from state
@@ -153,14 +178,17 @@ export const shouldRequireStateInput = createSelector(getExchangesFromState, (ex
  *
  * @returns {object}
  */
-export const getCustomerDailyLimits = createSelector(getExchangesFromState, (exchanges) => {
-    const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
+export const getCustomerDailyLimits = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
 
-    return {
-        dailyLimit: get(purchaseLimits, 'limits[0].dailyLimit'),
-        dailyLimitRemaining: get(purchaseLimits, 'limits[0].dailyLimitRemaining'),
-    };
-});
+        return {
+            dailyLimit: get(purchaseLimits, 'limits[0].dailyLimit'),
+            dailyLimitRemaining: get(purchaseLimits, 'limits[0].dailyLimitRemaining'),
+        };
+    },
+);
 
 /**
  * Selects customer monthly limits from state
@@ -171,14 +199,17 @@ export const getCustomerDailyLimits = createSelector(getExchangesFromState, (exc
  *
  * @returns {object}
  */
-export const getCustomerMonthlyLimits = createSelector(getExchangesFromState, (exchanges) => {
-    const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
+export const getCustomerMonthlyLimits = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
 
-    return {
-        monthlyLimit: get(purchaseLimits, 'limits[0].monthlyLimit'),
-        monthlyLimitRemaining: get(purchaseLimits, 'limits[0].monthlyLimitRemaining'),
-    };
-});
+        return {
+            monthlyLimit: get(purchaseLimits, 'limits[0].monthlyLimit'),
+            monthlyLimitRemaining: get(purchaseLimits, 'limits[0].monthlyLimitRemaining'),
+        };
+    },
+);
 
 /**
  * Selects default currency code
@@ -189,11 +220,14 @@ export const getCustomerMonthlyLimits = createSelector(getExchangesFromState, (e
  *
  * @returns {object}
  */
-export const getDefaultCurrencyCode = createSelector(getExchangesFromState, (exchanges) => {
-    const customer = exchanges.moonpay.customer;
+export const getDefaultCurrencyCode = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
 
-    return get(customer, 'defaultCurrencyCode');
-});
+        return get(customer, 'defaultCurrencyCode');
+    },
+);
 
 /**
  * Selects selected account name
@@ -204,9 +238,12 @@ export const getDefaultCurrencyCode = createSelector(getExchangesFromState, (exc
  *
  * @returns {string}
  */
-export const getSelectedAccountName = createSelector(getExchangesFromState, (exchanges) => {
-    return exchanges.moonpay.accountName;
-});
+export const getSelectedAccountName = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        return exchanges.moonpay.accountName;
+    },
+);
 
 /**
  * Selects most recent transaction
@@ -217,13 +254,16 @@ export const getSelectedAccountName = createSelector(getExchangesFromState, (exc
  *
  * @returns {string}
  */
-export const getMostRecentTransaction = createSelector(getExchangesFromState, (exchanges) => {
-    const transactions = exchanges.moonpay.transactions;
+export const getMostRecentTransaction = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const transactions = exchanges.moonpay.transactions;
 
-    return size(transactions)
-        ? head(sortBy(transactions, (transaction) => new Date(transaction.createdAt)).reverse())
-        : {};
-});
+        return size(transactions)
+            ? head(sortBy(transactions, (transaction) => new Date(transaction.createdAt)).reverse())
+            : {};
+    },
+);
 
 /**
  * Gets all Moonpay transactions
@@ -234,9 +274,12 @@ export const getMostRecentTransaction = createSelector(getExchangesFromState, (e
  *
  * @returns {array}
  */
-export const getAllTransactions = createSelector(getExchangesFromState, (exchanges) => {
-    return exchanges.moonpay.transactions;
-});
+export const getAllTransactions = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        return exchanges.moonpay.transactions;
+    },
+);
 
 /**
  * Selects active transaction
@@ -247,11 +290,14 @@ export const getAllTransactions = createSelector(getExchangesFromState, (exchang
  *
  * @returns {object}
  */
-export const getActiveTransaction = createSelector(getExchangesFromState, (exchanges) => {
-    const transactions = exchanges.moonpay.transactions;
+export const getActiveTransaction = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const transactions = exchanges.moonpay.transactions;
 
-    return find(transactions, { active: true });
-});
+        return find(transactions, { active: true });
+    },
+);
 
 /**
  * Determines whether a customer has completed basic identity verification
@@ -262,15 +308,18 @@ export const getActiveTransaction = createSelector(getExchangesFromState, (excha
  *
  * @returns {boolean}
  */
-export const hasCompletedBasicIdentityVerification = createSelector(getExchangesFromState, (exchanges) => {
-    const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
+export const hasCompletedBasicIdentityVerification = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
 
-    const advancedVerification = find(get(purchaseLimits, 'verificationLevels'), {
-        name: BASIC_IDENITY_VERIFICATION_LEVEL_NAME,
-    });
+        const advancedVerification = find(get(purchaseLimits, 'verificationLevels'), {
+            name: BASIC_IDENITY_VERIFICATION_LEVEL_NAME,
+        });
 
-    return get(advancedVerification, 'completed');
-});
+        return get(advancedVerification, 'completed');
+    },
+);
 
 /**
  * Determines whether a customer requires advanced identity verification
@@ -281,15 +330,18 @@ export const hasCompletedBasicIdentityVerification = createSelector(getExchanges
  *
  * @returns {boolean}
  */
-export const hasCompletedAdvancedIdentityVerification = createSelector(getExchangesFromState, (exchanges) => {
-    const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
+export const hasCompletedAdvancedIdentityVerification = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
 
-    const advancedVerification = find(get(purchaseLimits, 'verificationLevels'), {
-        name: ADVANCED_IDENITY_VERIFICATION_LEVEL_NAME,
-    });
+        const advancedVerification = find(get(purchaseLimits, 'verificationLevels'), {
+            name: ADVANCED_IDENITY_VERIFICATION_LEVEL_NAME,
+        });
 
-    return get(advancedVerification, 'completed');
-});
+        return get(advancedVerification, 'completed');
+    },
+);
 
 /**
  * Determines if purchase limit increase is allowed by MoonPay
@@ -300,11 +352,14 @@ export const hasCompletedAdvancedIdentityVerification = createSelector(getExchan
  *
  * @returns {boolean}
  */
-export const isLimitIncreaseAllowed = createSelector(getExchangesFromState, (exchanges) => {
-    const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
+export const isLimitIncreaseAllowed = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const purchaseLimits = exchanges.moonpay.customer.purchaseLimits;
 
-    return get(purchaseLimits, 'limitIncreaseEligible');
-});
+        return get(purchaseLimits, 'limitIncreaseEligible');
+    },
+);
 
 /**
  * Gets customer address
@@ -315,11 +370,14 @@ export const isLimitIncreaseAllowed = createSelector(getExchangesFromState, (exc
  *
  * @returns {object}
  */
-export const getCustomerAddress = createSelector(getExchangesFromState, (exchanges) => {
-    const customer = exchanges.moonpay.customer;
+export const getCustomerAddress = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
 
-    return get(customer, 'address');
-});
+        return get(customer, 'address');
+    },
+);
 
 /**
  * Determines if customer has already added some payment cards on MoonPay servers
@@ -330,11 +388,14 @@ export const getCustomerAddress = createSelector(getExchangesFromState, (exchang
  *
  * @returns {boolean}
  */
-export const hasStoredAnyPaymentCards = createSelector(getExchangesFromState, (exchanges) => {
-    const customer = exchanges.moonpay.customer;
+export const hasStoredAnyPaymentCards = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
 
-    return size(get(customer, 'paymentCards')) > 0;
-});
+        return size(get(customer, 'paymentCards')) > 0;
+    },
+);
 
 /**
  * Gets selected payment card
@@ -345,12 +406,15 @@ export const hasStoredAnyPaymentCards = createSelector(getExchangesFromState, (e
  *
  * @returns {boolean}
  */
-export const getSelectedPaymentCard = createSelector(getExchangesFromState, (exchanges) => {
-    const customer = exchanges.moonpay.customer;
-    const paymentCards = get(customer, 'paymentCards');
+export const getSelectedPaymentCard = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
+        const paymentCards = get(customer, 'paymentCards');
 
-    return find(paymentCards, { selected: true });
-});
+        return find(paymentCards, { selected: true });
+    },
+);
 
 /**
  * Gets active token
@@ -361,11 +425,14 @@ export const getSelectedPaymentCard = createSelector(getExchangesFromState, (exc
  *
  * @returns {string}
  */
-export const getActiveToken = createSelector(getExchangesFromState, (exchanges) => {
-    const customer = exchanges.moonpay.customer;
+export const getActiveToken = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
 
-    return get(customer, 'token');
-});
+        return get(customer, 'token');
+    },
+);
 
 /**
  * Gets customer payment cards
@@ -376,14 +443,17 @@ export const getActiveToken = createSelector(getExchangesFromState, (exchanges) 
  *
  * @returns {boolean}
  */
-export const getCustomerPaymentCards = createSelector(getExchangesFromState, (exchanges) => {
-    const customer = exchanges.moonpay.customer;
+export const getCustomerPaymentCards = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const customer = exchanges.moonpay.customer;
 
-    // MoonPay card API does not check for duplicates.
-    // So it is possible that the payment cards we receive from their servers
-    // have duplicate cards. Therefore, just keep a single copy of each card and remove duplicates.
-    return uniqBy(get(customer, 'paymentCards'), (card) => [card.lastDigits, card.brand].join()) || [];
-});
+        // MoonPay card API does not check for duplicates.
+        // So it is possible that the payment cards we receive from their servers
+        // have duplicate cards. Therefore, just keep a single copy of each card and remove duplicates.
+        return uniqBy(get(customer, 'paymentCards'), (card) => [card.lastDigits, card.brand].join()) || [];
+    },
+);
 
 /**
  * Gets payment card expiry info
@@ -451,11 +521,14 @@ export const getPaymentCardLastDigits = createSelector(
  *
  * @returns {string}
  */
-export const isIPAddressAllowed = createSelector(getExchangesFromState, (exchanges) => {
-    const ipAddress = exchanges.moonpay.ipAddress;
+export const isIPAddressAllowed = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const ipAddress = exchanges.moonpay.ipAddress;
 
-    return get(ipAddress, 'isAllowed');
-});
+        return get(ipAddress, 'isAllowed');
+    },
+);
 
 /**
  * Gets alpha-3 country code for user IP address
@@ -466,8 +539,31 @@ export const isIPAddressAllowed = createSelector(getExchangesFromState, (exchang
  *
  * @returns {string}
  */
-export const getAlpha3CodeForIPAddress = createSelector(getExchangesFromState, (exchanges) => {
-    const ipAddress = exchanges.moonpay.ipAddress;
+export const getAlpha3CodeForIPAddress = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const ipAddress = exchanges.moonpay.ipAddress;
 
-    return get(ipAddress, 'alpha3');
-});
+        return get(ipAddress, 'alpha3');
+    },
+);
+
+/**
+ * Determines if MoonPay has suspended IOTA purchases
+ *
+ * @method arePurchasesSuspended
+ *
+ * @param {object} state
+ *
+ * @returns {array}
+ */
+export const arePurchasesSuspended = createSelector(
+    getExchangesFromState,
+    (exchanges) => {
+        const currencies = exchanges.moonpay.currencies;
+
+        const currency = find(currencies, (currency) => currency.code === IOTA_CURRENCY_CODE);
+
+        return get(currency, 'isSuspended') === true;
+    },
+);
