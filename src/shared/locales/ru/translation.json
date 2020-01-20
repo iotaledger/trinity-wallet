@@ -1,7 +1,7 @@
 {
     "global": {
         "address": "Адрес",
-        "and": "and",
+        "and": "и",
         "send": "ОТПРАВИТЬ",
         "cancel": "Отменить",
         "complete": "Complete",
@@ -178,7 +178,7 @@
         "notEnoughSyncedNodes": "Слишком мало нод в синхронизации",
         "notEnoughSyncedNodesExplanation": "Кворум не может быть достигнут. Выключите Кворум либо повторите позже.",
         "total": "Total",
-        "submit": "Submit",
+        "submit": "Отправить",
         "tryAgain": "Try again",
         "unknown": "Unknown",
         "goToDashboard": "Go to dashboard"
@@ -274,7 +274,7 @@
         "firstName": "FIRST NAME",
         "lastName": "LAST NAME",
         "dateOfBirth": "DATE OF BIRTH",
-        "address": "ADDRESS",
+        "address": "АДРЕС",
         "city": "CITY",
         "zipCode": "POST CODE",
         "reviewYourPurchase": "Review your purchase",
