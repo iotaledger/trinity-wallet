@@ -1,7 +1,7 @@
 {
     "global": {
         "address": "Endereço",
-        "and": "and",
+        "and": "e",
         "send": "ENVIAR",
         "cancel": "CANCELAR",
         "complete": "Complete",
@@ -274,7 +274,7 @@
         "firstName": "FIRST NAME",
         "lastName": "LAST NAME",
         "dateOfBirth": "DATE OF BIRTH",
-        "address": "ADDRESS",
+        "address": "ENDEREÇO",
         "city": "CITY",
         "zipCode": "POST CODE",
         "reviewYourPurchase": "Review your purchase",
