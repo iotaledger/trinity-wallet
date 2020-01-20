@@ -1,7 +1,7 @@
 {
     "global": {
         "address": "Adres",
-        "and": "and",
+        "and": "en",
         "send": "VERZEND",
         "cancel": "Annuleren",
         "complete": "Complete",
@@ -178,7 +178,7 @@
         "notEnoughSyncedNodes": "Te weinig nodes in synchronisatie",
         "notEnoughSyncedNodesExplanation": "Het quorum kon niet worden bereikt. Zet het quorum uit of probeer het opnieuw.",
         "total": "Total",
-        "submit": "Submit",
+        "submit": "Verstuur",
         "tryAgain": "Try again",
         "unknown": "Unknown",
         "goToDashboard": "Go to dashboard"
@@ -274,7 +274,7 @@
         "firstName": "FIRST NAME",
         "lastName": "LAST NAME",
         "dateOfBirth": "DATE OF BIRTH",
-        "address": "ADDRESS",
+        "address": "ADRES",
         "city": "CITY",
         "zipCode": "POST CODE",
         "reviewYourPurchase": "Review your purchase",
