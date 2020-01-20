@@ -1,7 +1,7 @@
 {
     "global": {
         "address": "地址",
-        "and": "and",
+        "and": "和",
         "send": "轉帳",
         "cancel": "取消",
         "complete": "Complete",
@@ -125,7 +125,7 @@
         "nodeMustUseHTTPSExplanation": "僅允許使用 HTTPS 的自訂節點。",
         "nodeDuplicated": "重複節點",
         "nodeDuplicatedExplanation": "自訂節點已在列表中。",
-        "customNodeAdded": "Custom node added",
+        "customNodeAdded": "自訂節點已加入",
         "customNodeAddedExplanation": "You have successfully added {{nodeAddress}} as a custom node.",
         "nodeAutoChanged": "自動切換節點",
         "nodeAutoChangedExplanation": "當選擇的節點斷線時切換到新的節點 {{- nodeAddress}}。",
@@ -178,7 +178,7 @@
         "notEnoughSyncedNodes": "Too few nodes in sync",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again.",
         "total": "Total",
-        "submit": "Submit",
+        "submit": "提交",
         "tryAgain": "Try again",
         "unknown": "Unknown",
         "goToDashboard": "Go to dashboard"
