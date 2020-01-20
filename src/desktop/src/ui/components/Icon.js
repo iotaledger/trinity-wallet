@@ -11,7 +11,7 @@ import css from './icon.scss';
 export default class Icon extends React.PureComponent {
     static propTypes = {
         /** Icon type */
-        icon: PropTypes.oneOf(Object.keys(icons).concat(['seedVault', 'seedWrite', 'seedPrint'])).isRequired,
+        icon: PropTypes.oneOf(Object.keys(icons).concat(['seedVault', 'seedWrite', 'seedPrint', 'ledger'])).isRequired,
         /** Icon size in pixels */
         size: PropTypes.number,
         /** Icon fill color */
