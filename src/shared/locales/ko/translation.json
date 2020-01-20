@@ -1,7 +1,7 @@
 {
     "global": {
         "address": "주소",
-        "and": "and",
+        "and": "그리고",
         "send": "보내기",
         "cancel": "취소",
         "complete": "Complete",
@@ -178,7 +178,7 @@
         "notEnoughSyncedNodes": "싱크된 노드의 수가 너무 적습니다.",
         "notEnoughSyncedNodesExplanation": "큐럼에 연결할 수 없습니다. 큐럼을 끄거나 다시 시도해주세요.",
         "total": "Total",
-        "submit": "Submit",
+        "submit": "제출하기",
         "tryAgain": "Try again",
         "unknown": "Unknown",
         "goToDashboard": "Go to dashboard"
