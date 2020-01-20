@@ -62,7 +62,7 @@
       <trans-unit id="NSCameraUsageDescription" approved="yes">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <note>Privacy - Camera Usage Description</note>
-        <target state="translated">Trinity wil toegang voor de camera om QR-codes te scannen.</target>
+        <target state="final">Trinity wil toegang voor de camera om QR-codes te scannen.</target>
         <alt-trans>
           <target>Trinity vereist toegang tot de camera voor het scannen van QR-codes.</target>
         </alt-trans>
