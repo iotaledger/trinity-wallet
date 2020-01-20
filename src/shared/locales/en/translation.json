@@ -619,7 +619,7 @@
         "lockedFundsToolExplanation": "This tool will attempt to salvage those funds in a way that reduces the risk involved in spending more than once.",
         "lockedFundsOwnRiskExplanation": "Recovery cannot be guaranteed. Use this tool at your own risk.",
         "transferYourFunds": "Transfer your funds",
-        "transferYourFundsExplanation": "Trinity will attempt to recover your funds by moving them to a new address, but it may take some time.",
+        "transferYourFundsExplanation": "Trinity will attempt to recover your funds by moving them to a new address, but it may take upto an hour.",
         "doNotCloseTrinity": "Do not close Trinity or turn off your computer during this process.",
         "doNotCloseTrinityMobile": "Do not minimise/close Trinity or turn off your device during this process.",
         "fundsUnlockedExplanation": "Your funds have been successfully unlocked.",
