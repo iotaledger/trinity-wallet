@@ -1,7 +1,7 @@
 {
     "global": {
         "address": "Indirizzo",
-        "and": "and",
+        "and": "e",
         "send": "INVIA",
         "cancel": "Annulla",
         "complete": "Complete",
@@ -178,7 +178,7 @@
         "notEnoughSyncedNodes": "Numero insufficiente di nodi sincronizzati",
         "notEnoughSyncedNodesExplanation": "Non è stato possibile raggiungere il quorum. Disattiva il quorum o riprova.",
         "total": "Total",
-        "submit": "Submit",
+        "submit": "Inviare",
         "tryAgain": "Try again",
         "unknown": "Unknown",
         "goToDashboard": "Go to dashboard"
@@ -274,7 +274,7 @@
         "firstName": "FIRST NAME",
         "lastName": "LAST NAME",
         "dateOfBirth": "DATE OF BIRTH",
-        "address": "ADDRESS",
+        "address": "INDIRIZZO",
         "city": "CITY",
         "zipCode": "POST CODE",
         "reviewYourPurchase": "Review your purchase",
