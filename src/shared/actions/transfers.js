@@ -378,7 +378,6 @@ export const forceTransactionPromotion = (
 
     const promote = (settings) => (tailTransaction) => {
         const { hash, attachmentTimestamp } = tailTransaction;
-
         promotionAttempt += 1;
 
         return promoteTransactionAsync(
@@ -470,16 +469,16 @@ export const forceTransactionPromotion = (
         })(getState()),
     );
 
-    if (has(consistentTail, 'hash')) {
-        return manager
-            .withRetries()(promote)(consistentTail)
-            .then((result) => {
-                return result;
-            });
-    }
+    const _execute = (settings) => () => {
+        if (has(consistentTail, 'hash')) {
+            return promote(settings)(consistentTail);
+        }
+
+        return reattachAndPromote(settings)();
+    };
 
     return manager
-        .withRetries()(reattachAndPromote)()
+        .withRetries()(_execute)()
         .then((result) => {
             return result;
         });
