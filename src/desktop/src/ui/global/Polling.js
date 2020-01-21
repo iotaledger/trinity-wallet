@@ -95,6 +95,8 @@ class Polling extends React.PureComponent {
         isFetchingAccountInfo: PropTypes.bool.isRequired,
         /** @ignore */
         isAuthenticatedForMoonPay: PropTypes.bool.isRequired,
+        /** @ignore */
+        isRecoveringFunds: PropTypes.bool.isRequired,
     };
 
     state = {
@@ -223,7 +225,8 @@ class Polling extends React.PureComponent {
             this.props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
             this.props.addingAdditionalAccount ||
             this.props.isTransitioning ||
-            this.props.isRetryingFailedTransaction;
+            this.props.isRetryingFailedTransaction ||
+            this.props.isRecoveringFunds;
 
         const isAlreadyPollingSomething =
             this.props.isPollingPrice ||
@@ -265,6 +268,7 @@ const mapStateToProps = (state) => ({
     failedBundleHashes: getFailedBundleHashes(state),
     password: state.wallet.password,
     isAuthenticatedForMoonPay: state.exchanges.moonpay.isAuthenticated,
+    isRecoveringFunds: state.ui.isRecoveringFunds,
 });
 
 const mapDispatchToProps = {

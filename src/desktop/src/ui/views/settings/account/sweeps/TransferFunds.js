@@ -1,3 +1,4 @@
+/* global Electron */
 import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 import get from 'lodash/get';
@@ -93,6 +94,20 @@ class TransferFunds extends React.PureComponent {
     componentWillReceiveProps(newProps) {
         if (this.props.isRecoveringFunds && !newProps.isRecoveringFunds && !this.hasFailedAnySweep()) {
             this.props.history.push('/sweeps/done');
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        const { isRecoveringFunds } = this.props;
+
+        if (prevProps.isRecoveringFunds === isRecoveringFunds) {
+            return;
+        }
+
+        if (isRecoveringFunds) {
+            Electron.updateMenu('enabled', false);
+        } else {
+            Electron.updateMenu('enabled', true);
         }
     }
 
