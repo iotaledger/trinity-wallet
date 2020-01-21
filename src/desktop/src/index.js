@@ -19,6 +19,7 @@ import { changeIotaNode, quorum } from 'libs/iota';
 import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
 import { initialise as initialiseStorage } from 'storage';
 import { updateSchema } from 'schemas';
+import { __DEV__ } from 'config';
 
 import Index from 'ui/Index';
 import Tray from 'ui/Tray';
@@ -148,4 +149,9 @@ const init = () => {
     }
 };
 
-init();
+// Redirect to index view
+if (__DEV__ && window.location.pathname !== '/') {
+    window.location = '/';
+} else {
+    init();
+}
