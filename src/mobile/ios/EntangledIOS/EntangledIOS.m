@@ -159,6 +159,8 @@ RCT_EXPORT_METHOD(mineBundle:(NSArray*)bundleNormalizedMax security:(NSNumber* _
   
   NSNumber* index = [EntangledIOSBindings bundle_miner_mine:bundleNormalizedMax_ptr security:security essence:essence_ptr essenceLength:essenceLength count:count nprocs:nprocs];
   
+  free(essence_ptr);
+  
   if ([index isEqualToNumber:@(-1)]) {
     NSString* domain = @"org.iota.entangled.ios";
     NSDictionary* userInfo = @{
@@ -167,7 +169,6 @@ RCT_EXPORT_METHOD(mineBundle:(NSArray*)bundleNormalizedMax security:(NSNumber* _
     NSError* error = [NSError errorWithDomain:domain code:-400 userInfo:userInfo];
     
     free(bundleNormalizedMax_ptr);
-    free(essence_ptr);
     
     reject(@"Error", @"Bundle mining failed.", error);
   } else {
