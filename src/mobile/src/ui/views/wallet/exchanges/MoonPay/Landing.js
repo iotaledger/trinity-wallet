@@ -13,7 +13,11 @@ import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { isIPAddressAllowed, getAlpha3CodeForIPAddress } from 'shared-modules/selectors/exchanges/MoonPay';
+import {
+    isIPAddressAllowed,
+    getAlpha3CodeForIPAddress,
+    getCountries,
+} from 'shared-modules/selectors/exchanges/MoonPay';
 import { updateCustomerInfo, setLoggingIn } from 'shared-modules/actions/exchanges/MoonPay';
 import { getAnimation } from 'shared-modules/animations';
 import navigator from 'libs/navigation';
@@ -248,11 +252,11 @@ class Landing extends Component {
                             dropdownWidth={{ width: Styling.contentWidth }}
                             saveSelection={(name) => {
                                 const country = find(countries, { name });
-                                const states = this.getStates(countries, country.alpha3);
+                                const states = this.getStates(countries, get(country, 'alpha3'));
                                 this.setState({
                                     country: {
-                                        name: country.name,
-                                        alpha3: country.alpha3,
+                                        name: get(country, 'name'),
+                                        alpha3: get(country, 'alpha3'),
                                     },
                                     state: {
                                         name: get(head(states), 'name') || '',
@@ -320,7 +324,7 @@ class Landing extends Component {
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     themeName: state.settings.themeName,
-    countries: state.exchanges.moonpay.countries,
+    countries: getCountries(state),
     country: state.exchanges.moonpay.customer.address.country,
     isIPAddressAllowed: isIPAddressAllowed(state),
     alpha3CodeForIPAddress: getAlpha3CodeForIPAddress(state),

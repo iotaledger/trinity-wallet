@@ -127,6 +127,10 @@ class Sidebar extends React.PureComponent {
                                                 history.push('/wallet/');
                                             }}
                                         >
+                                            {accounts.accountInfo[account].meta &&
+                                                accounts.accountInfo[account].meta.type === 'ledger' && (
+                                                    <Icon size={12} icon="ledger" />
+                                                )}
                                             <strong>{shorten(account, 16)}</strong>
                                             <small>
                                                 {formatIotas(

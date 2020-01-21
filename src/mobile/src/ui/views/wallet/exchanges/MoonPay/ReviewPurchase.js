@@ -45,6 +45,8 @@ class ReviewPurchase extends Component {
         createTransaction: PropTypes.func.isRequired,
         /** @ignore */
         activeTransaction: PropTypes.object,
+        /** @ignore */
+        arePurchasesSuspended: PropTypes.bool.isRequired,
     };
 
     componentWillReceiveProps(nextProps) {
@@ -105,7 +107,7 @@ class ReviewPurchase extends Component {
     }
 
     render() {
-        const { isCreatingTransaction, t, theme } = this.props;
+        const { isCreatingTransaction, arePurchasesSuspended, t, theme } = this.props;
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
@@ -123,7 +125,11 @@ class ReviewPurchase extends Component {
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
                         <DualFooterButtons
                             onLeftButtonPress={() => this.goBack()}
-                            onRightButtonPress={() => this.props.createTransaction()}
+                            onRightButtonPress={() =>
+                                arePurchasesSuspended
+                                    ? this.redirectToScreen('purchaseSuspendedWarning')
+                                    : this.props.createTransaction()
+                            }
                             isRightButtonLoading={isCreatingTransaction}
                             disableLeftButton={isCreatingTransaction}
                             leftButtonText={t('global:goBack')}

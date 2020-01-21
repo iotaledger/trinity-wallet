@@ -32,6 +32,7 @@ import {
 } from 'shared-modules/selectors/exchanges/MoonPay';
 import { fetchQuote, setAmount, setDenomination } from 'shared-modules/actions/exchanges/MoonPay';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
+import { parseAmount } from 'shared-modules/libs/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -318,7 +319,7 @@ class AddAmount extends Component {
                 isPurchaseLimitIncreaseAllowed
             ) {
                 return fiatAmount > BASIC_MONTHLY_LIMIT
-                    ? t('moonpay:kycRequired', { limit: `€${BASIC_MONTHLY_LIMIT}` })
+                    ? t('moonpay:kycRequired', { limit: this.getCurrencySymbol() + BASIC_MONTHLY_LIMIT })
                     : null;
             } else if (
                 hasCompletedBasicIdentityVerification &&
@@ -512,9 +513,11 @@ class AddAmount extends Component {
                                     this.amountField = c;
                                 }}
                                 onValidTextChange={(newAmount) => {
-                                    this.props.setAmount(newAmount);
+                                    const amount = parseAmount(newAmount);
+                                    const currencyAmount = isNaN(amount) ? 0 : amount;
 
-                                    this.fetchCurrencyQuote(newAmount, denomination, exchangeRates);
+                                    this.props.setAmount(currencyAmount);
+                                    this.fetchCurrencyQuote(currencyAmount, denomination, exchangeRates);
                                 }}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically

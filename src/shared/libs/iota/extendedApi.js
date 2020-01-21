@@ -254,6 +254,47 @@ const promoteTransactionAsync = (settings, seedStore) => (
 /**
  * Promisified version of iota.api.replayBundle
  *
+ * @method replayLocallyStoredBundleAsync
+ * @param {object} [settings]
+ * @param {object} seedStore
+ *
+ * @returns {function(string, function, number, number): Promise<array>}
+ */
+const replayLocallyStoredBundleAsync = (settings, seedStore) => (
+    bundle,
+    depth = DEFAULT_DEPTH,
+    minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
+) => {
+    const cached = {
+        trytes: [],
+        transactionObjects: [],
+    };
+
+    const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
+    cached.trytes = map(bundle, convertToTrytes);
+    cached.transactionObjects = bundle;
+
+    return getTransactionsToApproveAsync(settings)({}, depth)
+        .then(({ trunkTransaction, branchTransaction }) =>
+            attachToTangleAsync(settings, seedStore)(
+                trunkTransaction,
+                branchTransaction,
+                cached.trytes,
+                minWeightMagnitude,
+            ),
+        )
+        .then(({ trytes, transactionObjects }) => {
+            cached.trytes = trytes;
+            cached.transactionObjects = transactionObjects;
+
+            return storeAndBroadcastAsync(settings)(cached.trytes);
+        })
+        .then(() => cached.transactionObjects);
+};
+
+/**
+ * Promisified version of iota.api.replayBundle
+ *
  * @method replayBundleAsync
  * @param {object} [settings]
  * @param {object} seedStore
@@ -668,6 +709,7 @@ export {
     getLatestInclusionAsync,
     promoteTransactionAsync,
     replayBundleAsync,
+    replayLocallyStoredBundleAsync,
     getBundleAsync,
     wereAddressesSpentFromAsync,
     sendTransferAsync,

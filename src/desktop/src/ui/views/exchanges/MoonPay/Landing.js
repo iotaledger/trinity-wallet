@@ -13,7 +13,7 @@ import { withTranslation } from 'react-i18next';
 
 import { getAnimation } from 'animations';
 
-import { isIPAddressAllowed, getAlpha3CodeForIPAddress } from 'selectors/exchanges/MoonPay';
+import { isIPAddressAllowed, getAlpha3CodeForIPAddress, getCountries } from 'selectors/exchanges/MoonPay';
 import { updateCustomerInfo, setLoggingIn } from 'actions/exchanges/MoonPay';
 
 import Select from 'ui/components/input/Select';
@@ -163,7 +163,7 @@ class Landing extends React.PureComponent {
                         <fieldset>
                             <Select
                                 value={this.state.state.name}
-                                label={t('moonpay:selectCountry')}
+                                label={t('moonpay:selectState')}
                                 onChange={(name) => {
                                     const state = find(states, { name });
 
@@ -220,7 +220,7 @@ class Landing extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     themeName: state.settings.themeName,
-    countries: state.exchanges.moonpay.countries,
+    countries: getCountries(state),
     country: state.exchanges.moonpay.customer.address.country,
     isIPAddressAllowed: isIPAddressAllowed(state),
     alpha3CodeForIPAddress: getAlpha3CodeForIPAddress(state),

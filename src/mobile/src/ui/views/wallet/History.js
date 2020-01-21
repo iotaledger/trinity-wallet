@@ -418,7 +418,7 @@ class History extends Component {
             };
         });
 
-        return orderBy(formattedTransfers, 'time', ['asc']);
+        return orderBy(formattedTransfers, 'time', ['desc']);
     }
 
     /**

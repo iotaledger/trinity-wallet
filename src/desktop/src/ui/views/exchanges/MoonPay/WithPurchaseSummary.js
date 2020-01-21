@@ -17,6 +17,8 @@ import {
     getPaymentCardBrand,
     getPaymentCardLastDigits,
     getActiveTransaction,
+    arePurchasesSuspended,
+    hasStoredAnyPaymentCards,
 } from 'selectors/exchanges/MoonPay';
 import { createTransaction } from 'actions/exchanges/MoonPay';
 import { generateAlert } from 'actions/alerts';
@@ -78,6 +80,10 @@ export default function withPurchaseSummary(WrappedComponent) {
             generateAlert: PropTypes.func.isRequired,
             /** @ignore */
             t: PropTypes.func.isRequired,
+            /** @ignore */
+            arePurchasesSuspended: PropTypes.bool.isRequired,
+            /** @ignore */
+            hasAnyPaymentCards: PropTypes.bool.isRequired,
         };
 
         constructor(props) {
@@ -173,6 +179,7 @@ export default function withPurchaseSummary(WrappedComponent) {
                 hasErrorCreatingTransaction,
                 isFetchingTransactionDetails,
                 hasErrorFetchingTransactionDetails,
+                hasAnyPaymentCards,
                 amount,
                 address,
                 brand,
@@ -186,6 +193,7 @@ export default function withPurchaseSummary(WrappedComponent) {
                 expiryInfo,
                 activeTransaction,
                 generateAlert,
+                arePurchasesSuspended,
             } = this.props;
 
             const receiveAmount = this.getReceiveAmount();
@@ -202,6 +210,8 @@ export default function withPurchaseSummary(WrappedComponent) {
                     isFetchingTransactionDetails={isFetchingTransactionDetails}
                     hasErrorFetchingTransactionDetails={hasErrorFetchingTransactionDetails}
                     generateAlert={generateAlert}
+                    arePurchasesSuspended={arePurchasesSuspended}
+                    hasAnyPaymentCards={hasAnyPaymentCards}
                 >
                     <div className={css.summary}>
                         <div>
@@ -277,6 +287,8 @@ export default function withPurchaseSummary(WrappedComponent) {
         hasCompletedAdvancedIdentityVerification: hasCompletedAdvancedIdentityVerification(state),
         isPurchaseLimitIncreaseAllowed: isLimitIncreaseAllowed(state),
         activeTransaction: getActiveTransaction(state),
+        arePurchasesSuspended: arePurchasesSuspended(state),
+        hasAnyPaymentCards: hasStoredAnyPaymentCards(state),
     });
 
     const mapDispatchToProps = {

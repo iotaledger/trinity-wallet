@@ -361,3 +361,16 @@ export const isValidEmail = (email) => {
 
     return regex.test(email);
 };
+
+/**
+ * Use periods instead of commas for decimal separation
+ * Example: 22,53 -> 22.53
+ * @method parseAmount
+ *
+ * @param  {string} amount
+ *
+ * @returns {string}
+ */
+export const parseAmount = (amount) => {
+    return amount.replace(/,/g, '.');
+};
