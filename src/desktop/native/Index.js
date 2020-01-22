@@ -419,7 +419,9 @@ app.on('before-quit', () => {
  */
 app.on('activate', () => {
     if (windows.main === null) {
-        createWindow();
+        if (app.isReady()) {
+            createWindow();
+        }
     } else if (!windows.main.isVisible()) {
         windows.main.show();
     }
