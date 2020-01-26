@@ -5629,9 +5629,9 @@
       }
     },
     "dart-sass": {
-      "version": "1.22.4",
-      "resolved": "https://registry.npmjs.org/dart-sass/-/dart-sass-1.22.4.tgz",
-      "integrity": "sha512-ZI2Cjd8ujDzW4CTOMVL4EUGV+MWMWPoXoWXRD0kVJ+V8oqwlrJ1q3/EFjHCX5cf3h9VAVhlTmpDZExZ7KrNmVQ==",
+      "version": "1.25.0",
+      "resolved": "https://registry.npmjs.org/dart-sass/-/dart-sass-1.25.0.tgz",
+      "integrity": "sha512-syNOAstJXAmvD3RifcDk3fiPMyYE2fY8so6w9gf2/wNlKpG0zyH+oiXubEYVOy1WAWkzOc72pbAxwx+3OU4JJA==",
       "dev": true,
       "requires": {
         "chokidar": ">=2.0.0 <4.0.0"
