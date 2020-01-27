@@ -10629,14 +10629,14 @@
         },
         "ms": {
           "version": "2.0.0",
-          "resolved": false,
+          "resolved": "",
           "integrity": "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=",
           "dev": true,
           "optional": true
         },
         "needle": {
           "version": "2.2.4",
-          "resolved": false,
+          "resolved": "",
           "integrity": "sha512-HyoqEb4wr/rsoaIDfTH2aVL9nWtQqba2/HvMv+++m8u0dz808MaagKILxtfeSN7QU7nvbQ79zk3vYOJp9zsNEA==",
           "dev": true,
           "optional": true,
@@ -10648,7 +10648,7 @@
         },
         "node-pre-gyp": {
           "version": "0.10.3",
-          "resolved": false,
+          "resolved": "",
           "integrity": "sha512-d1xFs+C/IPS8Id0qPTZ4bUT8wWryfR/OzzAFxweG+uLN85oPzyo2Iw6bVlLQ/JOdgNonXLCoRyqDzDWq4iw72A==",
           "dev": true,
           "optional": true,
@@ -10678,14 +10678,14 @@
         },
         "npm-bundled": {
           "version": "1.0.5",
-          "resolved": false,
+          "resolved": "",
           "integrity": "sha512-m/e6jgWu8/v5niCUKQi9qQl8QdeEduFA96xHDDzFGqly0OOjI7c+60KM/2sppfnUU9JJagf+zs+yGhqSOFj71g==",
           "dev": true,
           "optional": true
         },
         "npm-packlist": {
           "version": "1.2.0",
-          "resolved": false,
+          "resolved": "",
           "integrity": "sha512-7Mni4Z8Xkx0/oegoqlcao/JpPCPEMtUvsmB0q7mgvlMinykJLSRTYuFqoQLYgGY8biuxIeiHO+QNJKbCfljewQ==",
           "dev": true,
           "optional": true,
@@ -10839,7 +10839,7 @@
         },
         "semver": {
           "version": "5.6.0",
-          "resolved": false,
+          "resolved": "",
           "integrity": "sha512-RS9R6R35NYgQn++fkDWaOmqGoj4Ek9gGs+DPxNUZKuwE183xjJroKvyo1IzVFeXvUrvmALy6FWD5xrdJT25gMg==",
           "dev": true,
           "optional": true
@@ -15166,7 +15166,9 @@
     "nan": {
       "version": "2.12.1",
       "resolved": "https://registry.npmjs.org/nan/-/nan-2.12.1.tgz",
-      "integrity": "sha512-JY7V6lRkStKcKTvHO5NVSQRv+RV+FIL5pvDoLiAtSL9pKlC5x9PKQcZDsq7m4FO4d57mkhC6Z+QhAh3Jdk5JFw=="
+      "integrity": "sha512-JY7V6lRkStKcKTvHO5NVSQRv+RV+FIL5pvDoLiAtSL9pKlC5x9PKQcZDsq7m4FO4d57mkhC6Z+QhAh3Jdk5JFw==",
+      "dev": true,
+      "optional": true
     },
     "nanomatch": {
       "version": "1.2.13",
@@ -17582,9 +17584,9 @@
       }
     },
     "realm": {
-      "version": "3.7.0-alpha.0",
-      "resolved": "https://registry.npmjs.org/realm/-/realm-3.7.0-alpha.0.tgz",
-      "integrity": "sha512-pI1cYBAtQvcI5IBMBJeFf3BQppB8xPMXE06OqXyBbO3xMe2L4ggNNl4FqqRcfKYwqB/A85o2usD3PR6SoMEClg==",
+      "version": "3.7.0-alpha.2",
+      "resolved": "https://registry.npmjs.org/realm/-/realm-3.7.0-alpha.2.tgz",
+      "integrity": "sha512-1fUOVIGJcNGHJ8Zp/vZuYoU/XaPrCcIOJDosR/eCzbOUDdsMZCeeg+eshy5SZIh4QVPvUrPjHoIKkU02nW9bWg==",
       "requires": {
         "command-line-args": "^4.0.6",
         "decompress": "^4.2.0",
@@ -17593,7 +17595,6 @@
         "fs-extra": "^4.0.3",
         "https-proxy-agent": "^2.2.4",
         "ini": "^1.3.5",
-        "nan": "^2.12.1",
         "node-addon-api": "git+https://github.com/blagoev/node-addon-api.git#fix-zombie-objects-finalization",
         "node-fetch": "^1.7.3",
         "node-machine-id": "^1.1.10",

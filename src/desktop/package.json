@@ -192,7 +192,7 @@
     "react-qr-reader": "2.2.1",
     "react-router-dom": "5.1.2",
     "react-transition-group": "4.3.0",
-    "realm": "3.7.0-alpha.0",
+    "realm": "3.7.0-alpha.2",
     "recharts": "1.8.5"
   },
   "jest": {
