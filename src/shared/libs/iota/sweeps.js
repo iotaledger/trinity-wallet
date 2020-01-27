@@ -17,13 +17,14 @@ import { iota } from './index';
  * @param {Int8Array} outputAddress
  * @param {Int8Array} inputAddress
  * @param {Number} value
+ * @param {Number} issuanceTimestamp
  * @param {Number} securityLevel
  *
  * @returns {Int8Array} bundle
  */
-export const createUnsignedBundle = (outputAddress, inputAddress, value, securityLevel = 2) => {
-    const issuanceTimestamp = valueToTrits(Math.floor(Date.now() / 1000));
+export const createUnsignedBundle = (outputAddress, inputAddress, value, timestamp, securityLevel = 2) => {
     let bundle = new Int8Array();
+    const issuanceTimestamp = valueToTrits(timestamp);
 
     bundle = addEntry(bundle, {
         address: outputAddress,
@@ -51,15 +52,20 @@ export const createUnsignedBundle = (outputAddress, inputAddress, value, securit
  * @param {object} {settings}
  * @param {boolean} withQuorum
  *
- * @returns {function(object, object, string, array): Promise<object>}
+ * @returns {function(string, object, object, string, array): Promise<object>}
  **/
-export const sweep = (settings) => (seedStore, input, outputAddress, knownBundleHashes) => {
+export const sweep = (settings) => (accountType, seedStore, input, outputAddress, knownBundleHashes) => {
     const security = 2;
+
+    const issuanceTimestamp = Math.floor(Date.now() / 1000);
+
+    const convertToTransactionObjects = (tryteString) => iota.utils.transactionObject(tryteString);
 
     const unsignedBundle = createUnsignedBundle(
         trytesToTrits(outputAddress),
         trytesToTrits(input.address),
         input.balance,
+        issuanceTimestamp,
     );
 
     const normalizedBundles = map(map(knownBundleHashes, trytesToTrits), normalizedBundle);
@@ -69,9 +75,43 @@ export const sweep = (settings) => (seedStore, input, outputAddress, knownBundle
         trytes: [],
     };
 
+    const isLedgerAccount = accountType === 'ledger';
+
     return seedStore
-        .mineBundle(minNormalizedBundle(normalizedBundles, security), bundleEssence(unsignedBundle))
+        .mineBundle(minNormalizedBundle(normalizedBundles, security), bundleEssence(unsignedBundle), isLedgerAccount)
         .then((index) => {
+            if (isLedgerAccount) {
+                const transfers = [
+                    {
+                        address: outputAddress,
+                        value: input.balance,
+                        tag: tritsToTrytes(valueToTrits(index)),
+                    },
+                ];
+
+                const inputs = [
+                    {
+                        address: input.address,
+                        balance: input.balance,
+                        keyIndex: input.index,
+                    },
+                ];
+
+                return seedStore
+                    .prepareTransfers(settings)(transfers, { inputs }, () => issuanceTimestamp)
+                    .then((trytes) => {
+                        cached.trytes = trytes;
+                        cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
+
+                        // Check if prepared bundle is valid, especially if its signed correctly.
+                        if (isBundle(cached.transactionObjects)) {
+                            return getTransactionsToApproveAsync(settings)();
+                        }
+
+                        throw new Error(Errors.INVALID_BUNDLE);
+                    });
+            }
+
             unsignedBundle.set(valueToTrits(index), Transaction.OBSOLETE_TAG_OFFSET);
 
             // Finalize bundle
@@ -91,7 +131,6 @@ export const sweep = (settings) => (seedStore, input, outputAddress, knownBundle
                         );
                     }
 
-                    const convertToTransactionObjects = (tryteString) => iota.utils.transactionObject(tryteString);
                     cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
 
                     // Check if prepared bundle is valid, especially if its signed correctly.

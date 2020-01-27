@@ -48,8 +48,9 @@ export default class SeedStoreCore {
      * @method mineBundle
      *
      * @param {Int8Array} normalizedBundle
-     * @param {number} numberOfFragments
      * @param {Int8Array} bundleEssence
+     * @param {boolean} isLedgerAccount
+     * @param {number} [security]
      * @param {number} [essenceLength]
      * @param {number} [count]
      * @param {number} [procs]
@@ -60,6 +61,7 @@ export default class SeedStoreCore {
     mineBundle(
         normalizedBundle,
         bundleEssence,
+        isLedgerAccount,
         security = 2,
         essenceLength = 486 * 3,
         count = 10 ** 8,
@@ -71,9 +73,10 @@ export default class SeedStoreCore {
             security,
             Array.from(bundleEssence),
             essenceLength,
-            count,
+            isLedgerAccount ? count * 3.13 : count,
             procs,
             miningThreshold,
+            isLedgerAccount ? 1 : 0,
         );
     }
 }

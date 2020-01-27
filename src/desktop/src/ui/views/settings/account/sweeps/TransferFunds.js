@@ -202,7 +202,7 @@ class TransferFunds extends React.PureComponent {
         const { accountName, accountMeta, password } = this.props;
         const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
 
-        this.props.recoverLockedFunds(accountName, seedStore, addressData);
+        this.props.recoverLockedFunds(accountName, accountMeta.type, seedStore, addressData);
     }
 
     /**

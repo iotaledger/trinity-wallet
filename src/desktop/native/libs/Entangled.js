@@ -71,6 +71,7 @@ process.on('message', async (data) => {
             payload.count,
             payload.nprocs,
             payload.miningThreshold,
+            payload.fullySecure,
         );
         process.send(index);
     }
@@ -86,7 +87,16 @@ const Entangled = {
     genFn: async (seed, index, security) => {
         return await exec(JSON.stringify({ job: 'gen', seed, index, security }));
     },
-    bundleMinerFn: async (bundleNormalizedMax, security, essence, essenceLength, count, nprocs, miningThreshold) => {
+    bundleMinerFn: async (
+        bundleNormalizedMax,
+        security,
+        essence,
+        essenceLength,
+        count,
+        nprocs,
+        miningThreshold,
+        fullySecure,
+    ) => {
         return await exec(
             JSON.stringify({
                 job: 'bundleMiner',
@@ -97,6 +107,7 @@ const Entangled = {
                 count,
                 nprocs,
                 miningThreshold,
+                fullySecure,
             }),
         );
     },
