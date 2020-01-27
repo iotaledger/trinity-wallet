@@ -70,7 +70,7 @@ export class ErrorLogComponent extends React.PureComponent {
                                                     {formatTimeAs.dayMonthYearHoursMinutes(
                                                         navigator.language,
                                                         detectedTimezone,
-                                                        entry.date,
+                                                        entry.time,
                                                     )}
                                                 </strong>{' '}
                                                 {entry.error}

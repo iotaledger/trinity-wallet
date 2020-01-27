@@ -564,6 +564,27 @@ export const arePurchasesSuspended = createSelector(
 
         const currency = find(currencies, (currency) => currency.code === IOTA_CURRENCY_CODE);
 
-        return get(currency, 'isSuspended') === true;
-    },
-);
+    return get(currency, 'isSuspended') === true;
+});
+
+/**
+ * Selects MoonPay supported countries
+ *
+ * @method getCountries
+ *
+ * @param {object} state
+ *
+ * @returns {array}
+ */
+export const getCountries = createSelector(getExchangesFromState, (exchanges) => {
+    const countries = exchanges.moonpay.countries;
+    const currencies = exchanges.moonpay.currencies;
+    const currency = find(currencies, (currency) => currency.code === IOTA_CURRENCY_CODE);
+    const isSupportedInUS = get(currency, 'isSupportedInUS') === true;
+
+    if (!isSupportedInUS) {
+        return filter(countries, (country) => country.alpha3 !== 'USA');
+    }
+
+    return countries;
+});
