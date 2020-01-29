@@ -24,7 +24,7 @@
     "postinstall": "./node_modules/.bin/rn-nodeify --install crypto,http,os,path,stream,vm,querystring --hack --yarn && yarn nodejs-deps && patch-package && npm run fix-modal && react-native-schemes-manager all",
     "prepare-release": "yarn version && cd ios && bundle exec fastlane release && cd ../android && bundle exec fastlane release && cd .. && echo Successfully incremented version and build numbers! Please remember to run git add ., git commit, git push --tags, and git push",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect",
+    "prepare": "yarn run snyk-protect",
     "fix-modal": "node node_modules/react-native-modal-translucent/scripts/translucent-modal.js"
   },
   "xcodeSchemes": {
@@ -43,7 +43,7 @@
     "jsc-android": "241213.x.x",
     "lodash": "^4.17.13",
     "lottie-react-native": "^2.6.1",
-    "nodejs-mobile-react-native": "https://github.com/rajivshah3/nodejs-mobile-react-native#f3e99d92aa6983ca84805839b58cbe2ad2a33a37",
+    "nodejs-mobile-react-native": "0.5.0",
     "path-browserify": "0.0.0",
     "process": "^0.11.10",
     "prop-types": "^15.6.0",
@@ -99,7 +99,7 @@
     "redux": "^3.7.2",
     "rn-fetch-blob": "https://github.com/rajivshah3/rn-fetch-blob#10.13-226",
     "shared-modules": "../shared/",
-    "snyk": "^1.217.3",
+    "snyk": "^1.286.1",
     "stream": "0.0.2",
     "stream-browserify": "^1.0.0",
     "text-encoding": "^0.6.4",
