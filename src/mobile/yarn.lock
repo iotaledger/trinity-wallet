@@ -2550,10 +2550,10 @@ buffer@^4.9.1:
     ieee754 "^1.1.4"
     isarray "^1.0.0"
 
-bugsnag-react-native@^2.22.0:
-  version "2.22.0"
-  resolved "https://registry.yarnpkg.com/bugsnag-react-native/-/bugsnag-react-native-2.22.0.tgz#b6c1df9819be243f8b5aa2ade837f64a36a92198"
-  integrity sha512-yiNEv6tKghtfCGNVJfPdMZpO5XRHVXvSGqBvxGcsoc/Xsk6XIHWf5setG7cVF4mzq7mnZneCuoqrCvKgaw28gw==
+bugsnag-react-native@^2.23.5:
+  version "2.23.5"
+  resolved "https://registry.yarnpkg.com/bugsnag-react-native/-/bugsnag-react-native-2.23.5.tgz#7940fdc5cbe37aa4f4eb01d46e255242cd55b78d"
+  integrity sha512-bSIYpqgHrVUYXdFdpP9fkmBKlYUd9hA4+k8frWchlFj027qWEfNRqYZw8sfQHV18nhC17GbZh0KSZPFaxXmJiA==
   dependencies:
     iserror "^0.0.2"
     promise "^7"
