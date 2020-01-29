@@ -4070,10 +4070,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-i18next@^11.0.1:
-  version "11.0.1"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.0.1.tgz#179b10cf0026677739fa96df0a7b5494df435bd1"
-  integrity sha512-TazSMob+cEztaaMcX3IQQLltzv4+b3cl6dfs9tUMVj2fD0TRDbTsQ75AaLncw6jqZf08I0yAGHeJnqbBE0eZDw==
+react-i18next@^11.3.1:
+  version "11.3.1"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.3.1.tgz#9269282c3f566015f0bdf8fdbf46782bbe50f5a7"
+  integrity sha512-S/CWHcnew1lXo8HeniGhBU5kTmPhZ4w4rtA4m/gDN07soCtKKYSAcLNm7zhwjI2OSR4Skd0vOtzNp/FzEEjxIw==
   dependencies:
     "@babel/runtime" "^7.3.1"
     html-parse-stringify2 "2.0.1"
