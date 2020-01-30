@@ -57,7 +57,9 @@ export const createUnsignedBundle = (outputAddress, inputAddress, value, timesta
 export const sweep = (settings) => (accountType, seedStore, input, outputAddress, knownBundleHashes) => {
     const security = 2;
 
-    const issuanceTimestamp = Math.floor(Date.now() / 1000);
+    const now = Date.now();
+
+    const issuanceTimestamp = Math.floor(now / 1000);
 
     const convertToTransactionObjects = (tryteString) => iota.utils.transactionObject(tryteString);
 
@@ -98,7 +100,7 @@ export const sweep = (settings) => (accountType, seedStore, input, outputAddress
                 ];
 
                 return seedStore
-                    .prepareTransfers(settings)(transfers, { inputs }, () => issuanceTimestamp)
+                    .prepareTransfers(settings)(transfers, { inputs }, () => now)
                     .then((trytes) => {
                         cached.trytes = trytes;
                         cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
