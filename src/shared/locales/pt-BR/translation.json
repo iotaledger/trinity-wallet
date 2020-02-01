@@ -336,17 +336,17 @@
         "waitForCurrencyQuote": "Buscando a taxa mais recente do MoonPay. Aguarde.",
         "confirmIdentity": "Precisamos confirmar a sua identidade",
         "kycRequired": "KYC necessário para um valor maior que {{limit}}",
-        "confirmIdentityExplanation": "Your purchase exceeds the monthly limit of {{amount}}. In order to continue your purchase you will need to confirm your identity (KYC).",
-        "moonpayRedirect": "You will now be navigated to MoonPay to complete the KYC process and continue with your purchase.",
-        "authenticateEmailError": "Error authenticating email",
-        "authenticateEmailErrorExplanation": "There was an error authenticating your email address. Please try again.",
-        "emailVerificationError": "Error verifying email",
-        "emailVerificationErrorExplanation": "The security code you provided is incorrect. Please try again.",
-        "updateCustomerError": "Error updating user details",
-        "updateCustomerErrorExplanation": "An unknown error has occurred updating user details. Please try again.",
-        "transactionCreationError": "Error creating transaction",
-        "transactionCreationErrorExplanation": "There was a problem sending your transaction. Please try again.",
-        "paymentCardCreationError": "Error creating payment card",
+        "confirmIdentityExplanation": "Sua compra excede o limite mensal de {{amount}}. Para continuar sua compra, você precisará confirmar sua identidade (KYC).",
+        "moonpayRedirect": "Você agora será navegado para o MoonPay para concluir o processo KYC e continuar com sua compra.",
+        "authenticateEmailError": "Erro ao autenticar e-mail",
+        "authenticateEmailErrorExplanation": "Ocorreu um erro ao autenticar seu endereço de e-mail. Tente novamente.",
+        "emailVerificationError": "Erro ao verificar e-mail",
+        "emailVerificationErrorExplanation": "O código de segurança fornecido está incorreto. Por favor, tente novamente.",
+        "updateCustomerError": "Erro ao atualizar detalhes do usuário",
+        "updateCustomerErrorExplanation": "Um erro desconhecido ocorreu ao atualizar os detalhes do usuário. Tente novamente.",
+        "transactionCreationError": "Erro ao criar transação",
+        "transactionCreationErrorExplanation": "Houve um problema ao enviar sua transação. Por favor, tente novamente.",
+        "paymentCardCreationError": "Erro ao criar cartão de pagamento",
         "paymentCardCreationErrorExplanation": "Ocorreu um problema ao criar seu cartão de pagamento. Tente novamente.",
         "selectCountry": "Selecione o País",
         "selectState": "Selecione o Estado",
@@ -645,7 +645,7 @@
         "searchHelpMore": "Pesquisar transações com o valor acima de X",
         "searchHelpLess": "Pesquisar transações com o valor abaixo de X",
         "transactions": "Transações",
-        "purchases": "Purchases"
+        "purchases": "Compras"
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
@@ -859,7 +859,7 @@
         "change": "Mudança (24h)",
         "volume": "Volume (24h)",
         "error": "Erro ao buscar dados da tabela",
-        "currentValue": "Current Value"
+        "currentValue": "Valor Atual"
     },
     "rootDetection": {
         "warning": "ATENÇÃO",
@@ -1031,7 +1031,7 @@
     },
     "help": {
         "docsSite": "Trinity Docs Site",
-        "commonIssues": "Common Wallet Issues",
-        "buyingIOTA": "Problems Buying IOTA"
+        "commonIssues": "Problemas Comuns da Carteira",
+        "buyingIOTA": "Problemas ao Comprar IOTA"
     }
 }
