@@ -576,10 +576,6 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
-                if (isSendingToAnyInputAddress) {
-                    throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
-                }
-
                 return getAddressDataUptoRemainder(settings, withQuorum)(
                     accountState.addressData,
                     accountState.transactions,
