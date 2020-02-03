@@ -270,11 +270,14 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
             });
     };
 
-    // Find nodes with proof of work enabled
     return new NodesManager(
         nodesConfigurationFactory({
             quorum,
-            useOnlyPowNodes: true,
+            ...(getRemotePoWFromState(getState()) === true
+                ? {
+                      useOnlyPowNodes: true,
+                  }
+                : {}),
         })(getState()),
     )
         .withRetries()(executePrePromotionChecks)()
@@ -465,7 +468,11 @@ export const forceTransactionPromotion = (
 
     const manager = new NodesManager(
         nodesConfigurationFactory({
-            useOnlyPowNodes: true,
+            ...(getRemotePoWFromState(getState()) === true
+                ? {
+                      useOnlyPowNodes: true,
+                  }
+                : {}),
         })(getState()),
     );
 
