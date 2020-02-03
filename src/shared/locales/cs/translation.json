@@ -645,7 +645,7 @@
         "searchHelpMore": "Vyhledat transakce s hodnotou větší než X",
         "searchHelpLess": "Vyhledat transakce s hodnotou menší než X",
         "transactions": "Transakce",
-        "purchases": "Purchases"
+        "purchases": "Nákupy"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
@@ -859,7 +859,7 @@
         "change": "Změna (24h)",
         "volume": "Objem (24h)",
         "error": "Při načítání dat grafu došlo k chybě",
-        "currentValue": "Current Value"
+        "currentValue": "Aktuální cena"
     },
     "rootDetection": {
         "warning": "VAROVÁNÍ",
