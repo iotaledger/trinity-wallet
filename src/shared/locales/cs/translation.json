@@ -346,7 +346,7 @@
         "updateCustomerErrorExplanation": "An unknown error has occurred updating user details. Please try again.",
         "transactionCreationError": "Error creating transaction",
         "transactionCreationErrorExplanation": "There was a problem sending your transaction. Please try again.",
-        "paymentCardCreationError": "Error creating payment card",
+        "paymentCardCreationError": "Chyba při přidávání platební karty",
         "paymentCardCreationErrorExplanation": "Při přidávání karty se vyskytl problém. Zkuste to prosím znovu.",
         "selectCountry": "Vyberte zemi",
         "selectState": "Vyberte stát",
