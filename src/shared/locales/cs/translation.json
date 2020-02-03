@@ -180,8 +180,8 @@
         "total": "Celkem",
         "submit": "Odeslat",
         "tryAgain": "Zkuste to znovu",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "unknown": "Nejsou k dispozici žádné informace",
+        "goToDashboard": "Přejít na dashboard"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -644,7 +644,7 @@
         "searchHelpUnits": "Vyhledat transakce na základě IOTA hodnoty a jednotky",
         "searchHelpMore": "Vyhledat transakce s hodnotou větší než X",
         "searchHelpLess": "Vyhledat transakce s hodnotou menší než X",
-        "transactions": "Transactions",
+        "transactions": "Transakce",
         "purchases": "Purchases"
     },
     "accountManagement": {
