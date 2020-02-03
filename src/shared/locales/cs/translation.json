@@ -311,7 +311,7 @@
         "somethingWentWrongProcessingCardInfo": "Something went wrong while processing your card information. Please try again.",
         "notEnoughAmount": "Částka je příliš nízká",
         "notEnoughAmountExplanation": "Minimum transaction amount is {{amount}}",
-        "amountTooHigh": "Amount is too high",
+        "amountTooHigh": "Částka je příliš vysoká",
         "amountTooHighExplanation": "Maximum transaction amount is {{amount}} per day.",
         "addPaymentMethod": "Add a payment method",
         "pleaseEnterYourBillingDetails": "Please enter your card details below.",
