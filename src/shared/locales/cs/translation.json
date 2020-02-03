@@ -347,7 +347,7 @@
         "transactionCreationError": "Error creating transaction",
         "transactionCreationErrorExplanation": "There was a problem sending your transaction. Please try again.",
         "paymentCardCreationError": "Error creating payment card",
-        "paymentCardCreationErrorExplanation": "There was a problem creating your payment card. Please try again.",
+        "paymentCardCreationErrorExplanation": "Při přidávání karty se vyskytl problém. Zkuste to prosím znovu.",
         "selectCountry": "Vyberte zemi",
         "selectState": "Vyberte stát",
         "state": "STÁT",
