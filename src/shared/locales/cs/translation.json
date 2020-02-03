@@ -1030,8 +1030,8 @@
         "writtenDownInfoExplanation": "Číslo Vašeho indexu je důležité při případné potřebě obnovení vašeho účtu v budoucnosti. V případě ztráty tohoto čísla, přijdete o Vaší IOTU. Prosím zapište si ho."
     },
     "help": {
-        "docsSite": "Trinity Docs Site",
-        "commonIssues": "Common Wallet Issues",
-        "buyingIOTA": "Problems Buying IOTA"
+        "docsSite": "Dokumentace Trinity online",
+        "commonIssues": "Obvyklé problémy s peněženkou",
+        "buyingIOTA": "Problémy s nákupem IOTA"
     }
 }
