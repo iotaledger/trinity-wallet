@@ -95,13 +95,17 @@ export const recoverFundsComplete = () => ({
  * Recover funds.
  *
  * @param {string} accountName
+ * @param {string} accountType
  * @param {object} seedStore
  * @param {object} inputs Inputs list [{ address, keyIndex, balance, security, bundleHashes: [] }]
  * @param {boolean} [withQuorum]
  *
  * @returns {function} dispatch
  */
-export const recoverLockedFunds = (accountName, seedStore, inputs, withQuorum = true) => (dispatch, getState) => {
+export const recoverLockedFunds = (accountName, accountType, seedStore, inputs, withQuorum = true) => (
+    dispatch,
+    getState,
+) => {
     dispatch(recoverFundsRequest());
 
     return reduce(
@@ -149,6 +153,7 @@ export const recoverLockedFunds = (accountName, seedStore, inputs, withQuorum = 
                         return new Promise((resolve, reject) => {
                             setTimeout(() => {
                                 sweep(undefined, withQuorum)(
+                                    accountType,
                                     // See: extendedApi#attachToTangle
                                     getRemotePoWFromState(getState())
                                         ? extend(
