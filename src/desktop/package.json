@@ -159,7 +159,7 @@
   "dependencies": {
     "@babel/register": "7.4.4",
     "@bugsnag/js": "6.5.0",
-    "@bugsnag/plugin-react": "^6.2.0",
+    "@bugsnag/plugin-react": "^6.5.0",
     "@ledgerhq/hw-transport-node-hid": "^4.68.2",
     "argon2": "0.24.0",
     "babel-polyfill": "6.26.0",
