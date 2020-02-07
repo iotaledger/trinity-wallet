@@ -39,7 +39,7 @@
     "babel-jest": "24.9.0",
     "babel-loader": "8.0.6",
     "bugsnag-build-reporter": "1.0.2",
-    "concurrently": "^5.0.2",
+    "concurrently": "5.0.2",
     "cross-env": "6.0.3",
     "css-loader": "3.4.2",
     "dart-sass": "1.25.0",
