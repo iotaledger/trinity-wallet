@@ -1165,22 +1165,39 @@
       }
     },
     "@babel/register": {
-      "version": "7.4.4",
-      "resolved": "https://registry.npmjs.org/@babel/register/-/register-7.4.4.tgz",
-      "integrity": "sha512-sn51H88GRa00+ZoMqCVgOphmswG4b7mhf9VOB0LUBAieykq2GnRFerlN+JQkO/ntT7wz4jaHNSRPg9IdMPEUkA==",
+      "version": "7.8.3",
+      "resolved": "https://registry.npmjs.org/@babel/register/-/register-7.8.3.tgz",
+      "integrity": "sha512-t7UqebaWwo9nXWClIPLPloa5pN33A2leVs8Hf0e9g9YwUP8/H9NeR7DJU+4CXo23QtjChQv5a3DjEtT83ih1rg==",
       "requires": {
-        "core-js": "^3.0.0",
         "find-cache-dir": "^2.0.0",
-        "lodash": "^4.17.11",
-        "mkdirp": "^0.5.1",
+        "lodash": "^4.17.13",
+        "make-dir": "^2.1.0",
         "pirates": "^4.0.0",
-        "source-map-support": "^0.5.9"
+        "source-map-support": "^0.5.16"
       },
       "dependencies": {
-        "core-js": {
-          "version": "3.0.1",
-          "resolved": "https://registry.npmjs.org/core-js/-/core-js-3.0.1.tgz",
-          "integrity": "sha512-sco40rF+2KlE0ROMvydjkrVMMG1vYilP2ALoRXcYR4obqbYIuV3Bg+51GEDW+HF8n7NRA+iaA4qD0nD9lo9mew=="
+        "make-dir": {
+          "version": "2.1.0",
+          "resolved": "https://registry.npmjs.org/make-dir/-/make-dir-2.1.0.tgz",
+          "integrity": "sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==",
+          "requires": {
+            "pify": "^4.0.1",
+            "semver": "^5.6.0"
+          }
+        },
+        "pify": {
+          "version": "4.0.1",
+          "resolved": "https://registry.npmjs.org/pify/-/pify-4.0.1.tgz",
+          "integrity": "sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g=="
+        },
+        "source-map-support": {
+          "version": "0.5.16",
+          "resolved": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.5.16.tgz",
+          "integrity": "sha512-efyLRJDr68D9hBBNIPWFjhpFzURh+KJykQwvMyW5UiZzYwoF6l4YMMDIJJEyFWxWCqfyxLzz6tSfUFR+kXXsVQ==",
+          "requires": {
+            "buffer-from": "^1.0.0",
+            "source-map": "^0.6.0"
+          }
         }
       }
     },
@@ -17451,6 +17468,7 @@
       "version": "0.5.10",
       "resolved": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.5.10.tgz",
       "integrity": "sha512-YfQ3tQFTK/yzlGJuX8pTwa4tifQj4QS2Mj7UegOu8jAz59MqIiMGPXxQhVQiIMNzayuUSF/jEuVnfFF5JqybmQ==",
+      "dev": true,
       "requires": {
         "buffer-from": "^1.0.0",
         "source-map": "^0.6.0"
