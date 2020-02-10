@@ -306,8 +306,8 @@
         "invalidZipCodeExplanation": "有効な郵便番号を入力してください.",
         "invalidState": "無効な都道府県です",
         "invalidStateExplanation": "有効な都道府県を入力してください.",
-        "invalidDOB": "Invalid date of birth",
-        "invalidDOBExplanation": "Please enter a valid date of birth.",
+        "invalidDOB": "無効な生年月日です",
+        "invalidDOBExplanation": "正しい生年月日を入力してください。",
         "somethingWentWrongProcessingCardInfo": "カード情報の処理中に問題が発生しました。もう一度やり直してください。",
         "notEnoughAmount": "金額が少なすぎます",
         "notEnoughAmountExplanation": "最小取引額は {{amount}} です",
@@ -393,9 +393,9 @@
         "idRejection": "本人確認が拒否されました。",
         "cardNotSupported": "あなたのカードはサポートされていません。別のカードでもう一度お試しください。",
         "cancelled": "支払いはキャンセルされました。",
-        "storeCardDetails": "Store card details in MoonPay for faster checkout in the future.",
-        "purchasesAreSuspended": "Purchases are suspended",
-        "purchasesAreSuspendedExplanation": "Unfortunately, MoonPay purchases are currently suspended. Please try again later."
+        "storeCardDetails": "将来の支払いを高速化するために、MoonPay にカード情報を保存します。",
+        "purchasesAreSuspended": "購入が停止されています",
+        "purchasesAreSuspendedExplanation": "残念ながら、MoonPay での購入は現在停止されています。後でもう一度やり直してください。"
     },
     "home": {
         "balance": "残高",
