@@ -1,3 +1,10 @@
+### 1.2.2
+
+- Fix: Ensure full bundle is broadcast during promotion
+- Fix: Various MoonPay fixes
+- Fix: Don't fail silently when drag-dropping an incorrect seed
+- Update: Add Ledger icon to differentiate standard and ledger accounts
+
 ### 1.2.1
 
 - New: Increase Proof of Work speed by 2-3x
