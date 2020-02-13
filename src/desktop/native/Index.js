@@ -15,10 +15,10 @@ app.commandLine.appendSwitch('js-flags', '--expose-gc');
 /**
  * Terminate application if Node remote debugging detected
  */
-const argv = process.argv.join();
-if (argv.includes('inspect') || argv.includes('remote') || typeof v8debug !== 'undefined') {
-    app.quit();
-}
+// const argv = process.argv.join();
+// if (argv.includes('inspect') || argv.includes('remote') || typeof v8debug !== 'undefined') {
+//     app.quit();
+// }
 
 /**
  * Define wallet windows
@@ -230,18 +230,16 @@ function createWindow() {
      * Enable React and Redux devtools in development mode
      */
 
-    if (devMode) {
-        windows.main.webContents.once('dom-ready', () => {
-            windows.main.webContents.openDevTools({ mode: 'detach' });
-            /* Uncomment to enable Tray app DevTools on macOS
-            if (process.platform === 'darwin') {
-                windows.tray.webContents.openDevTools({ mode: 'detach' });
-            }
-            */
-            installExtension(REACT_DEVELOPER_TOOLS);
-            installExtension(REDUX_DEVTOOLS);
-        });
-    }
+    windows.main.webContents.once('dom-ready', () => {
+        windows.main.webContents.openDevTools({ mode: 'detach' });
+        /* Uncomment to enable Tray app DevTools on macOS
+        if (process.platform === 'darwin') {
+            windows.tray.webContents.openDevTools({ mode: 'detach' });
+        }
+        */
+        installExtension(REACT_DEVELOPER_TOOLS);
+        installExtension(REDUX_DEVTOOLS);
+    });
 
     /**
      * Add right click context menu for input elements
@@ -356,7 +354,7 @@ const toggleTray = () => {
  * @param {Event} Event - Window close event
  * @returns {undefined}
  */
-const hideOnClose = function(event) {
+const hideOnClose = function (event) {
     if (process.platform === 'darwin') {
         event.preventDefault();
         windows.main.hide();
@@ -370,7 +368,7 @@ const hideOnClose = function(event) {
  * Get Window instance helper
  * @param {string} windowName -  Target window name
  */
-const getWindow = function(windowName) {
+const getWindow = function (windowName) {
     return windows[windowName];
 };
 
