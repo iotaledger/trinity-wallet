@@ -3047,6 +3047,11 @@
       "resolved": "https://registry.npmjs.org/@ledgerhq/logs/-/logs-4.68.2.tgz",
       "integrity": "sha512-iFwGIzPmAMDvxVLtTvBUo0DCWz8vVaD0C4IsprNaXbxu+AsDmlc9kO9CKLB5YFEZblKNNKqJMJDfKvg5brIpTw=="
     },
+    "@moonpay/browser": {
+      "version": "1.0.3",
+      "resolved": "https://registry.npmjs.org/@moonpay/browser/-/browser-1.0.3.tgz",
+      "integrity": "sha512-jlqn7ju9YgztZdTarviKXk6SxW9zEUlOFogz4JY+IGSJyVceIa1cu1FvzIIrN1/4/mCZtt86s0zaPnZXfyN6TA=="
+    },
     "@mrmlnc/readdir-enhanced": {
       "version": "2.2.1",
       "resolved": "https://registry.npmjs.org/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz",

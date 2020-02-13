@@ -161,6 +161,7 @@
     "@bugsnag/js": "6.5.0",
     "@bugsnag/plugin-react": "^6.5.0",
     "@ledgerhq/hw-transport-node-hid": "^4.68.2",
+    "@moonpay/browser": "^1.0.3",
     "argon2": "0.24.0",
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",

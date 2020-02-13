@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import noop from 'lodash/noop';
 import some from 'lodash/some';
 import React from 'react';
+import MoonPay from '@moonpay/browser';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
@@ -70,10 +71,10 @@ class AddPaymentMethod extends React.PureComponent {
 
         this.props.removeActiveToken();
 
-        window.moonpay.initialize(API_KEY, customerId);
-        window.moonpay.trackPageView();
+        MoonPay.initialize(API_KEY, customerId);
+        MoonPay.trackPageView();
 
-        this.form = window.moonpay.createCardDetailsForm(noop);
+        this.form = MoonPay.createCardDetailsForm(noop);
 
         const css = {
             color: theme.input.color,

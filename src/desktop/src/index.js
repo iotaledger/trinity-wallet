@@ -38,11 +38,6 @@ const init = () => {
     modalEl.id = 'modal';
     document.body.appendChild(modalEl);
 
-    const script = document.createElement('script');
-    script.src = 'https://cdn.moonpay.io/moonpay-sdk.js';
-
-    document.write(script.outerHTML);
-
     if (typeof Electron === 'undefined') {
         return render(<FatalError error="Failed to load Electron preload script" />, rootEl);
     }
