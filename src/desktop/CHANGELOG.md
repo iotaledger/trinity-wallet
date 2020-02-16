@@ -1,3 +1,9 @@
+### 1.4.0
+
+- Update: Remove exchange support
+- Update: Adjust update alerts
+- Fix: Allow wallet entry when nodes are not in sync
+
 ### 1.2.2
 
 - Fix: Ensure full bundle is broadcast during promotion
