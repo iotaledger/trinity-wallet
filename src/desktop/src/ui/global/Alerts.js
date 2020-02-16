@@ -61,12 +61,12 @@ export class AlertsComponent extends React.PureComponent {
         this.props.dismissAlert();
     }
 
-    renderFullWidthAlert(title, explanation, dismissable, onClick = () => {}) {
+    renderFullWidthAlert(explanation, dismissable) {
         const os = Electron.getOS();
 
         return (
             <section className={classNames(css.update, os === 'win32' ? css.win : null)}>
-                <strong onClick={onClick}>{title}</strong> {explanation}
+                {explanation}
                 {dismissable && (
                     <a onClick={() => this.setState({ dismissUpdate: true })}>
                         <Icon icon="cross" size={16} />
@@ -99,16 +99,13 @@ export class AlertsComponent extends React.PureComponent {
             <div className={css.wrapper}>
                 {shouldUpdate &&
                     this.renderFullWidthAlert(
-                        t('global:shouldUpdate'),
                         t('global:shouldUpdateExplanation'),
                         true,
-                        () => {},
                     )}
                 {displaySeedMigrationAlert &&
                     !dismissUpdate &&
                     this.renderFullWidthAlert(
-                        'CRITICAL SECURITY ALERT',
-                        `It is strongly recommended that you migrate your seeds. Visit ${seedMigrationUrl} for more information.`,
+                        `CRITICAL SECURITY ALERT: It is strongly recommended that you migrate your seeds. Visit ${seedMigrationUrl} for more information.`,
                         true,
                     )}
                 {(!dismissUpdate && (shouldUpdate || displaySeedMigrationAlert)) || (
