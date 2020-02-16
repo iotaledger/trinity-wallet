@@ -167,7 +167,7 @@
         "confirm": "Confirm",
         "delete": "Delete",
         "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "shouldUpdateExplanation": "Windows 7 is deprecated. This is the last Windows 7 Trinity version. It is strongly recommended to update to Windows 10.",
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
