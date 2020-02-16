@@ -293,4 +293,7 @@ const mapDispatchToProps = {
     removeActiveToken,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AddPaymentMethod));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(AddPaymentMethod));

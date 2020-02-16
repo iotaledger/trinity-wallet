@@ -249,11 +249,15 @@ class AddAmount extends React.PureComponent {
             const fiatAmount = getAmountInFiat(Number(amount), denomination, exchangeRates);
 
             if (fiatAmount < MINIMUM_TRANSACTION_SIZE) {
-                return t('moonpay:minimumTransactionAmount', { amount: this.getCurrencySymbol() + MINIMUM_TRANSACTION_SIZE });
+                return t('moonpay:minimumTransactionAmount', {
+                    amount: this.getCurrencySymbol() + MINIMUM_TRANSACTION_SIZE,
+                });
             }
 
             if (fiatAmount > MAXIMUM_TRANSACTION_SIZE) {
-                return t('moonpay:maximumTransactionAmount', { amount: this.getCurrencySymbol() + MAXIMUM_TRANSACTION_SIZE });
+                return t('moonpay:maximumTransactionAmount', {
+                    amount: this.getCurrencySymbol() + MAXIMUM_TRANSACTION_SIZE,
+                });
             }
 
             if (
@@ -539,4 +543,7 @@ const mapDispatchToProps = {
     setDenomination,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AddAmount));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withTranslation()(AddAmount));

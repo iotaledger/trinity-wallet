@@ -53,8 +53,5 @@ export default function withCurrencyData(CurrencyComponent) {
         setCurrency,
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(CurrencyData);
+    return connect(mapStateToProps, mapDispatchToProps)(CurrencyData);
 }

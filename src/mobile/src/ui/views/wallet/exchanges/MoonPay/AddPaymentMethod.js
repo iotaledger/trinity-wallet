@@ -708,4 +708,9 @@ const mapDispatchToProps = {
     removeActiveToken,
 };
 
-export default withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(AddPaymentMethod));
+export default withTranslation(['global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(AddPaymentMethod),
+);

@@ -41,6 +41,7 @@ settings:
 rules:
     no-unused-vars: ['error', { 'argsIgnorePattern': '^_' }]
     import/no-cycle: 0
+    import/extensions: 0
     import/no-extraneous-dependencies: 0
     import/no-unresolved: 0
     jsx-a11y/alt-text: 0

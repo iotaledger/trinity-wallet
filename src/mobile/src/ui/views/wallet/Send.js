@@ -1006,4 +1006,9 @@ const mapDispatchToProps = {
     clearSendFields,
 };
 
-export default withTranslation(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
+export default withTranslation(['send', 'global'])(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(Send),
+);

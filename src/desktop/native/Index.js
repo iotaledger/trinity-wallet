@@ -80,7 +80,7 @@ let globalErrorFlag = false;
  * Set Trinity as the default handler for iota:// protocol
  */
 if (!devMode) {
-    protocol.registerStandardSchemes(['iota'], { secure: true });
+    protocol.registerSchemesAsPrivileged([{ scheme: 'iota', privileges: { standard: true, secure: true } }]);
     if (process.defaultApp) {
         if (process.argv.length >= 2) {
             app.setAsDefaultProtocolClient('iota', process.execPath, [path.resolve(process.argv[1])]);

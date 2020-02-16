@@ -14,6 +14,10 @@ module.exports = {
     resolver: {
         blacklistRE: blacklist,
         extraNodeModules: {
+            react: path.resolve(__dirname, '../shared/node_modules/react'),
+            'react-dom': path.resolve(__dirname, '../shared/node_modules/react-dom'),
+            'react-i18next': path.resolve(__dirname, '../shared/node_modules/react-i18next'),
+            'react-redux': path.resolve(__dirname, '../shared/node_modules/react-redux'),
             'react-native': path.resolve(__dirname, 'node_modules/react-native'),
         },
     },

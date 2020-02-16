@@ -150,5 +150,8 @@ export default function withChartData(ChartComponent) {
         setChartTimeframe,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(ChartData);
+    return connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(ChartData);
 }

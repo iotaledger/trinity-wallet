@@ -631,4 +631,9 @@ const mapDispatchToProps = {
     setDenomination,
 };
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(AddAmount));
+export default withTranslation()(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(AddAmount),
+);
