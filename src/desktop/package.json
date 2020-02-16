@@ -32,41 +32,41 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "7.8.3",
-    "@babel/preset-env": "7.8.3",
+    "@babel/preset-env": "7.8.4",
     "@babel/preset-react": "7.8.3",
     "@jest-runner/electron": "2.0.3",
     "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "24.9.0",
+    "babel-jest": "25.1.0",
     "babel-loader": "8.0.6",
     "bugsnag-build-reporter": "1.0.2",
-    "concurrently": "5.0.2",
-    "cross-env": "6.0.3",
+    "concurrently": "5.1.0",
+    "cross-env": "7.0.0",
     "css-loader": "3.4.2",
     "dart-sass": "1.25.0",
     "electron": "6.1.7",
-    "electron-builder": "22.2.0",
+    "electron-builder": "22.3.2",
     "electron-devtools-installer": "2.2.4",
     "electron-notarize": "^0.2.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "enzyme-to-json": "^3.4.3",
+    "enzyme-to-json": "^3.4.4",
     "express": "4.17.1",
     "file-loader": "5.0.2",
     "html-webpack-plugin": "3.2.0",
-    "jest": "24.9.0",
+    "jest": "25.1.0",
     "jest-image-snapshot": "2.12.0",
     "mini-css-extract-plugin": "0.9.0",
     "patch-package": "6.2.0",
-    "puppeteer": "2.0.0",
+    "puppeteer": "2.1.1",
     "raw-loader": "4.0.0",
-    "react-dev-utils": "10.0.0",
+    "react-dev-utils": "10.2.0",
     "regenerator-runtime": "0.13.3",
-    "rimraf": "3.0.0",
+    "rimraf": "3.0.2",
     "sass-loader": "8.0.2",
     "style-loader": "1.1.3",
     "url-loader": "3.0.0",
-    "webpack": "4.41.5",
-    "webpack-cli": "3.3.10",
+    "webpack": "4.41.6",
+    "webpack-cli": "3.3.11",
     "webpack-dev-middleware": "3.7.2",
     "webpack-hot-middleware": "2.25.0"
   },
@@ -121,16 +121,6 @@
     "nsis": {
       "deleteAppDataOnUninstall": true
     },
-    "snap": {
-      "stagePackages": [
-        "default",
-        "libsecret-1-dev"
-      ],
-      "plugs": [
-        "default",
-        "camera"
-      ]
-    },
     "win": {
       "publisherName": "IOTA Stiftung",
       "target": "nsis",
@@ -138,7 +128,7 @@
     },
     "linux": {
       "target": [
-        "snap"
+        "AppImage"
       ],
       "synopsis": "Desktop wallet for IOTA",
       "category": "Office",
@@ -171,10 +161,10 @@
   },
   "dependencies": {
     "@babel/register": "7.8.3",
-    "@bugsnag/js": "6.5.0",
+    "@bugsnag/js": "6.5.2",
     "@bugsnag/plugin-react": "6.5.0",
-    "@ledgerhq/hw-transport-node-hid": "5.6.0",
-    "argon2": "0.25.1",
+    "@ledgerhq/hw-transport-node-hid": "5.9.0",
+    "argon2": "0.26.0",
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",
     "electron-settings": "3.2.0",
@@ -183,9 +173,9 @@
     "hw-app-iota": "0.6.1",
     "iota.lib.js": "0.5.2",
     "kdbxweb": "1.5.7",
-    "keytar": "5.0.0",
-    "lottie-web": "5.6.2",
-    "node-abi": "^2.13.0",
+    "keytar": "5.2.0",
+    "lottie-web": "5.6.4",
+    "node-abi": "^2.15.0",
     "node-machine-id": "1.1.12",
     "perfect-scrollbar": "1.5.0",
     "qr.js": "0.0.0",
