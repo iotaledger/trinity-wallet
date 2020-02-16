@@ -1,6 +1,6 @@
 /* global Electron */
 import { sha256, encrypt, decrypt } from 'libs/crypto';
-import { ALIAS_REALM, ALIAS_MAIN, ALIAS_ACCOUNT, ALIAS_MOONPAY_CREDENTIALS } from 'libs/constants';
+import { ALIAS_REALM, ALIAS_MAIN, ALIAS_ACCOUNT } from 'libs/constants';
 import { tritsToChars, byteToTrit } from 'libs/iota/converter';
 import { prepareTransfersAsync } from 'libs/iota/extendedApi';
 
@@ -127,11 +127,7 @@ class Keychain extends SeedStoreCore {
         for (let i = 0; i < accounts.length; i++) {
             const account = vault[i];
 
-            if (
-                account.account === `${ALIAS_MAIN}-salt` ||
-                account.account === ALIAS_REALM ||
-                account.account === ALIAS_MOONPAY_CREDENTIALS
-            ) {
+            if (account.account === `${ALIAS_MAIN}-salt` || account.account === ALIAS_REALM) {
                 continue;
             }
 
@@ -227,10 +223,7 @@ class Keychain extends SeedStoreCore {
         try {
             const accounts = vault.filter(
                 (acc) =>
-                    acc.account !== ALIAS_MOONPAY_CREDENTIALS &&
-                    acc.account !== ALIAS_MAIN &&
-                    acc.account !== `${ALIAS_MAIN}-salt` &&
-                    acc.account !== ALIAS_REALM,
+                    acc.account !== ALIAS_MAIN && acc.account !== `${ALIAS_MAIN}-salt` && acc.account !== ALIAS_REALM,
             );
 
             for (let i = 0; i < accounts.length; i++) {
