@@ -547,7 +547,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
-                    return syncAccount(settings, withQuorum)(accountState, seedStore);
+                    return syncAccount(settings, withQuorum, true)(accountState, seedStore);
                 });
             })
             .then((newState) => {
