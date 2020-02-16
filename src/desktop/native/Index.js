@@ -273,14 +273,8 @@ function createWindow() {
                 'privacy@iota.org',
             ];
             const ledgerOnboarding = ['support.ledger.com'];
-            const exchanges = ['help.moonpay.io', 'moonpay.io'];
 
-            const externalWhitelist = [
-                ...privacyPolicyLinks,
-                ...termsAndConditionsLinks,
-                ...ledgerOnboarding,
-                ...exchanges,
-            ];
+            const externalWhitelist = [...privacyPolicyLinks, ...termsAndConditionsLinks, ...ledgerOnboarding];
 
             try {
                 if (

@@ -1,8 +1,4 @@
 /* global Electron */
-import head from 'lodash/head';
-import last from 'lodash/last';
-import split from 'lodash/split';
-import isString from 'lodash/isString';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -18,7 +14,6 @@ import { fetchVersions } from 'libs/utils';
 import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
 
 import { setOnboardingComplete, setAccountInfoDuringSetup } from 'actions/accounts';
-import { setViewingMoonpayPurchases } from 'actions/ui';
 import {
     setPassword,
     clearWalletData,
@@ -29,19 +24,10 @@ import {
     forceUpdate,
     displayTestWarning,
 } from 'actions/wallet';
-import {
-    clearData as clearMoonPayData,
-    fetchTransactionDetails as fetchMoonPayTransactionDetails,
-    setAuthenticationStatus as setMoonPayAuthenticationStatus,
-} from 'actions/exchanges/MoonPay';
-import { MOONPAY_RETURN_URL } from 'exchanges/MoonPay';
-import { __DEV__ } from 'config';
 
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { dismissAlert, generateAlert } from 'actions/alerts';
-
-import MoonPayKeychainAdapter from 'libs/MoonPay';
 
 import Theme from 'ui/global/Theme';
 import Idle from 'ui/global/Idle';
@@ -58,7 +44,6 @@ import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Ledger from 'ui/global/seedStore/Ledger';
-import MoonPayExchange from 'ui/views/exchanges/MoonPay/Index';
 
 /**
  * Wallet wrapper component
@@ -108,8 +93,6 @@ class App extends React.Component {
         /** @ignore */
         deepLinking: PropTypes.bool.isRequired,
         /** @ignore */
-        clearMoonPayData: PropTypes.func.isRequired,
-        /** @ignore */
         forceUpdate: PropTypes.func.isRequired,
         /** @ignore */
         displayTestWarning: PropTypes.func.isRequired,
@@ -121,12 +104,6 @@ class App extends React.Component {
         initiateDeepLinkRequest: PropTypes.func.isRequired,
         /** @ignore */
         setDeepLinkContent: PropTypes.func.isRequired,
-        /** @ignore */
-        setMoonPayAuthenticationStatus: PropTypes.func.isRequired,
-        /** @ignore */
-        fetchMoonPayTransactionDetails: PropTypes.func.isRequired,
-        /** @ignore */
-        setViewingMoonpayPurchases: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -207,21 +184,6 @@ class App extends React.Component {
      */
     setDeepUrl(data) {
         const { deepLinking, generateAlert, t } = this.props;
-
-        const transactionId = last(split(head(split(data, '&')), '='));
-
-        if (data.includes(MOONPAY_RETURN_URL) && isString(transactionId)) {
-            // Check if wallet is ready i.e., user has logged in.
-            // If not, then redirect user to login screen
-            if (this.props.wallet.ready === true) {
-                this.props.fetchMoonPayTransactionDetails(transactionId);
-                return this.props.history.push('/exchanges/moonpay/payment-pending');
-            }
-
-            // Make the MoonPay purchase tab active, so the users can see their new transaction
-            this.props.setViewingMoonpayPurchases(true);
-            return this.props.history.push('/onboarding/');
-        }
 
         this.props.initiateDeepLinkRequest();
         if (!deepLinking) {
@@ -318,29 +280,16 @@ class App extends React.Component {
                 this.props.history.push('/onboarding/seed-intro');
                 break;
             case 'logout':
-                MoonPayKeychainAdapter.clear()
-                    .then(() => {
-                        this.props.clearMoonPayData();
-                        this.props.setMoonPayAuthenticationStatus(false);
-                        this.props.clearWalletData();
-                        this.props.setPassword({});
-                        this.props.setAccountInfoDuringSetup({
-                            name: '',
-                            meta: {},
-                            completed: false,
-                            usedExistingSeed: false,
-                        });
-                        Electron.setOnboardingSeed(null);
-                        this.props.history.push('/onboarding/login');
-                    })
-                    .catch((error) => {
-                        if (__DEV__) {
-                            /* eslint-disable no-console */
-                            console.log(error);
-                            /* eslint-enable no-console */
-                        }
-                    });
-
+                this.props.clearWalletData();
+                this.props.setPassword({});
+                this.props.setAccountInfoDuringSetup({
+                    name: '',
+                    meta: {},
+                    completed: false,
+                    usedExistingSeed: false,
+                });
+                Electron.setOnboardingSeed(null);
+                this.props.history.push('/onboarding/login');
                 break;
             default:
                 if (item.indexOf('settings/account') === 0) {
@@ -388,7 +337,6 @@ class App extends React.Component {
                                 />
                                 <Route path="/wallet" component={Wallet} />
                                 <Route path="/onboarding" component={Onboarding} />
-                                <Route path="/exchanges/moonpay" component={MoonPayExchange} />
                                 <Route loop={false} component={this.Init} />
                             </Switch>
                         </div>
@@ -414,7 +362,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    clearMoonPayData,
     clearWalletData,
     setPassword,
     initiateDeepLinkRequest,
@@ -429,9 +376,6 @@ const mapDispatchToProps = {
     shouldUpdate,
     forceUpdate,
     displayTestWarning,
-    setMoonPayAuthenticationStatus,
-    fetchMoonPayTransactionDetails,
-    setViewingMoonpayPurchases,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(App)));
