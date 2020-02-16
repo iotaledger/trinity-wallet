@@ -103,19 +103,28 @@ export class AlertsComponent extends React.PureComponent {
 
         return (
             <div className={css.wrapper}>
-                <div
-                    onClick={() => dismissAlert()}
-                    className={classNames(
-                        alerts.category && alerts.category.length ? css.visible : null,
-                        css[`${alerts.category}`],
+                {shouldUpdate &&
+                    this.renderFullWidthAlert(
+                        t('global:shouldUpdate'),
+                        t('global:shouldUpdateExplanation'),
+                        true,
+                        () => {},
                     )}
-                >
-                    <span>
-                        <Icon icon="cross" size={14} />
-                    </span>
-                    {alerts.title && <h2>{alerts.title}</h2>}
-                    {message && <p>{message}</p>}
-                </div>
+                {(!dismissUpdate && shouldUpdate) || (
+                    <div
+                        onClick={() => dismissAlert()}
+                        className={classNames(
+                            alerts.category && alerts.category.length ? css.visible : null,
+                            css[`${alerts.category}`],
+                        )}
+                    >
+                        <span>
+                            <Icon icon="cross" size={14} />
+                        </span>
+                        {alerts.title && <h2>{alerts.title}</h2>}
+                        {message && <p>{message}</p>}
+                    </div>
+                )}
             </div>
         );
     }
