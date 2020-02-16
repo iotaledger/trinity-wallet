@@ -10,7 +10,6 @@ import { withTranslation } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 import { ALIAS_MAIN } from 'libs/constants';
-import { fetchVersions } from 'libs/utils';
 
 import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
 
@@ -130,7 +129,7 @@ class App extends React.Component {
 
         this.checkOldData();
         this.checkVaultAvailability();
-        this.versionCheck();
+        this.displayEndOfLifeAlert();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -176,6 +175,11 @@ class App extends React.Component {
         Electron.removeEvent('menu', this.onMenuToggle);
         Electron.removeEvent('url-params', this.onSetDeepUrl);
         Electron.removeEvent('account.switch', this.onAccountSwitch);
+    }
+
+    // Windows 7 is deprecated (see: https://support.microsoft.com/en-us/help/4057281/windows-7-support-ended-on-january-14-2020)
+    displayEndOfLifeAlert() {
+        this.props.shouldUpdate();
     }
 
     /**
@@ -232,18 +236,6 @@ class App extends React.Component {
             this.setState({
                 fatalError: err instanceof Error && typeof err.message === 'string' ? err.message : err.toString(),
             });
-        }
-    }
-
-    async versionCheck() {
-        const data = await fetchVersions();
-        const versionId = Electron.getVersion();
-        if (versionId.includes('RC')) {
-            this.props.displayTestWarning();
-        } else if (data.desktopBlacklist && data.desktopBlacklist.includes(versionId)) {
-            this.props.forceUpdate();
-        } else if (data.latestDesktop && versionId !== data.latestDesktop) {
-            this.props.shouldUpdate();
         }
     }
 
