@@ -72,12 +72,12 @@ export class AlertsComponent extends React.PureComponent {
         });
     }
 
-    renderFullWidthAlert(title, explanation, dismissable, onClick) {
+    renderFullWidthAlert(title, explanation, dismissable) {
         const os = Electron.getOS();
 
         return (
             <section className={classNames(css.update, os === 'win32' ? css.win : null)}>
-                <strong onClick={onClick}>{title}</strong> {explanation}
+                {explanation}
                 {dismissable && (
                     <a onClick={() => this.setState({ dismissUpdate: true })}>
                         <Icon icon="cross" size={16} />
