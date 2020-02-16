@@ -162,6 +162,8 @@ class CustomTextInput extends Component {
         loading: PropTypes.bool,
         /** Determines whether to disable the text input */
         disabled: PropTypes.bool,
+        /** Text color to use for the placeholder value **/
+        placeholderTextColor: PropTypes.string,
     };
 
     static defaultProps = {
@@ -224,10 +226,11 @@ class CustomTextInput extends Component {
     onChangeText(value) {
         const { isPasswordInput, isSeedInput, onValidTextChange } = this.props;
         if (isSeedInput) {
-            if (value && !value.match(VALID_SEED_REGEX)) {
+            const valueCapitalized = value.toUpperCase();
+            if (valueCapitalized && !valueCapitalized.match(VALID_SEED_REGEX)) {
                 return;
             }
-            return onValidTextChange(trytesToTrits(value));
+            return onValidTextChange(trytesToTrits(valueCapitalized));
         } else if (isPasswordInput) {
             return onValidTextChange(stringToUInt8(value));
         }
@@ -531,6 +534,7 @@ class CustomTextInput extends Component {
             value,
             loading,
             disabled,
+            placeholderTextColor,
             ...restProps
         } = this.props;
         const { isFocused, isSecretMasked } = this.state;
@@ -577,6 +581,7 @@ class CustomTextInput extends Component {
                         value={this.getValue(value)}
                         editable={!disabled}
                         selectTextOnFocus={!disabled}
+                        placeholderTextColor={placeholderTextColor || theme.input.hover}
                         {...restProps}
                     />
                     {!loading && widgets.length > 0 && this.renderRightHandWidget()}

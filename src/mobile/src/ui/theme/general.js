@@ -28,19 +28,6 @@ const screens = [
     'forceChangePassword',
     'seedVaultBackup',
     'biometricAuthentication',
-    'landing',
-    'addAmount',
-    'addPaymentMethod',
-    'identityConfirmationWarning',
-    'purchaseComplete',
-    'purchaseLimitWarning',
-    'reviewPurchase',
-    'selectAccount',
-    'selectPaymentCard',
-    'setupEmail',
-    'userAdvancedInfo',
-    'userBasicInfo',
-    'verifyEmail',
 ];
 
 export const Styling = {

@@ -24,7 +24,7 @@ import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
 import orderBy from 'lodash/orderBy';
 import xor from 'lodash/xor';
-import { DEFAULT_TAG, DEFAULT_MIN_WEIGHT_MAGNITUDE, BUNDLE_OUTPUTS_THRESHOLD } from '../../config';
+import { DEFAULT_TAG, DEFAULT_MIN_WEIGHT_MAGNITUDE, BUNDLE_OUTPUTS_THRESHOLD, __DEV__ } from '../../config';
 import { iota } from './index';
 import { accumulateBalance } from './addresses';
 import {
@@ -120,18 +120,29 @@ export const findPromotableTail = (settings) => (tails, idx) => {
     }
 
     const thisTail = tailsAboveMaxDepth[idx];
+    const _isAboveMaxDepth = isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'));
 
-    return isPromotable(settings)(get(thisTail, 'hash'))
-        .then((state) => {
-            // (Temporarily) Allow transaction to promote even if consistency check fails
-            if (state === true || isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
-                return thisTail;
-            }
+    // If tail is above max depth, skip checkConsistency call and use this tail as a reference for promotion
+    return _isAboveMaxDepth
+        ? Promise.resolve(thisTail)
+        : isPromotable(settings)(get(thisTail, 'hash'))
+              .then((state) => {
+                  if (state === true) {
+                      return thisTail;
+                  }
 
-            idx += 1;
-            return findPromotableTail(settings)(tailsAboveMaxDepth, idx);
-        })
-        .catch(() => false);
+                  idx += 1;
+                  return findPromotableTail(settings)(tailsAboveMaxDepth, idx);
+              })
+              .catch((error) => {
+                  if (__DEV__) {
+                      /* eslint-disable no-console */
+                      console.log(error);
+                      /* eslint-enable no-console */
+                  }
+
+                  return false;
+              });
 };
 
 /**
@@ -519,7 +530,7 @@ export const syncTransactions = (settings) => (diff, existingTransactions) => {
  *  @returns {array}
  **/
 export const getTransactionsDiff = (existingHashes, newHashes) => {
-    return xor(existingHashes, newHashes);
+    return filter(xor(existingHashes, newHashes), (hash) => !includes(existingHashes, hash));
 };
 
 /**

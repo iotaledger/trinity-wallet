@@ -34,8 +34,6 @@ export class ChartComponent extends PureComponent {
             }),
         }).isRequired,
         /** @ignore */
-        isAuthenticatedForMoonPay: PropTypes.bool.isRequired,
-        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
@@ -74,8 +72,6 @@ export class ChartComponent extends PureComponent {
 
     render() {
         const {
-            isAuthenticatedForMoonPay,
-            history,
             priceData,
             chartData,
             theme,
@@ -127,19 +123,6 @@ export class ChartComponent extends PureComponent {
                     <nav>
                         <Button variant="secondary" className="outline" onClick={() => setCurrency()}>
                             {priceData.currency}
-                        </Button>
-                        <Button
-                            variant="secondary"
-                            className="outline"
-                            onClick={() =>
-                                history.push(
-                                    isAuthenticatedForMoonPay
-                                        ? '/exchanges/moonpay/select-account'
-                                        : '/exchanges/moonpay',
-                                )
-                            }
-                        >
-                            {t('moonpay:buyIOTA')}
                         </Button>
                         <Button variant="secondary" className="outline" onClick={() => setTimeframe()}>
                             {chartData.timeframe.replace('1m', '28d')}

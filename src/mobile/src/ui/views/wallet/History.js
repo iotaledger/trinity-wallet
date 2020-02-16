@@ -3,15 +3,7 @@ import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-    Linking,
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    RefreshControl,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -23,26 +15,20 @@ import {
     getSelectedAccountMeta,
     getAddressesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
-import { MOONPAY_TRANSACTION_STATUSES } from 'shared-modules/exchanges/MoonPay';
-import { updateTransactionDetails as updateMoonPayTransactionDetails } from 'shared-modules/actions/exchanges/MoonPay';
-import { getAllTransactions } from 'shared-modules/selectors/exchanges/MoonPay';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import SeedStore from 'libs/SeedStore';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'shared-modules/libs/utils';
-import { toggleModalActivity, updateModalProps, setViewingMoonpayPurchases } from 'shared-modules/actions/ui';
+import { toggleModalActivity, updateModalProps } from 'shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import WithManualRefresh from 'ui/components/ManualRefresh';
 import TransactionRow from 'ui/components/TransactionRow';
-import MoonPayPurchaseRow from 'ui/components/exchanges/MoonPay/PurchaseRow';
-import RequireLoginView from 'ui/components/exchanges/MoonPay/RequireLoginView';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { Styling } from 'ui/theme/general';
-import navigator from 'libs/navigation';
 
 const styles = StyleSheet.create({
     container: {
@@ -145,8 +131,6 @@ class History extends Component {
         currentlyPromotingBundleHash: PropTypes.string.isRequired,
         /** @ignore */
         isRefreshing: PropTypes.bool.isRequired,
-        /** @ignore */
-        isAuthenticatedForMoonPay: PropTypes.bool.isRequired,
         /** Fetches latest account info on swipe down */
         onRefresh: PropTypes.func.isRequired,
         /** Addresses for selected account */
@@ -165,14 +149,6 @@ class History extends Component {
         modalContent: PropTypes.string,
         /** @ignore */
         password: PropTypes.object.isRequired,
-        /** @ignore */
-        moonpayPurchases: PropTypes.array.isRequired,
-        /** @ignore */
-        isViewingMoonpayPurchases: PropTypes.bool.isRequired,
-        /** @ignore */
-        setViewingMoonpayPurchases: PropTypes.func.isRequired,
-        /** @ignore */
-        updateMoonPayTransactionDetails: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -347,141 +323,6 @@ class History extends Component {
         return orderBy(formattedTransfers, 'time', ['desc']);
     }
 
-    /**
-     * Formats MoonPay purchase data
-     *
-     * @method prepMoonPayPurchases
-     *
-     * @return {array} Formatted MoonPay purchase data
-     */
-    prepMoonPayPurchases() {
-        const {
-            moonpayPurchases,
-            theme: { primary, body, dark, negative },
-            t,
-        } = this.props;
-
-        const formattedTransfers = map(moonpayPurchases, (purchase) => {
-            const {
-                currencyCode,
-                status,
-                walletAddress,
-                createdAt,
-                feeAmount,
-                failureReason,
-                baseCurrencyAmount,
-                quoteCurrencyAmount,
-                cryptoTransactionId,
-                redirectUrl,
-            } = purchase;
-
-            const amount = quoteCurrencyAmount * 1000000 || 0;
-
-            return {
-                time: createdAt,
-                address: walletAddress,
-                statusText: t(`moonpay:${status}`),
-                status,
-                fee: feeAmount,
-                currencyCode,
-                t,
-                value: round(formatValue(amount), 2),
-                fullValue: formatValue(amount),
-                fiatValue: baseCurrencyAmount,
-                failureReason,
-                unit: formatUnit(amount),
-                onPress: (props) => {
-                    this.props.toggleModalActivity(
-                        'moonpayPurchaseDetails',
-                        merge({}, props, {
-                            shouldDisplayAuthorizationOption:
-                                status === MOONPAY_TRANSACTION_STATUSES.waitingAuthorization,
-                            authorize: () => {
-                                this.props.updateMoonPayTransactionDetails(merge({}, purchase, { active: true }));
-                                Linking.openURL(redirectUrl);
-                            },
-                            hideModal: () => this.props.toggleModalActivity(),
-                            generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
-                            bundle: cryptoTransactionId,
-                        }),
-                    );
-                },
-                style: {
-                    backgroundColor: body.bg,
-                    defaultTextColor: { color: body.color },
-                    titleColor: body.color,
-                    containerBackgroundColor: { backgroundColor: dark.color },
-                    rowTextColor: { color: dark.body },
-                    primaryColor: primary.color,
-                    failedColor: negative.color,
-                },
-            };
-        });
-
-        return orderBy(formattedTransfers, 'time', ['asc']);
-    }
-
-    /**
-     * Renders MoonPay purchase history
-     *
-     * @method renderMoonPayPurchases
-     *
-     * @returns {object}
-     */
-    renderMoonPayPurchases() {
-        const {
-            isAuthenticatedForMoonPay,
-            theme: { primary, body },
-            t,
-            isRefreshing,
-        } = this.props;
-        if (isAuthenticatedForMoonPay) {
-            const purchaseHistory = this.prepMoonPayPurchases();
-            const noPurchases = purchaseHistory.length === 0;
-
-            return (
-                <OptimizedFlatList
-                    contentContainerStyle={noPurchases ? styles.flatList : null}
-                    data={purchaseHistory}
-                    initialNumToRender={8}
-                    removeClippedSubviews
-                    keyExtractor={(_, index) => index.toString()}
-                    renderItem={({ item }) => <MoonPayPurchaseRow {...item} />}
-                    scrollEnabled={purchaseHistory.length > 0}
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={isRefreshing && !noPurchases}
-                            onRefresh={this.props.onRefresh}
-                            tintColor={primary.color}
-                        />
-                    }
-                    ListEmptyComponent={
-                        <View style={styles.noTransactionsContainer}>
-                            <InfoBox>
-                                <Text style={[styles.infoText, { color: body.color }]}>
-                                    {t('moonpay:emptyHistory')}
-                                </Text>
-                                <CtaButton
-                                    ctaColor={primary.color}
-                                    ctaBorderColor={primary.color}
-                                    secondaryCtaColor={primary.body}
-                                    text={t('moonpay:buyIOTA')}
-                                    onPress={() => {
-                                        navigator.push('selectAccount');
-                                    }}
-                                    ctaWidth={width / 2}
-                                    ctaHeight={height / 12}
-                                />
-                            </InfoBox>
-                        </View>
-                    }
-                />
-            );
-        }
-
-        return <RequireLoginView />;
-    }
-
     renderIOTATransactions() {
         const {
             theme: { primary, body },
@@ -529,42 +370,11 @@ class History extends Component {
     }
 
     render() {
-        const {
-            t,
-            theme: { dark, body },
-            setViewingMoonpayPurchases,
-            isViewingMoonpayPurchases,
-        } = this.props;
-
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
-                    <View style={styles.headerButtonsContainer}>
-                        <TouchableOpacity onPress={() => setViewingMoonpayPurchases(false)}>
-                            <View
-                                style={[
-                                    styles.leftHeaderButton,
-                                    { backgroundColor: isViewingMoonpayPurchases ? dark.color : body.bg },
-                                ]}
-                            >
-                                <Text style={[styles.buttonText, { color: body.color }]}>{t('transactions')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => setViewingMoonpayPurchases(true)}>
-                            <View
-                                style={[
-                                    styles.rightHeaderButton,
-                                    { backgroundColor: isViewingMoonpayPurchases ? body.bg : dark.color },
-                                ]}
-                            >
-                                <Text style={[styles.buttonText, { color: dark.body }]}>{t('purchases')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
                     <View style={styles.listContainer}>
-                        <View style={styles.list}>
-                            {isViewingMoonpayPurchases ? this.renderMoonPayPurchases() : this.renderIOTATransactions()}
-                        </View>
+                        <View style={styles.list}>{this.renderIOTATransactions()}</View>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -591,9 +401,6 @@ const mapStateToProps = (state) => ({
     isModalActive: state.ui.isModalActive,
     modalContent: state.ui.modalContent,
     password: state.wallet.password,
-    moonpayPurchases: getAllTransactions(state),
-    isViewingMoonpayPurchases: state.ui.isViewingMoonpayPurchases,
-    isAuthenticatedForMoonPay: state.exchanges.moonpay.isAuthenticated,
 });
 
 const mapDispatchToProps = {
@@ -602,8 +409,6 @@ const mapDispatchToProps = {
     toggleModalActivity,
     retryFailedTransaction,
     updateModalProps,
-    setViewingMoonpayPurchases,
-    updateMoonPayTransactionDetails,
 };
 
 export default WithManualRefresh()(

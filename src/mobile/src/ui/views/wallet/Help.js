@@ -79,11 +79,6 @@ class Help extends PureComponent {
                                 {t('help:commonIssues')}
                             </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => Linking.openURL('https://help.moonpay.io/')}>
-                            <Text style={[styles.titleText, textColor, { paddingTop: height / 25 }]}>
-                                {t('help:buyingIOTA')}
-                            </Text>
-                        </TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>

@@ -1,5 +1,4 @@
 /* global Electron */
-import isEmpty from 'lodash/isEmpty';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -14,11 +13,7 @@ import {
     generateAddressesAndGetBalance,
 } from 'actions/wallet';
 
-import {
-    getAddressesForSelectedAccount,
-    getFilteredSpentAddressDataForSelectedAccount,
-    getSelectedAccountType,
-} from 'selectors/accounts';
+import { getAddressesForSelectedAccount } from 'selectors/accounts';
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
@@ -45,8 +40,6 @@ class Tools extends PureComponent {
         account: PropTypes.object.isRequired,
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
-        /** Spent address data with balance for selected account */
-        spentAddressDataWithBalance: PropTypes.array.isRequired,
         /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -71,8 +64,6 @@ class Tools extends PureComponent {
         t: PropTypes.func.isRequired,
         /** @ignore */
         themeName: PropTypes.string.isRequired,
-        /** @ignore */
-        accountType: PropTypes.string.isRequired,
     };
 
     static renderProgressChildren(activeStepIndex, sizeOfActiveSteps, t) {
@@ -165,19 +156,8 @@ class Tools extends PureComponent {
     };
 
     render() {
-        const {
-            ui,
-            wallet,
-            t,
-            activeStepIndex,
-            activeSteps,
-            themeName,
-            spentAddressDataWithBalance,
-            accountType,
-        } = this.props;
+        const { ui, wallet, t, activeStepIndex, activeSteps, themeName } = this.props;
         const sizeOfActiveSteps = size(activeSteps);
-
-        const hasSpentAddressData = !isEmpty(spentAddressDataWithBalance);
 
         if ((ui.isTransitioning || ui.isAttachingToTangle) && !wallet.balanceCheckFlag) {
             return (
@@ -259,21 +239,6 @@ class Tools extends PureComponent {
                         >
                             {t('manualSync:syncAccount')}
                         </Button>
-
-                        {hasSpentAddressData && accountType === 'keychain' && (
-                            <div>
-                                <hr />
-
-                                <h3>{t('sweeps:recoverLockedFunds')}</h3>
-                                <p>
-                                    {t('sweeps:lockedFundsDetected')} <br />
-                                    {t('sweeps:pressButtonBelow')}
-                                </p>
-                                <Button onClick={() => this.props.history.push('/sweeps')} className="small">
-                                    {t('sweeps:recover')}
-                                </Button>
-                            </div>
-                        )}
                     </article>
                 </Scrollbar>
             </div>
@@ -289,8 +254,6 @@ const mapStateToProps = (state) => ({
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
     themeName: state.settings.themeName,
-    spentAddressDataWithBalance: getFilteredSpentAddressDataForSelectedAccount(state),
-    accountType: getSelectedAccountType(state),
 });
 
 const mapDispatchToProps = {

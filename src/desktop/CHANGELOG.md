@@ -1,6 +1,9 @@
-### 1.3.0
+### 1.2.2
 
-- New: Spent address recovery tool
+- Fix: Ensure full bundle is broadcast during promotion
+- Fix: Various MoonPay fixes
+- Fix: Don't fail silently when drag-dropping an incorrect seed
+- Update: Add Ledger icon to differentiate standard and ledger accounts
 
 ### 1.2.1
 

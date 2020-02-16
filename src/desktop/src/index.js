@@ -17,6 +17,7 @@ import getEncryptionKey from 'libs/realm';
 import { changeIotaNode, quorum } from 'libs/iota';
 import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
 import { updateSchema } from 'schemas';
+import { __DEV__ } from 'config';
 
 import Index from 'ui/Index';
 import Tray from 'ui/Tray';
@@ -35,11 +36,6 @@ const init = () => {
     const modalEl = document.createElement('div');
     modalEl.id = 'modal';
     document.body.appendChild(modalEl);
-
-    const script = document.createElement('script');
-    script.src = 'https://cdn.moonpay.io/moonpay-sdk.js';
-
-    document.write(script.outerHTML);
 
     if (typeof Electron === 'undefined') {
         return render(<FatalError error="Failed to load Electron preload script" />, rootEl);
@@ -140,4 +136,9 @@ const init = () => {
     }
 };
 
-init();
+// Redirect to index view
+if (__DEV__ && window.location.pathname !== '/') {
+    window.location = '/';
+} else {
+    init();
+}

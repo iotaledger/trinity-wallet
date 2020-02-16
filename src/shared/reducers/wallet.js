@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import union from 'lodash/union';
-import { AccountsActionTypes, WalletActionTypes, SweepsActionTypes } from '../types';
+import { AccountsActionTypes, WalletActionTypes } from '../types';
 
 const initialState = {
     /**
@@ -221,26 +221,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 displayTestWarning: true,
-            };
-        case SweepsActionTypes.UPDATE_SWEEPS_STATUSES:
-            return {
-                ...state,
-                sweepsStatuses: { ...state.sweepsStatuses, ...action.payload },
-            };
-        case SweepsActionTypes.SET_SWEEPS_STATUSES:
-            return {
-                ...state,
-                sweepsStatuses: action.payload,
-            };
-        case SweepsActionTypes.SET_CURRENT_SWEEP_ITERATION:
-            return {
-                ...state,
-                currentSweepIteration: action.payload,
-            };
-        case SweepsActionTypes.SET_TOTAL_SWEEP_ITERATIONS:
-            return {
-                ...state,
-                totalSweepIterations: action.payload,
             };
         default:
             return state;
