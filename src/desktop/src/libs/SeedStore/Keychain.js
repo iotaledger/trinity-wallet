@@ -1,6 +1,6 @@
 /* global Electron */
 import { sha256, encrypt, decrypt } from 'libs/crypto';
-import { ALIAS_REALM, ALIAS_MAIN, ALIAS_ACCOUNT } from 'libs/constants';
+import { ALIAS_REALM, ALIAS_MAIN, ALIAS_ACCOUNT, ALIAS_LEGACY } from 'libs/constants';
 import { tritsToChars, byteToTrit } from 'libs/iota/converter';
 import { prepareTransfersAsync } from 'libs/iota/extendedApi';
 
@@ -127,7 +127,7 @@ class Keychain extends SeedStoreCore {
         for (let i = 0; i < accounts.length; i++) {
             const account = vault[i];
 
-            if (account.account === `${ALIAS_MAIN}-salt` || account.account === ALIAS_REALM) {
+            if (account.account === `${ALIAS_MAIN}-salt` || account.account === ALIAS_REALM  || account.account === ALIAS_LEGACY) {
                 continue;
             }
 
