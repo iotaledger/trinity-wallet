@@ -59,6 +59,21 @@ const initialState = {
      * Determines whether to display test version warning
      */
     displayTestWarning: false,
+    /**
+     * Stores sweeps statuses { <string>: <number> } e.g., { UUU...UUU: -1 | 0 | 1 }
+     * -1 - Failed
+     * 0 - In progress
+     * 1 - Successful
+     */
+    sweepsStatuses: {},
+    /**
+     * Current iteration for the current sweep
+     */
+    currentSweepIteration: 0,
+    /**
+     * Total number of iterations for the current sweep
+     */
+    totalSweepIterations: 10 ** 7,
 };
 
 export default (state = initialState, action) => {

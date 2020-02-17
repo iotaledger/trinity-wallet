@@ -373,4 +373,4 @@ export const isValidEmail = (email) => {
  */
 export const parseAmount = (amount) => {
     return amount.replace(/,/g, '.');
-}
+};

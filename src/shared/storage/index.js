@@ -18,10 +18,16 @@ import { __MOBILE__, __TEST__ } from '../config';
 import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
 
 // Initialise realm instance
-let realm = {}; // eslint-disable-line import/no-mutable-exports
+/* eslint-disable import/no-mutable-exports */
+let realm = {
+    write: () => {},
+    objectForPrimaryKey: () => {},
+    objects: () => {},
+};
+/* eslint-enable import/no-mutable-exports */
 
 // Initialise Realm constructor as null and reinitialise after importing the correct (platform) Realm dependency
-let Realm = null;
+let Realm = {};
 
 /**
  * Imports Realm dependency
@@ -984,6 +990,8 @@ const initialise = (getEncryptionKeyPromise) => {
         }
         realm = new Realm(assign({}, schemas[schemasSize - 1], { encryptionKey }));
         initialiseSync();
+
+        return encryptionKey;
     });
 };
 

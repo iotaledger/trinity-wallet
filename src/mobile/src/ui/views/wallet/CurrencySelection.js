@@ -142,8 +142,5 @@ const mapDispatchToProps = {
 };
 
 export default withTranslation(['currencySelection', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(CurrencySelection),
+    connect(mapStateToProps, mapDispatchToProps)(CurrencySelection),
 );

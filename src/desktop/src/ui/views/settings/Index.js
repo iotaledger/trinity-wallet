@@ -158,7 +158,9 @@ const Settings = ({ accounts, accountNames, location, match, wallet, history, t 
                     />
                     <Route
                         path="/settings/account/tools/:accountIndex"
-                        render={() => <AccountTools setWalletBusy={setWalletBusy} account={account} />}
+                        render={() => (
+                            <AccountTools history={history} setWalletBusy={setWalletBusy} account={account} />
+                        )}
                     />
                     <Route
                         path="/settings/account/remove/:accountIndex"

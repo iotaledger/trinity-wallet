@@ -50,6 +50,7 @@ let locales = {
 
 let onboardingSeed = null;
 let onboardingGenerated = false;
+let storageLock = false;
 
 // Use a different keychain entry for development versions
 const KEYTAR_SERVICE = remote.app.isPackaged ? `Trinity wallet${__RC__}` : `Trinity wallet${__RC__} (dev)`;
@@ -87,6 +88,15 @@ const Electron = {
      */
     getPowFn: (batchedPow) => {
         return batchedPow ? Entangled.batchedPowFn : Entangled.powFn;
+    },
+
+    /**
+     * Do Proof of Work
+     * @param {boolean} batchedPow - Should return batched PoW function
+     * @returns {function} Proof of Work
+     */
+    getBundleMinerFn: () => {
+        return Entangled.bundleMinerFn;
     },
 
     /**
@@ -180,7 +190,9 @@ const Electron = {
      * @returns {boolean} If item update is succesfull
      */
     setStorage(key, item) {
-        return electronSettings.set(key, item);
+        if (!storageLock) {
+            return electronSettings.set(key, item);
+        }
     },
 
     /**
@@ -197,15 +209,30 @@ const Electron = {
      * @returns {undefined}
      */
     clearStorage() {
+        storageLock = true;
         const keys = electronSettings.getAll();
-        Object.keys(keys).forEach((key) => this.removeStorage(key));
+        Object.keys(keys).forEach((key) => {
+            this.removeStorage(key);
+        });
+        setTimeout(() => {
+            storageLock = false;
+        }, 3000);
     },
 
     /**
-     * Get all local storage items
+     * Remove all deprecated redux-persist local storage items
+     * @returns {undefined}
+     */
+    clearOldStorage() {
+        const keys = electronSettings.getAll();
+        Object.keys(keys).forEach((key) => key.indexOf('reduxPersist') === 0 && this.removeStorage(key));
+    },
+
+    /**
+     * Get all deprecated redux-persist local storage items
      * @returns {object} Storage items
      */
-    getAllStorage() {
+    getOldStorage() {
         const storage = electronSettings.getAll();
         const data = {};
 

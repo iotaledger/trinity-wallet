@@ -16,7 +16,7 @@ const electronStorage = {
     get: () => {
         return new Promise((resolve, reject) => {
             try {
-                const data = Electron.getAllStorage();
+                const data = Electron.getOldStorage();
                 resolve(data);
             } catch (err) {
                 reject(err);
@@ -26,7 +26,7 @@ const electronStorage = {
     clear: () => {
         return new Promise((resolve, reject) => {
             try {
-                Electron.clearStorage();
+                Electron.clearOldStorage();
                 resolve();
             } catch (err) {
                 reject();

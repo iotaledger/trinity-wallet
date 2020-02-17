@@ -96,15 +96,24 @@ export const updateSchema = (input) => {
         }
     });
 
-    const convertToNodeObject = (url) =>
-        typeof url === 'object'
-            ? url
-            : {
-                  url,
-                  pow: false,
-                  token: '',
-                  password: '',
-              };
+    const convertToNodeObject = (node) => {
+        /**
+         * Windows 7 release <= 1.0.0 was converting nodes  that are already converted which resulted in node.url containing the node object itself, this hotfix check reverses that
+         */
+        if (typeof node === 'object') {
+            if (typeof node.url === 'object') {
+                return node.url;
+            }
+            return node;
+        }
+
+        return {
+            url: node,
+            pow: false,
+            token: '',
+            password: '',
+        };
+    };
 
     // Types of state.settings.node, state.settings.nodes and state.settings.customNodes are changed in the latest redux schema
     // Previously, they were stored as strings e.g., state.settings.node: <string>, state.settings.node: <string>[]

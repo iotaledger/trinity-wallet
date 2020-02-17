@@ -190,9 +190,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = { dismissAlert };
 
-export default withTranslation(['global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(StatefulDropdownAlert),
-);
+export default withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(StatefulDropdownAlert));

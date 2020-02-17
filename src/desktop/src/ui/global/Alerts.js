@@ -72,12 +72,12 @@ export class AlertsComponent extends React.PureComponent {
         });
     }
 
-    renderFullWidthAlert(title, explanation, dismissable, onClick) {
+    renderFullWidthAlert(title, explanation, dismissable) {
         const os = Electron.getOS();
 
         return (
             <section className={classNames(css.update, os === 'win32' ? css.win : null)}>
-                <strong onClick={onClick}>{title}</strong> {explanation}
+                {explanation}
                 {dismissable && (
                     <a onClick={() => this.setState({ dismissUpdate: true })}>
                         <Icon icon="cross" size={16} />
@@ -88,8 +88,10 @@ export class AlertsComponent extends React.PureComponent {
     }
 
     render() {
+        /* eslint-disable no-unused-vars */
         const { alerts, dismissAlert, forceUpdate, shouldUpdate, displayTestWarning, t } = this.props;
         const { isUpdating, dismissUpdate } = this.state;
+        /* eslint-enable no-unused-vars */
 
         /**
          * Temporarily override account fetch error by adding Proxy setting suggestion
@@ -101,21 +103,15 @@ export class AlertsComponent extends React.PureComponent {
 
         return (
             <div className={css.wrapper}>
-                {!dismissUpdate &&
-                    displayTestWarning &&
-                    this.renderFullWidthAlert(`${t('rootDetection:warning')}:`, t('global:testVersionWarning'), true)}
                 {!isUpdating &&
-                    !dismissUpdate &&
-                    shouldUpdate &&
-                    this.renderFullWidthAlert(t('global:shouldUpdate'), t('global:shouldUpdateExplanation'), true, () =>
-                        Electron.autoUpdate(),
+                    !dismissUpdate && shouldUpdate &&
+                    this.renderFullWidthAlert(
+                        t('global:shouldUpdate'),
+                        t('global:shouldUpdateExplanation'),
+                        true,
+                        () => {},
                     )}
-                {!isUpdating &&
-                    forceUpdate &&
-                    this.renderFullWidthAlert(t('global:forceUpdate'), t('global:forceUpdateExplanation'), false, () =>
-                        Electron.autoUpdate(),
-                    )}
-                {(!dismissUpdate && (forceUpdate || shouldUpdate)) || (
+                {(!dismissUpdate && shouldUpdate) || (
                     <div
                         onClick={() => dismissAlert()}
                         className={classNames(

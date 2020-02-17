@@ -12,11 +12,11 @@ module.exports = {
         Entangled: './native/libs/Entangled.js',
         preloadTray: './native/preload/tray.js',
     },
-    node: {
-        __dirname: false,
-    },
     optimization: {
         minimize: false,
+    },
+    node: {
+        __dirname: false,
     },
     module: {
         rules: [

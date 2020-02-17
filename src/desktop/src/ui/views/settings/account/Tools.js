@@ -41,6 +41,10 @@ class Tools extends PureComponent {
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
         /** @ignore */
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
+        /** @ignore */
         completeSnapshotTransition: PropTypes.func.isRequired,
         /** @ignore */
         setBalanceCheckFlag: PropTypes.func.isRequired,
@@ -260,7 +264,4 @@ const mapDispatchToProps = {
     setBalanceCheckFlag,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Tools));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Tools));

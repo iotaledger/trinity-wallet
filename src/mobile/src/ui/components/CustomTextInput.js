@@ -226,7 +226,7 @@ class CustomTextInput extends Component {
     onChangeText(value) {
         const { isPasswordInput, isSeedInput, onValidTextChange } = this.props;
         if (isSeedInput) {
-            const valueCapitalized = value.toUpperCase()
+            const valueCapitalized = value.toUpperCase();
             if (valueCapitalized && !valueCapitalized.match(VALID_SEED_REGEX)) {
                 return;
             }

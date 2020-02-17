@@ -102,7 +102,4 @@ const mapDispatchToProps = {
     clearLog,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(ErrorLogComponent));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(ErrorLogComponent));
