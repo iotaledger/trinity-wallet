@@ -1,3 +1,7 @@
+### 1.4.2
+
+- Fix: Incorrect alert on password change
+
 ### 1.4.1
 
 - Fix: Out of sync nodes blocking load
