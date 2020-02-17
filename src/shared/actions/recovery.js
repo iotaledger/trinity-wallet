@@ -26,7 +26,7 @@ import { Account } from '../storage';
  * @param {boolean} [withQuorum]
  *
  */
-export const byteTritCheck = (accounts, genFn, withQuorum = true) => async (dispatch, getState) => {
+export const byteTritCheck = (accounts, genFn, withQuorum = false) => async (dispatch, getState) => {
     const state = getState();
 
     const affectedAccounts = [];
