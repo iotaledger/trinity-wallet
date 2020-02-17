@@ -1,3 +1,7 @@
+### 1.4.1
+
+- Fix: Out of sync nodes blocking load
+
 ### 1.4.0
 
 - Update: Remove exchange support
