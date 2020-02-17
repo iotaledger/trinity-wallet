@@ -97,7 +97,8 @@ export class AlertsComponent extends React.PureComponent {
 
         return (
             <div className={css.wrapper}>
-                {shouldUpdate &&
+                {!isUpdating &&
+                    !dismissUpdate && shouldUpdate &&
                     this.renderFullWidthAlert(
                         t('global:shouldUpdateExplanation'),
                         true,
