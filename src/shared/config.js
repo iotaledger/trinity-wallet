@@ -85,3 +85,5 @@ export const MAXIMUM_QUORUM_SIZE = 7;
 export const MAX_MILESTONE_FALLBEHIND = 2;
 
 export const SEED_VAULT_DEFAULT_TITLE = 'SeedVault';
+
+export const MIGRATION_ALERT_URL = 'https://trinity.iota.org/ismigrationup'
