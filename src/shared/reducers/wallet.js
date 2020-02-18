@@ -59,6 +59,10 @@ const initialState = {
      * Determines whether to display test version warning
      */
     displayTestWarning: false,
+    /**
+     * Determines whether to display seed migration alert
+     */
+    displaySeedMigrationAlert: false,
 };
 
 export default (state = initialState, action) => {
@@ -206,6 +210,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 displayTestWarning: true,
+            };
+        case WalletActionTypes.DISPLAY_SEED_MIGRATION_ALERT:
+            return {
+                ...state,
+                displaySeedMigrationAlert: true,
             };
         default:
             return state;

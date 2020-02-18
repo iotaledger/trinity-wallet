@@ -9,7 +9,7 @@ import keys from 'lodash/keys';
 import filter from 'lodash/filter';
 import transform from 'lodash/transform';
 import validUrl from 'valid-url';
-import { VERSIONS_URL } from '../config';
+import { VERSIONS_URL, MIGRATION_ALERT_URL } from '../config';
 
 export const TWOFA_TOKEN_LENGTH = 6;
 
@@ -374,3 +374,31 @@ export const isValidEmail = (email) => {
 export const parseAmount = (amount) => {
     return amount.replace(/,/g, '.');
 }
+
+/**
+ * Checks if seed migration tool has been released to display an alert
+ *
+ * @method fetchIsSeedMigrationUp
+ * @param {string} [url]
+ *
+ * @returns {Promise<*>}
+ */
+export const fetchIsSeedMigrationUp = (url = MIGRATION_ALERT_URL) => {
+    return fetch(url)
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+
+            throw response;
+        })
+        .then((response) => {
+            if (isObject(response)) {
+                return response;
+            }
+            return {};
+        })
+        .catch(() => Promise.resolve({}));
+};
+
+export const VALID_IOTA_SUBDOMAIN_REGEX = /^https:\/\/([a-z0-9]+[.])iota[.]org$/;

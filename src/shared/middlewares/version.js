@@ -12,14 +12,23 @@ const versionMiddleware = () => (next) => (action) => {
         });
         next(action);
     } else if (action.type === WalletActionTypes.SHOULD_UPDATE) {
-        /*next({
+        next({
             type: AlertsActionTypes.SHOW,
             category: 'error',
             title: i18next.t('global:shouldUpdate'),
             message: i18next.t('global:shouldUpdateExplanation'),
             closeInterval: 3600000,
         });
-        next(action);*/
+        next(action);
+    } else if (action.type === WalletActionTypes.DISPLAY_SEED_MIGRATION_ALERT) {
+        next({
+            type: AlertsActionTypes.SHOW,
+            category: 'error',
+            title: 'CRITICAL SECURITY ALERT',
+            message: `It is strongly recommended that you migrate your seeds. Visit ${action.payload} for more information.`,
+            closeInterval: 3600000,
+        });
+        next(action);
     } else {
         next(action);
     }
