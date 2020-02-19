@@ -28,6 +28,10 @@ export class AlertsComponent extends React.PureComponent {
         displayTestWarning: PropTypes.bool.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        displaySeedMigrationAlert: PropTypes.bool.isRequired,
+        /** @ignore */
+        seedMigrationUrl: PropTypes.string.isRequired,
     };
 
     state = {
@@ -72,7 +76,7 @@ export class AlertsComponent extends React.PureComponent {
         });
     }
 
-    renderFullWidthAlert(title, explanation, dismissable, onClick) {
+    renderFullWidthAlert(title, explanation, dismissable, onClick = () => {}) {
         const os = Electron.getOS();
 
         return (
@@ -88,7 +92,16 @@ export class AlertsComponent extends React.PureComponent {
     }
 
     render() {
-        const { alerts, dismissAlert, forceUpdate, shouldUpdate, displayTestWarning, t } = this.props;
+        const {
+            alerts,
+            dismissAlert,
+            displayTestWarning,
+            forceUpdate,
+            shouldUpdate,
+            displaySeedMigrationAlert,
+            seedMigrationUrl,
+            t,
+        } = this.props;
         const { isUpdating, dismissUpdate } = this.state;
 
         /**
@@ -105,17 +118,26 @@ export class AlertsComponent extends React.PureComponent {
                     displayTestWarning &&
                     this.renderFullWidthAlert(`${t('rootDetection:warning')}:`, t('global:testVersionWarning'), true)}
                 {!isUpdating &&
+                    forceUpdate &&
+                    !displaySeedMigrationAlert &&
+                    this.renderFullWidthAlert(t('global:forceUpdate'), t('global:forceUpdateExplanation'), false, () =>
+                        Electron.autoUpdate(),
+                    )}
+                {!isUpdating &&
                     !dismissUpdate &&
+                    !displaySeedMigrationAlert &&
                     shouldUpdate &&
                     this.renderFullWidthAlert(t('global:shouldUpdate'), t('global:shouldUpdateExplanation'), true, () =>
                         Electron.autoUpdate(),
                     )}
-                {!isUpdating &&
-                    forceUpdate &&
-                    this.renderFullWidthAlert(t('global:forceUpdate'), t('global:forceUpdateExplanation'), false, () =>
-                        Electron.autoUpdate(),
+                {displaySeedMigrationAlert &&
+                    !dismissUpdate &&
+                    this.renderFullWidthAlert(
+                        'CRITICAL SECURITY ALERT',
+                        `It is strongly recommended that you migrate your seeds. Visit ${seedMigrationUrl} for more information.`,
+                        true,
                     )}
-                {(!dismissUpdate && (forceUpdate || shouldUpdate)) || (
+                {(!dismissUpdate && (forceUpdate || shouldUpdate || displaySeedMigrationAlert)) || (
                     <div
                         onClick={() => dismissAlert()}
                         className={classNames(

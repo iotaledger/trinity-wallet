@@ -9,7 +9,7 @@ import { withTranslation } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 import { ALIAS_MAIN } from 'libs/constants';
-import { fetchVersions } from 'libs/utils';
+import { fetchVersions, fetchIsSeedMigrationUp, VALID_IOTA_SUBDOMAIN_REGEX } from 'libs/utils';
 
 import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
 
@@ -23,6 +23,7 @@ import {
     shouldUpdate,
     forceUpdate,
     displayTestWarning,
+    displaySeedMigrationAlert,
 } from 'actions/wallet';
 
 import { updateTheme } from 'actions/settings';
@@ -104,6 +105,10 @@ class App extends React.Component {
         initiateDeepLinkRequest: PropTypes.func.isRequired,
         /** @ignore */
         setDeepLinkContent: PropTypes.func.isRequired,
+        /** @ignore */
+        displaySeedMigrationAlert: PropTypes.func.isRequired,
+        /** @ignore */
+        alerts: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -129,6 +134,7 @@ class App extends React.Component {
 
         this.checkVaultAvailability();
         this.versionCheck();
+        this.seedMigrationCheck();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -246,6 +252,23 @@ class App extends React.Component {
     }
 
     /**
+     * TEMPORARY: Checks if seed migration tool is up
+     * @param {object} store
+     *
+     * @returns {Promise<object>}
+     *
+     */
+    seedMigrationCheck() {
+        return fetchIsSeedMigrationUp()
+            .then(({ up }) => {
+                if (up.match(VALID_IOTA_SUBDOMAIN_REGEX)) {
+                    this.props.displaySeedMigrationAlert(up);
+                }
+            })
+            .catch(() => {});
+    }
+
+    /**
      * Switch to an account based on account name
      * @param {string} accountName - target account name
      */
@@ -359,6 +382,7 @@ const mapStateToProps = (state) => ({
     deepLinking: state.settings.deepLinking,
     isBusy:
         !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
+    alerts: state.alerts,
 });
 
 const mapDispatchToProps = {
@@ -376,6 +400,7 @@ const mapDispatchToProps = {
     shouldUpdate,
     forceUpdate,
     displayTestWarning,
+    displaySeedMigrationAlert,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(App)));
