@@ -143,7 +143,7 @@ describe('libs: iota/extendedApi', () => {
         });
 
         describe(`when latestSolidSubtangleMilestoneIndex is ${MAX_MILESTONE_FALLBEHIND} less than latestMilestoneIndex`, () => {
-            describe.skip('when "timestamp" on trytes is from five minutes ago', () => {
+            describe('when "timestamp" on trytes is from five minutes ago', () => {
                 beforeEach(() => {
                     nock('http://localhost:14265', {
                         reqheaders: {
@@ -236,7 +236,7 @@ describe('libs: iota/extendedApi', () => {
 
         describe(`when latestSolidSubtangleMilestoneIndex is ${MAX_MILESTONE_FALLBEHIND -
             1} less than latestMilestoneIndex`, () => {
-            describe.skip('when "timestamp" on trytes is from five minutes ago', () => {
+            describe('when "timestamp" on trytes is from five minutes ago', () => {
                 beforeEach(() => {
                     nock('http://localhost:14265', {
                         reqheaders: {
@@ -328,7 +328,7 @@ describe('libs: iota/extendedApi', () => {
         });
 
         describe(`when latestMilestone is not ${EMPTY_HASH_TRYTES} and is equal to latestSolidSubtangleMilestone`, () => {
-            describe.skip('when "timestamp" on trytes is from five minutes ago', () => {
+            describe('when "timestamp" on trytes is from five minutes ago', () => {
                 beforeEach(() => {
                     nock('http://localhost:14265', {
                         reqheaders: {

@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-//import head from 'lodash/head';
+import head from 'lodash/head';
 import has from 'lodash/has';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
@@ -8,7 +8,7 @@ import IOTA from 'iota.lib.js';
 import { composeAPI } from '@iota/core';
 import { iota, quorum } from './index';
 import Errors from '../errors';
-//import { isWithinMinutes } from '../date';
+import { isWithinMinutes } from '../date';
 import {
     DEFAULT_BALANCES_THRESHOLD,
     DEFAULT_DEPTH,
@@ -651,7 +651,7 @@ const getTrytesAsync = (settings) => (hashes) =>
  *
  * @returns {Promise}
  */
-const isNodeHealthy = (settings) => {
+const isNodeHealthy = (settings, skipMilestoneCheck = false) => {
     const cached = {
         latestMilestone: EMPTY_HASH_TRYTES,
     };
@@ -680,13 +680,13 @@ const isNodeHealthy = (settings) => {
                 throw new Error(Errors.NODE_NOT_SYNCED);
             },
         )
-        .then(() => {
-            /*
+        .then((trytes) => {
+            if (skipMilestoneCheck) {
+                return true;
+            }
             const { timestamp } = iota.utils.transactionObject(head(trytes), cached.latestMilestone);
 
             return isWithinMinutes(timestamp * 1000, 5 * MAX_MILESTONE_FALLBEHIND);
-            */
-            return true;
         });
 };
 
