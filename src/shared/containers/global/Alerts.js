@@ -17,6 +17,7 @@ export default function withAlertsData(AlertsComponent) {
             shouldUpdate: PropTypes.bool.isRequired,
             displayTestWarning: PropTypes.bool.isRequired,
             displaySeedMigrationAlert: PropTypes.bool.isRequired,
+            seedMigrationUrl: PropTypes.string.isRequired,
         };
 
         render() {
@@ -31,15 +32,13 @@ export default function withAlertsData(AlertsComponent) {
         forceUpdate: state.wallet.forceUpdate,
         shouldUpdate: state.wallet.shouldUpdate,
         displayTestWarning: state.wallet.displayTestWarning,
-        displaySeedMigrationAlert: state.wallet.displaySeedMigrationAlert
+        displaySeedMigrationAlert: state.wallet.displaySeedMigrationAlert,
+        seedMigrationUrl: state.wallet.seedMigrationUrl,
     });
 
     const mapDispatchToProps = {
         dismissAlert,
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(AlertsData);
+    return connect(mapStateToProps, mapDispatchToProps)(AlertsData);
 }
