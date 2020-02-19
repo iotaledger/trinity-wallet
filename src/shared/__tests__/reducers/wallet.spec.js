@@ -19,6 +19,7 @@ describe('Reducer: wallet', () => {
                 forceUpdate: false,
                 shouldUpdate: false,
                 displayTestWarning: false,
+                displaySeedMigrationAlert: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
