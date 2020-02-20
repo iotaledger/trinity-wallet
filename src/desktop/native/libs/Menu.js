@@ -81,9 +81,7 @@ autoUpdater.on('error', () => {
  * On update available event callback
  */
 autoUpdater.on('update-available', () => {
-    const opsys = process.platform;
-
-    if (opsys !== 'win32' && opsys !== 'win64') {
+    if (process.platform !== 'win32') {
         return dialog.showMessageBox(
             {
                 type: 'info',
