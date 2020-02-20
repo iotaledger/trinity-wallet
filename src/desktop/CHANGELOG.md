@@ -1,3 +1,9 @@
+### 1.4.3
+
+- Fix: Interference from legacy keychain entries
+- Fix: Data migration from very old versions
+- Fix: Change node failing due to milestone checks
+
 ### 1.4.2
 
 - Fix: Incorrect alert on password change
