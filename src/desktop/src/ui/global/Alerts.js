@@ -37,7 +37,6 @@ export class AlertsComponent extends React.PureComponent {
     };
 
     componentDidMount() {
-        this.onStatusChange = this.statusChange.bind(this);
         Electron.onEvent('update.progress', this.onStatusChange);
     }
 
