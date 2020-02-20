@@ -51,7 +51,7 @@ let language = {
         noUpdatesAvailable: 'No updates available',
         noUpdatesAvailableExplanation: 'You have the latest version of Trinity!',
         newVersionAvailable: 'New version available',
-        newVersionAvailableExplanationWin: 'A new Trinity version is available. Visit trinity.iota.org to download.',
+        newVersionAvailableExplanationWin: 'A new Trinity version is available. Visit trinity.iota.org to download it.',
         newVersionAvailableExplanation: 'A new Trinity version is available. Do you want to update now?',
         installUpdate: 'Install update and restart',
         installUpdateExplanation: 'Download complete, Trinity will now restart to install the update',
