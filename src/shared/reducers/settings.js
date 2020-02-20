@@ -96,7 +96,7 @@ export const initialState = {
     /**
      * Determines the status of AsyncStorage to realm migration
      */
-    completedMigration: false,
+    completedMigration: true,
     /*
      * Desktop: Use system proxy settings
      */

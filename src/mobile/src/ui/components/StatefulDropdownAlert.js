@@ -99,7 +99,7 @@ class StatefulDropdownAlert extends Component {
             hasConnection,
             shouldUpdate,
             forceUpdate,
-            displaySeedMigrationAlert
+            displaySeedMigrationAlert,
         } = this.props;
 
         if (this.dropdown && (shouldUpdate || forceUpdate || displaySeedMigrationAlert)) {
@@ -194,9 +194,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = { dismissAlert };
 
-export default withTranslation(['global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(StatefulDropdownAlert),
-);
+export default withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(StatefulDropdownAlert));

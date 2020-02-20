@@ -33,7 +33,7 @@ describe('Reducer: settings', () => {
                     confirmations: true,
                     messages: true,
                 },
-                completedMigration: false,
+                completedMigration: true,
                 ignoreProxy: false,
                 deepLinking: false,
                 quorum: {

@@ -25,8 +25,6 @@ export class AlertsComponent extends React.PureComponent {
         /** @ignore */
         shouldUpdate: PropTypes.bool.isRequired,
         /** @ignore */
-        displayTestWarning: PropTypes.bool.isRequired,
-        /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         displaySeedMigrationAlert: PropTypes.bool.isRequired,
@@ -36,7 +34,6 @@ export class AlertsComponent extends React.PureComponent {
 
     state = {
         dismissUpdate: false,
-        isUpdating: false,
     };
 
     componentDidMount() {
@@ -66,22 +63,12 @@ export class AlertsComponent extends React.PureComponent {
         this.props.dismissAlert();
     }
 
-    /**
-     * Update update in progress state
-     * @param {object} progress - Current update progress percent
-     */
-    statusChange(progress) {
-        this.setState({
-            isUpdating: typeof progress === 'object',
-        });
-    }
-
-    renderFullWidthAlert(title, explanation, dismissable, onClick = () => {}) {
+    renderFullWidthAlert(title, explanation, dismissable) {
         const os = Electron.getOS();
 
         return (
             <section className={classNames(css.update, os === 'win32' ? css.win : null)}>
-                <strong onClick={onClick}>{title}</strong> {explanation}
+                {explanation}
                 {dismissable && (
                     <a onClick={() => this.setState({ dismissUpdate: true })}>
                         <Icon icon="cross" size={16} />
@@ -95,14 +82,14 @@ export class AlertsComponent extends React.PureComponent {
         const {
             alerts,
             dismissAlert,
-            displayTestWarning,
             forceUpdate,
             shouldUpdate,
             displaySeedMigrationAlert,
             seedMigrationUrl,
             t,
         } = this.props;
-        const { isUpdating, dismissUpdate } = this.state;
+        const { dismissUpdate } = this.state;
+        /* eslint-enable no-unused-vars */
 
         /**
          * Temporarily override account fetch error by adding Proxy setting suggestion
@@ -114,27 +101,20 @@ export class AlertsComponent extends React.PureComponent {
 
         return (
             <div className={css.wrapper}>
-                {!dismissUpdate &&
-                    displayTestWarning &&
-                    this.renderFullWidthAlert(`${t('rootDetection:warning')}:`, t('global:testVersionWarning'), true)}
-                {!isUpdating &&
-                    forceUpdate &&
+                {forceUpdate &&
                     !displaySeedMigrationAlert &&
-                    this.renderFullWidthAlert(t('global:forceUpdate'), t('global:forceUpdateExplanation'), false, () =>
-                        Electron.autoUpdate(),
-                    )}
-                {!isUpdating &&
-                    !dismissUpdate &&
+                    this.renderFullWidthAlert('Windows 7 is no longer supported. Upgrade to Windows 10 now.', false)}
+                {!dismissUpdate &&
                     !displaySeedMigrationAlert &&
                     shouldUpdate &&
-                    this.renderFullWidthAlert(t('global:shouldUpdate'), t('global:shouldUpdateExplanation'), true, () =>
-                        Electron.autoUpdate(),
+                    this.renderFullWidthAlert(
+                        'Windows 7 is deprecated. This is the last Windows 7 Trinity version. It is strongly recommended to update to Windows 10.',
+                        true,
                     )}
                 {displaySeedMigrationAlert &&
                     !dismissUpdate &&
                     this.renderFullWidthAlert(
-                        'CRITICAL SECURITY ALERT',
-                        `It is strongly recommended that you migrate your seeds. Visit ${seedMigrationUrl} for more information.`,
+                        `'CRITICAL SECURITY ALERT: It is strongly recommended that you migrate your seeds. Visit ${seedMigrationUrl} for more information.`,
                         true,
                     )}
                 {(!dismissUpdate && (forceUpdate || shouldUpdate || displaySeedMigrationAlert)) || (

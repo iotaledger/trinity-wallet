@@ -912,10 +912,12 @@ export const promoteTransactionTilConfirmed = (settings, seedStore) => (
     const tailTransactionsClone = cloneDeep(tailTransactions);
 
     const _promote = (tailTransaction) => {
-        promotionAttempt += 1;
+        if (promotionsAttemptsLimit !== -1) {
+            promotionAttempt += 1;
 
-        if (promotionAttempt === promotionsAttemptsLimit) {
-            return Promise.reject(new Error(Errors.PROMOTIONS_LIMIT_REACHED));
+            if (promotionAttempt === promotionsAttemptsLimit) {
+                return Promise.reject(new Error(Errors.PROMOTIONS_LIMIT_REACHED));
+            }
         }
 
         // Before every promotion, check confirmation state

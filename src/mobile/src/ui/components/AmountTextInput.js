@@ -165,9 +165,4 @@ const mapStateToProps = (state) => ({
     conversionRate: state.settings.conversionRate,
 });
 
-export default withTranslation(['receive', 'global'])(
-    connect(
-        mapStateToProps,
-        null,
-    )(MultiTextInput),
-);
+export default withTranslation(['receive', 'global'])(connect(mapStateToProps, null)(MultiTextInput));

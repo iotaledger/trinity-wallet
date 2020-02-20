@@ -11,13 +11,11 @@ import i18next, { i18nextInit } from 'libs/i18next';
 import store from 'store';
 import Themes from 'themes/themes';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';
-import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
-import mapStorageToState from 'libs/storageToStateMappers';
+import { mapStorageToState } from 'actions/wallet';
 import getEncryptionKey from 'libs/realm';
 import { changeIotaNode, quorum } from 'libs/iota';
 import { bugsnagClient, ErrorBoundary } from 'libs/bugsnag';
-import { initialise as initialiseStorage } from 'storage';
 import { updateSchema } from 'schemas';
 import { __DEV__ } from 'config';
 
@@ -27,6 +25,7 @@ import Tray from 'ui/Tray';
 import Alerts from 'ui/global/Alerts';
 import FatalError from 'ui/global/FatalError';
 
+import { decrypt } from './libs/crypto';
 import './ui/index.scss';
 
 const init = () => {
@@ -45,7 +44,7 @@ const init = () => {
     if (Electron.mode === 'tray') {
         Electron.onEvent('store.update', (payload) => {
             const data = JSON.parse(payload);
-            store.dispatch(mapStorageToStateAction(data));
+            store.dispatch(mapStorageToState(data));
         });
 
         const renderTray = async () => {
@@ -68,53 +67,46 @@ const init = () => {
 
         renderTray();
     } else {
-        initialiseStorage(getEncryptionKey)
-            .then(async () => {
-                const oldPersistedData = Electron.getAllStorage();
-                const hasDataToMigrate = !isEmpty(oldPersistedData);
+        getEncryptionKey()
+            .then(async (key) => {
+                const persistedData = Electron.getStorage('__STATE__');
 
-                if (hasDataToMigrate) {
-                    Object.assign(oldPersistedData.settings, {
-                        completedMigration: false,
-                    });
+                if (!persistedData) {
+                    return null;
                 }
 
-                // Get persisted data from Realm storage if no old persisted data present
-                const data = hasDataToMigrate ? updateSchema(oldPersistedData) : mapStorageToState();
+                const data = await decrypt(persistedData, key);
 
-                // Change provider on global iota instance
-                const node = get(data, 'settings.node');
-                changeIotaNode(assign({}, node, { provider: node.url }));
-
-                // Set quorum size
-                quorum.setSize(get(data, 'settings.quorum.size'));
-
-                // Update store with persisted state
-                store.dispatch(mapStorageToStateAction(data));
-
-                // Assign accountIndex to every account in accountInfo if it is not assigned already
-                store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
-
-                // Proxy state changes to Tray application
-                store.subscribe(() => {
-                    const { settings, accounts, marketData } = store.getState();
-                    Electron.storeUpdate(JSON.stringify({ settings, accounts, marketData }));
-                });
-
-                // Set theme to default if current theme does not exist
-                if (!get(Themes, store.getState().settings.themeName)) {
-                    store.dispatch(updateTheme('Default'));
-                }
-
+                return JSON.parse(data);
+            })
+            .then(async (persistedData) => {
                 // Initialize i18next
                 await i18nextInit();
 
-                // Update language to initial setting
-                i18next.changeLanguage(data.settings.locale);
+                if (!isEmpty(persistedData)) {
+                    const data = updateSchema(persistedData);
 
-                // Start Tray application if enabled in settings
-                const isTrayEnabled = get(data, 'settings.isTrayEnabled');
-                Electron.setTray(isTrayEnabled);
+                    // Change provider on global iota instance
+                    const node = get(data, 'settings.node');
+                    changeIotaNode(assign({}, node, { provider: node.url }));
+
+                    // Set quorum size
+                    quorum.setSize(get(data, 'settings.quorum.size'));
+
+                    // Update store with persisted state
+                    store.dispatch(mapStorageToState(data));
+
+                    // Set theme to default if current theme does not exist
+                    if (!get(Themes, store.getState().settings.themeName)) {
+                        store.dispatch(updateTheme('Default'));
+                    }
+
+                    // Update language to initial setting
+                    i18next.changeLanguage(data.settings.locale);
+
+                    // Assign accountIndex to every account in accountInfo if it is not assigned already
+                    store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
+                }
 
                 render(
                     <ErrorBoundary>

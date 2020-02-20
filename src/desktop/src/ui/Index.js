@@ -1,5 +1,6 @@
 /* global Electron */
 import React from 'react';
+import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
@@ -9,7 +10,7 @@ import { withTranslation } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 import { ALIAS_MAIN } from 'libs/constants';
-import { fetchVersions, fetchIsSeedMigrationUp, VALID_IOTA_SUBDOMAIN_REGEX } from 'libs/utils';
+import { fetchIsSeedMigrationUp, VALID_IOTA_SUBDOMAIN_REGEX } from 'libs/utils';
 
 import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
 
@@ -132,9 +133,10 @@ class App extends React.Component {
         Electron.onEvent('url-params', this.onSetDeepUrl);
         Electron.requestDeepLink();
 
+        this.checkOldData();
         this.checkVaultAvailability();
-        this.versionCheck();
         this.seedMigrationCheck();
+        this.displayEndOfLifeAlert();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -180,6 +182,11 @@ class App extends React.Component {
         Electron.removeEvent('menu', this.onMenuToggle);
         Electron.removeEvent('url-params', this.onSetDeepUrl);
         Electron.removeEvent('account.switch', this.onAccountSwitch);
+    }
+
+    // Windows 7 is deprecated (see: https://support.microsoft.com/en-us/help/4057281/windows-7-support-ended-on-january-14-2020)
+    displayEndOfLifeAlert() {
+        this.props.shouldUpdate();
     }
 
     /**
@@ -239,18 +246,6 @@ class App extends React.Component {
         }
     }
 
-    async versionCheck() {
-        const data = await fetchVersions();
-        const versionId = Electron.getVersion();
-        if (versionId.includes('RC')) {
-            this.props.displayTestWarning();
-        } else if (data.desktopBlacklist && data.desktopBlacklist.includes(versionId)) {
-            this.props.forceUpdate();
-        } else if (data.latestDesktop && versionId !== data.latestDesktop) {
-            this.props.shouldUpdate();
-        }
-    }
-
     /**
      * TEMPORARY: Checks if seed migration tool is up
      * @param {object} store
@@ -277,6 +272,15 @@ class App extends React.Component {
         if (accountIndex > -1 && !this.props.isBusy) {
             this.props.setSeedIndex(accountIndex);
             this.props.history.push('/wallet');
+        }
+    }
+
+    checkOldData() {
+        const oldPersistedData = Electron.getOldStorage();
+        if (!isEmpty(oldPersistedData)) {
+            this.setState({
+                fatalError: 'Found old data',
+            });
         }
     }
 
