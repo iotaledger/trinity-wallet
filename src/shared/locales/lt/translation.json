@@ -781,6 +781,7 @@
         "noUpdatesAvailableExplanation": "Jūs turite naujausią Trinity versiją!",
         "newVersionAvailable": "Galima nauja versija",
         "newVersionAvailableExplanation": "Galima nauja Trinity versija. Ar norite atlikti atnaujinimus?",
+        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "Atnaujinimų įdiegimas ir paleidimas iš naujo",
         "installUpdateExplanation": "Atsisiuntimas baigtas, Trinity persikraus ir įdiegs atnaujinimus.",
         "downloadingUpdate": "Siunčiami atnaujinimai",
