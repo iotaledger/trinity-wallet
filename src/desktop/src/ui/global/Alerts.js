@@ -62,7 +62,7 @@ export class AlertsComponent extends React.PureComponent {
         this.props.dismissAlert();
     }
 
-    renderFullWidthAlert(title, explanation, dismissable) {
+    renderFullWidthAlert(explanation, dismissable) {
         const os = Electron.getOS();
 
         return (
@@ -81,15 +81,14 @@ export class AlertsComponent extends React.PureComponent {
         const {
             alerts,
             dismissAlert,
+            seedMigrationUrl,
             forceUpdate,
             shouldUpdate,
             displaySeedMigrationAlert,
-            seedMigrationUrl,
             t,
         } = this.props;
         const { dismissUpdate } = this.state;
         /* eslint-enable no-unused-vars */
-
         /**
          * Temporarily override account fetch error by adding Proxy setting suggestion
          */
@@ -97,13 +96,12 @@ export class AlertsComponent extends React.PureComponent {
             alerts.message === t('invalidResponseFetchingAccount')
                 ? t('invalidResponseFetchingAccountDesktop')
                 : alerts.message;
-
         return (
             <div className={css.wrapper}>
                 {forceUpdate &&
-                    !displaySeedMigrationAlert &&
                     this.renderFullWidthAlert('Windows 7 is no longer supported. Upgrade to Windows 10 now.', false)}
                 {!dismissUpdate &&
+                    !forceUpdate &&
                     !displaySeedMigrationAlert &&
                     shouldUpdate &&
                     this.renderFullWidthAlert(
@@ -111,9 +109,10 @@ export class AlertsComponent extends React.PureComponent {
                         true,
                     )}
                 {displaySeedMigrationAlert &&
+                    !forceUpdate &&
                     !dismissUpdate &&
                     this.renderFullWidthAlert(
-                        `'CRITICAL SECURITY ALERT: It is strongly recommended that you migrate your seeds. Visit ${seedMigrationUrl} for more information.`,
+                        `CRITICAL SECURITY ALERT: It is strongly recommended that you migrate your seeds. Visit ${seedMigrationUrl} for more information.`,
                         true,
                     )}
                 {(!dismissUpdate && (forceUpdate || shouldUpdate || displaySeedMigrationAlert)) || (

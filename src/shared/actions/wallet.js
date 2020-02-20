@@ -618,9 +618,11 @@ export const resetRoute = (payload) => {
  *
  * @returns {{type: {string} }}
  */
-export const shouldUpdate = () => ({
-    type: WalletActionTypes.SHOULD_UPDATE,
-});
+export const shouldUpdate = () => {
+    return {
+        type: WalletActionTypes.SHOULD_UPDATE,
+    };
+};
 
 /**
  * Dispatch to force user to update
@@ -653,5 +655,5 @@ export const displayTestWarning = () => ({
  */
 export const displaySeedMigrationAlert = (payload) => ({
     type: WalletActionTypes.DISPLAY_SEED_MIGRATION_ALERT,
-    payload
+    payload,
 });
