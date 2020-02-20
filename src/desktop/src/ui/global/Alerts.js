@@ -35,7 +35,6 @@ export class AlertsComponent extends React.PureComponent {
     };
 
     componentDidMount() {
-        this.onStatusChange = this.statusChange.bind(this);
         Electron.onEvent('update.progress', this.onStatusChange);
     }
 
@@ -77,14 +76,7 @@ export class AlertsComponent extends React.PureComponent {
     }
 
     render() {
-        const {
-            alerts,
-            dismissAlert,
-            shouldUpdate,
-            displaySeedMigrationAlert,
-            seedMigrationUrl,
-            t,
-        } = this.props;
+        const { alerts, dismissAlert, shouldUpdate, displaySeedMigrationAlert, seedMigrationUrl, t } = this.props;
         const { dismissUpdate } = this.state;
 
         /**
@@ -97,12 +89,10 @@ export class AlertsComponent extends React.PureComponent {
 
         return (
             <div className={css.wrapper}>
-                {!isUpdating &&
-                    !dismissUpdate && shouldUpdate &&
-                    this.renderFullWidthAlert(
-                        t('global:shouldUpdateExplanation'),
-                        true,
-                    )}
+                {!dismissUpdate &&
+                    !displaySeedMigrationAlert &&
+                    shouldUpdate &&
+                    this.renderFullWidthAlert(t('global:shouldUpdateExplanation'), true)}
                 {displaySeedMigrationAlert &&
                     !dismissUpdate &&
                     this.renderFullWidthAlert(

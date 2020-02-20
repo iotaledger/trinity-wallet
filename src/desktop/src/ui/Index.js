@@ -9,7 +9,7 @@ import { withTranslation } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 import { ALIAS_MAIN } from 'libs/constants';
-import { fetchVersions, fetchIsSeedMigrationUp, VALID_IOTA_SUBDOMAIN_REGEX } from 'libs/utils';
+import { fetchIsSeedMigrationUp, VALID_IOTA_SUBDOMAIN_REGEX } from 'libs/utils';
 
 import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
 
