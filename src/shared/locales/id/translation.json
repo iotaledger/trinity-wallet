@@ -781,6 +781,7 @@
         "noUpdatesAvailableExplanation": "Anda mempunyai versi Trinity terbaru!",
         "newVersionAvailable": "Versi baru tersedia",
         "newVersionAvailableExplanation": "Versi Trinity terbaru tersedia. Anda ingin perbarui sekarang?",
+        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "Instal pembaruan dan ulang kembali",
         "installUpdateExplanation": "Unduh selesai, Trinity akan mengulang kembali untuk menginstal pembaruan.",
         "downloadingUpdate": "Mengunduh pembaruan",
