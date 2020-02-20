@@ -631,6 +631,7 @@ const Electron = {
                 noUpdatesAvailableExplanation: t('updates:noUpdatesAvailableExplanation'),
                 newVersionAvailable: t('updates:newVersionAvailable'),
                 newVersionAvailableExplanation: t('updates:newVersionAvailableExplanation'),
+                newVersionAvailableExplanationWin: t('updates:newVersionAvailableExplanationWin'),
                 installUpdate: t('updates:installUpdate'),
                 installUpdateExplanation: t('updates:installUpdateExplanation'),
             },
