@@ -178,13 +178,6 @@ export const initMenu = (app, getWindowFunc) => {
                         type: 'separator',
                     },
                     {
-                        label: `${language.checkUpdate}...`,
-                        click: () => {
-                            autoUpdater.checkForUpdates();
-                        },
-                        enabled: state.enabled,
-                    },
-                    {
                         label: language.errorLog,
                         click: () => navigate('errorlog'),
                         enabled: state.enabled,
