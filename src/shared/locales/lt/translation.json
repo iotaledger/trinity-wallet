@@ -883,8 +883,8 @@
         "writtenDownInfoExplanation": "Jums reiks indekso numerio norint susigrąžinti savo paskyrą ateityje. Jei pamesite savo indekso numerį, prarasite savo IOTA. Prašome jį įsidėmėti."
     },
     "help": {
-        "docsSite": "Trinity Docs Site",
-        "commonIssues": "Common Wallet Issues",
-        "buyingIOTA": "Problems Buying IOTA"
+        "docsSite": "Trinity Docs tinklalapis",
+        "commonIssues": "Dažnos Piniginės problemos",
+        "buyingIOTA": "Problemos perkant IOTA"
     }
 }
