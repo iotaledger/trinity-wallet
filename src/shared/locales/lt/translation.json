@@ -4,7 +4,7 @@
         "and": "ir",
         "send": "SIŲSTI",
         "cancel": "Atšaukti",
-        "complete": "Complete",
+        "complete": "Baigta",
         "continue?": "Ar tikrai norite tęsti?",
         "noTransactions": "ISTORIJOS NĖRA",
         "refresh": "Atnaujinti",
@@ -179,8 +179,8 @@
         "total": "Iš viso",
         "submit": "Pateikti",
         "tryAgain": "Bandyti dar kartą",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "unknown": "Nežinomas",
+        "goToDashboard": "Eiti į valdymo skydelį"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -383,9 +383,9 @@
         "addressPasteExplanation": "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu.",
         "invalid": "KLAIDA",
         "swipeToSend": "Paslinkite norėdami siųsti",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "Tai yra mokėjimo prašymas",
+        "paymentRequestExpired": "Baigėsi mokėjimo prašymo laikotarpis",
+        "paymentRequestExpiredExplanation": "Šio mokėjimo prašymo laikotarpis baigėsi. Prašykite gavėjo, kad sukurtų naują."
     },
     "setSeedName": {
         "letsAddName": "Sukurkite vardą",
@@ -781,7 +781,7 @@
         "noUpdatesAvailableExplanation": "Jūs turite naujausią Trinity versiją!",
         "newVersionAvailable": "Galima nauja versija",
         "newVersionAvailableExplanation": "Galima nauja Trinity versija. Ar norite atlikti atnaujinimus?",
-        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
+        "newVersionAvailableExplanationWin": "Galima nauja Trinity versija. Atnaujinimus atsisiųskite iš trinity.iota.org.",
         "installUpdate": "Atnaujinimų įdiegimas ir paleidimas iš naujo",
         "installUpdateExplanation": "Atsisiuntimas baigtas, Trinity persikraus ir įdiegs atnaujinimus.",
         "downloadingUpdate": "Siunčiami atnaujinimai",
