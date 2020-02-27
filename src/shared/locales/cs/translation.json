@@ -807,7 +807,7 @@
         "completeSetup": "Dokončit nastavení"
     },
     "proxy": {
-        "proxy": "Pomocí proxy serveru",
+        "proxy": "Použít proxy serveru",
         "proxyExplanation": "Rozpoznat a použít systémové nastavení proxy serveru. Po změně tohoto nastavení musí být peněženka restartována."
     },
     "notifications": {
