@@ -17,7 +17,7 @@ Repository for the IOTA Trinity Mobile Wallet. The application is built on [Reac
 
 ## Development setup
 
-After installing the [shared dependencies](https://github.com/iotaledger/trinity-wallet#instructions), install the mobile dependencies:
+After installing the [shared dependencies](https://github.com/iotaledger/trinity-wallet#installation), install the mobile dependencies:
 ```
 yarn deps:mobile
 ```
