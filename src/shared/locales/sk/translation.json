@@ -781,6 +781,7 @@
         "noUpdatesAvailableExplanation": "Používate aktuálnu verziu Trinity!",
         "newVersionAvailable": "K dispozícií je nová verzia",
         "newVersionAvailableExplanation": "K dispozícií je nová verzia Trinity. Chcete teraz aktualizovať?",
+        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "Nainštalujte aktualizáciu a reštartujte",
         "installUpdateExplanation": "Stahovanie bolo dokončené, Trinity reštartuje a nainštaluje aktualizáciu.",
         "downloadingUpdate": "Sťahuje sa aktualizácia...",

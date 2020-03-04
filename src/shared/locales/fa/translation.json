@@ -781,6 +781,7 @@
         "noUpdatesAvailableExplanation": "شما آخرین نسخه ترینیتی را دارید!",
         "newVersionAvailable": "نسخه جدید موجود است",
         "newVersionAvailableExplanation": "یک نسخه‌ی جدید از Trinity در دسترس است. آیا می‌خواهید الان به‌روز‌رسانی کنید؟",
+        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "نصب به‌روزرسانی و راه‌اندازی مجدد",
         "installUpdateExplanation": "دانلود کامل شد، Trinity الان برای نصب به‌روز‌رسانی مجددا راه‌اندازی خواهد شد.",
         "downloadingUpdate": "درحال دانلود به‌روزرسانی",

@@ -781,6 +781,7 @@
         "noUpdatesAvailableExplanation": "Posiadasz zainstalowaną najnowszą wersję portfela Trinity!",
         "newVersionAvailable": "Nowa wersja dostępna",
         "newVersionAvailableExplanation": "Dostępna jest nowa wersja portfela Trinity. Czy chcesz dokonać aktualizacji?",
+        "newVersionAvailableExplanationWin": "Dostępna jest nowa wersja Trinity. Odwiedź stronę trinity.iota.org, aby ją pobrać.",
         "installUpdate": "Instalacja aktualizacji i restart",
         "installUpdateExplanation": "Pobieranie zakończone. Trinity uruchomi się ponownie i zainstaluje aktualizację.",
         "downloadingUpdate": "Pobieranie aktualizacji",

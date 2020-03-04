@@ -781,6 +781,7 @@
         "noUpdatesAvailableExplanation": "Je hebt de nieuwste versie van Trinity!",
         "newVersionAvailable": "Nieuwe versie beschikbaar",
         "newVersionAvailableExplanation": "Er is een nieuwe versie van Trinity beschikbaar. Wil je nu updaten?",
+        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "Update installeren en opnieuw starten",
         "installUpdateExplanation": "Download compleet. Trinity zal nu herstarten om de update te installeren.",
         "downloadingUpdate": "Update aan het downloaden",
