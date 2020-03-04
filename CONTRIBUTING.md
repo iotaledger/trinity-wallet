@@ -45,7 +45,7 @@ This section guides you through reporting a bug. Following these guidelines help
 
 Please check the following list:
 
-- **Do not open a GitHub issue for [security vulnerabilities](SECURITY.MD)**, instead, please contact us at [security@iota.org](mailto:security@iota.org).
+- **Do not open a GitHub issue for [security vulnerabilities](SECURITY.MD)**, instead, please submit a report to our [Bugcrowd program](https://bugcrowd.com/iota).
 
 - **Ensure the bug was not already reported** by searching on GitHub under [**Issues**](https://github.com/iotaledger/trinity/issues). If the bug has already been reported **and the issue is still open**, add a comment to the existing issue instead of opening a new one.
 
@@ -53,7 +53,7 @@ Please check the following list:
 
 ### Submitting A Bug Report
 
-To report a bug, [open a new issue](https://github.com/iotaledger/trinity/issues/new), and be sure to include as many details as possible, using the template.
+To report a bug, [open a new issue](https://github.com/iotaledger/trinity-wallet/issues/new?labels=T+-+Bug&template=bug_report.md&title=), and be sure to include as many details as possible, using the template.
 
 **Note:** Minor changes such as fixing a typo can but do not need an open issue.
 

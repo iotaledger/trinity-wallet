@@ -35,7 +35,6 @@ This is the **official** IOTA wallet, which allows you to do the following:
 * Generate addresses
 * Read your balance and transaction history
 
-This is beta software, so there may be performance and stability issues.
 Please report any issues in our [issue tracker](https://github.com/iotaledger/trinity/issues/new).
 
 ## Prerequisites
@@ -73,10 +72,10 @@ To compile Trinity, follow the instructions for either [Trinity Mobile](https://
 
 ## Supporting the project
 
-If Trinity has been useful to you and you feel like contributing, consider posting a [bug report](https://github.com/iotaledger/trinity-wallet/issues/new), [feature request](https://github.com/iotaledger/trinity-wallet/issues/new) or a [pull request](https://github.com/iotaledger/trinity-wallet/pulls/).
+If Trinity has been useful to you and you feel like contributing, consider posting a [bug report](https://github.com/iotaledger/trinity-wallet/issues/new?labels=T+-+Bug&template=bug_report.md&title=), [feature request](https://github.com/iotaledger/trinity-wallet/issues/new?labels=&template=feature_request.md&title=) or a [pull request](https://github.com/iotaledger/trinity-wallet/pulls/).
 
 See the [contributing guidelines](CONTRIBUTING.md) for more information.
 
 ## Joining the discussion
 
-If you want to get involved in the community, need help with getting setup, have any issues related with the library or just want to discuss IOTA, Distributed Registry Technology (DRT) and IoT with other people, feel free to join our [Discord](https://discord.iota.org/).
+If you want to get involved in the community, need help with getting setup, have any issues related to Trinity or just want to discuss IOTA, Distributed Ledger Technology (DLT) and IoT with other people, feel free to join our [Discord](https://discord.iota.org/).
