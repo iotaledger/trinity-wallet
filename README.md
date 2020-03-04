@@ -41,12 +41,14 @@ Please report any issues in our [issue tracker](https://github.com/iotaledger/tr
 
 To compile Trinity, you must have the following:
 
-* Node.js 8 or higher. We recommend the [latest LTS](https://nodejs.org/en/download/)
+* [Node.js 10 or 11](https://nodejs.org/dist/)
 * [Yarn](https://yarnpkg.com/) package manager.
 
 ## Installation
 
-To install the dependencies needed to compile both Trinity Mobile and Trinity Desktop, do the following:
+The latest downloadable versions of Trinity are available on the [Trinity website](https://trinity.iota.org/).
+
+If you want to run a local version of Trinity, compile the code by doing the following:
 
 1. Clone this repository
 
@@ -66,9 +68,16 @@ To install the dependencies needed to compile both Trinity Mobile and Trinity De
     yarn && yarn deps:shared
     ```
 
+4. Follow the instructions to compile either [Trinity Mobile](https://github.com/iotaledger/trinity-wallet/blob/develop/src/mobile/README.md) or [Trinity Desktop](https://github.com/iotaledger/trinity-wallet/blob/develop/src/desktop/README.md).
+
 ## Getting started
 
-To compile Trinity, follow the instructions for either [Trinity Mobile](https://github.com/iotaledger/trinity-wallet/blob/develop/src/mobile/README.md) or [Trinity Desktop](https://github.com/iotaledger/trinity-wallet/blob/develop/src/desktop/README.md).
+If you want help getting started as a user of the wallet, see the [documentation portal](https://docs.iota.org/docs/wallets/0.1/trinity/introduction/overview).
+
+If you are contributing to the Trinity codebase, see the following resources:
+
+- [How to develop new features in Trinity](https://docs.iota.org/docs/wallets/0.1/trinity/how-to-guides/develop-features-on-trinity)
+- [Contributing guidelines](CONTRIBUTING.md)
 
 ## Supporting the project
 
