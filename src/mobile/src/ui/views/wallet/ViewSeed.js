@@ -234,7 +234,7 @@ class ViewSeed extends Component {
         this.props.toggleModalActivity('checksum', {
             theme,
             closeModal: () => this.props.toggleModalActivity(),
-            displayTopBar: false,
+            displayTopBar: true,
         });
     }
 
