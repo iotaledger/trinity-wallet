@@ -4,14 +4,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAccountInfo } from 'shared-modules/actions/accounts';
 import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
-import { fetchMeta as fetchMoonPayMeta } from 'shared-modules/actions/polling';
 import { withTranslation } from 'react-i18next';
 import SeedStore from 'libs/SeedStore';
 
 const mapDispatchToProps = {
     generateAlert,
     getAccountInfo,
-    fetchMoonPayMeta,
 };
 
 const mapStateToProps = (state) => ({
@@ -24,7 +22,6 @@ const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),
     seedIndex: state.wallet.seedIndex,
-    isFetchingMoonPayMeta: state.polling.isFetchingMoonPayMeta,
 });
 
 export default () => (C) => {
@@ -45,9 +42,6 @@ export default () => (C) => {
             if (this.props.isPollingAccountInfo && !newProps.isPollingAccountInfo) {
                 this.setState({ isRefreshing: false });
             }
-            if (this.props.isFetchingMoonPayMeta && !newProps.isFetchingMoonPayMeta) {
-                this.setState({ isRefreshing: false });
-            }
             if (seedIndex !== newProps.seedIndex) {
                 this.setState({ isRefreshing: false });
             }
@@ -56,7 +50,7 @@ export default () => (C) => {
         /**
          * Triggers a refresh
          */
-        onRefresh(purchases = false) {
+        onRefresh() {
             const { isRefreshing, isPollingAccountInfo } = this.state;
 
             if (isRefreshing) {
@@ -69,9 +63,7 @@ export default () => (C) => {
 
             if (!this.shouldPreventManualRefresh()) {
                 this.setState({ isRefreshing: true });
-                if (purchases) {
-                    return this.props.fetchMoonPayMeta();
-                }
+
                 this.updateAccountData();
             }
         }
@@ -142,10 +134,6 @@ export default () => (C) => {
         isTransitioning: PropTypes.bool.isRequired,
         /** @ignore */
         seedIndex: PropTypes.number.isRequired,
-        /** @ignore */
-        isFetchingMoonPayMeta: PropTypes.bool.isRequired,
-        /** @ignore */
-        fetchMoonPayMeta: PropTypes.func.isRequired,
     };
 
     return withTranslation(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithManualRefresh));

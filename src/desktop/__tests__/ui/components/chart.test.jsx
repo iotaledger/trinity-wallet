@@ -21,7 +21,6 @@ const props = {
         timeframe: '24h',
         yAxis: { ticks: [0] },
     },
-    isAuthenticatedForMoonPay: false,
     history: {
         push: jest.fn(),
     },

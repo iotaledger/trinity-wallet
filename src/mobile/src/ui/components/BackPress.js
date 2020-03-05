@@ -70,6 +70,8 @@ export default function withBackPress(C) {
                     }
                     this.withBackPressCloseApp();
                     break;
+                case 'inactivityLogout':
+                    break;
                 default:
                     this.withBackPressPopRoute();
                     break;
@@ -185,8 +187,5 @@ export default function withBackPress(C) {
         }
     }
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(EnhancedComponent);
+    return connect(mapStateToProps, mapDispatchToProps)(EnhancedComponent);
 }

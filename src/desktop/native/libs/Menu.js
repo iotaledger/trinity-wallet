@@ -51,6 +51,7 @@ let language = {
         noUpdatesAvailable: 'No updates available',
         noUpdatesAvailableExplanation: 'You have the latest version of Trinity!',
         newVersionAvailable: 'New version available',
+        newVersionAvailableExplanationWin: 'A new Trinity version is available. Visit trinity.iota.org to download it.',
         newVersionAvailableExplanation: 'A new Trinity version is available. Do you want to update now?',
         installUpdate: 'Install update and restart',
         installUpdateExplanation: 'Download complete, Trinity will now restart to install the update',
@@ -80,19 +81,28 @@ autoUpdater.on('error', () => {
  * On update available event callback
  */
 autoUpdater.on('update-available', () => {
-    dialog.showMessageBox(
-        {
-            type: 'info',
-            title: language.updates.newVersionAvailable,
-            message: language.updates.newVersionAvailableExplanation,
-            buttons: [language.yes, language.no],
-        },
-        (buttonIndex) => {
-            if (buttonIndex === 0) {
-                autoUpdater.downloadUpdate();
-            }
-        },
-    );
+    if (process.platform !== 'win32') {
+        return dialog.showMessageBox(
+            {
+                type: 'info',
+                title: language.updates.newVersionAvailable,
+                message: language.updates.newVersionAvailableExplanation,
+                buttons: [language.yes, language.no],
+            },
+            (buttonIndex) => {
+                if (buttonIndex === 0) {
+                    autoUpdater.downloadUpdate();
+                }
+            },
+        );
+    }
+
+    dialog.showMessageBox({
+        type: 'info',
+        title: language.updates.newVersionAvailable,
+        message: language.updates.newVersionAvailableExplanationWin,
+        buttons: ['OK'],
+    });
 });
 
 /**

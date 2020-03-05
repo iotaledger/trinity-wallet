@@ -87,6 +87,11 @@ export default class NodesManager {
 
                         attempt += 1;
 
+                        // If not enough synced nodes, break retry loop.
+                        if (err.message === Errors.NOT_ENOUGH_SYNCED_NODES) {
+                            attempt = retryAttempts;
+                        }
+
                         if (attempt < retryAttempts) {
                             return execute(...args);
                         }

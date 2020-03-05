@@ -6,7 +6,6 @@ import isEmpty from 'lodash/isEmpty';
 import some from 'lodash/some';
 import reduce from 'lodash/reduce';
 import unionBy from 'lodash/unionBy';
-import assign from 'lodash/assign';
 import { getMarketData } from './marketData';
 import { quorum } from '../libs/iota';
 import { setNodeList, setAutoPromotion } from './settings';
@@ -17,14 +16,12 @@ import { selectedAccountStateFactory } from '../selectors/accounts';
 import { nodesConfigurationFactory, getCustomNodesFromState, getNodesFromState } from '../selectors/global';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import { setMeta as setMoonPayMeta } from './exchanges/MoonPay';
-import { __DEV__, DEFAULT_NODES } from '../config';
+import { DEFAULT_NODES } from '../config';
 import Errors from '../libs/errors';
 import i18next from '../libs/i18next';
 import { Account } from '../storage';
 import { PollingActionTypes } from '../types';
 import NodesManager from '../libs/iota/NodesManager';
-import api, { IOTA_CURRENCY_CODE } from '../exchanges/MoonPay';
 
 /**
  * Dispatch when list of IRI nodes are about to be fetched from a remote server
@@ -175,6 +172,19 @@ export const setPollFor = (payload) => ({
 });
 
 /**
+ * Dispatch to break poll cycle
+ *
+ * @method breakPollCycle
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const breakPollCycle = (payload) => ({
+    type: PollingActionTypes.BREAK_POLL_CYCLE,
+    payload,
+});
+
+/**
  * Dispatch to update account state before auto promoting a transaction
  *
  * @method syncAccountBeforeAutoPromotion
@@ -198,39 +208,6 @@ export const syncAccountBeforeAutoPromotion = (payload) => ({
 export const syncAccountWhilePolling = (payload) => ({
     type: PollingActionTypes.SYNC_ACCOUNT_WHILE_POLLING,
     payload,
-});
-
-/**
- * Dispatch when request for fetching meta is about to be made
- *
- * @method fetchMetaRequest
- *
- * @returns {{type: {string} }}
- */
-export const fetchMetaRequest = () => ({
-    type: PollingActionTypes.MOONPAY_META_FETCH_REQUEST,
-});
-
-/**
- * Dispatch when request for fetching meta is successfully made
- *
- * @method fetchMetaSuccess
- *
- * @returns {{type: {string} }}
- */
-export const fetchMetaSuccess = () => ({
-    type: PollingActionTypes.MOONPAY_META_FETCH_SUCCESS,
-});
-
-/**
- * Dispatch when request for fetching meta is not successful
- *
- * @method fetchMetaError
- *
- * @returns {{type: {string} }}
- */
-export const fetchMetaError = () => ({
-    type: PollingActionTypes.MOONPAY_META_FETCH_ERROR,
 });
 
 /**
@@ -332,6 +309,10 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn, quoru
             })
             .catch((err) => {
                 dispatch(accountInfoForAllAccountsFetchError());
+                if (err.message === Errors.NOT_ENOUGH_SYNCED_NODES) {
+                    //  If there are no nodes in sync, break poll cycle and skip alert
+                    return dispatch(breakPollCycle());
+                }
                 dispatch(generateAccountInfoErrorAlert(err));
             });
     };
@@ -444,41 +425,9 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
                 );
                 dispatch(setAutoPromotion(false));
             }
-            dispatch(promoteTransactionError());
-        });
-};
-
-/**
- * Fetch customer metadata from MoonPay servers
- *
- * @method fetchMeta
- *
- * @returns {function}
- */
-export const fetchMeta = () => (dispatch) => {
-    dispatch(fetchMetaRequest());
-
-    Promise.all([api.getCustomerInfo(), api.fetchMeta(IOTA_CURRENCY_CODE)])
-        .then((response) => {
-            const [customer, meta] = response;
-
-            dispatch(fetchMetaSuccess());
-
-            dispatch(
-                setMoonPayMeta(
-                    assign({}, meta, {
-                        customer,
-                    }),
-                ),
-            );
-        })
-        .catch((error) => {
-            dispatch(fetchMetaError());
-
-            if (__DEV__) {
-                /* eslint-disable no-console */
-                console.log(error);
-                /* eslint-enable no-console */
+            if (err.message === Errors.NOT_ENOUGH_SYNCED_NODES) {
+                dispatch(breakPollCycle());
             }
+            dispatch(promoteTransactionError());
         });
 };

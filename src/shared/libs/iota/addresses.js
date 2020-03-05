@@ -157,7 +157,10 @@ export const isAddressUsedAsync = (settings, withQuorum) => (addressObject) => {
 
     const { address } = addressObject;
 
-    return wereAddressesSpentFromAsync(settings, withQuorum)([address]).then((spent) => {
+    return wereAddressesSpentFromAsync(
+        settings,
+        withQuorum,
+    )([address]).then((spent) => {
         const isSpent = head(spent) === true;
 
         return (
@@ -167,7 +170,10 @@ export const isAddressUsedAsync = (settings, withQuorum) => (addressObject) => {
 
                 return (
                     hasAssociatedHashes ||
-                    getBalancesAsync(settings, withQuorum)([address]).then((balances) => {
+                    getBalancesAsync(
+                        settings,
+                        withQuorum,
+                    )([address]).then((balances) => {
                         return accumulateBalance(map(balances.balances, Number)) > 0;
                     })
                 );
@@ -245,7 +251,10 @@ export const mapLatestAddressData = (settings, withQuorum) => (addressData, tran
         return Promise.resolve([]);
     }
 
-    return getBalancesAsync(settings, withQuorum)(addresses)
+    return getBalancesAsync(
+        settings,
+        withQuorum,
+    )(addresses)
         .then((balances) => {
             cached.balances = map(balances.balances, Number);
 
@@ -522,7 +531,10 @@ export const filterSpentAddressData = (provider, withQuorum) => (addressData, tr
     // Get latest spend statuses against unspent addresses from locally stored transactions
     const spendStatuses = findSpendStatusesFromTransactions(unspentAddresses, transactions);
 
-    return wereAddressesSpentFromAsync(provider, withQuorum)(unspentAddresses).then((wereSpent) => {
+    return wereAddressesSpentFromAsync(
+        provider,
+        withQuorum,
+    )(unspentAddresses).then((wereSpent) => {
         const filteredAddresses = filter(
             unspentAddresses,
             (_, idx) => wereSpent[idx] === false && spendStatuses[idx] === false,
@@ -543,9 +555,10 @@ export const filterSpentAddressData = (provider, withQuorum) => (addressData, tr
  * @returns {function(array): Promise<boolean>}
  **/
 export const isAnyAddressSpent = (provider, withQuorum) => (addresses) => {
-    return wereAddressesSpentFromAsync(provider, withQuorum)(addresses).then((spendStatuses) =>
-        some(spendStatuses, (spendStatus) => spendStatus === true),
-    );
+    return wereAddressesSpentFromAsync(
+        provider,
+        withQuorum,
+    )(addresses).then((spendStatuses) => some(spendStatuses, (spendStatus) => spendStatus === true));
 };
 
 /**
@@ -700,7 +713,10 @@ export const syncAddresses = (settings, withQuorum) => (seedStore, addressData, 
     };
 
     // Check if there are any transactions associated with the latest address or if the address is spent
-    return isAddressUsedAsync(settings, withQuorum)(latestAddressObject).then((isUsed) => {
+    return isAddressUsedAsync(
+        settings,
+        withQuorum,
+    )(latestAddressObject).then((isUsed) => {
         if (!isUsed && !isAddressUsedSync(latestAddressObject, transactions)) {
             return addressData;
         }
@@ -801,7 +817,10 @@ export const attachAndFormatAddress = (provider, withQuorum) => (address, index,
  * @returns {function(array): object}
  */
 export const categoriseAddressesBySpentStatus = (provider, withQuorum) => (addresses) => {
-    return wereAddressesSpentFromAsync(provider, withQuorum)(addresses).then((spentStatuses) => {
+    return wereAddressesSpentFromAsync(
+        provider,
+        withQuorum,
+    )(addresses).then((spentStatuses) => {
         const categorise = (acc, address, idx) => {
             if (spentStatuses[idx]) {
                 acc.spent.push(address);
@@ -824,7 +843,10 @@ export const categoriseAddressesBySpentStatus = (provider, withQuorum) => (addre
  * @returns {array<boolean>}
  */
 export const findSpendStatusesFromTransactions = (addresses, transactions) => {
-    const inputAddresses = map(filter(transactions, (tx) => tx.value < 0), (tx) => tx.address);
+    const inputAddresses = map(
+        filter(transactions, (tx) => tx.value < 0),
+        (tx) => tx.address,
+    );
 
     return map(addresses, (address) => includes(inputAddresses, address));
 };

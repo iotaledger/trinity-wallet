@@ -654,7 +654,7 @@ const getTrytesAsync = (settings) => (hashes) =>
  *
  * @returns {Promise}
  */
-const isNodeHealthy = (settings) => {
+const isNodeHealthy = (settings, skipMilestoneCheck = false) => {
     const cached = {
         latestMilestone: EMPTY_HASH_TRYTES,
     };
@@ -684,6 +684,9 @@ const isNodeHealthy = (settings) => {
             },
         )
         .then((trytes) => {
+            if (skipMilestoneCheck) {
+                return true;
+            }
             const { timestamp } = iota.utils.transactionObject(head(trytes), cached.latestMilestone);
 
             return isWithinMinutes(timestamp * 1000, 5 * MAX_MILESTONE_FALLBEHIND);
