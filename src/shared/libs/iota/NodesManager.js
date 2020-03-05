@@ -35,9 +35,11 @@ export default class NodesManager {
      */
     withRetries(failureCallbacks, retryAttempts = DEFAULT_RETRIES) {
         const { priorityNode, primaryNode, nodeAutoSwitch, powNodeAutoSwitch, nodes, quorum, powNode } = this.config;
+
         let attempt = 0;
         let executedCallback = false;
         const randomNodes = getRandomNodes(nodes, retryAttempts, [primaryNode], !isUndefined(powNode));
+
         const retryNodes = isUndefined(powNode)
             ? unionBy([priorityNode], randomNodes, 'url')
             : unionBy([powNode], randomNodes, 'url');
