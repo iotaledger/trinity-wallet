@@ -172,6 +172,19 @@ export const setPollFor = (payload) => ({
 });
 
 /**
+ * Dispatch to break poll cycle
+ *
+ * @method breakPollCycle
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const breakPollCycle = (payload) => ({
+    type: PollingActionTypes.BREAK_POLL_CYCLE,
+    payload,
+});
+
+/**
  * Dispatch to update account state before auto promoting a transaction
  *
  * @method syncAccountBeforeAutoPromotion
@@ -296,6 +309,10 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn, quoru
             })
             .catch((err) => {
                 dispatch(accountInfoForAllAccountsFetchError());
+                if (err.message === Errors.NOT_ENOUGH_SYNCED_NODES) {
+                    //  If there are no nodes in sync, break poll cycle and skip alert
+                    return dispatch(breakPollCycle());
+                }
                 dispatch(generateAccountInfoErrorAlert(err));
             });
     };
@@ -407,6 +424,9 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
                     ),
                 );
                 dispatch(setAutoPromotion(false));
+            }
+            if (err.message === Errors.NOT_ENOUGH_SYNCED_NODES) {
+                dispatch(breakPollCycle());
             }
             dispatch(promoteTransactionError());
         });

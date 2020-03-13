@@ -6602,11 +6602,11 @@
       }
     },
     "entangled-node": {
-      "version": "github:rihardsgravis/entangled-node#8e86e4c51ff89614a7fda9f3d3d3287655707f29",
-      "from": "github:rihardsgravis/entangled-node#8e86e4c",
+      "version": "github:iotaledger/entangled-node#8c5270e14b288f45842bba3cc2acb6f1a0b92bcc",
+      "from": "github:iotaledger/entangled-node#v0.4.9",
       "requires": {
         "nan": "^2.14.0",
-        "prebuild-install": "^5.3.2"
+        "prebuild-install": "^5.3.3"
       },
       "dependencies": {
         "bl": {

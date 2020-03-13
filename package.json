@@ -46,11 +46,11 @@
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-native": "^3.8.1",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.7",
+    "lint-staged": "^10.0.8",
     "prettier": "^1.19.1"
   },
   "dependencies": {
-    "snyk": "^1.295.0"
+    "snyk": "^1.297.2"
   },
   "resolutions": {
     "js-yaml": ">=3.13.1",

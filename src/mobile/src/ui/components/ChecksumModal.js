@@ -37,16 +37,23 @@ export class ChecksumModal extends PureComponent {
         closeModal: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** Determines whether to show the top bar */
+        displayTopBar: PropTypes.bool.isRequired,
     };
 
     render() {
         const {
             t,
             theme: { body },
+            displayTopBar,
         } = this.props;
 
         return (
-            <ModalView onButtonPress={() => this.props.closeModal()} buttonText={t('okay')}>
+            <ModalView
+                displayTopBar={displayTopBar}
+                onButtonPress={() => this.props.closeModal()}
+                buttonText={t('okay')}
+            >
                 <Text style={[styles.questionText, { color: body.color }]}>{t('saveYourSeed:whatIsAChecksum')}</Text>
                 <Icon name="security" size={width / 5} color={body.color} style={styles.icon} />
                 <Text style={[styles.infoText, { color: body.color, paddingBottom: height / 40 }]}>
