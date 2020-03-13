@@ -1,3 +1,7 @@
+### 1.4.4
+- Fix: Add early stopping condition to quorum sync checks
+- Fix: Node selection issues during manual promotion
+
 ### 1.4.3
 
 - Fix: Interference from legacy keychain entries
