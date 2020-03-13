@@ -2,39 +2,45 @@
 name: "Bug Report"
 about: Report a bug in Trinity
 title: ''
-labels: 'T - Bug'
-
+labels: 'T-Bug'
 ---
 
-<!--- Remove text and sections that do not apply -->
+## Bug description
 
-The issue tracker is only for reporting bugs. If you need technical assistance with the Trinity wallet, please consult the [documentation](https://docs.iota.works/trinity). For further assistance, please visit the #help channel on [Discord](https://discord.iota.org).
-If you have general questions on IOTA you can go to https://iota.stackexchange.com/, https://forum.helloiota.com/, or browse Discord channels (https://discord.iota.org).
+Briefly describe the bug.
 
-### Bug description
-A general description of the bug.
+## Trinity version
 
-### Environment Specs
-What device are you running Trinity on?
+Which version of Trinity are you running?
+
+Please provide the full version (you can find it in Settings > About Trinity).
+
+- Trinity version:
+
+## Hardware Specification
+
+What hardware are you using?
 
 - Manufacturer:
 - Model:
 - OS version:
 
-What build of Trinity are you running? Please provide the full version (you can find it in Settings > About Trinity).
+## Steps To reproduce the bug
 
-- Trinity version:
+Explain how the maintainer can reproduce the bug.
 
-### Steps To Reproduce
-1.
-2.
-3.
+1. 
+2. 
+3. 
 
-### Expected behaviour
-What should happen.
+## Expected behaviour
 
-### Actual behaviour
-What really happened.
+Describe what you expect to happen.
 
-### Errors
-Attach crash logs or screenshots of error messages if available. Please ensure that these files do not contain any personal information.
+## Actual behaviour
+
+Describe what actually happens.
+
+## Errors
+
+Paste any errors that you see. These could include crash logs or screenshots of error messages. Please ensure that these files do not contain any personal information.
