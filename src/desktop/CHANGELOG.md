@@ -1,3 +1,8 @@
+### 1.4.5
+- Fix: Add early stopping condition to quorum sync checks
+- Fix: Node selection issues during manual promotion
+- Update: Reenable auto-updater on Windows and enable update logging
+
 ### 1.4.3
 
 - Fix: Interference from legacy keychain entries
