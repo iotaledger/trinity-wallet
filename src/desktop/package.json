@@ -165,6 +165,7 @@
     "argon2": "0.24.0",
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",
+    "electron-log": "4.1.0",
     "electron-settings": "3.2.0",
     "electron-updater": "4.0.14",
     "entangled-node": "iotaledger/entangled-node#v0.4.9",

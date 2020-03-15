@@ -6423,6 +6423,11 @@
         }
       }
     },
+    "electron-log": {
+      "version": "4.1.0",
+      "resolved": "https://registry.npmjs.org/electron-log/-/electron-log-4.1.0.tgz",
+      "integrity": "sha512-F3KVUe4s0MKs7mjkvz8g6WrfL1gCITfbVOcU9qLI5KjRbtIWeC8OfAneloz8zdW99TI2xcNc639ppgRXUpKjHw=="
+    },
     "electron-notarize": {
       "version": "0.2.1",
       "resolved": "https://registry.npmjs.org/electron-notarize/-/electron-notarize-0.2.1.tgz",
