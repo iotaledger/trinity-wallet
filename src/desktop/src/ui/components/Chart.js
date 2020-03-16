@@ -34,10 +34,6 @@ export class ChartComponent extends PureComponent {
             }),
         }).isRequired,
         /** @ignore */
-        isAuthenticatedForMoonPay: PropTypes.bool.isRequired,
-        /** Determines if IOTA purchases are suspended */
-        arePurchasesSuspended: PropTypes.bool.isRequired,
-        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
@@ -76,9 +72,6 @@ export class ChartComponent extends PureComponent {
 
     render() {
         const {
-            arePurchasesSuspended,
-            isAuthenticatedForMoonPay,
-            history,
             priceData,
             chartData,
             theme,
@@ -130,25 +123,6 @@ export class ChartComponent extends PureComponent {
                     <nav>
                         <Button variant="secondary" className="outline" onClick={() => setCurrency()}>
                             {priceData.currency}
-                        </Button>
-                        <Button
-                            variant="secondary"
-                            className="outline"
-                            onClick={() => {
-                                const getRoute = () => {
-                                    if (arePurchasesSuspended) {
-                                        return '/exchanges/moonpay/purchase-suspended-warning';
-                                    }
-
-                                    return isAuthenticatedForMoonPay
-                                        ? '/exchanges/moonpay/select-account'
-                                        : '/exchanges/moonpay';
-                                };
-
-                                history.push(getRoute());
-                            }}
-                        >
-                            {t('moonpay:buyIOTA')}
                         </Button>
                         <Button variant="secondary" className="outline" onClick={() => setTimeframe()}>
                             {chartData.timeframe.replace('1m', '28d')}

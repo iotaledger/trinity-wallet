@@ -331,10 +331,13 @@ export default function Quorum(config) {
     let lastSyncedAt = new Date();
 
     const findSyncedNodesIfNecessary = () => {
+        // Select a pool of nodes a maximum of 3 times the size of quorum
+        let nodePool = sampleSize(nodes, quorumSize * 3);
+
         const timeElapsed = (new Date() - lastSyncedAt) / 1000;
 
         if (isEmpty(selectedNodes) || timeElapsed >= QUORUM_SYNC_CHECK_INTERVAL) {
-            return findSyncedNodes(nodes, quorumSize, selectedNodes).then((syncedNodes) => {
+            return findSyncedNodes(nodePool, quorumSize, selectedNodes).then((syncedNodes) => {
                 selectedNodes = syncedNodes;
                 lastSyncedAt = new Date();
 

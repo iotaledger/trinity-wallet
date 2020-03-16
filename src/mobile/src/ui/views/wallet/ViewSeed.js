@@ -6,6 +6,7 @@ import { withTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, Keyboard, TouchableWithoutFeedback, AppState, Animated, Easing } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import FlagSecure from 'react-native-flag-secure-android';
@@ -21,6 +22,7 @@ import SettingsBackButton from 'ui/components/SettingsBackButton';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { tritsToChars } from 'shared-modules/libs/iota/converter';
+import ChecksumComponent from 'ui/components/Checksum';
 import { hash } from 'libs/keychain';
 
 const styles = StyleSheet.create({
@@ -89,6 +91,8 @@ class ViewSeed extends Component {
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
+        /** @ignore */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -104,6 +108,7 @@ class ViewSeed extends Component {
         this.onBackPress = this.onBackPress.bind(this);
         this.resetComponent = this.resetComponent.bind(this);
         this.animatedValue = new Animated.Value(0);
+        this.openModal = this.openModal.bind(this);
     }
 
     componentDidMount() {
@@ -220,6 +225,19 @@ class ViewSeed extends Component {
         this.setState({ password: null, seed: '' });
     }
 
+    /**
+     * Opens checksum modal
+     * @method openModal
+     */
+    openModal() {
+        const { theme } = this.props;
+        this.props.toggleModalActivity('checksum', {
+            theme,
+            closeModal: () => this.props.toggleModalActivity(),
+            displayTopBar: true,
+        });
+    }
+
     render() {
         const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
@@ -280,7 +298,14 @@ class ViewSeed extends Component {
                         <View style={styles.viewContainer}>
                             <View style={{ flex: 1 }}>
                                 {step === 'isViewingSeed' && (
-                                    <SeedPicker seed={tritsToChars(this.state.seed)} theme={theme} />
+                                    <View>
+                                        <SeedPicker seed={tritsToChars(this.state.seed)} theme={theme} />
+                                        <ChecksumComponent
+                                            seed={this.state.seed}
+                                            theme={theme}
+                                            showModal={this.openModal}
+                                        />
+                                    </View>
                                 )}
                             </View>
                         </View>
@@ -304,11 +329,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setSetting,
     generateAlert,
+    toggleModalActivity,
 };
 
-export default withTranslation(['viewSeed', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(ViewSeed),
-);
+export default withTranslation(['viewSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewSeed));

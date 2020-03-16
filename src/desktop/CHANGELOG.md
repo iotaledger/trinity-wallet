@@ -1,3 +1,23 @@
+### 1.4.3
+
+- Fix: Interference from legacy keychain entries
+- Fix: Data migration from very old versions
+- Fix: Change node failing due to milestone checks
+
+### 1.4.2
+
+- Fix: Incorrect alert on password change
+
+### 1.4.1
+
+- Fix: Out of sync nodes blocking load
+
+### 1.4.0
+
+- Update: Remove exchange support
+- Update: Adjust update alerts
+- Fix: Allow wallet entry when nodes are not in sync
+
 ### 1.2.2
 
 - Fix: Ensure full bundle is broadcast during promotion

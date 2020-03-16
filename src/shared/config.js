@@ -26,7 +26,7 @@ export const NODES_WITH_POW_DISABLED = ['https://nodes.iota.org'].map((url) => (
 
 export const NODES_WITH_POW_ENABLED = [
     'https://nodes.thetangle.org:443',
-    'https://iotanode.us:443',
+    'https://iotanode.us:14267',
     'https://pool.trytes.eu',
     'https://pow.iota.community:443',
 ].map((url) => ({
@@ -70,6 +70,7 @@ export const FETCH_REMOTE_NODES_REQUEST_TIMEOUT = 4000;
 export const WERE_ADDRESSES_SPENT_FROM_REQUEST_TIMEOUT = 4000;
 export const ATTACH_TO_TANGLE_REQUEST_TIMEOUT = 25000;
 export const GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT = 40000;
+export const IS_PROMOTABLE_TIMEOUT = DEFAULT_NODE_REQUEST_TIMEOUT * 5;
 
 export const DEFAULT_RETRIES = 4;
 
@@ -85,3 +86,5 @@ export const MAXIMUM_QUORUM_SIZE = 7;
 export const MAX_MILESTONE_FALLBEHIND = 2;
 
 export const SEED_VAULT_DEFAULT_TITLE = 'SeedVault';
+
+export const MIGRATION_ALERT_URL = 'https://trinity.iota.org/ismigrationup';

@@ -21,6 +21,7 @@ import {
     GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
     MAX_MILESTONE_FALLBEHIND,
+    IS_PROMOTABLE_TIMEOUT,
 } from '../../config';
 import {
     sortTransactionTrytesArray,
@@ -53,6 +54,8 @@ const getApiTimeout = (method, payload) => {
             return ATTACH_TO_TANGLE_REQUEST_TIMEOUT;
         case 'getTransactionsToApprove':
             return GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT;
+        case 'isPromotable':
+            return IS_PROMOTABLE_TIMEOUT;
         default:
             return DEFAULT_NODE_REQUEST_TIMEOUT;
     }
@@ -651,7 +654,7 @@ const getTrytesAsync = (settings) => (hashes) =>
  *
  * @returns {Promise}
  */
-const isNodeHealthy = (settings) => {
+const isNodeHealthy = (settings, skipMilestoneCheck = false) => {
     const cached = {
         latestMilestone: EMPTY_HASH_TRYTES,
     };
@@ -681,6 +684,9 @@ const isNodeHealthy = (settings) => {
             },
         )
         .then((trytes) => {
+            if (skipMilestoneCheck) {
+                return true;
+            }
             const { timestamp } = iota.utils.transactionObject(head(trytes), cached.latestMilestone);
 
             return isWithinMinutes(timestamp * 1000, 5 * MAX_MILESTONE_FALLBEHIND);
@@ -696,7 +702,7 @@ const isNodeHealthy = (settings) => {
  * @returns {function(string): (Promise<boolean>)}
  */
 const isPromotable = (settings) => (tailTransactionHash, options = {}) =>
-    getIotaInstance(settings).api.isPromotable(tailTransactionHash, options);
+    getIotaInstance(settings, getApiTimeout('isPromotable')).api.isPromotable(tailTransactionHash, options);
 
 export {
     getIotaInstance,

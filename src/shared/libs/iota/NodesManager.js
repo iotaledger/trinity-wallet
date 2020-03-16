@@ -35,14 +35,14 @@ export default class NodesManager {
      */
     withRetries(failureCallbacks, retryAttempts = DEFAULT_RETRIES) {
         const { priorityNode, primaryNode, nodeAutoSwitch, powNodeAutoSwitch, nodes, quorum, powNode } = this.config;
+
         let attempt = 0;
         let executedCallback = false;
-        const randomNodes = getRandomNodes(nodes,
-            retryAttempts,
-            [primaryNode],
-            !isUndefined(powNode),
-        );
-        const retryNodes = isUndefined(powNode) ? unionBy([priorityNode], randomNodes, 'url') : unionBy([powNode], randomNodes, 'url') ;
+        const randomNodes = getRandomNodes(nodes, retryAttempts, [primaryNode], !isUndefined(powNode));
+
+        const retryNodes = isUndefined(powNode)
+            ? unionBy([priorityNode], randomNodes, 'url')
+            : unionBy([powNode], randomNodes, 'url');
         // Abort retries on these errors
         const cancellationErrors = [Errors.LEDGER_CANCELLED, Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE];
 
@@ -52,10 +52,13 @@ export default class NodesManager {
                     return Promise.reject(new Error(Errors.NO_NODE_TO_RETRY));
                 }
 
-                return promiseFunc(retryNodes[attempt], quorum.enabled)(...args)
+                return promiseFunc(
+                    retryNodes[attempt],
+                    quorum.enabled,
+                )(...args)
                     .then((result) => {
                         if (powNode) {
-                            store.dispatch(setPowNode(get(retryNodes[attempt], 'url')))
+                            store.dispatch(setPowNode(get(retryNodes[attempt], 'url')));
                         } else {
                             store.dispatch(changeNode(retryNodes[attempt]));
                         }
@@ -83,6 +86,11 @@ export default class NodesManager {
                         }
 
                         attempt += 1;
+
+                        // If not enough synced nodes, break retry loop.
+                        if (err.message === Errors.NOT_ENOUGH_SYNCED_NODES) {
+                            attempt = retryAttempts;
+                        }
 
                         if (attempt < retryAttempts) {
                             return execute(...args);

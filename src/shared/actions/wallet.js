@@ -643,3 +643,15 @@ export const forceUpdate = () => ({
 export const displayTestWarning = () => ({
     type: WalletActionTypes.DISPLAY_TEST_WARNING,
 });
+
+/**
+ * Dispatch to tell users to migrate
+ *
+ * @method forceUpdate
+ *
+ * @returns {{type: {string} }}
+ */
+export const displaySeedMigrationAlert = (payload) => ({
+    type: WalletActionTypes.DISPLAY_SEED_MIGRATION_ALERT,
+    payload
+});
