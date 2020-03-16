@@ -176,11 +176,11 @@
         "expert": "حرفه ای",
         "notEnoughSyncedNodes": "کمی از نود ها همگام شده",
         "notEnoughSyncedNodesExplanation": "سیستم قابل دستیابی نیست. سیستم را خاموش کرده یا دوباره تلاش کنید.",
-        "total": "Total",
-        "submit": "Submit",
-        "tryAgain": "Try again",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "total": "مجموع",
+        "submit": "ثبت",
+        "tryAgain": "سعی دوباره",
+        "unknown": "نامشخص",
+        "goToDashboard": "رفتن به داشبورد"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "سید ورودی دارای کاراکترهای نامعتبر است",
@@ -383,9 +383,9 @@
         "addressPasteExplanation": "به نظر می رسد که یک آدرس را جاگذاری کرده اید. اطمینان حاصل کنید که آدرس جایگذاری شده با آدرسی که شما می خواهید به آن ارسال کنید یکسان باشد.",
         "invalid": "نامعتبر",
         "swipeToSend": "بکشید تا ارسال شود",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "این یک درخواست پرداخت است",
+        "paymentRequestExpired": "درخواست پرداخت منقضی شد",
+        "paymentRequestExpiredExplanation": "این درخواست پرداخت منقضی شد. لطفاً از دریافت کننده دوباره درخواست کنید."
     },
     "setSeedName": {
         "letsAddName": "لطفا یک نام اضافه کنید",
@@ -468,7 +468,7 @@
     },
     "welcome": {
         "thankYou": "با تشکر از شما برای دانلود Trinity",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "با تشکر از شما برای دانلود ترینیتی نسخه تست"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>سید و کد اعتبارسنجی خود را بنویسید و </0><1>بررسی سه گانه</1><2>آنها درست هستند</2>",
@@ -497,7 +497,7 @@
         "searchHelpUnits": "پیدا کردن تراکنش ها با ارزش iota و واحدش",
         "searchHelpMore": "پیدا کردن تراکنش ها با یک ارزش بیشتر از X",
         "searchHelpLess": "پیدا کردن تراکنش ها با یک ارزش کمتر از X",
-        "transactions": "Transactions"
+        "transactions": "تراکنش ها"
     },
     "accountManagement": {
         "viewSeed": "مشاهده سید",
@@ -510,8 +510,8 @@
     "nodeSettings": {
         "automaticNodeManagement": "مدیریت اتوماتیک نود",
         "addCustomNodes": "اضافه کردن نود",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "autoNodeList": "لیست نود پیش فرض استفاده کنید",
+        "nodeAutoswitching": "انتخاب خودکار نود اولیه",
         "primaryNode": "نود اصلی",
         "enableQuorum": "فعال کردن سیستم",
         "quorumSize": "اندازه سیستم",
@@ -522,9 +522,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "نود های سفارشی بیشتری اضافه کنید یا لیست نود از راه دور را فعال کنید.",
         "nodeSettingsUpdatedTitle": "تنظیمات نود به روز رسانی شد",
         "nodeSettingsUpdatedExplanation": "شما تنظیمات نود خود را با موفقیت به روز کردید.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "اثبات کار با منبع خارجی",
+        "autoSelectPowNode": "انتخاب خودکار نودِ اثبات کار",
+        "nodeForPow": "نودِ اثبات کار"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node سفارشی نمیتوان اضافه کرد",
@@ -547,7 +547,7 @@
     "advancedSettings": {
         "selectNode": "انتخاب Node",
         "manualSync": "همگام سازی دستی",
-        "snapshotTransition": "چک کردن فایل های روی دستگاه",
+        "snapshotTransition": "چک فایل های دستگاه",
         "pow": "اثبات کار",
         "autoPromotion": "ارتقا خودکار",
         "autoPromotionExplanation": "ارتقا خودکار کمک می کند تا معاملات خود را در Tangle تایید کنید. اگر شما دچار تردید در دریافت معاملات خود هستید این تنظیم را فعال کنید.",
@@ -711,7 +711,7 @@
         "change": "تغییر (24 ساعته)",
         "volume": "دوره (24 ساعته)",
         "error": "خطا در استخراج داده های نمودار",
-        "currentValue": "Current Value"
+        "currentValue": "مقدار فعلی"
     },
     "rootDetection": {
         "warning": "اخطار",
@@ -781,7 +781,7 @@
         "noUpdatesAvailableExplanation": "شما آخرین نسخه ترینیتی را دارید!",
         "newVersionAvailable": "نسخه جدید موجود است",
         "newVersionAvailableExplanation": "یک نسخه‌ی جدید از Trinity در دسترس است. آیا می‌خواهید الان به‌روز‌رسانی کنید؟",
-        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
+        "newVersionAvailableExplanationWin": "نسخه ی جدید ترینیتی موجود است.برای دانلود به trinity.iota.org مراجعه کنید.",
         "installUpdate": "نصب به‌روزرسانی و راه‌اندازی مجدد",
         "installUpdateExplanation": "دانلود کامل شد، Trinity الان برای نصب به‌روز‌رسانی مجددا راه‌اندازی خواهد شد.",
         "downloadingUpdate": "درحال دانلود به‌روزرسانی",
@@ -883,8 +883,8 @@
         "writtenDownInfoExplanation": "شما در آینده به شماره شاخص خود برای بازیابی حساب نیاز دارید. اگر شماره شاخص خود را گم کنید، IOTA ی خود را از دست می دهید. لطفاً آن را به خاطر بسپارید."
     },
     "help": {
-        "docsSite": "Trinity Docs Site",
-        "commonIssues": "Common Wallet Issues",
-        "buyingIOTA": "Problems Buying IOTA"
+        "docsSite": "سایت اسناد ترینیتی",
+        "commonIssues": "مشکلات رایج کیف پول",
+        "buyingIOTA": "مشکلات خرید آیوتا"
     }
 }
