@@ -146,7 +146,7 @@
         "deviceMayBecomeUnresponsive": "دستگاه شما ممکن است برای مدتی پاسخگو باشد.",
         "isYourBalanceCorrect": "آیا موجودی شما درست است؟",
         "ifYourBalanceIsNotCorrect": "اگر مانده حساب شما صحیح نمی باشد، سید وارد شده را چک کرده و از صحت آن اطمینان حاصل کنید.",
-        "headToAdvancedSettingsForTransition": "If you are sure you have the right seed, head to Advanced Settings and perform a Snapshot Transition.",
+        "headToAdvancedSettingsForTransition": "اگر از سید وارد شده اطمینان دارید، به تنظیمات پیشرفته رفته و چک کردن فایل های روی دستگاه را انجام دهید.",
         "headToAccountTools": "به تنظیمات حساب بروید و یک انتقال اسنپ شات ایجاد کنید.",
         "openAccountTools": "باز کردن تنظیمات حساب",
         "usingTrinityWalletWithKeePass": "استفاده از کیف پول Trinity با Keepass2Android",
@@ -547,7 +547,7 @@
     "advancedSettings": {
         "selectNode": "انتخاب Node",
         "manualSync": "همگام سازی دستی",
-        "snapshotTransition": "انتقال عکس فوری",
+        "snapshotTransition": "چک کردن فایل های روی دستگاه",
         "pow": "اثبات کار",
         "autoPromotion": "ارتقا خودکار",
         "autoPromotionExplanation": "ارتقا خودکار کمک می کند تا معاملات خود را در Tangle تایید کنید. اگر شما دچار تردید در دریافت معاملات خود هستید این تنظیم را فعال کنید.",
