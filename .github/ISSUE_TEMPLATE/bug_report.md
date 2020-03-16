@@ -9,21 +9,29 @@ labels: 'T-Bug'
 
 Briefly describe the bug.
 
-## Trinity version
+## Version
 
 Which version of Trinity are you running?
 
 Please provide the full version (you can find it in Settings > About Trinity).
 
-- Trinity version:
+- Version:
 
-## Hardware Specification
+## IOTA network
+
+Which node are you connected to and which IOTA network is it in?
+
+- Node URL:
+- Network:
+
+## Hardware specification
 
 What hardware are you using?
 
-- Manufacturer:
-- Model:
-- OS version:
+- Operating system:
+- RAM:
+- Number of cores:
+- Device type:
 
 ## Steps To reproduce the bug
 
