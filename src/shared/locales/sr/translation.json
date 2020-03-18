@@ -781,7 +781,6 @@
         "noUpdatesAvailableExplanation": "Koristite najnoviju verziju Trinity novčanika!",
         "newVersionAvailable": "Nova verzija dostupna",
         "newVersionAvailableExplanation": "Nova verzija Trinity novčanika je dostupna. Izvršiti ažuriranje sada?",
-        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "Instaliraj novu verziju i restartuj",
         "installUpdateExplanation": "Preuzimanje završen, Trinity će sada biti ponovo pokrenut kako bi se izvršilo ažuriranje.",
         "downloadingUpdate": "Preuzimanje ažuriranja u toku",

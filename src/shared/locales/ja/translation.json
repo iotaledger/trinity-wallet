@@ -781,7 +781,6 @@
         "noUpdatesAvailableExplanation": "最新バージョンを利用しています。",
         "newVersionAvailable": "新しいバージョンが利用可能です。",
         "newVersionAvailableExplanation": "最新バージョンがご利用可能です。今すぐにアップデートしますか？",
-        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "インストール、アップデート、リスタートをします",
         "installUpdateExplanation": "ダウンロードが完了しました。アップデートの為に再起動します。",
         "downloadingUpdate": "アップデートをダウンロード中",

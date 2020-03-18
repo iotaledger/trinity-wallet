@@ -781,7 +781,6 @@
         "noUpdatesAvailableExplanation": "आपके पास ट्रिनिटी का नवीनतम संस्करण है!",
         "newVersionAvailable": "नया संस्करण उपलब्ध है",
         "newVersionAvailableExplanation": "एक नया ट्रिनिटी संस्करण उपलब्ध है। क्या आप अभी अपडेट करना चाहते हैं?",
-        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "नए अपडेट को इनस्टॉल करे और पुनः स्टार्ट करे",
         "installUpdateExplanation": "डाउनलोड कम्पलीट हुवा अब ट्रिनिटी पुनः इनस्टॉल करना आरम्भ करेगा |",
         "downloadingUpdate": "अपडेट डाउनलोड हो रहा है...",

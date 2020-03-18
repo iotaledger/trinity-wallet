@@ -781,7 +781,6 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Ny version tilgængelig",
         "newVersionAvailableExplanation": "En ny Trinity-version er tilgængelig. Vil du opdatere nu?",
-        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "Installér opdatering og genstart",
         "installUpdateExplanation": "Download fuldført, Trinity genstarter nu for at installere opdateringen.",
         "downloadingUpdate": "Downloader opdatering",
