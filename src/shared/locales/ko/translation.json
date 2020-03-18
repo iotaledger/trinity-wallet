@@ -781,7 +781,6 @@
         "noUpdatesAvailableExplanation": "최신 버전의 트리니티를 사용하고 계시네요!",
         "newVersionAvailable": "새 버전 이용 가능",
         "newVersionAvailableExplanation": "새 버전의 트리니티가 있습니다. 업데이트하시겠습니까?",
-        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "업데이트를 설치하고 다시 시작",
         "installUpdateExplanation": "다운로드가 완료되었습니다. 트리니티를 재시작하여 업데이트를 설치합니다.",
         "downloadingUpdate": "업데이트 다운로드",

@@ -781,7 +781,6 @@
         "noUpdatesAvailableExplanation": "Nem érhető el újabb Trinity verzió!",
         "newVersionAvailable": "Új verzió elérhető",
         "newVersionAvailableExplanation": "Elérhető a Trinity egy újabb verziója. Szeretné most frissíteni?",
-        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "Frissítés telepítése és újraindítás",
         "installUpdateExplanation": "A letöltés sikeresen befejeződött. A Trinity most újraindul és telepíti a frissítéseket.",
         "downloadingUpdate": "Frissítések letöltése",
