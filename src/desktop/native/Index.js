@@ -4,8 +4,17 @@ import electronSettings from 'electron-settings';
 import path from 'path';
 import URL from 'url';
 import fs from 'fs';
+import electronLog from 'electron-log';
+import { autoUpdater } from 'electron-updater';
 
 import { initMenu, contextMenu } from './libs/Menu';
+
+
+/**
+ * Enable logs for auto-updater
+ */
+autoUpdater.logger = electronLog;
+autoUpdater.logger.transports.file.level = 'info'
 
 /**
  * Expose Garbage Collector flag for manual trigger after seed usage
