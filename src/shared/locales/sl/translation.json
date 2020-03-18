@@ -781,7 +781,6 @@
         "noUpdatesAvailableExplanation": "Imate najnovejšo Trinity različico!",
         "newVersionAvailable": "Na voljo je nova verzija",
         "newVersionAvailableExplanation": "Na voljo je nova različica Trinity. Ali želite posodobiti zdaj?",
-        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "Namestite posodobitev in ponovni zagon",
         "installUpdateExplanation": "Prenos je dokončan, Trinity se bo znova zagnala in namestila posodobitve.",
         "downloadingUpdate": "Prenašanje posodobitev",
