@@ -11,27 +11,26 @@ Briefly describe the bug.
 
 ## Version
 
-Which version of Trinity are you running?
-
-Please provide the full version (you can find it in Settings > About Trinity).
+Which version of Trinity are you running? (Please provide the full version, you can find it in Settings > About Trinity).
 
 - Version:
-
-## IOTA network
-
-Which node are you connected to and which IOTA network is it in?
-
-- Node URL:
-- Network:
 
 ## Hardware specification
 
 What hardware are you using?
 
-- Operating system:
-- RAM:
-- Number of cores:
-- Device type:
+- Mobile or Desktop: 
+- Device:
+- OS and version:
+
+- RAM (Desktop only):
+- Number of cores (Desktop only):
+
+## Node Settings (delete if not relevant)
+
+What are your node settings? Are you using automatic node management?
+
+- Node settings: 
 
 ## Steps To reproduce the bug
 
@@ -51,4 +50,4 @@ Describe what actually happens.
 
 ## Errors
 
-Paste any errors that you see. These could include crash logs or screenshots of error messages. Please ensure that these files do not contain any personal information.
+Paste any relevant errors that you see. These could include error/crash logs or screenshots. Please ensure that these files do not contain any personal information. 
