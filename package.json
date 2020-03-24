@@ -50,12 +50,13 @@
     "prettier": "^1.19.1"
   },
   "dependencies": {
-    "snyk": "^1.298.1"
+    "snyk": "^1.297.2"
   },
   "resolutions": {
     "js-yaml": ">=3.13.1",
     "request": ">=2.88.0",
-    "node.extend": ">=1.1.7"
+    "node.extend": ">=1.1.7",
+    "minimist": ">=1.2.2"
   },
   "snyk": true,
   "husky": {

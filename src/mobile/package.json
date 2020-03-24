@@ -131,7 +131,9 @@
   "resolutions": {
     "js-yaml": ">=3.13.1",
     "handlebars": ">=4.1.2",
-    "set-value": ">=2.0.1"
+    "set-value": ">=2.0.1",
+    "minimist": ">=1.2.2",
+    "acorn": ">=7.1.1"
   },
   "jest": {
     "preset": "react-native",
