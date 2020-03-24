@@ -55,7 +55,7 @@ Please check the following list:
 
 To report a bug, [open a new issue](https://github.com/iotaledger/trinity-wallet/issues/new?labels=T+-+Bug&template=bug_report.md&title=), and be sure to include as many details as possible, using the template.
 
-**Note:** Minor changes such as fixing a typo can but do not need an open issue.
+**Note:** You don't need to open an issue for minor changes such as typos, but you can if you want.
 
 If you also want to fix the bug, submit a [pull request](#pull-requests) and reference the issue.
 </details>
@@ -76,7 +76,7 @@ This section guides you through suggesting a new feature. Following these guidel
 
 To suggest a new feature, talk to the IOTA community and IOTA Foundation members in the #trinity-discussion channel on [Discord](https://discord.iota.org/).
 
-If the Trinity team approves your feature, the team will create an issue for it.
+If the Trinity team approves your feature, you can create an issue for it.
 </details>
 
 <br>
