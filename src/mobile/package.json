@@ -132,8 +132,10 @@
     "js-yaml": ">=3.13.1",
     "handlebars": ">=4.1.2",
     "set-value": ">=2.0.1",
-    "minimist": ">=1.2.2",
-    "acorn": ">=7.1.1"
+    "mkdirp": "^0.5.3",
+    "**/optimist/minimist": "^0.2.1",
+    "minimist": "^1.2.5 || >=0.2.1",
+    "acorn-globals": ">=6.0.0"
   },
   "jest": {
     "preset": "react-native",
