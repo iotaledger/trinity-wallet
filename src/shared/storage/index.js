@@ -349,7 +349,6 @@ class Wallet {
      */
     static get latestSettings() {
         const dataForCurrentVersion = Wallet.getObjectForId();
-
         return dataForCurrentVersion.settings;
     }
 
@@ -810,7 +809,7 @@ class Wallet {
      * @method createIfNotExists
      */
     static createIfNotExists() {
-        const shouldCreate = isEmpty(Wallet.getObjectForId());
+        const shouldCreate = Wallet.getObjectForId() === undefined;
 
         if (shouldCreate) {
             realm.write(() =>
