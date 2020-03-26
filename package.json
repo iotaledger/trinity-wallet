@@ -57,7 +57,7 @@
     "request": ">=2.88.0",
     "node.extend": ">=1.1.7",
     "mkdirp": "^0.5.3",
-    "minimist": "^1.2.5 || >=0.2.1",
+    "minimist": "^1.2.5 || >=0.2.1"
   },
   "snyk": true,
   "husky": {
