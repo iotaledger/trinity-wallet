@@ -56,7 +56,8 @@
     "js-yaml": ">=3.13.1",
     "request": ">=2.88.0",
     "node.extend": ">=1.1.7",
-    "minimist": ">=1.2.2"
+    "mkdirp": "^0.5.3",
+    "minimist": "^1.2.5 || >=0.2.1",
   },
   "snyk": true,
   "husky": {
