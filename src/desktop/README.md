@@ -36,7 +36,7 @@ yum install libusbx-devel
 
 ### 1. Installing dependencies
 
-After installing the [shared dependencies](https://github.com/iotaledger/trinity-wallet#instructions), install the desktop dependencies:
+After installing the [shared dependencies](https://github.com/iotaledger/trinity-wallet#installation), install the desktop dependencies:
 
 ```
 npm run deps:desktop

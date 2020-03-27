@@ -4,7 +4,7 @@
         "and": "ir",
         "send": "SIŲSTI",
         "cancel": "Atšaukti",
-        "complete": "Complete",
+        "complete": "Baigta",
         "continue?": "Ar tikrai norite tęsti?",
         "noTransactions": "ISTORIJOS NĖRA",
         "refresh": "Atnaujinti",
@@ -145,8 +145,8 @@
         "mustBeStoredAppropriately": "Jis privalo būti tinkamai laikomas.",
         "deviceMayBecomeUnresponsive": "Jūsų įrenginys kurį laiką gali neatsakyti į užklausas.",
         "isYourBalanceCorrect": "Ar jūsų balansas teisingas?",
-        "ifYourBalanceIsNotCorrect": "Jeigu jūsų balansas neteisingas, tikriausiai jūsų naudojamas užraktas nėra perkeltas įvykus viso tinklo duomenų perkėlimui.",
-        "headToAdvancedSettingsForTransition": "Eikite į išplėstinius parametrus ir atlikite tinklo duomenų perkėlimą.",
+        "ifYourBalanceIsNotCorrect": "If your balance is not correct, make sure you have entered the correct seed.",
+        "headToAdvancedSettingsForTransition": "If you are sure you have the right seed, head to Advanced Settings and perform a Snapshot Transition.",
         "headToAccountTools": "Eikite į paskyros įrankių skiltį ir atlikite tinklo duomenų perkėlimą.",
         "openAccountTools": "Atidaryti paskyros įrankius",
         "usingTrinityWalletWithKeePass": "Trinity naudojimas su Keepass2Android",
@@ -179,8 +179,8 @@
         "total": "Iš viso",
         "submit": "Pateikti",
         "tryAgain": "Bandyti dar kartą",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "unknown": "Nežinomas",
+        "goToDashboard": "Eiti į valdymo skydelį"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -383,9 +383,9 @@
         "addressPasteExplanation": "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu.",
         "invalid": "KLAIDA",
         "swipeToSend": "Paslinkite norėdami siųsti",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "Tai yra mokėjimo prašymas",
+        "paymentRequestExpired": "Baigėsi mokėjimo prašymo laikotarpis",
+        "paymentRequestExpiredExplanation": "Šio mokėjimo prašymo laikotarpis baigėsi. Prašykite gavėjo, kad sukurtų naują."
     },
     "setSeedName": {
         "letsAddName": "Sukurkite vardą",
@@ -781,6 +781,7 @@
         "noUpdatesAvailableExplanation": "Jūs turite naujausią Trinity versiją!",
         "newVersionAvailable": "Galima nauja versija",
         "newVersionAvailableExplanation": "Galima nauja Trinity versija. Ar norite atlikti atnaujinimus?",
+        "newVersionAvailableExplanationWin": "Galima nauja Trinity versija. Atnaujinimus atsisiųskite iš trinity.iota.org.",
         "installUpdate": "Atnaujinimų įdiegimas ir paleidimas iš naujo",
         "installUpdateExplanation": "Atsisiuntimas baigtas, Trinity persikraus ir įdiegs atnaujinimus.",
         "downloadingUpdate": "Siunčiami atnaujinimai",
@@ -882,8 +883,8 @@
         "writtenDownInfoExplanation": "Jums reiks indekso numerio norint susigrąžinti savo paskyrą ateityje. Jei pamesite savo indekso numerį, prarasite savo IOTA. Prašome jį įsidėmėti."
     },
     "help": {
-        "docsSite": "Trinity Docs Site",
-        "commonIssues": "Common Wallet Issues",
-        "buyingIOTA": "Problems Buying IOTA"
+        "docsSite": "Trinity Docs tinklalapis",
+        "commonIssues": "Dažnos Piniginės problemos",
+        "buyingIOTA": "Problemos perkant IOTA"
     }
 }

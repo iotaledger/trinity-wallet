@@ -145,8 +145,8 @@
         "mustBeStoredAppropriately": "Musí být uloženo odpovídajícím způsobem.",
         "deviceMayBecomeUnresponsive": "Vaše zařízení může na chvíli přestat reagovat.",
         "isYourBalanceCorrect": "Je Váš zůstatek v pořádku?",
-        "ifYourBalanceIsNotCorrect": "Pokud Váš zůstatek není správný, je pravděpodobné, že používáte Seed z doby před snapshotem.",
-        "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
+        "ifYourBalanceIsNotCorrect": "If your balance is not correct, make sure you have entered the correct seed.",
+        "headToAdvancedSettingsForTransition": "If you are sure you have the right seed, head to Advanced Settings and perform a Snapshot Transition.",
         "headToAccountTools": "Přejděte na Nastavení účtu a proveďte Aktualizace údajů po Snapshotu.",
         "openAccountTools": "Otevřete nastavení účtu",
         "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
@@ -781,6 +781,7 @@
         "noUpdatesAvailableExplanation": "Máte nainstalovanou nejnovější verzi Trinity!",
         "newVersionAvailable": "K dispozici je nová verze",
         "newVersionAvailableExplanation": "K dispozici je nová verze Trinity. Chcete nyní aktualizovat?",
+        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "Nainstalujte aktualizaci a restartujte",
         "installUpdateExplanation": "Stahování bylo dokončeno, Trinity se nyní restartuje a poté nainstaluje aktualizaci.",
         "downloadingUpdate": "Stahování aktualizace",
@@ -806,7 +807,7 @@
         "completeSetup": "Dokončit nastavení"
     },
     "proxy": {
-        "proxy": "Pomocí proxy serveru",
+        "proxy": "Použít proxy serveru",
         "proxyExplanation": "Rozpoznat a použít systémové nastavení proxy serveru. Po změně tohoto nastavení musí být peněženka restartována."
     },
     "notifications": {

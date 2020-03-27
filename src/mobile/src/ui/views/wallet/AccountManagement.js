@@ -8,7 +8,6 @@ import { getThemeFromState } from 'shared-modules/selectors/global';
 import { withTranslation } from 'react-i18next';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
-import { isIPhone11 } from 'libs/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -80,9 +79,6 @@ class AccountManagement extends Component {
             { name: 'back', function: () => this.props.setSetting('mainSettings') },
         ];
 
-        if (isIPhone11) {
-            rows.splice(6, 1);
-        }
         return renderSettingsRows(rows, theme);
     }
 
@@ -102,8 +98,5 @@ const mapDispatchToProps = {
 };
 
 export default withTranslation(['accountManagement', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(AccountManagement),
+    connect(mapStateToProps, mapDispatchToProps)(AccountManagement),
 );
