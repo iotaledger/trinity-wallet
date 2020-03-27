@@ -33,7 +33,7 @@
     "react": "16.8.6",
     "react-i18next": "^11.0.1",
     "react-redux": "^5.1.1",
-    "redux": "^4.0.4",
+    "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "url-parse": "^1.4.7",
