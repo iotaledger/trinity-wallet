@@ -70,7 +70,10 @@
     "timekeeper": "^2.2.0"
   },
   "resolutions": {
-    "mem": ">=4.0.0"
+    "mem": ">=4.0.0",
+    "mkdirp": "^0.5.3",
+    "**/optimist/minimist": "^0.2.1",
+    "minimist": "^1.2.5 || >=0.2.1"
   },
   "snyk": true
 }
