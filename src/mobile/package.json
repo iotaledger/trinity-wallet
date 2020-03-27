@@ -121,7 +121,7 @@
     "jest": "^24.8.0",
     "jest-serializer-enzyme": "^1.0.0",
     "metro-react-native-babel-preset": "^0.54.1",
-    "patch-package": "^6.1.2",
+    "patch-package": "^6.2.1",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.2.0",
     "react-native-schemes-manager": "^2.0.0",
@@ -131,7 +131,11 @@
   "resolutions": {
     "js-yaml": ">=3.13.1",
     "handlebars": ">=4.1.2",
-    "set-value": ">=2.0.1"
+    "set-value": ">=2.0.1",
+    "mkdirp": "^0.5.3",
+    "**/optimist/minimist": "^0.2.1",
+    "minimist": "^1.2.5 || >=0.2.1",
+    "acorn-globals": ">=6.0.0"
   },
   "jest": {
     "preset": "react-native",

@@ -1,10 +1,10 @@
 {
     "global": {
         "address": "آدرس",
-        "and": "and",
+        "and": "و",
         "send": "ارسال",
         "cancel": "لغو",
-        "complete": "Complete",
+        "complete": "کامل شد",
         "continue?": "آیا اطمینان دارید که می‌خواهید ادامه دهید?",
         "noTransactions": "تاریخچه اخیری وجود ندارد",
         "refresh": "تازه کردن",
@@ -17,18 +17,18 @@
         "transferSentMessage": "تراکنش شما به Tangle فرستاده شده است.",
         "messageSent": "پیام فرستاده شد",
         "messageSentMessage": "پیام شما به Tangle فرستاده شده است.",
-        "keyReuse": "ارسال به آدرس های از قبل استفاده شده",
-        "keyReuseError": "شما نمیتوانید به آدرسی که قبلا از آن قبلا ساخته شده است ارسال کنید.",
-        "invalidResponse": "خطای Node",
-        "invalidResponseExplanation": "Node یک خطا را دریافت کرد. سعی کنید Node را تغییر دهید.",
-        "invalidResponseFetchingAccount": "Node هنگام دریافت اطلاعات حساب شما، خطایی را دریافت کرد. سعی کنید Node را تغییر دهید.",
-        "invalidResponseFetchingAccountDesktop": "به هنگام دریافت اطلاعات حساب شما node با خطایی مواجه شد. اگر این مشکل همچنان ادامه دارد، تغییر دادن node یا غیر فعال کردن پروکسی سیستم خود در تنظیمات Trinity را امتحان کنید.",
-        "nodeOutOfSync": "Node خارج از همگام سازی",
-        "nodeOutOfSyncExplanation": "Node در حال حاضر انتخاب شده شما از همگام نیست. لطفا Node را تغییر دهید یا دوباره تلاش کنید.",
-        "nodeOutOfSyncByTimestampExplanation": "نود انتخاب شده ی شما در حال حاظر همگام سازی نشده است. خواهشاً نود را تغییر دهید یا دوباره تلاش کنید. اگر مشکل همچنان وجود داشت، اطمینان حاصل کنید که ساعت دستگاه شما درست است.",
-        "experimentalNode": "نسخه node پشتیبانی نمی‌شود",
-        "experimentalNodeExplanation": "node انتخاب شده فعلی شما در حال اجرای یک نسخه آزمایشی است که پشتیبانی نمی‌شود. لطفا node خود را تغییر دهید یا دوباره تلاش کنید.",
-        "thisNodeOutOfSync": "این Node همگام نیست. لطفا Node را تغییر دهید یا دوباره تلاش کنید.",
+        "keyReuse": "ارسال به آدرس از قبل استفاده شده",
+        "keyReuseError": "شما نمیتوانید به آدرسی که قبلا از آن ساخته شده است ارسال کنید.",
+        "invalidResponse": "خطای نود",
+        "invalidResponseExplanation": "نود خطا دارد. سعی کنید نود را تغییر دهید.",
+        "invalidResponseFetchingAccount": "نود هنگام دریافت اطلاعات حساب شما، خطایی را دریافت کرد. سعی کنید نود را تغییر دهید.",
+        "invalidResponseFetchingAccountDesktop": "هنگام دریافت اطلاعات حساب شما نود با خطایی مواجه شد. اگر مشکل همچنان وجود دارد، تغییر دادن نود یا غیر فعال کردن پروکسی سیستم خود در تنظیمات ترینیتی را امتحان کنید.",
+        "nodeOutOfSync": "نود غیر همگام",
+        "nodeOutOfSyncExplanation": "نود انتخاب شده شما همگام نیست. لطفاً نود را تغییر داده و یا دوباره تلاش کنید.",
+        "nodeOutOfSyncByTimestampExplanation": "نود انتخاب شده ی شما در حال حاظر همگام سازی نشده است. لطفاٌ نود را تغییر دهید یا دوباره تلاش کنید. اگر مشکل همچنان وجود داشت، اطمینان حاصل کنید که ساعت دستگاه شما درست است.",
+        "experimentalNode": "نسخه نود پشتیبانی نمی‌شود",
+        "experimentalNodeExplanation": "نود انتخاب شده شما در حال اجرای یک نسخه آزمایشی است که پشتیبانی نمی‌شود. لطفا نود را تغییر داده یا دوباره تلاش کنید.",
+        "thisNodeOutOfSync": "نود همگام نیست. لطفا نود را تغییر داده یا دوباره تلاش کنید.",
         "seed": "سید",
         "checksum": "کد اعتبارسنجی",
         "back": "برگشت",
@@ -119,7 +119,7 @@
         "checkForUpdates": "بررسی برای بروزرسانی",
         "account": "حساب",
         "changeNode": "تغییر Node",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "اضافه کردن نود",
         "nodeMustUseHTTPS": "Node نامعتبر (غیر HTTPS)",
         "nodeMustUseHTTPSExplanation": "فقط Node های سفارشی با استفاده از HTTPS مجاز می باشند.",
         "nodeDuplicated": "Node تکراری",
@@ -145,8 +145,8 @@
         "mustBeStoredAppropriately": "این باید به صورت مناسب ذخیره شود.",
         "deviceMayBecomeUnresponsive": "دستگاه شما ممکن است برای مدتی پاسخگو باشد.",
         "isYourBalanceCorrect": "آیا موجودی شما درست است؟",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, make sure you have entered the correct seed.",
-        "headToAdvancedSettingsForTransition": "If you are sure you have the right seed, head to Advanced Settings and perform a Snapshot Transition.",
+        "ifYourBalanceIsNotCorrect": "اگر مانده حساب شما صحیح نمی باشد، سید وارد شده را چک کرده و از صحت آن اطمینان حاصل کنید.",
+        "headToAdvancedSettingsForTransition": "اگر از سید وارد شده اطمینان دارید، به تنظیمات پیشرفته رفته و چک کردن فایل های روی دستگاه را انجام دهید.",
         "headToAccountTools": "به تنظیمات حساب بروید و یک انتقال اسنپ شات ایجاد کنید.",
         "openAccountTools": "باز کردن تنظیمات حساب",
         "usingTrinityWalletWithKeePass": "استفاده از کیف پول Trinity با Keepass2Android",
@@ -176,11 +176,11 @@
         "expert": "حرفه ای",
         "notEnoughSyncedNodes": "کمی از نود ها همگام شده",
         "notEnoughSyncedNodesExplanation": "سیستم قابل دستیابی نیست. سیستم را خاموش کرده یا دوباره تلاش کنید.",
-        "total": "Total",
-        "submit": "Submit",
-        "tryAgain": "Try again",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "total": "مجموع",
+        "submit": "ثبت",
+        "tryAgain": "سعی دوباره",
+        "unknown": "نامشخص",
+        "goToDashboard": "رفتن به داشبورد"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "سید ورودی دارای کاراکترهای نامعتبر است",
@@ -383,9 +383,9 @@
         "addressPasteExplanation": "به نظر می رسد که یک آدرس را جاگذاری کرده اید. اطمینان حاصل کنید که آدرس جایگذاری شده با آدرسی که شما می خواهید به آن ارسال کنید یکسان باشد.",
         "invalid": "نامعتبر",
         "swipeToSend": "بکشید تا ارسال شود",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "این یک درخواست پرداخت است",
+        "paymentRequestExpired": "درخواست پرداخت منقضی شد",
+        "paymentRequestExpiredExplanation": "این درخواست پرداخت منقضی شد. لطفاً از دریافت کننده دوباره درخواست کنید."
     },
     "setSeedName": {
         "letsAddName": "لطفا یک نام اضافه کنید",
@@ -468,7 +468,7 @@
     },
     "welcome": {
         "thankYou": "با تشکر از شما برای دانلود Trinity",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "با تشکر از شما برای دانلود ترینیتی نسخه تست"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>سید و کد اعتبارسنجی خود را بنویسید و </0><1>بررسی سه گانه</1><2>آنها درست هستند</2>",
@@ -497,7 +497,7 @@
         "searchHelpUnits": "پیدا کردن تراکنش ها با ارزش iota و واحدش",
         "searchHelpMore": "پیدا کردن تراکنش ها با یک ارزش بیشتر از X",
         "searchHelpLess": "پیدا کردن تراکنش ها با یک ارزش کمتر از X",
-        "transactions": "Transactions"
+        "transactions": "تراکنش ها"
     },
     "accountManagement": {
         "viewSeed": "مشاهده سید",
@@ -509,9 +509,9 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "مدیریت اتوماتیک نود",
-        "addCustomNodes": "Add nodes",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "addCustomNodes": "اضافه کردن نود",
+        "autoNodeList": "لیست نود پیش فرض استفاده کنید",
+        "nodeAutoswitching": "انتخاب خودکار نود اولیه",
         "primaryNode": "نود اصلی",
         "enableQuorum": "فعال کردن سیستم",
         "quorumSize": "اندازه سیستم",
@@ -522,9 +522,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "نود های سفارشی بیشتری اضافه کنید یا لیست نود از راه دور را فعال کنید.",
         "nodeSettingsUpdatedTitle": "تنظیمات نود به روز رسانی شد",
         "nodeSettingsUpdatedExplanation": "شما تنظیمات نود خود را با موفقیت به روز کردید.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "اثبات کار با منبع خارجی",
+        "autoSelectPowNode": "انتخاب خودکار نودِ اثبات کار",
+        "nodeForPow": "نودِ اثبات کار"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node سفارشی نمیتوان اضافه کرد",
@@ -547,7 +547,7 @@
     "advancedSettings": {
         "selectNode": "انتخاب Node",
         "manualSync": "همگام سازی دستی",
-        "snapshotTransition": "انتقال عکس فوری",
+        "snapshotTransition": "چک فایل های دستگاه",
         "pow": "اثبات کار",
         "autoPromotion": "ارتقا خودکار",
         "autoPromotionExplanation": "ارتقا خودکار کمک می کند تا معاملات خود را در Tangle تایید کنید. اگر شما دچار تردید در دریافت معاملات خود هستید این تنظیم را فعال کنید.",
@@ -711,7 +711,7 @@
         "change": "تغییر (24 ساعته)",
         "volume": "دوره (24 ساعته)",
         "error": "خطا در استخراج داده های نمودار",
-        "currentValue": "Current Value"
+        "currentValue": "مقدار فعلی"
     },
     "rootDetection": {
         "warning": "اخطار",
@@ -883,8 +883,8 @@
         "writtenDownInfoExplanation": "شما در آینده به شماره شاخص خود برای بازیابی حساب نیاز دارید. اگر شماره شاخص خود را گم کنید، IOTA ی خود را از دست می دهید. لطفاً آن را به خاطر بسپارید."
     },
     "help": {
-        "docsSite": "Trinity Docs Site",
-        "commonIssues": "Common Wallet Issues",
-        "buyingIOTA": "Problems Buying IOTA"
+        "docsSite": "سایت اسناد ترینیتی",
+        "commonIssues": "مشکلات رایج کیف پول",
+        "buyingIOTA": "مشکلات خرید آیوتا"
     }
 }
