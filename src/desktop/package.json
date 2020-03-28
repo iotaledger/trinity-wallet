@@ -167,7 +167,7 @@
     "classnames": "2.2.6",
     "electron-log": "4.1.0",
     "electron-settings": "3.2.0",
-    "electron-updater": "4.0.14",
+    "electron-updater": "4.2.2",
     "entangled-node": "iotaledger/entangled-node#v0.4.9",
     "hw-app-iota": "0.6.1",
     "i18next": "17.0.6",
