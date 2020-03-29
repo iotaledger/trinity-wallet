@@ -8004,13 +8004,13 @@
         },
         "ms": {
           "version": "2.0.0",
-          "resolved": false,
+          "resolved": "",
           "integrity": "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=",
           "optional": true
         },
         "needle": {
           "version": "2.2.4",
-          "resolved": false,
+          "resolved": "",
           "integrity": "sha512-HyoqEb4wr/rsoaIDfTH2aVL9nWtQqba2/HvMv+++m8u0dz808MaagKILxtfeSN7QU7nvbQ79zk3vYOJp9zsNEA==",
           "optional": true,
           "requires": {
@@ -8021,7 +8021,7 @@
         },
         "node-pre-gyp": {
           "version": "0.10.3",
-          "resolved": false,
+          "resolved": "",
           "integrity": "sha512-d1xFs+C/IPS8Id0qPTZ4bUT8wWryfR/OzzAFxweG+uLN85oPzyo2Iw6bVlLQ/JOdgNonXLCoRyqDzDWq4iw72A==",
           "optional": true,
           "requires": {
@@ -8049,13 +8049,13 @@
         },
         "npm-bundled": {
           "version": "1.0.5",
-          "resolved": false,
+          "resolved": "",
           "integrity": "sha512-m/e6jgWu8/v5niCUKQi9qQl8QdeEduFA96xHDDzFGqly0OOjI7c+60KM/2sppfnUU9JJagf+zs+yGhqSOFj71g==",
           "optional": true
         },
         "npm-packlist": {
           "version": "1.2.0",
-          "resolved": false,
+          "resolved": "",
           "integrity": "sha512-7Mni4Z8Xkx0/oegoqlcao/JpPCPEMtUvsmB0q7mgvlMinykJLSRTYuFqoQLYgGY8biuxIeiHO+QNJKbCfljewQ==",
           "optional": true,
           "requires": {
@@ -8193,7 +8193,7 @@
         },
         "semver": {
           "version": "5.6.0",
-          "resolved": false,
+          "resolved": "",
           "integrity": "sha512-RS9R6R35NYgQn++fkDWaOmqGoj4Ek9gGs+DPxNUZKuwE183xjJroKvyo1IzVFeXvUrvmALy6FWD5xrdJT25gMg==",
           "optional": true
         },
@@ -13504,10 +13504,9 @@
       }
     },
     "kind-of": {
-      "version": "6.0.2",
-      "resolved": "https://registry.npmjs.org/kind-of/-/kind-of-6.0.2.tgz",
-      "integrity": "sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==",
-      "dev": true
+      "version": "6.0.3",
+      "resolved": "https://registry.npmjs.org/kind-of/-/kind-of-6.0.3.tgz",
+      "integrity": "sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw=="
     },
     "klaw-sync": {
       "version": "6.0.0",
