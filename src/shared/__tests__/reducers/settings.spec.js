@@ -26,7 +26,7 @@ describe('Reducer: settings', () => {
                 acceptedTerms: false,
                 acceptedPrivacy: false,
                 autoPromotion: true,
-                hideEmptyTransactions: false,
+                hideEmptyTransactions: true,
                 isTrayEnabled: true,
                 notifications: {
                     general: true,
@@ -621,7 +621,7 @@ describe('Reducer: settings', () => {
     describe(SettingsActionTypes.TOGGLE_EMPTY_TRANSACTIONS, () => {
         it('should invert state.hideEmptyTransactions', () => {
             const initialState = {
-                hideEmptyTransactions: false,
+                hideEmptyTransactions: true,
             };
 
             const action = {
@@ -630,7 +630,7 @@ describe('Reducer: settings', () => {
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                hideEmptyTransactions: true,
+                hideEmptyTransactions: false,
             };
 
             expect(newState).to.eql(expectedState);
