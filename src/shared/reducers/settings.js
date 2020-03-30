@@ -76,7 +76,7 @@ export const initialState = {
     /**
      * Determines if wallet should hide empty transactions on history screens
      */
-    hideEmptyTransactions: false,
+    hideEmptyTransactions: true,
     /**
      * Determines if the tray app is enabled on desktop wallet
      */
