@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { round, roundDown } from 'shared-modules/libs/utils';
-import { computeStatusText, formatRelevantRecentTransactions } from 'shared-modules/libs/iota/transfers';
+import { computeStatusText, formatRelevantTransactions, filterTransactions } from 'shared-modules/libs/iota/transfers';
 import { setAnimateChartOnMount } from 'shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { getFiatBalance, formatFiatBalance } from 'shared-modules/libs/currency';
@@ -129,6 +129,8 @@ export class Balance extends Component {
         animateChartOnMount: PropTypes.bool.isRequired,
         /** @ignore */
         language: PropTypes.string.isRequired,
+        /** @ignore */
+        hideEmptyTransactions: PropTypes.bool.isRequired,
     };
 
     /**
@@ -183,13 +185,14 @@ export class Balance extends Component {
      */
 
     prepTransactions() {
-        const { transactions, theme, addresses } = this.props;
+        const { transactions, theme, addresses, hideEmptyTransactions } = this.props;
         const { primary, secondary, body } = theme;
         const orderedTransfers = orderBy(transactions, (tx) => tx.timestamp, ['desc']);
-        const recentTransactions = orderedTransfers.slice(0, 4);
-        const relevantTransactions = formatRelevantRecentTransactions(recentTransactions, addresses);
+        const relevantTransactions = formatRelevantTransactions(orderedTransfers, addresses);
+        const { filteredTransactions } = filterTransactions(relevantTransactions, hideEmptyTransactions);
+        const recentTransactions = filteredTransactions.slice(0, 4);
 
-        const formattedTransfers = map(relevantTransactions, (transfer) => {
+        const formattedTransfers = map(recentTransactions, (transfer) => {
             const { outputs, timestamp, incoming, persistence, transferValue } = transfer;
 
             return {
@@ -309,6 +312,7 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     animateChartOnMount: state.ui.animateChartOnMount,
     language: state.settings.language,
+    hideEmptyTransactions: state.settings.hideEmptyTransactions,
 });
 
 const mapDispatchToProps = {

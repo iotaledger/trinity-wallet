@@ -7,7 +7,7 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, RefreshControl } from
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { computeStatusText, formatRelevantTransactions } from 'shared-modules/libs/iota/transfers';
+import { computeStatusText, formatRelevantTransactions, filterTransactions } from 'shared-modules/libs/iota/transfers';
 import { promoteTransaction, retryFailedTransaction } from 'shared-modules/actions/transfers';
 import {
     getTransactionsForSelectedAccount,
@@ -149,6 +149,8 @@ class History extends Component {
         modalContent: PropTypes.string,
         /** @ignore */
         password: PropTypes.object.isRequired,
+        /** @ignore */
+        hideEmptyTransactions: PropTypes.bool.isRequired,
     };
 
     componentDidMount() {
@@ -241,8 +243,10 @@ class History extends Component {
             isAutoPromoting,
             isPromotingTransaction,
             isRetryingFailedTransaction,
+            hideEmptyTransactions,
         } = this.props;
         const relevantTransfers = formatRelevantTransactions(transactions, addresses);
+        const { filteredTransactions } = filterTransactions(relevantTransfers, hideEmptyTransactions);
 
         const withUnitAndChecksum = (item) => ({
             address: `${item.address}${item.checksum}`,
@@ -250,7 +254,7 @@ class History extends Component {
             unit: formatUnit(item.value),
         });
 
-        const formattedTransfers = map(relevantTransfers, (transfer) => {
+        const formattedTransfers = map(filteredTransactions, (transfer) => {
             const {
                 timestamp,
                 incoming,
@@ -401,6 +405,7 @@ const mapStateToProps = (state) => ({
     isModalActive: state.ui.isModalActive,
     modalContent: state.ui.modalContent,
     password: state.wallet.password,
+    hideEmptyTransactions: state.settings.hideEmptyTransactions,
 });
 
 const mapDispatchToProps = {
