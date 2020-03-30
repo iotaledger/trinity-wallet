@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-document-picker/index.js b/node_modules/react-native-document-picker/index.js
+index c87eb62..95ab12c 100644
+--- a/node_modules/react-native-document-picker/index.js
++++ b/node_modules/react-native-document-picker/index.js
+@@ -2,7 +2,7 @@
+ import { Platform, NativeModules } from 'react-native';
+ const { RNDocumentPicker } = NativeModules;
+ 
+-if (!RNDocumentPicker) {
++if (!RNDocumentPicker && process.env.NODE_ENV !== 'test') {
+   // Use a timeout to ensure the warning is displayed in the YellowBox
+   setTimeout(() => {
+     console.warn(
