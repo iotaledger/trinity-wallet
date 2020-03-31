@@ -91,7 +91,7 @@ export const initialState = {
     notifications: {
         general: true,
         confirmations: true,
-        messages: true,
+        messages: false,
     },
     /**
      * Determines the status of AsyncStorage to realm migration
