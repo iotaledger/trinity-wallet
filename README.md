@@ -77,13 +77,13 @@ If you want help getting started as a user of the wallet, see the [documentation
 If you are contributing to the Trinity codebase, see the following resources:
 
 - [How to develop new features in Trinity](https://docs.iota.org/docs/wallets/0.1/trinity/how-to-guides/develop-features-on-trinity)
-- [Contributing guidelines](CONTRIBUTING.md)
+- [Contributing guidelines](.github/CONTRIBUTING.md)
 
 ## Supporting the project
 
 If Trinity has been useful to you and you feel like contributing, consider posting a [bug report](https://github.com/iotaledger/trinity-wallet/issues/new?labels=T+-+Bug&template=bug_report.md&title=), [feature request](https://github.com/iotaledger/trinity-wallet/issues/new?labels=&template=feature_request.md&title=) or a [pull request](https://github.com/iotaledger/trinity-wallet/pulls/).
 
-See the [contributing guidelines](CONTRIBUTING.md) for more information.
+See the [contributing guidelines](.github/CONTRIBUTING.md) for more information.
 
 ## Joining the discussion
 

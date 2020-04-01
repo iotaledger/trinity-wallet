@@ -57,7 +57,7 @@
     "react-native-crypto": "^2.0.2",
     "react-native-detect-navbar-android": "^0.2.0",
     "react-native-device-info": "^0.13.0",
-    "react-native-document-picker": "^3.2.2",
+    "react-native-document-picker": "^3.3.2",
     "react-native-dropdownalert": "https://github.com/cvarley100/react-native-dropdownalert#fc6655c4542e3b35da67ccca5f708adb0a7ccff8",
     "react-native-exit-app": "^1.0.0",
     "react-native-extra-dimensions-android": "^0.21.0",
@@ -131,7 +131,11 @@
   "resolutions": {
     "js-yaml": ">=3.13.1",
     "handlebars": ">=4.1.2",
-    "set-value": ">=2.0.1"
+    "set-value": ">=2.0.1",
+    "mkdirp": "^0.5.3",
+    "**/optimist/minimist": "^0.2.1",
+    "minimist": "^1.2.5 || >=0.2.1",
+    "acorn-globals": ">=6.0.0"
   },
   "jest": {
     "preset": "react-native",

@@ -781,7 +781,6 @@
         "noUpdatesAvailableExplanation": "您正在使用最新版本的 Trinity 钱包。",
         "newVersionAvailable": "新版本可用",
         "newVersionAvailableExplanation": "有新版本的Trinity。是否立刻更新？",
-        "newVersionAvailableExplanationWin": "A new Trinity version is available. Visit trinity.iota.org to download it.",
         "installUpdate": "安装更新并重启",
         "installUpdateExplanation": "下载完成，Trinity将重新启动以安装更新。",
         "downloadingUpdate": "正在下载更新",
