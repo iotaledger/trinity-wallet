@@ -388,7 +388,7 @@ class History extends Component {
         if (search === '!help') {
             const searchOptions = {
                 XYZ: t('history:searchHelpText'),
-                '100': t('history:searchHelpText'),
+                '100': t('history:searchHelpValue'),
                 '100Mi': t('history:searchHelpUnits'),
                 '>100': t('history:searchHelpMore'),
                 '<100i': t('history:searchHelpLess'),
