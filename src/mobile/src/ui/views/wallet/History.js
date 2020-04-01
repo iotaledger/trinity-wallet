@@ -110,11 +110,6 @@ const styles = StyleSheet.create({
         fontSize: width / 28,
         paddingRight: width / 60,
     },
-    searchHelpItemContainer: {
-        fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: width / 28,
-        flexWrap: 'wrap',
-    },
     searchHelpInformationText: {
         fontFamily: 'SourceSansPro-SemiBold',
         fontSize: width / 28,
