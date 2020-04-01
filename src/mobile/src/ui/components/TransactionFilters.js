@@ -56,6 +56,10 @@ export default class TransactionFilters extends Component {
         totals: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        hideEmptyTransactions: PropTypes.bool.isRequired,
+        /** @ignore */
+        toggleEmptyTransactions: PropTypes.func.isRequired,
         /** Set history filter */
         setFilter: PropTypes.func.isRequired,
         /** Set search query */
