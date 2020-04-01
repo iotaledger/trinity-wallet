@@ -31,7 +31,7 @@ describe('Reducer: settings', () => {
                 notifications: {
                     general: true,
                     confirmations: true,
-                    messages: true,
+                    messages: false,
                 },
                 completedMigration: false,
                 ignoreProxy: false,
@@ -702,7 +702,7 @@ describe('Reducer: settings', () => {
                 notifications: {
                     general: true,
                     confirmations: true,
-                    messages: true,
+                    messages: false,
                 },
             };
 
@@ -716,7 +716,7 @@ describe('Reducer: settings', () => {
                 notifications: {
                     general: false,
                     confirmations: true,
-                    messages: true,
+                    messages: false,
                 },
             };
 
