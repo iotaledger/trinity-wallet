@@ -1,9 +1,10 @@
 import merge from 'lodash/merge';
 import map from 'lodash/map';
+import keys from 'lodash/keys';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, RefreshControl } from 'react-native';
+import { StyleSheet, View, Text, KeyboardAvoidingView, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -26,6 +27,7 @@ import TransactionRow from 'ui/components/TransactionRow';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import CtaButton from 'ui/components/CtaButton';
+import TransactionFilters from 'ui/components/TransactionFilters';
 import InfoBox from 'ui/components/InfoBox';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { Styling } from 'ui/theme/general';
@@ -42,6 +44,7 @@ const styles = StyleSheet.create({
     },
     list: {
         height: height * 0.5 + height / 15,
+        alignItems: 'center',
         justifyContent: 'center',
     },
     noTransactionsContainer: {
@@ -89,6 +92,35 @@ const styles = StyleSheet.create({
     buttonText: {
         fontFamily: 'SourceSansPro-SemiBold',
         fontSize: Styling.fontSize3,
+    },
+    searchHelpContainer: {
+        width: Styling.contentWidth,
+        borderRadius: Styling.borderRadius,
+        paddingHorizontal: width / 30,
+        paddingTop: height / 50,
+    },
+    searchHelpRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingBottom: height / 50,
+    },
+    searchHelpItemText: {
+        fontFamily: 'SourceSansPro-SemiBold',
+        fontSize: width / 28,
+        paddingRight: width / 60,
+    },
+    searchHelpItemContainer: {
+        fontFamily: 'SourceSansPro-SemiBold',
+        fontSize: width / 28,
+        flexWrap: 'wrap',
+    },
+    searchHelpInformationText: {
+        fontFamily: 'SourceSansPro-SemiBold',
+        fontSize: width / 28,
+    },
+    searchHelpInformationContainer: {
+        flexWrap: 'wrap',
+        width: width / 1.4,
     },
 });
 
@@ -152,6 +184,14 @@ class History extends Component {
         /** @ignore */
         hideEmptyTransactions: PropTypes.bool.isRequired,
     };
+
+    constructor() {
+        super();
+        this.state = {
+            filter: 'All',
+            search: '',
+        };
+    }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('History');
@@ -245,8 +285,15 @@ class History extends Component {
             isRetryingFailedTransaction,
             hideEmptyTransactions,
         } = this.props;
+        const { filter, search } = this.state;
+
         const relevantTransfers = formatRelevantTransactions(transactions, addresses);
-        const { filteredTransactions } = filterTransactions(relevantTransfers, hideEmptyTransactions);
+        const { filteredTransactions, totals } = filterTransactions(
+            relevantTransfers,
+            hideEmptyTransactions,
+            filter,
+            search,
+        );
 
         const withUnitAndChecksum = (item) => ({
             address: `${item.address}${item.checksum}`,
@@ -324,64 +371,115 @@ class History extends Component {
             };
         });
 
-        return orderBy(formattedTransfers, 'time', ['desc']);
+        return { transactions: orderBy(formattedTransfers, 'time', ['desc']), totals };
     }
 
-    renderIOTATransactions() {
+    renderIOTATransactions(transactions) {
         const {
-            theme: { primary, body },
+            theme: { primary, body, input },
             t,
             isRefreshing,
         } = this.props;
-        const data = this.prepIOTATransactions();
-        const noTransactions = data.length === 0;
+        const { filter, search } = this.state;
+
+        const hasNoTransactions = search === '' && filter === 'All' && transactions.length === 0;
+        const hasNoFilteredTransactions = (filter !== 'All' || search !== '') && transactions.length === 0;
+
+        if (search === '!help') {
+            const searchOptions = {
+                XYZ: t('history:searchHelpText'),
+                '100': t('history:searchHelpText'),
+                '100Mi': t('history:searchHelpUnits'),
+                '>100': t('history:searchHelpMore'),
+                '<100i': t('history:searchHelpLess'),
+            };
+            return (
+                <View style={[styles.searchHelpContainer, { backgroundColor: input.bg }]}>
+                    {map(keys(searchOptions), (item) => (
+                        <View style={styles.searchHelpRow}>
+                            <Text style={[styles.searchHelpItemText, { color: primary.color }]}>{item}</Text>
+                            <View style={styles.searchHelpInformationContainer}>
+                                <Text style={[styles.searchHelpInformationText, { color: body.color }]}>
+                                    {searchOptions[item]}
+                                </Text>
+                            </View>
+                        </View>
+                    ))}
+                </View>
+            );
+        }
+
+        if (hasNoTransactions) {
+            return (
+                <View style={styles.noTransactionsContainer}>
+                    <InfoBox>
+                        <Text style={[styles.infoText, { color: body.color }]}>{t('emptyHistory')}</Text>
+                        <CtaButton
+                            ctaColor={primary.color}
+                            ctaBorderColor={primary.color}
+                            secondaryCtaColor={primary.body}
+                            text={t('refresh')}
+                            onPress={() => this.props.onRefresh()}
+                            ctaWidth={width / 1.6}
+                            ctaHeight={height / 12}
+                            displayActivityIndicator={isRefreshing}
+                        />
+                    </InfoBox>
+                </View>
+            );
+        }
+
+        if (hasNoFilteredTransactions) {
+            return <Text style={[styles.infoText, { color: body.color }]}>{t('noFilteredTransactions')}</Text>;
+        }
 
         return (
             <OptimizedFlatList
-                contentContainerStyle={noTransactions ? styles.flatList : null}
-                data={data}
-                initialNumToRender={8} // TODO: Should be dynamically computed.
+                contentContainerStyle={hasNoTransactions ? styles.flatList : null}
+                data={transactions}
+                initialNumToRender={7} // TODO: Should be dynamically computed.
                 removeClippedSubviews
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => <TransactionRow {...item} />}
-                scrollEnabled={data.length > 0}
+                scrollEnabled={transactions.length > 0}
                 refreshControl={
                     <RefreshControl
-                        refreshing={isRefreshing && !noTransactions}
+                        refreshing={isRefreshing && !hasNoTransactions}
                         onRefresh={this.props.onRefresh}
                         tintColor={primary.color}
                     />
-                }
-                ListEmptyComponent={
-                    <View style={styles.noTransactionsContainer}>
-                        <InfoBox>
-                            <Text style={[styles.infoText, { color: body.color }]}>{t('emptyHistory')}</Text>
-                            <CtaButton
-                                ctaColor={primary.color}
-                                ctaBorderColor={primary.color}
-                                secondaryCtaColor={primary.body}
-                                text={t('refresh')}
-                                onPress={() => this.props.onRefresh()}
-                                ctaWidth={width / 1.6}
-                                ctaHeight={height / 12}
-                                displayActivityIndicator={isRefreshing}
-                            />
-                        </InfoBox>
-                    </View>
                 }
             />
         );
     }
 
     render() {
+        const { t, theme } = this.props;
+        const { filter, search } = this.state;
+        const { transactions, totals } = this.prepIOTATransactions();
+        const hasTransactions = transactions.length > 0 || search !== '' || filter !== 'All';
+
         return (
-            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
+            <KeyboardAvoidingView style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
                     <View style={styles.listContainer}>
-                        <View style={styles.list}>{this.renderIOTATransactions()}</View>
+                        {hasTransactions && (
+                            <TransactionFilters
+                                t={t}
+                                totals={totals}
+                                theme={theme}
+                                search={search}
+                                filter={filter}
+                                setSearch={(search) => this.setState({ search })}
+                                setFilter={(filter) => this.setState({ filter })}
+                            />
+                        )}
+                        <View style={[styles.list, search === '!help' && { justifyContent: 'flex-start' }]}>
+                            {this.renderIOTATransactions(transactions)}
+                        </View>
                     </View>
                 </View>
-            </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
         );
     }
 }

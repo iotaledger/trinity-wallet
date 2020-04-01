@@ -173,7 +173,7 @@ class ThemeCustomisation extends Component {
                                     this.dropdown = c;
                                 }}
                                 title={t('theme')}
-                                dropdownWidth={{ width: width / 1.45 }}
+                                dropdownStyle={{ width: width / 1.45 }}
                                 value={this.getLocalizedThemeName(themeName)}
                                 options={this.getLocalizedThemes().map(({ theme }) => theme)}
                                 saveSelection={(localizedSelection) => {
@@ -270,8 +270,5 @@ const mapDispatchToProps = {
 };
 
 export default withTranslation(['themeCustomisation', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(ThemeCustomisation),
+    connect(mapStateToProps, mapDispatchToProps)(ThemeCustomisation),
 );
