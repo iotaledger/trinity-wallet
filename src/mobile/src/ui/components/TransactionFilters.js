@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
+import { TouchableWithoutFeedback, TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import DropdownComponent from 'ui/components/Dropdown';
+import Toggle from 'ui/components/Toggle';
 
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        marginBottom: height / 60,
-        height: height / 10,
         width,
     },
     inner: {
         flexDirection: 'row',
         alignItems: 'flex-start',
         width: Styling.contentWidth,
-        flex: 1,
+        height: height / 14,
     },
     filterButton: {
         width: Styling.contentWidth * 0.28,
         height: height / 14,
-        marginBottom: height / 40,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: Styling.borderRadius,
@@ -34,6 +32,19 @@ const styles = StyleSheet.create({
     filterQuantityText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize3,
+    },
+    hideToggleContainer: {
+        flexDirection: 'row',
+        width: Styling.contentWidth,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        height: height / 18,
+    },
+    hideToggleText: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: Styling.fontSize3,
+        backgroundColor: 'transparent',
+        marginRight: 5,
     },
 });
 
@@ -82,7 +93,15 @@ export default class TransactionFilters extends Component {
 
     render() {
         const filters = ['All', 'Sent', 'Received', 'Pending'];
-        const { theme, t, filter, search } = this.props;
+        const {
+            theme,
+            theme: { body, primary },
+            t,
+            filter,
+            search,
+            hideEmptyTransactions,
+            toggleEmptyTransactions,
+        } = this.props;
 
         const dropdownOptions = filters.map((item) => {
             return t(item.toLowerCase());
@@ -116,6 +135,19 @@ export default class TransactionFilters extends Component {
                         clearSearch={() => this.props.setSearch('')}
                     />
                 </View>
+                <TouchableWithoutFeedback onPress={() => toggleEmptyTransactions()}>
+                    <View style={styles.hideToggleContainer}>
+                        <Text numberOfLines={1} style={[styles.hideToggleText, { color: body.color }]}>
+                            {t('history:hideZeroBalance')}
+                        </Text>
+                        <Toggle
+                            active={hideEmptyTransactions}
+                            bodyColor={body.color}
+                            primaryColor={primary.color}
+                            scale={1}
+                        />
+                    </View>
+                </TouchableWithoutFeedback>
             </View>
         );
     }

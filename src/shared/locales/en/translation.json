@@ -483,7 +483,7 @@
         "bundleHashCopied": "Bundle hash copied",
         "noTransactionsFound": "No transactions found",
         "emptyHistory": "Your transaction history is empty",
-        "hideZeroBalance": "Hide zero balance",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",

@@ -10,6 +10,7 @@ import { withTranslation } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { computeStatusText, formatRelevantTransactions, filterTransactions } from 'shared-modules/libs/iota/transfers';
 import { promoteTransaction, retryFailedTransaction } from 'shared-modules/actions/transfers';
+import { toggleEmptyTransactions } from 'shared-modules/actions/settings';
 import {
     getTransactionsForSelectedAccount,
     getSelectedAccountName,
@@ -183,6 +184,8 @@ class History extends Component {
         password: PropTypes.object.isRequired,
         /** @ignore */
         hideEmptyTransactions: PropTypes.bool.isRequired,
+        /** @ignore */
+        toggleEmptyTransactions: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -454,7 +457,7 @@ class History extends Component {
     }
 
     render() {
-        const { t, theme } = this.props;
+        const { t, theme, hideEmptyTransactions, toggleEmptyTransactions } = this.props;
         const { filter, search } = this.state;
         const { transactions, totals } = this.prepIOTATransactions();
         const hasTransactions = transactions.length > 0 || search !== '' || filter !== 'All';
@@ -472,6 +475,8 @@ class History extends Component {
                                 filter={filter}
                                 setSearch={(search) => this.setState({ search })}
                                 setFilter={(filter) => this.setState({ filter })}
+                                hideEmptyTransactions={hideEmptyTransactions}
+                                toggleEmptyTransactions={() => toggleEmptyTransactions()}
                             />
                         )}
                         <View style={[styles.list, search === '!help' && { justifyContent: 'flex-start' }]}>
@@ -512,6 +517,7 @@ const mapDispatchToProps = {
     toggleModalActivity,
     retryFailedTransaction,
     updateModalProps,
+    toggleEmptyTransactions,
 };
 
 export default WithManualRefresh()(
