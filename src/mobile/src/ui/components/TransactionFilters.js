@@ -128,7 +128,7 @@ export default class TransactionFilters extends Component {
                         value={search}
                         inputWidth={Styling.contentWidth * 0.69}
                         onValidTextChange={(search) => this.props.setSearch(search)}
-                        returnKeyType="next"
+                        returnKeyType="search"
                         theme={theme}
                         autoCapitalize="none"
                         autoCorrect={false}
