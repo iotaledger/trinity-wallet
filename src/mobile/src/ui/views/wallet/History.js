@@ -393,8 +393,8 @@ class History extends Component {
             };
             return (
                 <View style={[styles.searchHelpContainer, { backgroundColor: input.bg }]}>
-                    {map(keys(searchOptions), (item) => (
-                        <View style={styles.searchHelpRow}>
+                    {map(keys(searchOptions), (item, index) => (
+                        <View keys={index} style={styles.searchHelpRow}>
                             <Text style={[styles.searchHelpItemText, { color: primary.color }]}>{item}</Text>
                             <View style={styles.searchHelpInformationContainer}>
                                 <Text style={[styles.searchHelpInformationText, { color: body.color }]}>
