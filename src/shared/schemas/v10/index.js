@@ -3,11 +3,11 @@ import each from 'lodash/each';
 import merge from 'lodash/merge';
 import v9Schema from '../v9';
 
-const migration = (_, newRealm) => {
+const migration = (oldRealm, newRealm) => {
     const walletData = newRealm.objectForPrimaryKey('Wallet', 9);
     const newWalletSettings = newRealm.objects('WalletSettings');
+    const oldNotificationsSettings = oldRealm.objects('NotificationsSettings');
     const newNotificationsSettings = newRealm.objects('NotificationsSettings');
-
     // Bump wallet version.
     walletData.version = 10;
 
@@ -15,12 +15,12 @@ const migration = (_, newRealm) => {
         settings.hideEmptyTransactions = true;
     });
 
-    each(newNotificationsSettings, (settings) => {
-        settings.notifications = {
-            general: true,
-            confirmations: true,
-            messages: false,
-        };
+    each(oldNotificationsSettings, (oldSettings) => {
+        each(newNotificationsSettings, (newSettings) => {
+            newSettings.general = oldSettings.general;
+            newSettings.confirmations = oldSettings.confirmations;
+            newSettings.messages = false;
+        });
     });
 };
 
