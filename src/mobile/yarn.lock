@@ -5890,10 +5890,10 @@ kind-of@^5.0.0:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-5.1.0.tgz#729c91e2d857b7a419a1f9aa65685c4c33f5845d"
   integrity sha512-NGEErnH6F2vUuXDh+OlbcKW7/wOcfdRHaZ7VWtqCztfHri/++YKmP51OdWeGPuqCOba6kk2OTe5d02VmTB80Pw==
 
-kind-of@^6.0.0, kind-of@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
-  integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
+kind-of@^6.0.0, kind-of@^6.0.2, kind-of@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
+  integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
 klaw-sync@^6.0.0:
   version "6.0.0"
@@ -8073,10 +8073,10 @@ react-native-device-info@^0.13.0:
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.13.0.tgz#81051eebd3db6959e4f1d2cb0ae8df74105040cf"
   integrity sha512-R7F8T801ThgYrjDiBy8td3N5VKdlMM7v5x7vpowsCVrOHrLnMw7iBUJqzh2tsLOb8JKfI0h5mw1gHW5YDFSVcg==
 
-react-native-document-picker@^3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-3.2.2.tgz#d9774cb95d44f9b993600a048b0f18e7dd5ecea2"
-  integrity sha512-0vnWKfAWNxKlo7swZE0I66uF4zqp7uy6eUD/TjhD+xd1xkX9WNX5rbD/xMS46KOAcyZsp+OatxRWd7acPSL/Xg==
+react-native-document-picker@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-3.3.2.tgz#2ad30361dd25c0a2501170ac1b0d857b396118f7"
+  integrity sha512-l/f7xtUG0EhW0lbACJZkAm4MSS0kuw62/wrJNAAdF+NmC7g7FN3FlhtiyFjhbt5qL7xgTrZOyxA/9+WuAmMkXA==
 
 "react-native-dropdownalert@https://github.com/cvarley100/react-native-dropdownalert#fc6655c4542e3b35da67ccca5f708adb0a7ccff8":
   version "3.7.0"
