@@ -136,7 +136,8 @@
     "**/optimist/minimist": "^0.2.1",
     "minimist": "^1.2.5 || >=0.2.1",
     "acorn-globals": ">=6.0.0",
-    "kind-of": ">=6.0.3"
+    "**/randomatic/kind-of": "^6.0.3",
+    "**/sane/micromatch/kind-of": "^6.0.3"
   },
   "jest": {
     "preset": "react-native",
