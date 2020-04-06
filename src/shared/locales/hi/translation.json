@@ -478,7 +478,7 @@
         "bundleHashCopied": "बंडल हैश की प्रतिलिपि बनाई गई",
         "noTransactionsFound": "कोई लेनदेन नहीं मिला",
         "emptyHistory": "आपका लेन-देन इतिहास खाली है",
-        "hideZeroBalance": "शून्य बैलेंस छिपाएं",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "बंडल हैश को क्लिपबोर्ड पर कॉपी किया गया है ।",
         "addressCopied": "पता प्रतिलिपि बनाई गई",
         "addressCopiedExplanation": "पते की क्लिपबोर्ड पर कॉपी बनाई गई है ।",
@@ -491,13 +491,14 @@
         "yesterday": "कल",
         "promotingAnotherBundle": "दूसरे बंडल को प्रोमोट कर रहे है",
         "pleaseWait": "कृपया प्रतीक्षा करे, दूसरे बंडल को प्रोमोट कर रहे है",
-        "typeHelp": "उपलब्ध कमांड के लिए !help टाइप करे",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "बंडल हैश या मैसेज कंटेंट द्वारा खोजें",
         "searchHelpValue": "सटीक iota मूल्य द्वारा लेनदेन का पता लगाएं",
         "searchHelpUnits": "Iota मूल्य और इकाई द्वारा लेनदेन का पता लगाएं",
         "searchHelpMore": "X से अधिक मूल्य वाले लेनदेन का पता लगाएं",
         "searchHelpLess": "X से कम मूल्य वाले लेनदेन का पता लगाएं",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "सीड देखें",
