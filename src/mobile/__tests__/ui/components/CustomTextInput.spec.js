@@ -79,8 +79,12 @@ describe('Testing CustomTextInput component', () => {
             expect(CustomTextInput.propTypes.conversionText).toEqual(PropTypes.string);
         });
 
-        it('should accept a height number as a prop', () => {
-            expect(CustomTextInput.propTypes.height).toEqual(PropTypes.number);
+        it('should accept a inputHeight number as a prop', () => {
+            expect(CustomTextInput.propTypes.inputHeight).toEqual(PropTypes.number);
+        });
+
+        it('should accept a inputWidth number as a prop', () => {
+            expect(CustomTextInput.propTypes.inputWidth).toEqual(PropTypes.number);
         });
 
         it('should accept a onRef function as a prop', () => {

@@ -111,7 +111,7 @@ class SettingsRow extends PureComponent {
                         saveSelection={(item) => onPress(item)}
                         customView={this.renderSettingsRow()}
                         disableWhen={inactive}
-                        dropdownWidth={{ width }}
+                        dropdownStyle={{ width }}
                     />
                 )) ||
                     this.renderSettingsRow()}
