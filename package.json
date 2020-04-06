@@ -31,8 +31,7 @@
   },
   "lint-staged": {
     "*.{js,json,css}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "devDependencies": {
@@ -46,7 +45,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-native": "^3.8.1",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.9",
+    "lint-staged": "^10.1.1",
     "prettier": "^1.19.1"
   },
   "dependencies": {
