@@ -45,6 +45,7 @@ import {
     EMPTY_HASH_TRYTES,
     EMPTY_TRANSACTION_MESSAGE,
     VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX,
+    unitStringToValue,
 } from './utils';
 import Errors from './../errors';
 
@@ -722,34 +723,6 @@ export const formatRelevantTransactions = (transactions, addresses) => {
 };
 
 /**
- * Formats recent transactions to accommodate for sending to self
- *
- * @method formatRelevantRecentTransactions
- * @param {array} transactions
- * @param {array} addresses
- *
- * @return {array} Formatted recent transactions
- */
-export const formatRelevantRecentTransactions = (transactions, addresses) => {
-    const relevantTransactions = [];
-    map(transactions, (transaction) => {
-        if (relevantTransactions.length < 4) {
-            if (!transaction.incoming && transaction.outputs.every((tx) => addresses.includes(tx.address))) {
-                const sendToSelfTransaction = clone(transaction);
-                sendToSelfTransaction.incoming = true;
-                relevantTransactions.push(sendToSelfTransaction);
-                if (relevantTransactions.length < 4) {
-                    relevantTransactions.push(transaction);
-                }
-            } else {
-                relevantTransactions.push(transaction);
-            }
-        }
-    });
-    return relevantTransactions;
-};
-
-/**
  * Sort transaction trytes array
  *
  * @method sortTransactionTrytesArray
@@ -1126,4 +1099,68 @@ export const isFatalTransactionError = (err) => {
         fatalTransferErrors,
         (error) => error === err || (typeof err.message === 'string' && err.message.includes(error)),
     );
+};
+
+/**
+ * Applies transaction history filters
+ *
+ * @method filterTransactions
+ *
+ * @param {array} transactions
+ * @param {boolean} hideEmptyTransactions
+ * @param {string} currentFilter
+ * @param {string} search
+ *
+ * @returns {object}
+ */
+export const filterTransactions = (transactions, hideEmptyTransactions, currentFilter = 'All', search = '') => {
+    const totals = {
+        All: 0,
+        Sent: 0,
+        Received: 0,
+        Pending: 0,
+    };
+
+    const filteredTransactions = filter(transactions, (transaction) => {
+        const isReceived = transaction.incoming;
+        const isConfirmed = transaction.persistence;
+
+        if (hideEmptyTransactions && transaction.transferValue === 0) {
+            return false;
+        }
+
+        if (
+            search.length &&
+            transaction.message.toLowerCase().indexOf(search.toLowerCase()) < 0 &&
+            transaction.bundle.toLowerCase().indexOf(search.toLowerCase()) !== 0 &&
+            !(search[0] === '>' && unitStringToValue(search.substr(1)) < transaction.transferValue) &&
+            !(search[0] === '<' && unitStringToValue(search.substr(1)) > transaction.transferValue) &&
+            transaction.transferValue !== unitStringToValue(search)
+        ) {
+            return false;
+        }
+
+        totals.All++;
+
+        if (!isConfirmed) {
+            totals.Pending++;
+            if (currentFilter === 'Pending') {
+                return true;
+            }
+        } else if (isReceived) {
+            totals.Received++;
+            if (currentFilter === 'Received') {
+                return true;
+            }
+        } else {
+            totals.Sent++;
+            if (currentFilter === 'Sent') {
+                return true;
+            }
+        }
+
+        return currentFilter === 'All';
+    });
+
+    return { filteredTransactions, totals };
 };
