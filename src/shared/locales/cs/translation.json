@@ -478,7 +478,7 @@
         "bundleHashCopied": "Balíček hash zkopírován",
         "noTransactionsFound": "Nebyly nalezeny žádné transakce",
         "emptyHistory": "Vaše historie transakcí je prázdná",
-        "hideZeroBalance": "Skrýt nulový zůstatek",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
@@ -491,13 +491,14 @@
         "yesterday": "Včera",
         "promotingAnotherBundle": "Podpora dalšího balíčku",
         "pleaseWait": "Prosím počkejte, Trinity podporuje další balíček.",
-        "typeHelp": "Zadejte příkaz !help a dozvíte se o dostupných příkazech",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Vyhledávání podle hash balíčků nebo obsahu zprávy",
         "searchHelpValue": "Vyhledat transakce na základě přesné IOTA hodnoty",
         "searchHelpUnits": "Vyhledat transakce na základě IOTA hodnoty a jednotky",
         "searchHelpMore": "Vyhledat transakce s hodnotou větší než X",
         "searchHelpLess": "Vyhledat transakce s hodnotou menší než X",
-        "transactions": "Transakce"
+        "transactions": "Transakce",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
