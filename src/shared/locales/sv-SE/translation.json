@@ -478,7 +478,7 @@
         "bundleHashCopied": "Hashbunt kopierad",
         "noTransactionsFound": "Inga transaktioner hittade",
         "emptyHistory": "Din transaktionshistorik är tom",
-        "hideZeroBalance": "Dölj nollvärden",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
@@ -491,13 +491,14 @@
         "yesterday": "Igår",
         "promotingAnotherBundle": "Främjar en annan transaktionsbunt",
         "pleaseWait": "Vänta vänligen, Trinity är upptagen med att befordra en annan transaktionsbunt.",
-        "typeHelp": "Skriv !help för tillgängliga kommandon",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Sök på hashbunt eller meddelandets innehåll",
         "searchHelpValue": "Hitta transaktioner med exakta IOTA-värdet",
         "searchHelpUnits": "Hitta transaktioner med IOTA-värdet och enhet",
         "searchHelpMore": "Hitta transaktioner med ett värde större än X",
         "searchHelpLess": "Hitta transaktioner med ett värde mindre än X",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
