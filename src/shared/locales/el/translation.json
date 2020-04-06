@@ -478,7 +478,7 @@
         "bundleHashCopied": "Πακέτο κατακερματισμού αντιγράφηκε",
         "noTransactionsFound": "Δεν βρέθηκαν συναλλαγές",
         "emptyHistory": "Το ιστορικό συναλλαγών σας είναι κενό",
-        "hideZeroBalance": "Απόκρυψη μηδενικού υπόλοιπου",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "Το πακέτο κατακερματισμού έχει αντιγραφεί στο Πρόχειρο.",
         "addressCopied": "Η διεύθυνση αντιγράφηκε",
         "addressCopiedExplanation": "Η διεύθυνση έχει αντιγραφεί στο Πρόχειρο.",
@@ -491,13 +491,14 @@
         "yesterday": "Εχθές",
         "promotingAnotherBundle": "Προωθώντας μια άλλη δέσμη",
         "pleaseWait": "Παρακαλώ περιμένετε, η Trinity προωθεί μια άλλη δέσμη.",
-        "typeHelp": "Πληκτρολογήστε βοήθεια για διαθέσιμες εντολές",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Αναζήτηση βάσει συσχέτισης ή περιεχομένου μηνυμάτων",
         "searchHelpValue": "Βρείτε συναλλαγές με ακριβή τιμή iota",
         "searchHelpUnits": "Βρείτε συναλλαγές ανά αξία και μονάδα iota",
         "searchHelpMore": "Βρείτε συναλλαγές με τιμή μεγαλύτερη από X",
         "searchHelpLess": "Βρείτε συναλλαγές με τιμή μικρότερη από X",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Προβολή σπόρου",
