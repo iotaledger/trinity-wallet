@@ -6,7 +6,6 @@ import v9Schema from '../v9';
 const migration = (oldRealm, newRealm) => {
     const walletData = newRealm.objectForPrimaryKey('Wallet', 9);
     const newWalletSettings = newRealm.objects('WalletSettings');
-    const oldNotificationsSettings = oldRealm.objects('NotificationsSettings');
     const newNotificationsSettings = newRealm.objects('NotificationsSettings');
     // Bump wallet version.
     walletData.version = 10;
@@ -15,12 +14,8 @@ const migration = (oldRealm, newRealm) => {
         settings.hideEmptyTransactions = true;
     });
 
-    each(oldNotificationsSettings, (oldSettings) => {
-        each(newNotificationsSettings, (newSettings) => {
-            newSettings.general = oldSettings.general;
-            newSettings.confirmations = oldSettings.confirmations;
-            newSettings.messages = false;
-        });
+    each(newNotificationsSettings, (newSettings) => {
+        newSettings.messages = false;
     });
 };
 
