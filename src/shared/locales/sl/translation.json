@@ -478,7 +478,7 @@
         "bundleHashCopied": "Bundle-Hash kopiran",
         "noTransactionsFound": "Ni najdenih transakcij",
         "emptyHistory": "Vaša zgodovina transakcij je prazna",
-        "hideZeroBalance": "Skrij ničelno bilanco",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "Naslov je bil kopiran v odložišce.",
         "addressCopied": "Naslov kopiran",
         "addressCopiedExplanation": "Naslov je bil kopiran v odložišce.",
@@ -491,13 +491,14 @@
         "yesterday": "Včeraj",
         "promotingAnotherBundle": "Promoviranje drugega paketa",
         "pleaseWait": "Prosim počakajte, Trinity promovira drug paket.",
-        "typeHelp": "Vpišite !help za prikaz, razpoložljivih komand",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Iščite po Bundle-Hash ali vsebini sporočila",
         "searchHelpValue": "Poišči transakcije z natančno Iota-vrednostjo",
         "searchHelpUnits": "Poišči transakcije z Iota-vrednostjo in enoto",
         "searchHelpMore": "Poišči transakcije z vrednostjo, ki je večja od X",
         "searchHelpLess": "Poišči transakcije z vrednostjo, manjšo od X",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Prikaži Seed",
