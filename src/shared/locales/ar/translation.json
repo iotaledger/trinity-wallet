@@ -478,7 +478,7 @@
         "bundleHashCopied": "تم نسخ حزمة الهاش",
         "noTransactionsFound": "لا يوجد معاملات تم العثور عليها",
         "emptyHistory": "سجل تاريخ المعاملات السابقة فارغ",
-        "hideZeroBalance": "أخفي الرصيد الصفري",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "تم نسخ حزمة الهاش إلى الحافظة.",
         "addressCopied": "تم نسخ العنوان",
         "addressCopiedExplanation": "تم نسخ العنوان إلى الحافظة.",
@@ -491,13 +491,14 @@
         "yesterday": "أمس",
         "promotingAnotherBundle": "تعزيز حزمة أخرى",
         "pleaseWait": "يرجى الانتظار، ترينيتي تروج لحزمة أخرى.",
-        "typeHelp": "اكتب !مساعدة للأوامر المتاحة",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "البحث عن طريق حزمة الهاش أو محتوى الرسالة",
         "searchHelpValue": "البحث عن المعاملات حسب قيمة iota",
         "searchHelpUnits": "البحث عن المعاملات حسب قيمة ووحدة iota",
         "searchHelpMore": "ابحث عن معاملات بقيمة أكبر من X",
         "searchHelpLess": "ابحث عن معاملات بقيمة أقل من X",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "عرض السييد",
