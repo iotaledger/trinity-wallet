@@ -478,7 +478,7 @@
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
         "noTransactionsFound": "取引がありません",
         "emptyHistory": "取引履歴はありません",
-        "hideZeroBalance": "残高0を非表示",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "バンドルのハッシュ値をクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
@@ -491,13 +491,14 @@
         "yesterday": "昨日",
         "promotingAnotherBundle": "別のバンドルを促進中",
         "pleaseWait": "少々お待ちください。Trinityは他のバンドルを促進しています。",
-        "typeHelp": "利用可能なコマンドについては !help と入力してください。",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "バンドルハッシュまたはメッセージコンテンツで検索",
         "searchHelpValue": "正確なIOTAの値で取引を検索",
         "searchHelpUnits": "IOTAの値と単位で取引を検索",
         "searchHelpMore": "Xより大きな値を持つ取引を検索",
         "searchHelpLess": "Xより小さな値を持つ取引を検索",
-        "transactions": "トランザクション"
+        "transactions": "トランザクション",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
