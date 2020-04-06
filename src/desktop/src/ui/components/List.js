@@ -4,7 +4,8 @@ import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
 import { withTranslation } from 'react-i18next';
 
-import { formatIotas, unitStringToValue } from 'libs/iota/utils';
+import { formatIotas } from 'libs/iota/utils';
+import { filterTransactions } from 'libs/iota/transfers';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate, detectedTimezone } from 'libs/date';
 import SeedStore from 'libs/SeedStore';
 
@@ -156,53 +157,12 @@ export class ListComponent extends React.PureComponent {
 
         const filters = ['All', 'Sent', 'Received', 'Pending'];
 
-        const totals = {
-            All: 0,
-            Sent: 0,
-            Received: 0,
-            Pending: 0,
-        };
-
-        const filteredTransactions = orderBy(transactions, 'timestamp', ['desc']).filter((transaction) => {
-            const isReceived = transaction.incoming;
-            const isConfirmed = transaction.persistence;
-
-            if (hideEmptyTransactions && transaction.transferValue === 0) {
-                return false;
-            }
-
-            if (
-                search.length &&
-                transaction.message.toLowerCase().indexOf(search.toLowerCase()) < 0 &&
-                transaction.bundle.toLowerCase().indexOf(search.toLowerCase()) !== 0 &&
-                !(search[0] === '>' && unitStringToValue(search.substr(1)) < transaction.transferValue) &&
-                !(search[0] === '<' && unitStringToValue(search.substr(1)) > transaction.transferValue) &&
-                transaction.transferValue !== unitStringToValue(search)
-            ) {
-                return false;
-            }
-
-            totals.All++;
-
-            if (!isConfirmed) {
-                totals.Pending++;
-                if (filter === 'Pending') {
-                    return true;
-                }
-            } else if (isReceived) {
-                totals.Received++;
-                if (filter === 'Received') {
-                    return true;
-                }
-            } else {
-                totals.Sent++;
-                if (filter === 'Sent') {
-                    return true;
-                }
-            }
-
-            return filter === 'All';
-        });
+        const { filteredTransactions, totals } = filterTransactions(
+            orderBy(transactions, 'timestamp', ['desc']),
+            hideEmptyTransactions,
+            filter,
+            search,
+        );
 
         const activeTx = currentItem ? filteredTransactions.filter((tx) => tx.bundle === currentItem)[0] : null;
         const isActiveFailed = activeTx && activeTx.broadcasted === false;

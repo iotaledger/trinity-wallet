@@ -88,7 +88,7 @@ class LanguageSelection extends Component {
                                 this.dropdown = c;
                             }}
                             title={t('language')}
-                            dropdownWidth={{ width: width / 1.5 }}
+                            dropdownStyle={{ width: width / 1.5 }}
                             value={this.state.languageSelected}
                             options={I18N_LOCALE_LABELS}
                             saveSelection={(languageSelected) => this.setState({ languageSelected })}
@@ -122,8 +122,5 @@ const mapDispatchToProps = {
 };
 
 export default withTranslation(['languageSetup', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(LanguageSelection),
+    connect(mapStateToProps, mapDispatchToProps)(LanguageSelection),
 );
