@@ -478,7 +478,7 @@
         "bundleHashCopied": "Salin rangkaian hash",
         "noTransactionsFound": "Transaksi tidak ditemukan",
         "emptyHistory": "Sejarah transaksi kosong",
-        "hideZeroBalance": "Sembunyikan saldo nol",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "Rangkaian hash telah disalin ke papan klip.",
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat telah disalin ke papan klip.",
@@ -491,13 +491,14 @@
         "yesterday": "Kemarin",
         "promotingAnotherBundle": "Promosi Bundle lain",
         "pleaseWait": "Silahkan tunggu, Trinity sedang promosi Bundle lain.",
-        "typeHelp": "Ketik !help untuk mengecek perintah lain",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Cari dari Hash Bundle atau isi pesan",
         "searchHelpValue": "Cari transaksi dengan nilai IOTA",
         "searchHelpUnits": "Cari transaksi dari nilai dan unit IOTA",
         "searchHelpMore": "Cari transaksi dengan nilai lebih dari X",
         "searchHelpLess": "Cari transaksi dengan kurang dari X",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Lihat seed",
