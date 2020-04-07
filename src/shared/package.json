@@ -15,7 +15,6 @@
     "test:watch": "yarn test --watch",
     "test:coverage": "nyc --check-coverage --lines 50 --statements 50 --functions 50 --branches 50 yarn test",
     "themes:sync": "node themes/sync.js",
-    "postinstall": "node debian-rebuild-realm.js",
     "snyk-protect": "snyk protect"
   },
   "license": "Apache-2.0 OR EPL-2.0",
@@ -31,7 +30,7 @@
     "proxy-polyfill": "^0.3.0",
     "querystring": "^0.2.0",
     "react": "16.8.6",
-    "react-i18next": "^11.0.1",
+    "react-i18next": "^11.3.4",
     "react-redux": "^5.1.1",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
