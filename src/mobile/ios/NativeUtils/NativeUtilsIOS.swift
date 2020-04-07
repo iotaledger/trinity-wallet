@@ -20,7 +20,7 @@ class NativeUtilsIOS: NSObject {
     guard rc == 0 else {
       return nil
     }
-    return Double(time.tv_sec) + Double(time.tv_nsec / 1_000_000)
+    return Double(time.tv_sec * 1_000) + Double(time.tv_nsec / 1_000_000)
   }
 
   /// Gets a value that can be used as the system uptime in milliseconds
