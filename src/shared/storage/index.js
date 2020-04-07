@@ -74,8 +74,9 @@ class Account {
      */
     static getDataAsArray() {
         const accounts = Account.data;
+        const parsedAccounts = map(accounts, (account) => parse(serialise(account)));
 
-        return map(accounts, (account) =>
+        return map(parsedAccounts, (account) =>
             assign({}, account, {
                 addressData: map(account.addressData, (data) => parse(serialise(data))),
                 transactions: map(account.transactions, (transaction) => parse(serialise(transaction))),
