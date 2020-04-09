@@ -4,7 +4,7 @@ describe('Settings node view', () => {
 
         expect(snapshot).toMatchImageSnapshot({
             customSnapshotsDir: `${__dirname}/__snapshots__/`,
-            failureThreshold: '0.05',
+            failureThreshold: '0.10',
             failureThresholdType: 'percent',
             customSnapshotIdentifier: 'node.test.jsx',
         });
