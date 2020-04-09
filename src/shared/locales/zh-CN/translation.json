@@ -478,7 +478,7 @@
         "bundleHashCopied": "交易包哈希值已复制",
         "noTransactionsFound": "没有找到任何交易",
         "emptyHistory": "您的交易记录是空的。",
-        "hideZeroBalance": "隐藏零余额",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "交易包哈希值已复制到剪贴板。",
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "地址已复制到剪贴板。",
@@ -491,13 +491,14 @@
         "yesterday": "昨天",
         "promotingAnotherBundle": "推广另一个交易组",
         "pleaseWait": "请等待，Trinity 正在推广另一个交易组。",
-        "typeHelp": "请输入!help 来查找可用的指令。",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "使用交易组的哈希值或者讯息内容来搜索",
         "searchHelpValue": "使用准确的IOTA 价值来搜索交易",
         "searchHelpUnits": "使用IOTA 价值和数量来搜索交易",
         "searchHelpMore": "搜索价值高于X 的交易",
         "searchHelpLess": "搜索价值小于X 的交易",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "查看种子",

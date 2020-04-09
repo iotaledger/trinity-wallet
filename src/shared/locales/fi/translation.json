@@ -478,7 +478,7 @@
         "bundleHashCopied": "Kokoelman tiivisteluku kopioitu",
         "noTransactionsFound": "Tapahtumia ei löytynyt",
         "emptyHistory": "Tapahtumahistoriasi on tyhjä",
-        "hideZeroBalance": "Piilota nollasaldo",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "Kokoelman tiivisteluku on kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
@@ -491,13 +491,14 @@
         "yesterday": "Eilen",
         "promotingAnotherBundle": "Edistetään toista kokoelmaa",
         "pleaseWait": "Ole hyvä ja odota, Trinity edistää toista kokoelmaa.",
-        "typeHelp": "Kirjoita !help komentojen saamiseksi",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Etsi kokoelman tiiviste-luvulla tai viestin sisällöllä",
         "searchHelpValue": "Etsi tapahtumia tarkalla iota-arvolla",
         "searchHelpUnits": "Etsi siirtoja iota arvoilla ja yksiköillä",
         "searchHelpMore": "Etsi siirrot, joiden arvo on suurempi kuin X",
         "searchHelpLess": "Etsi siirrot, joiden arvo on pienempi kuin X",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",

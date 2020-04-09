@@ -478,7 +478,7 @@
         "bundleHashCopied": "Kimbu räsi kopeeritud",
         "noTransactionsFound": "Tehinguid ei leitud",
         "emptyHistory": "Teie tehingute ajalugu on tühi",
-        "hideZeroBalance": "Peida nullsaldo",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "Kimbu räsi on kopeeritud lõikelauale.",
         "addressCopied": "Aadress kopeeritud",
         "addressCopiedExplanation": "Aadress on kopeeritud lõikelauale.",
@@ -491,13 +491,14 @@
         "yesterday": "Eile",
         "promotingAnotherBundle": "Edendan teist kimpu",
         "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Kirjutage !help võimalike käskluste nägemiseks",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "Find transactions with a value greater than X",
         "searchHelpLess": "Find transactions with a value less than X",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Vaata seemet",

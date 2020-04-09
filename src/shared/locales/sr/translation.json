@@ -478,7 +478,7 @@
         "bundleHashCopied": "Heš paketa kopiran",
         "noTransactionsFound": "Nisu pronađene transakcije",
         "emptyHistory": "Your transaction history is empty",
-        "hideZeroBalance": "Sakrij transakcije bez sredstava",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "Heš paketa je kopiran na klipbord.",
         "addressCopied": "Adresa kopirana",
         "addressCopiedExplanation": "Adresa je kopirana na klipbord.",
@@ -491,13 +491,14 @@
         "yesterday": "Juče",
         "promotingAnotherBundle": "Promocija drugog paketa",
         "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Type !help for available commands",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "Find transactions with a value greater than X",
         "searchHelpLess": "Find transactions with a value less than X",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Prikaži seed",

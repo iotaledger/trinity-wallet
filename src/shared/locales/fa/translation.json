@@ -478,7 +478,7 @@
         "bundleHashCopied": "بسته نرم افزاری هش کپی شد",
         "noTransactionsFound": "هیچ تراکنشی یافت نشد",
         "emptyHistory": "تاریخچه تراکنش شما خالی است",
-        "hideZeroBalance": "پنهان کردن موجودی صفر",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "هش بسته نرم افزاری به کلیپ بورد کپی شد.",
         "addressCopied": "آدرس کپی شد",
         "addressCopiedExplanation": "آدرس در کلیپ بورد کپی شد.",
@@ -491,13 +491,14 @@
         "yesterday": "دیروز",
         "promotingAnotherBundle": "در حال ارتقای یک بسته تراکنش دیگر",
         "pleaseWait": "لطفا صبر کنید، Trinity در حال ارتقای یک بسته تراکنش دیگر است.",
-        "typeHelp": "بنویسید !کمک برای دستورات موجود",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "جستجو بر اساس هش نرم افزار یا موضوع پیام",
         "searchHelpValue": "پیدا کردن تراکنش ها بامیزان دقیق iota",
         "searchHelpUnits": "پیدا کردن تراکنش ها با ارزش iota و واحدش",
         "searchHelpMore": "پیدا کردن تراکنش ها با یک ارزش بیشتر از X",
         "searchHelpLess": "پیدا کردن تراکنش ها با یک ارزش کمتر از X",
-        "transactions": "تراکنش ها"
+        "transactions": "تراکنش ها",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "مشاهده سید",

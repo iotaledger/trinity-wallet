@@ -478,7 +478,7 @@
         "bundleHashCopied": "Tranzakciós csomag hash másolva",
         "noTransactionsFound": "Nincs még tranzakció",
         "emptyHistory": "Nincsenek korábbi tranzakciók",
-        "hideZeroBalance": "Nulla egyenleg elrejtése",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "A tranzakciós csomag hash a vágólapra lett másolva.",
         "addressCopied": "Cím másolva",
         "addressCopiedExplanation": "A cím a vágólapra lett másolva.",
@@ -491,13 +491,14 @@
         "yesterday": "Tegnap",
         "promotingAnotherBundle": "Újabb tranzakciós csomag előrehelyezése",
         "pleaseWait": "Kérjük várjon. Jelenleg egy másik tranzakciós csomag előbbre helyezése van folyamatban.",
-        "typeHelp": "Az elérhető parancsok kilistásához gépelje be: !help",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Keresés tranzakciós csomag hash vagy üzenet tartalma alapján",
         "searchHelpValue": "Tranzakciók keresése pontos érték alapján",
         "searchHelpUnits": "Tranzakciók keresése érték és iota mértékegység alapján",
         "searchHelpMore": "X-nél nagyobb értékű tranzakciók keresése",
         "searchHelpLess": "X-nél kisebb értékű tranzakciók keresése",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Mester jelszó megtekintése",

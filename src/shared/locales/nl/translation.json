@@ -478,7 +478,7 @@
         "bundleHashCopied": "Bundel hash gekopieerd",
         "noTransactionsFound": "Geen transacties gevonden",
         "emptyHistory": "Uw transactiegeschiedenis is leeg",
-        "hideZeroBalance": "Verberg nul saldo",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het klembord.",
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Het adres is naar het klembord gekopieerd.",
@@ -491,13 +491,14 @@
         "yesterday": "Gisteren",
         "promotingAnotherBundle": "Andere bundel aan het promoten",
         "pleaseWait": "Even geduld, Trinity promoot een andere bundel.",
-        "typeHelp": "Type !help voor beschikbare commando's",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Zoeken op bundle hash of bericht inhoud",
         "searchHelpValue": "Zoek transacties op exacte iota waarde",
         "searchHelpUnits": "Zoek transacties op iota waarde en eenheid",
         "searchHelpMore": "Zoek transacties met een waarde groter dan X",
         "searchHelpLess": "Zoek transacties met een waarde kleinder dan X",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Seed bekijken",
