@@ -117,7 +117,7 @@
     "babel-preset-stage-0": "^7.0.0-beta",
     "cross-env": "^5.2.0",
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.13.2",
+    "enzyme-adapter-react-16": "^1.15.2",
     "jest": "^25.3.0",
     "jest-serializer-enzyme": "^1.0.0",
     "metro-react-native-babel-preset": "^0.54.1",
