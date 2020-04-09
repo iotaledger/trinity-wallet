@@ -159,13 +159,6 @@ exports[`Chart component Render the component 1`] = `
         onClick={[Function]}
         variant="secondary"
       >
-        moonpay:buyIOTA
-      </Button>
-      <Button
-        className="outline"
-        onClick={[Function]}
-        variant="secondary"
-      >
         24h
       </Button>
     </nav>

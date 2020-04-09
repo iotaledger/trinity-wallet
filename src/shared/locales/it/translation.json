@@ -478,7 +478,7 @@
         "bundleHashCopied": "Hash del pacchetto copiato",
         "noTransactionsFound": "Nessuna transazione trovata",
         "emptyHistory": "La tua cronologia di transazioni è vuota",
-        "hideZeroBalance": "Nascondi saldo zero",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "L'hash del pacchetto è stato copiato negli Appunti.",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "L'indirizzo è stato copiato negli Appunti.",
@@ -491,13 +491,14 @@
         "yesterday": "Ieri",
         "promotingAnotherBundle": "Promozione di un altro pacchetto",
         "pleaseWait": "Per favore aspetta, Trinity sta promuovendo un altro pacchetto.",
-        "typeHelp": "Digita !help per i comandi disponibili",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Cerca per hash del pacchetto o contenuto del messaggio",
         "searchHelpValue": "Trova le transazioni per valore di iota esatto",
         "searchHelpUnits": "Trova le transazioni per valore e unità iota",
         "searchHelpMore": "Trova le transazioni con un valore maggiore di X",
         "searchHelpLess": "Trova le transazioni con un valore minore di X",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",

@@ -55,6 +55,8 @@ export class Dropdown extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        inactive: PropTypes.bool.isRequired,
         /** Callback function returning dropdown component instance as an argument */
         /** @param {object} instance - dropdown instance
          */
@@ -72,7 +74,7 @@ export class Dropdown extends Component {
         /** Dropdown title */
         title: PropTypes.string,
         /** Dropdown width */
-        dropdownWidth: PropTypes.object,
+        dropdownStyle: PropTypes.object,
         /** Custom dropdown button */
         customView: PropTypes.object,
         /** Dropdown title style */
@@ -88,7 +90,7 @@ export class Dropdown extends Component {
         value: '',
         saveSelection: () => {},
         title: '',
-        dropdownWidth: { width: isIPhoneX ? width / 1.3 : width / 1.5 },
+        dropdownStyle: { width: isIPhoneX ? width / 1.3 : width / 1.5 },
         customView: undefined,
     };
 
@@ -103,6 +105,12 @@ export class Dropdown extends Component {
     componentDidMount() {
         if (this.props.onRef) {
             this.props.onRef(this);
+        }
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (!this.props.inactive && newProps.inactive) {
+            this.closeDropdown();
         }
     }
 
@@ -159,7 +167,7 @@ export class Dropdown extends Component {
             t,
             options,
             title,
-            dropdownWidth,
+            dropdownStyle: { width: dropdownWidth, ...dropdownStyle },
             disableWhen,
             theme,
             customView,
@@ -171,7 +179,13 @@ export class Dropdown extends Component {
         const formattedOptions = this.formatOptions(options);
 
         return (
-            <View style={[!customView && { paddingTop: height / 35 }, dropdownWidth]}>
+            <View
+                style={[
+                    !customView && { paddingTop: height / 35 },
+                    !customView && { width: dropdownWidth },
+                    dropdownStyle,
+                ]}
+            >
                 <RNPickerSelect
                     ref={(ref) => {
                         this.dropdown = ref;
@@ -197,14 +211,18 @@ export class Dropdown extends Component {
                                 style={[
                                     styles.dropdownTitle,
                                     { color: theme.primary.color },
-                                    isAndroid ? null : dropdownWidth,
+                                    isAndroid ? null : { width: dropdownWidth },
                                     dropdownTitleStyle,
                                 ]}
                             >
                                 {title}
                             </Text>
                             <View
-                                style={[styles.dropdownButton, dropdownWidth, { borderBottomColor: theme.body.color }]}
+                                style={[
+                                    styles.dropdownButton,
+                                    { width: dropdownWidth },
+                                    { borderBottomColor: theme.body.color },
+                                ]}
                             >
                                 <Text
                                     numberOfLines={1}
@@ -230,6 +248,7 @@ export class Dropdown extends Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
+    inactive: state.ui.inactive,
 });
 
 export default withTranslation(['global'])(connect(mapStateToProps)(Dropdown));

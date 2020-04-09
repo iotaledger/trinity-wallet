@@ -478,7 +478,7 @@
         "bundleHashCopied": "Pachetul hash copiat",
         "noTransactionsFound": "Nici o tranzacție găsită",
         "emptyHistory": "Istoricul tău de tranzacții e gol",
-        "hideZeroBalance": "Ascunde balanța zero",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "Pachetul hash a fost copiat în clipboard.",
         "addressCopied": "Adresă copiată",
         "addressCopiedExplanation": "Adresa a fost copiată în clipboard.",
@@ -491,13 +491,14 @@
         "yesterday": "Ieri",
         "promotingAnotherBundle": "Promovare alt pachet",
         "pleaseWait": "Te rog așteaptă, Trinity promovează alt pachet.",
-        "typeHelp": "Tastează !ajutor pentru comenzile disponibile",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Caută în funcție de pachetele hash sau conținutul mesajelor",
         "searchHelpValue": "Găsește tranzacții în valoare exactă de IOTA",
         "searchHelpUnits": "Găsește tranzacții după valoarea și numărul de IOTA",
         "searchHelpMore": "Găsește tranzacții cu valoarea mai mare decât X",
         "searchHelpLess": "Găsește tranzacții cu valoarea mai mică decât X",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Vezi seed-ul",

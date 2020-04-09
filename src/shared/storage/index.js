@@ -74,8 +74,9 @@ class Account {
      */
     static getDataAsArray() {
         const accounts = Account.data;
+        const parsedAccounts = map(accounts, (account) => parse(serialise(account)));
 
-        return map(accounts, (account) =>
+        return map(parsedAccounts, (account) =>
             assign({}, account, {
                 addressData: map(account.addressData, (data) => parse(serialise(data))),
                 transactions: map(account.transactions, (transaction) => parse(serialise(transaction))),
@@ -349,7 +350,6 @@ class Wallet {
      */
     static get latestSettings() {
         const dataForCurrentVersion = Wallet.getObjectForId();
-
         return dataForCurrentVersion.settings;
     }
 
@@ -810,7 +810,7 @@ class Wallet {
      * @method createIfNotExists
      */
     static createIfNotExists() {
-        const shouldCreate = isEmpty(Wallet.getObjectForId());
+        const shouldCreate = Wallet.getObjectForId() === undefined;
 
         if (shouldCreate) {
             realm.write(() =>

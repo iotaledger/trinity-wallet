@@ -237,6 +237,7 @@ class Home extends Component {
             theme: { body },
             theme,
             isKeyboardActive,
+            currentRoute,
         } = this.props;
 
         return (
@@ -254,7 +255,7 @@ class Home extends Component {
                     <View style={{ flex: 1 }}>
                         {(!minimised && (
                             <KeyboardAvoidingView
-                                enabled={isKeyboardActive}
+                                enabled={isKeyboardActive && currentRoute !== 'history'}
                                 style={styles.midContainer}
                                 behavior="padding"
                             >

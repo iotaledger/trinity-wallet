@@ -55,7 +55,7 @@ describe('Chart component', () => {
         const wrapper = shallow(<Chart {...props} />);
 
         const buttonItems = wrapper.find('Button');
-        const callbacks = [props.setCurrency, props.history.push, props.setTimeframe];
+        const callbacks = [props.setCurrency, props.setTimeframe];
 
         buttonItems.forEach((item, index) => {
             item.simulate('click');
