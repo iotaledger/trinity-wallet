@@ -478,7 +478,7 @@
         "bundleHashCopied": "Hash paketa kopiran",
         "noTransactionsFound": "Nije pronađena niti jedna transakcija",
         "emptyHistory": "Povijest transakcija je prazna",
-        "hideZeroBalance": "Sakrij transakcije s nula sredstava",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "Hash paketa je kopiran u međuspremnik.",
         "addressCopied": "Adresa kopirana",
         "addressCopiedExplanation": "Adresa je kopirana u međuspremnik.",
@@ -491,13 +491,14 @@
         "yesterday": "Jučer",
         "promotingAnotherBundle": "Promocija drugog paketa",
         "pleaseWait": "Molimo pričekajte. Promocija drugog paketa je trenutno u tijeku.",
-        "typeHelp": "Upiši !help za dostupne naredbe",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Pretraži po hash-u paketa ili sadržaju poruke",
         "searchHelpValue": "Prikaži transakcije s točnim iznosom iota-e",
         "searchHelpUnits": "Prikaži transakcije po iznosu iota-e i jedinici",
         "searchHelpMore": "Prikaži transakcije s vrijednošću većom od X",
         "searchHelpLess": "Prikaži transakcije s vrijednošću manjom od X",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Prikaži seed",

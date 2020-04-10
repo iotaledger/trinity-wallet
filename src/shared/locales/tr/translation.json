@@ -478,7 +478,7 @@
         "bundleHashCopied": "Paket karması kopyalanır",
         "noTransactionsFound": "İşlem bulunamadı",
         "emptyHistory": "İşlem geçmişiniz boş",
-        "hideZeroBalance": "Bakiye 0 ise gizle",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "Paket karması panoya kopyalanmış.",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adres panoya kopyalanmış.",
@@ -491,13 +491,14 @@
         "yesterday": "Dün",
         "promotingAnotherBundle": "Promoting another bundle",
         "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Kullanılabilir komutlar için !help yazın",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "X'ten büyük bir değere sahip işlemleri bulun",
         "searchHelpLess": "X'ten daha düşük bir değere sahip işlemleri bulun",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Kaynağı görüntüle",

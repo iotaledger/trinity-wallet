@@ -478,7 +478,7 @@
         "bundleHashCopied": "交易組雜湊值已複製",
         "noTransactionsFound": "找不到交易紀錄",
         "emptyHistory": "您沒有任何交易紀錄",
-        "hideZeroBalance": "隱藏零元紀錄",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "交易組的雜湊值已複製到剪貼簿。",
         "addressCopied": "地址已複製",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
@@ -491,13 +491,14 @@
         "yesterday": "昨日",
         "promotingAnotherBundle": "正在促進另一組交易中",
         "pleaseWait": "請稍候，Trinit 錢包正在促進其他交易捆。",
-        "typeHelp": "輸入 !help 來查看可用的指令",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "使用交易捆的雜湊值或是訊息內容來搜尋",
         "searchHelpValue": "使用明確的 IOTA 價值來搜尋交易",
         "searchHelpUnits": "使用明確的 IOTA 價值和單位來搜尋交易",
         "searchHelpMore": "搜尋價值高於 X 的交易",
         "searchHelpLess": "搜尋價值低於 X 的交易",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "檢視種子",

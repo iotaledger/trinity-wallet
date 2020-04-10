@@ -478,7 +478,7 @@
         "bundleHashCopied": "번들 해시 복사함",
         "noTransactionsFound": "트랜잭션 없음",
         "emptyHistory": "거래 내역이 없습니다",
-        "hideZeroBalance": "0i 거래 숨기기",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "번들 해시를 클립보드에 복사하였습니다.",
         "addressCopied": "주소 복사함",
         "addressCopiedExplanation": "주소를 클립보드에 복사했습니다.",
@@ -491,13 +491,14 @@
         "yesterday": "어제",
         "promotingAnotherBundle": "다른 번들 프로모트중",
         "pleaseWait": "잠시만 기다려 주세요. 다른 번들을 프로모트하는 중입니다.",
-        "typeHelp": "!help를 입력하여 명령어들을 확인할 수 있습니다",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "번들 해시 또는 메세지 내용으로 찾기",
         "searchHelpValue": "IOTA 값으로 거래 찾기",
         "searchHelpUnits": "IOTA 값과 단위로 거래 찾기",
         "searchHelpMore": "값이 X보다 큰 거래 찾기",
         "searchHelpLess": "값이 X보다 작은 거래 찾기",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",

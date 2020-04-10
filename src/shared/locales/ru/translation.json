@@ -478,7 +478,7 @@
         "bundleHashCopied": "Хэш пакет скопирован",
         "noTransactionsFound": "Транзакции не найдены",
         "emptyHistory": "Нет истории транзакций",
-        "hideZeroBalance": "Скрыть нулевой баланс",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "Хэш пакет скопирован в буфер обмена.",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Адрес скопирован в буфер обмена.",
@@ -491,13 +491,14 @@
         "yesterday": "Вчера",
         "promotingAnotherBundle": "Содействую активации другого пакета",
         "pleaseWait": "Пожалуйста, подождите, Trinity продвигает другой набор.",
-        "typeHelp": "Введите !help для отображения доступных команд",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Поиск по хэшу пакета либо содержанию сообщения",
         "searchHelpValue": "Найти транзакции по точной величине iota",
         "searchHelpUnits": "Найти транзакции по величине и мере единиц iota",
         "searchHelpMore": "Найти транзакции превосходящие значению X",
         "searchHelpLess": "Найти транзакции снисходящие значению\nX",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Показать ключ",

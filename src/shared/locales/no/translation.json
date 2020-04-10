@@ -478,7 +478,7 @@
         "bundleHashCopied": "Pakke hash kopiert",
         "noTransactionsFound": "Ingen transaksjon ble funnet",
         "emptyHistory": "Transaksjonshistorikken din er tom",
-        "hideZeroBalance": "Gjem nullbeløp",
+        "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "Pakke hash har blitt kopiert til utklippstavlen.",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen har blitt kopiert til utklippstavlen.",
@@ -491,13 +491,14 @@
         "yesterday": "I går",
         "promotingAnotherBundle": "Fremme en pakke til",
         "pleaseWait": "Vennligst vent, Trinity promoterer en transaksjon.",
-        "typeHelp": "Skriv !hjelp for mulige kommandoer",
+        "typeHelp": "Type !help for tips",
         "searchHelpText": "Søk med adresse hash eller med meldingsinnhold",
         "searchHelpValue": "Finn transaksjoner ved identisk iota verdi",
         "searchHelpUnits": "Finn transaksjoner med iota-verdi og enhet",
         "searchHelpMore": "Finn transaksjoner med verdi større enn X",
         "searchHelpLess": "Finn transaksjoner med verdi mindre enn X",
-        "transactions": "Transactions"
+        "transactions": "Transactions",
+        "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
         "viewSeed": "Vis hovednøkkel",
