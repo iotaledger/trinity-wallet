@@ -15378,9 +15378,9 @@
       "integrity": "sha512-wKcQS9QC2VHGk7aphWCp1RrFyC0CM6fMgC5prZZ2KV/Lk6OKNoCod9IR6bao+yx3KPY0gZFC5dc+h+KFzCI0Wg=="
     },
     "kdbxweb": {
-      "version": "1.2.7",
-      "resolved": "https://registry.npmjs.org/kdbxweb/-/kdbxweb-1.2.7.tgz",
-      "integrity": "sha512-o0xfheRP3aHyDs2exjjHKtjacqhppn0VGIR1acvF/ehDeGgGyl5XDH73EVTMv4Czmw9yTccX4bG52Bo47LSUFQ==",
+      "version": "1.6.0",
+      "resolved": "https://registry.npmjs.org/kdbxweb/-/kdbxweb-1.6.0.tgz",
+      "integrity": "sha512-/Kur10RRVqbGjkCAEn9JNYCevpw4rs91UAjEcPCZn5QhmIchxd+X3Ah8VAid8nvK6snrlW8XQuQrdTkousMYpg==",
       "requires": {
         "pako": "github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc",
         "text-encoding": "github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb",
