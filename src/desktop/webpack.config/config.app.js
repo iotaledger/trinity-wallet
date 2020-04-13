@@ -55,7 +55,6 @@ const config = {
                     {
                         loader: 'sass-loader',
                         options: {
-                            includePaths: ['./src/ui/'],
                             implementation: require('dart-sass'),
                         },
                     },
