@@ -63,34 +63,16 @@
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <note>Privacy - Camera Usage Description</note>
         <target state="translated">Trinity 需要访问相机权限以启用二维码扫描功能。</target>
-        <alt-trans>
-          <target>三位一体需要访问相机, 以实现 QR 扫描。二维码</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <note>Privacy - Face ID Usage Description</note>
         <target state="translated">Trinity 需要访问人脸身份识别权限以启用生物认证功能。</target>
-        <alt-trans>
-          <target>Trinity 需要访问Face ID权限以启用生物识别认证功能。</target>
-        </alt-trans>
-        <alt-trans>
-          <target>Trinity需要访问Face ID权限以启用生物特征认功能。</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>
         <note>Copyright (human-readable)</note>
         <target state="translated">2018 IOTA Foundation. All rights reserved.</target>
-        <alt-trans>
-          <target>2018 IOTA基金会。版权所有。</target>
-        </alt-trans>
-        <alt-trans>
-          <target>2018 IOTA 基金会。保留所有权利。</target>
-        </alt-trans>
-        <alt-trans>
-          <target>2018 IOTA基金会。保留所有权利。</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
