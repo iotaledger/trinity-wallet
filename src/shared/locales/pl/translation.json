@@ -498,7 +498,7 @@
         "searchHelpMore": "Znajdź transakcje o wartości większej niż X",
         "searchHelpLess": "Znajdź transakcje o wartości mniejszej niż X",
         "transactions": "Transakcje",
-        "noFilteredTransactions": "No transactions match those filters"
+        "noFilteredTransactions": "Brak transakcji pasujących do wybranych filtrów"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
