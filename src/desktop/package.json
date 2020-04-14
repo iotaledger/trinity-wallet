@@ -168,7 +168,7 @@
     "electron-log": "4.1.0",
     "electron-settings": "3.2.0",
     "electron-updater": "4.0.14",
-    "entangled-node": "iotaledger/entangled-node#v0.4.9",
+    "entangled-node": "iotaledger/entangled-node#v0.5.1",
     "hw-app-iota": "0.6.1",
     "i18next": "17.0.6",
     "iota.lib.js": "0.5.2",
