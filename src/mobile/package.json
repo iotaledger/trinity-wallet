@@ -74,7 +74,7 @@
     "react-native-markdown-renderer": "^3.2.1",
     "react-native-modal": "^11.4.0",
     "react-native-modal-translucent": "^2.0.0",
-    "react-native-navigation": "^2.22.3",
+    "react-native-navigation": "^6.4.0",
     "react-native-optimized-flatlist": "^1.0.4",
     "react-native-os": "git+https://github.com/laumair/react-native-os.git#527b0ae",
     "react-native-picker-select": "^6.3.3",
