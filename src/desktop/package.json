@@ -41,7 +41,7 @@
     "bugsnag-build-reporter": "1.0.2",
     "concurrently": "5.1.0",
     "cross-env": "7.0.0",
-    "css-loader": "3.4.2",
+    "css-loader": "3.5.2",
     "dart-sass": "1.25.0",
     "electron": "4.2.6",
     "electron-builder": "20.44.4",
