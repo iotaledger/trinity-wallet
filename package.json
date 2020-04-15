@@ -49,7 +49,7 @@
     "prettier": "^2.0.4"
   },
   "dependencies": {
-    "snyk": "^1.305.0"
+    "snyk": "^1.305.1"
   },
   "resolutions": {
     "js-yaml": ">=3.13.1",
