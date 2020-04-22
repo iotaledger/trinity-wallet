@@ -24,7 +24,13 @@ app.commandLine.appendSwitch('js-flags', '--expose-gc');
  * Terminate application if Node remote debugging detected
  */
 const argv = process.argv.join();
-if (argv.includes('inspect') || argv.includes('remote') || typeof v8debug !== 'undefined') {
+const flagBlacklist = ['inspect', 'inspect-brk', 'remote-debugging-port'];
+if (
+    argv.includes('inspect') ||
+    argv.includes('remote') ||
+    typeof v8debug !== 'undefined' ||
+    flagBlacklist.some((flag) => app.commandLine.hasSwitch(flag))
+) {
     app.quit();
 }
 
