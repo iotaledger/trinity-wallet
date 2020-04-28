@@ -157,7 +157,7 @@ export const initMenu = (app, getWindowFunc) => {
     const createMenu = () => {
         const template = [
             {
-                label: app.getName(),
+                label: app.name,
                 submenu: [
                     {
                         label: language.about,
@@ -230,7 +230,7 @@ export const initMenu = (app, getWindowFunc) => {
         if (process.platform === 'darwin') {
             template[0].submenu = template[0].submenu.concat([
                 {
-                    label: `${language.hide} ${app.getName()}`,
+                    label: `${language.hide} ${app.name}`,
                     role: 'hide',
                 },
                 {
@@ -251,7 +251,7 @@ export const initMenu = (app, getWindowFunc) => {
             {
                 label: language.quit,
                 accelerator: 'Command+Q',
-                click: function() {
+                click: function () {
                     app.quit();
                 },
             },
@@ -330,7 +330,7 @@ export const initMenu = (app, getWindowFunc) => {
                     {
                         label: language.logout,
                         enabled: state.enabled,
-                        click: function() {
+                        click: function () {
                             const mainWindow = getWindow('main');
                             if (mainWindow) {
                                 dialog.showMessageBox(
@@ -358,8 +358,8 @@ export const initMenu = (app, getWindowFunc) => {
             label: language.help,
             submenu: [
                 {
-                    label: `${app.getName()} ${language.help}`,
-                    click: function() {
+                    label: `${app.name} ${language.help}`,
+                    click: function () {
                         shell.openExternal('https://docs.iota.org/docs/wallets/0.1/trinity/introduction/overview');
                     },
                 },
