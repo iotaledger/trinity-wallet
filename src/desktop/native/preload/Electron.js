@@ -477,18 +477,22 @@ const Electron = {
     exportState: (content) => {
         const prefix = 'Trinity';
 
-        const result = remote.dialog.showSaveDialog(remote.getCurrentWindow(), {
-            title: 'Export state',
-            defaultPath: `${prefix}-${moment().format('YYYYMMDD-HHmm')}.txt`,
-            buttonLabel: 'Export',
-            filters: [{ name: 'State Export File', extensions: ['txt'] }],
-        });
+        return remote.dialog
+            .showSaveDialog(remote.getCurrentWindow(), {
+                title: 'Export state',
+                defaultPath: `${prefix}-${moment().format('YYYYMMDD-HHmm')}.txt`,
+                buttonLabel: 'Export',
+                filters: [{ name: 'State Export File', extensions: ['txt'] }],
+            })
+            .then((result) => {
+                if (!result || result.canceled) {
+                    throw new Error(Errors.EXPORT_CANCELLED);
+                }
 
-        if (!result || result.canceled) {
-            return Promise.reject(new Error(Errors.EXPORT_CANCELLED));
-        }
-
-        return new Promise((resolve, reject) => fs.writeFile(result.filePath, content, (err) => (err ? reject(err) : resolve())));
+                return new Promise((resolve, reject) =>
+                    fs.writeFile(result.filePath, content, (err) => (err ? reject(err) : resolve())),
+                );
+            });
     },
 
     /**
