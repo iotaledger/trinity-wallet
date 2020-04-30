@@ -28,7 +28,9 @@
     "compile:linux": "./node_modules/.bin/electron-builder --linux --x64",
     "compile:mac": "./node_modules/.bin/cross-env electron-builder --mac --x64",
     "compile:win": "./node_modules/.bin/electron-builder --win --x64",
-    "test": "npm run build-app && jest"
+    "test": "npm run build-app && jest",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "7.8.3",
@@ -188,7 +190,8 @@
     "react-transition-group": "4.3.0",
     "realm": "5.0.3",
     "recharts": "1.8.5",
-    "redux": "4.0.5"
+    "redux": "4.0.5",
+    "snyk": "^1.316.1"
   },
   "jest": {
     "runner": "@jest-runner/electron",
@@ -213,5 +216,6 @@
     "transformIgnorePatterns": [
       "node_modules/react-qr-reader/"
     ]
-  }
+  },
+  "snyk": true
 }
