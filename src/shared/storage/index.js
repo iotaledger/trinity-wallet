@@ -208,7 +208,13 @@ class Account {
 
         realm.write(() => {
             // Create account with new name.
-            realm.create('Account', assign({}, accountData, { name: to }));
+            const newAccount = assign({}, parse(serialise(accountData)), {
+                addressData: map(accountData.addressData, (addressObject) => parse(serialise(addressObject))),
+                transactions: map(accountData.transactions, (transaction) => parse(serialise(transaction))),
+                name: to,
+            });
+
+            realm.create('Account', newAccount);
             // Delete account with old name.
             realm.delete(accountData);
         });
