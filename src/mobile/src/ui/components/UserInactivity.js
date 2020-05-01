@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, PanResponder, ViewPropTypes } from 'react-native';
+import { View, PanResponder, ViewPropTypes, AppState } from 'react-native';
 import timer from 'react-native-timer';
+import { getGetSystemUptimeFn } from 'libs/nativeModules';
 
 export default class UserInactivity extends Component {
     static propTypes = {
@@ -34,9 +35,15 @@ export default class UserInactivity extends Component {
         },
     };
 
+    constructor() {
+      super();
+      this.handleAppStateChange = this.handleAppStateChange.bind(this);
+    }
+
     state = {};
     lastInteraction = new Date(); // eslint-disable-line react/sort-comp
     panResponder = {};
+    timeWentToBackground = 0;
 
     componentWillMount() {
         this.panResponder = PanResponder.create({
@@ -51,11 +58,32 @@ export default class UserInactivity extends Component {
         this.maybeStartWatchingForInactivity();
     }
 
+    componentDidMount() {
+      AppState.addEventListener('change', this.handleAppStateChange);
+    }
+
     componentWillUnmount() {
         timer.clearInterval('inactivityTimer');
         timer.clearTimeout('logoutTimer');
         this.panResponder = null;
         this.inactivityTimer = null;
+    }
+
+    handleAppStateChange(nextAppState) {
+        const getSystemUptime = getGetSystemUptimeFn();
+        let uptime = 0;
+        getSystemUptime().then((result) => {
+          uptime = result;
+        });
+
+        if (nextAppState.match(/inactive|background/)) {
+          this.timeWentToBackground = uptime;
+        } else {
+          // Coming to foreground
+          if (uptime - this.timeWentToBackground >= this.timeForInactivity) {
+            this.props.logout();
+          }
+        }
     }
 
     setActiveFromComponent() {
