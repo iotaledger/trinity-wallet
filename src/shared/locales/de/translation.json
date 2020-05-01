@@ -703,7 +703,7 @@
         "key": "Schlüssel"
     },
     "stateExport": {
-        "stateExportExplanation": "Der Status-Export wird eine Textdatei mit Informationen zu deinem Konto (Tansaktionen, Adressen), Trinityversion, sowie für Trinity relevante Dateinamen auf deinem Gerät speichern.",
+        "stateExportExplanation": "Der Status-Export wird eine Textdatei mit Informationen zu deinem Konto (Transaktionen, Adressen), Trinityversion, sowie für Trinity relevante Dateinamen auf deinem Gerät speichern.",
         "exportSuccess": "Status exportiert",
         "exportSuccessExplanation": "Der Status-Export wurde erfolgreich generiert."
     },
