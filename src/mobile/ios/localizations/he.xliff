@@ -73,9 +73,6 @@
         <source>2018 IOTA Foundation. All rights reserved.</source>
         <note>Copyright (human-readable)</note>
         <target state="translated">קרן איוטה 2019. כל הזכויות שמורות.</target>
-        <alt-trans>
-          <target>קרן איוטה 2018. כל הזכויות שמורות.</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
