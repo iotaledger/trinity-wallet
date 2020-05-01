@@ -11,6 +11,6 @@
 
 @interface RCT_EXTERN_MODULE(NativeUtilsIOS, NSObject)
 
-RCT_EXTERN_METHOD(getSystemUptime:resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject);
+RCT_EXTERN_METHOD(getSystemUptime:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject);
 
 @end

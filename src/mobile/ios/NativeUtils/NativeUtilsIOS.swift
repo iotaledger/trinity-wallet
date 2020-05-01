@@ -26,7 +26,7 @@ class NativeUtilsIOS: NSObject {
   /// - Parameters:
   ///   - resolve: A JS Promise resolve block
   ///   - reject: A JS Promise reject block
-  @objc func getSystemUptime(resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+  @objc func getSystemUptime(_ resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
     guard let uptime = getMonotonicClockTime() else {
       reject("NativeUtils getSystemUptime", "Failed to get monoclonic clock time", nil)
       return
