@@ -108,7 +108,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
 
     @Override
     public String getFileProviderAuthority() {
-        return "com.iota.trinity.provider";
+        return this.getPackageName() + ".provider";
     }
 
     @Override
