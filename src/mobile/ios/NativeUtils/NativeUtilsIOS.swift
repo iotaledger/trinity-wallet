@@ -15,12 +15,11 @@ class NativeUtilsIOS: NSObject {
   /// See https://opensource.apple.com/source/Libc/Libc-1353.11.2/gen/clock_gettime.c.auto.html for more information
   /// - Returns: Monotonic clock value in milliseconds
   func getMonotonicClockTime() -> Double? {
-    var time = timespec()
-    let rc = clock_gettime(CLOCK_MONOTONIC_RAW_APPROX, &time)
-    guard rc == 0 else {
+    let result = clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW_APPROX)
+    guard result > 0 else {
       return nil
     }
-    return Double(time.tv_sec * 1_000) + Double(time.tv_nsec / 1_000_000)
+    return Double(result / 1_000_000)
   }
 
   /// Gets a value that can be used as the system uptime in milliseconds
