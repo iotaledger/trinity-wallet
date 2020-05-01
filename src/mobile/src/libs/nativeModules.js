@@ -80,6 +80,6 @@ export const getSignatureFn = () => {
  * Gets 'getSystemUptime' function
  * @return {function} getSystemUptime function
  */
-export const getSystemUptimeFn = () => {
+export const getGetSystemUptimeFn = () => {
     return isAndroid ? NativeModules.NativeUtilsAndroid.getSystemUptime : NativeModules.NativeUtilsIOS.getSystemUptime;
 };
