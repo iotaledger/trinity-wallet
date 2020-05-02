@@ -15,7 +15,8 @@
     "test:watch": "yarn test --watch",
     "test:coverage": "nyc --check-coverage --lines 50 --statements 50 --functions 50 --branches 50 yarn test",
     "themes:sync": "node themes/sync.js",
-    "snyk-protect": "snyk protect"
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "license": "Apache-2.0 OR EPL-2.0",
   "dependencies": {
@@ -63,7 +64,7 @@
     "redux-mock-store": "^1.5.3",
     "rimraf": "^3.0.2",
     "sinon": "^7.4.1",
-    "snyk": "^1.290.1",
+    "snyk": "^1.316.2",
     "svg2ttf": "^4.3.0",
     "svgicons2svgfont": "^9.1.1",
     "timekeeper": "^2.2.0"
