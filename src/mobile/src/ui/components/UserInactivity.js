@@ -78,20 +78,16 @@ export default class UserInactivity extends Component {
     }
 
     handleAppStateChange(nextAppState) {
-        const getSystemUptime = getGetSystemUptimeFn();
-        let uptime = 0;
-        getSystemUptime().then((result) => {
-            uptime = result;
-        });
-
-        if (nextAppState.match(/inactive|background/)) {
-            this.timeWentToBackground = uptime;
-        } else {
-            // Coming to foreground
-            if (uptime - this.timeWentToBackground >= this.timeForInactivity) {
-                this.props.logout();
+        this.getSystemUptime().then((currentTime) => {
+            if (nextAppState.match(/inactive|background/)) {
+                this.timeWentToBackground = currentTime;
+            } else {
+                // Coming to foreground
+                if (currentTime - this.timeWentToBackground >= this.timeForInactivity) {
+                    this.props.logout();
+                }
             }
-        }
+        });
     }
 
     setActiveFromComponent() {
