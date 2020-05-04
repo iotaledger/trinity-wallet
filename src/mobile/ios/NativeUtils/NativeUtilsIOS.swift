@@ -22,7 +22,7 @@ class NativeUtilsIOS: NSObject {
     return Double(result / 1_000_000)
   }
 
-  /// Gets a value that can be used as the system uptime in milliseconds
+  /// Gets a value that can be used as the system uptime in milliseconds (represented as a string)
   /// - Parameters:
   ///   - resolve: A JS Promise resolve block
   ///   - reject: A JS Promise reject block
@@ -32,7 +32,8 @@ class NativeUtilsIOS: NSObject {
       return
     }
 
-    resolve(uptime)
+    // Resolve as a string to match Android
+    resolve(String(uptime))
   }
 
   @objc static func requiresMainQueueSetup() -> Bool {
