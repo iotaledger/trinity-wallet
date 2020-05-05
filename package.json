@@ -26,8 +26,7 @@
     "start:mobile": "cd src/mobile && yarn start",
     "start:styleguide": "cd src/desktop && yarn run styleguide",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect",
-    "prepublish": "npm run snyk-protect"
+    "prepare": "yarn run snyk-protect"
   },
   "lint-staged": {
     "*.{js,json,css}": [
@@ -44,12 +43,12 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-native": "^3.8.1",
-    "husky": "^4.2.3",
+    "husky": "^4.2.5",
     "lint-staged": "^10.1.3",
     "prettier": "^2.0.5"
   },
   "dependencies": {
-    "snyk": "^1.305.1"
+    "snyk": "^1.316.2"
   },
   "resolutions": {
     "js-yaml": ">=3.13.1",
