@@ -29,4 +29,4 @@ upload({
     overwrite: true,
 })
     .then(() => console.log('Sourcemaps successfully uploaded to Bugsnag'))
-    .catch((err) => console.log('Sourcemaps could not uploaded to Bugsnag: ', err));
+    .catch((err) => console.log('Sourcemaps could not be uploaded to Bugsnag: ', err));
