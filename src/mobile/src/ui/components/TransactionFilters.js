@@ -38,6 +38,11 @@ const styles = StyleSheet.create({
         width: Styling.contentWidth,
         alignItems: 'center',
         justifyContent: 'flex-end',
+    },
+    hideToggle: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
         height: height / 18,
     },
     hideToggleText: {
@@ -139,19 +144,21 @@ export default class TransactionFilters extends Component {
                         clearSearch={() => this.props.setSearch('')}
                     />
                 </View>
-                <TouchableWithoutFeedback onPress={() => toggleEmptyTransactions()}>
-                    <View style={styles.hideToggleContainer}>
-                        <Text numberOfLines={1} style={[styles.hideToggleText, { color: body.color }]}>
-                            {t('history:hideZeroBalance')}
-                        </Text>
-                        <Toggle
-                            active={hideEmptyTransactions}
-                            bodyColor={body.color}
-                            primaryColor={primary.color}
-                            scale={1}
-                        />
-                    </View>
-                </TouchableWithoutFeedback>
+                <View style={styles.hideToggleContainer}>
+                    <TouchableWithoutFeedback onPress={() => toggleEmptyTransactions()}>
+                        <View style={styles.hideToggle}>
+                            <Text numberOfLines={1} style={[styles.hideToggleText, { color: body.color }]}>
+                                {t('history:hideZeroBalance')}
+                            </Text>
+                            <Toggle
+                                active={hideEmptyTransactions}
+                                bodyColor={body.color}
+                                primaryColor={primary.color}
+                                scale={1}
+                            />
+                        </View>
+                    </TouchableWithoutFeedback>
+                </View>
             </View>
         );
     }
