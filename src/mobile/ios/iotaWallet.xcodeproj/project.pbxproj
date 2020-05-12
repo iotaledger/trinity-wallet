@@ -44,8 +44,6 @@
 		60A1C244242EA02E0037E678 /* NativeUtilsIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A1C243242EA02E0037E678 /* NativeUtilsIOS.swift */; };
 		60A1C29F242EBD500037E678 /* NativeUtilsIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1C29E242EBD500037E678 /* NativeUtilsIOS.m */; };
 		60B4137C2411C5E000B56423 /* EntangledKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B4137B2411C5E000B56423 /* EntangledKit.framework */; };
-		60DC4239243D10C00091FFE9 /* ClockEventEmitterIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DC4238243D10C00091FFE9 /* ClockEventEmitterIOS.swift */; };
-		60DC423B243D10D10091FFE9 /* ClockEventEmitterIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DC423A243D10D10091FFE9 /* ClockEventEmitterIOS.m */; };
 		60F7E4242125EBE7005355C7 /* libRNDocumentPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7E3B32125EAE7005355C7 /* libRNDocumentPicker.a */; };
 		653C5DB7CF56434CA39B6922 /* libRNNodeJsMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8482B7D9E05463F9505DCB4 /* libRNNodeJsMobile.a */; };
 		6ED5CBEF7B1A39258C560F6CDCD36254 /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F418B6A7C158123D272588757B8B5E /* libKCKeepAwake.a */; };
@@ -758,8 +756,6 @@
 		60A1C243242EA02E0037E678 /* NativeUtilsIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeUtilsIOS.swift; sourceTree = "<group>"; };
 		60A1C29E242EBD500037E678 /* NativeUtilsIOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeUtilsIOS.m; sourceTree = "<group>"; };
 		60B4137B2411C5E000B56423 /* EntangledKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EntangledKit.framework; sourceTree = "<group>"; };
-		60DC4238243D10C00091FFE9 /* ClockEventEmitterIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockEventEmitterIOS.swift; sourceTree = "<group>"; };
-		60DC423A243D10D10091FFE9 /* ClockEventEmitterIOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClockEventEmitterIOS.m; sourceTree = "<group>"; };
 		60F7E3AE2125EAE7005355C7 /* RNDocumentPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDocumentPicker.xcodeproj; path = "../node_modules/react-native-document-picker/ios/RNDocumentPicker.xcodeproj"; sourceTree = "<group>"; };
 		64A04B0E69E2398FF12B202BA93DEFED /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		66A2C53DEF25AEDEB72FDC924EBABB8D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1155,8 +1151,6 @@
 			children = (
 				60A1C243242EA02E0037E678 /* NativeUtilsIOS.swift */,
 				60A1C29E242EBD500037E678 /* NativeUtilsIOS.m */,
-				60DC4238243D10C00091FFE9 /* ClockEventEmitterIOS.swift */,
-				60DC423A243D10D10091FFE9 /* ClockEventEmitterIOS.m */,
 			);
 			path = NativeUtils;
 			sourceTree = "<group>";
@@ -2728,7 +2722,6 @@
 			files = (
 				6079ACE02110DD2C005B21CB /* Argon2IOS.swift in Sources */,
 				962469C90FA6C9D7DB8B0F1D49DD98E7 /* AppDelegate.m in Sources */,
-				60DC423B243D10D10091FFE9 /* ClockEventEmitterIOS.m in Sources */,
 				6079C42420D95F18006B252E /* Empty.swift in Sources */,
 				CB866281209F36CA00C026E3 /* EntangledIOS.m in Sources */,
 				608E448A221B228A005CCFB1 /* EntangledIOSUtils.m in Sources */,
@@ -2736,7 +2729,6 @@
 				3E58EC90CE11629FBA816AAD96D16464 /* main.m in Sources */,
 				6079AD4E2110E752005B21CB /* Argon2IOS.m in Sources */,
 				60A1C29F242EBD500037E678 /* NativeUtilsIOS.m in Sources */,
-				60DC4239243D10C00091FFE9 /* ClockEventEmitterIOS.swift in Sources */,
 				6079ACDE2110BE6B005B21CB /* Argon2Core.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
