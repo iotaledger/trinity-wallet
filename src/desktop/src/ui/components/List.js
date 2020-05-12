@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
 import { withTranslation } from 'react-i18next';
+import { VariableSizeList, shouldComponentUpdate } from 'react-window';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 import { formatIotas } from 'libs/iota/utils';
 import { filterTransactions } from 'libs/iota/transfers';
@@ -21,7 +23,7 @@ import css from './list.scss';
 /**
  * Transaction history list component
  */
-export class ListComponent extends React.PureComponent {
+export class ListComponent extends React.Component {
     static propTypes = {
         /** Can history be updated */
         isBusy: PropTypes.bool.isRequired,
@@ -73,6 +75,8 @@ export class ListComponent extends React.PureComponent {
         search: '',
         loaded: true,
     };
+
+    shouldComponentUpdate = shouldComponentUpdate.bind(this);
 
     switchFilter(filter) {
         if (filter === this.state.filter) {
@@ -241,57 +245,75 @@ export class ListComponent extends React.PureComponent {
                 </nav>
                 <hr />
                 <div className={css.list}>
-                    <Scrollbar>
-                        {filteredTransactions.length ? (
-                            filteredTransactions.map((transaction, key) => {
-                                const isReceived = transaction.incoming;
-                                const isConfirmed = transaction.persistence;
+                    <AutoSizer>
+                        {({ height, width }) => (
+                            <VariableSizeList
+                                height={height}
+                                itemCount={filterTransactions.length}
+                                itemSize={() => height}
+                                estimatedItemSize={30}
+                                width={width}
+                            >
+                                {() =>
+                                    filteredTransactions.length ? (
+                                        filteredTransactions.map((transaction, key) => {
+                                            const isReceived = transaction.incoming;
+                                            const isConfirmed = transaction.persistence;
 
-                                return (
-                                    <a
-                                        key={key}
-                                        onClick={() => setItem(transaction.bundle)}
-                                        className={classNames(
-                                            isConfirmed ? css.confirmed : css.pending,
-                                            isReceived ? css.received : css.sent,
-                                        )}
-                                    >
-                                        <div>
-                                            {isReceived ? (
-                                                <Icon icon="plus" size={14} />
-                                            ) : (
-                                                <Icon icon="minus" size={14} />
-                                            )}
-                                            <span>
-                                                {formatTime(
-                                                    navigator.language,
-                                                    detectedTimezone,
-                                                    convertUnixTimeToJSDate(transaction.timestamp),
-                                                )}
-                                            </span>
-                                            <span>
-                                                {!isConfirmed
-                                                    ? isReceived
-                                                        ? t('receiving')
-                                                        : t('sending')
-                                                    : isReceived
-                                                    ? t('received')
-                                                    : t('sent')}
-                                            </span>
-                                            <span>
-                                                {transaction.transferValue === 0 ? '' : isReceived ? '+' : '-'}
-                                                {formatIotas(transaction.transferValue, true, true)}
-                                            </span>
-                                        </div>
-                                    </a>
-                                );
-                            })
-                        ) : (
-                            <p className={css.empty}>
-                                {!transactions.length ? t('noTransactions') : t('history:noTransactionsFound')}
-                            </p>
+                                            return (
+                                                <a
+                                                    key={key}
+                                                    onClick={() => setItem(transaction.bundle)}
+                                                    className={classNames(
+                                                        isConfirmed ? css.confirmed : css.pending,
+                                                        isReceived ? css.received : css.sent,
+                                                    )}
+                                                >
+                                                    <div>
+                                                        {isReceived ? (
+                                                            <Icon icon="plus" size={14} />
+                                                        ) : (
+                                                            <Icon icon="minus" size={14} />
+                                                        )}
+                                                        <span>
+                                                            {formatTime(
+                                                                navigator.language,
+                                                                detectedTimezone,
+                                                                convertUnixTimeToJSDate(transaction.timestamp),
+                                                            )}
+                                                        </span>
+                                                        <span>
+                                                            {!isConfirmed
+                                                                ? isReceived
+                                                                    ? t('receiving')
+                                                                    : t('sending')
+                                                                : isReceived
+                                                                ? t('received')
+                                                                : t('sent')}
+                                                        </span>
+                                                        <span>
+                                                            {transaction.transferValue === 0
+                                                                ? ''
+                                                                : isReceived
+                                                                ? '+'
+                                                                : '-'}
+                                                            {formatIotas(transaction.transferValue, true, true)}
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                            );
+                                        })
+                                    ) : (
+                                        <p className={css.empty}>
+                                            {!transactions.length
+                                                ? t('noTransactions')
+                                                : t('history:noTransactionsFound')}
+                                        </p>
+                                    )
+                                }
+                            </VariableSizeList>
                         )}
-                    </Scrollbar>
+                    </AutoSizer>
                 </div>
                 <div className={classNames(css.popup, activeTx ? css.on : null)} onClick={() => setItem(null)}>
                     <div>
