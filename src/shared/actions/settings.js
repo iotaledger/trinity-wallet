@@ -351,6 +351,8 @@ export const setCurrency = (currency) => (dispatch, getState) => {
     const { marketData } = getState();
     const conversionRate = marketData.rates[currency] || 1;
 
+    Wallet.updateCurrency(currency);
+
     dispatch({
         type: SettingsActionTypes.SET_CURRENCY,
         payload: {
@@ -853,7 +855,7 @@ export const setChartTimeframe = (timeframe) => {
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setChartCurrency = (currency) => {
-    Wallet.updateCurrency(currency);
+    Wallet.updateChartCurrency(currency);
 
     return {
         type: SettingsActionTypes.SET_CHART_CURRENCY,

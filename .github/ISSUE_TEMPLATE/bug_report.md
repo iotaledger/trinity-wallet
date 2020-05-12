@@ -2,7 +2,7 @@
 name: "Bug Report"
 about: Report a bug in Trinity
 title: ''
-labels: 'T-Bug'
+labels: 'T - Bug'
 ---
 
 ## Bug description

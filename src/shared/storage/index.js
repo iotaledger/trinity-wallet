@@ -458,7 +458,7 @@ class Wallet {
     }
 
     /**
-     * Updates chart currency.
+     * Updates currency.
      *
      * @method updateCurrency
      * @param {string} payload
@@ -470,6 +470,16 @@ class Wallet {
     }
 
     /**
+     * Updates chart currency
+     * @param  {string} payload
+     */
+    static updateChartCurrency(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.chartCurrency = payload;
+        });
+    }
+
+    /**
      * Updates chart timeframe.
      *
      * @method updateTimeframe
@@ -477,7 +487,7 @@ class Wallet {
      */
     static updateTimeframe(payload) {
         realm.write(() => {
-            Wallet.latestSettings.timeframe = payload;
+            Wallet.latestSettings.chartTimeframe = payload;
         });
     }
 
