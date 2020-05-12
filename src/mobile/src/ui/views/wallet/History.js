@@ -4,7 +4,7 @@ import keys from 'lodash/keys';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, KeyboardAvoidingView, RefreshControl } from 'react-native';
+import { TouchableWithoutFeedback, Keyboard, StyleSheet, View, Text, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -372,6 +372,11 @@ class History extends Component {
         return { transactions: orderBy(formattedTransfers, 'time', ['desc']), totals };
     }
 
+    clearInteractions() {
+        this.props.closeTopBar();
+        Keyboard.dismiss();
+    }
+
     renderIOTATransactions(transactions) {
         const {
             theme: { primary, body, input },
@@ -458,7 +463,7 @@ class History extends Component {
         const hasTransactions = transactions.length > 0 || search !== '' || filter !== 'All';
 
         return (
-            <KeyboardAvoidingView style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
                     <View style={styles.listContainer}>
                         {hasTransactions && (
@@ -479,7 +484,7 @@ class History extends Component {
                         </View>
                     </View>
                 </View>
-            </KeyboardAvoidingView>
+            </TouchableWithoutFeedback>
         );
     }
 }

@@ -25,6 +25,7 @@ import Tab from 'ui/components/Tab';
 import TabContent from 'ui/components/TabContent';
 import navigator from 'libs/navigation';
 import { isAndroid, isIPhoneX } from 'libs/device';
+import { height } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     midContainer: {
@@ -255,9 +256,10 @@ class Home extends Component {
                     <View style={{ flex: 1 }}>
                         {(!minimised && (
                             <KeyboardAvoidingView
-                                enabled={isKeyboardActive && currentRoute !== 'history'}
+                                enabled={isKeyboardActive}
                                 style={styles.midContainer}
                                 behavior="padding"
+                                keyboardVerticalOffset={currentRoute === 'history' ? height / -10 : 0}
                             >
                                 <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
                                 <View style={{ flex: isIPhoneX ? 4.81 : 4.27 }}>
