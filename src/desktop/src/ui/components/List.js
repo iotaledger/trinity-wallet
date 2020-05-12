@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
 import { withTranslation } from 'react-i18next';
-import { VariableSizeList, shouldComponentUpdate } from 'react-window';
+import { FixedSizeList } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
 import { formatIotas } from 'libs/iota/utils';
 import { filterTransactions } from 'libs/iota/transfers';
-import { formatTime, formatModalTime, convertUnixTimeToJSDate, detectedTimezone } from 'libs/date';
+import { formatModalTime, convertUnixTimeToJSDate, detectedTimezone } from 'libs/date';
 import SeedStore from 'libs/SeedStore';
 
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
 import Scrollbar from 'ui/components/Scrollbar';
 import Button from 'ui/components/Button';
+import TransactionRow from 'ui/components/Transaction';
 
 import withListData from 'containers/components/List';
 
@@ -23,7 +24,7 @@ import css from './list.scss';
 /**
  * Transaction history list component
  */
-export class ListComponent extends React.Component {
+export class ListComponent extends React.PureComponent {
     static propTypes = {
         /** Can history be updated */
         isBusy: PropTypes.bool.isRequired,
@@ -75,8 +76,6 @@ export class ListComponent extends React.Component {
         search: '',
         loaded: true,
     };
-
-    shouldComponentUpdate = shouldComponentUpdate.bind(this);
 
     switchFilter(filter) {
         if (filter === this.state.filter) {
@@ -245,75 +244,27 @@ export class ListComponent extends React.Component {
                 </nav>
                 <hr />
                 <div className={css.list}>
-                    <AutoSizer>
-                        {({ height, width }) => (
-                            <VariableSizeList
-                                height={height}
-                                itemCount={filterTransactions.length}
-                                itemSize={() => height}
-                                estimatedItemSize={30}
-                                width={width}
-                            >
-                                {() =>
-                                    filteredTransactions.length ? (
-                                        filteredTransactions.map((transaction, key) => {
-                                            const isReceived = transaction.incoming;
-                                            const isConfirmed = transaction.persistence;
-
-                                            return (
-                                                <a
-                                                    key={key}
-                                                    onClick={() => setItem(transaction.bundle)}
-                                                    className={classNames(
-                                                        isConfirmed ? css.confirmed : css.pending,
-                                                        isReceived ? css.received : css.sent,
-                                                    )}
-                                                >
-                                                    <div>
-                                                        {isReceived ? (
-                                                            <Icon icon="plus" size={14} />
-                                                        ) : (
-                                                            <Icon icon="minus" size={14} />
-                                                        )}
-                                                        <span>
-                                                            {formatTime(
-                                                                navigator.language,
-                                                                detectedTimezone,
-                                                                convertUnixTimeToJSDate(transaction.timestamp),
-                                                            )}
-                                                        </span>
-                                                        <span>
-                                                            {!isConfirmed
-                                                                ? isReceived
-                                                                    ? t('receiving')
-                                                                    : t('sending')
-                                                                : isReceived
-                                                                ? t('received')
-                                                                : t('sent')}
-                                                        </span>
-                                                        <span>
-                                                            {transaction.transferValue === 0
-                                                                ? ''
-                                                                : isReceived
-                                                                ? '+'
-                                                                : '-'}
-                                                            {formatIotas(transaction.transferValue, true, true)}
-                                                        </span>
-                                                    </div>
-                                                </a>
-                                            );
-                                        })
-                                    ) : (
-                                        <p className={css.empty}>
-                                            {!transactions.length
-                                                ? t('noTransactions')
-                                                : t('history:noTransactionsFound')}
-                                        </p>
-                                    )
-                                }
-                            </VariableSizeList>
+                    <Scrollbar>
+                        {filterTransactions.length ? (
+                            <AutoSizer>
+                                {({ height, width }) => (
+                                    <FixedSizeList
+                                        height={height}
+                                        itemCount={filteredTransactions.length}
+                                        itemSize={30}
+                                        width={width}
+                                        itemData={filteredTransactions.map((tx) => ({ ...tx, t, setItem }))}
+                                    >
+                                        {TransactionRow}
+                                    </FixedSizeList>
+                                )}
+                            </AutoSizer>
+                        ) : (
+                            <p className={css.empty}>
+                                {!transactions.length ? t('noTransactions') : t('history:noTransactionsFound')}
+                            </p>
                         )}
-                    </AutoSizer>
+                    </Scrollbar>
                 </div>
                 <div className={classNames(css.popup, activeTx ? css.on : null)} onClick={() => setItem(null)}>
                     <div>
