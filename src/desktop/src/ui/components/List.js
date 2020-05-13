@@ -166,7 +166,6 @@ export class ListComponent extends React.PureComponent {
             filter,
             search,
         );
-
         const activeTx = currentItem ? filteredTransactions.filter((tx) => tx.bundle === currentItem)[0] : null;
         const isActiveFailed = activeTx && activeTx.broadcasted === false;
 
@@ -245,7 +244,7 @@ export class ListComponent extends React.PureComponent {
                 <hr />
                 <div className={css.list}>
                     <Scrollbar>
-                        {filterTransactions.length ? (
+                        {filteredTransactions.length ? (
                             <AutoSizer>
                                 {({ height, width }) => (
                                     <FixedSizeList
@@ -262,7 +261,7 @@ export class ListComponent extends React.PureComponent {
                             </AutoSizer>
                         ) : (
                             <p className={css.empty}>
-                                {!transactions.length ? t('noTransactions') : t('history:noTransactionsFound')}
+                                {!filteredTransactions.length ? t('noTransactions') : t('history:noTransactionsFound')}
                             </p>
                         )}
                     </Scrollbar>

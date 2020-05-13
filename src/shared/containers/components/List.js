@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import map from 'lodash/map';
 import { connect } from 'react-redux';
-import { getSelectedAccountName, getSelectedAccountMeta, getAccountNamesFromState } from '../../selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta, getAccountNamesFromState, getTransactionsForSelectedAccount, getAddressesForSelectedAccount } from '../../selectors/accounts';
 
 import { generateAlert } from '../../actions/alerts';
 import { toggleEmptyTransactions } from '../../actions/settings';
@@ -10,7 +9,7 @@ import { promoteTransaction, retryFailedTransaction } from '../../actions/transf
 
 import { getThemeFromState } from '../../selectors/global';
 
-import { mapNormalisedTransactions, formatRelevantTransactions } from '../../libs/iota/transfers';
+import { formatRelevantTransactions } from '../../libs/iota/transfers';
 
 /**
  * List component container
@@ -19,7 +18,6 @@ import { mapNormalisedTransactions, formatRelevantTransactions } from '../../lib
 export default function withListData(ListComponent) {
     class ListData extends React.PureComponent {
         static propTypes = {
-            /** Current account index, where -1 is total balance */
             index: PropTypes.number,
             seedIndex: PropTypes.number.isRequired,
             ui: PropTypes.object.isRequired,
@@ -41,14 +39,9 @@ export default function withListData(ListComponent) {
             retryFailedTransaction: PropTypes.func.isRequired,
             generateAlert: PropTypes.func.isRequired,
             password: PropTypes.object.isRequired,
-            /** Wallet account names */
             accountNames: PropTypes.array.isRequired,
-        };
-
-        getAccountTransactions = (accountData) => {
-            const addresses = map(accountData.addressData, (addressData) => addressData.address);
-            const transactions = mapNormalisedTransactions(accountData.transactions, accountData.addressData);
-            return formatRelevantTransactions(transactions, addresses);
+            transactions: PropTypes.array.isRequired,
+            addresses: PropTypes.array.isRequired,
         };
 
         promoteTransaction = (hash, seedStore) => {
@@ -66,7 +59,8 @@ export default function withListData(ListComponent) {
                 password,
                 index,
                 seedIndex,
-                accounts,
+                transactions,
+                addresses,
                 updateAccount,
                 limit,
                 compact,
@@ -90,17 +84,10 @@ export default function withListData(ListComponent) {
                 return null;
             }
 
-            const transactions =
-                index !== -1
-                    ? this.getAccountTransactions(accounts.accountInfo[accountName])
-                    : Object.entries(accounts.accountInfo).reduce(
-                          (transactions, [_accountName, accountData]) =>
-                              transactions.concat(this.getAccountTransactions(accountData)),
-                          [],
-                      );
+            const relevantTransactions = formatRelevantTransactions(transactions, addresses)
 
             const ListProps = {
-                transactions,
+                transactions: relevantTransactions,
                 accountMeta,
                 password,
                 updateAccount,
@@ -136,6 +123,8 @@ export default function withListData(ListComponent) {
         theme: getThemeFromState(state),
         accountMeta: getSelectedAccountMeta(state),
         accountNames: getAccountNamesFromState(state),
+        transactions: getTransactionsForSelectedAccount(state),
+        addresses: getAddressesForSelectedAccount(state),
         mode: state.settings.mode,
         ui: state.ui,
         hideEmptyTransactions: state.settings.hideEmptyTransactions,

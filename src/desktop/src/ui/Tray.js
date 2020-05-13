@@ -28,8 +28,6 @@ class App extends React.Component {
         /** @ignore */
         history: PropTypes.object.isRequired,
         /** @ignore */
-        accounts: PropTypes.object.isRequired,
-        /** @ignore */
         locale: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -41,7 +39,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             authorised: false,
-            accountIndex: -1,
+            accountIndex: 0,
             historyItem: null,
         };
     }
@@ -60,12 +58,8 @@ class App extends React.Component {
     }
 
     switchAccount = (nextIndex) => {
-        const { accounts } = this.props;
-
-        const accountCount = Object.keys(accounts.accountInfo).length;
-
         this.setState({
-            accountIndex: nextIndex >= accountCount ? -1 : nextIndex < -1 ? accountCount - 1 : nextIndex,
+            accountIndex: nextIndex,
         });
     };
 
