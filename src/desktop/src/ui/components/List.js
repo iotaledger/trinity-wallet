@@ -254,6 +254,7 @@ export class ListComponent extends React.PureComponent {
                                         itemSize={30}
                                         width={width}
                                         itemData={filteredTransactions.map((tx) => ({ ...tx, t, setItem }))}
+                                        className={css.scrollbar}
                                     >
                                         {TransactionRow}
                                     </FixedSizeList>
