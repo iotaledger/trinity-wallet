@@ -10,6 +10,7 @@ export const timezone = DeviceInfo.getTimezone();
 export const isAndroid = Platform.OS === 'android';
 export const isIOS = Platform.OS === 'ios';
 export const isIPhoneX =
+    isIOS &&
     (deviceId === 'iPhone10,3' || deviceId === 'iPhone10,6' || parseInt(deviceId.substring(6, 8)) >= 11) &&
     deviceId !== 'iPhone12,8';
 export const isIPhone11 = deviceId.includes('iPhone11');
