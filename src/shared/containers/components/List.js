@@ -90,14 +90,7 @@ export default function withListData(ListComponent) {
                 return null;
             }
 
-            const transactions =
-                index !== -1
-                    ? this.getAccountTransactions(accounts.accountInfo[accountName])
-                    : Object.entries(accounts.accountInfo).reduce(
-                          (transactions, [_accountName, accountData]) =>
-                              transactions.concat(this.getAccountTransactions(accountData)),
-                          [],
-                      );
+            const transactions = [];
 
             const ListProps = {
                 transactions,
