@@ -78,13 +78,14 @@ export default class UserInactivity extends Component {
     }
 
     handleAppStateChange(nextAppState) {
+        const { timeForInactivity } = this.props;
         this.getSystemUptime().then((currentTime) => {
             if (nextAppState.match(/inactive|background/)) {
                 this.timeWentToBackground = currentTime;
             } else {
                 // Coming to foreground
-                if (currentTime - this.timeWentToBackground >= this.timeForInactivity) {
-                    this.props.logout();
+                if (currentTime - this.timeWentToBackground >= timeForInactivity) {
+                    this.setIsInactive();
                 }
             }
         });
