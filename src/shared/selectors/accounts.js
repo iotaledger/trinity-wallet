@@ -123,6 +123,57 @@ export const getTransactionsForSelectedAccount = createSelector(selectAccountInf
 );
 
 /**
+ * Selects transactions for provided account index.
+ * If account index is not provided, account index in store will be used
+ *
+ *  @method getTransactionsForAccountIndex
+ *  @param {object} state
+ *
+ *  @returns {array}
+ *
+ **/
+export const getTransactionsForAccountIndex = (accountIndex) => {
+    if (!accountIndex) {
+        return createSelector(selectAccountInfo, ({ transactions, addressData }) =>
+            mapNormalisedTransactions(transactions, addressData),
+        );
+    }
+
+    return createSelector(getAccountInfoFromState, getAccountNamesFromState, (accountInfo, accountNames) => {
+        const accountName = accountNames[accountIndex];
+
+        const account = get(accountInfo, accountName);
+
+        return mapNormalisedTransactions(account.transactions, account.addressData);
+    });
+};
+
+/**
+ * Selects transactions for provided account index.
+ * If account index is not provided, account index in store will be used
+ *
+ *  @method getTransactionsForAccountIndex
+ *  @param {object} state
+ *
+ *  @returns {array}
+ *
+ **/
+export const getAddressesForAccountIndex = (accountIndex) => {
+    if (!accountIndex) {
+        return createSelector(selectAccountInfo, (account) =>
+            map(account.addressData, (addressObject) => addressObject.address),
+        );
+    }
+
+    return createSelector(getAccountInfoFromState, getAccountNamesFromState, (accountInfo, accountNames) => {
+        const accountName = accountNames[accountIndex];
+        const account = get(accountInfo, accountName);
+
+        return map(account.addressData, (addressObject) => addressObject.address);
+    });
+};
+
+/**
  *   Selects addresses from accountInfo object.
  *
  *   @method getAddressesForSelectedAccount

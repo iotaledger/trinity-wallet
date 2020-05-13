@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getSelectedAccountName, getSelectedAccountMeta, getAccountNamesFromState, getTransactionsForSelectedAccount, getAddressesForSelectedAccount } from '../../selectors/accounts';
+import {
+    getSelectedAccountName,
+    getSelectedAccountMeta,
+    getAccountNamesFromState,
+    getTransactionsForAccountIndex,
+    getAddressesForAccountIndex,
+} from '../../selectors/accounts';
 
 import { generateAlert } from '../../actions/alerts';
 import { toggleEmptyTransactions } from '../../actions/settings';
@@ -21,7 +27,6 @@ export default function withListData(ListComponent) {
             index: PropTypes.number,
             seedIndex: PropTypes.number.isRequired,
             ui: PropTypes.object.isRequired,
-            accounts: PropTypes.object.isRequired,
             accountName: PropTypes.string,
             accountMeta: PropTypes.object.isRequired,
             mode: PropTypes.string.isRequired,
@@ -84,7 +89,7 @@ export default function withListData(ListComponent) {
                 return null;
             }
 
-            const relevantTransactions = formatRelevantTransactions(transactions, addresses)
+            const relevantTransactions = formatRelevantTransactions(transactions, addresses);
 
             const ListProps = {
                 transactions: relevantTransactions,
@@ -116,15 +121,14 @@ export default function withListData(ListComponent) {
 
     ListData.displayName = `withListData(${ListComponent.displayName || ListComponent.name})`;
 
-    const mapStateToProps = (state) => ({
+    const mapStateToProps = (state, props) => ({
         seedIndex: state.wallet.seedIndex,
-        accounts: state.accounts,
         accountName: getSelectedAccountName(state),
         theme: getThemeFromState(state),
         accountMeta: getSelectedAccountMeta(state),
         accountNames: getAccountNamesFromState(state),
-        transactions: getTransactionsForSelectedAccount(state),
-        addresses: getAddressesForSelectedAccount(state),
+        transactions: getTransactionsForAccountIndex(props.index)(state),
+        addresses: getAddressesForAccountIndex(props.index)(state),
         mode: state.settings.mode,
         ui: state.ui,
         hideEmptyTransactions: state.settings.hideEmptyTransactions,
