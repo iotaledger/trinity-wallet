@@ -1,3 +1,4 @@
+import last from 'lodash/last';
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -116,7 +117,7 @@ class Home extends Component {
         if (this.props.inactive && !newProps.inactive) {
             this.userInactivity.setActiveFromComponent();
         }
-        if (this.props.navStack.length !== !newProps.navStack.length) {
+        if (last(newProps.navStack) !== 'inactivityLogout' && this.props.navStack.length !== newProps.navStack.length) {
             this.userInactivity.setActiveFromComponent();
         }
     }
