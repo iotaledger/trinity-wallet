@@ -27,6 +27,14 @@ export default map(v9Schema, (schema) => {
                     type: 'bool',
                     default: true,
                 },
+                chartTimeframe: {
+                    type: 'string',
+                    default: '24h',
+                },
+                chartCurrency: {
+                    type: 'string',
+                    default: 'USD',
+                },
             },
         });
     }
