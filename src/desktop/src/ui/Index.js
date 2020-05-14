@@ -108,7 +108,7 @@ class App extends React.Component {
         /** @ignore */
         displaySeedMigrationAlert: PropTypes.func.isRequired,
         /** @ignore */
-        alerts: PropTypes.bool.isRequired,
+        alerts: PropTypes.object.isRequired,
     };
 
     constructor(props) {
