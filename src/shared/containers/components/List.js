@@ -1,3 +1,4 @@
+import isUndefined from 'lodash/isUndefined';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -92,6 +93,7 @@ export default function withListData(ListComponent) {
             const relevantTransactions = formatRelevantTransactions(transactions, addresses);
 
             const ListProps = {
+                isRenderingForTray: !isUndefined(index),
                 transactions: relevantTransactions,
                 accountMeta,
                 password,

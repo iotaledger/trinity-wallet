@@ -69,6 +69,8 @@ export class ListComponent extends React.PureComponent {
         accountMeta: PropTypes.object.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
+        /** Determines if list is being rendered for Tray app */
+        isRenderingForTray: PropTypes.bool.isRequired,
     };
 
     state = {
@@ -149,6 +151,7 @@ export class ListComponent extends React.PureComponent {
             isRetryingFailedTransaction,
             mode,
             hideEmptyTransactions,
+            isRenderingForTray,
             toggleEmptyTransactions,
             updateAccount,
             transactions,
@@ -162,7 +165,7 @@ export class ListComponent extends React.PureComponent {
 
         const { filteredTransactions, totals } = filterTransactions(
             orderBy(transactions, 'timestamp', ['desc']),
-            hideEmptyTransactions,
+            isRenderingForTray || hideEmptyTransactions,
             filter,
             search,
         );
@@ -260,10 +263,10 @@ export class ListComponent extends React.PureComponent {
                                 )}
                             </AutoSizer>
                         ) : (
-                            <p className={css.empty}>
-                                {!filteredTransactions.length ? t('noTransactions') : t('history:noTransactionsFound')}
-                            </p>
-                        )}
+                                <p className={css.empty}>
+                                    {!filteredTransactions.length ? t('noTransactions') : t('history:noTransactionsFound')}
+                                </p>
+                            )}
                     </Scrollbar>
                 </div>
                 <div className={classNames(css.popup, activeTx ? css.on : null)} onClick={() => setItem(null)}>
@@ -284,8 +287,8 @@ export class ListComponent extends React.PureComponent {
                                         {!activeTx.persistence
                                             ? t('pending')
                                             : activeTx.incoming
-                                            ? t('received')
-                                            : t('sent')}
+                                                ? t('received')
+                                                : t('sent')}
                                         <em>
                                             {formatModalTime(
                                                 navigator.language,
