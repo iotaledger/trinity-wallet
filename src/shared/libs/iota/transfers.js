@@ -209,19 +209,28 @@ export const prepareTransferArray = (address, value, message, addressData, tag =
  *   @method categoriseBundleByInputsOutputs
  *   @param {array} bundle
  *   @param {array} addresses
+ *   @param {object} addressChecksumMap
  *   @param {number} outputsThreshold
  *
  *   @returns {object}
  **/
-export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThreshold = BUNDLE_OUTPUTS_THRESHOLD) => {
+export const categoriseBundleByInputsOutputs = (
+    bundle,
+    addresses,
+    addressChecksumMap,
+    outputsThreshold = BUNDLE_OUTPUTS_THRESHOLD,
+) => {
     const isRemainder = (tx) => tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0;
 
     const categorisedBundle = transform(
         bundle,
         (acc, tx) => {
+            const checksum =
+                get(addressChecksumMap, tx.address) || iota.utils.addChecksum(tx.address).slice(tx.address.length);
+
             const meta = {
                 ...pick(tx, ['address', 'value', 'hash', 'currentIndex', 'lastIndex']),
-                checksum: iota.utils.addChecksum(tx.address).slice(tx.address.length),
+                checksum,
             };
 
             if (tx.value < 0) {
@@ -267,10 +276,12 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
  *   @method isSentTransfer
  *   @param {array} bundle
  *   @param {array} addresses
+ *   @param {object} addressChecksumMap
+ *
  *   @returns {boolean}
  **/
-export const isSentTransfer = (bundle, addresses) => {
-    const categorisedBundle = categoriseBundleByInputsOutputs(bundle, addresses);
+export const isSentTransfer = (bundle, addresses, addressChecksumMap) => {
+    const categorisedBundle = categoriseBundleByInputsOutputs(bundle, addresses, addressChecksumMap);
     const value = getTransferValue(categorisedBundle.inputs, categorisedBundle.outputs, addresses);
 
     if (value === 0) {
@@ -291,9 +302,11 @@ export const isSentTransfer = (bundle, addresses) => {
  *   @method isReceivedTransfer
  *   @param {array} bundle
  *   @param {array} addresses
+ *   @param {object} addressChecksumMap
  *   @returns {boolean}
  **/
-export const isReceivedTransfer = (bundle, addresses) => !isSentTransfer(bundle, addresses);
+export const isReceivedTransfer = (bundle, addresses, addressChecksumMap) =>
+    !isSentTransfer(bundle, addresses, addressChecksumMap);
 
 /**
  *   Accepts tail transaction object and all transaction objects from bundle hashes
@@ -413,17 +426,25 @@ export const filterInvalidBundles = (bundles) => filter(bundles, isBundle);
  *   @returns {object} - Normalised bundle
  **/
 export const normaliseBundle = (bundle, addressData, tailTransactions, persistence) => {
-    const addresses = map(addressData, (addressObject) => addressObject.address);
+    const { addresses, addressChecksumMap } = transform(
+        addressData,
+        (acc, addressObject) => {
+            acc.addresses.push(addressObject.address);
+            acc.addressChecksumMap[addressObject.address] = addressObject.checksum;
+        },
+        { addresses: [], addressChecksumMap: {} },
+    );
+
     const transaction = get(bundle, '[0]');
     const bundleHash = transaction.bundle;
-    const { inputs, outputs } = categoriseBundleByInputsOutputs(bundle, addresses);
+    const { inputs, outputs } = categoriseBundleByInputsOutputs(bundle, addresses, addressChecksumMap);
 
     return {
         ...pick(transaction, ['bundle', 'timestamp', 'attachmentTimestamp', 'broadcasted']),
         inputs,
         outputs,
         persistence,
-        incoming: isReceivedTransfer(bundle, addresses),
+        incoming: isReceivedTransfer(bundle, addresses, addressChecksumMap),
         transferValue: getTransferValue(inputs, outputs, addresses),
         message: computeTransactionMessage(bundle),
         tailTransactions: map(

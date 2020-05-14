@@ -655,7 +655,7 @@ describe('libs: iota/transfers', () => {
         describe('when transaction object has a negative value', () => {
             it('should categorise as "inputs"', () => {
                 for (const prop in bundlesMap) {
-                    const result = categoriseBundleByInputsOutputs(bundlesMap[prop].bundle, [], 1);
+                    const result = categoriseBundleByInputsOutputs(bundlesMap[prop].bundle, [], {}, 1);
 
                     expect(result.inputs).to.eql(bundlesMap[prop].inputs);
                 }
@@ -668,7 +668,12 @@ describe('libs: iota/transfers', () => {
                     const outputsThreshold = 4;
 
                     for (const prop in bundlesMap) {
-                        const result = categoriseBundleByInputsOutputs(bundlesMap[prop].bundle, [], outputsThreshold);
+                        const result = categoriseBundleByInputsOutputs(
+                            bundlesMap[prop].bundle,
+                            [],
+                            {},
+                            outputsThreshold,
+                        );
 
                         expect(result.outputs).to.eql(bundlesMap[prop].outputs);
                     }
@@ -680,7 +685,7 @@ describe('libs: iota/transfers', () => {
                     const {
                         valueTransactionsWithNoRemainder: { bundle },
                     } = bundlesMap;
-                    const result = categoriseBundleByInputsOutputs(bundle, [], 0);
+                    const result = categoriseBundleByInputsOutputs(bundle, [], {}, 0);
 
                     expect(result.outputs).to.eql([]);
                 });
@@ -689,7 +694,7 @@ describe('libs: iota/transfers', () => {
                     const {
                         valueTransactionsWithRemainder: { bundle },
                     } = bundlesMap;
-                    const result = categoriseBundleByInputsOutputs(bundle, [], 0);
+                    const result = categoriseBundleByInputsOutputs(bundle, [], {}, 0);
 
                     expect(result.outputs).to.eql([
                         {
@@ -735,11 +740,14 @@ describe('libs: iota/transfers', () => {
 
                     powFn.resolves([]);
 
-                    return performPow(powFn, () => Promise.resolve(), ['foo'], '9'.repeat(81), 'U'.repeat(81)).then(
-                        () =>
-                            expect(powFn.calledOnceWithExactly(['foo'], '9'.repeat(81), 'U'.repeat(81), 14)).to.equal(
-                                true,
-                            ),
+                    return performPow(
+                        powFn,
+                        () => Promise.resolve(),
+                        ['foo'],
+                        '9'.repeat(81),
+                        'U'.repeat(81),
+                    ).then(() =>
+                        expect(powFn.calledOnceWithExactly(['foo'], '9'.repeat(81), 'U'.repeat(81), 14)).to.equal(true),
                     );
                 });
             });
