@@ -6,6 +6,8 @@ import { withTranslation } from 'react-i18next';
 import { FixedSizeList } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
+import { iota } from 'libs/iota';
+
 import { formatIotas } from 'libs/iota/utils';
 import { filterTransactions } from 'libs/iota/transfers';
 import { formatModalTime, convertUnixTimeToJSDate, detectedTimezone } from 'libs/date';
@@ -103,17 +105,19 @@ export class ListComponent extends React.PureComponent {
                 <strong>{t('addresses')}:</strong>
                 <Scrollbar>
                     {tx.inputs.concat(tx.outputs).map((input, index) => {
+                        const checksum = iota.utils.addChecksum(input.address).slice(input.address.length);
+
                         return (
                             <p key={`${index}-${input.address}`}>
                                 <span>
                                     <Clipboard
-                                        text={`${input.address}${input.checksum}`}
+                                        text={`${input.address}${checksum}`}
                                         title={t('history:addressCopied')}
                                         success={t('history:addressCopiedExplanation')}
                                         address
                                     >
                                         {input.address}
-                                        <mark>{input.checksum}</mark>
+                                        <mark>{checksum}</mark>
                                     </Clipboard>
                                 </span>
                                 <em>{formatIotas(input.value, true, true)}</em>
@@ -263,10 +267,10 @@ export class ListComponent extends React.PureComponent {
                                 )}
                             </AutoSizer>
                         ) : (
-                                <p className={css.empty}>
-                                    {!filteredTransactions.length ? t('noTransactions') : t('history:noTransactionsFound')}
-                                </p>
-                            )}
+                            <p className={css.empty}>
+                                {!filteredTransactions.length ? t('noTransactions') : t('history:noTransactionsFound')}
+                            </p>
+                        )}
                     </Scrollbar>
                 </div>
                 <div className={classNames(css.popup, activeTx ? css.on : null)} onClick={() => setItem(null)}>
@@ -287,8 +291,8 @@ export class ListComponent extends React.PureComponent {
                                         {!activeTx.persistence
                                             ? t('pending')
                                             : activeTx.incoming
-                                                ? t('received')
-                                                : t('sent')}
+                                            ? t('received')
+                                            : t('sent')}
                                         <em>
                                             {formatModalTime(
                                                 navigator.language,
