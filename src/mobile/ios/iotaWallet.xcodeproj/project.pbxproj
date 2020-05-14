@@ -41,6 +41,8 @@
 		6079C42420D95F18006B252E /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6079C42320D95F17006B252E /* Empty.swift */; };
 		608BEC3423C295D700D0C409 /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 608BEC1C23C295AC00D0C409 /* libRNCWebView.a */; };
 		608E448A221B228A005CCFB1 /* EntangledIOSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 608E4489221B228A005CCFB1 /* EntangledIOSUtils.m */; };
+		60A1C244242EA02E0037E678 /* NativeUtilsIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A1C243242EA02E0037E678 /* NativeUtilsIOS.swift */; };
+		60A1C29F242EBD500037E678 /* NativeUtilsIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1C29E242EBD500037E678 /* NativeUtilsIOS.m */; };
 		60B4137C2411C5E000B56423 /* EntangledKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B4137B2411C5E000B56423 /* EntangledKit.framework */; };
 		60F7E4242125EBE7005355C7 /* libRNDocumentPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7E3B32125EAE7005355C7 /* libRNDocumentPicker.a */; };
 		653C5DB7CF56434CA39B6922 /* libRNNodeJsMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8482B7D9E05463F9505DCB4 /* libRNNodeJsMobile.a */; };
@@ -751,6 +753,8 @@
 		608BEBE423C295AB00D0C409 /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCWebView.xcodeproj; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; };
 		608E4489221B228A005CCFB1 /* EntangledIOSUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntangledIOSUtils.m; sourceTree = "<group>"; };
 		608E44D6221B229A005CCFB1 /* EntangledIOSUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntangledIOSUtils.h; sourceTree = "<group>"; };
+		60A1C243242EA02E0037E678 /* NativeUtilsIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeUtilsIOS.swift; sourceTree = "<group>"; };
+		60A1C29E242EBD500037E678 /* NativeUtilsIOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeUtilsIOS.m; sourceTree = "<group>"; };
 		60B4137B2411C5E000B56423 /* EntangledKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EntangledKit.framework; sourceTree = "<group>"; };
 		60F7E3AE2125EAE7005355C7 /* RNDocumentPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDocumentPicker.xcodeproj; path = "../node_modules/react-native-document-picker/ios/RNDocumentPicker.xcodeproj"; sourceTree = "<group>"; };
 		64A04B0E69E2398FF12B202BA93DEFED /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1022,6 +1026,7 @@
 				CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */,
 				CB98FB9220A0A5BB0047877B /* SourceSansPro-Regular.ttf */,
 				CB86627A209F36CA00C026E3 /* EntangledIOS */,
+				60A1C1F7242E9FF50037E678 /* NativeUtils */,
 				5DA47AA1F43DF8347817216AFD81E3B8 /* Config */,
 				0FE432859717DE312B0951A32FFC9F0C /* Frameworks */,
 				6C07637C2BD02779C4E072737C53A2E3 /* Libraries */,
@@ -1139,6 +1144,15 @@
 				6079AD4D2110E752005B21CB /* Argon2IOS.m */,
 			);
 			path = Argon2;
+			sourceTree = "<group>";
+		};
+		60A1C1F7242E9FF50037E678 /* NativeUtils */ = {
+			isa = PBXGroup;
+			children = (
+				60A1C243242EA02E0037E678 /* NativeUtilsIOS.swift */,
+				60A1C29E242EBD500037E678 /* NativeUtilsIOS.m */,
+			);
+			path = NativeUtils;
 			sourceTree = "<group>";
 		};
 		60F7E3AF2125EAE7005355C7 /* Products */ = {
@@ -2711,8 +2725,10 @@
 				6079C42420D95F18006B252E /* Empty.swift in Sources */,
 				CB866281209F36CA00C026E3 /* EntangledIOS.m in Sources */,
 				608E448A221B228A005CCFB1 /* EntangledIOSUtils.m in Sources */,
+				60A1C244242EA02E0037E678 /* NativeUtilsIOS.swift in Sources */,
 				3E58EC90CE11629FBA816AAD96D16464 /* main.m in Sources */,
 				6079AD4E2110E752005B21CB /* Argon2IOS.m in Sources */,
+				60A1C29F242EBD500037E678 /* NativeUtilsIOS.m in Sources */,
 				6079ACDE2110BE6B005B21CB /* Argon2Core.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
