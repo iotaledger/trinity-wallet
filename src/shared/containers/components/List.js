@@ -121,19 +121,28 @@ export default function withListData(ListComponent) {
 
     ListData.displayName = `withListData(${ListComponent.displayName || ListComponent.name})`;
 
-    const mapStateToProps = (state, props) => ({
-        seedIndex: state.wallet.seedIndex,
-        accountName: getSelectedAccountName(state),
-        theme: getThemeFromState(state),
-        accountMeta: getSelectedAccountMeta(state),
-        accountNames: getAccountNamesFromState(state),
-        transactions: getTransactionsForAccountIndex(props.index)(state),
-        addresses: getAddressesForAccountIndex(props.index)(state),
-        mode: state.settings.mode,
-        ui: state.ui,
-        hideEmptyTransactions: state.settings.hideEmptyTransactions,
-        password: state.wallet.password,
-    });
+    const makeMapStateToProps = () => {
+        const _getTransactionsForAccountIndex = getTransactionsForAccountIndex();
+        const _getAddressesForAccountIndex = getAddressesForAccountIndex();
+
+        const mapStateToProps = (state, props) => {
+            return {
+                seedIndex: state.wallet.seedIndex,
+                accountName: getSelectedAccountName(state),
+                theme: getThemeFromState(state),
+                accountMeta: getSelectedAccountMeta(state),
+                accountNames: getAccountNamesFromState(state),
+                transactions: _getTransactionsForAccountIndex(state, props.index),
+                addresses: _getAddressesForAccountIndex(state, props.index),
+                mode: state.settings.mode,
+                ui: state.ui,
+                hideEmptyTransactions: state.settings.hideEmptyTransactions,
+                password: state.wallet.password,
+            };
+        };
+
+        return mapStateToProps
+    };
 
     const mapDispatchToProps = {
         toggleEmptyTransactions,
@@ -142,5 +151,5 @@ export default function withListData(ListComponent) {
         generateAlert,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(ListData);
+    return connect(makeMapStateToProps, mapDispatchToProps)(ListData);
 }

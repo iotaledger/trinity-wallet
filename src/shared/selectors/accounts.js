@@ -132,20 +132,19 @@ export const getTransactionsForSelectedAccount = createSelector(selectAccountInf
  *  @returns {array}
  *
  **/
-export const getTransactionsForAccountIndex = (accountIndex) => {
-    if (!accountIndex) {
-        return createSelector(selectAccountInfo, ({ transactions, addressData }) =>
-            mapNormalisedTransactions(transactions, addressData),
-        );
-    }
+export const getTransactionsForAccountIndex = () => {
+    return createSelector(
+        getAccountInfoFromState,
+        getAccountNamesFromState,
+        getSeedIndexFromState,
+        (_, accountIndex) => accountIndex,
+        (accountInfo, accountNames, seedIndex, accountIndex) => {
+            const accountName = accountNames[accountIndex || seedIndex];
+            const account = get(accountInfo, accountName);
 
-    return createSelector(getAccountInfoFromState, getAccountNamesFromState, (accountInfo, accountNames) => {
-        const accountName = accountNames[accountIndex];
-
-        const account = get(accountInfo, accountName);
-
-        return mapNormalisedTransactions(account.transactions, account.addressData);
-    });
+            return mapNormalisedTransactions(account.transactions, account.addressData);
+        }
+    );
 };
 
 /**
@@ -158,19 +157,19 @@ export const getTransactionsForAccountIndex = (accountIndex) => {
  *  @returns {array}
  *
  **/
-export const getAddressesForAccountIndex = (accountIndex) => {
-    if (!accountIndex) {
-        return createSelector(selectAccountInfo, (account) =>
-            map(account.addressData, (addressObject) => addressObject.address),
-        );
-    }
+export const getAddressesForAccountIndex = () => {
+    return createSelector(
+        getAccountInfoFromState,
+        getAccountNamesFromState,
+        getSeedIndexFromState,
+        (_, accountIndex) => accountIndex,
+        (accountInfo, accountNames, seedIndex, accountIndex) => {
+            const accountName = accountNames[accountIndex || seedIndex];
+            const account = get(accountInfo, accountName);
 
-    return createSelector(getAccountInfoFromState, getAccountNamesFromState, (accountInfo, accountNames) => {
-        const accountName = accountNames[accountIndex];
-        const account = get(accountInfo, accountName);
-
-        return map(account.addressData, (addressObject) => addressObject.address);
-    });
+            return map(account.addressData, (addressObject) => addressObject.address);
+        }
+    );
 };
 
 /**
