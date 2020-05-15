@@ -17,6 +17,7 @@ import {
     getSelectedAccountMeta,
     getAddressesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
+import { iota } from 'shared-modules/libs/iota';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import SeedStore from 'libs/SeedStore';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
@@ -294,7 +295,7 @@ class History extends Component {
         );
 
         const withUnitAndChecksum = (item) => ({
-            address: `${item.address}${item.checksum}`,
+            address: `${item.address}${iota.utils.addChecksum(item.address).slice(item.address.length)}`,
             value: round(formatValue(item.value), 1),
             unit: formatUnit(item.value),
         });

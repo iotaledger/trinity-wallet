@@ -161,6 +161,27 @@
     }
 }
 
+.scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+
+    &::-webkit-scrollbar {
+      width: 1px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+  }
+
+  .no-scrollbars::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+
 .list {
     position: absolute;
     top: 100px;
