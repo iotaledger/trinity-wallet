@@ -179,20 +179,19 @@ describe('libs: iota/transfers', () => {
     });
 
     describe('#computeTransactionMessage', () => {
-        describe('when bundle has no transaction with a message', () => {
+        describe('when transaction has no message', () => {
             it(`should return ${EMPTY_TRANSACTION_MESSAGE}`, () => {
-                expect(computeTransactionMessage([{ signatureMessageFragment: '9'.repeat(2187) }])).to.equal('Empty');
+                expect(computeTransactionMessage({ signatureMessageFragment: '9'.repeat(2187) })).to.equal('Empty');
             });
         });
 
-        describe('when bundle has a transaction with message', () => {
+        describe('when transaction has a message', () => {
             it('should return message', () => {
                 const messageTrytes = 'CCOBBCCCEAWBOBBCBCKBQBOB';
                 expect(
-                    computeTransactionMessage([
-                        { signatureMessageFragment: '9'.repeat(2187) },
-                        { signatureMessageFragment: `${messageTrytes}${'9'.repeat(2187 - messageTrytes.length)}` },
-                    ]),
+                    computeTransactionMessage({
+                        signatureMessageFragment: `${messageTrytes}${'9'.repeat(2187 - messageTrytes.length)}`,
+                    }),
                 ).to.equal('TEST MESSAGE');
             });
         });
@@ -364,6 +363,7 @@ describe('libs: iota/transfers', () => {
                     address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
                     value: 1,
                     attachmentTimestamp,
+                    signatureMessageFragment: '9'.repeat(2187),
                 },
                 {
                     currentIndex: 0,
@@ -372,6 +372,7 @@ describe('libs: iota/transfers', () => {
                     address: 'UTPQWLFOSBVOEXMMEDNDGCIKGOHFSRVZ9HDEFFNAOLXGDUKC9TEENGI9RAWMZSY9UTMKLHZPRUTFJDBOY',
                     value: 23300,
                     attachmentTimestamp,
+                    signatureMessageFragment: '9'.repeat(2187),
                 },
             ];
         });
