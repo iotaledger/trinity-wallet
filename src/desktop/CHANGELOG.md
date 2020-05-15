@@ -1,10 +1,12 @@
 ### 1.5.0
+- Update: Performance optimisations
 - Update: Hide 0 value transactions by default
 - Update: Disable notifications for 0 value transactions by default
 - Update: Increase attachToTangle timeout to 35 sec
 - Update: Update entangled-node to 0.5.1
-- Fix: Update Electron to 7.2.3
+- Fix: Update Electron to 7.3.0
 - Fix: Chart and currency settings persistence
+- Fix: Restrict Ledger account index to valid range
 
 ### 1.4.5
 - Fix: Add early stopping condition to quorum sync checks
