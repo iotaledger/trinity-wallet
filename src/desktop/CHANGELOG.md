@@ -1,4 +1,5 @@
 ### 1.5.0
+- Update: Performance optimisations
 - Update: Hide 0 value transactions by default
 - Update: Disable notifications for 0 value transactions by default
 - Update: Increase attachToTangle timeout to 35 sec
