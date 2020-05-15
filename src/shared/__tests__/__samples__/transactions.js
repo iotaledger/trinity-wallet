@@ -580,7 +580,6 @@ const normalisedTransactions = {
                 hash: 'SATTUQCNMVTAIADHRQGC9SINCOYHDFQ9CZLTDESRKTWDJICSVLGRQVDFTHBDEACYFJURHBCLJPIBZ9999',
                 currentIndex: 0,
                 lastIndex: 0,
-                checksum: 'YBBRFADGD',
             },
         ],
         persistence: true,
@@ -606,7 +605,6 @@ const normalisedTransactions = {
                 hash: 'OAAMETLECXOVQNTTAKCNWPZSQALUYEGTO9QGEQL9ST9RFJ9JPNBHTOABJQTCIHKMNUMHEKZJSFYT99999',
                 currentIndex: 1,
                 lastIndex: 3,
-                checksum: 'QGYXIQ9M9',
             },
         ],
         outputs: [
@@ -616,7 +614,6 @@ const normalisedTransactions = {
                 hash: 'MFZXHOXKGVVBDGSVXIGEFBFDXICQDK9UQFVSQCAJMZICRXDGBRZMHHJUGTDPWTEHWSREZFDCRRYD99999',
                 currentIndex: 0,
                 lastIndex: 3,
-                checksum: 'PKBRNQVCA',
             },
             {
                 address: 'TAKRFOQLHIQZ99OVLSIMEDNPJYZCEWQVVSMKUXLXOLNALQCRLDDKBMVFXMPWWKYHLEBENNBSCSRJVLMAX',
@@ -624,7 +621,6 @@ const normalisedTransactions = {
                 hash: 'GL9TUTOTURKGADPQUJAGOCMFGVBJ9M9EHMQABNFS9OSWEGJEOSJRHCJUWPRRJOPMQSDZEJZVXBSIA9999',
                 currentIndex: 2,
                 lastIndex: 3,
-                checksum: 'QGYXIQ9M9',
             },
             {
                 address: 'HFTKSX9SZYNRAFJXUPETERUYGNYLKPKFWQTZWMMLNKRIEFOUQWKPCSP9NVPGNISPDHQZD9NHJDSQPUXSD',
@@ -632,7 +628,6 @@ const normalisedTransactions = {
                 hash: 'MKELFERILDLTMIFD9FG9GZDJPOB9YHUWENQNTADWDKWLPOYD9R9JJUKJQLFTHZRYVDYNJWWDSP9O99999',
                 currentIndex: 3,
                 lastIndex: 3,
-                checksum: 'ZN9AWFJP9',
             },
         ],
         persistence: true,
@@ -662,7 +657,6 @@ const normalisedTransactions = {
                 hash: 'RRSOMOBUMCCAVMBRLCHACRKNMSHWIIP9TNXHJQNLANULTWRCIFTQT9BGNZIDGWWO9BZTNGC9MKZHA9999',
                 currentIndex: 1,
                 lastIndex: 2,
-                checksum: 'PKBRNQVCA',
             },
         ],
         outputs: [
@@ -672,7 +666,6 @@ const normalisedTransactions = {
                 hash: 'GERAGOPQB9ULOVZJWJWQQ9ONFRNAIECCAHCMIGDOWSLJOKKDFGBFYZYGMU9UVEW9DOMKDE9VPSLJZ9999',
                 currentIndex: 0,
                 lastIndex: 2,
-                checksum: 'EPYJOBTWY',
             },
             {
                 address: 'QVMPTRCCXYHUORXY9BLOZAFGVHRMRLPWFBX9DTWEXI9CNCKRWTNAZUPECVQUHGBTVIFNAWM9GMVDGJVEB',
@@ -680,7 +673,6 @@ const normalisedTransactions = {
                 hash: 'EYKEEUQVDCSBXIB9FTLIOWEELKLQHVPWEXBGTWLQMMTVFRVLHBPZZEH9FLCXCJFOEUDUSJNSZWGA99999',
                 currentIndex: 2,
                 lastIndex: 2,
-                checksum: 'PKBRNQVCA',
             },
         ],
         persistence: true,
@@ -706,7 +698,6 @@ const normalisedTransactions = {
                 hash: 'IYXZVXTAIKDZQLPIKOBALADCLKIISONLMZYVZAUKHCMJR9BGHTVRWZZTTP9BUQLLUINLPXCWSZ9HZ9999',
                 currentIndex: 1,
                 lastIndex: 3,
-                checksum: 'LDWMSIGPC',
             },
         ],
         outputs: [
@@ -716,7 +707,6 @@ const normalisedTransactions = {
                 hash: 'AWHIUDGXYYMKHGOJMDTMYPAOZHWCDUWEXH9HCNWPGXEXTJLQQHELQYZLCUC9UDNUHQUFGLKGNKENZ9999',
                 currentIndex: 0,
                 lastIndex: 3,
-                checksum: 'BZIF9ZEBC',
             },
             {
                 address: 'QSHVEHOFGUYBDPMPUUPLNRDQGAHPMGQKRIEOIMLVMIKQSTHERN9DRLCN9J9RYFGPSPOIONQNYELEQUDUC',
@@ -724,7 +714,6 @@ const normalisedTransactions = {
                 hash: 'AD9JXNOMIQNGCEPQJELKOOOBOVXXQKWOROGZHMYMEFEPXEAXHZMJHFPRPTJETFGQNGYTIORJ9NGFZ9999',
                 currentIndex: 2,
                 lastIndex: 3,
-                checksum: 'LDWMSIGPC',
             },
             {
                 address: 'KPDUJNJIVXALELQMBWVCWLIIMZJNUHAUDN9MQSFMDNUUYIUNZIANOC9EMHYBSHVCYO9JIVXJMQCVJJIMA',
@@ -732,7 +721,6 @@ const normalisedTransactions = {
                 hash: 'WWCQCQ9RCYIBGLDXTCFN9OTOIWNFKSVTJQEDHKYQRSPZHPFOYWMZKMPOWUVKBRQNSZVMCSDGNVSDA9999',
                 currentIndex: 3,
                 lastIndex: 3,
-                checksum: 'NAYGCDGVD',
             },
         ],
         persistence: false,
@@ -758,7 +746,6 @@ const normalisedTransactions = {
                 hash: 'PWNCXLVGCRURP9HMSDRHZAYPUJTWPTVSIHORMROEBHATFR9LVEPGDBWGIAHUQMYMZWALZG9XGVBKA9999',
                 currentIndex: 1,
                 lastIndex: 2,
-                checksum: 'BZIF9ZEBC',
             },
         ],
         outputs: [
@@ -768,7 +755,6 @@ const normalisedTransactions = {
                 hash: 'IXZUUKVWLWPWWTJWGSAO9GUVVDCEYOUNJRTPPDQVAJQKGTLSZHDHUPGBNJJPZHZADJENZQ9MGQVR99999',
                 currentIndex: 0,
                 lastIndex: 2,
-                checksum: '9JGTWKFHW',
             },
             {
                 address: 'EGESUXEIFAHIRLP9PB9YQJUPNWNWVDBEZAIYWUFKYKHTAHDHRVKSBCYYRJOUJSRBZKUTJGJIIGUGLDPVX',
@@ -776,7 +762,6 @@ const normalisedTransactions = {
                 hash: 'MOJVWYLRIETUURNWIWOZLFKTLYBRRXNSOBXRZIIYQWCYUIHFOGGDGUJVMIK9TFVHSUARVJSN9MOQA9999',
                 currentIndex: 2,
                 lastIndex: 2,
-                checksum: 'BZIF9ZEBC',
             },
         ],
         persistence: false,
@@ -802,7 +787,6 @@ const normalisedTransactions = {
                 hash: 'DEAFXJMCUPKWPBIYTZGHYDBKWYBNLHZSEACJGNWGEDNDRDQSGVOEXZAYRUIHNYPGRXBOFILFYJTPA9999',
                 currentIndex: 1,
                 lastIndex: 2,
-                checksum: 'NXL99BCPW',
             },
         ],
         outputs: [
@@ -812,7 +796,6 @@ const normalisedTransactions = {
                 hash: 'ULVGVNQB9QBUEVHZZUWFIEFXFCODGMWQUKJFCA9QZOQPESMWGEVOWEYKIGPGUGUBI9DGIHBTUOPWZ9999',
                 currentIndex: 0,
                 lastIndex: 2,
-                checksum: 'TVHXVSRHD',
             },
             {
                 address: 'D9QCAHCWFN9BCFNNSPNGFVUEUSKBX9XQEKSIRRWXHHBQBJMEEI9ATVWNPJRLO9ETRPCBIRNQBLDMBUYVW',
@@ -820,7 +803,6 @@ const normalisedTransactions = {
                 hash: 'NNVRU9KMIWAZJ9JHSCNDEKJFACRXICFOESLWFDWVZJPSINHEYLRUKQDRAESZMHRKOAFSKPHVOGBY99999',
                 currentIndex: 2,
                 lastIndex: 2,
-                checksum: 'NXL99BCPW',
             },
         ],
         persistence: false,
@@ -842,7 +824,6 @@ const normalisedTransactions = {
         inputs: [
             {
                 address: 'OXCGKSXOVOFR9UMWGZMYHPWGVSSDZOTQAIKVMHVEHJBFPUNEZZKTISCKVVOVUGDHXLSVFIEWMMXGVYHOD',
-                checksum: 'FDPMAF9UD',
                 currentIndex: 1,
                 hash: 'OA9XIZCOTXWORJWFUVPFAWPCHZUMWQHUI9OEJXABFGOCXHETWXUU9YUHQ9QBJKPOCPXSWOJWYXUMNLFKO',
                 lastIndex: 2,
@@ -856,11 +837,9 @@ const normalisedTransactions = {
                 hash: 'JTBWOTAADTOSUQDQYLS9NW9NCIM9ZQGICGXWUAVLEUUZKJYNPMFTDDBBCFBX9OXWMGQOEVMXNMHXKOQNE',
                 currentIndex: 0,
                 lastIndex: 2,
-                checksum: 'E9SMAQIJC',
             },
             {
                 address: 'OXCGKSXOVOFR9UMWGZMYHPWGVSSDZOTQAIKVMHVEHJBFPUNEZZKTISCKVVOVUGDHXLSVFIEWMMXGVYHOD',
-                checksum: 'FDPMAF9UD',
                 currentIndex: 2,
                 hash: 'EEQUTO9HOJB9NBEYUFMSENPKZJZRJRU9BIMX9UPFFRNUJNGSPYNCRNWYWE9YHUMIZCDDJGRIKUV9VSHJW',
                 lastIndex: 2,
