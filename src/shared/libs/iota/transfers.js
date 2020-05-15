@@ -219,10 +219,7 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
     const categorisedBundle = transform(
         bundle,
         (acc, tx) => {
-            const meta = {
-                ...pick(tx, ['address', 'value', 'hash', 'currentIndex', 'lastIndex']),
-                checksum: iota.utils.addChecksum(tx.address).slice(tx.address.length),
-            };
+            const meta = pick(tx, ['address', 'value', 'hash', 'currentIndex', 'lastIndex']);
 
             if (tx.value < 0) {
                 acc.inputs.push(meta);

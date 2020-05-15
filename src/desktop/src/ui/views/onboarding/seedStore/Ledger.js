@@ -103,7 +103,6 @@ class Ledger extends React.PureComponent {
 
             history.push('/onboarding/account-name');
         } catch (error) {
-
             if (error.statusCode === 27014) {
                 generateAlert(
                     'error',
@@ -181,10 +180,12 @@ class Ledger extends React.PureComponent {
                             : t('ledger:createNewLedgerAccountInfo')}
                     </p>
                     <div>
+                        {/* Index is an unsigned 31-bit integer, so range is 0 through 2147483647 */}
                         <Number
                             value={index}
                             focus
                             min={0}
+                            max={2147483647}
                             label={advancedMode ? t('ledger:accountIndex') : null}
                             onChange={(value) => this.updateIndex(value)}
                         />
@@ -236,7 +237,4 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Ledger));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Ledger));

@@ -123,6 +123,56 @@ export const getTransactionsForSelectedAccount = createSelector(selectAccountInf
 );
 
 /**
+ * Selects transactions for provided account index.
+ * If account index is not provided, account index in store will be used
+ *
+ *  @method getTransactionsForAccountIndex
+ *  @param {object} state
+ *
+ *  @returns {array}
+ *
+ **/
+export const getTransactionsForAccountIndex = () => {
+    return createSelector(
+        getAccountInfoFromState,
+        getAccountNamesFromState,
+        getSeedIndexFromState,
+        (_, accountIndex) => accountIndex,
+        (accountInfo, accountNames, seedIndex, accountIndex) => {
+            const accountName = accountNames[accountIndex || seedIndex];
+            const account = get(accountInfo, accountName);
+
+            return mapNormalisedTransactions(account.transactions, account.addressData);
+        }
+    );
+};
+
+/**
+ * Selects transactions for provided account index.
+ * If account index is not provided, account index in store will be used
+ *
+ *  @method getTransactionsForAccountIndex
+ *  @param {object} state
+ *
+ *  @returns {array}
+ *
+ **/
+export const getAddressesForAccountIndex = () => {
+    return createSelector(
+        getAccountInfoFromState,
+        getAccountNamesFromState,
+        getSeedIndexFromState,
+        (_, accountIndex) => accountIndex,
+        (accountInfo, accountNames, seedIndex, accountIndex) => {
+            const accountName = accountNames[accountIndex || seedIndex];
+            const account = get(accountInfo, accountName);
+
+            return map(account.addressData, (addressObject) => addressObject.address);
+        }
+    );
+};
+
+/**
  *   Selects addresses from accountInfo object.
  *
  *   @method getAddressesForSelectedAccount
