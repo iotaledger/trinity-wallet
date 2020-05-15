@@ -44,7 +44,7 @@
     "cross-env": "7.0.0",
     "css-loader": "3.4.2",
     "dart-sass": "1.25.0",
-    "electron": "7.2.3",
+    "electron": "7.3.0",
     "electron-builder": "22.5.1",
     "electron-devtools-installer": "2.2.4",
     "electron-notarize": "0.2.1",
