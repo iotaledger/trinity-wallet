@@ -1,3 +1,4 @@
+import last from 'lodash/last';
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -25,6 +26,7 @@ import Tab from 'ui/components/Tab';
 import TabContent from 'ui/components/TabContent';
 import navigator from 'libs/navigation';
 import { isAndroid, isIPhoneX } from 'libs/device';
+import { height } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     midContainer: {
@@ -115,7 +117,7 @@ class Home extends Component {
         if (this.props.inactive && !newProps.inactive) {
             this.userInactivity.setActiveFromComponent();
         }
-        if (this.props.navStack.length !== !newProps.navStack.length) {
+        if (last(newProps.navStack) !== 'inactivityLogout' && this.props.navStack.length !== newProps.navStack.length) {
             this.userInactivity.setActiveFromComponent();
         }
     }
@@ -255,9 +257,10 @@ class Home extends Component {
                     <View style={{ flex: 1 }}>
                         {(!minimised && (
                             <KeyboardAvoidingView
-                                enabled={isKeyboardActive && currentRoute !== 'history'}
+                                enabled={isKeyboardActive}
                                 style={styles.midContainer}
                                 behavior="padding"
+                                keyboardVerticalOffset={currentRoute === 'history' ? height / -10 : 0}
                             >
                                 <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
                                 <View style={{ flex: isIPhoneX ? 4.81 : 4.27 }}>

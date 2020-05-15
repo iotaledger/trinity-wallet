@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, PanResponder, ViewPropTypes } from 'react-native';
+import { View, PanResponder, ViewPropTypes, AppState } from 'react-native';
 import timer from 'react-native-timer';
+import { getGetSystemUptimeFn } from 'libs/nativeModules';
 
 export default class UserInactivity extends Component {
     static propTypes = {
@@ -34,9 +35,15 @@ export default class UserInactivity extends Component {
         },
     };
 
+    constructor() {
+        super();
+        this.handleAppStateChange = this.handleAppStateChange.bind(this);
+    }
+
     state = {};
-    lastInteraction = new Date(); // eslint-disable-line react/sort-comp
+    lastInteraction = null; // eslint-disable-line react/sort-comp
     panResponder = {};
+    timeWentToBackground = 0;
 
     componentWillMount() {
         this.panResponder = PanResponder.create({
@@ -51,11 +58,37 @@ export default class UserInactivity extends Component {
         this.maybeStartWatchingForInactivity();
     }
 
+    componentDidMount() {
+        AppState.addEventListener('change', this.handleAppStateChange);
+
+        this.getSystemUptime().then((time) => {
+            this.lastInteraction = time;
+        });
+    }
+
     componentWillUnmount() {
         timer.clearInterval('inactivityTimer');
         timer.clearTimeout('logoutTimer');
         this.panResponder = null;
         this.inactivityTimer = null;
+    }
+
+    getSystemUptime() {
+        return getGetSystemUptimeFn()().then(parseInt);
+    }
+
+    handleAppStateChange(nextAppState) {
+        const { timeForInactivity } = this.props;
+        this.getSystemUptime().then((currentTime) => {
+            if (nextAppState.match(/inactive|background/)) {
+                this.timeWentToBackground = currentTime;
+            } else {
+                // Coming to foreground
+                if (currentTime - this.timeWentToBackground >= timeForInactivity) {
+                    this.setIsInactive();
+                }
+            }
+        });
     }
 
     setActiveFromComponent() {
@@ -74,12 +107,15 @@ export default class UserInactivity extends Component {
     };
 
     setIsActive = () => {
-        this.lastInteraction = new Date();
-        if (this.state.timeWentInactive) {
-            this.setState({ timeWentInactive: null });
-        }
-        this.maybeStartWatchingForInactivity();
-        timer.clearTimeout('logoutTimer');
+        this.getSystemUptime().then((time) => {
+            this.lastInteraction = time;
+
+            if (this.state.timeWentInactive) {
+                this.setState({ timeWentInactive: null });
+            }
+            this.maybeStartWatchingForInactivity();
+            timer.clearTimeout('logoutTimer');
+        });
     };
 
     setIsInactive = () => {
@@ -105,10 +141,12 @@ export default class UserInactivity extends Component {
         this.inactivityTimer = timer.setInterval(
             'inactivityTimer',
             () => {
-                if (new Date() - this.lastInteraction >= timeForInactivity) {
-                    this.setIsInactive();
-                    timer.setTimeout('logoutTimer', () => this.props.logout(), timeForLogout - timeForInactivity);
-                }
+                this.getSystemUptime().then((currentTime) => {
+                    if (currentTime - this.lastInteraction >= timeForInactivity) {
+                        this.setIsInactive();
+                        timer.setTimeout('logoutTimer', () => this.props.logout(), timeForLogout - timeForInactivity);
+                    }
+                });
             },
             checkInterval,
         );
