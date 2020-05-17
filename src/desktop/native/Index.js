@@ -164,6 +164,7 @@ function createWindow() {
             preload: path.resolve(paths.preload, devMode ? 'preloadDev.js' : 'preloadProd.js'),
             disableBlinkFeatures: 'Auxclick',
             webviewTag: false,
+            enableWebSQL: false,
         },
     });
 
