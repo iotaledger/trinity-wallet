@@ -106,7 +106,7 @@
     "tweetnacl": "^1.0.0",
     "tweetnacl-util": "^0.15.0",
     "util": "^0.12.1",
-    "victory-native": "^32.0.2",
+    "victory-native": "^34.3.0",
     "vm-browserify": "0.0.4"
   },
   "devDependencies": {
