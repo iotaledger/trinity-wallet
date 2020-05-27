@@ -54,6 +54,8 @@ const mapStorageToState = () => {
             ),
         },
         settings: assign({}, settings, {
+            chartCurrency: settings.chartCurrency || 'USD',
+            chartTimeframe: settings.chartTimeframe || '24h',
             node: find(nodes, { url: settings.node }) || DEFAULT_NODE,
             powNode: settings.powNode,
             nodes: map(nodes, ({ url, pow, username, password }) => ({ url, pow, username, password })),

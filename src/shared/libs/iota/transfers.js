@@ -40,13 +40,7 @@ import {
     replayBundleAsync,
 } from './extendedApi';
 import i18next from '../../libs/i18next';
-import {
-    convertFromTrytes,
-    EMPTY_HASH_TRYTES,
-    EMPTY_TRANSACTION_MESSAGE,
-    VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX,
-    unitStringToValue,
-} from './utils';
+import { convertFromTrytes, EMPTY_HASH_TRYTES, VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX, unitStringToValue } from './utils';
 import Errors from './../errors';
 
 /**
@@ -78,25 +72,15 @@ export const getTransferValue = (inputs, outputs, addresses) => {
 };
 
 /**
- * Finds transaction message from a bundle.
+ * Finds transaction message from a tx.
  *
  * @method computeTransactionMessage
  * @param {array} bundle
  *
  * @returns {string}
  */
-export const computeTransactionMessage = (bundle) => {
-    let message = EMPTY_TRANSACTION_MESSAGE;
-
-    each(bundle, (tx) => {
-        message = convertFromTrytes(tx.signatureMessageFragment);
-
-        if (message !== EMPTY_TRANSACTION_MESSAGE) {
-            return false;
-        }
-    });
-
-    return message;
+export const computeTransactionMessage = (tx) => {
+    return convertFromTrytes(tx.signatureMessageFragment);
 };
 
 /**
@@ -219,10 +203,7 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
     const categorisedBundle = transform(
         bundle,
         (acc, tx) => {
-            const meta = {
-                ...pick(tx, ['address', 'value', 'hash', 'currentIndex', 'lastIndex']),
-                checksum: iota.utils.addChecksum(tx.address).slice(tx.address.length),
-            };
+            const meta = pick(tx, ['address', 'value', 'hash', 'currentIndex', 'lastIndex']);
 
             if (tx.value < 0) {
                 acc.inputs.push(meta);
@@ -346,7 +327,6 @@ export const constructBundle = (tailTransaction, allTransactionObjects) => {
             hasFoundLastTransfer = true;
         }
     }
-
     return bundle;
 };
 
@@ -417,6 +397,7 @@ export const normaliseBundle = (bundle, addressData, tailTransactions, persisten
     const transaction = get(bundle, '[0]');
     const bundleHash = transaction.bundle;
     const { inputs, outputs } = categoriseBundleByInputsOutputs(bundle, addresses);
+    const tails = filter(tailTransactions, (tx) => tx.bundle === bundleHash);
 
     return {
         ...pick(transaction, ['bundle', 'timestamp', 'attachmentTimestamp', 'broadcasted']),
@@ -425,14 +406,13 @@ export const normaliseBundle = (bundle, addressData, tailTransactions, persisten
         persistence,
         incoming: isReceivedTransfer(bundle, addresses),
         transferValue: getTransferValue(inputs, outputs, addresses),
-        message: computeTransactionMessage(bundle),
-        tailTransactions: map(
-            filter(tailTransactions, (tx) => tx.bundle === bundleHash),
-            (tx) => ({
-                hash: tx.hash,
-                attachmentTimestamp: tx.attachmentTimestamp,
-            }),
+        message: computeTransactionMessage(
+            reduce(tails, (acc, tx) => (tx.attachmentTimestamp < acc.attachmentTimestamp ? tx : acc)),
         ),
+        tailTransactions: map(tails, (tx) => ({
+            hash: tx.hash,
+            attachmentTimestamp: tx.attachmentTimestamp,
+        })),
     };
 };
 
@@ -1000,7 +980,6 @@ export const mapNormalisedTransactions = (transactions, addressData) => {
         (acc, bundle) => {
             const bundleHead = head(bundle);
             const bundleHash = bundleHead.bundle;
-
             // If we have already normalised bundle, then this is a reattached bundle
             // The only thing we are interested in is persistence of the bundle
             // Either the original transaction or a reattachment can be confirmed.

@@ -1,6 +1,6 @@
 {
   "name": "trinity-mobile",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -66,7 +66,6 @@
     "react-native-fs": "^2.8.1",
     "react-native-google-safetynet": "^0.3.3",
     "react-native-haptic-feedback": "^1.4.0",
-    "react-native-http": "github:tradle/react-native-http#834492d",
     "react-native-is-device-rooted": "https://github.com/rajivshah3/react-native-isDeviceRooted#latest",
     "react-native-keep-awake": "^2.0.6",
     "react-native-keyboard-aware-scroll-view": "^0.7.4",
@@ -95,7 +94,7 @@
     "react-native-webview": "5.8.2",
     "react-redux": "^5.0.6",
     "readable-stream": "^1.0.33",
-    "realm": "5.0.3",
+    "realm": "5.0.5",
     "redux": "^3.7.2",
     "rn-fetch-blob": "https://github.com/rajivshah3/rn-fetch-blob#10.13-226",
     "shared-modules": "../shared/",
@@ -130,7 +129,6 @@
   },
   "resolutions": {
     "js-yaml": ">=3.13.1",
-    "handlebars": ">=4.1.2",
     "set-value": ">=2.0.1",
     "mkdirp": "^0.5.3",
     "**/optimist/minimist": "^0.2.1",

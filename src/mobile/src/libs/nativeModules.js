@@ -75,3 +75,11 @@ export const getHashFn = () => {
 export const getSignatureFn = () => {
     return isAndroid ? NativeModules.EntangledAndroid.generateSignature : NativeModules.EntangledIOS.generateSignature;
 };
+
+/**
+ * Gets 'getSystemUptime' function
+ * @return {function} getSystemUptime function
+ */
+export const getGetSystemUptimeFn = () => {
+    return isAndroid ? NativeModules.NativeUtilsAndroid.getSystemUptime : NativeModules.NativeUtilsIOS.getSystemUptime;
+};
