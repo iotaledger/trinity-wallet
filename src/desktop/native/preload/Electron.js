@@ -448,7 +448,7 @@ const Electron = {
      * Export SeedVault file
      * @param {array} - Seed object array
      * @param {string} - Plain text password to use for SeedVault
-     * @returns {undefined}
+     * @returns {boolean | string}
      */
     exportSeeds: async (seeds, password) => {
         try {
@@ -457,18 +457,18 @@ const Electron = {
             if (seeds.length === 1) {
                 prefix = removeNonAlphaNumeric(seeds[0].title, 'SeedVault').trim();
             }
-            const path = await remote.dialog.showSaveDialog(remote.getCurrentWindow(), {
+            const result = await remote.dialog.showSaveDialog(remote.getCurrentWindow(), {
                 title: 'Export keyfile',
                 defaultPath: `${prefix}-${moment().format('YYYYMMDD-HHmm')}.kdbx`,
                 buttonLabel: 'Export',
                 filters: [{ name: 'SeedVault File', extensions: ['kdbx'] }],
             });
 
-            if (!path) {
+            if (!result || result.canceled) {
                 throw Error('Export cancelled');
             }
 
-            fs.writeFileSync(path, Buffer.from(content));
+            fs.writeFileSync(result.filePath, Buffer.from(content));
 
             return false;
         } catch (error) {
@@ -486,18 +486,22 @@ const Electron = {
     exportState: (content) => {
         const prefix = 'Trinity';
 
-        const path = remote.dialog.showSaveDialog(remote.getCurrentWindow(), {
-            title: 'Export state',
-            defaultPath: `${prefix}-${moment().format('YYYYMMDD-HHmm')}.txt`,
-            buttonLabel: 'Export',
-            filters: [{ name: 'State Export File', extensions: ['txt'] }],
-        });
+        return remote.dialog
+            .showSaveDialog(remote.getCurrentWindow(), {
+                title: 'Export state',
+                defaultPath: `${prefix}-${moment().format('YYYYMMDD-HHmm')}.txt`,
+                buttonLabel: 'Export',
+                filters: [{ name: 'State Export File', extensions: ['txt'] }],
+            })
+            .then((result) => {
+                if (!result || result.canceled) {
+                    throw new Error(Errors.EXPORT_CANCELLED);
+                }
 
-        if (!path) {
-            return Promise.reject(new Error(Errors.EXPORT_CANCELLED));
-        }
-
-        return new Promise((resolve, reject) => fs.writeFile(path, content, (err) => (err ? reject(err) : resolve())));
+                return new Promise((resolve, reject) =>
+                    fs.writeFile(result.filePath, content, (err) => (err ? reject(err) : resolve())),
+                );
+            });
     },
 
     /**
@@ -613,6 +617,7 @@ const Electron = {
                 noUpdatesAvailableExplanation: t('updates:noUpdatesAvailableExplanation'),
                 newVersionAvailable: t('updates:newVersionAvailable'),
                 newVersionAvailableExplanation: t('updates:newVersionAvailableExplanation'),
+                newVersionAvailableExplanationWin: t('updates:newVersionAvailableExplanationWin'),
                 installUpdate: t('updates:installUpdate'),
                 installUpdateExplanation: t('updates:installUpdateExplanation'),
             },

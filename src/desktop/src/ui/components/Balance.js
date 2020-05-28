@@ -36,8 +36,6 @@ export class BalanceComponent extends React.PureComponent {
         settings: PropTypes.object.isRequired,
         /** @ignore */
         marketData: PropTypes.object.isRequired,
-        /** @ignore */
-        t: PropTypes.func.isRequired,
     };
 
     state = {
@@ -51,29 +49,12 @@ export class BalanceComponent extends React.PureComponent {
     }
 
     render() {
-        const {
-            summary,
-            index,
-            accounts,
-            accountNames,
-            switchAccount,
-            seedIndex,
-            settings,
-            marketData,
-            t,
-        } = this.props;
+        const { summary, index, accounts, accountNames, switchAccount, seedIndex, settings, marketData } = this.props;
         const { balanceIsShort } = this.state;
 
-        const accountName = summary && index === -1 ? t('totalBalance') : accountNames[summary ? index : seedIndex];
+        const accountName = accountNames[summary ? index : seedIndex];
 
-        const balances =
-            summary && index === -1
-                ? Object.entries(accounts.accountInfo).reduce(
-                      (total, [_accountName, accountData]) =>
-                          total.concat(accountData.addressData.map((addressData) => addressData.balance)),
-                      [],
-                  )
-                : accounts.accountInfo[accountName].addressData.map((addressData) => addressData.balance);
+        const balances = accounts.accountInfo[accountName].addressData.map((addressData) => addressData.balance);
 
         const accountBalance = accumulateBalance(balances);
 
@@ -83,11 +64,11 @@ export class BalanceComponent extends React.PureComponent {
                 <h3>{accountName}</h3>
                 {summary && (
                     <React.Fragment>
-                        <a onClick={() => switchAccount(index + 1)}>
+                        <a onClick={() => switchAccount(index === 0 ? accountNames.length - 1 : index - 1)}>
                             <Icon icon="chevronLeft" size={18} />
                         </a>
 
-                        <a onClick={() => switchAccount(index - 1)}>
+                        <a onClick={() => switchAccount(index === accountNames.length - 1 ? 0 : index + 1)}>
                             <Icon icon="chevronRight" size={18} />
                         </a>
                     </React.Fragment>

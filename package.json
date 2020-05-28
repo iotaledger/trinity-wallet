@@ -26,36 +26,36 @@
     "start:mobile": "cd src/mobile && yarn start",
     "start:styleguide": "cd src/desktop && yarn run styleguide",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect",
-    "prepublish": "npm run snyk-protect"
+    "prepare": "yarn run snyk-protect"
   },
   "lint-staged": {
     "*.{js,json,css}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
+    "babel-eslint": "^10.1.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.1",
-    "eslint-config-prettier": "^6.9.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-native": "^3.8.1",
-    "husky": "^4.0.10",
-    "lint-staged": "^9.5.0",
-    "prettier": "^1.19.1"
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.4",
+    "prettier": "^2.0.5"
   },
   "dependencies": {
-    "snyk": "^1.279.0"
+    "snyk": "^1.320.3"
   },
   "resolutions": {
     "js-yaml": ">=3.13.1",
     "request": ">=2.88.0",
-    "node.extend": ">=1.1.7"
+    "node.extend": ">=1.1.7",
+    "mkdirp": "^0.5.3",
+    "minimist": "^1.2.5 || >=0.2.1"
   },
   "snyk": true,
   "husky": {

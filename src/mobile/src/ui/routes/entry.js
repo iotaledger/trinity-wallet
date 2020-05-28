@@ -25,7 +25,7 @@ import i18next, { i18nextInit } from 'shared-modules/libs/i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
-import { resetIfKeychainIsEmpty, reduxPersistStorageAdapter, versionCheck } from 'libs/store';
+import { resetIfKeychainIsEmpty, reduxPersistStorageAdapter, versionCheck, seedMigrationCheck } from 'libs/store';
 import { bugsnag } from 'libs/bugsnag';
 import getEncryptionKey from 'libs/realm';
 import registerScreens from 'ui/routes/navigation';
@@ -265,6 +265,7 @@ onAppStart()
         });
     })
     .then(() => versionCheck(reduxStore))
+    .then(() => seedMigrationCheck(reduxStore))
     // Launch application
     .then(() => {
         const initialize = (isConnected) => {

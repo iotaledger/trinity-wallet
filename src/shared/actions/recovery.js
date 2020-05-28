@@ -26,7 +26,7 @@ import { Account } from '../storage';
  * @param {boolean} [withQuorum]
  *
  */
-export const byteTritCheck = (accounts, genFn, withQuorum = true) => async (dispatch, getState) => {
+export const byteTritCheck = (accounts, genFn, withQuorum = false) => async (dispatch, getState) => {
     const state = getState();
 
     const affectedAccounts = [];
@@ -47,9 +47,10 @@ export const byteTritCheck = (accounts, genFn, withQuorum = true) => async (disp
         // Convert addresses trits to trytes
         const addresses = addressCount === 1 ? tritsToChars(addressesTrits) : map(addressesTrits, tritsToChars);
 
-        const balances = await getBalancesAsync(undefined, withQuorum)(
-            typeof addresses === 'string' ? [addresses] : addresses,
-        );
+        const balances = await getBalancesAsync(
+            undefined,
+            withQuorum,
+        )(typeof addresses === 'string' ? [addresses] : addresses);
 
         const balanceTotal = balances.balances.reduce((total, balance) => parseInt(total) + parseInt(balance));
 

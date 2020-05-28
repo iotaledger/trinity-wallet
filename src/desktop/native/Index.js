@@ -4,8 +4,16 @@ import electronSettings from 'electron-settings';
 import path from 'path';
 import URL from 'url';
 import fs from 'fs';
+import electronLog from 'electron-log';
+import { autoUpdater } from 'electron-updater';
 
 import { initMenu, contextMenu } from './libs/Menu';
+
+/**
+ * Enable logs for auto-updater
+ */
+autoUpdater.logger = electronLog;
+autoUpdater.logger.transports.file.level = 'info';
 
 /**
  * Expose Garbage Collector flag for manual trigger after seed usage
@@ -16,7 +24,13 @@ app.commandLine.appendSwitch('js-flags', '--expose-gc');
  * Terminate application if Node remote debugging detected
  */
 const argv = process.argv.join();
-if (argv.includes('inspect') || argv.includes('remote') || typeof v8debug !== 'undefined') {
+const flagBlacklist = ['inspect', 'inspect-brk', 'remote-debugging-port'];
+if (
+    argv.includes('inspect') ||
+    argv.includes('remote') ||
+    typeof v8debug !== 'undefined' ||
+    flagBlacklist.some((flag) => app.commandLine.hasSwitch(flag))
+) {
     app.quit();
 }
 
@@ -80,7 +94,7 @@ let globalErrorFlag = false;
  * Set Trinity as the default handler for iota:// protocol
  */
 if (!devMode) {
-    protocol.registerStandardSchemes(['iota'], { secure: true });
+    protocol.registerSchemesAsPrivileged([{ scheme: 'iota', privileges: { secure: true, standard: true } }]);
     if (process.defaultApp) {
         if (process.argv.length >= 2) {
             app.setAsDefaultProtocolClient('iota', process.execPath, [path.resolve(process.argv[1])]);
@@ -155,6 +169,7 @@ function createWindow() {
             preload: path.resolve(paths.preload, devMode ? 'preloadDev.js' : 'preloadProd.js'),
             disableBlinkFeatures: 'Auxclick',
             webviewTag: false,
+            enableWebSQL: false,
         },
     });
 
@@ -273,14 +288,8 @@ function createWindow() {
                 'privacy@iota.org',
             ];
             const ledgerOnboarding = ['support.ledger.com'];
-            const exchanges = ['help.moonpay.io', 'moonpay.io'];
 
-            const externalWhitelist = [
-                ...privacyPolicyLinks,
-                ...termsAndConditionsLinks,
-                ...ledgerOnboarding,
-                ...exchanges,
-            ];
+            const externalWhitelist = [...privacyPolicyLinks, ...termsAndConditionsLinks, ...ledgerOnboarding];
 
             try {
                 if (
@@ -419,7 +428,9 @@ app.on('before-quit', () => {
  */
 app.on('activate', () => {
     if (windows.main === null) {
-        createWindow();
+        if (app.isReady()) {
+            createWindow();
+        }
     } else if (!windows.main.isVisible()) {
         windows.main.show();
     }

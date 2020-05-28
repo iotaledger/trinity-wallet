@@ -74,8 +74,9 @@ class Account {
      */
     static getDataAsArray() {
         const accounts = Account.data;
+        const parsedAccounts = map(accounts, (account) => parse(serialise(account)));
 
-        return map(accounts, (account) =>
+        return map(parsedAccounts, (account) =>
             assign({}, account, {
                 addressData: map(account.addressData, (data) => parse(serialise(data))),
                 transactions: map(account.transactions, (transaction) => parse(serialise(transaction))),
@@ -208,7 +209,13 @@ class Account {
 
         realm.write(() => {
             // Create account with new name.
-            realm.create('Account', assign({}, accountData, { name: to }));
+            const newAccount = assign({}, parse(serialise(accountData)), {
+                addressData: map(accountData.addressData, (addressObject) => parse(serialise(addressObject))),
+                transactions: map(accountData.transactions, (transaction) => parse(serialise(transaction))),
+                name: to,
+            });
+
+            realm.create('Account', newAccount);
             // Delete account with old name.
             realm.delete(accountData);
         });
@@ -349,7 +356,6 @@ class Wallet {
      */
     static get latestSettings() {
         const dataForCurrentVersion = Wallet.getObjectForId();
-
         return dataForCurrentVersion.settings;
     }
 
@@ -452,7 +458,7 @@ class Wallet {
     }
 
     /**
-     * Updates chart currency.
+     * Updates currency.
      *
      * @method updateCurrency
      * @param {string} payload
@@ -464,6 +470,16 @@ class Wallet {
     }
 
     /**
+     * Updates chart currency
+     * @param  {string} payload
+     */
+    static updateChartCurrency(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.chartCurrency = payload;
+        });
+    }
+
+    /**
      * Updates chart timeframe.
      *
      * @method updateTimeframe
@@ -471,7 +487,7 @@ class Wallet {
      */
     static updateTimeframe(payload) {
         realm.write(() => {
-            Wallet.latestSettings.timeframe = payload;
+            Wallet.latestSettings.chartTimeframe = payload;
         });
     }
 
@@ -810,7 +826,7 @@ class Wallet {
      * @method createIfNotExists
      */
     static createIfNotExists() {
-        const shouldCreate = isEmpty(Wallet.getObjectForId());
+        const shouldCreate = Wallet.getObjectForId() === undefined;
 
         if (shouldCreate) {
             realm.write(() =>

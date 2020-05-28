@@ -55,7 +55,7 @@ export default class Button extends React.PureComponent {
         }
 
         return (
-            //eslint-disable-next-line react/button-has-type
+            /* eslint-disable react/button-has-type */
             <button
                 style={style}
                 type={type ? type : 'button'}
@@ -66,6 +66,7 @@ export default class Button extends React.PureComponent {
             >
                 {children}
             </button>
+            /* eslint-enable react/button-has-type */
         );
     }
 }

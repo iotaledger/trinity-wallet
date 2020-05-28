@@ -263,7 +263,7 @@ export class Send extends Component {
             if (parsedLink) {
                 this.props.verifyCDAContent(parsedLink);
             } else {
-                this.props.generateAlert('error', t('invalidAddress'), t('invalidAddressExplanation'));
+                this.props.generateAlert('error', t('invalidAddress'), t('invalidAddressExplanationGeneric'));
             }
         }
     }
@@ -393,7 +393,7 @@ export class Send extends Component {
             if (parsedLink) {
                 this.props.verifyCDAContent(parsedLink);
             } else {
-                _sendError(t('invalidAddress'), t('invalidAddressExplanation'));
+                _sendError(t('invalidAddress'), t('invalidAddressExplanationGeneric'));
             }
         } else if (dataString.startsWith('iota:') && dataSubstring.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
             // For codes with iota: at the front (TheTangle.org)
@@ -402,7 +402,7 @@ export class Send extends Component {
             // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
             this.props.setSendAddressField(data);
         } else {
-            _sendError(t('invalidAddress'), t('invalidAddressExplanation'));
+            _sendError(t('invalidAddress'), t('invalidAddressExplanationGeneric'));
         }
     }
 

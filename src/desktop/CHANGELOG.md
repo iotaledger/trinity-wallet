@@ -1,6 +1,45 @@
+### 1.5.0
+- Update: Performance optimisations
+- Update: Hide 0 value transactions by default
+- Update: Disable notifications for 0 value transactions by default
+- Update: Increase attachToTangle timeout to 35 sec
+- Update: Update entangled-node to 0.5.1
+- Fix: Update Electron to 7.3.0
+- Fix: Chart and currency settings persistence
+- Fix: Restrict Ledger account index to valid range
+
+### 1.4.5
+- Fix: Add early stopping condition to quorum sync checks
+- Fix: Node selection issues during manual promotion
+- Update: Update entangled-node to 0.4.9
+- Update: Reenable auto-updater on Windows and enable update logging
+
+### 1.4.3
+
+- Fix: Interference from legacy keychain entries
+- Fix: Data migration from very old versions
+- Fix: Change node failing due to milestone checks
+
+### 1.4.2
+
+- Fix: Incorrect alert on password change
+
+### 1.4.1
+
+- Fix: Out of sync nodes blocking load
+
+### 1.4.0
+
+- Update: Remove exchange support
+- Update: Adjust update alerts
+- Fix: Allow wallet entry when nodes are not in sync
+
 ### 1.3.0
 
 - New: Spent address recovery tool
+
+### 1.2.2
+
 - Fix: Ensure full bundle is broadcast during promotion
 - Fix: Various MoonPay fixes
 - Fix: Don't fail silently when drag-dropping an incorrect seed

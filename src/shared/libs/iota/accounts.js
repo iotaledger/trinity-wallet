@@ -31,10 +31,15 @@ import {
  *
  *   @param {object} [settings]
  *   @param {boolean} withQuorum
+ *   @param {boolean} withHealthCheck
  *
  *   @returns {function(object, string, [object]): Promise<{{accountName: {string}, transactions: {array}, addressData: {array} }}>}
  **/
-export const getAccountData = (settings, withQuorum) => (seedStore, accountName, existingAccountState = {}) => {
+export const getAccountData = (settings, withQuorum, withHealthCheck = false) => (
+    seedStore,
+    accountName,
+    existingAccountState = {},
+) => {
     let data = {
         addresses: [],
         balances: [],
@@ -49,7 +54,7 @@ export const getAccountData = (settings, withQuorum) => (seedStore, accountName,
         (transaction) => transaction.hash,
     );
 
-    return throwIfNodeNotHealthy(settings)
+    return (withHealthCheck ? throwIfNodeNotHealthy(settings) : Promise.resolve())
         .then(() => getFullAddressHistory(settings, withQuorum)(seedStore, existingAccountState))
         .then((history) => {
             data = { ...data, ...history };
@@ -90,10 +95,11 @@ export const getAccountData = (settings, withQuorum) => (seedStore, accountName,
  *   @method syncAccount
  *   @param {object} [settings]
  *   @param {boolean} withQuorum
+ *   @param {boolean} withHealthCheck
  *
  *   @returns {function(object, object, function, object): Promise<object>}
  **/
-export const syncAccount = (settings, withQuorum) => (
+export const syncAccount = (settings, withQuorum, withHealthCheck = false) => (
     existingAccountState,
     seedStore,
     notificationFn,
@@ -102,7 +108,7 @@ export const syncAccount = (settings, withQuorum) => (
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = typeof seedStore === 'object';
 
-    return throwIfNodeNotHealthy(settings)
+    return (withHealthCheck ? throwIfNodeNotHealthy(settings) : Promise.resolve())
         .then(() =>
             rescanAddresses
                 ? syncAddresses(settings, withQuorum)(seedStore, thisStateCopy.addressData, thisStateCopy.transactions)

@@ -13,7 +13,6 @@ import transform from 'lodash/transform';
 import uniq from 'lodash/uniq';
 import { createSelector } from 'reselect';
 import { getSeedIndexFromState } from './global';
-import { getSelectedAccountName as getSelectedAccountNameForMoonPay } from './exchanges/MoonPay';
 import { accumulateBalance, getLatestAddress } from '../libs/iota/addresses';
 import { categoriseInclusionStatesByBundleHash, mapNormalisedTransactions } from '../libs/iota/transfers';
 
@@ -125,6 +124,56 @@ export const getSelectedAccountType = createSelector(
 export const getTransactionsForSelectedAccount = createSelector(selectAccountInfo, ({ transactions, addressData }) =>
     mapNormalisedTransactions(transactions, addressData),
 );
+
+/**
+ * Selects transactions for provided account index.
+ * If account index is not provided, account index in store will be used
+ *
+ *  @method getTransactionsForAccountIndex
+ *  @param {object} state
+ *
+ *  @returns {array}
+ *
+ **/
+export const getTransactionsForAccountIndex = () => {
+    return createSelector(
+        getAccountInfoFromState,
+        getAccountNamesFromState,
+        getSeedIndexFromState,
+        (_, accountIndex) => accountIndex,
+        (accountInfo, accountNames, seedIndex, accountIndex) => {
+            const accountName = accountNames[accountIndex || seedIndex];
+            const account = get(accountInfo, accountName);
+
+            return mapNormalisedTransactions(account.transactions, account.addressData);
+        },
+    );
+};
+
+/**
+ * Selects transactions for provided account index.
+ * If account index is not provided, account index in store will be used
+ *
+ *  @method getTransactionsForAccountIndex
+ *  @param {object} state
+ *
+ *  @returns {array}
+ *
+ **/
+export const getAddressesForAccountIndex = () => {
+    return createSelector(
+        getAccountInfoFromState,
+        getAccountNamesFromState,
+        getSeedIndexFromState,
+        (_, accountIndex) => accountIndex,
+        (accountInfo, accountNames, seedIndex, accountIndex) => {
+            const accountName = accountNames[accountIndex || seedIndex];
+            const account = get(accountInfo, accountName);
+
+            return map(account.addressData, (addressObject) => addressObject.address);
+        },
+    );
+};
 
 /**
  *   Selects addresses from accountInfo object.
@@ -454,21 +503,5 @@ export const getFilteredSpentAddressDataForSelectedAccount = createSelector(
                 every(associatedTransactions, (transaction) => persistenceByBundleHash[transaction.bundle] === true)
             );
         });
-    },
-);
-
-/* Selects latest address for MoonPay selected account
- *
- * @method getLatestAddressForMoonPaySelectedAccount
- *
- * @param {string} accountName
- *
- * @returns {function}
- */
-export const getLatestAddressForMoonPaySelectedAccount = createSelector(
-    getAccountInfoFromState,
-    getSelectedAccountNameForMoonPay,
-    (accountInfo, accountName) => {
-        return getLatestAddress(get(accountInfo[accountName], 'addressData'), true);
     },
 );

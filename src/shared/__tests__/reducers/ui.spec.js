@@ -39,7 +39,6 @@ describe('Reducer: ui', () => {
                 isKeyboardActive: false,
                 animateChartOnMount: true,
                 isRecoveringFunds: false,
-                isViewingMoonpayPurchases: false,
                 CDAContent: {},
             };
 

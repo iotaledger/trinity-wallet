@@ -3,38 +3,51 @@ name: "Bug Report"
 about: Report a bug in Trinity
 title: ''
 labels: 'T - Bug'
-
 ---
 
-<!--- Remove text and sections that do not apply -->
+## Bug description
 
-The issue tracker is only for reporting bugs. If you need technical assistance with the Trinity wallet, please consult the [documentation](https://docs.iota.works/trinity). For further assistance, please visit the #help channel on [Discord](https://discord.iota.org).
-If you have general questions on IOTA you can go to https://iota.stackexchange.com/, https://forum.helloiota.com/, or browse Discord channels (https://discord.iota.org).
+Briefly describe the bug.
 
-### Bug description
-A general description of the bug.
+## Version
 
-### Environment Specs
-What device are you running Trinity on?
+Which version of Trinity are you running? (Please provide the full version, you can find it in Settings > About Trinity).
 
-- Manufacturer:
-- Model:
-- OS version:
+- Version:
 
-What build of Trinity are you running? Please provide the full version (you can find it in Settings > About Trinity).
+## Hardware specification
 
-- Trinity version:
+What hardware are you using?
 
-### Steps To Reproduce
-1.
-2.
-3.
+- Mobile or Desktop: 
+- Device:
+- OS and version:
 
-### Expected behaviour
-What should happen.
+- RAM (Desktop only):
+- Number of cores (Desktop only):
 
-### Actual behaviour
-What really happened.
+## Node Settings (delete if not relevant)
 
-### Errors
-Attach crash logs or screenshots of error messages if available. Please ensure that these files do not contain any personal information.
+What are your node settings? Are you using automatic node management?
+
+- Node settings: 
+
+## Steps To reproduce the bug
+
+Explain how the maintainer can reproduce the bug.
+
+1. 
+2. 
+3. 
+
+## Expected behaviour
+
+Describe what you expect to happen.
+
+## Actual behaviour
+
+Describe what actually happens.
+
+## Errors
+
+Paste any relevant errors that you see. These could include error/crash logs or screenshots. Please ensure that these files do not contain any personal information. 

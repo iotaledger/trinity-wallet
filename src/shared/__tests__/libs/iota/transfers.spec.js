@@ -179,20 +179,19 @@ describe('libs: iota/transfers', () => {
     });
 
     describe('#computeTransactionMessage', () => {
-        describe('when bundle has no transaction with a message', () => {
+        describe('when transaction has no message', () => {
             it(`should return ${EMPTY_TRANSACTION_MESSAGE}`, () => {
-                expect(computeTransactionMessage([{ signatureMessageFragment: '9'.repeat(2187) }])).to.equal('Empty');
+                expect(computeTransactionMessage({ signatureMessageFragment: '9'.repeat(2187) })).to.equal('Empty');
             });
         });
 
-        describe('when bundle has a transaction with message', () => {
+        describe('when transaction has a message', () => {
             it('should return message', () => {
                 const messageTrytes = 'CCOBBCCCEAWBOBBCBCKBQBOB';
                 expect(
-                    computeTransactionMessage([
-                        { signatureMessageFragment: '9'.repeat(2187) },
-                        { signatureMessageFragment: `${messageTrytes}${'9'.repeat(2187 - messageTrytes.length)}` },
-                    ]),
+                    computeTransactionMessage({
+                        signatureMessageFragment: `${messageTrytes}${'9'.repeat(2187 - messageTrytes.length)}`,
+                    }),
                 ).to.equal('TEST MESSAGE');
             });
         });
@@ -364,6 +363,7 @@ describe('libs: iota/transfers', () => {
                     address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
                     value: 1,
                     attachmentTimestamp,
+                    signatureMessageFragment: '9'.repeat(2187),
                 },
                 {
                     currentIndex: 0,
@@ -372,6 +372,7 @@ describe('libs: iota/transfers', () => {
                     address: 'UTPQWLFOSBVOEXMMEDNDGCIKGOHFSRVZ9HDEFFNAOLXGDUKC9TEENGI9RAWMZSY9UTMKLHZPRUTFJDBOY',
                     value: 23300,
                     attachmentTimestamp,
+                    signatureMessageFragment: '9'.repeat(2187),
                 },
             ];
         });
@@ -495,7 +496,6 @@ describe('libs: iota/transfers', () => {
                             hash: 'RMUAFMTJGHXCOEJDEKRWWXIVYHTLRXQZITACPRGQJPSRQ9QBBOMBTXEKRGDCEXZLNWSSCG9LBWIMZ9999',
                             currentIndex: 1,
                             lastIndex: 1,
-                            checksum: 'NMSVFUQPW',
                         },
                     ],
                     outputs: [
@@ -506,7 +506,6 @@ describe('libs: iota/transfers', () => {
                             hash: 'KAQIKFPVUXRDXHHKYQHGMSMANNCANDWEJWZSDHVODXZJOEYFBXAAEXUKYUVYK9GFDOPPCXTYQLSUA9999',
                             currentIndex: 0,
                             lastIndex: 1,
-                            checksum: 'GI9KMCCEC',
                         },
                     ],
                 },
@@ -544,7 +543,6 @@ describe('libs: iota/transfers', () => {
                             hash: 'WNFESDTEFDS9CCVAERQNJXPZJWPRQTJJQAC9ITFQXRFSLVLBKJEOGVHQ9QBJZITFLGXNRA9QMJNEA9999',
                             currentIndex: 0,
                             lastIndex: 0,
-                            checksum: 'GI9KMCCEC',
                         },
                     ],
                 },
@@ -625,7 +623,6 @@ describe('libs: iota/transfers', () => {
                             hash: 'QNNSDQQHDKCQQXJNSINYPKNVZXE9OPADCJCIHAVCWJHKWCZIZE9IVNUYW9CFZGKLQPKMJBIRCJYFZ9999',
                             currentIndex: 1,
                             lastIndex: 2,
-                            checksum: 'NMSVFUQPW',
                         },
                     ],
                     outputs: [
@@ -636,7 +633,6 @@ describe('libs: iota/transfers', () => {
                             hash: 'EHFGMUTRBYTU9IFAABLEUQYJJAFBERNPUCVIJEXGOHCBQAIZLWTGJOBVDGLPUEPSG9AGQSZLUOQO99999',
                             currentIndex: 0,
                             lastIndex: 2,
-                            checksum: 'GI9KMCCEC',
                         },
                         {
                             address:
@@ -645,7 +641,6 @@ describe('libs: iota/transfers', () => {
                             hash: 'JHNCOZT9REWJSNHEPYRYXYG9LYVXHDYAPWQYIFVRC9VTOJABFKHLNTSHL9TQO9NZUXYISGQRUWAIZ9999',
                             currentIndex: 2,
                             lastIndex: 2,
-                            checksum: 'LMGZQSHFB',
                         },
                     ],
                 },
@@ -699,7 +694,6 @@ describe('libs: iota/transfers', () => {
                             hash: 'JHNCOZT9REWJSNHEPYRYXYG9LYVXHDYAPWQYIFVRC9VTOJABFKHLNTSHL9TQO9NZUXYISGQRUWAIZ9999',
                             currentIndex: 2,
                             lastIndex: 2,
-                            checksum: 'LMGZQSHFB',
                         },
                     ]);
                 });
@@ -735,11 +729,14 @@ describe('libs: iota/transfers', () => {
 
                     powFn.resolves([]);
 
-                    return performPow(powFn, () => Promise.resolve(), ['foo'], '9'.repeat(81), 'U'.repeat(81)).then(
-                        () =>
-                            expect(powFn.calledOnceWithExactly(['foo'], '9'.repeat(81), 'U'.repeat(81), 14)).to.equal(
-                                true,
-                            ),
+                    return performPow(
+                        powFn,
+                        () => Promise.resolve(),
+                        ['foo'],
+                        '9'.repeat(81),
+                        'U'.repeat(81),
+                    ).then(() =>
+                        expect(powFn.calledOnceWithExactly(['foo'], '9'.repeat(81), 'U'.repeat(81), 14)).to.equal(true),
                     );
                 });
             });

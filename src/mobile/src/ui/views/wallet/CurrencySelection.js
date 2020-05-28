@@ -107,7 +107,7 @@ export class CurrencySelection extends Component {
                             title={t('currency')}
                             options={availableCurrencies}
                             value={currency}
-                            dropdownWidth={{ width: width / 2 }}
+                            dropdownStyle={{ width: width / 2 }}
                             saveSelection={(currency) => this.setState({ currency })}
                         />
                     </View>

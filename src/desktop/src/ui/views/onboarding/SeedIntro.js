@@ -106,7 +106,7 @@ class SeedIntro extends React.PureComponent {
                     <div>
                         <Button
                             to="/onboarding/seed-ledger"
-                            onClick={() => setAccountInfoDuringSetup({ usedExistingSeed: true })}
+                            onClick={() => setAccountInfoDuringSetup({ usedExistingSeed: true, meta: {} })}
                             className="square"
                             variant="dark"
                         >
@@ -115,7 +115,7 @@ class SeedIntro extends React.PureComponent {
                         <Button
                             id="to-seed-ledger"
                             to="/onboarding/seed-ledger"
-                            onClick={() => setAccountInfoDuringSetup({ usedExistingSeed: false })}
+                            onClick={() => setAccountInfoDuringSetup({ usedExistingSeed: false, meta: {} })}
                             className="square"
                             variant="primary"
                         >
@@ -136,7 +136,4 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(SeedIntro));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(SeedIntro));

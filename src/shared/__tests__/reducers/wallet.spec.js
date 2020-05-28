@@ -22,6 +22,8 @@ describe('Reducer: wallet', () => {
                 sweepsStatuses: {},
                 currentSweepIteration: 0,
                 totalSweepIterations: 10 ** 7,
+                displaySeedMigrationAlert: false,
+                seedMigrationUrl: '',
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

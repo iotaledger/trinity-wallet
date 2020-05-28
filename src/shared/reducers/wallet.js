@@ -74,6 +74,14 @@ const initialState = {
      * Total number of iterations for the current sweep
      */
     totalSweepIterations: 10 ** 7,
+    /**
+     * Determines whether to display seed migration alert
+     */
+    displaySeedMigrationAlert: false,
+    /**
+     * Seed migration url
+     */
+    seedMigrationUrl: '',
 };
 
 export default (state = initialState, action) => {
@@ -241,6 +249,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 totalSweepIterations: action.payload,
+            };
+        case WalletActionTypes.DISPLAY_SEED_MIGRATION_ALERT:
+            return {
+                ...state,
+                displaySeedMigrationAlert: true,
+                seedMigrationUrl: action.payload,
             };
         default:
             return state;

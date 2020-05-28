@@ -21,6 +21,6 @@ export const ALIAS_ACCOUNT = `account${__RC__}`;
 export const ALIAS_REALM = `realm_enc_key${__RC__}`;
 
 /**
- * MoonPay credentials key alias
+ * Legacy credentials key alias
  */
-export const ALIAS_MOONPAY_CREDENTIALS = `moonpay_credentials${__RC__}`;
+export const ALIAS_LEGACY = `moonpay_credentials${__RC__}`;

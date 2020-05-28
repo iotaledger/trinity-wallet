@@ -28,7 +28,8 @@
                  essenceLength:(NSNumber*)essenceLength
                          count:(NSNumber*)count
                         nprocs:(NSNumber*)nprocs
-               miningThreshold:(NSNumber*)miningThreshold;
+               miningThreshold:(NSNumber*)miningThreshold
+                   fullySecure:(BOOL)fullySecure;
 
 @end
 

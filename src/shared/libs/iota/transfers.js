@@ -40,12 +40,7 @@ import {
     replayBundleAsync,
 } from './extendedApi';
 import i18next from '../../libs/i18next';
-import {
-    convertFromTrytes,
-    EMPTY_HASH_TRYTES,
-    EMPTY_TRANSACTION_MESSAGE,
-    VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX,
-} from './utils';
+import { convertFromTrytes, EMPTY_HASH_TRYTES, VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX, unitStringToValue } from './utils';
 import Errors from './../errors';
 
 /**
@@ -77,25 +72,15 @@ export const getTransferValue = (inputs, outputs, addresses) => {
 };
 
 /**
- * Finds transaction message from a bundle.
+ * Finds transaction message from a tx.
  *
  * @method computeTransactionMessage
  * @param {array} bundle
  *
  * @returns {string}
  */
-export const computeTransactionMessage = (bundle) => {
-    let message = EMPTY_TRANSACTION_MESSAGE;
-
-    each(bundle, (tx) => {
-        message = convertFromTrytes(tx.signatureMessageFragment);
-
-        if (message !== EMPTY_TRANSACTION_MESSAGE) {
-            return false;
-        }
-    });
-
-    return message;
+export const computeTransactionMessage = (tx) => {
+    return convertFromTrytes(tx.signatureMessageFragment);
 };
 
 /**
@@ -218,10 +203,7 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
     const categorisedBundle = transform(
         bundle,
         (acc, tx) => {
-            const meta = {
-                ...pick(tx, ['address', 'value', 'hash', 'currentIndex', 'lastIndex']),
-                checksum: iota.utils.addChecksum(tx.address).slice(tx.address.length),
-            };
+            const meta = pick(tx, ['address', 'value', 'hash', 'currentIndex', 'lastIndex']);
 
             if (tx.value < 0) {
                 acc.inputs.push(meta);
@@ -345,7 +327,6 @@ export const constructBundle = (tailTransaction, allTransactionObjects) => {
             hasFoundLastTransfer = true;
         }
     }
-
     return bundle;
 };
 
@@ -416,6 +397,7 @@ export const normaliseBundle = (bundle, addressData, tailTransactions, persisten
     const transaction = get(bundle, '[0]');
     const bundleHash = transaction.bundle;
     const { inputs, outputs } = categoriseBundleByInputsOutputs(bundle, addresses);
+    const tails = filter(tailTransactions, (tx) => tx.bundle === bundleHash);
 
     return {
         ...pick(transaction, ['bundle', 'timestamp', 'attachmentTimestamp', 'broadcasted']),
@@ -424,14 +406,13 @@ export const normaliseBundle = (bundle, addressData, tailTransactions, persisten
         persistence,
         incoming: isReceivedTransfer(bundle, addresses),
         transferValue: getTransferValue(inputs, outputs, addresses),
-        message: computeTransactionMessage(bundle),
-        tailTransactions: map(
-            filter(tailTransactions, (tx) => tx.bundle === bundleHash),
-            (tx) => ({
-                hash: tx.hash,
-                attachmentTimestamp: tx.attachmentTimestamp,
-            }),
+        message: computeTransactionMessage(
+            reduce(tails, (acc, tx) => (tx.attachmentTimestamp < acc.attachmentTimestamp ? tx : acc)),
         ),
+        tailTransactions: map(tails, (tx) => ({
+            hash: tx.hash,
+            attachmentTimestamp: tx.attachmentTimestamp,
+        })),
     };
 };
 
@@ -722,34 +703,6 @@ export const formatRelevantTransactions = (transactions, addresses) => {
 };
 
 /**
- * Formats recent transactions to accommodate for sending to self
- *
- * @method formatRelevantRecentTransactions
- * @param {array} transactions
- * @param {array} addresses
- *
- * @return {array} Formatted recent transactions
- */
-export const formatRelevantRecentTransactions = (transactions, addresses) => {
-    const relevantTransactions = [];
-    map(transactions, (transaction) => {
-        if (relevantTransactions.length < 4) {
-            if (!transaction.incoming && transaction.outputs.every((tx) => addresses.includes(tx.address))) {
-                const sendToSelfTransaction = clone(transaction);
-                sendToSelfTransaction.incoming = true;
-                relevantTransactions.push(sendToSelfTransaction);
-                if (relevantTransactions.length < 4) {
-                    relevantTransactions.push(transaction);
-                }
-            } else {
-                relevantTransactions.push(transaction);
-            }
-        }
-    });
-    return relevantTransactions;
-};
-
-/**
  * Sort transaction trytes array
  *
  * @method sortTransactionTrytesArray
@@ -1029,7 +982,6 @@ export const mapNormalisedTransactions = (transactions, addressData) => {
         (acc, bundle) => {
             const bundleHead = head(bundle);
             const bundleHash = bundleHead.bundle;
-
             // If we have already normalised bundle, then this is a reattached bundle
             // The only thing we are interested in is persistence of the bundle
             // Either the original transaction or a reattachment can be confirmed.
@@ -1128,4 +1080,68 @@ export const isFatalTransactionError = (err) => {
         fatalTransferErrors,
         (error) => error === err || (typeof err.message === 'string' && err.message.includes(error)),
     );
+};
+
+/**
+ * Applies transaction history filters
+ *
+ * @method filterTransactions
+ *
+ * @param {array} transactions
+ * @param {boolean} hideEmptyTransactions
+ * @param {string} currentFilter
+ * @param {string} search
+ *
+ * @returns {object}
+ */
+export const filterTransactions = (transactions, hideEmptyTransactions, currentFilter = 'All', search = '') => {
+    const totals = {
+        All: 0,
+        Sent: 0,
+        Received: 0,
+        Pending: 0,
+    };
+
+    const filteredTransactions = filter(transactions, (transaction) => {
+        const isReceived = transaction.incoming;
+        const isConfirmed = transaction.persistence;
+
+        if (hideEmptyTransactions && transaction.transferValue === 0) {
+            return false;
+        }
+
+        if (
+            search.length &&
+            transaction.message.toLowerCase().indexOf(search.toLowerCase()) < 0 &&
+            transaction.bundle.toLowerCase().indexOf(search.toLowerCase()) !== 0 &&
+            !(search[0] === '>' && unitStringToValue(search.substr(1)) < transaction.transferValue) &&
+            !(search[0] === '<' && unitStringToValue(search.substr(1)) > transaction.transferValue) &&
+            transaction.transferValue !== unitStringToValue(search)
+        ) {
+            return false;
+        }
+
+        totals.All++;
+
+        if (!isConfirmed) {
+            totals.Pending++;
+            if (currentFilter === 'Pending') {
+                return true;
+            }
+        } else if (isReceived) {
+            totals.Received++;
+            if (currentFilter === 'Received') {
+                return true;
+            }
+        } else {
+            totals.Sent++;
+            if (currentFilter === 'Sent') {
+                return true;
+            }
+        }
+
+        return currentFilter === 'All';
+    });
+
+    return { filteredTransactions, totals };
 };

@@ -3,15 +3,20 @@ import PropTypes from 'prop-types';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
 import { withTranslation } from 'react-i18next';
+import { FixedSizeList } from 'react-window';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
-import { formatIotas, unitStringToValue } from 'libs/iota/utils';
-import { formatTime, formatModalTime, convertUnixTimeToJSDate, detectedTimezone } from 'libs/date';
+import { iota } from 'libs/iota';
+import { formatIotas } from 'libs/iota/utils';
+import { filterTransactions } from 'libs/iota/transfers';
+import { formatModalTime, convertUnixTimeToJSDate, detectedTimezone } from 'libs/date';
 import SeedStore from 'libs/SeedStore';
 
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
 import Scrollbar from 'ui/components/Scrollbar';
 import Button from 'ui/components/Button';
+import TransactionRow from 'ui/components/Transaction';
 
 import withListData from 'containers/components/List';
 
@@ -65,6 +70,8 @@ export class ListComponent extends React.PureComponent {
         accountMeta: PropTypes.object.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
+        /** Determines if list is being rendered for Tray app */
+        isRenderingForTray: PropTypes.bool.isRequired,
     };
 
     state = {
@@ -97,17 +104,19 @@ export class ListComponent extends React.PureComponent {
                 <strong>{t('addresses')}:</strong>
                 <Scrollbar>
                     {tx.inputs.concat(tx.outputs).map((input, index) => {
+                        const checksum = iota.utils.addChecksum(input.address).slice(input.address.length);
+
                         return (
                             <p key={`${index}-${input.address}`}>
                                 <span>
                                     <Clipboard
-                                        text={`${input.address}${input.checksum}`}
+                                        text={`${input.address}${checksum}`}
                                         title={t('history:addressCopied')}
                                         success={t('history:addressCopiedExplanation')}
                                         address
                                     >
                                         {input.address}
-                                        <mark>{input.checksum}</mark>
+                                        <mark>{checksum}</mark>
                                     </Clipboard>
                                 </span>
                                 <em>{formatIotas(input.value, true, true)}</em>
@@ -145,6 +154,7 @@ export class ListComponent extends React.PureComponent {
             isRetryingFailedTransaction,
             mode,
             hideEmptyTransactions,
+            isRenderingForTray,
             toggleEmptyTransactions,
             updateAccount,
             transactions,
@@ -156,54 +166,12 @@ export class ListComponent extends React.PureComponent {
 
         const filters = ['All', 'Sent', 'Received', 'Pending'];
 
-        const totals = {
-            All: 0,
-            Sent: 0,
-            Received: 0,
-            Pending: 0,
-        };
-
-        const filteredTransactions = orderBy(transactions, 'timestamp', ['desc']).filter((transaction) => {
-            const isReceived = transaction.incoming;
-            const isConfirmed = transaction.persistence;
-
-            if (hideEmptyTransactions && transaction.transferValue === 0) {
-                return false;
-            }
-
-            if (
-                search.length &&
-                transaction.message.toLowerCase().indexOf(search.toLowerCase()) < 0 &&
-                transaction.bundle.toLowerCase().indexOf(search.toLowerCase()) !== 0 &&
-                !(search[0] === '>' && unitStringToValue(search.substr(1)) < transaction.transferValue) &&
-                !(search[0] === '<' && unitStringToValue(search.substr(1)) > transaction.transferValue) &&
-                transaction.transferValue !== unitStringToValue(search)
-            ) {
-                return false;
-            }
-
-            totals.All++;
-
-            if (!isConfirmed) {
-                totals.Pending++;
-                if (filter === 'Pending') {
-                    return true;
-                }
-            } else if (isReceived) {
-                totals.Received++;
-                if (filter === 'Received') {
-                    return true;
-                }
-            } else {
-                totals.Sent++;
-                if (filter === 'Sent') {
-                    return true;
-                }
-            }
-
-            return filter === 'All';
-        });
-
+        const { filteredTransactions, totals } = filterTransactions(
+            orderBy(transactions, 'timestamp', ['desc']),
+            isRenderingForTray || hideEmptyTransactions,
+            filter,
+            search,
+        );
         const activeTx = currentItem ? filteredTransactions.filter((tx) => tx.bundle === currentItem)[0] : null;
         const isActiveFailed = activeTx && activeTx.broadcasted === false;
 
@@ -283,52 +251,23 @@ export class ListComponent extends React.PureComponent {
                 <div className={css.list}>
                     <Scrollbar>
                         {filteredTransactions.length ? (
-                            filteredTransactions.map((transaction, key) => {
-                                const isReceived = transaction.incoming;
-                                const isConfirmed = transaction.persistence;
-
-                                return (
-                                    <a
-                                        key={key}
-                                        onClick={() => setItem(transaction.bundle)}
-                                        className={classNames(
-                                            isConfirmed ? css.confirmed : css.pending,
-                                            isReceived ? css.received : css.sent,
-                                        )}
+                            <AutoSizer>
+                                {({ height, width }) => (
+                                    <FixedSizeList
+                                        height={height}
+                                        itemCount={filteredTransactions.length}
+                                        itemSize={30}
+                                        width={width}
+                                        itemData={filteredTransactions.map((tx) => ({ ...tx, t, setItem }))}
+                                        className={css.scrollbar}
                                     >
-                                        <div>
-                                            {isReceived ? (
-                                                <Icon icon="plus" size={14} />
-                                            ) : (
-                                                <Icon icon="minus" size={14} />
-                                            )}
-                                            <span>
-                                                {formatTime(
-                                                    navigator.language,
-                                                    detectedTimezone,
-                                                    convertUnixTimeToJSDate(transaction.timestamp),
-                                                )}
-                                            </span>
-                                            <span>
-                                                {!isConfirmed
-                                                    ? isReceived
-                                                        ? t('receiving')
-                                                        : t('sending')
-                                                    : isReceived
-                                                    ? t('received')
-                                                    : t('sent')}
-                                            </span>
-                                            <span>
-                                                {transaction.transferValue === 0 ? '' : isReceived ? '+' : '-'}
-                                                {formatIotas(transaction.transferValue, true, true)}
-                                            </span>
-                                        </div>
-                                    </a>
-                                );
-                            })
+                                        {TransactionRow}
+                                    </FixedSizeList>
+                                )}
+                            </AutoSizer>
                         ) : (
                             <p className={css.empty}>
-                                {!transactions.length ? t('noTransactions') : t('history:noTransactionsFound')}
+                                {!filteredTransactions.length ? t('noTransactions') : t('history:noTransactionsFound')}
                             </p>
                         )}
                     </Scrollbar>

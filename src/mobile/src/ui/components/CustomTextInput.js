@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize4,
         fontFamily: 'SourceSansPro-Light',
         flex: 6,
-        marginRight: width / 28,
+        marginRight: width / 60,
         paddingTop: 0,
         paddingBottom: 0,
         height: height / 14,
@@ -137,7 +137,9 @@ class CustomTextInput extends Component {
         /** Currency conversion text */
         conversionText: PropTypes.string,
         /** Text field height */
-        height: PropTypes.number,
+        inputHeight: PropTypes.number,
+        /** Text field width */
+        inputWidth: PropTypes.number,
         /** Callback function returning text field instance as an argument */
         /** @param {object} instance - text field instance
          */
@@ -164,6 +166,10 @@ class CustomTextInput extends Component {
         disabled: PropTypes.bool,
         /** Text color to use for the placeholder value **/
         placeholderTextColor: PropTypes.string,
+        /** Current searched-for string */
+        searchValue: PropTypes.string,
+        /** Clears search field */
+        clearSearch: PropTypes.func,
     };
 
     static defaultProps = {
@@ -178,7 +184,7 @@ class CustomTextInput extends Component {
         innerPadding: null,
         currencyConversion: false,
         conversionText: '',
-        height: height / 14,
+        inputHeight: height / 14,
         fingerprintAuthentication: false,
         testID: '',
         onRef: () => {},
@@ -189,6 +195,7 @@ class CustomTextInput extends Component {
         isPasswordInput: false,
         loading: false,
         disabled: false,
+        searchValue: '',
     };
 
     constructor(props) {
@@ -226,11 +233,11 @@ class CustomTextInput extends Component {
     onChangeText(value) {
         const { isPasswordInput, isSeedInput, onValidTextChange } = this.props;
         if (isSeedInput) {
-            const valueCapitalized = value.toUpperCase();
-            if (valueCapitalized && !valueCapitalized.match(VALID_SEED_REGEX)) {
+            let input = isAndroid ? value : value.toUpperCase();
+            if (input && !input.match(VALID_SEED_REGEX)) {
                 return;
             }
-            return onValidTextChange(trytesToTrits(valueCapitalized));
+            return onValidTextChange(trytesToTrits(input));
         } else if (isPasswordInput) {
             return onValidTextChange(stringToUInt8(value));
         }
@@ -264,6 +271,8 @@ class CustomTextInput extends Component {
                 return this.renderQR();
             case 'mask':
                 return this.renderSecretMask();
+            case 'search':
+                return this.renderSearch();
         }
     }
 
@@ -306,6 +315,23 @@ class CustomTextInput extends Component {
         );
     }
 
+    renderSearch() {
+        const { theme, containerStyle, searchValue } = this.props;
+        return (
+            <TouchableOpacity
+                style={styles.widgetButton}
+                onPress={() => this.props.clearSearch()}
+                disabled={searchValue === ''}
+            >
+                <Icon
+                    name={searchValue !== '' ? 'cross' : 'search'}
+                    size={containerStyle.width / 17}
+                    color={theme.input.alt}
+                />
+            </TouchableOpacity>
+        );
+    }
+
     /**
      * Renders a secret mask button
      * @return {View}
@@ -325,6 +351,20 @@ class CustomTextInput extends Component {
                 />
             </TouchableOpacity>
         );
+    }
+
+    /**
+     * Determines whether to render widget separator
+     *
+     * @return {bool}
+     */
+    shouldRenderWidgetSeparator(widget) {
+        switch (widget) {
+            case 'search':
+                return false;
+            default:
+                return true;
+        }
     }
 
     /**
@@ -386,9 +426,9 @@ class CustomTextInput extends Component {
      * @return {View}
      */
     renderCurrencyConversion() {
-        const { theme, height, conversionText } = this.props;
+        const { theme, inputHeight, conversionText } = this.props;
         return (
-            <View style={[styles.conversionTextContainer, { height }]}>
+            <View style={[styles.conversionTextContainer, { height: inputHeight }]}>
                 <Text style={[styles.conversionText, { color: theme.input.alt }]}>{conversionText}</Text>
             </View>
         );
@@ -512,7 +552,15 @@ class CustomTextInput extends Component {
     renderRightHandWidget() {
         const { theme } = this.props;
         return (
-            <View style={[styles.widgetContainer, { borderLeftWidth: 0.5, borderLeftColor: theme.input.alt }]}>
+            <View
+                style={[
+                    styles.widgetContainer,
+                    this.shouldRenderWidgetSeparator(this.props.widgets[0]) && {
+                        borderLeftWidth: 0.5,
+                        borderLeftColor: theme.input.alt,
+                    },
+                ]}
+            >
                 {this.getWidgetRenderFunction(this.props.widgets[0])}
             </View>
         );
@@ -526,7 +574,8 @@ class CustomTextInput extends Component {
             widgets,
             onRef,
             testID,
-            height,
+            inputHeight,
+            inputWidth,
             currencyConversion,
             passwordStrength,
             isSeedInput,
@@ -561,7 +610,7 @@ class CustomTextInput extends Component {
                             backgroundColor: theme.input.bg,
                             borderColor: isFocused ? theme.input.hover : theme.input.bg,
                         },
-                        { height },
+                        { height: inputHeight, width: inputWidth },
                     ]}
                     testID={testID}
                 >
