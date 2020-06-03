@@ -143,7 +143,7 @@ export default function withListData(ListComponent) {
             };
         };
 
-        return mapStateToProps
+        return mapStateToProps;
     };
 
     const mapDispatchToProps = {

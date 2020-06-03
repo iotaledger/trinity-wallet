@@ -49,16 +49,7 @@ export class BalanceComponent extends React.PureComponent {
     }
 
     render() {
-        const {
-            summary,
-            index,
-            accounts,
-            accountNames,
-            switchAccount,
-            seedIndex,
-            settings,
-            marketData,
-        } = this.props;
+        const { summary, index, accounts, accountNames, switchAccount, seedIndex, settings, marketData } = this.props;
         const { balanceIsShort } = this.state;
 
         const accountName = accountNames[summary ? index : seedIndex];

@@ -47,9 +47,10 @@ export const byteTritCheck = (accounts, genFn, withQuorum = false) => async (dis
         // Convert addresses trits to trytes
         const addresses = addressCount === 1 ? tritsToChars(addressesTrits) : map(addressesTrits, tritsToChars);
 
-        const balances = await getBalancesAsync(undefined, withQuorum)(
-            typeof addresses === 'string' ? [addresses] : addresses,
-        );
+        const balances = await getBalancesAsync(
+            undefined,
+            withQuorum,
+        )(typeof addresses === 'string' ? [addresses] : addresses);
 
         const balanceTotal = balances.balances.reduce((total, balance) => parseInt(total) + parseInt(balance));
 

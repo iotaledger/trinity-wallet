@@ -1073,6 +1073,13 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@iota/bundle-miner@https://github.com/chrisdukakis/iota.js#feat/bundle-miner":
+  version "1.0.0-alpha.1"
+  resolved "https://github.com/chrisdukakis/iota.js#37d93c14489bf095183ad0e863c9d67e7427191c"
+  dependencies:
+    "@types/bluebird" "^3.5.25"
+    "@types/node" "^12.0.0"
+
 "@iota/bundle-validator@^1.0.0-beta.19":
   version "1.0.0-beta.19"
   resolved "https://registry.yarnpkg.com/@iota/bundle-validator/-/bundle-validator-1.0.0-beta.19.tgz#92d61ab758d1741376c5901fec3851d3fbf48d03"
@@ -1093,6 +1100,18 @@
     "@iota/kerl" "^1.0.0-beta.19"
     "@iota/signing" "^1.0.0-beta.19"
     "@iota/transaction" "^1.0.0-beta.19"
+    "@types/warning" "^3.0.0"
+    warning "^4.0.3"
+
+"@iota/bundle@^1.0.0-beta.29":
+  version "1.0.0-beta.29"
+  resolved "https://registry.yarnpkg.com/@iota/bundle/-/bundle-1.0.0-beta.29.tgz#1dfe9ce9617e04cc6412524da4eae9b174acbf0d"
+  integrity sha512-KKR/ocMHpErrCxfyujsT3p1RjfE7TxHIsEPBLv7PJv6aHkr8ahaNfIMx07iFixy08+gxFKAnVAOS9mtytSHf3A==
+  dependencies:
+    "@iota/converter" "^1.0.0-beta.23"
+    "@iota/kerl" "^1.0.0-beta.23"
+    "@iota/signing" "^1.0.0-beta.23"
+    "@iota/transaction" "^1.0.0-beta.23"
     "@types/warning" "^3.0.0"
     warning "^4.0.3"
 
@@ -1122,7 +1141,7 @@
   dependencies:
     core-js "^3.1.4"
 
-"@iota/converter@^1.0.0-beta.23":
+"@iota/converter@^1.0.0-beta.21", "@iota/converter@^1.0.0-beta.23":
   version "1.0.0-beta.23"
   resolved "https://registry.yarnpkg.com/@iota/converter/-/converter-1.0.0-beta.23.tgz#5a4febade42d610c67a3626b67d55067f45ded39"
   integrity sha512-5RcLHaF7oR+WEI4n3OV6SJTA6XuvVIBcc6aMDbqEAh9ahVXIE5Yq7AyJhQxUvE1ZyfJTHSfTdSf26bpmFCMFpQ==
@@ -1220,7 +1239,7 @@
     "@types/warning" "^3.0.0"
     warning "^4.0.3"
 
-"@iota/transaction@^1.0.0-beta.23":
+"@iota/transaction@^1.0.0-beta.21", "@iota/transaction@^1.0.0-beta.23":
   version "1.0.0-beta.23"
   resolved "https://registry.yarnpkg.com/@iota/transaction/-/transaction-1.0.0-beta.23.tgz#ff782b268d0a1ba07281f5036e37b166cd36cecb"
   integrity sha512-sakUmQcUWZYkj8jaPE57W4c8eUr7WcPoCSBTM0Xe/ij8gQQgNu5V4IQGDOQV4XfMH6sO3NxX8lY0/SoH6HAROQ==
@@ -1629,6 +1648,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/bluebird@^3.5.25":
+  version "3.5.29"
+  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.29.tgz#7cd933c902c4fc83046517a1bef973886d00bdb6"
+  integrity sha512-kmVtnxTuUuhCET669irqQmPAez4KFnFVKvpleVRyfC3g+SHD1hIkFZcWLim9BVcwUBLO59o8VZE4yGCmTif8Yw==
+
 "@types/bunyan@*":
   version "1.8.6"
   resolved "https://registry.yarnpkg.com/@types/bunyan/-/bunyan-1.8.6.tgz#6527641cca30bedec5feb9ab527b7803b8000582"
@@ -1690,6 +1714,11 @@
   version "10.12.9"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.9.tgz#a07bfa74331471e1dc22a47eb72026843f7b95c8"
   integrity sha512-eajkMXG812/w3w4a1OcBlaTwsFPO5F7fJ/amy+tieQxEMWBlbV1JGSjkFM+zkHNf81Cad+dfIRA+IBkvmvdAeA==
+
+"@types/node@^12.0.0":
+  version "12.12.22"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.22.tgz#b8d9eae3328b96910a373cf06ac8d3c5abe9c200"
+  integrity sha512-r5i93jqbPWGXYXxianGATOxTelkp6ih/U0WVnvaqAvTqM+0U6J3kw6Xk6uq/dWNRkEVw/0SLcO5ORXbVNz4FMQ==
 
 "@types/node@^6.14.4":
   version "6.14.7"
@@ -9575,8 +9604,12 @@ sha.js@^2.4.0, sha.js@^2.4.8:
 shared-modules@../shared/:
   version "0.0.0"
   dependencies:
+    "@iota/bundle" "^1.0.0-beta.29"
+    "@iota/bundle-miner" "https://github.com/chrisdukakis/iota.js#feat/bundle-miner"
     "@iota/cda" "^1.0.0-beta.23"
+    "@iota/converter" "^1.0.0-beta.21"
     "@iota/core" "^1.0.0-beta.20"
+    "@iota/transaction" "^1.0.0-beta.21"
     bignumber.js "^9.0.0"
     i18next "^19.0.0"
     iota.lib.js "^0.5.2"

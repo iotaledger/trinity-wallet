@@ -90,6 +90,15 @@ const Electron = {
     },
 
     /**
+     * Do Proof of Work
+     * @param {boolean} batchedPow - Should return batched PoW function
+     * @returns {function} Proof of Work
+     */
+    getBundleMinerFn: () => {
+        return Entangled.bundleMinerFn;
+    },
+
+    /**
      * Generate address
      * @param {array} seed - Input seed
      * @param {number} index - Address index
@@ -637,7 +646,7 @@ const Electron = {
      * @param {function} callback - Event trigger callback
      * @returns {undefined}
      */
-    onEvent: function (event, callback) {
+    onEvent: function(event, callback) {
         let listeners = this._eventListeners[event];
         if (!listeners) {
             listeners = this._eventListeners[event] = [];
@@ -656,7 +665,7 @@ const Electron = {
      * @param {function} callback - Event trigger callback
      * @returns {undefined}
      */
-    removeEvent: function (event, callback) {
+    removeEvent: function(event, callback) {
         const listeners = this._eventListeners[event];
         listeners.forEach((call, index) => {
             if (call === callback) {

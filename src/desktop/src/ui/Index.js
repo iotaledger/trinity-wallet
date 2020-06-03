@@ -41,6 +41,7 @@ import UpdateProgress from 'ui/global/UpdateProgress';
 import Loading from 'ui/components/Loading';
 
 import Onboarding from 'ui/views/onboarding/Index';
+import Sweeps from 'ui/views/settings/account/sweeps/Index';
 
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
@@ -360,6 +361,7 @@ class App extends React.Component {
                                 />
                                 <Route path="/wallet" component={Wallet} />
                                 <Route path="/onboarding" component={Onboarding} />
+                                <Route path="/sweeps" component={Sweeps} />
                                 <Route loop={false} component={this.Init} />
                             </Switch>
                         </div>
@@ -381,7 +383,11 @@ const mapStateToProps = (state) => ({
     hasErrorFetchingFullAccountInfo: state.ui.hasErrorFetchingFullAccountInfo,
     deepLinking: state.settings.deepLinking,
     isBusy:
-        !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
+        !state.wallet.ready ||
+        state.ui.isSyncing ||
+        state.ui.isSendingTransfer ||
+        state.ui.isGeneratingReceiveAddress ||
+        state.ui.isRecoveringFunds,
     alerts: state.alerts,
 });
 

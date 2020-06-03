@@ -24,6 +24,7 @@ import {
     getAccountInfoDuringSetup,
     isSettingUpNewAccount,
     getFailedBundleHashes,
+    getSpentAddressDataWithBalanceForSelectedAccount,
 } from '../../selectors/accounts';
 import accounts, { NAME as MOCK_ACCOUNT_NAME, TYPE as MOCK_ACCOUNT_TYPE } from '../__samples__/accounts';
 import addresses, { latestAddressWithoutChecksum, latestAddressWithChecksum, balance } from '../__samples__/addresses';
@@ -529,6 +530,27 @@ describe('selectors: accounts', () => {
             );
 
             expect(expectedResult).to.eql(actualResult);
+        });
+    });
+
+    describe('#getSpentAddressDataWithBalanceForSelectedAccount', () => {
+        it('should return spent address data with positive balance', () => {
+            const state = {
+                accounts,
+                wallet: {
+                    seedIndex: 0,
+                },
+            };
+
+            expect(getSpentAddressDataWithBalanceForSelectedAccount(state)).to.eql([
+                {
+                    address: 'FXWIQUQWEATQQGUIWQTVOBHQBIEYCCYKZSNNAYBBILGA9ZRQKYQVPZKDBO9W9AUZBBGEDKNTTZQECBIBX',
+                    balance: 100,
+                    index: 5,
+                    checksum: 'YTZTLCYBW',
+                    spent: { local: false, remote: true },
+                },
+            ]);
         });
     });
 });

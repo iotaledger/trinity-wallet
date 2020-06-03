@@ -12,7 +12,11 @@ import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
 import getEncryptionKey from 'libs/realm';
 import { setAppVersions, resetWallet } from 'shared-modules/actions/settings';
 import { parse, fetchVersions, fetchIsSeedMigrationUp, VALID_IOTA_SUBDOMAIN_REGEX } from 'shared-modules/libs/utils';
-import { shouldUpdate as triggerShouldUpdate, forceUpdate as triggerForceUpdate, displaySeedMigrationAlert as triggerSeedMigrationAlert } from 'shared-modules/actions/wallet';
+import {
+    shouldUpdate as triggerShouldUpdate,
+    forceUpdate as triggerForceUpdate,
+    displaySeedMigrationAlert as triggerSeedMigrationAlert,
+} from 'shared-modules/actions/wallet';
 
 /**
  * AsyncStorage adapter for manipulating state persisted by redux-persist (https://github.com/rt2zz/redux-persist)
@@ -126,14 +130,13 @@ export const versionCheck = (store) => {
 export const seedMigrationCheck = (store) => {
     return fetchIsSeedMigrationUp()
         .then(({ up }) => {
-            if (up.match(VALID_IOTA_SUBDOMAIN_REGEX)){
+            if (up.match(VALID_IOTA_SUBDOMAIN_REGEX)) {
                 store.dispatch(triggerSeedMigrationAlert(up));
             }
             return store;
         })
         .catch(() => store);
 };
-
 
 /**
  * Resets the wallet if the keychain is empty. Fixes issues related to iCloud backup
@@ -159,12 +162,11 @@ export const resetIfKeychainIsEmpty = (store) => {
     return hasEntryInKeychain(ALIAS_SALT).then((hasSalt) => {
         if (!hasSalt) {
             // If there is no entry against "ALIAS_SALT", check if there exists an entry against "ALIAS_REALM"
-            return hasEntryInKeychain(ALIAS_REALM).then(
-                (hasEncryptionKey) =>
-                    hasEncryptionKey
-                        ? Promise.resolve()
-                        : // Purge and reinitialise persistent storage
-                          reinitialiseStorage(getEncryptionKey).then(resetReduxState),
+            return hasEntryInKeychain(ALIAS_REALM).then((hasEncryptionKey) =>
+                hasEncryptionKey
+                    ? Promise.resolve()
+                    : // Purge and reinitialise persistent storage
+                      reinitialiseStorage(getEncryptionKey).then(resetReduxState),
             );
         }
 

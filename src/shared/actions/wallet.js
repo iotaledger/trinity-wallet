@@ -653,5 +653,5 @@ export const displayTestWarning = () => ({
  */
 export const displaySeedMigrationAlert = (payload) => ({
     type: WalletActionTypes.DISPLAY_SEED_MIGRATION_ALERT,
-    payload
+    payload,
 });

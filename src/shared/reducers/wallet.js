@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import union from 'lodash/union';
-import { AccountsActionTypes, WalletActionTypes } from '../types';
+import { AccountsActionTypes, WalletActionTypes, SweepsActionTypes } from '../types';
 
 const initialState = {
     /**
@@ -59,6 +59,21 @@ const initialState = {
      * Determines whether to display test version warning
      */
     displayTestWarning: false,
+    /**
+     * Stores sweeps statuses { <string>: <number> } e.g., { UUU...UUU: -1 | 0 | 1 }
+     * -1 - Failed
+     * 0 - In progress
+     * 1 - Successful
+     */
+    sweepsStatuses: {},
+    /**
+     * Current iteration for the current sweep
+     */
+    currentSweepIteration: 0,
+    /**
+     * Total number of iterations for the current sweep
+     */
+    totalSweepIterations: 10 ** 7,
     /**
      * Determines whether to display seed migration alert
      */
@@ -214,6 +229,26 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 displayTestWarning: true,
+            };
+        case SweepsActionTypes.UPDATE_SWEEPS_STATUSES:
+            return {
+                ...state,
+                sweepsStatuses: { ...state.sweepsStatuses, ...action.payload },
+            };
+        case SweepsActionTypes.SET_SWEEPS_STATUSES:
+            return {
+                ...state,
+                sweepsStatuses: action.payload,
+            };
+        case SweepsActionTypes.SET_CURRENT_SWEEP_ITERATION:
+            return {
+                ...state,
+                currentSweepIteration: action.payload,
+            };
+        case SweepsActionTypes.SET_TOTAL_SWEEP_ITERATIONS:
+            return {
+                ...state,
+                totalSweepIterations: action.payload,
             };
         case WalletActionTypes.DISPLAY_SEED_MIGRATION_ALERT:
             return {

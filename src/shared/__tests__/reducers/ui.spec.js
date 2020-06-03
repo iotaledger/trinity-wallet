@@ -38,6 +38,7 @@ describe('Reducer: ui', () => {
                 hadErrorGeneratingNewAddress: false,
                 isKeyboardActive: false,
                 animateChartOnMount: true,
+                isRecoveringFunds: false,
                 CDAContent: {},
             };
 

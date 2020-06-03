@@ -251,7 +251,7 @@ export const initMenu = (app, getWindowFunc) => {
             {
                 label: language.quit,
                 accelerator: 'Command+Q',
-                click: function () {
+                click: function() {
                     app.quit();
                 },
             },
@@ -330,7 +330,7 @@ export const initMenu = (app, getWindowFunc) => {
                     {
                         label: language.logout,
                         enabled: state.enabled,
-                        click: function () {
+                        click: function() {
                             const mainWindow = getWindow('main');
                             if (mainWindow) {
                                 dialog.showMessageBox(
@@ -359,7 +359,7 @@ export const initMenu = (app, getWindowFunc) => {
             submenu: [
                 {
                     label: `${app.name} ${language.help}`,
-                    click: function () {
+                    click: function() {
                         shell.openExternal('https://docs.iota.org/docs/wallets/0.1/trinity/introduction/overview');
                     },
                 },

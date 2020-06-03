@@ -34,6 +34,10 @@
 - Update: Adjust update alerts
 - Fix: Allow wallet entry when nodes are not in sync
 
+### 1.3.0
+
+- New: Spent address recovery tool
+
 ### 1.2.2
 
 - Fix: Ensure full bundle is broadcast during promotion

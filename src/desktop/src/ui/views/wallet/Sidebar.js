@@ -120,7 +120,13 @@ class Sidebar extends React.PureComponent {
                                                     true,
                                                 )}
                                             </small>
-                                            <div onClick={(e) => this.accountSettings(e, index)}>
+                                            <div
+                                                onClick={(e) => {
+                                                    // Change account if settings icon is clicked
+                                                    setSeedIndex(index);
+                                                    this.accountSettings(e, index);
+                                                }}
+                                            >
                                                 <Icon icon="settingsAlt" size={16} />
                                             </div>
                                         </a>
