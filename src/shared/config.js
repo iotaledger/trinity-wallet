@@ -53,7 +53,7 @@ export const MARKETDATA_ENDPOINTS = [
 export const VERSIONS_URL =
     'https://raw.githubusercontent.com/iotaledger/trinity-wallet/develop/src/shared/libs/versions.json';
 
-export const DEFAULT_DEPTH = 4;
+export const DEFAULT_DEPTH = 1;
 export const DEFAULT_MIN_WEIGHT_MAGNITUDE = 14;
 export const DEFAULT_TAG = 'TRINITY';
 export const DEFAULT_SECURITY = 2;
