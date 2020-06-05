@@ -79,27 +79,24 @@ autoUpdater.on('error', () => {
 /**
  * On update available event callback
  */
-autoUpdater.on('update-available', () => {
-    dialog.showMessageBox(
-        {
-            type: 'info',
-            title: language.updates.newVersionAvailable,
-            message: language.updates.newVersionAvailableExplanation,
-            buttons: [language.yes, language.no],
-        },
-        (buttonIndex) => {
-            if (buttonIndex === 0) {
-                autoUpdater.downloadUpdate();
-            }
-        },
-    );
+autoUpdater.on('update-available', async () => {
+    const result = await dialog.showMessageBox({
+        type: 'info',
+        title: language.updates.newVersionAvailable,
+        message: language.updates.newVersionAvailableExplanation,
+        buttons: [language.yes, language.no],
+    });
+
+    if (result.response === 0) {
+        autoUpdater.downloadUpdate();
+    }
 });
 
 /**
  * On update not available event callback
  */
-autoUpdater.on('update-not-available', () => {
-    dialog.showMessageBox({
+autoUpdater.on('update-not-available', async () => {
+    await dialog.showMessageBox({
         title: language.updates.noUpdatesAvailable,
         message: language.updates.noUpdatesAvailableExplanation,
         buttons: ['OK'],
@@ -109,25 +106,21 @@ autoUpdater.on('update-not-available', () => {
 /**
  * On update ready to install event callback
  */
-autoUpdater.on('update-downloaded', () => {
+autoUpdater.on('update-downloaded', async () => {
     const mainWindow = getWindow('main');
     if (mainWindow) {
         mainWindow.webContents.send('update.progress', false);
     }
-    dialog.showMessageBox(
-        {
-            title: language.updates.installUpdate,
-            message: language.updates.installUpdateExplanation,
-        },
-        () => {
-            setTimeout(() => {
-                const mainWindow = getWindow('main');
-                mainWindow.removeAllListeners('close');
-                app.removeAllListeners('window-all-closed');
-                autoUpdater.quitAndInstall();
-            }, 0);
-        },
-    );
+    await dialog.showMessageBox({
+        title: language.updates.installUpdate,
+        message: language.updates.installUpdateExplanation,
+    });
+    setTimeout(() => {
+        const mainWindow = getWindow('main');
+        mainWindow.removeAllListeners('close');
+        app.removeAllListeners('window-all-closed');
+        autoUpdater.quitAndInstall();
+    }, 0);
 });
 
 autoUpdater.on('download-progress', (progressObj) => {
@@ -330,23 +323,18 @@ export const initMenu = (app, getWindowFunc) => {
                     {
                         label: language.logout,
                         enabled: state.enabled,
-                        click: function () {
+                        click: async function () {
                             const mainWindow = getWindow('main');
                             if (mainWindow) {
-                                dialog.showMessageBox(
-                                    mainWindow,
-                                    {
-                                        type: 'question',
-                                        title: language.logout,
-                                        message: language.logoutConfirm,
-                                        buttons: [language.yes, language.no],
-                                    },
-                                    (index) => {
-                                        if (index === 0) {
-                                            mainWindow.webContents.send('menu', 'logout');
-                                        }
-                                    },
-                                );
+                                const result = await dialog.showMessageBox(mainWindow, {
+                                    type: 'question',
+                                    title: language.logout,
+                                    message: language.logoutConfirm,
+                                    buttons: [language.yes, language.no],
+                                });
+                                if (result.response === 0) {
+                                    mainWindow.webContents.send('menu', 'logout');
+                                }
                             }
                         },
                     },
