@@ -1,3 +1,8 @@
+### 1.5.1
+
+- Fix: Update Electron to 7.3.1
+- Update: Adjust default depth to support Hornet
+
 ### 1.5.0
 - Update: Performance optimisations
 - Update: Hide 0 value transactions by default
