@@ -1,6 +1,10 @@
+### 1.5.2
+- Fix: Auto-update and logout silently fail
+
 ### 1.5.1
 
 - Fix: Update Electron to 7.3.1
+- Fix: Error during Ledger onboarding
 - Update: Adjust default depth to support Hornet
 
 ### 1.5.0
