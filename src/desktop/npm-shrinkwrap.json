@@ -22348,9 +22348,9 @@
       "dev": true
     },
     "patch-package": {
-      "version": "6.2.1",
-      "resolved": "https://registry.npmjs.org/patch-package/-/patch-package-6.2.1.tgz",
-      "integrity": "sha512-dfCtQor63PPij6DDYtCzBRoO5nNAcMSg7Cmh+DLhR+s3t0OLQBdvFxJksZHBe1J2MjsSWDjTF4+oQKFbdkssIg==",
+      "version": "6.2.2",
+      "resolved": "https://registry.npmjs.org/patch-package/-/patch-package-6.2.2.tgz",
+      "integrity": "sha512-YqScVYkVcClUY0v8fF0kWOjDYopzIM8e3bj/RU1DPeEF14+dCGm6UeOYm4jvCyxqIEQ5/eJzmbWfDWnUleFNMg==",
       "dev": true,
       "requires": {
         "@yarnpkg/lockfile": "^1.1.0",
@@ -22367,12 +22367,6 @@
         "tmp": "^0.0.33"
       },
       "dependencies": {
-        "minimist": {
-          "version": "1.2.5",
-          "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.5.tgz",
-          "integrity": "sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==",
-          "dev": true
-        },
         "rimraf": {
           "version": "2.7.1",
           "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-2.7.1.tgz",
