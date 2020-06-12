@@ -491,14 +491,14 @@
         "yesterday": "Včera",
         "promotingAnotherBundle": "Podpora dalšího balíčku",
         "pleaseWait": "Prosím počkejte, Trinity podporuje další balíček.",
-        "typeHelp": "Type !help for tips",
+        "typeHelp": "Napište !help pro tipy",
         "searchHelpText": "Vyhledávání podle hash balíčků nebo obsahu zprávy",
         "searchHelpValue": "Vyhledat transakce na základě přesné IOTA hodnoty",
         "searchHelpUnits": "Vyhledat transakce na základě IOTA hodnoty a jednotky",
         "searchHelpMore": "Vyhledat transakce s hodnotou větší než X",
         "searchHelpLess": "Vyhledat transakce s hodnotou menší než X",
         "transactions": "Transakce",
-        "noFilteredTransactions": "No transactions match those filters"
+        "noFilteredTransactions": "Vybraným filtrům neodpovídají žádné transakce"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
