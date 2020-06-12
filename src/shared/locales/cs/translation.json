@@ -146,7 +146,7 @@
         "deviceMayBecomeUnresponsive": "Vaše zařízení může na chvíli přestat reagovat.",
         "isYourBalanceCorrect": "Je Váš zůstatek v pořádku?",
         "ifYourBalanceIsNotCorrect": "Pokud není Váš zůstatek správný, ujistěte se, že jste zadali správný Seed.",
-        "headToAdvancedSettingsForTransition": "If you are sure you have the right seed, head to Advanced Settings and perform a Snapshot Transition.",
+        "headToAdvancedSettingsForTransition": "Pokud jste si jisti, že jste zadali správný Seed, přejděte do Pokročilého nastavení a proveďte aktualizaci údajů po Snapshotu.",
         "headToAccountTools": "Přejděte na Nastavení účtu a proveďte Aktualizace údajů po Snapshotu.",
         "openAccountTools": "Otevřete nastavení účtu",
         "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
