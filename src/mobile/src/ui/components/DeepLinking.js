@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { initiateDeepLinkRequest, setDeepLinkContent, setSetting } from 'shared-modules/actions/wallet';
-import { parseAddress, ADDRESS_LENGTH } from 'shared-modules/libs/iota/utils';
+import { parseDeepLink, ADDRESS_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
 import { isAndroid } from 'libs/device';
@@ -33,7 +33,7 @@ export default () => (C) => {
 
         /**
          * Prefills transactional information on deep link
-         * @param {Object} data
+         * @param {Object | string} data
          */
         setDeepUrl(data) {
             const { t, generateAlert, deepLinking } = this.props;
@@ -44,13 +44,9 @@ export default () => (C) => {
                 return generateAlert('info', t('deepLink:deepLinkingInfoTitle'), t('deepLink:deepLinkingInfoMessage'));
             }
             this.props.changeHomeScreenRoute('send');
-            const parsedData = parseAddress(data.url || data);
+            const parsedData = parseDeepLink(data.url || data);
             if (parsedData) {
-                this.props.setDeepLinkContent(
-                    parsedData.amount.toString() || '0',
-                    parsedData.address,
-                    parsedData.message || null,
-                );
+                this.props.setDeepLinkContent(parsedData.amount, parsedData.address, parsedData.message);
             } else {
                 generateAlert(
                     'error',
