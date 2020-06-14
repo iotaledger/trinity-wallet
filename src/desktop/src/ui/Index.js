@@ -7,7 +7,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
 import { withTranslation } from 'react-i18next';
 
-import { parseDeepLink } from 'libs/iota/utils';
+import { parseDeepLink, ADDRESS_LENGTH } from 'libs/iota/utils';
 import { ALIAS_MAIN } from 'libs/constants';
 import { fetchVersions, fetchIsSeedMigrationUp, VALID_IOTA_SUBDOMAIN_REGEX } from 'libs/utils';
 
@@ -203,7 +203,11 @@ class App extends React.Component {
                 this.props.history.push('/wallet/send');
             }
         } else {
-            generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+            generateAlert(
+                'error',
+                t('send:invalidAddress'),
+                t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }),
+            );
         }
     }
 
