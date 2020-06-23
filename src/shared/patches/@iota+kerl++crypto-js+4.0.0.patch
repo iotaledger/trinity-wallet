@@ -1,0 +1,18 @@
+diff --git a/node_modules/@iota/kerl/node_modules/crypto-js/core.js b/node_modules/@iota/kerl/node_modules/crypto-js/core.js
+index 0ef552b..4e3521a 100644
+--- a/node_modules/@iota/kerl/node_modules/crypto-js/core.js
++++ b/node_modules/@iota/kerl/node_modules/crypto-js/core.js
+@@ -38,9 +38,12 @@
+ 	    }
+ 
+ 	    // Native crypto import via require (NodeJS)
++	    // Hide require from Metro bundler (for React Native)
+ 	    if (!crypto && typeof require === 'function') {
+ 	        try {
+-	            crypto = require('crypto');
++							const cryptoModule = 'crypto';
++							const hiddenRequire = require;
++							crypto = hiddenRequire(cryptoModule);
+ 	        } catch (err) {}
+ 	    }
+ 
