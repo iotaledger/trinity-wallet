@@ -9,6 +9,7 @@ import {
     throwIfNodeNotHealthy,
     isLastTritZero,
     getChecksum,
+    parseDeepLink,
 } from '../../../libs/iota/utils';
 import { latestAddressWithoutChecksum, latestAddressChecksum } from '../../__samples__/addresses';
 import { trytesToTrits, tritsToChars } from '../../../libs/iota/converter';
@@ -115,7 +116,10 @@ describe('libs: iota/utils', () => {
             const nodes = Array(3)
                 .fill()
                 .map((_, index) => index);
-            const result = withRetriesOnDifferentNodes(nodes, map(nodes, () => stub));
+            const result = withRetriesOnDifferentNodes(
+                nodes,
+                map(nodes, () => stub),
+            );
 
             return result(() => () => Promise.reject())('foo').catch(() => {
                 expect(stub.calledThrice).to.equal(true);
@@ -175,7 +179,9 @@ describe('libs: iota/utils', () => {
                         throw new Error();
                     })
                     .catch((error) => {
-                        expect(error.message).to.equal('The selected node is out of sync by timestamp. Its view of the Tangle may be innacurate.');
+                        expect(error.message).to.equal(
+                            'The selected node is out of sync by timestamp. Its view of the Tangle may be innacurate.',
+                        );
                         stub.restore();
                     });
             });
@@ -216,6 +222,64 @@ describe('libs: iota/utils', () => {
 
                     expect(tritsToChars(checksum)).to.equal(latestAddressChecksum.slice(-3));
                 });
+            });
+        });
+    });
+
+    describe('#parseDeepLink', () => {
+        describe('when only an address is in the deep link', () => {
+            it('should return a parsed URL with the given address, an empty message, and an amount of 0', () => {
+                const deepLink =
+                    'iota://XNGPUCURQLLJFGXNDCMROGYNWAZP9AFWSVEUAIWIESOSPYDUPWSPSREEBWJPD9ZWZPAJKBHPLG99DJWJCZUHWTQTDD';
+                const expectedParsedURL = {
+                    address:
+                        'XNGPUCURQLLJFGXNDCMROGYNWAZP9AFWSVEUAIWIESOSPYDUPWSPSREEBWJPD9ZWZPAJKBHPLG99DJWJCZUHWTQTDD',
+                    message: '',
+                    amount: '0',
+                };
+                expect(parseDeepLink(deepLink)).to.eql(expectedParsedURL);
+            });
+        });
+
+        describe('when only an address and an amount are in the deep link', () => {
+            it('should return a parsed URL with the given address, empty message, and given amount', () => {
+                const deepLink =
+                    'iota://XNGPUCURQLLJFGXNDCMROGYNWAZP9AFWSVEUAIWIESOSPYDUPWSPSREEBWJPD9ZWZPAJKBHPLG99DJWJCZUHWTQTDD/?amount=1000000';
+                const expectedParsedURL = {
+                    address:
+                        'XNGPUCURQLLJFGXNDCMROGYNWAZP9AFWSVEUAIWIESOSPYDUPWSPSREEBWJPD9ZWZPAJKBHPLG99DJWJCZUHWTQTDD',
+                    message: '',
+                    amount: '1000000',
+                };
+                expect(parseDeepLink(deepLink)).to.eql(expectedParsedURL);
+            });
+        });
+
+        describe('when only an address and a message are in the deep link', () => {
+            it('should return a parsed URL with the given address and message and amount of 0', () => {
+                const deepLink =
+                    'iota://XNGPUCURQLLJFGXNDCMROGYNWAZP9AFWSVEUAIWIESOSPYDUPWSPSREEBWJPD9ZWZPAJKBHPLG99DJWJCZUHWTQTDD/?message=hello';
+                const expectedParsedURL = {
+                    address:
+                        'XNGPUCURQLLJFGXNDCMROGYNWAZP9AFWSVEUAIWIESOSPYDUPWSPSREEBWJPD9ZWZPAJKBHPLG99DJWJCZUHWTQTDD',
+                    message: 'hello',
+                    amount: '0',
+                };
+                expect(parseDeepLink(deepLink)).to.eql(expectedParsedURL);
+            });
+        });
+
+        describe('when an address, message, a amount are in the deep link', () => {
+            it('should return a parsed URL with the given address, message, and amount', () => {
+                const deepLink =
+                    'iota://XNGPUCURQLLJFGXNDCMROGYNWAZP9AFWSVEUAIWIESOSPYDUPWSPSREEBWJPD9ZWZPAJKBHPLG99DJWJCZUHWTQTDD/?amount=1000000&message=hello';
+                const expectedParsedURL = {
+                    address:
+                        'XNGPUCURQLLJFGXNDCMROGYNWAZP9AFWSVEUAIWIESOSPYDUPWSPSREEBWJPD9ZWZPAJKBHPLG99DJWJCZUHWTQTDD',
+                    message: 'hello',
+                    amount: '1000000',
+                };
+                expect(parseDeepLink(deepLink)).to.eql(expectedParsedURL);
             });
         });
     });
