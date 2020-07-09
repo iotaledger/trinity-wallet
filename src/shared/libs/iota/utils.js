@@ -366,6 +366,24 @@ export const parseAddress = (input) => {
 };
 
 /**
+ * Parse a deep link (iota://)
+ * @param  {string} data Deep link data
+ * @return {ParsedURL}  The parsed address, message and/or amount values
+ */
+export const parseDeepLink = (data) => {
+    const parsed = parseAddress(data);
+    if (!parsed) {
+        return null;
+    }
+
+    return {
+        address: parsed.address,
+        message: parsed.message || '',
+        amount: parsed.amount ? parsed.amount.toString() : '0',
+    };
+};
+
+/**
  * Retry IOTA api calls on different nodes
  *
  * @method withRetriesOnDifferentNodes

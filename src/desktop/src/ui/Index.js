@@ -7,7 +7,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
 import { withTranslation } from 'react-i18next';
 
-import { parseAddress } from 'libs/iota/utils';
+import { parseDeepLink, ADDRESS_LENGTH } from 'libs/iota/utils';
 import { ALIAS_MAIN } from 'libs/constants';
 import { fetchVersions, fetchIsSeedMigrationUp, VALID_IOTA_SUBDOMAIN_REGEX } from 'libs/utils';
 
@@ -196,20 +196,18 @@ class App extends React.Component {
             this.props.history.push('/settings/advanced');
             return generateAlert('info', t('deepLink:deepLinkingInfoTitle'), t('deepLink:deepLinkingInfoMessage'));
         }
-
-        const parsedData = parseAddress(data);
-
+        const parsedData = parseDeepLink(data);
         if (parsedData) {
-            this.props.setDeepLinkContent(
-                parsedData.amount ? String(parsedData.amount) : '0',
-                parsedData.address,
-                parsedData.message || '',
-            );
+            this.props.setDeepLinkContent(parsedData.amount, parsedData.address, parsedData.message);
             if (this.props.wallet.ready === true) {
                 this.props.history.push('/wallet/send');
             }
         } else {
-            generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+            generateAlert(
+                'error',
+                t('send:invalidAddress'),
+                t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }),
+            );
         }
     }
 
