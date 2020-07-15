@@ -148,7 +148,7 @@
         "ifYourBalanceIsNotCorrect": "If your balance is not correct, make sure you have entered the correct seed.",
         "headToAdvancedSettingsForTransition": "If you are sure you have the right seed, head to Advanced Settings and perform a Snapshot Transition.",
         "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
+        "openAccountTools": "Hesap Araçlarını Aç",
         "usingTrinityWalletWithKeePass": "Trinity cüzdanını Keepass2Android ile kullan",
         "signedTrytesBroadcastErrorExplanation": "İşleminizi yayınlarken bir ağ hatası oluştu.",
         "broadcastError": "Transfer yayınlanamadı",
@@ -159,7 +159,7 @@
         "tryingAgainWithDifferentNode": "Farklı bir node ile tekrar deneyin.",
         "errorFetchingAccountInformation": "Hesap bilgisi alınırken hata oluştu.",
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
-        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychain": "Anahtar dizilimi hatası",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
         "mainWallet": "Ana Hesap",
         "confirm": "Onayla",
@@ -172,15 +172,15 @@
         "missingPermission": "Dosya sistemi izni gerekli",
         "missingPermissionExplanation": "Bu işlevi gerçekleştirmek için dosya sistemine erişim gereklidir.",
         "swipeToConfirm": "Onaylamak için kaydırın",
-        "congratulations": "Congratulations",
+        "congratulations": "Tebrikler",
         "expert": "Uzman",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodes": "Yetersiz sayıda senkronize ağ",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again.",
         "total": "Toplam",
         "submit": "Gönder",
         "tryAgain": "Tekrar dene",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "unknown": "Bilinmeyen",
+        "goToDashboard": "Panoya git"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
@@ -259,7 +259,7 @@
     },
     "languageSetup": {
         "language": "Dil",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Dil seçin",
         "letsGetStarted": "Haydi başlayalım"
     },
     "login": {
@@ -268,7 +268,7 @@
         "enterPassword": "Lütfen şifrenizi girin.",
         "login": "Oturum Aç",
         "setNode": "Düğüm Ayarla",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabled": "Biyometrik doğrulama neden devre dışı?",
         "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
@@ -314,7 +314,7 @@
     },
     "receive": {
         "yourAddress": "Adresiniz",
-        "qrOptions": "QR options",
+        "qrOptions": "QR ayarları",
         "shareQr": "Share QR code",
         "copyAddress": "Adresi kopyala",
         "addressCopied": "Adres kopyalandı",
@@ -333,11 +333,11 @@
         "seedCleared": "Cüzdan şifresi temizlendi",
         "mostSecure": "En Güvenli",
         "recommended": "Önerilen",
-        "leastSecure": "Least Secure",
+        "leastSecure": "En Güvensiz",
         "paperWallet": "Kağıt cüzdan",
-        "writeYourSeedDown": "Write your seed down",
+        "writeYourSeedDown": "Oluşumunuzu bir yere yazın",
         "seedClearedExplanation": "Güvenliğiniz için cüzdan şifresi panodan temizlendi.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Haydi oluşumunuzu bir yere yazalım",
         "youCanHighlightCharacters": "Bir seferde sadece 9 karakter secebilirsiniz",
         "printBlankWallet": "Boş bir cüzdan yazdır",
         "whatIsAChecksum": "Sağlama nedir?",
@@ -383,8 +383,8 @@
         "addressPasteExplanation": "Bir adres yapıştırılmış gibi. Adresin göndermek istediğiniz adresle aynı olduğundan emin olun.",
         "invalid": "GEÇERSİZ",
         "swipeToSend": "Göndermek için kaydır",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
+        "paymentRequest": "Bu bir ödeme talebidir",
+        "paymentRequestExpired": "Ödeme talebinin süresi bitti",
         "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
@@ -414,7 +414,7 @@
         "changePassword": "Parola Değiştir",
         "general": "Genel ayarlar",
         "advanced": "Gelişmiş ayarlar",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "Ağ ayarlar",
         "account": "Hesap ayarları",
         "logout": "Çıkış yap",
         "reset": "Cüzdanı Sıfırla",
@@ -478,7 +478,7 @@
         "bundleHashCopied": "Paket karması kopyalanır",
         "noTransactionsFound": "İşlem bulunamadı",
         "emptyHistory": "İşlem geçmişiniz boş",
-        "hideZeroBalance": "Hide zero value",
+        "hideZeroBalance": "Sıfır değerini gizle",
         "bundleHashCopiedExplanation": "Paket karması panoya kopyalanmış.",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adres panoya kopyalanmış.",
@@ -758,7 +758,7 @@
         "isThisCorrect": "Bu doğru mu?",
         "snapshotExplanation": "Tangle'ın boyutunu küçültmek için sık sık bir anlık görüntü oluşturulur.",
         "hasSnapshotTakenPlace": "Bir anlık görüntü mü oluşturuldu? Geçişi sağlamak için lütfen aşağıdaki tuşa basın.",
-        "transition": "Transition",
+        "transition": "Geçiş",
         "transitioning": "Anlık görüntü için geçiş sağlanıyor.",
         "generatingAndDetecting": "Adresler yaratılıyor ve varlıklar algılanıyor.",
         "attaching": "Tangle'a adresler ekleniyor.",
@@ -784,15 +784,15 @@
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Install update and restart",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
-        "downloadingUpdate": "Downloading update",
+        "downloadingUpdate": "Güncelleme indiriliyor",
         "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Hata kaydı"
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept",
+        "accept": "Kabul ediyorum",
         "readAllToContinue": "Lütfen tüm metni okuyun"
     },
     "privacyPolicy": {
