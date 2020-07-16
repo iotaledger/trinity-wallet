@@ -41,7 +41,7 @@
     "hoist-non-react-statics": "^3.3.2",
     "intl": "^1.2.5",
     "jsc-android": "241213.x.x",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.19",
     "lottie-react-native": "^2.6.1",
     "nodejs-mobile-react-native": "https://github.com/rajivshah3/nodejs-mobile-react-native#f3e99d92aa6983ca84805839b58cbe2ad2a33a37",
     "path-browserify": "0.0.0",
