@@ -279,7 +279,7 @@
         "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "Oluşum yaratıldı",
         "seedNotGenerated": "Cüzdan şifresi üretilmedi",
         "seedNotGeneratedExplanation": "Lütfen yeni bir tohum yaratın.",
         "pressForNewSeed": "Yeni oluşum için tuşlayın",
@@ -287,7 +287,7 @@
         "individualLetters": "Randomize etmek için tek tek harflere basın.",
         "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
         "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue": "Devam etmek için <1>{{count}}</1> karakteri rastgeleleştirin.",
         "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Oluşum nedir?"
     },
@@ -315,7 +315,7 @@
     "receive": {
         "yourAddress": "Adresiniz",
         "qrOptions": "QR ayarları",
-        "shareQr": "Share QR code",
+        "shareQr": "QR kodunu paylaş",
         "copyAddress": "Adresi kopyala",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adresin panoya kopyalanmış.",
@@ -326,10 +326,10 @@
         "generateAnAddress": "Yeni adres oluştur",
         "generateAnAddressTitle": "Yeni bir adres oluştur",
         "generateAnAddressExplanation": "Lütfen bu işlevi kullanabilmek için yeni bir adres oluşturun.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "Her IOTA almak istediğim zaman yeni bir depo adresi yarat"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Back up your seed",
+        "saveYourSeed": "Oluşumunuzu yedekleyin",
         "seedCleared": "Cüzdan şifresi temizlendi",
         "mostSecure": "En Güvenli",
         "recommended": "Önerilen",
@@ -497,7 +497,7 @@
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "X'ten büyük bir değere sahip işlemleri bulun",
         "searchHelpLess": "X'ten daha düşük bir değere sahip işlemleri bulun",
-        "transactions": "Transactions",
+        "transactions": "İşlemler",
         "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
@@ -509,10 +509,10 @@
         "tools": "Araçlar"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
+        "automaticNodeManagement": "Otomatik ağ yönetimi",
         "addCustomNodes": "Düğüm ekle",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "autoNodeList": "Varsayılan ağ listesini kullan",
+        "nodeAutoswitching": "Birincil ağı otomatik seç",
         "primaryNode": "Birincil ağ",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
@@ -521,7 +521,7 @@
         "nodeEnoughNodesTitle": "Yeterli ağ yok",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedTitle": "Ağ ayarları güncellendi",
         "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
         "outsourcePow": "Outsource proof of work",
         "autoSelectPowNode": "Autoselect proof of work node",
@@ -712,7 +712,7 @@
         "change": "Değiştir (24 saat)",
         "volume": "Hacim (24 saat)",
         "error": "Grafik verileri alınırken hata oluştu",
-        "currentValue": "Current Value"
+        "currentValue": "Anlık Değer"
     },
     "rootDetection": {
         "warning": "UYARI",
@@ -743,8 +743,8 @@
         "proofOfWork": "İşin kanıtı tamamlanıyor",
         "broadcasting": "Yayınlanıyor",
         "preparingData": "Veri hazırlanıyor",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
+        "migratingSettings": "Taşıma ayarları",
+        "migratingAccounts": "Hesapları taşımak",
         "cleaningUpOldData": "Eski veriler temizleniyor",
         "migrationComplete": "Geçiş tamamlandı",
         "transferComplete": "Transfer tamamlandı"
@@ -782,7 +782,7 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Yeni versiyon mevcut",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Install update and restart",
+        "installUpdate": "Güncellemeyi yükle ve yeniden başlat",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
         "downloadingUpdate": "Güncelleme indiriliyor",
         "downloadProgress": "{{transferred}} of {{total}} downloaded"
