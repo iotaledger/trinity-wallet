@@ -594,7 +594,7 @@
         "million": "Milyon",
         "thousand": "Bin",
         "one": "Bir",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTAlar genellikle bir milyonun katlarında elde edilirler ama tek bir IOTA olarak transfer edilebilirler."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Neden varlıklarımın hepsini harcayamıyorum?",
@@ -783,15 +783,15 @@
         "newVersionAvailable": "Yeni versiyon mevcut",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Güncellemeyi yükle ve yeniden başlat",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
+        "installUpdateExplanation": "İndirme tamamlandı, Trinity şimdi güncellemeyi yüklemek için yeniden başlayacak.",
         "downloadingUpdate": "Güncelleme indiriliyor",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadProgress": "{{total}}'in {{transferred}} kadarı indirildi"
     },
     "notificationLog": {
         "errorLog": "Hata kaydı"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
+        "termsAndConditions": "Şartlar ve Koşullar",
         "accept": "Kabul ediyorum",
         "readAllToContinue": "Lütfen tüm metni okuyun"
     },
@@ -816,8 +816,8 @@
         "typeConfirmations": "Notify me about confirmations",
         "typeMessages": "Notify me about zero value transactions",
         "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
+        "valueTx": "{{account}} 'a {{value}} alınıyor",
+        "messageTx": " {{account}}'a bir mesaj aldınız",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     },
