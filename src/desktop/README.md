@@ -27,8 +27,7 @@ Additionally on **Windows 7** install [.NET Framework 4.5.1](https://www.microso
 On **Linux** platforms you'll need to install additional packages to compile native modules:
 
 ```
-sudo apt install build-essential libudev-dev libusb-1.0-0 libusb-1.0-0-dev
-sudo apt install gcc-4.8 g++-4.8 && export CXX=g++-4.8
+sudo apt install build-essential libudev-dev libusb-1.0-0 libusb-1.0-0-dev libsecret-1-dev gcc-multilib g++-multilib 
 
 # Fedora only:
 yum install libusbx-devel
