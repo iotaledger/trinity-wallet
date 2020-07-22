@@ -13747,14 +13747,6 @@
         "struct": "0.0.12"
       }
     },
-    "i18next": {
-      "version": "17.0.6",
-      "resolved": "https://registry.npmjs.org/i18next/-/i18next-17.0.6.tgz",
-      "integrity": "sha512-bdNhzhcM6RG5m82RypVguCrAQNie/ycxW0Q5C6K9UDWD5hqApZfdJFbj4Ikz9jxIR+Ja1eg0yCQLhlCT+opwIg==",
-      "requires": {
-        "@babel/runtime": "^7.3.1"
-      }
-    },
     "iconv-lite": {
       "version": "0.4.24",
       "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.24.tgz",
