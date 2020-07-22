@@ -928,6 +928,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.10.1":
+  version "7.10.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.5.tgz#303d8bd440ecd5a491eae6117fd3367698674c5c"
+  integrity sha512-otddXKhdNn7d0ptoFRHtMLa8LqDxLYwTjB4nYgM1yy5N6gU/MUf8zqyyLltCH3yAVitBzmwK4us+DD0l/MauAg==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.0.0", "@babel/template@^7.1.0", "@babel/template@^7.1.2":
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.1.2.tgz#090484a574fef5a2d2d7726a674eceda5c5b5644"
@@ -5304,12 +5311,12 @@ human-signals@^1.1.1:
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-1.1.1.tgz#c5b1cd14f50aeae09ab6c59fe63ba3395fe4dfa3"
   integrity sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw==
 
-i18next@^19.0.0:
-  version "19.0.0"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-19.0.0.tgz#5418207d7286128e6cfe558e659fa8c60d89794b"
-  integrity sha512-xxNKNOqLdGP/M+/fzzBOhcc9hCAqv6gDhHq0xbYz/Vlz5PlMfr9P1LbBvmk7RkZjYoh/kyM1tnfSl+sJ2VaD0Q==
+i18next@^19.6.0:
+  version "19.6.2"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-19.6.2.tgz#859aeba46db0c7cdfa8ae3de7c3a5cad3b0cec83"
+  integrity sha512-Zyd/Z32FY+sD+Eg6sLj5DeDSlrIN3WZ4onuOBRGcjDx/rvodsyUZ9TJ2Y+3aD9Vu8MPbiMU2WesIER/rs1ioyw==
   dependencies:
-    "@babel/runtime" "^7.3.1"
+    "@babel/runtime" "^7.10.1"
 
 iconv-lite@0.4.23:
   version "0.4.23"
@@ -9339,6 +9346,11 @@ regenerator-runtime@^0.13.2:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.2.tgz#32e59c9a6fb9b1a4aff09b4930ca2d4477343447"
   integrity sha512-S/TQAZJO+D3m9xeN1WTI8dLKBBiRgXBlTJvbWjCThHWZj9EvHK70Ff50/tYj2J/fvBY6JtFVwRuazHN2E7M9BA==
 
+regenerator-runtime@^0.13.4:
+  version "0.13.5"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.5.tgz#d878a1d094b4306d10b9096484b33ebd55e26697"
+  integrity sha512-ZS5w8CpKFinUzOwW3c83oPeVXoNsrLsaCoLtJvAClH135j/R77RuymhiSErhm2lKcwSCIpmvIWSbDkIfAqKQlA==
+
 regenerator-transform@^0.13.3:
   version "0.13.3"
   resolved "https://registry.yarnpkg.com/regenerator-transform/-/regenerator-transform-0.13.3.tgz#264bd9ff38a8ce24b06e0636496b2c856b57bcbb"
@@ -9829,7 +9841,7 @@ shared-modules@../shared/:
     "@iota/cda" "^1.0.0-beta.23"
     "@iota/core" "^1.0.0-beta.20"
     bignumber.js "^9.0.0"
-    i18next "^19.0.0"
+    i18next "^19.6.0"
     iota.lib.js "^0.5.2"
     lodash "^4.17.19"
     moment "^2.24.0"
