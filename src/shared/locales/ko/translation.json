@@ -175,7 +175,7 @@
         "congratulations": "축하합니다",
         "expert": "전문가",
         "notEnoughSyncedNodes": "싱크된 노드의 수가 너무 적습니다.",
-        "notEnoughSyncedNodesExplanation": "큐럼에 연결할 수 없습니다. 큐럼을 끄거나 다시 시도해주세요.",
+        "notEnoughSyncedNodesExplanation": "노드 사이의 의결을 이루어내지 못했습니다. 노드 의결을 끄거나 다시 시도해주세요.",
         "total": "총",
         "submit": "제출하기",
         "tryAgain": "다시 시도",
@@ -491,7 +491,7 @@
         "yesterday": "어제",
         "promotingAnotherBundle": "다른 번들 프로모트중",
         "pleaseWait": "잠시만 기다려 주세요. 다른 번들을 프로모트하는 중입니다.",
-        "typeHelp": "Type !help for tips",
+        "typeHelp": "!help를 입력하여 도움말 확인",
         "searchHelpText": "번들 해시 또는 메세지 내용으로 찾기",
         "searchHelpValue": "IOTA 값으로 거래 찾기",
         "searchHelpUnits": "IOTA 값과 단위로 거래 찾기",
@@ -511,21 +511,21 @@
     "nodeSettings": {
         "automaticNodeManagement": "자동 노드 관리",
         "addCustomNodes": "노드 추가",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "autoNodeList": "기본 내장 노드 목록 사용",
+        "nodeAutoswitching": "주 노드 자동 선택",
         "primaryNode": "기본 노드",
-        "enableQuorum": "큐럼 활성화",
-        "quorumSize": "큐럼 크기",
+        "enableQuorum": "노드 의결 키기",
+        "quorumSize": "노드 총의결 수",
         "noCustomNodes": "커스텀 노드 없음",
         "mustAddCustomNodes": "원격 노드 목록을 비활성화하기 전에 최소한 하나의 커스텀 노드를 추가해야 합니다.",
         "nodeEnoughNodesTitle": "노드의 수가 부족합니다.",
-        "nodeEnoughNodesExplanation": "큐럼을 활성화하기 위한 노드의 수가 부족합니다.",
+        "nodeEnoughNodesExplanation": "노드 사이의 의결을 수행하기에 노드의 수가 부족합니다.",
         "nodeEnoughNodesExplanationCustomNodes": "더많은 커스텀 노드를 추가하거나 원격 노드 목록을 활성화하십시오.",
         "nodeSettingsUpdatedTitle": "노드 설정이 업데이트되었습니다.",
         "nodeSettingsUpdatedExplanation": "노드 설정이 성공적으로 업데이트되었습니다.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "원격 작업증명 수행",
+        "autoSelectPowNode": "작업 증명을 수행할 노드 자동 선택",
+        "nodeForPow": "작업증명 수행 노드"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "커스텀 노드를 추가할 수 없습니다.",
@@ -539,7 +539,7 @@
         "addAuthKey": "인증 키 추가",
         "username": "사용자 이름",
         "couldNotRemove": "커스텀 노드를 제거할 수 없었습니다",
-        "couldNotRemoveExplanation": "큐럼은 충분한 수의 노드를 필요로 합니다. 큐럼 크기를 줄이거나 원격 노드 목록을 활성화하십시오."
+        "couldNotRemoveExplanation": "노드간 의결을 수행하기 위해서는 충분한 수의 노드가 필요합니다. 노드 총의결 수를 줄이거나 원격 노드 목록을 활성화하세요."
     },
     "addNewAccount": {
         "useExistingSeed": "기존 시드 사용",
@@ -883,8 +883,8 @@
         "writtenDownInfoExplanation": "만일 계정을 복구해야 할 경우 인덱스 번호가 필요하게 됩니다. 인덱스 번호를 잊게 되면 IOTA를 잃어버리게 되니 기억해 주세요."
     },
     "help": {
-        "docsSite": "Trinity Docs Site",
-        "commonIssues": "Common Wallet Issues",
+        "docsSite": "트리니티 지갑 문서 (영어)",
+        "commonIssues": "자주 겪는 문제들 (영어)",
         "buyingIOTA": "Problems Buying IOTA"
     }
 }
