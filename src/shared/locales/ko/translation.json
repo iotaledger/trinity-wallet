@@ -468,7 +468,7 @@
     },
     "welcome": {
         "thankYou": "트리니티를 다운로드 해 주셔서 감사합니다.",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "트리니티 지갑 데모를 다운로드 해 주셔서 감사합니다."
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인</1><2>하세요.</2>",
@@ -497,8 +497,8 @@
         "searchHelpUnits": "IOTA 값과 단위로 거래 찾기",
         "searchHelpMore": "값이 X보다 큰 거래 찾기",
         "searchHelpLess": "값이 X보다 작은 거래 찾기",
-        "transactions": "Transactions",
-        "noFilteredTransactions": "No transactions match those filters"
+        "transactions": "트랜잭션",
+        "noFilteredTransactions": "검색 결과 없음"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",
@@ -666,7 +666,7 @@
         "noPassword": "장치에 비밀번호가 설정되어 있지 않습니다"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}}",
+        "youAreAbout": "{{contents}}를 보냅니다",
         "aMessage": "메시지",
         "fromAccount": "{{selectedAccountName}} 에서",
         "toAddress": "아래 주소로",
