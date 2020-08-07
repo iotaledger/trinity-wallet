@@ -498,7 +498,7 @@
         "searchHelpMore": "Găsește tranzacții cu valoarea mai mare decât X",
         "searchHelpLess": "Găsește tranzacții cu valoarea mai mică decât X",
         "transactions": "Tranzacţii",
-        "noFilteredTransactions": "No transactions match those filters"
+        "noFilteredTransactions": "Nici o tranzacție nu corespunde acestor filtre"
     },
     "accountManagement": {
         "viewSeed": "Vezi seed-ul",
@@ -712,7 +712,7 @@
         "change": "Schimbare (24)",
         "volume": "Volum (24h)",
         "error": "Eroare la preluarea diagramei datelor",
-        "currentValue": "Current Value"
+        "currentValue": "Valoare Curentă"
     },
     "rootDetection": {
         "warning": "AVERTISMENT",
@@ -739,15 +739,15 @@
         "syncingAccount": "Sincronizarea contului",
         "preparingInputs": "Pregătire inputuri",
         "preparingTransfers": "Pregătire transferuri",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting",
-        "preparingData": "Preparing data",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
-        "cleaningUpOldData": "Cleaning up old data",
-        "migrationComplete": "Migration complete",
-        "transferComplete": "Transfer complete"
+        "gettingTransactionsToApprove": "Obținerea tranzacțiilor de aprobat",
+        "proofOfWork": "Finalizarea dovezilor de muncă",
+        "broadcasting": "Transmitere",
+        "preparingData": "Pregătirea datelor",
+        "migratingSettings": "Setări de migrare",
+        "migratingAccounts": "Conturi de migrare",
+        "cleaningUpOldData": "Curățarea datelor vechi",
+        "migrationComplete": "Migrare completă",
+        "transferComplete": "Transfer efectuat"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
