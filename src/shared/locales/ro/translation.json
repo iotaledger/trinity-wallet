@@ -750,12 +750,12 @@
         "transferComplete": "Transfer efectuat"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
-        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
-        "isThisCorrect": "Is this correct?",
+        "cannotCompleteTransition": "Nu se poate finaliza tranziția snapshot",
+        "cannotCompleteTransitionExplanation": "Balanța ta trebuie să fie mai mare decăt 0 pentru a finaliza tranziția.",
+        "transitionComplete": "Tranziția snapshot completă",
+        "transitionCompleteExplanation": "Tranziția snapshot s-a incheiat cu succes.",
+        "detectedBalance": "Balanța detectată: {{amount}} {{unit}}",
+        "isThisCorrect": "Este corect?",
         "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
         "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
         "transition": "Transition",
