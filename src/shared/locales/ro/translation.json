@@ -385,7 +385,7 @@
         "swipeToSend": "Glisează pentru a trimite",
         "paymentRequest": "Aceasta este o cerere de plată",
         "paymentRequestExpired": "Cererea de plată a expirat",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequestExpiredExplanation": "Această solicitare de plată a expirat. Te rugăm să soliciți destinatarului, una nouă."
     },
     "setSeedName": {
         "letsAddName": "Să adăugăm un nume",
@@ -478,7 +478,7 @@
         "bundleHashCopied": "Pachetul hash copiat",
         "noTransactionsFound": "Nici o tranzacție găsită",
         "emptyHistory": "Istoricul tău de tranzacții e gol",
-        "hideZeroBalance": "Hide zero value",
+        "hideZeroBalance": "Ascunde valoarea zero",
         "bundleHashCopiedExplanation": "Pachetul hash a fost copiat în clipboard.",
         "addressCopied": "Adresă copiată",
         "addressCopiedExplanation": "Adresa a fost copiată în clipboard.",
@@ -491,13 +491,13 @@
         "yesterday": "Ieri",
         "promotingAnotherBundle": "Promovare alt pachet",
         "pleaseWait": "Te rog așteaptă, Trinity promovează alt pachet.",
-        "typeHelp": "Type !help for tips",
+        "typeHelp": "Scrie !help pentru sfaturi",
         "searchHelpText": "Caută în funcție de pachetele hash sau conținutul mesajelor",
         "searchHelpValue": "Găsește tranzacții în valoare exactă de IOTA",
         "searchHelpUnits": "Găsește tranzacții după valoarea și numărul de IOTA",
         "searchHelpMore": "Găsește tranzacții cu valoarea mai mare decât X",
         "searchHelpLess": "Găsește tranzacții cu valoarea mai mică decât X",
-        "transactions": "Transactions",
+        "transactions": "Tranzacţii",
         "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
