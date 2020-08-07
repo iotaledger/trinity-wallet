@@ -145,8 +145,8 @@
         "mustBeStoredAppropriately": "Trebuie salvat corespunzător.",
         "deviceMayBecomeUnresponsive": "Dispozitivul dumneavoastră poxate deveni neresponsiv pentru o perioada.",
         "isYourBalanceCorrect": "Este balanta dumneavoastra corecta?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, make sure you have entered the correct seed.",
-        "headToAdvancedSettingsForTransition": "If you are sure you have the right seed, head to Advanced Settings and perform a Snapshot Transition.",
+        "ifYourBalanceIsNotCorrect": "Dacă balanța ta nu este corectă, asigură-te că ai introdus seed-ul corect.",
+        "headToAdvancedSettingsForTransition": "Dacă ești sigur că ai seed-ul corect, mergi la Setări Avansate și efectuează o tranziție Snapshot.",
         "headToAccountTools": "Mergeți la Account Tools şi faceți o tranziție Snapshot.",
         "openAccountTools": "Deschide Instrumentele Contului",
         "usingTrinityWalletWithKeePass": "Folosind Portofelul Trinity cu Keepass2Android",
@@ -383,8 +383,8 @@
         "addressPasteExplanation": "Se pare că ai lipit o adresă. Asigură-te că adresa corespunde cu cea pe care vrei să trimiți.",
         "invalid": "INVALID",
         "swipeToSend": "Glisează pentru a trimite",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
+        "paymentRequest": "Aceasta este o cerere de plată",
+        "paymentRequestExpired": "Cererea de plată a expirat",
         "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
