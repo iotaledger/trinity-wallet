@@ -7,6 +7,8 @@ on:
       - 'src/shared/**'
       - 'src/mobile/**'
       - '.github/workflows/test_mobile.yml'
+    branches-ignore:
+      - 'l10n_develop'
 
 jobs:
   test-mobile:

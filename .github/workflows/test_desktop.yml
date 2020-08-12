@@ -7,6 +7,8 @@ on:
       - 'src/shared/**'
       - 'src/desktop/**'
       - '.github/workflows/test_desktop.yml'
+    branches-ignore:
+      - 'l10n_develop'
 
 jobs:
   test-desktop:

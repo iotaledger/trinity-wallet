@@ -6,6 +6,8 @@ on:
       - '*'
       - 'src/shared/**'
       - '.github/workflows/test_shared.yml'
+    branches-ignore:
+      - 'l10n_develop'
 
 jobs:
   test-shared:
