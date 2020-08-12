@@ -1,0 +1,40 @@
+name: Build and Push Docker
+
+on:
+  push:
+    branches-ignore: '**'
+    # branches: [ develop ]
+  pull_request:
+    branches-ignore: '**'
+    # branches: [ develop ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [desktop, mobile, shared]
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Import Secrets
+      uses: RichiCoder1/vault-action@v1.0.0
+      with:
+        url: https://vault.secops.fra.ext.iota.org
+        token: ${{ secrets.VAULT_TOKEN }}
+        path: buildkite-secrets
+        secrets: |
+            iri-release-docker-username secret | DOCKER_USERNAME ;
+            iri-release-docker-password secret | DOCKER_PASSWORD
+    
+    - name: Push to Docker Hub
+      uses: docker/build-push-action@v1
+      with:
+        username: '${{ env.DOCKER_USERNAME }}'
+        password: '${{ env.DOCKER_PASSWORD }}'
+        dockerfile: Dockerfile.${{ matrix.platform }}
+        repository: sadjy/trinity-${{ matrix.platform }}-ci
+        always_pull: true
+        tag_with_sha: true

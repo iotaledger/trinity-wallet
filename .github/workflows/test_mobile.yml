@@ -1,0 +1,50 @@
+name: Trinity Mobile Tests
+
+on:
+  pull_request:
+    paths:
+      - '*'
+      - 'src/shared/**'
+      - 'src/mobile/**'
+      - '.github/workflows/test_mobile.yml'
+
+jobs:
+  test-mobile:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Debug
+      run: echo ${{ github.ref }} ${{ github.head_ref }} ${{ github.base_ref }}
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+
+    - name: Install shared dependencies
+      run: |
+        yarn
+        yarn deps:shared
+
+    - name: Install mobile dependencies
+      run: yarn deps:mobile
+
+    - name: Run ESLint
+      run: yarn lint:mobile
+
+    - name: Run tests
+      run: yarn test:mobile
+
+    - name: Setup kernel for react native, increase watchers
+      run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+    - name: Install react-native CLI
+      run:  yarn global add react-native-cli
+
+    - name: Bundle mobile JS
+      run: |
+        export PATH="$(yarn global bin):$PATH" && \
+        react-native bundle --entry-file index.js --platform android --bundle-output android/main.jsbundle --dev true
+      working-directory: src/mobile

@@ -1,0 +1,34 @@
+name: Trinity Shared Tests
+
+on:
+  pull_request:
+    paths:
+      - '*'
+      - 'src/shared/**'
+      - '.github/workflows/test_shared.yml'
+
+jobs:
+  test-shared:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Debug
+      run: echo ${{ github.ref }} ${{ github.head_ref }} ${{ github.base_ref }}
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+
+    - name: Install shared dependencies
+      run: |
+        yarn
+        yarn deps:shared
+
+    - name: Run ESLint
+      run: yarn lint:shared
+
+    - name: Run tests
+      run: yarn test:shared

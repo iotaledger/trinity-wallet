@@ -1,0 +1,270 @@
+name: Build desktop
+
+on:
+  push:
+    branches:
+      - release/desktop-*
+    tags:
+      - desktop-*
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, macos-10.15, windows-2019]
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+
+    - name: Set up Python 2.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: '2.x'
+
+    - name: Install required packages - Linux
+      run: |
+        sudo apt update
+        sudo apt install -y gcc-multilib g++-multilib build-essential libssl-dev rpm libsecret-1-dev \
+          software-properties-common apt-transport-https libudev-dev libusb-1.0-0-dev
+      if: matrix.os == 'ubuntu-18.04'
+
+    - name: Install shared dependencies
+      run: |
+        yarn
+        yarn deps:shared
+
+    - name: Install OpenSSL 1.0.2s - Windows
+      # For Realm on Windows
+      run: |
+        git clone https://github.com/Microsoft/vcpkg C:\src\vcpkg
+        cd C:\src\vcpkg
+        git checkout ${{ env.VCPKG_COMMIT }}
+        .\bootstrap-vcpkg.bat
+        .\vcpkg install openssl:x64-windows-static
+      env:
+        VCPKG_COMMIT: 5d7ff36 # https://github.com/microsoft/vcpkg/releases/tag/2019.12
+      if: matrix.os == 'windows-2019'
+
+    - name: Install OpenSSL 1.0.2k - Linux
+      # For Realm on Linux
+      # Use this version of OpenSSL instead of the one provided by Ubuntu
+      run: |
+        curl -SL https://www.openssl.org/source/old/1.0.2/openssl-1.0.2k.tar.gz | tar -zx
+        cd openssl-1.0.2k
+        ./Configure -DPIC -fPIC -fvisibility=hidden -fvisibility-inlines-hidden \
+          no-zlib-dynamic no-dso linux-x86_64 --prefix=/usr
+        make
+        sudo make install_sw
+        cd ..
+        rm -rf openssl-1.0.2k
+        echo "::add-path::/usr/local/ssl"
+      if: matrix.os == 'ubuntu-18.04'
+
+    - name: Install desktop dependencies
+      run: yarn deps:desktop
+
+    - name: Bundle desktop JS
+      run: npm run build
+      working-directory: src/desktop
+      env:
+        BUGSNAG_KEY: ${{ secrets.BUGSNAG_KEY }}
+
+    - name: Upload sourcemap to Bugsnag
+      run: node bugsnag.js
+      working-directory: src/desktop
+      env:
+        BUGSNAG_KEY: ${{ secrets.BUGSNAG_KEY }}
+      if: startsWith(github.ref, 'refs/tags/desktop-')
+
+    - name: Build Electron app - MacOS
+      run: |
+        ./node_modules/.bin/electron-builder --mac --x64 --publish=never
+      env:
+        CSC_LINK: ${{ secrets.MAC_CERTS }}
+        CSC_KEY_PASSWORD: ${{ secrets.MAC_CERTS_PASSWORD }}
+        TRINITY_APPLE_ID: ${{ secrets.TRINITY_APPLE_ID }}
+        TRINITY_APPLE_ID_PASSWORD: ${{ secrets.TRINITY_APPLE_ID_PASSWORD }}
+      working-directory: src/desktop
+      if: matrix.os == 'macos-10.15'
+
+    - name: Build Electron app - Windows
+      run: |
+        .\\node_modules\\.bin\\electron-builder --win --x64 --publish=never
+      env:
+        CSC_LINK: ${{ secrets.WIN_CERTS }}
+        CSC_KEY_PASSWORD: ${{ secrets.WIN_CERTS_PASSWORD }}
+      working-directory: src/desktop
+      if: matrix.os == 'windows-2019'
+
+    - name: Install appimagetool
+      run: |
+        wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage && \
+        sudo chmod a+x appimagetool-x86_64.AppImage
+      if: matrix.os == 'ubuntu-18.04'
+
+    - name: Build Electron app - Linux
+      run: |
+        ./node_modules/.bin/electron-builder --linux --x64 --publish=never
+      working-directory: src/desktop
+      if: matrix.os == 'ubuntu-18.04'
+
+    - name: Import GPG key
+      run: |
+        echo "$GPG_PRIVATE_KEY" | base64 -d > /tmp/private.key && \
+        echo "$GPG_PASSPHRASE" | gpg --batch --yes --passphrase-fd 0 --import /tmp/private.key
+      env:
+        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      if: matrix.os == 'ubuntu-18.04'
+
+    - name: Signing files
+      run: |
+        echo $GPG_PASSPHRASE | gpg --pinentry-mode loopback --batch --passphrase-fd 0 --armor --detach-sign --default-key contact@iota.org trinity-desktop*.AppImage
+      working-directory: src/desktop/out
+      env:
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      if: matrix.os == 'ubuntu-18.04'
+
+    - name: Compute checksums - Linux
+      run: for i in `ls | grep 'trinity-desktop*'` ; do sha256sum $i | awk {'print $1'} > $i.sha256 ; done
+      working-directory: src/desktop/out
+      if: matrix.os == 'ubuntu-18.04'
+
+    - name: Compute checksums - MacOS
+      run: for i in `ls | grep 'trinity-desktop*'` ; do shasum -a 256 $i | awk {'print $1'} > $i.sha256 ; done
+      working-directory: src/desktop/out
+      if: matrix.os == 'macos-10.15'
+
+    - name: Compute checksums - Windows
+      run: Get-ChildItem "." -Filter trinity-desktop* | Foreach-Object { $(Get-FileHash -Path $_.FullName -Algorithm SHA256).Hash | Set-Content ($_.FullName + '.sha256') }
+      working-directory: src/desktop/out
+      if: matrix.os == 'windows-2019'
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: trinity-desktop-${{ matrix.os }}
+        path: |
+          src/desktop/out/trinity-desktop*
+          src/desktop/out/latest*
+
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [ build ]
+    if: startsWith(github.ref, 'refs/tags/desktop-')
+
+    steps:
+    - run: echo ${{github.ref}}
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Getting version
+      run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/desktop-}
+
+    - name: Downloading artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: trinity-desktop-windows-2019
+        path: assets
+
+    - name: Downloading artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: trinity-desktop-macos-10.15
+        path: assets
+
+    - name: Downloading artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: trinity-desktop-ubuntu-18.04
+        path: assets
+
+    - name: Listing artifacts
+      run: ls -al assets
+
+    - name: Preparing release body
+      run: |
+        sed -i 's/\r$//' ../../assets/*.sha256 && sed -i '/^$/d' ../../assets/*.sha256 && sed -i -e 's/\(.*\)/\L\1/' ../../assets/*.sha256
+        WIN_SHA256=$(cat ../../assets/trinity-desktop-${{ env.RELEASE_VERSION }}.exe.sha256)
+        LIN_SHA256=$(cat ../../assets/trinity-desktop-${{ env.RELEASE_VERSION }}.AppImage.sha256)
+        MAC_SHA256=$(cat ../../assets/trinity-desktop-${{ env.RELEASE_VERSION }}.dmg.sha256)
+        echo $WIN_SHA256 $LIN_SHA256 $MAC_SHA256
+        sed -i -n '/^###/,/^$/p;/^$/q' CHANGELOG.md
+        sed -i '1i# Changelog' CHANGELOG.md
+        echo '------' >> CHANGELOG.md
+        echo '# File Hashes' >> CHANGELOG.md
+        echo '[How to verify authenticity of your Trinity Desktop download](https://docs.iota.org/docs/wallets/0.1/trinity/how-to-guides/verify-trinity-desktop)' >> CHANGELOG.md
+        echo '| File | Platform | SHA256 Hash |' >> CHANGELOG.md
+        echo '| --- | --- | --- |' >> CHANGELOG.md
+        echo '| trinity-desktop-${{ env.RELEASE_VERSION }}.exe | Windows |' $WIN_SHA256 '|' >> CHANGELOG.md
+        echo '| trinity-desktop-${{ env.RELEASE_VERSION }}.AppImage | Linux |' $LIN_SHA256 '|' >> CHANGELOG.md
+        echo '| trinity-desktop-${{ env.RELEASE_VERSION }}.dmg | MacOS | ' $MAC_SHA256 '|' >> CHANGELOG.md
+        cat CHANGELOG.md
+      working-directory: src/desktop
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1.1.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Trinity Desktop ${{ env.RELEASE_VERSION }}
+        body_path: src/desktop/CHANGELOG.md
+        draft: true
+        prerelease: false
+
+    - name: Upload MacOS binary asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: assets/trinity-desktop-${{ env.RELEASE_VERSION }}.dmg
+        asset_name: trinity-desktop-${{ env.RELEASE_VERSION }}.dmg
+        asset_content_type: application/octet-stream
+
+    - name: Upload Windows binary asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: assets/trinity-desktop-${{ env.RELEASE_VERSION }}.exe
+        asset_name: trinity-desktop-${{ env.RELEASE_VERSION }}.exe
+        asset_content_type: application/octet-stream
+
+    - name: Upload Linux binary asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: assets/trinity-desktop-${{ env.RELEASE_VERSION }}.AppImage
+        asset_name: trinity-desktop-${{ env.RELEASE_VERSION }}.AppImage
+        asset_content_type: application/octet-stream
+
+    - name: Upload Linux code signature asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: assets/trinity-desktop-${{ env.RELEASE_VERSION }}.AppImage.asc
+        asset_name: trinity-desktop-${{ env.RELEASE_VERSION }}.AppImage.asc
+        asset_content_type: application/pgp-signature
+
+    - name: Upload to s3
+      run: |
+        aws s3 cp assets/ s3://iotaledger-files/trinity/desktop/releases/ --recursive --include "*" --exclude "*.sha256" --exclude "*.blockmap" --exclude "*.dmg" --exclude "*.asc"
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
