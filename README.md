@@ -41,7 +41,7 @@ Please report any issues in our [issue tracker](https://github.com/iotaledger/tr
 
 To compile Trinity, you must have the following:
 
-* [Node.js 10 or 11](https://nodejs.org/dist/)
+* [Node.js 10 (>=10.19) or 11](https://nodejs.org/dist/)
 * [Yarn](https://yarnpkg.com/) package manager.
 
 ## Installation
