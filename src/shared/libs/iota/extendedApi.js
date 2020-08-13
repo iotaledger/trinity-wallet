@@ -21,7 +21,6 @@ import {
     GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
     MAX_MILESTONE_FALLBEHIND,
-    IS_PROMOTABLE_TIMEOUT,
 } from '../../config';
 import {
     sortTransactionTrytesArray,
@@ -54,8 +53,6 @@ const getApiTimeout = (method, payload) => {
             return ATTACH_TO_TANGLE_REQUEST_TIMEOUT;
         case 'getTransactionsToApprove':
             return GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT;
-        case 'isPromotable':
-            return IS_PROMOTABLE_TIMEOUT;
         default:
             return DEFAULT_NODE_REQUEST_TIMEOUT;
     }
@@ -222,36 +219,32 @@ const promoteTransactionAsync = (settings, seedStore) => (
         trytes: [],
     };
 
-    return (
-        isPromotable(settings)(hash, { rejectWithReason: true })
-            // rejectWithReason only resolves if provided hashes are consistent
-            .then(() => prepareTransfersAsync(settings)(transfer.address, [transfer]))
-            .then((trytes) => {
-                cached.trytes = trytes;
+    return prepareTransfersAsync(settings)(transfer.address, [transfer])
+        .then((trytes) => {
+            cached.trytes = trytes;
 
-                return getTransactionsToApproveAsync(settings)(
-                    {
-                        reference: hash,
-                        adjustDepth: true,
-                    },
-                    depth,
-                );
-            })
-            .then(({ trunkTransaction, branchTransaction }) =>
-                attachToTangleAsync(settings, seedStore)(
-                    trunkTransaction,
-                    branchTransaction,
-                    cached.trytes,
-                    minWeightMagnitude,
-                ),
-            )
-            .then(({ trytes }) => {
-                cached.trytes = trytes;
+            return getTransactionsToApproveAsync(settings)(
+                {
+                    reference: hash,
+                    adjustDepth: true,
+                },
+                depth,
+            );
+        })
+        .then(({ trunkTransaction, branchTransaction }) =>
+            attachToTangleAsync(settings, seedStore)(
+                trunkTransaction,
+                branchTransaction,
+                cached.trytes,
+                minWeightMagnitude,
+            ),
+        )
+        .then(({ trytes }) => {
+            cached.trytes = trytes;
 
-                return storeAndBroadcastAsync(settings)(cached.trytes);
-            })
-            .then(() => hash)
-    );
+            return storeAndBroadcastAsync(settings)(cached.trytes);
+        })
+        .then(() => hash);
 };
 
 /**
@@ -521,6 +514,37 @@ const checkAttachToTangleAsync = (node) => {
 };
 
 /**
+ * Promisified version of iota.api.getTipInfo
+ *
+ * @method getTipInfoAsync
+ *
+ * @param {object} [settings]
+ *
+ * @returns {function(string): Promise<object>}
+ */
+const getTipInfoAsync = (settings) => (tailTransactionHash) => {
+    return fetch(settings.url, {
+        method: 'POST',
+        body: JSON.stringify({
+            command: 'getTipInfo',
+            tailTransaction: tailTransactionHash,
+        }),
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'X-IOTA-API-Version': IRI_API_VERSION,
+        }),
+    }).then((response) => {
+        return response.json().then((res) => {
+            if (response.ok) {
+                return res;
+            }
+
+            throw new Error(res.error);
+        });
+    });
+};
+
+/**
  * Checks if remote pow is allowed on the provided node
  *
  * @method allowsRemotePow
@@ -693,17 +717,6 @@ const isNodeHealthy = (settings, skipMilestoneCheck = false) => {
         });
 };
 
-/**
- * Extended version of iota.api.isPromotable.
- *
- * @method isPromotable
- * @param {object} [settings]
- *
- * @returns {function(string): (Promise<boolean>)}
- */
-const isPromotable = (settings) => (tailTransactionHash, options = {}) =>
-    getIotaInstance(settings, getApiTimeout('isPromotable')).api.isPromotable(tailTransactionHash, options);
-
 export {
     getIotaInstance,
     getApiTimeout,
@@ -723,7 +736,7 @@ export {
     storeAndBroadcastAsync,
     attachToTangleAsync,
     checkAttachToTangleAsync,
+    getTipInfoAsync,
     allowsRemotePow,
     isNodeHealthy,
-    isPromotable,
 };

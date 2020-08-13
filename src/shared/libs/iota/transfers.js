@@ -35,9 +35,9 @@ import {
     getTransactionsToApproveAsync,
     attachToTangleAsync,
     storeAndBroadcastAsync,
-    isPromotable,
     promoteTransactionAsync,
     replayBundleAsync,
+    getTipInfoAsync,
 } from './extendedApi';
 import i18next from '../../libs/i18next';
 import { convertFromTrytes, EMPTY_HASH_TRYTES, VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX, unitStringToValue } from './utils';
@@ -84,62 +84,49 @@ export const computeTransactionMessage = (tx) => {
 };
 
 /**
- * Finds a promotable (consistent & above max depth) tail transaction
+ * Finds a promotable tail transaction
  *
  * @method findPromotableTail
  * @param {object} [settings]
  *
- * @returns {function(array, number): Promise<object|boolean>}
+ * @returns {function(array): Promise<object>}
  */
-export const findPromotableTail = (settings) => (tails, idx) => {
-    let tailsAboveMaxDepth = [];
-
-    if (idx === 0) {
-        tailsAboveMaxDepth = filter(tails, (tx) => isAboveMaxDepth(tx.attachmentTimestamp)).sort(
-            (a, b) => b.attachmentTimestamp - a.attachmentTimestamp,
-        );
+export const findPromotableTail = (settings) => (tails, attempt = 0, maxAttempts = 20) => {
+    if (attempt === maxAttempts) {
+        return Promise.reject(new Error(Errors.SOMETHING_WENT_WRONG_DURING_PROMOTION));
     }
 
-    if (!tailsAboveMaxDepth[idx]) {
-        return Promise.resolve(false);
-    }
+    return Promise.all(map(tails, ({ hash }) => getTipInfoAsync(settings)(hash))).then((results) => {
+        attempt += 1;
 
-    const thisTail = tailsAboveMaxDepth[idx];
-    const _isAboveMaxDepth = isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'));
+        // Raise an error if any (transaction) instance is already confirmed.
+        if (some(results, (info) => info.confirmed)) {
+            const error = new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
 
-    // If tail is above max depth, skip checkConsistency call and use this tail as a reference for promotion
-    return _isAboveMaxDepth
-        ? Promise.resolve(thisTail)
-        : isPromotable(settings)(get(thisTail, 'hash'))
-              .then((state) => {
-                  if (state === true) {
-                      return thisTail;
-                  }
+            error.forceSync = true;
 
-                  idx += 1;
-                  return findPromotableTail(settings)(tailsAboveMaxDepth, idx);
-              })
-              .catch((error) => {
-                  if (__DEV__) {
-                      /* eslint-disable no-console */
-                      console.log(error);
-                      /* eslint-enable no-console */
-                  }
+            throw error;
+        }
 
-                  return false;
-              });
-};
+        // Check if there exists a non-lazy tip (requiring no promotion or reattachment)
+        if (
+            some(
+                results,
+                (info) => info.shouldPromote === false && info.shouldReattach === false && info.conflicting === false,
+            )
+        ) {
+            return new Promise((resolve) => setTimeout(resolve, 5000)).then(() =>
+                findPromotableTail(settings)(tails, attempt),
+            );
+        }
 
-/**
- * Check if attachment timestamp on transaction is above max depth (~11 minutes)
- *
- * @method isAboveMaxDepth
- * @param {number} attachmentTimestamp
- *
- * @returns {boolean}
- */
-export const isAboveMaxDepth = (attachmentTimestamp) => {
-    return attachmentTimestamp < Date.now() && Date.now() - attachmentTimestamp < 11 * 60 * 1000;
+        // Find the tip that requires promotion
+        if (some(results, (info) => info.shouldPromote === true)) {
+            return tails[findIndex(results, (info) => info.shouldPromote === true)];
+        }
+
+        return undefined;
+    });
 };
 
 /**
@@ -761,6 +748,11 @@ export const isFundedBundle = (settings, withQuorum) => (bundle) => {
         return Promise.reject(new Error(Errors.EMPTY_BUNDLE_PROVIDED));
     }
 
+    // Return true for zero value bundles
+    if (every(bundle, (tx) => tx.value === 0)) {
+        return Promise.resolve(true);
+    }
+
     return getBalancesAsync(
         settings,
         withQuorum,
@@ -878,28 +870,15 @@ export const promoteTransactionTilConfirmed = (settings, seedStore) => (
                 return find(tailTransactionsClone, (_, idx) => idx === findIndex(states, (state) => state === true));
             }
 
-            const { hash, attachmentTimestamp } = tailTransaction;
+            const { hash } = tailTransaction;
 
             // Promote transaction
             return promoteTransactionAsync(
                 settings,
                 seedStore,
-            )(hash)
-                .then(() => {
-                    return _promote(tailTransaction);
-                })
-                .catch((error) => {
-                    const isTransactionInconsistent = includes(error.message, Errors.TRANSACTION_IS_INCONSISTENT);
-
-                    if (isTransactionInconsistent) {
-                        // Temporarily disable reattachments if transaction is still above max depth
-                        return !isAboveMaxDepth(attachmentTimestamp)
-                            ? _reattachAndPromote()
-                            : _promote(tailTransaction);
-                    }
-
-                    throw error;
-                });
+            )(hash).then(() => {
+                return _promote(tailTransaction);
+            });
         });
     };
 
@@ -920,7 +899,7 @@ export const promoteTransactionTilConfirmed = (settings, seedStore) => (
         });
     };
 
-    return findPromotableTail(settings)(tailTransactionsClone, 0).then((consistentTail) => {
+    return findPromotableTail(settings)(tailTransactionsClone).then((consistentTail) => {
         if (has(consistentTail, 'hash')) {
             return _promote(consistentTail);
         }
