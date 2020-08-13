@@ -96,11 +96,11 @@
         "pressBackAgain": "Uygulamayı kapatmak için geri tuşuna bir daha bas",
         "reattached": "Geçiş başarıyla tekrar eklendi",
         "reattachedExplanation": "İşlem doğrulama bilgisi {{hash}} ile yeniden eklendi",
-        "promotingTransaction": "Promoting transaction",
+        "promotingTransaction": "İşlem teşvik ediliyor",
         "rebroadcastError": "İşlem yayınlanamadı",
         "promoted": "İşlem başarıyla teşvik edildi",
         "promotedExplanation": "İşlem doğrulama bilgisi {{hash}} ile teşvik edildi",
-        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionError": "İşlem otomatik teşvik edilemedi",
         "autopromotionErrorExplanation": "Seçtiğiniz düğümde İş Kanıtı kullanılamaz. Lütfen düğümü değiştirin ve otomatik tanıtımı yeniden etkinleştirin.",
         "promotionError": "İşlem teşvik edilemedi",
         "promotionErrorExplanation": "İşleminiz gönderilirken bir hata ile karşılaşıldı. Lütfen tekrar deneyin.",
@@ -148,7 +148,7 @@
         "ifYourBalanceIsNotCorrect": "If your balance is not correct, make sure you have entered the correct seed.",
         "headToAdvancedSettingsForTransition": "If you are sure you have the right seed, head to Advanced Settings and perform a Snapshot Transition.",
         "headToAccountTools": "Head to Account Tools and perform a Snapshot Transition.",
-        "openAccountTools": "Open Account Tools",
+        "openAccountTools": "Hesap Araçlarını Aç",
         "usingTrinityWalletWithKeePass": "Trinity cüzdanını Keepass2Android ile kullan",
         "signedTrytesBroadcastErrorExplanation": "İşleminizi yayınlarken bir ağ hatası oluştu.",
         "broadcastError": "Transfer yayınlanamadı",
@@ -159,7 +159,7 @@
         "tryingAgainWithDifferentNode": "Farklı bir node ile tekrar deneyin.",
         "errorFetchingAccountInformation": "Hesap bilgisi alınırken hata oluştu.",
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
-        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychain": "Anahtar dizilimi hatası",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
         "mainWallet": "Ana Hesap",
         "confirm": "Onayla",
@@ -172,15 +172,15 @@
         "missingPermission": "Dosya sistemi izni gerekli",
         "missingPermissionExplanation": "Bu işlevi gerçekleştirmek için dosya sistemine erişim gereklidir.",
         "swipeToConfirm": "Onaylamak için kaydırın",
-        "congratulations": "Congratulations",
+        "congratulations": "Tebrikler",
         "expert": "Uzman",
-        "notEnoughSyncedNodes": "Too few nodes in sync",
+        "notEnoughSyncedNodes": "Yetersiz sayıda senkronize ağ",
         "notEnoughSyncedNodesExplanation": "A quorum could not be reached. Turn off quorum or try again.",
         "total": "Toplam",
         "submit": "Gönder",
         "tryAgain": "Tekrar dene",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "unknown": "Bilinmeyen",
+        "goToDashboard": "Panoya git"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
@@ -259,7 +259,7 @@
     },
     "languageSetup": {
         "language": "Dil",
-        "selectALanguage": "Select a language",
+        "selectALanguage": "Dil seçin",
         "letsGetStarted": "Haydi başlayalım"
     },
     "login": {
@@ -268,7 +268,7 @@
         "enterPassword": "Lütfen şifrenizi girin.",
         "login": "Oturum Aç",
         "setNode": "Düğüm Ayarla",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabled": "Biyometrik doğrulama neden devre dışı?",
         "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
@@ -279,7 +279,7 @@
         "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "Oluşum yaratıldı",
         "seedNotGenerated": "Cüzdan şifresi üretilmedi",
         "seedNotGeneratedExplanation": "Lütfen yeni bir tohum yaratın.",
         "pressForNewSeed": "Yeni oluşum için tuşlayın",
@@ -287,7 +287,7 @@
         "individualLetters": "Randomize etmek için tek tek harflere basın.",
         "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
         "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue": "Devam etmek için <1>{{count}}</1> karakteri rastgeleleştirin.",
         "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Oluşum nedir?"
     },
@@ -314,8 +314,8 @@
     },
     "receive": {
         "yourAddress": "Adresiniz",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "qrOptions": "QR ayarları",
+        "shareQr": "QR kodunu paylaş",
         "copyAddress": "Adresi kopyala",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adresin panoya kopyalanmış.",
@@ -326,18 +326,18 @@
         "generateAnAddress": "Yeni adres oluştur",
         "generateAnAddressTitle": "Yeni bir adres oluştur",
         "generateAnAddressExplanation": "Lütfen bu işlevi kullanabilmek için yeni bir adres oluşturun.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "Her IOTA almak istediğim zaman yeni bir depo adresi yarat"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Back up your seed",
+        "saveYourSeed": "Oluşumunuzu yedekleyin",
         "seedCleared": "Cüzdan şifresi temizlendi",
         "mostSecure": "En Güvenli",
         "recommended": "Önerilen",
-        "leastSecure": "Least Secure",
+        "leastSecure": "En Güvensiz",
         "paperWallet": "Kağıt cüzdan",
-        "writeYourSeedDown": "Write your seed down",
+        "writeYourSeedDown": "Oluşumunuzu bir yere yazın",
         "seedClearedExplanation": "Güvenliğiniz için cüzdan şifresi panodan temizlendi.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Haydi oluşumunuzu bir yere yazalım",
         "youCanHighlightCharacters": "Bir seferde sadece 9 karakter secebilirsiniz",
         "printBlankWallet": "Boş bir cüzdan yazdır",
         "whatIsAChecksum": "Sağlama nedir?",
@@ -383,8 +383,8 @@
         "addressPasteExplanation": "Bir adres yapıştırılmış gibi. Adresin göndermek istediğiniz adresle aynı olduğundan emin olun.",
         "invalid": "GEÇERSİZ",
         "swipeToSend": "Göndermek için kaydır",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
+        "paymentRequest": "Bu bir ödeme talebidir",
+        "paymentRequestExpired": "Ödeme talebinin süresi bitti",
         "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
     },
     "setSeedName": {
@@ -414,7 +414,7 @@
         "changePassword": "Parola Değiştir",
         "general": "Genel ayarlar",
         "advanced": "Gelişmiş ayarlar",
-        "nodeSettings": "Node settings",
+        "nodeSettings": "Ağ ayarlar",
         "account": "Hesap ayarları",
         "logout": "Çıkış yap",
         "reset": "Cüzdanı Sıfırla",
@@ -478,7 +478,7 @@
         "bundleHashCopied": "Paket karması kopyalanır",
         "noTransactionsFound": "İşlem bulunamadı",
         "emptyHistory": "İşlem geçmişiniz boş",
-        "hideZeroBalance": "Hide zero value",
+        "hideZeroBalance": "Sıfır değerini gizle",
         "bundleHashCopiedExplanation": "Paket karması panoya kopyalanmış.",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adres panoya kopyalanmış.",
@@ -497,7 +497,7 @@
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "X'ten büyük bir değere sahip işlemleri bulun",
         "searchHelpLess": "X'ten daha düşük bir değere sahip işlemleri bulun",
-        "transactions": "Transactions",
+        "transactions": "İşlemler",
         "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
@@ -509,10 +509,10 @@
         "tools": "Araçlar"
     },
     "nodeSettings": {
-        "automaticNodeManagement": "Automatic node management",
+        "automaticNodeManagement": "Otomatik ağ yönetimi",
         "addCustomNodes": "Düğüm ekle",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "autoNodeList": "Varsayılan ağ listesini kullan",
+        "nodeAutoswitching": "Birincil ağı otomatik seç",
         "primaryNode": "Birincil ağ",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
@@ -521,7 +521,7 @@
         "nodeEnoughNodesTitle": "Yeterli ağ yok",
         "nodeEnoughNodesExplanation": "There are not enough nodes to enable quorum.",
         "nodeEnoughNodesExplanationCustomNodes": "Add more custom nodes or enable the remote node list.",
-        "nodeSettingsUpdatedTitle": "Node settings updated",
+        "nodeSettingsUpdatedTitle": "Ağ ayarları güncellendi",
         "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
         "outsourcePow": "Outsource proof of work",
         "autoSelectPowNode": "Autoselect proof of work node",
@@ -550,7 +550,7 @@
         "manualSync": "Manuel Senkronizasyon",
         "snapshotTransition": "Anlık görüntü geçişi",
         "pow": "İş kanıtı",
-        "autoPromotion": "Auto-promotion",
+        "autoPromotion": "Otomatik teşvik etme",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work.",
         "deepLinking": "Deep linking",
@@ -594,7 +594,7 @@
         "million": "Milyon",
         "thousand": "Bin",
         "one": "Bir",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTAlar genellikle bir milyonun katlarında elde edilirler ama tek bir IOTA olarak transfer edilebilirler."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Neden varlıklarımın hepsini harcayamıyorum?",
@@ -712,7 +712,7 @@
         "change": "Değiştir (24 saat)",
         "volume": "Hacim (24 saat)",
         "error": "Grafik verileri alınırken hata oluştu",
-        "currentValue": "Current Value"
+        "currentValue": "Anlık Değer"
     },
     "rootDetection": {
         "warning": "UYARI",
@@ -743,8 +743,8 @@
         "proofOfWork": "İşin kanıtı tamamlanıyor",
         "broadcasting": "Yayınlanıyor",
         "preparingData": "Veri hazırlanıyor",
-        "migratingSettings": "Migrating settings",
-        "migratingAccounts": "Migrating accounts",
+        "migratingSettings": "Taşıma ayarları",
+        "migratingAccounts": "Hesapları taşımak",
         "cleaningUpOldData": "Eski veriler temizleniyor",
         "migrationComplete": "Geçiş tamamlandı",
         "transferComplete": "Transfer tamamlandı"
@@ -758,7 +758,7 @@
         "isThisCorrect": "Bu doğru mu?",
         "snapshotExplanation": "Tangle'ın boyutunu küçültmek için sık sık bir anlık görüntü oluşturulur.",
         "hasSnapshotTakenPlace": "Bir anlık görüntü mü oluşturuldu? Geçişi sağlamak için lütfen aşağıdaki tuşa basın.",
-        "transition": "Transition",
+        "transition": "Geçiş",
         "transitioning": "Anlık görüntü için geçiş sağlanıyor.",
         "generatingAndDetecting": "Adresler yaratılıyor ve varlıklar algılanıyor.",
         "attaching": "Tangle'a adresler ekleniyor.",
@@ -782,17 +782,17 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Yeni versiyon mevcut",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "installUpdate": "Güncellemeyi yükle ve yeniden başlat",
+        "installUpdateExplanation": "İndirme tamamlandı, Trinity şimdi güncellemeyi yüklemek için yeniden başlayacak.",
+        "downloadingUpdate": "Güncelleme indiriliyor",
+        "downloadProgress": "{{total}}'in {{transferred}} kadarı indirildi"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Hata kaydı"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept",
+        "termsAndConditions": "Şartlar ve Koşullar",
+        "accept": "Kabul ediyorum",
         "readAllToContinue": "Lütfen tüm metni okuyun"
     },
     "privacyPolicy": {
@@ -816,8 +816,8 @@
         "typeConfirmations": "Notify me about confirmations",
         "typeMessages": "Notify me about zero value transactions",
         "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
+        "valueTx": "{{account}} 'a {{value}} alınıyor",
+        "messageTx": " {{account}}'a bir mesaj aldınız",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     },
