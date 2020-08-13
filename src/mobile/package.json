@@ -37,6 +37,7 @@
     "@tradle/react-native-http": "^2.0.0",
     "axios": "^0.18.1",
     "bugsnag-react-native": "^2.23.6",
+    "elliptic": "^6.5.3",
     "events": "^1.1.1",
     "hoist-non-react-statics": "^3.3.2",
     "intl": "^1.2.5",
