@@ -415,7 +415,7 @@ export function setFullNode(node, addingCustomNode = false) {
 
     return (dispatch) => {
         dispatch(dispatcher.request());
-        throwIfNodeNotHealthy(node, true)
+        throwIfNodeNotHealthy(node)
             .then(() => allowsRemotePow(node))
             .then((hasRemotePow) => {
                 // Change IOTA provider on the global iota instance

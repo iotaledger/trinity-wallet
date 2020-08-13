@@ -578,16 +578,7 @@ describe('libs: iota/addresses', () => {
                             } else if (body.command === 'getNodeInfo') {
                                 return {
                                     appVersion: '1',
-                                    latestMilestone: LATEST_MILESTONE,
-                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
-                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
-                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
-                                };
-                            } else if (body.command === 'getTrytes') {
-                                return {
-                                    trytes: includes(body.hashes, LATEST_MILESTONE)
-                                        ? milestoneTrytes
-                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                    isSynced: true,
                                 };
                             }
 

@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import head from 'lodash/head';
 import has from 'lodash/has';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
@@ -8,7 +7,6 @@ import IOTA from 'iota.lib.js';
 import { composeAPI } from '@iota/core';
 import { iota, quorum } from './index';
 import Errors from '../errors';
-import { isWithinMinutes } from '../date';
 import {
     DEFAULT_BALANCES_THRESHOLD,
     DEFAULT_DEPTH,
@@ -20,7 +18,6 @@ import {
     ATTACH_TO_TANGLE_REQUEST_TIMEOUT,
     GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
-    MAX_MILESTONE_FALLBEHIND,
     IS_PROMOTABLE_TIMEOUT,
 } from '../../config';
 import {
@@ -29,7 +26,7 @@ import {
     isBundle,
     isBundleTraversable,
 } from './transfers';
-import { EMPTY_HASH_TRYTES, withRequestTimeoutsHandler } from './utils';
+import { withRequestTimeoutsHandler } from './utils';
 
 /**
  * Returns timeouts for specific quorum requests
@@ -654,43 +651,14 @@ const getTrytesAsync = (settings) => (hashes) =>
  *
  * @returns {Promise}
  */
-const isNodeHealthy = (settings, skipMilestoneCheck = false) => {
-    const cached = {
-        latestMilestone: EMPTY_HASH_TRYTES,
-    };
+const isNodeHealthy = (settings) => {
+    return getNodeInfoAsync(settings)().then(({ appVersion, isSynced }) => {
+        if (['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1)) {
+            throw new Error(Errors.UNSUPPORTED_NODE);
+        }
 
-    return getNodeInfoAsync(settings)()
-        .then(
-            ({
-                appVersion,
-                latestMilestone,
-                latestMilestoneIndex,
-                latestSolidSubtangleMilestone,
-                latestSolidSubtangleMilestoneIndex,
-            }) => {
-                if (['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1)) {
-                    throw new Error(Errors.UNSUPPORTED_NODE);
-                }
-                cached.latestMilestone = latestMilestone;
-                if (
-                    (cached.latestMilestone === latestSolidSubtangleMilestone ||
-                        latestMilestoneIndex - MAX_MILESTONE_FALLBEHIND <= latestSolidSubtangleMilestoneIndex) &&
-                    cached.latestMilestone !== EMPTY_HASH_TRYTES
-                ) {
-                    return getTrytesAsync(settings)([cached.latestMilestone]);
-                }
-
-                throw new Error(Errors.NODE_NOT_SYNCED);
-            },
-        )
-        .then((trytes) => {
-            if (skipMilestoneCheck) {
-                return true;
-            }
-            const { timestamp } = iota.utils.transactionObject(head(trytes), cached.latestMilestone);
-
-            return isWithinMinutes(timestamp * 1000, 5 * MAX_MILESTONE_FALLBEHIND);
-        });
+        return isSynced;
+    });
 };
 
 /**
@@ -726,4 +694,5 @@ export {
     allowsRemotePow,
     isNodeHealthy,
     isPromotable,
+    getTrytesAsync,
 };
