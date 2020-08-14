@@ -13,7 +13,6 @@ import { iota, quorum } from 'libs/iota';
 import Errors from 'libs/errors';
 
 import {
-    changeAutoPromotionSettings,
     changeDeepLinkingSettings,
     setLockScreenTimeout,
     setTray,
@@ -54,8 +53,6 @@ class Advanced extends PureComponent {
         setProxy: PropTypes.func.isRequired,
         /** @ignore */
         setNotifications: PropTypes.func.isRequired,
-        /** @ignore */
-        changeAutoPromotionSettings: PropTypes.func.isRequired,
         /** @ignore */
         changeDeepLinkingSettings: PropTypes.func.isRequired,
         /** @ignore */
@@ -202,7 +199,6 @@ class Advanced extends PureComponent {
         const {
             settings,
             wallet,
-            changeAutoPromotionSettings,
             changeDeepLinkingSettings,
             lockScreenTimeout,
             setNotifications,
@@ -379,7 +375,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
-    changeAutoPromotionSettings,
     changeDeepLinkingSettings,
     setLockScreenTimeout,
     setTray,

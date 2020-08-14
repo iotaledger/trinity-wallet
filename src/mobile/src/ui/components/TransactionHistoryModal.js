@@ -309,9 +309,7 @@ export default class TransactionHistoryModal extends PureComponent {
             mode,
             disableWhen,
             retryFailedTransaction,
-            promote,
             isFailedTransaction,
-            bundleIsBeingPromoted,
         } = this.props;
         const { addressesScrollable, messagesScrollable } = this.state;
 

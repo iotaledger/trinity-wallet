@@ -24,7 +24,7 @@ import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
 import orderBy from 'lodash/orderBy';
 import xor from 'lodash/xor';
-import { DEFAULT_TAG, DEFAULT_MIN_WEIGHT_MAGNITUDE, BUNDLE_OUTPUTS_THRESHOLD, __DEV__, PROMOTION_WITH_GET_TIP_INFO_MAX_ATTEMPTS } from '../../config';
+import { DEFAULT_TAG, DEFAULT_MIN_WEIGHT_MAGNITUDE, BUNDLE_OUTPUTS_THRESHOLD, PROMOTION_WITH_GET_TIP_INFO_MAX_ATTEMPTS } from '../../config';
 import { iota } from './index';
 import { accumulateBalance } from './addresses';
 import {
