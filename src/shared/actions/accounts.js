@@ -38,19 +38,6 @@ export const syncAccountBeforeManualPromotion = (payload) => ({
 });
 
 /**
- * Dispatch to update account state after promoting a transaction
- *
- * @method syncAccountAfterPromotion
- *
- * @param {object} payload
- * @returns {{type: {string}, payload: {object} }}
- */
-export const syncAccountAfterPromotion = (payload) => ({
-    type: AccountsActionTypes.SYNC_ACCOUNT_AFTER_PROMOTION,
-    payload,
-});
-
-/**
  * Dispatch to update account state after sending a transaction*
  *
  * @method updateAccountInfoAfterSpending
