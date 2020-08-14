@@ -42,8 +42,6 @@ export class Poll extends Component {
         /** @ignore */
         unconfirmedBundleTails: PropTypes.object.isRequired,
         /** @ignore */
-        isAutoPromotionEnabled: PropTypes.bool.isRequired,
-        /** @ignore */
         setPollFor: PropTypes.func.isRequired,
         /** @ignore */
         fetchMarketData: PropTypes.func.isRequired,
@@ -98,10 +96,6 @@ export class Poll extends Component {
         this.fetchLatestAccountInfo = this.fetchLatestAccountInfo.bind(this);
         this.promote = this.promote.bind(this);
         this.retryFailedTransaction = this.retryFailedTransaction.bind(this);
-
-        this.state = {
-            autoPromoteSkips: 0,
-        };
     }
 
     componentDidMount() {
@@ -218,29 +212,17 @@ export class Poll extends Component {
     }
 
     async promote() {
-        const { isAutoPromotionEnabled, unconfirmedBundleTails, selectedAccountType, password } = this.props;
+        const { unconfirmedBundleTails, selectedAccountType, password } = this.props;
 
-        const { autoPromoteSkips } = this.state;
+        if (!isEmpty(unconfirmedBundleTails)) {
+            // TODO (laumair): Promote transactions in order of oldest to latest
+            const bundleHashes = keys(unconfirmedBundleTails);
+            const bundleHashToPromote = bundleHashes[random(size(bundleHashes) - 1)];
 
-        if (isAutoPromotionEnabled && !isEmpty(unconfirmedBundleTails)) {
-            if (autoPromoteSkips > 0) {
-                this.setState({
-                    autoPromoteSkips: autoPromoteSkips - 1,
-                });
-            } else {
-                // TODO (laumair): Promote transactions in order of oldest to latest
-                const bundleHashes = keys(unconfirmedBundleTails);
-                const bundleHashToPromote = bundleHashes[random(size(bundleHashes) - 1)];
+            const { accountName } = unconfirmedBundleTails[bundleHashToPromote];
 
-                this.setState({
-                    autoPromoteSkips: 2,
-                });
-
-                const { accountName } = unconfirmedBundleTails[bundleHashToPromote];
-
-                const seedStore = await new SeedStore[selectedAccountType](password, accountName);
-                return this.props.promoteTransfer(bundleHashToPromote, accountName, seedStore);
-            }
+            const seedStore = await new SeedStore[selectedAccountType](password, accountName);
+            return this.props.promoteTransfer(bundleHashToPromote, accountName, seedStore);
         }
 
         return this.moveToNextPollService();
@@ -260,7 +242,6 @@ const mapStateToProps = (state) => ({
     isPollingMarketData: state.polling.isFetchingMarketData,
     isPollingAccountInfo: state.polling.isFetchingAccountInfo,
     isAutoPromoting: state.polling.isAutoPromoting,
-    isAutoPromotionEnabled: state.settings.autoPromotion,
     isPromotingTransaction: state.ui.isPromotingTransaction,
     isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
     isSyncing: state.ui.isSyncing,
