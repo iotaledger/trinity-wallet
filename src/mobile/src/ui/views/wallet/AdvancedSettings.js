@@ -90,12 +90,6 @@ export class AdvancedSettings extends PureComponent {
                 },
             },
             {
-                name: t('autoPromotion'),
-                icon: 'sync',
-                function: () => this.props.setSetting('autoPromotion'),
-                currentSetting: autoPromotion ? t('enabled') : t('disabled'),
-            },
-            {
                 name: t('deepLinking'),
                 icon: 'link',
                 function: () => this.props.setSetting('deepLinking'),
@@ -138,8 +132,5 @@ const mapDispatchToProps = {
 };
 
 export default withTranslation(['advancedSettings', 'settings', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(AdvancedSettings),
+    connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings),
 );

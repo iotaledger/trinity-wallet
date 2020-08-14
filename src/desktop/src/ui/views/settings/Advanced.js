@@ -230,16 +230,6 @@ class Advanced extends PureComponent {
 
                         {wallet && wallet.ready ? (
                             <React.Fragment>
-                                <h3>{t('advancedSettings:autoPromotion')}</h3>
-                                <Toggle
-                                    checked={settings.autoPromotion}
-                                    onChange={() => changeAutoPromotionSettings()}
-                                    on={t('enabled')}
-                                    off={t('disabled')}
-                                />
-                                <p>{t('advancedSettings:autoPromotionExplanation')}</p>
-                                <hr />
-
                                 {Electron.getOS() === 'darwin' && (
                                     <React.Fragment>
                                         <h3>{t('tray:trayApplication')}</h3>
@@ -397,7 +387,4 @@ const mapDispatchToProps = {
     setProxy,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Advanced));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Advanced));
