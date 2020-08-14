@@ -331,15 +331,6 @@ export class ListComponent extends React.PureComponent {
                                                 {t('retry')}
                                             </Button>
                                         )}
-                                        {!isActiveFailed && (
-                                            <Button
-                                                className="small"
-                                                loading={currentlyPromotingBundleHash === activeTx.bundle}
-                                                onClick={(e) => this.promoteTransaction(e, activeTx.bundle)}
-                                            >
-                                                {t('retry')}
-                                            </Button>
-                                        )}
                                     </nav>
                                 )}
                             </div>
