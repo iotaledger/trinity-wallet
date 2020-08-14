@@ -136,7 +136,8 @@
     "acorn-globals": ">=6.0.0",
     "**/randomatic/kind-of": "^6.0.3",
     "**/sane/micromatch/kind-of": "^6.0.3",
-    "lodash": ">=4.17.19"
+    "lodash": ">=4.17.19",
+    "elliptic": ">=6.5.3"
   },
   "jest": {
     "preset": "react-native",
