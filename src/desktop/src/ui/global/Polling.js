@@ -48,8 +48,6 @@ class Polling extends React.PureComponent {
         /** @ignore */
         unconfirmedBundleTails: PropTypes.object.isRequired,
         /** @ignore */
-        autoPromotion: PropTypes.bool.isRequired,
-        /** @ignore */
         setPollFor: PropTypes.func.isRequired,
         /** @ignore */
         fetchMarketData: PropTypes.func.isRequired,
@@ -88,10 +86,6 @@ class Polling extends React.PureComponent {
         isSendingTransfer: PropTypes.bool.isRequired,
         /** @ignore */
         isFetchingAccountInfo: PropTypes.bool.isRequired,
-    };
-
-    state = {
-        autoPromoteSkips: 0,
     };
 
     componentDidMount() {
@@ -166,25 +160,17 @@ class Polling extends React.PureComponent {
     };
 
     promote = async () => {
-        const { unconfirmedBundleTails, autoPromotion, selectedAccountType, password } = this.props;
+        const { unconfirmedBundleTails, selectedAccountType, password } = this.props;
 
-        const { autoPromoteSkips } = this.state;
+        if (!isEmpty(unconfirmedBundleTails)) {
+            const bundleHashes = keys(unconfirmedBundleTails);
+            const bundleHashToPromote = bundleHashes[random(size(bundleHashes) - 1)];
 
-        if (autoPromotion && !isEmpty(unconfirmedBundleTails)) {
-            if (autoPromoteSkips) {
-                this.setState({ autoPromoteSkips: autoPromoteSkips - 1 });
-            } else {
-                this.setState({ autoPromoteSkips: 2 });
+            const { accountName } = unconfirmedBundleTails[bundleHashToPromote];
 
-                const bundleHashes = keys(unconfirmedBundleTails);
-                const bundleHashToPromote = bundleHashes[random(size(bundleHashes) - 1)];
+            const seedStore = await new SeedStore[selectedAccountType](password, name);
 
-                const { accountName } = unconfirmedBundleTails[bundleHashToPromote];
-
-                const seedStore = await new SeedStore[selectedAccountType](password, name);
-
-                return this.props.promoteTransfer(bundleHashToPromote, accountName, seedStore);
-            }
+            return this.props.promoteTransfer(bundleHashToPromote, accountName, seedStore);
         }
 
         return this.moveToNextPollService();
@@ -228,7 +214,6 @@ const mapStateToProps = (state) => ({
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isFetchingAccountInfo: state.ui.isFetchingAccountInfo,
-    autoPromotion: state.settings.autoPromotion,
     accountNames: getAccountNamesFromState(state),
     unconfirmedBundleTails: getPromotableBundlesFromState(state),
     selectedAccountName: getSelectedAccountName(state),

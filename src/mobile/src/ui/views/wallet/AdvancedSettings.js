@@ -28,8 +28,6 @@ export class AdvancedSettings extends PureComponent {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        autoPromotion: PropTypes.bool.isRequired,
-        /** @ignore */
         deepLinking: PropTypes.bool.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
@@ -77,7 +75,7 @@ export class AdvancedSettings extends PureComponent {
      * @returns {function}
      */
     renderSettingsContent() {
-        const { theme, t, autoPromotion, deepLinking, isSendingTransfer } = this.props;
+        const { theme, t, deepLinking, isSendingTransfer } = this.props;
         const rows = [
             {
                 name: t('settings:nodeSettings'),
@@ -88,12 +86,6 @@ export class AdvancedSettings extends PureComponent {
                     }
                     return this.props.setSetting('nodeSettings');
                 },
-            },
-            {
-                name: t('autoPromotion'),
-                icon: 'sync',
-                function: () => this.props.setSetting('autoPromotion'),
-                currentSetting: autoPromotion ? t('enabled') : t('disabled'),
             },
             {
                 name: t('deepLinking'),
@@ -127,7 +119,6 @@ export class AdvancedSettings extends PureComponent {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
-    autoPromotion: state.settings.autoPromotion,
     deepLinking: state.settings.deepLinking,
     isSendingTransfer: state.ui.isSendingTransfer,
 });
@@ -138,8 +129,5 @@ const mapDispatchToProps = {
 };
 
 export default withTranslation(['advancedSettings', 'settings', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(AdvancedSettings),
+    connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings),
 );

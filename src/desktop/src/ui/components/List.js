@@ -33,8 +33,6 @@ export class ListComponent extends React.PureComponent {
         mode: PropTypes.string.isRequired,
         /** Is history updating */
         isLoading: PropTypes.bool.isRequired,
-        /** Bundle hash for the transaction that is currently being promoted */
-        currentlyPromotingBundleHash: PropTypes.string.isRequired,
         /** Current transaction retry state */
         isRetryingFailedTransaction: PropTypes.bool.isRequired,
         /** Hide empty transactions flag */
@@ -150,7 +148,6 @@ export class ListComponent extends React.PureComponent {
         const {
             isLoading,
             isBusy,
-            currentlyPromotingBundleHash,
             isRetryingFailedTransaction,
             mode,
             hideEmptyTransactions,
@@ -327,15 +324,6 @@ export class ListComponent extends React.PureComponent {
                                                 className="small"
                                                 loading={isRetryingFailedTransaction}
                                                 onClick={(e) => this.retryFailedTransaction(e, activeTx.bundle)}
-                                            >
-                                                {t('retry')}
-                                            </Button>
-                                        )}
-                                        {!isActiveFailed && (
-                                            <Button
-                                                className="small"
-                                                loading={currentlyPromotingBundleHash === activeTx.bundle}
-                                                onClick={(e) => this.promoteTransaction(e, activeTx.bundle)}
                                             >
                                                 {t('retry')}
                                             </Button>
