@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { findSyncedNodes, fallbackToSafeResult, determineQuorumResult } from '../../../libs/iota/quorum';
-import * as utils from '../../../libs/iota/utils';
+import * as extendedApis from '../../../libs/iota/extendedApi';
+import { EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
 
 describe('libs: iota/quorum', () => {
     describe('#determineQuorumResult', () => {
@@ -90,7 +91,7 @@ describe('libs: iota/quorum', () => {
             });
 
             describe('when frequency is less than 67 percent', () => {
-                it(`should return ${utils.EMPTY_HASH_TRYTES} as a fallback latestSolidSubtangleMilestone`, () => {
+                it(`should return ${EMPTY_HASH_TRYTES} as a fallback latestSolidSubtangleMilestone`, () => {
                     const correctHash = 'U'.repeat(81);
                     const incorrectHash = 'X'.repeat(81);
 
@@ -108,7 +109,7 @@ describe('libs: iota/quorum', () => {
                         'getNodeInfo:latestSolidSubtangleMilestone',
                         67,
                     );
-                    expect(result).to.equal(utils.EMPTY_HASH_TRYTES);
+                    expect(result).to.equal(EMPTY_HASH_TRYTES);
                 });
             });
         });
@@ -134,10 +135,8 @@ describe('libs: iota/quorum', () => {
         });
 
         describe('when method is getNodeInfo:latestSolidSubtangleMilestone', () => {
-            it(`should return ${utils.EMPTY_HASH_TRYTES}`, () => {
-                expect(fallbackToSafeResult('getNodeInfo:latestSolidSubtangleMilestone')).to.equal(
-                    utils.EMPTY_HASH_TRYTES,
-                );
+            it(`should return ${EMPTY_HASH_TRYTES}`, () => {
+                expect(fallbackToSafeResult('getNodeInfo:latestSolidSubtangleMilestone')).to.equal(EMPTY_HASH_TRYTES);
             });
         });
 
@@ -197,7 +196,7 @@ describe('libs: iota/quorum', () => {
                     const syncedNodes = nodes.slice(0, 7);
                     const blacklistedNodes = nodes.slice(7);
 
-                    const stub = sinon.stub(utils, 'throwIfNodeNotHealthy').resolves(true);
+                    const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(true);
 
                     return findSyncedNodes(nodes, 7, syncedNodes, blacklistedNodes).then((nodes) => {
                         expect(nodes).to.eql(syncedNodes);
@@ -214,7 +213,7 @@ describe('libs: iota/quorum', () => {
                     const syncedNodes = nodes.slice(0, 7);
                     const blacklistedNodes = nodes.slice(8);
 
-                    const stub = sinon.stub(utils, 'throwIfNodeNotHealthy').resolves(true);
+                    const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(true);
 
                     return findSyncedNodes(nodes, 7, syncedNodes, blacklistedNodes).then((newSyncedNodes) => {
                         expect(newSyncedNodes).to.eql(syncedNodes);
@@ -239,7 +238,7 @@ describe('libs: iota/quorum', () => {
                     const blacklistedNodes = nodes.slice(7);
                     const whitelistedNodes = nodes.slice(6, 7);
 
-                    const stub = sinon.stub(utils, 'throwIfNodeNotHealthy').resolves(true);
+                    const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(true);
 
                     return findSyncedNodes(nodes, 7, syncedNodes, blacklistedNodes).then((newSyncedNodes) => {
                         expect(newSyncedNodes).to.eql([...syncedNodes, ...whitelistedNodes]);

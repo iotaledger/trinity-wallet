@@ -13,9 +13,9 @@ import split from 'lodash/split';
 import sampleSize from 'lodash/sampleSize';
 import unionBy from 'lodash/unionBy';
 import uniqBy from 'lodash/uniqBy';
-import { getIotaInstance, getApiTimeout } from './extendedApi';
+import { isNodeHealthy, getIotaInstance, getApiTimeout } from './extendedApi';
 import { QUORUM_THRESHOLD, QUORUM_SIZE, QUORUM_SYNC_CHECK_INTERVAL, DEFAULT_BALANCES_THRESHOLD } from '../../config';
-import { EMPTY_HASH_TRYTES, throwIfNodeNotHealthy } from './utils';
+import { EMPTY_HASH_TRYTES } from './utils';
 import { findMostFrequent } from '../utils';
 import Errors from '../errors';
 
@@ -138,7 +138,7 @@ const findSyncedNodes = (nodes, quorumSize, selectedNodes = [], blacklistedNodes
 
     return Promise.all(
         map(nodesToCheckSyncFor, ({ url, username, password }) =>
-            throwIfNodeNotHealthy({ url, username, password }).catch(() => undefined),
+            isNodeHealthy({ url, username, password }).catch(() => undefined),
         ),
     ).then((results) => {
         // Categorise synced/unsynced nodes

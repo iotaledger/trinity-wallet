@@ -578,7 +578,7 @@ describe('libs: iota/addresses', () => {
                             } else if (body.command === 'getNodeInfo') {
                                 return {
                                     appVersion: '1',
-                                    isSynced: true,
+                                    isHealthy: true,
                                 };
                             }
 
