@@ -21,6 +21,7 @@ import {
     GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
     MAX_MILESTONE_FALLBEHIND,
+    MINIMUM_ALLOWED_HORNET_VERSION,
 } from '../../config';
 import {
     sortTransactionTrytesArray,
@@ -94,18 +95,18 @@ const getBalancesAsync = (settings, withQuorum = true) => (addresses, threshold 
     withQuorum
         ? quorum.getBalances(addresses, threshold)
         : new Promise((resolve, reject) => {
-            getIotaInstance(settings, getApiTimeout('getBalances')).api.getBalances(
-                addresses,
-                threshold,
-                (err, balances) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(balances);
-                    }
-                },
-            );
-        });
+              getIotaInstance(settings, getApiTimeout('getBalances')).api.getBalances(
+                  addresses,
+                  threshold,
+                  (err, balances) => {
+                      if (err) {
+                          reject(err);
+                      } else {
+                          resolve(balances);
+                      }
+                  },
+              );
+          });
 
 /**
  * Promisified version of iota.api.getNodeInfo
@@ -188,17 +189,17 @@ const getLatestInclusionAsync = (settings, withQuorum = false) => (hashes) =>
     withQuorum
         ? quorum.getLatestInclusion(hashes)
         : new Promise((resolve, reject) => {
-            getIotaInstance(settings, getApiTimeout('getInclusionStates')).api.getLatestInclusion(
-                hashes,
-                (err, states) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(states);
-                    }
-                },
-            );
-        });
+              getIotaInstance(settings, getApiTimeout('getInclusionStates')).api.getLatestInclusion(
+                  hashes,
+                  (err, states) => {
+                      if (err) {
+                          reject(err);
+                      } else {
+                          resolve(states);
+                      }
+                  },
+              );
+          });
 
 /**
  * Extended version of iota.api.promoteTransaction with an option to perform PoW locally
@@ -364,17 +365,17 @@ const wereAddressesSpentFromAsync = (settings, withQuorum = true) => (addresses)
     withQuorum
         ? quorum.wereAddressesSpentFrom(addresses)
         : new Promise((resolve, reject) => {
-            getIotaInstance(settings, getApiTimeout('wereAddressesSpentFrom')).api.wereAddressesSpentFrom(
-                addresses,
-                (err, wereSpent) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(wereSpent);
-                    }
-                },
-            );
-        });
+              getIotaInstance(settings, getApiTimeout('wereAddressesSpentFrom')).api.wereAddressesSpentFrom(
+                  addresses,
+                  (err, wereSpent) => {
+                      if (err) {
+                          reject(err);
+                      } else {
+                          resolve(wereSpent);
+                      }
+                  },
+              );
+          });
 
 /**
  * Promisified version of iota.api.sendTransfer
@@ -538,7 +539,7 @@ const getTipInfoAsync = (settings) => (tailTransactionHash) => {
             if (response.ok) {
                 return res;
             }
-            
+
             throw new Error(res.error);
         });
     });
@@ -686,13 +687,20 @@ const isNodeHealthy = (settings, skipMilestoneCheck = false) => {
     return getNodeInfoAsync(settings)().then(
         ({
             appVersion,
+            appName,
             latestMilestone,
             latestMilestoneIndex,
             latestSolidSubtangleMilestone,
             latestSolidSubtangleMilestoneIndex,
             ...rest
         }) => {
-            if (['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1)) {
+            if (
+                ['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1) ||
+                // Blacklist nodes running [IRI](https://github.com/iotaledger/iri)
+                ['iri'].some((el) => appName.toLowerCase().indexOf(el) > -1) ||
+                // Blacklist nodes running [Hornet](https://github.com/iotaledger/hornet) running lower version than ALLOWED_MINIMUM_HORNET_VERSION
+                appVersion < MINIMUM_ALLOWED_HORNET_VERSION
+            ) {
                 throw new Error(Errors.UNSUPPORTED_NODE);
             }
 
@@ -754,5 +762,5 @@ export {
     getTipInfoAsync,
     allowsRemotePow,
     isNodeHealthy,
-    isPromotable
+    isPromotable,
 };

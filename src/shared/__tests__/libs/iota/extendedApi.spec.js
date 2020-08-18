@@ -43,7 +43,8 @@ describe('libs: iota/extendedApi', () => {
 
                         const resultMap = {
                             getNodeInfo: {
-                                appVersion: '0.0.0-RC2',
+                                appVersion: '0.5.0-RC2',
+                                appName: 'HORNET',
                             },
                         };
 
@@ -83,7 +84,8 @@ describe('libs: iota/extendedApi', () => {
 
                             const resultMap = {
                                 getNodeInfo: {
-                                    appVersion: '0.0.0',
+                                    appVersion: '0.5.0',
+                                    appName: 'HORNET',
                                     isHealthy: true,
                                 },
                             };
@@ -117,7 +119,8 @@ describe('libs: iota/extendedApi', () => {
 
                             const resultMap = {
                                 getNodeInfo: {
-                                    appVersion: '0.0.0',
+                                    appVersion: '0.5.0',
+                                    appName: 'HORNET',
                                     isHealthy: false,
                                 },
                             };
@@ -153,7 +156,8 @@ describe('libs: iota/extendedApi', () => {
 
                             const resultMap = {
                                 getNodeInfo: {
-                                    appVersion: '0.0.0',
+                                    appVersion: '0.5.0',
+                                    appName: 'HORNET',
                                     latestMilestone: EMPTY_HASH_TRYTES,
                                     latestSolidSubtangleMilestone: 'U'.repeat(81),
                                 },
@@ -196,7 +200,8 @@ describe('libs: iota/extendedApi', () => {
 
                             const resultMap = {
                                 getNodeInfo: {
-                                    appVersion: '0.0.0',
+                                    appVersion: '0.5.0',
+                                    appName: 'HORNET',
                                     latestMilestone: EMPTY_HASH_TRYTES,
                                     latestSolidSubtangleMilestone: EMPTY_HASH_TRYTES,
                                 },
@@ -240,7 +245,8 @@ describe('libs: iota/extendedApi', () => {
 
                                 const resultMap = {
                                     getNodeInfo: {
-                                        appVersion: '0.0.0',
+                                        appVersion: '0.5.0',
+                                        appName: 'HORNET',
                                         latestMilestoneIndex: 426550,
                                         latestSolidSubtangleMilestoneIndex: 426550 - MAX_MILESTONE_FALLBEHIND,
                                         latestMilestone: 'U'.repeat(81),
@@ -278,7 +284,8 @@ describe('libs: iota/extendedApi', () => {
 
                                 const resultMap = {
                                     getNodeInfo: {
-                                        appVersion: '0.0.0',
+                                        appVersion: '0.5.0',
+                                        appName: 'HORNET',
                                         latestMilestoneIndex: 426550,
                                         latestSolidSubtangleMilestoneIndex: 426550 - MAX_MILESTONE_FALLBEHIND,
                                         latestMilestone: 'U'.repeat(81),
@@ -333,7 +340,8 @@ describe('libs: iota/extendedApi', () => {
 
                                 const resultMap = {
                                     getNodeInfo: {
-                                        appVersion: '0.0.0',
+                                        appVersion: '0.5.0',
+                                        appName: 'HORNET',
                                         latestMilestoneIndex: 426550,
                                         latestSolidSubtangleMilestoneIndex: 426550 - (MAX_MILESTONE_FALLBEHIND - 1),
                                         latestMilestone: 'U'.repeat(81),
@@ -371,7 +379,8 @@ describe('libs: iota/extendedApi', () => {
 
                                 const resultMap = {
                                     getNodeInfo: {
-                                        appVersion: '0.0.0',
+                                        appVersion: '0.5.0',
+                                        appName: 'HORNET',
                                         latestMilestoneIndex: 426550,
                                         latestSolidSubtangleMilestoneIndex: 426550 - (MAX_MILESTONE_FALLBEHIND - 1),
                                         latestMilestone: 'U'.repeat(81),
@@ -425,7 +434,8 @@ describe('libs: iota/extendedApi', () => {
 
                                 const resultMap = {
                                     getNodeInfo: {
-                                        appVersion: '0.0.0',
+                                        appVersion: '0.5.0',
+                                        appName: 'HORNET',
                                         latestMilestone: 'U'.repeat(81),
                                         latestSolidSubtangleMilestone: 'U'.repeat(81),
                                     },
@@ -461,7 +471,8 @@ describe('libs: iota/extendedApi', () => {
 
                                 const resultMap = {
                                     getNodeInfo: {
-                                        appVersion: '0.0.0',
+                                        appVersion: '0.5.0',
+                                        appName: 'HORNET',
                                         latestMilestone: 'U'.repeat(81),
                                         latestSolidSubtangleMilestone: 'U'.repeat(81),
                                     },

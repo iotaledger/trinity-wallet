@@ -577,7 +577,8 @@ describe('libs: iota/addresses', () => {
                                 return { states: map(addresses, () => true) };
                             } else if (body.command === 'getNodeInfo') {
                                 return {
-                                    appVersion: '1',
+                                    appVersion: '0.5.0',
+                                    appName: 'HORNET',
                                     isHealthy: true,
                                 };
                             }
@@ -619,7 +620,8 @@ describe('libs: iota/addresses', () => {
                                     return { hashes: ['9'.repeat(81)] };
                                 } else if (body.command === 'getNodeInfo') {
                                     return {
-                                        appVersion: '1',
+                                        appVersion: '0.5.0',
+                                        appName: 'HORNET',
                                         latestMilestone: LATEST_MILESTONE,
                                         latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                         latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -672,7 +674,8 @@ describe('libs: iota/addresses', () => {
                                         return { balances: map(body.addresses, () => '10') };
                                     } else if (body.command === 'getNodeInfo') {
                                         return {
-                                            appVersion: '1',
+                                            appVersion: '0.5.0',
+                                            appName: 'HORNET',
                                             latestMilestone: LATEST_MILESTONE,
                                             latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                             latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -724,7 +727,8 @@ describe('libs: iota/addresses', () => {
                                         return { balances: map(body.addresses, () => '0') };
                                     } else if (body.command === 'getNodeInfo') {
                                         return {
-                                            appVersion: '1',
+                                            appVersion: '0.5.0',
+                                            appName: 'HORNET',
                                             latestMilestone: LATEST_MILESTONE,
                                             latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                             latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -780,7 +784,8 @@ describe('libs: iota/addresses', () => {
                             return { balances: map(addresses, () => '0') };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -889,7 +894,8 @@ describe('libs: iota/addresses', () => {
                             return { balances: map(addresses, (address) => resultMap[address].balance) };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -1008,7 +1014,8 @@ describe('libs: iota/addresses', () => {
                             return { balances: map(addresses, (address) => resultMap[address].balance) };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -1135,7 +1142,8 @@ describe('libs: iota/addresses', () => {
                             return { balances: map(body.addresses, () => '0') };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -1209,7 +1217,8 @@ describe('libs: iota/addresses', () => {
                             return { balances: map(body.addresses, (address) => addressMetaMap[address].balance) };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -1302,7 +1311,8 @@ describe('libs: iota/addresses', () => {
                             return { balances: map(body.addresses, (address) => addressMetaMap[address].balance) };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -1386,7 +1396,8 @@ describe('libs: iota/addresses', () => {
                             return { balances: map(body.addresses, () => false) };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -1481,7 +1492,8 @@ describe('libs: iota/addresses', () => {
                             return { balances: map(body.addresses, () => '0') };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -1538,7 +1550,8 @@ describe('libs: iota/addresses', () => {
                             return { balances: map(body.addresses, () => '0') };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -1666,7 +1679,8 @@ describe('libs: iota/addresses', () => {
                             };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -2061,7 +2075,8 @@ describe('libs: iota/addresses', () => {
                                 findTransactions: { hashes: [] },
                                 wereAddressesSpentFrom: { states: map(addresses, () => false) },
                                 getNodeInfo: {
-                                    appVersion: '1',
+                                    appVersion: '0.5.0',
+                                    appName: 'HORNET',
                                     latestMilestone: LATEST_MILESTONE,
                                     latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                     latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -2236,7 +2251,8 @@ describe('libs: iota/addresses', () => {
                             return { states: map(addresses, (address) => resultMap[address]) };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -2350,7 +2366,8 @@ describe('libs: iota/addresses', () => {
                             return { trytes: newZeroValueTransactionTrytes };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -2421,7 +2438,8 @@ describe('libs: iota/addresses', () => {
                             return { trytes: newZeroValueTransactionTrytes };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -2519,7 +2537,8 @@ describe('libs: iota/addresses', () => {
                             return { balances: { balances: map(body.addresses, () => '0') } };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -2628,7 +2647,8 @@ describe('libs: iota/addresses', () => {
                             };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -2852,7 +2872,8 @@ describe('libs: iota/addresses', () => {
                             return { states: map(addresses, () => false) };
                         } else if (command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -2900,7 +2921,8 @@ describe('libs: iota/addresses', () => {
                             return { states: map(addresses, () => true) };
                         } else if (command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -2948,7 +2970,8 @@ describe('libs: iota/addresses', () => {
                             return { states: map(addresses, (_, idx) => idx % 2 === 0) };
                         } else if (command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
