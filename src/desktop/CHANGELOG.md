@@ -4,6 +4,7 @@
 - Fix: Update sync check logic for Chrysalis Part 1
 - Fix: Out of sync errors
 - Fix: Deep linking
+- Update: Blacklist IRI and early Hornet versions
 
 ### 1.5.2
 - Fix: Auto-update and logout silently fail
