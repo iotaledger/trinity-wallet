@@ -24,7 +24,12 @@ import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
 import orderBy from 'lodash/orderBy';
 import xor from 'lodash/xor';
-import { DEFAULT_TAG, DEFAULT_MIN_WEIGHT_MAGNITUDE, BUNDLE_OUTPUTS_THRESHOLD, PROMOTION_WITH_GET_TIP_INFO_MAX_ATTEMPTS } from '../../config';
+import {
+    DEFAULT_TAG,
+    DEFAULT_MIN_WEIGHT_MAGNITUDE,
+    BUNDLE_OUTPUTS_THRESHOLD,
+    PROMOTION_WITH_GET_TIP_INFO_MAX_ATTEMPTS,
+} from '../../config';
 import { iota } from './index';
 import { accumulateBalance } from './addresses';
 import {
@@ -38,7 +43,6 @@ import {
     promoteTransactionAsync,
     replayBundleAsync,
     getTipInfoAsync,
-    isPromotable
 } from './extendedApi';
 import i18next from '../../libs/i18next';
 import { convertFromTrytes, EMPTY_HASH_TRYTES, VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX, unitStringToValue } from './utils';
@@ -66,10 +70,10 @@ export const getTransferValue = (inputs, outputs, addresses) => {
     return size(ownInputs)
         ? inputsValue - remainderValue
         : reduce(
-            filter(outputs, (output) => includes(addresses, output.address)),
-            (acc, output) => acc + output.value,
-            0,
-        );
+              filter(outputs, (output) => includes(addresses, output.address)),
+              (acc, output) => acc + output.value,
+              0,
+          );
 };
 
 /**
@@ -93,7 +97,7 @@ export const computeTransactionMessage = (tx) => {
  * @returns {function(array): Promise<object>}
  */
 export const findPromotableTail = (settings) => (tails) => {
-    const _findWithGetTipInfo = (attempt = 0) => {
+    const _findTail = (attempt = 0) => {
         if (attempt === PROMOTION_WITH_GET_TIP_INFO_MAX_ATTEMPTS) {
             return Promise.reject(new Error(Errors.SOMETHING_WENT_WRONG_DURING_PROMOTION));
         }
@@ -103,19 +107,18 @@ export const findPromotableTail = (settings) => (tails) => {
 
             // Raise an error if any (transaction) instance is already confirmed.
             if (some(results, (info) => info.confirmed)) {
-                throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);;
+                throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
             }
 
             // Check if there exists a non-lazy tip (requiring no promotion or reattachment)
             if (
                 some(
                     results,
-                    (info) => info.shouldPromote === false && info.shouldReattach === false && info.conflicting === false,
+                    (info) =>
+                        info.shouldPromote === false && info.shouldReattach === false && info.conflicting === false,
                 )
             ) {
-                return new Promise((resolve) => setTimeout(resolve, 5000)).then(() =>
-                    _findWithGetTipInfo(attempt)
-                );
+                return new Promise((resolve) => setTimeout(resolve, 5000)).then(() => _findTail(attempt));
             }
 
             // Find the tip that requires promotion
@@ -127,46 +130,7 @@ export const findPromotableTail = (settings) => (tails) => {
         });
     };
 
-    const _findWithCheckConsistency = (idx = 0) => {
-        let tailsAboveMaxDepth = [];
-
-        if (idx === 0) {
-            tailsAboveMaxDepth = filter(tails, (tx) => isAboveMaxDepth(tx.attachmentTimestamp)).sort(
-                (a, b) => b.attachmentTimestamp - a.attachmentTimestamp,
-            );
-        }
-
-        if (!tailsAboveMaxDepth[idx]) {
-            return Promise.resolve(undefined);
-        }
-
-        const thisTail = tailsAboveMaxDepth[idx];
-        const _isAboveMaxDepth = isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'));
-
-        // If tail is above max depth, skip checkConsistency call and use this tail as a reference for promotion
-        return _isAboveMaxDepth
-            ? Promise.resolve(thisTail)
-            : isPromotable(settings)(get(thisTail, 'hash'))
-                .then((state) => {
-                    if (state === true) {
-                        return thisTail;
-                    }
-
-                    idx += 1;
-                    return _findWithCheckConsistency(idx);
-                });
-    };
-
-    return _findWithGetTipInfo().catch((error) => {
-        if (
-            error.message.includes('getTipInfo') &&
-            (error.message.includes('is unknown') || error.message.includes('not available'))
-        ) {
-            return _findWithCheckConsistency();
-        }
-
-        throw error;
-    })
+    return _findTail();
 };
 
 /**
@@ -269,16 +233,16 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
     // TODO: But to make this process more secure, always sync addresses during poll
     return size(categorisedBundle.outputs) <= outputsThreshold
         ? {
-            inputs: categorisedBundle.inputs,
-            outputs: categorisedBundle.outputs,
-        }
+              inputs: categorisedBundle.inputs,
+              outputs: categorisedBundle.outputs,
+          }
         : {
-            inputs: categorisedBundle.inputs,
-            outputs: filter(
-                categorisedBundle.outputs,
-                (output) => includes(addresses, output.address) || isRemainder(output),
-            ),
-        };
+              inputs: categorisedBundle.inputs,
+              outputs: filter(
+                  categorisedBundle.outputs,
+                  (output) => includes(addresses, output.address) || isRemainder(output),
+              ),
+          };
 };
 
 /**
@@ -1068,7 +1032,7 @@ export const isBundleTraversable = (bundle, trunkTransaction, branchTransaction)
     every(orderBy(bundle, ['currentIndex'], ['desc']), (transaction, index, transactions) =>
         index
             ? transaction.trunkTransaction === transactions[index - 1].hash &&
-            transaction.branchTransaction === trunkTransaction
+              transaction.branchTransaction === trunkTransaction
             : transaction.trunkTransaction === trunkTransaction && transaction.branchTransaction === branchTransaction,
     );
 

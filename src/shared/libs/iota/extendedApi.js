@@ -94,18 +94,18 @@ const getBalancesAsync = (settings, withQuorum = true) => (addresses, threshold 
     withQuorum
         ? quorum.getBalances(addresses, threshold)
         : new Promise((resolve, reject) => {
-            getIotaInstance(settings, getApiTimeout('getBalances')).api.getBalances(
-                addresses,
-                threshold,
-                (err, balances) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(balances);
-                    }
-                },
-            );
-        });
+              getIotaInstance(settings, getApiTimeout('getBalances')).api.getBalances(
+                  addresses,
+                  threshold,
+                  (err, balances) => {
+                      if (err) {
+                          reject(err);
+                      } else {
+                          resolve(balances);
+                      }
+                  },
+              );
+          });
 
 /**
  * Promisified version of iota.api.getNodeInfo
@@ -188,17 +188,17 @@ const getLatestInclusionAsync = (settings, withQuorum = false) => (hashes) =>
     withQuorum
         ? quorum.getLatestInclusion(hashes)
         : new Promise((resolve, reject) => {
-            getIotaInstance(settings, getApiTimeout('getInclusionStates')).api.getLatestInclusion(
-                hashes,
-                (err, states) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(states);
-                    }
-                },
-            );
-        });
+              getIotaInstance(settings, getApiTimeout('getInclusionStates')).api.getLatestInclusion(
+                  hashes,
+                  (err, states) => {
+                      if (err) {
+                          reject(err);
+                      } else {
+                          resolve(states);
+                      }
+                  },
+              );
+          });
 
 /**
  * Extended version of iota.api.promoteTransaction with an option to perform PoW locally
@@ -364,17 +364,17 @@ const wereAddressesSpentFromAsync = (settings, withQuorum = true) => (addresses)
     withQuorum
         ? quorum.wereAddressesSpentFrom(addresses)
         : new Promise((resolve, reject) => {
-            getIotaInstance(settings, getApiTimeout('wereAddressesSpentFrom')).api.wereAddressesSpentFrom(
-                addresses,
-                (err, wereSpent) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(wereSpent);
-                    }
-                },
-            );
-        });
+              getIotaInstance(settings, getApiTimeout('wereAddressesSpentFrom')).api.wereAddressesSpentFrom(
+                  addresses,
+                  (err, wereSpent) => {
+                      if (err) {
+                          reject(err);
+                      } else {
+                          resolve(wereSpent);
+                      }
+                  },
+              );
+          });
 
 /**
  * Promisified version of iota.api.sendTransfer
@@ -534,13 +534,11 @@ const getTipInfoAsync = (settings) => (tailTransactionHash) => {
             'X-IOTA-API-Version': IRI_API_VERSION,
         }),
     }).then((response) => {
-        return response.json().then((res) => {
-            if (response.ok) {
-                return res;
-            }
-            
-            throw new Error(res.error);
-        });
+        if (response.ok) {
+            return response.json();
+        }
+
+        throw response;
     });
 };
 
@@ -721,17 +719,6 @@ const isNodeHealthy = (settings, skipMilestoneCheck = false) => {
     );
 };
 
-/**
- * Extended version of iota.api.isPromotable.
- *
- * @method isPromotable
- * @param {object} [settings]
- *
- * @returns {function(string): (Promise<boolean>)}
- */
-const isPromotable = (settings) => (tailTransactionHash, options = {}) =>
-    getIotaInstance(settings, getApiTimeout('isPromotable')).api.isPromotable(tailTransactionHash, options);
-
 export {
     getIotaInstance,
     getApiTimeout,
@@ -754,5 +741,4 @@ export {
     getTipInfoAsync,
     allowsRemotePow,
     isNodeHealthy,
-    isPromotable
 };
