@@ -86,6 +86,26 @@ export const generateErrorAlert = (generateDefaultAlert, err) => (dispatch) => {
 };
 
 /**
+ * Generates a generic error alert
+ *
+ * @method generateGenericErrorAlert
+ * @param {object} err
+ *
+ * @returns {function} dispatch
+ */
+export const generateGenericErrorAlert = (err) => (dispatch) => {
+    dispatch(
+        generateAlert(
+            'error',
+            i18next.t('global:somethingWentWrong'),
+            i18next.t('global:somethingWentWrongTryAgain'),
+            10000,
+            err,
+        ),
+    );
+};
+
+/**
  * Generates an error alert when an account info network call fails
  *
  * @method generateAccountInfoErrorAlert
