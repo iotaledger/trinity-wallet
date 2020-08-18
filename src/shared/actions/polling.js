@@ -377,12 +377,11 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
                     throw new Error(Errors.BUNDLE_NO_LONGER_FUNDED);
                 }
 
-                return findPromotableTail()(
+                return findPromotableTail(settings)(
                     filter(
                         getTransactionsForThisBundleHash(accountState.transactions),
                         (transaction) => transaction.currentIndex === 0,
                     ),
-                    0,
                 );
             });
     };

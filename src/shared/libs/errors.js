@@ -70,4 +70,5 @@ export default {
     MARKET_DATA_FAILURE: 'Could not fetch market data',
     NO_PAYMENT_CARDS: 'No payment cards',
     EXPIRED_TIMEOUT: 'Expired timeout.',
+    SOMETHING_WENT_WRONG_DURING_PROMOTION: 'Something went wrong during promotion.',
 };
