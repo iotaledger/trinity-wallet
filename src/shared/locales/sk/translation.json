@@ -25,6 +25,7 @@
         "invalidResponseFetchingAccountDesktop": "Pri načítavaní informácii o Vašom účte došlo ku chybe. Ak problém pretrváva, skúste zmeniť Node, alebo zakázať proxy server v nastaveniach Trinity.",
         "nodeOutOfSync": "Váš Node nie je synchronizovaný",
         "nodeOutOfSyncExplanation": "Vami zvolený Node nie je synchronizovaný. Prosím, zmeňte Node alebo to skúste znova.",
+        "nodeOutOfSyncByTimestampExplanation": "Váš aktuálne používaný node nie je zosynchronizovaný. Prosím zmeňte node alebo vyskúšajte ešte raz. Ak problém pretrváva, uistite sa, že vaše zariadenie má správne nastavený čas.",
         "experimentalNode": "Nepodporovaná verzia Nodu",
         "experimentalNodeExplanation": "Vami zvolený Node nie je synchronizovaný. Prosím zmeňte Node alebo akciu opakujte.",
         "thisNodeOutOfSync": "Vami zvolený Node nie je synchronizovaný. Prosím, zmeňte Node alebo to skúste znova.",

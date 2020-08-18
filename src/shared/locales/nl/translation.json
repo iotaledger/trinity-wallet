@@ -25,6 +25,7 @@
         "invalidResponseFetchingAccountDesktop": "De node geeft een foutmelding bij het ophalen van je gegevens. Als het probleem zich blijft voordoen kan je de node aanpassen of je systeem proxy uitschakelen in je Trinity instellingen.",
         "nodeOutOfSync": "Node gedesynchroniseerd",
         "nodeOutOfSyncExplanation": "Uw huidige node is gedesynchroniseerd. Verander uw node of probeer opnieuw.",
+        "nodeOutOfSyncByTimestampExplanation": "Uw geselecteerde node is niet gesynchroniseerd. Verander van node of probeer het opnieuw. Als het probleem zich blijft voordoen, zorg ervoor dat de tijdsinstellingen van uw apparaat correct zijn.",
         "experimentalNode": "Node versie wordt niet ondersteund",
         "experimentalNodeExplanation": "De geselecteerde node draait op een experimentele versie dat niet wordt ondersteund. Pas a.u.b. de node aan of probeer het nog een keer.",
         "thisNodeOutOfSync": "De node is niet gesynchroniseerd. Verander uw node of probeer opnieuw.",
