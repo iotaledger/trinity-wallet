@@ -25,7 +25,6 @@
         "invalidResponseFetchingAccountDesktop": "Node je vrnil neveljaven odziv med pridobivanjem podatkov o vašem računu. Če napaka ostaja, poskusite z menjavo Noda ali deaktivacijo proxy strežnika v Trinity nastavitvah.",
         "nodeOutOfSync": "Node ni sinhroniziran",
         "nodeOutOfSyncExplanation": "Trenutno izbran Node ni sinhroniziran. Poskusite ponovno ali izberite drugega.",
-        "nodeOutOfSyncByTimestampExplanation": "Vaš trenutno izbran Node ni sinkronisiran. Prosim zamenjajte Node ali poskusite ponovno. Če se napaka ponovi, preverite nastavitve časa na vaši napravi.",
         "experimentalNode": "Node različica ni podprta",
         "experimentalNodeExplanation": "Trenutno izbran Node deluje na poskusni verziji, ki ni podprta. Zamenjajte Node in poskusite ponovno.",
         "thisNodeOutOfSync": "Ta Node ni sinhroniziran. Poskusite ponovno ali izberite drugega.",
