@@ -9,6 +9,7 @@ import {
     generateTransitionErrorAlert,
     generateAddressesSyncRetryAlert,
     generateErrorAlert,
+    generateGenericErrorAlert,
 } from '../actions/alerts';
 import { setActiveStepIndex, startTrackingProgress, reset as resetProgress } from '../actions/progress';
 import { accumulateBalance, attachAndFormatAddress, syncAddresses } from '../libs/iota/addresses';
@@ -310,15 +311,7 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
                 dispatch(generateNewAddressSuccess());
             })
             .catch((err) => {
-                dispatch(
-                    generateAlert(
-                        'error',
-                        i18next.t('global:somethingWentWrong'),
-                        i18next.t('global:somethingWentWrongTryAgain'),
-                        10000,
-                        err,
-                    ),
-                );
+                dispatch(generateErrorAlert(generateGenericErrorAlert, err));
                 dispatch(generateNewAddressError());
             });
     };
@@ -653,5 +646,5 @@ export const displayTestWarning = () => ({
  */
 export const displaySeedMigrationAlert = (payload) => ({
     type: WalletActionTypes.DISPLAY_SEED_MIGRATION_ALERT,
-    payload
+    payload,
 });

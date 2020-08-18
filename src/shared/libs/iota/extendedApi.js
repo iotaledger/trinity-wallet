@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import head from 'lodash/head';
 import has from 'lodash/has';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
@@ -8,7 +7,6 @@ import IOTA from 'iota.lib.js';
 import { composeAPI } from '@iota/core';
 import { iota, quorum } from './index';
 import Errors from '../errors';
-import { isWithinMinutes } from '../date';
 import {
     DEFAULT_BALANCES_THRESHOLD,
     DEFAULT_DEPTH,
@@ -20,7 +18,6 @@ import {
     ATTACH_TO_TANGLE_REQUEST_TIMEOUT,
     GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
-    MAX_MILESTONE_FALLBEHIND,
     MINIMUM_ALLOWED_HORNET_VERSION,
 } from '../../config';
 import {
@@ -29,7 +26,7 @@ import {
     isBundle,
     isBundleTraversable,
 } from './transfers';
-import { EMPTY_HASH_TRYTES, withRequestTimeoutsHandler } from './utils';
+import { withRequestTimeoutsHandler } from './utils';
 
 /**
  * Returns timeouts for specific quorum requests
@@ -535,13 +532,11 @@ const getTipInfoAsync = (settings) => (tailTransactionHash) => {
             'X-IOTA-API-Version': IRI_API_VERSION,
         }),
     }).then((response) => {
-        return response.json().then((res) => {
-            if (response.ok) {
-                return res;
-            }
+        if (response.ok) {
+            return response.json();
+        }
 
-            throw new Error(res.error);
-        });
+        throw response;
     });
 };
 
@@ -653,25 +648,6 @@ const attachToTangleAsync = (settings, seedStore) => (
 };
 
 /**
- * Promisified version of iota.api.getTrytes
- *
- * @method getTrytesAsync
- * @param {object} [settings]
- *
- * @returns {function(array): Promise<array>}
- */
-const getTrytesAsync = (settings) => (hashes) =>
-    new Promise((resolve, reject) => {
-        getIotaInstance(settings).api.getTrytes(hashes, (err, trytes) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(trytes);
-            }
-        });
-    });
-
-/**
  * Checks if a node is synced and runs a stable IRI release
  *
  * @method isNodeHealthy
@@ -679,67 +655,22 @@ const getTrytesAsync = (settings) => (hashes) =>
  *
  * @returns {Promise}
  */
-const isNodeHealthy = (settings, skipMilestoneCheck = false) => {
-    const cached = {
-        latestMilestone: EMPTY_HASH_TRYTES,
-    };
+const isNodeHealthy = (settings) => {
+    return getNodeInfoAsync(settings)().then(({ appName, appVersion, isHealthy }) => {
+        if (
+            ['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1) ||
+            // Blacklist nodes running [IRI](https://github.com/iotaledger/iri)
+            ['iri'].some((el) => appName.toLowerCase().indexOf(el) > -1) ||
+            // Blacklist nodes running [Hornet](https://github.com/iotaledger/hornet) running lower version than ALLOWED_MINIMUM_HORNET_VERSION
+            (['hornet'].some((el) => appName.toLowerCase().indexOf(el) > -1) &&
+                appVersion < MINIMUM_ALLOWED_HORNET_VERSION)
+        ) {
+            throw new Error(Errors.UNSUPPORTED_NODE);
+        }
 
-    return getNodeInfoAsync(settings)().then(
-        ({
-            appVersion,
-            appName,
-            latestMilestone,
-            latestMilestoneIndex,
-            latestSolidSubtangleMilestone,
-            latestSolidSubtangleMilestoneIndex,
-            ...rest
-        }) => {
-            if (
-                ['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1) ||
-                // Blacklist nodes running [IRI](https://github.com/iotaledger/iri)
-                ['iri'].some((el) => appName.toLowerCase().indexOf(el) > -1) ||
-                // Blacklist nodes running [Hornet](https://github.com/iotaledger/hornet) running lower version than ALLOWED_MINIMUM_HORNET_VERSION
-                (['hornet'].some((el) => appName.toLowerCase().indexOf(el) > -1) &&
-                    appVersion < MINIMUM_ALLOWED_HORNET_VERSION)
-            ) {
-                throw new Error(Errors.UNSUPPORTED_NODE);
-            }
-
-            if (has(rest, 'isHealthy')) {
-                return rest.isHealthy;
-            }
-
-            cached.latestMilestone = latestMilestone;
-            if (
-                (cached.latestMilestone === latestSolidSubtangleMilestone ||
-                    latestMilestoneIndex - MAX_MILESTONE_FALLBEHIND <= latestSolidSubtangleMilestoneIndex) &&
-                cached.latestMilestone !== EMPTY_HASH_TRYTES
-            ) {
-                return getTrytesAsync(settings)([cached.latestMilestone]).then((trytes) => {
-                    if (skipMilestoneCheck) {
-                        return true;
-                    }
-                    const { timestamp } = iota.utils.transactionObject(head(trytes), cached.latestMilestone);
-
-                    return isWithinMinutes(timestamp * 1000, 5 * MAX_MILESTONE_FALLBEHIND);
-                });
-            }
-
-            throw new Error(Errors.NODE_NOT_SYNCED);
-        },
-    );
+        return isHealthy;
+    });
 };
-
-/**
- * Extended version of iota.api.isPromotable.
- *
- * @method isPromotable
- * @param {object} [settings]
- *
- * @returns {function(string): (Promise<boolean>)}
- */
-const isPromotable = (settings) => (tailTransactionHash, options = {}) =>
-    getIotaInstance(settings, getApiTimeout('isPromotable')).api.isPromotable(tailTransactionHash, options);
 
 export {
     getIotaInstance,
@@ -763,5 +694,4 @@ export {
     getTipInfoAsync,
     allowsRemotePow,
     isNodeHealthy,
-    isPromotable,
 };

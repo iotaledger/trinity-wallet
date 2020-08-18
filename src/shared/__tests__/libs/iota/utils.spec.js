@@ -171,7 +171,7 @@ describe('libs: iota/utils', () => {
         });
 
         describe('when node is not synced', () => {
-            it('should return throw an error with message "The selected node is out of sync by timestamp. Its view of the Tangle may be innacurate."', () => {
+            it('should return throw an error with message "The selected node is out of sync. Its view of the Tangle may be innacurate."', () => {
                 const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(false);
 
                 return throwIfNodeNotHealthy('foo')
@@ -180,7 +180,7 @@ describe('libs: iota/utils', () => {
                     })
                     .catch((error) => {
                         expect(error.message).to.equal(
-                            'The selected node is out of sync by timestamp. Its view of the Tangle may be innacurate.',
+                            'The selected node is out of sync. Its view of the Tangle may be innacurate.',
                         );
                         stub.restore();
                     });

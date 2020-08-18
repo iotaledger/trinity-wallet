@@ -17,8 +17,6 @@ export default {
     TRANSACTION_ALREADY_CONFIRMED: 'The transaction you are retrying has already confirmed.',
     INCOMING_TRANSFERS: 'Incoming transfers to all selected input addresses.',
     NODE_NOT_SYNCED: 'The selected node is out of sync. Its view of the Tangle may be innacurate.',
-    NODE_NOT_SYNCED_BY_TIMESTAMP:
-        'The selected node is out of sync by timestamp. Its view of the Tangle may be innacurate.',
     UNSUPPORTED_NODE: 'The currently selected node uses an unsupported IRI version.',
     INVALID_BUNDLE: 'The bundle is invalid.',
     INVALID_BUNDLE_CONSTRUCTED_WITH_REMOTE_POW: 'Invalid bundle constructed with remote proof-of-work.',

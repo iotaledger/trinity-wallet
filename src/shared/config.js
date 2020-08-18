@@ -83,9 +83,6 @@ export const QUORUM_SYNC_CHECK_INTERVAL = 120;
 export const MINIMUM_QUORUM_SIZE = 2;
 export const MAXIMUM_QUORUM_SIZE = 7;
 
-/** Maximum milestone fallbehind threshold for node sync checks */
-export const MAX_MILESTONE_FALLBEHIND = 2;
-
 export const MINIMUM_ALLOWED_HORNET_VERSION = '0.5.0';
 
 export const SEED_VAULT_DEFAULT_TITLE = 'SeedVault';

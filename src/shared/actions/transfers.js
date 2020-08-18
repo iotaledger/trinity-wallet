@@ -48,7 +48,7 @@ import {
 import {
     updateAccountAfterReattachment,
     updateAccountInfoAfterSpending,
-    syncAccountBeforeManualPromotion
+    syncAccountBeforeManualPromotion,
 } from './accounts';
 import {
     isAnyAddressSpent,
@@ -64,6 +64,7 @@ import {
     generateUnsupportedNodeErrorAlert,
     generateTransactionSuccessAlert,
     prepareLogUpdate,
+    generateNotEnoughSyncedNodes,
 } from './alerts';
 import i18next from '../libs/i18next';
 import Errors from '../libs/errors';
@@ -272,8 +273,8 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
             quorum,
             ...(getRemotePoWFromState(getState()) === true
                 ? {
-                    useOnlyPowNodes: true,
-                }
+                      useOnlyPowNodes: true,
+                  }
                 : {}),
         })(getState()),
     )
@@ -291,12 +292,12 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
                     // See: extendedApi#attachToTangle
                     remotePoW
                         ? extend(
-                            {
-                                __proto__: seedStore.__proto__,
-                            },
-                            seedStore,
-                            { offloadPow: true },
-                        )
+                              {
+                                  __proto__: seedStore.__proto__,
+                              },
+                              seedStore,
+                              { offloadPow: true },
+                          )
                         : seedStore,
                 ),
             );
@@ -417,8 +418,8 @@ export const forceTransactionPromotion = (
         nodesConfigurationFactory({
             ...(getRemotePoWFromState(getState()) === true
                 ? {
-                    useOnlyPowNodes: true,
-                }
+                      useOnlyPowNodes: true,
+                  }
                 : {}),
         })(getState()),
     );
@@ -567,8 +568,8 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
         (isZeroValue
             ? Promise.resolve(null)
             : new NodesManager(nodesConfigurationFactory({ quorum })(getState())).withRetries()(
-                withPreTransactionSecurityChecks,
-            )()
+                  withPreTransactionSecurityChecks,
+              )()
         )
             // If we are making a zero value transaction, options would be null
             // Otherwise, it would be a dictionary with inputs and remainder address
@@ -751,7 +752,6 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     // Override polling cycle by setting "promotion" as the active service item
                     // This will ensure that the newly made transaction is automatically promoted for confirmation (if necessary)
                     dispatch(setPollFor('promotion'));
-
                 }, 3500);
             })
             .catch((error) => {
@@ -794,6 +794,8 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 if (message === Errors.NODE_NOT_SYNCED) {
                     return dispatch(generateNodeOutOfSyncErrorAlert(error));
+                } else if (message === Errors.NOT_ENOUGH_SYNCED_NODES) {
+                    dispatch(generateNotEnoughSyncedNodes(error));
                 } else if (message === Errors.UNSUPPORTED_NODE) {
                     return dispatch(generateUnsupportedNodeErrorAlert(error));
                 } else if (message === Errors.INVALID_LAST_TRIT) {
@@ -959,12 +961,12 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, quoru
                         // See: extendedApi#attachToTangle
                         shouldOffloadPow
                             ? extend(
-                                {
-                                    __proto__: seedStore.__proto__,
-                                },
-                                seedStore,
-                                { offloadPow: true },
-                            )
+                                  {
+                                      __proto__: seedStore.__proto__,
+                                  },
+                                  seedStore,
+                                  { offloadPow: true },
+                              )
                             : seedStore,
                     );
                 })
