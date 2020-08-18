@@ -699,7 +699,8 @@ const isNodeHealthy = (settings, skipMilestoneCheck = false) => {
                 // Blacklist nodes running [IRI](https://github.com/iotaledger/iri)
                 ['iri'].some((el) => appName.toLowerCase().indexOf(el) > -1) ||
                 // Blacklist nodes running [Hornet](https://github.com/iotaledger/hornet) running lower version than ALLOWED_MINIMUM_HORNET_VERSION
-                appVersion < MINIMUM_ALLOWED_HORNET_VERSION
+                (['hornet'].some((el) => appName.toLowerCase().indexOf(el) > -1) &&
+                    appVersion < MINIMUM_ALLOWED_HORNET_VERSION)
             ) {
                 throw new Error(Errors.UNSUPPORTED_NODE);
             }
