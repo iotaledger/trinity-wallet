@@ -659,38 +659,42 @@ const isNodeHealthy = (settings, skipMilestoneCheck = false) => {
         latestMilestone: EMPTY_HASH_TRYTES,
     };
 
-    return getNodeInfoAsync(settings)()
-        .then(
-            ({
-                appVersion,
-                latestMilestone,
-                latestMilestoneIndex,
-                latestSolidSubtangleMilestone,
-                latestSolidSubtangleMilestoneIndex,
-            }) => {
-                if (['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1)) {
-                    throw new Error(Errors.UNSUPPORTED_NODE);
-                }
-                cached.latestMilestone = latestMilestone;
-                if (
-                    (cached.latestMilestone === latestSolidSubtangleMilestone ||
-                        latestMilestoneIndex - MAX_MILESTONE_FALLBEHIND <= latestSolidSubtangleMilestoneIndex) &&
-                    cached.latestMilestone !== EMPTY_HASH_TRYTES
-                ) {
-                    return getTrytesAsync(settings)([cached.latestMilestone]);
-                }
-
-                throw new Error(Errors.NODE_NOT_SYNCED);
-            },
-        )
-        .then((trytes) => {
-            if (skipMilestoneCheck) {
-                return true;
+    return getNodeInfoAsync(settings)().then(
+        ({
+            appVersion,
+            latestMilestone,
+            latestMilestoneIndex,
+            latestSolidSubtangleMilestone,
+            latestSolidSubtangleMilestoneIndex,
+            ...rest
+        }) => {
+            if (['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1)) {
+                throw new Error(Errors.UNSUPPORTED_NODE);
             }
-            const { timestamp } = iota.utils.transactionObject(head(trytes), cached.latestMilestone);
 
-            return isWithinMinutes(timestamp * 1000, 5 * MAX_MILESTONE_FALLBEHIND);
-        });
+            if (has(rest, 'isHealthy')) {
+                return rest.isHealthy;
+            }
+
+            cached.latestMilestone = latestMilestone;
+            if (
+                (cached.latestMilestone === latestSolidSubtangleMilestone ||
+                    latestMilestoneIndex - MAX_MILESTONE_FALLBEHIND <= latestSolidSubtangleMilestoneIndex) &&
+                cached.latestMilestone !== EMPTY_HASH_TRYTES
+            ) {
+                return getTrytesAsync(settings)([cached.latestMilestone]).then((trytes) => {
+                    if (skipMilestoneCheck) {
+                        return true;
+                    }
+                    const { timestamp } = iota.utils.transactionObject(head(trytes), cached.latestMilestone);
+
+                    return isWithinMinutes(timestamp * 1000, 5 * MAX_MILESTONE_FALLBEHIND);
+                });
+            }
+
+            throw new Error(Errors.NODE_NOT_SYNCED);
+        },
+    );
 };
 
 /**
