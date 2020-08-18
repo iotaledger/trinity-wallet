@@ -25,7 +25,6 @@
         "invalidResponseFetchingAccountDesktop": "El node ha retornat un error en intentar obtenir informació del seu compte. Si el problema persisteix proveu canviant el node o desactivant el servidor proxy en la configuració.",
         "nodeOutOfSync": "Node desincronitzat",
         "nodeOutOfSyncExplanation": "El node seleccionat està desincronitzat. Si us plau canvieu-lo o proveu-ho de nou.",
-        "nodeOutOfSyncByTimestampExplanation": "El node seleccionat està desincronitzat. Si us plau canvieu-lo o proveu-ho de nou. Si el problema persisteix, comproveu que l'horari del seu dispositiu està correctament configurat.",
         "experimentalNode": "Versió del node no suportada",
         "experimentalNodeExplanation": "El node seleccionat està executant una versió experimental que no està suportada. Si us plau canviï el node o provi de nou.",
         "thisNodeOutOfSync": "Aquest node està desincronitzat. Si us plau canvieu-lo o proveu-ho de nou.",
