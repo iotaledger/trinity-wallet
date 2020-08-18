@@ -13,7 +13,6 @@ import { iota, quorum } from 'libs/iota';
 import Errors from 'libs/errors';
 
 import {
-    changeAutoPromotionSettings,
     changeDeepLinkingSettings,
     setLockScreenTimeout,
     setTray,
@@ -54,8 +53,6 @@ class Advanced extends PureComponent {
         setProxy: PropTypes.func.isRequired,
         /** @ignore */
         setNotifications: PropTypes.func.isRequired,
-        /** @ignore */
-        changeAutoPromotionSettings: PropTypes.func.isRequired,
         /** @ignore */
         changeDeepLinkingSettings: PropTypes.func.isRequired,
         /** @ignore */
@@ -202,7 +199,6 @@ class Advanced extends PureComponent {
         const {
             settings,
             wallet,
-            changeAutoPromotionSettings,
             changeDeepLinkingSettings,
             lockScreenTimeout,
             setNotifications,
@@ -230,16 +226,6 @@ class Advanced extends PureComponent {
 
                         {wallet && wallet.ready ? (
                             <React.Fragment>
-                                <h3>{t('advancedSettings:autoPromotion')}</h3>
-                                <Toggle
-                                    checked={settings.autoPromotion}
-                                    onChange={() => changeAutoPromotionSettings()}
-                                    on={t('enabled')}
-                                    off={t('disabled')}
-                                />
-                                <p>{t('advancedSettings:autoPromotionExplanation')}</p>
-                                <hr />
-
                                 {Electron.getOS() === 'darwin' && (
                                     <React.Fragment>
                                         <h3>{t('tray:trayApplication')}</h3>
@@ -389,7 +375,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
-    changeAutoPromotionSettings,
     changeDeepLinkingSettings,
     setLockScreenTimeout,
     setTray,
@@ -397,7 +382,4 @@ const mapDispatchToProps = {
     setProxy,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Advanced));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Advanced));

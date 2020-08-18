@@ -10,11 +10,9 @@ import orderBy from 'lodash/orderBy';
 import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
 import some from 'lodash/some';
-import isUndefined from 'lodash/isUndefined';
 import get from 'lodash/get';
 import size from 'lodash/size';
 import every from 'lodash/every';
-import includes from 'lodash/includes';
 import uniq from 'lodash/uniq';
 import { verifyCDA } from '@iota/cda';
 import { iota } from '../libs/iota';
@@ -38,7 +36,6 @@ import {
     isFundedBundle,
     isBundle,
     isFatalTransactionError,
-    isAboveMaxDepth,
 } from '../libs/iota/transfers';
 import {
     syncAccountAfterReattachment,
@@ -51,7 +48,7 @@ import {
 import {
     updateAccountAfterReattachment,
     updateAccountInfoAfterSpending,
-    syncAccountBeforeManualPromotion,
+    syncAccountBeforeManualPromotion
 } from './accounts';
 import {
     isAnyAddressSpent,
@@ -73,6 +70,7 @@ import Errors from '../libs/errors';
 import { Account } from '../storage';
 import { TransfersActionTypes } from '../types';
 import NodesManager from '../libs/iota/NodesManager';
+import { setPollFor } from './polling';
 
 /**
  * Dispatch when a transaction is about to be manually promoted
@@ -260,12 +258,11 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
                     throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
                 }
 
-                return findPromotableTail()(
+                return findPromotableTail(settings)(
                     filter(
                         getTransactionsForThisBundleHash(accountState.transactions),
                         (transaction) => transaction.currentIndex === 0,
                     ),
-                    0,
                 );
             });
     };
@@ -275,8 +272,8 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
             quorum,
             ...(getRemotePoWFromState(getState()) === true
                 ? {
-                      useOnlyPowNodes: true,
-                  }
+                    useOnlyPowNodes: true,
+                }
                 : {}),
         })(getState()),
     )
@@ -294,12 +291,12 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
                     // See: extendedApi#attachToTangle
                     remotePoW
                         ? extend(
-                              {
-                                  __proto__: seedStore.__proto__,
-                              },
-                              seedStore,
-                              { offloadPow: true },
-                          )
+                            {
+                                __proto__: seedStore.__proto__,
+                            },
+                            seedStore,
+                            { offloadPow: true },
+                        )
                         : seedStore,
                 ),
             );
@@ -371,67 +368,17 @@ export const forceTransactionPromotion = (
     transactions,
     shouldGenerateAlert,
     seedStore,
-    maxReplays = 1,
-    maxPromotionAttempts = 2,
 ) => (dispatch, getState) => {
-    let replayCount = 0;
-    let promotionAttempt = 0;
-
     let transactionsCopy = cloneDeep(transactions);
 
     const promote = (settings) => (tailTransaction) => {
-        const { hash, attachmentTimestamp } = tailTransaction;
-        promotionAttempt += 1;
+        const { hash } = tailTransaction;
 
-        return promoteTransactionAsync(
-            settings,
-            seedStore,
-        )(hash).catch((error) => {
-            const isTransactionInconsistent = includes(error.message, Errors.TRANSACTION_IS_INCONSISTENT);
-
-            if (
-                isTransactionInconsistent &&
-                // If promotion attempt on this reference (hash) hasn't exceeded maximum promotion attempts
-                promotionAttempt < maxPromotionAttempts
-            ) {
-                const bundles = constructBundlesFromTransactions(transactionsCopy);
-
-                const trytes = map(
-                    head(
-                        filter(
-                            bundles,
-                            (bundle) => !isUndefined(find(bundle, (transaction) => transaction.hash === hash)),
-                        ),
-                    ),
-                    (transaction) => iota.utils.transactionTrytes(transaction),
-                );
-
-                // Retry promotion on same reference (hash)
-                return storeAndBroadcastAsync(settings)(trytes).then(() => promote(settings)(tailTransaction));
-            } else if (
-                isTransactionInconsistent &&
-                promotionAttempt === maxPromotionAttempts &&
-                // Do not allow reattachments if transaction is still above max depth
-                !isAboveMaxDepth(attachmentTimestamp) &&
-                // If number of reattachments haven't exceeded max reattachments
-                replayCount < maxReplays
-            ) {
-                // Reset promotion attempt counter
-                promotionAttempt = 0;
-
-                // Reattach and try to promote with a newly reattached reference (hash)
-                return reattachAndPromote(settings)();
-            }
-
-            throw error;
-        });
+        return promoteTransactionAsync(settings, seedStore)(hash);
     };
 
     // Reattach a transaction and promote newly reattached transaction
     const reattachAndPromote = (settings) => () => {
-        // Increment the reattachment's count
-        replayCount += 1;
-
         const bundle = head(constructBundlesFromTransactions(transactionsCopy));
 
         return replayLocallyStoredBundleAsync(
@@ -470,8 +417,8 @@ export const forceTransactionPromotion = (
         nodesConfigurationFactory({
             ...(getRemotePoWFromState(getState()) === true
                 ? {
-                      useOnlyPowNodes: true,
-                  }
+                    useOnlyPowNodes: true,
+                }
                 : {}),
         })(getState()),
     );
@@ -620,8 +567,8 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
         (isZeroValue
             ? Promise.resolve(null)
             : new NodesManager(nodesConfigurationFactory({ quorum })(getState())).withRetries()(
-                  withPreTransactionSecurityChecks,
-              )()
+                withPreTransactionSecurityChecks,
+            )()
         )
             // If we are making a zero value transaction, options would be null
             // Otherwise, it would be a dictionary with inputs and remainder address
@@ -800,6 +747,11 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 setTimeout(() => {
                     dispatch(completeTransfer());
                     dispatch(resetProgress());
+
+                    // Override polling cycle by setting "promotion" as the active service item
+                    // This will ensure that the newly made transaction is automatically promoted for confirmation (if necessary)
+                    dispatch(setPollFor('promotion'));
+
                 }, 3500);
             })
             .catch((error) => {
@@ -1007,12 +959,12 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore, quoru
                         // See: extendedApi#attachToTangle
                         shouldOffloadPow
                             ? extend(
-                                  {
-                                      __proto__: seedStore.__proto__,
-                                  },
-                                  seedStore,
-                                  { offloadPow: true },
-                              )
+                                {
+                                    __proto__: seedStore.__proto__,
+                                },
+                                seedStore,
+                                { offloadPow: true },
+                            )
                             : seedStore,
                     );
                 })

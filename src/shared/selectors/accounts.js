@@ -143,7 +143,7 @@ export const getTransactionsForAccountIndex = () => {
             const account = get(accountInfo, accountName);
 
             return mapNormalisedTransactions(account.transactions, account.addressData);
-        }
+        },
     );
 };
 
@@ -168,7 +168,7 @@ export const getAddressesForAccountIndex = () => {
             const account = get(accountInfo, accountName);
 
             return map(account.addressData, (addressObject) => addressObject.address);
-        }
+        },
     );
 };
 
@@ -337,8 +337,6 @@ export const getPromotableBundlesFromState = createSelector(
                     accountState.transactions,
                     (transaction) =>
                         transaction.currentIndex === 0 &&
-                        // Ignore zero value transactions for auto promotion
-                        transaction.value !== 0 &&
                         // Ignore failed transactions for auto promotion because they weren't successully broadcasted
                         transaction.broadcasted === true,
                 );

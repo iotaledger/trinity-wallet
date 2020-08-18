@@ -309,31 +309,13 @@ export default class TransactionHistoryModal extends PureComponent {
             mode,
             disableWhen,
             retryFailedTransaction,
-            promote,
             isFailedTransaction,
-            bundleIsBeingPromoted,
         } = this.props;
         const { addressesScrollable, messagesScrollable } = this.state;
 
         return (
             <ModalView
                 modalButtons={
-                    (!persistence &&
-                        !isFailedTransaction &&
-                        this.renderButton({
-                            onRightButtonPress: () => {
-                                if (!disableWhen) {
-                                    return promote(bundle);
-                                }
-                                if (!bundleIsBeingPromoted) {
-                                    this.props.generateAlert(
-                                        'error',
-                                        t('history:promotingAnotherBundle'),
-                                        t('history:pleaseWait'),
-                                    );
-                                }
-                            },
-                        })) ||
                     (isFailedTransaction &&
                         this.renderButton({
                             onRightButtonPress: () => {

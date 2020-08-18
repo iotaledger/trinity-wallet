@@ -21,7 +21,6 @@ import {
     GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
     MAX_MILESTONE_FALLBEHIND,
-    IS_PROMOTABLE_TIMEOUT,
 } from '../../config';
 import {
     sortTransactionTrytesArray,
@@ -54,8 +53,6 @@ const getApiTimeout = (method, payload) => {
             return ATTACH_TO_TANGLE_REQUEST_TIMEOUT;
         case 'getTransactionsToApprove':
             return GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT;
-        case 'isPromotable':
-            return IS_PROMOTABLE_TIMEOUT;
         default:
             return DEFAULT_NODE_REQUEST_TIMEOUT;
     }
@@ -97,18 +94,18 @@ const getBalancesAsync = (settings, withQuorum = true) => (addresses, threshold 
     withQuorum
         ? quorum.getBalances(addresses, threshold)
         : new Promise((resolve, reject) => {
-              getIotaInstance(settings, getApiTimeout('getBalances')).api.getBalances(
-                  addresses,
-                  threshold,
-                  (err, balances) => {
-                      if (err) {
-                          reject(err);
-                      } else {
-                          resolve(balances);
-                      }
-                  },
-              );
-          });
+            getIotaInstance(settings, getApiTimeout('getBalances')).api.getBalances(
+                addresses,
+                threshold,
+                (err, balances) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(balances);
+                    }
+                },
+            );
+        });
 
 /**
  * Promisified version of iota.api.getNodeInfo
@@ -191,17 +188,17 @@ const getLatestInclusionAsync = (settings, withQuorum = false) => (hashes) =>
     withQuorum
         ? quorum.getLatestInclusion(hashes)
         : new Promise((resolve, reject) => {
-              getIotaInstance(settings, getApiTimeout('getInclusionStates')).api.getLatestInclusion(
-                  hashes,
-                  (err, states) => {
-                      if (err) {
-                          reject(err);
-                      } else {
-                          resolve(states);
-                      }
-                  },
-              );
-          });
+            getIotaInstance(settings, getApiTimeout('getInclusionStates')).api.getLatestInclusion(
+                hashes,
+                (err, states) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(states);
+                    }
+                },
+            );
+        });
 
 /**
  * Extended version of iota.api.promoteTransaction with an option to perform PoW locally
@@ -222,36 +219,32 @@ const promoteTransactionAsync = (settings, seedStore) => (
         trytes: [],
     };
 
-    return (
-        isPromotable(settings)(hash, { rejectWithReason: true })
-            // rejectWithReason only resolves if provided hashes are consistent
-            .then(() => prepareTransfersAsync(settings)(transfer.address, [transfer]))
-            .then((trytes) => {
-                cached.trytes = trytes;
+    return prepareTransfersAsync(settings)(transfer.address, [transfer])
+        .then((trytes) => {
+            cached.trytes = trytes;
 
-                return getTransactionsToApproveAsync(settings)(
-                    {
-                        reference: hash,
-                        adjustDepth: true,
-                    },
-                    depth,
-                );
-            })
-            .then(({ trunkTransaction, branchTransaction }) =>
-                attachToTangleAsync(settings, seedStore)(
-                    trunkTransaction,
-                    branchTransaction,
-                    cached.trytes,
-                    minWeightMagnitude,
-                ),
-            )
-            .then(({ trytes }) => {
-                cached.trytes = trytes;
+            return getTransactionsToApproveAsync(settings)(
+                {
+                    reference: hash,
+                    adjustDepth: true,
+                },
+                depth,
+            );
+        })
+        .then(({ trunkTransaction, branchTransaction }) =>
+            attachToTangleAsync(settings, seedStore)(
+                trunkTransaction,
+                branchTransaction,
+                cached.trytes,
+                minWeightMagnitude,
+            ),
+        )
+        .then(({ trytes }) => {
+            cached.trytes = trytes;
 
-                return storeAndBroadcastAsync(settings)(cached.trytes);
-            })
-            .then(() => hash)
-    );
+            return storeAndBroadcastAsync(settings)(cached.trytes);
+        })
+        .then(() => hash);
 };
 
 /**
@@ -371,17 +364,17 @@ const wereAddressesSpentFromAsync = (settings, withQuorum = true) => (addresses)
     withQuorum
         ? quorum.wereAddressesSpentFrom(addresses)
         : new Promise((resolve, reject) => {
-              getIotaInstance(settings, getApiTimeout('wereAddressesSpentFrom')).api.wereAddressesSpentFrom(
-                  addresses,
-                  (err, wereSpent) => {
-                      if (err) {
-                          reject(err);
-                      } else {
-                          resolve(wereSpent);
-                      }
-                  },
-              );
-          });
+            getIotaInstance(settings, getApiTimeout('wereAddressesSpentFrom')).api.wereAddressesSpentFrom(
+                addresses,
+                (err, wereSpent) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(wereSpent);
+                    }
+                },
+            );
+        });
 
 /**
  * Promisified version of iota.api.sendTransfer
@@ -518,6 +511,37 @@ const checkAttachToTangleAsync = (node) => {
             // return a fake normal IRI response when attachToTangle is not available
             return { error: Errors.ATTACH_TO_TANGLE_UNAVAILABLE };
         });
+};
+
+/**
+ * Promisified version of iota.api.getTipInfo
+ *
+ * @method getTipInfoAsync
+ *
+ * @param {object} [settings]
+ *
+ * @returns {function(string): Promise<object>}
+ */
+const getTipInfoAsync = (settings) => (tailTransactionHash) => {
+    return fetch(settings.url, {
+        method: 'POST',
+        body: JSON.stringify({
+            command: 'getTipInfo',
+            tailTransaction: tailTransactionHash,
+        }),
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'X-IOTA-API-Version': IRI_API_VERSION,
+        }),
+    }).then((response) => {
+        return response.json().then((res) => {
+            if (response.ok) {
+                return res;
+            }
+            
+            throw new Error(res.error);
+        });
+    });
 };
 
 /**
@@ -723,7 +747,8 @@ export {
     storeAndBroadcastAsync,
     attachToTangleAsync,
     checkAttachToTangleAsync,
+    getTipInfoAsync,
     allowsRemotePow,
     isNodeHealthy,
-    isPromotable,
+    isPromotable
 };
