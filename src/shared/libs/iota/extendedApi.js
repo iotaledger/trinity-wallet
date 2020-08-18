@@ -18,6 +18,7 @@ import {
     ATTACH_TO_TANGLE_REQUEST_TIMEOUT,
     GET_TRANSACTIONS_TO_APPROVE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
+    MINIMUM_ALLOWED_HORNET_VERSION,
 } from '../../config';
 import {
     sortTransactionTrytesArray,
@@ -655,8 +656,15 @@ const attachToTangleAsync = (settings, seedStore) => (
  * @returns {Promise}
  */
 const isNodeHealthy = (settings) => {
-    return getNodeInfoAsync(settings)().then(({ appVersion, isHealthy }) => {
-        if (['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1)) {
+    return getNodeInfoAsync(settings)().then(({ appName, appVersion, isHealthy }) => {
+        if (
+            ['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1) ||
+            // Blacklist nodes running [IRI](https://github.com/iotaledger/iri)
+            ['iri'].some((el) => appName.toLowerCase().indexOf(el) > -1) ||
+            // Blacklist nodes running [Hornet](https://github.com/iotaledger/hornet) running lower version than ALLOWED_MINIMUM_HORNET_VERSION
+            (['hornet'].some((el) => appName.toLowerCase().indexOf(el) > -1) &&
+                appVersion < MINIMUM_ALLOWED_HORNET_VERSION)
+        ) {
             throw new Error(Errors.UNSUPPORTED_NODE);
         }
 

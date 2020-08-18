@@ -39,7 +39,8 @@ describe('libs: iota/extendedApi', () => {
 
                         const resultMap = {
                             getNodeInfo: {
-                                appVersion: '0.0.0-RC2',
+                                appVersion: '0.5.0-RC2',
+                                appName: 'HORNET',
                             },
                         };
 
@@ -62,72 +63,76 @@ describe('libs: iota/extendedApi', () => {
             });
         });
 
-        describe('when "isHealthy" is true', () => {
-            beforeEach(() => {
-                nock('http://localhost:14265', {
-                    reqheaders: {
-                        'Content-Type': 'application/json',
-                        'X-IOTA-API-Version': IRI_API_VERSION,
-                    },
-                })
-                    .filteringRequestBody(() => '*')
-                    .persist()
-                    .post('/', '*')
-                    .reply(200, (_, body) => {
-                        const { command } = body;
-
-                        const resultMap = {
-                            getNodeInfo: {
-                                appVersion: '0.0.0',
-                                isHealthy: true,
-                            },
-                        };
-
-                        return resultMap[command] || {};
-                    });
-            });
-
-            afterEach(() => {
-                nock.cleanAll();
-            });
-
-            it('should return true', () => {
-                return isNodeHealthy().then((result) => expect(result).to.equal(true));
-            });
-        });
-    });
-
-    describe('when "isHealthy" is false', () => {
-        beforeEach(() => {
-            nock('http://localhost:14265', {
-                reqheaders: {
-                    'Content-Type': 'application/json',
-                    'X-IOTA-API-Version': IRI_API_VERSION,
-                },
-            })
-                .filteringRequestBody(() => '*')
-                .persist()
-                .post('/', '*')
-                .reply(200, (_, body) => {
-                    const { command } = body;
-
-                    const resultMap = {
-                        getNodeInfo: {
-                            appVersion: '0.0.0',
-                            isHealthy: false,
+        describe('when "isHealthy" property is defined in the nodeInfo response', () => {
+            describe('when "isHealthy" is true', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
                         },
-                    };
+                    })
+                        .filteringRequestBody(() => '*')
+                        .persist()
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const { command } = body;
 
-                    return resultMap[command] || {};
+                            const resultMap = {
+                                getNodeInfo: {
+                                    appVersion: '0.5.0',
+                                    appName: 'HORNET',
+                                    isHealthy: true,
+                                },
+                            };
+
+                            return resultMap[command] || {};
+                        });
                 });
-        });
 
-        afterEach(() => {
-            nock.cleanAll();
-        });
+                afterEach(() => {
+                    nock.cleanAll();
+                });
 
-        it('should return false', () => {
-            return isNodeHealthy().then((result) => expect(result).to.equal(false));
+                it('should return true', () => {
+                    return isNodeHealthy().then((result) => expect(result).to.equal(true));
+                });
+            });
+
+            describe('when "isHealthy" is false', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .persist()
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const { command } = body;
+
+                            const resultMap = {
+                                getNodeInfo: {
+                                    appVersion: '0.5.0',
+                                    appName: 'HORNET',
+                                    isHealthy: false,
+                                },
+                            };
+
+                            return resultMap[command] || {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return false', () => {
+                    return isNodeHealthy().then((result) => expect(result).to.equal(false));
+                });
+            });
         });
     });
 

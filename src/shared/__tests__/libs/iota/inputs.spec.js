@@ -41,7 +41,9 @@ describe('libs: iota/inputs', () => {
 
         describe('when has insufficient balance on inputs', () => {
             it('should throw an error with message "Insufficient balance to send a transaction with the specified amount."', () => {
-                expect(prepareInputs.bind(null, addressData, 10000)).to.throw('Insufficient balance to send a transaction with the specified amount.');
+                expect(prepareInputs.bind(null, addressData, 10000)).to.throw(
+                    'Insufficient balance to send a transaction with the specified amount.',
+                );
             });
         });
 
@@ -60,7 +62,10 @@ describe('libs: iota/inputs', () => {
         describe('when maxInputs is greater than zero', () => {
             it('should not select inputs with size greater than maxInputs', () => {
                 const limit = random(1, 4);
-                const threshold = random(1, reduce(addressData, (balance, data) => balance + data.balance, 0));
+                const threshold = random(
+                    1,
+                    reduce(addressData, (balance, data) => balance + data.balance, 0),
+                );
 
                 try {
                     const result = prepareInputs(addressData, threshold, limit);
@@ -137,17 +142,26 @@ describe('libs: iota/inputs', () => {
     describe('#getInputs', () => {
         describe('when has insufficient balance Sum(balances) < threshold', () => {
             it('should throw with an error with message "Insufficient balance to send a transaction with the specified amount."', () => {
-                return getInputs()(mockAddressData, mockTransactions, totalBalanceOfMockAddressData + 10).catch(
-                    (error) => expect(error.message).to.equal('Insufficient balance to send a transaction with the specified amount.'),
+                return getInputs()(
+                    mockAddressData,
+                    mockTransactions,
+                    totalBalanceOfMockAddressData + 10,
+                ).catch((error) =>
+                    expect(error.message).to.equal(
+                        'Insufficient balance to send a transaction with the specified amount.',
+                    ),
                 );
             });
         });
 
         describe('when maxInputs not a number', () => {
             it('should throw with an error with message "Invalid max inputs provided."', () => {
-                return getInputs()(mockAddressData, mockTransactions, totalBalanceOfMockAddressData, null).catch(
-                    (error) => expect(error.message).to.equal('Invalid max inputs provided.'),
-                );
+                return getInputs()(
+                    mockAddressData,
+                    mockTransactions,
+                    totalBalanceOfMockAddressData,
+                    null,
+                ).catch((error) => expect(error.message).to.equal('Invalid max inputs provided.'));
             });
         });
 
@@ -197,7 +211,8 @@ describe('libs: iota/inputs', () => {
                             return { states: map(addresses, () => false) };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -260,7 +275,9 @@ describe('libs: iota/inputs', () => {
                         .then(() => {
                             throw new Error();
                         })
-                        .catch((error) => expect(error.message).to.equal('Incoming transfers to all selected input addresses.'));
+                        .catch((error) =>
+                            expect(error.message).to.equal('Incoming transfers to all selected input addresses.'),
+                        );
                 });
             });
         });
@@ -311,7 +328,8 @@ describe('libs: iota/inputs', () => {
                             return { states: map(addresses, () => false) };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -382,7 +400,9 @@ describe('libs: iota/inputs', () => {
                             throw new Error();
                         })
                         .catch((error) =>
-                            expect(error.message).to.equal('The input addresses have pending outgoing transfers. Confirm them before trying again.'),
+                            expect(error.message).to.equal(
+                                'The input addresses have pending outgoing transfers. Confirm them before trying again.',
+                            ),
                         );
                 });
             });
@@ -442,7 +462,8 @@ describe('libs: iota/inputs', () => {
                             return { states: map(addresses, (address) => resultMap[address]) };
                         } else if (body.command === 'getNodeInfo') {
                             return {
-                                appVersion: '1',
+                                appVersion: '0.5.0',
+                                appName: 'HORNET',
                                 latestMilestone: LATEST_MILESTONE,
                                 latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                 latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -499,7 +520,9 @@ describe('libs: iota/inputs', () => {
                         .then(() => {
                             throw new Error();
                         })
-                        .catch((error) => expect(error.message).to.equal('Warning. Funds detected on a spent address.'));
+                        .catch((error) =>
+                            expect(error.message).to.equal('Warning. Funds detected on a spent address.'),
+                        );
                 });
             });
         });
