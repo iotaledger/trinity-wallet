@@ -195,7 +195,12 @@ const prepareQuorumResults = (method, quorumSize, ...requestArgs) => {
 
         while (idx < payloadSize) {
             /* eslint-disable no-loop-func */
-            quorumResult.push(determineQuorumResult(map(validResults, (result) => result[idx]), quorumSize)(method));
+            quorumResult.push(
+                determineQuorumResult(
+                    map(validResults, (result) => result[idx]),
+                    quorumSize,
+                )(method),
+            );
             /* eslint-enable no-loop-func */
 
             idx += 1;
