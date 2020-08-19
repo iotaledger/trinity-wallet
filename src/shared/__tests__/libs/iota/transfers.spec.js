@@ -1024,7 +1024,8 @@ describe('libs: iota/transfers', () => {
                             const resultMap = {
                                 getBalances: { balances: ['3'] },
                                 getNodeInfo: {
-                                    appVersion: '1',
+                                    appVersion: '0.5.0',
+                                    appName: 'HORNET',
                                     latestMilestone: LATEST_MILESTONE,
                                     latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                     latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -1068,7 +1069,8 @@ describe('libs: iota/transfers', () => {
                             const resultMap = {
                                 getBalances: { balances: ['10'] },
                                 getNodeInfo: {
-                                    appVersion: '1',
+                                    appVersion: '0.5.0',
+                                    appName: 'HORNET',
                                     latestMilestone: LATEST_MILESTONE,
                                     latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                     latestMilestoneIndex: LATEST_MILESTONE_INDEX,
@@ -1112,7 +1114,8 @@ describe('libs: iota/transfers', () => {
                             const resultMap = {
                                 getBalances: { balances: ['20'] },
                                 getNodeInfo: {
-                                    appVersion: '1',
+                                    appVersion: '0.5.0',
+                                    appName: 'HORNET',
                                     latestMilestone: LATEST_MILESTONE,
                                     latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
                                     latestMilestoneIndex: LATEST_MILESTONE_INDEX,

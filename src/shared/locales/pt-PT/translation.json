@@ -25,7 +25,6 @@
         "invalidResponseFetchingAccountDesktop": "O nó retornou um erro ao buscar as informações da sua conta. Se o problema persistir, tente alterar o nó ou desabilitar o proxy do sistema em Configurações de Trinity.",
         "nodeOutOfSync": "Nó fora de sincronização",
         "nodeOutOfSyncExplanation": "O nó selecionado está sem sincronização. Por favor, altere o nó ou tente novamente.",
-        "nodeOutOfSyncByTimestampExplanation": "O nó selecionado está sem sincronização. Por favor, altere o nó ou tente novamente. Se o problema persistir, certifique-se de que o tempo do dispositivo está correto.",
         "experimentalNode": "Versão do nó não suportada",
         "experimentalNodeExplanation": "O nó selecionado está a executar uma versão experimental que não é suportada. Por favor, altere o nó ou tente novamente.",
         "thisNodeOutOfSync": "Este nó está fora de sincronização. Por favor, altere o nó ou tente novamente.",

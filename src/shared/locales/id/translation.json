@@ -25,7 +25,6 @@
         "invalidResponseFetchingAccountDesktop": "\nNode mengembalikan kesalahan saat mengambil informasi akun Anda. Jika masalah Anda tetap ada, cobalah mengubah simpul atau menonaktifkan proxy sistem Anda di Pengaturan Trinity.",
         "nodeOutOfSync": "Node tidak sinkron",
         "nodeOutOfSyncExplanation": "Node yang anda pilih tidak sinkron. Silakan ganti Node atau coba lagi.",
-        "nodeOutOfSyncByTimestampExplanation": "Node yang anda pilih tidak sinkron, silakan ganti Node atau coba lagi. Jika masalah berlanjut, pastikan waktu perangkat akurat.",
         "experimentalNode": "Versi Node tidak didukung\n",
         "experimentalNodeExplanation": "Node yang Anda pilih saat ini menjalankan versi eksperimental yang tidak didukung. Silakan ganti node atau coba lagi.",
         "thisNodeOutOfSync": "Node ini tidak sinkron. Silakan ganti node atau coba lagi.",
