@@ -27,8 +27,7 @@ export const NODES_WITH_POW_DISABLED = ['https://nodes.iota.org'].map((url) => (
 export const NODES_WITH_POW_ENABLED = [
     'https://nodes.thetangle.org:443',
     'https://iotanode.us:14267',
-    'https://pool.trytes.eu',
-    'https://pow.iota.community:443',
+    'https://nodes.iota.cafe:443',
 ].map((url) => ({
     url,
     pow: true,
