@@ -69,6 +69,12 @@ class EnterPassword extends Component {
         }
     }
 
+    componentWillUnmount() {
+        if (isAndroid) {
+            FingerprintScanner.release();
+        }
+    }
+
     /**
      * Wrapper method for onLoginPress prop method
      *
@@ -166,9 +172,4 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default withTranslation(['login', 'global'])(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(EnterPassword),
-);
+export default withTranslation(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterPassword));
