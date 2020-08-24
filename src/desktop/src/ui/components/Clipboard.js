@@ -20,6 +20,8 @@ export class ClipboardComponent extends React.PureComponent {
         children: PropTypes.any,
         /** Timeout to clear the clipboard */
         timeout: PropTypes.number,
+        /** Determines whether to disable the copy to clipboard functionality */
+        disableCopy: PropTypes.bool,
         /** Success notification title */
         title: PropTypes.string.isRequired,
         /** Success notification description */
@@ -33,18 +35,20 @@ export class ClipboardComponent extends React.PureComponent {
             e.stopPropagation();
         }
 
-        const { text, generateAlert, title, success, timeout } = this.props;
+        const { disableCopy, text, generateAlert, title, success, timeout } = this.props;
 
-        Electron.clipboard(text);
-        generateAlert('success', title, success);
+        if (!disableCopy) {
+            Electron.clipboard(text);
+            generateAlert('success', title, success);
 
-        if (timeout > 0) {
-            if (this.timeout) {
-                clearTimeout(this.timeout);
+            if (timeout > 0) {
+                if (this.timeout) {
+                    clearTimeout(this.timeout);
+                }
+                this.timeout = setTimeout(() => {
+                    Electron.clipboard('');
+                }, timeout * 1000);
             }
-            this.timeout = setTimeout(() => {
-                Electron.clipboard('');
-            }, timeout * 1000);
         }
     };
 
@@ -63,7 +67,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(
-    null,
-    mapDispatchToProps,
-)(ClipboardComponent);
+export default connect(null, mapDispatchToProps)(ClipboardComponent);

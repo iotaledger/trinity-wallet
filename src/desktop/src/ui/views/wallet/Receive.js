@@ -251,11 +251,12 @@ class Receive extends React.PureComponent {
                             {t('close')}
                         </Button>
                         <Clipboard
+                            disableCopy={!hasSyncedAddress}
                             text={receiveAddress}
                             title={t('receive:addressCopied')}
                             success={t('receive:addressCopiedExplanation')}
                         >
-                            <Button className="small" onClick={() => {}}>
+                            <Button disabled={!hasSyncedAddress} className="small" onClick={() => {}}>
                                 {t('receive:copyAddress')}
                             </Button>
                         </Clipboard>
@@ -286,7 +287,4 @@ const mapDispatchToProps = {
     addressValidationSuccess,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withTranslation()(Receive));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Receive));
