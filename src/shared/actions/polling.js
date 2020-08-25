@@ -424,6 +424,16 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
                 );
                 dispatch(setAutoPromotion(false));
             }
+
+            // Add all error messages to error log except for those that are explicitly thrown
+            if (
+                ![Errors.TRANSACTION_ALREADY_CONFIRMED, Errors.BUNDLE_NO_LONGER_FUNDED].some(
+                    (error) => error === err.message,
+                )
+            ) {
+                dispatch(prepareLogUpdate(err));
+            }
+
             if (err.message === Errors.NOT_ENOUGH_SYNCED_NODES) {
                 dispatch(breakPollCycle());
             }
