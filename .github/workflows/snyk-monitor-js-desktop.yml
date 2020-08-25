@@ -5,7 +5,11 @@ name: Monitor Desktop JavaScript dependencies with Snyk
 on:
   push:
     branches:
-     - develop
+    - develop
+    paths:
+    - 'src/desktop/package.json'
+    - 'src/desktop/npm-shrinkwrap.json'
+    - '.github/workflows/snyk-monitor-js-desktop.yml'
 
 jobs:
   security:
