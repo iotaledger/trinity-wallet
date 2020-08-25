@@ -6,6 +6,12 @@ on:
       - release/desktop-*
     tags:
       - desktop-*
+  workflow_dispatch:
+    inputs:
+      debugElectronBuilder:
+        description: "Verbose electron-builder output"     
+        required: true
+        default: "false"
 
 jobs:
   build:
@@ -65,6 +71,10 @@ jobs:
         rm -rf openssl-1.0.2k
         echo "::add-path::/usr/local/ssl"
       if: matrix.os == 'ubuntu-18.04'
+
+    - name: Enable verbose output for electron-builder
+      run: echo "::set-env name=DEBUG::electron-builder"
+      if: github.event.inputs.debugElectronBuilder && github.event.inputs.debugElectronBuilder == 'true'
 
     - name: Install desktop dependencies
       run: yarn deps:desktop
