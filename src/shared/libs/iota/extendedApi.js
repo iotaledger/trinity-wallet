@@ -186,8 +186,9 @@ const getLatestInclusionAsync = (settings, withQuorum = false) => (hashes) =>
     withQuorum
         ? quorum.getLatestInclusion(hashes)
         : new Promise((resolve, reject) => {
-              getIotaInstance(settings, getApiTimeout('getInclusionStates')).api.getLatestInclusion(
+              getIotaInstance(settings, getApiTimeout('getInclusionStates')).api.getInclusionStates(
                   hashes,
+                  [],
                   (err, states) => {
                       if (err) {
                           reject(err);
