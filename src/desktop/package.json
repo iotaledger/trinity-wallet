@@ -197,9 +197,6 @@
     "globalSetup": "<rootDir>scripts/jestSetup.js",
     "globalTeardown": "<rootDir>scripts/jestTeardown.js",
     "testEnvironment": "<rootDir>scripts/jestEnv.js",
-    "testPathIgnorePatterns": [
-      "/dist/"
-    ],
     "setupFilesAfterEnv": [
       "<rootDir>scripts/jestLibs.js"
     ],
