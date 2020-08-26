@@ -29,13 +29,7 @@ jobs:
       run: |
         yarn
         yarn deps:shared
-
-    - name: Install desktop dependencies
-      run: yarn deps:desktop
-
-    - name: Run ESLint
-      run: yarn lint:desktop
-
+    
     - name: Install required packages
       run: |
         sudo apt update
@@ -45,6 +39,26 @@ jobs:
           libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
           ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget \
           xvfb x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps
+    
+    - name: Install OpenSSL 1.0.2k - Linux
+      # For Realm on Linux
+      # Use this version of OpenSSL instead of the one provided by Ubuntu
+      run: |
+        curl -SL https://www.openssl.org/source/old/1.0.2/openssl-1.0.2k.tar.gz | tar -zx
+        cd openssl-1.0.2k
+        ./Configure -DPIC -fPIC -fvisibility=hidden -fvisibility-inlines-hidden \
+          no-zlib-dynamic no-dso linux-x86_64 --prefix=/usr
+        make
+        sudo make install_sw
+        cd ..
+        rm -rf openssl-1.0.2k
+        echo "::add-path::/usr/local/ssl"
+
+    - name: Install desktop dependencies
+      run: yarn deps:desktop
+
+    - name: Run ESLint
+      run: yarn lint:desktop
 
     - name: Run desktop tests
       run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test:desktop
