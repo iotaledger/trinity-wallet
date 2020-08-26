@@ -28,8 +28,9 @@ export default (request) => {
     switch (postData.command) {
         case 'getNodeInfo':
             body = {
-                appName: 'IRI',
-                appVersion: '0.0.0-MOCK',
+                appName: 'HORNET',
+                appVersion: '0.5.0-MOCK',
+                isHealthy: true,
                 latestMilestone: 'ABCDEFGHIJKLMNOPRSTUVXYZABCDEFGHIJKLMNOPRSTUVXYZABCDEFGHIJKLMNOPRSTUVXYZABCDEFGHI',
                 latestMilestoneIndex: 426550,
                 latestSolidSubtangleMilestone:

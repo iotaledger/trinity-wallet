@@ -12,7 +12,7 @@ describe('Trinity desktop end-to-end', () => {
         await page.click('#to-receive');
 
         // Receive
-        await new Promise((resolve) => setTimeout(resolve, 200));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         await page.waitForSelector('#generate-address');
         await page.click('#generate-address');
 
