@@ -1,0 +1,44 @@
+name: Monitor Desktop JavaScript dependencies with Snyk
+
+# NPM shrinkwraps are not supported by Snyk's GitHub integration, so we need to upload our dependency tree
+
+on:
+  push:
+    branches:
+    - develop
+    paths:
+    - 'src/desktop/package.json'
+    - 'src/desktop/npm-shrinkwrap.json'
+    - '.github/workflows/snyk-monitor-js-desktop.yml'
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src/desktop
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+
+    - name: Set up Python 2.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: '2.x'
+
+    - name: Install required packages - Linux
+      run: |
+        sudo apt update
+        sudo apt install -y gcc-multilib g++-multilib build-essential libssl-dev rpm libsecret-1-dev \
+          software-properties-common apt-transport-https libudev-dev libusb-1.0-0-dev
+
+    - name: Install desktop dependencies
+      run: npm ci
+
+    - name: Run Snyk to monitor dependencies
+      run: NODE_OPTIONS=--max-old-space-size=8192 npx snyk monitor --org=iota-foundation
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
