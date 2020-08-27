@@ -9,6 +9,7 @@ on:
       - '.github/workflows/test_desktop.yml'
     branches-ignore:
       - 'l10n_develop'
+  push:
 
 jobs:
   test-desktop:
@@ -18,12 +19,19 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Debug
-      run: echo ${{ github.ref }} ${{ github.head_ref }} ${{ github.base_ref }}
+      run: |
+        echo ${{ github.ref }} ${{ github.head_ref }} ${{ github.base_ref }}
+        which node
+        node -v
 
     - name: Set up Node.js
       uses: actions/setup-node@v1
       with:
         node-version: 10.x
+
+    # - name: Try symlinking node
+    #   run: |
+    #     sudo ln -sf $(which node) /usr/local/bin/node
 
     - name: Install shared dependencies
       run: |
@@ -53,12 +61,24 @@ jobs:
         cd ..
         rm -rf openssl-1.0.2k
         echo "::add-path::/usr/local/ssl"
+    
+    - name: Debug
+      run: |
+        node -v
+        echo $PATH
+        npm -v
+        which node
+        node -e "console.log(process.versions)"
 
     - name: Install desktop dependencies
-      run: yarn deps:desktop
+      run: |
+        cd src/desktop
+        npm ci
 
     - name: Run ESLint
       run: yarn lint:desktop
 
     - name: Run desktop tests
-      run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test:desktop
+      run: |
+        cd src/desktop
+        xvfb-run --server-args="-screen 0 1024x768x24" npm test
