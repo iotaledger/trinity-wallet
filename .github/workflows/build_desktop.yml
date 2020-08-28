@@ -207,9 +207,9 @@ jobs:
         MAC_SHA256=$(cat ../../assets/trinity-desktop-${{ env.RELEASE_VERSION }}.dmg.sha256)
         echo $WIN_SHA256 $LIN_SHA256 $MAC_SHA256
         sed -i -n '/^###/,/^$/p;/^$/q' CHANGELOG.md
-        sed -i '1i# Changelog' CHANGELOG.md
+        sed -i '1i### Changelog' CHANGELOG.md
         echo '------' >> CHANGELOG.md
-        echo '# File Hashes' >> CHANGELOG.md
+        echo '### File Hashes' >> CHANGELOG.md
         echo '[How to verify authenticity of your Trinity Desktop download](https://docs.iota.org/docs/wallets/0.1/trinity/how-to-guides/verify-trinity-desktop)' >> CHANGELOG.md
         echo '| File | Platform | SHA256 Hash |' >> CHANGELOG.md
         echo '| --- | --- | --- |' >> CHANGELOG.md
