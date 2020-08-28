@@ -12,7 +12,7 @@ import merge from 'lodash/merge';
 import orderBy from 'lodash/orderBy';
 import size from 'lodash/size';
 import some from 'lodash/some';
-import { parse } from '../libs/utils';
+import { serialise, parse } from '../libs/utils';
 import schemas, { getDeprecatedStoragePath, STORAGE_PATH as latestStoragePath, v0Schema, v1Schema } from '../schemas';
 import { __MOBILE__, __TEST__ } from '../config';
 import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
@@ -22,11 +22,6 @@ let realm = {}; // eslint-disable-line import/no-mutable-exports
 
 // Initialise Realm constructor as null and reinitialise after importing the correct (platform) Realm dependency
 let Realm = null;
-
-// JsonSerializeReplacer solves circular structures when serializing Realm entities
-const serialiseRealmObject = (data) => {
-    return JSON.stringify(data, Realm.JsonSerializationReplacer);
-};
 
 /**
  * Imports Realm dependency
@@ -79,13 +74,13 @@ class Account {
      */
     static getDataAsArray() {
         const accounts = Account.data;
-        const parsedAccounts = map(accounts, (account) => parse(serialiseRealmObject(account)));
+        const parsedAccounts = map(accounts, (account) => parse(serialise(account)));
 
         return map(parsedAccounts, (account) =>
             assign({}, account, {
-                addressData: map(account.addressData, (data) => parse(serialiseRealmObject(data))),
-                transactions: map(account.transactions, (transaction) => parse(serialiseRealmObject(transaction))),
-                meta: parse(serialiseRealmObject(account.meta)),
+                addressData: map(account.addressData, (data) => parse(serialise(data))),
+                transactions: map(account.transactions, (transaction) => parse(serialise(transaction))),
+                meta: parse(serialise(account.meta)),
             }),
         );
     }
@@ -214,11 +209,9 @@ class Account {
 
         realm.write(() => {
             // Create account with new name.
-            const newAccount = assign({}, parse(serialiseRealmObject(accountData)), {
-                addressData: map(accountData.addressData, (addressObject) =>
-                    parse(serialiseRealmObject(addressObject)),
-                ),
-                transactions: map(accountData.transactions, (transaction) => parse(serialiseRealmObject(transaction))),
+            const newAccount = assign({}, parse(serialise(accountData)), {
+                addressData: map(accountData.addressData, (addressObject) => parse(serialise(addressObject))),
+                transactions: map(accountData.transactions, (transaction) => parse(serialise(transaction))),
                 name: to,
             });
 
@@ -262,7 +255,7 @@ class Node {
      * @return {array}
      */
     static getDataAsArray() {
-        return map(Node.data, (node) => parse(serialiseRealmObject(node)));
+        return map(Node.data, (node) => parse(serialise(node)));
     }
 
     /**
@@ -372,7 +365,7 @@ class Wallet {
     static get latestDataAsPlainObject() {
         const data = Wallet.latestData;
 
-        return parse(serialiseRealmObject(data));
+        return parse(serialise(data));
     }
 
     /**
