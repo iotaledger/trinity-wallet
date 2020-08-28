@@ -94,7 +94,7 @@
     "react-native-webview": "5.8.2",
     "react-redux": "^5.0.6",
     "readable-stream": "^1.0.33",
-    "realm": "5.0.5",
+    "realm": "6.1.0",
     "redux": "^3.7.2",
     "rn-fetch-blob": "https://github.com/rajivshah3/rn-fetch-blob#10.13-226",
     "shared-modules": "../shared/",
