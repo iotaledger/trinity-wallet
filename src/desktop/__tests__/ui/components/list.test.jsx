@@ -1,10 +1,21 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import { ListComponent as List } from 'ui/components/List';
+import TransactionRow from 'ui/components/Transaction';
 
 import * as dateLib from 'libs/date';
+
 dateLib.formatTime = () => 'DD/MM/YYYY';
+
+jest.mock('react-virtualized-auto-sizer', () => {
+    const width = 100;
+    const height = 100;
+
+    return ({ children }) =>
+      <div>{children({ width, height })}</div>;
+  });
+  
 
 const props = {
     isBusy: false,
@@ -87,6 +98,7 @@ const props = {
         type: 'keychain',
     },
     password: {},
+    isRenderingForTray: false
 };
 
 describe('List component', () => {
@@ -97,44 +109,44 @@ describe('List component', () => {
     });
 
     test('List all history items', () => {
-        const wrapper = shallow(<List {...props} />);
+        const wrapper = mount(<List {...props} />);
 
-        expect(wrapper.find('.list a')).toHaveLength(6);
+        expect(wrapper.find(TransactionRow)).toHaveLength(6);
     });
 
     test('Filter received items', () => {
-        const wrapper = shallow(<List {...props} />);
+        const wrapper = mount(<List {...props} />);
 
         wrapper.setState({ filter: 'Received' });
-        expect(wrapper.find('.list a')).toHaveLength(1);
+        expect(wrapper.find(TransactionRow)).toHaveLength(1);
     });
 
     test('Filter sent items', () => {
-        const wrapper = shallow(<List {...props} />);
+        const wrapper = mount(<List {...props} />);
 
         wrapper.setState({ filter: 'Sent' });
-        expect(wrapper.find('.list a')).toHaveLength(2);
+        expect(wrapper.find(TransactionRow)).toHaveLength(2);
     });
 
     test('Filter pending items', () => {
-        const wrapper = shallow(<List {...props} />);
+        const wrapper = mount(<List {...props} />);
 
         wrapper.setState({ filter: 'Pending' });
-        expect(wrapper.find('.list a')).toHaveLength(3);
+        expect(wrapper.find(TransactionRow)).toHaveLength(3);
     });
 
     test('Filter items by value search', () => {
-        const wrapper = shallow(<List {...props} />);
+        const wrapper = mount(<List {...props} />);
 
         wrapper.setState({ search: '500000' });
-        expect(wrapper.find('.list a')).toHaveLength(2);
+        expect(wrapper.find(TransactionRow)).toHaveLength(2);
     });
 
     test('Filter items by message search', () => {
-        const wrapper = shallow(<List {...props} />);
+        const wrapper = mount(<List {...props} />);
 
         wrapper.setState({ search: 'dolor' });
-        expect(wrapper.find('.list a')).toHaveLength(1);
+        expect(wrapper.find(TransactionRow)).toHaveLength(1);
     });
 
     test('Display single transaction', () => {
