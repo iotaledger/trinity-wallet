@@ -1,7 +1,7 @@
 ### 1.6.1
 
 - Fix: Deep linking on Windows
-- Fix: Add autopromotion errors to the error log
+- Fix: Add polling errors to the error log
 - Update: Update to Electron 7.3.3
 
 ### 1.6.0
