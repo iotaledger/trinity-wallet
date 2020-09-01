@@ -74,6 +74,8 @@ jobs:
       run: |
         cd src/desktop
         npm ci
+      env:
+        DEBUG: electron-builder
 
     - name: Run ESLint
       run: yarn lint:desktop
