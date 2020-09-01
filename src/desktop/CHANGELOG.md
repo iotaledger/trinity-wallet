@@ -1,3 +1,9 @@
+### 1.6.1
+
+- Fix: Deep linking on Windows
+- Fix: Add polling errors to the error log
+- Update: Update to Electron 7.3.3
+
 ### 1.6.0
 - Fix: Remove manual promotion
 - Fix: Update auto-promotion logic for Chrysalis Part 1

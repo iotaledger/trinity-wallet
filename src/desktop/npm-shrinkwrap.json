@@ -1,6 +1,6 @@
 {
   "name": "trinity-desktop",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -11142,9 +11142,9 @@
       "dev": true
     },
     "electron": {
-      "version": "7.3.1",
-      "resolved": "https://registry.npmjs.org/electron/-/electron-7.3.1.tgz",
-      "integrity": "sha512-T1yuQqjTpRIh/oQ1rIhuN2aIk0YZaielyn09oxrMMwvL+C3bHvpPUJSCZrtVSzdUmTORhQRM9FZPzheBsneVUA==",
+      "version": "7.3.3",
+      "resolved": "https://registry.npmjs.org/electron/-/electron-7.3.3.tgz",
+      "integrity": "sha512-PrJEsuRiaAhTDHtbH3EM+RIne+nZ6ifGChUadmtmPqHUQ+rIhf4jSi2ZN768IgBDw4SidMJiCrvQRiuDha9+Ew==",
       "dev": true,
       "requires": {
         "@electron/get": "^1.0.1",
@@ -11153,9 +11153,9 @@
       },
       "dependencies": {
         "@types/node": {
-          "version": "12.12.43",
-          "resolved": "https://registry.npmjs.org/@types/node/-/node-12.12.43.tgz",
-          "integrity": "sha512-KUyZdkGCnVPuXfsKmDUu2XLui65LZIJ2s0M57noy5e+ixUT2oK33ep7zlvgzI8LElcWqbf8AR+o/3GqAPac2zA==",
+          "version": "12.12.54",
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-12.12.54.tgz",
+          "integrity": "sha512-ge4xZ3vSBornVYlDnk7yZ0gK6ChHf/CHB7Gl1I0Jhah8DDnEQqBzgohYG4FX4p81TNirSETOiSyn+y1r9/IR6w==",
           "dev": true
         }
       }
