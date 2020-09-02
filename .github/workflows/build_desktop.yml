@@ -47,14 +47,12 @@ jobs:
 
     - name: Install OpenSSL 1.0.2s - Windows
       # For Realm on Windows
+      # Prebuilt openssl:x64-windows-static from https://github.com/microsoft/vcpkg/releases/tag/2019.12
       run: |
-        git clone https://github.com/Microsoft/vcpkg C:\src\vcpkg
-        cd C:\src\vcpkg
-        git checkout ${{ env.VCPKG_COMMIT }}
-        .\bootstrap-vcpkg.bat
-        .\vcpkg install openssl:x64-windows-static
-      env:
-        VCPKG_COMMIT: 5d7ff36 # https://github.com/microsoft/vcpkg/releases/tag/2019.12
+        $ProgressPreference = 'SilentlyContinue'
+        Invoke-WebRequest https://iotaledger-files.s3.eu-central-1.amazonaws.com/trinity/desktop/prebuild/windows/vcpkg-export-openssl-1.0.2s.zip -OutFile openssl.zip
+        Expand-Archive openssl.zip -DestinationPath C:\src\vcpkg
+        Remove-Item openssl.zip
       if: matrix.os == 'windows-2019'
 
     - name: Install OpenSSL 1.0.2k - Linux
