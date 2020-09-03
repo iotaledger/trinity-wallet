@@ -30,11 +30,11 @@ jobs:
       with:
         node-version: 10.x
 
-    - name: Install shared dependencies
-      run: |
-        yarn
-        yarn deps:shared
-    
+    - name: Set up Python 2.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: '2.x'
+
     - name: Install required packages - Linux
       run: |
         sudo apt update
@@ -45,6 +45,21 @@ jobs:
           ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget \
           xvfb x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps
       if: matrix.os == 'ubuntu-18.04'
+
+    - name: Install shared dependencies
+      run: |
+        yarn
+        yarn deps:shared
+
+    - name: Install OpenSSL 1.0.2s - Windows
+      # For Realm on Windows
+      # Prebuilt openssl:x64-windows-static from https://github.com/microsoft/vcpkg/releases/tag/2019.12
+      run: |
+        $ProgressPreference = 'SilentlyContinue'
+        Invoke-WebRequest https://iotaledger-files.s3.eu-central-1.amazonaws.com/trinity/desktop/prebuild/windows/vcpkg-export-openssl-1.0.2s.zip -OutFile openssl.zip
+        Expand-Archive openssl.zip -DestinationPath C:\src\vcpkg
+        Remove-Item openssl.zip
+      if: matrix.os == 'windows-2019'
     
     - name: Install OpenSSL 1.0.2k - Linux
       # For Realm on Linux
@@ -72,5 +87,7 @@ jobs:
       if: matrix.os == 'ubuntu-18.04'
     
     - name: Run desktop tests - macOS/Windows
-      run: yarn test:desktop
+      run: |
+        cd src/desktop
+        npm test -- --runInBand
       if: matrix.os == 'macos-10.15' || matrix.os == 'windows-2019'
