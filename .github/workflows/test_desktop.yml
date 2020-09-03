@@ -46,6 +46,18 @@ jobs:
           xvfb x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps
       if: matrix.os == 'ubuntu-18.04'
 
+    - name: Cache root node_modules
+      uses: actions/cache@v2
+      with:
+        path: ${{ github.workspace }}/node_modules
+        key: trinity-root-node_modules-${{ matrix.os }}-${{ hashFiles('yarn.lock') }}
+
+    - name: Cache shared node_modules
+      uses: actions/cache@v2
+      with:
+        path: ${{ github.workspace }}/src/shared/node_modules
+        key: trinity-shared-node_modules-${{ matrix.os }}-${{ hashFiles('src/shared/yarn.lock') }}
+
     - name: Install shared dependencies
       run: |
         yarn
@@ -75,6 +87,12 @@ jobs:
         rm -rf openssl-1.0.2k
         echo "::add-path::/usr/local/ssl"
       if: matrix.os == 'ubuntu-18.04'
+    
+    - name: Cache desktop node_modules
+      uses: actions/cache@v2
+      with:
+        path: ${{ github.workspace }}/src/desktop/node_modules
+        key: trinity-desktop-node_modules-${{ matrix.os }}-${{ hashFiles('src/desktop/npm-shrinkwrap.json') }}
 
     - name: Install desktop dependencies
       run: yarn deps:desktop
