@@ -388,8 +388,7 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
 
     return new NodesManager(
         nodesConfigurationFactory({
-            quorum,
-            useOnlyPowNodes: true,
+            quorum
         })(getState()),
     )
         .withRetries()(executePrePromotionChecks)()
