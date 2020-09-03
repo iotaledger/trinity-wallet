@@ -8,6 +8,7 @@ import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
 import filter from 'lodash/filter';
 import transform from 'lodash/transform';
+import keys from 'lodash/keys';
 import { createSelector } from 'reselect';
 import { getSeedIndexFromState } from './global';
 import { accumulateBalance, getLatestAddress } from '../libs/iota/addresses';
@@ -341,18 +342,32 @@ export const getPromotableBundlesFromState = createSelector(
                         transaction.broadcasted === true,
                 );
 
-                // Pick unconfirmed bundle hashes
-                const promotableBundleHashes = pickBy(
-                    categoriseInclusionStatesByBundleHash(
-                        promotableTailTransactions,
-                        map(promotableTailTransactions, (transaction) => transaction.persistence),
-                    ),
-                    (state) => state === false,
+                const promotableValueTailTransactions = filter(
+                    promotableTailTransactions,
+                    (transaction) => transaction.value > 0,
+                );
+                const promotableDataTailTransactions = filter(
+                    promotableTailTransactions,
+                    (transaction) => transaction.value === 0,
                 );
 
-                // Set each bundle hash with account name for auto promotion
-                each(promotableBundleHashes, (_, bundleHash) => {
-                    acc[bundleHash] = { accountName };
+                const _getPromotableBundleHashes = (tailTransactions) =>
+                    pickBy(
+                        categoriseInclusionStatesByBundleHash(
+                            tailTransactions,
+                            map(tailTransactions, (transaction) => transaction.persistence),
+                        ),
+                        (state) => state === false,
+                    );
+
+                const promotableDataBundleHashes = _getPromotableBundleHashes(promotableDataTailTransactions);
+                const promotableValueBundleHashes = _getPromotableBundleHashes(promotableValueTailTransactions);
+
+                // Set each bundle hash with account name and value for auto promotion
+                each({ ...promotableValueBundleHashes, ...promotableDataBundleHashes }, (_, bundleHash) => {
+                    acc[bundleHash] = keys(promotableValueBundleHashes).includes(bundleHash)
+                        ? { accountName, value: true }
+                        : { accountName, value: false };
                 });
             },
             {},
