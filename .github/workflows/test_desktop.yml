@@ -115,4 +115,5 @@ jobs:
       run: |
         cd src/desktop
         npm test -- --runInBand
+      timeout-minutes: 10
       if: matrix.os == 'macos-10.15' || matrix.os == 'windows-2019'
