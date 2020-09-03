@@ -55,7 +55,7 @@ jobs:
     
     - name: Install root dependencies
       run: yarn
-      if: steps.cache-root-node_modules.outputs.cache-hit == 'false'
+      if: steps.cache-root-node_modules.outputs.cache-hit != 'true'
 
     - name: Cache shared node_modules
       uses: actions/cache@v2
@@ -66,7 +66,7 @@ jobs:
 
     - name: Install shared dependencies
       run: yarn deps:shared
-      if: steps.cache-shared-node_modules.outputs.cache-hit == 'false'
+      if: steps.cache-shared-node_modules.outputs.cache-hit != 'true'
 
     - name: Install OpenSSL 1.0.2s - Windows
       # For Realm on Windows
@@ -102,7 +102,7 @@ jobs:
 
     - name: Install desktop dependencies
       run: yarn deps:desktop
-      if: steps.cache-desktop-node_modules.outputs.cache-hit == 'false'
+      if: steps.cache-desktop-node_modules.outputs.cache-hit != 'true'
 
     - name: Run ESLint
       run: yarn lint:desktop
