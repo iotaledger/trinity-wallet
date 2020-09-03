@@ -333,7 +333,7 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn, quoru
  *
  * @returns {function} - dispatch
  **/
-export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = true) => (dispatch, getState) => {
+export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = false) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
     let accountState = selectedAccountStateFactory(accountName)(getState());
