@@ -48,20 +48,25 @@ jobs:
 
     - name: Cache root node_modules
       uses: actions/cache@v2
+      id: cache-root-node_modules
       with:
         path: ${{ github.workspace }}/node_modules
         key: trinity-root-node_modules-${{ matrix.os }}-${{ hashFiles('yarn.lock') }}
+    
+    - name: Install root dependencies
+      run: yarn
+      if: steps.cache-root-node_modules.outputs.cache-hit == 'false'
 
     - name: Cache shared node_modules
       uses: actions/cache@v2
+      id: cache-shared-node_modules
       with:
         path: ${{ github.workspace }}/src/shared/node_modules
         key: trinity-shared-node_modules-${{ matrix.os }}-${{ hashFiles('src/shared/yarn.lock') }}
 
     - name: Install shared dependencies
-      run: |
-        yarn
-        yarn deps:shared
+      run: yarn deps:shared
+      if: steps.cache-shared-node_modules.outputs.cache-hit == 'false'
 
     - name: Install OpenSSL 1.0.2s - Windows
       # For Realm on Windows
@@ -89,6 +94,7 @@ jobs:
       if: matrix.os == 'ubuntu-18.04'
     
     - name: Cache desktop node_modules
+      id: cache-desktop-node_modules
       uses: actions/cache@v2
       with:
         path: ${{ github.workspace }}/src/desktop/node_modules
@@ -96,6 +102,7 @@ jobs:
 
     - name: Install desktop dependencies
       run: yarn deps:desktop
+      if: steps.cache-desktop-node_modules.outputs.cache-hit == 'false'
 
     - name: Run ESLint
       run: yarn lint:desktop
