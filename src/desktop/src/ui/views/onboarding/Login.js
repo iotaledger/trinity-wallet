@@ -81,7 +81,7 @@ class Login extends React.Component {
             this.props.setPassword({});
         }
 
-        this.props.fetchMarketData();
+        this.props.fetchMarketData(false);
     }
 
     componentDidUpdate(prevProps) {
