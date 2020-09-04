@@ -474,10 +474,17 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
     // Reassign with latest state when account is synced
     let accountState = selectedAccountStateFactory(accountName)(getState());
 
+    let hasValidatedReceiveAddress = false;
+    let hasSyncedAccount = false;
+    let hasPreparedInputs = false;
+
     const withPreTransactionSecurityChecks = (settings, withQuorum) => () => {
         // Progressbar step => (Validating receive address)
-        dispatch(setNextStepAsActive());
-
+        if (!hasValidatedReceiveAddress) {
+            dispatch(setNextStepAsActive());
+        }
+        hasValidatedReceiveAddress = true;
+        
         // Check the last trit for validity
         return Promise.resolve(isLastTritZero(address))
             .then((lastTritIsZero) => {
@@ -500,7 +507,10 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     }
 
                     // Progressbar step => (Syncing account)
-                    dispatch(setNextStepAsActive());
+                    if (!hasSyncedAccount) {
+                        dispatch(setNextStepAsActive());
+                    }
+                    hasSyncedAccount = true;
 
                     return syncAccount(settings, withQuorum, true)(accountState, seedStore);
                 });
@@ -511,7 +521,10 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 accountState = newState;
 
                 // Progressbar step => (Preparing inputs)
-                dispatch(setNextStepAsActive());
+                if (!hasPreparedInputs) {
+                    dispatch(setNextStepAsActive());
+                }
+                hasPreparedInputs = true;
 
                 return getInputs(settings, withQuorum)(
                     accountState.addressData,
