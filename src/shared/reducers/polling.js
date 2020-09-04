@@ -98,13 +98,13 @@ const polling = (
             return {
                 ...state,
                 isFetchingNodeList: false,
-                ...setNextPollIfSuccessful(state),
+                ...setNextPollIfSuccessful(state, action.payload),
             };
         case PollingActionTypes.FETCH_NODELIST_ERROR:
             return {
                 ...state,
                 isFetchingNodeList: false,
-                ...setNextPollIfUnsuccessful(state),
+                ...setNextPollIfUnsuccessful(state, action.payload),
             };
         case PollingActionTypes.FETCH_MARKET_DATA_REQUEST:
             return {
@@ -115,13 +115,13 @@ const polling = (
             return {
                 ...state,
                 isFetchingMarketData: false,
-                ...setNextPollIfSuccessful(state),
+                ...setNextPollIfSuccessful(state, action.payload),
             };
         case PollingActionTypes.FETCH_MARKET_DATA_ERROR:
             return {
                 ...state,
                 isFetchingMarketData: false,
-                ...setNextPollIfUnsuccessful(state),
+                ...setNextPollIfUnsuccessful(state, action.payload),
             };
         case PollingActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST:
             return {
