@@ -3,7 +3,11 @@ import isNumber from 'lodash/isNumber';
 import size from 'lodash/size';
 import { PollingActionTypes, TransfersActionTypes } from '../types';
 
-export const setNextPollIfSuccessful = (state) => {
+export const setNextPollIfSuccessful = (state, isPolling = true) => {
+    if (!isPolling) {
+        return;
+    }
+    
     const { allPollingServices, pollFor } = state;
 
     const currentIndex = findIndex(allPollingServices, (service) => pollFor === service);
@@ -19,7 +23,11 @@ export const setNextPollIfSuccessful = (state) => {
     return { pollFor: allPollingServices[0], retryCount: 0 }; // In case something bad happens, restart fresh
 };
 
-export const setNextPollIfUnsuccessful = (state) => {
+export const setNextPollIfUnsuccessful = (state, isPolling = true) => {
+    if (!isPolling) {
+        return;
+    }
+
     const { allPollingServices, pollFor, retryCount } = state;
 
     if (retryCount < 3) {
