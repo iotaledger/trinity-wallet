@@ -121,7 +121,7 @@ class App extends React.Component {
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
         this.onAccountSwitch = this.accountSwitch.bind(this);
-        this.props.fetchNodeList();
+        this.props.fetchNodeList(false);
 
         Electron.onEvent('menu', this.onMenuToggle);
         Electron.onEvent('account.switch', this.onAccountSwitch);

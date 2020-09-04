@@ -12,7 +12,12 @@ on:
 
 jobs:
   test-desktop:
-    runs-on: ubuntu-18.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        #os: [ubuntu-18.04, macos-10.15, windows-2019]
+        os: [macos-10.15]
+      fail-fast: false
 
     steps:
     - uses: actions/checkout@v2
@@ -25,12 +30,12 @@ jobs:
       with:
         node-version: 10.x
 
-    - name: Install shared dependencies
-      run: |
-        yarn
-        yarn deps:shared
-    
-    - name: Install required packages
+    - name: Set up Python 2.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: '2.x'
+
+    - name: Install required packages - Linux
       run: |
         sudo apt update
         sudo apt install -yq gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 \
@@ -39,6 +44,39 @@ jobs:
           libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
           ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget \
           xvfb x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps
+      if: matrix.os == 'ubuntu-18.04'
+
+    - name: Cache root node_modules
+      uses: actions/cache@v2
+      id: cache-root-node_modules
+      with:
+        path: ${{ github.workspace }}/node_modules
+        key: trinity-root-node_modules-${{ matrix.os }}-${{ hashFiles('yarn.lock') }}
+    
+    - name: Install root dependencies
+      run: yarn
+      if: steps.cache-root-node_modules.outputs.cache-hit != 'true'
+
+    - name: Cache shared node_modules
+      uses: actions/cache@v2
+      id: cache-shared-node_modules
+      with:
+        path: ${{ github.workspace }}/src/shared/node_modules
+        key: trinity-shared-node_modules-${{ matrix.os }}-${{ hashFiles('src/shared/yarn.lock') }}
+
+    - name: Install shared dependencies
+      run: yarn deps:shared
+      if: steps.cache-shared-node_modules.outputs.cache-hit != 'true'
+
+    - name: Install OpenSSL 1.0.2s - Windows
+      # For Realm on Windows
+      # Prebuilt openssl:x64-windows-static from https://github.com/microsoft/vcpkg/releases/tag/2019.12
+      run: |
+        $ProgressPreference = 'SilentlyContinue'
+        Invoke-WebRequest https://iotaledger-files.s3.eu-central-1.amazonaws.com/trinity/desktop/prebuild/windows/vcpkg-export-openssl-1.0.2s.zip -OutFile openssl.zip
+        Expand-Archive openssl.zip -DestinationPath C:\src\vcpkg
+        Remove-Item openssl.zip
+      if: matrix.os == 'windows-2019'
     
     - name: Install OpenSSL 1.0.2k - Linux
       # For Realm on Linux
@@ -53,12 +91,29 @@ jobs:
         cd ..
         rm -rf openssl-1.0.2k
         echo "::add-path::/usr/local/ssl"
+      if: matrix.os == 'ubuntu-18.04'
+    
+    - name: Cache desktop node_modules
+      id: cache-desktop-node_modules
+      uses: actions/cache@v2
+      with:
+        path: ${{ github.workspace }}/src/desktop/node_modules
+        key: trinity-desktop-node_modules-${{ matrix.os }}-${{ hashFiles('src/desktop/npm-shrinkwrap.json') }}
 
     - name: Install desktop dependencies
       run: yarn deps:desktop
+      if: steps.cache-desktop-node_modules.outputs.cache-hit != 'true'
 
     - name: Run ESLint
       run: yarn lint:desktop
 
-    - name: Run desktop tests
+    - name: Run desktop tests - Linux
       run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test:desktop
+      if: matrix.os == 'ubuntu-18.04'
+    
+    - name: Run desktop tests - macOS/Windows
+      run: |
+        cd src/desktop
+        npm test -- --runInBand
+      timeout-minutes: 20
+      if: matrix.os == 'macos-10.15' || matrix.os == 'windows-2019'

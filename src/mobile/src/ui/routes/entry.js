@@ -160,7 +160,7 @@ const fetchNodeList = (store) => {
     // Set quorum size
     quorum.setSize(get(settings, 'quorum.size'));
 
-    store.dispatch(fetchNodes());
+    store.dispatch(fetchNodes(false));
 };
 
 /**

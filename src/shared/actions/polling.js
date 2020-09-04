@@ -38,22 +38,26 @@ const fetchNodeListRequest = () => ({
  * Dispatch when list of IRI nodes are successfully fetched from remote server
  *
  * @method fetchNodeListSuccess
+ * @param {boolean} payload
  *
- * @returns {{type: {string} }}
+ * @returns {{type: {string}, payload: {boolean} }}
  */
-const fetchNodeListSuccess = () => ({
+const fetchNodeListSuccess = (payload) => ({
     type: PollingActionTypes.FETCH_NODELIST_SUCCESS,
+    payload
 });
 
 /**
  * Dispatch if an error occurs while fetching list of IRI nodes from remote server
  *
  * @method fetchNodeListError
+ * @param {boolean} payload
  *
- * @returns {{type: {string} }}
+ * @returns {{type: {string}, payload: {boolean} }}
  */
-const fetchNodeListError = () => ({
+const fetchNodeListError = (payload) => ({
     type: PollingActionTypes.FETCH_NODELIST_ERROR,
+    payload
 });
 
 /**
@@ -71,22 +75,26 @@ const fetchMarketDataRequest = () => ({
  * Dispatch when IOTA market information is successfully fetched
  *
  * @method fetchMarketDataSuccess
+ * @param {boolean} payload
  *
- * @returns {{type: {string} }}
+ * @returns {{type: {string}, payload: {boolean} }}
  */
-const fetchMarketDataSuccess = () => ({
+const fetchMarketDataSuccess = (payload) => ({
     type: PollingActionTypes.FETCH_MARKET_DATA_SUCCESS,
+    payload
 });
 
 /**
  * Dispatch if an error occurs while fetching IOTA market information
  *
  * @method fetchMarketDataError
+ * @param {boolean} payload
  *
- * @returns {{type: {string} }}
+ * @returns {{type: {string}, payload: {boolean} }}
  */
-const fetchMarketDataError = () => ({
+const fetchMarketDataError = (payload) => ({
     type: PollingActionTypes.FETCH_MARKET_DATA_ERROR,
+    payload
 });
 
 /**
@@ -103,10 +111,8 @@ const accountInfoForAllAccountsFetchRequest = () => ({
 /**
  * Dispatch when accounts information is successfully fetched during polling
  *
- * @method accountInfoForAllAccountsFetchSuccess
- * @param {object} payload
- *
- * @returns {{type: {string}, payload: {object} }}
+ * @method accountInfoForAllAccountsFetchSuccess *
+ * @returns {{type: {string} }}
  */
 const accountInfoForAllAccountsFetchSuccess = () => ({
     type: PollingActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS,
@@ -211,25 +217,26 @@ export const syncAccountWhilePolling = (payload) => ({
 });
 
 /**
- *  Fetch IOTA market information
+ * Fetch IOTA market information
  *
- *   @method fetchMarketData
+ * @method fetchMarketData
+ * @param {boolean} isPolling
  *
- *   @returns {function} - dispatch
+ * @returns {function} - dispatch
  **/
-export const fetchMarketData = () => {
+export const fetchMarketData = (isPolling = true) => {
     return (dispatch) => {
         dispatch(fetchMarketDataRequest());
         getMarketData(dispatch)
             .then((successful) => {
                 if (successful) {
-                    dispatch(fetchMarketDataSuccess());
+                    dispatch(fetchMarketDataSuccess(isPolling));
                 } else {
-                    dispatch(fetchMarketDataError());
+                    dispatch(fetchMarketDataError(isPolling));
                 }
             })
             .catch((err) => {
-                dispatch(fetchMarketDataError());
+                dispatch(fetchMarketDataError(isPolling));
                 dispatch(prepareLogUpdate(err));
             });
     };
@@ -239,10 +246,10 @@ export const fetchMarketData = () => {
  * Fetch list of IRI nodes from a remote server
  *
  * @method fetchNodeList
- *
+ * @param {boolean} isPolling
  * @returns {function}
  */
-export const fetchNodeList = () => {
+export const fetchNodeList = (isPolling = true) => {
     return (dispatch, getState) => {
         dispatch(fetchNodeListRequest());
 
@@ -264,10 +271,10 @@ export const fetchNodeList = () => {
                 );
 
                 dispatch(setNodeList(nodes));
-                dispatch(fetchNodeListSuccess());
+                dispatch(fetchNodeListSuccess(isPolling));
             })
             .catch(() => {
-                dispatch(fetchNodeListError());
+                dispatch(fetchNodeListError(isPolling));
             });
     };
 };

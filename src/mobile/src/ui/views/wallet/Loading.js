@@ -213,7 +213,7 @@ class Loading extends Component {
     }
 
     getWalletData() {
-        this.props.fetchMarketData();
+        this.props.fetchMarketData(false);
     }
 
     animateElipses = (chars, index, time = 750) => {
