@@ -144,12 +144,7 @@ function createWindow() {
      */
     try {
         protocol.registerFileProtocol('iota', (request, callback) => {
-            callback(
-                request.url
-                    .replace('iota:/', app.getAppPath())
-                    .split('?')[0]
-                    .split('#')[0],
-            );
+            callback(request.url.replace('iota:/', app.getAppPath()).split('?')[0].split('#')[0]);
         });
     } catch (error) {
         console.log(error); //eslint-disable-line no-console
@@ -297,11 +292,7 @@ function createWindow() {
 
             try {
                 if (
-                    externalWhitelist.indexOf(
-                        URL.parse(targetURL)
-                            .host.replace('www.', '')
-                            .replace('mailto:', ''),
-                    ) > -1
+                    externalWhitelist.indexOf(URL.parse(targetURL).host.replace('www.', '').replace('mailto:', '')) > -1
                 ) {
                     shell.openExternal(targetURL);
                 }
@@ -369,7 +360,7 @@ const toggleTray = () => {
  * @param {Event} Event - Window close event
  * @returns {undefined}
  */
-const hideOnClose = function(event) {
+const hideOnClose = function (event) {
     if (process.platform === 'darwin') {
         event.preventDefault();
         windows.main.hide();
@@ -383,7 +374,7 @@ const hideOnClose = function(event) {
  * Get Window instance helper
  * @param {string} windowName -  Target window name
  */
-const getWindow = function(windowName) {
+const getWindow = function (windowName) {
     return windows[windowName];
 };
 

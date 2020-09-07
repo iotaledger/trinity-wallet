@@ -534,9 +534,9 @@ const getTipInfoAsync = (settings) => (tailTransactionHash) => {
         }),
     }).then((response) => {
         return response.json().then((res) => {
-        if (response.ok) {
+            if (response.ok) {
                 return res;
-        }
+            }
 
             throw new Error(res.error);
         });

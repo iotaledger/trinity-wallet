@@ -7,7 +7,7 @@ export const setNextPollIfSuccessful = (state, isPolling = true) => {
     if (!isPolling) {
         return;
     }
-    
+
     const { allPollingServices, pollFor } = state;
 
     const currentIndex = findIndex(allPollingServices, (service) => pollFor === service);
