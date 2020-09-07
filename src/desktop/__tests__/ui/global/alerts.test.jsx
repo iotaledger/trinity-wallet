@@ -13,6 +13,8 @@ const props = {
     forceUpdate: false,
     shouldUpdate: false,
     displayTestWarning: false,
+    displaySeedMigrationAlert: false,
+    seedMigrationUrl: 'http://localhost',
     t: (str) => str,
 };
 

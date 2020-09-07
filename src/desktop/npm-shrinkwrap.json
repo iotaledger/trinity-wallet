@@ -1,6 +1,6 @@
 {
   "name": "trinity-desktop",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -4953,16 +4953,6 @@
             "which-module": "^2.0.0",
             "y18n": "^4.0.0",
             "yargs-parser": "^18.1.1"
-          }
-        },
-        "yargs-parser": {
-          "version": "18.1.2",
-          "resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-18.1.2.tgz",
-          "integrity": "sha512-hlIPNR3IzC1YuL1c2UwwDKpXlNFBqD1Fswwh1khz5+d8Cq/8yc/Mn0i+rQXduu8hcrFKvO7Eryk+09NecTQAAQ==",
-          "dev": true,
-          "requires": {
-            "camelcase": "^5.0.0",
-            "decamelize": "^1.2.0"
           }
         }
       }
@@ -11142,9 +11132,9 @@
       "dev": true
     },
     "electron": {
-      "version": "7.3.1",
-      "resolved": "https://registry.npmjs.org/electron/-/electron-7.3.1.tgz",
-      "integrity": "sha512-T1yuQqjTpRIh/oQ1rIhuN2aIk0YZaielyn09oxrMMwvL+C3bHvpPUJSCZrtVSzdUmTORhQRM9FZPzheBsneVUA==",
+      "version": "7.3.3",
+      "resolved": "https://registry.npmjs.org/electron/-/electron-7.3.3.tgz",
+      "integrity": "sha512-PrJEsuRiaAhTDHtbH3EM+RIne+nZ6ifGChUadmtmPqHUQ+rIhf4jSi2ZN768IgBDw4SidMJiCrvQRiuDha9+Ew==",
       "dev": true,
       "requires": {
         "@electron/get": "^1.0.1",
@@ -11153,9 +11143,9 @@
       },
       "dependencies": {
         "@types/node": {
-          "version": "12.12.43",
-          "resolved": "https://registry.npmjs.org/@types/node/-/node-12.12.43.tgz",
-          "integrity": "sha512-KUyZdkGCnVPuXfsKmDUu2XLui65LZIJ2s0M57noy5e+ixUT2oK33ep7zlvgzI8LElcWqbf8AR+o/3GqAPac2zA==",
+          "version": "12.12.54",
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-12.12.54.tgz",
+          "integrity": "sha512-ge4xZ3vSBornVYlDnk7yZ0gK6ChHf/CHB7Gl1I0Jhah8DDnEQqBzgohYG4FX4p81TNirSETOiSyn+y1r9/IR6w==",
           "dev": true
         }
       }
@@ -11220,8 +11210,7 @@
         "camelcase": {
           "version": "5.3.1",
           "resolved": "https://registry.npmjs.org/camelcase/-/camelcase-5.3.1.tgz",
-          "integrity": "sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==",
-          "dev": true
+          "integrity": "sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg=="
         },
         "chalk": {
           "version": "3.0.0",
@@ -11429,16 +11418,6 @@
             "which-module": "^2.0.0",
             "y18n": "^4.0.0",
             "yargs-parser": "^18.1.1"
-          }
-        },
-        "yargs-parser": {
-          "version": "18.1.3",
-          "resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-18.1.3.tgz",
-          "integrity": "sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ==",
-          "dev": true,
-          "requires": {
-            "camelcase": "^5.0.0",
-            "decamelize": "^1.2.0"
           }
         }
       }
@@ -16098,16 +16077,6 @@
             "which-module": "^2.0.0",
             "y18n": "^4.0.0",
             "yargs-parser": "^18.1.1"
-          }
-        },
-        "yargs-parser": {
-          "version": "18.1.2",
-          "resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-18.1.2.tgz",
-          "integrity": "sha512-hlIPNR3IzC1YuL1c2UwwDKpXlNFBqD1Fswwh1khz5+d8Cq/8yc/Mn0i+rQXduu8hcrFKvO7Eryk+09NecTQAAQ==",
-          "dev": true,
-          "requires": {
-            "camelcase": "^5.0.0",
-            "decamelize": "^1.2.0"
           }
         }
       }
@@ -27284,9 +27253,9 @@
           }
         },
         "yargs-parser": {
-          "version": "13.1.1",
-          "resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-13.1.1.tgz",
-          "integrity": "sha512-oVAVsHz6uFrg3XQheFII8ESO2ssAf9luWuAd6Wexsu4F3OtIW0o8IribPXYrD4WC24LWtPrJlGy87y5udK+dxQ==",
+          "version": "13.1.2",
+          "resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-13.1.2.tgz",
+          "integrity": "sha512-3lbsNRf/j+A4QuSZfDRA7HRSfWrzO0YjqTJd5kjAq37Zep1CEgaYmrH9Q3GwPiB9cHyd1Y1UwggGhJGoxipbzg==",
           "dev": true,
           "requires": {
             "camelcase": "^5.0.0",

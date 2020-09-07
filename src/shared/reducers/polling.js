@@ -3,7 +3,11 @@ import isNumber from 'lodash/isNumber';
 import size from 'lodash/size';
 import { PollingActionTypes, TransfersActionTypes } from '../types';
 
-export const setNextPollIfSuccessful = (state) => {
+export const setNextPollIfSuccessful = (state, isPolling = true) => {
+    if (!isPolling) {
+        return;
+    }
+
     const { allPollingServices, pollFor } = state;
 
     const currentIndex = findIndex(allPollingServices, (service) => pollFor === service);
@@ -19,7 +23,11 @@ export const setNextPollIfSuccessful = (state) => {
     return { pollFor: allPollingServices[0], retryCount: 0 }; // In case something bad happens, restart fresh
 };
 
-export const setNextPollIfUnsuccessful = (state) => {
+export const setNextPollIfUnsuccessful = (state, isPolling = true) => {
+    if (!isPolling) {
+        return;
+    }
+
     const { allPollingServices, pollFor, retryCount } = state;
 
     if (retryCount < 3) {
@@ -90,13 +98,13 @@ const polling = (
             return {
                 ...state,
                 isFetchingNodeList: false,
-                ...setNextPollIfSuccessful(state),
+                ...setNextPollIfSuccessful(state, action.payload),
             };
         case PollingActionTypes.FETCH_NODELIST_ERROR:
             return {
                 ...state,
                 isFetchingNodeList: false,
-                ...setNextPollIfUnsuccessful(state),
+                ...setNextPollIfUnsuccessful(state, action.payload),
             };
         case PollingActionTypes.FETCH_MARKET_DATA_REQUEST:
             return {
@@ -107,13 +115,13 @@ const polling = (
             return {
                 ...state,
                 isFetchingMarketData: false,
-                ...setNextPollIfSuccessful(state),
+                ...setNextPollIfSuccessful(state, action.payload),
             };
         case PollingActionTypes.FETCH_MARKET_DATA_ERROR:
             return {
                 ...state,
                 isFetchingMarketData: false,
-                ...setNextPollIfUnsuccessful(state),
+                ...setNextPollIfUnsuccessful(state, action.payload),
             };
         case PollingActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST:
             return {

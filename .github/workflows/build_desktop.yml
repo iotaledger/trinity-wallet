@@ -1,4 +1,4 @@
-name: Build desktop
+name: Build Trinity Desktop
 
 on:
   push:
@@ -47,14 +47,12 @@ jobs:
 
     - name: Install OpenSSL 1.0.2s - Windows
       # For Realm on Windows
+      # Prebuilt openssl:x64-windows-static from https://github.com/microsoft/vcpkg/releases/tag/2019.12
       run: |
-        git clone https://github.com/Microsoft/vcpkg C:\src\vcpkg
-        cd C:\src\vcpkg
-        git checkout ${{ env.VCPKG_COMMIT }}
-        .\bootstrap-vcpkg.bat
-        .\vcpkg install openssl:x64-windows-static
-      env:
-        VCPKG_COMMIT: 5d7ff36 # https://github.com/microsoft/vcpkg/releases/tag/2019.12
+        $ProgressPreference = 'SilentlyContinue'
+        Invoke-WebRequest https://iotaledger-files.s3.eu-central-1.amazonaws.com/trinity/desktop/prebuild/windows/vcpkg-export-openssl-1.0.2s.zip -OutFile openssl.zip
+        Expand-Archive openssl.zip -DestinationPath C:\src\vcpkg
+        Remove-Item openssl.zip
       if: matrix.os == 'windows-2019'
 
     - name: Install OpenSSL 1.0.2k - Linux
@@ -207,10 +205,10 @@ jobs:
         MAC_SHA256=$(cat ../../assets/trinity-desktop-${{ env.RELEASE_VERSION }}.dmg.sha256)
         echo $WIN_SHA256 $LIN_SHA256 $MAC_SHA256
         sed -i -n '/^###/,/^$/p;/^$/q' CHANGELOG.md
-        sed -i '1i# Changelog' CHANGELOG.md
+        sed -i '1i### Changelog' CHANGELOG.md
         echo '------' >> CHANGELOG.md
-        echo '# File Hashes' >> CHANGELOG.md
-        echo '[How to verify authenticity of your Trinity Desktop download](https://docs.iota.org/docs/wallets/0.1/trinity/how-to-guides/verify-trinity-desktop)' >> CHANGELOG.md
+        echo '### File Hashes' >> CHANGELOG.md
+        echo '[How to verify the authenticity of your Trinity Desktop download](https://docs.iota.org/docs/wallets/0.1/trinity/how-to-guides/verify-trinity-desktop)' >> CHANGELOG.md
         echo '| File | Platform | SHA256 Hash |' >> CHANGELOG.md
         echo '| --- | --- | --- |' >> CHANGELOG.md
         echo '| trinity-desktop-${{ env.RELEASE_VERSION }}.exe | Windows |' $WIN_SHA256 '|' >> CHANGELOG.md
@@ -271,8 +269,10 @@ jobs:
         asset_name: trinity-desktop-${{ env.RELEASE_VERSION }}.AppImage.asc
         asset_content_type: application/pgp-signature
 
-    - name: Upload to s3
+    - name: Upload to S3
+      # Move current latest.ymls to previous/, then upload the new latest.ymls and binaries
       run: |
+        aws s3 mv s3://iotaledger-files/trinity/desktop/releases/ s3://iotaledger-files/trinity/desktop/releases/previous/ --exclude "*" --include "latest*.yml" --recursive
         aws s3 cp assets/ s3://iotaledger-files/trinity/desktop/releases/ --recursive --include "*" --exclude "*.sha256" --exclude "*.blockmap" --exclude "*.dmg" --exclude "*.asc"
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

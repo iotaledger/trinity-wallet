@@ -235,18 +235,13 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
 
                 dispatch(syncAccountBeforeManualPromotion(accountState));
 
-                const transactionsForThisBundleHash = filter(
-                    accountState.transactions,
-                    (transaction) => transaction.bundle === bundleHash,
-                );
+                const transactionsForThisBundleHash = getTransactionsForThisBundleHash(accountState.transactions);
 
                 if (some(transactionsForThisBundleHash, (transaction) => transaction.persistence === true)) {
                     throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
                 }
 
-                const bundles = constructBundlesFromTransactions(
-                    filter(accountState.transactions, (transaction) => transaction.bundle === bundleHash),
-                );
+                const bundles = constructBundlesFromTransactions(transactionsForThisBundleHash);
 
                 if (isEmpty(filter(bundles, isBundle))) {
                     throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
@@ -474,9 +469,16 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
     // Reassign with latest state when account is synced
     let accountState = selectedAccountStateFactory(accountName)(getState());
 
+    let hasValidatedReceiveAddress = false;
+    let hasSyncedAccount = false;
+    let hasPreparedInputs = false;
+
     const withPreTransactionSecurityChecks = (settings, withQuorum) => () => {
         // Progressbar step => (Validating receive address)
-        dispatch(setNextStepAsActive());
+        if (!hasValidatedReceiveAddress) {
+            dispatch(setNextStepAsActive());
+        }
+        hasValidatedReceiveAddress = true;
 
         // Check the last trit for validity
         return Promise.resolve(isLastTritZero(address))
@@ -500,7 +502,10 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     }
 
                     // Progressbar step => (Syncing account)
-                    dispatch(setNextStepAsActive());
+                    if (!hasSyncedAccount) {
+                        dispatch(setNextStepAsActive());
+                    }
+                    hasSyncedAccount = true;
 
                     return syncAccount(settings, withQuorum, true)(accountState, seedStore);
                 });
@@ -511,7 +516,10 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 accountState = newState;
 
                 // Progressbar step => (Preparing inputs)
-                dispatch(setNextStepAsActive());
+                if (!hasPreparedInputs) {
+                    dispatch(setNextStepAsActive());
+                }
+                hasPreparedInputs = true;
 
                 return getInputs(settings, withQuorum)(
                     accountState.addressData,

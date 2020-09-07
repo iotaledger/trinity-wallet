@@ -164,12 +164,16 @@ class Polling extends React.PureComponent {
 
         if (!isEmpty(unconfirmedBundleTails)) {
             const bundleHashes = keys(unconfirmedBundleTails);
-            const bundleHashToPromote = bundleHashes[random(size(bundleHashes) - 1)];
+            const valueBundleHashes = filter(keys(unconfirmedBundleTails), (key) => unconfirmedBundleTails[key].value);
+
+            const _getRandomBundleHash = (bundleHashes) => bundleHashes[random(size(bundleHashes) - 1)];
+            const bundleHashToPromote = !isEmpty(valueBundleHashes)
+                ? _getRandomBundleHash(valueBundleHashes)
+                : _getRandomBundleHash(bundleHashes);
 
             const { accountName } = unconfirmedBundleTails[bundleHashToPromote];
 
-            const seedStore = await new SeedStore[selectedAccountType](password, name);
-
+            const seedStore = await new SeedStore[selectedAccountType](password, accountName);
             return this.props.promoteTransfer(bundleHashToPromote, accountName, seedStore);
         }
 

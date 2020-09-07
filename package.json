@@ -45,13 +45,13 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.6",
-    "eslint-plugin-react-native": "^3.8.1",
+    "eslint-plugin-react-native": "^3.9.1",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5"
+    "lint-staged": "^10.3.0",
+    "prettier": "^2.1.1"
   },
   "dependencies": {
-    "snyk": "^1.373.0"
+    "snyk": "^1.387.1"
   },
   "resolutions": {
     "js-yaml": ">=3.13.1",

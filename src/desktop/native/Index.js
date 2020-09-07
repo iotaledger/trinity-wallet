@@ -53,8 +53,12 @@ if (!isFirstInstance) {
 
 app.on('second-instance', (_e, args) => {
     if (windows.main) {
-        if (args.length > 1 && args[1].indexOf('iota://') === 0) {
-            windows.main.webContents.send('url-params', args[1]);
+        if (args.length > 1) {
+            const params = args.find((arg) => arg.startsWith('iota://'));
+
+            if (params) {
+                windows.main.webContents.send('url-params', params);
+            }
         }
         if (windows.main.isMinimized()) {
             windows.main.restore();
