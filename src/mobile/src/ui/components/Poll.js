@@ -220,7 +220,7 @@ export class Poll extends Component {
             const valueBundleHashes = filter(keys(unconfirmedBundleTails), (key) => unconfirmedBundleTails[key].value);
 
             const _getRandomBundleHash = (bundleHashes) => bundleHashes[random(size(bundleHashes) - 1)];
-            let bundleHashToPromote = !isEmpty(valueBundleHashes)
+            const bundleHashToPromote = !isEmpty(valueBundleHashes)
                 ? _getRandomBundleHash(valueBundleHashes)
                 : _getRandomBundleHash(bundleHashes);
 
