@@ -1,5 +1,7 @@
 ### 1.6.1
 
+- Fix: Bugs that prevent some transactions from confirming
+- Fix: Poll for value transfers before data
 - Fix: Deep linking on Windows
 - Fix: Add polling errors to the error log
 - Update: Update to Electron 7.3.3
