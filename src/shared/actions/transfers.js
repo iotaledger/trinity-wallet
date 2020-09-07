@@ -235,18 +235,13 @@ export const promoteTransaction = (bundleHash, accountName, seedStore, quorum = 
 
                 dispatch(syncAccountBeforeManualPromotion(accountState));
 
-                const transactionsForThisBundleHash = filter(
-                    accountState.transactions,
-                    (transaction) => transaction.bundle === bundleHash,
-                );
+                const transactionsForThisBundleHash = getTransactionsForThisBundleHash(accountState.transactions);
 
                 if (some(transactionsForThisBundleHash, (transaction) => transaction.persistence === true)) {
                     throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
                 }
 
-                const bundles = constructBundlesFromTransactions(
-                    filter(accountState.transactions, (transaction) => transaction.bundle === bundleHash),
-                );
+                const bundles = constructBundlesFromTransactions(transactionsForThisBundleHash);
 
                 if (isEmpty(filter(bundles, isBundle))) {
                     throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
@@ -484,7 +479,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
             dispatch(setNextStepAsActive());
         }
         hasValidatedReceiveAddress = true;
-        
+
         // Check the last trit for validity
         return Promise.resolve(isLastTritZero(address))
             .then((lastTritIsZero) => {
