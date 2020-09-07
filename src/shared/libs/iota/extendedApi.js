@@ -533,11 +533,13 @@ const getTipInfoAsync = (settings) => (tailTransactionHash) => {
             'X-IOTA-API-Version': IRI_API_VERSION,
         }),
     }).then((response) => {
+        return response.json().then((res) => {
         if (response.ok) {
-            return response.json();
+                return res;
         }
 
-        throw response;
+            throw new Error(res.error);
+        });
     });
 };
 

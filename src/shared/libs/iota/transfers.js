@@ -130,7 +130,12 @@ export const findPromotableTail = (settings) => (tails) => {
         });
     };
 
-    return _findTail();
+    return _findTail().catch((error) => {
+        if (error.message.includes('unknown tail transaction')) {
+            return undefined;
+        }
+        throw error;
+    });
 };
 
 /**

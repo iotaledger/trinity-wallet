@@ -44,7 +44,7 @@ const fetchNodeListRequest = () => ({
  */
 const fetchNodeListSuccess = (payload) => ({
     type: PollingActionTypes.FETCH_NODELIST_SUCCESS,
-    payload
+    payload,
 });
 
 /**
@@ -57,7 +57,7 @@ const fetchNodeListSuccess = (payload) => ({
  */
 const fetchNodeListError = (payload) => ({
     type: PollingActionTypes.FETCH_NODELIST_ERROR,
-    payload
+    payload,
 });
 
 /**
@@ -81,7 +81,7 @@ const fetchMarketDataRequest = () => ({
  */
 const fetchMarketDataSuccess = (payload) => ({
     type: PollingActionTypes.FETCH_MARKET_DATA_SUCCESS,
-    payload
+    payload,
 });
 
 /**
@@ -94,7 +94,7 @@ const fetchMarketDataSuccess = (payload) => ({
  */
 const fetchMarketDataError = (payload) => ({
     type: PollingActionTypes.FETCH_MARKET_DATA_ERROR,
-    payload
+    payload,
 });
 
 /**
@@ -340,7 +340,7 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn, quoru
  *
  * @returns {function} - dispatch
  **/
-export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = true) => (dispatch, getState) => {
+export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = false) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
     let accountState = selectedAccountStateFactory(accountName)(getState());
@@ -362,16 +362,13 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
                 // Update redux storage
                 dispatch(syncAccountBeforeAutoPromotion(accountState));
 
-                const transactionsForThisBundleHash = filter(
-                    accountState.transactions,
-                    (transaction) => transaction.bundle === bundleHash,
-                );
+                const transactionsForThisBundleHash = getTransactionsForThisBundleHash(accountState.transactions);
 
                 if (some(transactionsForThisBundleHash, (transaction) => transaction.persistence === true)) {
                     throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
                 }
 
-                const bundles = constructBundlesFromTransactions(accountState.transactions);
+                const bundles = constructBundlesFromTransactions(transactionsForThisBundleHash);
 
                 if (isEmpty(bundles)) {
                     throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
@@ -396,7 +393,6 @@ export const promoteTransfer = (bundleHash, accountName, seedStore, quorum = tru
     return new NodesManager(
         nodesConfigurationFactory({
             quorum,
-            useOnlyPowNodes: true,
         })(getState()),
     )
         .withRetries()(executePrePromotionChecks)()
