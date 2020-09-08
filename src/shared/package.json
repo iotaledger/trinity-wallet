@@ -61,7 +61,7 @@
     "nyc": "^14.1.1",
     "realm": "5.0.5",
     "redux-logger": "^3.0.6",
-    "redux-mock-store": "^1.5.3",
+    "redux-mock-store": "^1.5.4",
     "rimraf": "^3.0.2",
     "sinon": "^7.4.1",
     "snyk": "^1.364.2",
