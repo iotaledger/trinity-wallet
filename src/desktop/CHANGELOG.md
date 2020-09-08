@@ -4,6 +4,7 @@
 - Fix: Poll for value transfers before data
 - Fix: Deep linking on Windows
 - Fix: Add polling errors to the error log
+- Fix: In app update window on Linux
 - Update: Update to Electron 7.3.3
 
 ### 1.6.0
