@@ -114,6 +114,7 @@ autoUpdater.on('update-downloaded', async () => {
     await dialog.showMessageBox({
         title: language.updates.installUpdate,
         message: language.updates.installUpdateExplanation,
+        buttons: ['OK'],
     });
     setTimeout(() => {
         const mainWindow = getWindow('main');
