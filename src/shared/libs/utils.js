@@ -373,7 +373,7 @@ export const isValidEmail = (email) => {
  */
 export const parseAmount = (amount) => {
     return amount.replace(/,/g, '.');
-}
+};
 
 /**
  * Checks if seed migration tool has been released to display an alert
