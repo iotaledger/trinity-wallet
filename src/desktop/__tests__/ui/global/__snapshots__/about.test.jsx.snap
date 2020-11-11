@@ -23,17 +23,9 @@ exports[`About component Render the component 1`] = `
     <article>
       <Scrollbar>
         <ReactMarkdown
-          astPlugins={Array []}
-          escapeHtml={true}
-          parserOptions={Object {}}
-          plugins={Array []}
-          rawSourcePos={false}
-          renderers={Object {}}
-          skipHtml={false}
           source="### Foo
 - Bar
 - Baz"
-          sourcePos={false}
           transformLinkUri={[Function]}
         />
       </Scrollbar>
