@@ -473,7 +473,7 @@ export function setFullNode(node, addingCustomNode = false) {
                 if (get(err, 'message') === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert(err));
                 } else if (get(err, 'message') === Errors.NODE_NOT_SYNCED_BY_TIMESTAMP) {
-                    dispatch(generateNodeOutOfSyncErrorAlert(err, true));
+                    dispatch(generateNodeOutOfSyncErrorAlert(err));
                 } else if (get(err, 'message') === Errors.UNSUPPORTED_NODE) {
                     dispatch(generateUnsupportedNodeErrorAlert(err));
                 } else {
