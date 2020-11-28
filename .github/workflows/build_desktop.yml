@@ -75,7 +75,7 @@ jobs:
       if: matrix.os == 'ubuntu-18.04' || matrix.os == 'macos-10.15' && github.event.inputs.debugElectronBuilder && github.event.inputs.debugElectronBuilder == 'true'
 
     - name: Enable verbose output for electron-builder - Windows
-      run: echo "DEBUG=electron-builder" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
+      run: echo "DEBUG=electron-builder" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       if: matrix.os == 'windows-2019' && github.event.inputs.debugElectronBuilder && github.event.inputs.debugElectronBuilder == 'true'
 
     - name: Install desktop dependencies
