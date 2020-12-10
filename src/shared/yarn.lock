@@ -3856,7 +3856,7 @@ minizlib@^2.1.0:
     minipass "^3.0.0"
     yallist "^4.0.0"
 
-mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@^1.0.3, mkdirp@^1.0.4:
+mkdirp@^0.5.0, mkdirp@^0.5.3, mkdirp@^1.0.3, mkdirp@^1.0.4:
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.4.tgz#fd01504a6797ec5c9be81ff43d204961ed64a512"
   integrity sha512-iG9AK/dJLtJ0XNgTuDbSyNS3zECqDlAhnQW4CsNxBG3LQJBbHmRX1egw39DmtOdCAqY+dKXV+sgPgilNWUKMVw==
@@ -3942,7 +3942,7 @@ needle@2.5.0, needle@^2.5.0:
     iconv-lite "^0.4.4"
     sax "^1.2.4"
 
-needle@^2.2.1, needle@^2.3.3:
+needle@^2.3.3:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/needle/-/needle-2.4.1.tgz#14af48732463d7475696f937626b1b993247a56a"
   integrity sha512-x/gi6ijr4B7fwl6WYL9FwlCvRQKGlUNvnceho8wxkwXqN8jvVmmmATTmZPRRG7b/yC1eode26C2HO9jl78Du9g==
@@ -4020,13 +4020,14 @@ node-modules-regexp@^1.0.0:
   resolved "https://registry.yarnpkg.com/node-modules-regexp/-/node-modules-regexp-1.0.0.tgz#8d9dbe28964a4ac5712e9131642107c71e90ec40"
   integrity sha1-jZ2+KJZKSsVxLpExZCEHxx6Q7EA=
 
-"node-pre-gyp@git+https://github.com/kneth/node-pre-gyp.git#add-node-14.0.0":
-  version "0.14.0"
-  resolved "git+https://github.com/kneth/node-pre-gyp.git#09b0c262cf9ba2cb28c8a29f6bb5882c8c160cdf"
+node-pre-gyp@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.15.0.tgz#c2fc383276b74c7ffa842925241553e8b40f1087"
+  integrity sha512-7QcZa8/fpaU/BKenjcaeFF9hLz2+7S9AqyXFhlH/rilsQ/hPZKK32RtR5EQHJElgu+q5RfbJ34KriI79UWaorA==
   dependencies:
     detect-libc "^1.0.2"
-    mkdirp "^0.5.1"
-    needle "^2.2.1"
+    mkdirp "^0.5.3"
+    needle "^2.5.0"
     nopt "^4.0.1"
     npm-packlist "^1.1.6"
     npmlog "^4.0.2"
@@ -4722,10 +4723,10 @@ readdirp@~3.5.0:
   dependencies:
     picomatch "^2.2.1"
 
-realm@5.0.5:
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/realm/-/realm-5.0.5.tgz#7c94255c43afb98fc084c501636b2e271cd15018"
-  integrity sha512-6+qYRdbZHoeee/AiGBSUpoSTKoSXXWTNwoFPAr2EzW4OEYiX1N+0+90rS7UkxqgRUmLFr70ZioJuIwIeMUIS9w==
+realm@6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/realm/-/realm-6.0.2.tgz#d51abb9be03ddbf5a16fbe9c65cb8e09889c7d4b"
+  integrity sha512-hcTbzkNBn0gB8mBe4dOfnci7ae3pPTAvYx7bk4S4VacAcumtfiNSs3rQPuFP3PDoL+qNXaugaupevi6k/hGyjA==
   dependencies:
     command-line-args "^4.0.6"
     deepmerge "2.1.0"
@@ -4736,7 +4737,7 @@ realm@5.0.5:
     node-addon-api "^3.0.0"
     node-fetch "^1.7.3"
     node-machine-id "^1.1.10"
-    node-pre-gyp "git+https://github.com/kneth/node-pre-gyp.git#add-node-14.0.0"
+    node-pre-gyp "^0.15.0"
     progress "^2.0.3"
     prop-types "^15.6.2"
     request "^2.88.0"
