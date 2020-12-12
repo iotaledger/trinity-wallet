@@ -188,7 +188,7 @@
     "react-transition-group": "4.3.0",
     "react-virtualized-auto-sizer": "1.0.2",
     "react-window": "1.8.5",
-    "realm": "5.0.5",
+    "realm": "10.1.1",
     "recharts": "1.8.5",
     "redux": "4.0.5"
   },
