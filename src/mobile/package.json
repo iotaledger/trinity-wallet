@@ -117,7 +117,7 @@
     "cross-env": "^5.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "jest": "^25.3.0",
+    "jest": "^26.0.0",
     "jest-serializer-enzyme": "^1.0.0",
     "metro-react-native-babel-preset": "^0.54.1",
     "patch-package": "^6.2.1",
