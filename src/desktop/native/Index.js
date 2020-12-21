@@ -35,6 +35,12 @@ if (
 }
 
 /**
+ * Disable renderer process reuse since we have some native modules that aren't context-aware
+ * https://github.com/electron/electron/issues/18397
+ */
+app.allowRendererProcessReuse = false;
+
+/**
  * Define wallet windows
  */
 const windows = {
