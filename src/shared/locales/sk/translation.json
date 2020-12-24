@@ -477,7 +477,7 @@
         "bundleHashCopied": "Bundle hash skopírovaný",
         "noTransactionsFound": "Nenašla sa žiadna transakcia",
         "emptyHistory": "Vaša história transakcií je prázdna",
-        "hideZeroBalance": "Hide zero value",
+        "hideZeroBalance": "Skryť nulový zostatok",
         "bundleHashCopiedExplanation": "Bundle hash bol skopírovaný do schránky.",
         "addressCopied": "Adresa skopírovaná",
         "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
@@ -490,14 +490,14 @@
         "yesterday": "Včera",
         "promotingAnotherBundle": "Podpora ďalšieho balíčku",
         "pleaseWait": "Prosím počkajte, Trinity podporuje ďalší balíček.",
-        "typeHelp": "Type !help for tips",
+        "typeHelp": "Napíšte !help pre tipy",
         "searchHelpText": "Vyhľadávanie podľa bundle hashov alebo obsahu správy",
         "searchHelpValue": "Nájsť transakcie podľa presnej iota hodnoty",
         "searchHelpUnits": "Nájsť transakcie podľa iota hodnoty a jednotky",
         "searchHelpMore": "Nájsť transakcie s hodnotou väčšou ako X",
         "searchHelpLess": "Nájsť transakcie s hodnotou menšou ako X",
-        "transactions": "Transactions",
-        "noFilteredTransactions": "No transactions match those filters"
+        "transactions": "Transakcia",
+        "noFilteredTransactions": "Zvoleným filtrom nezodpovedá žiadna transakcia"
     },
     "accountManagement": {
         "viewSeed": "Zobraziť Seed",
@@ -510,7 +510,7 @@
     "nodeSettings": {
         "automaticNodeManagement": "Automatická správa nodu",
         "addCustomNodes": "Pridať server",
-        "autoNodeList": "Use default node list",
+        "autoNodeList": "Použite zoznam výchozích nodov",
         "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Primárny node",
         "enableQuorum": "Povoliť kvórum",
