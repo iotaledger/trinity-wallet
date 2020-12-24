@@ -144,7 +144,7 @@
         "mustBeStoredAppropriately": "Musí byť uložený zodpovedajúcim spôsobom.",
         "deviceMayBecomeUnresponsive": "Vaše zariadenie môže na chvíľu prestať reagovať.",
         "isYourBalanceCorrect": "Je váš zostatok správny?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, make sure you have entered the correct seed.",
+        "ifYourBalanceIsNotCorrect": "Ak váš zostatok nie je správny, skontrolujte zadaný seed.",
         "headToAdvancedSettingsForTransition": "If you are sure you have the right seed, head to Advanced Settings and perform a Snapshot Transition.",
         "headToAccountTools": "Prejdite na Nástroje účtu a vykonajte Aktualizáciu údajov po Snapshote.",
         "openAccountTools": "Otvorte Nástroje účtu",
@@ -178,8 +178,8 @@
         "total": "Celkom",
         "submit": "Poslať",
         "tryAgain": "Skúste to znova",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "unknown": "Neznámy",
+        "goToDashboard": "Prejsť na dashboard"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -382,9 +382,9 @@
         "addressPasteExplanation": "Vyzerá to, že ste skopírovali adresu zo schránky. Uistite sa, že vložená adresa je naozaj tá, na ktorú chcete odoslať prostriedky.",
         "invalid": "NEPLATNÝ",
         "swipeToSend": "Potiahnutím pošli",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "Toto je žiadosť o platbu",
+        "paymentRequestExpired": "Požiadavka na platbu expirovala",
+        "paymentRequestExpiredExplanation": "Platnosť žiadosti o platbu vypršala. Požiadajte príjemcu o novú platbu."
     },
     "setSeedName": {
         "letsAddName": "Zadajte názov",
@@ -467,7 +467,7 @@
     },
     "welcome": {
         "thankYou": "Ďakujeme, že ste si stiahli Trinity",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Ďakujeme, že ste si stiahli Trinity"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Zapíšte si svoj Seed a kontrolný súčet a </0><1>dôkladne skontrolujte</1><2> ich správnosť.</2>",
