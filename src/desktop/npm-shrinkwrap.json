@@ -11449,20 +11449,38 @@
       }
     },
     "electron-devtools-installer": {
-      "version": "3.0.0",
-      "resolved": "https://registry.npmjs.org/electron-devtools-installer/-/electron-devtools-installer-3.0.0.tgz",
-      "integrity": "sha512-zll3w/8PvnPiGmL5tBtgSSoSjWnUljsOjJYsYYU12PKLljzWyfD6S75LKTZFn21VYxVbae2OwmjM5uFStLp6nQ==",
+      "version": "3.1.1",
+      "resolved": "https://registry.npmjs.org/electron-devtools-installer/-/electron-devtools-installer-3.1.1.tgz",
+      "integrity": "sha512-g2D4J6APbpsiIcnLkFMyKZ6bOpEJ0Ltcc2m66F7oKUymyGAt628OWeU9nRZoh1cNmUs/a6Cls2UfOmsZtE496Q==",
       "dev": true,
       "requires": {
         "rimraf": "^3.0.2",
         "semver": "^7.2.1",
-        "unzip-crx": "^0.2.0"
+        "unzip-crx-3": "^0.2.0"
       },
       "dependencies": {
+        "lru-cache": {
+          "version": "6.0.0",
+          "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-6.0.0.tgz",
+          "integrity": "sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==",
+          "dev": true,
+          "requires": {
+            "yallist": "^4.0.0"
+          }
+        },
         "semver": {
-          "version": "7.3.2",
-          "resolved": "https://registry.npmjs.org/semver/-/semver-7.3.2.tgz",
-          "integrity": "sha512-OrOb32TeeambH6UrhtShmF7CRDqhL6/5XpPNp2DuRH6+9QLw/orhp72j87v8Qa1ScDkvrrBNpZcDejAirJmfXQ==",
+          "version": "7.3.4",
+          "resolved": "https://registry.npmjs.org/semver/-/semver-7.3.4.tgz",
+          "integrity": "sha512-tCfb2WLjqFAtXn4KEdxIhalnRtoKFN7nAwj0B3ZXCbQloV2tq5eDbcTmT68JJD3nRJq24/XgxtQKFIpQdtvmVw==",
+          "dev": true,
+          "requires": {
+            "lru-cache": "^6.0.0"
+          }
+        },
+        "yallist": {
+          "version": "4.0.0",
+          "resolved": "https://registry.npmjs.org/yallist/-/yallist-4.0.0.tgz",
+          "integrity": "sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==",
           "dev": true
         }
       }
@@ -20577,9 +20595,9 @@
       "integrity": "sha512-wKcQS9QC2VHGk7aphWCp1RrFyC0CM6fMgC5prZZ2KV/Lk6OKNoCod9IR6bao+yx3KPY0gZFC5dc+h+KFzCI0Wg=="
     },
     "jszip": {
-      "version": "3.4.0",
-      "resolved": "https://registry.npmjs.org/jszip/-/jszip-3.4.0.tgz",
-      "integrity": "sha512-gZAOYuPl4EhPTXT0GjhI3o+ZAz3su6EhLrKUoAivcKqyqC7laS5JEv4XWZND9BgcDcF83vI85yGbDmDR6UhrIg==",
+      "version": "3.5.0",
+      "resolved": "https://registry.npmjs.org/jszip/-/jszip-3.5.0.tgz",
+      "integrity": "sha512-WRtu7TPCmYePR1nazfrtuF216cIVon/3GWOvHS9QR5bIwSbnxtdpma6un3jyGGNhHsKCSzn5Ypk+EkDRvTGiFA==",
       "dev": true,
       "requires": {
         "lie": "~3.3.0",
@@ -26623,10 +26641,10 @@
         }
       }
     },
-    "unzip-crx": {
+    "unzip-crx-3": {
       "version": "0.2.0",
-      "resolved": "https://registry.npmjs.org/unzip-crx/-/unzip-crx-0.2.0.tgz",
-      "integrity": "sha1-TAuqi9rHViVnVL7KeEPBPXuFjBg=",
+      "resolved": "https://registry.npmjs.org/unzip-crx-3/-/unzip-crx-3-0.2.0.tgz",
+      "integrity": "sha512-0+JiUq/z7faJ6oifVB5nSwt589v1KCduqIJupNVDoWSXZtWDmjDGO3RAEOvwJ07w90aoXoP4enKsR7ecMrJtWQ==",
       "dev": true,
       "requires": {
         "jszip": "^3.1.0",

@@ -258,8 +258,7 @@ function createWindow() {
                 windows.tray.webContents.openDevTools({ mode: 'detach' });
             }
             */
-            installExtension(REACT_DEVELOPER_TOOLS);
-            installExtension(REDUX_DEVTOOLS);
+            installExtension([REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS]);
         });
     }
 
