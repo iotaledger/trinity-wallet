@@ -20,8 +20,8 @@
     "format": "prettier --write \"**/*.{js,json,css}\"",
     "test:all": "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../desktop/ && yarn test && cd ../",
     "test:mobile": "cd src/mobile && yarn test && cd ../..",
-    "test:shared":"cd src/shared && yarn test && cd ../..",
-    "test:desktop":"cd src/desktop && yarn test && cd ../..",
+    "test:shared": "cd src/shared && yarn test && cd ../..",
+    "test:desktop": "cd src/desktop && yarn test && cd ../..",
     "deps:shared": "cd src/shared && yarn && cd ../..",
     "deps:mobile": "cd src/mobile && yarn && cd ../..",
     "deps:desktop": "cd src/desktop && npm ci && cd ../..",
@@ -46,7 +46,7 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-native": "^3.10.0",
-    "husky": "^4.3.0",
+    "husky": "^5.0.6",
     "lint-staged": "^10.5.2",
     "prettier": "^2.1.2"
   },
@@ -62,10 +62,5 @@
     "lodash": ">=4.17.19",
     "bl": ">=4.0.3"
   },
-  "snyk": true,
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && yarn lint && yarn test:all"
-    }
-  }
+  "snyk": true
 }
