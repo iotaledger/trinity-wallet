@@ -62,10 +62,5 @@
     "lodash": ">=4.17.19",
     "bl": ">=4.0.3"
   },
-  "snyk": true,
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && yarn lint && yarn test:all"
-    }
-  }
+  "snyk": true
 }
