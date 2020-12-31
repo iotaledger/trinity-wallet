@@ -175,6 +175,7 @@ function createWindow() {
             disableBlinkFeatures: 'Auxclick',
             webviewTag: false,
             enableWebSQL: false,
+            enableRemoteModule: true,
         },
     });
 
