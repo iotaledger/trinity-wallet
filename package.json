@@ -48,7 +48,7 @@
     "eslint-plugin-react-native": "^3.10.0",
     "husky": "^5.0.6",
     "lint-staged": "^10.5.3",
-    "prettier": "^2.1.2"
+    "prettier": "^2.2.1"
   },
   "dependencies": {
     "snyk": "^1.437.3"
