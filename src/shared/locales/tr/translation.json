@@ -626,7 +626,7 @@
         "notAvailable": "Seed export is not available for {{accountType}} account type",
         "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Ledger hesap sayfanız"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Oluşumunuzu yedeklediniz mi?",
@@ -645,22 +645,22 @@
         "fingerprintAuthEnabled": "Biyometrik doğrulama etkin",
         "fingerprintAuthEnabledExplanation": "Biyometrik doğrulamayı başarıyla aktifleştirdiniz.",
         "fingerprintAuthDisabled": "Biyometrik doğrulama devre dışı",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "Biyometrik doğrulamayı başarıyla devre dışı bıraktınız.",
         "fingerprintAuthFailed": "Biyometrik doğrulama başarısız",
         "fingerprintAuthFailedExplanation": "Parmak izi doğrulaması başarısız. Lütfen tekrar deneyin.",
         "status": "Durum",
         "fingerprintUnavailable": "Biyometrik doğrulama kullanılamıyor",
-        "deviceLocked": "Authentication disabled for 30 seconds",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "deviceLocked": "Kimlik doğrulama 30 saniye devre dışı bırakıldı",
+        "fingerprintUnavailableExplanation": "Cihazınız biyometrik doğrulamayı desteklemiyor veya cihaz ayarlarında yapılandırılmamış.",
+        "notSupported": "Cihaz biyometrik doğrulamayı desteklemiyor",
+        "notConfigured": "Cihaz ayarlarında biyometrik doğrulama yapılandırılmamış",
         "buttonInstructionsDisable": "Parmak izi doğrulamayı devre dışı bırakmak için aşağıdaki tuşa basın.",
         "buttonInstructionsEnable": "Parmak izi doğrulamayı aktifleştirmek için aşağıdaki tuşa basın.",
         "buttonInstructionsDisableIPhoneX": "Face ID'yi devre dışış bırakmak için aşağıdaki tuşa basın",
         "buttonInstructionsEnableIPhoneX": "Face ID'yi aktifleştirmek için aşağıdaki tuşa basın",
         "instructionsLogin": "Giriş yapmak için parmak izi okuyucusuna dokunun",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
+        "systemCancelledAuth": "Kimlik doğrulama, cihazınız tarafından iptal edildi",
+        "userCancelledAuth": "Kimlik doğrulama isteği iptal edildi",
         "passwordFallback": "Parola doğrulamasına geri dönün",
         "noPassword": "Cihazda parola ayarlanmamış"
     },
@@ -767,7 +767,7 @@
         "autofill": "Otomatik doldurma başarılı",
         "autofillExplanation": "İşlem bilgisi linken otomatik olarak girildi.",
         "deepLinkingOverview": "Derin linkler, Trinity'deki işlem verilerini otomatik olarak dolduran tıklanabilir bağlantılardır (iota://...).",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingWarning": "Kimlik avı dolandırıcılarına dikkat edin. Açtığınız bağlantının resmi Trinity uygulamasına gittiğinden emin olun.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
         "deepLinkingDisabled": "You have disabled deep linking.",
@@ -776,11 +776,11 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Güncelleme bilgisi alınırken hata oluştu",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Güncelleme alınamadı. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.",
         "noUpdatesAvailable": "Kullanılabilir güncelleme yok",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "Trinity'nin son sürümünü kullanıyorsunuz!",
         "newVersionAvailable": "Yeni versiyon mevcut",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "Trinity güncellemesi var. Şimdi güncellemek ister misin?",
         "installUpdate": "Güncellemeyi yükle ve yeniden başlat",
         "installUpdateExplanation": "İndirme tamamlandı, Trinity şimdi güncellemeyi yüklemek için yeniden başlayacak.",
         "downloadingUpdate": "Güncelleme indiriliyor",
@@ -800,7 +800,7 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayExplanation": "Hesap bakiyenize ve son işlem geçmişinize genel bir bakış sağlar.",
         "notLoggedIn": "Giriş yapmadınız",
         "setupIncomplete": "Cüzdan kurulumu tamamlanmadı",
         "completeSetup": "Kurulumu tamamla"
@@ -872,10 +872,10 @@
         "ledgerIncorrectIndexExplanation": "Bağlı Ledger cihazı bu hesaba bağlı olanla eşleşmiyor veya kurtarma ifadesi değiştirildi.",
         "checkAddress": "Alım adresini kontrol edin",
         "checkAddressExplanation": "Adresin, Ledger cihazınızda gösterilenle aynı olduğunu kontrol edin.",
-        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialised": "Uyarı onaylanmadı",
         "applicationNotInitialisedExplanation": "Ledger cihazınızdaki IOTA uygulamasını yeniden açın, bilgi uyarısını kabul edin ve tekrar deneyin.",
-        "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "checkLedger": "Ledger cihazınızı kontrol edin",
+        "acceptWarningExplanation": "Ledger cihazınızda bilgilendirici bir uyarı varsa, her iki tuşa da basarak gözden geçirmeli ve kabul etmelisiniz.",
         "udevError": "Ledger cihazı ile iletişim kurulamadı",
         "udevErrorExplanation": "Trinity, Ledger cihazınızla iletişim kuramadı. Bu sorunu çözmek için lütfen aşağıdaki bağlantıyı ziyaret edin.",
         "writtenDownInfoTitle": "Remember your index number",
@@ -883,7 +883,7 @@
     },
     "help": {
         "docsSite": "Trinity Docs Site",
-        "commonIssues": "Common Wallet Issues",
-        "buyingIOTA": "Problems Buying IOTA"
+        "commonIssues": "Genel Cüzdan Sorunları",
+        "buyingIOTA": "IOTA Satın Alma Sorunları"
     }
 }
