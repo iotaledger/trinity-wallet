@@ -268,14 +268,14 @@
         "login": "Oturum Aç",
         "setNode": "Düğüm Ayarla",
         "whyBiometricDisabled": "Biyometrik doğrulama neden devre dışı?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart1": "Güvenliğiniz için ilk uygulama yüklemesinde biyometrik doğrulama devre dışı bırakılır.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Cüzdan şifresi ilk kez yükleniyor.",
         "thisMayTake": "Bu biraz sürebilir.",
         "doNotMinimise": "Uygulamayı küçültmeyin veya kapatmayın.",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "Bu biraz zaman alıyor gibi görünüyor"
     },
     "newSeedSetup": {
         "generatedSeed": "Oluşum yaratıldı",
@@ -301,12 +301,12 @@
         "print": "Yazdır",
         "paperConvenience": "Oluşumunuzun bir kopyasını yazdırmak onu saklamak için etkili bir yöntemdir.",
         "publicInsecure": "Fakat halka açık bir Wi-fi'da veya halka açık bir yazıcıyla yazdırmak güvenli değildir.",
-        "pleaseCheck": "Please check and confirm before you print",
+        "pleaseCheck": "Lütfen yazdırmadan önce kontrol edin ve onaylayın",
         "wifiConfirmation": "Herkese açık bir wifi'ye bağlı değilim",
         "printerConfirmation": "Herkese açık bir yazıcıda çıktı almıyorum"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateQuestion": "Boş bir şablon yazdırmak ister misiniz?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
         "print": "Evet, yazdır"
@@ -384,7 +384,7 @@
         "swipeToSend": "Göndermek için kaydır",
         "paymentRequest": "Bu bir ödeme talebidir",
         "paymentRequestExpired": "Ödeme talebinin süresi bitti",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequestExpiredExplanation": "Bu ödeme talebinin süresi doldu. Lütfen alıcıdan yeni bir tane isteyin."
     },
     "setSeedName": {
         "letsAddName": "Bir isim ekleyin",
@@ -396,7 +396,7 @@
         "standard": "Standart",
         "advancedModeExplanation": "Gelişmiş mod daha ayrıntılı teknik bilgileri gösterir.",
         "modesExplanation": "Gelişmiş modu yalnızca deneyimli bir IOTA kullanıcıysanız deneyimleyin. Aksi takdirde kafa karıştırıcı bulabilirsiniz.",
-        "modeUpdated": "Mode updated",
+        "modeUpdated": "Mod güncellendi",
         "modeUpdatedExplanation": "{{mode}} moduna geçtiniz"
     },
     "settings": {
@@ -467,7 +467,7 @@
     },
     "welcome": {
         "thankYou": "Trinity'i indirdiğiniz için teşekkür ederiz",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Trinity demoyu indirdiğiniz için teşekkür ederiz"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Oluşumunuzu ve sağlamanızı </0><1> birden çok kez </1><2> doğru olduğuna dair kontrol edin. </2>",
@@ -490,14 +490,14 @@
         "yesterday": "Dün",
         "promotingAnotherBundle": "Promoting another bundle",
         "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Type !help for tips",
+        "typeHelp": "İpuçları için !help yazın",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "X'ten büyük bir değere sahip işlemleri bulun",
         "searchHelpLess": "X'ten daha düşük bir değere sahip işlemleri bulun",
         "transactions": "İşlemler",
-        "noFilteredTransactions": "No transactions match those filters"
+        "noFilteredTransactions": "Bu filtrelerle eşleşen işlem yok"
     },
     "accountManagement": {
         "viewSeed": "Kaynağı görüntüle",
@@ -561,7 +561,7 @@
     },
     "themeCustomisation": {
         "theme": "Tema",
-        "mockup": "Mockup"
+        "mockup": "Model"
     },
     "themes": {
         "classic": "Klasik",
@@ -601,7 +601,7 @@
         "discordInformation": "Neler yapabileceğinizi öğrenmek için lüfen Discord'daki #help kanalına gidin."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Hesabınızı silmek istediğinizden emin misiniz?",
         "yourSeedWillBeRemoved": "Oluşumunuz ve işlem geçmişiniz kaldırılacak.",
         "thisAction": "Bu işlem geri alınamaz",
         "enterPassword": "Hesabınızı silmek için lütfen şifrenizi girin."
