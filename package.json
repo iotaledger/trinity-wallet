@@ -47,7 +47,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-native": "^3.10.0",
     "husky": "^5.0.6",
-    "lint-staged": "^10.5.3",
+    "lint-staged": "^10.5.4",
     "prettier": "^2.2.1"
   },
   "dependencies": {
