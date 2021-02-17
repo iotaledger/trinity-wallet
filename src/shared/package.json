@@ -23,7 +23,7 @@
     "@iota/cda": "^1.0.0-beta.23",
     "@iota/core": "^1.0.0-beta.20",
     "bignumber.js": "^9.0.0",
-    "i18next": "^19.6.0",
+    "i18next": "^19.8.5",
     "iota.lib.js": "^0.5.2",
     "lodash": "^4.17.20",
     "moment": "^2.24.0",
