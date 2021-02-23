@@ -60,7 +60,7 @@
     "patch-package": "6.2.2",
     "puppeteer": "2.1.1",
     "raw-loader": "3.0.0",
-    "react-dev-utils": "10.2.0",
+    "react-dev-utils": "11.0.3",
     "regenerator-runtime": "0.13.5",
     "rimraf": "3.0.2",
     "sass-loader": "8.0.2",
