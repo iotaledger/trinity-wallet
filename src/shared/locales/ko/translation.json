@@ -382,9 +382,9 @@
         "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요.",
         "invalid": "유효하지 않음",
         "swipeToSend": "밀어서 보내기",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "지불 요청",
+        "paymentRequestExpired": "만료된 지불 요청",
+        "paymentRequestExpiredExplanation": "이미 만료된 지불 요청입니다. 새로 지불 요청을 받으셔야 합니다."
     },
     "setSeedName": {
         "letsAddName": "이름을 지정해 주세요",
@@ -711,7 +711,7 @@
         "change": "변동 (24시)",
         "volume": "거래량 (24시간)",
         "error": "차트 데이터 가져오는 중 오류 발생",
-        "currentValue": "Current Value"
+        "currentValue": "현재 값"
     },
     "rootDetection": {
         "warning": "경고",
@@ -884,6 +884,6 @@
     "help": {
         "docsSite": "트리니티 지갑 문서 (영어)",
         "commonIssues": "자주 겪는 문제들 (영어)",
-        "buyingIOTA": "Problems Buying IOTA"
+        "buyingIOTA": "IOTA 구매 중 문제 발생"
     }
 }
