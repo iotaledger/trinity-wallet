@@ -5677,10 +5677,10 @@ svg-pathdata@^5.0.0:
   resolved "https://registry.yarnpkg.com/svg-pathdata/-/svg-pathdata-5.0.2.tgz#e667b94a6071b60c5b123df04f9d6c9fe2f4850e"
   integrity sha512-tmfwioGZZaSMZnAGCFiWd30O2sVbA5/wVP/CS8Pcf9s1ptd6J26bZUFwkIRZy+GYmD+uCECdiAP7bPpLszj+1w==
 
-svg2ttf@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/svg2ttf/-/svg2ttf-4.3.0.tgz#433440c7e9062f8fdcec3cad721cd08a2c7e51e3"
-  integrity sha512-LZ0B7zzHWLWbzLzwaKGHQvPOuxCXLReIb3LSxFSGUy1gMw2Utk6KGNbTmbmRL6Rk1qDSmTixnDrQgnXaL9n0CA==
+svg2ttf@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/svg2ttf/-/svg2ttf-5.1.0.tgz#5513bef392414b51dfc8622e7d11259008375d1d"
+  integrity sha512-+YRNac48DDW0Q8+/4nc3gn6gRbh8MMLEa9ao06plW7mQyhJbPGEE5EobVYTFiDVInOpRExSCo19sjhL9zYsbsA==
   dependencies:
     argparse "^1.0.6"
     cubic2quad "^1.0.0"
