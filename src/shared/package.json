@@ -74,7 +74,8 @@
     "mkdirp": "^0.5.3",
     "**/optimist/minimist": "^0.2.1",
     "minimist": "^1.2.5 || >=0.2.1",
-    "lodash": ">=4.17.20"
+    "lodash": ">=4.17.20",
+    "node-fetch": ">=2.6.1"
   },
   "snyk": true
 }
