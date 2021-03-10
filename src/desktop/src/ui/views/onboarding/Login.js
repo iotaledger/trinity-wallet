@@ -34,6 +34,8 @@ class Login extends React.Component {
         currentAccountMeta: PropTypes.object,
         /** @ignore */
         password: PropTypes.object.isRequired,
+                /** @ignore */
+        ui: PropTypes.object.isRequired,
         /** @ignore */
         addingAdditionalAccount: PropTypes.bool.isRequired,
         /** @ignore */
@@ -197,10 +199,10 @@ class Login extends React.Component {
     };
 
     render() {
-        const { forceUpdate, t, addingAdditionalAccount, completedMigration, themeName } = this.props;
+        const { forceUpdate, t, addingAdditionalAccount, ui, completedMigration, themeName } = this.props;
         const { shouldMigrate, loading } = this.state;
 
-        if (loading) {
+        if (loading || ui.isFetchingAccountInfo) {
             return (
                 <Loading
                     loop
