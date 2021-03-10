@@ -37,6 +37,8 @@ class StatefulDropdownAlert extends Component {
         /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
         /** @ignore */
+        deprecated: PropTypes.bool.isRequired,
+        /** @ignore */
         shouldUpdate: PropTypes.bool.isRequired,
         /** @ignore */
         displaySeedMigrationAlert: PropTypes.bool.isRequired,
@@ -99,10 +101,11 @@ class StatefulDropdownAlert extends Component {
             hasConnection,
             shouldUpdate,
             forceUpdate,
+            deprecated,
             displaySeedMigrationAlert
         } = this.props;
 
-        if (this.dropdown && (shouldUpdate || forceUpdate || displaySeedMigrationAlert)) {
+        if (this.dropdown && (deprecated || shouldUpdate || forceUpdate || displaySeedMigrationAlert)) {
             return this.dropdown.alertWithType(category, title, message);
         }
 
@@ -188,6 +191,7 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     shouldUpdate: state.wallet.shouldUpdate,
     forceUpdate: state.wallet.forceUpdate,
+    deprecated: state.wallet.forceUpdate,
     displaySeedMigrationAlert: state.wallet.displaySeedMigrationAlert,
     navStack: state.wallet.navStack,
 });
