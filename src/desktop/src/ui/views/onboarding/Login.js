@@ -35,8 +35,6 @@ class Login extends React.Component {
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */
-        ui: PropTypes.object.isRequired,
-        /** @ignore */
         addingAdditionalAccount: PropTypes.bool.isRequired,
         /** @ignore */
         additionalAccountMeta: PropTypes.object.isRequired,
@@ -62,11 +60,14 @@ class Login extends React.Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         themeName: PropTypes.string.isRequired,
+        /** @ignore */
+        history: PropTypes.object.isRequired,
     };
 
     state = {
         password: '',
         shouldMigrate: false,
+        loading: false
     };
 
     componentDidMount() {
@@ -92,6 +93,7 @@ class Login extends React.Component {
 
     componentWillUnmount() {
         setTimeout(() => Electron.garbageCollect(), 1000);
+        clearTimeout(this.timeout)
     }
 
     /**
@@ -178,6 +180,11 @@ class Login extends React.Component {
             }
 
             try {
+                this.setState({ loading: true });
+                this.timeout = setTimeout(() => {
+                    Electron.updateMenu('authorised', true);
+                    this.props.history.push('/wallet/');
+                }, 2500);
                 await this.setupAccount();
             } catch (err) {
                 generateAlert(
@@ -190,10 +197,10 @@ class Login extends React.Component {
     };
 
     render() {
-        const { forceUpdate, t, addingAdditionalAccount, ui, completedMigration, themeName } = this.props;
-        const { shouldMigrate } = this.state;
+        const { forceUpdate, t, addingAdditionalAccount, completedMigration, themeName } = this.props;
+        const { shouldMigrate, loading } = this.state;
 
-        if (ui.isFetchingAccountInfo) {
+        if (loading) {
             return (
                 <Loading
                     loop
