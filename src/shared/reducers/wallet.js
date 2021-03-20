@@ -56,6 +56,10 @@ const initialState = {
      */
     forceUpdate: false,
     /**
+     * Determines whether Trinity is deprecated
+     */
+    deprecated: false,
+    /**
      * Determines whether to display test version warning
      */
     displayTestWarning: false,
@@ -209,6 +213,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 forceUpdate: true,
+            };
+        case WalletActionTypes.DEPRECATE:
+            return {
+                ...state,
+                deprecated: true,
             };
         case WalletActionTypes.DISPLAY_TEST_WARNING:
             return {

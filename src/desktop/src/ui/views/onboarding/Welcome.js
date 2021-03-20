@@ -41,6 +41,8 @@ class Welcome extends React.PureComponent {
         /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
         /** @ignore */
+        deprecated: PropTypes.bool.isRequired,
+        /** @ignore */
         acceptTerms: PropTypes.func.isRequired,
         /** @ignore */
         acceptPrivacy: PropTypes.func.isRequired,
@@ -101,7 +103,7 @@ class Welcome extends React.PureComponent {
     };
 
     render() {
-        const { forceUpdate, language, themeName, t } = this.props;
+        const { deprecated, forceUpdate, language, themeName, t } = this.props;
         const { step, scrollEnd } = this.state;
 
         let markdown = '';
@@ -161,7 +163,7 @@ class Welcome extends React.PureComponent {
                 </section>
                 <footer>
                     <Button
-                        disabled={forceUpdate || (step !== 'language' && step !== 'intro' && !scrollEnd)}
+                        disabled={deprecated || forceUpdate || (step !== 'language' && step !== 'intro' && !scrollEnd)}
                         onClick={this.onNextClick}
                         className="square"
                         variant="primary"
@@ -187,6 +189,7 @@ const mapStateToProps = (state) => ({
     language: state.settings.locale,
     forceUpdate: state.wallet.forceUpdate,
     themeName: state.settings.themeName,
+    deprecated: state.wallet.deprecated
 });
 
 const mapDispatchToProps = {

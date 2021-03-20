@@ -23,6 +23,8 @@ export class AlertsComponent extends React.PureComponent {
         /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
         /** @ignore */
+        deprecated: PropTypes.bool.isRequired,
+        /** @ignore */
         shouldUpdate: PropTypes.bool.isRequired,
         /** @ignore */
         displayTestWarning: PropTypes.bool.isRequired,
@@ -97,6 +99,7 @@ export class AlertsComponent extends React.PureComponent {
             dismissAlert,
             displayTestWarning,
             forceUpdate,
+            deprecated,
             shouldUpdate,
             displaySeedMigrationAlert,
             seedMigrationUrl,
@@ -117,6 +120,9 @@ export class AlertsComponent extends React.PureComponent {
                 {!dismissUpdate &&
                     displayTestWarning &&
                     this.renderFullWidthAlert(`${t('rootDetection:warning')}:`, t('global:testVersionWarning'), true)}
+                {!dismissUpdate &&
+                    deprecated &&
+                    this.renderFullWidthAlert(t('global:deprecationWarning'), t('global:deprecationWarningExplanation'), false)}
                 {!isUpdating &&
                     forceUpdate &&
                     !displaySeedMigrationAlert &&
@@ -137,7 +143,7 @@ export class AlertsComponent extends React.PureComponent {
                         `It is strongly recommended that you migrate your seeds. Visit ${seedMigrationUrl} for more information.`,
                         true,
                     )}
-                {(!dismissUpdate && (forceUpdate || shouldUpdate || displaySeedMigrationAlert)) || (
+                {(!dismissUpdate && (deprecated || forceUpdate || shouldUpdate || displaySeedMigrationAlert)) || (
                     <div
                         onClick={() => dismissAlert()}
                         className={classNames(

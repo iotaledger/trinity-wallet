@@ -24,6 +24,7 @@ import {
     forceUpdate,
     displayTestWarning,
     displaySeedMigrationAlert,
+    deprecate
 } from 'actions/wallet';
 
 import { updateTheme } from 'actions/settings';
@@ -95,6 +96,8 @@ class App extends React.Component {
         deepLinking: PropTypes.bool.isRequired,
         /** @ignore */
         forceUpdate: PropTypes.func.isRequired,
+        /** @ignore */
+        deprecate: PropTypes.func.isRequired,
         /** @ignore */
         displayTestWarning: PropTypes.func.isRequired,
         /** @ignore */
@@ -242,6 +245,8 @@ class App extends React.Component {
         const versionId = Electron.getVersion();
         if (versionId.includes('RC')) {
             this.props.displayTestWarning();
+        } else if (data.deprecated) {
+            this.props.deprecate();
         } else if (data.desktopBlacklist && data.desktopBlacklist.includes(versionId)) {
             this.props.forceUpdate();
         } else if (data.latestDesktop && versionId !== data.latestDesktop) {
@@ -380,7 +385,7 @@ const mapStateToProps = (state) => ({
     deepLinking: state.settings.deepLinking,
     isBusy:
         !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
-    alerts: state.alerts,
+    alerts: state.alerts
 });
 
 const mapDispatchToProps = {
@@ -399,6 +404,7 @@ const mapDispatchToProps = {
     forceUpdate,
     displayTestWarning,
     displaySeedMigrationAlert,
+    deprecate
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(App)));

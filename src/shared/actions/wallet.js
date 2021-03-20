@@ -627,6 +627,17 @@ export const forceUpdate = () => ({
 });
 
 /**
+ * Deprecates Trinity. RIP. 
+ *
+ * @method deprecate
+ *
+ * @returns {{type: {string} }}
+ */
+ export const deprecate = () => ({
+    type: WalletActionTypes.DEPRECATE,
+});
+
+/**
  * Dispatch to display test version warning
  *
  * @method displayTestWarning
