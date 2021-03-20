@@ -165,6 +165,8 @@
         "delete": "Excluir",
         "shouldUpdate": "Uma atualização está disponível",
         "shouldUpdateExplanation": "Uma nova atualização foi lançada. É recomendável você atualizar para a versão mais recente.",
+        "deprecationWarning": "Trinity is now deprecated",
+        "deprecationWarningExplanation": "Trinity is no longer used. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "Atualize o aplicativo para continuar",
         "forceUpdateExplanation": "Foi lançada uma atualização importante. Por favor, atualize o aplicativo agora.",
         "testVersionWarning": "Esta versão deve ser usada apenas para fins de teste, com pequenas quantidades de tokens.",
