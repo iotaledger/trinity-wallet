@@ -165,6 +165,8 @@
         "delete": "Odstrániť",
         "shouldUpdate": "Je k dispozicii nová aktualizácia",
         "shouldUpdateExplanation": "Bola vydaná nová aktualizácia. Doporučujeme aktualizovať na najnovšiu verziu.",
+        "deprecationWarning": "Trinity is now deprecated",
+        "deprecationWarningExplanation": "Trinity is no longer used. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "Ak chcete pokračovať, aktualizujte aplikáciu",
         "forceUpdateExplanation": "Bola vydaná kritická aktualizácia. Ihneď aktualizujte aplikáciu.",
         "testVersionWarning": "Táto verzia je určená výhradne pre testovacie účely bez väčšieho množstva tokenov.",
