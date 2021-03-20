@@ -165,6 +165,8 @@
         "delete": "حذف",
         "shouldUpdate": "تحديث جديد متاح",
         "shouldUpdateExplanation": "تم إصدار تحديث جديد. يوصى بالتحديث إلى أحدث إصدار.",
+        "deprecationWarning": "Trinity is now deprecated",
+        "deprecationWarningExplanation": "Trinity is no longer used. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "قم بتحديث البرنامج للاستمرار",
         "forceUpdateExplanation": "تم اصدار تحديث هام. يرجى تحديث البرنامج الآن.",
         "testVersionWarning": "ينبغي استخدام هذه النسخة للإختبار فقط، مع كميات صغيرة جدا من التوكنات.",
