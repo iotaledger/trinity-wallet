@@ -165,6 +165,8 @@
         "delete": "Ištrinti",
         "shouldUpdate": "Yra naujų atnaujinimų",
         "shouldUpdateExplanation": "Išleistas naujas atnaujinimas. Rekomenduojama atsisiųsti naujausius atnaujinimus.",
+        "deprecationWarning": "Trinity is now deprecated",
+        "deprecationWarningExplanation": "Trinity is no longer used. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "Atnaujinkite programėlę norėdami tęsti",
         "forceUpdateExplanation": "Išleistas svarbus atnaujinimas. Prašome nedelsiant atsinaujinti programėlę.",
         "testVersionWarning": "Ši versija turėtų būti naudojama tik testavimo tikslams, su labai mažu žetonų kiekiu.",
