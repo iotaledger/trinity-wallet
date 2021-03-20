@@ -165,6 +165,8 @@
         "delete": "Kustuta",
         "shouldUpdate": "Uuendus on saadaval",
         "shouldUpdateExplanation": "Uus uuendus on väljas. Soovitatavalt uuendage uusimale versioonile.",
+        "deprecationWarning": "Trinity is now deprecated",
+        "deprecationWarningExplanation": "Trinity is no longer used. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "Jätkamiseks uuendage rakendust",
         "forceUpdateExplanation": "Kriitiline uuendus on väljas. Palun uuendage kohe rakendust.",
         "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
