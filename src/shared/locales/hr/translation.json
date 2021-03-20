@@ -165,6 +165,8 @@
         "delete": "Obriši",
         "shouldUpdate": "Dostupno je novo ažuriranje",
         "shouldUpdateExplanation": "Dostupna je nova verzija aplikacije. Preporučuje se ažuriranje aplikacije na najnoviju verziju.",
+        "deprecationWarning": "Trinity is now deprecated",
+        "deprecationWarningExplanation": "Trinity is no longer used. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "Ažurirajte aplikaciju kako bi mogli nastaviti dalje",
         "forceUpdateExplanation": "Kritično ažuriranje je dostupno. Molimo ažurirajte aplikaciju.",
         "testVersionWarning": "Ovu verziju treba koristiti samo za testiranje, s vrlo malim količinama tokena.",
