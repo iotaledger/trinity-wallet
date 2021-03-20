@@ -165,6 +165,8 @@
         "delete": "Hapus",
         "shouldUpdate": "Pembaruan tersedia",
         "shouldUpdateExplanation": "Pembaruan baru telah dirilis. Anda disarankan untuk memperbarui ke versi terbaru.",
+        "deprecationWarning": "Trinity is now deprecated",
+        "deprecationWarningExplanation": "Trinity is no longer used. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "Perbarui aplikasi untuk melanjutkan",
         "forceUpdateExplanation": "Pembaruan kritis telah dirilis. Harap perbarui aplikasinya sekarang.",
         "testVersionWarning": "Versi ini hanya untuk uji coba saja, dengan minimum nilai token.",
