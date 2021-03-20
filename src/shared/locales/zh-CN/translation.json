@@ -165,6 +165,8 @@
         "delete": "删除",
         "shouldUpdate": "有新的更新可用",
         "shouldUpdateExplanation": "新的更新已发布。建议您更新到最新版本。",
+        "deprecationWarning": "Trinity is now deprecated",
+        "deprecationWarningExplanation": "Trinity is no longer used. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "更新应用以继续",
         "forceUpdateExplanation": "已发布关键更新。请立即更新应用程序。",
         "testVersionWarning": "此版本仅用于测试，并使用很小数额的代币。",
