@@ -1,0 +1,25 @@
+diff --git a/node_modules/@jest-runner/electron/build/electron_process_injected_code.js b/node_modules/@jest-runner/electron/build/electron_process_injected_code.js
+index b4028c1..b5c256c 100644
+--- a/node_modules/@jest-runner/electron/build/electron_process_injected_code.js
++++ b/node_modules/@jest-runner/electron/build/electron_process_injected_code.js
+@@ -26,6 +26,7 @@ const isMain = process.env.isMain === 'true'; // for testing purposes, it is pro
+ // the same scale so that renders do not vary from device to device.
+ _electron.app.commandLine.appendSwitch('high-dpi-support', 1);
+ _electron.app.commandLine.appendSwitch('force-device-scale-factor', 1);
++_electron.app.allowRendererProcessReuse = false;
+ _electron.app.on('ready', async () => {
+   // electron automatically quits if all windows are destroyed,
+   // this mainWindow will keep electron running even if all other windows
+diff --git a/node_modules/@jest-runner/electron/src/electron_process_injected_code.js b/node_modules/@jest-runner/electron/src/electron_process_injected_code.js
+index f88326c..d3d5b83 100644
+--- a/node_modules/@jest-runner/electron/src/electron_process_injected_code.js
++++ b/node_modules/@jest-runner/electron/src/electron_process_injected_code.js
+@@ -23,7 +23,7 @@ const isMain = process.env.isMain === 'true';
+ // the same scale so that renders do not vary from device to device.
+ app.commandLine.appendSwitch('high-dpi-support', 1);
+ app.commandLine.appendSwitch('force-device-scale-factor', 1);
+-
++app.allowRendererProcessReuse = false;
+ app.on('ready', async () => {
+   // electron automatically quits if all windows are destroyed,
+   // this mainWindow will keep electron running even if all other windows

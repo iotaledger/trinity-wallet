@@ -35,6 +35,12 @@ if (
 }
 
 /**
+ * Disable renderer process reuse since we have some native modules that aren't context-aware
+ * https://github.com/electron/electron/issues/18397
+ */
+app.allowRendererProcessReuse = false;
+
+/**
  * Define wallet windows
  */
 const windows = {
@@ -169,6 +175,7 @@ function createWindow() {
             disableBlinkFeatures: 'Auxclick',
             webviewTag: false,
             enableWebSQL: false,
+            enableRemoteModule: true,
         },
     });
 
@@ -252,8 +259,7 @@ function createWindow() {
                 windows.tray.webContents.openDevTools({ mode: 'detach' });
             }
             */
-            installExtension(REACT_DEVELOPER_TOOLS);
-            installExtension(REDUX_DEVTOOLS);
+            installExtension([REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS]);
         });
     }
 
