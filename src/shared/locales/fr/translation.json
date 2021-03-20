@@ -165,6 +165,8 @@
         "delete": "Effacer",
         "shouldUpdate": "Une mise à jour est disponible",
         "shouldUpdateExplanation": "Une nouvelle mise à jour a été publiée. Il est recommandé que vous mettiez à jour vers la dernière version.",
+        "deprecationWarning": "Trinity is now deprecated",
+        "deprecationWarningExplanation": "Trinity is no longer used. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "Mettez à jour l'application pour continuer",
         "forceUpdateExplanation": "Une mise à jour critique est disponible. Veuillez mettre à jour l’application maintenant.",
         "testVersionWarning": "Cette version ne devrait être utilisée qu'à des fins de test, avec de très petites quantités de jetons.",
