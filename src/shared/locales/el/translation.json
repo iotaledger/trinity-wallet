@@ -165,6 +165,8 @@
         "delete": "Διαγραφή",
         "shouldUpdate": "Μια νέα ενημέρωση είναι διαθέσιμη",
         "shouldUpdateExplanation": "Έχει κυκλοφορήσει μια νέα ενημερωμένη έκδοση. Συνιστάται να ενημερώσετε την τελευταία έκδοση.",
+        "deprecationWarning": "Trinity is now deprecated",
+        "deprecationWarningExplanation": "Trinity is no longer used. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "Ενημερώστε την εφαρμογή για να συνεχίσετε",
         "forceUpdateExplanation": "Έχει κυκλοφορήσει μια κρίσιμη ενημερωμένη έκδοση. Ενημερώστε τώρα την εφαρμογή.",
         "testVersionWarning": "Η έκδοση αυτή χρησιμοποιείται μόνο για τεστ, με πολύ μικρό αριθμό νομισμάτων.",
