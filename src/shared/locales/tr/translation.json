@@ -165,6 +165,8 @@
         "delete": "Sil",
         "shouldUpdate": "Yeni bir güncelleme var",
         "shouldUpdateExplanation": "Yeni bir güncelleme yayınlandı. En son sürüme güncellemeniz önerilir.",
+        "deprecationWarning": "Trinity is now deprecated",
+        "deprecationWarningExplanation": "Trinity is no longer used. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "Devam etmek için uygulamayı güncelleyin",
         "forceUpdateExplanation": "Kritik bir güncelleme yayınlandı. Lütfen uygulamayı güncelleyin.",
         "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
