@@ -165,6 +165,8 @@
         "delete": "削除",
         "shouldUpdate": "新しいアップデートがあります！",
         "shouldUpdateExplanation": "新しいアップデートがリリースされています。最新バージョンに更新することをお勧めします。",
+        "deprecationWarning": "Trinity is now deprecated",
+        "deprecationWarningExplanation": "Trinity is no longer used. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "続けるにはアプリをアップデートしてください",
         "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。",
         "testVersionWarning": "このバージョンは、テスト目的でのみ使用し、ごく少量のトークンを使用してください。",
