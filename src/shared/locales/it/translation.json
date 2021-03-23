@@ -145,7 +145,7 @@
         "deviceMayBecomeUnresponsive": "Il dispositivo potrebbe non rispondere per un po'.",
         "isYourBalanceCorrect": "Il tuo saldo è corretto?",
         "ifYourBalanceIsNotCorrect": "Se il saldo non è corretto, assicurati di aver inserito il seed corretto.",
-        "headToAdvancedSettingsForTransition": "If you are sure you have the right seed, head to Advanced Settings and perform a Snapshot Transition.",
+        "headToAdvancedSettingsForTransition": "Se sei sicuro di avere il seme giusto, vai su Impostazioni avanzate ed esegui un passaggio di snapshot.",
         "headToAccountTools": "Vai su Gestione conti, Strumenti ed esegui Passaggio dopo uno snapshot.",
         "openAccountTools": "Apri Gestione conti, Strumenti",
         "usingTrinityWalletWithKeePass": "Uso del portafoglio Trinity con Keepass2Android",
@@ -180,8 +180,8 @@
         "total": "Totale",
         "submit": "Inviare",
         "tryAgain": "Riprova",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "unknown": "Sconosciuto",
+        "goToDashboard": "Vai alla bacheca"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -384,9 +384,9 @@
         "addressPasteExplanation": "Sembra che hai incollato un indirizzo. Assicurati che l'indirizzo incollato corrisponda a quello al quale desideri inviare.",
         "invalid": "NON VALIDO",
         "swipeToSend": "Scorri per inviare",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "Questa è una richiesta di pagamento",
+        "paymentRequestExpired": "Richiesta di pagamento scaduta",
+        "paymentRequestExpiredExplanation": "Questa richiesta di pagamento è scaduta. Si prega di chiederne una nuova al destinatario."
     },
     "setSeedName": {
         "letsAddName": "Aggiungiamo un nome",
@@ -469,7 +469,7 @@
     },
     "welcome": {
         "thankYou": "Grazie per aver scaricato Trinity",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Grazie per aver scaricato la demo di Trinity"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Trascrivi il tuo seme e la checksum e </0><1>verifica tre volte</1><2> di averli trascritti correttamente.</2>",
@@ -479,7 +479,7 @@
         "bundleHashCopied": "Hash del pacchetto copiato",
         "noTransactionsFound": "Nessuna transazione trovata",
         "emptyHistory": "La tua cronologia di transazioni è vuota",
-        "hideZeroBalance": "Hide zero value",
+        "hideZeroBalance": "Nascondi valore zero",
         "bundleHashCopiedExplanation": "L'hash del pacchetto è stato copiato negli Appunti.",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "L'indirizzo è stato copiato negli Appunti.",
@@ -492,14 +492,14 @@
         "yesterday": "Ieri",
         "promotingAnotherBundle": "Promozione di un altro pacchetto",
         "pleaseWait": "Per favore aspetta, Trinity sta promuovendo un altro pacchetto.",
-        "typeHelp": "Type !help for tips",
+        "typeHelp": "Digita !help per suggerimenti",
         "searchHelpText": "Cerca per hash del pacchetto o contenuto del messaggio",
         "searchHelpValue": "Trova le transazioni per valore di iota esatto",
         "searchHelpUnits": "Trova le transazioni per valore e unità iota",
         "searchHelpMore": "Trova le transazioni con un valore maggiore di X",
         "searchHelpLess": "Trova le transazioni con un valore minore di X",
-        "transactions": "Transactions",
-        "noFilteredTransactions": "No transactions match those filters"
+        "transactions": "Transazioni",
+        "noFilteredTransactions": "Nessuna transazione corrisponde a questi filtri"
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",
@@ -512,8 +512,8 @@
     "nodeSettings": {
         "automaticNodeManagement": "Gestione automatica del nodo",
         "addCustomNodes": "Aggiungi nodi",
-        "autoNodeList": "Use default node list",
-        "nodeAutoswitching": "Autoselect primary node",
+        "autoNodeList": "Usa l'elenco nodi predefinito",
+        "nodeAutoswitching": "Seleziona il nodo primario automaticamente",
         "primaryNode": "Nodo primario",
         "enableQuorum": "Abilita quorum",
         "quorumSize": "Dimensione Quorum",
@@ -524,9 +524,9 @@
         "nodeEnoughNodesExplanationCustomNodes": "Aggiungi più nodi personalizzati o attiva la lista dei nodi remoti.",
         "nodeSettingsUpdatedTitle": "Impostazioni nodo aggiornate",
         "nodeSettingsUpdatedExplanation": "Hai aggiornato con successo le impostazioni del nodo.",
-        "outsourcePow": "Outsource proof of work",
-        "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "outsourcePow": "Esternalizza la proof of work",
+        "autoSelectPowNode": "Seleziona automaticamente il nodo per la proof of work",
+        "nodeForPow": "Nodo per la proof of work"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Impossibile aggiungere il nodo personalizzato",
@@ -713,7 +713,7 @@
         "change": "Cambiamento (24h)",
         "volume": "Volume (24h)",
         "error": "Errore durante il recupero dati per il grafico",
-        "currentValue": "Current Value"
+        "currentValue": "Valore attuale"
     },
     "rootDetection": {
         "warning": "ATTENZIONE",
@@ -884,8 +884,8 @@
         "writtenDownInfoExplanation": "Avrai bisogno del tuo numero di indice per ripristinare il tuo account in futuro. Se perdi il numero di indice, perderai i tuoi IOTA. Ricordalo."
     },
     "help": {
-        "docsSite": "Trinity Docs Site",
-        "commonIssues": "Common Wallet Issues",
-        "buyingIOTA": "Problems Buying IOTA"
+        "docsSite": "Sito della documentazione di Trinity",
+        "commonIssues": "Problemi Comuni al Portafoglio",
+        "buyingIOTA": "Problemi di Acquisto di IOTA"
     }
 }
