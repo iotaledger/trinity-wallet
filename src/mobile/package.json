@@ -43,7 +43,7 @@
     "jsc-android": "241213.x.x",
     "lodash": "^4.17.20",
     "lottie-react-native": "^2.6.1",
-    "nodejs-mobile-react-native": "https://github.com/rajivshah3/nodejs-mobile-react-native#f3e99d92aa6983ca84805839b58cbe2ad2a33a37",
+    "nodejs-mobile-react-native": "0.5.0",
     "path-browserify": "0.0.0",
     "process": "^0.11.10",
     "prop-types": "^15.6.0",
