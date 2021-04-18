@@ -25,6 +25,8 @@ export class AlertsComponent extends React.PureComponent {
         /** @ignore */
         deprecated: PropTypes.bool.isRequired,
         /** @ignore */
+        chrysalisMigrationActive: PropTypes.bool.isRequired,
+        /** @ignore */
         shouldUpdate: PropTypes.bool.isRequired,
         /** @ignore */
         displayTestWarning: PropTypes.bool.isRequired,
@@ -100,6 +102,7 @@ export class AlertsComponent extends React.PureComponent {
             displayTestWarning,
             forceUpdate,
             deprecated,
+            chrysalisMigrationActive,
             shouldUpdate,
             displaySeedMigrationAlert,
             seedMigrationUrl,
@@ -123,6 +126,8 @@ export class AlertsComponent extends React.PureComponent {
                 {!dismissUpdate &&
                     deprecated &&
                     this.renderFullWidthAlert(t('global:deprecationWarning'), t('global:deprecationWarningExplanation'), false)}
+                {!dismissUpdate && chrysalisMigrationActive && !deprecated && !forceUpdate &&
+                    this.renderFullWidthAlert(t('global:chrysalisMigrationWarning'), t('global:chrysalisMigrationWarningExplanation'), true)}
                 {!isUpdating &&
                     forceUpdate &&
                     !displaySeedMigrationAlert &&
@@ -143,7 +148,7 @@ export class AlertsComponent extends React.PureComponent {
                         `It is strongly recommended that you migrate your seeds. Visit ${seedMigrationUrl} for more information.`,
                         true,
                     )}
-                {(!dismissUpdate && (deprecated || forceUpdate || shouldUpdate || displaySeedMigrationAlert)) || (
+                {(!dismissUpdate && (deprecated || forceUpdate || shouldUpdate || displaySeedMigrationAlert || chrysalisMigrationActive)) || (
                     <div
                         onClick={() => dismissAlert()}
                         className={classNames(

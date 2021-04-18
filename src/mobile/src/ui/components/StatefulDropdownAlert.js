@@ -42,6 +42,8 @@ class StatefulDropdownAlert extends Component {
         shouldUpdate: PropTypes.bool.isRequired,
         /** @ignore */
         displaySeedMigrationAlert: PropTypes.bool.isRequired,
+        /** @ignore */
+        chrysalisMigrationActive: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -102,10 +104,11 @@ class StatefulDropdownAlert extends Component {
             shouldUpdate,
             forceUpdate,
             deprecated,
+            chrysalisMigrationActive,
             displaySeedMigrationAlert
         } = this.props;
 
-        if (this.dropdown && (deprecated || shouldUpdate || forceUpdate || displaySeedMigrationAlert)) {
+        if (this.dropdown && (chrysalisMigrationActive || deprecated || shouldUpdate || forceUpdate || displaySeedMigrationAlert)) {
             return this.dropdown.alertWithType(category, title, message);
         }
 
@@ -192,6 +195,7 @@ const mapStateToProps = (state) => ({
     shouldUpdate: state.wallet.shouldUpdate,
     forceUpdate: state.wallet.forceUpdate,
     deprecated: state.wallet.forceUpdate,
+    chrysalisMigrationActive: state.wallet.chrysalisMigrationActive,
     displaySeedMigrationAlert: state.wallet.displaySeedMigrationAlert,
     navStack: state.wallet.navStack,
 });

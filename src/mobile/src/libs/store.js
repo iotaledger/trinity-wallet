@@ -12,7 +12,7 @@ import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
 import getEncryptionKey from 'libs/realm';
 import { setAppVersions, resetWallet } from 'shared-modules/actions/settings';
 import { parse, fetchVersions, fetchIsSeedMigrationUp, VALID_IOTA_SUBDOMAIN_REGEX } from 'shared-modules/libs/utils';
-import { shouldUpdate as triggerShouldUpdate, forceUpdate as triggerForceUpdate, displaySeedMigrationAlert as triggerSeedMigrationAlert, deprecate as triggerDeprecation } from 'shared-modules/actions/wallet';
+import { shouldUpdate as triggerShouldUpdate, forceUpdate as triggerForceUpdate, displaySeedMigrationAlert as triggerSeedMigrationAlert, deprecate as triggerDeprecation, chrysalisMigration } from 'shared-modules/actions/wallet';
 
 /**
  * AsyncStorage adapter for manipulating state persisted by redux-persist (https://github.com/rt2zz/redux-persist)
@@ -105,13 +105,15 @@ export const reduxPersistStorageAdapter = {
 export const versionCheck = (store) => {
     const currentBuildNumber = get(store.getState(), 'settings.versions.buildNumber');
     return fetchVersions()
-        .then(({ mobileBlacklist, latestMobile, deprecated }) => {
+        .then(({ mobileBlacklist, latestMobile, deprecated, chrysalisMigrationActive }) => {
             if (deprecated) {
                 store.dispatch(triggerDeprecation());
             } else if (mobileBlacklist.includes(currentBuildNumber)) {
                 store.dispatch(triggerForceUpdate());
             } else if (latestMobile > currentBuildNumber) {
                 store.dispatch(triggerShouldUpdate());
+            } else if (chrysalisMigrationActive) {
+                store.dispatch(chrysalisMigration());
             }
             return store;
         })
