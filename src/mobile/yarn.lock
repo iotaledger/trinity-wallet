@@ -7784,9 +7784,9 @@ nodejs-mobile-gyp@^0.3.1:
     tar "^4.4.8"
     which "1"
 
-"nodejs-mobile-react-native@https://github.com/rajivshah3/nodejs-mobile-react-native#f3e99d92aa6983ca84805839b58cbe2ad2a33a37":
+"nodejs-mobile-react-native@https://github.com/rajivshah3/nodejs-mobile-react-native#4b0bdba":
   version "0.4.3"
-  resolved "https://github.com/rajivshah3/nodejs-mobile-react-native#f3e99d92aa6983ca84805839b58cbe2ad2a33a37"
+  resolved "https://github.com/rajivshah3/nodejs-mobile-react-native#4b0bdba905c8367576bf009540d70a7fb9972226"
   dependencies:
     mkdirp "^0.5.1"
     ncp "^2.0.0"
