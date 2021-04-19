@@ -60,6 +60,10 @@ const initialState = {
      */
     deprecated: false,
     /**
+     * Determines whether Chrysalis migration is active
+     */
+    chrysalisMigrationActive: false,
+    /**
      * Determines whether to display test version warning
      */
     displayTestWarning: false,
@@ -219,6 +223,11 @@ export default (state = initialState, action) => {
                 ...state,
                 deprecated: true,
             };
+        case WalletActionTypes.CHRYSALIS_MIGRATION:
+        return {
+            ...state,
+            chrysalisMigrationActive: true,
+        };
         case WalletActionTypes.DISPLAY_TEST_WARNING:
             return {
                 ...state,

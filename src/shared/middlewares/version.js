@@ -29,6 +29,15 @@ const versionMiddleware = () => (next) => (action) => {
             closeInterval: 3600000,
         });
         next(action);
+    } else if (action.type === WalletActionTypes.CHRYSALIS_MIGRATION) {
+            next({
+                type: AlertsActionTypes.SHOW,
+                category: 'error',
+                title: i18next.t('global:chrysalisMigrationWarning'),
+                message: i18next.t('global:chrysalisMigrationWarningExplanation'),
+                closeInterval: 3600000,
+            });
+            next(action);
     } else if (action.type === WalletActionTypes.DISPLAY_SEED_MIGRATION_ALERT) {
         next({
             type: AlertsActionTypes.SHOW,
