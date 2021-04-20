@@ -137,7 +137,8 @@
     "**/randomatic/kind-of": "^6.0.3",
     "**/sane/micromatch/kind-of": "^6.0.3",
     "lodash": ">=4.17.20",
-    "elliptic": ">=6.5.3"
+    "elliptic": ">=6.5.3",
+    "graceful-fs": ">=4.2.0"
   },
   "jest": {
     "preset": "react-native",
