@@ -21,6 +21,8 @@ describe('Reducer: wallet', () => {
                 displayTestWarning: false,
                 displaySeedMigrationAlert: false,
                 seedMigrationUrl: '',
+                chrysalisMigrationActive: false,
+                deprecated: false
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

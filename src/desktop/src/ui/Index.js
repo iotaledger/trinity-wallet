@@ -24,7 +24,8 @@ import {
     forceUpdate,
     displayTestWarning,
     displaySeedMigrationAlert,
-    deprecate
+    deprecate,
+    chrysalisMigration
 } from 'actions/wallet';
 
 import { updateTheme } from 'actions/settings';
@@ -112,6 +113,8 @@ class App extends React.Component {
         displaySeedMigrationAlert: PropTypes.func.isRequired,
         /** @ignore */
         alerts: PropTypes.object.isRequired,
+        /** @ignore */
+        chrysalisMigration: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -251,6 +254,8 @@ class App extends React.Component {
             this.props.forceUpdate();
         } else if (data.latestDesktop && versionId !== data.latestDesktop) {
             this.props.shouldUpdate();
+        } else if (data.chrysalisMigration) {
+            this.props.chrysalisMigration();
         }
     }
 
@@ -404,7 +409,8 @@ const mapDispatchToProps = {
     forceUpdate,
     displayTestWarning,
     displaySeedMigrationAlert,
-    deprecate
+    deprecate,
+    chrysalisMigration
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(App)));

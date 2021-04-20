@@ -638,6 +638,17 @@ export const forceUpdate = () => ({
 });
 
 /**
+ * Trigger Chrysalis migration alert
+ *
+ * @method migration
+ *
+ * @returns {{type: {string} }}
+ */
+ export const chrysalisMigration = () => ({
+    type: WalletActionTypes.CHRYSALIS_MIGRATION,
+});
+
+/**
  * Dispatch to display test version warning
  *
  * @method displayTestWarning

@@ -53,6 +53,7 @@ export default function withSendData(SendComponent) {
             clearSendFields: PropTypes.func.isRequired,
             CDAContent: PropTypes.object.isRequired,
             verifyCDAContent: PropTypes.func.isRequired,
+            deprecated: PropTypes.bool.isRequired
         };
 
         componentWillMount() {
@@ -153,7 +154,10 @@ export default function withSendData(SendComponent) {
         };
 
         sendTransfer = (seedStore, address, value, message) => {
-            const { ui, accountName, generateAlert, t } = this.props;
+            const { ui, accountName, generateAlert, t, deprecated } = this.props;
+            if (deprecated) {
+                return;
+            }
 
             if (ui.isSyncing) {
                 generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
@@ -259,6 +263,7 @@ export default function withSendData(SendComponent) {
         ui: state.ui,
         deepLinkRequestActive: state.wallet.deepLinkRequestActive,
         CDAContent: state.ui.CDAContent,
+        deprecated: state.wallet.deprecated
     });
 
     const mapDispatchToProps = {

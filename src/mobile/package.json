@@ -43,7 +43,7 @@
     "jsc-android": "241213.x.x",
     "lodash": "^4.17.20",
     "lottie-react-native": "^2.6.1",
-    "nodejs-mobile-react-native": "https://github.com/rajivshah3/nodejs-mobile-react-native#f3e99d92aa6983ca84805839b58cbe2ad2a33a37",
+    "nodejs-mobile-react-native": "https://github.com/rajivshah3/nodejs-mobile-react-native#4b0bdba",
     "path-browserify": "0.0.0",
     "process": "^0.11.10",
     "prop-types": "^15.6.0",
@@ -137,7 +137,8 @@
     "**/randomatic/kind-of": "^6.0.3",
     "**/sane/micromatch/kind-of": "^6.0.3",
     "lodash": ">=4.17.20",
-    "elliptic": ">=6.5.3"
+    "elliptic": ">=6.5.3",
+    "graceful-fs": ">=4.2.0"
   },
   "jest": {
     "preset": "react-native",
