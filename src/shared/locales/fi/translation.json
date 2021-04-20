@@ -1,10 +1,10 @@
 {
     "global": {
         "address": "Osoite",
-        "and": "and",
+        "and": "ja",
         "send": "LÄHETÄ",
         "cancel": "Peruuta",
-        "complete": "Complete",
+        "complete": "Valmis",
         "continue?": "Oletko varma, että haluat jatkaa?",
         "noTransactions": "EI HISTORIATIETOJA",
         "refresh": "Päivitä",
@@ -118,7 +118,7 @@
         "checkForUpdates": "Tarkista päivitykset",
         "account": "Oma tili",
         "changeNode": "Vaihda Palvelinta",
-        "addCustomNode": "Add nodes",
+        "addCustomNode": "Lisää solmuja",
         "nodeMustUseHTTPS": "Virheellinen palvelin (ei HTTPS yhteyttä)",
         "nodeMustUseHTTPSExplanation": "Voit lisätä vain palvelimia jotka tukevat HTTPS yhteyttä.",
         "nodeDuplicated": "Palvelin on jo olemassa",
@@ -144,8 +144,8 @@
         "mustBeStoredAppropriately": "Se on tallennettava turvallisesti.",
         "deviceMayBecomeUnresponsive": "Laitteesi saattaa toimia hitaasti hetken aikaa.",
         "isYourBalanceCorrect": "Näkyykö saldosi oikein?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, make sure you have entered the correct seed.",
-        "headToAdvancedSettingsForTransition": "If you are sure you have the right seed, head to Advanced Settings and perform a Snapshot Transition.",
+        "ifYourBalanceIsNotCorrect": "Jos saldosi ei ole oikein, varmista, että olet syöttänyt oikean seed-luvun.",
+        "headToAdvancedSettingsForTransition": "Jos olet varma, että sinulla on oikea seed-luku, mene lisäasetuksiin ja suorita Snapshot-siirtymä.",
         "headToAccountTools": "Mene tilityökaluihin ja suorita Snapshot-siirtymä.",
         "openAccountTools": "Avaa tilityökalut",
         "usingTrinityWalletWithKeePass": "Trinity lompakon käyttö Keepas2Android sovelluksen kanssa",
@@ -165,10 +165,10 @@
         "delete": "Poista",
         "shouldUpdate": "Uusi päivitys on saatavilla",
         "shouldUpdateExplanation": "Uusi päivitys on saatavilla. Suosittelemme päivittämään uusimpaan versioon.",
-        "deprecationWarning": "Trinity is discontinued",
-        "deprecationWarningExplanation": "Please go to https://firefly.iota.org to download the new wallet.",
-        "chrysalisMigrationWarning": "Action Required",
-        "chrysalisMigrationWarningExplanation": "Trinity will stop working on April 28th 2021. Please go to https://chrysalis.iota.org for more information.",
+        "deprecationWarning": "Trinity on lopetettu",
+        "deprecationWarningExplanation": "Ole hyvä ja siirry osoitteeseen https://firefly.iota.org ladataksesi uuden lompakon.",
+        "chrysalisMigrationWarning": "Toimenpide vaaditaan",
+        "chrysalisMigrationWarningExplanation": "Trinity lakkaa toimimasta 28. huhtikuuta 2021. Ole hyvä ja siirry osoitteeseen https://chrysalis.iota.org saadaksesi lisätietoja.",
         "forceUpdate": "Päivitä sovellus jatkaaksesi",
         "forceUpdateExplanation": "Tärkeä päivitys on julkaistu. Ole hyvä ja päivitä sovellus.",
         "testVersionWarning": "Tämä versio on tarkoitettu vain koe käyttöön, erittäin pienillä rahake määrillä.",
@@ -179,11 +179,11 @@
         "expert": "Edistynyt",
         "notEnoughSyncedNodes": "Liian vähän synkronoituja palvelimia",
         "notEnoughSyncedNodesExplanation": "Päätösvaltaisuutta ei voitu saavuttaa. Ota päätösvaltaisuus pois käytöstä tai yritä uudelleen.",
-        "total": "Total",
-        "submit": "Submit",
-        "tryAgain": "Try again",
-        "unknown": "Unknown",
-        "goToDashboard": "Go to dashboard"
+        "total": "Yhteensä",
+        "submit": "Lähetä",
+        "tryAgain": "Yritä uudelleen",
+        "unknown": "Tuntematon",
+        "goToDashboard": "Mene päänäkymään"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -386,9 +386,9 @@
         "addressPasteExplanation": "Näyttää siltä että olet liittänyt osoitteen muualta. Varmista että liitetty osoite vastaa alkuperäistä.",
         "invalid": "VIRHEELLINEN",
         "swipeToSend": "Pyyhkäise lähettääksesi",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "Tämä on maksupyyntö",
+        "paymentRequestExpired": "Maksupyyntö vanhentui",
+        "paymentRequestExpiredExplanation": "Tämä maksupyyntö on vanhentunut. Ole hyvä ja pyydä vastaanottajalta uusi."
     },
     "setSeedName": {
         "letsAddName": "Annetaan seed-luvulle nimi",
@@ -471,7 +471,7 @@
     },
     "welcome": {
         "thankYou": "Kiitos, että olet ladannut Trinity-lompakon",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Kiitos, että latasit Trinity-demon"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Kirjoita muistiin seed-lukusi ja tarkistussumma ja</0> <1>varmista kolmesti,</1> <2>että ne ovat oikein.</2>",
@@ -513,7 +513,7 @@
     },
     "nodeSettings": {
         "automaticNodeManagement": "Automaattinen palvelimen hallinta",
-        "addCustomNodes": "Add nodes",
+        "addCustomNodes": "Lisää solmuja",
         "autoNodeList": "Use default node list",
         "nodeAutoswitching": "Autoselect primary node",
         "primaryNode": "Ensisijainen palvelin",
