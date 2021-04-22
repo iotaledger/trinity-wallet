@@ -1,14 +1,14 @@
 {
     "global": {
         "address": "پتہ",
-        "and": "and",
+        "and": "اور",
         "send": "بھیجیں",
         "cancel": "CANCEL",
-        "complete": "Complete",
-        "continue?": "Are you sure you want to continue?",
+        "complete": "مكمل",
+        "continue?": "کیا آپ واقعی جاری رکھنا چاہتے ہیں؟",
         "noTransactions": "کوئی پرانی تاریخ نہیں",
         "refresh": "ریفریش کریں",
-        "balanceError": "Not enough balance",
+        "balanceError": "بیلینس کافی نہیں ہے",
         "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
         "totalBalance": "کل رقم",
         "transferError": "Transfer error",
