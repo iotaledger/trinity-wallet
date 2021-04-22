@@ -220,16 +220,16 @@
         "reasonRow": "بٹنوں کی سیدھی قطاروں کا اندازہ لگانا آسان ہے.",
         "reasonPattern": "بٹنوں کے مختصر نمونوں کا اندازہ لگانا آسان ہے.",
         "reasonNames": "عام ناموں اور کنیتوں کا اندازہ لگانا آسان ہے.",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
+        "reasonRepeats": "'aaa' جیسی تقرار کا اندازہ لگانا آسان ہے.",
         "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
         "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
-        "reasonYears": "Recent years are easy to guess.",
-        "reasonDates": "Dates are often easy to guess.",
+        "reasonYears": "حالیہ برسوں کا اندازہ کرنا آسان ہے.",
+        "reasonDates": "تاریخوں کا اندازہ لگانا اکثر آسان ہوتا ہے۔",
         "reasonTop10": "This is a top 10 common password.",
         "reasonTop100": "This is a top 100 common password.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonCommon": "یہ بہت عام پاس ورڈ ہے.",
+        "reasonSimilar": "یہ ایک عام پاس ورڈ کی طرح ہے.",
+        "reasonWord": "ایک ہی لفظ کا اندازہ لگانا آسان ہے."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -295,14 +295,14 @@
         "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
+        "allDone": "سب ہو گیا!",
         "openYourWallet": "Open your wallet",
         "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     },
     "paperWallet": {
         "neverShare": "Never share your seed with anyone.",
         "iotaLogo": "IOTA logo",
-        "print": "Print",
+        "print": "پرنٹ کریں",
         "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
         "pleaseCheck": "Please check and confirm before you print",
@@ -316,26 +316,26 @@
         "print": "Yes, print"
     },
     "receive": {
-        "yourAddress": "Your address",
+        "yourAddress": "آپ کا ایڈریس",
         "qrOptions": "QR options",
-        "shareQr": "Share QR code",
-        "copyAddress": "Copy address",
+        "shareQr": "QR کوڈ کا اشتراک کریں",
+        "copyAddress": "ایڈریس کاپی کریں",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "ایڈریس بنائیں",
         "noAddresses": "NO ADDRESSES",
         "spent": "Spent",
         "tag": "ٹیگ",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddress": "ایڈریس بنائیں",
+        "generateAnAddressTitle": "ایک ایڈریس بنائیں",
         "generateAnAddressExplanation": "Please generate an address before using this function.",
         "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Back up your seed",
+        "saveYourSeed": "اپنے سیڈ کا بیک اپ لیں",
         "seedCleared": "Seed cleared",
         "mostSecure": "Most Secure",
-        "recommended": "Recommended",
+        "recommended": "سفارش کردہ",
         "leastSecure": "Least Secure",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Write your seed down",
@@ -363,25 +363,25 @@
     "send": {
         "invalidAddress": "Invalid address",
         "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
+        "invalidAddressExplanation2": "ایڈریس میں ناقابل قبول حروف ہیں.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "ناکافی فنڈز",
         "notEnoughFundsExplanation": "آپ کے پاس یہ منتقلی مکمل کرنے کے لئے اتنا IOTA نہیں ہے.",
-        "recipientAddress": "Recipient address",
-        "amount": "Amount",
-        "max": "MAX",
-        "message": "Message",
+        "recipientAddress": "وصول کنندہ کا پتہ",
+        "amount": "رقم",
+        "max": "حد",
+        "message": "پیغام",
         "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessageExplanation": "آپکے پیغام میں ناقابل قبول حروف ہیں.",
         "send": "بھیجیں",
-        "invalidAmount": "Incorrect amount entered",
+        "invalidAmount": "غلط رقم درج کی گئی",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM amount selected",
         "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX",
-        "totalTime": "Total time",
+        "totalTime": "کل وقت",
         "addressPasteDetected": "Address paste detected",
         "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
         "invalid": "INVALID",
@@ -396,28 +396,28 @@
         "youCanAdd": "You can add more seeds in the Settings menu."
     },
     "modeSelection": {
-        "advanced": "Advanced",
-        "standard": "Standard",
+        "advanced": "اعلیٰ",
+        "standard": "معیاری",
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
         "modeUpdated": "Mode updated",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
-        "transferSending": "Transfer sending",
+        "transferSending": "ٹراسفر بھیجا جا رہا ہے",
         "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "mode": "Mode",
-        "theme": "Theme",
-        "currency": "Currency",
+        "mode": "موڈ",
+        "theme": "تھیم",
+        "currency": "کرنسی",
         "cannotChangeNode": "Cannot change node",
         "cannotChangeNodeWhileSending": "Cannot change node while sending.",
-        "language": "Language",
+        "language": "زبان",
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
-        "changePassword": "Change password",
-        "general": "General settings",
-        "advanced": "Advanced settings",
-        "nodeSettings": "Node settings",
+        "changePassword": "پاس ورڈ تبدیل کریں",
+        "general": "عام ترتیبات",
+        "advanced": "اعلیٰ ترتیبات",
+        "nodeSettings": "نوڈ کی ترتیبات",
         "account": "Account settings",
         "logout": "Log out",
         "reset": "Reset wallet",
@@ -445,19 +445,19 @@
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rate",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
-        "undo": "Undo",
-        "redo": "Redo",
+        "undo": "کالعدم کریں",
+        "redo": "دوبارہ کریں",
         "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "nodeChangeSuccess": "Successfully changed node",
         "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
         "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
         "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeErrorExplanation": "آپ کی نوڈ تبدیل کرنے میں ایک مسئلہ تھا۔ براہ کرم دوبارہ کوشش کریں."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
-        "reset": "Reset"
+        "reset": "ری سیٹ کریں"
     },
     "walletSetup": {
         "okay": "Okay. Let's set up your wallet!",
@@ -479,7 +479,7 @@
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "کوئی ٹرانزیکشن نہیں پائی گئی",
         "emptyHistory": "Your transaction history is empty",
         "hideZeroBalance": "Hide zero value",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
@@ -491,7 +491,7 @@
         "receive": "حاصل",
         "empty": "Empty",
         "retrying": "Retrying",
-        "yesterday": "Yesterday",
+        "yesterday": "گزشتہ روز",
         "promotingAnotherBundle": "Promoting another bundle",
         "pleaseWait": "Please wait, Trinity is promoting another bundle.",
         "typeHelp": "Type !help for tips",
@@ -500,7 +500,7 @@
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "Find transactions with a value greater than X",
         "searchHelpLess": "Find transactions with a value less than X",
-        "transactions": "Transactions",
+        "transactions": "ٹرانزیکشنز",
         "noFilteredTransactions": "No transactions match those filters"
     },
     "accountManagement": {
@@ -516,7 +516,7 @@
         "addCustomNodes": "نوڈ شامل کریں",
         "autoNodeList": "Use default node list",
         "nodeAutoswitching": "Autoselect primary node",
-        "primaryNode": "Primary node",
+        "primaryNode": "بنیادی نوڈ",
         "enableQuorum": "Enable quorum",
         "quorumSize": "Quorum size",
         "noCustomNodes": "No custom nodes",
@@ -528,14 +528,14 @@
         "nodeSettingsUpdatedExplanation": "You have successfully updated your node settings.",
         "outsourcePow": "Outsource proof of work",
         "autoSelectPowNode": "Autoselect proof of work node",
-        "nodeForPow": "Proof of work node"
+        "nodeForPow": "پروف آف ورک نوڈ"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
         "customNode": "Custom node",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "کسٹم نوڈ مٹائیں",
         "invalidNodeResponse": "The node returned an invalid response",
-        "add": "Add",
+        "add": "شامل کریں",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node.",
         "invalidURL": "Please enter a valid URL.",
@@ -564,7 +564,7 @@
         "frame": "Frame"
     },
     "themeCustomisation": {
-        "theme": "Theme",
+        "theme": "تھیم",
         "mockup": "Mockup"
     },
     "themes": {
@@ -580,7 +580,7 @@
         "steelblue": "Steel Blue"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "کرنسی"
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Are you sure you want to log out?",
