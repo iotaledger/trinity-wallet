@@ -536,23 +536,23 @@
         "removeCustomNode": "کسٹم نوڈ مٹائیں",
         "invalidNodeResponse": "The node returned an invalid response",
         "add": "شامل کریں",
-        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmpty": "متن کی فیلڈ خالی ہے۔",
         "nodeFieldEmptyExplanation": "Please enter a custom node.",
-        "invalidURL": "Please enter a valid URL.",
+        "invalidURL": "براہ کرم ایک درست URL درج کریں.",
         "addAuthKey": "Add auth key",
-        "username": "Username",
+        "username": "صارفی نام",
         "couldNotRemove": "Could not remove custom node",
         "couldNotRemoveExplanation": "There must be enough nodes for quorum. Reduce the quorum size or enable the remote node list."
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "پہلے سے موجود سیڈ استعمال کریں",
+        "createNewSeed": "نیا سیڈ بنائیں"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
+        "selectNode": "نوڈ منتخب کریں",
         "manualSync": "Manual sync",
         "snapshotTransition": "Snapshot transition",
-        "pow": "Proof of Work",
+        "pow": "پروف آف ورک",
         "autoPromotion": "Auto-promotion",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work.",
@@ -561,17 +561,17 @@
     },
     "advancedThemeCustomisation": {
         "background": "Background",
-        "frame": "Frame"
+        "frame": "فریم"
     },
     "themeCustomisation": {
         "theme": "تھیم",
         "mockup": "Mockup"
     },
     "themes": {
-        "classic": "Classic",
+        "classic": "کلاسک",
         "contemporary": "Contemporary",
         "dark": "Dark",
-        "default": "Default",
+        "default": "ڈیفالٹ",
         "electric": "Electric",
         "ionic": "Ionic",
         "light": "Light",
