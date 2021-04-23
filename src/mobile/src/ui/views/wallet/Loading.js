@@ -159,6 +159,9 @@ class Loading extends Component {
             this.props.setSetting('mainSettings');
             this.props.changeHomeScreenRoute('balance');
         }
+
+
+
         if (addingAdditionalAccount) {
             const seedStore = await new SeedStore[additionalAccountMeta.type](
                 global.passwordHash,
@@ -178,7 +181,7 @@ class Loading extends Component {
             this.launchHomeScreen();
         }
         if (!hasErrorFetchingAccountInfo && newProps.hasErrorFetchingAccountInfo) {
-            this.redirectToLogin();
+            this.redirectToHome();
         }
         if (!hasErrorFetchingFullAccountInfo && newProps.hasErrorFetchingFullAccountInfo) {
             if (accountNames.length <= 1) {
