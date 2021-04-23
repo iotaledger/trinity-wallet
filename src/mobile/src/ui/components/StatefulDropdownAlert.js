@@ -136,6 +136,7 @@ class StatefulDropdownAlert extends Component {
             theme: { positive, negative },
             dismissAlert,
             forceUpdate,
+            deprecated
         } = this.props;
         const closeAfter = closeInterval || 0;
         return (
@@ -181,7 +182,7 @@ class StatefulDropdownAlert extends Component {
                 onCancel={dismissAlert}
                 onClose={dismissAlert}
                 closeInterval={closeAfter}
-                tapToCloseEnabled={this.props.hasConnection && forceUpdate === false}
+                tapToCloseEnabled={this.props.hasConnection && forceUpdate === false && deprecated === false}
                 translucent
             />
         );
@@ -194,7 +195,7 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     shouldUpdate: state.wallet.shouldUpdate,
     forceUpdate: state.wallet.forceUpdate,
-    deprecated: state.wallet.forceUpdate,
+    deprecated: state.wallet.deprecated,
     chrysalisMigrationActive: state.wallet.chrysalisMigrationActive,
     displaySeedMigrationAlert: state.wallet.displaySeedMigrationAlert,
     navStack: state.wallet.navStack,
