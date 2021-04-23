@@ -335,7 +335,12 @@ export class Send extends Component {
      * @returns {function}
      */
     onSendPress() {
-        const { t, amount, address, message, denomination, CDAContent } = this.props;
+        const { t, amount, address, message, denomination, CDAContent, deprecated } = this.props;
+
+        if (deprecated) {
+            return
+        }
+
         const { currencySymbol } = this.state;
         const multiplier = this.getUnitMultiplier();
         const isFiat = denomination === currencySymbol;
@@ -673,11 +678,7 @@ export class Send extends Component {
             message,
             amount,
             address,
-            deprecated
         } = this.props;
-        if (deprecated) {
-            return
-        }
 
         if (isSyncing) {
             this.props.generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
