@@ -143,5 +143,6 @@
         105
     ],
     "latestMobile": "106",
-    "latestDesktop": "1.6.1"
+    "latestDesktop": "1.6.1",
+    "chrysalisMigrationActive": true
 }
