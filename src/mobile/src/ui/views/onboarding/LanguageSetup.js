@@ -65,6 +65,8 @@ class LanguageSetup extends Component {
         /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
         /** @ignore */
+        deprecated: PropTypes.bool.isRequired,
+        /** @ignore */
         themeName: PropTypes.string.isRequired,
     };
 
@@ -84,8 +86,8 @@ class LanguageSetup extends Component {
     }
 
     onNextPress() {
-        const { forceUpdate } = this.props;
-        if (forceUpdate) {
+        const { forceUpdate, deprecated } = this.props;
+        if (forceUpdate || deprecated) {
             return;
         }
         navigator.push('welcome');
@@ -183,6 +185,7 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
     forceUpdate: state.wallet.forceUpdate,
     themeName: state.settings.themeName,
+    deprecated: state.wallet.deprecated,
 });
 
 const mapDispatchToProps = {

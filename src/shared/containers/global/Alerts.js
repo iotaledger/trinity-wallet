@@ -15,6 +15,8 @@ export default function withAlertsData(AlertsComponent) {
             alerts: PropTypes.object.isRequired,
             forceUpdate: PropTypes.bool.isRequired,
             shouldUpdate: PropTypes.bool.isRequired,
+            deprecated: PropTypes.bool.isRequired,
+            chrysalisMigrationActive: PropTypes.bool.isRequired,
             displayTestWarning: PropTypes.bool.isRequired,
             displaySeedMigrationAlert: PropTypes.bool.isRequired,
             seedMigrationUrl: PropTypes.string.isRequired,
@@ -30,6 +32,8 @@ export default function withAlertsData(AlertsComponent) {
     const mapStateToProps = (state) => ({
         alerts: state.alerts,
         forceUpdate: state.wallet.forceUpdate,
+        deprecated: state.wallet.deprecated,
+        chrysalisMigrationActive: state.wallet.chrysalisMigrationActive,
         shouldUpdate: state.wallet.shouldUpdate,
         displayTestWarning: state.wallet.displayTestWarning,
         displaySeedMigrationAlert: state.wallet.displaySeedMigrationAlert,

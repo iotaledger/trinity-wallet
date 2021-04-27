@@ -148,5 +148,6 @@
     ],
     "latestMobile": "108",
     "latestDesktop": "1.6.2",
-    "deprecated": true
+    "deprecated": true,
+    "chrysalisMigrationActive": false
 }

@@ -24,6 +24,8 @@ import {
     forceUpdate,
     displayTestWarning,
     displaySeedMigrationAlert,
+    deprecate,
+    chrysalisMigration
 } from 'actions/wallet';
 
 import { updateTheme } from 'actions/settings';
@@ -96,6 +98,8 @@ class App extends React.Component {
         /** @ignore */
         forceUpdate: PropTypes.func.isRequired,
         /** @ignore */
+        deprecate: PropTypes.func.isRequired,
+        /** @ignore */
         displayTestWarning: PropTypes.func.isRequired,
         /** @ignore */
         setAccountInfoDuringSetup: PropTypes.func.isRequired,
@@ -109,6 +113,8 @@ class App extends React.Component {
         displaySeedMigrationAlert: PropTypes.func.isRequired,
         /** @ignore */
         alerts: PropTypes.object.isRequired,
+        /** @ignore */
+        chrysalisMigration: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -242,10 +248,14 @@ class App extends React.Component {
         const versionId = Electron.getVersion();
         if (versionId.includes('RC')) {
             this.props.displayTestWarning();
+        } else if (data.deprecated) {
+            this.props.deprecate();
         } else if (data.desktopBlacklist && data.desktopBlacklist.includes(versionId)) {
             this.props.forceUpdate();
         } else if (data.latestDesktop && versionId !== data.latestDesktop) {
             this.props.shouldUpdate();
+        } else if (data.chrysalisMigration) {
+            this.props.chrysalisMigration();
         }
     }
 
@@ -380,7 +390,7 @@ const mapStateToProps = (state) => ({
     deepLinking: state.settings.deepLinking,
     isBusy:
         !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
-    alerts: state.alerts,
+    alerts: state.alerts
 });
 
 const mapDispatchToProps = {
@@ -399,6 +409,8 @@ const mapDispatchToProps = {
     forceUpdate,
     displayTestWarning,
     displaySeedMigrationAlert,
+    deprecate,
+    chrysalisMigration
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(App)));

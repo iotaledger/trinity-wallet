@@ -157,14 +157,18 @@
         "tryingAgainWithLocalPoW": "Yerel İş Kanıtı ile tekrar deneyin.",
         "tryingAgainWithDifferentNode": "Farklı bir node ile tekrar deneyin.",
         "errorFetchingAccountInformation": "Hesap bilgisi alınırken hata oluştu.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Adres bilgileri senkronize edilirken hata oluştu. Farklı bir düğümle tekrar deneniyor.",
         "errorAccessingKeychain": "Anahtar dizilimi hatası",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "errorAccessingKeychainExplanation": "Güvenli depolama için gerekli anahtar zincirine erişilemiyor.",
         "mainWallet": "Ana Hesap",
         "confirm": "Onayla",
         "delete": "Sil",
         "shouldUpdate": "Yeni bir güncelleme var",
         "shouldUpdateExplanation": "Yeni bir güncelleme yayınlandı. En son sürüme güncellemeniz önerilir.",
+        "deprecationWarning": "Trinity is discontinued",
+        "deprecationWarningExplanation": "Please go to https://firefly.iota.org to download the new wallet.",
+        "chrysalisMigrationWarning": "Action Required",
+        "chrysalisMigrationWarningExplanation": "Trinity will stop working on April 28th 2021. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "Devam etmek için uygulamayı güncelleyin",
         "forceUpdateExplanation": "Kritik bir güncelleme yayınlandı. Lütfen uygulamayı güncelleyin.",
         "testVersionWarning": "This version should be used for testing purposes only, with very small amounts of tokens.",
@@ -268,14 +272,14 @@
         "login": "Oturum Aç",
         "setNode": "Düğüm Ayarla",
         "whyBiometricDisabled": "Biyometrik doğrulama neden devre dışı?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart1": "Güvenliğiniz için ilk uygulama yüklemesinde biyometrik doğrulama devre dışı bırakılır.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Cüzdan şifresi ilk kez yükleniyor.",
         "thisMayTake": "Bu biraz sürebilir.",
         "doNotMinimise": "Uygulamayı küçültmeyin veya kapatmayın.",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "Bu biraz zaman alıyor gibi görünüyor"
     },
     "newSeedSetup": {
         "generatedSeed": "Oluşum yaratıldı",
@@ -301,12 +305,12 @@
         "print": "Yazdır",
         "paperConvenience": "Oluşumunuzun bir kopyasını yazdırmak onu saklamak için etkili bir yöntemdir.",
         "publicInsecure": "Fakat halka açık bir Wi-fi'da veya halka açık bir yazıcıyla yazdırmak güvenli değildir.",
-        "pleaseCheck": "Please check and confirm before you print",
+        "pleaseCheck": "Lütfen yazdırmadan önce kontrol edin ve onaylayın",
         "wifiConfirmation": "Herkese açık bir wifi'ye bağlı değilim",
         "printerConfirmation": "Herkese açık bir yazıcıda çıktı almıyorum"
     },
     "printBlankTemplate": {
-        "printTemplateQuestion": "Would you like to print a blank template?",
+        "printTemplateQuestion": "Boş bir şablon yazdırmak ister misiniz?",
         "printTemplateInfo": "You can print a blank template to help you write your seed down.",
         "printTemplateWarning": "Make sure that you store your seed in a safe place. Do not show it to anyone.",
         "print": "Evet, yazdır"
@@ -384,7 +388,7 @@
         "swipeToSend": "Göndermek için kaydır",
         "paymentRequest": "Bu bir ödeme talebidir",
         "paymentRequestExpired": "Ödeme talebinin süresi bitti",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequestExpiredExplanation": "Bu ödeme talebinin süresi doldu. Lütfen alıcıdan yeni bir tane isteyin."
     },
     "setSeedName": {
         "letsAddName": "Bir isim ekleyin",
@@ -396,7 +400,7 @@
         "standard": "Standart",
         "advancedModeExplanation": "Gelişmiş mod daha ayrıntılı teknik bilgileri gösterir.",
         "modesExplanation": "Gelişmiş modu yalnızca deneyimli bir IOTA kullanıcıysanız deneyimleyin. Aksi takdirde kafa karıştırıcı bulabilirsiniz.",
-        "modeUpdated": "Mode updated",
+        "modeUpdated": "Mod güncellendi",
         "modeUpdatedExplanation": "{{mode}} moduna geçtiniz"
     },
     "settings": {
@@ -467,7 +471,7 @@
     },
     "welcome": {
         "thankYou": "Trinity'i indirdiğiniz için teşekkür ederiz",
-        "demoThankYou": "Thank you for downloading the Trinity demo"
+        "demoThankYou": "Trinity demoyu indirdiğiniz için teşekkür ederiz"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Oluşumunuzu ve sağlamanızı </0><1> birden çok kez </1><2> doğru olduğuna dair kontrol edin. </2>",
@@ -490,14 +494,14 @@
         "yesterday": "Dün",
         "promotingAnotherBundle": "Promoting another bundle",
         "pleaseWait": "Please wait, Trinity is promoting another bundle.",
-        "typeHelp": "Type !help for tips",
+        "typeHelp": "İpuçları için !help yazın",
         "searchHelpText": "Search by bundle hash or message content",
         "searchHelpValue": "Find transactions by exact iota value",
         "searchHelpUnits": "Find transactions by iota value and unit",
         "searchHelpMore": "X'ten büyük bir değere sahip işlemleri bulun",
         "searchHelpLess": "X'ten daha düşük bir değere sahip işlemleri bulun",
         "transactions": "İşlemler",
-        "noFilteredTransactions": "No transactions match those filters"
+        "noFilteredTransactions": "Bu filtrelerle eşleşen işlem yok"
     },
     "accountManagement": {
         "viewSeed": "Kaynağı görüntüle",
@@ -561,7 +565,7 @@
     },
     "themeCustomisation": {
         "theme": "Tema",
-        "mockup": "Mockup"
+        "mockup": "Model"
     },
     "themes": {
         "classic": "Klasik",
@@ -601,7 +605,7 @@
         "discordInformation": "Neler yapabileceğinizi öğrenmek için lüfen Discord'daki #help kanalına gidin."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Hesabınızı silmek istediğinizden emin misiniz?",
         "yourSeedWillBeRemoved": "Oluşumunuz ve işlem geçmişiniz kaldırılacak.",
         "thisAction": "Bu işlem geri alınamaz",
         "enterPassword": "Hesabınızı silmek için lütfen şifrenizi girin."
@@ -626,7 +630,7 @@
         "notAvailable": "Seed export is not available for {{accountType}} account type",
         "notAvailableExplanationLedger": "Your ledger device uses a secure element to store your seed. The seed is safely encrypted and does not leave the device.",
         "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Ledger hesap sayfanız"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Oluşumunuzu yedeklediniz mi?",
@@ -645,22 +649,22 @@
         "fingerprintAuthEnabled": "Biyometrik doğrulama etkin",
         "fingerprintAuthEnabledExplanation": "Biyometrik doğrulamayı başarıyla aktifleştirdiniz.",
         "fingerprintAuthDisabled": "Biyometrik doğrulama devre dışı",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "Biyometrik doğrulamayı başarıyla devre dışı bıraktınız.",
         "fingerprintAuthFailed": "Biyometrik doğrulama başarısız",
         "fingerprintAuthFailedExplanation": "Parmak izi doğrulaması başarısız. Lütfen tekrar deneyin.",
         "status": "Durum",
         "fingerprintUnavailable": "Biyometrik doğrulama kullanılamıyor",
-        "deviceLocked": "Authentication disabled for 30 seconds",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "deviceLocked": "Kimlik doğrulama 30 saniye devre dışı bırakıldı",
+        "fingerprintUnavailableExplanation": "Cihazınız biyometrik doğrulamayı desteklemiyor veya cihaz ayarlarında yapılandırılmamış.",
+        "notSupported": "Cihaz biyometrik doğrulamayı desteklemiyor",
+        "notConfigured": "Cihaz ayarlarında biyometrik doğrulama yapılandırılmamış",
         "buttonInstructionsDisable": "Parmak izi doğrulamayı devre dışı bırakmak için aşağıdaki tuşa basın.",
         "buttonInstructionsEnable": "Parmak izi doğrulamayı aktifleştirmek için aşağıdaki tuşa basın.",
         "buttonInstructionsDisableIPhoneX": "Face ID'yi devre dışış bırakmak için aşağıdaki tuşa basın",
         "buttonInstructionsEnableIPhoneX": "Face ID'yi aktifleştirmek için aşağıdaki tuşa basın",
         "instructionsLogin": "Giriş yapmak için parmak izi okuyucusuna dokunun",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
+        "systemCancelledAuth": "Kimlik doğrulama, cihazınız tarafından iptal edildi",
+        "userCancelledAuth": "Kimlik doğrulama isteği iptal edildi",
         "passwordFallback": "Parola doğrulamasına geri dönün",
         "noPassword": "Cihazda parola ayarlanmamış"
     },
@@ -767,7 +771,7 @@
         "autofill": "Otomatik doldurma başarılı",
         "autofillExplanation": "İşlem bilgisi linken otomatik olarak girildi.",
         "deepLinkingOverview": "Derin linkler, Trinity'deki işlem verilerini otomatik olarak dolduran tıklanabilir bağlantılardır (iota://...).",
-        "deepLinkingWarning": "Be aware of phishing scams. Make sure the link you open navigates to the official Trinity app.",
+        "deepLinkingWarning": "Kimlik avı dolandırıcılarına dikkat edin. Açtığınız bağlantının resmi Trinity uygulamasına gittiğinden emin olun.",
         "deepLinkingUpdated": "Deep linking settings",
         "deepLinkingEnabled": "You have enabled deep linking.",
         "deepLinkingDisabled": "You have disabled deep linking.",
@@ -776,11 +780,11 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Güncelleme bilgisi alınırken hata oluştu",
-        "errorRetrievingUpdateDataExplanation": "Could not retrieve update. Please check your internet connection and try again.",
+        "errorRetrievingUpdateDataExplanation": "Güncelleme alınamadı. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.",
         "noUpdatesAvailable": "Kullanılabilir güncelleme yok",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "Trinity'nin son sürümünü kullanıyorsunuz!",
         "newVersionAvailable": "Yeni versiyon mevcut",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "Trinity güncellemesi var. Şimdi güncellemek ister misin?",
         "installUpdate": "Güncellemeyi yükle ve yeniden başlat",
         "installUpdateExplanation": "İndirme tamamlandı, Trinity şimdi güncellemeyi yüklemek için yeniden başlayacak.",
         "downloadingUpdate": "Güncelleme indiriliyor",
@@ -800,34 +804,34 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayExplanation": "Hesap bakiyenize ve son işlem geçmişinize genel bir bakış sağlar.",
         "notLoggedIn": "Giriş yapmadınız",
         "setupIncomplete": "Cüzdan kurulumu tamamlanmadı",
         "completeSetup": "Kurulumu tamamla"
     },
     "proxy": {
         "proxy": "Sistem Proxy'sini kullan",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxyExplanation": "Sistem ağ vekili ayarlarını algıla ve kullan. Bu ayarı değiştirdikten sonra cüzdanı kapatıp yeniden açmanır gerekir."
     },
     "notifications": {
         "notifications": "Bildirimler",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
+        "typeConfirmations": "Onaylamaları bana bildir",
         "typeMessages": "Notify me about zero value transactions",
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "{{account}} 'a {{value}} alınıyor",
         "messageTx": " {{account}}'a bir mesaj aldınız",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedIn": "{{account}} hesabına gelen {{value}} onaylandı",
+        "confirmedOut": "{{account}} hesabından giden {{value}} onaylandı"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceeded": "Fonların kilidi başarıyla açıldı",
         "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
+        "sweepError": "Fonların kilidi açılırken hata oluştu",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "warningTitle": "Uyarı: Kilitli fon algılandı",
+        "explanation": "Trinity Masaüstü sürüm 0.3.4, fonları geçici olarak kilitleyebilen bir hata içeriyordu. Bu, 0.3.4 ile işlem yapan az sayıda kullanıcıyı etkiler.",
+        "explanationAccounts": "Hesaplarınızda kilitli fonlar tespit edildi: {{accounts}}. Trinity artık fonunuzu yeni bir adrese taşıyarak otomatik olarak geri alacak.",
         "proceed": "Proceed to Recovery",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
@@ -845,8 +849,8 @@
         "indexInUseExplanation": "Seçtiğiniz dizin hesaplarınızdan birinde zaten kullanılıyor. Lütfen başka bir dizin numarası seçin.",
         "createNewLedgerAccountInfo": "Make sure you write down and remember your index number.",
         "restoreLedgerAccountInfo": "Enter your saved index number to restore your account.",
-        "createNewLedgerAccount": "Create a new Ledger account",
-        "restoreLedgerAccount": "Restore an existing Ledger account",
+        "createNewLedgerAccount": "Yeni bir Ledger hesabı oluşturun",
+        "restoreLedgerAccount": "Mevcut bir Ledger hesabını geri getirin",
         "accountIndex": "Hesap dizini",
         "accountPage": "Hesap sayfası",
         "actionCancelled": "Ledger cihazına erişim iptal edildi",
@@ -872,10 +876,10 @@
         "ledgerIncorrectIndexExplanation": "Bağlı Ledger cihazı bu hesaba bağlı olanla eşleşmiyor veya kurtarma ifadesi değiştirildi.",
         "checkAddress": "Alım adresini kontrol edin",
         "checkAddressExplanation": "Adresin, Ledger cihazınızda gösterilenle aynı olduğunu kontrol edin.",
-        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialised": "Uyarı onaylanmadı",
         "applicationNotInitialisedExplanation": "Ledger cihazınızdaki IOTA uygulamasını yeniden açın, bilgi uyarısını kabul edin ve tekrar deneyin.",
-        "checkLedger": "Check your Ledger device",
-        "acceptWarningExplanation": "If there is an informational warning on your Ledger device, you must scroll through and accept it by pressing both buttons.",
+        "checkLedger": "Ledger cihazınızı kontrol edin",
+        "acceptWarningExplanation": "Ledger cihazınızda bilgilendirici bir uyarı varsa, her iki tuşa da basarak gözden geçirmeli ve kabul etmelisiniz.",
         "udevError": "Ledger cihazı ile iletişim kurulamadı",
         "udevErrorExplanation": "Trinity, Ledger cihazınızla iletişim kuramadı. Bu sorunu çözmek için lütfen aşağıdaki bağlantıyı ziyaret edin.",
         "writtenDownInfoTitle": "Remember your index number",
@@ -883,7 +887,7 @@
     },
     "help": {
         "docsSite": "Trinity Docs Site",
-        "commonIssues": "Common Wallet Issues",
-        "buyingIOTA": "Problems Buying IOTA"
+        "commonIssues": "Genel Cüzdan Sorunları",
+        "buyingIOTA": "IOTA Satın Alma Sorunları"
     }
 }

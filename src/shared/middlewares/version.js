@@ -2,7 +2,16 @@ import { WalletActionTypes, AlertsActionTypes } from '../types';
 import i18next from '../libs/i18next';
 
 const versionMiddleware = () => (next) => (action) => {
-    if (action.type === WalletActionTypes.FORCE_UPDATE) {
+    if (action.type === WalletActionTypes.DEPRECATE) {
+        next({
+            type: AlertsActionTypes.SHOW,
+            category: 'error',
+            title: i18next.t('global:deprecationWarning'),
+            message: i18next.t('global:deprecationWarningExplanation'),
+            closeInterval: 3600000,
+        });
+        next(action);
+    } else if (action.type === WalletActionTypes.FORCE_UPDATE) {
         next({
             type: AlertsActionTypes.SHOW,
             category: 'error',
@@ -20,6 +29,15 @@ const versionMiddleware = () => (next) => (action) => {
             closeInterval: 3600000,
         });
         next(action);
+    } else if (action.type === WalletActionTypes.CHRYSALIS_MIGRATION) {
+            next({
+                type: AlertsActionTypes.SHOW,
+                category: 'error',
+                title: i18next.t('global:chrysalisMigrationWarning'),
+                message: i18next.t('global:chrysalisMigrationWarningExplanation'),
+                closeInterval: 3600000,
+            });
+            next(action);
     } else if (action.type === WalletActionTypes.DISPLAY_SEED_MIGRATION_ALERT) {
         next({
             type: AlertsActionTypes.SHOW,

@@ -627,6 +627,28 @@ export const forceUpdate = () => ({
 });
 
 /**
+ * Deprecates Trinity. RIP. 
+ *
+ * @method deprecate
+ *
+ * @returns {{type: {string} }}
+ */
+ export const deprecate = () => ({
+    type: WalletActionTypes.DEPRECATE,
+});
+
+/**
+ * Trigger Chrysalis migration alert
+ *
+ * @method migration
+ *
+ * @returns {{type: {string} }}
+ */
+ export const chrysalisMigration = () => ({
+    type: WalletActionTypes.CHRYSALIS_MIGRATION,
+});
+
+/**
  * Dispatch to display test version warning
  *
  * @method displayTestWarning

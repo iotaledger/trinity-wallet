@@ -165,6 +165,10 @@
         "delete": "삭제",
         "shouldUpdate": "새 업데이트 사용 가능",
         "shouldUpdateExplanation": "새로운 업데이트가 공개되었습니다. 최신 버전으로 업데이트 하는 것을 권장합니다.",
+        "deprecationWarning": "Trinity is discontinued",
+        "deprecationWarningExplanation": "Please go to https://firefly.iota.org to download the new wallet.",
+        "chrysalisMigrationWarning": "Action Required",
+        "chrysalisMigrationWarningExplanation": "Trinity will stop working on April 28th 2021. Please go to https://chrysalis.iota.org for more information.",
         "forceUpdate": "계속하기 전에 앱 업데이트 필요",
         "forceUpdateExplanation": "중요한 업데이트가 공개되었습니다. 지금 바로 앱을 업데이트해 주세요.",
         "testVersionWarning": "이 버전은 시험 목적으로 적은 양의 토큰만 사용되어야 합니다.",
@@ -382,9 +386,9 @@
         "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요.",
         "invalid": "유효하지 않음",
         "swipeToSend": "밀어서 보내기",
-        "paymentRequest": "This is a payment request",
-        "paymentRequestExpired": "Payment request expired",
-        "paymentRequestExpiredExplanation": "This payment request has expired. Please ask the recipient for a new one."
+        "paymentRequest": "지불 요청",
+        "paymentRequestExpired": "만료된 지불 요청",
+        "paymentRequestExpiredExplanation": "이미 만료된 지불 요청입니다. 새로 지불 요청을 받으셔야 합니다."
     },
     "setSeedName": {
         "letsAddName": "이름을 지정해 주세요",
@@ -711,7 +715,7 @@
         "change": "변동 (24시)",
         "volume": "거래량 (24시간)",
         "error": "차트 데이터 가져오는 중 오류 발생",
-        "currentValue": "Current Value"
+        "currentValue": "현재 값"
     },
     "rootDetection": {
         "warning": "경고",
@@ -884,6 +888,6 @@
     "help": {
         "docsSite": "트리니티 지갑 문서 (영어)",
         "commonIssues": "자주 겪는 문제들 (영어)",
-        "buyingIOTA": "Problems Buying IOTA"
+        "buyingIOTA": "IOTA 구매 중 문제 발생"
     }
 }

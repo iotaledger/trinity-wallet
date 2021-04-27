@@ -204,6 +204,8 @@ export class Send extends Component {
         verifyCDAContent: PropTypes.func.isRequired,
         /** @ignore */
         clearSendFields: PropTypes.func.isRequired,
+        /** @ignore */
+        deprecated: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -333,7 +335,12 @@ export class Send extends Component {
      * @returns {function}
      */
     onSendPress() {
-        const { t, amount, address, message, denomination, CDAContent } = this.props;
+        const { t, amount, address, message, denomination, CDAContent, deprecated } = this.props;
+
+        if (deprecated) {
+            return
+        }
+
         const { currencySymbol } = this.state;
         const multiplier = this.getUnitMultiplier();
         const isFiat = denomination === currencySymbol;
@@ -984,6 +991,7 @@ const mapStateToProps = (state) => ({
     isKeyboardActive: state.ui.isKeyboardActive,
     themeName: state.settings.themeName,
     CDAContent: state.ui.CDAContent,
+    deprecated: state.wallet.deprecated,
 });
 
 const mapDispatchToProps = {
