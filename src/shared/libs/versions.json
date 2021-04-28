@@ -33,7 +33,9 @@
         "1.4.5",
         "1.5.0",
         "1.5.1",
-        "1.5.2"
+        "1.5.2",
+        "1.6.0",
+        "1.6.1"
     ],
     "mobileBlacklist": [
         1,
@@ -140,9 +142,12 @@
         102,
         103,
         104,
-        105
+        105,
+        106,
+        107
     ],
     "latestMobile": "108",
     "latestDesktop": "1.6.2",
-    "chrysalisMigrationActive": true
+    "deprecated": true,
+    "chrysalisMigrationActive": false
 }
