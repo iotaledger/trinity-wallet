@@ -1,0 +1,269 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    day: wednesday
+    time: "06:00"
+    timezone: Europe/Berlin
+  labels:
+  - C - Shared
+  - dependencies
+  - javascript
+  ignore:
+  - dependency-name: snyk
+    versions:
+    - 1.439.1
+    - 1.440.4
+    - 1.448.0
+    - 1.455.0
+    - 1.459.0
+    - 1.467.0
+    - 1.478.0
+    - 1.491.0
+    - 1.502.0
+    - 1.509.0
+    - 1.518.0
+    - 1.526.0
+    - 1.538.0
+  - dependency-name: husky
+    versions:
+    - 5.0.7
+    - 5.0.8
+    - 5.0.9
+    - 5.1.1
+    - 5.1.3
+    - 5.2.0
+  - dependency-name: eslint-plugin-react
+    versions:
+    - 7.23.1
+- package-ecosystem: npm
+  directory: "/src/mobile"
+  schedule:
+    interval: weekly
+    day: wednesday
+    time: "06:00"
+    timezone: Europe/Berlin
+  labels:
+  - C - Mobile
+  - dependencies
+  - javascript
+  ignore:
+  - dependency-name: buffer
+    versions:
+    - "< 5.2.2, >= 5.2.1.a"
+  - dependency-name: path-browserify
+    versions:
+    - "< 1.0.1, >= 1.0.0.a"
+  - dependency-name: react-dom
+    versions:
+    - "> 16.6.3"
+  - dependency-name: react-native-keychain
+    versions:
+    - ">= 3.1.3.a, < 3.1.4"
+  - dependency-name: react-native-securerandom
+    versions:
+    - ">= 0.3.1.a, < 0.3.2"
+  - dependency-name: stream-browserify
+    versions:
+    - ">= 2.0.1.a, < 2.0.2"
+  - dependency-name: stream-browserify
+    versions:
+    - ">= 2.0.2.a, < 2.0.3"
+  - dependency-name: string_decoder
+    versions:
+    - "> 0.10.31"
+  - dependency-name: text-encoding
+    versions:
+    - "< 0.7.1, >= 0.7.0.a"
+  - dependency-name: timers-browserify
+    versions:
+    - "> 1.4.2"
+  - dependency-name: tweetnacl
+    versions:
+    - ">= 1.0.1.a, < 1.0.2"
+  - dependency-name: redux
+    versions:
+    - 4.0.5
+  - dependency-name: victory-native
+    versions:
+    - 35.3.1
+- package-ecosystem: npm
+  directory: "/src/desktop"
+  schedule:
+    interval: weekly
+    day: wednesday
+    time: "06:00"
+    timezone: Europe/Berlin
+  labels:
+  - C - Desktop
+  - dependencies
+  - javascript
+  ignore:
+  - dependency-name: electron
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: react-redux
+    versions:
+    - ">= 7.a, < 8"
+  - dependency-name: style-loader
+    versions:
+    - ">= 1.1.3.a, < 1.1.4"
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
+    - 4.0.2
+  - dependency-name: "@bugsnag/js"
+    versions:
+    - 7.6.0
+    - 7.7.0
+  - dependency-name: electron
+    versions:
+    - 9.4.0
+  - dependency-name: html-webpack-plugin
+    versions:
+    - 4.5.1
+- package-ecosystem: npm
+  directory: "/src/shared"
+  schedule:
+    interval: weekly
+    day: wednesday
+    time: "06:00"
+    timezone: Europe/Berlin
+  labels:
+  - C - Shared
+  - dependencies
+  - javascript
+  ignore:
+  - dependency-name: redux-persist
+    versions:
+    - "> 4.10.2"
+  - dependency-name: "@babel/core"
+    versions:
+    - 7.12.10
+    - 7.12.13
+    - 7.12.16
+    - 7.13.1
+    - 7.13.10
+    - 7.13.14
+    - 7.13.15
+    - 7.13.8
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
+    - 4.0.2
+  - dependency-name: "@babel/preset-env"
+    versions:
+    - 7.12.11
+    - 7.12.13
+    - 7.12.16
+    - 7.13.10
+    - 7.13.12
+    - 7.13.5
+    - 7.13.9
+  - dependency-name: svg2ttf
+    versions:
+    - 5.0.0
+    - 5.1.0
+  - dependency-name: "@babel/plugin-proposal-decorators"
+    versions:
+    - 7.12.12
+    - 7.12.13
+    - 7.13.5
+  - dependency-name: sinon
+    versions:
+    - 9.2.4
+- package-ecosystem: bundler
+  directory: "/src/mobile/android"
+  schedule:
+    interval: daily
+    time: "06:00"
+    timezone: Europe/Berlin
+  labels:
+  - C - Mobile
+  - dependencies
+  - P - Android
+  - ruby
+  ignore:
+  - dependency-name: nokogiri
+    versions:
+    - "< 1.8.6, >= 1.8.5.a"
+  - dependency-name: nokogiri
+    versions:
+    - "< 1.9.1, >= 1.9.0.a"
+  - dependency-name: fastlane
+    versions:
+    - 2.172.0
+    - 2.173.0
+    - 2.174.0
+    - 2.175.0
+    - 2.176.0
+    - 2.177.0
+    - 2.178.0
+    - 2.179.0
+    - 2.180.0
+  - dependency-name: nokogiri
+    versions:
+    - 1.11.2
+- package-ecosystem: gradle
+  directory: "/src/mobile/android/app"
+  schedule:
+    interval: daily
+    time: "06:00"
+    timezone: Europe/Berlin
+  labels:
+  - C - Mobile
+  - dependencies
+  - P - Android
+  - java
+- package-ecosystem: bundler
+  directory: "/src/mobile/ios"
+  schedule:
+    interval: daily
+    time: "06:00"
+    timezone: Europe/Berlin
+  labels:
+  - C - Mobile
+  - dependencies
+  - P - iOS
+  - ruby
+  ignore:
+  - dependency-name: fastlane
+    versions:
+    - 2.172.0
+    - 2.173.0
+    - 2.174.0
+    - 2.175.0
+    - 2.176.0
+    - 2.177.0
+    - 2.178.0
+    - 2.179.0
+    - 2.180.0
+- package-ecosystem: gradle
+  directory: "/src/mobile/android"
+  schedule:
+    interval: daily
+    time: "06:00"
+    timezone: Europe/Berlin
+  labels:
+  - C - Mobile
+  - P - Android
+  - dependencies
+  - java
+  ignore:
+  - dependency-name: com.android.support:multidex
+    versions:
+    - "> 1.0.1"
+  - dependency-name: com.android.tools.build:gradle
+    versions:
+    - "< 3.3, >= 3.2.a"
+  - dependency-name: com.android.tools.build:gradle
+    versions:
+    - ">= 3.6.2.a, < 3.6.3"
+  - dependency-name: com.google.android.gms:play-services-vision
+    versions:
+    - "> 10.2.0"
+  - dependency-name: com.android.tools.build:gradle
+    versions:
+    - 4.1.2
