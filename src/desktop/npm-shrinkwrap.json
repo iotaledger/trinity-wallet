@@ -3288,24 +3288,45 @@
       "dev": true
     },
     "@bugsnag/browser": {
-      "version": "6.5.2",
-      "resolved": "https://registry.npmjs.org/@bugsnag/browser/-/browser-6.5.2.tgz",
-      "integrity": "sha512-XFKKorJc92ivLnlHHhLiPvkP03tZ5y7n0Z2xO6lOU7t+jWF5YapgwqQAda/TWvyYO38B/baWdnOpWMB3QmjhkA=="
+      "version": "7.9.2",
+      "resolved": "https://registry.npmjs.org/@bugsnag/browser/-/browser-7.9.2.tgz",
+      "integrity": "sha512-vD0UEpInqoOWxqSdXhDN7wbt8hUnaqmHF/nyQK6pVYlPmBOaseexwjGBWQ1BCa4QWwK1CDDBy6sS9onUvWKsnw==",
+      "requires": {
+        "@bugsnag/core": "^7.9.2"
+      }
+    },
+    "@bugsnag/core": {
+      "version": "7.9.2",
+      "resolved": "https://registry.npmjs.org/@bugsnag/core/-/core-7.9.2.tgz",
+      "integrity": "sha512-iz18qkEhrF0Bra0lpEP4VC0EJa48R+3QDDiTtfHW9fiZGKw+ADrUhwW7pHJn+LDqWfq4kMqJNuQC+8s4dV3MYg==",
+      "requires": {
+        "@bugsnag/cuid": "^3.0.0",
+        "@bugsnag/safe-json-stringify": "^6.0.0",
+        "error-stack-parser": "^2.0.3",
+        "iserror": "0.0.2",
+        "stack-generator": "^2.0.3"
+      }
+    },
+    "@bugsnag/cuid": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/@bugsnag/cuid/-/cuid-3.0.0.tgz",
+      "integrity": "sha512-LOt8aaBI+KvOQGneBtpuCz3YqzyEAehd1f3nC5yr9TIYW1+IzYKa2xWS4EiMz5pPOnRPHkyyS5t/wmSmN51Gjg=="
     },
     "@bugsnag/js": {
-      "version": "6.5.2",
-      "resolved": "https://registry.npmjs.org/@bugsnag/js/-/js-6.5.2.tgz",
-      "integrity": "sha512-4ibw624fM5+Y/WSuo3T/MsJVtslsPV8X0MxFuRxdvpKVUXX216d8hN8E/bG4hr7aipqQOGhBYDqSzeL2wgmh0Q==",
+      "version": "7.9.2",
+      "resolved": "https://registry.npmjs.org/@bugsnag/js/-/js-7.9.2.tgz",
+      "integrity": "sha512-RkajX7cnlYKm4uWclf4oQKZL69A9Vo5jNyQiE7u8uFXhotHoDyHi5QLkdHOSIOZHkBGkgoRV9tkbPAJKcnJSuQ==",
       "requires": {
-        "@bugsnag/browser": "^6.5.2",
-        "@bugsnag/node": "^6.5.2"
+        "@bugsnag/browser": "^7.9.2",
+        "@bugsnag/node": "^7.9.2"
       }
     },
     "@bugsnag/node": {
-      "version": "6.5.2",
-      "resolved": "https://registry.npmjs.org/@bugsnag/node/-/node-6.5.2.tgz",
-      "integrity": "sha512-KQ1twKoOttMCYsHv7OXUVsommVcrk6RGQ5YoZGlTbREhccbzsvjbiXPKiY31Qc7OXKvaJwSXhnOKrQTpRleFUg==",
+      "version": "7.9.2",
+      "resolved": "https://registry.npmjs.org/@bugsnag/node/-/node-7.9.2.tgz",
+      "integrity": "sha512-e+tEyUBQ6e5z4WJlPAi962rnbR0f+0wxPjSoUHV5uVFg5Dkjg3ioXDdzKVbxfOEv3nVpXlMD8DrQqYe5g0O6sA==",
       "requires": {
+        "@bugsnag/core": "^7.9.2",
         "byline": "^5.0.0",
         "error-stack-parser": "^2.0.2",
         "iserror": "^0.0.2",
@@ -3328,6 +3349,11 @@
       "version": "6.5.0",
       "resolved": "https://registry.npmjs.org/@bugsnag/plugin-react/-/plugin-react-6.5.0.tgz",
       "integrity": "sha512-kbyFSnQ4QLGjN04t9MbuD5KLWI2qQpjrgKrJvJNKM8xyeVIJYpkjx//TsDzG4ujNFVkwaP3bT48j85rf4EJNqA=="
+    },
+    "@bugsnag/safe-json-stringify": {
+      "version": "6.0.0",
+      "resolved": "https://registry.npmjs.org/@bugsnag/safe-json-stringify/-/safe-json-stringify-6.0.0.tgz",
+      "integrity": "sha512-htzFO1Zc57S8kgdRK9mLcPVTW1BY2ijfH7Dk2CeZmspTWKdKqSo1iwmqrq2WtRjFlo8aRZYgLX0wFrDXF/9DLA=="
     },
     "@cnakazawa/watch": {
       "version": "1.0.3",
@@ -25245,9 +25271,9 @@
       "dev": true
     },
     "stackframe": {
-      "version": "1.1.1",
-      "resolved": "https://registry.npmjs.org/stackframe/-/stackframe-1.1.1.tgz",
-      "integrity": "sha512-0PlYhdKh6AfFxRyK/v+6/k+/mMfyiEBbTM5L94D0ZytQnJ166wuwoTYLHFWGbs2dpA8Rgq763KGWmN1EQEYHRQ=="
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/stackframe/-/stackframe-1.2.0.tgz",
+      "integrity": "sha512-GrdeshiRmS1YLMYgzF16olf2jJ/IzxXY9lhKOskuVziubpTYcYqyOwYeJKzQkwy7uN0fYSsbsC4RQaXf9LCrYA=="
     },
     "stat-mode": {
       "version": "1.0.0",
