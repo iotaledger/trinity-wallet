@@ -160,7 +160,7 @@
   },
   "dependencies": {
     "@babel/register": "7.9.0",
-    "@bugsnag/js": "6.5.2",
+    "@bugsnag/js": "7.10.1",
     "@bugsnag/plugin-react": "^6.5.0",
     "@ledgerhq/hw-transport-node-hid": "^5.13.0",
     "argon2": "0.27.0",
