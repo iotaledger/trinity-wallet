@@ -221,7 +221,7 @@ export default (state = initialState, action) => {
         case WalletActionTypes.DEPRECATE:
             return {
                 ...state,
-                deprecated: true,
+                deprecated: false,
             };
         case WalletActionTypes.CHRYSALIS_MIGRATION:
         return {
