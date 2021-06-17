@@ -5,6 +5,6 @@
   "main": "main.js",
   "dependencies": {
     "argon2": "^0.19.3",
-    "kdbxweb": "^1.2.4"
+    "kdbxweb": "^2.1.0"
   }
 }
