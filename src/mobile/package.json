@@ -52,7 +52,7 @@
     "querystring-es3": "~0.2.0",
     "react": "16.8.3",
     "react-i18next": "^11.0.0",
-    "react-native": "0.59.10",
+    "react-native": "0.62.3",
     "react-native-camera": "^1.5.1",
     "react-native-crypto": "^2.0.2",
     "react-native-detect-navbar-android": "^0.3.0",
