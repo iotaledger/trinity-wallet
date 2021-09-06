@@ -36,7 +36,7 @@
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "url-parse": "^1.4.7",
+    "url-parse": "^1.5.2",
     "valid-url": "^1.0.9",
     "zxcvbn": "^4.4.2"
   },
