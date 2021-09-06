@@ -1,4 +1,8 @@
 <h1 align="center">
+Trinity is now deprecated. Please use  <a href="https://github.com/iotaledger/firefly" style="text-decoration:none;">Firefly</a>.
+</h1>
+
+<h1 align="center">
   <br>
   <a href="https://docs.iota.org/docs/wallets/0.1/trinity/introduction/overview"><img src="trinity.png"></a>
 </h1>
