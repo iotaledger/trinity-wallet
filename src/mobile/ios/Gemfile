@@ -4,7 +4,7 @@
 
 source 'https://rubygems.org'
 
-gem 'cocoapods', '~> 1.10'
-gem 'fastlane'
+gem 'cocoapods', '~> 1.10', '>= 1.10.0'
+gem 'fastlane', '>= 2.181.0'
 
 eval_gemfile('./fastlane/Pluginfile') if File.exist?('./fastlane/Pluginfile')
