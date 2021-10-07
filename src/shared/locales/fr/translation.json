@@ -168,7 +168,7 @@
         "deprecationWarning": "Trinity est interrompu",
         "deprecationWarningExplanation": "Rendez-vous sur https://firefly.iota.org pour télécharger le nouveau portefeuille.",
         "chrysalisMigrationWarning": "Action requise",
-        "chrysalisMigrationWarningExplanation": "Trinity will stop working on April 28th 2021. Please go to https://chrysalis.iota.org for more information.",
+        "chrysalisMigrationWarningExplanation": "Trinity cessera de fonctionner le 28 avril 2021. Veuillez vous rendre sur https://chrysalis.iota.org pour plus d'informations.",
         "forceUpdate": "Mettez à jour l'application pour continuer",
         "forceUpdateExplanation": "Une mise à jour critique est disponible. Veuillez mettre à jour l’application maintenant.",
         "testVersionWarning": "Cette version ne devrait être utilisée qu'à des fins de test, avec de très petites quantités de jetons.",
