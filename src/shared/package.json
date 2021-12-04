@@ -63,7 +63,7 @@
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.5.4",
     "rimraf": "^3.0.2",
-    "sinon": "^7.4.1",
+    "sinon": "^11.1.2",
     "snyk": "^1.425.4",
     "svg2ttf": "^4.3.0",
     "svgicons2svgfont": "^9.1.1",
